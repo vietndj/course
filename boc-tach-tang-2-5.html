@@ -118,15 +118,30 @@
       --apple-ease:   cubic-bezier(0.16, 1, 0.3, 1);
     }
 
+    /* ═══ 2.1 APPLE REVEAL & HERO PROTECTION (ZERO BLANK SCREEN) ═══ */
+    /* Section 1 is above the fold: ALWAYS 100% visible immediately */
+    #sec-situation .cl-container {
+      opacity: 1 !important;
+      transform: none !important;
+      visibility: visible !important;
+    }
+
     .apple-reveal {
+      opacity: 1; /* Safe fallback */
+      transform: none;
+    }
+
+    /* Animate only when js-ready is active and below the fold */
+    html.js-ready .apple-reveal:not(#sec-situation .cl-container) {
       opacity: 0;
-      transform: translate3d(0, 24px, 0);
-      transition: opacity 0.52s var(--apple-ease), transform 0.58s var(--apple-spring);
+      transform: translate3d(0, 20px, 0);
+      transition: opacity 0.45s var(--apple-ease), transform 0.5s var(--apple-spring);
       will-change: opacity, transform;
     }
-    .apple-reveal.is-visible {
-      opacity: 1;
-      transform: translate3d(0, 0, 0);
+
+    html.js-ready .apple-reveal.is-visible {
+      opacity: 1 !important;
+      transform: translate3d(0, 0, 0) !important;
       will-change: auto;
     }
 
@@ -278,7 +293,7 @@
       font-size: clamp(26px, 4vw, 42px);
       line-height: 1.18;
       letter-spacing: -0.01em;
-      text-transform: uppercase;
+      text-transform: uppercase !important;
       color: var(--cl-text-base);
       margin-bottom: 20px;
       text-wrap: balance;
@@ -383,11 +398,14 @@
     }
 
     .beat-card__title {
-      font-family: var(--font-display-long);
-      font-size: 17px;
-      font-weight: 600;
+      font-family: var(--font-display-short);
+      font-size: 16px;
+      font-weight: 700;
+      text-transform: uppercase !important;
+      letter-spacing: -0.01em;
       color: var(--cl-text-base);
       margin-bottom: 10px;
+      line-height: 1.35;
     }
 
     .beat-card__content {
@@ -424,12 +442,13 @@
     .master-table th {
       background: #0f172a;
       color: #ffffff;
-      font-family: var(--font-sans);
-      font-weight: 600;
+      font-family: var(--font-display-short);
+      font-weight: 700;
+      text-transform: uppercase !important;
       padding: 16px 18px;
       border-bottom: 1px solid rgba(0,0,0,0.1);
-      font-size: 14px;
-      letter-spacing: 0.02em;
+      font-size: 13px;
+      letter-spacing: 0.04em;
     }
 
     .master-table td {
@@ -560,11 +579,14 @@
     }
 
     .mechanism-card__title {
-      font-family: var(--font-display-long);
-      font-size: clamp(20px, 2.5vw, 25px);
+      font-family: var(--font-display-short);
+      font-size: clamp(18px, 2.2vw, 24px);
       font-weight: 700;
+      text-transform: uppercase !important;
+      letter-spacing: -0.01em;
       color: var(--cl-text-base);
       margin-bottom: 20px;
+      line-height: 1.35;
     }
 
     .detail-grid {
@@ -585,11 +607,11 @@
     }
 
     .detail-label {
-      font-family: var(--font-sans);
-      font-size: 12.5px;
+      font-family: var(--font-display-short);
+      font-size: 13px;
       font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
+      text-transform: uppercase !important;
+      letter-spacing: 0.04em;
       color: var(--cl-text-muted);
       display: flex;
       align-items: center;
@@ -686,10 +708,12 @@
       gap: 10px;
       background: var(--cl-accent);
       color: #ffffff;
-      font-family: var(--font-sans);
+      font-family: var(--font-display-short);
       font-weight: 700;
-      font-size: 15.5px;
-      padding: 14px 32px;
+      text-transform: uppercase !important;
+      letter-spacing: 0.02em;
+      font-size: 15px;
+      padding: 16px 36px;
       border-radius: var(--cl-radius-full);
       text-decoration: none;
       box-shadow: 0 6px 20px rgba(26, 115, 232, 0.25);
@@ -793,7 +817,7 @@
       <div class="beats-grid" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); margin-top: 28px;">
         <div class="beat-card">
           <span class="beat-card__num">CÔNG THỨC 1</span>
-          <h3 class="beat-card__title">Chê Bai Kẻ Khác</h3>
+          <h3 class="beat-card__title">CHÊ BAI KẺ KHÁC</h3>
           <p class="beat-card__content">
             <strong>Soi cái bĩu môi:</strong> Tìm đối tượng bị họ dè bỉu ngoài đời. Con người thường có xu hướng chê bai thậm tệ nhất chính cái thứ mà bên trong họ thèm khát hoặc sợ hãi nhưng bất lực không làm được.
           </p>
@@ -801,7 +825,7 @@
 
         <div class="beat-card">
           <span class="beat-card__num" style="background: rgba(180, 83, 9, 0.1); color: var(--cl-warm);">CÔNG THỨC 2</span>
-          <h3 class="beat-card__title">Chiếc Áo Choàng Đạo Đức</h3>
+          <h3 class="beat-card__title">CHIẾC ÁO CHOÀNG ĐẠO ĐỨC</h3>
           <p class="beat-card__content">
             <strong>Biến bất lực thành phẩm hạnh:</strong> Khi kết quả bị bế tắc, cách duy nhất để không thấy mình vô dụng là khoác lên một triết lý sống cao đẹp: <em>“hữu xạ tự nhiên hương, kinh doanh bằng cái tâm”</em>.
           </p>
@@ -809,7 +833,7 @@
 
         <div class="beat-card beat-card--highlight">
           <span class="beat-card__num" style="background: rgba(22, 163, 74, 0.1); color: var(--cl-success);">CÔNG THỨC 3</span>
-          <h3 class="beat-card__title">Độ Vênh Ngày & Đêm</h3>
+          <h3 class="beat-card__title">ĐỘ VÊNH NGÀY & ĐÊM</h3>
           <p class="beat-card__content">
             <strong>Che đậy lúc một mình:</strong> Soi vào khoảng cách giữa hành vi lén lút, vụng về khi ở một mình trong bóng tối với phong thái đạo mạo, nói cứng lúc 9 giờ sáng ra quán cafe gặp gỡ đối tác.
           </p>
@@ -1001,7 +1025,7 @@
       <div class="beats-grid" style="grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); margin-top: 24px;">
         <div class="beat-card">
           <span class="beat-card__num">NHỊP 1 [TẦNG 2.5]</span>
-          <h3 class="beat-card__title">Cái Cớ Oai Miệng Ban Đầu</h3>
+          <h3 class="beat-card__title">CÁI CỚ OAI MIỆNG BAN ĐẦU</h3>
           <p class="beat-card__content">
             “Hồi mới thấy phong trào làm video rộ lên, mình hay nói cứng: ‘Mấy cái trào lưu trên mạng chỉ dành cho người rảnh rỗi. Mình làm nghề đàng hoàng, có chuyên môn thì hữu xạ tự nhiên hương, việc gì phải lên mạng nói nhiều!’”
           </p>
@@ -1009,7 +1033,7 @@
 
         <div class="beat-card">
           <span class="beat-card__num">NHỊP 2 [TẦNG 2]</span>
-          <h3 class="beat-card__title">Thực Tế Lúng Túng Đời Thường</h3>
+          <h3 class="beat-card__title">THỰC TẾ LÚNG TÚNG ĐỜI THƯỜNG</h3>
           <p class="beat-card__content">
             “Nói thế để tự an ủi thôi... Chứ đêm về đóng cửa phòng, lén kê điện thoại lên bàn quay thử, nói được 3 câu thấy ngượng ngùng, lúng túng. Bấm xóa đi vì sợ người nhà nhìn thấy.”
           </p>
@@ -1017,7 +1041,7 @@
 
         <div class="beat-card">
           <span class="beat-card__num">NHỊP 3 [TẦNG 3]</span>
-          <h3 class="beat-card__title">Nỗi Lòng Chạnh Lòng Khó Nói</h3>
+          <h3 class="beat-card__title">NỖI LÒNG CHẠNH LÒNG KHÓ NÓI</h3>
           <p class="beat-card__content">
             “Sự thật là trong lòng mình cũng có chút chạnh lòng và sốt ruột. Nhìn những người dám lên tiếng tiếp cận được bao nhiêu khách hàng mới, còn mình thì khách cũ cứ thưa dần.”
           </p>
@@ -1025,7 +1049,7 @@
 
         <div class="beat-card beat-card--highlight">
           <span class="beat-card__num" style="background: var(--cl-accent); color: #fff;">NHỊP 4 [CÚ BẺ LÁI]</span>
-          <h3 class="beat-card__title">Giác Ngộ & Nút Thắt Duy Nhất</h3>
+          <h3 class="beat-card__title">GIÁC NGỘ & NÚT THẮT DUY NHẤT</h3>
           <p class="beat-card__content">
             “Khách hàng người ta đâu có bắt mình phải hoạt ngôn hay diễn xuất gì trên mạng... Người ta chỉ cần một người làm nghề thật thà chịu mở miệng nói rõ sự thật thôi. Mình không làm video không phải vì mình thanh cao, mà vì mình còn e ngại, giữ kẽ quá. Khi chịu gạt sự e ngại ấy sang một bên để chia sẻ thật lòng... lúc đấy công việc mới thông suốt được.”
           </p>
@@ -1070,7 +1094,7 @@
 
       <div class="beat-card" style="background: #ffffff; border: 1px solid var(--cl-line-strong); margin-top: 24px; padding: 28px 24px;">
         <span class="beat-card__num" style="background: var(--cl-accent-tint); color: var(--cl-accent);">3 BƯỚC BẮT BÀI TÂM LÝ</span>
-        <h3 class="beat-card__title" style="margin-bottom: 16px;">Công Thức 3 Bước Tìm Tầng 2.5 Bất Kỳ Ngành Nào</h3>
+        <h3 class="beat-card__title" style="margin-bottom: 16px;">3 BƯỚC BẮT BÀI TÂM LÝ CHO MỌI NGÀNH NGHỀ</h3>
         
         <div class="apple-list" style="display: flex; flex-direction: column; gap: 14px;">
           <div style="display: flex; gap: 12px; align-items: flex-start;">
@@ -1103,11 +1127,11 @@
         <table class="master-table">
           <thead>
             <tr>
-              <th style="width: 22%;">Tên Phản Xạ (Nhấn Để Xem)</th>
-              <th style="width: 22%;">Thực Tế Lúng Túng (Tầng 2)</th>
-              <th style="width: 18%;">Nỗi E Ngại Thầm Kín (Tầng 3)</th>
-              <th style="width: 18%;">Lý Do Chỉn Chu Tráo Vào</th>
-              <th style="width: 20%;">Câu Nói Oai Miệng (Tầng 2.5)</th>
+              <th style="width: 22%;">TÊN PHẢN XẠ (NHẤN ĐỂ XEM)</th>
+              <th style="width: 22%;">THỰC TẾ LÚNG TÚNG (TẦNG 2)</th>
+              <th style="width: 18%;">NỖI E NGẠI THẦM KÍN (TẦNG 3)</th>
+              <th style="width: 18%;">LÝ DO CHỈN CHU TRÁO VÀO</th>
+              <th style="width: 20%;">CÂU NÓI OAI MIỆNG (TẦNG 2.5)</th>
             </tr>
           </thead>
           <tbody>
@@ -1858,18 +1882,53 @@
 
   <!-- ═══ 9. APPLE REVEAL SCRIPT (ZERO-JANK OBSERVER) ═══ -->
   <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const reveals = document.querySelectorAll('.apple-reveal');
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('is-visible');
-            observer.unobserve(entry.target);
+    (function() {
+      // 1. Mark hero section visible immediately
+      var hero = document.querySelector('#sec-situation .cl-container');
+      if (hero) {
+        hero.classList.add('is-visible');
+      }
+
+      function initReveal() {
+        document.documentElement.classList.add('js-ready');
+        var reveals = document.querySelectorAll('.apple-reveal');
+        
+        // Immediately reveal any element already in viewport
+        reveals.forEach(function(el) {
+          var rect = el.getBoundingClientRect();
+          if (rect.top < window.innerHeight + 100) {
+            el.classList.add('is-visible');
           }
         });
-      }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-      reveals.forEach(el => observer.observe(el));
-    });
+
+        if ('IntersectionObserver' in window) {
+          var observer = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                observer.unobserve(entry.target);
+              }
+            });
+          }, { threshold: 0.05, rootMargin: '50px 0px 50px 0px' });
+
+          reveals.forEach(function(el) {
+            if (!el.classList.contains('is-visible')) {
+              observer.observe(el);
+            }
+          });
+        } else {
+          reveals.forEach(function(el) {
+            el.classList.add('is-visible');
+          });
+        }
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initReveal);
+      } else {
+        initReveal();
+      }
+    })();
   </script>
 
 </body>
