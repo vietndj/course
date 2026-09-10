@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Nghệ Thuật Chuyển Cảnh Che Vật Thể (Foreground Mask) • Giáo Trình FEDU</title>
+  
+  <!-- Font Definitions & System Fallbacks -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&family=Playfair+Display:ital,wght@1,400;1,600&display=swap" rel="stylesheet">
+  
+  <style>
+    /* ═══ 1. FONT DECLARATIONS (Local Repo, System & R2 Fallbacks) ═══ */
+    @font-face {
+      font-family: 'FD Aeonik Extended';
+      src: url('./fonts/FDAeonikExtended-Bold.woff2') format('woff2'),
+           url('./fonts/FDAeonikExtended-Bold.ttf') format('truetype'),
+           url('/Users/vietmac/Library/Fonts/FDAeonikExtended-Bold.otf') format('opentype'),
+           local('FD Aeonik Extended Bold');
+      font-weight: 700;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'FD Aeonik';
+      src: url('./fonts/FDAeonikRegular.ttf') format('truetype'),
+           url('./assets/fonts/FDAeonikRegular.ttf') format('truetype'),
+           url('/Users/vietmac/Library/Fonts/FDAeonikRegular.ttf') format('truetype'),
+           local('FD Aeonik Regular'), local('FDAeonikRegular');
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'FD Aeonik';
+      src: url('./fonts/FDAeonikExtended-SemiBold.ttf') format('truetype'),
+           url('/Users/vietmac/Library/Fonts/FDAeonikExtended-SemiBold.otf') format('opentype'),
+           local('FD Aeonik SemiBold');
+      font-weight: 600;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'FD Aeonik';
+      src: url('./fonts/FDAeonikBold.ttf') format('truetype'),
+           url('/Users/vietmac/Library/Fonts/FDAeonikBold.ttf') format('truetype'),
+           local('FD Aeonik Bold'), local('FDAeonikBold');
+      font-weight: 700;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Tiempos Text';
+      src: url('./fonts/FDTiemposText-Regular.otf') format('opentype'),
+           url('/Users/vietmac/Library/Fonts/FDTiemposText-Regular.otf') format('opentype'),
+           local('Tiempos Text Regular'), local('FDTiemposText-Regular');
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Tiempos Text';
+      src: url('./fonts/FDTiemposText-Medium.otf') format('opentype'),
+           url('/Users/vietmac/Library/Fonts/FDTiemposText-Medium.otf') format('opentype'),
+           local('Tiempos Text Medium'), local('FDTiemposText-Medium');
+      font-weight: 500;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Tiempos Text Italic';
+      src: url('./fonts/FDTiemposText-RegularItalic.otf') format('opentype'),
+           url('/Users/vietmac/Library/Fonts/FDTiemposText-RegularItalic.otf') format('opentype'),
+           local('Tiempos Text Italic'), local('FDTiemposText-RegularItalic');
+      font-weight: 400;
+      font-style: italic;
+      font-display: swap;
+    }
+
+    /* ═══ 2. DESIGN TOKENS (Light Theme - Chuẩn 30ngayviral.fedu.vn) ═══ */
+    :root {
+      --cl-bg-light: #ffffff;
+      --cl-bg-tint:  #f8fafc; /* Slate-50 ấm áp */
+      --cl-bg-card:  #ffffff;
+      --cl-line:     rgba(0, 0, 0, 0.07);
+      --cl-line-light: rgba(0, 0, 0, 0.04);
+      --cl-line-strong: rgba(0, 0, 0, 0.12);
+
+      /* WCAG AAA Ink Contrast */
+      --cl-text-primary:   #090d16;  /* Slate 950 (18.8:1) */
+      --cl-text-body:      #0f172a;  /* Slate 900 (16.5:1 Mực in cao cấp) */
+      --cl-text-secondary: #334155;  /* Slate 700 */
+      --cl-text-muted:     #64748b;  /* Slate 500 */
+
+      /* Accents */
+      --cl-accent:        #1a73e8;  /* Royal Blue */
+      --cl-accent-tint:   rgba(26, 115, 232, 0.08);
+      --cl-amber:         #d97706;  /* Amber 600 */
+      --cl-amber-bg:      #fffbeb;  /* Amber 50 */
+      --cl-amber-border:  #fde68a;  /* Amber 200 */
+      --cl-emerald:       #059669;  /* Emerald 600 */
+      --cl-emerald-bg:    #f0fdf4;  /* Emerald 50 */
+      --cl-emerald-border:#bbf7d0;  /* Emerald 200 */
+      --cl-rose:          #e11d48;  /* Rose 600 */
+      --cl-rose-bg:       #fff1f2;  /* Rose 50 */
+      --cl-rose-border:   #fecdd3;  /* Rose 200 */
+
+      /* Typography */
+      --font-heading-short: 'FD Aeonik Extended', -apple-system, sans-serif;
+      --font-heading-long:  'FD Aeonik', -apple-system, sans-serif;
+      --font-body:          'Tiempos Text', Georgia, serif;
+      --font-hook:          'Tiempos Text Italic', Georgia, serif;
+      --font-ui:            'FD Aeonik', -apple-system, sans-serif;
+      --font-mono:          'JetBrains Mono', monospace;
+
+      /* Motion */
+      --apple-spring: cubic-bezier(0.25, 1, 0.35, 1.05);
+      --apple-ease:   cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* ═══ 3. RESET & BASE ═══ */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+    body {
+      background-color: var(--cl-bg-light);
+      color: var(--cl-text-body);
+      font-family: var(--font-body);
+      line-height: 1.8;
+      overflow-x: hidden;
+    }
+
+    /* ═══ 4. TOP NAVIGATION ═══ */
+    .course-nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--cl-line);
+      padding: 14px 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+    .nav-badge {
+      background: var(--cl-accent);
+      color: #ffffff;
+      font-family: var(--font-ui);
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 6px;
+      letter-spacing: 0.5px;
+    }
+    .nav-title {
+      font-family: var(--font-heading-long);
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--cl-text-primary);
+    }
+    .nav-links {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+    }
+    .nav-link-btn {
+      font-family: var(--font-ui);
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--cl-text-secondary);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-link-btn:hover {
+      color: var(--cl-accent);
+    }
+    .nav-btn-highlight {
+      background: var(--cl-text-primary);
+      color: #ffffff !important;
+      padding: 6px 14px;
+      border-radius: 8px;
+      font-family: var(--font-ui);
+      font-size: 12.5px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+    .nav-btn-highlight:hover {
+      background: var(--cl-accent);
+    }
+
+    /* ═══ 5. ZEBRA SECTIONS (1 KHỐI = 1 NHỊP THỞ) ═══ */
+    .cl-zebra-section {
+      width: 100%;
+      padding: 90px 24px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-bottom: 1px solid var(--cl-line-light);
+    }
+    .cl-zebra--light {
+      background-color: var(--cl-bg-light);
+    }
+    .cl-zebra--tint {
+      background-color: var(--cl-bg-tint);
+    }
+    .cl-sec-container {
+      width: 100%;
+      max-width: 960px;
+      margin: 0 auto;
+    }
+    .cl-sec-container--wide {
+      max-width: 1140px;
+    }
+    .cl-sec-container--narrow {
+      max-width: 760px;
+    }
+
+    /* ═══ 6. 3-BEAT HEADER ELEMENTS ═══ */
+    .cl-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 14px;
+      background: var(--cl-accent-tint);
+      color: var(--cl-accent);
+      border: 1px solid rgba(26, 115, 232, 0.2);
+      border-radius: 20px;
+      font-family: var(--font-ui);
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      margin-bottom: 16px;
+    }
+    .cl-badge--amber {
+      background: var(--cl-amber-bg);
+      color: var(--cl-amber);
+      border-color: var(--cl-amber-border);
+    }
+    .cl-badge--emerald {
+      background: var(--cl-emerald-bg);
+      color: var(--cl-emerald);
+      border-color: var(--cl-emerald-border);
+    }
+    .title-short {
+      font-family: var(--font-heading-short);
+      font-size: clamp(28px, 4.2vw, 46px);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: -0.01em;
+      color: var(--cl-text-primary);
+      line-height: 1.25;
+      margin-bottom: 18px;
+    }
+    .title-long {
+      font-family: var(--font-heading-long);
+      font-size: clamp(22px, 3.2vw, 32px);
+      font-weight: 600;
+      color: var(--cl-text-primary);
+      line-height: 1.35;
+      margin-bottom: 16px;
+    }
+    .editorial-hook {
+      font-family: var(--font-hook);
+      font-size: clamp(19px, 2.4vw, 24px);
+      color: var(--cl-text-primary);
+      line-height: 1.6;
+      border-left: 3px solid var(--cl-accent);
+      padding-left: 20px;
+      margin: 24px 0;
+    }
+    .cl-body {
+      font-family: var(--font-body);
+      font-size: 16.5px;
+      color: var(--cl-text-body);
+      line-height: 1.85;
+      margin-bottom: 20px;
+    }
+
+    /* ═══ 7. APPLE MOTION CARDS ═══ */
+    .apple-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+      margin-top: 32px;
+    }
+    .apple-card {
+      background: var(--cl-bg-card);
+      border: 1px solid var(--cl-line);
+      border-radius: 16px;
+      padding: 28px 24px;
+      display: flex;
+      flex-direction: column;
+      transition: all 0.25s ease;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.02);
+    }
+    .apple-card:hover {
+      border-color: rgba(26, 115, 232, 0.35);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.06);
+    }
+    .apple-card__num {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--cl-accent);
+      margin-bottom: 12px;
+      display: block;
+    }
+    .apple-card__title {
+      font-family: var(--font-heading-long);
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--cl-text-primary);
+      line-height: 1.4;
+      margin-bottom: 10px;
+    }
+    .apple-card__desc {
+      font-family: var(--font-body);
+      font-size: 14.5px;
+      color: var(--cl-text-secondary);
+      line-height: 1.7;
+    }
+
+    /* ═══ 8. PRACTICAL RULES & SCRIPT BLOCKS ═══ */
+    .rules-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 18px;
+      margin-top: 28px;
+    }
+    .rule-item {
+      background: var(--cl-amber-bg);
+      border: 1px solid var(--cl-amber-border);
+      border-radius: 14px;
+      padding: 24px;
+    }
+    .rule-item-title {
+      font-family: var(--font-ui);
+      font-size: 14px;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--cl-amber);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .rule-item-desc {
+      font-family: var(--font-body);
+      font-size: 14px;
+      color: #78350f;
+      line-height: 1.65;
+    }
+
+    .script-steps-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin-top: 28px;
+    }
+    .script-step-card {
+      background: var(--cl-bg-card);
+      border: 1px solid var(--cl-line);
+      border-radius: 14px;
+      padding: 22px 18px;
+      border-top: 4px solid var(--cl-emerald);
+    }
+    .step-badge {
+      font-family: var(--font-ui);
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--cl-emerald);
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+    .step-title {
+      font-family: var(--font-heading-long);
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--cl-text-primary);
+      margin-bottom: 8px;
+    }
+    .step-desc {
+      font-family: var(--font-body);
+      font-size: 13.5px;
+      color: var(--cl-text-secondary);
+      line-height: 1.6;
+    }
+
+    /* ═══ 9. 7 DETAILED CASE STUDIES (PHẦN 2) ═══ */
+    .case-studies-container {
+      display: flex;
+      flex-direction: column;
+      gap: 48px;
+      margin-top: 36px;
+    }
+    .case-card {
+      background: var(--cl-bg-card);
+      border: 1px solid var(--cl-line);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.03);
+      display: grid;
+      grid-template-columns: 420px 1fr;
+      transition: border-color 0.25s, transform 0.25s;
+    }
+    .case-card:hover {
+      border-color: rgba(26, 115, 232, 0.35);
+      transform: translateY(-3px);
+    }
+    .case-media {
+      background: #000;
+      position: relative;
+      overflow: hidden;
+    }
+    .case-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .case-badge-pill {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      background: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(8px);
+      color: #ffffff;
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-family: var(--font-ui);
+      font-size: 11.5px;
+      font-weight: 600;
+      letter-spacing: 0.4px;
+    }
+    .case-body {
+      padding: 32px 36px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .case-creator {
+      font-family: var(--font-ui);
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--cl-accent);
+      margin-bottom: 6px;
+    }
+    .case-title {
+      font-family: var(--font-heading-long);
+      font-size: 21px;
+      font-weight: 700;
+      color: var(--cl-text-primary);
+      line-height: 1.35;
+      margin-bottom: 14px;
+    }
+    .case-analysis {
+      font-family: var(--font-body);
+      font-size: 15px;
+      color: var(--cl-text-body);
+      line-height: 1.75;
+      margin-bottom: 20px;
+    }
+    .case-specs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 14px;
+      padding: 12px 16px;
+      background: var(--cl-bg-tint);
+      border-radius: 10px;
+      font-family: var(--font-ui);
+      font-size: 12.5px;
+      color: var(--cl-text-secondary);
+      margin-bottom: 24px;
+    }
+    .case-specs strong {
+      color: var(--cl-text-primary);
+    }
+    .case-actions {
+      display: flex;
+      gap: 12px;
+    }
+    .btn-case-primary {
+      background: var(--cl-text-primary);
+      color: #ffffff !important;
+      font-family: var(--font-ui);
+      font-size: 13px;
+      font-weight: 600;
+      padding: 10px 18px;
+      border-radius: 10px;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+    .btn-case-primary:hover {
+      background: var(--cl-accent);
+    }
+    .btn-case-secondary {
+      background: rgba(0, 0, 0, 0.05);
+      color: var(--cl-text-primary) !important;
+      font-family: var(--font-ui);
+      font-size: 13px;
+      font-weight: 600;
+      padding: 10px 18px;
+      border-radius: 10px;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+    .btn-case-secondary:hover {
+      background: rgba(0, 0, 0, 0.09);
+    }
+
+    /* ═══ 10. ANIMATION REVEAL ═══ */
+    .apple-reveal {
+      opacity: 0;
+      transform: translate3d(0, 26px, 0);
+      transition: opacity 0.5s var(--apple-ease), transform 0.58s var(--apple-spring);
+      will-change: opacity, transform;
+    }
+    .apple-reveal.is-visible {
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
+      will-change: auto;
+    }
+
+    /* Responsive */
+    @media (max-width: 860px) {
+      .case-card {
+        grid-template-columns: 1fr;
+      }
+      .case-media {
+        aspect-ratio: 16 / 10;
+      }
+      .case-body {
+        padding: 24px 20px;
+      }
+      .cl-zebra-section {
+        padding: 60px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVIGATION -->
+  <nav class="course-nav">
+    <a href="https://fedu.vn" class="nav-brand">
+      <span class="nav-badge">FEDU</span>
+      <span class="nav-title">Giáo Trình Đạo Diễn Thực Chiến</span>
+    </a>
+    <div class="nav-links">
+      <a href="#sec-theory" class="nav-link-btn">Lý Thuyết Thị Giác</a>
+      <a href="#sec-rules" class="nav-link-btn">3 Nguyên Tắc</a>
+      <a href="#sec-cases" class="nav-link-btn">7 Ví Dụ Mẫu Mực</a>
+      <a href="https://ytuong.fedu.vn" target="_blank" class="nav-btn-highlight">YTUONG HUB ↗</a>
+    </div>
+  </nav>
+
+  <!-- ═══ KHỐI 1: HERO COVER (LIGHT) ═══ -->
+  <section class="cl-zebra-section cl-zebra--light" id="sec-hero">
+    <div class="cl-sec-container apple-reveal">
+      <div class="cl-badge">CHUYÊN ĐỀ ĐIỆN ẢNH &amp; QUAY DỰNG SHORT-FORM</div>
+      <h1 class="title-short">NGHỆ THUẬT CHUYỂN CẢNH CHE VẬT THỂ</h1>
+      <p class="title-long" style="color: var(--cl-text-secondary);">Foreground Occlusion Mask Cut • Đòn bẩy biến rào cản hiện trường thành chất keo thị giác điện ảnh</p>
+      
+      <blockquote class="editorial-hook">
+        "Không có vật cản nào làm hỏng khung hình của bạn. Chỉ có người cầm máy chưa biết biến dòng người qua đường thành chiếc rèm nhung chuyển cảnh."
+      </blockquote>
+
+      <p class="cl-body">
+        Trong kỷ nguyên video ngắn (TikTok, Instagram Reels, Shorts), kẻ thù lớn nhất của tỷ lệ giữ chân (Retention Rate) là vết cắt gãy vụng về khiến não người xem nhận ra video đã chuyển cảnh và ngón tay tự động vuốt đi. Kỹ thuật <strong>Foreground Occlusion Transition</strong> (Che khuất tiền cảnh) là bí mật của các đạo diễn điện ảnh hàng đầu thế giới để giữ chân khán giả trong một trạng thái thôi miên liên tục.
+      </p>
+    </div>
+  </section>
+
+  <!-- ═══ KHỐI 2: 4 TẦNG BẢN CHẤT THỊ GIÁC (TINT) ═══ -->
+  <section class="cl-zebra-section cl-zebra--tint" id="sec-theory">
+    <div class="cl-sec-container cl-sec-container--wide apple-reveal">
+      <div class="cl-badge">01 / TÂM LÝ HỌC THỊ GIÁC &amp; NÃO BỘ</div>
+      <h2 class="title-short">TẠI SAO CÚ CHE MASK LẠI THÔI MIÊN NGƯỜI XEM?</h2>
+      <p class="cl-body">Giải mã cơ chế sinh học não bộ và 4 tầng tác động khiến mắt người không thể rời khỏi màn hình.</p>
+
+      <div class="apple-cards-grid">
+        <!-- Card 1 -->
+        <div class="apple-card">
+          <span class="apple-card__num">TẦNG 01 • SINH HỌC THẦN KINH</span>
+          <h3 class="apple-card__title">Đánh Lừa Phản Xạ Ức Chế (Saccadic Masking)</h3>
+          <p class="apple-card__desc">
+            Khi mắt người đảo hướng hoặc có vật thể lướt sát mặt, não bộ kích hoạt hiện tượng "saccadic suppression" — tự động bỏ qua khoảnh khắc mờ tối và chắp nối không gian trước - sau thành một dòng chảy duy nhất. Cú cắt qua vật cản xóa tan cảm giác "bị cắt ghép", tạo ảo ảnh không gian liên tục (Continuous Reality).
+          </p>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="apple-card">
+          <span class="apple-card__num">TẦNG 02 • TÂM LÝ KỲ VỌNG</span>
+          <h3 class="apple-card__title">Hiệu Ứng "Màn Nhung" &amp; Cú Nổ Dopamine</h3>
+          <p class="apple-card__desc">
+            Khoảnh khắc vật cản che kín màn hình (chỉ 0.2s - 0.4s) tạo ra khoảng trống tò mò (Curiosity Gap). Não bộ vô thức đặt câu hỏi: <em>"Sau lưng vật đó là gì?"</em>. Ngay khi vật cản lướt qua, sự bùng nổ tương phản (từ tối sang sáng, từ cận sang đại cảnh) kích hoạt Dopamine thỏa mãn tột độ.
+          </p>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="apple-card">
+          <span class="apple-card__num">TẦNG 03 • KHÔNG GIAN HÌNH HỌC</span>
+          <h3 class="apple-card__title">Tái Tạo Chiều Sâu 3D Trục Z (Parallax Effect)</h3>
+          <p class="apple-card__desc">
+            Màn hình điện thoại chỉ là mặt phẳng 2D. Đưa vật thể lướt sát thấu kính (out of focus ở tiền cảnh) tương phản với hậu cảnh sắc nét ở xa kích hoạt hiệu ứng thị sai (Parallax). Khung hình lập tức tách 3 lớp: Tiền cảnh lướt nhanh -> Chủ thể trung cảnh -> Hậu cảnh sâu thẳm.
+          </p>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="apple-card">
+          <span class="apple-card__num">TẦNG 04 • THẨM MỸ HỮU CƠ</span>
+          <h3 class="apple-card__title">Vẻ Đẹp "Hữu Cơ" Đánh Bại Kỹ Xảo Số Rẻ Tiền</h3>
+          <p class="apple-card__desc">
+            Không zoom xoay giật cục, không chớp trắng nhấp nháy CapCut rẻ tiền. Kỹ thuật này mượn chính nhịp sống đời thực: chiếc nón lá, bờ vai người qua đường, xe cộ, cánh cửa, cành cây. Nó thể hiện con mắt phục kích không gian và đẳng cấp quan sát của một đạo diễn thực thụ.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ KHỐI 3: 3 NGUYÊN TẮC VÀNG QUAY DỰNG (LIGHT) ═══ -->
+  <section class="cl-zebra-section cl-zebra--light" id="sec-rules">
+    <div class="cl-sec-container apple-reveal">
+      <div class="cl-badge cl-badge--amber">02 / CẨM NANG THỰC HÀNH CỦA ĐẠO DIỄN</div>
+      <h2 class="title-short">3 NGUYÊN TẮC VÀNG ĐỂ TỰ QUAY DỰNG KHÔNG TÌ VẾT</h2>
+      <p class="cl-body">Áp dụng ngay trên điện thoại di động hoặc máy ảnh mirrorless mà không cần kỹ xảo VFX phức tạp.</p>
+
+      <div class="rules-grid">
+        <div class="rule-item">
+          <div class="rule-item-title">⚡ 01. Đồng Pha Vector Chuyển Động</div>
+          <p class="rule-item-desc">
+            Vật cản ở cuối Shot A và đầu Shot B bắt buộc phải di chuyển cùng một chiều (ví dụ: cùng quét từ Trái sang Phải) và có tốc độ lướt tương đồng. Nếu hai cảnh ngược hướng, mắt người xem sẽ bị giật và ảo giác không gian tan vỡ.
+          </p>
+        </div>
+
+        <div class="rule-item">
+          <div class="rule-item-title">🎯 02. Áp Sát Ống Kính &amp; Motion Blur</div>
+          <p class="rule-item-desc">
+            Vật cản phải đi cực sát thấu kính để che kín hoặc chiếm phần lớn khung hình. Tốc độ di chuyển tự nhiên sẽ tạo ra độ nhòe chuyển động (Motion Blur) mềm mại, giúp che giấu đường cắt (Cut Point) không để lại bất kỳ dấu vết nào.
+          </p>
+        </div>
+
+        <div class="rule-item">
+          <div class="rule-item-title">🎁 03. Quy Luật Phần Thưởng Thị Giác</div>
+          <p class="rule-item-desc">
+            Đỉnh cao của cú che mask không nằm ở việc che, mà nằm ở <strong>CÁI GÌ ĐƯỢC MỞ RA SAU ĐÓ</strong>. Cảnh mở ra sau cú che bắt buộc phải rực rỡ hơn, đẹp hơn, sáng hơn hoặc gây bất ngờ hơn để bù đắp cho sự chờ đợi của thị giác.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ KHỐI 4: KỊCH BẢN THỰC CHIẾN 4 NHỊP (TINT) ═══ -->
+  <section class="cl-zebra-section cl-zebra--tint" id="sec-script">
+    <div class="cl-sec-container cl-sec-container--wide apple-reveal">
+      <div class="cl-badge cl-badge--emerald">03 / KỊCH BẢN MẪU THỰC CHIẾN</div>
+      <h2 class="title-short">CÔNG THỨC 4 NHỊP ÁP DỤNG NGAY CHO VLOG &amp; DU LỊCH</h2>
+      <p class="cl-body">Quy trình bấm máy 15-20 giây giữ chặt retention rate cho mọi video ngắn.</p>
+
+      <div class="script-steps-grid">
+        <div class="script-step-card">
+          <div class="step-badge">Nhịp 1 • 0s – 2s</div>
+          <div class="step-title">Tiền Cảnh Đời Thực</div>
+          <div class="step-desc">Đặt góc máy thấp hoặc ngang tầm mắt, đợi xe cộ/người đi bộ vụt qua tiền cảnh rồi mới bắt đầu hành động của nhân vật chính.</div>
+        </div>
+
+        <div class="script-step-card">
+          <div class="step-badge">Nhịp 2 • 2s – 6s</div>
+          <div class="step-title">Săn Tìm Texture Vi Mô</div>
+          <div class="step-desc">Quay cận cảnh chi tiết chất cảm: bóng đổ trên tường vôi, bước chân trên đá, bàn tay chạm vào gỗ, tách cafe bốc khói.</div>
+        </div>
+
+        <div class="script-step-card">
+          <div class="step-badge">Nhịp 3 • 6s – 11s</div>
+          <div class="step-title">Cú Che Tiền Cảnh (Mask)</div>
+          <div class="step-desc">Áp sát ống kính vào lưng áo người qua đường hoặc nón lá để che tối hoàn toàn màn hình, tạo điểm giao cắt đổi bối cảnh.</div>
+        </div>
+
+        <div class="script-step-card">
+          <div class="step-badge">Nhịp 4 • 11s – 16s</div>
+          <div class="step-title">Bùng Nổ Phần Thưởng</div>
+          <div class="step-desc">Khi vật cản lướt qua, lập tức mở bung ra khung hình đẹp nhất: phố đèn lồng lung linh, nụ cười ngược nắng, hoàng hôn rực rỡ.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ KHỐI 5: 7 VÍ DỤ MẪU MỰC TRONG KHO TRI THỨC (LIGHT) ═══ -->
+  <section class="cl-zebra-section cl-zebra--light" id="sec-cases">
+    <div class="cl-sec-container cl-sec-container--wide apple-reveal">
+      <div class="cl-badge">04 / KHO DỮ LIỆU ĐIỆN ẢNH THỰC CHIẾN</div>
+      <h2 class="title-short">7 VÍ DỤ MẪU MỰC SỬ DỤNG KỸ THUẬT CHE VẬT THỂ</h2>
+      <p class="cl-body">Được chọn lọc và bóc tách chuyên sâu từ cơ sở dữ liệu <strong>YTUONG HUB</strong> &amp; Cổng Tra Cứu Điện Ảnh Scene Portal.</p>
+
+      <div class="case-studies-container">
+
+        <!-- ─── CASE 01: @hey.lirules Hội An (TRỌNG TÂM) ─── -->
+        <article class="case-card" style="border-left: 4px solid var(--cl-accent);">
+          <div class="case-media">
+            <img src="https://pub-447bd44dfdac4938912655c855b8631c.r2.dev/images/IG_@hey.lirules_DdBDvZph1od_Hoi_An_Natural_Mask_Transitions/extracted_shots/shot_08_mid.jpg" alt="Hội An Mask Transitions" loading="lazy">
+            <span class="case-badge-pill">VÍ DỤ 01 • CASE TRỌNG TÂM</span>
+          </div>
+          <div class="case-body">
+            <div>
+              <div class="case-creator">@hey.lirules (Li! Video creator) • Phố cổ Hội An (16.36s)</div>
+              <h3 class="case-title">Nghệ Thuật Chuyển Cảnh Nón Lá &amp; Cú Che Đen Mở Bung Bức Tường Đèn Lồng</h3>
+              <p class="case-analysis">
+                Tác phẩm tiêu biểu khai thác 2 cú chuyển cảnh che tiền cảnh liên tiếp: 
+                Ở giây 06.2s, nón lá của người đi đường quét ngang ống kính mở ra ngôi nhà hoa giấy đối xứng. 
+                Đỉnh cao ở giây 10.6s, máy quay góc thấp ven sông Hoài bắt nhịp bước chân dòng người, kết thúc bằng một tấm lưng che đen kịt màn hình (Blackout Mask). Ngay sau đó, màn hình mở bung ra bức tường hàng trăm chiếc lồng đèn lụa Hội An phát sáng rực rỡ và cô gái xoay quạt.
+              </p>
+              <div class="case-specs">
+                <span>📍 <strong>Bối cảnh:</strong> Bờ sông Hoài &amp; Phố đèn lồng Hội An</span>
+                <span>⚡ <strong>Kỹ thuật:</strong> Saccadic Mask Wipe • Blackout Reveal</span>
+                <span>🎯 <strong>Điểm đắt:</strong> Tối sang Sáng, Hẹp sang Đại cảnh</span>
+              </div>
+            </div>
+            <div class="case-actions">
+              <a href="https://vietndj.github.io/reports/Hoi%20An%20Natural%20Mask%20Transitions%20-%20@hey.lirules.html" target="_blank" class="btn-case-primary">📖 Xem Báo Cáo Chi Tiết ↗</a>
+              <a href="https://ytuong.fedu.vn/ytuong.html?search=hoi%20an" target="_blank" class="btn-case-secondary">💡 Xem Trên YTUONG HUB</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- ─── CASE 02: @jeromememe Copenhagen ─── -->
+        <article class="case-card">
+          <div class="case-media">
+            <img src="https://pub-447bd44dfdac4938912655c855b8631c.r2.dev/images/IG_@jeromememe_DbGMt3oIaZm_People_of_Copenhagen/shot_01_mid.jpg" alt="People of Copenhagen" loading="lazy">
+            <span class="case-badge-pill">VÍ DỤ 02 • CHÂU ÂU ĐỜI THƯỜNG</span>
+          </div>
+          <div class="case-body">
+            <div>
+              <div class="case-creator">@jeromememe (Jerome Meme) • Copenhagen, Đan Mạch</div>
+              <h3 class="case-title">People of Copenhagen • Dòng Người &amp; Xe Đạp Che Tiền Cảnh Đường Phố</h3>
+              <p class="case-analysis">
+                Đạo diễn Jerome Teo đặt khung hình tĩnh ngắm nhìn nhịp sống mùa hè Copenhagen. Ông biến những người đi xe đạp và người đi bộ lướt sát ống kính thành các cú Foreground Occlusion Wipe tự nhiên, chuyển cảnh trơn tru giữa bờ kênh Nyhavn và các góc phố cổ mà không lộ một vết cắt nào.
+              </p>
+              <div class="case-specs">
+                <span>📍 <strong>Bối cảnh:</strong> Kênh đào &amp; Vỉa hè Copenhagen</span>
+                <span>⚡ <strong>Kỹ thuật:</strong> Foreground Bicycle Wipe • 3-Layer Depth</span>
+                <span>🎯 <strong>Điểm đắt:</strong> Nhịp thở Hygge êm dịu, không gượng ép</span>
+              </div>
+            </div>
+            <div class="case-actions">
+              <a href="https://vietndj.github.io/reports/People%20of%20Copenhagen%20-%20@jeromememe.html" target="_blank" class="btn-case-primary">📖 Xem Báo Cáo Chi Tiết ↗</a>
+              <a href="https://ytuong.fedu.vn/ytuong.html?search=copenhagen" target="_blank" class="btn-case-secondary">💡 Xem Trên YTUONG HUB</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- ─── CASE 03: @yegor.sky Vali Du Lịch ─── -->
+        <article class="case-card">
+          <div class="case-media">
+            <img src="https://pub-447bd44dfdac4938912655c855b8631c.r2.dev/images/IG_@yegor.sky_Dc-6BFdi7bU_Cinematic_Suitcase_Sequence/shot_01_mid.jpg" alt="Cinematic Suitcase Sequence" loading="lazy">
+            <span class="case-badge-pill">VÍ DỤ 03 • KỸ THUẬT ĐỒ VẬT</span>
+          </div>
+          <div class="case-body">
+            <div>
+              <div class="case-creator">@yegor.sky (Yegor Sky) • Cinematic Sequence</div>
+              <h3 class="case-title">Cinematic Suitcase • Đóng Nắp Vali Che Đen Màn Hình (Natural Shutter)</h3>
+              <p class="case-analysis">
+                Yegor Sky đặt camera nằm trọn bên trong chiếc vali du lịch (Trunk POV). Khi nhân vật đóng nắp vali lại, khung hình chìm vào bóng tối hoàn toàn (Black Occlusion Wipe). Cú đóng này đóng vai trò như chiếc màn sập của máy ảnh, và khi cảnh sau mở ra, nhân vật đã kéo vali băng qua sàn gạch sân bay.
+              </p>
+              <div class="case-specs">
+                <span>📍 <strong>Bối cảnh:</strong> Phòng ngủ cá nhân ➔ Sảnh sân bay</span>
+                <span>⚡ <strong>Kỹ thuật:</strong> Black Occlusion Wipe • Inside-Suitcase POV</span>
+                <span>🎯 <strong>Điểm đắt:</strong> Biến đồ vật quen thuộc thành công cụ chuyển cảnh</span>
+              </div>
+            </div>
+            <div class="case-actions">
+              <a href="https://vietndj.github.io/reports/IG_@yegor.sky_Dc-6BFdi7bU_Cinematic_Suitcase_Sequence.html" target="_blank" class="btn-case-primary">📖 Xem Báo Cáo Chi Tiết ↗</a>
+              <a href="https://ytuong.fedu.vn/ytuong.html?search=suitcase" target="_blank" class="btn-case-secondary">💡 Xem Trên YTUONG HUB</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- ─── CASE 04: @mridupawasharma 4 Cuts Mastery ─── -->
+        <article class="case-card">
+          <div class="case-media">
+            <img src="https://pub-447bd44dfdac4938912655c855b8631c.r2.dev/images/IG_@mridupawasharma_Dc0tEcOIdwy_4_Cuts_Mastery/shot_01_mid.jpg" alt="4 Cuts Mastery" loading="lazy">
+            <span class="case-badge-pill">VÍ DỤ 04 • KỸ THUẬT DỰNG PHIM</span>
+          </div>
+          <div class="case-body">
+            <div>
+              <div class="case-creator">@mridupawasharma • Masterclass Cắt Cảnh</div>
+              <h3 class="case-title">4 Cuts Mastery • Natural Mask Cut Đồ Vật Tạo Vòng Lặp Vô Tận (Loop)</h3>
+              <p class="case-analysis">
+                Mridupawan hướng dẫn chi tiết cách dùng một đồ vật trên bàn (ly nước, laptop, cánh tay) quét qua ống kính làm ranh giới che cảnh cũ và mở ra cảnh mới. Đặc biệt, shot cuối cùng dùng một cú quét đồ vật nối thẳng vào frame đầu tiên của shot 1, tạo vòng lặp âm thanh và hình ảnh vô tận (Infinite Loop) đạt 150% retention rate.
+              </p>
+              <div class="case-specs">
+                <span>📍 <strong>Bối cảnh:</strong> Bàn làm việc &amp; Phòng thu</span>
+                <span>⚡ <strong>Kỹ thuật:</strong> Natural Mask Cut • Seamless Audio-Visual Loop</span>
+                <span>🎯 <strong>Điểm đắt:</strong> Khép vòng lặp vô tận khiến người xem xem lại</span>
+              </div>
+            </div>
+            <div class="case-actions">
+              <a href="https://vietndj.github.io/reports/4%20Cuts%20Mastery%20-%20@mridupawasharma.html" target="_blank" class="btn-case-primary">📖 Xem Báo Cáo Chi Tiết ↗</a>
+              <a href="https://ytuong.fedu.vn/ytuong.html?search=4%20cuts" target="_blank" class="btn-case-secondary">💡 Xem Trên YTUONG HUB</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- ─── CASE 05: @byjxson Project 100 ─── -->
+        <article class="case-card">
+          <div class="case-media">
+            <img src="https://pub-447bd44dfdac4938912655c855b8631c.r2.dev/images/IG_@byjxson_Dal3RFpA5nI_Project_100_Day_01/shot_01_mid.jpg" alt="Project 100 Day 01" loading="lazy">
+            <span class="case-badge-pill">VÍ DỤ 05 • ĐƯỜNG PHỐ &amp; XE CỘ</span>
+          </div>
+          <div class="case-body">
+            <div>
+              <div class="case-creator">@byjxson (Jason Vargas) • Project 100 Day 01</div>
+              <h3 class="case-title">Project 100 Day 01 • Cú Chuyển Cảnh Car Wipe &amp; Đa Góc Máy Siêu Thị</h3>
+              <p class="case-analysis">
+                Ở cảnh chuyển tiếp từ bãi đỗ xe ngoài trời vào trong siêu thị, Jason Vargas kiên nhẫn đợi một chiếc xe ô tô chạy vụt qua sát ống kính (Car Wipe Transition). Cú lướt của chiếc xe che kín khung hình trong 4 frame, và khi xe chạy qua, máy quay đã đổi sang góc nhìn chủ quan nhân vật đẩy xe đẩy qua cánh cửa siêu thị Target.
+              </p>
+              <div class="case-specs">
+                <span>📍 <strong>Bối cảnh:</strong> Bãi đỗ xe Target, Mỹ</span>
+                <span>⚡ <strong>Kỹ thuật:</strong> Car Wipe Transition • Momentum Match Cut</span>
+                <span>🎯 <strong>Điểm đắt:</strong> Tận dụng xe cộ di chuyển nhanh tạo motion blur hoàn hảo</span>
+              </div>
+            </div>
+            <div class="case-actions">
+              <a href="https://vietndj.github.io/reports/Project%20100%20Day%2001%20-%20@byjxson.html" target="_blank" class="btn-case-primary">📖 Xem Báo Cáo Chi Tiết ↗</a>
+              <a href="https://ytuong.fedu.vn/ytuong.html?search=byjxson" target="_blank" class="btn-case-secondary">💡 Xem Trên YTUONG HUB</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- ─── CASE 06: @jesussropero OOTD Match Cut ─── -->
+        <article class="case-card">
+          <div class="case-media">
+            <img src="https://pub-447bd44dfdac4938912655c855b8631c.r2.dev/images/IG_@jesussropero_Dc9LUXLAHkc_Getting_Ready_Faster_Than_Ever/shot_01_mid.jpg" alt="Getting Ready Faster Than Ever" loading="lazy">
+            <span class="case-badge-pill">VÍ DỤ 06 • THỜI TRANG &amp; OOTD</span>
+          </div>
+          <div class="case-body">
+            <div>
+              <div class="case-creator">@jesussropero (Jesús Ropero) • Thời Trang Biến Hình</div>
+              <h3 class="case-title">Getting Ready Faster Than Ever • Dậm Gót Giày Che Máy Đổi Outfit</h3>
+              <p class="case-analysis">
+                Jesús Ropero đặt điện thoại nằm sát mặt sàn. Nhân vật dậm gót giày xuống thẳng về phía thấu kính (Foot Stamp Lens-Wipe). Chiếc đế giày che kín 100% ánh sáng trong đúng 1 frame. Ngay khi nhấc chân lên, cả trang phục quần, áo, tất và giày đã biến đổi sang một set đồ OOTD hoàn toàn mới, đồng bộ 100% với nhịp beat trống 120 BPM.
+              </p>
+              <div class="case-specs">
+                <span>📍 <strong>Bối cảnh:</strong> Phòng khách / Studio</span>
+                <span>⚡ <strong>Kỹ thuật:</strong> Foot Stamp Lens-Wipe • 120 BPM Beat Sync</span>
+                <span>🎯 <strong>Điểm đắt:</strong> Chuyển cảnh chính xác theo từng nhịp trống</span>
+              </div>
+            </div>
+            <div class="case-actions">
+              <a href="https://vietndj.github.io/reports/Getting%20Ready%20Faster%20Than%20Ever%20-%20@jesussropero.html" target="_blank" class="btn-case-primary">📖 Xem Báo Cáo Chi Tiết ↗</a>
+              <a href="https://ytuong.fedu.vn/ytuong.html?search=ropero" target="_blank" class="btn-case-secondary">💡 Xem Trên YTUONG HUB</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- ─── CASE 07: @withyuee Hong Kong Urban ─── -->
+        <article class="case-card">
+          <div class="case-media">
+            <img src="https://pub-447bd44dfdac4938912655c855b8631c.r2.dev/images/Hong_Kong_Urban_Transitions_@withyuee/shot_01_mid.jpg" alt="Hong Kong Urban Transitions" loading="lazy">
+            <span class="case-badge-pill">VÍ DỤ 07 • KIẾN TRÚC &amp; ĐÔ THỊ</span>
+          </div>
+          <div class="case-body">
+            <div>
+              <div class="case-creator">@withyuee • Hong Kong Urban Transitions</div>
+              <h3 class="case-title">Hong Kong Urban Transitions • Cột Đèn &amp; Thân Cây Cổ Thụ Che Nửa Màn Hình</h3>
+              <p class="case-analysis">
+                Khám phá các con dốc U Lam Terrace và bậc thang Hong Kong, tác giả di chuyển máy quay ngang qua cột đèn đường và thân cây cổ thụ ở cự ly gần. Cột đèn đóng vai trò như một đường cắt thẳng đứng tự nhiên (Vertical Split Wipe), che khuất nửa khung hình và trượt mượt mà sang góc phố mới theo đà chuyển động của gimbal.
+              </p>
+              <div class="case-specs">
+                <span>📍 <strong>Bối cảnh:</strong> Dốc phố cổ U Lam Terrace, Hong Kong</span>
+                <span>⚡ <strong>Kỹ thuật:</strong> Foreground Obstacle Wipe • Optical Parallax</span>
+                <span>🎯 <strong>Điểm đắt:</strong> Lợi dụng kiến trúc đô thị làm đường cắt tự nhiên</span>
+              </div>
+            </div>
+            <div class="case-actions">
+              <a href="https://vietndj.github.io/reports/Hong_Kong_Urban_Transitions%20-%20@withyuee.html" target="_blank" class="btn-case-primary">📖 Xem Báo Cáo Chi Tiết ↗</a>
+              <a href="https://ytuong.fedu.vn/ytuong.html?search=hong%20kong" target="_blank" class="btn-case-secondary">💡 Xem Trên YTUONG HUB</a>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ KHỐI 6: LỜI DẶN DÒ CỦA ANH VIỆT & CTA (TINT) ═══ -->
+  <section class="cl-zebra-section cl-zebra--tint" id="sec-cta">
+    <div class="cl-sec-container cl-sec-container--narrow apple-reveal" style="text-align: center;">
+      <div class="cl-badge">LỜI DẶN DÒ THỰC CHIẾN TỪ ANH VIỆT</div>
+      <blockquote class="editorial-hook" style="border: none; padding: 0; margin-bottom: 24px;">
+        "Kỹ thuật chuyển cảnh sinh ra không phải để khoe kỹ xảo, mà để phục vụ dòng chảy cảm xúc. Khi người xem không nhận ra bạn đã chuyển cảnh, đó mới là lúc bạn chạm đến đỉnh cao của đạo diễn điện ảnh."
+      </blockquote>
+      
+      <p class="cl-body" style="margin-bottom: 32px;">
+        Toàn bộ các phân cảnh của 7 ví dụ trên đã được phân tích chi tiết từng frame trong hệ sinh thái <strong>YTUONG HUB</strong>. Hãy truy cập để tham khảo cấu trúc góc máy, thông số kỹ thuật và tải tài liệu thực hành.
+      </p>
+
+      <div style="display: flex; justify-content: center; gap: 14px; flex-wrap: wrap;">
+        <a href="https://ytuong.fedu.vn" target="_blank" class="btn-case-primary" style="padding: 14px 28px; font-size: 15px;">
+          💡 Mở Kho Ý Tưởng YTUONG HUB ↗
+        </a>
+        <a href="https://fedu.vn/scene.html" target="_blank" class="btn-case-secondary" style="padding: 14px 28px; font-size: 15px;">
+          🎬 Cổng Tra Cứu Điện Ảnh Scene.html ↗
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- APPLE MOTION OBSERVER SCRIPT -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const observerOptions = {
+        root: null,
+        rootMargin: '0px 0px -60px 0px',
+        threshold: 0.12
+      };
+
+      const observer = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            obs.unobserve(entry.target);
+          }
+        });
+      }, observerOptions);
+
+      document.querySelectorAll('.apple-reveal').forEach(el => observer.observe(el));
+    });
+  </script>
+</body>
+</html>
