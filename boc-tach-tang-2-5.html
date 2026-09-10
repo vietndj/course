@@ -118,6 +118,18 @@
       --apple-ease:   cubic-bezier(0.16, 1, 0.3, 1);
     }
 
+    .apple-reveal {
+      opacity: 0;
+      transform: translate3d(0, 24px, 0);
+      transition: opacity 0.52s var(--apple-ease), transform 0.58s var(--apple-spring);
+      will-change: opacity, transform;
+    }
+    .apple-reveal.is-visible {
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
+      will-change: auto;
+    }
+
     /* ═══ 3. RESET & BASE ═══ */
     *, *::before, *::after {
       box-sizing: border-box;
@@ -692,15 +704,39 @@
 
     /* ═══ 12. RESPONSIVE DESIGN ═══ */
     @media (max-width: 768px) {
+      .cl-topbar {
+        padding: 10px 16px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+      }
+      .cl-topbar__links {
+        display: flex;
+        width: 100%;
+        overflow-x: auto;
+        white-space: nowrap;
+        gap: 10px;
+        padding-bottom: 2px;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+      }
+      .cl-topbar__links::-webkit-scrollbar {
+        display: none;
+      }
+      .cl-topbar__link {
+        font-size: 12px;
+        padding: 4px 10px;
+        background: var(--cl-tint);
+        border-radius: var(--cl-radius-full);
+        border: 1px solid var(--cl-line);
+        flex-shrink: 0;
+      }
       .cl-zebra-section {
         padding: 60px 16px;
       }
       .question-card, .result-hero-box, .mechanism-card, .formula-banner {
         padding: 24px 18px;
         border-radius: var(--cl-radius-lg);
-      }
-      .cl-topbar__links {
-        display: none;
       }
       .beats-grid {
         grid-template-columns: 1fr;
@@ -717,162 +753,222 @@
       <span class="cl-topbar__brand-badge">TẦNG 2.5 REAL-RAW</span>
     </a>
     <nav class="cl-topbar__links">
-      <a href="#sec-situation" class="cl-topbar__link">01. Tình Huống & Kết Quả</a>
-      <a href="#sec-logic-formula" class="cl-topbar__link">02. Quy Luật Tâm Lý</a>
-      <a href="#sec-master-table" class="cl-topbar__link">03. Bảng 18 Phản Xạ</a>
-      <a href="#sec-deep-dive" class="cl-topbar__link">04. Chi Tiết 18 Phản Xạ</a>
+      <a href="#sec-situation" class="cl-topbar__link">01. Tình Huống</a>
+      <a href="#sec-4-tang" class="cl-topbar__link">02. 4 Tầng Nhận Thức</a>
+      <a href="#sec-kich-ban" class="cl-topbar__link">03. Kịch Bản 4 Nhịp</a>
+      <a href="#sec-logic-formula" class="cl-topbar__link">04. Quy Luật</a>
+      <a href="#sec-master-table" class="cl-topbar__link">05. Bảng 18 Phản Xạ</a>
+      <a href="#sec-deep-dive" class="cl-topbar__link">06. Chi Tiết</a>
     </nav>
   </header>
 
   <!-- ══════════════════════════════════════════════════════════════════════════
-       PHẦN 1: TÌNH HUỐNG CÂU HỎI & KẾT QUẢ XỬ LÝ CONTENT (ĐƯA KẾT QUẢ LÊN ĐẦU)
+       KHỐI 01: TÌNH HUỐNG THỰC CHIẾN (CHÂN THỰC & ĐỐI CHIẾU 3 NHỊP BOCUC)
        ══════════════════════════════════════════════════════════════════════════ -->
   <section class="cl-zebra-section cl-zebra--light" id="sec-situation">
-    <div class="cl-container">
+    <div class="cl-container cl-container--narrow apple-reveal">
+      <!-- NHỊP 1: MICRO-BADGE -->
+      <div class="cl-badge">01 / TÌNH HUỐNG THỰC CHIẾN</div>
       
-      <!-- CÂU HỎI TÌNH HUỐNG -->
-      <div class="question-card">
-        <div class="cl-badge">CÂU HỎI THỰC CHIẾN NỘI DUNG</div>
-        <h1 class="title-short">“THẤY AI CŨNG LÀM VIDEO, CÒN MÌNH THÌ CHƯA MUỐN LÊN VIDEO... VỚI TÂM LÝ NÀY THÌ LÀM NỘI DUNG THẾ NÀO?”</h1>
-        <p class="editorial-hook">“Làm sao để chạm đúng vào tâm lý của một người đang đứng ngoài làn sóng video, không dùng lý thuyết sáo rỗng mà thấu hiểu đúng sự giằng xé thể diện bên trong họ?”</p>
-        <p class="cl-body">
-          Phần lớn các lời khuyên ngoài kia sẽ nói: <em>“Hãy vượt qua rào cản, bật máy lên quay đi!”</em> (Văn mẫu bề nổi sáo rỗng). Người nghe sẽ thấy xa lạ vì không ai hiểu được nỗi bối rối thực tế của họ. Muốn chạm đến người lớn có chuyên môn, ta đi thẳng vào <strong>Quy trình đưa kết quả thực chiến lên trước</strong>: bóc tách 4 tầng tâm lý và chuyển hóa thành kịch bản 4 nhịp mộc mạc, gần gũi chuẩn anh Việt (Vietmac Voice).
-        </p>
+      <!-- NHỊP 2: TIÊU ĐỀ ĐANH THÉP (CÂN XỨNG CHỐNG RỚT CHỮ) -->
+      <h1 class="title-short">NGẠI LÊN VIDEO THÌ<br>LÀM NỘI DUNG THẾ NÀO?</h1>
+      
+      <p class="editorial-hook">“Làm sao chạm đúng vào tâm lý người đứng ngoài làn sóng video, không dùng lý thuyết sáo rỗng mà thấu hiểu sự giằng xé thể diện bên trong?”</p>
+      
+      <!-- NHỊP 3: KHỐI THẺ ĐỐI CHIẾU SO LE CÂN XỨNG -->
+      <div class="beats-grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
+        <div class="beat-card" style="background: #fef2f2; border-color: rgba(239, 68, 68, 0.2);">
+          <span class="beat-card__num" style="background: rgba(239, 68, 68, 0.1); color: #dc2626;">LỜI KHUYÊN SÁO RỖNG BỀ NỔI</span>
+          <h3 class="beat-card__title">“Cứ bật máy lên quay đi!”</h3>
+          <p class="beat-card__content">
+            Khuyên người khác vượt qua rào cản bằng vài câu khẩu hiệu hô hào. Cách tiếp cận này khiến người có chuyên môn thấy xa lạ vì không ai chịu hiểu sự bối rối thực tế của họ.
+          </p>
+        </div>
+
+        <div class="beat-card beat-card--highlight" style="background: #f0fdf4; border-color: rgba(22, 163, 74, 0.3);">
+          <span class="beat-card__num" style="background: rgba(22, 163, 74, 0.1); color: #16a34a;">BẢN CHẤT TÂM LÝ NGƯỜI LỚN</span>
+          <h3 class="beat-card__title">Người lớn không thiếu dũng khí</h3>
+          <p class="beat-card__content">
+            Họ chỉ đang vướng giữ thể diện. Khi thao tác thực tế còn bỡ ngỡ (T2), họ tự động tìm một cái cớ đàng hoàng (T2.5) để an tâm đứng ngoài cuộc mà không bị chê trách.
+          </p>
+        </div>
       </div>
+    </div>
+  </section>
 
-      <!-- KẾT QUẢ 1: BẢNG BÓC TÁCH 4 TẦNG TÂM LÝ CỐT LÕI -->
-      <div class="result-hero-box">
-        <div class="cl-badge cl-badge--warm">KẾT QUẢ 01 • BẢNG BÓC TÁCH 4 TẦNG TÂM LÝ</div>
-        <h2 class="title-long">Nhìn Thẳng Vào Sự Thật: Từ Bề Nổi Đến Nỗi Băn Khoăn Thầm Kín</h2>
-        
-        <div class="detail-grid" style="margin-top: 24px;">
-          <div class="detail-row">
-            <span class="detail-label">TẦNG 1: NÓI ĐÃI BÔI (Lý do an toàn bề nổi)</span>
-            <div class="detail-content">
-              <strong>“Tính mình hướng nội, thích làm chuyên môn trong thầm lặng hơn là xuất hiện trên mạng.”</strong> hoặc <strong>“Mình bận phục vụ khách quen, không có thời gian theo đuổi trào lưu mạng xã hội.”</strong><br>
-              <span style="color: var(--cl-text-muted); font-size: 14px;">➔ Lời giải thích an toàn, nghe rất hợp lý nhưng người nói biết rõ mình đang né tránh.</span>
-            </div>
-          </div>
+  <!-- ══════════════════════════════════════════════════════════════════════════
+       KHỐI 02: BÓC TÁCH 4 TẦNG NHẬN THỨC (ĐƯA KẾT QUẢ LÊN TRƯỚC - CHUẨN BOCUC)
+       ══════════════════════════════════════════════════════════════════════════ -->
+  <section class="cl-zebra-section cl-zebra--tint" id="sec-4-tang">
+    <div class="cl-container apple-reveal">
+      <!-- NHỊP 1: MICRO-BADGE -->
+      <div class="cl-badge cl-badge--warm">02 / BÓC TÁCH 4 TẦNG NHẬN THỨC</div>
 
-          <div class="detail-row">
-            <span class="detail-label">TẦNG 2: CẢM GIÁC THẬT (Thao tác lúng túng đời thực)</span>
-            <div class="detail-content">
-              Cầm điện thoại lên định quay thì mắt đảo quanh, nét mặt còn gượng gạo. Nói một câu vấp vài lần, bật nghe lại giọng mình trong video thấy lạ lẫm, chưa quen. Chưa rành bấm cắt ghép trên máy, loay hoay cả buổi không xong đoạn video ngắn, đành tắt máy bỏ đấy.
-            </div>
-          </div>
+      <!-- NHỊP 2: TIÊU ĐỀ ĐANH THÉP -->
+      <h2 class="title-short">4 TẦNG NHẬN THỨC<br>KHI NGẠI ĐỨNG TRƯỚC ỐNG KÍNH</h2>
+      
+      <p class="editorial-hook">“Đi từ lời giải thích bề nổi, qua thao tác lúng túng đời thực, đến nỗi băn khoăn thầm kín nhất.”</p>
 
-          <div class="detail-row" style="background: #fffbeb; border-color: rgba(180, 83, 9, 0.2);">
-            <span class="detail-label" style="color: var(--cl-warm);">TẦNG 3: SỰ THẬT NGƯỢNG MIỆNG (Nỗi băn khoăn thầm kín nhất)</span>
-            <div class="detail-content" style="color: #78350f;">
-              • <strong>E ngại về ngoại hình:</strong> Chưa quen nhìn mình qua ống kính, ngại xuất hiện trước màn hình.<br>
-              • <strong>E ngại người quen để ý:</strong> Ngại bạn bè cũ nhìn thấy lại nghĩ mình thay đổi phong cách hoặc đang gặp khó khăn trong công việc.<br>
-              • <strong>Cảm giác sốt ruột:</strong> Thấy những người khác làm video tiếp cận được nhiều người xem và khách hàng mới, còn mình thì công việc dậm chân tại chỗ.
-            </div>
-          </div>
+      <!-- NHỊP 3: KHỐI THẺ 4 TẦNG SO LE CÂN XỨNG -->
+      <div class="beats-grid" style="grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); margin-top: 24px;">
+        <div class="beat-card">
+          <span class="beat-card__num">TẦNG 1 • ĐÃI BÔI</span>
+          <h3 class="beat-card__title">Lý Do An Toàn Bề Nổi</h3>
+          <p class="beat-card__content">
+            “Tính mình hướng nội, thích làm chuyên môn trong thầm lặng hơn là xuất hiện trên mạng.” hoặc “Mình bận chăm sóc khách quen, không có thời gian theo trào lưu.”
+          </p>
+        </div>
 
-          <div class="detail-row" style="background: #f0fdf4; border-color: rgba(22, 163, 74, 0.2);">
-            <span class="detail-label" style="color: var(--cl-success);">TẦNG 2.5: BÌNH PHONG THỂ DIỆN (Cái cớ để an tâm giữ thể diện)</span>
-            <div class="detail-content" style="color: #14532d;">
-              Chiếc mặt nạ thể diện của người có học thức dựng lên để tự an ủi khi bản thân vừa chưa quen thao tác (T2), vừa còn nhiều e ngại trong lòng (T3). Họ tìm một cái cớ <strong>nghe thật có nguyên tắc sống và chỉn chu</strong> để cảm thấy an tâm khi đứng ngoài cuộc.
-            </div>
-          </div>
+        <div class="beat-card">
+          <span class="beat-card__num" style="color: var(--cl-text-muted);">TẦNG 2 • CẢM GIÁC THẬT</span>
+          <h3 class="beat-card__title">Thao Tác Lúng Túng Đời Thường</h3>
+          <p class="beat-card__content">
+            Cầm điện thoại lên định quay thì mắt đảo quanh, nét mặt còn gượng gạo. Nói một câu vấp vài lần, nghe lại giọng thấy lạ lẫm. Cắt ghép chưa rành, loay hoay cả buổi đành tắt máy.
+          </p>
+        </div>
+
+        <div class="beat-card" style="background: #fffbeb; border-color: rgba(180, 83, 9, 0.25);">
+          <span class="beat-card__num" style="background: rgba(180, 83, 9, 0.1); color: var(--cl-warm);">TẦNG 3 • NGƯỢNG MIỆNG</span>
+          <h3 class="beat-card__title">Nỗi Băn Khoăn Thầm Kín</h3>
+          <p class="beat-card__content">
+            Ngại ngoại hình chưa chỉn chu, sợ bạn bè cũ nhìn thấy nghĩ mình thay đổi, và có chút sốt ruột chạnh lòng khi thấy người khác làm video tiếp cận được nhiều khách hàng mới.
+          </p>
+        </div>
+
+        <div class="beat-card beat-card--highlight" style="background: #f0fdf4; border-color: rgba(22, 163, 74, 0.3);">
+          <span class="beat-card__num" style="background: rgba(22, 163, 74, 0.1); color: var(--cl-success);">TẦNG 2.5 • BÌNH PHONG</span>
+          <h3 class="beat-card__title">Điểm Tựa Giữ Thể Diện</h3>
+          <p class="beat-card__content">
+            Chiếc mặt nạ thể diện của người có học thức: mượn lý do “hữu xạ tự nhiên hương” hoặc “làm nghề có tâm” để cảm thấy an tâm và có nguyên tắc khi tạm thời đứng ngoài cuộc.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════════════════════════
+       KHỐI 03: KỊCH BẢN VIDEO 4 NHỊP HOÀN CHỈNH (CHUẨN BOCUC VIETMAC-VOICE)
+       ══════════════════════════════════════════════════════════════════════════ -->
+  <section class="cl-zebra-section cl-zebra--light" id="sec-kich-ban">
+    <div class="cl-container apple-reveal">
+      <!-- NHỊP 1: MICRO-BADGE -->
+      <div class="cl-badge cl-badge--purple">03 / KỊCH BẢN THỰC CHIẾN</div>
+
+      <!-- NHỊP 2: TIÊU ĐỀ ĐANH THÉP -->
+      <h2 class="title-short">KỊCH BẢN 4 NHỊP<br>CHẠM ĐÚNG NỖI LÒNG NGƯỜI LỚN</h2>
+      
+      <p class="editorial-hook">“Điềm đạm, chân thành, gọi đúng tên sự việc bằng sự thấu hiểu và tôn trọng góc nhìn của người khác.”</p>
+
+      <!-- NHỊP 3: KHỐI THẺ KỊCH BẢN 4 NHỊP -->
+      <div class="beats-grid" style="grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));">
+        <div class="beat-card">
+          <span class="beat-card__num">NHỊP 1 [TẦNG 2.5]</span>
+          <h3 class="beat-card__title">Cái Cớ Oai Miệng</h3>
+          <p class="beat-card__content">
+            “Hồi mới thấy phong trào làm video rộ lên, mình hay nói cứng: ‘Mấy cái trào lưu trên mạng chỉ dành cho người rảnh rỗi. Mình làm nghề đàng hoàng, có chuyên môn thì hữu xạ tự nhiên hương, việc gì phải lên mạng nói nhiều!’”
+          </p>
+        </div>
+
+        <div class="beat-card">
+          <span class="beat-card__num">NHỊP 2 [TẦNG 2]</span>
+          <h3 class="beat-card__title">Lúng Túng Lúc Đêm Về</h3>
+          <p class="beat-card__content">
+            “Nói thế để tự an ủi thôi... Chứ đêm về đóng cửa phòng, lén kê điện thoại lên bàn quay thử, nói được 3 câu thấy ngượng ngùng, lúng túng. Bấm xóa đi vì sợ người nhà nhìn thấy.”
+          </p>
+        </div>
+
+        <div class="beat-card">
+          <span class="beat-card__num">NHỊP 3 [TẦNG 3]</span>
+          <h3 class="beat-card__title">Chạnh Lòng Khó Nói</h3>
+          <p class="beat-card__content">
+            “Sự thật là trong lòng mình cũng có chút chạnh lòng và sốt ruột. Nhìn những người dám lên tiếng tiếp cận được bao nhiêu khách hàng mới, còn mình thì khách cũ cứ thưa dần.”
+          </p>
+        </div>
+
+        <div class="beat-card beat-card--highlight">
+          <span class="beat-card__num" style="background: var(--cl-accent); color: #fff;">NHỊP 4 [BẺ LÁI]</span>
+          <h3 class="beat-card__title">Giác Ngộ & Nút Thắt</h3>
+          <p class="beat-card__content">
+            “Khách hàng đâu có bắt mình phải hoạt ngôn hay diễn xuất... Người ta chỉ cần một người làm nghề chịu mở miệng nói rõ sự thật thôi. Khi chịu gạt sự e ngại ấy sang một bên để chia sẻ thật lòng... công việc mới thông suốt được.”
+          </p>
         </div>
       </div>
 
-      <!-- KẾT QUẢ 2: KỊCH BẢN 4 NHỊP THỰC CHIẾN HOÀN CHỈNH -->
-      <div class="result-hero-box" style="background: #fafafa; border: 2px solid var(--cl-text-base);">
-        <div class="cl-badge cl-badge--purple">KẾT QUẢ 02 • KỊCH BẢN VIDEO 4 NHỊP HOÀN CHỈNH</div>
-        <h2 class="title-long">Kịch Bản Thực Chiến Chuẩn Văn Phong Mộc Mạc Anh Việt</h2>
-        <p class="editorial-hook">“Điềm đạm, chân thành, gọi đúng tên sự việc mà không mang sắc thái phán xét hay năng lượng tiêu cực.”</p>
-
-        <div class="beats-grid">
-          <div class="beat-card">
-            <span class="beat-card__num">NHỊP 1 [TẦNG 2.5]</span>
-            <h3 class="beat-card__title">Cái Cớ Oai Miệng Ban Đầu</h3>
-            <p class="beat-card__content">
-              “Hồi mới thấy phong trào làm video rộ lên, mình hay nói cứng: ‘Mấy cái trào lưu trên mạng chỉ dành cho người rảnh rỗi. Mình làm nghề đàng hoàng, có chuyên môn thì hữu xạ tự nhiên hương, việc gì phải lên mạng nói nhiều!’”
-            </p>
-          </div>
-
-          <div class="beat-card">
-            <span class="beat-card__num">NHỊP 2 [TẦNG 2]</span>
-            <h3 class="beat-card__title">Thực Tế Lúng Túng Đời Thường</h3>
-            <p class="beat-card__content">
-              “Nói thế để tự an ủi thôi... Chứ đêm về đóng cửa phòng, lén kê điện thoại lên bàn quay thử, nói được 3 câu thấy ngượng ngùng, lúng túng. Bấm xóa đi vì sợ người nhà nhìn thấy.”
-            </p>
-          </div>
-
-          <div class="beat-card">
-            <span class="beat-card__num">NHỊP 3 [TẦNG 3]</span>
-            <h3 class="beat-card__title">Nỗi Lòng Chạnh Lòng Khó Nói</h3>
-            <p class="beat-card__content">
-              “Sự thật là trong lòng mình cũng có chút chạnh lòng và sốt ruột. Nhìn những người dám lên tiếng tiếp cận được bao nhiêu khách hàng mới, còn mình thì khách cũ cứ thưa dần.”
-            </p>
-          </div>
-
-          <div class="beat-card beat-card--highlight">
-            <span class="beat-card__num" style="background: var(--cl-accent); color: #fff;">NHỊP 4 [CÚ BẺ LÁI]</span>
-            <h3 class="beat-card__title">Giác Ngộ & Nút Thắt Duy Nhất</h3>
-            <p class="beat-card__content">
-              “Khách hàng người ta đâu có bắt mình phải hoạt ngôn hay diễn xuất gì trên mạng... Người ta chỉ cần một người làm nghề chịu mở miệng nói rõ sự thật thôi. Mình không làm video không phải vì mình thanh cao, mà vì mình còn e ngại, giữ kẽ quá. Khi chịu gạt sự e ngại ấy sang một bên để chia sẻ thật lòng... lúc đấy công việc mới thông suốt được.”
-            </p>
-          </div>
-        </div>
-
-        <div class="quote-box" style="margin-top: 24px;">
-          <p><strong>3 Gợi ý câu mở đầu (Hook) mộc mạc và gần gũi:</strong></p>
-          <ul style="margin-left: 20px; margin-top: 8px; font-size: 15.5px; line-height: 1.75;">
-            <li><em>Gợi ý 1:</em> “Nếu bạn cũng từng nghĩ: Mình làm nghề có chuyên môn thì hữu xạ tự nhiên hương, việc gì phải lên mạng nói nhiều... thì ngồi xuống đây uống chén trà, mình chia sẻ điều này.”</li>
-            <li><em>Gợi ý 2:</em> “Đừng lấy cái cớ ‘tính mình hướng nội, thích âm thầm làm việc’ ra để tự an ủi nữa. Thực ra bạn chỉ đang chưa quen với ống kính thôi.”</li>
-            <li><em>Gợi ý 3:</em> “Bao nhiêu người làm nghề rất giỏi nhưng ít người biết đến, chỉ vì còn giữ kẽ chưa chịu mở lời trước camera?”</li>
-          </ul>
-        </div>
+      <!-- 3 GỢI Ý CÂU HOOK MỞ BÀI MỘC MẠC -->
+      <div class="quote-box" style="margin-top: 24px;">
+        <p style="font-weight: 700; color: var(--cl-text-base); margin-bottom: 8px;">3 Gợi ý câu mở đầu (Hook) mộc mạc và gần gũi:</p>
+        <ul style="margin-left: 20px; font-size: 15.5px; line-height: 1.75;">
+          <li><em>Gợi ý 1:</em> “Nếu bạn từng nghĩ: Mình làm nghề có chuyên môn thì hữu xạ tự nhiên hương, việc gì phải lên mạng nói nhiều... thì ngồi xuống đây uống chén trà, mình chia sẻ điều này.”</li>
+          <li><em>Gợi ý 2:</em> “Đừng lấy cái cớ ‘tính mình hướng nội, thích âm thầm làm việc’ ra để tự an ủi nữa. Thực ra bạn chỉ đang chưa quen với ống kính thôi.”</li>
+          <li><em>Gợi ý 3:</em> “Bao nhiêu người làm nghề rất giỏi nhưng ít người biết đến, chỉ vì còn giữ kẽ chưa chịu mở lời trước camera?”</li>
+        </ul>
       </div>
-
     </div>
   </section>
 
   <!-- ══════════════════════════════════════════════════════════════════════════
        PHẦN 2: QUY LUẬT TÂM LÝ: ĐỔI MỘT CÁI CỚ ĐỂ THẤY AN TÂM (BẢN CHẤT TẦNG 2.5)
        ══════════════════════════════════════════════════════════════════════════ -->
+  <!-- ══════════════════════════════════════════════════════════════════════════
+       KHỐI 04: QUY LUẬT TÂM LÝ & CÔNG THỨC TRUY VẾT (CHUẨN BOCUC 3 NHỊP)
+       ══════════════════════════════════════════════════════════════════════════ -->
   <section class="cl-zebra-section cl-zebra--tint" id="sec-logic-formula">
-    <div class="cl-container cl-container--narrow">
-      <div class="cl-badge">NGUYÊN LÝ HỌC THUẬT</div>
-      <h2 class="title-short">QUY LUẬT TÂM LÝ: ĐỔI MỘT CÁI CỚ ĐỂ THẤY AN TÂM</h2>
+    <div class="cl-container cl-container--narrow apple-reveal">
+      <!-- NHỊP 1: MICRO-BADGE -->
+      <div class="cl-badge">04 / QUY LUẬT TÂM LÝ</div>
+
+      <!-- NHỊP 2: TIÊU ĐỀ ĐANH THÉP (CÂN XỨNG) -->
+      <h2 class="title-short">CƠ CHẾ NGHỊCH ĐẢO<br>ĐỔI CÁI CỚ ĐỂ AN TÂM</h2>
+      
       <p class="editorial-hook">“Tầng 2.5 là một phản xạ tâm lý tự nhiên giúp người lớn bảo vệ sự tự tin và lòng tự trọng của mình.”</p>
       
-      <p class="cl-body">
-        Một đứa trẻ khi chưa làm được có thể vô tư nói: <em>“Con chưa biết làm”</em>. Nhưng một người trưởng thành có chuyên môn và vị thế <strong>rất ngại để lộ sự lúng túng của mình trước người khác</strong>. Khi thực tế thao tác còn bỡ ngỡ (Tầng 2) tạo ra cảm giác e ngại (Tầng 3), suy nghĩ bên trong tự động tìm kiếm một lý do đàng hoàng:
-      </p>
-
+      <!-- NHỊP 3: KHỐI THẺ ĐÁY CÂN XỨNG -->
+      <!-- THẺ 1: CÔNG THỨC TRỰC QUAN -->
       <div class="formula-banner">
         <div class="formula-banner__title">CƠ CHẾ TỰ BẢO VỆ THỂ DIỆN CỦA NGƯỜI LỚN</div>
         <div class="formula-math">
-          TẦNG 2.5 = THAY THẾ [SỰ BỐI RỐI / E NGẠI (T3)] ➔ BẰNG [MỘT LÝ DO CHỈN CHU, HỢP LÝ]
+          TẦNG 2.5 = THAY THẾ [NỖI E NGẠI (T3)] ➔ BẰNG [MỘT LÝ DO CHỈN CHU, HỢP LÝ]
         </div>
-        <p style="font-size: 14.5px; color: #94a3b8; max-width: 620px; margin: 0 auto;">
-          Bộ não tìm đến những giá trị tích cực quen thuộc (đạo đức nghề nghiệp, sự cẩn trọng, chiều sâu kinh nghiệm) để giải thích cho sự chần chừ của mình.
+        <p style="font-size: 14.5px; color: #94a3b8; max-width: 620px; margin: 0 auto; line-height: 1.6;">
+          Bộ não tự động tìm đến những giá trị tích cực quen thuộc (đạo đức nghề nghiệp, sự cẩn trọng, chiều sâu kinh nghiệm) để giải thích cho sự chần chừ của mình.
         </p>
       </div>
 
-      <p class="cl-body">
-        <strong>3 Câu hỏi truy vết nhẹ nhàng để nhận diện Tầng 2.5:</strong><br>
-        1. <strong>Soi thực tế thao tác (T2):</strong> Nhân vật này đang bỡ ngỡ hay lúng túng ở bước nào trong công việc?<br>
-        2. <strong>Soi nỗi e ngại thầm kín (T3):</strong> Điều gì khiến họ cảm thấy ngượng ngùng nhất nếu người khác nhìn thấy sự bỡ ngỡ đó?<br>
-        3. <strong>Điểm tựa thể diện (T2.5):</strong> Họ thường đưa ra lý do đàng hoàng nào để giải thích cho việc mình tạm thời chưa làm?
-      </p>
+      <!-- THẺ 2: CHECKLIST 3 CÂU HỎI TRUY VẾT -->
+      <div class="beat-card" style="background: #ffffff; border: 1px solid var(--cl-line-strong); margin-top: 24px; padding: 28px 24px;">
+        <span class="beat-card__num" style="background: var(--cl-accent-tint); color: var(--cl-accent);">CHECKLIST TRUY VẾT NHẸ NHÀNG</span>
+        <h3 class="beat-card__title" style="margin-bottom: 16px;">3 Câu Hỏi Nhận Diện Tầng 2.5</h3>
+        
+        <div class="apple-list" style="display: flex; flex-direction: column; gap: 14px;">
+          <div style="display: flex; gap: 12px; align-items: flex-start;">
+            <span style="display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; border-radius: 50%; background: #e0f2fe; color: #0284c7; font-weight: 700; font-size: 13px; shrink-0;">1</span>
+            <div><b>Soi thực tế thao tác (T2):</b> Nhân vật này đang bỡ ngỡ hay lúng túng ở bước nào trong công việc?</div>
+          </div>
+          <div style="display: flex; gap: 12px; align-items: flex-start;">
+            <span style="display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; border-radius: 50%; background: #fef3c7; color: #d97706; font-weight: 700; font-size: 13px; shrink-0;">2</span>
+            <div><b>Soi nỗi e ngại thầm kín (T3):</b> Điều gì khiến họ cảm thấy ngượng ngùng nhất nếu người khác nhìn thấy sự bỡ ngỡ đó?</div>
+          </div>
+          <div style="display: flex; gap: 12px; align-items: flex-start;">
+            <span style="display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; border-radius: 50%; background: #dcfce7; color: #16a34a; font-weight: 700; font-size: 13px; shrink-0;">3</span>
+            <div><b>Điểm tựa thể diện (T2.5):</b> Họ thường đưa ra lý do đàng hoàng nào để giải thích cho việc mình tạm thời chưa làm?</div>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
   <!-- ══════════════════════════════════════════════════════════════════════════
-       PHẦN 3: BẢNG TRA CỨU 18 PHẢN XẠ GIỮ THỂ DIỆN
-       (CLICK VÀO TÊN ĐỂ CUỘN XUỐNG XEM CHI TIẾT)
+       KHỐI 05: BẢNG TRA CỨU ĐỐI SOÁT 18 PHẢN XẠ (CHUẨN BOCUC 3 NHỊP)
        ══════════════════════════════════════════════════════════════════════════ -->
   <section class="cl-zebra-section cl-zebra--light" id="sec-master-table">
-    <div class="cl-container cl-container--wide">
-      <div class="cl-badge cl-badge--purple">BẢNG TRA CỨU ĐỐI SOÁT</div>
-      <h2 class="title-short">18 PHẢN XẠ GIỮ THỂ DIỆN CỦA NGƯỜI LỚN</h2>
-      <p class="editorial-hook">“Nhấn vào từng phản xạ để xem phân tích chi tiết, câu hỏi nhận diện và ví dụ đời sống thực tế.”</p>
+    <div class="cl-container cl-container--wide apple-reveal">
+      <!-- NHỊP 1: MICRO-BADGE -->
+      <div class="cl-badge cl-badge--purple">05 / BẢNG TRA CỨU ĐỐI SOÁT</div>
+
+      <!-- NHỊP 2: TIÊU ĐỀ ĐANH THÉP -->
+      <h2 class="title-short">18 PHẢN XẠ GIỮ THỂ DIỆN<br>PHỔ BIẾN NHẤT CỦA NGƯỜI LỚN</h2>
+      
+      <p class="editorial-hook">“Nhấn vào từng phản xạ để cuộn nhanh xuống xem phân tích cơ chế, câu hỏi nhận diện và câu nói đời thực.”</p>
 
       <div class="table-container">
         <table class="master-table">
@@ -1047,12 +1143,16 @@
   </section>
 
   <!-- ══════════════════════════════════════════════════════════════════════════
-       PHẦN 4: CHI TIẾT 18 PHẢN XẠ GIỮ THỂ DIỆN (ĐẦY ĐỦ NỘI DUNG MỘC MẠC)
+       KHỐI 06: CHI TIẾT 18 PHẢN XẠ GIỮ THỂ DIỆN (CHUẨN BOCUC 3 NHỊP)
        ══════════════════════════════════════════════════════════════════════════ -->
   <section class="cl-zebra-section cl-zebra--tint" id="sec-deep-dive">
-    <div class="cl-container cl-container--narrow">
-      <div class="cl-badge">PHÂN TÍCH TÂM LÝ ĐỜI THỰC</div>
-      <h2 class="title-short">CHI TIẾT 18 PHẢN XẠ GIỮ THỂ DIỆN</h2>
+    <div class="cl-container cl-container--narrow apple-reveal">
+      <!-- NHỊP 1: MICRO-BADGE -->
+      <div class="cl-badge">06 / CHI TIẾT 18 PHẢN XẠ</div>
+
+      <!-- NHỊP 2: TIÊU ĐỀ ĐANH THÉP -->
+      <h2 class="title-short">CHI TIẾT 18 PHẢN XẠ<br>VÀ CÂU NÓI OAI MIỆNG ĐỜI THƯỜNG</h2>
+      
       <p class="editorial-hook">“Cơ chế tâm lý tự nhiên, câu hỏi nhận diện nhẹ nhàng và lời bộc bạch quen thuộc của người làm nghề.”</p>
 
       <!-- CARD 01 -->
@@ -1593,21 +1693,55 @@
           <div class="truth-box__label">⚡ NỖI LÒNG THẦM KÍN (TẦNG 3)</div>
           <div class="truth-box__content">Thực tế là còn e ngại, chưa dám thử và sai, nên chọn giải pháp quan sát để giữ sự an toàn cho bản thân.</div>
         </div>
-      </div>
-
-      <!-- CHÂN TRANG ĐÚC KẾT -->
-      <div style="text-align: center; margin-top: 60px; padding: 40px 20px; border-top: 1px solid var(--cl-line-strong);">
-        <p class="editorial-hook" style="margin-bottom: 12px;">“Khi mình thấu hiểu được nỗi ngượng ngùng của người khác bằng sự bao dung... cuộc trò chuyện mới thực sự mở lòng.”</p>
-        <p style="font-family: var(--font-sans); font-size: 14px; color: var(--cl-text-muted);">
-          Hệ thống kiến trúc nội dung FEDU.VN • Quy trình bóc tách tâm lý 4 tầng (1 ➔ 2 ➔ 2.5 ➔ 3)
-        </p>
-        <div style="margin-top: 24px;">
-          <a href="#sec-situation" class="cl-btn">↑ LÊN ĐẦU TRANG XEM LẠI KỊCH BẢN</a>
-        </div>
-      </div>
-
     </div>
   </section>
+
+  <!-- ══════════════════════════════════════════════════════════════════════════
+       KHỐI 07: ĐÚC KẾT HÀNH ĐỘNG & ĐIỀU HƯỚNG OMNI-HUB (CHUẨN BOCUC)
+       ══════════════════════════════════════════════════════════════════════════ -->
+  <section class="cl-zebra-section cl-zebra--light" id="sec-action">
+    <div class="cl-container cl-container--narrow apple-reveal" style="text-align: center;">
+      <!-- NHỊP 1: MICRO-BADGE -->
+      <div class="cl-badge cl-badge--warm">07 / ĐÚC KẾT THỰC CHIẾN</div>
+
+      <!-- NHỊP 2: TIÊU ĐỀ ĐANH THÉP -->
+      <h2 class="title-short">MỞ MIỆNG NÓI THẬT LÒNG<br>CÔNG VIỆC TỰ KHẮC THÔNG</h2>
+      
+      <!-- NHỊP 3: KHỐI NỘI DUNG ĐÁY -->
+      <blockquote class="editorial-hook" style="max-width: 680px; margin: 0 auto 28px; text-align: center; border: none; padding: 0;">
+        “Khách hàng không cần người làm nghề phải diễn xuất hay nói lời bóng bẩy. Họ chỉ cần một người hiểu nghề chịu mở miệng nói rõ sự thật. Khi gạt bỏ chiếc cớ thể diện để chia sẻ bằng cái tâm chân thành, sự tin tưởng sẽ tự khắc tìm đến.”
+      </blockquote>
+
+      <p class="cl-body" style="color: var(--cl-text-muted); font-size: 15px; margin-bottom: 32px;">
+        — Hệ thống kiến trúc nội dung FEDU • Chuyển hóa tâm lý 4 tầng (Tầng 1 ➔ Tầng 2 ➔ Tầng 2.5 ➔ Tầng 3)
+      </p>
+
+      <div style="display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;">
+        <a href="https://go.fedu.vn" class="cl-btn" style="background: var(--cl-accent);">
+          VỀ FEDU OMNI-HUB (GO.FEDU.VN) ↗
+        </a>
+        <a href="https://fedu.vn/course/" class="cl-btn" style="background: #0f172a;">
+          KHÁM PHÁ KHO BÀI GIẢNG ↗
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 9. APPLE REVEAL SCRIPT (ZERO-JANK OBSERVER) ═══ -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const reveals = document.querySelectorAll('.apple-reveal');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+      reveals.forEach(el => observer.observe(el));
+    });
+  </script>
 
 </body>
 </html>
