@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BẢNG 18 PHẢN XẠ GIỮ THỂ DIỆN & BÓC TÁCH 4 TẦNG TÂM LÝ (CHUẨN COPY FIGMA / SHEETS) | FEDU.VN</title>
+  
+  <style>
+    /* ═══ 1. FONT DECLARATIONS ═══ */
+    @font-face {
+      font-family: 'FD Aeonik Extended';
+      src: url('./fonts/FDAeonikExtended-Bold.woff2') format('woff2'),
+           url('./fonts/FDAeonikExtended-Bold.ttf') format('truetype'),
+           local('FD Aeonik Extended Bold');
+      font-weight: 700;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'FD Aeonik';
+      src: url('./fonts/FDAeonikRegular.ttf') format('truetype'),
+           local('FD Aeonik Regular');
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'FD Aeonik';
+      src: url('./fonts/FDAeonikMedium.ttf') format('truetype'),
+           local('FD Aeonik Medium');
+      font-weight: 500;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'FD Aeonik';
+      src: url('./fonts/FDAeonikBold.ttf') format('truetype'),
+           local('FD Aeonik Bold');
+      font-weight: 700;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Tiempos Text';
+      src: url('./fonts/FDTiemposText-Regular.otf') format('opentype'),
+           local('Tiempos Text Regular');
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Tiempos Text';
+      src: url('./fonts/FDTiemposText-RegularItalic.otf') format('opentype'),
+           local('Tiempos Text Regular Italic');
+      font-weight: 400;
+      font-style: italic;
+      font-display: swap;
+    }
+
+    /* ═══ 2. DESIGN TOKENS ═══ */
+    :root {
+      --bg: #f8fafc;
+      --surface: #ffffff;
+      --text: #090d16;
+      --text-body: #0f172a;
+      --text-muted: #475569;
+      --border: #e2e8f0;
+      --border-strong: #cbd5e1;
+      --accent: #1a73e8;
+      --accent-tint: #eff6ff;
+      --warm: #b45309;
+      --warm-tint: #fffbeb;
+      --success: #15803d;
+      --success-tint: #f0fdf4;
+      --font-display-short: 'FD Aeonik Extended', -apple-system, sans-serif;
+      --font-sans: 'FD Aeonik', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      --font-body: 'Tiempos Text', Georgia, serif;
+      --font-mono: 'JetBrains Mono', ui-monospace, Menlo, monospace;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      background: var(--bg);
+      color: var(--text-body);
+      padding: 36px 20px;
+      margin: 0;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 1560px;
+      margin: 0 auto;
+      background: var(--surface);
+      border-radius: 20px;
+      box-shadow: 0 4px 30px rgba(0,0,0,0.05);
+      border: 1px solid var(--border);
+      padding: 32px;
+    }
+
+    .header-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 28px;
+      flex-wrap: wrap;
+      gap: 16px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .brand-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 12px;
+      background: var(--accent-tint);
+      color: var(--accent);
+      border-radius: 9999px;
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    h1 {
+      font-family: var(--font-display-short);
+      font-size: clamp(20px, 2.5vw, 28px);
+      font-weight: 700;
+      text-transform: uppercase !important;
+      letter-spacing: -0.01em;
+      margin: 0;
+      color: var(--text);
+      line-height: 1.25;
+    }
+
+    .subhead {
+      margin: 8px 0 0;
+      font-size: 14.5px;
+      color: var(--text-muted);
+      font-family: var(--font-sans);
+      line-height: 1.5;
+    }
+
+    .actions-group {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .copy-btn {
+      background: #090d16;
+      color: #fff;
+      border: 1px solid #000;
+      padding: 12px 20px;
+      border-radius: 9999px;
+      font-family: var(--font-display-short);
+      font-weight: 700;
+      font-size: 13.5px;
+      letter-spacing: 0.02em;
+      text-transform: uppercase !important;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s cubic-bezier(0.25, 1, 0.35, 1.05);
+      box-shadow: 0 4px 14px rgba(0,0,0,0.1);
+    }
+
+    .copy-btn:hover {
+      background: var(--accent);
+      border-color: var(--accent);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(26, 115, 232, 0.3);
+    }
+
+    .copy-btn:active {
+      transform: translateY(0);
+    }
+
+    .copy-btn--secondary {
+      background: #f1f5f9;
+      color: #0f172a;
+      border: 1px solid var(--border-strong);
+      box-shadow: none;
+    }
+
+    .copy-btn--secondary:hover {
+      background: #e2e8f0;
+      color: var(--accent);
+    }
+
+    .success-toast {
+      display: none;
+      color: var(--success);
+      background: var(--success-tint);
+      border: 1px solid rgba(22, 163, 74, 0.3);
+      padding: 8px 16px;
+      border-radius: 9999px;
+      font-family: var(--font-sans);
+      font-weight: 600;
+      font-size: 13px;
+    }
+
+    /* ═══ 3. TABLE STYLES (FIGMA & SPREADSHEET OPTIMIZED) ═══ */
+    .table-wrapper {
+      width: 100%;
+      overflow-x: auto;
+      border: 1px solid var(--border-strong);
+      border-radius: 12px;
+      margin-bottom: 40px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13.5px;
+      line-height: 1.6;
+      background: #fff;
+    }
+
+    th, td {
+      border: 1px solid var(--border);
+      padding: 14px 16px;
+      vertical-align: top;
+      text-align: left;
+    }
+
+    th {
+      background: #090d16;
+      color: #ffffff;
+      font-family: var(--font-display-short);
+      font-weight: 700;
+      text-transform: uppercase !important;
+      letter-spacing: 0.04em;
+      font-size: 12.5px;
+      white-space: nowrap;
+    }
+
+    tr.group-header td {
+      font-family: var(--font-display-short);
+      font-weight: 700;
+      text-transform: uppercase !important;
+      letter-spacing: 0.05em;
+      font-size: 13px;
+      padding: 12px 16px;
+      border-top: 2px solid var(--border-strong);
+      border-bottom: 2px solid var(--border-strong);
+    }
+
+    .group-1 td { background: #fdf2f8; color: #9d174d; }
+    .group-2 td { background: #fefce8; color: #854d0e; }
+    .group-3 td { background: #eff6ff; color: #1e40af; }
+    .group-4 td { background: #faf5ff; color: #6b21a8; }
+
+    .formula {
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      color: #0369a1;
+      background: #f0f9ff;
+      border: 1px solid #bae6fd;
+      padding: 4px 8px;
+      border-radius: 6px;
+      display: inline-block;
+      font-weight: 600;
+    }
+
+    .quote {
+      font-family: var(--font-body);
+      font-style: italic;
+      color: var(--text);
+      font-size: 14px;
+      line-height: 1.65;
+    }
+
+    .tag-stt {
+      font-family: var(--font-display-short);
+      font-weight: 700;
+      font-size: 12px;
+      color: var(--text);
+      text-transform: uppercase !important;
+      white-space: nowrap;
+    }
+
+    .section-divider {
+      margin: 48px 0 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .section-title {
+      font-family: var(--font-display-short);
+      font-size: 18px;
+      font-weight: 700;
+      text-transform: uppercase !important;
+      color: var(--text);
+      margin: 0;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  
+  <!-- ═══ HEADER BAR ═══ -->
+  <div class="header-bar">
+    <div>
+      <div class="brand-tag">FEDU ARCHITECTURE • CHUẨN COPY FIGMA & FIGJAM</div>
+      <h1>BẢNG 18 PHẢN XẠ GIỮ THỂ DIỆN & BÓC TÁCH 4 TẦNG TÂM LÝ</h1>
+      <p class="subhead">Dữ liệu đối soát chuẩn hóa 100% theo nội dung mới nhất của <code>boc-tach-tang-2-5.html</code>. Tối ưu dạng lưới Tab-Separated (TSV) & Table HTML để Cmd+V vào Figma/FigJam không bị vỡ cột.</p>
+    </div>
+    <div class="actions-group">
+      <span id="toast" class="success-toast">✓ Đã copy vào Clipboard! Mở Figma ấn Cmd+V</span>
+      <button class="copy-btn" onclick="copyTable('target-table-18')">
+        📋 COPY 18 PHẢN XẠ CHO FIGMA
+      </button>
+      <button class="copy-btn copy-btn--secondary" onclick="copyTable('target-table-4tang')">
+        📋 COPY CASE STUDY 4 TẦNG
+      </button>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════════════════════
+       BẢNG 1: 18 PHẢN XẠ GIỮ THỂ DIỆN CỦA NGƯỜI LỚN
+       ══════════════════════════════════════════════════════════════════════════ -->
+  <div class="table-wrapper">
+    <table id="target-table-18">
+      <thead>
+        <tr>
+          <th style="width: 18%;">STT & TÊN PHẢN XẠ</th>
+          <th style="width: 16%;">TẦNG 1 (VĂN MẪU BỀ NỔI)</th>
+          <th style="width: 18%;">TẦNG 2 (THỰC TẾ LÚNG TÚNG)</th>
+          <th style="width: 16%;">TẦNG 3 (NỖI E NGẠI THẦM KÍN)</th>
+          <th style="width: 14%;">CÔNG THỨC NGHỊCH ĐẢO</th>
+          <th style="width: 18%;">TẦNG 2.5 (CÂU NÓI OAI MIỆNG GIỮ THỂ DIỆN)</th>
+        </tr>
+      </thead>
+      <tbody>
+        
+        <!-- NHÓM 1 -->
+        <tr class="group-header group-1">
+          <td colspan="6">NHÓM 1: NHÌN NHẬN CHƯA ĐÚNG VỀ CÁCH LÀM CỦA NGƯỜI KHÁC (4 PHẢN XẠ)</td>
+        </tr>
+        <tr>
+          <td class="tag-stt">01. SOI SỰ KHÁC BIỆT</td>
+          <td>“Tôi thích làm việc trực tiếp, không thích chạy theo mấy trào lưu ngắn hạn trên mạng.”</td>
+          <td>Chưa quen xuất hiện trước ống kính, cầm máy lên lúng túng nói vấp, video ít người xem.</td>
+          <td>Sốt ruột và chạnh lòng khi thấy người khác tiếp cận được nhiều người xem và hút khách mới.</td>
+          <td><span class="formula">[Chưa quen làm video] ➔ [Giữ chuẩn mực nghề]</span></td>
+          <td class="quote">“Thời buổi này người ta làm video toàn theo trào lưu để tìm kiếm lượt xem nhanh. Mình là người làm nghề có học thức và chuyên môn, ai lại đi làm những nội dung đại trà như thế! Khách hàng kỹ tính họ tìm đến mình vì năng lực thật, chứ đâu chỉ nhìn vào mấy video ngắn!”</td>
+        </tr>
+        <tr>
+          <td class="tag-stt">09. NGƯỜI QUAN SÁT</td>
+          <td>“Nội dung truyền thông thời nay cần phải được kiểm duyệt khắt khe hơn về tính học thuật.”</td>
+          <td>Bản thân chưa bắt tay vào bấm máy làm nổi một video hay bài viết hoàn chỉnh nào.</td>
+          <td>Chưa tự tin bước vào sân thi đấu công khai, sợ bị người xem đánh giá năng lực thực tế.</td>
+          <td><span class="formula">[Chưa dám hành động] ➔ [Góc nhìn học thuật]</span></td>
+          <td class="quote">“Video này nhịp cắt quá nhanh, thiếu tính nhân văn và chiều sâu học thuật. Mình mà làm là phải chuẩn mực sư phạm, kiến thức phải có hệ thống chứ không làm hời hợt kiểu này!”</td>
+        </tr>
+        <tr>
+          <td class="tag-stt">10. ĐỔ LỖI CÔNG NGHỆ</td>
+          <td>“Mạng xã hội và thuật toán video ngắn đang làm giảm chất lượng các mối quan hệ thực chất.”</td>
+          <td>Chưa hiểu cách phân phối của nền tảng, nói dài dòng không giữ chân được người xem quá 3 giây.</td>
+          <td>Bất lực trước việc cô đọng kiến thức phức tạp thành thông điệp súc tích, sợ bị coi là nông cạn.</td>
+          <td><span class="formula">[Không cô đọng được] ➔ [Giữ tư duy tĩnh lặng]</span></td>
+          <td class="quote">“Thuật toán video ngắn làm đứt gãy sự tập trung của con người và tạo ra một thế hệ mì ăn liền. Tôi chọn giữ sự tĩnh lặng của tư duy chuyên môn, phục vụ những người thực sự cần chiều sâu!”</td>
+        </tr>
+        <tr>
+          <td class="tag-stt">11. BẮT LỖI TIỂU TIẾT</td>
+          <td>“Làm chuyên môn là phải chuẩn chỉ từng dấu chấm, dấu phẩy, không được phép sai sót.”</td>
+          <td>Thấy người khác ra nội dung liên tục và tiếp cận khách hàng nườm nượp, còn mình dậm chân tại chỗ.</td>
+          <td>Có chút băn khoăn vì nhận ra sự cẩn trọng thái quá khiến mình chậm chân hơn so với thị trường.</td>
+          <td><span class="formula">[Chậm chân hơn] ➔ [Kỹ tính chuyên môn]</span></td>
+          <td class="quote">“Ở giây thứ 45 họ dùng từ chuyên môn chưa chuẩn kìa! Làm nội dung kiến thức mà ẩu tả như thế thì hỏng cả thế hệ. Thà làm ít người biết nhưng câu nào đưa ra cũng phải chuẩn chỉ 100%!”</td>
+        </tr>
+
+        <!-- NHÓM 2 -->
+        <tr class="group-header group-2">
+          <td colspan="6">NHÓM 2: MƯỢN ÁO CAO QUÝ ĐỂ BIẾN SỰ BẤT LỰC THÀNH PHẨM HẠNH (4 PHẢN XẠ)</td>
+        </tr>
+        <tr>
+          <td class="tag-stt">02. TỰA VÀO CHỮ TÂM</td>
+          <td>“Triết lý của tôi xưa nay là tập trung chăm sóc khách quen, hữu xạ tự nhiên hương.”</td>
+          <td>Khách hàng mới thưa thớt dần, chưa thích nghi được với nhịp độ tiếp thị số hiện đại.</td>
+          <td>Ngại bị người quen nghĩ là mình đang gặp khó khăn, sợ va chạm vào cái tôi của người có thâm niên.</td>
+          <td><span class="formula">[Chưa thích nghi tiếp thị] ➔ [Làm nghề bằng cái tâm]</span></td>
+          <td class="quote">“Xưa nay triết lý làm nghề của mình luôn là hữu xạ tự nhiên hương. Người có thực tài thì cứ âm thầm trau dồi chuyên môn, phục vụ khách hàng bằng cái tâm, việc gì phải lên mạng khoe mẽ? Mình chọn lối sống khiêm nhường, giá trị thật tự khắc người ta sẽ tìm đến!”</td>
+        </tr>
+        <tr>
+          <td class="tag-stt">06. TIÊU CHUẨN QUÁ CAO</td>
+          <td>“Đã không làm thì thôi, một khi đã đưa ra công chúng là phải đạt chuẩn tuyệt đối.”</td>
+          <td>Trì hoãn lâu ngày, viết đi sửa lại kịch bản nhiều lần nhưng không dám bấm máy.</td>
+          <td>Sợ sản phẩm đầu tay bị người khác nhận xét là chưa hay, sợ tổn thương lòng tự trọng nghề nghiệp.</td>
+          <td><span class="formula">[Sợ bị nhận xét] ➔ [Tính cầu toàn]</span></td>
+          <td class="quote">“Tính mình vốn cầu toàn, đã đưa sản phẩm ra đời là phải có giá trị lâu dài, kịch bản phải thẩm định kỹ càng từng câu chữ. Khi nào giải quyết xong khâu kịch bản đạt độ chín thì mình mới phát hành!”</td>
+        </tr>
+        <tr>
+          <td class="tag-stt">08. SỐNG CHẬM BÌNH AN</td>
+          <td>“Đến một độ tuổi nào đó, con người ta sẽ hướng về sự cân bằng và bình an nội tâm.”</td>
+          <td>Công việc chậm lại, doanh số sụt giảm, bế tắc chưa tìm được phương thức tiếp cận mới.</td>
+          <td>Mệt mỏi và sốt ruột trước áp lực cạnh tranh, nhưng thiếu dũng khí để học lại từ đầu.</td>
+          <td><span class="formula">[Bế tắc tiếp cận] ➔ [Tìm sự an yên]</span></td>
+          <td class="quote">“Đến tuổi này mình nhận ra danh vọng trên mạng chỉ là phù du. Mình chọn lối sống chậm, quay về bên trong tìm sự an yên và chăm sóc gia đình, chứ hơi đâu mà ra ngoài bon chen với tụi trẻ!”</td>
+        </tr>
+        <tr>
+          <td class="tag-stt">14. TẬP TRUNG KHÁCH QUEN</td>
+          <td>“Mô hình của tôi tập trung vào chiều sâu dịch vụ cho tệp khách ruột am hiểu.”</td>
+          <td>Nội dung đưa ra ít người tương tác, sản phẩm mới ít người hỏi mua.</td>
+          <td>Chưa mở rộng được tệp khách mới, tự ti khi thấy thị trường đại chúng chưa đón nhận.</td>
+          <td><span class="formula">[Chưa mở rộng được tệp] ➔ [Phục vụ người am tường]</span></td>
+          <td class="quote">“Sản phẩm của tôi kén người dùng, chỉ phục vụ số ít những người thực sự am tường và cùng tần số thôi. Làm đại trà cho số đông làm gì, mình chỉ cần phục vụ vài khách ruột hiểu chuyện là đủ!”</td>
+        </tr>
+
+        <!-- NHÓM 3 -->
+        <tr class="group-header group-3">
+          <td colspan="6">NHÓM 3: THAY ĐỔI HÀNH VI ĐỂ NÉ TRÁNH VIỆC CỐT LÕI (4 PHẢN XẠ)</td>
+        </tr>
+        <tr>
+          <td class="tag-stt">04. ĐẦU TƯ THIẾT BỊ</td>
+          <td>“Muốn làm việc gì chuyên nghiệp thì hạ tầng ban đầu phải được chuẩn bị bài bản.”</td>
+          <td>Chi tiền mua máy ảnh, micro, đèn studio xịn về bày một góc nhưng chưa dám bấm máy quay.</td>
+          <td>Chưa tự tin nói trước ống kính, sợ khuôn mặt và giọng nói của mình lên hình còn vụng về.</td>
+          <td><span class="formula">[Chưa tự tin bấm máy] ➔ [Chuẩn bị bài bản]</span></td>
+          <td class="quote">“Tính mình làm gì cũng phải chỉn chu, chuyên nghiệp từ hạ tầng thiết bị. Sắm máy ảnh tốt, đèn chiếu sáng, micro thu âm chuẩn đâu ra đấy, đạt chất lượng hình ảnh đẹp thì mới bấm máy, chứ không làm kiểu vội vàng bằng điện thoại!”</td>
+        </tr>
+        <tr>
+          <td class="tag-stt">05. VIỆN CỚ ĐỐI TÁC</td>
+          <td>“Doanh nghiệp chúng tôi luôn đặt tính bảo mật và sự kín kẽ của đối tác lên hàng đầu.”</td>
+          <td>Bản thân ngại xuất hiện trước màn hình, e ngại ngoại hình chưa ăn ảnh.</td>
+          <td>Mượn danh nghĩa giữ hình ảnh cho đối tác VIP để né tránh việc phải bước ra ánh sáng.</td>
+          <td><span class="formula">[E ngại ngoại hình] ➔ [Giữ hình ảnh đối tác]</span></td>
+          <td class="quote">“Khách bên mình toàn lãnh đạo kín tiếng, họ rất dị ứng với việc xuất hiện trên mạng xã hội. Mình mà lên hình nhiều là đối tác VIP họ đánh giá thấp tính bảo mật ngay, phải giữ uy tín chung cho công ty chứ!”</td>
+        </tr>
+        <tr>
+          <td class="tag-stt">12. BẬN VIỆC CHÂN TAY</td>
+          <td>“Người làm chủ là người phải tận tụy, sâu sát với từng chi tiết vận hành nhỏ nhất.”</td>
+          <td>Lao vào việc quen thuộc hàng ngày (dọn kho, trả lời tin nhắn, chỉnh hóa đơn) đến tận khuya.</td>
+          <td>Ngại học công cụ mới và ngại viết kịch bản vì não bộ phải tiêu tốn nhiều năng lượng thích nghi.</td>
+          <td><span class="formula">[Ngại thử thách mới] ➔ [Tận tụy gánh vác]</span></td>
+          <td class="quote">“Một mình tôi lo trăm thứ việc từ sáng đến đêm vì trách nhiệm với anh em. Thời gian thở còn không có, tâm trí đâu mà ngồi viết kịch bản với cả son phấn lên hình!”</td>
+        </tr>
+        <tr>
+          <td class="tag-stt">15. GIAO BÊN NGOÀI</td>
+          <td>“Lãnh đạo cấp cao cần tập trung vào quản trị và sử dụng đòn bẩy chuyên gia.”</td>
+          <td>Chi tiền khoán trắng cho agency làm trọn gói; sản phẩm làm ra vô hồn, không có kết quả.</td>
+          <td>Chưa nắm bản chất nội dung, ngại đặt trực tiếp tâm huyết và hình ảnh cá nhân vào thương hiệu.</td>
+          <td><span class="formula">[Chưa nắm bản chất] ➔ [Dùng đòn bẩy quản trị]</span></td>
+          <td class="quote">“Làm lãnh đạo là phải biết dùng đòn bẩy. Tôi chi ngân sách thuê chuyên gia làm bài bản, nhưng mấy đơn vị bên ngoài làm ăn chưa đúng ý mình chứ mình làm sao bao quát hết được!”</td>
+        </tr>
+
+        <!-- NHÓM 4 -->
+        <tr class="group-header group-4">
+          <td colspan="6">NHÓM 4: TÌM LỐI LUI AN TOÀN CHO CẢM XÚC (6 PHẢN XẠ)</td>
+        </tr>
+        <tr>
+          <td class="tag-stt">03. KHÁC BIỆT NGÀY ĐÊM</td>
+          <td>“Dạo này lịch trình công việc của tôi rất dày đặc, chỉ ưu tiên những việc thực sự khẩn cấp.”</td>
+          <td>Tối đóng chặt cửa phòng lén quay thử, nói vấp vài câu thấy ngượng ngùng nên bấm xóa sạch.</td>
+          <td>Ngại ngùng với chính sự vụng về của bản thân khi đối diện với ống kính trong phòng kín.</td>
+          <td><span class="formula">[Vụng về lúc một mình] ➔ [Người bận rộn việc lớn]</span></td>
+          <td class="quote">“Dạo này công việc bận tối mắt tối mũi, thời gian chăm sóc mấy khách ruột còn không đủ, hơi đâu mà rảnh rỗi ngồi làm mấy cái video vô thưởng vô phạt ấy. Khi nào doanh nghiệp vận hành tự động, rảnh rang hẳn thì mình mới tính đến!”</td>
+        </tr>
+        <tr>
+          <td class="tag-stt">07. NHÌN VỀ QUÁ KHỨ</td>
+          <td>“Kinh doanh bền vững phải dựa trên mối quan hệ thực chất và chữ tín tích lũy nhiều năm.”</td>
+          <td>Các mối quan hệ cũ cạn dần không sinh ra khách mới; phương pháp cũ bắt đầu giảm hiệu quả.</td>
+          <td>Lo lắng trước sự thay đổi của thị trường, có chút chạnh lòng trước sức bật của thế hệ mới.</td>
+          <td><span class="formula">[Cách cũ giảm hiệu quả] ➔ [Trọng chiều sâu kinh nghiệm]</span></td>
+          <td class="quote">“Thời trước chỉ cần cái bắt tay trên bàn trà là chốt xong dự án. Làm ăn bằng quan hệ và uy tín thực chất chứ ai đi làm video như tụi trẻ!”</td>
+        </tr>
+        <tr>
+          <td class="tag-stt">13. NHẬN CHƯA RÀNH</td>
+          <td>“Tôi thuộc thế hệ đi trước, quen làm việc thủ công và giao tiếp trực tiếp con người.”</td>
+          <td>Chưa quen dùng các công cụ số và phần mềm mới, mò mẫm chưa ra nên dễ nản lòng.</td>
+          <td>Ngại học cái mới vì sợ chậm hơn người khác, sợ va chạm vào lòng tự tôn của người có tuổi.</td>
+          <td><span class="formula">[Ngại học cái mới] ➔ [Thật thà, khiêm tốn]</span></td>
+          <td class="quote">“Anh thế hệ cũ mù tịt mấy cái công nghệ này. Thôi để tụi trẻ nhạy bén nó làm, mình lớn tuổi rồi theo sao kịp, giữ sự mộc mạc của mình là được rồi!”</td>
+        </tr>
+        <tr>
+          <td class="tag-stt">16. THAY ĐỔI MỤC TIÊU</td>
+          <td>“Truyền thông là một hành trình dài hạn để tích lũy chứ không nên nhìn vào số liệu nhất thời.”</td>
+          <td>Đăng video lên hồi hộp chờ đợi nhưng chỉ được vài chục lượt xem và không có khách hỏi.</td>
+          <td>Hơi hụt hẫng và thất vọng vì thông điệp mình tâm đắc đưa ra không được đón nhận như kỳ vọng.</td>
+          <td><span class="formula">[Hụt hẫng vì ít người xem] ➔ [Lưu giữ kỷ niệm làm nghề]</span></td>
+          <td class="quote">“Ngay từ đầu mình làm chuỗi này đâu phải để kiếm view hay bán hàng. Mình làm để lưu giữ hành trình làm nghề và chia sẻ cho con cháu sau này xem thôi, có ai xem hay không không quan trọng!”</td>
+        </tr>
+        <tr>
+          <td class="tag-stt">17. TÌM NGƯỜI ĐỒNG CẢM</td>
+          <td>“Làm kinh doanh là phải nhìn vào bức tranh kinh tế vĩ mô và chu kỳ chung của toàn ngành.”</td>
+          <td>Công việc chậm lại, doanh thu đứng im, chưa tìm được phương thức kéo khách hàng mới.</td>
+          <td>Băn khoăn lo lắng khi thấy những người chịu đổi mới xung quanh vẫn có kết quả tốt.</td>
+          <td><span class="formula">[Băn khoăn lo lắng] ➔ [Khó khăn chung toàn ngành]</span></td>
+          <td class="quote">“Hôm qua ngồi với mấy anh em kỳ cựu trong nghề, ai cũng công nhận thị trường chung đang chững lại cả. Tình hình khó khăn chung toàn ngành rồi, thôi mình cứ liệu cơm gắp mắm giữ sức!”</td>
+        </tr>
+        <tr>
+          <td class="tag-stt">18. CHỜ THỜI ĐIỂM</td>
+          <td>“Đầu tư và kinh doanh luôn đòi hỏi sự cẩn trọng, không nên chạy theo những làn sóng nhất thời.”</td>
+          <td>Chần chừ chưa dám bắt tay vào thử nghiệm bất kỳ định dạng nội dung mới nào.</td>
+          <td>Ngại rủi ro thất bại, lo sợ mình trở thành đề tài bàn tán nếu làm không thành công.</td>
+          <td><span class="formula">[Ngại rủi ro thất bại] ➔ [Điềm tĩnh quan sát chu kỳ]</span></td>
+          <td class="quote">“Làn sóng này mới ở giai đoạn đầu thôi, thị trường đang bị thổi phồng quá mức. Người làm kinh doanh có kinh nghiệm phải biết điềm tĩnh quan sát chu kỳ, đợi thị trường thanh lọc xong mới vào!”</td>
+        </tr>
+
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════════════════════
+       BẢNG 2: BÓC TÁCH 4 TẦNG TÂM LÝ & 3 VÍ DỤ THỰC CHIẾN (CASE STUDY)
+       ══════════════════════════════════════════════════════════════════════════ -->
+  <div class="section-divider">
+    <div>
+      <h2 class="section-title">BẢNG CASE STUDY: BÓC TÁCH 4 TẦNG TÂM LÝ & 3 VÍ DỤ THỰC CHIẾN</h2>
+      <p class="subhead" style="margin-top: 4px;">Chủ đề: “Thấy thiên hạ ai cũng làm video, còn mình thì không muốn lên video”.</p>
+    </div>
+    <button class="copy-btn" onclick="copyTable('target-table-4tang')">
+      📋 COPY CASE STUDY CHO FIGMA
+    </button>
+  </div>
+
+  <div class="table-wrapper">
+    <table id="target-table-4tang">
+      <thead>
+        <tr>
+          <th style="width: 20%;">TẦNG NHẬN THỨC / VÍ DỤ</th>
+          <th style="width: 25%;">LỜI GIẢI THÍCH XÃ GIAO / HÀNH VI ĐỜI THƯỜNG</th>
+          <th style="width: 25%;">BÓC TRẦN TIM ĐEN (TẦNG 3)</th>
+          <th style="width: 30%;">TẦNG 2.5 (CHIẾC MẶT NẠ THỂ DIỆN ĐỒNG BỘ)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="group-header" style="background: #f1f5f9; color: #0f172a;">
+          <td colspan="4">PHẦN 1: BẢNG BÓC TÁCH 4 TẦNG TÂM LÝ: "KHÔNG MUỐN LÊN VIDEO"</td>
+        </tr>
+        <tr>
+          <td class="tag-stt">TẦNG 1: NÓI ĐÃI BÔI<br><small>(Văn mẫu bề nổi)</small></td>
+          <td>“Tính mình hướng nội, thích làm chuyên môn trong bóng tối hơn là phô trương.” hoặc “Mình bận phục vụ khách hàng, không có thời gian chạy theo trào lưu mạng xã hội.”</td>
+          <td>Nghe rất hợp lý, nhưng ai nghe cũng biết đó là câu trả lời né tránh để không phải thừa nhận sự bối rối.</td>
+          <td class="quote">Lý do an toàn để tạm thời đứng ngoài cuộc mà không bị phán xét.</td>
+        </tr>
+        <tr>
+          <td class="tag-stt">TẦNG 2: CẢM GIÁC THẬT<br><small>(Thao tác vụng về)</small></td>
+          <td>• Cầm điện thoại lên định quay thì mắt đảo lia lịa, mặt đơ như tượng.<br>• Nói một câu vấp 5 lần, nghe lại giọng thấy the thé kì cục, ngượng chín mặt.<br>• Không biết bấm cắt ghép CapCut, loay hoay cả buổi chiều không xong một video 30 giây, bực mình xóa luôn.</td>
+          <td>Bất lực và xấu hổ với chính sự vụng về của bản thân khi đối diện với ống kính trong phòng kín.</td>
+          <td class="quote">Khoảng cách giữa mong muốn xuất hiện với kỹ năng thực tế còn bỡ ngỡ.</td>
+        </tr>
+        <tr>
+          <td class="tag-stt">TẦNG 3: NGƯỢNG MIỆNG<br><small>(Tim đen sâu kín)</small></td>
+          <td>• <strong>Sợ xấu và sợ già:</strong> Sợ lên hình lộ nọng cằm, da xấu, tóc thưa, sợ bị chê không ăn ảnh.<br>• <strong>Sợ người quen phán xét:</strong> Sợ bạn bè, đồng nghiệp cũ xì xào: “Dạo này ế ẩm hết thời hay sao mà phải lên mạng uốn éo xin tương tác?”.<br>• <strong>Sự cay cú & sợ tụt hậu:</strong> Nhìn mấy đứa chuyên môn kém xa mình nhưng chịu khó quay clip mà hút hết khách, đơn đi ầm ầm... trong lòng vừa ghen tị vừa run sợ bị đào thải.</td>
+          <td>Nỗi sợ nhục nhã và bị coi là kẻ thất bại nếu bước ra ánh sáng mà không thành công.</td>
+          <td class="quote">Tử huyệt tâm lý mà người lớn có lòng tự trọng kiên quyết che giấu bằng mọi giá.</td>
+        </tr>
+        <tr>
+          <td class="tag-stt" style="color: var(--success);">TẦNG 2.5: BÌNH PHONG<br><small>(Mặt nạ thể diện)</small></td>
+          <td>Họ phải tìm một cái cớ <strong>nghe thật có học thức và có nguyên tắc sống</strong> để hợp thức hóa việc mình “đứng ngoài cuộc”.</td>
+          <td>Che giấu việc: Mình vừa vụng về không biết quay (Tầng 2), vừa sợ bị chê cười và sợ xấu (Tầng 3).</td>
+          <td class="quote">“Chiếc mặt nạ thể diện của người có thâm niên dựng lên để bảo toàn lòng tự trọng khi chưa làm chủ được kỹ năng mới.”</td>
+        </tr>
+
+        <tr class="group-header" style="background: #f1f5f9; color: #0f172a;">
+          <td colspan="4">PHẦN 2: 3 VÍ DỤ TẦNG 2.5 ÁP DỤNG ĐÚNG 3 CÔNG THỨC</td>
+        </tr>
+        <tr>
+          <td class="tag-stt">VÍ DỤ 1 / CÁCH 1<br><small>(Chê bai kẻ khác)</small></td>
+          <td>Đi chê những người đang làm video trên mạng là “diễn trò nhảm nhí” để tự phong mình là người đứng đắn.</td>
+          <td>Thấy người ta làm video có nhiều tương tác thì rất sốt ruột và thèm muốn, nhưng vì sợ ống kính nên đành chê người ta để thấy mình cao giá hơn.</td>
+          <td class="quote">“Thời buổi này người ta làm video toàn diễn trò trên mạng để tìm kiếm lượt xem nhanh. Mình là người làm nghề đàng hoàng, có học thức, ai lại đi làm ba cái trò mua vui cho thiên hạ như thế! Khách hàng kỹ tính họ tìm đến mình vì năng lực thật, chứ đâu ai tin mấy người nói suông trên mạng!”</td>
+        </tr>
+        <tr>
+          <td class="tag-stt">VÍ DỤ 2 / CÁCH 2<br><small>(Áo choàng đạo đức)</small></td>
+          <td>Biến việc mình không dám xuất hiện trước camera thành “sự trầm tĩnh khiêm nhường, làm ăn có tâm, không màng danh lợi”.</td>
+          <td>Lấy chữ “khiêm nhường, làm việc bằng cái tâm” làm bình phong để che đậy nỗi tự ti về ngoại hình và nỗi sợ bị bạn bè chê là dạo này ế ẩm.</td>
+          <td class="quote">“Xưa nay triết lý của mình luôn là hữu xạ tự nhiên hương. Người có thực tài thì cứ âm thầm trau dồi chuyên môn, phục vụ khách hàng bằng cái tâm, việc gì phải lên mạng khoe mẽ? Mình chọn lối sống khiêm nhường, không thích phô trương danh hão, giá trị thật tự khắc người ta sẽ tìm đến!”</td>
+        </tr>
+        <tr>
+          <td class="tag-stt">VÍ DỤ 3 / CÁCH 3<br><small>(Độ vênh ngày & đêm)</small></td>
+          <td><strong>Tối trùm chăn:</strong> Lén kê điện thoại quay thử nói vấp 3 câu mặt sượng trân, ghét giọng mình xóa sạch cả thùng rác.<br><strong>9h sáng cafe:</strong> Nói cứng với bạn bè.</td>
+          <td>Viện cớ “bận công việc, dành thời gian cho khách ruột” để giấu nhẹm sự bất lực và ngượng ngùng của buổi tối hôm trước khi quay thử thất bại.</td>
+          <td class="quote">“Dạo này công việc bận tối mắt tối mũi, thời gian chăm sóc mấy khách ruột còn không đủ, hơi đâu mà rảnh rỗi ngồi làm mấy cái video vô thưởng vô phạt ấy. Khi nào doanh nghiệp vận hành tự động, rảnh rang hẳn thì mình mới tính đến chuyện làm hình ảnh cá nhân!”</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
+
+<!-- ═══ CLIPBOARD SCRIPT (TSV & HTML FOR FIGMA / FIGJAM / SHEETS) ═══ -->
+<script>
+  function copyTable(tableId) {
+    const table = document.getElementById(tableId);
+    if (!table) return;
+
+    let tsv = [];
+    
+    for (let row of table.rows) {
+      let rowData = [];
+      for (let cell of row.cells) {
+        // Lấy text sạch, bỏ tab và xuống dòng thừa bên trong cell để tránh vỡ cột khi paste vào Sheets/Figma
+        let text = cell.innerText.replace(/[\t\r\n]+/g, ' ').replace(/\s+/g, ' ').trim();
+        rowData.push(text);
+      }
+      tsv.push(rowData.join('\t'));
+    }
+    
+    const tsvString = tsv.join('\n');
+    const htmlString = table.outerHTML;
+
+    // Ghi đồng thời cả Text/Plain (TSV) và Text/HTML vào Clipboard để Figma / FigJam / Notion / Sheets tự nhận dạng tối ưu
+    if (navigator.clipboard && window.ClipboardItem) {
+      const blobText = new Blob([tsvString], { type: 'text/plain' });
+      const blobHtml = new Blob([htmlString], { type: 'text/html' });
+
+      navigator.clipboard.write([
+        new ClipboardItem({
+          'text/plain': blobText,
+          'text/html': blobHtml
+        })
+      ]).then(() => {
+        showToast();
+      }).catch(err => {
+        fallbackCopy(tsvString);
+      });
+    } else {
+      fallbackCopy(tsvString);
+    }
+  }
+
+  function fallbackCopy(text) {
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(text).then(() => {
+        showToast();
+      });
+    } else {
+      const textarea = document.createElement('textarea');
+      textarea.value = text;
+      document.body.appendChild(textarea);
+      textarea.select();
+      document.execCommand('copy');
+      document.body.removeChild(textarea);
+      showToast();
+    }
+  }
+
+  function showToast() {
+    const toast = document.getElementById('toast');
+    if (toast) {
+      toast.style.display = 'inline';
+      setTimeout(() => { toast.style.display = 'none'; }, 4000);
+    }
+  }
+</script>
+
+</body>
+</html>
