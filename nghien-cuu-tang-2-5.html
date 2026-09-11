@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Cổng Nghiên Cứu Toàn Diện: Học Thuyết Tầng 2.5 & Tín Hiệu Đắt Giá | Nguyễn Đức Việt</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  
+  <style>
+    @font-face {
+      font-family: 'FD Aeonik Extended';
+      src: url('./fonts/FDAeonikExtended-Bold.woff2') format('woff2'),
+           url('./fonts/FDAeonikExtended-Bold.ttf') format('truetype'),
+           url('/Users/vietmac/Library/Fonts/FDAeonikExtended-Bold.otf') format('opentype'),
+           local('FD Aeonik Extended Bold');
+      font-weight: 700;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'FD Aeonik';
+      src: url('./fonts/FDAeonikRegular.ttf') format('truetype'),
+           url('/Users/vietmac/Library/Fonts/FDAeonikRegular.ttf') format('truetype'),
+           local('FD Aeonik Regular');
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'FD Aeonik';
+      src: url('./fonts/FDAeonikExtended-SemiBold.ttf') format('truetype'),
+           url('/Users/vietmac/Library/Fonts/FDAeonikExtended-SemiBold.otf') format('opentype'),
+           local('FD Aeonik SemiBold');
+      font-weight: 600;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Tiempos Text';
+      src: url('./fonts/FDTiemposText-Regular.otf') format('opentype'),
+           url('/Users/vietmac/Library/Fonts/FDTiemposText-Regular.otf') format('opentype'),
+           local('Tiempos Text Regular');
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Tiempos Text';
+      src: url('./fonts/FDTiemposText-Medium.otf') format('opentype'),
+           url('/Users/vietmac/Library/Fonts/FDTiemposText-Medium.otf') format('opentype'),
+           local('Tiempos Text Medium');
+      font-weight: 500;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Tiempos Text';
+      src: url('./fonts/FDTiemposText-RegularItalic.otf') format('opentype'),
+           url('/Users/vietmac/Library/Fonts/FDTiemposText-RegularItalic.otf') format('opentype'),
+           local('Tiempos Text Regular Italic');
+      font-weight: 400;
+      font-style: italic;
+      font-display: swap;
+    }
+
+    :root {
+      --cl-bg: #ffffff;
+      --cl-card: #ffffff;
+      --cl-tint: #f8fafc;
+      --cl-line: #e2e8f0;
+      --cl-text-base: #090d16;
+      --cl-text-body: #0f172a;
+      --cl-text-muted: #475569;
+      --cl-accent: #1a73e8;
+
+      --font-display-short: 'FD Aeonik Extended', 'Inter', -apple-system, sans-serif;
+      --font-display-long: 'FD Aeonik', 'Inter', -apple-system, sans-serif;
+      --font-body: 'Tiempos Text', Georgia, serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    html {
+      background-color: var(--cl-bg);
+      color: var(--cl-text-base);
+      font-family: var(--font-body);
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100vh;
+      line-height: 1.82;
+      padding-bottom: 80px;
+    }
+
+    .top-nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--cl-line);
+      padding: 14px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: var(--font-display-long);
+      font-size: 13.5px;
+    }
+
+    .top-nav__brand {
+      font-family: var(--font-display-short);
+      font-weight: 700;
+      font-size: 13px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--cl-text-base);
+      text-decoration: none;
+    }
+
+    .top-nav__links {
+      display: flex;
+      gap: 20px;
+    }
+    .top-nav__links a {
+      color: var(--cl-text-muted);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .top-nav__links a:hover {
+      color: var(--cl-accent);
+    }
+
+    .portal-wrap {
+      max-width: 820px;
+      margin: 0 auto;
+      padding: clamp(40px, 6vw, 72px) 20px;
+    }
+
+    .portal-kicker {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--cl-text-muted);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .portal-kicker::before {
+      content: "";
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      background: var(--cl-accent);
+      border-radius: 50%;
+    }
+
+    .portal-title {
+      font-family: var(--font-display-short);
+      font-size: clamp(28px, 4.5vw, 44px);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: -0.01em;
+      line-height: 1.15;
+      color: var(--cl-text-base);
+      margin-bottom: 20px;
+      text-wrap: balance;
+    }
+
+    .portal-intro {
+      font-family: var(--font-body);
+      font-size: 18px;
+      line-height: 1.8;
+      color: var(--cl-text-body);
+      margin-bottom: 32px;
+    }
+
+    .portal-quote {
+      border-left: 3px solid var(--cl-accent);
+      padding: 16px 24px;
+      margin: 32px 0;
+      background: var(--cl-tint);
+      border-radius: 0 12px 12px 0;
+      font-style: italic;
+      color: var(--cl-text-base);
+      font-size: 18px;
+      line-height: 1.7;
+    }
+
+    .section-divider {
+      margin: 56px 0 32px 0;
+      border-top: 1px solid var(--cl-line);
+      padding-top: 36px;
+    }
+
+    .section-title {
+      font-family: var(--font-display-short);
+      font-size: 20px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: -0.01em;
+      color: var(--cl-text-base);
+      margin-bottom: 8px;
+    }
+    .section-desc {
+      font-family: var(--font-body);
+      font-size: 15px;
+      color: var(--cl-text-muted);
+      margin-bottom: 24px;
+    }
+
+    .deep-cards-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .deep-card {
+      background: #ffffff;
+      border: 1px solid var(--cl-line);
+      border-radius: 14px;
+      padding: 24px 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 20px;
+      text-decoration: none;
+      color: inherit;
+      transition: all 0.22s ease;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.01);
+    }
+    .deep-card:hover {
+      border-color: var(--cl-accent);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.04);
+    }
+
+    .deep-card__tag {
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--cl-accent);
+      letter-spacing: 0.08em;
+      margin-bottom: 6px;
+    }
+
+    .deep-card__heading {
+      font-family: var(--font-display-long);
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--cl-text-base);
+      line-height: 1.4;
+      margin-bottom: 8px;
+    }
+
+    .deep-card__summary {
+      font-family: var(--font-body);
+      font-size: 15px;
+      color: var(--cl-text-muted);
+      line-height: 1.65;
+    }
+
+    .deep-card__action {
+      font-size: 22px;
+      color: var(--cl-text-muted);
+      transition: transform 0.2s, color 0.2s;
+      flex-shrink: 0;
+      margin-top: 10px;
+    }
+    .deep-card:hover .deep-card__action {
+      color: var(--cl-accent);
+      transform: translateX(4px);
+    }
+
+    .resources-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 14px;
+      margin-top: 20px;
+    }
+
+    .res-card {
+      background: var(--cl-tint);
+      border: 1px solid var(--cl-line);
+      border-radius: 12px;
+      padding: 18px 20px;
+      text-decoration: none;
+      color: inherit;
+      transition: all 0.2s ease;
+    }
+    .res-card:hover {
+      background: #ffffff;
+      border-color: var(--cl-accent);
+    }
+    .res-card__type {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--cl-text-muted);
+      letter-spacing: 0.06em;
+    }
+    .res-card__title {
+      font-family: var(--font-display-long);
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--cl-text-base);
+      margin-top: 4px;
+    }
+
+    .portal-footer {
+      margin-top: 72px;
+      padding-top: 32px;
+      border-top: 1px solid var(--cl-line);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: var(--font-display-long);
+      font-size: 13.5px;
+      color: var(--cl-text-muted);
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="top-nav">
+    <a href="./nghien-cuu-tang-2-5.html" class="top-nav__brand">TẦNG 2.5 • ARCHIVE PORTAL</a>
+    <div class="top-nav__links">
+      <a href="#sec-deepdives">6 Chuyên Đề Nhánh</a>
+      <a href="#sec-offline">5 Chặng Giáo Trình</a>
+      <a href="#sec-evidence">Kho Bằng Chứng</a>
+    </div>
+  </nav>
+
+  <main class="portal-wrap">
+    <div class="portal-kicker">CỔNG NGHIÊN CỨU HỆ THỐNG • NGUYỄN ĐỨC VIỆT</div>
+    <h1 class="portal-title">HỌC THUYẾT TẦNG 2.5: SỰ THẬT NGƯỢNG MIỆNG & TÍN HIỆU ĐẮT GIÁ</h1>
+
+    <div class="portal-intro">
+      Chào bạn, đây là cổng lưu trữ toàn bộ công trình nghiên cứu và tài liệu thực chiến về <b>Học thuyết Tầng 2.5</b> (Khoảng chênh thể diện giữa cái cớ đạo mạo bề mặt và nỗi bất lực ngầm bên trong), nguyên lý <b>Tín hiệu đắt giá (Costly Signaling)</b>, và phương pháp chuyển hóa trải nghiệm xương máu thành video chuyển đổi cao cho người làm nghề thực thụ.
+    </div>
+
+    <div class="portal-quote">
+      "Khách hàng thông minh ngày nay không đi tìm một diễn viên truyền hình nói trơn tru không tì vết. Họ tìm kiếm người làm nghề có trách nhiệm, ánh mắt vững chãi, dám bóc trần những ổ gà lấm lem trong nghề và tháo gỡ khó khăn cho họ bằng sự bao dung đàng hoàng."
+    </div>
+
+    <!-- PHẦN 1: 6 CHUYÊN ĐỀ NGHIÊN CỨU NHÁNH SÂU -->
+    <section class="section-divider" id="sec-deepdives">
+      <h2 class="section-title">PHẦN 1: 6 CHUYÊN ĐỀ NGHIÊN CỨU SÂU (DEEP DIVES)</h2>
+      <p class="section-desc">Toàn bộ 6 nhánh phân tích bản chất nhận thức, thần kinh học tiến hóa, và giải phẫu thực chiến (giữ nguyên 100% văn bản phân tích gốc):</p>
+
+      <div class="deep-cards-list">
+        <a href="./trieu-chung-ngam-murakami.html" class="deep-card">
+          <div>
+            <div class="deep-card__tag">CHUYÊN ĐỀ 01 • TÂM LÝ HỌC & VĂN HỌC</div>
+            <div class="deep-card__heading">Cơ Chế Triệu Chứng Ngầm & Logic Murakami</div>
+            <div class="deep-card__summary">Tại sao não bộ buông vũ khí trước triệu chứng ngầm? Giải mã tiến hóa, chi phí năng lượng glucose và thủ pháp "Show, Don't Tell" biến kết luận thành của chính người xem.</div>
+          </div>
+          <div class="deep-card__action">→</div>
+        </a>
+
+        <a href="./dao-mao-vs-tho-thien.html" class="deep-card">
+          <div>
+            <div class="deep-card__tag">CHUYÊN ĐỀ 02 • PHÂN TẦNG NHẬN THỨC</div>
+            <div class="deep-card__heading">Hai Thái Cực: Đạo Mạo vs Thô Thiển</div>
+            <div class="deep-card__summary">Bản chất WHAT - WHY - HOW của 2 vùng an toàn cực đoan: vì sao đạo mạo thì nhạt nhẽo, thô thiển thì gây tự ái; và 3 ma trận đối chiếu Tầng 2.5 cho BĐS, Mầm Non, Luật.</div>
+          </div>
+          <div class="deep-card__action">→</div>
+        </a>
+
+        <a href="./gia-tao-tung-trai-video.html" class="deep-card">
+          <div>
+            <div class="deep-card__tag">CHUYÊN ĐỀ 03 • MÁY DÒ THẦN KINH HỌC TRÊN VIDEO</div>
+            <div class="deep-card__heading">Giả Tạo Từng Trải & Sản Xuất Video 2.5</div>
+            <div class="deep-card__summary">Cắt ghép jump-cut chỉ lừa được 30 giây đầu nhưng sụp đổ ở chuyển đổi; 4 lăng kính khoa học (vi biểu cảm, dây thần kinh phế vị, thế cơ thể, Game Theory) và công thức ý tưởng Instagram của anh Việt.</div>
+          </div>
+          <div class="deep-card__action">→</div>
+        </a>
+
+        <a href="./qc-vs-thuong-hieu-ca-nhan.html" class="deep-card">
+          <div>
+            <div class="deep-card__tag">CHUYÊN ĐỀ 04 • CASE STUDY THỰC CHIẾN VIDEO NGẮN</div>
+            <div class="deep-card__heading">Video Quảng Cáo vs Thương Hiệu Cá Nhân</div>
+            <div class="deep-card__summary">Giải phẫu chuyên sâu video 154s của Anh Sắc Ánh & Tuấn VNCreative (48 shots, 82.6% B-roll): cách hook Tầng 2.5 chiêu sinh workshop và phép chuyển thể sang THCN thực chiến.</div>
+          </div>
+          <div class="deep-card__action">→</div>
+        </a>
+
+        <a href="./nguoi-trach-nhiem-vs-dien-vien.html" class="deep-card">
+          <div>
+            <div class="deep-card__tag">CHUYÊN ĐỀ 05 • ĐỊNH DẠNG VOICE-OVER & TÍN HIỆU ĐẮT GIÁ</div>
+            <div class="deep-card__heading">Người Trách Nhiệm vs Diễn Viên Nói Giỏi</div>
+            <div class="deep-card__summary">Tại sao khách tìm người chịu trách nhiệm thay vì thợ nói trơn tru; logic kịch bản và cảnh trám B-roll chứng minh nhân cách làm nghề không thể giả mạo.</div>
+          </div>
+          <div class="deep-card__action">→</div>
+        </a>
+
+        <a href="./case-study-kien-phan-bon.html" class="deep-card">
+          <div>
+            <div class="deep-card__tag">CHUYÊN ĐỀ 06 • HIỆN TRƯỜNG THỰC ĐỊA SINH TỬ</div>
+            <div class="deep-card__heading">Bóc Tách Thực Địa: Kiên Phân Bón & BĐS</div>
+            <div class="deep-card__summary">Giải mã video bốc đất, soi lông hút rễ cây còi cọc của anh Kiên (Student Hub); 3 ví dụ mở rộng: Nội thất keo PUR, Nha khoa chỉ tưa, Môi giới BĐS ngõ ngập mưa và nứt chân chim.</div>
+          </div>
+          <div class="deep-card__action">→</div>
+        </a>
+      </div>
+    </section>
+
+    <!-- PHẦN 2: 5 CHẶNG GIÁO TRÌNH OFFLINE MASTERCLASS -->
+    <section class="section-divider" id="sec-offline">
+      <h2 class="section-title">PHẦN 2: 5 CHẶNG GIÁO TRÌNH MASTERCLASS OFFLINE</h2>
+      <p class="section-desc">Lộ trình đào tạo quay dựng & kịch bản thực chiến dành riêng cho chủ shop, người có tay nghề và chuyên gia:</p>
+
+      <div class="deep-cards-list">
+        <a href="./chang-1-giai-toa-the-dien.html" class="deep-card">
+          <div>
+            <div class="deep-card__tag">CHẶNG 01 • TÂM LÝ HỌC THỂ DIỆN</div>
+            <div class="deep-card__heading">Giải Tỏa Thể Diện: Vì Sao Người Có Nghề Ngại Đứng Trước Máy Quay?</div>
+            <div class="deep-card__summary">Bóc trần 3 lý do an toàn bề nổi (chưa có máy xịn, không thích chém gió, khách quen truyền miệng) và giải phóng gánh nặng hình ảnh trước nhân viên, bạn bè.</div>
+          </div>
+          <div class="deep-card__action">→</div>
+        </a>
+
+        <a href="./chang-2-thu-phap-mo-ta-hanh-vi.html" class="deep-card">
+          <div>
+            <div class="deep-card__tag">CHẶNG 02 • BIÊN KỊCH TẢ THỰC</div>
+            <div class="deep-card__heading">Thủ Pháp Tả Thực: Thay Lời Kết Tội Bằng Lát Cắt Hành Vi</div>
+            <div class="deep-card__summary">Áp dụng nguyên lý Murakami vào video: bảng đối chiếu 3 ngành (chủ tiệm lau kính, thợ bugi muội than, nha khoa che miệng cười).</div>
+          </div>
+          <div class="deep-card__action">→</div>
+        </a>
+
+        <a href="./chang-3-khung-kich-ban-4-nhip.html" class="deep-card">
+          <div>
+            <div class="deep-card__tag">CHẶNG 03 • CẤU TRÚC KỊCH BẢN</div>
+            <div class="deep-card__heading">Khung Kịch Bản 4 Nhịp Thực Chiến & 9 Kịch Bản Mẫu Theo Ngành</div>
+            <div class="deep-card__summary">Công thức thoại 45–60 giây bảo toàn danh dự cho khách hàng; kho 9 kịch bản thực hành Buổi 1 (Chủ shop, Kỹ thuật, Thủ công, Tư vấn, Đại lý, Bắt đầu lại...).</div>
+          </div>
+          <div class="deep-card__action">→</div>
+        </a>
+
+        <a href="./chang-4-thiet-lap-quay-1-sai-tay.html" class="deep-card">
+          <div>
+            <div class="deep-card__tag">CHẶNG 04 • CÔNG THÁI HỌC VẬT LÝ</div>
+            <div class="deep-card__heading">Thiết Lập Quay 1 Sải Tay: Triệt Tiêu Ma Sát Kỹ Thuật</div>
+            <div class="deep-card__summary">Setup cố định góc bàn làm việc: cự ly 70cm, cao độ ngang mắt, âm thanh sạch khử tạp âm và 4 nhóm B-roll tín hiệu thật của người làm nghề.</div>
+          </div>
+          <div class="deep-card__action">→</div>
+        </a>
+
+        <a href="./chang-5-thuc-hanh-quay-hai-may.html" class="deep-card">
+          <div>
+            <div class="deep-card__tag">CHẶNG 05 • THỰC HÀNH TẠI LỚP</div>
+            <div class="deep-card__heading">Quay 2 Máy & Đếm Nhịp 1-2: Khử Sạch Lỗi Vấp</div>
+            <div class="deep-card__summary">Bố trí Talking Head 2 Cam (Máy A chính diện, Máy B góc 45 độ cận cảnh) để xóa sạch lỗi vấp mà không cần cắt giật; quy tắc đếm nhịp đóng băng từ đệm.</div>
+          </div>
+          <div class="deep-card__action">→</div>
+        </a>
+      </div>
+    </section>
+
+    <!-- PHẦN 3: KHO TÀI NGUYÊN & MINH CHỨNG THỰC ĐỊA -->
+    <section class="section-divider" id="sec-evidence">
+      <h2 class="section-title">PHẦN 3: KHO TÀI NGUYÊN & MINH CHỨNG THỰC ĐỊA</h2>
+      <p class="section-desc">Các đường dẫn tài nguyên gốc và dữ liệu kiểm chứng được dẫn chiếu trong nghiên cứu:</p>
+
+      <div class="resources-grid">
+        <a href="https://www.facebook.com/share/v/18TWbzspFY/" target="_blank" class="res-card">
+          <div class="res-card__type">FACEBOOK REEL • 154 GIÂY</div>
+          <div class="res-card__title">Video Case Study VNCreative (Ánh)</div>
+        </a>
+
+        <a href="https://vietndj.github.io/hocvien.html" target="_blank" class="res-card">
+          <div class="res-card__type">STUDENT HUB • 30 HỌC VIÊN</div>
+          <div class="res-card__title">Hồ Sơ Anh Kiên & 30 Ngành Nghề</div>
+        </a>
+
+        <a href="https://fedu.vn/offline02/9_kich_ban_thuc_chien.html" target="_blank" class="res-card">
+          <div class="res-card__type">GIÁO TRÌNH BUỔI 1</div>
+          <div class="res-card__title">Kho 9 Kịch Bản Thực Chiến</div>
+        </a>
+
+        <a href="https://www.youtube.com/embed/6Oiugt77imE" target="_blank" class="res-card">
+          <div class="res-card__type">YOUTUBE TUTORIAL</div>
+          <div class="res-card__title">Video Hướng Dẫn Text Animate</div>
+        </a>
+
+        <a href="https://drive.google.com/drive/folders/1NmxIBetOOkKTtH14BuKwx6GNcDrRoEh3?usp=sharing" target="_blank" class="res-card">
+          <div class="res-card__type">GOOGLE DRIVE</div>
+          <div class="res-card__title">Folder Footage Thực Hành 2 Cam</div>
+        </a>
+
+        <a href="https://drive.google.com/open?id=1O4Dzjyh_dvFJ-O-peTmwxJyykiYuD0Vw" target="_blank" class="res-card">
+          <div class="res-card__type">PDF SLIDE HD</div>
+          <div class="res-card__title">Slide Bài Giảng Buổi 1 (~22MB)</div>
+        </a>
+      </div>
+    </section>
+
+    <footer class="portal-footer">
+      <div>© 2026 Nguyễn Đức Việt • FEDU Education</div>
+      <div>Phát hành trên GitHub Pages & fedu.vn</div>
+    </footer>
+  </main>
+
+</body>
+</html>
