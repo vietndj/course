@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>Bộ 4 Định Dạng Video Chủ Lực: Từ Khởi Đầu Đến Chốt Đơn Giá Cao • Giáo Trình Thực Tế</title>
+  <title>Bộ 4 Định Dạng Video Chủ Lực: Từ Bắt Đầu Đến Khách Hàng Tin Tưởng • Giáo Trình Thực Chiến</title>
   
   <!-- Font Definitions & System Fallbacks -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -159,7 +159,7 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
-      padding: 100px 24px;
+      padding: 96px 24px;
       position: relative;
       border-bottom: 1px solid var(--cl-line);
       box-sizing: border-box;
@@ -186,7 +186,7 @@
     }
 
     .cl-sec-container--wide {
-      max-width: 1140px;
+      max-width: 1160px;
     }
 
     /* ═══ 4. TYPOGRAPHY RULES ═══ */
@@ -204,31 +204,18 @@
       border: 1px solid rgba(26, 115, 232, 0.2);
       padding: 6px 16px;
       border-radius: var(--cl-radius-full);
-      margin-bottom: 24px;
+      margin-bottom: 22px;
     }
 
     .title-short {
       font-family: var(--font-display-short);
       font-weight: 700;
-      font-size: clamp(24px, 4vw, 42px);
-      line-height: 1.18;
+      font-size: clamp(23px, 3.8vw, 38px);
+      line-height: 1.2;
       letter-spacing: -0.01em;
       text-transform: uppercase;
       color: var(--cl-text-base);
-      margin-bottom: 20px;
-      text-wrap: balance;
-      text-align: center;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    .title-long {
-      font-family: var(--font-display-long);
-      font-weight: 600;
-      font-size: clamp(22px, 3.2vw, 34px);
-      line-height: 1.35;
-      color: var(--cl-text-base);
-      margin-bottom: 20px;
+      margin-bottom: 18px;
       text-wrap: balance;
       text-align: center;
       margin-left: auto;
@@ -238,89 +225,94 @@
     .editorial-hook {
       font-family: var(--font-editorial);
       font-style: italic;
-      font-size: clamp(17px, 2.2vw, 21px);
+      font-size: clamp(16.5px, 2.1vw, 20px);
       line-height: 1.68;
-      color: var(--cl-accent);
-      margin-bottom: 28px;
-      max-width: 800px;
+      color: var(--cl-text-muted);
+      margin-bottom: 30px;
+      max-width: 840px;
       text-wrap: balance;
       text-align: center;
       margin-left: auto;
       margin-right: auto;
     }
 
-    .cl-body {
-      font-size: clamp(16px, 1.6vw, 17.5px);
-      color: var(--cl-text-body);
-      line-height: 1.85;
-      margin-bottom: 28px;
-      max-width: 800px;
-      text-align: left;
-    }
-
-    .hero-direct-bullets {
+    /* ═══ 5. BALANCED 4-CARDS GRID (CHỐNG RỚT KHỐI MỒ CÔI) ═══ */
+    .four-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
       width: 100%;
-      max-width: 800px;
-      background: var(--cl-tint);
-      border: 1px solid var(--cl-line-strong);
-      border-radius: var(--cl-radius-lg);
-      padding: 24px 28px;
-      margin: 0 auto 32px auto;
+      margin-top: 28px;
       text-align: left;
     }
 
-    .hero-bullets-list {
-      list-style: none;
+    @media (max-width: 980px) {
+      .four-cards-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .four-cards-grid {
+        grid-template-columns: 1fr;
+        gap: 14px;
+      }
+    }
+
+    /* ═══ 6. 2-COLUMN FORMAT LAYOUT (VIDEO + 3 THẺ ĐỒNG TRỤC) ═══ */
+    .format-layout-grid {
+      display: grid;
+      grid-template-columns: 360px 1fr;
+      gap: 36px;
+      align-items: center;
+      margin-top: 32px;
+      width: 100%;
+      text-align: left;
+    }
+
+    @media (max-width: 900px) {
+      .format-layout-grid {
+        grid-template-columns: 1fr;
+        gap: 28px;
+      }
+    }
+
+    .format-video-wrap {
+      background: #000000;
+      border-radius: var(--cl-radius-lg);
+      overflow: hidden;
+      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.12);
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      aspect-ratio: 9 / 16;
+      max-width: 360px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .format-video-wrap video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .format-content-col {
       display: flex;
       flex-direction: column;
       gap: 14px;
-      padding: 0;
-      margin: 0;
-    }
-
-    .hero-bullets-list li {
-      position: relative;
-      padding-left: 22px;
-      font-size: 15.5px;
-      line-height: 1.7;
-      color: var(--cl-text-body);
-    }
-
-    .hero-bullets-list li::before {
-      content: "•";
-      position: absolute;
-      left: 4px;
-      top: -1px;
-      color: var(--cl-accent);
-      font-weight: 700;
-      font-size: 20px;
-      line-height: 1.5;
-    }
-
-    .hero-bullets-list li b {
-      color: var(--cl-text-base);
-      font-family: var(--font-display-long);
-      font-weight: 600;
-    }
-
-    /* ═══ 5. CARDS & INTERACTIVE COMPONENTS ═══ */
-    .apple-cards-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 24px;
-      width: 100%;
-      margin-top: 32px;
       text-align: left;
     }
 
+    /* ═══ 7. CARD STYLING & MICRO BADGES ═══ */
     .apple-card {
       background: var(--cl-card);
       border: 1px solid var(--cl-line-strong);
       border-radius: var(--cl-radius-lg);
-      padding: 32px 28px;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+      padding: 24px;
+      box-shadow: 0 2px 14px rgba(0, 0, 0, 0.025);
       position: relative;
-      transition: all 0.35s var(--apple-spring);
+      transition: all 0.3s var(--apple-spring);
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
@@ -329,47 +321,36 @@
     }
 
     .apple-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.07);
-      border-color: rgba(26, 115, 232, 0.3);
-    }
-
-    .apple-card__icon {
-      font-size: 28px;
-      margin-bottom: 16px;
-      display: inline-block;
+      transform: translateY(-4px);
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.06);
+      border-color: rgba(26, 115, 232, 0.35);
     }
 
     .apple-card__badge {
       font-family: var(--font-mono);
       font-size: 11px;
       font-weight: 700;
-      letter-spacing: 0.1em;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
       padding: 4px 10px;
       border-radius: var(--cl-radius-full);
-      margin-bottom: 12px;
+      margin-bottom: 8px;
       align-self: flex-start;
     }
 
     .apple-card__badge--blue {
-      background: var(--cl-accent-tint);
-      color: var(--cl-accent);
-    }
-
-    .apple-card__badge--rose {
-      background: var(--cl-rose-tint);
-      color: var(--cl-rose);
-    }
-
-    .apple-card__badge--emerald {
-      background: var(--cl-emerald-tint);
-      color: var(--cl-emerald);
+      background: var(--cl-blue-tint);
+      color: var(--cl-blue);
     }
 
     .apple-card__badge--amber {
       background: var(--cl-amber-tint);
       color: var(--cl-amber);
+    }
+
+    .apple-card__badge--emerald {
+      background: var(--cl-emerald-tint);
+      color: var(--cl-emerald);
     }
 
     .apple-card__badge--purple {
@@ -380,468 +361,137 @@
     .apple-card__title {
       font-family: var(--font-display-short);
       font-weight: 700;
-      font-size: clamp(16px, 1.8vw, 17.5px);
+      font-size: 15.5px;
       color: var(--cl-text-base);
       line-height: 1.35;
       text-transform: uppercase;
       letter-spacing: -0.01em;
-      margin-bottom: 12px;
+      margin-bottom: 6px;
       text-wrap: balance;
       text-align: left;
     }
 
     .apple-card__desc {
-      font-size: 15px;
-      line-height: 1.72;
+      font-size: 14.5px;
+      line-height: 1.65;
       color: var(--cl-text-body);
-      flex-grow: 1;
+      margin: 0;
       text-wrap: pretty;
     }
 
-    .apple-card__link {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-family: var(--font-mono);
-      font-size: 12px;
-      font-weight: 700;
-      color: var(--cl-accent);
-      text-decoration: none;
-      margin-top: 18px;
-      transition: gap 0.2s ease;
-    }
-
-    .apple-card__link:hover {
-      gap: 10px;
-      text-decoration: underline;
-    }
-
-    .card-video-box {
-      width: 100%;
-      aspect-ratio: 16 / 9;
-      border-radius: var(--cl-radius-md);
-      overflow: hidden;
-      background: #000000;
-      border: 1px solid var(--cl-line-strong);
-      margin-top: 18px;
-      position: relative;
-    }
-
-    .card-video-box video {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-      background: #000000;
-    }
-
-    .card-video-box iframe {
-      width: 100%;
-      height: 100%;
-      border: 0;
-      display: block;
-    }
-
-    .card-video-meta {
-      font-family: var(--font-mono);
-      font-size: 11px;
-      font-weight: 600;
-      color: var(--cl-text-muted);
-      margin-top: 8px;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .card-video-box--vertical {
-      aspect-ratio: 9 / 16;
-      max-height: 480px;
-      max-width: 320px;
-      margin: 12px auto 0 auto;
-    }
-
-    .card-video-box--vertical video {
-      object-fit: cover;
-    }
-
-    .apple-card--full {
-      grid-column: 1 / -1;
-    }
-
-    .trap-demos-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 20px;
-      margin-top: 24px;
-      padding-top: 20px;
-      border-top: 1px solid var(--cl-line-strong);
-    }
-
-    @media (max-width: 720px) {
-      .trap-demos-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    .trap-demo-card {
-      background: var(--cl-tint);
-      border: 1px solid var(--cl-line-strong);
-      border-radius: var(--cl-radius-md);
-      padding: 16px;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .trap-demo-header {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-      margin-bottom: 6px;
-      text-align: left;
-    }
-
-    .trap-demo-tag {
-      font-family: var(--font-mono);
-      font-size: 11px;
-      font-weight: 700;
-      color: var(--cl-accent);
-      letter-spacing: 0.04em;
-    }
-
-    .trap-demo-tag--accent {
-      color: var(--cl-rose);
-    }
-
-    .trap-demo-title {
-      font-size: 14.5px;
-      font-weight: 700;
-      color: var(--cl-text-base);
-      line-height: 1.35;
-    }
-
-    /* ═══ 6. COMPARISON TABLE / 2-COL BOX ═══ */
-    .compare-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 24px;
-      width: 100%;
-      margin-top: 32px;
-      text-align: left;
-    }
-
-    @media (max-width: 768px) {
-      .compare-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    .compare-col {
-      padding: 32px 28px;
-      border-radius: var(--cl-radius-lg);
-      border: 1px solid var(--cl-line-strong);
-    }
-
-    .compare-col--bad {
-      background: #ffffff;
-      border-left: 5px solid var(--cl-rose);
-    }
-
-    .compare-col--good {
-      background: #ffffff;
-      border-left: 5px solid var(--cl-emerald);
-    }
-
-    .compare-header {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 18px;
-    }
-
-    .compare-title {
-      font-family: var(--font-display-short);
-      font-size: 16px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: -0.01em;
-      text-wrap: balance;
-      text-align: left;
-    }
-
-    .compare-list {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-    }
-
-    .compare-list li {
-      position: relative;
-      padding-left: 24px;
-      font-size: 15px;
-      line-height: 1.65;
-      color: var(--cl-text-body);
-    }
-
-    .compare-list li::before {
-      position: absolute;
-      left: 0;
-      top: 0;
-      font-weight: 700;
-      font-size: 14px;
-    }
-
-    .compare-col--bad .compare-list li::before {
-      content: "✕";
-      color: var(--cl-rose);
-    }
-
-    .compare-col--good .compare-list li::before {
-      content: "✓";
-      color: var(--cl-emerald);
-    }
-
-    /* ═══ 7. CHECKLIST & SOP ACTION STEPS ═══ */
-    .apple-list {
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-      margin-top: 32px;
-      text-align: left;
-    }
-
-    .apple-list-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 18px;
-      background: var(--cl-card);
-      border: 1px solid var(--cl-line-strong);
-      border-radius: var(--cl-radius-md);
-      padding: 22px 24px;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02);
-      transition: transform 0.25s ease;
-    }
-
-    .apple-list-item:hover {
-      transform: translateX(6px);
-      border-color: rgba(26, 115, 232, 0.4);
-    }
-
-    .apple-list-item__bullet {
-      width: 32px;
-      height: 32px;
-      border-radius: var(--cl-radius-full);
-      background: var(--cl-accent-tint);
-      color: var(--cl-accent);
-      font-family: var(--font-mono);
-      font-size: 13px;
-      font-weight: 700;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      margin-top: 2px;
-    }
-
-    .apple-list-item__content {
-      font-size: 15.5px;
-      line-height: 1.75;
-      color: var(--cl-text-body);
-    }
-
-    .apple-list-item__content b {
-      color: var(--cl-text-base);
-      font-family: var(--font-display-long);
-      font-size: 16.5px;
-      display: block;
-      margin-bottom: 4px;
-    }
-
-    /* ═══ 8. SCRIPT GALLERY (9 KỊCH BẢN) ═══ */
-    .script-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 20px;
-      width: 100%;
-      margin-top: 32px;
-      text-align: left;
-    }
-
-    .script-card {
-      background: #ffffff;
-      border: 1px solid var(--cl-line-strong);
-      border-radius: var(--cl-radius-lg);
-      padding: 24px 22px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      transition: all 0.3s var(--apple-spring);
-    }
-
-    .script-card:hover {
-      transform: translateY(-4px);
-      border-color: var(--cl-accent);
-      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.06);
-    }
-
-    .script-num {
-      font-family: var(--font-mono);
-      font-size: 11px;
-      font-weight: 700;
-      color: var(--cl-accent);
-      letter-spacing: 0.1em;
-      margin-bottom: 8px;
-    }
-
-    .script-title {
-      font-family: var(--font-display-short);
-      font-size: 15.5px;
-      font-weight: 700;
-      color: var(--cl-text-base);
-      line-height: 1.35;
-      text-transform: uppercase;
-      letter-spacing: -0.01em;
-      margin-bottom: 8px;
-    }
-
-    .script-question {
-      font-family: var(--font-editorial);
-      font-size: 17.5px;
-      font-weight: 600;
-      color: var(--cl-text-base);
-      line-height: 1.5;
-      letter-spacing: -0.01em;
-      margin-bottom: 20px;
-      flex-grow: 1;
-      text-wrap: balance;
-      text-align: left;
-    }
-
-    .script-hook {
-      font-size: 13.5px;
-      line-height: 1.6;
-      color: var(--cl-text-muted);
-      margin-bottom: 16px;
-      flex-grow: 1;
-    }
-
-    .script-btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-      padding: 8px 16px;
-      border-radius: var(--cl-radius-sm);
-      background: var(--cl-tint);
-      color: var(--cl-accent-dark);
-      font-family: var(--font-mono);
-      font-size: 12px;
-      font-weight: 700;
-      text-decoration: none;
-      border: 1px solid var(--cl-line-strong);
-      transition: all 0.2s ease;
-    }
-
-    .script-btn:hover {
-      background: var(--cl-accent);
-      color: #ffffff;
-      border-color: var(--cl-accent);
-    }
-
-    /* ═══ VIỆT DẶN DÒ / ADVICE CALLOUT ═══ */
-    .viet-advice-callout {
-      max-width: 820px;
-      margin: 0 auto 32px auto;
-      background: var(--cl-tint);
-      border: 1px solid var(--cl-line-strong);
-      border-left: 4px solid var(--cl-accent);
-      border-radius: var(--cl-radius-md);
-      padding: 18px 22px;
-      text-align: left;
-    }
-
-    .viet-advice-callout__label {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      font-family: var(--font-mono);
-      font-size: 11.5px;
-      font-weight: 700;
-      color: var(--cl-accent);
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      margin-bottom: 8px;
-    }
-
-    .viet-advice-callout__quote {
-      font-family: var(--font-editorial);
-      font-style: italic;
-      font-size: 15.5px;
-      line-height: 1.7;
-      color: var(--cl-text-base);
-      margin: 0;
-    }
-
-    /* ═══ 9. CTA BUTTON & STICKY NAV ═══ */
+    /* ═══ 8. UNIFIED DARK INK CTA BUTTON (CHUẨN APPLE) ═══ */
     .btn-cta {
       display: inline-flex;
       align-items: center;
+      justify-content: center;
       gap: 10px;
-      background: var(--cl-accent);
-      color: #ffffff;
+      background: #090d16;
+      color: #ffffff !important;
       font-family: var(--font-mono);
-      font-size: 14px;
+      font-size: 13.5px;
       font-weight: 700;
-      padding: 14px 32px;
+      padding: 13px 26px;
       border-radius: var(--cl-radius-full);
       text-decoration: none;
-      box-shadow: 0 8px 24px rgba(26, 115, 232, 0.25);
-      transition: all 0.3s var(--apple-spring);
-      margin-top: 24px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+      transition: all 0.25s var(--apple-spring);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      margin-top: 8px;
+      align-self: flex-start;
     }
 
     .btn-cta:hover {
-      background: var(--cl-accent-dark);
+      background: var(--cl-accent);
+      color: #ffffff !important;
       transform: translateY(-2px);
-      box-shadow: 0 12px 30px rgba(26, 115, 232, 0.35);
+      box-shadow: 0 8px 24px rgba(26, 115, 232, 0.3);
     }
 
+    /* ═══ 9. SCHEDULE CARD (KHỐI 6 - LỊCH TUẦN CÂN XỨNG) ═══ */
+    .schedule-card {
+      background: #ffffff;
+      border: 1px solid var(--cl-line-strong);
+      border-radius: var(--cl-radius-lg);
+      padding: 22px 20px;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.03);
+      display: flex;
+      flex-direction: column;
+      text-align: left;
+      transition: all 0.3s var(--apple-spring);
+    }
+
+    .schedule-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.06);
+    }
+
+    .schedule-card__day {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .schedule-card__title {
+      font-family: var(--font-display-long);
+      font-size: 15.5px;
+      font-weight: 700;
+      color: var(--cl-text-base);
+      line-height: 1.35;
+      margin-bottom: 8px;
+    }
+
+    .schedule-card__desc {
+      font-size: 13.5px;
+      color: var(--cl-text-muted);
+      line-height: 1.58;
+      margin: 0;
+    }
+
+    /* ═══ 10. SAFE STICKY NAV ═══ */
     .sticky-nav {
       position: fixed;
-      bottom: 24px;
+      bottom: max(16px, env(safe-area-inset-bottom, 16px));
       left: 50%;
       transform: translateX(-50%);
       z-index: 100;
-      background: rgba(255, 255, 255, 0.88);
+      background: rgba(255, 255, 255, 0.92);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
       border: 1px solid rgba(0, 0, 0, 0.1);
-      padding: 8px 18px;
+      padding: 6px 14px;
       border-radius: var(--cl-radius-full);
       display: flex;
       align-items: center;
-      gap: 16px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+      gap: 12px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+      max-width: calc(100vw - 32px);
+      overflow-x: auto;
+      white-space: nowrap;
     }
 
     .sticky-nav a {
       font-family: var(--font-mono);
-      font-size: 12px;
+      font-size: 11.5px;
       font-weight: 700;
       color: var(--cl-text-muted);
       text-decoration: none;
-      transition: color 0.2s;
+      padding: 4px 8px;
+      border-radius: var(--cl-radius-full);
+      transition: all 0.2s;
     }
 
     .sticky-nav a:hover {
       color: var(--cl-accent);
+      background: var(--cl-accent-tint);
     }
 
-    /* ═══ 10. APPLE MOTION REVEAL ═══ */
+    /* ═══ 11. APPLE MOTION REVEAL ═══ */
     .apple-reveal {
       opacity: 0;
-      transform: translate3d(0, 26px, 0);
+      transform: translate3d(0, 24px, 0);
       transition: opacity 0.5s var(--apple-ease), transform 0.58s var(--apple-spring);
       will-change: opacity, transform;
     }
@@ -852,60 +502,57 @@
       will-change: auto;
     }
   </style>
-
-
-
 </head>
 <body>
 
-  <!-- STICKY NAV DÀNH CHO HỌC VIÊN -->
+  <!-- STICKY NAV AN TOÀN TRÊN DI ĐỘNG -->
   <nav class="sticky-nav">
-    <a href="#sec-hero">Khởi Đầu</a>
+    <a href="#sec-hero">Tổng Quan</a>
     <a href="#sec-voiceover">01. Voice-Over</a>
     <a href="#sec-walktalk">02. Walk & Talk</a>
     <a href="#sec-talkinghead">03. Talking Head</a>
-    <a href="#sec-storytelling">04. Storytelling</a>
-    <a href="#sec-matrix">Ma Trận ↗</a>
+    <a href="#sec-storytelling">04. Kể Chuyện 2.5</a>
+    <a href="#sec-matrix">Lịch Tuần ↗</a>
   </nav>
 
-  <!-- ═══ KHỐI 1: HERO - BỘ 4 ĐỊNH DẠNG CHỦ LỰC (LIGHT) ═══ -->
-  <section class="cl-zebra-section cl-zebra--light" id="sec-hero" style="padding-top: 70px; min-height: 100dvh; display: flex; flex-direction: column; justify-content: center;">
+  <!-- ═══ KHỐI 1: HERO - BỘ 4 ĐỊNH DẠNG VIDEO THỰC CHIẾN (LIGHT) ═══ -->
+  <section class="cl-zebra-section cl-zebra--light" id="sec-hero" style="padding-top: 72px;">
     <div class="cl-sec-container cl-sec-container--wide apple-reveal">
-      <div class="cl-badge">HỆ THỐNG NỘI DUNG THỰC CHIẾN • 4 MŨI NHỌN</div>
-      <h1 class="title-short">BỘ 4 ĐỊNH DẠNG VIDEO CHỦ LỰC:<br>TỪ KHỞI ĐẦU ĐẾN CHỐT ĐƠN GIÁ&nbsp;CAO</h1>
-      <p class="editorial-hook">"Đừng bao giờ tự trói mình vào một định dạng duy nhất. Một người làm nghề bài bản luôn sở hữu 4 vũ khí: có định dạng để bắt đầu khi chưa dám lộ mặt, có định dạng để nói tự nhiên không cần gồng, có định dạng để neo giữ niềm tin chuyển đổi, và có định dạng để chạm sâu vào đáy lòng người&nbsp;nghe."</p>
+      <div class="cl-badge">GIÁO TRÌNH THỰC CHIẾN • 4 ĐỊNH DẠNG CỐT LÕI</div>
+      <h1 class="title-short">BỘ 4 ĐỊNH DẠNG VIDEO CHỦ LỰC:<br>TỪ BẮT ĐẦU ĐẾN KHÁCH HÀNG TIN&nbsp;TƯỞNG</h1>
+      <p class="editorial-hook">"Đừng giới hạn mình ở một kiểu quay duy nhất. Một người làm nghề bài bản luôn nắm chắc 4 định dạng cốt lõi: có định dạng dành cho ai chưa từng bật máy quay bao giờ, có định dạng để nói tự nhiên không bị gượng, có định dạng để khẳng định năng lực làm nghề, và có định dạng để chạm đúng vào cái khó mà người lớn đi làm ngại nói&nbsp;ra."</p>
 
-      <!-- 4 Quick Jump Cards -->
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; width: 100%; margin-top: 36px; text-align: left;">
+      <!-- 4 Thẻ Nhảy Nhanh: Chia đều 4 cột cân xứng, không bao giờ rớt 3 + 1 -->
+      <div class="four-cards-grid">
         <a href="#sec-voiceover" style="text-decoration: none; color: inherit;">
-          <div class="apple-card" style="padding: 18px 20px; height: 100%; border-top: 4px solid var(--cl-blue);">
-            <div class="apple-card__badge apple-card__badge--blue" style="margin-bottom: 6px;">CẤP ĐỘ 01 • TẦNG HÚT</div>
-            <h3 class="apple-card__title" style="font-size: 15px; margin-bottom: 4px;">VOICE-OVER</h3>
-            <p style="font-size: 13.5px; color: var(--cl-text-muted); line-height: 1.5; margin: 0;">Tách hình khỏi tiếng. 0% lộ mặt, giải phóng 100% áp lực ống&nbsp;kính.</p>
+          <div class="apple-card" style="height: 100%; border-top: 4px solid var(--cl-blue);">
+            <div class="apple-card__badge apple-card__badge--blue">BƯỚC 01 • CHƯA LỘ MẶT</div>
+            <h3 class="apple-card__title">VOICE-OVER</h3>
+            <p class="apple-card__desc">Tách hình khỏi tiếng. Chỉ quay tay thao tác, lồng tiếng sau, không sợ ống&nbsp;kính.</p>
           </div>
         </a>
 
         <a href="#sec-walktalk" style="text-decoration: none; color: inherit;">
-          <div class="apple-card" style="padding: 18px 20px; height: 100%; border-top: 4px solid var(--cl-amber);">
-            <div class="apple-card__badge apple-card__badge--amber" style="margin-bottom: 6px;">CẤP ĐỘ 02 • THIỆN CẢM</div>
-            <h3 class="apple-card__title" style="font-size: 15px; margin-bottom: 4px;">WALK & TALK</h3>
-            <p style="font-size: 13.5px; color: var(--cl-text-muted); line-height: 1.5; margin: 0;">Vừa đi vừa nói. Hạ nhịp tim, phóng khoáng, tự nhiên như tản&nbsp;bộ.</p>
+          <div class="apple-card" style="height: 100%; border-top: 4px solid var(--cl-amber);">
+            <div class="apple-card__badge apple-card__badge--amber">BƯỚC 02 • THIỆN CẢM</div>
+            <h3 class="apple-card__title">WALK & TALK</h3>
+            <p class="apple-card__desc">Vừa đi vừa nói. Đỡ cóng người, giải phóng cử chỉ, tự nhiên như tản&nbsp;bộ.</p>
           </div>
         </a>
 
         <a href="#sec-talkinghead" style="text-decoration: none; color: inherit;">
-          <div class="apple-card" style="padding: 18px 20px; height: 100%; border-top: 4px solid var(--cl-emerald);">
-            <div class="apple-card__badge apple-card__badge--emerald" style="margin-bottom: 6px;">CẤP ĐỘ 03 • NIỀM TIN</div>
-            <h3 class="apple-card__title" style="font-size: 15px; margin-bottom: 4px;">TALKING HEAD</h3>
-            <p style="font-size: 13.5px; color: var(--cl-text-muted); line-height: 1.5; margin: 0;">Nói tại bàn làm việc. Chịu trách nhiệm danh dự, chốt đơn giá&nbsp;cao.</p>
+          <div class="apple-card" style="height: 100%; border-top: 4px solid var(--cl-emerald);">
+            <div class="apple-card__badge apple-card__badge--emerald">BƯỚC 03 • TẠO ĐỘ TIN</div>
+            <h3 class="apple-card__title">TALKING HEAD</h3>
+            <p class="apple-card__desc">Nói tại bàn làm việc. Người thật việc thật, giải quyết trúng việc khách&nbsp;cần.</p>
           </div>
         </a>
 
         <a href="#sec-storytelling" style="text-decoration: none; color: inherit;">
-          <div class="apple-card" style="padding: 18px 20px; height: 100%; border-top: 4px solid var(--cl-purple);">
-            <div class="apple-card__badge apple-card__badge--purple" style="margin-bottom: 6px;">CẤP ĐỘ 04 • TRI KỶ</div>
-            <h3 class="apple-card__title" style="font-size: 15px; margin-bottom: 4px;">STORYTELLING 2.5</h3>
-            <p style="font-size: 13.5px; color: var(--cl-text-muted); line-height: 1.5; margin: 0;">Bóc trần sự thật ngượng miệng. Chạm vào đáy lòng, giữ chân trọn&nbsp;đời.</p>
+          <div class="apple-card" style="height: 100%; border-top: 4px solid var(--cl-purple);">
+            <div class="apple-card__badge apple-card__badge--purple">BƯỚC 04 • KẾT NỐI SÂU</div>
+            <h3 class="apple-card__title">KỂ CHUYỆN 2.5</h3>
+            <p class="apple-card__desc">Nói ra sự thật ngượng miệng. Chạm đúng nỗi lòng thầm kín, gắn kết tri&nbsp;kỷ.</p>
           </div>
         </a>
       </div>
@@ -915,48 +562,47 @@
   <!-- ═══ KHỐI 2: ĐỊNH DẠNG 1 - VOICE-OVER (TINT) ═══ -->
   <section class="cl-zebra-section cl-zebra--tint" id="sec-voiceover">
     <div class="cl-sec-container cl-sec-container--wide apple-reveal">
-      <div class="cl-badge">CẤP ĐỘ 01 • TẦNG HÚT THỊ GIÁC (AWARENESS)</div>
+      <div class="cl-badge">ĐỊNH DẠNG 01 • BƯỚC KHỞI ĐẦU AN TOÀN</div>
       <h2 class="title-short">VOICE-OVER: TÁCH HÌNH KHỎI&nbsp;TIẾNG</h2>
-      <p class="editorial-hook">"Khởi đầu hoàn hảo cho người mới: Không cần lộ mặt, chỉ tập trung quay thao tác tay tỉ mỉ và ngồi lồng tiếng mộc mạc đè lên&nbsp;sau."</p>
+      <p class="editorial-hook">"Dành cho ai chưa từng bật máy quay bao giờ: Không cần xuất hiện mặt, chỉ tập trung quay thao tác tay làm việc tỉ mỉ rồi ngồi lồng tiếng mộc mạc đè lên&nbsp;sau."</p>
 
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 36px; align-items: center; margin-top: 36px;">
-        <!-- Video Player -->
-        <div style="background: #000; border-radius: 20px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.12); border: 1px solid rgba(0,0,0,0.08); aspect-ratio: 9/16; max-width: 360px; margin: 0 auto; width: 100%;">
+      <div class="format-layout-grid">
+        <!-- Cột Video Player -->
+        <div class="format-video-wrap">
           <video 
             poster="./images/voiceover_poster.jpg" 
             controls 
             playsinline 
-            preload="metadata"
-            style="width: 100%; height: 100%; object-fit: cover; display: block;">
+            preload="metadata">
             <source src="./videos/voiceover.mp4" type="video/mp4">
             <source src="https://offline.fedu.vn/assets/formats/voiceover.mp4" type="video/mp4">
             Trình duyệt không hỗ trợ thẻ video.
           </video>
         </div>
 
-        <!-- Cột Phân Tích & Link -->
-        <div style="display: flex; flex-direction: column; gap: 14px; text-align: left;">
-          <div class="apple-card" style="padding: 20px 24px;">
-            <div class="apple-card__badge apple-card__badge--blue" style="margin-bottom: 6px;">BẢN CHẤT KỸ THUẬT</div>
-            <h3 class="apple-card__title" style="font-size: 15.5px; margin-bottom: 6px;">TÁCH ĐÔI NÃO BỘ: QUAY RIÊNG - THU&nbsp;RIÊNG</h3>
-            <p style="font-size: 14.5px; color: var(--cl-text-body); line-height: 1.6; margin: 0;">Quay 100% hình ảnh thực tế bạn đang làm việc (B-Roll). Sau đó ngồi phòng yên tĩnh, dùng mic điện thoại thu âm giọng nói tự nhiên đè lên hình ảnh.</p>
+        <!-- Cột Phân Tích Thực Chiến -->
+        <div class="format-content-col">
+          <div class="apple-card">
+            <div class="apple-card__badge apple-card__badge--blue">BẢN CHẤT CÁCH LÀM</div>
+            <h3 class="apple-card__title">QUAY RIÊNG B-ROLL - THU ÂM TIẾNG&nbsp;RIÊNG</h3>
+            <p class="apple-card__desc">Quay 100% hình ảnh thực tế bạn đang làm việc: bàn tay gõ phím, thao tác sản phẩm, màn hình máy tính. Sau đó ngồi nơi yên tĩnh, dùng mic điện thoại thu âm giọng nói mộc mạc đè lên hình ảnh.</p>
           </div>
 
-          <div class="apple-card" style="padding: 20px 24px;">
-            <div class="apple-card__badge apple-card__badge--blue" style="margin-bottom: 6px;">CƠ CHẾ TÂM LÝ KHÁN GIẢ</div>
-            <h3 class="apple-card__title" style="font-size: 15.5px; margin-bottom: 6px;">TIẾP CẬN TỰ NHIÊN, KHÔNG PHÒNG&nbsp;THỦ</h3>
-            <p style="font-size: 14.5px; color: var(--cl-text-body); line-height: 1.6; margin: 0;">Khán giả tập trung vào thao tác tay tỉ mỉ và lắng nghe giọng kể chuyện êm tai; không cảm thấy bị chèo kéo hay bị ép mua hàng.</p>
+          <div class="apple-card">
+            <div class="apple-card__badge apple-card__badge--blue">TÂM LÝ NGƯỜI XEM</div>
+            <h3 class="apple-card__title">XEM TỰ NHIÊN, KHÔNG THẤY BỊ CHÀO&nbsp;MỜI</h3>
+            <p class="apple-card__desc">Người xem tập trung hoàn toàn vào thao tác tay tỉ mỉ và lắng nghe giọng chia sẻ êm tai. Họ tiếp nhận kiến thức một cách thoải mái, không có cảm giác bị ép mua hàng.</p>
           </div>
 
-          <div class="apple-card" style="padding: 20px 24px;">
-            <div class="apple-card__badge apple-card__badge--blue" style="margin-bottom: 6px;">THỰC HÀNH TỐI GIẢN</div>
-            <h3 class="apple-card__title" style="font-size: 15.5px; margin-bottom: 6px;">THIẾT BỊ 0 ĐỒNG & KỊCH BẢN 3&nbsp;HỒI</h3>
-            <p style="font-size: 14.5px; color: var(--cl-text-body); line-height: 1.6; margin: 0;">Chỉ cần điện thoại quay cận cảnh bàn tay thao tác. Kịch bản 3 hồi dứt khoát: Vấn đề thường gặp &rarr; 3 bước xử lý thực chiến &rarr; Thành phẩm bóng bẩy.</p>
+          <div class="apple-card">
+            <div class="apple-card__badge apple-card__badge--blue">THỰC HÀNH TỐI GIẢN</div>
+            <h3 class="apple-card__title">ĐIỆN THOẠI CÓ SẴN & CÔNG THỨC 3&nbsp;BƯỚC</h3>
+            <p class="apple-card__desc">Chỉ cần kê điện thoại quay cận bàn tay. Kịch bản 3 bước gọn gàng: Vấn đề thường gặp khi làm nghề &rarr; 3 bước xử lý thực tế &rarr; Kết quả hoàn thiện sạch sẽ.</p>
           </div>
 
-          <div style="margin-top: 10px;">
-            <a href="voiceover.html" class="btn-cta" style="margin-top: 0; display: inline-flex; align-items: center; gap: 8px;">
-              <span>Khám Phá Giáo Trình Voice-Over Chi Tiết ↗</span>
+          <div>
+            <a href="voiceover.html" class="btn-cta">
+              <span>Xem Giáo Trình Voice-Over Chi Tiết &rarr;</span>
             </a>
           </div>
         </div>
@@ -967,48 +613,47 @@
   <!-- ═══ KHỐI 3: ĐỊNH DẠNG 2 - WALK & TALK (LIGHT) ═══ -->
   <section class="cl-zebra-section cl-zebra--light" id="sec-walktalk">
     <div class="cl-sec-container cl-sec-container--wide apple-reveal">
-      <div class="cl-badge">CẤP ĐỘ 02 • TẦNG THIỆN CẢM ĐỜI THƯỜNG (AFFINITY)</div>
-      <h2 class="title-short">WALK & TALK: GIẢI PHÓNG HÌNH&nbsp;THỂ</h2>
-      <p class="editorial-hook">"Vận động bước đi giúp nhịp tim ổn định và hạ hormone căng thẳng. Bạn nói năng tự nhiên, cử chỉ phóng khoáng như đang tản bộ tâm sự với một người&nbsp;bạn."</p>
+      <div class="cl-badge">ĐỊNH DẠNG 02 • TẠO SỰ GẦN GŨI ĐỜI THƯỜNG</div>
+      <h2 class="title-short">WALK & TALK: VỪA ĐI VỪA&nbsp;NÓI</h2>
+      <p class="editorial-hook">"Vận động bước đi giúp người đỡ bị cóng. Bạn nói năng tự nhiên, tay chân thoải mái như đang tản bộ tâm sự với một người bạn đồng&nbsp;hành."</p>
 
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 36px; align-items: center; margin-top: 36px;">
-        <!-- Video Player -->
-        <div style="background: #000; border-radius: 20px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.12); border: 1px solid rgba(0,0,0,0.08); aspect-ratio: 9/16; max-width: 360px; margin: 0 auto; width: 100%;">
+      <div class="format-layout-grid">
+        <!-- Cột Video Player -->
+        <div class="format-video-wrap">
           <video 
             poster="./images/walktalk_poster.jpg" 
             controls 
             playsinline 
-            preload="metadata"
-            style="width: 100%; height: 100%; object-fit: cover; display: block;">
+            preload="metadata">
             <source src="./videos/walktalk.mp4" type="video/mp4">
             <source src="https://offline.fedu.vn/assets/formats/walktalk.mp4" type="video/mp4">
             Trình duyệt không hỗ trợ thẻ video.
           </video>
         </div>
 
-        <!-- Cột Phân Tích & Link -->
-        <div style="display: flex; flex-direction: column; gap: 14px; text-align: left;">
-          <div class="apple-card" style="padding: 20px 24px;">
-            <div class="apple-card__badge apple-card__badge--amber" style="margin-bottom: 6px;">BẢN CHẤT KỸ THUẬT</div>
-            <h3 class="apple-card__title" style="font-size: 15.5px; margin-bottom: 6px;">CƠ CHẾ SINH HỌC KHI BƯỚC&nbsp;ĐI</h3>
-            <p style="font-size: 14.5px; color: var(--cl-text-body); line-height: 1.6; margin: 0;">Cầm điện thoại hoặc kẹp gậy, vừa đi bộ vừa trò chuyện. Chuyển động cơ thể giúp não bộ không bị đông cứng như khi ngồi một chỗ; lời nói tuôn trào tự nhiên.</p>
+        <!-- Cột Phân Tích Thực Chiến -->
+        <div class="format-content-col">
+          <div class="apple-card">
+            <div class="apple-card__badge apple-card__badge--amber">BẢN CHẤT CÁCH LÀM</div>
+            <h3 class="apple-card__title">CHUYỂN ĐỘNG CƠ THỂ ĐỂ MIỆNG TỰ TRÔI&nbsp;LỜI</h3>
+            <p class="apple-card__desc">Cầm điện thoại hoặc gậy cầm tay, vừa đi dạo vừa chia sẻ. Bước chân di chuyển giúp não bộ không bị đông cứng như khi ngồi một chỗ; câu từ tuôn ra mộc mạc, không cần học thuộc vẹt.</p>
           </div>
 
-          <div class="apple-card" style="padding: 20px 24px;">
-            <div class="apple-card__badge apple-card__badge--amber" style="margin-bottom: 6px;">CƠ CHẾ TÂM LÝ KHÁN GIẢ</div>
-            <h3 class="apple-card__title" style="font-size: 15.5px; margin-bottom: 6px;">THẤY ĐƯỢC CON NGƯỜI THẬT CÓ&nbsp;GU</h3>
-            <p style="font-size: 14.5px; color: var(--cl-text-body); line-height: 1.6; margin: 0;">Khán giả thấy bạn là con người bằng xương bằng thịt, gần gũi, đời thường. Rất hiệu quả để chia sẻ quan điểm nghề nghiệp, triết lý kinh doanh.</p>
+          <div class="apple-card">
+            <div class="apple-card__badge apple-card__badge--amber">TÂM LÝ NGƯỜI XEM</div>
+            <h3 class="apple-card__title">THẤY NGƯỜI THẬT VIỆC THẬT NGOÀI&nbsp;ĐỜI</h3>
+            <p class="apple-card__desc">Người xem thấy bạn là một con người bằng xương bằng thịt, gần gũi, có gu sống và làm việc chỉn chu. Định dạng này rất hợp để chia sẻ góc nhìn nghề nghiệp hay trải nghiệm thực tế.</p>
           </div>
 
-          <div class="apple-card" style="padding: 20px 24px;">
-            <div class="apple-card__badge apple-card__badge--amber" style="margin-bottom: 6px;">THỰC HÀNH TỐI GIẢN</div>
-            <h3 class="apple-card__title" style="font-size: 15.5px; margin-bottom: 6px;">BỐI CẢNH NGOÀI TRỜI & MIC CÀI&nbsp;ÁO</h3>
-            <p style="font-size: 14.5px; color: var(--cl-text-body); line-height: 1.6; margin: 0;">Bắt buộc dùng mic không dây có bông lọc gió. Đi bộ tản bộ tự nhiên, giữ camera ngang tầm mắt hoặc chếch nhẹ, nói như đang tâm sự trên đường cùng tri kỷ.</p>
+          <div class="apple-card">
+            <div class="apple-card__badge apple-card__badge--amber">THỰC HÀNH TỐI GIẢN</div>
+            <h3 class="apple-card__title">MIC CÀI ÁO LỌC GIÓ & KHUNG CẢNH TƯƠM&nbsp;TẤT</h3>
+            <p class="apple-card__desc">Dùng mic cài áo có bông lọc gió để tiếng trong trẻo. Chọn lối đi công viên hoặc hành lang thoáng sáng, mắt nhìn thẳng vào camera như đang trò chuyện cùng người bạn bên cạnh.</p>
           </div>
 
-          <div style="margin-top: 10px;">
-            <a href="walkandtalk.html" class="btn-cta" style="margin-top: 0; display: inline-flex; align-items: center; gap: 8px; background: #ea580c;">
-              <span>Khám Phá Giáo Trình Walk & Talk Chi Tiết ↗</span>
+          <div>
+            <a href="walkandtalk.html" class="btn-cta">
+              <span>Xem Giáo Trình Walk & Talk Chi Tiết &rarr;</span>
             </a>
           </div>
         </div>
@@ -1019,48 +664,47 @@
   <!-- ═══ KHỐI 4: ĐỊNH DẠNG 3 - TALKING HEAD (TINT) ═══ -->
   <section class="cl-zebra-section cl-zebra--tint" id="sec-talkinghead">
     <div class="cl-sec-container cl-sec-container--wide apple-reveal">
-      <div class="cl-badge">CẤP ĐỘ 03 • TẦNG NIỀM TIN & CHUYỂN ĐỔI (TRUST)</div>
-      <h2 class="title-short">TALKING HEAD: CHỊU TRÁCH NHIỆM DANH&nbsp;DỰ</h2>
-      <p class="editorial-hook">"Khách hàng chi trả đơn giá cao không bao giờ mua từ tài khoản vô danh. Họ cần nhìn thẳng vào mắt người thật dám đem danh dự ra cam&nbsp;kết."</p>
+      <div class="cl-badge">ĐỊNH DẠNG 03 • KHẲNG ĐỊNH UY TÍN LÀM NGHỀ</div>
+      <h2 class="title-short">TALKING HEAD: XUẤT ĐẦU LỘ&nbsp;DIỆN</h2>
+      <p class="editorial-hook">"Người mua dịch vụ nghiêm túc không bao giờ xuống tiền với tài khoản vô danh. Họ cần nhìn thẳng vào mắt người thật dám xuất hiện chịu trách nhiệm về dịch vụ của&nbsp;mình."</p>
 
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 36px; align-items: center; margin-top: 36px;">
-        <!-- Video Player -->
-        <div style="background: #000; border-radius: 20px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.12); border: 1px solid rgba(0,0,0,0.08); aspect-ratio: 9/16; max-width: 360px; margin: 0 auto; width: 100%;">
+      <div class="format-layout-grid">
+        <!-- Cột Video Player -->
+        <div class="format-video-wrap">
           <video 
             poster="./images/talkinghead_poster.jpg" 
             controls 
             playsinline 
-            preload="metadata"
-            style="width: 100%; height: 100%; object-fit: cover; display: block;">
+            preload="metadata">
             <source src="./videos/talkinghead.mp4" type="video/mp4">
             <source src="https://offline.fedu.vn/assets/formats/talkinghead.mp4" type="video/mp4">
             Trình duyệt không hỗ trợ thẻ video.
           </video>
         </div>
 
-        <!-- Cột Phân Tích & Link -->
-        <div style="display: flex; flex-direction: column; gap: 14px; text-align: left;">
-          <div class="apple-card" style="padding: 20px 24px;">
-            <div class="apple-card__badge apple-card__badge--emerald" style="margin-bottom: 6px;">BẢN CHẤT KỸ THUẬT</div>
-            <h3 class="apple-card__title" style="font-size: 15.5px; margin-bottom: 6px;">30% MẶT A-ROLL + 70% B-ROLL CHỨNG&nbsp;CỨ</h3>
-            <p style="font-size: 14.5px; color: var(--cl-text-body); line-height: 1.6; margin: 0;">Ngồi đĩnh đạc tại góc bàn làm việc với setup 1 sải tay. Khuôn mặt làm mỏ neo uy tín, hình ảnh thao tác thực tế đè lên để chứng minh năng lực chuyên môn.</p>
+        <!-- Cột Phân Tích Thực Chiến -->
+        <div class="format-content-col">
+          <div class="apple-card">
+            <div class="apple-card__badge apple-card__badge--emerald">BẢN CHẤT CÁCH LÀM</div>
+            <h3 class="apple-card__title">30% MẶT A-ROLL + 70% B-ROLL CHỨNG&nbsp;MINH</h3>
+            <p class="apple-card__desc">Ngồi đĩnh đạc tại góc làm việc thực tế. Khuôn mặt làm điểm tựa uy tín ở câu mở đầu và chốt hạ; phần giữa chèn hình ảnh thao tác thực tế đè lên để chứng minh năng lực chuyên môn.</p>
           </div>
 
-          <div class="apple-card" style="padding: 20px 24px;">
-            <div class="apple-card__badge apple-card__badge--emerald" style="margin-bottom: 6px;">CƠ CHẾ TÂM LÝ KHÁN GIẢ</div>
-            <h3 class="apple-card__title" style="font-size: 15.5px; margin-bottom: 6px;">GIAO TIẾP 1-1 CHỐT ĐƠN GIÁ&nbsp;CAO</h3>
-            <p style="font-size: 14.5px; color: var(--cl-text-body); line-height: 1.6; margin: 0;">Người xem cảm nhận bạn đang tư vấn trực tiếp cho họ. Ánh mắt và khẩu khí người làm nghề kích hoạt độ tin tưởng tối thượng, khách chủ động nhắn tin Zalo xin tư vấn.</p>
+          <div class="apple-card">
+            <div class="apple-card__badge apple-card__badge--emerald">TÂM LÝ NGƯỜI XEM</div>
+            <h3 class="apple-card__title">ĐỐI THOẠI 1-1 TẠO ĐỘ TIN CẬY TUYỆT&nbsp;ĐỐI</h3>
+            <p class="apple-card__desc">Người xem cảm nhận bạn đang ngồi tư vấn trực tiếp cho riêng họ. Ánh mắt tập trung và khẩu khí chắc chắn của người làm nghề tạo ra sự an tâm, khiến họ chủ động nhắn tin Zalo xin hỗ trợ.</p>
           </div>
 
-          <div class="apple-card" style="padding: 20px 24px;">
-            <div class="apple-card__badge apple-card__badge--emerald" style="margin-bottom: 6px;">THỰC HÀNH TỐI GIẢN</div>
-            <h3 class="apple-card__title" style="font-size: 15.5px; margin-bottom: 6px;">SETUP 1 SẢI TAY & KHẨU KHÍ QUẢN&nbsp;TRỊ</h3>
-            <p style="font-size: 14.5px; color: var(--cl-text-body); line-height: 1.6; margin: 0;">Khoảng cách 60cm–80cm tại góc làm việc thực tế. Mắt nhìn thẳng tâm ống kính, nói khúc chiết, đanh thép, không cần gồng mình hay diễn xuất khoa trương.</p>
+          <div class="apple-card">
+            <div class="apple-card__badge apple-card__badge--emerald">THỰC HÀNH TỐI GIẢN</div>
+            <h3 class="apple-card__title">KHOẢNG CÁCH 1 SẢI TAY & NÓI THẲNG VÀO&nbsp;VIỆC</h3>
+            <p class="apple-card__desc">Đặt máy cách 60cm–80cm ngang tầm mắt. Không cần gồng mình hay diễn xuất khoa trương, nói khúc chiết, đanh thép như đang giải thích cho khách hàng ngồi trước bàn làm việc.</p>
           </div>
 
-          <div style="margin-top: 10px;">
-            <a href="talkinghead.html" class="btn-cta" style="margin-top: 0; display: inline-flex; align-items: center; gap: 8px; background: #059669;">
-              <span>Khám Phá Giáo Trình Talking Head Chi Tiết ↗</span>
+          <div>
+            <a href="talkinghead.html" class="btn-cta">
+              <span>Xem Giáo Trình Talking Head Chi Tiết &rarr;</span>
             </a>
           </div>
         </div>
@@ -1071,48 +715,47 @@
   <!-- ═══ KHỐI 5: ĐỊNH DẠNG 4 - STORYTELLING 2.5 (LIGHT) ═══ -->
   <section class="cl-zebra-section cl-zebra--light" id="sec-storytelling">
     <div class="cl-sec-container cl-sec-container--wide apple-reveal">
-      <div class="cl-badge">CẤP ĐỘ 04 • TẦNG TRI KỶ (RETENTION & LOYALTY)</div>
-      <h2 class="title-short">STORYTELLING 2.5: CHẠM VÀO ĐÁY&nbsp;LÒNG</h2>
-      <p class="editorial-hook">"Bỏ qua những lời đãi bôi tầng 1 và đạo lý sáo rỗng tầng 2. Đánh thẳng vào sự thật ngượng miệng tầng 2.5 để người nghe giật mình thấy chính mình trong&nbsp;đó."</p>
+      <div class="cl-badge">ĐỊNH DẠNG 04 • KẾT NỐI TRI KỶ LÂU DÀI</div>
+      <h2 class="title-short">KỂ CHUYỆN TẦNG 2.5: BÓC SỰ THẬT NGƯỢNG&nbsp;MIỆNG</h2>
+      <p class="editorial-hook">"Bỏ qua những lời xã giao khách sáo tầng 1 và đạo lý sáo rỗng tầng 2. Đánh trúng vào sự thật ngượng miệng tầng 2.5 để người nghe giật mình thấy đúng hoàn cảnh của&nbsp;mình."</p>
 
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 36px; align-items: center; margin-top: 36px;">
-        <!-- Video Player -->
-        <div style="background: #000; border-radius: 20px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.12); border: 1px solid rgba(0,0,0,0.08); aspect-ratio: 9/16; max-width: 360px; margin: 0 auto; width: 100%;">
+      <div class="format-layout-grid">
+        <!-- Cột Video Player -->
+        <div class="format-video-wrap">
           <video 
             poster="./images/storytelling_poster.jpg" 
             controls 
             playsinline 
-            preload="metadata"
-            style="width: 100%; height: 100%; object-fit: cover; display: block;">
+            preload="metadata">
             <source src="./videos/storytelling.mp4" type="video/mp4">
             <source src="https://offline.fedu.vn/assets/formats/storytelling.mp4" type="video/mp4">
             Trình duyệt không hỗ trợ thẻ video.
           </video>
         </div>
 
-        <!-- Cột Phân Tích & Link -->
-        <div style="display: flex; flex-direction: column; gap: 14px; text-align: left;">
-          <div class="apple-card" style="padding: 20px 24px;">
-            <div class="apple-card__badge apple-card__badge--purple" style="margin-bottom: 6px;">BẢN CHẤT KỸ THUẬT</div>
-            <h3 class="apple-card__title" style="font-size: 15.5px; margin-bottom: 6px;">CÔNG THỨC 4 BƯỚC BÓC TẦNG&nbsp;2.5</h3>
-            <p style="font-size: 14.5px; color: var(--cl-text-body); line-height: 1.6; margin: 0;">Hiện trường 5 giây &rarr; Cái ôm đồng cảm &rarr; Bẻ lái bóc trần sự thật ngượng miệng tầng 2.5 &rarr; Chìa khóa giải pháp dứt khoát.</p>
+        <!-- Cột Phân Tích Thực Chiến -->
+        <div class="format-content-col">
+          <div class="apple-card">
+            <div class="apple-card__badge apple-card__badge--purple">BẢN CHẤT CÁCH LÀM</div>
+            <h3 class="apple-card__title">QUY TRÌNH 4 BƯỚC BÓC SỰ THẬT TẦNG&nbsp;2.5</h3>
+            <p class="apple-card__desc">Khung cảnh hiện trường 5 giây &rarr; Đồng cảm hạ nhiệt tâm lý &rarr; Bẻ lái bóc trần điều ngượng miệng mà ai cũng giấu &rarr; Đúc kết chìa khóa hành động thực tế.</p>
           </div>
 
-          <div class="apple-card" style="padding: 20px 24px;">
-            <div class="apple-card__badge apple-card__badge--purple" style="margin-bottom: 6px;">CƠ CHẾ TÂM LÝ KHÁN GIẢ</div>
-            <h3 class="apple-card__title" style="font-size: 15.5px; margin-bottom: 6px;">CHẠM TRÚNG NỖI SỢ THẦM&nbsp;KÍN</h3>
-            <p style="font-size: 14.5px; color: var(--cl-text-body); line-height: 1.6; margin: 0;">Đánh trúng nỗi giằng xé thể diện của người lớn đi làm — thứ mà người ta ngại nói ra nhưng luôn đau đáu. Biến người xem vãng lai thành tri kỷ trung thành.</p>
+          <div class="apple-card">
+            <div class="apple-card__badge apple-card__badge--purple">TÂM LÝ NGƯỜI XEM</div>
+            <h3 class="apple-card__title">CHẠM ĐÚNG NỖI LÒNG THẦM KÍN NGƯỜI ĐI&nbsp;LÀM</h3>
+            <p class="apple-card__desc">Đánh trúng nỗi lo giữ thể diện của người lớn đi làm — thứ mà bình thường ngại nói ra nhưng luôn đau đáu trong lòng. Khi bạn dám nói ra mộc mạc, họ coi bạn là bạn tâm giao.</p>
           </div>
 
-          <div class="apple-card" style="padding: 20px 24px;">
-            <div class="apple-card__badge apple-card__badge--purple" style="margin-bottom: 6px;">THỰC HÀNH TỐI GIẢN</div>
-            <h3 class="apple-card__title" style="font-size: 15.5px; margin-bottom: 6px;">BÓC NỖI SỢ THẦM KÍN THAY VÌ GIẢNG&nbsp;ĐẠO</h3>
-            <p style="font-size: 14.5px; color: var(--cl-text-body); line-height: 1.6; margin: 0;">Nói ra đúng cái đau đáu và thể diện mà người lớn đi làm ngại chia sẻ. Khi bạn dũng cảm thừa nhận sự thật ngượng miệng, người nghe lập tức coi bạn là bạn tâm giao.</p>
+          <div class="apple-card">
+            <div class="apple-card__badge apple-card__badge--purple">THỰC HÀNH TỐI GIẢN</div>
+            <h3 class="apple-card__title">NÓI ĐIỀU MÌNH TỪNG VA VẤP THẬT</h3>
+            <p class="apple-card__desc">Không bịa chuyện, không giảng đạo lý suông. Chỉ cần kể lại đúng một lần bạn từng bối rối, từng ngại ngùng trong nghề và cách bạn vượt qua, người nghe sẽ tự khắc tin tưởng.</p>
           </div>
 
-          <div style="margin-top: 10px;">
-            <a href="storytelling.html" class="btn-cta" style="margin-top: 0; display: inline-flex; align-items: center; gap: 8px; background: #7c3aed;">
-              <span>Khám Phá Giáo Trình Storytelling Tầng 2.5 ↗</span>
+          <div>
+            <a href="storytelling.html" class="btn-cta">
+              <span>Xem Giáo Trình Kể Chuyện 2.5 Chi Tiết &rarr;</span>
             </a>
           </div>
         </div>
@@ -1120,88 +763,89 @@
     </div>
   </section>
 
-  <!-- ═══ KHỐI 6: MA TRẬN ĐỐI CHIẾU & LỊCH TRÌNH 1 TUẦN (TINT) ═══ -->
-  <section class="cl-zebra-section cl-zebra--tint" id="sec-matrix">
+  <!-- ═══ KHỐI 6: BẢNG ĐỐI CHIẾU & LỊCH ĐĂNG BÀI 1 TUẦN (TINT) ═══ -->
+  <section class="cl-zebra-section cl-zebra--tint" id="sec-matrix" style="padding-bottom: 120px;">
     <div class="cl-sec-container cl-sec-container--wide apple-reveal">
-      <div class="cl-badge">TỔNG KẾT • MA TRẬN 4 TẦNG & LỊCH ĐĂNG BÀI</div>
-      <h2 class="title-short">BẢN ĐỒ KẾT HỢP 4 ĐỊNH&nbsp;DẠNG</h2>
-      <p class="editorial-hook">"Không có định dạng nào là tốt nhất đơn lẻ. Sức mạnh thực sự nằm ở sự phối hợp nhịp nhàng để dẫn dắt một người xa lạ trở thành khách hàng trung&nbsp;thành."</p>
+      <div class="cl-badge">TỔNG KẾT • BẢNG ĐỐI CHIẾU & LỊCH ĐĂNG BÀI 1 TUẦN</div>
+      <h2 class="title-short">CÁCH PHỐI HỢP 4 ĐỊNH DẠNG TRONG THỰC&nbsp;TẾ</h2>
+      <p class="editorial-hook">"Không có định dạng nào là duy nhất. Sức mạnh thực sự nằm ở sự phối hợp đều đặn mỗi tuần để dẫn dắt một người chưa quen biết trở thành khách hàng tin&nbsp;tưởng."</p>
 
-      <!-- Bảng so sánh 4 định dạng -->
-      <div style="width: 100%; overflow-x: auto; margin-top: 32px;">
+      <!-- Bảng đối chiếu 4 định dạng -->
+      <div style="width: 100%; overflow-x: auto; margin-top: 28px;">
         <table style="width: 100%; border-collapse: collapse; text-align: left; background: #ffffff; border-radius: 14px; overflow: hidden; border: 1px solid var(--cl-line-strong); box-shadow: 0 4px 20px rgba(0,0,0,0.03);">
           <thead>
             <tr style="background: var(--cl-tint); border-bottom: 2px solid var(--cl-line-strong);">
-              <th style="padding: 16px 20px; font-family: var(--font-display-short); font-size: 14px; text-transform: uppercase;">Định Dạng</th>
-              <th style="padding: 16px 20px; font-family: var(--font-display-short); font-size: 14px; text-transform: uppercase;">Yêu Cầu Lộ Mặt</th>
-              <th style="padding: 16px 20px; font-family: var(--font-display-short); font-size: 14px; text-transform: uppercase;">Độ Khó Thao Tác</th>
-              <th style="padding: 16px 20px; font-family: var(--font-display-short); font-size: 14px; text-transform: uppercase;">Mục Tiêu Chuyển Đổi</th>
-              <th style="padding: 16px 20px; font-family: var(--font-display-short); font-size: 14px; text-transform: uppercase;">Giáo Trình</th>
+              <th style="padding: 16px 20px; font-family: var(--font-display-short); font-size: 13.5px; text-transform: uppercase;">Định Dạng</th>
+              <th style="padding: 16px 20px; font-family: var(--font-display-short); font-size: 13.5px; text-transform: uppercase;">Yêu Cầu Lộ Mặt</th>
+              <th style="padding: 16px 20px; font-family: var(--font-display-short); font-size: 13.5px; text-transform: uppercase;">Độ Khó Kỹ Thuật</th>
+              <th style="padding: 16px 20px; font-family: var(--font-display-short); font-size: 13.5px; text-transform: uppercase;">Mục Đích Chính</th>
+              <th style="padding: 16px 20px; font-family: var(--font-display-short); font-size: 13.5px; text-transform: uppercase;">Giáo Trình</th>
             </tr>
           </thead>
           <tbody style="font-size: 14.5px; color: var(--cl-text-body);">
             <tr style="border-bottom: 1px solid var(--cl-line-soft);">
               <td style="padding: 16px 20px; font-weight: 700; color: var(--cl-blue);">01. Voice-Over</td>
-              <td style="padding: 16px 20px;">❌ 0% (Không lộ mặt)</td>
-              <td style="padding: 16px 20px;">★☆☆☆☆ (Dễ nhất)</td>
-              <td style="padding: 16px 20px;">Hút tệp rộng, chia sẻ mẹo nghề</td>
-              <td style="padding: 16px 20px;"><a href="voiceover.html" style="color: var(--cl-blue); font-weight: 700; text-decoration: none;">Xem bài ↗</a></td>
+              <td style="padding: 16px 20px;">0% (Không lộ mặt)</td>
+              <td style="padding: 16px 20px;">Dễ nhất (Quay tay thao tác)</td>
+              <td style="padding: 16px 20px;">Tiếp cận người mới, chia sẻ mẹo nghề</td>
+              <td style="padding: 16px 20px;"><a href="voiceover.html" style="color: var(--cl-blue); font-weight: 700; text-decoration: none;">Xem bài &rarr;</a></td>
             </tr>
             <tr style="border-bottom: 1px solid var(--cl-line-soft);">
               <td style="padding: 16px 20px; font-weight: 700; color: #ea580c;">02. Walk & Talk</td>
-              <td style="padding: 16px 20px;">⚠️ 50%–70% (Di chuyển)</td>
-              <td style="padding: 16px 20px;">★★☆☆☆ (Cần mic gió)</td>
-              <td style="padding: 16px 20px;">Tạo thiện cảm, hút tệp cùng gu</td>
-              <td style="padding: 16px 20px;"><a href="walkandtalk.html" style="color: #ea580c; font-weight: 700; text-decoration: none;">Xem bài ↗</a></td>
+              <td style="padding: 16px 20px;">50%–70% (Di chuyển ngoài trời)</td>
+              <td style="padding: 16px 20px;">Trung bình (Cần mic cài áo lọc gió)</td>
+              <td style="padding: 16px 20px;">Tạo sự gần gũi, kết nối người cùng gu</td>
+              <td style="padding: 16px 20px;"><a href="walkandtalk.html" style="color: #ea580c; font-weight: 700; text-decoration: none;">Xem bài &rarr;</a></td>
             </tr>
             <tr style="border-bottom: 1px solid var(--cl-line-soft);">
               <td style="padding: 16px 20px; font-weight: 700; color: #059669;">03. Talking Head</td>
-              <td style="padding: 16px 20px;">✅ 30% A-Roll (Tại bàn)</td>
-              <td style="padding: 16px 20px;">★★★☆☆ (Setup 1 sải tay)</td>
-              <td style="padding: 16px 20px;">Chốt đơn giá cao, định danh cá nhân</td>
-              <td style="padding: 16px 20px;"><a href="talkinghead.html" style="color: #059669; font-weight: 700; text-decoration: none;">Xem bài ↗</a></td>
+              <td style="padding: 16px 20px;">30% A-Roll (Tại bàn làm việc)</td>
+              <td style="padding: 16px 20px;">Vừa phải (Setup 1 sải tay tại bàn)</td>
+              <td style="padding: 16px 20px;">Tạo độ tin cậy cao, khách chủ động nhắn Zalo</td>
+              <td style="padding: 16px 20px;"><a href="talkinghead.html" style="color: #059669; font-weight: 700; text-decoration: none;">Xem bài &rarr;</a></td>
             </tr>
             <tr>
-              <td style="padding: 16px 20px; font-weight: 700; color: #7c3aed;">04. Storytelling 2.5</td>
-              <td style="padding: 16px 20px;">✅ 30%–50% (Đa cảnh)</td>
-              <td style="padding: 16px 20px;">★★★★☆ (Kịch bản sâu)</td>
-              <td style="padding: 16px 20px;">Giữ chân trọn đời, xây dựng tri kỷ</td>
-              <td style="padding: 16px 20px;"><a href="storytelling.html" style="color: #7c3aed; font-weight: 700; text-decoration: none;">Xem bài ↗</a></td>
+              <td style="padding: 16px 20px; font-weight: 700; color: #7c3aed;">04. Kể Chuyện 2.5</td>
+              <td style="padding: 16px 20px;">30%–50% (Đa góc quay đời thường)</td>
+              <td style="padding: 16px 20px;">Cần quan sát sâu (Nói sự thật va vấp)</td>
+              <td style="padding: 16px 20px;">Gắn kết lâu dài, biến người xem thành tri kỷ</td>
+              <td style="padding: 16px 20px;"><a href="storytelling.html" style="color: #7c3aed; font-weight: 700; text-decoration: none;">Xem bài &rarr;</a></td>
             </tr>
           </tbody>
         </table>
       </div>
 
-      <!-- Lịch trình phân bổ 1 tuần mẫu -->
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; width: 100%; margin-top: 28px; text-align: left;">
-        <div class="apple-card" style="padding: 18px;">
-          <div style="font-family: var(--font-mono); font-size: 11.5px; font-weight: 700; color: var(--cl-blue); margin-bottom: 4px;">THỨ 2 • HÚT TỆP MỚI</div>
-          <b style="font-size: 14.5px; color: var(--cl-text-base);">1 Video Voice-Over</b>
-          <p style="font-size: 13px; color: var(--cl-text-muted); margin-top: 4px; line-height: 1.5;">Chia sẻ 1 mẹo thao tác nghề nhanh, hình ảnh cuốn hút để kéo lượt tiếp cận ban&nbsp;đầu.</p>
+      <!-- Lịch trình 1 tuần: Chia đúng 4 cột đều tăm tắp, cân xứng 100% -->
+      <div class="four-cards-grid" style="margin-top: 28px;">
+        <div class="schedule-card" style="border-top: 3px solid var(--cl-blue);">
+          <div class="schedule-card__day" style="color: var(--cl-blue);">THỨ 2 • BẮT ĐẦU TUẦN</div>
+          <div class="schedule-card__title">1 Video Voice-Over</div>
+          <p class="schedule-card__desc">Chia sẻ 1 mẹo thao tác nghề nhanh, hình ảnh cuốn hút để người lạ dừng ngón tay xem&nbsp;ngay.</p>
         </div>
 
-        <div class="apple-card" style="padding: 18px;">
-          <div style="font-family: var(--font-mono); font-size: 11.5px; font-weight: 700; color: #ea580c; margin-bottom: 4px;">THỨ 4 • TẠO THIỆN CẢM</div>
-          <b style="font-size: 14.5px; color: var(--cl-text-base);">1 Video Walk & Talk</b>
-          <p style="font-size: 13px; color: var(--cl-text-muted); margin-top: 4px; line-height: 1.5;">Vừa đi vừa nói về 1 góc nhìn làm nghề để khán giả thấy gần gũi, đời&nbsp;thường.</p>
+        <div class="schedule-card" style="border-top: 3px solid #ea580c;">
+          <div class="schedule-card__day" style="color: #ea580c;">THỨ 4 • GIỮ NHỊP</div>
+          <div class="schedule-card__title">1 Video Walk & Talk</div>
+          <p class="schedule-card__desc">Vừa đi vừa tâm sự về 1 góc nhìn làm nghề để người xem thấy mình gần gũi ngoài&nbsp;đời.</p>
         </div>
 
-        <div class="apple-card" style="padding: 18px;">
-          <div style="font-family: var(--font-mono); font-size: 11.5px; font-weight: 700; color: #059669; margin-bottom: 4px;">THỨ 6 • CHỐT ĐƠN</div>
-          <b style="font-size: 14.5px; color: var(--cl-text-base);">1 Video Talking Head</b>
-          <p style="font-size: 13px; color: var(--cl-text-muted); margin-top: 4px; line-height: 1.5;">Ngồi tại bàn giải quyết 1 bài toán lớn, kêu gọi kết nối Zalo tư&nbsp;vấn.</p>
+        <div class="schedule-card" style="border-top: 3px solid #059669;">
+          <div class="schedule-card__day" style="color: #059669;">THỨ 6 • TẠO ĐỘ TIN</div>
+          <div class="schedule-card__title">1 Video Talking Head</div>
+          <p class="schedule-card__desc">Ngồi tại bàn giải quyết thẳng 1 vướng mắc cụ thể của khách, tạo độ tin cậy để họ kết nối&nbsp;Zalo.</p>
         </div>
 
-        <div class="apple-card" style="padding: 18px;">
-          <div style="font-family: var(--font-mono); font-size: 11.5px; font-weight: 700; color: #7c3aed; margin-bottom: 4px;">CHỦ NHẬT • GIỮ CHÂN</div>
-          <b style="font-size: 14.5px; color: var(--cl-text-base);">1 Video Storytelling 2.5</b>
-          <p style="font-size: 13px; color: var(--cl-text-muted); margin-top: 4px; line-height: 1.5;">Kể 1 câu chuyện va vấp bóc trần tầng 2.5 để biến người xem thành tri&nbsp;kỷ.</p>
+        <div class="schedule-card" style="border-top: 3px solid #7c3aed;">
+          <div class="schedule-card__day" style="color: #7c3aed;">CHỦ NHẬT • ĐỌNG LẠI</div>
+          <div class="schedule-card__title">1 Video Kể Chuyện 2.5</div>
+          <p class="schedule-card__desc">Kể 1 lần va vấp thật, bóc trần sự thật ngượng miệng trong nghề để biến người xem thành bạn tri&nbsp;kỷ.</p>
         </div>
       </div>
 
     </div>
   </section>
-<!-- ═══ JAVASCRIPT: ZERO-JANK APPLE OBSERVER ═══ -->
+
+  <!-- ═══ JAVASCRIPT: ZERO-JANK APPLE OBSERVER ═══ -->
   <script>
     document.addEventListener("DOMContentLoaded", () => {
       const observerOptions = {
