@@ -324,6 +324,56 @@
       text-align: left;
     }
 
+    .apple-cards-grid--3cols {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    @media (max-width: 980px) {
+      .apple-cards-grid--3cols {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 680px) {
+      .apple-cards-grid--3cols {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+    }
+
+    /* Crisp Bullet List within Cards */
+    .direct-bullets {
+      list-style: none;
+      padding: 0;
+      margin: 16px 0 0 0;
+      text-align: left;
+      flex-grow: 1;
+    }
+    .direct-bullets li {
+      position: relative;
+      padding-left: 20px;
+      margin-bottom: 12px;
+      font-size: 15px;
+      line-height: 1.65;
+      color: var(--cl-text-body);
+      text-wrap: pretty;
+    }
+    .direct-bullets li::before {
+      content: "•";
+      position: absolute;
+      left: 2px;
+      top: 0;
+      color: var(--cl-accent);
+      font-weight: 700;
+      font-size: 17px;
+      line-height: 1.4;
+    }
+    .direct-bullets li b {
+      color: var(--cl-text-base);
+      font-family: var(--font-display-long);
+      font-weight: 600;
+    }
+
     .apple-card {
       background: var(--cl-card);
       border: 1px solid var(--cl-line-strong);
@@ -869,7 +919,7 @@
     <a href="4stylevideo.html" style="color: var(--cl-accent); font-weight: 700;">&larr; Bộ 4 Định Dạng</a>
     <a href="#sec-hero">Video Gốc 🎥</a>
     <a href="#sec-what">What</a>
-    <a href="#sec-why">3 Giá Trị</a>
+    <a href="#sec-why">6 Lợi Thế</a>
     <a href="#sec-setup">1 Sải Tay</a>
     <a href="#sec-voice">2 Camera</a>
     <a href="#sec-sop">4 Bước Làm ↗</a>
@@ -886,12 +936,14 @@
         <!-- Cột Video Player -->
         <div style="background: #000; border-radius: 20px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.12); border: 1px solid rgba(0,0,0,0.08); aspect-ratio: 9/16; max-width: 360px; margin: 0 auto; width: 100%;">
           <video 
-            src="./videos/talkinghead_viet.mp4" 
             poster="./images/poster_talkinghead_viet.jpg" 
             controls 
             playsinline 
             preload="metadata"
             style="width: 100%; height: 100%; object-fit: cover; display: block;">
+            <source src="./videos/talkinghead_viet.mp4" type="video/mp4">
+            <source src="../videos/talkinghead_viet.mp4" type="video/mp4">
+            <source src="https://fedu.vn/videos/talkinghead_viet.mp4" type="video/mp4">
             Trình duyệt của bạn không hỗ trợ thẻ video.
           </video>
         </div>
@@ -975,12 +1027,14 @@
           <!-- Video Minh Họa Thực Tế A-Roll & B-Roll của Anh Việt -->
           <div style="margin-top: 18px; width: 100%; border-radius: 14px; overflow: hidden; background: #000; box-shadow: 0 8px 24px rgba(0,0,0,0.14); aspect-ratio: 9/16; max-width: 280px; margin-left: auto; margin-right: auto;">
             <video 
-              src="./videos/aroll_broll_viet.mp4" 
               poster="./images/poster_aroll_broll_viet.jpg" 
               controls 
               playsinline 
               preload="metadata"
               style="width: 100%; height: 100%; object-fit: cover; display: block;">
+              <source src="./videos/aroll_broll_viet.mp4" type="video/mp4">
+              <source src="../videos/aroll_broll_viet.mp4" type="video/mp4">
+              <source src="https://fedu.vn/videos/aroll_broll_viet.mp4" type="video/mp4">
               Trình duyệt không hỗ trợ thẻ video.
             </video>
           </div>
@@ -995,39 +1049,84 @@
     </div>
   </section>
 
-  <!-- ═══ KHỐI 3: WHY - TẠI SAO BẮT BUỘC PHẢI LÀM? (LIGHT) ═══ -->
+  <!-- ═══ KHỐI 3: WHY - 6 LỢI THẾ CỦA ĐỊNH DẠNG (LIGHT) ═══ -->
   <section class="cl-zebra-section cl-zebra--light" id="sec-why">
     <div class="cl-sec-container cl-sec-container--wide apple-reveal">
-      <div class="cl-badge">02 / WHY • TẠI SAO BẮT BUỘC PHẢI LÀM?</div>
-      <h2 class="title-short">3 GIÁ TRỊ TẠO NÊN SỰ TIN&nbsp;CẬY</h2>
-      <p class="editorial-hook">Khách hàng tìm kiếm dịch vụ nghiêm túc không bao giờ xuống tiền với tài khoản vô danh. Họ cần nhìn thấy người thật việc thật dám xuất hiện chịu trách nhiệm về dịch vụ của&nbsp;mình.</p>
+      <div class="cl-badge">02 / WHY • 6 LỢI THẾ CỦA ĐỊNH DẠNG</div>
+      <h2 class="title-short">6 LỢI THẾ THỰC TẾ<br>TẠO NÊN SỰ TIN&nbsp;CẬY</h2>
+      <p class="editorial-hook">"Khách hàng tìm kiếm dịch vụ nghiêm túc không bao giờ xuống tiền với tài khoản vô danh. Họ cần nhìn thấy người thật việc thật dám xuất hiện chịu trách nhiệm về dịch vụ của&nbsp;mình."</p>
 
-      <div class="three-cards-grid">
-        <div class="apple-card" style="padding: 26px 24px;">
-          <div class="apple-card__badge apple-card__badge--blue">GIÁ TRỊ 01</div>
-          <h3 class="apple-card__title">NGƯỜI THẬT VIỆC&nbsp;THẬT</h3>
-          <div class="apple-card__desc" style="display: flex; flex-direction: column; gap: 8px;">
-            <div>• <b>Giao tiếp 1-1:</b> Khán giả cảm nhận bạn đang ngồi trò chuyện riêng với chính họ qua màn hình điện&nbsp;thoại.</div>
-            <div>• <b>Khẩu khí người làm nghề:</b> Ánh mắt đĩnh đạc và phong thái tự tin khi làm nghề là thứ mà bài viết hay giọng đọc AI không bao giờ thay thế&nbsp;được.</div>
-          </div>
+      <div class="apple-cards-grid apple-cards-grid--3cols">
+        <!-- Lợi thế 01 -->
+        <div class="apple-card">
+          <div class="apple-card__icon">💰</div>
+          <div class="apple-card__badge apple-card__badge--blue">LỢI THẾ 01 • TỐI ƯU CHI PHÍ</div>
+          <h3 class="apple-card__title">DỄ LÀM NHẤT, CHI PHÍ GẦN NHƯ 0&nbsp;ĐỒNG</h3>
+          <ul class="direct-bullets">
+            <li><b>Tận dụng đồ có sẵn trong phòng:</b> Không cần thuê studio đắt đỏ hay mua đèn cồng kềnh. Chỉ một chiếc điện thoại đang dùng đặt trên bàn là bắt tay vào làm được&nbsp;ngay.</li>
+            <li><b>Thử nghiệm nhẹ tênh 0 đồng:</b> Bấm máy thử 10 giây thấy chưa ưng là chỉnh lại đèn, kéo lại ghế làm lại, không phát sinh bất kỳ chi phí&nbsp;nào.</li>
+            <li><b>Một mình tự làm chủ:</b> Bạn tự nghĩ, tự ngồi nói và tự cắt gọt trên điện thoại, dồn trọn vốn liếng và công sức vào việc kinh doanh thực&nbsp;tế.</li>
+          </ul>
         </div>
 
-        <div class="apple-card" style="padding: 26px 24px;">
-          <div class="apple-card__badge apple-card__badge--emerald">GIÁ TRỊ 02</div>
-          <h3 class="apple-card__title">KHÁCH CHỦ ĐỘNG KẾT&nbsp;NỐI</h3>
-          <div class="apple-card__desc" style="display: flex; flex-direction: column; gap: 8px;">
-            <div>• <b>Dịch vụ giá trị cao:</b> Người xem thấy rõ bạn am hiểu sâu công việc thực tế nên họ sẵn sàng tin tưởng giao phó việc&nbsp;lớn.</div>
-            <div>• <b>Kích hoạt độ tin cậy:</b> Nhìn thấy người thật nói chuyện gãy gọn, khách chủ động tìm đến Zalo xin tư vấn mà không cần bạn phải chèo&nbsp;kéo.</div>
-          </div>
+        <!-- Lợi thế 02 -->
+        <div class="apple-card">
+          <div class="apple-card__icon">🎛️</div>
+          <div class="apple-card__badge apple-card__badge--emerald">LỢI THẾ 02 • TRỤC XƯƠNG SỐNG LINH HOẠT</div>
+          <h3 class="apple-card__title">TIỆN ĐÈ B-ROLL, BIẾN HÓA 3 TRONG&nbsp;1</h3>
+          <ul class="direct-bullets">
+            <li><b>Thu 1 lần có sẵn mạch tiếng chuẩn:</b> Ngồi yên nói trước máy tạo ra một mạch nói liền mạch, âm thanh ấm rõ ý làm khung sườn vững chắc cho cả&nbsp;video.</li>
+            <li><b>Linh hoạt độ phủ hình ảnh:</b> Không gắn B-roll thì thành Talking Head đối thoại 1-1; gắn 80% cảnh thao tác giúp video cuốn hút nhất; phủ kín 100% biến thành video lồng tiếng (Voice-Over) mà không cần thu âm&nbsp;lại.</li>
+            <li><b>Làm được luôn không chờ đợi:</b> Hôm bận thì để nguyên mặt nói; hôm có cảnh thợ làm hay máy chạy thì đè vài giây lên timeline CapCut là xong video&nbsp;mới.</li>
+          </ul>
         </div>
 
-        <div class="apple-card" style="padding: 26px 24px;">
-          <div class="apple-card__badge apple-card__badge--amber">GIÁ TRỊ 03</div>
-          <h3 class="apple-card__title">TIẾT KIỆM THỜI GIAN & CHI&nbsp;PHÍ</h3>
-          <div class="apple-card__desc" style="display: flex; flex-direction: column; gap: 8px;">
-            <div>• <b>Quay liên tục tại chỗ:</b> Setup đúng 1 lần tại góc làm việc quen thuộc, bạn có thể ngồi quay hàng chục video một&nbsp;buổi.</div>
-            <div>• <b>Bối cảnh 0 đồng:</b> Không cần thuê studio, không phải di chuyển, tận dụng chính góc làm việc hàng ngày của&nbsp;mình.</div>
-          </div>
+        <!-- Lợi thế 03 -->
+        <div class="apple-card">
+          <div class="apple-card__icon">🎯</div>
+          <div class="apple-card__badge apple-card__badge--amber">LỢI THẾ 03 • ĐỐI THOẠI TRỰC DIỆN</div>
+          <h3 class="apple-card__title">TRÒ CHUYỆN MẶT ĐỐI&nbsp;MẶT</h3>
+          <ul class="direct-bullets">
+            <li><b>Tập trung trọn vẹn ánh nhìn:</b> Không có cảnh vật di chuyển làm phân tán. Khách hàng nhìn thẳng vào đôi mắt, khẩu khí và nét mặt tự nhiên của&nbsp;bạn.</li>
+            <li><b>Cảm giác ngồi uống trà riêng:</b> Khán giả cảm nhận bạn đang ngồi trò chuyện nghiêm túc với riêng một mình họ, tạo ra sự thân mật mà kiểu vừa đi vừa chạy không thể có&nbsp;được.</li>
+            <li><b>Rất hợp với việc cần suy ngẫm:</b> Thích hợp chia sẻ chuyện nghề sâu kín, giải đáp thắc mắc lớn hoặc tư vấn dịch vụ giá trị cao đòi hỏi khách phải cân nhắc kỹ&nbsp;lưỡng.</li>
+          </ul>
+        </div>
+
+        <!-- Lợi thế 04 -->
+        <div class="apple-card">
+          <div class="apple-card__icon">🛡️</div>
+          <div class="apple-card__badge apple-card__badge--purple">LỢI THẾ 04 • BẢN LĨNH NGƯỜI LÀM NGHỀ</div>
+          <h3 class="apple-card__title">ĐỨNG RA CHỊU TRÁCH&nbsp;NHIỆM</h3>
+          <ul class="direct-bullets">
+            <li><b>Không núp bóng tài khoản vô danh:</b> Người dám đưa khuôn mặt mình ra trước ống kính là người dám đứng ra bảo đảm cho dịch vụ và cơ sở của&nbsp;mình.</li>
+            <li><b>Xóa sạch nghi ngại lừa đảo:</b> Khách hàng tìm dịch vụ nghiêm túc rất sợ tài khoản ảo. Nhìn thấy người chủ đĩnh đạc nói chuyện, khách tự khắc thấy an&nbsp;tâm.</li>
+            <li><b>Uy tín gắn liền vào con người:</b> Thuật toán mạng xã hội có thể đổi, nhưng một khi khách đã quen mặt và quý tính cách, họ sẽ chủ động tìm đến Zalo nhờ tư&nbsp;vấn.</li>
+          </ul>
+        </div>
+
+        <!-- Lợi thế 05 -->
+        <div class="apple-card">
+          <div class="apple-card__icon">📐</div>
+          <div class="apple-card__badge apple-card__badge--rose">LỢI THẾ 05 • GÓC QUAY 1 SẢI TAY</div>
+          <h3 class="apple-card__title">SETUP TỐI GIẢN TẠI BÀN LÀM&nbsp;VIỆC</h3>
+          <ul class="direct-bullets">
+            <li><b>Không phụ thuộc vào ai:</b> Chỉ cần điện thoại đặt ngang tầm mắt cách một sải tay và 1 cây đèn ánh sáng ấm. Bạn hoàn toàn tự bấm máy kiểm soát khung&nbsp;hình.</li>
+            <li><b>Bất kể nắng mưa hay tiệm đông:</b> Không cần chọn giờ vắng khách hay canh thời tiết. Chỉ cần 1m² bàn làm việc, đóng cửa phòng lại là sáng sớm hay tối muộn đều quay&nbsp;được.</li>
+            <li><b>Âm thanh sạch sẽ và rõ nét:</b> Ngồi yên cạnh micro giúp giọng nói ấm áp, tròn vành rõ chữ, không bị tạp âm gió máy hay tiếng bước chân làm át lời&nbsp;nói.</li>
+          </ul>
+        </div>
+
+        <!-- Lợi thế 06 -->
+        <div class="apple-card">
+          <div class="apple-card__icon">⏱️</div>
+          <div class="apple-card__badge apple-card__badge--blue">LỢI THẾ 06 • TỐC ĐỘ NỘI DUNG ĐỀU ĐẶN</div>
+          <h3 class="apple-card__title">QUAY TỪNG CÂU NHẸ&nbsp;TÊNH</h3>
+          <ul class="direct-bullets">
+            <li><b>Kỹ thuật Single-line ngắt từng câu:</b> Đọc nhẩm một ý trong đầu, nhìn vào ống kính nói dứt khoát 1 câu rồi bấm dừng, không bao giờ phải học thuộc lòng cả&nbsp;bài.</li>
+            <li><b>Xóa sạch nỗi sợ nói vấp:</b> Sai câu nào nói lại ngay câu đó. Lúc dựng trên CapCut chỉ cần ghép nối các nhịp nói lại là video mượt mà, không áp&nbsp;lực.</li>
+            <li><b>Một buổi quay nội dung cả tuần:</b> Chuẩn bị sẵn 5 đến 7 câu hỏi khách ghé tiệm hay hỏi nhất. Ngồi 1 tiếng là trả lời xong hết cho cả tuần, nhẹ&nbsp;tênh.</li>
+          </ul>
         </div>
       </div>
     </div>
