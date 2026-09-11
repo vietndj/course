@@ -109,6 +109,8 @@
       --cl-amber-tint:      #fffbeb;
       --cl-rose:            #e11d48;
       --cl-rose-tint:       #fff1f2;
+      --cl-purple:          #7c3aed;
+      --cl-purple-tint:     #f5f3ff;
 
       --cl-radius-sm:       8px;
       --cl-radius-md:       14px;
@@ -292,11 +294,23 @@
     /* ═══ 5. CARDS & INTERACTIVE COMPONENTS ═══ */
     .apple-cards-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
       gap: 24px;
       width: 100%;
       margin-top: 32px;
       text-align: left;
+    }
+
+    .apple-cards-grid--2cols {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (max-width: 768px) {
+      .apple-cards-grid,
+      .apple-cards-grid--2cols {
+        grid-template-columns: 1fr;
+        gap: 18px;
+      }
     }
 
     .apple-card {
@@ -310,6 +324,7 @@
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
+      height: 100%;
     }
 
     .apple-card:hover {
@@ -354,6 +369,51 @@
     .apple-card__badge--amber {
       background: var(--cl-amber-tint);
       color: var(--cl-amber);
+    }
+
+    .apple-card__badge--purple {
+      background: var(--cl-purple-tint);
+      color: var(--cl-purple);
+    }
+
+    /* Crisp Bullet List within Cards (Chuẩn walkandtalk.html) */
+    .direct-bullets {
+      list-style: none;
+      padding: 0;
+      margin: 16px 0 0 0;
+      text-align: left;
+      flex-grow: 1;
+    }
+
+    .direct-bullets li {
+      position: relative;
+      padding-left: 22px;
+      margin-bottom: 12px;
+      font-size: 15px;
+      line-height: 1.72;
+      color: var(--cl-text-body);
+      text-wrap: pretty;
+    }
+
+    .direct-bullets li:last-child {
+      margin-bottom: 0;
+    }
+
+    .direct-bullets li::before {
+      content: "•";
+      position: absolute;
+      left: 4px;
+      top: 0;
+      color: var(--cl-accent);
+      font-weight: 700;
+      font-size: 18px;
+      line-height: 1.4;
+    }
+
+    .direct-bullets li b {
+      color: var(--cl-text-base);
+      font-family: var(--font-display-long);
+      font-weight: 600;
     }
 
     .apple-card__title {
@@ -843,7 +903,7 @@
 
   <!-- ═══ KHỐI 1: HERO (KHỞI ĐẦU CHO HỌC VIÊN MỚI) ═══ -->
   <section class="cl-zebra-section cl-zebra--light" id="sec-hero">
-    <div class="cl-sec-container apple-reveal">
+    <div class="cl-sec-container cl-sec-container--wide apple-reveal">
       <div class="cl-badge">BÀI HỌC THỰC TẾ • GIÁO TRÌNH HỌC VIÊN 2026</div>
       <h1 class="title-short">TÁCH HÌNH KHỎI TIẾNG<br>ĐỂ BẮT ĐẦU VIDEO</h1>
       <p class="editorial-hook">"Ngồi trước ống kính khi chưa quen rất dễ lúng túng cơ mặt. Tách riêng phần tiếng và phần hình: bạn nói bằng giọng mộc mạc nhất trong phòng tĩnh, rồi lấy hình ảnh đời thực phủ lên."</p>
@@ -859,30 +919,104 @@
         </ul>
       </div>
 
-      <div class="apple-cards-grid" style="margin-top: 16px;">
+      <!-- 8 LỢI THẾ CỐT TỬ CỦA ĐỊNH DẠNG VOICE-OVER -->
+      <div class="cl-badge" style="margin-top: 40px; margin-bottom: 8px;">08 LỢI THẾ CỐT TỬ • HÌNH CHẠY TIẾNG DẪN</div>
+      
+      <div class="apple-cards-grid apple-cards-grid--2cols" style="margin-top: 16px;">
+        <!-- Lợi thế 1 -->
         <div class="apple-card">
-          <div class="apple-card__badge apple-card__badge--emerald">LỢI THẾ 01</div>
-          <h3 class="apple-card__title">KHÔNG CẦN LỘ&nbsp;MẶT</h3>
-          <div class="apple-card__desc" style="display: flex; flex-direction: column; gap: 6px;">
-            <div>• Bỏ qua trang điểm, canh góc máy và diễn nét&nbsp;mặt.</div>
-            <div>• Thu âm trong phòng tĩnh với giọng nói thoải mái&nbsp;nhất.</div>
-          </div>
+          <div class="apple-card__icon">🙈</div>
+          <div class="apple-card__badge apple-card__badge--emerald">LỢI THẾ 01 • TÂM LÝ &amp; NGOẠI HÌNH</div>
+          <h3 class="apple-card__title">XÓA ÁP LỰC LÊN&nbsp;HÌNH</h3>
+          <ul class="direct-bullets">
+            <li><b>Không cần trang điểm hay dọn phòng:</b> Không lo quần áo, không phải canh góc mặt đẹp, không sợ ánh mắt nhìn chằm chằm vào ống kính làm cơ mặt bị đơ&nbsp;cứng.</li>
+            <li><b>Nhắm mắt lại vẫn làm được:</b> Chỉ cần ngồi một góc tĩnh, nhắm mắt lại và nói bằng đúng chất giọng mộc mạc thường ngày như đang ngồi uống chén trà tâm sự với bạn&nbsp;bè.</li>
+            <li><b>Giữ nguyên phẩm giá người làm nghề:</b> Người có chuyên môn rất sợ bị xem là "lên mạng làm màu, diễn trò". Rút lui về sau khung hình giúp bạn xuất hiện đàng hoàng và tự&nbsp;nhiên.</li>
+          </ul>
         </div>
+
+        <!-- Lợi thế 2 -->
         <div class="apple-card">
-          <div class="apple-card__badge apple-card__badge--blue">LỢI THẾ 02</div>
-          <h3 class="apple-card__title">THU ÂM LẠI TÙY&nbsp;Ý</h3>
-          <div class="apple-card__desc" style="display: flex; flex-direction: column; gap: 6px;">
-            <div>• Vấp câu nào dừng lại 2 giây bấm thu lại ngay câu&nbsp;đó.</div>
-            <div>• Làm chủ 100% phần âm thanh trước khi bắt đầu dựng&nbsp;hình.</div>
-          </div>
+          <div class="apple-card__icon">✂️</div>
+          <div class="apple-card__badge apple-card__badge--blue">LỢI THẾ 02 • KIỂM SOÁT ÂM THANH</div>
+          <h3 class="apple-card__title">THU ÂM KHÔNG SỢ&nbsp;VẤP</h3>
+          <ul class="direct-bullets">
+            <li><b>Vấp câu nào thu lại ngay câu đó:</b> Không giống như quay trực diện hỏng một chữ là phải bấm quay lại từ đầu cả đoạn dài khiến càng nói càng căng&nbsp;thẳng.</li>
+            <li><b>Thu từng câu ngắn theo nhịp thở:</b> Đọc từng câu dứt khoát 5–8 giây. Vấp chỗ nào dừng lại 2 giây bấm thu lại câu đó, cắt bỏ sạch tiếng ngập ngừng trước khi ghép&nbsp;hình.</li>
+            <li><b>Bắt trọn giọng nói ấm nhất:</b> Bạn có thể thu âm lúc 11 giờ đêm khi cả nhà đã ngủ. Giọng lúc đó là giọng thật nhất, trầm ấm và gần gũi, không bị pha tạp bởi sự diễn&nbsp;xuất.</li>
+          </ul>
         </div>
+
+        <!-- Lợi thế 3 -->
         <div class="apple-card">
-          <div class="apple-card__badge apple-card__badge--amber">LỢI THẾ 03</div>
-          <h3 class="apple-card__title">TẬN DỤNG CẢNH CÓ&nbsp;SẴN</h3>
-          <div class="apple-card__desc" style="display: flex; flex-direction: column; gap: 6px;">
-            <div>• Bàn trà, bàn gõ phím, vệt nắng cửa sổ đều là tư&nbsp;liệu.</div>
-            <div>• Cầm điện thoại quay tĩnh 6–8 giây, không tốn thêm chi&nbsp;phí.</div>
-          </div>
+          <div class="apple-card__icon">☕</div>
+          <div class="apple-card__badge apple-card__badge--amber">LỢI THẾ 03 • KHO TƯ LIỆU CÓ SẴN</div>
+          <h3 class="apple-card__title">TẬN DỤNG CẢNH ĐỜI&nbsp;THƯỜNG</h3>
+          <ul class="direct-bullets">
+            <li><b>Không tốn tiền dựng trường quay:</b> Bàn làm việc, ly trà bốc khói, tiếng lách cách gõ phím, vệt nắng bên cửa sổ... đều trở thành khung hình điện ảnh giàu cảm&nbsp;xúc.</li>
+            <li><b>Cầm máy quay 5 giây để dành:</b> Thấy khoảnh khắc nào ưng ý quanh mình thì cầm điện thoại lên quay tĩnh 6–8 giây lưu vào máy, gom dần thành một kho cảnh dự&nbsp;trữ.</li>
+            <li><b>Mắt người xem được thư thái:</b> Khán giả không bị ai dí sát mặt để giảng giải. Mắt họ được ngắm nhìn các chuyển động đời thực êm ả, giảm triệt để cảm giác bị bán&nbsp;hàng.</li>
+          </ul>
+        </div>
+
+        <!-- Lợi thế 4 -->
+        <div class="apple-card">
+          <div class="apple-card__icon">⚡</div>
+          <div class="apple-card__badge apple-card__badge--purple">LỢI THẾ 04 • TỐC ĐỘ &amp; TÍNH BỀN BỈ</div>
+          <h3 class="apple-card__title">LÀM ĐỀU NHẸ&nbsp;TÊNH</h3>
+          <ul class="direct-bullets">
+            <li><b>Không bị kiệt sức:</b> Quay video trực diện rất hao tổn năng lượng, làm 1–2 video là nản. Voice-over bạn có thể sản xuất đều đặn mỗi ngày 1 video chỉ trong 15–20&nbsp;phút.</li>
+            <li><b>Tách rời thời gian quay và thời gian nói:</b> Ban ngày rảnh lúc nào thì quay vài shot cảnh lúc đó; đêm về chỉ cần 5 phút thu âm là xong phần xương sống của&nbsp;video.</li>
+            <li><b>Định dạng vạn năng cho mọi nghề:</b> Dù làm thợ may, mở quán cà phê, bác sĩ, kỹ sư hay kinh doanh tự do, chỉ cần nói đúng việc có thật là video chạm đến lòng&nbsp;người.</li>
+          </ul>
+        </div>
+
+        <!-- Lợi thế 5 -->
+        <div class="apple-card">
+          <div class="apple-card__icon">♻️</div>
+          <div class="apple-card__badge apple-card__badge--rose">LỢI THẾ 05 • TÁI SỬ DỤNG TƯ LIỆU</div>
+          <h3 class="apple-card__title">1 CẢNH DÙNG NHIỀU&nbsp;LẦN</h3>
+          <ul class="direct-bullets">
+            <li><b>Một kho cảnh nuôi sống hàng chục video:</b> Một góc quay đôi bàn tay pha trà hay màn hình gõ phím hôm nay có thể làm nền cho câu chuyện nghề nghiệp, ngày mai lại dùng làm nền cho bài học về sự kiên&nbsp;nhẫn.</li>
+            <li><b>Không bao giờ cạn tư liệu dựng:</b> Cứ rảnh tay là bấm máy 6 giây cất vào thư mục. Khi có ý tưởng mới, chỉ cần 3 phút thu âm rồi bốc các shot hình có sẵn thả vào timeline là xong ngay một&nbsp;video.</li>
+            <li><b>Tích lũy tài sản hình ảnh cá nhân:</b> Càng làm lâu, kho hình ảnh đời thực của bạn càng dày dặn. Bạn không bao giờ rơi vào cảnh ngồi ôm đầu bế tắc: <i>"Hôm nay biết quay cái gì bây&nbsp;giờ?"</i>.</li>
+          </ul>
+        </div>
+
+        <!-- Lợi thế 6 -->
+        <div class="apple-card">
+          <div class="apple-card__icon">🍵</div>
+          <div class="apple-card__badge apple-card__badge--emerald">LỢI THẾ 06 • TÂM LÝ HỌC KHÁN GIẢ</div>
+          <h3 class="apple-card__title">HẠ MÀN PHÒNG&nbsp;THỦ</h3>
+          <ul class="direct-bullets">
+            <li><b>Xóa sạch cảm giác sắp bị bán hàng:</b> Thấy một khuôn mặt dí sát camera nói to, não người xem tự động bật khiên đề phòng: <i>"Lại chuẩn bị dạy đời hoặc chốt đơn đây"</i>. Nhưng một giọng trầm ấm thong dong khiến họ thả lỏng và chịu ngồi lại lắng&nbsp;nghe.</li>
+            <li><b>Không mang tâm thế đứng trên bục giảng:</b> Bạn không nhìn chằm chằm vào mắt họ để giảng giải đạo lý. Bạn chỉ đang là người làm nghề ngồi xuống kéo chiếc ghế, vừa uống chén trà vừa bộc bạch những trăn trở có&nbsp;thật.</li>
+            <li><b>Chạm sâu nhờ lời nói thủ thỉ 1-1:</b> Đặt mic sát miệng, âm thanh trầm ấm rót vào tai tạo cảm giác như hai người đang ngồi cùng bàn. Người nghe cảm thấy như chính tâm trí mình đang tự ngẫm ra câu chuyện&nbsp;đó.</li>
+          </ul>
+        </div>
+
+        <!-- Lợi thế 7 -->
+        <div class="apple-card">
+          <div class="apple-card__icon">📝</div>
+          <div class="apple-card__badge apple-card__badge--blue">LỢI THẾ 07 • CHUYỂN THỂ TÀI NGUYÊN</div>
+          <h3 class="apple-card__title">TẬN DỤNG BÀI VIẾT&nbsp;CŨ</h3>
+          <ul class="direct-bullets">
+            <li><b>Không tốn công nghĩ kịch bản mới:</b> Người làm nghề thường có sẵn rất nhiều bài viết hay trên Facebook, ghi chú điện thoại hoặc nhật ký công việc. Bạn không cần học cách viết kịch bản quay phim cầu&nbsp;kỳ.</li>
+            <li><b>Bê nguyên bài viết vào phòng thu:</b> Mở lại một status cũ được nhiều người tâm đắc, ngồi góc bàn bật ghi âm đọc lại trong 60 giây, rồi phủ vài góc máy đời thực lên là có ngay một video chất lượng cao mà không tốn chất&nbsp;xám.</li>
+            <li><b>Cứu tinh cho người ngại viết kịch bản:</b> Bạn chỉ cần tập trung vào chuyên môn thật ngoài đời; mọi câu chữ bạn từng đúc kết đều biến thành tài sản video triệu view chỉ sau vài phút thu&nbsp;âm.</li>
+          </ul>
+        </div>
+
+        <!-- Lợi thế 8 -->
+        <div class="apple-card">
+          <div class="apple-card__icon">🎞️</div>
+          <div class="apple-card__badge apple-card__badge--amber">LỢI THẾ 08 • CHIỀU SÂU THỊ GIÁC</div>
+          <h3 class="apple-card__title">HÌNH TIẾNG ĐỐI&nbsp;THOẠI</h3>
+          <ul class="direct-bullets">
+            <li><b>Thoát khỏi bẫy "nói gì chiếu nấy":</b> Người mới làm video thường bị bệnh đọc câu nào thì vội dí hình câu đó khiến video bị vụn vặt và trẻ con. Voice-over cho phép bạn tạo ra hai dòng chảy độc lập nhưng nâng đỡ&nbsp;nhau.</li>
+            <li><b>Tạo sự liên tưởng sâu sắc:</b> Giọng đọc đang nói về sự cô đơn và bền bỉ của người bước qua tuổi 30, nhưng mắt người xem lại đang nhìn đôi bàn tay tỉ mẩn lau một chiếc máy cũ. Khán giả tự kết nối và tự hiểu thông&nbsp;điệp.</li>
+            <li><b>Khiến người xem bấm lưu video:</b> Chính sự đối thoại ngầm giữa lời nói sâu lắng và hình ảnh đời thực tạo nên chất điện ảnh riêng biệt, khiến người xem có cảm xúc mạnh và chủ động bấm lưu lại để xem đi xem&nbsp;lại.</li>
+          </ul>
         </div>
       </div>
     </div>
