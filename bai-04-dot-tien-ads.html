@@ -1,0 +1,1938 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Bài Tập 04: Làm Video Thoát Khỏi Bẫy Nghiện Ads & Kéo Khách Tự Nhiên | FEDU Offline</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700;800&family=Playfair+Display:ital,wght@1,400;1,600&display=swap" rel="stylesheet">
+  
+  <style>
+    /* ═══ 1. FONT DECLARATIONS (Local Repo, System & R2 Fallbacks) ═══ */
+    @font-face {
+      font-family: 'FD Aeonik Extended';
+      src: url('./fonts/FDAeonikExtended-Bold.woff2') format('woff2'),
+           url('./fonts/FDAeonikExtended-Bold.ttf') format('truetype'),
+           url('/Users/vietmac/Library/Fonts/FDAeonikExtended-Bold.otf') format('opentype'),
+           local('FD Aeonik Extended Bold');
+      font-weight: 700;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'FD Aeonik';
+      src: url('./fonts/FDAeonikRegular.ttf') format('truetype'),
+           url('./assets/fonts/FDAeonikRegular.ttf') format('truetype'),
+           url('/Users/vietmac/Library/Fonts/FDAeonikRegular.ttf') format('truetype'),
+           local('FD Aeonik Regular'), local('FDAeonikRegular');
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'FD Aeonik';
+      src: url('./fonts/FDAeonikExtended-SemiBold.ttf') format('truetype'),
+           url('/Users/vietmac/Library/Fonts/FDAeonikExtended-SemiBold.otf') format('opentype'),
+           local('FD Aeonik SemiBold');
+      font-weight: 600;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'FD Aeonik';
+      src: url('./fonts/FDAeonikBold.ttf') format('truetype'),
+           url('/Users/vietmac/Library/Fonts/FDAeonikBold.ttf') format('truetype'),
+           local('FD Aeonik Bold'), local('FDAeonikBold');
+      font-weight: 700;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Tiempos Text';
+      src: url('./fonts/FDTiemposText-Regular.otf') format('opentype'),
+           url('/Users/vietmac/Library/Fonts/FDTiemposText-Regular.otf') format('opentype'),
+           local('Tiempos Text Regular'), local('FDTiemposText-Regular');
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Tiempos Text';
+      src: url('./fonts/FDTiemposText-Medium.otf') format('opentype'),
+           url('/Users/vietmac/Library/Fonts/FDTiemposText-Medium.otf') format('opentype'),
+           local('Tiempos Text Medium'), local('FDTiemposText-Medium');
+      font-weight: 500;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Tiempos Text';
+      src: url('./fonts/FDTiemposText-RegularItalic.otf') format('opentype'),
+           url('/Users/vietmac/Library/Fonts/FDTiemposText-RegularItalic.otf') format('opentype'),
+           local('Tiempos Text Regular Italic'), local('FDTiemposText-RegularItalic');
+      font-weight: 400;
+      font-style: italic;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'SVN-Integral';
+      src: url('./fonts/SVN-IntegralCF-Regular.ttf') format('truetype'),
+           url('./assets/fonts/SVN-IntegralCF-Regular.ttf') format('truetype'),
+           local('SVN-Integral CF Regular');
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    /* ═══ 2. DESIGN TOKENS (30ngayviral.fedu.vn Light Theme) ═══ */
+    :root {
+      --cl-bg:          #ffffff;
+      --cl-tint:        #f8fafc;
+      --cl-card:        #ffffff;
+      --cl-card-muted:  #f1f5f9;
+      --cl-accent:      #1a73e8;
+      --cl-accent-tint: rgba(26, 115, 232, 0.08);
+      --cl-accent-text: #ffffff;
+      --cl-line:        rgba(0, 0, 0, 0.07);
+      --cl-line-strong: rgba(0, 0, 0, 0.14);
+      --cl-text-base:   #090d16; /* Slate 950 (Tương phản 18.8:1) */
+      --cl-text-body:   #0f172a; /* Slate 900 (Mực in WCAG AAA 16.5:1) */
+      --cl-text-muted:  #475569; /* Slate 600 */
+      --cl-danger:      #dc2626;
+      --cl-danger-bg:   #fef2f2;
+      --cl-success:     #16a34a;
+      --cl-success-bg:  #f0fdf4;
+      --cl-amber:       #d97706;
+      --cl-amber-bg:    #fffbeb;
+      --cl-purple:      #7c3aed;
+      --cl-purple-bg:   #f5f3ff;
+
+      /* Radii */
+      --cl-radius-lg:   24px;
+      --cl-radius-md:   16px;
+      --cl-radius-sm:   10px;
+      --cl-radius-full: 9999px;
+
+      /* Typography Stacks */
+      --font-display-short: 'FD Aeonik Extended', 'SVN-Integral', 'Inter', -apple-system, sans-serif;
+      --font-display-long:  'FD Aeonik', 'Inter', -apple-system, sans-serif;
+      --font-body:          'Tiempos Text', 'Inter', Georgia, serif;
+      --font-editorial:     'Tiempos Text', 'Playfair Display', Georgia, serif;
+      --font-mono:          'JetBrains Mono', monospace;
+
+      /* Apple Motion Physics Curves */
+      --apple-spring: cubic-bezier(0.25, 1, 0.35, 1.05);
+      --apple-ease:   cubic-bezier(0.16, 1, 0.3, 1);
+      --apple-hover:  cubic-bezier(0.2, 0.9, 0.3, 1.08);
+    }
+
+    /* ═══ 3. RESET & BASE ═══ */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background-color: var(--cl-bg);
+      color: var(--cl-text-base);
+      font-family: var(--font-body);
+    }
+
+    body {
+      overflow-x: clip;
+      min-height: 100vh;
+      line-height: 1.7;
+      background-color: var(--cl-bg);
+    }
+
+    /* ═══ 4. TOP STICKY NAV BAR ═══ */
+    .top-nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--cl-line);
+      padding: 12px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+    .top-nav__brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .top-nav__badge {
+      background: var(--cl-text-base);
+      color: #fff;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 800;
+      padding: 5px 12px;
+      border-radius: var(--cl-radius-sm);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+    .top-nav__title {
+      font-family: var(--font-display-long);
+      font-size: 14.5px;
+      font-weight: 700;
+      color: var(--cl-text-base);
+    }
+    .top-nav__links {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .top-nav__link {
+      font-family: var(--font-display-long);
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--cl-text-muted);
+      text-decoration: none;
+      padding: 6px 12px;
+      border-radius: var(--cl-radius-sm);
+      background: var(--cl-tint);
+      border: 1px solid var(--cl-line);
+      transition: all 0.2s var(--apple-ease);
+    }
+    .top-nav__link:hover {
+      color: var(--cl-accent);
+      border-color: var(--cl-accent);
+      background: var(--cl-accent-tint);
+    }
+    .top-nav__link--hub {
+      background: var(--cl-accent);
+      color: #ffffff;
+      border-color: var(--cl-accent);
+      font-weight: 700;
+    }
+    .top-nav__link--hub:hover {
+      background: #1557b0;
+      color: #ffffff;
+    }
+
+    /* ═══ 5. VIEWPORT-FRAMED ZEBRA SECTIONS ═══ */
+    /* 1 Khối = 1 Màn Hình = 1 Nội Dung (100dvh) */
+    .cl-zebra-section {
+      width: 100%;
+      min-height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      padding: 90px 24px;
+      box-sizing: border-box;
+      transition: background-color 0.3s ease;
+      scroll-margin-top: 60px;
+    }
+
+    .cl-zebra--light {
+      background-color: var(--cl-bg);
+    }
+
+    .cl-zebra--tint {
+      background-color: var(--cl-tint);
+      border-top: 1px solid var(--cl-line);
+      border-bottom: 1px solid var(--cl-line);
+    }
+
+    .cl-sec-container {
+      width: 100%;
+      max-width: 860px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .cl-sec-container--wide {
+      max-width: 1120px;
+    }
+
+    .cl-sec-container--narrow {
+      max-width: 740px;
+    }
+
+    .cl-sec-container--left {
+      align-items: flex-start;
+      text-align: left;
+    }
+
+    /* ═══ 6. TYPOGRAPHY & HEADINGS ═══ */
+    .cl-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--cl-accent);
+      background: var(--cl-accent-tint);
+      border: 1px solid rgba(26, 115, 232, 0.18);
+      padding: 6px 16px;
+      border-radius: var(--cl-radius-full);
+      margin-bottom: 20px;
+    }
+
+    .cl-badge--red {
+      color: var(--cl-danger);
+      background: var(--cl-danger-bg);
+      border-color: rgba(220, 38, 38, 0.2);
+    }
+    .cl-badge--amber {
+      color: var(--cl-amber);
+      background: var(--cl-amber-bg);
+      border-color: rgba(217, 119, 6, 0.2);
+    }
+    .cl-badge--purple {
+      color: var(--cl-purple);
+      background: var(--cl-purple-bg);
+      border-color: rgba(124, 58, 237, 0.2);
+    }
+    .cl-badge--green {
+      color: var(--cl-success);
+      background: var(--cl-success-bg);
+      border-color: rgba(22, 163, 74, 0.2);
+    }
+
+    /* Tiêu đề ngắn <= 8 từ: BẮT BUỘC 100% IN HOA */
+    .title-short {
+      font-family: var(--font-display-short);
+      font-weight: 700;
+      font-size: clamp(26px, 3.8vw, 42px);
+      line-height: 1.2;
+      letter-spacing: -0.01em;
+      text-transform: uppercase;
+      color: var(--cl-text-base);
+      margin-bottom: 18px;
+      text-wrap: balance;
+    }
+
+    /* Tiêu đề dài / câu hỏi > 8 từ: FD Aeonik SemiBold */
+    .title-long {
+      font-family: var(--font-display-long);
+      font-weight: 600;
+      font-size: clamp(22px, 3.2vw, 36px);
+      line-height: 1.35;
+      letter-spacing: -0.015em;
+      color: var(--cl-text-base);
+      margin-bottom: 20px;
+      text-wrap: balance;
+    }
+
+    .editorial-hook {
+      font-family: var(--font-editorial);
+      font-style: italic;
+      font-size: clamp(17px, 2.2vw, 21px);
+      line-height: 1.6;
+      color: var(--cl-accent);
+      margin-bottom: 24px;
+      max-width: 720px;
+    }
+
+    .cl-body {
+      font-size: clamp(15.5px, 1.6vw, 17.5px);
+      color: var(--cl-text-body);
+      line-height: 1.8;
+      margin-bottom: 28px;
+      max-width: 740px;
+    }
+
+    /* ═══ 7. SPECIAL PEDAGOGY MODULES ═══ */
+    /* Exercise Prompt Card (Khối Đề Bài 100dvh) */
+    .exercise-hero-card {
+      background: #ffffff;
+      border: 1px solid var(--cl-line);
+      border-radius: var(--cl-radius-lg);
+      padding: 36px 40px;
+      width: 100%;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.04);
+      text-align: left;
+      margin-bottom: 24px;
+      border-left: 6px solid var(--cl-accent);
+    }
+    .exercise-meta-pills {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+    .exercise-meta-pill {
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      font-weight: 700;
+      padding: 5px 12px;
+      border-radius: var(--cl-radius-sm);
+      background: var(--cl-tint);
+      border: 1px solid var(--cl-line);
+      color: var(--cl-text-muted);
+    }
+    .exercise-prompt-quote {
+      font-family: var(--font-display-long);
+      font-size: clamp(20px, 2.8vw, 27px);
+      font-weight: 700;
+      line-height: 1.45;
+      color: var(--cl-text-base);
+      margin-bottom: 16px;
+    }
+    .exercise-prompt-sub {
+      font-size: 15px;
+      color: var(--cl-text-muted);
+      line-height: 1.65;
+    }
+
+    /* Open Thinking Box (Để Hở Cho Học Viên Suy Nghĩ) */
+    .thinking-open-card {
+      background: #fafafa;
+      border: 1.5px dashed rgba(26, 115, 232, 0.35);
+      border-radius: var(--cl-radius-lg);
+      padding: 32px 36px;
+      width: 100%;
+      text-align: left;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.02);
+    }
+    .thinking-open-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    .thinking-open-title {
+      font-family: var(--font-display-long);
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--cl-accent);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .thinking-prompts-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .thinking-prompt-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      font-size: 15.5px;
+      color: var(--cl-text-body);
+      line-height: 1.6;
+    }
+    .thinking-prompt-bullet {
+      font-size: 18px;
+      line-height: 1;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    /* Comparison Subcards for Steps 1, 2, 3 */
+    .step-comparison-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      width: 100%;
+      text-align: left;
+      margin-top: 14px;
+    }
+    @media (max-width: 800px) {
+      .step-comparison-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    .step-card {
+      background: #ffffff;
+      border: 1px solid var(--cl-line);
+      border-radius: var(--cl-radius-lg);
+      padding: 28px 24px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+    }
+    .step-card__label {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .step-card__quote {
+      font-family: var(--font-editorial);
+      font-style: italic;
+      font-size: 17px;
+      line-height: 1.6;
+      color: var(--cl-text-base);
+      font-weight: 500;
+      padding: 16px;
+      background: var(--cl-tint);
+      border-radius: var(--cl-radius-sm);
+      border-left: 3px solid var(--cl-accent);
+      margin-bottom: 14px;
+    }
+    .step-card__desc {
+      font-size: 15px;
+      color: var(--cl-text-body);
+      line-height: 1.7;
+    }
+
+    /* Step 4: 3-Cards Adult Friction Triad */
+    .friction-triad-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      width: 100%;
+      text-align: left;
+      margin-top: 16px;
+    }
+    @media (max-width: 900px) {
+      .friction-triad-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    .friction-card {
+      background: #ffffff;
+      border: 1px solid rgba(124, 58, 237, 0.2);
+      border-radius: var(--cl-radius-lg);
+      padding: 26px 22px;
+      box-shadow: 0 4px 20px rgba(124, 58, 237, 0.04);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .friction-card__badge {
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      font-weight: 800;
+      color: var(--cl-purple);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    .friction-card__title {
+      font-family: var(--font-display-long);
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--cl-text-base);
+    }
+    .friction-card__quote {
+      font-family: var(--font-editorial);
+      font-style: italic;
+      font-size: 14.5px;
+      color: var(--cl-text-body);
+      line-height: 1.55;
+      background: var(--cl-purple-bg);
+      padding: 12px 14px;
+      border-radius: var(--cl-radius-sm);
+      border-left: 3px solid var(--cl-purple);
+    }
+    .friction-card__why {
+      font-size: 13.5px;
+      color: var(--cl-text-muted);
+      line-height: 1.55;
+      margin-top: auto;
+    }
+
+    /* Conclusion Box (Phương Án 2.5) */
+    .conclusion-hero-card {
+      background: linear-gradient(135deg, #f5f3ff 0%, #eff6ff 100%);
+      border: 1px solid rgba(124, 58, 237, 0.25);
+      border-radius: var(--cl-radius-lg);
+      padding: 28px 32px;
+      width: 100%;
+      text-align: left;
+      margin-top: 24px;
+      box-shadow: 0 8px 24px rgba(124, 58, 237, 0.05);
+    }
+    .conclusion-hero-badge {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 800;
+      color: var(--cl-purple);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 8px;
+    }
+    .conclusion-hero-text {
+      font-size: 16px;
+      color: var(--cl-text-body);
+      line-height: 1.75;
+    }
+    .conclusion-hero-text strong {
+      color: var(--cl-text-base);
+    }
+
+    /* Final Approved Script List */
+    .final-script-card {
+      background: #ffffff;
+      border: 1px solid var(--cl-line);
+      border-radius: var(--cl-radius-lg);
+      padding: 32px 36px;
+      width: 100%;
+      text-align: left;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.04);
+      margin-top: 16px;
+    }
+    .script-item-row {
+      display: flex;
+      align-items: baseline;
+      gap: 18px;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--cl-line);
+    }
+    .script-item-row:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+    .script-item-row:first-child {
+      padding-top: 0;
+    }
+    @media (max-width: 768px) {
+      .script-item-row {
+        flex-direction: column;
+        gap: 8px;
+      }
+    }
+    .script-badge-tag {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 800;
+      padding: 5px 12px;
+      border-radius: 6px;
+      white-space: nowrap;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .script-badge-tag--c1 { background: rgba(26, 115, 232, 0.1); color: #1a73e8; }
+    .script-badge-tag--c2 { background: rgba(217, 119, 6, 0.1); color: #d97706; }
+    .script-badge-tag--c3 { background: rgba(124, 58, 237, 0.1); color: #7c3aed; }
+    .script-badge-tag--c4 { background: rgba(220, 38, 38, 0.1); color: #dc2626; }
+    .script-badge-tag--c5 { background: rgba(22, 163, 74, 0.1); color: #16a34a; }
+
+    .script-line-voice {
+      font-family: var(--font-editorial);
+      font-style: italic;
+      font-size: 16.5px;
+      font-weight: 600;
+      color: var(--cl-text-base);
+      line-height: 1.6;
+      flex: 1;
+    }
+    .script-line-intent-pill {
+      font-size: 12.5px;
+      color: var(--cl-text-muted);
+      white-space: nowrap;
+    }
+
+    /* ═══ 8. STORYBOARD BEATS GRID (SCENES 1 TO 5) ═══ */
+    .scene-voice-banner {
+      width: 100%;
+      background: linear-gradient(90deg, #eff6ff 0%, #ffffff 100%);
+      border: 1px solid rgba(26, 115, 232, 0.2);
+      border-radius: var(--cl-radius-md);
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 24px;
+      text-align: left;
+    }
+    .scene-voice-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--cl-accent-tint);
+      color: var(--cl-accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      flex-shrink: 0;
+    }
+    .scene-voice-text {
+      font-family: var(--font-editorial);
+      font-style: italic;
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--cl-text-base);
+      line-height: 1.5;
+    }
+
+    .beats-3-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      width: 100%;
+      text-align: left;
+    }
+    @media (max-width: 960px) {
+      .beats-3-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .beat-card-apple {
+      background: #ffffff;
+      border: 1px solid var(--cl-line);
+      border-radius: var(--cl-radius-lg);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+      transition: transform 0.3s var(--apple-spring), box-shadow 0.3s ease, border-color 0.2s ease;
+    }
+    .beat-card-apple:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 36px -10px rgba(0, 0, 0, 0.08);
+      border-color: rgba(26, 115, 232, 0.35);
+    }
+
+    .beat-media-container {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 9 / 16;
+      background: #090d16;
+      overflow: hidden;
+      cursor: pointer;
+    }
+    .beat-media-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.35s var(--apple-ease);
+      display: block;
+    }
+    .beat-card-apple:hover .beat-media-container img {
+      transform: scale(1.035);
+    }
+    .beat-badge-phase {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      z-index: 2;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 800;
+      padding: 4px 8px;
+      border-radius: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .badge-in { background: #16a34a; color: #ffffff; }
+    .badge-main { background: #d97706; color: #ffffff; }
+    .badge-out { background: #1a73e8; color: #ffffff; }
+
+    .beat-badge-angle {
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+      z-index: 2;
+      background: rgba(9, 13, 22, 0.85);
+      color: #ffffff;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 4px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .beat-body-details {
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      flex: 1;
+    }
+    .beat-title-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .beat-name {
+      font-family: var(--font-display-long);
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--cl-text-base);
+    }
+    .beat-angle-desc {
+      font-size: 11.5px;
+      color: var(--cl-accent);
+      font-weight: 600;
+    }
+
+    .beat-specs-table {
+      width: 100%;
+      font-size: 12px;
+      border-collapse: collapse;
+      background: var(--cl-tint);
+      border-radius: var(--cl-radius-sm);
+      overflow: hidden;
+    }
+    .beat-specs-table tr {
+      border-bottom: 1px solid var(--cl-line);
+    }
+    .beat-specs-table tr:last-child {
+      border-bottom: none;
+    }
+    .beat-specs-table td {
+      padding: 6px 10px;
+    }
+    .beat-specs-table td.col-label {
+      color: var(--cl-text-muted);
+      font-weight: 600;
+      width: 32%;
+    }
+    .beat-specs-table td.col-val {
+      color: var(--cl-text-body);
+      font-weight: 500;
+    }
+
+    .beat-director-note {
+      background: var(--cl-amber-bg);
+      border: 1px dashed rgba(217, 119, 6, 0.35);
+      padding: 10px 12px;
+      border-radius: var(--cl-radius-sm);
+      font-size: 12px;
+      color: #92400e;
+      line-height: 1.5;
+      margin-top: auto;
+    }
+
+    /* Option Switcher for Scene 5 */
+    .opt-switch-tabs {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    .opt-switch-btn {
+      background: #ffffff;
+      border: 1px solid var(--cl-line);
+      color: var(--cl-text-muted);
+      font-family: var(--font-display-long);
+      font-size: 13px;
+      font-weight: 700;
+      padding: 10px 20px;
+      border-radius: var(--cl-radius-sm);
+      cursor: pointer;
+      transition: all 0.2s var(--apple-ease);
+    }
+    .opt-switch-btn.active {
+      background: var(--cl-accent);
+      color: #ffffff;
+      border-color: var(--cl-accent);
+      box-shadow: 0 4px 16px rgba(26, 115, 232, 0.25);
+    }
+    .opt-content-panel {
+      display: none;
+    }
+    .opt-content-panel.active {
+      display: grid;
+    }
+
+    /* ═══ 9. APPLE MOTION & SPRING (ZERO-JANK) ═══ */
+    .apple-reveal {
+      opacity: 0;
+      transform: translate3d(0, 26px, 0);
+      transition: 
+        opacity 0.5s var(--apple-ease),
+        transform 0.58s var(--apple-spring);
+      will-change: opacity, transform;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+    }
+
+    .apple-reveal.is-visible {
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
+      will-change: auto;
+    }
+
+    /* Scroll Hint */
+    .cl-scroll-hint {
+      position: absolute;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--cl-text-muted);
+      opacity: 0.75;
+      text-decoration: none;
+      animation: appleBounce 2s infinite ease-in-out;
+    }
+    @keyframes appleBounce {
+      0%, 100% { transform: translate(-50%, 0); }
+      50% { transform: translate(-50%, 8px); }
+    }
+
+    /* ═══ 10. LIGHTBOX MODAL ═══ */
+    .lightbox {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(9, 13, 22, 0.88);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+    .lightbox.active {
+      display: flex;
+    }
+    .lightbox-card {
+      background: #ffffff;
+      border-radius: var(--cl-radius-lg);
+      max-width: 880px;
+      width: 100%;
+      max-height: 92vh;
+      overflow: hidden;
+      display: flex;
+      gap: 24px;
+      padding: 24px;
+      position: relative;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.35);
+    }
+    @media (max-width: 750px) {
+      .lightbox-card {
+        flex-direction: column;
+        overflow-y: auto;
+      }
+    }
+    .lightbox-img-pane {
+      flex: 1;
+      max-width: 360px;
+      aspect-ratio: 9 / 16;
+      background: #000;
+      border-radius: var(--cl-radius-md);
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .lightbox-img-pane img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+    }
+    .lightbox-info-pane {
+      flex: 1.2;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      overflow-y: auto;
+      text-align: left;
+    }
+    .lightbox-close-btn {
+      position: absolute;
+      top: 14px;
+      right: 16px;
+      background: var(--cl-tint);
+      border: 1px solid var(--cl-line);
+      font-size: 20px;
+      color: var(--cl-text-base);
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .lightbox-close-btn:hover {
+      background: var(--cl-danger);
+      color: #ffffff;
+      border-color: var(--cl-danger);
+    }
+
+    /* ═══ 11. BUTTONS ═══ */
+    .cl-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background: var(--cl-accent);
+      color: #ffffff;
+      font-family: var(--font-display-long);
+      font-weight: 700;
+      font-size: 15.5px;
+      letter-spacing: 0.02em;
+      padding: 16px 36px;
+      border-radius: var(--cl-radius-md);
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 8px 24px rgba(26, 115, 232, 0.22);
+      transition: transform 0.22s var(--apple-spring), box-shadow 0.22s ease, opacity 0.2s ease;
+    }
+    .cl-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 32px rgba(26, 115, 232, 0.32);
+      opacity: 0.96;
+    }
+
+    @media (max-width: 768px) {
+      .cl-zebra-section {
+        padding: 70px 16px;
+      }
+      .exercise-hero-card, .thinking-open-card, .final-script-card {
+        padding: 24px 20px;
+      }
+      .top-nav {
+        padding: 10px 16px;
+      }
+      .top-nav__title {
+        display: none;
+      }
+    }
+  </style>
+<body>
+
+  <!-- ═══ TOP STICKY NAVIGATION BAR ═══ -->
+  <header class="top-nav">
+    <div class="top-nav__brand">
+      <span class="top-nav__badge">FEDU OFFLINE</span>
+      <span class="top-nav__title">Bài Tập 04 • Tiền Quảng Cáo Ăn Hết Tiền Lãi (Chuẩn Tầng 2.5)</span>
+    </div>
+    <nav class="top-nav__links">
+      <a href="9-bai-tap-thuc-hanh.html" class="nav-btn nav-btn--back">← 9 Bài Tập Thực Hành</a>
+      <a href="#sec-de-bai" class="nav-btn">Đề Bài</a>
+      <a href="#sec-cau-hoi" class="nav-btn">Tầng 1 (Safe)</a>
+      <a href="#sec-step-2" class="nav-btn">Tầng 2 (Real)</a>
+      <a href="#sec-step-3" class="nav-btn">Tầng 3 (Raw)</a>
+      <a href="#sec-step-4" class="nav-btn">Tầng 2.5 (Adult Friction)</a>
+      <a href="#sec-script" class="nav-btn">Kịch Bản Đã Chốt</a>
+      <a href="#sec-toi-uu-hook" class="nav-btn nav-btn--accent">⚡ Tối Ưu Hook</a>
+      <a href="#sec-scene-1" class="nav-btn">Cảnh 1</a>
+      <a href="#sec-scene-2" class="nav-btn">Cảnh 2</a>
+      <a href="#sec-scene-3" class="nav-btn">Cảnh 3</a>
+      <a href="#sec-scene-4" class="nav-btn">Cảnh 4</a>
+      <a href="#sec-scene-5" class="nav-btn">Cảnh 5</a>
+      <a href="#sec-wisdom" class="nav-btn">Đúc Kết</a>
+      <button class="nav-btn" onclick="window.print()">🖨️ In Giáo Trình</button>
+    </nav>
+  </header>
+
+  <!-- ═══════════════════════════════════════════════════════════════════
+       KHỐI 1: ĐỀ BÀI RIÊNG BIỆT (100dvh) - ĐỂ HỞ 2 PHÚT SUY NGHĨ
+       ═══════════════════════════════════════════════════════════════════ -->
+  <section class="cl-zebra-section cl-zebra--light" id="sec-de-bai">
+    <div class="cl-sec-container apple-reveal">
+      <div class="cl-badge">FEDU OFFLINE • BÀI TẬP TẠI LỚP #04</div>
+      <h1 class="title-short">BÀI TẬP QUAY CHO NGƯỜI ĐỐT TIỀN QUẢNG CÁO</h1>
+
+      <!-- Thẻ Đề Bài Trọng Tâm -->
+      <div class="exercise-hero-card">
+        <div class="exercise-hero-badge">📌 ĐỀ BÀI TÌNH HUỐNG THỰC CHIẾN TẠI LỚP</div>
+        <p class="exercise-hero-text">
+          "Nạp tiền chạy ads ngày nào cũng trừ ting ting, nạp 10 triệu thì chi phí cắn hết 8 triệu tiền lãi. Tắt ads thì tịt đơn chết đói, mà tiếp tục chạy thì như đang đánh bạc với thuật toán. Làm sao để một người đang phụ thuộc vào quảng cáo trả phí chuyển sang tự làm video kéo traffic tự nhiên bằng niềm tin thật?"
+        </p>
+      </div>
+
+      <!-- 4 Câu Hỏi Gợi Mở Suy Nghĩ (Reflection Prompts) -->
+      <div class="reflection-box">
+        <div class="reflection-box-title">
+          <span>🧠 DÀNH 2 PHÚT SUY NGHĨ: NẾU LÀ BẠN, BẠN SẼ LÀM GÌ?</span>
+          <span style="font-size: 11px; font-weight: 500; color: #64748b;">(Tự vấn trước khi kéo xuống xem hướng dẫn)</span>
+        </div>
+        <div class="reflection-grid">
+          <div class="reflection-item">
+            <span class="reflection-item-num">1</span>
+            <span class="reflection-item-text">Nếu mỗi sáng thức dậy mở điện thoại ra xem số tiền ads bị trừ, cảm giác trong lồng ngực bạn là gì?</span>
+          </div>
+          <div class="reflection-item">
+            <span class="reflection-item-num">2</span>
+            <span class="reflection-item-text">Nếu viện cớ 'tôi đang tối ưu lại tệp khách hàng và test A/B', bạn có dám thừa nhận là mình đang bất lực không biết làm sao để giảm chi phí?</span>
+          </div>
+          <div class="reflection-item">
+            <span class="reflection-item-num">3</span>
+            <span class="reflection-item-text">Tại sao bạn thà chấp nhận mất hàng chục triệu tiền ads mỗi tháng chứ nhất quyết không chịu cầm máy lên tự quay video?</span>
+          </div>
+          <div class="reflection-item">
+            <span class="reflection-item-num">4</span>
+            <span class="reflection-item-text">Nỗi sợ lớn nhất khi bạn xuất hiện tự làm video là sợ không ai xem hay sợ bị chê là quê mùa?</span>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top: 32px;">
+        <a href="#sec-cau-hoi" class="cl-btn">XEM CÁCH GIẢI BÀI TOÁN BẰNG 4 BƯỚC THỰC CHIẾN →</a>
+      </div>
+    </div>
+    <a href="#sec-cau-hoi" class="cl-scroll-hint">
+      <span>Cuộn xuống xem phân tích 4 bước</span>
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 13l5 5 5-5M7 6l5 5 5-5"/></svg>
+    </a>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════════════
+       KHỐI 2: TIÊU ĐỀ CÂU HỎI & BƯỚC 1 (TẦNG 1 • SAFE) (100dvh)
+       ═══════════════════════════════════════════════════════════════════ -->
+  <section class="cl-zebra-section cl-zebra--tint" id="sec-cau-hoi">
+    <div class="cl-sec-container apple-reveal">
+      <div class="cl-badge cl-badge--red">01 / TẦNG 1 • SAFE (ĐÃI BÔI BỀ NỔI)</div>
+      <h2 class="title-long">❓ Cách Để Làm Video Với Đề Bài Này Hấp Dẫn Là Gì?</h2>
+      <h3 class="title-short" style="margin-top: 4px; font-size: clamp(20px, 2.8vw, 30px); color: var(--cl-slate-700);">
+        BƯỚC 1: CÁI MÀ AI CŨNG NGHĨ RA ĐẦU TIÊN
+      </h3>
+      <p class="editorial-hook">
+        "Phản xạ tự nhiên của đa số mọi người khi cầm máy lên là nói đạo lý, hô hào tích cực hoặc dùng văn mẫu để làm màu."
+      </p>
+
+      <div class="step-card step-card--danger">
+        <div class="step-card__label">
+          <span>LỜI THOẠI ĐIỂN HÌNH TẦNG 1 (CÁI BẪY VĂN MẪU)</span>
+          <span style="font-size: 10px; padding: 2px 8px; border-radius: 4px; background: #fee2e2; color: #991b1b;">90% NGƯỜI MỚI MẮC PHẢI</span>
+        </div>
+        <div class="step-card__quote">
+          🎙️ "Hôm nay mình ngồi rà soát lại các chiến dịch quảng cáo và tối ưu hóa chi phí CPM để tăng hiệu quả chuyển đổi."
+        </div>
+        <div class="step-card__desc">
+          <b style="color: var(--cl-danger);">TẠI SAO CÁCH NÀY THẤT BẠI TRÊN VIDEO NGẮN?</b><br>
+          • <b>Dùng thuật ngữ công nghệ để ngụy trang sự bất lực:</b> Nói nghe rất chuyên nghiệp nhưng thực tế là đang loay hoay không lối thoát.<br>• <b>Không chạm vào nỗi đau thật:</b> Khán giả không quan tâm đến thuật ngữ kỹ thuật, họ cần thấy câu chuyện kinh doanh thực tế.<br>• <b>Không có tính nhân văn:</b> Nghe như một bài giảng marketing lý thuyết suông.
+        </div>
+      </div>
+
+      <div style="margin-top: 32px;">
+        <a href="#sec-step-2" class="cl-btn">SANG BƯỚC 2: CỐ GẮNG NÓI THẬT HƠN (TẦNG 2) →</a>
+      </div>
+    </div>
+    <a href="#sec-step-2" class="cl-scroll-hint">
+      <span>Cuộn xuống xem Bước 2</span>
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 13l5 5 5-5M7 6l5 5 5-5"/></svg>
+    </a>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════════════
+       KHỐI 3: BƯỚC 2 (TẦNG 2 • REAL) (100dvh)
+       ═══════════════════════════════════════════════════════════════════ -->
+  <section class="cl-zebra-section cl-zebra--light" id="sec-step-2">
+    <div class="cl-sec-container apple-reveal">
+      <div class="cl-badge cl-badge--amber">02 / TẦNG 2 • REAL (CẢM GIÁC THẬT)</div>
+      <h2 class="title-short">BƯỚC 2: CỐ GẮNG NÓI THẬT HƠN</h2>
+      <p class="editorial-hook">
+        "Khi nhận ra văn mẫu không ai xem, người làm nội dung bắt đầu cố gắng nói thật cảm xúc mệt mỏi và sốt ruột của mình."
+      </p>
+
+      <div class="step-card step-card--warning">
+        <div class="step-card__label">
+          <span>LỜI THOẠI ĐIỂN HÌNH TẦNG 2 (CẢM XÚC BỀ MẶT)</span>
+          <span style="font-size: 10px; padding: 2px 8px; border-radius: 4px; background: #fef3c7; color: #92400e;">BẪY THAN VÃN NÔNG</span>
+        </div>
+        <div class="step-card__quote">
+          🎙️ "Tiền ads mấy tháng nay tăng gấp đôi, nạp vào bao nhiêu ăn sạch tiền lãi bấy nhiêu, càng chạy càng thấy lỗ..."
+        </div>
+        <div class="step-card__desc">
+          <b style="color: var(--cl-amber);">ĐIỂM NGHẼN CỦA TẦNG 2:</b><br>
+          • <b>Than vãn tiền bạc một cách xót xa:</b> Khiến người xem thấy bạn là một người kinh doanh non tay đang thua lỗ.<br>• <b>Chưa bóc trần được căn bệnh gốc rễ:</b> Căn bệnh không phải do Facebook hay TikTok tăng giá ads, mà do bạn không có thương hiệu cá nhân.<br>• <b>Khán giả không thấy được lối ra:</b> Chỉ nghe thấy sự u ám và than thở.
+        </div>
+      </div>
+
+      <div style="margin-top: 32px;">
+        <a href="#sec-step-3" class="cl-btn">SANG BƯỚC 3: NÓI THẬT ĐẾN TRẦN TRỤI (TẦNG 3) →</a>
+      </div>
+    </div>
+    <a href="#sec-step-3" class="cl-scroll-hint">
+      <span>Cuộn xuống xem Bước 3</span>
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 13l5 5 5-5M7 6l5 5 5-5"/></svg>
+    </a>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════════════
+       KHỐI 4: BƯỚC 3 (TẦNG 3 • RAW) (100dvh)
+       ═══════════════════════════════════════════════════════════════════ -->
+  <section class="cl-zebra-section cl-zebra--tint" id="sec-step-3">
+    <div class="cl-sec-container apple-reveal">
+      <div class="cl-badge cl-badge--red">03 / TẦNG 3 • RAW (TRẦN TRỤI THÔ BẠO)</div>
+      <h2 class="title-short">BƯỚC 3: NÓI THẬT ĐẾN TRẦN TRỤI</h2>
+      <p class="editorial-hook">
+        "Kể khổ, phơi bày toàn bộ sự thật bi quan và những con số cay đắng để mong người xem thương hại hoặc chú ý."
+      </p>
+
+      <div class="step-card step-card--danger">
+        <div class="step-card__label">
+          <span>LỜI THOẠI ĐIỂN HÌNH TẦNG 3 (BI LỤY HẠ GIÁ)</span>
+          <span style="font-size: 10px; padding: 2px 8px; border-radius: 4px; background: #fee2e2; color: #991b1b;">BẪY TỰ HẠ THẤP VỊ THẾ</span>
+        </div>
+        <div class="step-card__quote">
+          🎙️ "Lệ thuộc vào quảng cáo như con nghiện. Tắt ads một cái là chết đói ngay. Bắt buộc phải tự làm video kéo khách tự nhiên thôi..."
+        </div>
+        <div class="step-card__desc">
+          <b style="color: var(--cl-danger);">NGUY HIỂM CỦA TẦNG 3 TRẦN TRỤI:</b><br>
+          • <b>Dùng từ ngữ quá nặng nề:</b> Biến bản thân thành kẻ bất lực, tự hạ thấp giá trị doanh nghiệp.<br>• <b>Gây hoang mang cho nhân sự và đối tác:</b> Làm người khác nghi ngờ năng lực quản trị của bạn.<br>• <b>Thiếu tính đĩnh đạc của người làm chủ:</b> Nghe giống như sự cùng đường giãy giụa.
+        </div>
+      </div>
+
+      <div style="margin-top: 32px;">
+        <a href="#sec-step-4" class="cl-btn">SANG BƯỚC 4: ĐIỂM CHẠM VÀNG (TẦNG 2.5) →</a>
+      </div>
+    </div>
+    <a href="#sec-step-4" class="cl-scroll-hint">
+      <span>Cuộn xuống xem Bước 4</span>
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 13l5 5 5-5M7 6l5 5 5-5"/></svg>
+    </a>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════════════
+       KHỐI 5: BƯỚC 4 (TẦNG 2.5 • ADULT FRICTION) (100dvh)
+       ═══════════════════════════════════════════════════════════════════ -->
+  <section class="cl-zebra-section cl-zebra--light" id="sec-step-4">
+    <div class="cl-sec-container cl-sec-container--wide apple-reveal">
+      <div class="cl-badge cl-badge--purple">04 / TẦNG 2.5 • ADULT FRICTION (ĐIỂM CHẠM VÀNG)</div>
+      <h2 class="title-long">
+        Bước 4: Điểm Chạm Đắt Giá — Thể Diện Người Lớn & Nỗi Giằng Xé Của Người Có Nghề
+      </h2>
+      <p class="editorial-hook">
+        "Bóc trần thói quen 5 phút mở app ads một lần như một hành vi đánh bạc để đánh thức quyền tự quyết của người làm chủ."
+      </p>
+
+      <!-- Grid 4 Góc Nhìn Tầng 2.5 -->
+      <div class="step-comparison-grid">
+        <div class="step-card" style="border-left: 4px solid var(--cl-purple);">
+          <div class="step-card__label" style="color: var(--cl-purple);">1. CÁI CỚ NGỤY TRANG (HÀNH VI)</div>
+          <div class="step-card__desc" style="font-size: 14px;">
+            Cứ 5 phút lại bấm sáng màn hình điện thoại kiểm tra báo cáo ads, bấm F5 làm mới liên tục làm ra vẻ bận rộn điều hành, nhưng thực chất là tim đập chân run sợ tiền bay sạch mà không ra đơn.
+          </div>
+        </div>
+
+        <div class="step-card" style="border-left: 4px solid var(--cl-amber);">
+          <div class="step-card__label" style="color: var(--cl-amber);">2. ÁP LỰC THỰC TẾ (KINH DOANH)</div>
+          <div class="step-card__desc" style="font-size: 14px;">
+            Biên lợi nhuận ngày càng mỏng. Nền tảng liên tục siết chính sách và tăng giá thầu. Càng đổ tiền vào thì chỉ có sàn và nền tảng giàu lên, còn mình kiệt quệ.
+          </div>
+        </div>
+
+        <div class="step-card" style="border-left: 4px solid var(--cl-danger);">
+          <div class="step-card__label" style="color: var(--cl-danger);">3. ĐIỂM NGHẼN THỂ DIỆN (CÁI TÔI)</div>
+          <div class="step-card__desc" style="font-size: 14px;">
+            Biết là video organic là con đường sống duy nhất, nhưng lười và ngại. Sợ mình không ăn ảnh, sợ giọng nói không hay, sợ người ta chê cười nên cứ tặc lưỡi nạp thêm tiền chạy tiếp cho nhàn thân.
+          </div>
+        </div>
+
+        <div class="step-card" style="border-left: 4px solid var(--cl-success);">
+          <div class="step-card__label" style="color: var(--cl-success);">4. GIẢI PHÓNG TÂM LÝ (HÀNH ĐỘNG)</div>
+          <div class="step-card__desc" style="font-size: 14px;">
+            Tiền quảng cáo là đi thuê niềm tin, còn video cá nhân là xây tài sản vĩnh viễn. Cầm máy lên quay quy trình thật, nói thật sự thật về sản phẩm. Giành lại quyền tự quyết cho doanh nghiệp của chính mình!
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top: 32px;">
+        <a href="#sec-script" class="cl-btn">XEM BẢN KỊCH BẢN NÓI TRÀ ĐÁ ĐÃ CHỐT →</a>
+      </div>
+    </div>
+    <a href="#sec-script" class="cl-scroll-hint">
+      <span>Cuộn xuống xem Kịch bản nói trà đá</span>
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 13l5 5 5-5M7 6l5 5 5-5"/></svg>
+    </a>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════════════
+       KHỐI 6: KỊCH BẢN NÓI TRÀ ĐÁ ĐÃ CHỐT (100dvh)
+       ═══════════════════════════════════════════════════════════════════ -->
+  <section class="cl-zebra-section cl-zebra--tint" id="sec-script">
+    <div class="cl-sec-container apple-reveal">
+      <div class="cl-badge cl-badge--green">KỊCH BẢN THỰC CHIẾN • 20 - 22 GIÂY</div>
+      <h2 class="title-short">KỊCH BẢN NÓI TRÀ ĐÁ ĐÃ CHỐT</h2>
+      <p class="cl-body">
+        Ngắn gọn, mộc mạc, không văn vẻ, bóc trần đúng tâm lý người lớn và chốt lại bằng hành động đĩnh đạc.
+      </p>
+
+      <div class="script-flow-container">
+        
+        <div class="script-scene-card">
+          <div class="script-scene-header">
+            <span class="script-scene-num">Cảnh 1 (4s)</span>
+          </div>
+          <div class="script-scene-dialogue">
+            "Cứ 5 phút lại mở app quảng cáo kiểm tra một lần... nhìn qua thì tưởng bận rộn điều hành, nhưng thực ra là đang run vì tiền nạp vào ăn gần hết tiền lãi."
+          </div>
+        </div>
+        <div class="script-scene-card">
+          <div class="script-scene-header">
+            <span class="script-scene-num">Cảnh 2 (4s)</span>
+          </div>
+          <div class="script-scene-dialogue">
+            "Mấy tháng nay chi phí ads tăng gấp đôi. Tiền nạp vào tài khoản thì trừ đều đặn từng ngày, mà đơn hàng thì cứ lẹt đẹt."
+          </div>
+        </div>
+        <div class="script-scene-card">
+          <div class="script-scene-header">
+            <span class="script-scene-num">Cảnh 3 (5s)</span>
+          </div>
+          <div class="script-scene-dialogue">
+            "Nhiều lúc tự an ủi: Thôi ráng tối ưu thêm tệp đối tượng. Nhưng ngồi tính lại mới giật mình: Tiền chạy ads thực chất là khoản tiền phạt vì mình lười không chịu xây niềm tin thật."
+          </div>
+        </div>
+        <div class="script-scene-card">
+          <div class="script-scene-header">
+            <span class="script-scene-num">Cảnh 4 (5s)</span>
+          </div>
+          <div class="script-scene-dialogue">
+            "Biết là phải tự làm video để kéo traffic tự nhiên, nhưng lại sợ ống kính, ngại người quen phán xét. Cứ tặc lưỡi nạp tiền tiếp cho nhàn, để rồi ôm nợ vào người."
+          </div>
+        </div>
+        <div class="script-scene-card">
+          <div class="script-scene-header">
+            <span class="script-scene-num">Cảnh 5 (4s)</span>
+          </div>
+          <div class="script-scene-dialogue">
+            "Không thể dựa mãi vào việc đi thuê quảng cáo. Tự cầm máy lên, quay thật, nói thật, xây dựng tài sản cho chính mình!"
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top: 32px;">
+        <a href="#sec-toi-uu-hook" class="cl-btn">XEM NÂNG CẤP THỰC CHIẾN: TỐI ƯU HOOK 2 GIÂY ĐẦU →</a>
+      </div>
+    </div>
+    <a href="#sec-toi-uu-hook" class="cl-scroll-hint">
+      <span>Cuộn xuống xem phần Tối ưu Hook</span>
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 13l5 5 5-5M7 6l5 5 5-5"/></svg>
+    </a>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════════════
+       KHỐI 7: TỐI ƯU HOOK (SO SÁNH 2 CỘT) (100dvh)
+       ═══════════════════════════════════════════════════════════════════ -->
+  <section class="cl-zebra-section cl-zebra--light" id="sec-toi-uu-hook">
+    <div class="cl-sec-container cl-sec-container--wide apple-reveal">
+      <div class="cl-badge cl-badge--amber">⚡ NÂNG CẤP THỰC CHIẾN • TỐI ƯU HOOK 2 GIÂY ĐẦU</div>
+      <h2 class="title-long" style="font-size: clamp(22px, 3.2vw, 36px); margin-bottom: 12px;">
+        Để Giảm Thiệt Thòi Trên Video Ngắn: Cần Tối Ưu Hook
+      </h2>
+      <p class="editorial-hook" style="margin-bottom: 24px;">
+        "Nội dung kịch bản ở trên đã có độ sâu rất tốt, nhưng nếu Cảnh 1 không giữ được ngón tay người xem trong 2 giây đầu thì thông điệp hay đến mấy cũng không ai xem."
+      </p>
+
+      <!-- BẢNG 2 CỘT SO SÁNH TRỰC DIỆN -->
+      <div class="step-comparison-grid" style="grid-template-columns: 1fr 1fr; margin-top: 0; gap: 24px;">
+        
+        <!-- CỘT 1: LÚC CHƯA CÓ HOOK -->
+        <div class="step-card" style="border-left: 4px solid var(--cl-danger); background: #ffffff;">
+          <div class="step-card__label" style="color: var(--cl-danger);">
+            <span>CẢNH 1 • LÚC CHƯA CÓ HOOK (4S)</span>
+            <span style="font-size: 10px; padding: 2px 8px; border-radius: 4px; background: var(--cl-danger-bg); color: var(--cl-danger);">BẢN GỐC TRẦN THUẬT</span>
+          </div>
+          
+          <div class="step-card__quote" style="border-left-color: var(--cl-danger); background: var(--cl-danger-bg); font-size: 16px; margin-bottom: 12px;">
+            🎙️ "Mấy tháng nay chi phí chạy ads đắt đỏ quá mọi người ạ, nạp bao nhiêu tiền vào cũng ăn hết tiền lãi..."
+          </div>
+
+          <div style="font-family: var(--font-mono); font-size: 11px; font-weight: 700; color: var(--cl-danger); margin-bottom: 14px; background: rgba(220, 38, 38, 0.08); padding: 4px 10px; border-radius: 6px; display: inline-block;">
+            📍 Trạng thái: Trần thuật kể khổ về chi phí quảng cáo, người xem lướt qua ngay vì tưởng video xả stress.
+          </div>
+
+          <div class="step-card__desc" style="font-size: 14.5px; line-height: 1.7;">
+            <b style="color: var(--cl-danger);">❌ TÌNH TRẠNG & TÂM LÝ NGƯỜI XEM (LÚC CHƯA CÓ HOOK):</b><br>
+            • <b>Không có hình ảnh hành động:</b> Câu nói thuần túy là lời than phiền, không kích thích trí tưởng tượng.<br>• <b>Bị lướt qua trong 2 giây đầu:</b> Người dùng mạng xã hội không muốn nghe than phiền về chi phí kinh doanh.<br>• <b>Mất cơ hội truyền tải giải pháp:</b> Người nghe bỏ đi trước khi bạn kịp nói đến cách thoát khỏi bẫy ads.
+          </div>
+        </div>
+
+        <!-- CỘT 2: LÚC CÓ HOOK -->
+        <div class="step-card" style="border-left: 4px solid var(--cl-success); background: #ffffff;">
+          <div class="step-card__label" style="color: var(--cl-success);">
+            <span>CẢNH 1 • HOOK (4S)</span>
+            <span style="font-size: 10px; padding: 2px 8px; border-radius: 4px; background: var(--cl-success-bg); color: var(--cl-success);">PHƯƠNG ÁN ĐÃ CHỌN TỐI ƯU</span>
+          </div>
+          
+          <div class="step-card__quote" style="border-left-color: var(--cl-success); background: var(--cl-success-bg); font-size: 16px; margin-bottom: 12px;">
+            🎙️ "Cứ 5 phút lại mở app quảng cáo kiểm tra một lần... nhìn qua thì tưởng bận rộn điều hành, nhưng thực ra là đang run vì tiền nạp vào ăn gần hết tiền lãi."
+          </div>
+
+          <div style="font-family: var(--font-mono); font-size: 11px; font-weight: 700; color: var(--cl-purple); margin-bottom: 14px; background: var(--cl-purple-bg); padding: 4px 10px; border-radius: 6px; display: inline-block;">
+            📍 Hook đảo ngược hành vi: Bóc trần thói quen bấm điện thoại vô thức của dân chạy ads
+          </div>
+
+          <div class="step-card__desc" style="font-size: 14.5px; line-height: 1.7;">
+            <b style="color: var(--cl-success);">🎯 HIỆU QUẢ GIỮ CHÂN & TÂM LÝ NGƯỜI XEM (LÚC CÓ HOOK):</b><br>
+            • <b>Tái hiện chính xác hành vi đời thực:</b> Bất kỳ ai đang chạy ads đều có thói quen mở app kiểm tra trong trạng thái hồi hộp lo lắng.<br>• <b>Bóc trần cái cớ bận rộn:</b> Vạch trần sự thật ngượng ngùng là đang run rẩy sợ lỗ chứ không phải đang oai phong điều hành.<br>• <b>Khựng ngón tay xem tiếp:</b> Đánh trúng tim đen của hàng chục vạn chủ shop và người kinh doanh online.
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Khối đúc kết logic -->
+      <div class="conclusion-hero-card" style="margin-top: 24px; background: linear-gradient(135deg, #fffbeb 0%, #ffffff 100%); border-color: rgba(217, 119, 6, 0.3);">
+        <div class="conclusion-hero-badge" style="color: var(--cl-amber);">💡 ĐÚC KẾT SƯ PHẠM: BẢN CHẤT CỦA HOOK TRONG VIDEO NGẮN</div>
+        <div class="conclusion-hero-text" style="font-size: 15px;">
+          <strong>Hook trong video ngắn không phải là giật tít sốc, làm trò hề hay hét to vào micro.</strong><br>
+          Hook thực chiến là <strong>lực kéo tâm lý trong 2 giây đầu tiên</strong> khiến ngón tay người xem phải khựng lại vì nhận ra: <em>"Câu chuyện này đang nói đúng về mình, nói hộ sự thật ngượng ngùng mà mình không dám thừa nhận."</em> Khi Cảnh 1 có Hook đảo ngược hành vi, toàn bộ các cảnh tiếp theo sẽ được người xem đón nhận trọn vẹn.
+        </div>
+      </div>
+
+      <div style="margin-top: 28px;">
+        <a href="#sec-scene-1" class="cl-btn">XEM BẢNG PHÂN CẢNH QUAY CHI TIẾT (ÁP DỤNG BỐI CẢNH GREENHUB) →</a>
+      </div>
+    </div>
+    <a href="#sec-scene-1" class="cl-scroll-hint">
+      <span>Cuộn xuống xem phân cảnh quay</span>
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 13l5 5 5-5M7 6l5 5 5-5"/></svg>
+    </a>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════════════
+       KHỐI 8 ➔ 12: 5 CẢNH PHÂN CẢNH CHI TIẾT
+       ═══════════════════════════════════════════════════════════════════ -->
+  
+  <!-- ═══════════════════════════════════════════════════════════════════
+       KHỐI: PHÂN CẢNH CẢNH 1 (100dvh)
+       ═══════════════════════════════════════════════════════════════════ -->
+  <section class="cl-zebra-section cl-zebra--tint" id="sec-scene-1">
+    <div class="cl-sec-container cl-sec-container--wide apple-reveal">
+      <div class="cl-badge">CẢNH 01 / 05 • THỜI LƯỢNG 4 GIÂY</div>
+      <h2 class="title-short">CẢNH 1: BÓC TRẦN THÓI QUEN MỞ APP ADS</h2>
+
+      <div class="scene-voice-banner">
+        <div class="scene-voice-icon">🎙️</div>
+        <div class="scene-voice-text">"Cứ 5 phút lại mở app quảng cáo kiểm tra một lần... nhìn qua thì tưởng bận rộn điều hành, nhưng thực ra là đang run vì tiền nạp vào ăn gần hết tiền lãi."</div>
+      </div>
+
+      <div class="beats-3-grid">
+        
+        <!-- Beat -->
+        <div class="beat-card-apple">
+          <div class="beat-media-container" onclick="openLightbox('assets/greenhub/IMG_7799.JPG', 'CẢNH 1: BÓC TRẦN THÓI QUEN MỞ APP ADS • 1.1 Đầu Cảnh', 'Ngón tay bấm nút nguồn điện thoại sáng màn hình trên mặt bàn gỗ Greenhub rồi lại tắt đi.', 'Đặc tả ngón tay bấm nút nguồn')">
+            <span class="beat-badge-phase badge-in">Đầu</span>
+            <span class="beat-badge-angle">📐 Đặc tả ngón tay bấm nút nguồn</span>
+            <img src="assets/greenhub/IMG_7799.JPG" alt="1.1 Đầu Cảnh" loading="lazy">
+          </div>
+          <div class="beat-body-details">
+            <div class="beat-title-row">
+              <span class="beat-name">1.1 Đầu Cảnh</span>
+              <span class="beat-angle-desc">Đặc tả ngón tay bấm nút nguồn</span>
+            </div>
+            <table class="beat-specs-table">
+              <tr><td class="col-label">Góc máy:</td><td class="col-val">Đặc tả ngón tay bấm nút nguồn</td></tr>
+              <tr><td class="col-label">Hành động:</td><td class="col-val">Ngón tay bấm nút nguồn điện thoại sáng màn hình trên mặt bàn gỗ Greenhub rồi lại tắt đi.</td></tr>
+            </table>
+            <div class="beat-director-note">💡 <b>Ghi chú đạo diễn:</b> Thiết lập thói quen bồn chồn kiểm tra thông báo vô thức của người kinh doanh.</div>
+          </div>
+        </div>
+        <!-- Beat -->
+        <div class="beat-card-apple">
+          <div class="beat-media-container" onclick="openLightbox('assets/greenhub/IMG_7796.JPG', 'CẢNH 1: BÓC TRẦN THÓI QUEN MỞ APP ADS • 1.2 Cao Trào', 'Góc nhìn qua vai màn hình hiển thị biểu đồ chi phí đỏ rực, nét mặt đăm chiêu.', 'Góc nhìn qua vai (OTS)')">
+            <span class="beat-badge-phase badge-main">Cao</span>
+            <span class="beat-badge-angle">📐 Góc nhìn qua vai (OTS)</span>
+            <img src="assets/greenhub/IMG_7796.JPG" alt="1.2 Cao Trào" loading="lazy">
+          </div>
+          <div class="beat-body-details">
+            <div class="beat-title-row">
+              <span class="beat-name">1.2 Cao Trào</span>
+              <span class="beat-angle-desc">Góc nhìn qua vai (OTS)</span>
+            </div>
+            <table class="beat-specs-table">
+              <tr><td class="col-label">Góc máy:</td><td class="col-val">Góc nhìn qua vai (OTS)</td></tr>
+              <tr><td class="col-label">Hành động:</td><td class="col-val">Góc nhìn qua vai màn hình hiển thị biểu đồ chi phí đỏ rực, nét mặt đăm chiêu.</td></tr>
+            </table>
+            <div class="beat-director-note">💡 <b>Ghi chú đạo diễn:</b> Đặc tả sự thật áp lực tài chính đè nặng lên tâm trí.</div>
+          </div>
+        </div>
+        <!-- Beat -->
+        <div class="beat-card-apple">
+          <div class="beat-media-container" onclick="openLightbox('assets/greenhub/greenhub_anh_viet_kb02.jpg', 'CẢNH 1: BÓC TRẦN THÓI QUEN MỞ APP ADS • 1.3 Mồi Chuyển', 'Đặt điện thoại xuống bàn, ngả người ra sau thở dài nhìn lên trần gỗ lớp học Greenhub.', 'Trung cảnh thở dài nhẹ')">
+            <span class="beat-badge-phase badge-out">Mồi</span>
+            <span class="beat-badge-angle">📐 Trung cảnh thở dài nhẹ</span>
+            <img src="assets/greenhub/greenhub_anh_viet_kb02.jpg" alt="1.3 Mồi Chuyển" loading="lazy">
+          </div>
+          <div class="beat-body-details">
+            <div class="beat-title-row">
+              <span class="beat-name">1.3 Mồi Chuyển</span>
+              <span class="beat-angle-desc">Trung cảnh thở dài nhẹ</span>
+            </div>
+            <table class="beat-specs-table">
+              <tr><td class="col-label">Góc máy:</td><td class="col-val">Trung cảnh thở dài nhẹ</td></tr>
+              <tr><td class="col-label">Hành động:</td><td class="col-val">Đặt điện thoại xuống bàn, ngả người ra sau thở dài nhìn lên trần gỗ lớp học Greenhub.</td></tr>
+            </table>
+            <div class="beat-director-note">💡 <b>Ghi chú đạo diễn:</b> Mồi chuyển sang dòng tâm sự chân thành về sự bế tắc của việc đốt tiền.</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top: 24px; text-align: right;">
+        <a href="#sec-scene-2" class="cl-btn">TIẾP TỤC SANG CẢNH 02 →</a>
+      </div>
+    </div>
+    <a href="#sec-scene-2" class="cl-scroll-hint">
+      <span>Cuộn sang Cảnh 02</span>
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 13l5 5 5-5M7 6l5 5 5-5"/></svg>
+    </a>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════════════
+       KHỐI: PHÂN CẢNH CẢNH 2 (100dvh)
+       ═══════════════════════════════════════════════════════════════════ -->
+  <section class="cl-zebra-section cl-zebra--light" id="sec-scene-2">
+    <div class="cl-sec-container cl-sec-container--wide apple-reveal">
+      <div class="cl-badge">CẢNH 02 / 05 • THỜI LƯỢNG 4 GIÂY</div>
+      <h2 class="title-short">CẢNH 2: NỖI ĐAU TIỀN ADS ĂN HẾT LÃI</h2>
+
+      <div class="scene-voice-banner">
+        <div class="scene-voice-icon">🎙️</div>
+        <div class="scene-voice-text">"Mấy tháng nay chi phí ads tăng gấp đôi. Tiền nạp vào tài khoản thì trừ đều đặn từng ngày, mà đơn hàng thì cứ lẹt đẹt."</div>
+      </div>
+
+      <div class="beats-3-grid">
+        
+        <!-- Beat -->
+        <div class="beat-card-apple">
+          <div class="beat-media-container" onclick="openLightbox('assets/greenhub/IMG_7799.JPG', 'CẢNH 2: NỖI ĐAU TIỀN ADS ĂN HẾT LÃI • 2.1 Đầu Cảnh', 'Bàn tay cầm bút tính toán con số chi phí trên cuốn sổ tay đặt tại bàn học Greenhub.', 'Góc cận bàn tay ghi chép')">
+            <span class="beat-badge-phase badge-in">Đầu</span>
+            <span class="beat-badge-angle">📐 Góc cận bàn tay ghi chép</span>
+            <img src="assets/greenhub/IMG_7799.JPG" alt="2.1 Đầu Cảnh" loading="lazy">
+          </div>
+          <div class="beat-body-details">
+            <div class="beat-title-row">
+              <span class="beat-name">2.1 Đầu Cảnh</span>
+              <span class="beat-angle-desc">Góc cận bàn tay ghi chép</span>
+            </div>
+            <table class="beat-specs-table">
+              <tr><td class="col-label">Góc máy:</td><td class="col-val">Góc cận bàn tay ghi chép</td></tr>
+              <tr><td class="col-label">Hành động:</td><td class="col-val">Bàn tay cầm bút tính toán con số chi phí trên cuốn sổ tay đặt tại bàn học Greenhub.</td></tr>
+            </table>
+            <div class="beat-director-note">💡 <b>Ghi chú đạo diễn:</b> Hình ảnh thực tế của người làm chủ ngồi đối soát chi phí thực tế.</div>
+          </div>
+        </div>
+        <!-- Beat -->
+        <div class="beat-card-apple">
+          <div class="beat-media-container" onclick="openLightbox('assets/greenhub/IMG_7799.JPG', 'CẢNH 2: NỖI ĐAU TIỀN ADS ĂN HẾT LÃI • 2.2 Cao Trào', 'Cây bút khoanh tròn vào con số chi phí quảng cáo vượt ngưỡng cho phép.', 'Cận cảnh con số gạch chân')">
+            <span class="beat-badge-phase badge-main">Cao</span>
+            <span class="beat-badge-angle">📐 Cận cảnh con số gạch chân</span>
+            <img src="assets/greenhub/IMG_7799.JPG" alt="2.2 Cao Trào" loading="lazy">
+          </div>
+          <div class="beat-body-details">
+            <div class="beat-title-row">
+              <span class="beat-name">2.2 Cao Trào</span>
+              <span class="beat-angle-desc">Cận cảnh con số gạch chân</span>
+            </div>
+            <table class="beat-specs-table">
+              <tr><td class="col-label">Góc máy:</td><td class="col-val">Cận cảnh con số gạch chân</td></tr>
+              <tr><td class="col-label">Hành động:</td><td class="col-val">Cây bút khoanh tròn vào con số chi phí quảng cáo vượt ngưỡng cho phép.</td></tr>
+            </table>
+            <div class="beat-director-note">💡 <b>Ghi chú đạo diễn:</b> Điểm chạm đau đớn nhất: Làm quần quật cả tháng chỉ để nuôi nền tảng.</div>
+          </div>
+        </div>
+        <!-- Beat -->
+        <div class="beat-card-apple">
+          <div class="beat-media-container" onclick="openLightbox('assets/greenhub/greenhub_anh_viet_kb02.jpg', 'CẢNH 2: NỖI ĐAU TIỀN ADS ĂN HẾT LÃI • 2.3 Mồi Chuyển', 'Ngẩng đầu nhìn ra khung cửa sổ kính Greenhub, ánh mắt trĩu nặng suy nghĩ.', 'Trung cận ánh mắt ngẩng lên')">
+            <span class="beat-badge-phase badge-out">Mồi</span>
+            <span class="beat-badge-angle">📐 Trung cận ánh mắt ngẩng lên</span>
+            <img src="assets/greenhub/greenhub_anh_viet_kb02.jpg" alt="2.3 Mồi Chuyển" loading="lazy">
+          </div>
+          <div class="beat-body-details">
+            <div class="beat-title-row">
+              <span class="beat-name">2.3 Mồi Chuyển</span>
+              <span class="beat-angle-desc">Trung cận ánh mắt ngẩng lên</span>
+            </div>
+            <table class="beat-specs-table">
+              <tr><td class="col-label">Góc máy:</td><td class="col-val">Trung cận ánh mắt ngẩng lên</td></tr>
+              <tr><td class="col-label">Hành động:</td><td class="col-val">Ngẩng đầu nhìn ra khung cửa sổ kính Greenhub, ánh mắt trĩu nặng suy nghĩ.</td></tr>
+            </table>
+            <div class="beat-director-note">💡 <b>Ghi chú đạo diễn:</b> Chuyển từ nỗi đau bề mặt sang nhận thức gốc rễ ở cảnh sau.</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top: 24px; text-align: right;">
+        <a href="#sec-scene-3" class="cl-btn">TIẾP TỤC SANG CẢNH 03 →</a>
+      </div>
+    </div>
+    <a href="#sec-scene-3" class="cl-scroll-hint">
+      <span>Cuộn sang Cảnh 03</span>
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 13l5 5 5-5M7 6l5 5 5-5"/></svg>
+    </a>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════════════
+       KHỐI: PHÂN CẢNH CẢNH 3 (100dvh)
+       ═══════════════════════════════════════════════════════════════════ -->
+  <section class="cl-zebra-section cl-zebra--tint" id="sec-scene-3">
+    <div class="cl-sec-container cl-sec-container--wide apple-reveal">
+      <div class="cl-badge">CẢNH 03 / 05 • THỜI LƯỢNG 5 GIÂY</div>
+      <h2 class="title-short">CẢNH 3: BẢN CHẤT CỦA VIỆC THUÊ NIỀM TIN</h2>
+
+      <div class="scene-voice-banner">
+        <div class="scene-voice-icon">🎙️</div>
+        <div class="scene-voice-text">"Nhiều lúc tự an ủi: Thôi ráng tối ưu thêm tệp đối tượng. Nhưng ngồi tính lại mới giật mình: Tiền chạy ads thực chất là khoản tiền phạt vì mình lười không chịu xây niềm tin thật."</div>
+      </div>
+
+      <div class="beats-3-grid">
+        
+        <!-- Beat -->
+        <div class="beat-card-apple">
+          <div class="beat-media-container" onclick="openLightbox('assets/greenhub/IMG_7812.JPG', 'CẢNH 3: BẢN CHẤT CỦA VIỆC THUÊ NIỀM TIN • 3.1 Đầu Cảnh', 'Đứng dậy rời bàn học, bước ra hành lang kính Greenhub với dáng vẻ trầm tư.', 'Trung cảnh đứng dậy')">
+            <span class="beat-badge-phase badge-in">Đầu</span>
+            <span class="beat-badge-angle">📐 Trung cảnh đứng dậy</span>
+            <img src="assets/greenhub/IMG_7812.JPG" alt="3.1 Đầu Cảnh" loading="lazy">
+          </div>
+          <div class="beat-body-details">
+            <div class="beat-title-row">
+              <span class="beat-name">3.1 Đầu Cảnh</span>
+              <span class="beat-angle-desc">Trung cảnh đứng dậy</span>
+            </div>
+            <table class="beat-specs-table">
+              <tr><td class="col-label">Góc máy:</td><td class="col-val">Trung cảnh đứng dậy</td></tr>
+              <tr><td class="col-label">Hành động:</td><td class="col-val">Đứng dậy rời bàn học, bước ra hành lang kính Greenhub với dáng vẻ trầm tư.</td></tr>
+            </table>
+            <div class="beat-director-note">💡 <b>Ghi chú đạo diễn:</b> Hành động thể hiện sự thức tỉnh và muốn bứt phá khỏi sự bế tắc.</div>
+          </div>
+        </div>
+        <!-- Beat -->
+        <div class="beat-card-apple">
+          <div class="beat-media-container" onclick="openLightbox('assets/greenhub/IMG_7813.JPG', 'CẢNH 3: BẢN CHẤT CỦA VIỆC THUÊ NIỀM TIN • 3.2 Cao Trào', 'Đứng tựa người bên vách kính, ánh sáng tự nhiên hắt lên khuôn mặt đĩnh đạc.', 'Góc nghiêng dựa vách kính')">
+            <span class="beat-badge-phase badge-main">Cao</span>
+            <span class="beat-badge-angle">📐 Góc nghiêng dựa vách kính</span>
+            <img src="assets/greenhub/IMG_7813.JPG" alt="3.2 Cao Trào" loading="lazy">
+          </div>
+          <div class="beat-body-details">
+            <div class="beat-title-row">
+              <span class="beat-name">3.2 Cao Trào</span>
+              <span class="beat-angle-desc">Góc nghiêng dựa vách kính</span>
+            </div>
+            <table class="beat-specs-table">
+              <tr><td class="col-label">Góc máy:</td><td class="col-val">Góc nghiêng dựa vách kính</td></tr>
+              <tr><td class="col-label">Hành động:</td><td class="col-val">Đứng tựa người bên vách kính, ánh sáng tự nhiên hắt lên khuôn mặt đĩnh đạc.</td></tr>
+            </table>
+            <div class="beat-director-note">💡 <b>Ghi chú đạo diễn:</b> Khoảnh khắc nhận ra chân lý: Không thể đi thuê niềm tin mãi mãi.</div>
+          </div>
+        </div>
+        <!-- Beat -->
+        <div class="beat-card-apple">
+          <div class="beat-media-container" onclick="openLightbox('assets/greenhub/IMG_7805.JPG', 'CẢNH 3: BẢN CHẤT CỦA VIỆC THUÊ NIỀM TIN • 3.3 Mồi Chuyển', 'Bước chân hướng thẳng ra khu ban công vườn ngập tràn cây xanh Greenhub.', 'Góc quay bước chân dứt khoát')">
+            <span class="beat-badge-phase badge-out">Mồi</span>
+            <span class="beat-badge-angle">📐 Góc quay bước chân dứt khoát</span>
+            <img src="assets/greenhub/IMG_7805.JPG" alt="3.3 Mồi Chuyển" loading="lazy">
+          </div>
+          <div class="beat-body-details">
+            <div class="beat-title-row">
+              <span class="beat-name">3.3 Mồi Chuyển</span>
+              <span class="beat-angle-desc">Góc quay bước chân dứt khoát</span>
+            </div>
+            <table class="beat-specs-table">
+              <tr><td class="col-label">Góc máy:</td><td class="col-val">Góc quay bước chân dứt khoát</td></tr>
+              <tr><td class="col-label">Hành động:</td><td class="col-val">Bước chân hướng thẳng ra khu ban công vườn ngập tràn cây xanh Greenhub.</td></tr>
+            </table>
+            <div class="beat-director-note">💡 <b>Ghi chú đạo diễn:</b> Chuyển tiếp năng lượng từ suy tư sang hành động quyết đoán.</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top: 24px; text-align: right;">
+        <a href="#sec-scene-4" class="cl-btn">TIẾP TỤC SANG CẢNH 04 →</a>
+      </div>
+    </div>
+    <a href="#sec-scene-4" class="cl-scroll-hint">
+      <span>Cuộn sang Cảnh 04</span>
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 13l5 5 5-5M7 6l5 5 5-5"/></svg>
+    </a>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════════════
+       KHỐI: PHÂN CẢNH CẢNH 4 (100dvh)
+       ═══════════════════════════════════════════════════════════════════ -->
+  <section class="cl-zebra-section cl-zebra--light" id="sec-scene-4">
+    <div class="cl-sec-container cl-sec-container--wide apple-reveal">
+      <div class="cl-badge">CẢNH 04 / 05 • THỜI LƯỢNG 5 GIÂY</div>
+      <h2 class="title-short">CẢNH 4: PHÁ BỎ NỖI SỢ ỐNG KÍNH</h2>
+
+      <div class="scene-voice-banner">
+        <div class="scene-voice-icon">🎙️</div>
+        <div class="scene-voice-text">"Biết là phải tự làm video để kéo traffic tự nhiên, nhưng lại sợ ống kính, ngại người quen phán xét. Cứ tặc lưỡi nạp tiền tiếp cho nhàn, để rồi ôm nợ vào người."</div>
+      </div>
+
+      <div class="beats-3-grid">
+        
+        <!-- Beat -->
+        <div class="beat-card-apple">
+          <div class="beat-media-container" onclick="openLightbox('assets/greenhub/IMG_7805.JPG', 'CẢNH 4: PHÁ BỎ NỖI SỢ ỐNG KÍNH • 4.1 Đầu Cảnh', 'Đứng giữa ban công vườn Greenhub, gió mát lay nhẹ tán lá xanh mướt.', 'Toàn cảnh ban công vườn')">
+            <span class="beat-badge-phase badge-in">Đầu</span>
+            <span class="beat-badge-angle">📐 Toàn cảnh ban công vườn</span>
+            <img src="assets/greenhub/IMG_7805.JPG" alt="4.1 Đầu Cảnh" loading="lazy">
+          </div>
+          <div class="beat-body-details">
+            <div class="beat-title-row">
+              <span class="beat-name">4.1 Đầu Cảnh</span>
+              <span class="beat-angle-desc">Toàn cảnh ban công vườn</span>
+            </div>
+            <table class="beat-specs-table">
+              <tr><td class="col-label">Góc máy:</td><td class="col-val">Toàn cảnh ban công vườn</td></tr>
+              <tr><td class="col-label">Hành động:</td><td class="col-val">Đứng giữa ban công vườn Greenhub, gió mát lay nhẹ tán lá xanh mướt.</td></tr>
+            </table>
+            <div class="beat-director-note">💡 <b>Ghi chú đạo diễn:</b> Không gian thiên nhiên trong lành giúp gột rửa sự nặng nề của áp lực tiền bạc.</div>
+          </div>
+        </div>
+        <!-- Beat -->
+        <div class="beat-card-apple">
+          <div class="beat-media-container" onclick="openLightbox('assets/greenhub/IMG_7806.JPG', 'CẢNH 4: PHÁ BỎ NỖI SỢ ỐNG KÍNH • 4.2 Cao Trào', 'Cầm điện thoại đưa lên ngang tầm mắt, tập nhìn thẳng vào camera một cách tự tin.', 'Trung cảnh giơ máy thử')">
+            <span class="beat-badge-phase badge-main">Cao</span>
+            <span class="beat-badge-angle">📐 Trung cảnh giơ máy thử</span>
+            <img src="assets/greenhub/IMG_7806.JPG" alt="4.2 Cao Trào" loading="lazy">
+          </div>
+          <div class="beat-body-details">
+            <div class="beat-title-row">
+              <span class="beat-name">4.2 Cao Trào</span>
+              <span class="beat-angle-desc">Trung cảnh giơ máy thử</span>
+            </div>
+            <table class="beat-specs-table">
+              <tr><td class="col-label">Góc máy:</td><td class="col-val">Trung cảnh giơ máy thử</td></tr>
+              <tr><td class="col-label">Hành động:</td><td class="col-val">Cầm điện thoại đưa lên ngang tầm mắt, tập nhìn thẳng vào camera một cách tự tin.</td></tr>
+            </table>
+            <div class="beat-director-note">💡 <b>Ghi chú đạo diễn:</b> Mô tả bước vượt ngưỡng tâm lý: Dám đối diện với chính mình trước ống kính.</div>
+          </div>
+        </div>
+        <!-- Beat -->
+        <div class="beat-card-apple">
+          <div class="beat-media-container" onclick="openLightbox('assets/greenhub/greenhub_anh_viet_kb02.jpg', 'CẢNH 4: PHÁ BỎ NỖI SỢ ỐNG KÍNH • 4.3 Mồi Chuyển', 'Nụ cười nhẹ nhõm, ánh mắt kiên định không còn chút e dè ngại ngùng.', 'Cận cảnh nụ cười quyết tâm')">
+            <span class="beat-badge-phase badge-out">Mồi</span>
+            <span class="beat-badge-angle">📐 Cận cảnh nụ cười quyết tâm</span>
+            <img src="assets/greenhub/greenhub_anh_viet_kb02.jpg" alt="4.3 Mồi Chuyển" loading="lazy">
+          </div>
+          <div class="beat-body-details">
+            <div class="beat-title-row">
+              <span class="beat-name">4.3 Mồi Chuyển</span>
+              <span class="beat-angle-desc">Cận cảnh nụ cười quyết tâm</span>
+            </div>
+            <table class="beat-specs-table">
+              <tr><td class="col-label">Góc máy:</td><td class="col-val">Cận cảnh nụ cười quyết tâm</td></tr>
+              <tr><td class="col-label">Hành động:</td><td class="col-val">Nụ cười nhẹ nhõm, ánh mắt kiên định không còn chút e dè ngại ngùng.</td></tr>
+            </table>
+            <div class="beat-director-note">💡 <b>Ghi chú đạo diễn:</b> Mồi chuyển sang lời hiệu triệu mạnh mẽ ở cảnh chốt hạ.</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top: 24px; text-align: right;">
+        <a href="#sec-scene-5" class="cl-btn">TIẾP TỤC SANG CẢNH 05 →</a>
+      </div>
+    </div>
+    <a href="#sec-scene-5" class="cl-scroll-hint">
+      <span>Cuộn sang Cảnh 05</span>
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 13l5 5 5-5M7 6l5 5 5-5"/></svg>
+    </a>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════════════
+       KHỐI: PHÂN CẢNH CẢNH 5 (100dvh)
+       ═══════════════════════════════════════════════════════════════════ -->
+  <section class="cl-zebra-section cl-zebra--tint" id="sec-scene-5">
+    <div class="cl-sec-container cl-sec-container--wide apple-reveal">
+      <div class="cl-badge">CẢNH 05 / 05 • THỜI LƯỢNG 4 GIÂY (CHỐT HẠ)</div>
+      <h2 class="title-short">CẢNH 5: TỰ TAY XÂY DỰNG TÀI SẢN</h2>
+
+      <div class="scene-voice-banner">
+        <div class="scene-voice-icon">🎙️</div>
+        <div class="scene-voice-text">"Không thể dựa mãi vào việc đi thuê quảng cáo. Tự cầm máy lên, quay thật, nói thật, xây dựng tài sản cho chính mình!"</div>
+      </div>
+
+      <div class="beats-3-grid">
+        
+        <!-- Beat -->
+        <div class="beat-card-apple">
+          <div class="beat-media-container" onclick="openLightbox('assets/greenhub/IMG_7808.JPG', 'CẢNH 5: TỰ TAY XÂY DỰNG TÀI SẢN • 5.1 Đầu Cảnh', 'Toàn cảnh sân vườn trên cao Greenhub, tư thế đứng hiên ngang vững chãi.', 'Toàn cảnh terrace thoáng đãng')">
+            <span class="beat-badge-phase badge-in">Đầu</span>
+            <span class="beat-badge-angle">📐 Toàn cảnh terrace thoáng đãng</span>
+            <img src="assets/greenhub/IMG_7808.JPG" alt="5.1 Đầu Cảnh" loading="lazy">
+          </div>
+          <div class="beat-body-details">
+            <div class="beat-title-row">
+              <span class="beat-name">5.1 Đầu Cảnh</span>
+              <span class="beat-angle-desc">Toàn cảnh terrace thoáng đãng</span>
+            </div>
+            <table class="beat-specs-table">
+              <tr><td class="col-label">Góc máy:</td><td class="col-val">Toàn cảnh terrace thoáng đãng</td></tr>
+              <tr><td class="col-label">Hành động:</td><td class="col-val">Toàn cảnh sân vườn trên cao Greenhub, tư thế đứng hiên ngang vững chãi.</td></tr>
+            </table>
+            <div class="beat-director-note">💡 <b>Ghi chú đạo diễn:</b> Hình ảnh biểu tượng của sự tự do và làm chủ vận mệnh kinh doanh.</div>
+          </div>
+        </div>
+        <!-- Beat -->
+        <div class="beat-card-apple">
+          <div class="beat-media-container" onclick="openLightbox('assets/greenhub/greenhub_anh_viet_kb02.jpg', 'CẢNH 5: TỰ TAY XÂY DỰNG TÀI SẢN • 5.2 Cao Trào', 'Nói thẳng vào ống kính với khẩu khí đĩnh đạc, dứt khoát và chân thành.', 'A-Roll trực diện đầy uy lực')">
+            <span class="beat-badge-phase badge-main">Cao</span>
+            <span class="beat-badge-angle">📐 A-Roll trực diện đầy uy lực</span>
+            <img src="assets/greenhub/greenhub_anh_viet_kb02.jpg" alt="5.2 Cao Trào" loading="lazy">
+          </div>
+          <div class="beat-body-details">
+            <div class="beat-title-row">
+              <span class="beat-name">5.2 Cao Trào</span>
+              <span class="beat-angle-desc">A-Roll trực diện đầy uy lực</span>
+            </div>
+            <table class="beat-specs-table">
+              <tr><td class="col-label">Góc máy:</td><td class="col-val">A-Roll trực diện đầy uy lực</td></tr>
+              <tr><td class="col-label">Hành động:</td><td class="col-val">Nói thẳng vào ống kính với khẩu khí đĩnh đạc, dứt khoát và chân thành.</td></tr>
+            </table>
+            <div class="beat-director-note">💡 <b>Ghi chú đạo diễn:</b> A-Roll chốt hạ truyền cảm hứng mạnh mẽ cho toàn bộ học viên tại lớp.</div>
+          </div>
+        </div>
+        <!-- Beat -->
+        <div class="beat-card-apple">
+          <div class="beat-media-container" onclick="openLightbox('assets/greenhub/IMG_7799.JPG', 'CẢNH 5: TỰ TAY XÂY DỰNG TÀI SẢN • 5.3 Mồi Chuyển', 'Ngón tay bấm dừng quay video, nhìn lại thành phẩm đầu tiên với nụ cười rạng rỡ.', 'Đặc tả ngón tay tắt máy hài lòng')">
+            <span class="beat-badge-phase badge-out">Mồi</span>
+            <span class="beat-badge-angle">📐 Đặc tả ngón tay tắt máy hài lòng</span>
+            <img src="assets/greenhub/IMG_7799.JPG" alt="5.3 Mồi Chuyển" loading="lazy">
+          </div>
+          <div class="beat-body-details">
+            <div class="beat-title-row">
+              <span class="beat-name">5.3 Mồi Chuyển</span>
+              <span class="beat-angle-desc">Đặc tả ngón tay tắt máy hài lòng</span>
+            </div>
+            <table class="beat-specs-table">
+              <tr><td class="col-label">Góc máy:</td><td class="col-val">Đặc tả ngón tay tắt máy hài lòng</td></tr>
+              <tr><td class="col-label">Hành động:</td><td class="col-val">Ngón tay bấm dừng quay video, nhìn lại thành phẩm đầu tiên với nụ cười rạng rỡ.</td></tr>
+            </table>
+            <div class="beat-director-note">💡 <b>Ghi chú đạo diễn:</b> Khép lại một bài học thức tỉnh sâu sắc về xây dựng kênh cá nhân.</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top: 24px; text-align: right;">
+        <a href="#sec-wisdom" class="cl-btn">XEM ĐÚC KẾT BÀI HỌC CUỐI CÙNG →</a>
+      </div>
+    </div>
+    <a href="#sec-wisdom" class="cl-scroll-hint">
+      <span>Cuộn sang Đúc kết bài học</span>
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 13l5 5 5-5M7 6l5 5 5-5"/></svg>
+    </a>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════════════════════════
+       KHỐI 13: ĐÚC KẾT BÀI HỌC (100dvh)
+       ═══════════════════════════════════════════════════════════════════ -->
+  <section class="cl-zebra-section cl-zebra--light" id="sec-wisdom">
+    <div class="cl-sec-container cl-sec-container--narrow apple-reveal">
+      <div class="cl-badge">LỜI DẶN DÒ THỰC CHIẾN CỦA ANH VIỆT</div>
+      <h2 class="title-short">ĐÚC KẾT BÀI HỌC</h2>
+
+      <blockquote class="editorial-hook" style="margin-bottom: 24px;">
+        "Chạy quảng cáo là bạn đang xây nhà trên đất của người khác. Mỗi video bạn tự tay quay, tự miệng nói chính là một viên gạch xây nên tòa lâu đài uy tín vững chắc của riêng bạn."
+      </blockquote>
+
+      <div class="takeaways-list">
+        <div class="takeaway-card">
+          <div class="takeaway-num">01</div>
+          <div class="takeaway-content">
+            <h4>Dừng ngay việc ngụy trang bằng thuật ngữ kỹ thuật</h4>
+            <p>Đừng tự lừa mình bằng các chỉ số CPM, CPC. Hãy nhìn thẳng vào sự thật: Nếu video không có kết nối cảm xúc thì đốt bao nhiêu tiền cũng vô nghĩa.</p>
+          </div>
+        </div>
+
+        <div class="takeaway-card">
+          <div class="takeaway-num">02</div>
+          <div class="takeaway-content">
+            <h4>Traffic tự nhiên đến từ sự chân thật</h4>
+            <p>Khách hàng thông thái ngày nay rất ghét bị bán hàng. Họ chỉ mua hàng khi cảm nhận được sự tận tâm và chuyên môn thật qua từng khung hình đời thường.</p>
+          </div>
+        </div>
+
+        <div class="takeaway-card">
+          <div class="takeaway-num">03</div>
+          <div class="takeaway-content">
+            <h4>Mỗi ngày một video là một tài sản tích lũy</h4>
+            <p>Tiền ads tắt đi là mất trắng, nhưng video ngắn sẽ tiếp tục tiếp cận khách hàng mới cho bạn sau nhiều tháng, nhiều năm mà hoàn toàn miễn phí.</p>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top: 32px; display: flex; gap: 16px; flex-wrap: wrap;">
+        <a href="9-bai-tap-thuc-hanh.html" class="cl-btn">← QUAY LẠI 9 BÀI TẬP THỰC HÀNH</a>
+        <a href="#sec-de-bai" class="cl-btn" style="background: var(--cl-slate-200); color: var(--cl-slate-900);">↑ VỀ ĐẦU TRANG</a>
+      </div>
+    </div>
+  </section>
+
+<!-- ═══ LIGHTBOX MODAL ═══ -->
+  <div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+    <div class="lightbox-card" onclick="event.stopPropagation()">
+      <button class="lightbox-close-btn" onclick="closeLightbox()">&times;</button>
+      <div class="lightbox-img-pane">
+        <img id="lightbox-img" src="" alt="Frame Preview">
+      </div>
+      <div class="lightbox-info-pane">
+        <div id="lightbox-badge" style="font-family: var(--font-mono); font-size: 11px; font-weight: 800; color: var(--cl-accent); text-transform: uppercase;"></div>
+        <h3 id="lightbox-title" style="font-family: var(--font-display-long); font-size: 18px; font-weight: 700; color: var(--cl-text-base);"></h3>
+        <p id="lightbox-desc" style="font-size: 14px; color: var(--cl-text-muted); line-height: 1.6;"></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ ZERO-JANK OBSERVER & SCRIPTS ═══ -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // IntersectionObserver cho Apple Motion (Zero-Jank: unobserve ngay sau khi hiện)
+      const observerOptions = {
+        root: null,
+        rootMargin: '0px 0px -40px 0px',
+        threshold: 0.08
+      };
+
+      const observer = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            obs.unobserve(entry.target);
+          }
+        });
+      }, observerOptions);
+
+      document.querySelectorAll('.apple-reveal').forEach(el => observer.observe(el));
+    });
+
+    // Lightbox handlers
+    function openLightbox(imgUrl, title, desc, badge) {
+      document.getElementById('lightbox-img').src = imgUrl;
+      document.getElementById('lightbox-title').innerText = title;
+      document.getElementById('lightbox-desc').innerText = desc;
+      document.getElementById('lightbox-badge').innerText = badge || 'PHÂN CẢNH MICRO-BEAT';
+      document.getElementById('lightbox').classList.add('active');
+    }
+    function closeLightbox(e) {
+      document.getElementById('lightbox').classList.remove('active');
+    }
+
+    // Switch Option Scene 5
+    function switchOpt(opt) {
+      document.querySelectorAll('.opt-switch-btn').forEach(btn => btn.classList.remove('active'));
+      document.querySelectorAll('.opt-content-panel').forEach(panel => panel.classList.remove('active'));
+      if(opt === 1) {
+        document.getElementById('btn-opt1').classList.add('active');
+        document.getElementById('content-opt1').classList.add('active');
+      } else {
+        document.getElementById('btn-opt2').classList.add('active');
+        document.getElementById('content-opt2').classList.add('active');
+      }
+    }
+  </script>
+</body>
+</html>
+
+</html>

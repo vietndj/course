@@ -1,0 +1,978 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>9 Bài Tập Thực Hành Tại Lớp • Bóc Trần Tầng 2.5 & Làm Video Voice-Over Đầu Tiên | FEDU Offline</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700;800&family=Playfair+Display:ital,wght@1,400;1,600&display=swap" rel="stylesheet">
+  
+  <style>
+    @font-face {
+      font-family: 'FD Aeonik Extended';
+      src: url('./fonts/FDAeonikExtended-Bold.woff2') format('woff2'),
+           url('./fonts/FDAeonikExtended-Bold.ttf') format('truetype'),
+           local('FD Aeonik Extended Bold');
+      font-weight: 700;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'FD Aeonik';
+      src: url('./fonts/FDAeonikRegular.ttf') format('truetype'),
+           local('FD Aeonik Regular');
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'FD Aeonik';
+      src: url('./fonts/FDAeonikBold.ttf') format('truetype'),
+           local('FD Aeonik Bold');
+      font-weight: 700;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Tiempos Text';
+      src: url('./fonts/FDTiemposText-Regular.otf') format('opentype'),
+           local('Tiempos Text Regular');
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    :root {
+      --font-display: 'FD Aeonik Extended', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --font-body: 'FD Aeonik', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --font-serif: 'Tiempos Text', Georgia, serif;
+      --font-mono: 'JetBrains Mono', monospace;
+
+      --cl-white: #ffffff;
+      --cl-light-tint: #f8fafc;
+      --cl-slate-50: #f8fafc;
+      --cl-slate-100: #f1f5f9;
+      --cl-slate-200: #e2e8f0;
+      --cl-slate-300: #cbd5e1;
+      --cl-slate-400: #94a3b8;
+      --cl-slate-500: #64748b;
+      --cl-slate-600: #475569;
+      --cl-slate-700: #334155;
+      --cl-slate-800: #1e293b;
+      --cl-slate-900: #0f172a;
+      --cl-slate-950: #020617;
+
+      --cl-blue: #0284c7;
+      --cl-blue-dark: #0369a1;
+      --cl-blue-bg: rgba(2, 132, 199, 0.08);
+
+      --cl-purple: #7c3aed;
+      --cl-purple-bg: rgba(124, 58, 237, 0.08);
+
+      --cl-danger: #dc2626;
+      --cl-danger-bg: rgba(220, 38, 38, 0.08);
+
+      --cl-amber: #d97706;
+      --cl-amber-bg: rgba(217, 119, 6, 0.08);
+
+      --cl-success: #16a34a;
+      --cl-success-bg: rgba(22, 163, 74, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--cl-white);
+      color: var(--cl-slate-900);
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    /* Top Nav */
+    .top-nav {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 60px;
+      padding: 0 24px;
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: saturate(180%) blur(16px);
+      -webkit-backdrop-filter: saturate(180%) blur(16px);
+      border-bottom: 1px solid var(--cl-slate-200);
+    }
+
+    .top-nav__brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .top-nav__badge {
+      font-family: var(--font-display);
+      font-size: 11px;
+      font-weight: 700;
+      color: #ffffff;
+      background: var(--cl-slate-900);
+      padding: 3px 8px;
+      border-radius: 4px;
+      letter-spacing: 0.05em;
+    }
+
+    .top-nav__title {
+      font-family: var(--font-display);
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--cl-slate-900);
+    }
+
+    .top-nav__actions {
+      display: flex;
+      gap: 12px;
+    }
+
+    .btn-nav {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 600;
+      padding: 6px 14px;
+      border-radius: 6px;
+      text-decoration: none;
+      border: 1px solid var(--cl-slate-200);
+      color: var(--cl-slate-700);
+      background: #ffffff;
+      transition: all 0.15s ease;
+    }
+
+    .btn-nav:hover {
+      background: var(--cl-slate-100);
+      color: var(--cl-slate-900);
+    }
+
+    /* Hero Section */
+    .hub-hero {
+      padding: 64px 24px 48px;
+      max-width: 1200px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .hub-hero__badge {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--cl-blue);
+      background: var(--cl-blue-bg);
+      padding: 6px 14px;
+      border-radius: 999px;
+      margin-bottom: 16px;
+    }
+
+    .hub-hero__h1 {
+      font-family: var(--font-display);
+      font-size: clamp(30px, 4.5vw, 52px);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+      color: var(--cl-slate-950);
+      margin-bottom: 20px;
+    }
+
+    .hub-hero__lead {
+      font-family: var(--font-serif);
+      font-size: clamp(17px, 2.2vw, 22px);
+      font-style: italic;
+      color: var(--cl-slate-700);
+      max-width: 860px;
+      margin: 0 auto 32px;
+      line-height: 1.55;
+    }
+
+    /* Formula Banner */
+    .hub-formula-banner {
+      background: linear-gradient(135deg, #f0f9ff 0%, #ffffff 100%);
+      border: 1px solid #bae6fd;
+      border-radius: 16px;
+      padding: 24px 32px;
+      max-width: 960px;
+      margin: 0 auto 48px;
+      text-align: left;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+    }
+
+    .formula-step {
+      display: flex;
+      gap: 14px;
+    }
+
+    .formula-step__num {
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--cl-blue);
+      background: #ffffff;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 6px rgba(2, 132, 199, 0.15);
+      flex-shrink: 0;
+    }
+
+    .formula-step__title {
+      font-family: var(--font-display);
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--cl-slate-900);
+      margin-bottom: 4px;
+    }
+
+    .formula-step__desc {
+      font-size: 13.5px;
+      color: var(--cl-slate-600);
+      line-height: 1.5;
+    }
+
+    /* Filter tabs */
+    .hub-filter {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 40px;
+    }
+
+    .filter-btn {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      font-weight: 600;
+      padding: 8px 18px;
+      border-radius: 999px;
+      border: 1px solid var(--cl-slate-200);
+      background: #ffffff;
+      color: var(--cl-slate-600);
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .filter-btn.active, .filter-btn:hover {
+      background: var(--cl-slate-900);
+      color: #ffffff;
+      border-color: var(--cl-slate-900);
+    }
+
+    /* Grid Section */
+    .hub-grid-section {
+      background: var(--cl-light-tint);
+      border-top: 1px solid var(--cl-slate-200);
+      border-bottom: 1px solid var(--cl-slate-200);
+      padding: 64px 24px;
+    }
+
+    .hub-grid-container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .hub-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+      gap: 28px;
+    }
+
+    /* Hub Card */
+    .hub-card {
+      background: #ffffff;
+      border: 1px solid var(--cl-slate-200);
+      border-radius: 16px;
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 4px 12px rgba(15, 23, 42, 0.03);
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .hub-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 28px rgba(15, 23, 42, 0.08);
+      border-color: var(--cl-blue);
+    }
+
+    .hub-card__top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 14px;
+    }
+
+    .hub-card__badge {
+      font-family: var(--font-display);
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--cl-blue-dark);
+      background: var(--cl-blue-bg);
+      padding: 3px 8px;
+      border-radius: 4px;
+      letter-spacing: 0.05em;
+    }
+
+    .hub-card__category {
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      font-weight: 600;
+      color: var(--cl-slate-500);
+    }
+
+    .hub-card__title {
+      font-family: var(--font-display);
+      font-size: 19px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      line-height: 1.35;
+      margin-bottom: 12px;
+    }
+
+    .hub-card__title a {
+      color: var(--cl-slate-900);
+      text-decoration: none;
+      transition: color 0.15s ease;
+    }
+
+    .hub-card__title a:hover {
+      color: var(--cl-blue);
+    }
+
+    .hub-card__question {
+      display: flex;
+      gap: 8px;
+      font-size: 14px;
+      color: var(--cl-slate-700);
+      margin-bottom: 16px;
+      background: #f8fafc;
+      padding: 10px 12px;
+      border-radius: 8px;
+      border-left: 3px solid var(--cl-slate-400);
+    }
+
+    .hub-card__q-icon {
+      flex-shrink: 0;
+    }
+
+    .hub-card__friction-box {
+      font-size: 13.5px;
+      margin-bottom: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .friction-row {
+      display: flex;
+      gap: 6px;
+      line-height: 1.45;
+    }
+
+    .friction-tag {
+      font-family: var(--font-mono);
+      font-weight: 700;
+      font-size: 11.5px;
+      flex-shrink: 0;
+    }
+
+    .friction-row--disguise .friction-tag {
+      color: var(--cl-amber);
+    }
+
+    .friction-row--truth .friction-tag {
+      color: var(--cl-purple);
+    }
+
+    .hub-card__hook-box {
+      background: #fffbeb;
+      border: 1px dashed rgba(217, 119, 6, 0.4);
+      border-radius: 8px;
+      padding: 12px 14px;
+      margin-bottom: 20px;
+    }
+
+    .hook-box__label {
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      font-weight: 700;
+      color: var(--cl-amber);
+      margin-bottom: 4px;
+    }
+
+    .hook-box__quote {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: 14.5px;
+      color: var(--cl-slate-800);
+      line-height: 1.45;
+    }
+
+    .hub-card__footer {
+      margin-top: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      padding-top: 16px;
+      border-top: 1px solid var(--cl-slate-100);
+    }
+
+    .hub-card__location {
+      font-size: 12.5px;
+      color: var(--cl-slate-500);
+    }
+
+    .hub-card__btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-display);
+      font-size: 13.5px;
+      font-weight: 700;
+      padding: 10px 18px;
+      border-radius: 8px;
+      text-decoration: none;
+      background: var(--cl-slate-900);
+      color: #ffffff;
+      transition: all 0.15s ease;
+    }
+
+    .hub-card__btn:hover {
+      background: var(--cl-blue);
+      transform: translateX(2px);
+    }
+
+    /* Bottom Section */
+    .hub-footer-section {
+      padding: 64px 24px;
+      max-width: 960px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .hub-principles-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px;
+      text-align: left;
+      margin: 36px 0;
+    }
+
+    .principle-card {
+      background: #ffffff;
+      border: 1px solid var(--cl-slate-200);
+      border-radius: 12px;
+      padding: 24px;
+    }
+
+    .principle-card__num {
+      font-family: var(--font-display);
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--cl-blue);
+      margin-bottom: 8px;
+    }
+
+    .principle-card__title {
+      font-family: var(--font-display);
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--cl-slate-900);
+      margin-bottom: 8px;
+    }
+
+    .principle-card__desc {
+      font-size: 14px;
+      color: var(--cl-slate-600);
+      line-height: 1.55;
+    }
+
+    /* Media queries */
+    @media (max-width: 768px) {
+      .hub-cards-grid {
+        grid-template-columns: 1fr;
+      }
+      .hub-hero {
+        padding: 40px 16px 32px;
+      }
+      .hub-grid-section {
+        padding: 40px 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ═══ TOP STICKY BAR ═══ -->
+  <header class="top-nav">
+    <div class="top-nav__brand">
+      <span class="top-nav__badge">FEDU OFFLINE</span>
+      <span class="top-nav__title">9 Bài Tập Thực Hành Tại Lớp • Bóc Trần Tầng 2.5</span>
+    </div>
+    <div class="top-nav__actions">
+      <a href="#hub-grid" class="btn-nav">Chọn Bài Tập ↓</a>
+      <button class="btn-nav" onclick="window.print()">🖨️ In Danh Mục</button>
+    </div>
+  </header>
+
+  <!-- ═══ HERO SECTION ═══ -->
+  <section class="hub-hero">
+    <span class="hub-hero__badge">GIÁO TRÌNH THỰC CHIẾN TẠI LỚP • FEDU OFFLINE</span>
+    <h1 class="hub-hero__h1">9 BÀI TẬP THỰC HÀNH TẠI LỚP</h1>
+    <p class="hub-hero__lead">
+      "Đừng cố trở thành diễn viên khi bạn là người làm nghề thật. Dưới đây là cách đưa một vấn đề bình thường trong đời sống & kinh doanh thành video ngắn có người xem và có kết nối sâu sắc, bằng định dạng Voice-Over đầu tiên."
+    </p>
+
+    <!-- Formula Banner -->
+    <div class="hub-formula-banner">
+      <div class="formula-step">
+        <div class="formula-step__num">1</div>
+        <div>
+          <div class="formula-step__title">Định Dạng Voice-Over</div>
+          <div class="formula-step__desc">Quay b-roll hành động thật tại lớp Greenhub, thu âm giọng mộc chèn lên. Không sợ ống kính!</div>
+        </div>
+      </div>
+      <div class="formula-step">
+        <div class="formula-step__num">2</div>
+        <div>
+          <div class="formula-step__title">Bóc Trần Tầng 2.5</div>
+          <div class="formula-step__desc">Vạch trần cái cớ ngụy trang & sự giằng xé thể diện người lớn để tạo kết nối đồng cảm sâu sắc.</div>
+        </div>
+      </div>
+      <div class="formula-step">
+        <div class="formula-step__num">3</div>
+        <div>
+          <div class="formula-step__title">Tối Ưu Hook 3 Giây</div>
+          <div class="formula-step__desc">Đảo ngược hành vi ngay câu đầu tiên để người xem khựng ngón tay lại nghe tiếp trọn vẹn.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 9 CARDS GRID ═══ -->
+  <section class="hub-grid-section" id="hub-grid">
+    <div class="hub-grid-container">
+      <div style="text-align: center; margin-bottom: 32px;">
+        <h2 style="font-family: var(--font-display); font-size: 26px; font-weight: 700; color: var(--cl-slate-900); margin-bottom: 8px;">
+          BẠN ĐANG GẶP TÌNH HUỐNG NÀO TRONG 9 BÀI TẬP DƯỚI ĐÂY?
+        </h2>
+        <p style="font-size: 15px; color: var(--cl-slate-600);">
+          Chọn đúng bài tập phản ánh nỗi đau thực tế của bạn để vào học kịch bản 5 cảnh & quay ngay tại lớp.
+        </p>
+      </div>
+
+      <div class="hub-cards-grid">
+        
+      <!-- Card 01 -->
+      <article class="hub-card apple-reveal">
+        <div class="hub-card__top">
+          <span class="hub-card__badge">BÀI TẬP 01</span>
+          <span class="hub-card__category">Bối Cảnh Công Cộng • Ngại Ống Kính</span>
+        </div>
+        
+        <h3 class="hub-card__title">
+          <a href="bai-01-ca-phe-dem.html">Ngồi Cà Phê Đêm 10 Giờ Tối: Bóc Trần Cái Cớ Bận Rộn</a>
+        </h3>
+
+        <div class="hub-card__question">
+          <span class="hub-card__q-icon">❓</span>
+          <span>Bạn có hay ngồi ngâm ở quán cà phê một mình, mở laptop vờ bận rộn để trốn tránh nỗi bất an?</span>
+        </div>
+
+        <div class="hub-card__friction-box">
+          <div class="friction-row friction-row--disguise">
+            <span class="friction-tag">Cái cớ ngụy trang:</span>
+            <span>Ngồi ngâm cốc cà phê tan hết đá, bấm gõ lạch cạch vờ bận rộn bên laptop.</span>
+          </div>
+          <div class="friction-row friction-row--truth">
+            <span class="friction-tag">Sự thật giằng xé:</span>
+            <span>Sốt ruột vì công việc bế tắc nhưng không dám đứng dậy đối diện với thực tại.</span>
+          </div>
+        </div>
+
+        <div class="hub-card__hook-box">
+          <div class="hook-box__label">⚡ HOOK 3 GIÂY ĐẢO NGƯỢC HÀNH VI</div>
+          <div class="hook-box__quote">"Ly nước tan hết đá từ lâu rồi mà vẫn chưa chịu đứng dậy... nhìn qua thì tưởng bận rộn lắm."</div>
+        </div>
+
+        <div class="hub-card__footer">
+          <div class="hub-card__location">📍 Bối cảnh: <b>Góc bàn cà phê đêm / Bàn gỗ Greenhub</b></div>
+          <a href="bai-01-ca-phe-dem.html" class="hub-card__btn">Bắt Đầu Bài Tập 01 ➔</a>
+        </div>
+      </article>
+
+      <!-- Card 02 -->
+      <article class="hub-card apple-reveal">
+        <div class="hub-card__top">
+          <span class="hub-card__badge">BÀI TẬP 02</span>
+          <span class="hub-card__category">Áp Lực Mặt Bằng • Cửa Hàng Vắng Khách</span>
+        </div>
+        
+        <h3 class="hub-card__title">
+          <a href="bai-02-tien-mat-bang.html">Tiền Mặt Bằng 20 Triệu & Cửa Hàng Vắng Hoe</a>
+        </h3>
+
+        <div class="hub-card__question">
+          <span class="hub-card__q-icon">❓</span>
+          <span>Cửa hàng mở cả ngày không bóng khách, tiền nhà đến hẹn vẫn phải nộp?</span>
+        </div>
+
+        <div class="hub-card__friction-box">
+          <div class="friction-row friction-row--disguise">
+            <span class="friction-tag">Cái cớ ngụy trang:</span>
+            <span>Cầm giẻ lau đi lau lại kệ hàng cho có việc để làm, ngụy trang sự sốt ruột.</span>
+          </div>
+          <div class="friction-row friction-row--truth">
+            <span class="friction-tag">Sự thật giằng xé:</span>
+            <span>Khách mua trên mạng hết rồi, tự ái người làm chủ không cho phép lên mạng làm trò.</span>
+          </div>
+        </div>
+
+        <div class="hub-card__hook-box">
+          <div class="hook-box__label">⚡ HOOK 3 GIÂY ĐẢO NGƯỢC HÀNH VI</div>
+          <div class="hook-box__quote">"Cái kệ hàng này sáng nay lau đi lau lại đến lần thứ ba rồi... nhìn qua thì tưởng chăm chỉ, nhưng thực ra là đang sốt ruột vì không có khách."</div>
+        </div>
+
+        <div class="hub-card__footer">
+          <div class="hub-card__location">📍 Bối cảnh: <b>Bàn gỗ phòng học Greenhub & Sảnh vách kính</b></div>
+          <a href="bai-02-tien-mat-bang.html" class="hub-card__btn">Bắt Đầu Bài Tập 02 ➔</a>
+        </div>
+      </article>
+
+      <!-- Card 03 -->
+      <article class="hub-card apple-reveal">
+        <div class="hub-card__top">
+          <span class="hub-card__badge">BÀI TẬP 03</span>
+          <span class="hub-card__category">Khủng Hoảng Tuổi 30 • Đối Thủ Triệu View</span>
+        </div>
+        
+        <h3 class="hub-card__title">
+          <a href="bai-03-chung-tuoi-30.html">Chững Lại Sau Tuổi 30 & Nhìn Đối Thủ Triệu View</a>
+        </h3>
+
+        <div class="hub-card__question">
+          <span class="hub-card__q-icon">❓</span>
+          <span>Làm nghề chục năm nhưng thấy tụi trẻ mới vào nghề làm video triệu view ầm ầm?</span>
+        </div>
+
+        <div class="hub-card__friction-box">
+          <div class="friction-row friction-row--disguise">
+            <span class="friction-tag">Cái cớ ngụy trang:</span>
+            <span>Lướt trộm video đối thủ, miệng bảo 'nghiên cứu thị trường' nhưng bụng thì lo tụt hậu.</span>
+          </div>
+          <div class="friction-row friction-row--truth">
+            <span class="friction-tag">Sự thật giằng xé:</span>
+            <span>Cái tôi thâm niên quá lớn, sợ người quen chê cười già rồi còn đú đởn làm video.</span>
+          </div>
+        </div>
+
+        <div class="hub-card__hook-box">
+          <div class="hook-box__label">⚡ HOOK 3 GIÂY ĐẢO NGƯỢC HÀNH VI</div>
+          <div class="hook-box__quote">"Cứ bấm vào xem video của đối thủ rồi lại tắt đi... bên ngoài thì bảo là nghiên cứu thị trường, nhưng bên trong là cảm giác bất an của một người sợ bị tụt hậu."</div>
+        </div>
+
+        <div class="hub-card__footer">
+          <div class="hub-card__location">📍 Bối cảnh: <b>Bàn học sổ tay Greenhub & Ban công cây xanh</b></div>
+          <a href="bai-03-chung-tuoi-30.html" class="hub-card__btn">Bắt Đầu Bài Tập 03 ➔</a>
+        </div>
+      </article>
+
+      <!-- Card 04 -->
+      <article class="hub-card apple-reveal">
+        <div class="hub-card__top">
+          <span class="hub-card__badge">BÀI TẬP 04</span>
+          <span class="hub-card__category">Nghiện Chạy Ads • Bế Tắc Chi Phí</span>
+        </div>
+        
+        <h3 class="hub-card__title">
+          <a href="bai-04-dot-tien-ads.html">Tiền Quảng Cáo Ăn Hết Tiền Lãi: Thoát Khỏi Bẫy Đốt Tiền</a>
+        </h3>
+
+        <div class="hub-card__question">
+          <span class="hub-card__q-icon">❓</span>
+          <span>Cứ 5 phút mở app ads một lần, nạp tiền triệu mà cắn sạch tiền lãi?</span>
+        </div>
+
+        <div class="hub-card__friction-box">
+          <div class="friction-row friction-row--disguise">
+            <span class="friction-tag">Cái cớ ngụy trang:</span>
+            <span>Cầm máy xem biểu đồ CPM làm ra vẻ đang điều hành vĩ mô, nhưng thực chất là đang đánh bạc.</span>
+          </div>
+          <div class="friction-row friction-row--truth">
+            <span class="friction-tag">Sự thật giằng xé:</span>
+            <span>Tiền ads là khoản phạt vì lười xây niềm tin thật. Tắt ads là chết đói.</span>
+          </div>
+        </div>
+
+        <div class="hub-card__hook-box">
+          <div class="hook-box__label">⚡ HOOK 3 GIÂY ĐẢO NGƯỢC HÀNH VI</div>
+          <div class="hook-box__quote">"Cứ 5 phút lại mở app quảng cáo kiểm tra một lần... nhìn qua thì tưởng bận rộn điều hành, nhưng thực ra là đang run vì tiền nạp vào ăn gần hết tiền lãi."</div>
+        </div>
+
+        <div class="hub-card__footer">
+          <div class="hub-card__location">📍 Bối cảnh: <b>Bàn học Greenhub & Ban công đón nắng</b></div>
+          <a href="bai-04-dot-tien-ads.html" class="hub-card__btn">Bắt Đầu Bài Tập 04 ➔</a>
+        </div>
+      </article>
+
+      <!-- Card 05 -->
+      <article class="hub-card apple-reveal">
+        <div class="hub-card__top">
+          <span class="hub-card__badge">BÀI TẬP 05</span>
+          <span class="hub-card__category">Cạn Khách Quen • Sợ Bán Cho Người Lạ</span>
+        </div>
+        
+        <h3 class="hub-card__title">
+          <a href="bai-05-het-khach-quen.html">Hết Khách Người Quen & Nỗi Sợ Chào Hàng Người Lạ</a>
+        </h3>
+
+        <div class="hub-card__question">
+          <span class="hub-card__q-icon">❓</span>
+          <span>Người thân ủng hộ một lần rồi thôi, giờ nhắn tin ai cũng ngượng và sợ bị né?</span>
+        </div>
+
+        <div class="hub-card__friction-box">
+          <div class="friction-row friction-row--disguise">
+            <span class="friction-tag">Cái cớ ngụy trang:</span>
+            <span>Soạn tin nhắn chào bạn bè dài ngoằng rồi lại vội vàng xóa đi vì sợ quê.</span>
+          </div>
+          <div class="friction-row friction-row--truth">
+            <span class="friction-tag">Sự thật giằng xé:</span>
+            <span>Kinh doanh không thể ăn bám người quen. Phải làm video phục vụ hàng triệu người lạ.</span>
+          </div>
+        </div>
+
+        <div class="hub-card__hook-box">
+          <div class="hook-box__label">⚡ HOOK 3 GIÂY ĐẢO NGƯỢC HÀNH VI</div>
+          <div class="hook-box__quote">"Soạn xong cái tin nhắn định gửi cho người quen rồi lại vội vàng xóa đi... sợ người ta nghĩ mình dạo này khó khăn nên mới đi chào mời."</div>
+        </div>
+
+        <div class="hub-card__footer">
+          <div class="hub-card__location">📍 Bối cảnh: <b>Bàn gỗ lớp học & Sảnh lounge vách kính Greenhub</b></div>
+          <a href="bai-05-het-khach-quen.html" class="hub-card__btn">Bắt Đầu Bài Tập 05 ➔</a>
+        </div>
+      </article>
+
+      <!-- Card 06 -->
+      <article class="hub-card apple-reveal">
+        <div class="hub-card__top">
+          <span class="hub-card__badge">BÀI TẬP 06</span>
+          <span class="hub-card__category">Bẫy Tự Phụ Nghề • Đối Thủ Làm Ẩu Đông Khách</span>
+        </div>
+        
+        <h3 class="hub-card__title">
+          <a href="bai-06-tay-nghe-gioi.html">Tay Nghề Tốt Nhưng Vẫn Vắng Khách: Trách Nhiệm Truyền Thông</a>
+        </h3>
+
+        <div class="hub-card__question">
+          <span class="hub-card__q-icon">❓</span>
+          <span>Làm kỹ tỉ mẩn từng ly nhưng ế ẩm, quán bên cạnh làm ẩu lại đông nhờ marketing?</span>
+        </div>
+
+        <div class="hub-card__friction-box">
+          <div class="friction-row friction-row--disguise">
+            <span class="friction-tag">Cái cớ ngụy trang:</span>
+            <span>Ngồi nắn nót cả ngày trong góc xưởng tự an ủi 'mình có tâm' để trốn tránh làm video.</span>
+          </div>
+          <div class="friction-row friction-row--truth">
+            <span class="friction-tag">Sự thật giằng xé:</span>
+            <span>Người làm tử tế mà im lặng thì khách hàng rơi hết vào tay kẻ làm ẩu.</span>
+          </div>
+        </div>
+
+        <div class="hub-card__hook-box">
+          <div class="hook-box__label">⚡ HOOK 3 GIÂY ĐẢO NGƯỢC HÀNH VI</div>
+          <div class="hook-box__quote">"Ngồi nắn nót từng đường kim mũi chỉ mất cả ngày trời... tự hào là mình làm kỹ, nhưng tối về nhìn sổ doanh thu lại thấy thắt lòng."</div>
+        </div>
+
+        <div class="hub-card__footer">
+          <div class="hub-card__location">📍 Bối cảnh: <b>Bàn gỗ dụng cụ & Ban công vườn Greenhub</b></div>
+          <a href="bai-06-tay-nghe-gioi.html" class="hub-card__btn">Bắt Đầu Bài Tập 06 ➔</a>
+        </div>
+      </article>
+
+      <!-- Card 07 -->
+      <article class="hub-card apple-reveal">
+        <div class="hub-card__top">
+          <span class="hub-card__badge">BÀI TẬP 07</span>
+          <span class="hub-card__category">Bão Phá Giá • Tổng Kho & Sàn Livestream</span>
+        </div>
+        
+        <h3 class="hub-card__title">
+          <a href="bai-07-tong-kho-pha-gia.html">Bị Tổng Kho Livestream Phá Giá: Bán Bằng Gương Mặt Uy Tín</a>
+        </h3>
+
+        <div class="hub-card__question">
+          <span class="hub-card__q-icon">❓</span>
+          <span>Báo giá xong khách thả icon cười nhạt rồi gửi link tổng kho rẻ hơn nửa giá?</span>
+        </div>
+
+        <div class="hub-card__friction-box">
+          <div class="friction-row friction-row--disguise">
+            <span class="friction-tag">Cái cớ ngụy trang:</span>
+            <span>Đêm nào cũng xem livestream tổng kho chê 'đồ kém' nhưng ban ngày thì sợ không dám báo giá.</span>
+          </div>
+          <div class="friction-row friction-row--truth">
+            <span class="friction-tag">Sự thật giằng xé:</span>
+            <span>Đua giá là tự sát. Phải bán sự an tâm bằng chính gương mặt và danh dự của mình.</span>
+          </div>
+        </div>
+
+        <div class="hub-card__hook-box">
+          <div class="hook-box__label">⚡ HOOK 3 GIÂY ĐẢO NGƯỢC HÀNH VI</div>
+          <div class="hook-box__quote">"Khách vào nhắn tin hỏi giá, mình báo xong họ chỉ thả đúng một cái icon mặt cười rồi im lặng... nhìn sang livestream tổng kho mới hiểu lý do."</div>
+        </div>
+
+        <div class="hub-card__footer">
+          <div class="hub-card__location">📍 Bối cảnh: <b>Góc bàn học & Khu terrace tầng thượng Greenhub</b></div>
+          <a href="bai-07-tong-kho-pha-gia.html" class="hub-card__btn">Bắt Đầu Bài Tập 07 ➔</a>
+        </div>
+      </article>
+
+      <!-- Card 08 -->
+      <article class="hub-card apple-reveal">
+        <div class="hub-card__top">
+          <span class="hub-card__badge">BÀI TẬP 08</span>
+          <span class="hub-card__category">Làm Lại Cuộc Đời • Vứt Bỏ Sĩ Diện Hão</span>
+        </div>
+        
+        <h3 class="hub-card__title">
+          <a href="bai-08-lam-lai-tu-dau.html">Bắt Đầu Lại Từ Con Số 0: Dẹp Tự Ái Để Đứng Lên</a>
+        </h3>
+
+        <div class="hub-card__question">
+          <span class="hub-card__q-icon">❓</span>
+          <span>Từng có sự nghiệp lớn nhưng thất bại gãy gánh, sợ bạn bè cười chê sa cơ lỡ vận?</span>
+        </div>
+
+        <div class="hub-card__friction-box">
+          <div class="friction-row friction-row--disguise">
+            <span class="friction-tag">Cái cớ ngụy trang:</span>
+            <span>Bật máy quay lên định nói rồi lại tắt đi lần thứ năm vì sợ người quen lướt thấy.</span>
+          </div>
+          <div class="friction-row friction-row--truth">
+            <span class="friction-tag">Sự thật giằng xé:</span>
+            <span>Sĩ diện không nuôi sống được gia đình. Người đàn ông dám đứng lên làm lại mới là bản lĩnh.</span>
+          </div>
+        </div>
+
+        <div class="hub-card__hook-box">
+          <div class="hook-box__label">⚡ HOOK 3 GIÂY ĐẢO NGƯỢC HÀNH VI</div>
+          <div class="hook-box__quote">"Bật máy quay lên rồi lại tắt đi đến lần thứ năm... sợ người quen lướt thấy lại bảo: Dạo này sa cơ lỡ vận hay sao mà phải lên mạng làm trò."</div>
+        </div>
+
+        <div class="hub-card__footer">
+          <div class="hub-card__location">📍 Bối cảnh: <b>Bàn học Greenhub & Ban công đón nắng gió</b></div>
+          <a href="bai-08-lam-lai-tu-dau.html" class="hub-card__btn">Bắt Đầu Bài Tập 08 ➔</a>
+        </div>
+      </article>
+
+      <!-- Card 09 -->
+      <article class="hub-card apple-reveal">
+        <div class="hub-card__top">
+          <span class="hub-card__badge">BÀI TẬP 09</span>
+          <span class="hub-card__category">Chứng Minh Giá Trị • Show Quy Trình Thật</span>
+        </div>
+        
+        <h3 class="hub-card__title">
+          <a href="bai-09-lam-ky-che-dat.html">Hàng Làm Kỹ Bị So Sánh Giá Rẻ: Dùng Hình Ảnh Thay Lời Nói</a>
+        </h3>
+
+        <div class="hub-card__question">
+          <span class="hub-card__q-icon">❓</span>
+          <span>Bị khách chê đắt so với hàng chợ, gõ tin nhắn thanh minh mỏi tay khách vẫn bỏ đi?</span>
+        </div>
+
+        <div class="hub-card__friction-box">
+          <div class="friction-row friction-row--disguise">
+            <span class="friction-tag">Cái cớ ngụy trang:</span>
+            <span>Soạn sẵn tin nhắn mẫu dài ngoằng giải thích nguyên vật liệu để copy gửi khách.</span>
+          </div>
+          <div class="friction-row friction-row--truth">
+            <span class="friction-tag">Sự thật giằng xé:</span>
+            <span>Thanh minh bằng lời nói suông có giá 0 đồng. Hãy quay cận cảnh công đoạn khó nhất!</span>
+          </div>
+        </div>
+
+        <div class="hub-card__hook-box">
+          <div class="hook-box__label">⚡ HOOK 3 GIÂY ĐẢO NGƯỢC HÀNH VI</div>
+          <div class="hook-box__quote">"Nhận được tin nhắn: 'Bên kia bán có nửa giá, sao shop bán đắt thế?'... Soạn sẵn một đoạn dài giải thích nguyên vật liệu rồi lại lẳng lặng xóa đi."</div>
+        </div>
+
+        <div class="hub-card__footer">
+          <div class="hub-card__location">📍 Bối cảnh: <b>Bàn gỗ sổ tay & Sảnh vách kính Greenhub</b></div>
+          <a href="bai-09-lam-ky-che-dat.html" class="hub-card__btn">Bắt Đầu Bài Tập 09 ➔</a>
+        </div>
+      </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ FOOTER PRINCIPLES ═══ -->
+  <section class="hub-footer-section">
+    <span class="hub-hero__badge" style="background: rgba(22, 163, 74, 0.08); color: var(--cl-success);">
+      LỜI DẶN DÒ TỪ ANH NGUYỄN VIỆT
+    </span>
+    <h2 style="font-family: var(--font-display); font-size: 28px; font-weight: 700; color: var(--cl-slate-900); margin-top: 12px;">
+      3 NGUYÊN TẮC BẤT BIẾN KHI LÀM VIDEO VOICE-OVER TẠI LỚP
+    </h2>
+
+    <div class="hub-principles-grid">
+      <div class="principle-card">
+        <div class="principle-card__num">01</div>
+        <div class="principle-card__title">Hình Ảnh Thật > Kịch Bản Đẹp</div>
+        <div class="principle-card__desc">
+          Đừng cố tạo dáng sang chảnh. Hãy chĩa máy quay vào đôi bàn tay đang ghi chép, ngón tay đang bấm điện thoại, hay bước chân đi lại trong phòng học. Càng đời thường càng chạm.
+        </div>
+      </div>
+
+      <div class="principle-card">
+        <div class="principle-card__num">02</div>
+        <div class="principle-card__title">Thu Âm Đúng Nhịp Thở Đời</div>
+        <div class="principle-card__desc">
+          Nói như đang ngồi uống trà đá tâm sự với một người bạn thân. Bỏ hết giọng phát thanh viên, bỏ hết đạo lý. Nói đúng sự thật ngượng ngùng trong lòng bạn.
+        </div>
+      </div>
+
+      <div class="principle-card">
+        <div class="principle-card__num">03</div>
+        <div class="principle-card__title">1 Video Hoàn Thành > 10 Kế Hoạch Hoàn Hảo</div>
+        <div class="principle-card__desc">
+          Rào cản lớn nhất là cái tôi sợ phán xét. Hãy bấm máy quay và dựng ngay bài tập đầu tiên tại lớp Greenhub trước khi ra về. Vượt qua ngưỡng tâm lý là bạn đã thắng!
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top: 32px; font-size: 13px; color: var(--cl-slate-500); font-family: var(--font-mono);">
+      FEDU OFFLINE COURSE • HỆ THỐNG ĐÀO TẠO VIDEO NGẮN THỰC CHIẾN 3 TẦNG SỰ THẬT
+    </div>
+  </section>
+
+</body>
+</html>
