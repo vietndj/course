@@ -38,65 +38,52 @@
       font-display: swap;
     }
     @font-face {
-      font-family: 'FD Aeonik';
-      src: url('./fonts/FDAeonikBold.ttf') format('truetype'),
-           url('/Users/vietmac/Library/Fonts/FDAeonikBold.ttf') format('truetype'),
-           local('FD Aeonik Bold');
-      font-weight: 700;
-      font-style: normal;
-      font-display: swap;
-    }
-    @font-face {
       font-family: 'Tiempos Text';
-      src: url('./fonts/FDTiemposText-Regular.otf') format('opentype'),
-           url('/Users/vietmac/Library/Fonts/FDTiemposText-Regular.otf') format('opentype'),
-           local('Tiempos Text Regular');
+      src: url('./fonts/TiemposText-Regular.woff2') format('woff2'),
+           url('./fonts/TiemposText-Regular.ttf') format('truetype'),
+           local('Tiempos Text Regular'), local('Georgia');
       font-weight: 400;
       font-style: normal;
       font-display: swap;
     }
     @font-face {
       font-family: 'Tiempos Text';
-      src: url('./fonts/FDTiemposText-Medium.otf') format('opentype'),
-           url('/Users/vietmac/Library/Fonts/FDTiemposText-Medium.otf') format('opentype'),
-           local('Tiempos Text Medium');
+      src: url('./fonts/TiemposText-Medium.woff2') format('woff2'),
+           url('./fonts/TiemposText-Medium.ttf') format('truetype'),
+           local('Tiempos Text Medium'), local('Georgia');
       font-weight: 500;
       font-style: normal;
       font-display: swap;
     }
-    @font-face {
-      font-family: 'Tiempos Text';
-      src: url('./fonts/FDTiemposText-RegularItalic.otf') format('opentype'),
-           url('/Users/vietmac/Library/Fonts/FDTiemposText-RegularItalic.otf') format('opentype'),
-           local('Tiempos Text Regular Italic');
-      font-weight: 400;
-      font-style: italic;
-      font-display: swap;
-    }
 
     :root {
-      --cl-bg:          #ffffff;
-      --cl-tint:        #f8fafc;
-      --cl-card:        #ffffff;
-      --cl-card-muted:  #f1f5f9;
-      --cl-accent:      #1a73e8;
-      --cl-accent-tint: rgba(26, 115, 232, 0.08);
-      --cl-accent-text: #ffffff;
-      --cl-line:        rgba(0, 0, 0, 0.06);
-      --cl-line-strong: rgba(0, 0, 0, 0.12);
-      --cl-text-base:   #090d16;
-      --cl-text-body:   #0f172a;
-      --cl-text-muted:  #475569;
-      --cl-danger:      #dc2626;
-      --cl-success:     #16a34a;
+      --cl-bg:              #ffffff;
+      --cl-tint:            #f8fafc;
+      --cl-card:            #ffffff;
+      --cl-card-subtle:     #f1f5f9;
+      --cl-line:            #e2e8f0;
+      --cl-line-light:      #edf2f7;
+      --cl-text-base:       #090d16;
+      --cl-text-body:       #1e293b;
+      --cl-text-muted:      #64748b;
+      --cl-accent:          #1a73e8;
+      --cl-accent-tint:     #eff6ff;
+      --cl-accent-dark:     #0d47a1;
+      --cl-danger:          #dc2626;
+      --cl-danger-tint:     #fef2f2;
+      --cl-success:         #16a34a;
+      --cl-success-tint:    #f0fdf4;
+      --cl-amber:           #d97706;
+      --cl-amber-tint:      #fffbeb;
 
-      --cl-radius-lg:   24px;
-      --cl-radius-md:   16px;
-      --cl-radius-sm:   10px;
-      --cl-radius-full: 9999px;
+      --cl-radius-sm:       8px;
+      --cl-radius-md:       14px;
+      --cl-radius-lg:       20px;
+      --cl-radius-xl:       28px;
+      --cl-radius-full:     9999px;
 
-      --font-display-short: 'FD Aeonik Extended', 'Inter', -apple-system, sans-serif;
-      --font-display-long:  'FD Aeonik', 'Inter', -apple-system, sans-serif;
+      --font-display-short: 'FD Aeonik Extended', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-display-long:  'FD Aeonik', -apple-system, BlinkMacSystemFont, sans-serif;
       --font-body:          'Tiempos Text', 'Inter', Georgia, serif;
       --font-editorial:     'Tiempos Text', Georgia, serif;
       --font-mono:          'JetBrains Mono', monospace;
@@ -122,80 +109,8 @@
     body {
       overflow-x: clip;
       min-height: 100vh;
-      line-height: 1.8;
+      line-height: 1.82;
       padding-top: 64px;
-    }
-
-    .top-nav {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 64px;
-      background: rgba(255, 255, 255, 0.92);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border-bottom: 1px solid var(--cl-line);
-      z-index: 100;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 24px;
-    }
-
-    .top-nav__brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      text-decoration: none;
-      color: var(--cl-text-base);
-      font-family: var(--font-display-short);
-      font-size: 14.5px;
-      font-weight: 700;
-      letter-spacing: -0.01em;
-      text-transform: uppercase;
-    }
-
-    .top-nav__actions {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .nav-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 8px 16px;
-      border-radius: var(--cl-radius-full);
-      font-family: var(--font-display-long);
-      font-size: 13.5px;
-      font-weight: 600;
-      text-decoration: none;
-      cursor: pointer;
-      border: 1px solid var(--cl-line);
-      background: #ffffff;
-      color: var(--cl-text-body);
-      transition: all 0.25s var(--apple-spring);
-    }
-
-    .nav-btn:hover {
-      background: var(--cl-tint);
-      border-color: var(--cl-accent);
-      color: var(--cl-accent);
-      transform: translateY(-1px);
-    }
-
-    .nav-btn--primary {
-      background: var(--cl-accent);
-      color: #ffffff;
-      border-color: var(--cl-accent);
-    }
-
-    .nav-btn--primary:hover {
-      background: #1557b0;
-      color: #ffffff;
-      transform: translateY(-1px);
     }
 
     .reading-progress-bar {
@@ -217,7 +132,7 @@
       justify-content: center;
       align-items: center;
       position: relative;
-      padding: 80px 24px;
+      padding: 88px 24px;
       box-sizing: border-box;
     }
 
@@ -252,13 +167,13 @@
       align-items: center;
       gap: 8px;
       font-family: var(--font-mono);
-      font-size: 12.5px;
+      font-size: 12px;
       font-weight: 700;
-      letter-spacing: 0.14em;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
       color: var(--cl-accent);
       background: var(--cl-accent-tint);
-      border: 1px solid rgba(26, 115, 232, 0.15);
+      border: 1px solid rgba(26, 115, 232, 0.2);
       padding: 6px 16px;
       border-radius: var(--cl-radius-full);
       margin-bottom: 20px;
@@ -276,6 +191,18 @@
       text-wrap: balance;
     }
 
+    .title-sec {
+      font-family: var(--font-display-short);
+      font-weight: 700;
+      font-size: clamp(22px, 3.2vw, 34px);
+      line-height: 1.25;
+      letter-spacing: -0.01em;
+      text-transform: uppercase;
+      color: var(--cl-text-base);
+      margin-bottom: 16px;
+      text-wrap: balance;
+    }
+
     .editorial-hook {
       font-family: var(--font-editorial);
       font-style: italic;
@@ -283,7 +210,8 @@
       line-height: 1.65;
       color: var(--cl-accent);
       margin-bottom: 24px;
-      max-width: 740px;
+      max-width: 760px;
+      text-wrap: balance;
     }
 
     .cl-body {
@@ -291,88 +219,54 @@
       color: var(--cl-text-body);
       line-height: 1.85;
       margin-bottom: 28px;
-      max-width: 740px;
+      max-width: 760px;
       text-align: left;
     }
 
-    .slide-card {
+    .quote-box {
       background: #ffffff;
-      border: 1px solid var(--cl-line);
-      border-radius: var(--cl-radius-lg);
-      padding: 32px 30px;
-      text-align: left;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+      border-left: 4px solid var(--cl-accent);
+      border-radius: 0 var(--cl-radius-md) var(--cl-radius-md) 0;
+      padding: 24px 28px;
+      margin: 24px 0;
       width: 100%;
-      margin-bottom: 24px;
-      position: relative;
+      max-width: 760px;
+      text-align: left;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.03);
     }
 
-    .slide-card__tag {
-      font-family: var(--font-mono);
-      font-size: 11.5px;
-      font-weight: 700;
-      color: var(--cl-accent);
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      margin-bottom: 12px;
-      display: inline-block;
-      background: var(--cl-accent-tint);
-      padding: 4px 10px;
-      border-radius: var(--cl-radius-full);
-    }
-
-    .slide-card__title {
-      font-family: var(--font-display-long);
-      font-size: 20px;
-      font-weight: 600;
+    .quote-box__text {
+      font-family: var(--font-editorial);
+      font-style: italic;
+      font-size: 18.5px;
       color: var(--cl-text-base);
-      margin-bottom: 14px;
-      line-height: 1.4;
-    }
-
-    .slide-card__content {
-      font-size: 16px;
-      color: var(--cl-text-body);
-      line-height: 1.8;
-    }
-
-    .slide-card__content p {
-      margin-bottom: 12px;
-    }
-
-    .slide-card__content ul {
-      padding-left: 20px;
-      margin-bottom: 12px;
-    }
-
-    .slide-card__content li {
+      line-height: 1.7;
       margin-bottom: 8px;
     }
 
-    .slide-card__verbatim {
-      background: var(--cl-tint);
-      border-left: 3px solid var(--cl-accent);
-      padding: 16px 20px;
-      border-radius: 0 var(--cl-radius-sm) var(--cl-radius-sm) 0;
-      margin-top: 14px;
-      font-size: 15px;
-      color: var(--cl-text-body);
-      line-height: 1.75;
+    .quote-box__author {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--cl-accent);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
     }
 
-    .apple-cards-grid {
+    /* CARDS GRID */
+    .feature-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
       gap: 24px;
       width: 100%;
-      margin-top: 16px;
+      margin-top: 24px;
     }
 
-    .apple-card {
-      background: var(--cl-card);
+    .feature-card {
+      background: #ffffff;
       border: 1px solid var(--cl-line);
       border-radius: var(--cl-radius-lg);
-      padding: 30px 26px;
+      padding: 32px 28px;
       text-align: left;
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
       position: relative;
@@ -382,111 +276,390 @@
       justify-content: space-between;
     }
 
-    .apple-card:hover {
-      transform: translateY(-6px);
-      border-color: rgba(26, 115, 232, 0.4);
-      box-shadow: 0 16px 36px -10px rgba(0, 0, 0, 0.08), 0 0 24px rgba(26, 115, 232, 0.06);
+    .feature-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.07);
+      border-color: rgba(26, 115, 232, 0.3);
     }
 
-    .apple-list {
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-      width: 100%;
-      max-width: 740px;
-      margin: 0 auto 30px;
-      text-align: left;
-    }
-
-    .apple-list-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 16px;
-      background: #ffffff;
-      padding: 18px 22px;
-      border-radius: var(--cl-radius-md);
-      border: 1px solid var(--cl-line);
-      box-shadow: 0 2px 8px rgba(0,0,0,0.02);
-      transition: transform 0.25s ease, border-color 0.25s ease;
-    }
-
-    .apple-list-item__bullet {
-      width: 28px;
-      height: 28px;
-      border-radius: 50%;
-      background: var(--cl-accent-tint);
-      color: var(--cl-accent);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 13px;
+    .feature-card__badge {
+      font-family: var(--font-mono);
+      font-size: 11.5px;
       font-weight: 700;
-      flex-shrink: 0;
-      margin-top: 2px;
+      color: var(--cl-accent);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+      display: inline-block;
+      background: var(--cl-accent-tint);
+      padding: 4px 12px;
+      border-radius: var(--cl-radius-full);
+      align-self: flex-start;
     }
 
-    .apple-list-item__content {
+    .feature-card__title {
+      font-family: var(--font-display-long);
+      font-size: 19px;
+      font-weight: 600;
+      color: var(--cl-text-base);
+      margin-bottom: 14px;
+      line-height: 1.35;
+    }
+
+    .feature-card__desc {
       font-size: 15.5px;
       color: var(--cl-text-body);
-      line-height: 1.65;
+      line-height: 1.8;
+      margin-bottom: 16px;
+      flex-grow: 1;
     }
 
-    .yt-container {
+    .feature-card__takeaway {
+      background: var(--cl-tint);
+      border-radius: var(--cl-radius-sm);
+      padding: 12px 14px;
+      font-size: 13.5px;
+      font-weight: 500;
+      color: var(--cl-accent-dark);
+      line-height: 1.6;
+      border-left: 3px solid var(--cl-accent);
+    }
+
+    /* COMPARISON VS GRID */
+    .vs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 24px;
       width: 100%;
-      max-width: 780px;
-      aspect-ratio: 16 / 9;
-      background: #090d16;
+      margin-top: 24px;
+    }
+
+    .vs-card {
       border-radius: var(--cl-radius-lg);
-      overflow: hidden;
-      box-shadow: 0 12px 40px rgba(0,0,0,0.12);
-      border: 1px solid var(--cl-line);
-      margin: 20px 0 32px;
+      padding: 32px 28px;
+      text-align: left;
       position: relative;
     }
 
-    .yt-container iframe {
-      width: 100%;
-      height: 100%;
-      border: none;
-      display: block;
+    .vs-card--bad {
+      background: var(--cl-danger-tint);
+      border: 1px solid rgba(220, 38, 38, 0.2);
     }
 
-    .download-box {
+    .vs-card--good {
+      background: var(--cl-success-tint);
+      border: 1px solid rgba(22, 163, 74, 0.2);
+    }
+
+    .vs-card__tag {
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      padding: 4px 12px;
+      border-radius: var(--cl-radius-full);
+      display: inline-block;
+      margin-bottom: 14px;
+    }
+
+    .vs-card--bad .vs-card__tag {
+      background: #fee2e2;
+      color: var(--cl-danger);
+    }
+
+    .vs-card--good .vs-card__tag {
+      background: #dcfce7;
+      color: var(--cl-success);
+    }
+
+    .vs-card__title {
+      font-family: var(--font-display-long);
+      font-size: 19px;
+      font-weight: 700;
+      margin-bottom: 16px;
+      line-height: 1.35;
+    }
+
+    .vs-card--bad .vs-card__title {
+      color: #991b1b;
+    }
+
+    .vs-card--good .vs-card__title {
+      color: #166534;
+    }
+
+    .vs-card ul {
+      padding-left: 20px;
+      font-size: 15px;
+      line-height: 1.8;
+    }
+
+    .vs-card--bad ul {
+      color: #7f1d1d;
+    }
+
+    .vs-card--good ul {
+      color: #14532d;
+    }
+
+    .vs-card li {
+      margin-bottom: 10px;
+    }
+
+    /* METAPHOR CARD */
+    .metaphor-card {
+      background: #ffffff;
+      border: 1px solid rgba(217, 119, 6, 0.25);
+      border-radius: var(--cl-radius-xl);
+      padding: 36px 32px;
+      text-align: left;
+      width: 100%;
+      max-width: 860px;
+      margin-top: 24px;
+      box-shadow: 0 6px 24px rgba(217, 119, 6, 0.05);
+      position: relative;
+    }
+
+    .metaphor-card__badge {
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      font-weight: 700;
+      color: var(--cl-amber);
+      background: var(--cl-amber-tint);
+      padding: 4px 12px;
+      border-radius: var(--cl-radius-full);
+      display: inline-block;
+      margin-bottom: 14px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .metaphor-card__title {
+      font-family: var(--font-display-long);
+      font-size: 21px;
+      font-weight: 700;
+      color: var(--cl-text-base);
+      margin-bottom: 16px;
+      line-height: 1.35;
+    }
+
+    .metaphor-card__story {
+      font-family: var(--font-editorial);
+      font-size: 17.5px;
+      color: var(--cl-text-body);
+      line-height: 1.85;
+      margin-bottom: 20px;
+    }
+
+    .metaphor-card__lesson {
+      background: var(--cl-amber-tint);
+      border-left: 4px solid var(--cl-amber);
+      padding: 14px 18px;
+      border-radius: 0 var(--cl-radius-sm) var(--cl-radius-sm) 0;
+      font-size: 15px;
+      font-weight: 600;
+      color: #92400e;
+      line-height: 1.6;
+    }
+
+    /* SOP STEPS */
+    .sop-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+      width: 100%;
+      margin-top: 24px;
+    }
+
+    .sop-step {
+      background: #ffffff;
+      border: 1px solid var(--cl-line);
+      border-radius: var(--cl-radius-lg);
+      padding: 26px 22px;
+      text-align: left;
+      position: relative;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.02);
+    }
+
+    .sop-step__num {
+      width: 38px;
+      height: 38px;
+      border-radius: var(--cl-radius-full);
+      background: var(--cl-accent);
+      color: #ffffff;
+      font-family: var(--font-display-short);
+      font-weight: 700;
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 14px;
+    }
+
+    .sop-step__title {
+      font-family: var(--font-display-long);
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--cl-text-base);
+      margin-bottom: 10px;
+    }
+
+    .sop-step__desc {
+      font-size: 14.5px;
+      color: var(--cl-text-body);
+      line-height: 1.75;
+    }
+
+    /* TOP NAV */
+    .top-nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 64px;
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--cl-line);
+      z-index: 100;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 20px;
-      background: #ffffff;
-      border: 1px solid rgba(26, 115, 232, 0.2);
-      border-radius: var(--cl-radius-md);
-      padding: 20px 24px;
-      width: 100%;
-      max-width: 740px;
-      margin: 20px auto 30px;
-      text-align: left;
-      box-shadow: 0 4px 16px rgba(26, 115, 232, 0.06);
+      padding: 0 24px;
     }
 
-    .download-box__info h4 {
-      font-family: var(--font-display-long);
-      font-size: 16.5px;
+    .nav-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-mono);
+      font-size: 13px;
       font-weight: 600;
       color: var(--cl-text-base);
-      margin-bottom: 4px;
+      background: var(--cl-tint);
+      border: 1px solid var(--cl-line);
+      padding: 8px 16px;
+      border-radius: var(--cl-radius-md);
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.2s ease;
     }
 
-    .download-box__info p {
+    .nav-btn:hover {
+      background: #ffffff;
+      border-color: var(--cl-accent);
+      color: var(--cl-accent);
+      transform: translateY(-1px);
+    }
+
+    .nav-btn--primary {
+      background: var(--cl-accent);
+      color: #ffffff;
+      border-color: var(--cl-accent);
+    }
+
+    .nav-btn--primary:hover {
+      background: var(--cl-accent-dark);
+      color: #ffffff;
+    }
+
+    .top-nav__actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    /* DRAWER MENU */
+    .drawer-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0,0,0,0.5);
+      backdrop-filter: blur(8px);
+      z-index: 200;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+
+    .drawer-overlay.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .drawer-content {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 90%;
+      max-width: 440px;
+      height: 100%;
+      background: #ffffff;
+      box-shadow: -8px 0 32px rgba(0,0,0,0.15);
+      padding: 24px;
+      overflow-y: auto;
+      transform: translateX(100%);
+      transition: transform 0.35s var(--apple-spring);
+    }
+
+    .drawer-overlay.open .drawer-content {
+      transform: translateX(0);
+    }
+
+    .drawer-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--cl-line);
+      margin-bottom: 16px;
+    }
+
+    .drawer-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 14px;
+      border-radius: var(--cl-radius-sm);
+      text-decoration: none;
+      color: var(--cl-text-base);
       font-size: 13.5px;
-      color: var(--cl-text-muted);
+      font-weight: 500;
+      transition: all 0.15s ease;
     }
 
+    .drawer-item:hover {
+      background: var(--cl-tint);
+      color: var(--cl-accent);
+    }
+
+    .drawer-item.active {
+      background: var(--cl-accent-tint);
+      color: var(--cl-accent);
+      font-weight: 700;
+    }
+
+    .drawer-item__num {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--cl-accent);
+      background: rgba(26, 115, 232, 0.1);
+      padding: 2px 6px;
+      border-radius: 4px;
+    }
+
+    /* COPY BOX */
     .copy-box {
       background: var(--cl-tint);
       border: 1px dashed rgba(26, 115, 232, 0.35);
       border-radius: var(--cl-radius-md);
       padding: 20px 24px;
       width: 100%;
-      max-width: 740px;
+      max-width: 760px;
       margin: 20px auto 30px;
       text-align: left;
       cursor: pointer;
@@ -514,128 +687,69 @@
       font-size: 13.5px;
       color: var(--cl-text-base);
       line-height: 1.6;
-      white-space: pre-wrap;
     }
 
-    .present-hud {
-      position: fixed;
-      bottom: 24px;
-      right: 24px;
-      background: rgba(9, 13, 22, 0.92);
-      backdrop-filter: blur(16px);
-      color: #ffffff;
-      padding: 8px 16px;
-      border-radius: var(--cl-radius-full);
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      font-family: var(--font-mono);
-      font-size: 12px;
-      z-index: 100;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+    /* VIDEO CONTAINER */
+    .yt-container {
+      position: relative;
+      width: 100%;
+      max-width: 760px;
+      padding-bottom: 56.25%;
+      height: 0;
+      border-radius: var(--cl-radius-lg);
+      overflow: hidden;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+      margin: 20px 0 24px;
+      background: #000000;
     }
 
-    .present-hud kbd {
-      background: rgba(255, 255, 255, 0.2);
-      padding: 2px 6px;
-      border-radius: 4px;
-      font-size: 11px;
-    }
-
-    .drawer-overlay {
-      position: fixed;
+    .yt-container iframe {
+      position: absolute;
       top: 0;
       left: 0;
-      right: 0;
-      bottom: 0;
-      background: rgba(0, 0, 0, 0.45);
-      backdrop-filter: blur(6px);
-      z-index: 200;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.3s ease;
-    }
-
-    .drawer-overlay.active {
-      opacity: 1;
-      pointer-events: auto;
-    }
-
-    .drawer-content {
-      position: fixed;
-      top: 0;
-      right: 0;
-      width: min(440px, 90vw);
+      width: 100%;
       height: 100%;
+      border: 0;
+    }
+
+    .download-box {
       background: #ffffff;
-      box-shadow: -10px 0 40px rgba(0,0,0,0.15);
-      z-index: 201;
-      transform: translateX(100%);
-      transition: transform 0.35s var(--apple-spring);
-      display: flex;
-      flex-direction: column;
-      padding: 32px 24px;
-      overflow-y: auto;
-    }
-
-    .drawer-overlay.active .drawer-content {
-      transform: translateX(0);
-    }
-
-    .drawer-header {
+      border: 1px solid var(--cl-line);
+      border-radius: var(--cl-radius-lg);
+      padding: 24px 28px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-bottom: 24px;
-      padding-bottom: 16px;
-      border-bottom: 1px solid var(--cl-line);
+      gap: 20px;
+      width: 100%;
+      max-width: 760px;
+      margin-top: 24px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
+      flex-wrap: wrap;
     }
 
-    .drawer-item {
-      display: flex;
-      align-items: baseline;
-      gap: 12px;
-      padding: 11px 14px;
-      border-radius: var(--cl-radius-sm);
-      text-decoration: none;
-      color: var(--cl-text-base);
-      font-size: 14px;
+    .download-box__info {
+      text-align: left;
+    }
+
+    .download-box__info h4 {
       font-family: var(--font-display-long);
-      transition: all 0.2s ease;
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--cl-text-base);
+      margin-bottom: 4px;
     }
 
-    .drawer-item:hover, .drawer-item.active {
-      background: var(--cl-tint);
-      color: var(--cl-accent);
-    }
-
-    .drawer-item__id {
-      font-family: var(--font-mono);
-      font-size: 12px;
-      font-weight: 700;
-      color: var(--cl-accent);
-    }
-
-    .apple-reveal {
-      opacity: 0;
-      transform: translate3d(0, 24px, 0);
-      transition: opacity 0.5s var(--apple-ease), transform 0.58s var(--apple-spring);
-      will-change: opacity, transform;
-    }
-
-    .apple-reveal.is-visible {
-      opacity: 1;
-      transform: translate3d(0, 0, 0);
-      will-change: auto;
+    .download-box__info p {
+      font-size: 13.5px;
+      color: var(--cl-text-muted);
     }
 
     @media (max-width: 768px) {
-      body { padding-top: 56px; }
-      .top-nav { height: 56px; padding: 0 16px; }
-      .reading-progress-bar { top: 55px; }
-      .cl-zebra-section { padding: 60px 16px; }
-      .present-hud { display: none; }
-      .desktop-only { display: none; }
+      .desktop-only { display: none !important; }
+      .feature-grid, .vs-grid, .sop-grid { grid-template-columns: 1fr; }
+      .cl-zebra-section { padding: 60px 16px; min-height: auto; }
+      .download-box { flex-direction: column; align-items: flex-start; }
     }
   </style>
 
@@ -646,11 +760,11 @@
   <header class="top-nav">
     <div style="display: flex; align-items: center; gap: 12px;">
       <a href="./video-master-hub.html" class="nav-btn" style="border-radius: var(--cl-radius-full); font-weight: 700;">
-        <span>←</span> <span>Trang Tổng</span>
+        <span>←</span> <span class="desktop-only">Trang Tổng</span>
       </a>
       <div style="display: flex; flex-direction: column;">
         <span style="font-family: var(--font-display-short); font-size: 13.5px; font-weight: 700; text-transform: uppercase; color: var(--cl-text-base);">VẤN ĐỀ 22</span>
-        <span style="font-size: 11.5px; color: var(--cl-text-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 280px;">8 Kịch Bản Mẫu Bóc Tách Thực Chiến Tại Lớp</span>
+        <span style="font-size: 11.5px; color: var(--cl-text-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 260px;">8 Kịch Bản Mẫu Bóc Tách Thực Chiến Tại Lớp</span>
       </div>
     </div>
     <div class="top-nav__actions">
@@ -668,152 +782,152 @@
           <div class="drawer-header">
             <div>
               <div style="font-family: var(--font-display-short); font-weight: 700; font-size: 15px; text-transform: uppercase;">Mục Lục 28 Vấn Đề</div>
-              <div style="font-size: 12px; color: var(--cl-text-muted);">Quyển Sách Động Video Thực Chiến</div>
+              <div style="font-size: 12px; color: var(--cl-text-muted);">Quyển Sách Động Video Thực Chiến 2026</div>
             </div>
             <button onclick="toggleDrawer()" style="background: none; border: none; font-size: 24px; cursor: pointer; color: var(--cl-text-muted);">&times;</button>
           </div>
           <div style="display: flex; flex-direction: column; gap: 4px;">
-            <div style='font-size: 11px; font-weight: 700; color: var(--cl-accent); text-transform: uppercase; margin: 16px 0 6px 14px; letter-spacing: 0.08em;'>TRỤ CỘT 1: TIÊU CHUẨN VIDEO CHUYÊN NGHIỆP</div>
-              <a href="./mat-do-thong-tin-trong-video.html" class="drawer-item ">
-                <span class="drawer-item__id">01</span>
-                <span>Mật Độ Thông Tin Rỗng vs. Nén Mật Độ</span>
-              </a>
             
-              <a href="./tieu-chuan-am-thanh-sach.html" class="drawer-item ">
-                <span class="drawer-item__id">02</span>
-                <span>Tiêu Chuẩn Âm Thanh Sạch Trong Video</span>
-              </a>
-            
-              <a href="./xu-ly-rac-boi-canh-video.html" class="drawer-item ">
-                <span class="drawer-item__id">03</span>
-                <span>Xử Lý Rác Bối Cảnh & Phân Tầng Thị Giác</span>
-              </a>
-            
-              <a href="./noi-khong-guong-ep-truoc-ong-kinh.html" class="drawer-item ">
-                <span class="drawer-item__id">04</span>
-                <span>Nói Không Gượng Ép: Tâm Lý Thoải Mái</span>
-              </a>
-            
-              <a href="./chuyen-nghiep-la-binh-dan-hoa.html" class="drawer-item ">
-                <span class="drawer-item__id">05</span>
-                <span>Chuyên Nghiệp Là Bình Dân Hóa Thuật Ngữ</span>
-              </a>
-            
-              <a href="./dong-bo-va-nhat-quan-thuong-hieu.html" class="drawer-item ">
-                <span class="drawer-item__id">06</span>
-                <span>Thống Nhất & Nhất Quán Nhận Diện</span>
-              </a>
-            
-              <a href="./dinh-huong-hanh-vi-ban-hang.html" class="drawer-item ">
-                <span class="drawer-item__id">07</span>
-                <span>Định Hướng Hành Vi: Bán Hàng Là Vờn Khách</span>
-              </a>
-            <div style='font-size: 11px; font-weight: 700; color: var(--cl-accent); text-transform: uppercase; margin: 16px 0 6px 14px; letter-spacing: 0.08em;'>TRỤ CỘT 2: NGÔN NGỮ ĐIỆN ẢNH & THỊ GIÁC HÓA</div>
-              <a href="./ban-chat-video-la-slide-cap-cao.html" class="drawer-item ">
-                <span class="drawer-item__id">08</span>
-                <span>Bản Chất Video Là Slide Cấp Cao</span>
-              </a>
-            
-              <a href="./8-quy-tac-bo-cuc-khung-hinh.html" class="drawer-item ">
-                <span class="drawer-item__id">09</span>
-                <span>8 Quy Tắc Bố Cục Logic Cho Mỗi Cảnh Quay</span>
-              </a>
-            
-              <a href="./tam-ly-hoc-co-canh-dien-anh.html" class="drawer-item ">
-                <span class="drawer-item__id">10</span>
-                <span>Tâm Lý Học Cỡ Cảnh & Khoảng Cách An Toàn</span>
-              </a>
-            
-              <a href="./12-menh-lenh-khung-hinh-chuan.html" class="drawer-item ">
-                <span class="drawer-item__id">11</span>
-                <span>12 Mệnh Lệnh Thiết Lập Khung Hình Chuẩn</span>
-              </a>
-            
-              <a href="./14-goc-may-dien-anh-thuc-chien.html" class="drawer-item ">
-                <span class="drawer-item__id">12</span>
-                <span>14 Góc Máy Điện Ảnh Thực Chiến & Ý Niệm Quyền Lực</span>
-              </a>
-            <div style='font-size: 11px; font-weight: 700; color: var(--cl-accent); text-transform: uppercase; margin: 16px 0 6px 14px; letter-spacing: 0.08em;'>TRỤ CỘT 3: ĐỘNG TÁC MÁY, CHUYỂN CẢNH & B-ROLL</div>
-              <a href="./logic-dong-tac-may-4-nhom.html" class="drawer-item ">
-                <span class="drawer-item__id">13</span>
-                <span>Động Tác Máy Có Logic: 4 Nhóm Chủ Đích</span>
-              </a>
-            
-              <a href="./khoa-hoc-chuyen-canh-3s-dopamine.html" class="drawer-item ">
-                <span class="drawer-item__id">14</span>
-                <span>Khoa Học Chuyển Cảnh: Quy Tắc 3s & Dopamine Hit</span>
-              </a>
-            
-              <a href="./b-roll-bang-chung-thi-giac.html" class="drawer-item ">
-                <span class="drawer-item__id">15</span>
-                <span>B-Roll & Cảnh Trám: Bằng Chứng Thị Giác Thép</span>
-              </a>
-            
-              <a href="./ngon-ngu-co-the-livestream-tam-tri.html" class="drawer-item ">
-                <span class="drawer-item__id">16</span>
-                <span>Ngôn Ngữ Cơ Thể: Nụ Cười Nền & Ánh Mắt Tự Nhiên</span>
-              </a>
-            <div style='font-size: 11px; font-weight: 700; color: var(--cl-accent); text-transform: uppercase; margin: 16px 0 6px 14px; letter-spacing: 0.08em;'>TRỤ CỘT 4: 3 ĐỊNH DẠNG TRỤ CỘT & QUY TRÌNH SẢN XUẤT</div>
-              <a href="./voice-over-thuc-chien-quy-trinh-3-buoc.html" class="drawer-item ">
-                <span class="drawer-item__id">17</span>
-                <span>Voice-Over Thực Chiến & Quy Trình 3 Bước</span>
-              </a>
-            
-              <a href="./dynamic-cut-thoai-doi-canh.html" class="drawer-item ">
-                <span class="drawer-item__id">18</span>
-                <span>Dynamic Cut: Thoại Đổi Cảnh Dắt Tay Dạo Phố</span>
-              </a>
-            
-              <a href="./talking-head-2-cam-anh-sang-uy-tin.html" class="drawer-item ">
-                <span class="drawer-item__id">19</span>
-                <span>Talking Head: Setup 2 Cam & Ánh Sáng Uy Tín</span>
-              </a>
-            <div style='font-size: 11px; font-weight: 700; color: var(--cl-accent); text-transform: uppercase; margin: 16px 0 6px 14px; letter-spacing: 0.08em;'>TRỤ CỘT 5: TÂM LÝ HỌC NỘI DUNG & KỊCH BẢN 3 TẦNG</div>
-              <a href="./benh-noi-dai-boi-tren-mang.html" class="drawer-item ">
-                <span class="drawer-item__id">20</span>
-                <span>Bệnh Nói Đãi Bôi & Kỹ Thuật Ép 3 Lần Tại Sao</span>
-              </a>
-            
-              <a href="./cong-thuc-rap-kich-ban-4-cau-3-tang.html" class="drawer-item ">
-                <span class="drawer-item__id">21</span>
-                <span>Công Thức Ráp Kịch Bản 4 Câu & Logic 3 Tầng</span>
-              </a>
-            
-              <a href="./8-kich-ban-mau-thuc-hanh-tai-lop.html" class="drawer-item active">
-                <span class="drawer-item__id">22</span>
-                <span>8 Kịch Bản Mẫu Bóc Tách Thực Chiến Tại Lớp</span>
-              </a>
-            
-              <a href="./goc-khuat-tam-ly-trong-kich-ban.html" class="drawer-item ">
-                <span class="drawer-item__id">23</span>
-                <span>Khai Thác Góc Khuất Tâm Lý Đời Thường</span>
-              </a>
-            
-              <a href="./5-gia-tri-thuong-mai-video-3-tang.html" class="drawer-item ">
-                <span class="drawer-item__id">24</span>
-                <span>5 Giá Trị Thương Mại Cốt Tử Của Video 3 Tầng</span>
-              </a>
-            <div style='font-size: 11px; font-weight: 700; color: var(--cl-accent); text-transform: uppercase; margin: 16px 0 6px 14px; letter-spacing: 0.08em;'>TRỤ CỘT 6: CHIẾN LƯỢC KÊNH NANO, NICHE & ĐỒ HỌA AI 2026</div>
-              <a href="./ky-nguyen-nano-influencer-tai-san-video.html" class="drawer-item ">
-                <span class="drawer-item__id">25</span>
-                <span>Kỷ Nguyên Nano-Influencer & Tài Sản Video</span>
-              </a>
-            
-              <a href="./phuong-phap-tim-niche-giao-diem-4-yeu-to.html" class="drawer-item ">
-                <span class="drawer-item__id">26</span>
-                <span>Tìm Niche: Giao Điểm 4 Yếu Tố & 3 Bộ Prompt AI</span>
-              </a>
-            
-              <a href="./kenh-la-trai-huan-luyen-ai-loc-niem-tin.html" class="drawer-item ">
-                <span class="drawer-item__id">27</span>
-                <span>Kênh Là Trại Huấn Luyện AI & Máy Lọc Niềm Tin</span>
-              </a>
-            
-              <a href="./thuc-hanh-ai-photoshoot-concept-2026.html" class="drawer-item ">
-                <span class="drawer-item__id">28</span>
-                <span>Đồ Họa Hình Ảnh AI: Photoshoot Concept Thương Mại</span>
-              </a>
-            
+          <a href="./mat-do-thong-tin-trong-video.html" class="drawer-item ">
+            <span class="drawer-item__num">01</span>
+            <span style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Mật Độ Thông Tin Rỗng vs. Nén Mật Độ</span>
+          </a>
+        
+          <a href="./tieu-chuan-am-thanh-sach.html" class="drawer-item ">
+            <span class="drawer-item__num">02</span>
+            <span style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Tiêu Chuẩn Âm Thanh Sạch Trong Video</span>
+          </a>
+        
+          <a href="./xu-ly-rac-boi-canh-video.html" class="drawer-item ">
+            <span class="drawer-item__num">03</span>
+            <span style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Xử Lý Rác Bối Cảnh & Phân Tầng Thị Giác</span>
+          </a>
+        
+          <a href="./noi-khong-guong-ep-truoc-ong-kinh.html" class="drawer-item ">
+            <span class="drawer-item__num">04</span>
+            <span style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Nói Không Gượng Ép: Tâm Lý Thoải Mái</span>
+          </a>
+        
+          <a href="./chuyen-nghiep-la-binh-dan-hoa.html" class="drawer-item ">
+            <span class="drawer-item__num">05</span>
+            <span style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Chuyên Nghiệp Là Bình Dân Hóa Thuật Ngữ</span>
+          </a>
+        
+          <a href="./dong-bo-va-nhat-quan-thuong-hieu.html" class="drawer-item ">
+            <span class="drawer-item__num">06</span>
+            <span style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Thống Nhất & Nhất Quán Nhận Diện</span>
+          </a>
+        
+          <a href="./dinh-huong-hanh-vi-ban-hang.html" class="drawer-item ">
+            <span class="drawer-item__num">07</span>
+            <span style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Định Hướng Hành Vi: Bán Hàng Là Vờn Khách</span>
+          </a>
+        
+          <a href="./ban-chat-video-la-slide-cap-cao.html" class="drawer-item ">
+            <span class="drawer-item__num">08</span>
+            <span style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Bản Chất Video Là Slide Cấp Cao</span>
+          </a>
+        
+          <a href="./8-quy-tac-bo-cuc-khung-hinh.html" class="drawer-item ">
+            <span class="drawer-item__num">09</span>
+            <span style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">8 Quy Tắc Bố Cục Logic Cho Mỗi Cảnh Quay</span>
+          </a>
+        
+          <a href="./tam-ly-hoc-co-canh-dien-anh.html" class="drawer-item ">
+            <span class="drawer-item__num">10</span>
+            <span style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Tâm Lý Học Cỡ Cảnh & Khoảng Cách An Toàn</span>
+          </a>
+        
+          <a href="./12-menh-lenh-khung-hinh-chuan.html" class="drawer-item ">
+            <span class="drawer-item__num">11</span>
+            <span style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">12 Mệnh Lệnh Thiết Lập Khung Hình Chuẩn</span>
+          </a>
+        
+          <a href="./14-goc-may-dien-anh-thuc-chien.html" class="drawer-item ">
+            <span class="drawer-item__num">12</span>
+            <span style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">14 Góc Máy Điện Ảnh Thực Chiến & Ý Niệm Quyền Lực</span>
+          </a>
+        
+          <a href="./logic-dong-tac-may-4-nhom.html" class="drawer-item ">
+            <span class="drawer-item__num">13</span>
+            <span style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Động Tác Máy Có Logic: 4 Nhóm Chủ Đích</span>
+          </a>
+        
+          <a href="./khoa-hoc-chuyen-canh-3s-dopamine.html" class="drawer-item ">
+            <span class="drawer-item__num">14</span>
+            <span style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Khoa Học Chuyển Cảnh: Quy Tắc 3s & Dopamine Hit</span>
+          </a>
+        
+          <a href="./b-roll-bang-chung-thi-giac.html" class="drawer-item ">
+            <span class="drawer-item__num">15</span>
+            <span style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">B-Roll & Cảnh Trám: Bằng Chứng Thị Giác Thép</span>
+          </a>
+        
+          <a href="./ngon-ngu-co-the-livestream-tam-tri.html" class="drawer-item ">
+            <span class="drawer-item__num">16</span>
+            <span style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Ngôn Ngữ Cơ Thể: Nụ Cười Nền & Ánh Mắt Tự Nhiên</span>
+          </a>
+        
+          <a href="./voice-over-thuc-chien-quy-trinh-3-buoc.html" class="drawer-item ">
+            <span class="drawer-item__num">17</span>
+            <span style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Voice-Over: Nghệ Sĩ Múa Rối Bóng & Quy Trình 3 Bước</span>
+          </a>
+        
+          <a href="./dynamic-cut-thoai-doi-canh.html" class="drawer-item ">
+            <span class="drawer-item__num">18</span>
+            <span style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Dynamic Cut: Thoại Đổi Cảnh Dắt Tay Dạo Phố</span>
+          </a>
+        
+          <a href="./talking-head-2-cam-anh-sang-uy-tin.html" class="drawer-item ">
+            <span class="drawer-item__num">19</span>
+            <span style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Talking Head: Setup 2 Cam & Ánh Sáng Uy Tín</span>
+          </a>
+        
+          <a href="./benh-noi-dai-boi-tren-mang.html" class="drawer-item ">
+            <span class="drawer-item__num">20</span>
+            <span style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Bệnh Nói Đãi Bôi & Kỹ Thuật Ép 3 Lần Tại Sao</span>
+          </a>
+        
+          <a href="./cong-thuc-rap-kich-ban-4-cau-3-tang.html" class="drawer-item ">
+            <span class="drawer-item__num">21</span>
+            <span style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Công Thức Ráp Kịch Bản 4 Câu & Logic 3 Tầng</span>
+          </a>
+        
+          <a href="./8-kich-ban-mau-thuc-hanh-tai-lop.html" class="drawer-item active">
+            <span class="drawer-item__num">22</span>
+            <span style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">8 Kịch Bản Mẫu Bóc Tách Thực Chiến Tại Lớp</span>
+          </a>
+        
+          <a href="./goc-khuat-tam-ly-trong-kich-ban.html" class="drawer-item ">
+            <span class="drawer-item__num">23</span>
+            <span style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Khai Thác Góc Khuất Tâm Lý Đời Thường</span>
+          </a>
+        
+          <a href="./5-gia-tri-thuong-mai-video-3-tang.html" class="drawer-item ">
+            <span class="drawer-item__num">24</span>
+            <span style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">5 Giá Trị Thương Mại Cốt Tử Của Video 3 Tầng</span>
+          </a>
+        
+          <a href="./ky-nguyen-nano-influencer-tai-san-video.html" class="drawer-item ">
+            <span class="drawer-item__num">25</span>
+            <span style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Kỷ Nguyên Nano-Influencer & Tài Sản Video</span>
+          </a>
+        
+          <a href="./phuong-phap-tim-niche-giao-diem-4-yeu-to.html" class="drawer-item ">
+            <span class="drawer-item__num">26</span>
+            <span style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Tìm Niche: Giao Điểm 4 Yếu Tố & 3 Bộ Prompt AI</span>
+          </a>
+        
+          <a href="./kenh-la-trai-huan-luyen-ai-loc-niem-tin.html" class="drawer-item ">
+            <span class="drawer-item__num">27</span>
+            <span style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Kênh Là Trại Huấn Luyện AI & Máy Lọc Niềm Tin</span>
+          </a>
+        
+          <a href="./thuc-hanh-ai-photoshoot-concept-2026.html" class="drawer-item ">
+            <span class="drawer-item__num">28</span>
+            <span style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Đồ Họa Hình Ảnh AI: Photoshoot Concept Thương Mại</span>
+          </a>
+        
           </div>
         </div>
       </div>
@@ -821,298 +935,232 @@
 
   <!-- HERO SECTION -->
   <section class="cl-zebra-section cl-zebra--light" id="hero">
-    <div class="cl-sec-container apple-reveal">
+    <div class="cl-sec-container">
       <div class="cl-badge">05 / KỊCH BẢN 3 TẦNG • VẤN ĐỀ 22</div>
       <h1 class="title-short">8 Kịch Bản Mẫu Bóc Tách Thực Chiến Tại Lớp</h1>
-      <p class="editorial-hook">"8 bài tập thực tế tại lớp giải quyết nỗi đau của những ngành nghề nào?"</p>
-      <p class="cl-body">Tiền mặt bằng vắng khách; Chững lại tuổi 30; Tiền ads ăn hết lãi; Hết khách mối quen; Tay nghề tốt vẫn ế; Cạnh tranh tổng kho; Số 0; Bị so giá.</p>
+      <p class="editorial-hook">"Làm sao để áp dụng kịch bản 3 tầng vào mọi ngành nghề kinh doanh?"</p>
+      <p class="cl-body" style="font-weight: 500; font-size: 18px; color: var(--cl-text-base); text-align: center;">8 Kịch bản mẫu thực hành bóc tách tại lớp là kho vũ khí mẫu cho các ngành nghề: Nha khoa, Bất động sản, Spa, Luật sư, Đào tạo, Thời trang, Ẩm thực và Bán lẻ.</p>
 
-      <div style="display: flex; gap: 12px; margin-top: 12px; flex-wrap: wrap; justify-content: center;">
-        <a href="#sec-slides" class="nav-btn nav-btn--primary">XEM NGUYÊN VĂN SLIDE BÀI GIẢNG ↓</a>
-        <a href="#sec-video" class="nav-btn">VIDEO MINH HỌA</a>
-        <a href="./video-master-hub.html" class="nav-btn">VỀ MỤC LỤC CHÍNH</a>
+      <div style="display: flex; gap: 12px; margin-top: 20px; flex-wrap: wrap; justify-content: center;">
+        <a href="#sec-psychology" class="nav-btn nav-btn--primary">KHÁM PHÁ BÀI GIẢNG ↓</a>
+        <a href="#sec-comparison" class="nav-btn">BẢNG ĐỐI CHIẾU THỰC CHIẾN</a>
+        <a href="./video-master-hub.html" class="nav-btn">VỀ MỤC LỤC 28 BÀI</a>
       </div>
     </div>
   </section>
 
-  <!-- VERBATIM SLIDES SECTION (100% Giữ y nguyên từ ngữ & cách nói từ slide cũ) -->
-  <section class="cl-zebra-section cl-zebra--tint" id="sec-slides">
-    <div class="cl-sec-container cl-sec-container--wide apple-reveal">
-      <div class="cl-badge">TÀI LIỆU GỐC • Video logic.pdf (SLIDE 35 - 50)</div>
-      <h2 class="title-short">TOÀN BỘ NỘI DUNG TỪ SLIDE CŨ</h2>
-      <p class="editorial-hook">"Giữ nguyên văn 100% từng câu chữ, ví dụ và triết lý từ bài giảng gốc của anh Việt."</p>
+  <!-- 01: TÂM LÝ HỌC NHẬN THỨC & BÓC TRẦN SỰ THẬT -->
+  <section class="cl-zebra-section cl-zebra--tint" id="sec-psychology">
+    <div class="cl-sec-container">
+      <div class="cl-badge">01 / TÂM LÝ HỌC NHẬN THỨC</div>
+      <h2 class="title-sec">BÓC TRẦN BẢN CHẤT & CƠ CHẾ NÃO BỘ NGƯỜI XEM</h2>
+      <p class="editorial-hook">"Hiểu được cơ chế sinh học đằng sau đôi mắt và đôi tai của khán giả."</p>
 
-      <div style="width: 100%; margin-top: 24px;">
+      <div style="width: 100%; margin-top: 12px;">
+        <p class="cl-body">Rất nhiều học viên khi nghe lý thuyết thì thấy rất hay, nhưng khi bắt tay vào ngành nghề cụ thể của mình lại bối rối: 'Ngành của em đặc thù lắm, ngành của em khô khan lắm thì áp dụng 3 tầng thế nào?'.</p><p class="cl-body">Thực tế là: Không có ngành nào khô khan, chỉ có người làm nội dung chưa chạm tới nỗi đau có thật của con người trong ngành đó! Dù bạn bán căn biệt thự 50 tỷ hay bán một bát phở 50 nghìn, người mua vẫn là con người bằng xương bằng thịt với đầy đủ những nỗi sợ, sự sĩ diện và mong muốn được tôn trọng. 8 Kịch bản mẫu bóc tách trực tiếp tại lớp học của anh Việt chứng minh tính vạn năng của công thức 3 tầng.</p>
+      </div>
+
+      <div class="quote-box">
+        <div class="quote-box__text">"Không có ngành nghề nào khô khan. Mọi ngành nghề đều phục vụ con người, và nơi nào có con người thì nơi đó có tâm lý học 3 tầng!"</div>
+        <div class="quote-box__author">— Mentor Nguyễn Đức Việt</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 02: HỆ THỐNG TRỌNG ĐIỂM CỐT LÕI -->
+  <section class="cl-zebra-section cl-zebra--light" id="sec-cards">
+    <div class="cl-sec-container cl-sec-container--wide">
+      <div class="cl-badge">02 / TRỌNG ĐIỂM THỰC CHIẾN</div>
+      <h2 class="title-sec">HỆ THỐNG NGUYÊN TẮC CỐT LÕI</h2>
+      <p class="editorial-hook">"Những nguyên lý vàng đã được kiểm chứng qua hàng ngàn video thực tế."</p>
+
+      <div class="feature-grid">
         
-          <div class="slide-card">
-            <span class="slide-card__tag">SLIDE 35 • NGUYÊN VĂN BÀI GIẢNG GỐC</span>
-            <h3 class="slide-card__title">2026  •  2026 • THỰC HÀNH T ẠI LỚP • 01</h3>
-            <div class="slide-card__content">
-              <p>TIỀN MẶ T BẰNG & TIỆM V ẮNG KHÁCH</p><p>bài tập thực hành: bóc tách 3 tầng tâm lý chủ shop / tự kinh doanh</p><p>❌ 01 • NÓI ĐÃI BÔI</p><p>CẬP NHẬ T CÁCH MỚI</p><p>"Tôi đi học để cập nhật cách tiếp cận khách</p><p>hàng mới cho cửa hàng."</p><p>💡 Lý do chung chung — Nghe quen tai, dễ</p><p>lướt qua</p><p>⚠️ 02 • CẢM GIÁC THẬ T</p><p>CỬA HÀNG V ẮNG KHÁCH</p><p>"Tháng vừa rồi khách vắng hẳn, ngồi ở cửa</p><p>hàng thấy sốt ruột như lửa đốt."</p><p>💡 Người tự làm kinh doanh thấy đồng cảm</p><p>ngay</p><p>✅ 03 • TỬ HUYỆT NGƯỢNG MIỆNG</p><p>ÁP LỰ C 20 T R  MẶ T BẰNG</p><p>" C uối tháng 20 tri ệ u m ặ t b ằ ng đến h ạ n. Bỏ  v ă n</p><p>ph ò ng ra làm ri ê ng tưởng sướng, ai ng ờ  cày từ</p><p>sáng đến đ ê m không dám ngh ỉ ."</p><p>💡 🔥  CHẠM Đ Ú NG N Ỗ I B Ấ T A N C ỦA  NGƯ Ờ I</p><p>M Ở  TIỆM</p><p>v ietnd j@ gmail . com</p>
+          <div class="feature-card">
+            <div>
+              <span class="feature-card__badge">01 / CASE NHA KHOA & SPA</span>
+              <h3 class="feature-card__title">Case 1 & 2: Bán Sự Tự Tin Thay Vì Bán Dịch Vụ</h3>
+              <p class="feature-card__desc">Nha khoa không bán bọc răng sứ, nha khoa bán nụ cười rạng rỡ khi đi gặp đối tác làm ăn mà không phải lấy tay che miệng. Spa không bán liệu trình nặn mụn đau đớn, spa bán cảm giác tự tin ngẩng cao đầu khi bỏ lớp phấn trang điểm lúc nửa đêm.</p>
             </div>
+            <div class="feature-card__takeaway">💡 Thực chiến: Dịch chuyển từ tính năng y khoa sang vị thế xã hội và lòng tự tôn của khách.</div>
           </div>
         
-          <div class="slide-card">
-            <span class="slide-card__tag">SLIDE 36 • NGUYÊN VĂN BÀI GIẢNG GỐC</span>
-            <h3 class="slide-card__title">2026  •  2026 • THỰC HÀNH T ẠI LỚP • 01</h3>
-            <div class="slide-card__content">
-              <p>KỊCH BẢN & 5 CẢNH QUA Y T ẠI LỚP</p><p>chủ shop / tự làm riêng — thời lượng 30 giây</p><p>LỜI THOẠI 30S T ẠI LỚP</p><p>[00-03s] S áng Chủ Nhật, t ô i ngồi ở lớp này k h ô ng phải vì rảnh r ỗ i.. .</p><p>[03-07s] Người ngoài nhìn vào tưởng mình ch ă m ch ỉ  đi học thêm cái mới .</p><p>[07-15s] Nhưng thật ra tháng rồi tiệm v ắ ng q uá, ngồi mà ruột như lửa đốt .</p><p>[15-25s] S ợ nhất cuối tháng tiền mặt b ằ ng 20 triệu đ ế n hạn. B ỏ  v ă n phòng ra làm</p><p>riêng tưởng nh ẹ  đầu, ai ngờ cày từ sáng đ ế n đêm .</p><p>[25-30s] Đ ế n lúc này, cái gì giúp duy trì được cửa hàng thì phải học th ô i.</p><p>BẢNG PHÂN CẢNH 5 SHOT</p><p>GÓC MÁ Y THỰC HÀNH</p><p>Cảnh 1 (0-3s) • [Cận cảnh]: Bàn tay cầm bút gạch một con số</p><p>trên sổ.</p><p>Cảnh 2 (3-7s) • [Toàn cảnh]: Quay từ phía sau, thấy mình ngồi</p><p>giữa lớp.</p><p>Cảnh 3 (7-15s) • [Đặc tả]: Màn hình điện thoại mở báo cáo</p><p>doanh thu.</p><p>Cảnh 4 (15-25s) • [Góc nghiêng]: Quay mặt mình nhìn ra cửa sổ</p><p>phòng học.</p><p>Cảnh 5 (25-30s) • [Trực diện]: Nhìn thẳng vào camera, nói điềm</p><p>đạm.</p><p>💡 Hình ảnh lớp học tập trung — Lời thoại chạm áp lực chi phí</p>
+          <div class="feature-card">
+            <div>
+              <span class="feature-card__badge">02 / CASE BẤT ĐỘNG SẢN & LUẬT</span>
+              <h3 class="feature-card__title">Case 3 & 4: Bán Sự An Tâm & Tránh Mất Mát</h3>
+              <p class="feature-card__desc">Môi giới BĐS giỏi không khoe sổ đỏ hay diện tích đất; họ chỉ cho khách thấy những cái bẫy pháp lý ngầm có thể chôn vùi toàn bộ tiền tiết kiệm cả đời. Luật sư giỏi không đọc điều luật; họ chỉ ra cách giữ trọn thể diện và tài sản gia đình khi xảy ra tranh chấp.</p>
             </div>
+            <div class="feature-card__takeaway">💡 Thực chiến: Đánh thức nỗi sợ mất mát luôn có lực kéo mạnh gấp 3 lần lòng tham lợi nhuận.</div>
           </div>
         
-          <div class="slide-card">
-            <span class="slide-card__tag">SLIDE 37 • NGUYÊN VĂN BÀI GIẢNG GỐC</span>
-            <h3 class="slide-card__title">2026  •  2026 • THỰC HÀNH T ẠI LỚP • 02</h3>
-            <div class="slide-card__content">
-              <p>CHỮNG LẠI SAU TUỔI 30</p><p>bài tập thực hành: bóc tách 3 tầng tâm lý người làm văn phòng</p><p>❌ 01 • NÓI ĐÃI BÔI</p><p>HỌC THÊM KỸ NĂNG</p><p>"Tranh thủ đi học thêm kỹ năng để công việc</p><p>sau này thuận lợi hơn."</p><p>💡 Văn mẫu an toàn — Không có điểm nhấn</p><p>⚠️ 02 • CẢM GIÁC THẬ T</p><p>CÔNG VIỆC CHỮNG LẠI</p><p>"Công việc làm chục năm nay đang chững lại,</p><p>thu nhập đứng yên mà chi phí thì ngày càng</p><p>tăng."</p><p>💡 Người đi làm lâu năm gật gù đồng cảm</p><p>✅ 03 • TỬ HUYỆT NGƯỢNG MIỆNG</p><p>S Ợ  BỊ  T Ụ T H Ậ U BỎ  LẠI</p><p>" S ợ mình b ị  tụt hậu. Th ấ y mọi người b ắ t nh ị p</p><p>công nghệ m ớ i r ấ t nhanh, còn mình giữ thói</p><p>q uen c ũ  thì s ớ m mu ộ n c ũ ng b ị  b ỏ  lại."</p><p>💡 🔥  CHẠM Đ Ú NG N Ỗ I B Ấ T A N C ỦA  DÂ N V Ă N</p><p>PH Ò NG</p><p>v i e tn dj@ gmail . com</p>
+          <div class="feature-card">
+            <div>
+              <span class="feature-card__badge">03 / CASE ẨM THỰC & BÁN LẺ</span>
+              <h3 class="feature-card__title">Case 5 & 6: Bán Trải Nghiệm Cảm Xúc & Ký Ức</h3>
+              <p class="feature-card__desc">Quán cà phê không bán nước ngọt pha đường; quán bán một góc ngồi tĩnh lặng để người trẻ trốn khỏi áp lực công việc 8 tiếng mỗi ngày. Cửa hàng thời trang không bán vải vóc; họ bán sự hãnh diện khi bước vào buổi tiệc họp lớp cuối năm.</p>
             </div>
-          </div>
-        
-          <div class="slide-card">
-            <span class="slide-card__tag">SLIDE 38 • NGUYÊN VĂN BÀI GIẢNG GỐC</span>
-            <h3 class="slide-card__title">2026  •  2026 • THỰC HÀNH T ẠI LỚP • 02</h3>
-            <div class="slide-card__content">
-              <p>KỊCH BẢN & 5 CẢNH QUA Y T ẠI LỚP</p><p>người làm văn phòng — thời lượng 30 giây</p><p>LỜI THOẠI 30S T ẠI LỚP</p><p>[00-03s] Hơ n 30 tuổi, ngồi trong căn phòng này c ù ng mọi người.. .</p><p>[03-07s] A i h ỏ i thì bảo tranh th ủ  đ i học thêm k ỹ  năng mới .</p><p>[07-15s] Thật ra trong lòng rất sốt ru ộ t. C ô ng việc ch ụ c năm ch ữ ng l ạ i, thu nhập</p><p>đứ ng yên mà chi phí tăng .</p><p>[15-25s] S ợ nhất mình bị t ụ t hậu. M ọi người học c ô ng nghệ mới nhanh quá, mình gi ữ</p><p>thói quen c ũ  sớm mu ộ n c ũ ng bị b ỏ  l ạ i .</p><p>[25-30s] Chịu khó học l ạ i từ đ ầu còn h ơ n ngồi yên nhìn c ô ng việc đ i x uống.</p><p>BẢNG PHÂN CẢNH 5 SHOT</p><p>GÓC MÁ Y THỰC HÀNH</p><p>Cảnh 1 (0-3s) • [Đặc tả]: Bàn tay khuấy nhẹ ống hút trong cốc</p><p>cafe.</p><p>Cảnh 2 (3-7s) • [Trung cảnh]: Ngồi trước máy tính, gõ vài nhịp</p><p>phím.</p><p>Cảnh 3 (7-15s) • [Cận cảnh]: Bàn tay chống cằm, mắt nhìn lên</p><p>bài giảng.</p><p>Cảnh 4 (15-25s) • [Cảnh lia]: Lia từ phòng học quay về cuốn sổ</p><p>tay.</p><p>Cảnh 5 (25-30s) • [Trực diện]: Cầm máy ngang tầm mắt, nói tự</p><p>nhiên.</p><p>💡 Dũng cảm thừa nhận sự chững lại tạo sự tin tưởng tuyệt đối</p>
-            </div>
-          </div>
-        
-          <div class="slide-card">
-            <span class="slide-card__tag">SLIDE 39 • NGUYÊN VĂN BÀI GIẢNG GỐC</span>
-            <h3 class="slide-card__title">2026  •  2026 • THỰC HÀNH T ẠI LỚP • 03</h3>
-            <div class="slide-card__content">
-              <p>TIỀN QUẢNG CÁO ĂN HẾT TIỀN LÃI</p><p>bài tập thực hành: bóc tách 3 tầng tâm lý bán hàng online & làm dịch vụ</p><p>❌ 01 • NÓI ĐÃI BÔI</p><p>TỐI ƯU CHI PHÍ TIẾP THỊ</p><p>"Tôi đi học để tìm thêm hướng đi mới, tối ưu chi</p><p>phí tiếp thị cho bài bản."</p><p>💡 Lý do lý thuyết — Không tạo được cảm xúc</p><p>⚠️ 02 • CẢM GIÁC THẬ T</p><p>5 PHÚT MỞ CHECK ADS 1 LẦN</p><p>"Cứ 5 phút lại mở điện thoại xem tài khoản</p><p>quảng cáo, tiền thì trừ đều mà tin nhắn khách</p><p>không thấy đâu."</p><p>💡 Dân kinh doanh online thấy đúng hoàn</p><p>cảnh</p><p>✅ 03 • T Ử  H UYỆ T NG ƯỢ NG MI Ệ NG</p><p>M Ấ T LÃI VÌ  PH Ụ  THU Ộ C ADS</p><p>"Trước đây kiếm đư ợ c là nh ờ  ads r ẻ . G i ờ  chi phí</p><p>đắt đ ỏ  mới nhận ra: không tự quay video để</p><p>khách tin thì bao nhiêu tiền đ ổ  vào c ũ ng bốc</p><p>h ơ i."</p><p>💡 🔥  CHẠM Đ Ú NG N Ỗ I L O  S INH T Ồ N VÌ  PH Ụ</p><p>TH UỘ C A D S</p><p>v ietnd j@ gmail . com</p>
-            </div>
-          </div>
-        
-          <div class="slide-card">
-            <span class="slide-card__tag">SLIDE 40 • NGUYÊN VĂN BÀI GIẢNG GỐC</span>
-            <h3 class="slide-card__title">2026  •  2026 • THỰC HÀNH T ẠI LỚP • 03</h3>
-            <div class="slide-card__content">
-              <p>KỊCH BẢN & 5 CẢNH QUA Y T ẠI LỚP</p><p>bán hàng online & làm dịch vụ — thời lượng 30 giây</p><p>LỜI THOẠI 30S T ẠI LỚP</p><p>[00-03s] Cứ 5 ph ú t t ô i lại m ở  màn hình điện thoại kiểm tra m ộ t lần.. .</p><p>[03-07s] Người ngoài nhìn vào tư ở ng mình bận r ộ n chốt đ ơ n trả lời khách .</p><p>[07-15s] Nhưng thật ra đang sốt ru ộ t. Mấy tháng nay ti ề n quảng cáo tăng gấp đ ô i,</p><p>ti ề n nạp vào ăn gần h ế t ti ề n l ã i .</p><p>[15-25s] Trước đây cứ ngh ĩ  nạp ti ề n chạy ads là xong. Giờ mới thấm: kh ô ng tự làm</p><p>video để người ta tin, có bao nhiêu vốn c ũ ng kh ô ng b ù  n ổ i .</p><p>[25-30s] K h ô ng thể dựa m ã i vào việc đi mua quảng cáo, phải tự học cách xuất hiện</p><p>trước khách hàng th ô i.</p><p>BẢNG PHÂN CẢNH 5 SHOT</p><p>GÓC MÁ Y THỰC HÀNH</p><p>Cảnh 1 (0-3s) • [Đặc tả]: Ngón tay bấm sáng màn hình điện</p><p>thoại rồi lại tắt đi.</p><p>Cảnh 2 (3-7s) • [Trung cảnh]: Ngồi góc bàn lớp học, cầm điện</p><p>thoại lướt xem số liệu.</p><p>Cảnh 3 (7-15s) • [Cận cảnh]: Màn hình hiển thị app quản lý hoặc</p><p>chi phí quảng cáo.</p><p>Cảnh 4 (15-25s) • [Góc nghiêng]: Quay mặt mình nhìn lên bảng,</p><p>vẻ mặt đăm chiêu.</p><p>Cảnh 5 (25-30s) • [Trực diện]: Cầm máy ngang tầm mắt, nói dứt</p><p>khoát vào camera.</p><p>💡 Nói trúng bế tắc phụ thuộc ads — Tự xuất hiện để tạo niềm</p><p>tin v i e tnd j@ gmai l. com</p>
-            </div>
-          </div>
-        
-          <div class="slide-card">
-            <span class="slide-card__tag">SLIDE 41 • NGUYÊN VĂN BÀI GIẢNG GỐC</span>
-            <h3 class="slide-card__title">2026  •  2026 • THỰC HÀNH T ẠI LỚP • 04</h3>
-            <div class="slide-card__content">
-              <p>HẾT KHÁCH TỪ MỐI QUEN</p><p>bài tập thực hành: bóc tách 3 tầng tâm lý người làm tự do / tư vấn</p><p>❌ 01 • NÓI ĐÃI BÔI</p><p>MỞ RỘNG TỆP KHÁCH</p><p>"Tôi đi học để mở rộng tệp khách hàng tiềm</p><p>năng trên không gian số."</p><p>💡 Ngôn từ sách vở — Khách lướt qua ngay</p><p>⚠️ 02 • CẢM GIÁC THẬ T</p><p>NGẠI HỎI THĂM MỐI CŨ</p><p>"Lướt danh bạ Zalo tính nhắn hỏi thăm mối</p><p>quen cũ mà ngại, sợ bị nghĩ là dạo này ế việc."</p><p>💡 Dân làm dịch vụ thấy đúng tâm trạng</p><p>✅ 0 3  • T Ử  H UYỆ T NG ƯỢ NG MI Ệ NG</p><p>BẤ P BÊ NH VÌ  M Ấ T MỐI QUEN</p><p>"Trước sống khỏe nhờ giới thiệu. G iờ mối cạn</p><p>mới thấy: không có kênh tiếp cận khách lạ th ì</p><p>tháng tới không có việc."</p><p>💡 🔥  CHẠM Đ Ú NG N Ỗ I L O  KHI CẠN M Ố I QUE N</p><p>v ie tnd j@ gma i l . c o m</p>
-            </div>
-          </div>
-        
-          <div class="slide-card">
-            <span class="slide-card__tag">SLIDE 42 • NGUYÊN VĂN BÀI GIẢNG GỐC</span>
-            <h3 class="slide-card__title">2026  •  2026 • THỰC HÀNH T ẠI LỚP • 04</h3>
-            <div class="slide-card__content">
-              <p>KỊCH BẢN & 5 CẢNH QUA Y T ẠI LỚP</p><p>người làm tự do / tư vấn — thời lượng 30 giây</p><p>LỜI THOẠI 30S T ẠI LỚP</p><p>[00-03s] Ngồi trong lớp, tôi vừa mở danh bạ t í nh nhắn cho vài người q uen.. .</p><p>[03-07s] X ong lại thôi, vì ngại người ta ngh ĩ  mình dạo này ế việc đi nhờ vả .</p><p>[07-15s] Trước giờ toàn sống nhờ mối q uen. Đến khi việc í t d ầ n mới nhận ra: không</p><p>tìm được khách lạ thì bấp bênh vô c ù ng .</p><p>[15-25s] H ôm nay ngồi đây học, không phải đ ể  làm người nổi tiếng, mà đ ể  khách lạ</p><p>thấy n ă ng lực tự tìm đến .</p><p>[25-30s] Ch ủ  động xuất hiện tìm việc, c ò n h ơ n ngồi chờ sự giúp đ ỡ  từ người khác.</p><p>BẢNG PHÂN CẢNH 5 SHOT</p><p>GÓC MÁ Y THỰC HÀNH</p><p>Cảnh 1 (0-3s) • [Đặc tả]: Ngón tay lướt danh bạ Zalo rồi dừng lại</p><p>không dám bấm.</p><p>Cảnh 2 (3-7s) • [Trung cảnh]: Đặt điện thoại úp xuống bàn học,</p><p>thở dài nhẹ một nhịp.</p><p>Cảnh 3 (7-15s) • [Cận cảnh]: Bàn tay lật sang trang sổ trắng tinh</p><p>chưa có lịch mới.</p><p>Cảnh 4 (15-25s) • [Góc nghiêng]: Nhìn lên màn hình máy chiếu,</p><p>vẻ mặt tập trung.</p><p>Cảnh 5 (25-30s) • [Trực diện]: Nhìn thẳng vào camera, nói điềm</p><p>đạm.</p><p>💡 Chủ động xuất hiện tìm việc hơn là ngồi chờ sự giúp đỡ</p>
-            </div>
-          </div>
-        
-          <div class="slide-card">
-            <span class="slide-card__tag">SLIDE 43 • NGUYÊN VĂN BÀI GIẢNG GỐC</span>
-            <h3 class="slide-card__title">2026  •  2026 • THỰC HÀNH T ẠI LỚP • 05</h3>
-            <div class="slide-card__content">
-              <p>T A Y NGHỀ TỐT V ẪN V ẮNG KHÁCH</p><p>bài tập thực hành: bóc tách 3 tầng tâm lý người có tay nghề / kỹ thuật</p><p>❌ 01 • NÓI ĐÃI BÔI</p><p>HỮU XẠ TỰ NHIÊN HƯƠNG</p><p>"Hữu xạ tự nhiên hương, cứ làm thật tốt thì</p><p>khách hàng sẽ tự tìm đến."</p><p>💡 Câu tự an ủi kinh điển nhưng lỗi thời</p><p>⚠️ 02 • CẢM GIÁC THẬ T</p><p>KHÓ CHỊU VÌ KẺ LÀM MÀU</p><p>"Thấy người ta làm nghề bình thường mà lên</p><p>mạng nói hay nên đông khách, trong lòng rất</p><p>khó chịu."</p><p>💡 Tâm lý ghen tị ngấm ngầm của người làm</p><p>nghề</p><p>✅ 0 3  • T Ử  H UYỆ T NG ƯỢ NG MI Ệ NG</p><p>TỰ ÁI &  LƯ Ờ I XU Ấ T HI Ệ N</p><p>" Ô m cái tự ái chê người khác làm màu. S ự thật</p><p>là mình vừ a lười vừ a ngại, đ ể  r ồ i khách rơi hết</p><p>v ào tay người làm n ộ i d ung."</p><p>💡 🔥  TH Ứ C T Ỉ NH NG ƯỜ I GI Ỏ I NGH Ề  BẢ O  TH Ủ</p><p>v ietn dj@ gmail . c o m</p>
-            </div>
-          </div>
-        
-          <div class="slide-card">
-            <span class="slide-card__tag">SLIDE 44 • NGUYÊN VĂN BÀI GIẢNG GỐC</span>
-            <h3 class="slide-card__title">2026  •  2026 • THỰC HÀNH T ẠI LỚP • 05</h3>
-            <div class="slide-card__content">
-              <p>KỊCH BẢN & 5 CẢNH QUA Y T ẠI LỚP</p><p>người có tay nghề / kỹ thuật — thời lượng 30 giây</p><p>LỜI THOẠI 30S T ẠI LỚP</p><p>[00-03s] T ô i làm nghề cả ch ụ c n ă m nay, tay nghề kh ô ng thua kém ai.. .</p><p>[03-07s] Trước đây lu ô n ngh ĩ : cứ làm tốt đi rồi khách tự tìm đ ế n, c ầ n gì lên mạng làm</p><p>màu .</p><p>[07-15s] Cho đ ế n khi th ấ y người ta tay nghề bình thường nhưng bi ế t làm video nên</p><p>khách nườm nượp, mới th ấ y mình sai .</p><p>[15-25s] S ự thật là t ô i đang tự ái và lười thay đổi. L àm tốt mà kh ô ng ch ị u nói ra, thì</p><p>trách ai được khi khách chọn người khác .</p><p>[25-30s] B ỏ  cái t ô i xuống, làm nghề gi ỏ i thì càng phải bi ế t cách k ể  cho khách hi ể u.</p><p>BẢNG PHÂN CẢNH 5 SHOT</p><p>GÓC MÁ Y THỰC HÀNH</p><p>Cảnh 1 (0-3s) • [Cận cảnh]: Bàn tay lật cuốn tài liệu kỹ thuật trên</p><p>bàn học.</p><p>Cảnh 2 (3-7s) • [Trung cảnh]: Ngồi nhìn quanh lớp học, tay gõ</p><p>nhẹ bút xuống bàn.</p><p>Cảnh 3 (7-15s) • [Đặc tả]: Điện thoại mở clip đối thủ cùng ngành</p><p>nhiều tương tác.</p><p>Cảnh 4 (15-25s) • [Góc nghiêng]: Nhìn vào cuốn sổ ghi chép, vẻ</p><p>mặt nghiêm túc.</p><p>Cảnh 5 (25-30s) • [Trực diện]: Nhìn thẳng vào máy, nói dứt</p><p>khoát.</p><p>💡 Làm nghề giỏi thì càng phải biết cách kể cho khách hiểu</p>
-            </div>
-          </div>
-        
-          <div class="slide-card">
-            <span class="slide-card__tag">SLIDE 45 • NGUYÊN VĂN BÀI GIẢNG GỐC</span>
-            <h3 class="slide-card__title">2026  •  2026 • THỰC HÀNH T ẠI LỚP • 06</h3>
-            <div class="slide-card__content">
-              <p>BỊ CẠNH TRANH BỞI TỔNG KHO</p><p>bài tập thực hành: bóc tách 3 tầng tâm lý đại lý bán lẻ / nhập sỉ</p><p>❌ 01 • NÓI ĐÃI BÔI</p><p>T ĂNG ĐỘ NHẬN DIỆN ĐẠI L Ý</p><p>"Xây dựng kênh truyền thông để tăng độ nhận</p><p>diện cho đại lý phân phối."</p><p>💡 Kế hoạch mẫu — Không có sức nặng</p><p>⚠️ 02 • CẢM GIÁC THẬ T</p><p>BẤ T LỰC VÌ GIÁ TỔNG KHO</p><p>"Thấy tổng kho và nhãn hàng tự lên mạng bán</p><p>thẳng giá rẻ, thấy bất lực vì không cạnh tranh</p><p>nổi về giá."</p><p>💡 Dân buôn trung gian thấy đúng nỗi đau</p><p>✅ 03 • TỬ HUYỆT NGƯỢNG MIỆNG</p><p>ĂN CH Ê NH LỆCH SẮP  H Ế T TH Ờ I</p><p>" C hỉ q uen ăn chênh lệch giá, không tạo giá tr ị</p><p>thêm. G i ờ  khách mua tận xưở ng, n ế u không tin</p><p>con ng ườ i mình thì s ớ m muộn c ũ ng b ị  x óa sổ."</p><p>💡 🔥  ĐÁNH TH Ẳ NG NGUY C Ơ  M Ấ T CH É N</p><p>C Ơ M</p><p>v i e tn dj@ gmai l. com</p>
-            </div>
-          </div>
-        
-          <div class="slide-card">
-            <span class="slide-card__tag">SLIDE 46 • NGUYÊN VĂN BÀI GIẢNG GỐC</span>
-            <h3 class="slide-card__title">2026  •  2026 • THỰC HÀNH T ẠI LỚP • 06</h3>
-            <div class="slide-card__content">
-              <p>KỊCH BẢN & 5 CẢNH QUA Y T ẠI LỚP</p><p>đại lý bán lẻ / nhập hàng sỉ — thời lượng 30 giây</p><p>LỜI THOẠI 30S T ẠI LỚP</p><p>[00-03s] Nhìn các t ổ ng kho tự lên livestream bán giá gốc.. .</p><p>[03-07s] Tôi bi ế t cách bán hàng trung gian ă n chênh lệch giá s ắ p h ế t thời rồi .</p><p>[07-15s] K hách hàng b ấ m m ộ t n ú t là mua tận xưởng, mình không thể đua giảm giá</p><p>m ã i với họ được .</p><p>[15-25s] H ôm nay ngồi đây, tôi hiểu ra: n ế u khách không mua vì tin tưởng mình, thì</p><p>c ử a hàng không còn lý do gì để tồn tại .</p><p>[25-30s] K hông cạnh tranh b ằ ng giá rẻ, thì phải cạnh tranh b ằ ng sự am hiểu và tận</p><p>tâm.</p><p>BẢNG PHÂN CẢNH 5 SHOT</p><p>GÓC MÁ Y THỰC HÀNH</p><p>Cảnh 1 (0-3s) • [Đặc tả]: Màn hình hiển thị livestream xả kho giá</p><p>sốc.</p><p>Cảnh 2 (3-7s) • [Trung cảnh]: Đang ngồi ở bàn học, chống tay</p><p>nhìn điện thoại.</p><p>Cảnh 3 (7-15s) • [Cận cảnh]: Bàn tay ghi dòng chữ 'Giá trị cá</p><p>nhân' vào vở.</p><p>Cảnh 4 (15-25s) • [Góc nghiêng]: Nhìn ra không gian lớp học,</p><p>suy ngẫm.</p><p>Cảnh 5 (25-30s) • [Trực diện]: Nhìn vào camera, nói điềm đạm.</p><p>💡 Cạnh tranh bằng sự am hiểu và tận tâm của chính mình</p><p>vi e tn dj@ gmai l. c o m</p>
-            </div>
-          </div>
-        
-          <div class="slide-card">
-            <span class="slide-card__tag">SLIDE 47 • NGUYÊN VĂN BÀI GIẢNG GỐC</span>
-            <h3 class="slide-card__title">2026  •  2026 • THỰC HÀNH T ẠI LỚP • 07</h3>
-            <div class="slide-card__content">
-              <p>BẮ T ĐẦU LẠI TỪ CON SỐ 0</p><p>bài tập thực hành: bóc tách 3 tầng tâm lý người chuyển nghề / khởi nghiệp lại</p><p>❌ 01 • NÓI ĐÃI BÔI</p><p>BƯỚC RA VÙNG AN TOÀN</p><p>"Dám bước ra khỏi vùng an toàn để theo đuổi</p><p>mục tiêu mới của bản thân."</p><p>💡 Khẩu hiệu sáo rỗng — Rất lý thuyết</p><p>⚠️ 02 • CẢM GIÁC THẬ T</p><p>NGẠI NGƯỜI QUEN BÀN T ÁN</p><p>"Nghỉ việc cũ rồi, làm cái mới nhưng không dám</p><p>đăng bài vì sợ người quen hỏi han, bàn tán."</p><p>💡 Cảm xúc e dè của người mới đổi nghề</p><p>✅ 0 3  • T Ử  H UYỆ T NG ƯỢ NG MI Ệ NG</p><p>TI Ề N V Ơ I D ẦN &  S Ợ  T HẤ T BẠI</p><p>" T iền dự ph ò ng v ơ i dần, dự án mới chưa đâu</p><p>vào đâu. S ợ nh ấ t th ấ t bại thì không bi ế t gi ấ u</p><p>m ặ t vào đâu với bạn b è ."</p><p>💡 🔥  CHẠM Đ Ú NG N Ỗ I B Ấ T A N KH Ở I NGHI Ệ P</p><p>LẠI</p><p>v ietnd j@ gmail . com</p>
-            </div>
-          </div>
-        
-          <div class="slide-card">
-            <span class="slide-card__tag">SLIDE 48 • NGUYÊN VĂN BÀI GIẢNG GỐC</span>
-            <h3 class="slide-card__title">2026  •  2026 • THỰC HÀNH T ẠI LỚP • 07</h3>
-            <div class="slide-card__content">
-              <p>KỊCH BẢN & 5 CẢNH QUA Y T ẠI LỚP</p><p>người chuyển nghề / khởi nghiệp lại — thời lượng 30 giây</p><p>LỜI THOẠI 30S T ẠI LỚP</p><p>[00-03s] R ời c ô ng việc quen thu ộ c sau nhiều n ă m để bắt đầu lại t ừ  con số 0.. .</p><p>[03-07s] Nhiều người bảo t ô i d ũ ng cảm, nhưng thật ra trong lòng đang r ấ t lo .</p><p>[07-15s] Tiền ti ế t kiệm v ơ i dần, dự án mới chưa đâu vào đâu. Đ ế n việc đ ă ng bài lên</p><p>trang cá nhân còn kh ô ng dám vì sợ người quen bàn tán .</p><p>[15-25s] Nhưng ng ồ i ngh ĩ  m ã i thì tiền kh ô ng tự sinh ra. S ợ người khác đánh giá kh ô ng</p><p>giúp mình trả được chi phí hàng tháng .</p><p>[25-30s] Đ ã  chọn đi đường mới thì phải dám đối mặt, làm t ừ  việc nh ỏ  nh ấ t để nu ô i</p><p>sống lựa chọn c ủ a mình.</p><p>BẢNG PHÂN CẢNH 5 SHOT</p><p>GÓC MÁ Y THỰC HÀNH</p><p>Cảnh 1 (0-3s) • [Cận cảnh]: Bàn tay mở cuốn sổ tay sang trang</p><p>hoàn toàn mới.</p><p>Cảnh 2 (3-7s) • [Trung cảnh]: Cầm cốc nước uống, nhìn quanh</p><p>phòng học.</p><p>Cảnh 3 (7-15s) • [Đặc tả]: Bút gạch chân dòng chữ 'Bắt đầu</p><p>kênh mới'.</p><p>Cảnh 4 (15-25s) • [Góc nghiêng]: Nhìn về phía bảng giảng, ánh</p><p>mắt kiên định.</p><p>Cảnh 5 (25-30s) • [Trực diện]: Cầm máy ngang tầm mắt, nói dứt</p><p>khoát.</p><p>💡 Làm từ việc nhỏ nhất để nuôi sống lựa chọn của mình</p>
-            </div>
-          </div>
-        
-          <div class="slide-card">
-            <span class="slide-card__tag">SLIDE 49 • NGUYÊN VĂN BÀI GIẢNG GỐC</span>
-            <h3 class="slide-card__title">2026  •  2026 • THỰC HÀNH T ẠI LỚP • 08</h3>
-            <div class="slide-card__content">
-              <p>HÀNG LÀM KỸ BỊ SO SÁNH GIÁ</p><p>bài tập thực hành: bóc tách 3 tầng tâm lý hàng chất lượng / sản xuất thật</p><p>❌ 01 • NÓI ĐÃI BÔI</p><p>KIÊN ĐỊNH CHẤ T LƯỢNG THẬ T</p><p>"Kiên định với chất lượng thật, chỉ bán sản</p><p>phẩm an toàn và nguồn gốc rõ ràng."</p><p>💡 Ai cũng nói câu này — Khách nghe nhàm</p><p>tai</p><p>⚠️ 02 • CẢM GIÁC THẬ T</p><p>BỰC VÌ BỊ SO HÀNG RẺ</p><p>"Báo giá xong khách im lặng hoặc so với hàng</p><p>giá rẻ trôi nổi, thấy vừa hụt hẫng vừa bực mình."</p><p>💡 Người làm hàng thật trúng tim đen</p><p>✅ 0 3  • T Ử  H UYỆ T NG ƯỢ NG MI Ệ NG</p><p>GI Ằ NG XÉ  GI Ả M CHẤ T LƯỢNG</p><p>" N hi ề u l ú c nản từng ngh ĩ  bớt chất lượng đ ể  h ạ</p><p>giá cho dễ  bán. N hưng làm th ế  c ắ n r ứ t, mà gi ữ</p><p>chất lượng thì không bi ế t cách giải th í ch."</p><p>💡 🔥  M ÂU  TH UẪ N GI Ằ NG XÉ  N Ộ I T Â M Đ Ắ T</p><p>GIÁ</p><p>v ietn dj@ gmail . c o m</p>
-            </div>
-          </div>
-        
-          <div class="slide-card">
-            <span class="slide-card__tag">SLIDE 50 • NGUYÊN VĂN BÀI GIẢNG GỐC</span>
-            <h3 class="slide-card__title">2026  •  2026 • THỰC HÀNH T ẠI LỚP • 08</h3>
-            <div class="slide-card__content">
-              <p>KỊCH BẢN & 5 CẢNH QUA Y T ẠI LỚP</p><p>hàng chất lượng / sản xuất thật — thời lượng 30 giây</p><p>LỜI THOẠI 30S T ẠI LỚP</p><p>[00-03s] L àm ra m ộ t món đồ k ỹ  lư ỡ ng, nguyên liệu chọn lọc t ừ ng ch ú t m ộ t.. .</p><p>[03-07s] Nhưng c ứ  báo giá là khách l ạ i h ỏ i: 'S ao ch ỗ  kia bán r ẻ  b ằ ng n ử a em ?'.</p><p>[07-15s] Nhiều l ú c nản, t ô i c ũ ng t ừ ng ngh ĩ  hay b ớ t chất lượng đi cho d ễ  bán. Nhưng</p><p>ngh ĩ  l ạ i thấy kh ô ng đành l ò ng .</p><p>[15-25s] K hách chê đắt kh ô ng p hải tiếc tiền, mà vì mình ch ỉ  biết báo giá ch ứ  chưa</p><p>t ừ ng cho họ thấy cái c ô ng mình làm k ỹ  thế nào .</p><p>[25-30s] Thay vì ngồi bực mình khi bị so sánh, t ô i chọn quay l ạ i t ừ ng c ô ng đo ạ n thật</p><p>để khách tự thấy giá trị.</p><p>BẢNG PHÂN CẢNH 5 SHOT</p><p>GÓC MÁ Y THỰC HÀNH</p><p>Cảnh 1 (0-3s) • [Đặc tả]: Bàn tay xoay nhẹ món đồ mẫu mang</p><p>theo trên bàn học.</p><p>Cảnh 2 (3-7s) • [Trung cảnh]: Tựa lưng vào ghế, thở dài nhìn</p><p>xuống mặt bàn.</p><p>Cảnh 3 (7-15s) • [Cận cảnh]: Màn hình hiển thị tin nhắn khách</p><p>xem xong im lặng.</p><p>Cảnh 4 (15-25s) • [Góc nghiêng]: Nhìn lên bài giảng về cách</p><p>quay quy trình.</p><p>Cảnh 5 (25-30s) • [Trực diện]: Nhìn thẳng vào camera, nói chân</p><p>thành.</p><p>💡 Quay lại từng công đoạn thật để khách tự thấy giá trị</p>
-            </div>
+            <div class="feature-card__takeaway">💡 Thực chiến: Bán lý do để khách hàng cảm thấy yêu thương và tự hào về bản thân họ.</div>
           </div>
         
       </div>
     </div>
   </section>
 
-  <!-- YOUTUBE & EXAMPLES CONTAINER -->
+  <!-- 03: ĐỐI SOÁT THỰC CHIẾN (BEFORE vs. AFTER) -->
+  <section class="cl-zebra-section cl-zebra--tint" id="sec-comparison">
+    <div class="cl-sec-container cl-sec-container--wide">
+      <div class="cl-badge">03 / ĐỐI SOÁT THỰC CHIẾN</div>
+      <h2 class="title-sec">PHÂN ĐỊNH: BẢN NĂNG NGHIỆP DƯ vs. CHUẨN ĐẠO DIỄN</h2>
+      <p class="editorial-hook">"Nhìn thẳng vào sự khác biệt giữa video bị lướt qua và video tạo ra chuyển đổi cao."</p>
+
+      
+      <div class="vs-grid">
+        <div class="vs-card vs-card--bad">
+          <span class="vs-card__tag">❌ LỐI MÒN CẦN TRÁNH</span>
+          <h3 class="vs-card__title">❌ TƯ DUY NGHIỆP DƯ (RẬP KHUÔN VĂN MẪU)</h3>
+          <ul><li>Bắt chước các kịch bản nhảy múa vô bổ trên mạng mà không mang lại đơn hàng nào.</li><li>Nói về ngành nghề của mình bằng ngôn từ sách giáo khoa khô khốc.</li><li>Nghĩ rằng ngành mình đặc thù nên chỉ có thể chạy quảng cáo nướng tiền.</li><li>Video mờ nhạt, hòa lẫn vào hàng triệu video quảng cáo nhàm chán khác.</li></ul>
+        </div>
+        <div class="vs-card vs-card--good">
+          <span class="vs-card__tag">✅ CHUẨN ĐẠO DIỄN</span>
+          <h3 class="vs-card__title">✅ CHUẨN ĐẠO DIỄN (8 KỊCH BẢN THỰC CHIẾN ĐỘC BẢN)</h3>
+          <ul><li>Bóc tách đúng góc khuất tâm lý ngượng miệng của khách hàng trong từng ngành.</li><li>Dùng từ ngữ đời thường mộc mạc, ai nghe cũng thấy bóng dáng của chính mình trong đó.</li><li>Khách hàng tự động liên hệ vì thấy bạn thấu hiểu nỗi đau của họ hơn cả người thân.</li><li>Xây dựng vị thế chuyên gia đầu ngành không thể thay thế.</li></ul>
+        </div>
+      </div>
+    
+    </div>
+  </section>
+
+  <!-- 04: ẨN DỤ & MINH HỌA ĐỜI THƯỜNG -->
+  <section class="cl-zebra-section cl-zebra--light" id="sec-metaphor">
+    <div class="cl-sec-container">
+      <div class="cl-badge">04 / ẨN DỤ & CASE STUDY</div>
+      <h2 class="title-sec">BÀI HỌC MINH HỌA ĐỜI THƯỜNG</h2>
+      <p class="editorial-hook">"Ẩn dụ tinh tế giúp bài học ngấm sâu vào tiềm thức mà không cần học vẹt."</p>
+
+      
+      <div class="metaphor-card">
+        <span class="metaphor-card__badge">💡 ẨN DỤ ĐỜI THƯỜNG CỦA ANH VIỆT</span>
+        <h3 class="metaphor-card__title">Ẩn Dụ: Chiếc Chìa Khóa Vạn Năng Mở Mọi Ổ Khóa</h3>
+        <p class="metaphor-card__story">Một người thợ khóa giỏi không cần mang theo 1.000 chiếc chìa khóa cồng kềnh. Anh ta chỉ cần nắm rõ nguyên lý cấu tạo của bi khóa: Ổ khóa cửa nhà, ổ khóa két sắt hay ổ khóa xe hơi tuy bề ngoài khác nhau nhưng cấu tạo bên trong đều hoạt động theo nguyên lý bi đè lò xo. Tâm lý con người cũng vậy: Dù làm ngành gì, ổ khóa tâm lý của họ cũng xoay quanh 3 thứ: Thể diện, Tiền bạc và Sự bình an!</p>
+        <div class="metaphor-card__lesson">👉 <strong>Đúc kết:</strong> Nắm vững nguyên lý 3 tầng là bạn đã sở hữu chiếc chìa khóa vạn năng mở toang cánh cửa mọi ngành nghề!</div>
+      </div>
+    
+    </div>
+  </section>
+
+  <!-- 05: QUY TRÌNH THỰC THI (SOP) -->
+  <section class="cl-zebra-section cl-zebra--tint" id="sec-sop">
+    <div class="cl-sec-container cl-sec-container--wide">
+      <div class="cl-badge">05 / QUY TRÌNH THỰC THI (SOP)</div>
+      <h2 class="title-sec">CÁC BƯỚC HÀNH ĐỘNG NGAY KHI BẤM MÁY</h2>
+      <p class="editorial-hook">"Quy trình từng bước cụ thể để bạn áp dụng chuẩn xác ngay hôm nay."</p>
+
+      <div class="sop-grid">
+        
+          <div class="sop-step">
+            <div class="sop-step__num">1</div>
+            <h4 class="sop-step__title">Chọn 1 Trong 8 Kịch Bản Mẫu</h4>
+            <p class="sop-step__desc">Mở kho 8 kịch bản mẫu bóc tách tại lớp, chọn mẫu kịch bản gần gũi nhất với ngành hàng của bạn.</p>
+          </div>
+        
+          <div class="sop-step">
+            <div class="sop-step__num">2</div>
+            <h4 class="sop-step__title">Thay Thế Biến Số Thực Tế</h4>
+            <p class="sop-step__desc">Giữ nguyên cấu trúc tâm lý 3 tầng, chỉ thay đổi tên sản phẩm, con số cụ thể và chi tiết đời thực của bạn.</p>
+          </div>
+        
+          <div class="sop-step">
+            <div class="sop-step__num">3</div>
+            <h4 class="sop-step__title">Đọc Lại Với Giọng Mộc</h4>
+            <p class="sop-step__desc">Tự đọc lại kịch bản, nếu thấy còn từ ngữ nào văn vở thì gọt bỏ ngay bằng kỹ thuật Voice Note.</p>
+          </div>
+        
+          <div class="sop-step">
+            <div class="sop-step__num">4</div>
+            <h4 class="sop-step__title">Bấm Máy Trong 20 Phút</h4>
+            <p class="sop-step__desc">Quay ngay tại góc làm việc quen thuộc bằng setup 1-2 cam, xuất bản và theo dõi phản hồi thực tế.</p>
+          </div>
+        
+      </div>
+    </div>
+  </section>
+
+  <!-- 06: VIDEO MINH HỌA & BÀI HỌC 1-CHẠM -->
   <section class="cl-zebra-section cl-zebra--light" id="sec-video">
-    <div class="cl-sec-container apple-reveal">
-      <div class="cl-badge">VIDEO MINH HỌA THỰC CHIẾN</div>
-      <h2 class="title-short">XEM VIDEO PHÂN TÍCH VÍ DỤ</h2>
-      <p class="editorial-hook">"Nhìn tận mắt cách xử lý thực tế trên khung hình chuẩn của bài học."</p>
+    <div class="cl-sec-container">
+      <div class="cl-badge">06 / ĐÚC KẾT BÀI HỌC</div>
+      <h2 class="title-sec">VIDEO MINH HỌA & GHI NHỚ 1-CHẠM</h2>
+      <p class="editorial-hook">"Nhìn tận mắt và lưu lại câu thần chú cốt lõi của bài học."</p>
 
       <div class="yt-container">
         <iframe src="https://www.youtube.com/embed/7NWSEFRdOHE?rel=0" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
       </div>
 
-      <p class="cl-body" style="font-size: 14px; color: var(--cl-text-muted); text-align: center;">
-        Video minh họa trực quan liên kết với bài giảng. Có thể thay thế mã video YouTube theo từng buổi dạy thực tế.
-      </p>
-
-      <div class="copy-box" onclick="copyText(this)" data-copy="Ghi nhớ từ Vấn đề 22: Tiền mặt bằng vắng khách; Chững lại tuổi 30; Tiền ads ăn hết lãi; Hết khách mối quen; Tay nghề tốt vẫn ế; Cạnh tranh tổng kho; Số 0; Bị so giá.">
+      <div class="copy-box" onclick="copyText(this)" data-copy="Không có ngành nghề khô khan, chỉ có nội dung chưa chạm tới tim người xem. Hãy áp dụng 8 kịch bản mẫu để biến kênh thành cỗ máy sinh lời!">
         <span class="copy-box__badge">📋 CLICK ĐỂ COPY BÀI HỌC CỐT LÕI 1-CHẠM</span>
-        <div class="copy-box__text">Tiền mặt bằng vắng khách; Chững lại tuổi 30; Tiền ads ăn hết lãi; Hết khách mối quen; Tay nghề tốt vẫn ế; Cạnh tranh tổng kho; Số 0; Bị so giá.</div>
+        <div class="copy-box__text">Không có ngành nghề khô khan, chỉ có nội dung chưa chạm tới tim người xem. Hãy áp dụng 8 kịch bản mẫu để biến kênh thành cỗ máy sinh lời!</div>
       </div>
     </div>
   </section>
 
-  <!-- DOWNLOAD & FOOTER -->
+  <!-- 07: TẢI SLIDE GỐC & ĐIỀU HƯỚNG -->
   <section class="cl-zebra-section cl-zebra--tint" id="sec-footer">
-    <div class="cl-sec-container apple-reveal">
-      <div class="cl-badge">TẢI TÀI LIỆU GỐC</div>
-      <h2 class="title-short">TẢI FILE SLIDE THUYẾT TRÌNH GỐC</h2>
+    <div class="cl-sec-container">
+      <div class="cl-badge">07 / TÀI LIỆU GỐC & ĐIỀU HƯỚNG</div>
+      <h2 class="title-sec">TÀI LIỆU SLIDE THUYẾT TRÌNH GỐC</h2>
 
       <div class="download-box">
         <div class="download-box__info">
           <h4>Video logic.pdf</h4>
-          <p>Tài liệu slide PDF gốc của Mentor Nguyễn Đức Việt dùng để thuyết trình trực tiếp.</p>
+          <p>Tài liệu slide PDF gốc của Mentor Nguyễn Đức Việt dùng để thuyết trình trực tiếp tại lớp học.</p>
         </div>
         <a href="file:///Users/vietmac/Documents/slide%20video/Video logic.pdf" class="nav-btn nav-btn--primary">
-          MỞ TỆP SLIDE PDF
+          MỞ FILE SLIDE PDF
         </a>
       </div>
 
-      <div style="display: flex; justify-content: space-between; width: 100%; max-width: 740px; margin-top: 40px; padding-top: 24px; border-top: 1px solid var(--cl-line); flex-wrap: wrap; gap: 12px;">
+      <div style="display: flex; justify-content: space-between; width: 100%; max-width: 760px; margin-top: 48px; padding-top: 24px; border-top: 1px solid var(--cl-line); flex-wrap: wrap; gap: 12px;">
         <a href="./cong-thuc-rap-kich-ban-4-cau-3-tang.html" class="nav-btn">◄ Bài Trước: Công Thức Ráp Kịch Bản 4 Câu & Logic 3 Tầng</a>
-        <a href="./goc-khuat-tam-ly-trong-kich-ban.html" class="nav-btn nav-btn--primary">Bài Tiếp Theo: Khai Thác Góc Khuất Tâm Lý Đời Thường ►</a>
+        <a href="./goc-khuat-tam-ly-trong-kich-ban.html" class="nav-btn nav-btn--primary">Bài Sau: Khai Thác Góc Khuất Tâm Lý Đời Thường ►</a>
       </div>
       
-      <div style="margin-top: 32px;">
-        <a href="./video-master-hub.html" class="nav-btn">VỀ TRANG TỔNG MASTER HUB ↑</a>
+      <div style="margin-top: 36px;">
+        <a href="./video-master-hub.html" class="nav-btn" style="padding: 12px 28px; font-weight: 700;">
+          🏛️ VỀ TRANG TỔNG MASTER HUB (419 SLIDE) ↑
+        </a>
       </div>
     </div>
   </section>
 
-  <div class="present-hud">
-    <span>THUYẾT TRÌNH:</span>
-    <kbd>Space</kbd> / <kbd>→</kbd> Tiếp
-    <kbd>←</kbd> Lùi
-    <kbd>Home</kbd> Đầu
-  </div>
-
-  
   <script>
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-visible');
-        }
-      });
-    }, { threshold: 0.15 });
-
-    document.querySelectorAll('.apple-reveal').forEach(el => observer.observe(el));
-
+    // Reading Progress Bar
     window.addEventListener('scroll', () => {
-      const winScroll = document.documentElement.scrollTop || document.body.scrollTop;
+      const winScroll = document.documentElement.scrollTop;
       const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
       const scrolled = (winScroll / height) * 100;
-      const bar = document.getElementById('readingProgress');
-      if (bar) bar.style.width = scrolled + '%';
+      document.getElementById('readingProgress').style.width = scrolled + '%';
     });
 
-    const sections = Array.from(document.querySelectorAll('.cl-zebra-section'));
-    function getCurrentSectionIndex() {
-      const scrollY = window.scrollY + window.innerHeight / 3;
-      for (let i = sections.length - 1; i >= 0; i--) {
-        if (sections[i].offsetTop <= scrollY) return i;
-      }
-      return 0;
-    }
-
-    window.addEventListener('keydown', (e) => {
-      if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
-      const idx = getCurrentSectionIndex();
-      if (e.code === 'Space' || e.key === 'ArrowRight' || e.key === 'PageDown') {
-        e.preventDefault();
-        if (idx < sections.length - 1) {
-          sections[idx + 1].scrollIntoView({ behavior: 'smooth' });
-        }
-      } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
-        e.preventDefault();
-        if (idx > 0) {
-          sections[idx - 1].scrollIntoView({ behavior: 'smooth' });
-        }
-      } else if (e.key === 'Home') {
-        e.preventDefault();
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      }
-    });
-
+    // Drawer Toggle
     function toggleDrawer() {
       const drawer = document.getElementById('quickDrawer');
-      if (drawer) drawer.classList.toggle('active');
+      drawer.classList.toggle('open');
     }
 
+    // Copy to Clipboard
     function copyText(el) {
-      const txt = el.getAttribute('data-copy') || el.innerText;
-      navigator.clipboard.writeText(txt).then(() => {
-        const badge = el.querySelector('.copy-box__badge');
-        const orig = badge ? badge.innerText : '';
-        if (badge) badge.innerText = '✓ ĐÃ SAO CHÉP THÀNH CÔNG!';
+      const text = el.getAttribute('data-copy');
+      navigator.clipboard.writeText(text).then(() => {
+        const originalText = el.querySelector('.copy-box__badge').innerText;
+        el.querySelector('.copy-box__badge').innerText = '✅ ĐÃ COPY VÀO BỘ NHỚ TẠM!';
         el.style.borderColor = 'var(--cl-success)';
         setTimeout(() => {
-          if (badge) badge.innerText = orig;
-          el.style.borderColor = '';
+          el.querySelector('.copy-box__badge').innerText = originalText;
+          el.style.borderColor = 'rgba(26, 115, 232, 0.35)';
         }, 2000);
       });
     }
-
-    function filterTopics() {
-      const q = document.getElementById('searchInput').value.toLowerCase().trim();
-      const cards = document.querySelectorAll('.apple-card');
-      cards.forEach(card => {
-        const title = card.getAttribute('data-title') || '';
-        const question = card.getAttribute('data-question') || '';
-        if (!q || title.includes(q) || question.includes(q)) {
-          card.style.display = 'flex';
-        } else {
-          card.style.display = 'none';
-        }
-      });
-    }
   </script>
-
 </body>
 </html>

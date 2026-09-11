@@ -38,65 +38,52 @@
       font-display: swap;
     }
     @font-face {
-      font-family: 'FD Aeonik';
-      src: url('./fonts/FDAeonikBold.ttf') format('truetype'),
-           url('/Users/vietmac/Library/Fonts/FDAeonikBold.ttf') format('truetype'),
-           local('FD Aeonik Bold');
-      font-weight: 700;
-      font-style: normal;
-      font-display: swap;
-    }
-    @font-face {
       font-family: 'Tiempos Text';
-      src: url('./fonts/FDTiemposText-Regular.otf') format('opentype'),
-           url('/Users/vietmac/Library/Fonts/FDTiemposText-Regular.otf') format('opentype'),
-           local('Tiempos Text Regular');
+      src: url('./fonts/TiemposText-Regular.woff2') format('woff2'),
+           url('./fonts/TiemposText-Regular.ttf') format('truetype'),
+           local('Tiempos Text Regular'), local('Georgia');
       font-weight: 400;
       font-style: normal;
       font-display: swap;
     }
     @font-face {
       font-family: 'Tiempos Text';
-      src: url('./fonts/FDTiemposText-Medium.otf') format('opentype'),
-           url('/Users/vietmac/Library/Fonts/FDTiemposText-Medium.otf') format('opentype'),
-           local('Tiempos Text Medium');
+      src: url('./fonts/TiemposText-Medium.woff2') format('woff2'),
+           url('./fonts/TiemposText-Medium.ttf') format('truetype'),
+           local('Tiempos Text Medium'), local('Georgia');
       font-weight: 500;
       font-style: normal;
       font-display: swap;
     }
-    @font-face {
-      font-family: 'Tiempos Text';
-      src: url('./fonts/FDTiemposText-RegularItalic.otf') format('opentype'),
-           url('/Users/vietmac/Library/Fonts/FDTiemposText-RegularItalic.otf') format('opentype'),
-           local('Tiempos Text Regular Italic');
-      font-weight: 400;
-      font-style: italic;
-      font-display: swap;
-    }
 
     :root {
-      --cl-bg:          #ffffff;
-      --cl-tint:        #f8fafc;
-      --cl-card:        #ffffff;
-      --cl-card-muted:  #f1f5f9;
-      --cl-accent:      #1a73e8;
-      --cl-accent-tint: rgba(26, 115, 232, 0.08);
-      --cl-accent-text: #ffffff;
-      --cl-line:        rgba(0, 0, 0, 0.06);
-      --cl-line-strong: rgba(0, 0, 0, 0.12);
-      --cl-text-base:   #090d16;
-      --cl-text-body:   #0f172a;
-      --cl-text-muted:  #475569;
-      --cl-danger:      #dc2626;
-      --cl-success:     #16a34a;
+      --cl-bg:              #ffffff;
+      --cl-tint:            #f8fafc;
+      --cl-card:            #ffffff;
+      --cl-card-subtle:     #f1f5f9;
+      --cl-line:            #e2e8f0;
+      --cl-line-light:      #edf2f7;
+      --cl-text-base:       #090d16;
+      --cl-text-body:       #1e293b;
+      --cl-text-muted:      #64748b;
+      --cl-accent:          #1a73e8;
+      --cl-accent-tint:     #eff6ff;
+      --cl-accent-dark:     #0d47a1;
+      --cl-danger:          #dc2626;
+      --cl-danger-tint:     #fef2f2;
+      --cl-success:         #16a34a;
+      --cl-success-tint:    #f0fdf4;
+      --cl-amber:           #d97706;
+      --cl-amber-tint:      #fffbeb;
 
-      --cl-radius-lg:   24px;
-      --cl-radius-md:   16px;
-      --cl-radius-sm:   10px;
-      --cl-radius-full: 9999px;
+      --cl-radius-sm:       8px;
+      --cl-radius-md:       14px;
+      --cl-radius-lg:       20px;
+      --cl-radius-xl:       28px;
+      --cl-radius-full:     9999px;
 
-      --font-display-short: 'FD Aeonik Extended', 'Inter', -apple-system, sans-serif;
-      --font-display-long:  'FD Aeonik', 'Inter', -apple-system, sans-serif;
+      --font-display-short: 'FD Aeonik Extended', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-display-long:  'FD Aeonik', -apple-system, BlinkMacSystemFont, sans-serif;
       --font-body:          'Tiempos Text', 'Inter', Georgia, serif;
       --font-editorial:     'Tiempos Text', Georgia, serif;
       --font-mono:          'JetBrains Mono', monospace;
@@ -122,80 +109,8 @@
     body {
       overflow-x: clip;
       min-height: 100vh;
-      line-height: 1.8;
+      line-height: 1.82;
       padding-top: 64px;
-    }
-
-    .top-nav {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 64px;
-      background: rgba(255, 255, 255, 0.92);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border-bottom: 1px solid var(--cl-line);
-      z-index: 100;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 24px;
-    }
-
-    .top-nav__brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      text-decoration: none;
-      color: var(--cl-text-base);
-      font-family: var(--font-display-short);
-      font-size: 14.5px;
-      font-weight: 700;
-      letter-spacing: -0.01em;
-      text-transform: uppercase;
-    }
-
-    .top-nav__actions {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .nav-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 8px 16px;
-      border-radius: var(--cl-radius-full);
-      font-family: var(--font-display-long);
-      font-size: 13.5px;
-      font-weight: 600;
-      text-decoration: none;
-      cursor: pointer;
-      border: 1px solid var(--cl-line);
-      background: #ffffff;
-      color: var(--cl-text-body);
-      transition: all 0.25s var(--apple-spring);
-    }
-
-    .nav-btn:hover {
-      background: var(--cl-tint);
-      border-color: var(--cl-accent);
-      color: var(--cl-accent);
-      transform: translateY(-1px);
-    }
-
-    .nav-btn--primary {
-      background: var(--cl-accent);
-      color: #ffffff;
-      border-color: var(--cl-accent);
-    }
-
-    .nav-btn--primary:hover {
-      background: #1557b0;
-      color: #ffffff;
-      transform: translateY(-1px);
     }
 
     .reading-progress-bar {
@@ -217,7 +132,7 @@
       justify-content: center;
       align-items: center;
       position: relative;
-      padding: 80px 24px;
+      padding: 88px 24px;
       box-sizing: border-box;
     }
 
@@ -252,13 +167,13 @@
       align-items: center;
       gap: 8px;
       font-family: var(--font-mono);
-      font-size: 12.5px;
+      font-size: 12px;
       font-weight: 700;
-      letter-spacing: 0.14em;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
       color: var(--cl-accent);
       background: var(--cl-accent-tint);
-      border: 1px solid rgba(26, 115, 232, 0.15);
+      border: 1px solid rgba(26, 115, 232, 0.2);
       padding: 6px 16px;
       border-radius: var(--cl-radius-full);
       margin-bottom: 20px;
@@ -276,6 +191,18 @@
       text-wrap: balance;
     }
 
+    .title-sec {
+      font-family: var(--font-display-short);
+      font-weight: 700;
+      font-size: clamp(22px, 3.2vw, 34px);
+      line-height: 1.25;
+      letter-spacing: -0.01em;
+      text-transform: uppercase;
+      color: var(--cl-text-base);
+      margin-bottom: 16px;
+      text-wrap: balance;
+    }
+
     .editorial-hook {
       font-family: var(--font-editorial);
       font-style: italic;
@@ -283,7 +210,8 @@
       line-height: 1.65;
       color: var(--cl-accent);
       margin-bottom: 24px;
-      max-width: 740px;
+      max-width: 760px;
+      text-wrap: balance;
     }
 
     .cl-body {
@@ -291,88 +219,54 @@
       color: var(--cl-text-body);
       line-height: 1.85;
       margin-bottom: 28px;
-      max-width: 740px;
+      max-width: 760px;
       text-align: left;
     }
 
-    .slide-card {
+    .quote-box {
       background: #ffffff;
-      border: 1px solid var(--cl-line);
-      border-radius: var(--cl-radius-lg);
-      padding: 32px 30px;
-      text-align: left;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+      border-left: 4px solid var(--cl-accent);
+      border-radius: 0 var(--cl-radius-md) var(--cl-radius-md) 0;
+      padding: 24px 28px;
+      margin: 24px 0;
       width: 100%;
-      margin-bottom: 24px;
-      position: relative;
+      max-width: 760px;
+      text-align: left;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.03);
     }
 
-    .slide-card__tag {
-      font-family: var(--font-mono);
-      font-size: 11.5px;
-      font-weight: 700;
-      color: var(--cl-accent);
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      margin-bottom: 12px;
-      display: inline-block;
-      background: var(--cl-accent-tint);
-      padding: 4px 10px;
-      border-radius: var(--cl-radius-full);
-    }
-
-    .slide-card__title {
-      font-family: var(--font-display-long);
-      font-size: 20px;
-      font-weight: 600;
+    .quote-box__text {
+      font-family: var(--font-editorial);
+      font-style: italic;
+      font-size: 18.5px;
       color: var(--cl-text-base);
-      margin-bottom: 14px;
-      line-height: 1.4;
-    }
-
-    .slide-card__content {
-      font-size: 16px;
-      color: var(--cl-text-body);
-      line-height: 1.8;
-    }
-
-    .slide-card__content p {
-      margin-bottom: 12px;
-    }
-
-    .slide-card__content ul {
-      padding-left: 20px;
-      margin-bottom: 12px;
-    }
-
-    .slide-card__content li {
+      line-height: 1.7;
       margin-bottom: 8px;
     }
 
-    .slide-card__verbatim {
-      background: var(--cl-tint);
-      border-left: 3px solid var(--cl-accent);
-      padding: 16px 20px;
-      border-radius: 0 var(--cl-radius-sm) var(--cl-radius-sm) 0;
-      margin-top: 14px;
-      font-size: 15px;
-      color: var(--cl-text-body);
-      line-height: 1.75;
+    .quote-box__author {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--cl-accent);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
     }
 
-    .apple-cards-grid {
+    /* CARDS GRID */
+    .feature-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
       gap: 24px;
       width: 100%;
-      margin-top: 16px;
+      margin-top: 24px;
     }
 
-    .apple-card {
-      background: var(--cl-card);
+    .feature-card {
+      background: #ffffff;
       border: 1px solid var(--cl-line);
       border-radius: var(--cl-radius-lg);
-      padding: 30px 26px;
+      padding: 32px 28px;
       text-align: left;
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
       position: relative;
@@ -382,111 +276,390 @@
       justify-content: space-between;
     }
 
-    .apple-card:hover {
-      transform: translateY(-6px);
-      border-color: rgba(26, 115, 232, 0.4);
-      box-shadow: 0 16px 36px -10px rgba(0, 0, 0, 0.08), 0 0 24px rgba(26, 115, 232, 0.06);
+    .feature-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.07);
+      border-color: rgba(26, 115, 232, 0.3);
     }
 
-    .apple-list {
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-      width: 100%;
-      max-width: 740px;
-      margin: 0 auto 30px;
-      text-align: left;
-    }
-
-    .apple-list-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 16px;
-      background: #ffffff;
-      padding: 18px 22px;
-      border-radius: var(--cl-radius-md);
-      border: 1px solid var(--cl-line);
-      box-shadow: 0 2px 8px rgba(0,0,0,0.02);
-      transition: transform 0.25s ease, border-color 0.25s ease;
-    }
-
-    .apple-list-item__bullet {
-      width: 28px;
-      height: 28px;
-      border-radius: 50%;
-      background: var(--cl-accent-tint);
-      color: var(--cl-accent);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 13px;
+    .feature-card__badge {
+      font-family: var(--font-mono);
+      font-size: 11.5px;
       font-weight: 700;
-      flex-shrink: 0;
-      margin-top: 2px;
+      color: var(--cl-accent);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+      display: inline-block;
+      background: var(--cl-accent-tint);
+      padding: 4px 12px;
+      border-radius: var(--cl-radius-full);
+      align-self: flex-start;
     }
 
-    .apple-list-item__content {
+    .feature-card__title {
+      font-family: var(--font-display-long);
+      font-size: 19px;
+      font-weight: 600;
+      color: var(--cl-text-base);
+      margin-bottom: 14px;
+      line-height: 1.35;
+    }
+
+    .feature-card__desc {
       font-size: 15.5px;
       color: var(--cl-text-body);
-      line-height: 1.65;
+      line-height: 1.8;
+      margin-bottom: 16px;
+      flex-grow: 1;
     }
 
-    .yt-container {
+    .feature-card__takeaway {
+      background: var(--cl-tint);
+      border-radius: var(--cl-radius-sm);
+      padding: 12px 14px;
+      font-size: 13.5px;
+      font-weight: 500;
+      color: var(--cl-accent-dark);
+      line-height: 1.6;
+      border-left: 3px solid var(--cl-accent);
+    }
+
+    /* COMPARISON VS GRID */
+    .vs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 24px;
       width: 100%;
-      max-width: 780px;
-      aspect-ratio: 16 / 9;
-      background: #090d16;
+      margin-top: 24px;
+    }
+
+    .vs-card {
       border-radius: var(--cl-radius-lg);
-      overflow: hidden;
-      box-shadow: 0 12px 40px rgba(0,0,0,0.12);
-      border: 1px solid var(--cl-line);
-      margin: 20px 0 32px;
+      padding: 32px 28px;
+      text-align: left;
       position: relative;
     }
 
-    .yt-container iframe {
-      width: 100%;
-      height: 100%;
-      border: none;
-      display: block;
+    .vs-card--bad {
+      background: var(--cl-danger-tint);
+      border: 1px solid rgba(220, 38, 38, 0.2);
     }
 
-    .download-box {
+    .vs-card--good {
+      background: var(--cl-success-tint);
+      border: 1px solid rgba(22, 163, 74, 0.2);
+    }
+
+    .vs-card__tag {
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      padding: 4px 12px;
+      border-radius: var(--cl-radius-full);
+      display: inline-block;
+      margin-bottom: 14px;
+    }
+
+    .vs-card--bad .vs-card__tag {
+      background: #fee2e2;
+      color: var(--cl-danger);
+    }
+
+    .vs-card--good .vs-card__tag {
+      background: #dcfce7;
+      color: var(--cl-success);
+    }
+
+    .vs-card__title {
+      font-family: var(--font-display-long);
+      font-size: 19px;
+      font-weight: 700;
+      margin-bottom: 16px;
+      line-height: 1.35;
+    }
+
+    .vs-card--bad .vs-card__title {
+      color: #991b1b;
+    }
+
+    .vs-card--good .vs-card__title {
+      color: #166534;
+    }
+
+    .vs-card ul {
+      padding-left: 20px;
+      font-size: 15px;
+      line-height: 1.8;
+    }
+
+    .vs-card--bad ul {
+      color: #7f1d1d;
+    }
+
+    .vs-card--good ul {
+      color: #14532d;
+    }
+
+    .vs-card li {
+      margin-bottom: 10px;
+    }
+
+    /* METAPHOR CARD */
+    .metaphor-card {
+      background: #ffffff;
+      border: 1px solid rgba(217, 119, 6, 0.25);
+      border-radius: var(--cl-radius-xl);
+      padding: 36px 32px;
+      text-align: left;
+      width: 100%;
+      max-width: 860px;
+      margin-top: 24px;
+      box-shadow: 0 6px 24px rgba(217, 119, 6, 0.05);
+      position: relative;
+    }
+
+    .metaphor-card__badge {
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      font-weight: 700;
+      color: var(--cl-amber);
+      background: var(--cl-amber-tint);
+      padding: 4px 12px;
+      border-radius: var(--cl-radius-full);
+      display: inline-block;
+      margin-bottom: 14px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .metaphor-card__title {
+      font-family: var(--font-display-long);
+      font-size: 21px;
+      font-weight: 700;
+      color: var(--cl-text-base);
+      margin-bottom: 16px;
+      line-height: 1.35;
+    }
+
+    .metaphor-card__story {
+      font-family: var(--font-editorial);
+      font-size: 17.5px;
+      color: var(--cl-text-body);
+      line-height: 1.85;
+      margin-bottom: 20px;
+    }
+
+    .metaphor-card__lesson {
+      background: var(--cl-amber-tint);
+      border-left: 4px solid var(--cl-amber);
+      padding: 14px 18px;
+      border-radius: 0 var(--cl-radius-sm) var(--cl-radius-sm) 0;
+      font-size: 15px;
+      font-weight: 600;
+      color: #92400e;
+      line-height: 1.6;
+    }
+
+    /* SOP STEPS */
+    .sop-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+      width: 100%;
+      margin-top: 24px;
+    }
+
+    .sop-step {
+      background: #ffffff;
+      border: 1px solid var(--cl-line);
+      border-radius: var(--cl-radius-lg);
+      padding: 26px 22px;
+      text-align: left;
+      position: relative;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.02);
+    }
+
+    .sop-step__num {
+      width: 38px;
+      height: 38px;
+      border-radius: var(--cl-radius-full);
+      background: var(--cl-accent);
+      color: #ffffff;
+      font-family: var(--font-display-short);
+      font-weight: 700;
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 14px;
+    }
+
+    .sop-step__title {
+      font-family: var(--font-display-long);
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--cl-text-base);
+      margin-bottom: 10px;
+    }
+
+    .sop-step__desc {
+      font-size: 14.5px;
+      color: var(--cl-text-body);
+      line-height: 1.75;
+    }
+
+    /* TOP NAV */
+    .top-nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 64px;
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--cl-line);
+      z-index: 100;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 20px;
-      background: #ffffff;
-      border: 1px solid rgba(26, 115, 232, 0.2);
-      border-radius: var(--cl-radius-md);
-      padding: 20px 24px;
-      width: 100%;
-      max-width: 740px;
-      margin: 20px auto 30px;
-      text-align: left;
-      box-shadow: 0 4px 16px rgba(26, 115, 232, 0.06);
+      padding: 0 24px;
     }
 
-    .download-box__info h4 {
-      font-family: var(--font-display-long);
-      font-size: 16.5px;
+    .nav-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-mono);
+      font-size: 13px;
       font-weight: 600;
       color: var(--cl-text-base);
-      margin-bottom: 4px;
+      background: var(--cl-tint);
+      border: 1px solid var(--cl-line);
+      padding: 8px 16px;
+      border-radius: var(--cl-radius-md);
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.2s ease;
     }
 
-    .download-box__info p {
+    .nav-btn:hover {
+      background: #ffffff;
+      border-color: var(--cl-accent);
+      color: var(--cl-accent);
+      transform: translateY(-1px);
+    }
+
+    .nav-btn--primary {
+      background: var(--cl-accent);
+      color: #ffffff;
+      border-color: var(--cl-accent);
+    }
+
+    .nav-btn--primary:hover {
+      background: var(--cl-accent-dark);
+      color: #ffffff;
+    }
+
+    .top-nav__actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    /* DRAWER MENU */
+    .drawer-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0,0,0,0.5);
+      backdrop-filter: blur(8px);
+      z-index: 200;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+
+    .drawer-overlay.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .drawer-content {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 90%;
+      max-width: 440px;
+      height: 100%;
+      background: #ffffff;
+      box-shadow: -8px 0 32px rgba(0,0,0,0.15);
+      padding: 24px;
+      overflow-y: auto;
+      transform: translateX(100%);
+      transition: transform 0.35s var(--apple-spring);
+    }
+
+    .drawer-overlay.open .drawer-content {
+      transform: translateX(0);
+    }
+
+    .drawer-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--cl-line);
+      margin-bottom: 16px;
+    }
+
+    .drawer-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 14px;
+      border-radius: var(--cl-radius-sm);
+      text-decoration: none;
+      color: var(--cl-text-base);
       font-size: 13.5px;
-      color: var(--cl-text-muted);
+      font-weight: 500;
+      transition: all 0.15s ease;
     }
 
+    .drawer-item:hover {
+      background: var(--cl-tint);
+      color: var(--cl-accent);
+    }
+
+    .drawer-item.active {
+      background: var(--cl-accent-tint);
+      color: var(--cl-accent);
+      font-weight: 700;
+    }
+
+    .drawer-item__num {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--cl-accent);
+      background: rgba(26, 115, 232, 0.1);
+      padding: 2px 6px;
+      border-radius: 4px;
+    }
+
+    /* COPY BOX */
     .copy-box {
       background: var(--cl-tint);
       border: 1px dashed rgba(26, 115, 232, 0.35);
       border-radius: var(--cl-radius-md);
       padding: 20px 24px;
       width: 100%;
-      max-width: 740px;
+      max-width: 760px;
       margin: 20px auto 30px;
       text-align: left;
       cursor: pointer;
@@ -514,128 +687,69 @@
       font-size: 13.5px;
       color: var(--cl-text-base);
       line-height: 1.6;
-      white-space: pre-wrap;
     }
 
-    .present-hud {
-      position: fixed;
-      bottom: 24px;
-      right: 24px;
-      background: rgba(9, 13, 22, 0.92);
-      backdrop-filter: blur(16px);
-      color: #ffffff;
-      padding: 8px 16px;
-      border-radius: var(--cl-radius-full);
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      font-family: var(--font-mono);
-      font-size: 12px;
-      z-index: 100;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+    /* VIDEO CONTAINER */
+    .yt-container {
+      position: relative;
+      width: 100%;
+      max-width: 760px;
+      padding-bottom: 56.25%;
+      height: 0;
+      border-radius: var(--cl-radius-lg);
+      overflow: hidden;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+      margin: 20px 0 24px;
+      background: #000000;
     }
 
-    .present-hud kbd {
-      background: rgba(255, 255, 255, 0.2);
-      padding: 2px 6px;
-      border-radius: 4px;
-      font-size: 11px;
-    }
-
-    .drawer-overlay {
-      position: fixed;
+    .yt-container iframe {
+      position: absolute;
       top: 0;
       left: 0;
-      right: 0;
-      bottom: 0;
-      background: rgba(0, 0, 0, 0.45);
-      backdrop-filter: blur(6px);
-      z-index: 200;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.3s ease;
-    }
-
-    .drawer-overlay.active {
-      opacity: 1;
-      pointer-events: auto;
-    }
-
-    .drawer-content {
-      position: fixed;
-      top: 0;
-      right: 0;
-      width: min(440px, 90vw);
+      width: 100%;
       height: 100%;
+      border: 0;
+    }
+
+    .download-box {
       background: #ffffff;
-      box-shadow: -10px 0 40px rgba(0,0,0,0.15);
-      z-index: 201;
-      transform: translateX(100%);
-      transition: transform 0.35s var(--apple-spring);
-      display: flex;
-      flex-direction: column;
-      padding: 32px 24px;
-      overflow-y: auto;
-    }
-
-    .drawer-overlay.active .drawer-content {
-      transform: translateX(0);
-    }
-
-    .drawer-header {
+      border: 1px solid var(--cl-line);
+      border-radius: var(--cl-radius-lg);
+      padding: 24px 28px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-bottom: 24px;
-      padding-bottom: 16px;
-      border-bottom: 1px solid var(--cl-line);
+      gap: 20px;
+      width: 100%;
+      max-width: 760px;
+      margin-top: 24px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
+      flex-wrap: wrap;
     }
 
-    .drawer-item {
-      display: flex;
-      align-items: baseline;
-      gap: 12px;
-      padding: 11px 14px;
-      border-radius: var(--cl-radius-sm);
-      text-decoration: none;
-      color: var(--cl-text-base);
-      font-size: 14px;
+    .download-box__info {
+      text-align: left;
+    }
+
+    .download-box__info h4 {
       font-family: var(--font-display-long);
-      transition: all 0.2s ease;
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--cl-text-base);
+      margin-bottom: 4px;
     }
 
-    .drawer-item:hover, .drawer-item.active {
-      background: var(--cl-tint);
-      color: var(--cl-accent);
-    }
-
-    .drawer-item__id {
-      font-family: var(--font-mono);
-      font-size: 12px;
-      font-weight: 700;
-      color: var(--cl-accent);
-    }
-
-    .apple-reveal {
-      opacity: 0;
-      transform: translate3d(0, 24px, 0);
-      transition: opacity 0.5s var(--apple-ease), transform 0.58s var(--apple-spring);
-      will-change: opacity, transform;
-    }
-
-    .apple-reveal.is-visible {
-      opacity: 1;
-      transform: translate3d(0, 0, 0);
-      will-change: auto;
+    .download-box__info p {
+      font-size: 13.5px;
+      color: var(--cl-text-muted);
     }
 
     @media (max-width: 768px) {
-      body { padding-top: 56px; }
-      .top-nav { height: 56px; padding: 0 16px; }
-      .reading-progress-bar { top: 55px; }
-      .cl-zebra-section { padding: 60px 16px; }
-      .present-hud { display: none; }
-      .desktop-only { display: none; }
+      .desktop-only { display: none !important; }
+      .feature-grid, .vs-grid, .sop-grid { grid-template-columns: 1fr; }
+      .cl-zebra-section { padding: 60px 16px; min-height: auto; }
+      .download-box { flex-direction: column; align-items: flex-start; }
     }
   </style>
 
@@ -646,11 +760,11 @@
   <header class="top-nav">
     <div style="display: flex; align-items: center; gap: 12px;">
       <a href="./video-master-hub.html" class="nav-btn" style="border-radius: var(--cl-radius-full); font-weight: 700;">
-        <span>←</span> <span>Trang Tổng</span>
+        <span>←</span> <span class="desktop-only">Trang Tổng</span>
       </a>
       <div style="display: flex; flex-direction: column;">
         <span style="font-family: var(--font-display-short); font-size: 13.5px; font-weight: 700; text-transform: uppercase; color: var(--cl-text-base);">VẤN ĐỀ 13</span>
-        <span style="font-size: 11.5px; color: var(--cl-text-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 280px;">Động Tác Máy Có Logic: 4 Nhóm Chủ Đích</span>
+        <span style="font-size: 11.5px; color: var(--cl-text-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 260px;">Động Tác Máy Có Logic: 4 Nhóm Chủ Đích</span>
       </div>
     </div>
     <div class="top-nav__actions">
@@ -668,152 +782,152 @@
           <div class="drawer-header">
             <div>
               <div style="font-family: var(--font-display-short); font-weight: 700; font-size: 15px; text-transform: uppercase;">Mục Lục 28 Vấn Đề</div>
-              <div style="font-size: 12px; color: var(--cl-text-muted);">Quyển Sách Động Video Thực Chiến</div>
+              <div style="font-size: 12px; color: var(--cl-text-muted);">Quyển Sách Động Video Thực Chiến 2026</div>
             </div>
             <button onclick="toggleDrawer()" style="background: none; border: none; font-size: 24px; cursor: pointer; color: var(--cl-text-muted);">&times;</button>
           </div>
           <div style="display: flex; flex-direction: column; gap: 4px;">
-            <div style='font-size: 11px; font-weight: 700; color: var(--cl-accent); text-transform: uppercase; margin: 16px 0 6px 14px; letter-spacing: 0.08em;'>TRỤ CỘT 1: TIÊU CHUẨN VIDEO CHUYÊN NGHIỆP</div>
-              <a href="./mat-do-thong-tin-trong-video.html" class="drawer-item ">
-                <span class="drawer-item__id">01</span>
-                <span>Mật Độ Thông Tin Rỗng vs. Nén Mật Độ</span>
-              </a>
             
-              <a href="./tieu-chuan-am-thanh-sach.html" class="drawer-item ">
-                <span class="drawer-item__id">02</span>
-                <span>Tiêu Chuẩn Âm Thanh Sạch Trong Video</span>
-              </a>
-            
-              <a href="./xu-ly-rac-boi-canh-video.html" class="drawer-item ">
-                <span class="drawer-item__id">03</span>
-                <span>Xử Lý Rác Bối Cảnh & Phân Tầng Thị Giác</span>
-              </a>
-            
-              <a href="./noi-khong-guong-ep-truoc-ong-kinh.html" class="drawer-item ">
-                <span class="drawer-item__id">04</span>
-                <span>Nói Không Gượng Ép: Tâm Lý Thoải Mái</span>
-              </a>
-            
-              <a href="./chuyen-nghiep-la-binh-dan-hoa.html" class="drawer-item ">
-                <span class="drawer-item__id">05</span>
-                <span>Chuyên Nghiệp Là Bình Dân Hóa Thuật Ngữ</span>
-              </a>
-            
-              <a href="./dong-bo-va-nhat-quan-thuong-hieu.html" class="drawer-item ">
-                <span class="drawer-item__id">06</span>
-                <span>Thống Nhất & Nhất Quán Nhận Diện</span>
-              </a>
-            
-              <a href="./dinh-huong-hanh-vi-ban-hang.html" class="drawer-item ">
-                <span class="drawer-item__id">07</span>
-                <span>Định Hướng Hành Vi: Bán Hàng Là Vờn Khách</span>
-              </a>
-            <div style='font-size: 11px; font-weight: 700; color: var(--cl-accent); text-transform: uppercase; margin: 16px 0 6px 14px; letter-spacing: 0.08em;'>TRỤ CỘT 2: NGÔN NGỮ ĐIỆN ẢNH & THỊ GIÁC HÓA</div>
-              <a href="./ban-chat-video-la-slide-cap-cao.html" class="drawer-item ">
-                <span class="drawer-item__id">08</span>
-                <span>Bản Chất Video Là Slide Cấp Cao</span>
-              </a>
-            
-              <a href="./8-quy-tac-bo-cuc-khung-hinh.html" class="drawer-item ">
-                <span class="drawer-item__id">09</span>
-                <span>8 Quy Tắc Bố Cục Logic Cho Mỗi Cảnh Quay</span>
-              </a>
-            
-              <a href="./tam-ly-hoc-co-canh-dien-anh.html" class="drawer-item ">
-                <span class="drawer-item__id">10</span>
-                <span>Tâm Lý Học Cỡ Cảnh & Khoảng Cách An Toàn</span>
-              </a>
-            
-              <a href="./12-menh-lenh-khung-hinh-chuan.html" class="drawer-item ">
-                <span class="drawer-item__id">11</span>
-                <span>12 Mệnh Lệnh Thiết Lập Khung Hình Chuẩn</span>
-              </a>
-            
-              <a href="./14-goc-may-dien-anh-thuc-chien.html" class="drawer-item ">
-                <span class="drawer-item__id">12</span>
-                <span>14 Góc Máy Điện Ảnh Thực Chiến & Ý Niệm Quyền Lực</span>
-              </a>
-            <div style='font-size: 11px; font-weight: 700; color: var(--cl-accent); text-transform: uppercase; margin: 16px 0 6px 14px; letter-spacing: 0.08em;'>TRỤ CỘT 3: ĐỘNG TÁC MÁY, CHUYỂN CẢNH & B-ROLL</div>
-              <a href="./logic-dong-tac-may-4-nhom.html" class="drawer-item active">
-                <span class="drawer-item__id">13</span>
-                <span>Động Tác Máy Có Logic: 4 Nhóm Chủ Đích</span>
-              </a>
-            
-              <a href="./khoa-hoc-chuyen-canh-3s-dopamine.html" class="drawer-item ">
-                <span class="drawer-item__id">14</span>
-                <span>Khoa Học Chuyển Cảnh: Quy Tắc 3s & Dopamine Hit</span>
-              </a>
-            
-              <a href="./b-roll-bang-chung-thi-giac.html" class="drawer-item ">
-                <span class="drawer-item__id">15</span>
-                <span>B-Roll & Cảnh Trám: Bằng Chứng Thị Giác Thép</span>
-              </a>
-            
-              <a href="./ngon-ngu-co-the-livestream-tam-tri.html" class="drawer-item ">
-                <span class="drawer-item__id">16</span>
-                <span>Ngôn Ngữ Cơ Thể: Nụ Cười Nền & Ánh Mắt Tự Nhiên</span>
-              </a>
-            <div style='font-size: 11px; font-weight: 700; color: var(--cl-accent); text-transform: uppercase; margin: 16px 0 6px 14px; letter-spacing: 0.08em;'>TRỤ CỘT 4: 3 ĐỊNH DẠNG TRỤ CỘT & QUY TRÌNH SẢN XUẤT</div>
-              <a href="./voice-over-thuc-chien-quy-trinh-3-buoc.html" class="drawer-item ">
-                <span class="drawer-item__id">17</span>
-                <span>Voice-Over Thực Chiến & Quy Trình 3 Bước</span>
-              </a>
-            
-              <a href="./dynamic-cut-thoai-doi-canh.html" class="drawer-item ">
-                <span class="drawer-item__id">18</span>
-                <span>Dynamic Cut: Thoại Đổi Cảnh Dắt Tay Dạo Phố</span>
-              </a>
-            
-              <a href="./talking-head-2-cam-anh-sang-uy-tin.html" class="drawer-item ">
-                <span class="drawer-item__id">19</span>
-                <span>Talking Head: Setup 2 Cam & Ánh Sáng Uy Tín</span>
-              </a>
-            <div style='font-size: 11px; font-weight: 700; color: var(--cl-accent); text-transform: uppercase; margin: 16px 0 6px 14px; letter-spacing: 0.08em;'>TRỤ CỘT 5: TÂM LÝ HỌC NỘI DUNG & KỊCH BẢN 3 TẦNG</div>
-              <a href="./benh-noi-dai-boi-tren-mang.html" class="drawer-item ">
-                <span class="drawer-item__id">20</span>
-                <span>Bệnh Nói Đãi Bôi & Kỹ Thuật Ép 3 Lần Tại Sao</span>
-              </a>
-            
-              <a href="./cong-thuc-rap-kich-ban-4-cau-3-tang.html" class="drawer-item ">
-                <span class="drawer-item__id">21</span>
-                <span>Công Thức Ráp Kịch Bản 4 Câu & Logic 3 Tầng</span>
-              </a>
-            
-              <a href="./8-kich-ban-mau-thuc-hanh-tai-lop.html" class="drawer-item ">
-                <span class="drawer-item__id">22</span>
-                <span>8 Kịch Bản Mẫu Bóc Tách Thực Chiến Tại Lớp</span>
-              </a>
-            
-              <a href="./goc-khuat-tam-ly-trong-kich-ban.html" class="drawer-item ">
-                <span class="drawer-item__id">23</span>
-                <span>Khai Thác Góc Khuất Tâm Lý Đời Thường</span>
-              </a>
-            
-              <a href="./5-gia-tri-thuong-mai-video-3-tang.html" class="drawer-item ">
-                <span class="drawer-item__id">24</span>
-                <span>5 Giá Trị Thương Mại Cốt Tử Của Video 3 Tầng</span>
-              </a>
-            <div style='font-size: 11px; font-weight: 700; color: var(--cl-accent); text-transform: uppercase; margin: 16px 0 6px 14px; letter-spacing: 0.08em;'>TRỤ CỘT 6: CHIẾN LƯỢC KÊNH NANO, NICHE & ĐỒ HỌA AI 2026</div>
-              <a href="./ky-nguyen-nano-influencer-tai-san-video.html" class="drawer-item ">
-                <span class="drawer-item__id">25</span>
-                <span>Kỷ Nguyên Nano-Influencer & Tài Sản Video</span>
-              </a>
-            
-              <a href="./phuong-phap-tim-niche-giao-diem-4-yeu-to.html" class="drawer-item ">
-                <span class="drawer-item__id">26</span>
-                <span>Tìm Niche: Giao Điểm 4 Yếu Tố & 3 Bộ Prompt AI</span>
-              </a>
-            
-              <a href="./kenh-la-trai-huan-luyen-ai-loc-niem-tin.html" class="drawer-item ">
-                <span class="drawer-item__id">27</span>
-                <span>Kênh Là Trại Huấn Luyện AI & Máy Lọc Niềm Tin</span>
-              </a>
-            
-              <a href="./thuc-hanh-ai-photoshoot-concept-2026.html" class="drawer-item ">
-                <span class="drawer-item__id">28</span>
-                <span>Đồ Họa Hình Ảnh AI: Photoshoot Concept Thương Mại</span>
-              </a>
-            
+          <a href="./mat-do-thong-tin-trong-video.html" class="drawer-item ">
+            <span class="drawer-item__num">01</span>
+            <span style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Mật Độ Thông Tin Rỗng vs. Nén Mật Độ</span>
+          </a>
+        
+          <a href="./tieu-chuan-am-thanh-sach.html" class="drawer-item ">
+            <span class="drawer-item__num">02</span>
+            <span style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Tiêu Chuẩn Âm Thanh Sạch Trong Video</span>
+          </a>
+        
+          <a href="./xu-ly-rac-boi-canh-video.html" class="drawer-item ">
+            <span class="drawer-item__num">03</span>
+            <span style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Xử Lý Rác Bối Cảnh & Phân Tầng Thị Giác</span>
+          </a>
+        
+          <a href="./noi-khong-guong-ep-truoc-ong-kinh.html" class="drawer-item ">
+            <span class="drawer-item__num">04</span>
+            <span style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Nói Không Gượng Ép: Tâm Lý Thoải Mái</span>
+          </a>
+        
+          <a href="./chuyen-nghiep-la-binh-dan-hoa.html" class="drawer-item ">
+            <span class="drawer-item__num">05</span>
+            <span style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Chuyên Nghiệp Là Bình Dân Hóa Thuật Ngữ</span>
+          </a>
+        
+          <a href="./dong-bo-va-nhat-quan-thuong-hieu.html" class="drawer-item ">
+            <span class="drawer-item__num">06</span>
+            <span style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Thống Nhất & Nhất Quán Nhận Diện</span>
+          </a>
+        
+          <a href="./dinh-huong-hanh-vi-ban-hang.html" class="drawer-item ">
+            <span class="drawer-item__num">07</span>
+            <span style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Định Hướng Hành Vi: Bán Hàng Là Vờn Khách</span>
+          </a>
+        
+          <a href="./ban-chat-video-la-slide-cap-cao.html" class="drawer-item ">
+            <span class="drawer-item__num">08</span>
+            <span style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Bản Chất Video Là Slide Cấp Cao</span>
+          </a>
+        
+          <a href="./8-quy-tac-bo-cuc-khung-hinh.html" class="drawer-item ">
+            <span class="drawer-item__num">09</span>
+            <span style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">8 Quy Tắc Bố Cục Logic Cho Mỗi Cảnh Quay</span>
+          </a>
+        
+          <a href="./tam-ly-hoc-co-canh-dien-anh.html" class="drawer-item ">
+            <span class="drawer-item__num">10</span>
+            <span style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Tâm Lý Học Cỡ Cảnh & Khoảng Cách An Toàn</span>
+          </a>
+        
+          <a href="./12-menh-lenh-khung-hinh-chuan.html" class="drawer-item ">
+            <span class="drawer-item__num">11</span>
+            <span style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">12 Mệnh Lệnh Thiết Lập Khung Hình Chuẩn</span>
+          </a>
+        
+          <a href="./14-goc-may-dien-anh-thuc-chien.html" class="drawer-item ">
+            <span class="drawer-item__num">12</span>
+            <span style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">14 Góc Máy Điện Ảnh Thực Chiến & Ý Niệm Quyền Lực</span>
+          </a>
+        
+          <a href="./logic-dong-tac-may-4-nhom.html" class="drawer-item active">
+            <span class="drawer-item__num">13</span>
+            <span style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Động Tác Máy Có Logic: 4 Nhóm Chủ Đích</span>
+          </a>
+        
+          <a href="./khoa-hoc-chuyen-canh-3s-dopamine.html" class="drawer-item ">
+            <span class="drawer-item__num">14</span>
+            <span style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Khoa Học Chuyển Cảnh: Quy Tắc 3s & Dopamine Hit</span>
+          </a>
+        
+          <a href="./b-roll-bang-chung-thi-giac.html" class="drawer-item ">
+            <span class="drawer-item__num">15</span>
+            <span style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">B-Roll & Cảnh Trám: Bằng Chứng Thị Giác Thép</span>
+          </a>
+        
+          <a href="./ngon-ngu-co-the-livestream-tam-tri.html" class="drawer-item ">
+            <span class="drawer-item__num">16</span>
+            <span style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Ngôn Ngữ Cơ Thể: Nụ Cười Nền & Ánh Mắt Tự Nhiên</span>
+          </a>
+        
+          <a href="./voice-over-thuc-chien-quy-trinh-3-buoc.html" class="drawer-item ">
+            <span class="drawer-item__num">17</span>
+            <span style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Voice-Over: Nghệ Sĩ Múa Rối Bóng & Quy Trình 3 Bước</span>
+          </a>
+        
+          <a href="./dynamic-cut-thoai-doi-canh.html" class="drawer-item ">
+            <span class="drawer-item__num">18</span>
+            <span style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Dynamic Cut: Thoại Đổi Cảnh Dắt Tay Dạo Phố</span>
+          </a>
+        
+          <a href="./talking-head-2-cam-anh-sang-uy-tin.html" class="drawer-item ">
+            <span class="drawer-item__num">19</span>
+            <span style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Talking Head: Setup 2 Cam & Ánh Sáng Uy Tín</span>
+          </a>
+        
+          <a href="./benh-noi-dai-boi-tren-mang.html" class="drawer-item ">
+            <span class="drawer-item__num">20</span>
+            <span style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Bệnh Nói Đãi Bôi & Kỹ Thuật Ép 3 Lần Tại Sao</span>
+          </a>
+        
+          <a href="./cong-thuc-rap-kich-ban-4-cau-3-tang.html" class="drawer-item ">
+            <span class="drawer-item__num">21</span>
+            <span style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Công Thức Ráp Kịch Bản 4 Câu & Logic 3 Tầng</span>
+          </a>
+        
+          <a href="./8-kich-ban-mau-thuc-hanh-tai-lop.html" class="drawer-item ">
+            <span class="drawer-item__num">22</span>
+            <span style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">8 Kịch Bản Mẫu Bóc Tách Thực Chiến Tại Lớp</span>
+          </a>
+        
+          <a href="./goc-khuat-tam-ly-trong-kich-ban.html" class="drawer-item ">
+            <span class="drawer-item__num">23</span>
+            <span style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Khai Thác Góc Khuất Tâm Lý Đời Thường</span>
+          </a>
+        
+          <a href="./5-gia-tri-thuong-mai-video-3-tang.html" class="drawer-item ">
+            <span class="drawer-item__num">24</span>
+            <span style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">5 Giá Trị Thương Mại Cốt Tử Của Video 3 Tầng</span>
+          </a>
+        
+          <a href="./ky-nguyen-nano-influencer-tai-san-video.html" class="drawer-item ">
+            <span class="drawer-item__num">25</span>
+            <span style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Kỷ Nguyên Nano-Influencer & Tài Sản Video</span>
+          </a>
+        
+          <a href="./phuong-phap-tim-niche-giao-diem-4-yeu-to.html" class="drawer-item ">
+            <span class="drawer-item__num">26</span>
+            <span style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Tìm Niche: Giao Điểm 4 Yếu Tố & 3 Bộ Prompt AI</span>
+          </a>
+        
+          <a href="./kenh-la-trai-huan-luyen-ai-loc-niem-tin.html" class="drawer-item ">
+            <span class="drawer-item__num">27</span>
+            <span style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Kênh Là Trại Huấn Luyện AI & Máy Lọc Niềm Tin</span>
+          </a>
+        
+          <a href="./thuc-hanh-ai-photoshoot-concept-2026.html" class="drawer-item ">
+            <span class="drawer-item__num">28</span>
+            <span style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Đồ Họa Hình Ảnh AI: Photoshoot Concept Thương Mại</span>
+          </a>
+        
           </div>
         </div>
       </div>
@@ -821,354 +935,232 @@
 
   <!-- HERO SECTION -->
   <section class="cl-zebra-section cl-zebra--light" id="hero">
-    <div class="cl-sec-container apple-reveal">
-      <div class="cl-badge">03 / CHUYỂN ĐỘNG & B-ROLL • VẤN ĐỀ 13</div>
+    <div class="cl-sec-container">
+      <div class="cl-badge">03 / ĐỘNG TÁC MÁY & CHUYỂN CẢNH • VẤN ĐỀ 13</div>
       <h1 class="title-short">Động Tác Máy Có Logic: 4 Nhóm Chủ Đích</h1>
-      <p class="editorial-hook">"Tại sao lia máy vô tội vạ là tự tay bóp chết thông điệp?"</p>
-      <p class="cl-body">4 nhóm: Cưỡng chế chốt hạ (Push in) | Phân tách chuyển ý (Pan/Tilt) | Tín nhiệm đồng hành (Tracking/Boom) | Bản năng đôi mắt & Dolly Zoom.</p>
+      <p class="editorial-hook">"Vì sao động tác máy không phải để múa may mà là để dẫn dắt cảm xúc?"</p>
+      <p class="cl-body" style="font-weight: 500; font-size: 18px; color: var(--cl-text-base); text-align: center;">Động tác máy không sinh ra để khoe thiết bị gimbal đắt tiền. Mỗi chuyển động máy quay là một lệnh điều hướng nhãn cầu: Pan mở rộng, Tilt bộc lộ, Dolly gắn kết, Zoom tập trung.</p>
 
-      <div style="display: flex; gap: 12px; margin-top: 12px; flex-wrap: wrap; justify-content: center;">
-        <a href="#sec-slides" class="nav-btn nav-btn--primary">XEM NGUYÊN VĂN SLIDE BÀI GIẢNG ↓</a>
-        <a href="#sec-video" class="nav-btn">VIDEO MINH HỌA</a>
-        <a href="./video-master-hub.html" class="nav-btn">VỀ MỤC LỤC CHÍNH</a>
+      <div style="display: flex; gap: 12px; margin-top: 20px; flex-wrap: wrap; justify-content: center;">
+        <a href="#sec-psychology" class="nav-btn nav-btn--primary">KHÁM PHÁ BÀI GIẢNG ↓</a>
+        <a href="#sec-comparison" class="nav-btn">BẢNG ĐỐI CHIẾU THỰC CHIẾN</a>
+        <a href="./video-master-hub.html" class="nav-btn">VỀ MỤC LỤC 28 BÀI</a>
       </div>
     </div>
   </section>
 
-  <!-- VERBATIM SLIDES SECTION (100% Giữ y nguyên từ ngữ & cách nói từ slide cũ) -->
-  <section class="cl-zebra-section cl-zebra--tint" id="sec-slides">
-    <div class="cl-sec-container cl-sec-container--wide apple-reveal">
-      <div class="cl-badge">TÀI LIỆU GỐC • Làm thế nào Video đẹp ?.pdf (SLIDE 142 - 164)</div>
-      <h2 class="title-short">TOÀN BỘ NỘI DUNG TỪ SLIDE CŨ</h2>
-      <p class="editorial-hook">"Giữ nguyên văn 100% từng câu chữ, ví dụ và triết lý từ bài giảng gốc của anh Việt."</p>
+  <!-- 01: TÂM LÝ HỌC NHẬN THỨC & BÓC TRẦN SỰ THẬT -->
+  <section class="cl-zebra-section cl-zebra--tint" id="sec-psychology">
+    <div class="cl-sec-container">
+      <div class="cl-badge">01 / TÂM LÝ HỌC NHẬN THỨC</div>
+      <h2 class="title-sec">BÓC TRẦN BẢN CHẤT & CƠ CHẾ NÃO BỘ NGƯỜI XEM</h2>
+      <p class="editorial-hook">"Hiểu được cơ chế sinh học đằng sau đôi mắt và đôi tai của khán giả."</p>
 
-      <div style="width: 100%; margin-top: 24px;">
+      <div style="width: 100%; margin-top: 12px;">
+        <p class="cl-body">Một trong những thảm họa lớn nhất của người mới cầm gimbal là lia máy loạn xạ không có điểm dừng: vừa đi vừa xoay, lượn sóng, đảo góc liên tục khiến người xem chóng mặt buồn nôn. Họ quên mất rằng: Đôi mắt con người ngoài đời thật không bao giờ lia máy kiểu đó!</p><p class="cl-body">Động tác máy chỉ có giá trị khi nó có điểm bắt đầu (Start Point), mục tiêu chuyển động (Motivation) và điểm dừng đắt giá (End Point). Nếu không có lý do để chuyển động, hãy để máy quay tĩnh! Sự tĩnh lặng của một khung hình đẹp đôi khi có sức mạnh gấp ngàn lần một cú lia máy vụng về.</p>
+      </div>
+
+      <div class="quote-box">
+        <div class="quote-box__text">"Nếu không có lý do để chuyển động, hãy để máy đứng yên. Động tác máy thông minh là động tác máy vô hình đối với người xem!"</div>
+        <div class="quote-box__author">— Mentor Nguyễn Đức Việt</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 02: HỆ THỐNG TRỌNG ĐIỂM CỐT LÕI -->
+  <section class="cl-zebra-section cl-zebra--light" id="sec-cards">
+    <div class="cl-sec-container cl-sec-container--wide">
+      <div class="cl-badge">02 / TRỌNG ĐIỂM THỰC CHIẾN</div>
+      <h2 class="title-sec">HỆ THỐNG NGUYÊN TẮC CỐT LÕI</h2>
+      <p class="editorial-hook">"Những nguyên lý vàng đã được kiểm chứng qua hàng ngàn video thực tế."</p>
+
+      <div class="feature-grid">
         
-          <div class="slide-card">
-            <span class="slide-card__tag">SLIDE 142 • NGUYÊN VĂN BÀI GIẢNG GỐC</span>
-            <h3 class="slide-card__title">05ĐỘNG T ÁC MÁ Y</h3>
-            <div class="slide-card__content">
-              <p>logic cho mỗi cảnh quay</p><p>ĐỘNG T ÁC MÁ Y LÀ HƠI THỞ CỦA CÂU CHUYỆN</p><p>Máy quay là một "nhân vật vô hình" đang dẫn dắt cảm xúc.</p><p>Tạo ra một luồng sinh khí có chủ đích. Nó không chỉ ép khán</p><p>giả nhìn vào đâu, mà còn định hình cách khán giả cảm nhận</p><p>về thứ họ đang nhìn, dắt tay họ đi qua từng lớp ý nghĩa một</p><p>cách tự nhiên nhất.</p>
+          <div class="feature-card">
+            <div>
+              <span class="feature-card__badge">01 / PAN & TILT</span>
+              <h3 class="feature-card__title">Nhóm 1 & 2: Pan (Quét Ngang) & Tilt (Quét Dọc)</h3>
+              <p class="feature-card__desc">Pan mô phỏng cái quay đầu nhìn quanh của con người để khám phá độ rộng không gian. Tilt mô phỏng động tác ngước mắt nhìn lên hoặc cúi nhìn xuống để bộc lộ tầm vóc cao lớn hoặc chi tiết đôi giày dưới đất.</p>
             </div>
+            <div class="feature-card__takeaway">💡 Thực chiến: Pan từ một vật vô tri kết thúc bằng khuôn mặt nhân vật để tạo sự bất ngờ.</div>
           </div>
         
-          <div class="slide-card">
-            <span class="slide-card__tag">SLIDE 143 • NGUYÊN VĂN BÀI GIẢNG GỐC</span>
-            <h3 class="slide-card__title">Logic động tác máy</h3>
-            <div class="slide-card__content">
-              <p>WHY - T ẠI SAO CẦN DI CHUYỂN CÓ LOGIC</p><p>MÁY QUAY CHÍNH LÀ NGÔN NGỮ CƠ THỂ</p><p>:</p><p>Nếu di chuyển có logic: Động tác máy lúc</p><p>này giống như những cử chỉ giao tiếp đỉnh</p><p>cao. Khi muốn tiết lộ bí mật, ta rướn người tới</p><p>trước (Push-in). Khi chốt hạ một quyết định,</p><p>ta gõ tay xuống bàn (Anchor Point tĩnh).</p><p>Nếu di chuyển vô định: Hãy tưởng tượng bạn</p><p>đang nói chuyện với một người mà mắt họ cứ đảo</p><p>liên tục, tay chân múa may không lý do. Bạn sẽ</p><p>thấy chóng mặt, mất tập trung và muốn rời đi.</p><p>Khán giả xem video có góc máy vô định cũng y</p><p>hệt như vậy</p><p>Nguyên tắc tối thượng: Nếu không biết dùng</p><p>ngôn ngữ cơ thể sao cho đúng, cách tốt</p><p>nhất là ngồi im và nhìn thẳng. Máy quay</p><p>cũng vậy!</p>
+          <div class="feature-card">
+            <div>
+              <span class="feature-card__badge">02 / DOLLY & TRACKING</span>
+              <h3 class="feature-card__title">Nhóm 3: Dolly In / Out (Tiến Vào & Lùi Ra)</h3>
+              <p class="feature-card__desc">Dolly In (đẩy máy tiến lại gần) kích hoạt sự căng thẳng, thân mật và lôi cuốn người xem chìm sâu vào thế giới nội tâm nhân vật. Dolly Out (kéo máy lùi ra xa) tạo cảm giác cô đơn, tách biệt hoặc kết thúc một hành trình.</p>
             </div>
+            <div class="feature-card__takeaway">💡 Thực chiến: Đẩy máy chậm lại gần nhân vật khi họ chuẩn bị nói ra câu kết luận đắt giá nhất.</div>
           </div>
         
-          <div class="slide-card">
-            <span class="slide-card__tag">SLIDE 144 • NGUYÊN VĂN BÀI GIẢNG GỐC</span>
-            <h3 class="slide-card__title">Logic động tác máy</h3>
-            <div class="slide-card__content">
-              <p>WHY - T ẠI SAO CẦN DI CHUYỂN CÓ LOGIC</p><p>Quay trực diện mang tính chất "Giao tiếp xã</p><p>hội"Kỹ thuật ghi hình gián tiếp bằng cách sử</p>
+          <div class="feature-card">
+            <div>
+              <span class="feature-card__badge">03 / ZOOM & ROLL</span>
+              <h3 class="feature-card__title">Nhóm 4: Zoom Đột Ngột & Roll Xoay Trục</h3>
+              <p class="feature-card__desc">Crash Zoom (phóng to nhanh) tạo cú sốc hài hước hoặc cảnh tỉnh nhịp độ. Roll (xoay trục ống kính) tạo cảm giác mất phương hướng, đảo lộn thế giới quan.</p>
             </div>
-          </div>
-        
-          <div class="slide-card">
-            <span class="slide-card__tag">SLIDE 145 • NGUYÊN VĂN BÀI GIẢNG GỐC</span>
-            <h3 class="slide-card__title">Logic động tác máy</h3>
-            <div class="slide-card__content">
-              <p>WHY - T ẠI SAO CẦN DI CHUYỂN CÓ LOGIC</p>
-            </div>
-          </div>
-        
-          <div class="slide-card">
-            <span class="slide-card__tag">SLIDE 146 • NGUYÊN VĂN BÀI GIẢNG GỐC</span>
-            <h3 class="slide-card__title">Logic động tác máy DỒN ÉP VÀ ĐÓNG BĂNG TÂM TRÍ</h3>
-            <div class="slide-card__content">
-              <p>NHÓM 1: CƯỠNG CHẾ V À CHỐT HẠ THÔNG TIN</p><p>Sự liền mạch của Dòng chảy</p><p>:</p><p>Phải nén lại để lấy đà (Push-in) ➡️ Phóng đi</p><p>tạo gia tốc (Panning) ➡️ Và đâm sầm vào</p><p>một bức tường để dư chấn ngấm vào trong</p><p>(Anchor Point). Hỏng một mắt xích, năng</p><p>lượng sẽ trôi tuột.</p><p>Một ý niệm không tự nhiên găm vào tâm trí. Nó</p><p>cần tuân theo định luật vật lý:</p>
-            </div>
-          </div>
-        
-          <div class="slide-card">
-            <span class="slide-card__tag">SLIDE 147 • NGUYÊN VĂN BÀI GIẢNG GỐC</span>
-            <h3 class="slide-card__title">2 2</h3>
-            <div class="slide-card__content">
-              <p>Logic động tác máy DỒN ÉP VÀ ĐÓNG BĂNG TÂM TRÍ</p><p>NHÓM 1: CƯỠNG CHẾ V À CHỐT HẠ THÔNG TIN</p><p>SỨC NẶNG CỦA SỰ THU HẸP & DẤU CHẤM CÂU</p><p>:  3 3 2</p><p>BƯỚC 2: Truyền dẫn gia tốc Panning (Quét</p><p>Ngang) - Trục ngang của lý trí: Sự chao đảo</p><p>của vệt Panning có nhiệm vụ xóa sổ hệ quy</p><p>chiếu cũ. Nó gạt bỏ mọi rườm rà để đi thẳng</p><p>vào cốt lõi vấn đề.</p><p>Bước 1: Nén Không Gian (Push-in) (Tiến Trục) -</p><p>Lấy không gian bù trọng lượng: Ống kính càng</p><p>trượt vào sâu, không gian vật lý càng chật hẹp, thì</p><p>sức nặng ngôn từ của người nói càng được phóng</p><p>to. Lời nói lúc này không trôi đi mà trực tiếp đè lên</p><p>vai người nghe</p><p>BƯỚC 3 : V a đập &  Th ẩ m thấu, A nchor Point ( Đ iểm D ừng) M ũi</p><p>tên vút đi b ắ t bu ộ c phải có bia để c ắ m phập lại. Đ iểm dừng</p><p>1-2s chính là cú phanh. Sự t ĩ nh lặng tuyệt đối này tạo ra " đ ộ  tr ễ</p><p>th ẩ m thấu cho kh á n giả ngẫm ngh ĩ  về thứ họ vừa xem.</p>
-            </div>
-          </div>
-        
-          <div class="slide-card">
-            <span class="slide-card__tag">SLIDE 148 • NGUYÊN VĂN BÀI GIẢNG GỐC</span>
-            <h3 class="slide-card__title">Logic động tác máy</h3>
-            <div class="slide-card__content">
-              <p>NHÓM 1: CƯỠNG CHẾ V À CHỐT HẠ THÔNG TIN</p>
-            </div>
-          </div>
-        
-          <div class="slide-card">
-            <span class="slide-card__tag">SLIDE 149 • NGUYÊN VĂN BÀI GIẢNG GỐC</span>
-            <h3 class="slide-card__title">0</h3>
-            <div class="slide-card__content">
-              <p>(NHÓM 2) - PHÂN TÁCH VÀ CHUYỂN Ý</p><p>NHÓM 2: V ẠCH RANH GIỚI BẰNG QUANG HỌC</p><p>BIẾ N MÁY Q U A Y THÀNH "DẤ U CH Ấ M CÂU "</p><p>:  0</p><p>Whip Pan (Quét gia tốc) - Dấu chấm than (!):</p><p>Cú vung máy 0.1s là một sự cảm thán giật</p><p>gân. Nó đánh cắp thị giác trong chớp mắt,</p><p>ném khán giả sang một bối cảnh khác</p><p>nhưng vẫn khóa chặt họ trong cảm xúc cao</p><p>trào đang dang dở</p><p>Slide Shot (Trượt sang ngang) - Dấu chấm xuống</p><p>dòng: Trượt máy đi là lật sang một đoạn văn mới. Nó</p><p>mượn không gian vật lý để gạt bỏ hoàn toàn cái cũ</p><p>(những sai lầm, bế tắc), tạo ra khoảng trống sạch sẽ</p><p>để nạp cái mới (giải pháp).</p><p>👁️ Rack Focus (Đảo tiêu cự) - Nét gạch chân nhấn mạnh: Giống</p><p>như dùng bút dạ quang tô đậm một từ khóa. Cưỡng ép não bộ</p><p>phải lờ đi mọi thứ xung quanh để tập trung toàn lực vào đúng</p><p>trọng tâm đang được thắp sáng.</p>
-            </div>
-          </div>
-        
-          <div class="slide-card">
-            <span class="slide-card__tag">SLIDE 150 • NGUYÊN VĂN BÀI GIẢNG GỐC</span>
-            <h3 class="slide-card__title">Logic động tác máy</h3>
-            <div class="slide-card__content">
-              <p>NHÓM 3: GIAO TIẾP THỊ GIÁC - THIẾT LẬP SỰ TÍN NHIỆM</p><p>Tập trung vào Niềm tin</p>
-            </div>
-          </div>
-        
-          <div class="slide-card">
-            <span class="slide-card__tag">SLIDE 151 • NGUYÊN VĂN BÀI GIẢNG GỐC</span>
-            <h3 class="slide-card__title">NHÓM 3: GIAO TIẾP THỊ GIÁC - THIẾT LẬP SỰ TÍN NHIỆM</h3>
-            <div class="slide-card__content">
-              <p>Đi cùng nhân v ậ t</p><p>:</p><p>Hiệu quả thực tế: Hãy tưởng tượng bạn đang</p><p>đi dạo và nói chuyện với bạn mình. Dù cảnh</p><p>vật xung quanh có lướt qua nhạt nhòa,</p><p>nhưng khuôn mặt người bạn đó vẫn luôn rõ</p><p>nét ngay trước mắt bạn.</p><p>Thực hiện căn bản: Khi người nói bước tới 1 bước,</p><p>máy quay cũng lùi lại 1 bước với tốc độ y hệt.</p><p>Bản chất logic: Việc máy đi lùi vừa tạo ra sự năng động cho</p><p>video, vừa ép khán giả phải nhìn thẳng vào mặt người nói</p><p>mà không bị xao nhãng bởi cảnh vật phía sau. Nó tạo ra</p><p>cảm giác người nói đang rất tự tin làm chủ không gian.</p>
-            </div>
-          </div>
-        
-          <div class="slide-card">
-            <span class="slide-card__tag">SLIDE 152 • NGUYÊN VĂN BÀI GIẢNG GỐC</span>
-            <h3 class="slide-card__title">NHÓM 3: GIAO TIẾP THỊ GIÁC - THIẾT LẬP SỰ TÍN NHIỆM</h3>
-            <div class="slide-card__content">
-              <p>Lên/xuống như thang má y (Hạ thấp</p><p>hoặc nâng cao má y)</p><p>Hiệu quả thực tế: Ở ngoài đời, khi bạn nói</p><p>chuyện, bạn luôn muốn nhìn thẳng vào mắt</p><p>đối phương. Nếu họ ngồi xuống mà bạn vẫn</p><p>đứng, bạn sẽ phải "nhìn từ trên xuống" đỉnh</p><p>đầu họ. Máy quay cũng vậy.</p><p>:</p><p>Thực hiện căn bản: Khi người nói đang đứng mà ngồi</p><p>xuống ghế, máy quay không được đứng im, mà phải</p><p>từ từ hạ thấp xuống theo ngang tầm mắt của họ.</p><p>Bản chất logic: Nâng hạ máy theo người để</p><p>duy trì sự "ngang mắt". Điều này giúp cuộc</p><p>trò chuyện diễn ra tự nhiên, tôn trọng và tạo</p><p>cảm giác gần gũi, bình đẳng với khán giả.</p>
-            </div>
-          </div>
-        
-          <div class="slide-card">
-            <span class="slide-card__tag">SLIDE 153 • NGUYÊN VĂN BÀI GIẢNG GỐC</span>
-            <h3 class="slide-card__title">0</h3>
-            <div class="slide-card__content">
-              <p>NHÓM 3: GIAO TIẾP THỊ GIÁC - THIẾT LẬP SỰ TÍN NHIỆM</p><p>3. Ngước nhìn lên (Từ đồ v ậ t hấ t lên</p><p>khuôn mặ t):</p><p>Hiệu quả thực tế: Trăm nghe không bằng</p><p>một thấy. Thay vì dùng miệng nói "tôi có đồ</p><p>thật đây", hãy đưa thẳng đồ thật vào mắt</p><p>người xem.</p><p>:  0</p><p>Thực hiện căn bản: Đầu tiên, chĩa máy quay xuống</p><p>mặt bàn để cho khán giả xem một đồ vật (ví dụ: tờ</p><p>giấy, món hàng, màn hình điện thoại). Sau đó, máy từ</p><p>từ ngước lên trên để hiện ra khuôn mặt người nói.</p><p>Bản chất logic: Khi khán giả nhìn thấy vật</p><p>thật trước, não bộ của họ tự động nảy sinh</p><p>niềm tin. Sau khi đã tin rồi, khuôn mặt</p><p>chuyên gia mới xuất hiện. Cách làm này</p><p>thuyết phục gấp 10 lần việc chỉ đứng nói</p><p>suông, đồng thời chứng minh video không</p>
-            </div>
-          </div>
-        
-          <div class="slide-card">
-            <span class="slide-card__tag">SLIDE 154 • NGUYÊN VĂN BÀI GIẢNG GỐC</span>
-            <h3 class="slide-card__title">Logic động tác máy</h3>
-            <div class="slide-card__content">
-              <p>NHÓM 2: V ẠCH RANH GIỚI BẰNG QUANG HỌC</p>
-            </div>
-          </div>
-        
-          <div class="slide-card">
-            <span class="slide-card__tag">SLIDE 155 • NGUYÊN VĂN BÀI GIẢNG GỐC</span>
-            <h3 class="slide-card__title">Logic động tác máy</h3>
-            <div class="slide-card__content">
-              <p>REF</p>
-            </div>
-          </div>
-        
-          <div class="slide-card">
-            <span class="slide-card__tag">SLIDE 156 • NGUYÊN VĂN BÀI GIẢNG GỐC</span>
-            <h3 class="slide-card__title">Logic động tác máy</h3>
-            <div class="slide-card__content">
-              <p>NHÓM 4: 3 BƯỚC ĐỂ KHÁN GIẢ TIN NHƯ</p><p>ĐANG SỜ T ẬN T A Y</p><p>Đi một vòng ngắm nghía ➡️ Cúi sát mắt soi</p><p>chất liệu ➡️ Mắt nhìn theo khi món đồ được</p><p>gói lại.</p><p>:  3 3</p><p>Khán giả xem video qua màn hình điện thoại luôn</p><p>có tâm lý nghi ngờ vì họ không được trực tiếp sờ</p><p>nắm. Để họ tin, chúng ta dùng máy quay mô</p><p>phỏng đúng 3 bước của một người đi mua hàng</p><p>ngoài đời:</p>
-            </div>
-          </div>
-        
-          <div class="slide-card">
-            <span class="slide-card__tag">SLIDE 157 • NGUYÊN VĂN BÀI GIẢNG GỐC</span>
-            <h3 class="slide-card__title">0</h3>
-            <div class="slide-card__content">
-              <p>NHÓM 4: THUẬN THEO BẢN NĂNG CỦA ĐÔI MẮT</p><p>Bước 1: Đi vòng ngắm nghía (Qua y vòng</p><p>quanh)</p><p>Khi đi mua một chiếc xe cũ, không ai đứng</p><p>im một góc. Bạn phải đi một vòng quanh xe</p><p>xem có xước xát gì không. Trên video cũng</p><p>vậy, việc máy quay đi một vòng là lời khẳng</p><p>định: "Nhìn đi, đằng sau không giấu giếm gì</p><p>cả, bối cảnh là thật 100%". Nó xóa bỏ sự</p><p>nghi ngờ ngay lập tức.</p><p>/  :  0</p><p>Basic (Hiểu cơ bản): Thay vì đứng im một chỗ,</p><p>người quay cầm máy đi một vòng tròn quanh</p><p>nhân vật/đồ vật.</p>
-            </div>
-          </div>
-        
-          <div class="slide-card">
-            <span class="slide-card__tag">SLIDE 158 • NGUYÊN VĂN BÀI GIẢNG GỐC</span>
-            <h3 class="slide-card__title">2 2</h3>
-            <div class="slide-card__content">
-              <p>NHÓM 4: THUẬN THEO BẢN NĂNG CỦA ĐÔI MẮT</p><p>Bước 2: Cúi sá t để soi (Qua y lướt thậ t</p><p>gần)</p><p>Khi xem video, khán giả không thể thò tay</p><p>vào màn hình để sờ thử chiếc túi da hay mặt</p><p>bàn gỗ. Vì vậy, ta dùng máy quay lướt chậm</p><p>ở cự ly siêu gần để phóng to từng vân gỗ,</p><p>nếp vải. Ánh mắt khán giả bị ép phải nhìn</p><p>thật kỹ, khiến não bộ tự đánh lừa rằng: Họ</p><p>đang được tự tay miết lên món đồ đó.</p><p>:  2</p><p>Macro Glide (Trượt Bề Mặt): Trượt siêu chậm sát</p><p>bề mặt (2-5cm). 👉 Bản chất: Kích hoạt "xúc giác</p><p>ảo", đánh lừa não tự dùng tay miết dọc vật liệu.</p><p>Dí ống kính vào cực kỳ gần (chỉ cách 2-5cm) và</p><p>lướt đi thật chậm qua bề mặt món đồ.</p>
-            </div>
-          </div>
-        
-          <div class="slide-card">
-            <span class="slide-card__tag">SLIDE 159 • NGUYÊN VĂN BÀI GIẢNG GỐC</span>
-            <h3 class="slide-card__title">NHÓM 4: THUẬN THEO BẢN NĂNG CỦA ĐÔI MẮT</h3>
-            <div class="slide-card__content">
-              <p>Bước 3: Nhìn theo món đồ (Qua y bám</p><p>theo v ậ t di chuyển)</p><p>Giải thích đời thường: Khi người bán chốt</p><p>đơn và đẩy món đồ về phía bạn, mắt bạn sẽ</p><p>tự động nhìn bám theo món đồ đó không</p><p>chớp. Việc máy quay trượt theo đồ vật chính</p><p>là bắt chước phản xạ này. Nó tạo ra một sợi</p><p>dây vô hình lôi tuột ánh mắt khán giả đi theo</p><p>nhịp của câu chuyện mà không thể nhìn đi</p><p>chỗ khác.</p><p>:</p><p>Basic (Hiểu cơ bản): Khi một tờ hợp đồng hay tách</p><p>cafe được đẩy trượt trên bàn, máy quay cũng trượt</p><p>theo y hệt tốc độ của món đồ.</p>
-            </div>
-          </div>
-        
-          <div class="slide-card">
-            <span class="slide-card__tag">SLIDE 160 • NGUYÊN VĂN BÀI GIẢNG GỐC</span>
-            <h3 class="slide-card__title">Logic động tác máy</h3>
-            <div class="slide-card__content">
-              <p>NHÓM 4:</p><p>3 BƯỚC ĐỂ KHÁN GIẢ TIN NHƯ ĐANG SỜ T ẬN T A Y</p>
-            </div>
-          </div>
-        
-          <div class="slide-card">
-            <span class="slide-card__tag">SLIDE 161 • NGUYÊN VĂN BÀI GIẢNG GỐC</span>
-            <h3 class="slide-card__title">Logic động tác máy</h3>
-            <div class="slide-card__content">
-              <p>DOLL Y ZOOM</p><p>CẢM GIÁC "HỤT CHÂN" TRONG ĐỜI THỰC</p><p>Hiệu ứng quang học: Kích thước nhân vật bị</p><p>khóa chặt không đổi, nhưng không gian hậu</p><p>cảnh xung quanh lại co rút hoặc phình to dữ</p><p>dội.</p><p>:</p><p>Cách thực hiện: Máy quay lùi dần ra xa, nhưng tay</p><p>người quay lại vặn ống kính (zoom) tiến sát vào</p><p>khuôn mặt nhân vật.</p><p>Cùng lúc ép mắt người xem phải xử lý hai chuyển</p><p>động quang học trái ngược nhau: Máy lùi ra ><</p><p>Ống kính tiến vào.</p><p>Ẩn dụ thực tế: Cú máy này sao chép chính xác cảm giác vật lý khi</p><p>bạn bước hụt một bậc cầu thang, hoặc sững sờ khi nghe một tin sét</p><p>đánh. Cơ thể chôn chân tại chỗ, nhưng mọi thứ xung quanh như</p><p>chao đảo và mất thăng bằng.</p>
-            </div>
-          </div>
-        
-          <div class="slide-card">
-            <span class="slide-card__tag">SLIDE 162 • NGUYÊN VĂN BÀI GIẢNG GỐC</span>
-            <h3 class="slide-card__title">Logic động tác máy</h3>
-            <div class="slide-card__content">
-              <p>DOLL Y ZOOM</p><p>CẢM GIÁC "HỤT CHÂN" TRONG ĐỜI THỰC</p>
-            </div>
-          </div>
-        
-          <div class="slide-card">
-            <span class="slide-card__tag">SLIDE 163 • NGUYÊN VĂN BÀI GIẢNG GỐC</span>
-            <h3 class="slide-card__title">2 2</h3>
-            <div class="slide-card__content">
-              <p>Logic động tác máy</p><p>THIẾT KẾ T ÂM L Ý - KHÔNG CHỈ LÀ GHI HÌNH</p><p>tổng két</p><p>:  2</p><p>Mỗi cú lùi máy, mỗi lần hất góc đều là một</p><p>điểm chạm để dắt tay tiềm thức người xem</p><p>bước qua sự hoài nghi và đi đến sự thấu</p><p>hiểu</p><p>Máy quay là công cụ giao tiếp. Đừng di</p><p>chuyển nó nếu bạn không biết mình muốn</p><p>khán giả CẢM THẤ Y điều gì ở giây tiếp theo:</p><p>An toàn, tò mò, hay bị thuyết phục?</p><p>Khung hình không đứng yên, vì tâm trí con người</p><p>luôn xao động. 12 động tác máy thực chất là cách</p><p>chúng ta lập trình lại sự chú ý của não bộ khán</p><p>giả.</p>
-            </div>
-          </div>
-        
-          <div class="slide-card">
-            <span class="slide-card__tag">SLIDE 164 • NGUYÊN VĂN BÀI GIẢNG GỐC</span>
-            <h3 class="slide-card__title">Logic động tác máy</h3>
-            <div class="slide-card__content">
-              <p>THIẾT KẾ T ÂM L Ý - KHÔNG CHỈ LÀ GHI HÌNH</p>
-            </div>
+            <div class="feature-card__takeaway">💡 Thực chiến: Chỉ dùng Crash Zoom 1-2 lần trong video ngắn để nhấn mạnh từ khóa gây cười hoặc bóc trần sự thật.</div>
           </div>
         
       </div>
     </div>
   </section>
 
-  <!-- YOUTUBE & EXAMPLES CONTAINER -->
+  <!-- 03: ĐỐI SOÁT THỰC CHIẾN (BEFORE vs. AFTER) -->
+  <section class="cl-zebra-section cl-zebra--tint" id="sec-comparison">
+    <div class="cl-sec-container cl-sec-container--wide">
+      <div class="cl-badge">03 / ĐỐI SOÁT THỰC CHIẾN</div>
+      <h2 class="title-sec">PHÂN ĐỊNH: BẢN NĂNG NGHIỆP DƯ vs. CHUẨN ĐẠO DIỄN</h2>
+      <p class="editorial-hook">"Nhìn thẳng vào sự khác biệt giữa video bị lướt qua và video tạo ra chuyển đổi cao."</p>
+
+      
+      <div class="vs-grid">
+        <div class="vs-card vs-card--bad">
+          <span class="vs-card__tag">❌ LỐI MÒN CẦN TRÁNH</span>
+          <h3 class="vs-card__title">❌ TƯ DUY NGHIỆP DƯ (LIA MÁY CHÓNG MẶT)</h3>
+          <ul><li>Cầm gimbal lượn vòng vèo khắp phòng không có chủ đích, người xem mỏi mắt buồn nôn.</li><li>Cú lia máy không có điểm dừng, dừng lại ở một bức tường trống hoặc vật thể vô nghĩa.</li><li>Tốc độ lia lúc nhanh lúc chậm giật cục, thiếu sự êm ái của chuyển động điện ảnh.</li><li>Lạm dụng quá nhiều động tác máy trong cùng 1 cảnh khiến thông điệp bị chìm nghỉm.</li></ul>
+        </div>
+        <div class="vs-card vs-card--good">
+          <span class="vs-card__tag">✅ CHUẨN ĐẠO DIỄN</span>
+          <h3 class="vs-card__title">✅ CHUẨN ĐẠO DIỄN (CHUYỂN ĐỘNG CÓ CHỦ ĐÍCH)</h3>
+          <ul><li>Ưu tiên giữ máy tĩnh vững chãi; chỉ chuyển động khi có lý do tâm lý rõ ràng.</li><li>Mỗi cú máy luôn có 3 nhịp chuẩn: Giữ tĩnh 1s đầu -> Chuyển động êm ái -> Giữ tĩnh 1s cuối.</li><li>Điểm kết thúc của cú máy luôn rơi trúng chủ thể quan trọng nhất.</li><li>Khán giả cảm nhận được sự mượt mà tự nhiên, tập trung trọn vẹn vào câu chuyện.</li></ul>
+        </div>
+      </div>
+    
+    </div>
+  </section>
+
+  <!-- 04: ẨN DỤ & MINH HỌA ĐỜI THƯỜNG -->
+  <section class="cl-zebra-section cl-zebra--light" id="sec-metaphor">
+    <div class="cl-sec-container">
+      <div class="cl-badge">04 / ẨN DỤ & CASE STUDY</div>
+      <h2 class="title-sec">BÀI HỌC MINH HỌA ĐỜI THƯỜNG</h2>
+      <p class="editorial-hook">"Ẩn dụ tinh tế giúp bài học ngấm sâu vào tiềm thức mà không cần học vẹt."</p>
+
+      
+      <div class="metaphor-card">
+        <span class="metaphor-card__badge">💡 ẨN DỤ ĐỜI THƯỜNG CỦA ANH VIỆT</span>
+        <h3 class="metaphor-card__title">Ẩn Dụ: Đôi Mắt Của Thám Tử Trong Căn Phòng Án Mạng</h3>
+        <p class="metaphor-card__story">Hãy quan sát một thám tử tài ba bước vào hiện trường: Anh ta không đảo mắt loạn xạ như kẻ say rượu. Anh ta đứng tĩnh lặng quét mắt từ trái sang phải một cách chậm rãi (Pan) để bao quát căn phòng, sau đó ánh mắt dừng lại ở vệt máu trên bàn (Dolly In) và nhìn chăm chú vào vết rách trên áo nạn nhân. Từng cử động của ánh mắt đều mang mục đích thu thập bằng chứng thép!</p>
+        <div class="metaphor-card__lesson">👉 <strong>Đúc kết:</strong> Máy quay là con mắt của người xem. Hãy dẫn dắt ánh mắt họ như một thám tử chuyên nghiệp!</div>
+      </div>
+    
+    </div>
+  </section>
+
+  <!-- 05: QUY TRÌNH THỰC THI (SOP) -->
+  <section class="cl-zebra-section cl-zebra--tint" id="sec-sop">
+    <div class="cl-sec-container cl-sec-container--wide">
+      <div class="cl-badge">05 / QUY TRÌNH THỰC THI (SOP)</div>
+      <h2 class="title-sec">CÁC BƯỚC HÀNH ĐỘNG NGAY KHI BẤM MÁY</h2>
+      <p class="editorial-hook">"Quy trình từng bước cụ thể để bạn áp dụng chuẩn xác ngay hôm nay."</p>
+
+      <div class="sop-grid">
+        
+          <div class="sop-step">
+            <div class="sop-step__num">1</div>
+            <h4 class="sop-step__title">Xác Định Động Cơ Cú Máy</h4>
+            <p class="sop-step__desc">Tự hỏi: Cú chuyển động này dùng để làm gì? Để mở rộng không gian hay để lôi cuốn người xem sát lại?</p>
+          </div>
+        
+          <div class="sop-step">
+            <div class="sop-step__num">2</div>
+            <h4 class="sop-step__title">Khóa Điểm Đầu & Điểm Cuối</h4>
+            <p class="sop-step__desc">Căn khung điểm bắt đầu (A) và điểm kết thúc (B) trước; tập lia thử 2 lần để tay quen quỹ đạo.</p>
+          </div>
+        
+          <div class="sop-step">
+            <div class="sop-step__num">3</div>
+            <h4 class="sop-step__title">Áp Dụng Quy Tắc 1-Chuyển-1</h4>
+            <p class="sop-step__desc">Bấm máy -> Đứng yên 1 giây -> Thực hiện chuyển động đều tay trong 2-3 giây -> Đứng yên 1 giây -> Bấm dừng.</p>
+          </div>
+        
+          <div class="sop-step">
+            <div class="sop-step__num">4</div>
+            <h4 class="sop-step__title">Hậu Kỳ Ổn Định Hình Ảnh</h4>
+            <p class="sop-step__desc">Nếu quay cầm tay bị rung lắc nhẹ, bật Warp Stabilizer ở mức 5-10% trong phần mềm để khung hình êm ái như bay.</p>
+          </div>
+        
+      </div>
+    </div>
+  </section>
+
+  <!-- 06: VIDEO MINH HỌA & BÀI HỌC 1-CHẠM -->
   <section class="cl-zebra-section cl-zebra--light" id="sec-video">
-    <div class="cl-sec-container apple-reveal">
-      <div class="cl-badge">VIDEO MINH HỌA THỰC CHIẾN</div>
-      <h2 class="title-short">XEM VIDEO PHÂN TÍCH VÍ DỤ</h2>
-      <p class="editorial-hook">"Nhìn tận mắt cách xử lý thực tế trên khung hình chuẩn của bài học."</p>
+    <div class="cl-sec-container">
+      <div class="cl-badge">06 / ĐÚC KẾT BÀI HỌC</div>
+      <h2 class="title-sec">VIDEO MINH HỌA & GHI NHỚ 1-CHẠM</h2>
+      <p class="editorial-hook">"Nhìn tận mắt và lưu lại câu thần chú cốt lõi của bài học."</p>
 
       <div class="yt-container">
         <iframe src="https://www.youtube.com/embed/7NWSEFRdOHE?rel=0" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
       </div>
 
-      <p class="cl-body" style="font-size: 14px; color: var(--cl-text-muted); text-align: center;">
-        Video minh họa trực quan liên kết với bài giảng. Có thể thay thế mã video YouTube theo từng buổi dạy thực tế.
-      </p>
-
-      <div class="copy-box" onclick="copyText(this)" data-copy="Ghi nhớ từ Vấn đề 13: 4 nhóm: Cưỡng chế chốt hạ (Push in) | Phân tách chuyển ý (Pan/Tilt) | Tín nhiệm đồng hành (Tracking/Boom) | Bản năng đôi mắt & Dolly Zoom.">
+      <div class="copy-box" onclick="copyText(this)" data-copy="Động tác máy không sinh ra để múa may. Chuyển động có mục đích, điểm dừng đắt giá mới là đẳng cấp của đạo diễn!">
         <span class="copy-box__badge">📋 CLICK ĐỂ COPY BÀI HỌC CỐT LÕI 1-CHẠM</span>
-        <div class="copy-box__text">4 nhóm: Cưỡng chế chốt hạ (Push in) | Phân tách chuyển ý (Pan/Tilt) | Tín nhiệm đồng hành (Tracking/Boom) | Bản năng đôi mắt & Dolly Zoom.</div>
+        <div class="copy-box__text">Động tác máy không sinh ra để múa may. Chuyển động có mục đích, điểm dừng đắt giá mới là đẳng cấp của đạo diễn!</div>
       </div>
     </div>
   </section>
 
-  <!-- DOWNLOAD & FOOTER -->
+  <!-- 07: TẢI SLIDE GỐC & ĐIỀU HƯỚNG -->
   <section class="cl-zebra-section cl-zebra--tint" id="sec-footer">
-    <div class="cl-sec-container apple-reveal">
-      <div class="cl-badge">TẢI TÀI LIỆU GỐC</div>
-      <h2 class="title-short">TẢI FILE SLIDE THUYẾT TRÌNH GỐC</h2>
+    <div class="cl-sec-container">
+      <div class="cl-badge">07 / TÀI LIỆU GỐC & ĐIỀU HƯỚNG</div>
+      <h2 class="title-sec">TÀI LIỆU SLIDE THUYẾT TRÌNH GỐC</h2>
 
       <div class="download-box">
         <div class="download-box__info">
           <h4>Làm thế nào Video đẹp ?.pdf</h4>
-          <p>Tài liệu slide PDF gốc của Mentor Nguyễn Đức Việt dùng để thuyết trình trực tiếp.</p>
+          <p>Tài liệu slide PDF gốc của Mentor Nguyễn Đức Việt dùng để thuyết trình trực tiếp tại lớp học.</p>
         </div>
         <a href="file:///Users/vietmac/Documents/slide%20video/Làm thế nào Video đẹp ?.pdf" class="nav-btn nav-btn--primary">
-          MỞ TỆP SLIDE PDF
+          MỞ FILE SLIDE PDF
         </a>
       </div>
 
-      <div style="display: flex; justify-content: space-between; width: 100%; max-width: 740px; margin-top: 40px; padding-top: 24px; border-top: 1px solid var(--cl-line); flex-wrap: wrap; gap: 12px;">
+      <div style="display: flex; justify-content: space-between; width: 100%; max-width: 760px; margin-top: 48px; padding-top: 24px; border-top: 1px solid var(--cl-line); flex-wrap: wrap; gap: 12px;">
         <a href="./14-goc-may-dien-anh-thuc-chien.html" class="nav-btn">◄ Bài Trước: 14 Góc Máy Điện Ảnh Thực Chiến & Ý Niệm Quyền Lực</a>
-        <a href="./khoa-hoc-chuyen-canh-3s-dopamine.html" class="nav-btn nav-btn--primary">Bài Tiếp Theo: Khoa Học Chuyển Cảnh: Quy Tắc 3s & Dopamine Hit ►</a>
+        <a href="./khoa-hoc-chuyen-canh-3s-dopamine.html" class="nav-btn nav-btn--primary">Bài Sau: Khoa Học Chuyển Cảnh: Quy Tắc 3s & Dopamine Hit ►</a>
       </div>
       
-      <div style="margin-top: 32px;">
-        <a href="./video-master-hub.html" class="nav-btn">VỀ TRANG TỔNG MASTER HUB ↑</a>
+      <div style="margin-top: 36px;">
+        <a href="./video-master-hub.html" class="nav-btn" style="padding: 12px 28px; font-weight: 700;">
+          🏛️ VỀ TRANG TỔNG MASTER HUB (419 SLIDE) ↑
+        </a>
       </div>
     </div>
   </section>
 
-  <div class="present-hud">
-    <span>THUYẾT TRÌNH:</span>
-    <kbd>Space</kbd> / <kbd>→</kbd> Tiếp
-    <kbd>←</kbd> Lùi
-    <kbd>Home</kbd> Đầu
-  </div>
-
-  
   <script>
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-visible');
-        }
-      });
-    }, { threshold: 0.15 });
-
-    document.querySelectorAll('.apple-reveal').forEach(el => observer.observe(el));
-
+    // Reading Progress Bar
     window.addEventListener('scroll', () => {
-      const winScroll = document.documentElement.scrollTop || document.body.scrollTop;
+      const winScroll = document.documentElement.scrollTop;
       const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
       const scrolled = (winScroll / height) * 100;
-      const bar = document.getElementById('readingProgress');
-      if (bar) bar.style.width = scrolled + '%';
+      document.getElementById('readingProgress').style.width = scrolled + '%';
     });
 
-    const sections = Array.from(document.querySelectorAll('.cl-zebra-section'));
-    function getCurrentSectionIndex() {
-      const scrollY = window.scrollY + window.innerHeight / 3;
-      for (let i = sections.length - 1; i >= 0; i--) {
-        if (sections[i].offsetTop <= scrollY) return i;
-      }
-      return 0;
-    }
-
-    window.addEventListener('keydown', (e) => {
-      if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
-      const idx = getCurrentSectionIndex();
-      if (e.code === 'Space' || e.key === 'ArrowRight' || e.key === 'PageDown') {
-        e.preventDefault();
-        if (idx < sections.length - 1) {
-          sections[idx + 1].scrollIntoView({ behavior: 'smooth' });
-        }
-      } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
-        e.preventDefault();
-        if (idx > 0) {
-          sections[idx - 1].scrollIntoView({ behavior: 'smooth' });
-        }
-      } else if (e.key === 'Home') {
-        e.preventDefault();
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      }
-    });
-
+    // Drawer Toggle
     function toggleDrawer() {
       const drawer = document.getElementById('quickDrawer');
-      if (drawer) drawer.classList.toggle('active');
+      drawer.classList.toggle('open');
     }
 
+    // Copy to Clipboard
     function copyText(el) {
-      const txt = el.getAttribute('data-copy') || el.innerText;
-      navigator.clipboard.writeText(txt).then(() => {
-        const badge = el.querySelector('.copy-box__badge');
-        const orig = badge ? badge.innerText : '';
-        if (badge) badge.innerText = '✓ ĐÃ SAO CHÉP THÀNH CÔNG!';
+      const text = el.getAttribute('data-copy');
+      navigator.clipboard.writeText(text).then(() => {
+        const originalText = el.querySelector('.copy-box__badge').innerText;
+        el.querySelector('.copy-box__badge').innerText = '✅ ĐÃ COPY VÀO BỘ NHỚ TẠM!';
         el.style.borderColor = 'var(--cl-success)';
         setTimeout(() => {
-          if (badge) badge.innerText = orig;
-          el.style.borderColor = '';
+          el.querySelector('.copy-box__badge').innerText = originalText;
+          el.style.borderColor = 'rgba(26, 115, 232, 0.35)';
         }, 2000);
       });
     }
-
-    function filterTopics() {
-      const q = document.getElementById('searchInput').value.toLowerCase().trim();
-      const cards = document.querySelectorAll('.apple-card');
-      cards.forEach(card => {
-        const title = card.getAttribute('data-title') || '';
-        const question = card.getAttribute('data-question') || '';
-        if (!q || title.includes(q) || question.includes(q)) {
-          card.style.display = 'flex';
-        } else {
-          card.style.display = 'none';
-        }
-      });
-    }
   </script>
-
 </body>
 </html>
