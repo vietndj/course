@@ -193,7 +193,7 @@
       gap: 8px;
       flex-wrap: wrap;
     }
-    .top-nav__link {
+    .top-nav__link, .nav-btn {
       font-family: var(--font-display-long);
       font-size: 12.5px;
       font-weight: 600;
@@ -204,21 +204,29 @@
       background: var(--cl-tint);
       border: 1px solid var(--cl-line);
       transition: all 0.2s var(--apple-ease);
+      display: inline-flex;
+      align-items: center;
+      cursor: pointer;
     }
-    .top-nav__link:hover {
+    .top-nav__link:hover, .nav-btn:hover {
       color: var(--cl-accent);
       border-color: var(--cl-accent);
       background: var(--cl-accent-tint);
     }
-    .top-nav__link--hub {
+    .top-nav__link--hub, .nav-btn--back {
       background: var(--cl-accent);
-      color: #ffffff;
+      color: #ffffff !important;
       border-color: var(--cl-accent);
       font-weight: 700;
     }
-    .top-nav__link--hub:hover {
+    .top-nav__link--hub:hover, .nav-btn--back:hover {
       background: #1557b0;
-      color: #ffffff;
+      color: #ffffff !important;
+    }
+    .top-nav__link--accent, .nav-btn--accent {
+      color: var(--cl-amber) !important;
+      border-color: rgba(217, 119, 6, 0.4) !important;
+      background: var(--cl-amber-bg) !important;
     }
 
     /* ═══ 5. VIEWPORT-FRAMED ZEBRA SECTIONS ═══ */
@@ -1024,21 +1032,16 @@
       <span class="top-nav__title">Bài Tập 03 • Chững Lại Sau Tuổi 30 & Nhìn Đối Thủ Triệu View (Chuẩn Tầng 2.5)</span>
     </div>
     <nav class="top-nav__links">
-      <a href="9-bai-tap-thuc-hanh.html" class="nav-btn nav-btn--back">← 9 Bài Tập Thực Hành</a>
-      <a href="#sec-de-bai" class="nav-btn">Đề Bài</a>
-      <a href="#sec-cau-hoi" class="nav-btn">Tầng 1 (Safe)</a>
-      <a href="#sec-step-2" class="nav-btn">Tầng 2 (Real)</a>
-      <a href="#sec-step-3" class="nav-btn">Tầng 3 (Raw)</a>
-      <a href="#sec-step-4" class="nav-btn">Tầng 2.5 (Adult Friction)</a>
-      <a href="#sec-script" class="nav-btn">Kịch Bản Đã Chốt</a>
-      <a href="#sec-toi-uu-hook" class="nav-btn nav-btn--accent">⚡ Tối Ưu Hook</a>
-      <a href="#sec-scene-1" class="nav-btn">Cảnh 1</a>
-      <a href="#sec-scene-2" class="nav-btn">Cảnh 2</a>
-      <a href="#sec-scene-3" class="nav-btn">Cảnh 3</a>
-      <a href="#sec-scene-4" class="nav-btn">Cảnh 4</a>
-      <a href="#sec-scene-5" class="nav-btn">Cảnh 5</a>
-      <a href="#sec-wisdom" class="nav-btn">Đúc Kết</a>
-      <button class="nav-btn" onclick="window.print()">🖨️ In Giáo Trình</button>
+      <a href="9-bai-tap-thuc-hanh.html" class="top-nav__link top-nav__link--hub">🏛️ Master Hub</a>
+      <a href="#sec-de-bai" class="top-nav__link">🎯 Đề Bài</a>
+      <a href="#sec-cau-hoi" class="top-nav__link">❓ Tầng 1 (Safe)</a>
+      <a href="#sec-step-2" class="top-nav__link">Tầng 2 (Real)</a>
+      <a href="#sec-step-3" class="top-nav__link">Tầng 3 (Raw)</a>
+      <a href="#sec-step-4" class="top-nav__link">Tầng 2.5</a>
+      <a href="#sec-script" class="top-nav__link">📝 Kịch Bản Chốt</a>
+      <a href="#sec-toi-uu-hook" class="top-nav__link" style="color: var(--cl-amber); border-color: rgba(217, 119, 6, 0.4); background: var(--cl-amber-bg);">⚡ Tối Ưu Hook</a>
+      <a href="#sec-scene-1" class="top-nav__link">🎬 5 Phân Cảnh</a>
+      <button class="top-nav__link" onclick="window.print()" style="cursor: pointer; background: var(--cl-tint);">🖨️ In Bài Tập</button>
     </nav>
   </header>
 
@@ -1100,10 +1103,10 @@
   <section class="cl-zebra-section cl-zebra--tint" id="sec-cau-hoi">
     <div class="cl-sec-container apple-reveal">
       <div class="cl-badge cl-badge--red">01 / TẦNG 1 • SAFE (ĐÃI BÔI BỀ NỔI)</div>
-      <h2 class="title-long">❓ Cách Để Làm Video Với Đề Bài Này Hấp Dẫn Là Gì?</h2>
-      <h3 class="title-short" style="margin-top: 4px; font-size: clamp(20px, 2.8vw, 30px); color: var(--cl-slate-700);">
-        BƯỚC 1: CÁI MÀ AI CŨNG NGHĨ RA ĐẦU TIÊN
-      </h3>
+      <h2 class="title-short">BƯỚC 1: CÁI MÀ AI CŨNG NGHĨ RA ĐẦU TIÊN</h2>
+      <p class="title-long" style="font-size: clamp(17px, 2.2vw, 22px); margin-top: 4px; margin-bottom: 16px; color: var(--cl-text-muted); font-weight: 600;">
+        ❓ Cách để làm video với đề bài này hấp dẫn là gì?
+      </p>
       <p class="editorial-hook">
         "Phản xạ tự nhiên của đa số mọi người khi cầm máy lên là nói đạo lý, hô hào tích cực hoặc dùng văn mẫu để làm màu."
       </p>
@@ -1208,8 +1211,8 @@
   <section class="cl-zebra-section cl-zebra--light" id="sec-step-4">
     <div class="cl-sec-container cl-sec-container--wide apple-reveal">
       <div class="cl-badge cl-badge--purple">04 / TẦNG 2.5 • ADULT FRICTION (ĐIỂM CHẠM VÀNG)</div>
-      <h2 class="title-long">
-        Bước 4: Điểm Chạm Đắt Giá — Thể Diện Người Lớn & Nỗi Giằng Xé Của Người Có Nghề
+      <h2 class="title-short">
+        BƯỚC 4: ĐIỂM CHẠM VÀNG — NỖI GIẰNG XÉ THỂ DIỆN NGƯỜI LỚN
       </h2>
       <p class="editorial-hook">
         "Bóc trần thói quen lướt trộm video đối thủ dưới vỏ bọc 'nghiên cứu thị trường' để giải phóng cái tôi của người làm nghề lâu năm."
@@ -1327,8 +1330,8 @@
   <section class="cl-zebra-section cl-zebra--light" id="sec-toi-uu-hook">
     <div class="cl-sec-container cl-sec-container--wide apple-reveal">
       <div class="cl-badge cl-badge--amber">⚡ NÂNG CẤP THỰC CHIẾN • TỐI ƯU HOOK 2 GIÂY ĐẦU</div>
-      <h2 class="title-long" style="font-size: clamp(22px, 3.2vw, 36px); margin-bottom: 12px;">
-        Để Giảm Thiệt Thòi Trên Video Ngắn: Cần Tối Ưu Hook
+      <h2 class="title-short">
+        ĐỂ GIẢM THIỆT THÒI TRÊN VIDEO NGẮN: CẦN TỐI ƯU HOOK
       </h2>
       <p class="editorial-hook" style="margin-bottom: 24px;">
         "Nội dung kịch bản ở trên đã có độ sâu rất tốt, nhưng nếu Cảnh 1 không giữ được ngón tay người xem trong 2 giây đầu thì thông điệp hay đến mấy cũng không ai xem."
@@ -1864,7 +1867,7 @@
       </div>
 
       <div style="margin-top: 32px; display: flex; gap: 16px; flex-wrap: wrap;">
-        <a href="9-bai-tap-thuc-hanh.html" class="cl-btn">← QUAY LẠI 9 BÀI TẬP THỰC HÀNH</a>
+        <a href="9-bai-tap-thuc-hanh.html" class="cl-btn">🏛️ QUAY VỀ MASTER HUB 9 KỊCH BẢN</a>
         <a href="#sec-de-bai" class="cl-btn" style="background: var(--cl-slate-200); color: var(--cl-slate-900);">↑ VỀ ĐẦU TRANG</a>
       </div>
     </div>
