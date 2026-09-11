@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Chặng 01: Giải Tỏa Thể Diện — Vì Sao Người Có Nghề Ngại Đứng Trước Máy Quay? | Masterclass FEDU</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&family=Playfair+Display:ital,wght@1,400;1,600&display=swap" rel="stylesheet">
+  
+  <style>
+    @font-face {
+      font-family: 'FD Aeonik Extended';
+      src: url('./fonts/FDAeonikExtended-Bold.woff2') format('woff2'),
+           url('./fonts/FDAeonikExtended-Bold.ttf') format('truetype'),
+           url('/Users/vietmac/Library/Fonts/FDAeonikExtended-Bold.otf') format('opentype'),
+           local('FD Aeonik Extended Bold');
+      font-weight: 700;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'FD Aeonik';
+      src: url('./fonts/FDAeonikRegular.ttf') format('truetype'),
+           url('/Users/vietmac/Library/Fonts/FDAeonikRegular.ttf') format('truetype'),
+           local('FD Aeonik Regular');
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'FD Aeonik';
+      src: url('./fonts/FDAeonikExtended-SemiBold.ttf') format('truetype'),
+           url('/Users/vietmac/Library/Fonts/FDAeonikExtended-SemiBold.otf') format('opentype'),
+           local('FD Aeonik SemiBold');
+      font-weight: 600;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Tiempos Text';
+      src: url('./fonts/FDTiemposText-Regular.otf') format('opentype'),
+           url('/Users/vietmac/Library/Fonts/FDTiemposText-Regular.otf') format('opentype'),
+           local('Tiempos Text Regular');
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Tiempos Text';
+      src: url('./fonts/FDTiemposText-Medium.otf') format('opentype'),
+           url('/Users/vietmac/Library/Fonts/FDTiemposText-Medium.otf') format('opentype'),
+           local('Tiempos Text Medium');
+      font-weight: 500;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Tiempos Text';
+      src: url('./fonts/FDTiemposText-RegularItalic.otf') format('opentype'),
+           url('/Users/vietmac/Library/Fonts/FDTiemposText-RegularItalic.otf') format('opentype'),
+           local('Tiempos Text Regular Italic');
+      font-weight: 400;
+      font-style: italic;
+      font-display: swap;
+    }
+
+    :root {
+      --cl-bg: #ffffff;
+      --cl-tint: #f8fafc;
+      --cl-card: #ffffff;
+      --cl-accent: #1a73e8;
+      --cl-accent-tint: rgba(26, 115, 232, 0.08);
+      --cl-line: rgba(0, 0, 0, 0.06);
+      --cl-line-strong: rgba(0, 0, 0, 0.12);
+      --cl-text-base: #090d16;
+      --cl-text-body: #0f172a;
+      --cl-text-muted: #475569;
+
+      --font-display-short: 'FD Aeonik Extended', 'Inter', -apple-system, sans-serif;
+      --font-display-long: 'FD Aeonik', 'Inter', -apple-system, sans-serif;
+      --font-body: 'Tiempos Text', Georgia, serif;
+      --font-mono: 'JetBrains Mono', monospace;
+
+      --apple-spring: cubic-bezier(0.25, 1, 0.35, 1.05);
+      --apple-ease: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background-color: var(--cl-bg);
+      color: var(--cl-text-base);
+      font-family: var(--font-body);
+    }
+
+    body {
+      overflow-x: clip;
+      min-height: 100vh;
+      line-height: 1.75;
+    }
+
+    .cl-zebra-section {
+      position: relative;
+      width: 100%;
+      min-height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: clamp(60px, 8vh, 100px) clamp(16px, 4vw, 32px);
+      box-sizing: border-box;
+    }
+
+    .cl-zebra--light {
+      background-color: var(--cl-bg);
+    }
+
+    .cl-zebra--tint {
+      background-color: var(--cl-tint);
+      border-top: 1px solid var(--cl-line);
+      border-bottom: 1px solid var(--cl-line);
+    }
+
+    .cl-sec-container {
+      width: 100%;
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    .cl-sec-container--wide {
+      max-width: 1140px;
+    }
+
+    .cl-sec-container--narrow {
+      max-width: 760px;
+    }
+
+    .cl-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--cl-accent);
+      background: var(--cl-accent-tint);
+      padding: 6px 14px;
+      border-radius: 9999px;
+      margin-bottom: 20px;
+    }
+
+    .title-short {
+      font-family: var(--font-display-short);
+      font-size: clamp(28px, 4.5vw, 46px);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: -0.01em;
+      line-height: 1.15;
+      color: var(--cl-text-base);
+      margin-bottom: 16px;
+      text-wrap: balance;
+    }
+
+    .title-long {
+      font-family: var(--font-display-long);
+      font-size: clamp(22px, 3.2vw, 34px);
+      font-weight: 600;
+      line-height: 1.35;
+      color: var(--cl-text-base);
+      margin-bottom: 16px;
+      text-wrap: balance;
+    }
+
+    .cl-body {
+      font-family: var(--font-body);
+      font-size: clamp(16px, 1.6vw, 18px);
+      line-height: 1.8;
+      color: var(--cl-text-body);
+      margin-bottom: 24px;
+    }
+
+    .editorial-hook {
+      font-family: var(--font-body);
+      font-style: italic;
+      font-size: clamp(18px, 2.2vw, 24px);
+      line-height: 1.6;
+      color: var(--cl-text-base);
+      border-left: 3px solid var(--cl-accent);
+      padding-left: 20px;
+      margin: 24px 0;
+    }
+
+    .apple-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+      margin-top: 32px;
+    }
+
+    .apple-card {
+      background: var(--cl-card);
+      border: 1px solid var(--cl-line-strong);
+      border-radius: 20px;
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+      transition: transform 0.3s var(--apple-spring), box-shadow 0.3s ease;
+    }
+
+    .apple-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.06);
+    }
+
+    .apple-card__badge {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--cl-text-muted);
+      letter-spacing: 0.08em;
+    }
+
+    .apple-card__title {
+      font-family: var(--font-display-long);
+      font-size: 19px;
+      font-weight: 600;
+      color: var(--cl-text-base);
+      line-height: 1.4;
+    }
+
+    .apple-card__desc {
+      font-family: var(--font-body);
+      font-size: 15.5px;
+      color: var(--cl-text-muted);
+      line-height: 1.7;
+    }
+
+    .apple-table-wrap {
+      width: 100%;
+      overflow-x: auto;
+      margin-top: 24px;
+      border: 1px solid var(--cl-line-strong);
+      border-radius: 16px;
+      background: #ffffff;
+    }
+
+    .apple-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 15px;
+    }
+
+    .apple-table th {
+      font-family: var(--font-display-long);
+      font-weight: 600;
+      padding: 16px 20px;
+      background: #f8fafc;
+      color: var(--cl-text-base);
+      border-bottom: 1px solid var(--cl-line-strong);
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .apple-table td {
+      padding: 18px 20px;
+      border-bottom: 1px solid var(--cl-line);
+      color: var(--cl-text-body);
+      line-height: 1.65;
+      vertical-align: top;
+    }
+
+    .apple-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .cl-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 14px 28px;
+      background: var(--cl-accent);
+      color: #ffffff;
+      font-family: var(--font-display-long);
+      font-size: 15px;
+      font-weight: 600;
+      text-decoration: none;
+      border-radius: 9999px;
+      transition: background 0.2s ease, transform 0.2s ease;
+      box-shadow: 0 4px 14px rgba(26, 115, 232, 0.25);
+    }
+
+    .cl-btn:hover {
+      background: #1557b0;
+      transform: translateY(-2px);
+    }
+
+    .nav-bar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255, 255, 255, 0.88);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--cl-line);
+      padding: 14px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .nav-brand {
+      font-family: var(--font-display-short);
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--cl-text-base);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 16px;
+      font-family: var(--font-display-long);
+      font-size: 13px;
+      font-weight: 500;
+    }
+
+    .nav-links a {
+      color: var(--cl-text-muted);
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--cl-accent);
+    }
+
+    .apple-reveal {
+      opacity: 0;
+      transform: translate3d(0, 24px, 0);
+      transition: opacity 0.5s var(--apple-ease), transform 0.58s var(--apple-spring);
+    }
+
+    .apple-reveal.is-visible {
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav-bar">
+    <div class="nav-brand">MASTERCLASS OFFLINE • FEDU</div>
+    <div class="nav-links">
+      <a href="./giao-trinh-offline-masterclass.html">Trang Tổng Quan</a>
+      <a href="./chang-2-thu-phap-mo-ta-hanh-vi.html">Chặng 02 →</a>
+    </div>
+  </nav>
+
+  <section class="cl-zebra-section cl-zebra--light" id="sec-hero">
+    <div class="cl-sec-container apple-reveal">
+      <div class="cl-badge">CHẶNG 01 / GIẢI PHẪU TÂM LÝ</div>
+      <h1 class="title-short">GIẢI TỎA THỂ DIỆN</h1>
+      <h2 class="title-long">Vì Sao Người Làm Nghề Lâu Năm Lại Ngại Đứng Trước Máy Quay?</h2>
+      
+      <p class="editorial-hook">
+        "Rào cản lớn nhất của một người có tay nghề khi không dám quay video không nằm ở kỹ thuật, mà nằm ở Thể Diện. Khi chưa quen ống kính, phản xạ tự nhiên là lúng túng. Nhưng một người đã có thâm niên không bao giờ chấp nhận để lộ sự lúng túng đó trước mặt người khác."
+      </p>
+
+      <p class="cl-body">
+        Chào bạn, khi bạn ngồi tại căn phòng này, mình hiểu bạn không phải là một bạn trẻ mới ra trường tìm kiếm sự nổi tiếng chớp nhoáng trên mạng xã hội. Bạn là chủ một tiệm kinh doanh, một người thợ lành nghề, một chuyên gia tư vấn hoặc một người đang gánh trên vai cả cơ sở làm ăn của gia đình. Bạn có chuyên môn thật, sản phẩm thật, nhưng mỗi khi nghĩ đến việc cầm điện thoại lên quay video, trong lòng lại xuất hiện một khoảng chần chừ ngượng ngùng.
+      </p>
+    </div>
+  </section>
+
+  <section class="cl-zebra-section cl-zebra--tint" id="sec-audit">
+    <div class="cl-sec-container cl-sec-container--wide apple-reveal">
+      <div class="cl-badge">ĐỐI SOÁT THỰC TẾ / 3 CÁI BẪY</div>
+      <h2 class="title-short">3 LÝ DO AN TOÀN BỀ NỔI</h2>
+      <p class="cl-body">Để bảo vệ danh dự, não bộ người lớn luôn tự động phát ngôn ra những lý do nghe rất hợp lý và đàng hoàng để trì hoãn việc xuất hiện trước ống kính.</p>
+
+      <div class="apple-cards-grid">
+        <div class="apple-card">
+          <div class="apple-card__badge">LÝ DO AN TOÀN 01</div>
+          <h3 class="apple-card__title">"Mình chưa có máy ảnh xịn và phòng thu chuyên nghiệp"</h3>
+          <p class="apple-card__desc">
+            Bạn nghĩ rằng phải có máy ảnh chục triệu, đèn studio rực rỡ thì mới xứng tầm xuất hiện. Nhưng sự thật ngượng miệng: Thiết bị đắt tiền thường là tấm bình phong an toàn nhất để người ta trì hoãn việc mở miệng nói câu đầu tiên.
+          </p>
+        </div>
+
+        <div class=apple-card>
+          <div class=apple-card__badge>LÝ DO AN TOÀN 02</div>
+          <h3 class=apple-card__title>"Tính mình mộc mạc, không quen nói đạo lý và chém gió"</h3>
+          <p class=apple-card__desc>
+            Nhìn những người nói trơn tru trên mạng, bạn e ngại mình sẽ bị đánh đồng với những người nói hay hơn làm. Bạn sợ khách hàng cũ và bạn bè nghĩ rằng dạo này bạn đang khó khăn nên mới phải lên mạng tìm kiếm sự chú ý.
+          </p>
+        </div>
+
+        <div class=apple-card>
+          <div class=apple-card__badge>LÝ DO AN TOÀN 03</div>
+          <h3 class=apple-card__title>"Khách của mình chủ yếu qua truyền miệng, video ngắn không hợp"</h3>
+          <p class=apple-card__desc>
+            Cái cớ này giúp bạn cảm thấy yên tâm với vòng tròn khách quen hiện tại. Nhưng trong thâm tâm, bạn nhìn thấy lượng khách vãng lai ngày một thưa dần và các kênh bán lẻ trực tuyến đang hút cạn sự chú ý của khách hàng mỗi ngày.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cl-zebra-section cl-zebra--light" id="sec-truth">
+    <div class="cl-sec-container apple-reveal">
+      <div class="cl-badge">TẦNG 2.5 / KHE HỞ THỂ DIỆN</div>
+      <h2 class="title-short">NỖI SỢ THẬT BÊN DƯỚI</h2>
+      <p class="cl-body">Khi gạt bỏ những cái cớ đạo mạo sang một bên, đây là điều đang thực sự diễn ra trong tâm trí người có vị thế:</p>
+
+      <div class="apple-table-wrap">
+        <table class="apple-table">
+          <thead>
+            <tr>
+              <th style="width: 30%;">Vỏ bọc bề ngoài (Tầng 1 & 2)</th>
+              <th style="width: 40%;">Sự thật ngượng miệng bên trong (Tầng 2.5)</th>
+              <th style="width: 30%;">Giải pháp tháo gỡ tại lớp</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>"Sợ lên video bị người ta bắt bẻ kiến thức"</strong></td>
+              <td>Thực ra sợ nhất là nhân viên cấp dưới và người quen nhìn thấy mình nói vấp, ánh mắt lóng ngóng, mất đi vẻ uy nghi của người chủ tiệm.</td>
+              <td>Dùng kỹ thuật quay 2 máy để cắt gọt mọi chỗ ngập ngừng, giữ nguyên thần thái đĩnh đạc.</td>
+            </tr>
+            <tr>
+              <td><strong>"Chưa biết viết kịch bản thế nào cho hay"</strong></td>
+              <td>Sợ nói ra điều bình thường thì không ai xem, mà nói điều đao to búa lớn thì chính bản thân mình thấy ngượng mồm, không tự nhiên.</td>
+              <td>Hạ tiêu chuẩn kịch bản xuống: Chỉ chia sẻ đúng 1 chi tiết nhỏ mà khách hàng hỏi bạn tuần qua.</td>
+            </tr>
+            <tr>
+              <td><strong>"Bận quản lý cửa hàng, không có thời gian"</strong></td>
+              <td>Thấy việc làm video quá nặng nề vì nghĩ phải ngồi hàng giờ cắt ghép, chỉnh màu, viết kịch bản phức tạp.</td>
+              <td>Thiết lập quy trình 1 sải tay: Bật máy quay nói đúng 3 câu, cắt thô trong 5 phút.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="cl-zebra-section cl-zebra--tint" id="sec-action">
+    <div class="cl-sec-container cl-sec-container--narrow apple-reveal" style="text-align: center;">
+      <div class="cl-badge">LỜI DẶN DÒ CỦA ANH VIỆT</div>
+      <h2 class="title-short">HẠ THẤP MẶT NẠ XUỐNG</h2>
+      <p class="editorial-hook" style="border-left: none; text-align: center; padding: 0;">
+        "Khách hàng thông minh ngày nay không đi tìm một diễn viên truyền hình nói trơn tru không tì vết. Họ tìm một người làm nghề có trách nhiệm, ánh mắt vững chãi và dám nói thật về những ổ gà trong nghề. Bạn chỉ cần là chính mình sau quầy làm việc, mọi kỹ thuật còn lại hãy để lớp học lo."
+      </p>
+      <div style="margin-top: 36px;">
+        <a href="./chang-2-thu-phap-mo-ta-hanh-vi.html" class="cl-btn">TIẾP TỤC SANG CHẶNG 02: THỦ PHÁP TẢ THỰC →</a>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll('.apple-reveal').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>

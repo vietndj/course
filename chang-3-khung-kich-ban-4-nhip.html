@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Chặng 03: Khung Kịch Bản 4 Nhịp Thực Chiến & 9 Kịch Bản Mẫu | Masterclass FEDU</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&family=Playfair+Display:ital,wght@1,400;1,600&display=swap" rel="stylesheet">
+  
+  <style>
+    @font-face {
+      font-family: 'FD Aeonik Extended';
+      src: url('./fonts/FDAeonikExtended-Bold.woff2') format('woff2'),
+           url('./fonts/FDAeonikExtended-Bold.ttf') format('truetype'),
+           url('/Users/vietmac/Library/Fonts/FDAeonikExtended-Bold.otf') format('opentype'),
+           local('FD Aeonik Extended Bold');
+      font-weight: 700;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'FD Aeonik';
+      src: url('./fonts/FDAeonikRegular.ttf') format('truetype'),
+           url('/Users/vietmac/Library/Fonts/FDAeonikRegular.ttf') format('truetype'),
+           local('FD Aeonik Regular');
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'FD Aeonik';
+      src: url('./fonts/FDAeonikExtended-SemiBold.ttf') format('truetype'),
+           url('/Users/vietmac/Library/Fonts/FDAeonikExtended-SemiBold.otf') format('opentype'),
+           local('FD Aeonik SemiBold');
+      font-weight: 600;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Tiempos Text';
+      src: url('./fonts/FDTiemposText-Regular.otf') format('opentype'),
+           url('/Users/vietmac/Library/Fonts/FDTiemposText-Regular.otf') format('opentype'),
+           local('Tiempos Text Regular');
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Tiempos Text';
+      src: url('./fonts/FDTiemposText-Medium.otf') format('opentype'),
+           url('/Users/vietmac/Library/Fonts/FDTiemposText-Medium.otf') format('opentype'),
+           local('Tiempos Text Medium');
+      font-weight: 500;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Tiempos Text';
+      src: url('./fonts/FDTiemposText-RegularItalic.otf') format('opentype'),
+           url('/Users/vietmac/Library/Fonts/FDTiemposText-RegularItalic.otf') format('opentype'),
+           local('Tiempos Text Regular Italic');
+      font-weight: 400;
+      font-style: italic;
+      font-display: swap;
+    }
+
+    :root {
+      --cl-bg: #ffffff;
+      --cl-tint: #f8fafc;
+      --cl-card: #ffffff;
+      --cl-accent: #1a73e8;
+      --cl-accent-tint: rgba(26, 115, 232, 0.08);
+      --cl-line: rgba(0, 0, 0, 0.06);
+      --cl-line-strong: rgba(0, 0, 0, 0.12);
+      --cl-text-base: #090d16;
+      --cl-text-body: #0f172a;
+      --cl-text-muted: #475569;
+
+      --font-display-short: 'FD Aeonik Extended', 'Inter', -apple-system, sans-serif;
+      --font-display-long: 'FD Aeonik', 'Inter', -apple-system, sans-serif;
+      --font-body: 'Tiempos Text', Georgia, serif;
+      --font-mono: 'JetBrains Mono', monospace;
+
+      --apple-spring: cubic-bezier(0.25, 1, 0.35, 1.05);
+      --apple-ease: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background-color: var(--cl-bg);
+      color: var(--cl-text-base);
+      font-family: var(--font-body);
+    }
+
+    body {
+      overflow-x: clip;
+      min-height: 100vh;
+      line-height: 1.75;
+    }
+
+    .cl-zebra-section {
+      position: relative;
+      width: 100%;
+      min-height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: clamp(60px, 8vh, 100px) clamp(16px, 4vw, 32px);
+      box-sizing: border-box;
+    }
+
+    .cl-zebra--light {
+      background-color: var(--cl-bg);
+    }
+
+    .cl-zebra--tint {
+      background-color: var(--cl-tint);
+      border-top: 1px solid var(--cl-line);
+      border-bottom: 1px solid var(--cl-line);
+    }
+
+    .cl-sec-container {
+      width: 100%;
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    .cl-sec-container--wide {
+      max-width: 1140px;
+    }
+
+    .cl-sec-container--narrow {
+      max-width: 760px;
+    }
+
+    .cl-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--cl-accent);
+      background: var(--cl-accent-tint);
+      padding: 6px 14px;
+      border-radius: 9999px;
+      margin-bottom: 20px;
+    }
+
+    .title-short {
+      font-family: var(--font-display-short);
+      font-size: clamp(28px, 4.5vw, 46px);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: -0.01em;
+      line-height: 1.15;
+      color: var(--cl-text-base);
+      margin-bottom: 16px;
+      text-wrap: balance;
+    }
+
+    .title-long {
+      font-family: var(--font-display-long);
+      font-size: clamp(22px, 3.2vw, 34px);
+      font-weight: 600;
+      line-height: 1.35;
+      color: var(--cl-text-base);
+      margin-bottom: 16px;
+      text-wrap: balance;
+    }
+
+    .cl-body {
+      font-family: var(--font-body);
+      font-size: clamp(16px, 1.6vw, 18px);
+      line-height: 1.8;
+      color: var(--cl-text-body);
+      margin-bottom: 24px;
+    }
+
+    .editorial-hook {
+      font-family: var(--font-body);
+      font-style: italic;
+      font-size: clamp(18px, 2.2vw, 24px);
+      line-height: 1.6;
+      color: var(--cl-text-base);
+      border-left: 3px solid var(--cl-accent);
+      padding-left: 20px;
+      margin: 24px 0;
+    }
+
+    .apple-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      margin-top: 32px;
+    }
+
+    .apple-card {
+      background: var(--cl-card);
+      border: 1px solid var(--cl-line-strong);
+      border-radius: 20px;
+      padding: 26px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+      transition: transform 0.3s var(--apple-spring), box-shadow 0.3s ease;
+    }
+
+    .apple-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.06);
+    }
+
+    .apple-card__badge {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--cl-accent);
+      letter-spacing: 0.08em;
+    }
+
+    .apple-card__title {
+      font-family: var(--font-display-long);
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--cl-text-base);
+      line-height: 1.4;
+    }
+
+    .apple-card__desc {
+      font-family: var(--font-body);
+      font-size: 15px;
+      color: var(--cl-text-muted);
+      line-height: 1.65;
+    }
+
+    .cl-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 14px 28px;
+      background: var(--cl-accent);
+      color: #ffffff;
+      font-family: var(--font-display-long);
+      font-size: 15px;
+      font-weight: 600;
+      text-decoration: none;
+      border-radius: 9999px;
+      transition: background 0.2s ease, transform 0.2s ease;
+      box-shadow: 0 4px 14px rgba(26, 115, 232, 0.25);
+    }
+
+    .cl-btn:hover {
+      background: #1557b0;
+      transform: translateY(-2px);
+    }
+
+    .nav-bar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255, 255, 255, 0.88);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--cl-line);
+      padding: 14px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .nav-brand {
+      font-family: var(--font-display-short);
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--cl-text-base);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 16px;
+      font-family: var(--font-display-long);
+      font-size: 13px;
+      font-weight: 500;
+    }
+
+    .nav-links a {
+      color: var(--cl-text-muted);
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--cl-accent);
+    }
+
+    .apple-reveal {
+      opacity: 0;
+      transform: translate3d(0, 24px, 0);
+      transition: opacity 0.5s var(--apple-ease), transform 0.58s var(--apple-spring);
+    }
+
+    .apple-reveal.is-visible {
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav-bar">
+    <div class="nav-brand">MASTERCLASS OFFLINE • FEDU</div>
+    <div class="nav-links">
+      <a href="./chang-2-thu-phap-mo-ta-hanh-vi.html">← Chặng 02</a>
+      <a href="./giao-trinh-offline-masterclass.html">Trang Tổng Quan</a>
+      <a href="./chang-4-thiet-lap-quay-1-sai-tay.html">Chặng 04 →</a>
+    </div>
+  </nav>
+
+  <section class="cl-zebra-section cl-zebra--light" id="sec-hero">
+    <div class="cl-sec-container apple-reveal">
+      <div class="cl-badge">CHẶNG 03 / CẤU TRÚC KỊCH BẢN</div>
+      <h1 class="title-short">KHUNG KỊCH BẢN 4 NHỊP</h1>
+      <h2 class="title-long">Công Thức Thoại Gọn 45–60 Giây Bảo Toàn Thể Diện & Khơi Gợi Niềm Tin</h2>
+      
+      <p class="editorial-hook">
+        "Một kịch bản chuyển đổi tốt không cần người nói phải lên gân hay chèo kéo mua hàng. Nó vận hành êm ái như một cuộc trò chuyện bên bàn trà: Nhìn thấy khó khăn thật, thấu hiểu nỗi lo lắng thầm kín, và chỉ ra một cách làm đàng hoàng."
+      </p>
+
+      <p class="cl-body">
+        Đây là khung kịch bản xương sống được chuẩn hóa từ kinh nghiệm thực chiến với hàng trăm học viên lớp offline. Mỗi video chỉ dài từ 4 đến 6 câu thoại, tương đương 45–60 giây, giúp người bận rộn nhất cũng có thể thuộc lòng và quay xong chỉ trong một buổi sáng.
+      </p>
+    </div>
+  </section>
+
+  <section class="cl-zebra-section cl-zebra--tint" id="sec-engine">
+    <div class="cl-sec-container cl-sec-container--wide apple-reveal">
+      <div class="cl-badge">KIẾN TRÚC NỘI DUNG / 4 NHỊP THỰC CHIẾN</div>
+      <h2 class="title-short">4 NẤC THANG TÂM LÝ</h2>
+      <p class="cl-body">Cấu trúc 4 nhịp giải tỏa hoàn toàn áp lực phán xét và đưa khách hàng đến quyết định tự nhiên:</p>
+
+      <div class="apple-cards-grid">
+        <div class="apple-card">
+          <div class="apple-card__badge">NHỊP 01 (10S ĐẦU)</div>
+          <h3 class="apple-card__title">Lát cắt hành vi đời thường</h3>
+          <p class="apple-card__desc">
+            Mở đầu bằng một hành động vật lý quen thuộc hoặc một câu hỏi khách hàng hay hỏi bạn. Tuyệt đối không chào hỏi rườm rà. Bắt đầu ngay từ cái bàn làm việc.
+          </p>
+        </div>
+
+        <div class=apple-card>
+          <div class=apple-card__badge>NHỊP 02 (15S TIẾP)</div>
+          <h3 class=apple-card__title>Nỗi băn khoăn ngượng miệng</h3>
+          <p class=apple-card__desc>
+            Chỉ ra sự ngập ngừng giữa cái cớ đàng hoàng bề ngoài và sự bất an thật bên trong. Nói ra điều mà khách hàng muốn hỏi nhưng ngại mở mồm vì sợ bị chê.
+          </p>
+        </div>
+
+        <div class=apple-card>
+          <div class=apple-card__badge>NHỊP 03 (15S TIẾP)</div>
+          <h3 class=apple-card__title>Đồng điệu của người trong nghề</h3>
+          <p class=apple-card__desc>
+            Chia sẻ một vết sẹo hoặc trải nghiệm bạn từng trải qua: <em>"Trước đây mình cũng từng vấp đúng chỗ này..."</em>. Hạ vị thế xuống để làm bạn đồng hành chân thành.
+          </p>
+        </div>
+
+        <div class=apple-card>
+          <div class=apple-card__badge>NHỊP 04 (15S CUỐI)</div>
+          <h3 class=apple-card__title>Lối đi đàng hoàng, giữ thể diện</h3>
+          <p class=apple-card__desc>
+            Đưa ra giải pháp chuyên môn dứt khoát. Không nài ép mua hàng: <em>"Nếu bạn đang gặp trường hợp này, cứ nhắn tin qua Zalo mình xem giúp, thấy hợp thì làm tiếp."</em>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cl-zebra-section cl-zebra--light" id="sec-scripts">
+    <div class="cl-sec-container cl-sec-container--wide apple-reveal">
+      <div class="cl-badge">KHO TÀI NGUYÊN / 9 KỊCH BẢN THỰC CHIẾN BUỔI 1</div>
+      <h2 class="title-short">MẪU KỊCH BẢN THEO NGÀNH</h2>
+      <p class="cl-body">Được trích xuất trực tiếp từ bộ giáo trình offline thực chiến của anh Việt dành riêng cho các nhóm ngành:</p>
+
+      <div class="apple-cards-grid">
+        <div class="apple-card">
+          <div class="apple-card__badge">KB 01 • CHỦ SHOP & BÁN LẺ</div>
+          <h3 class="apple-card__title">Mặt bằng, vốn đọng & khách vắng</h3>
+          <p class="apple-card__desc">Bóc trần áp lực chi phí cố định hàng tháng và cách dùng uy tín người chủ để kéo khách địa phương trở lại tiệm.</p>
+        </div>
+
+        <div class="apple-card">
+          <div class="apple-card__badge">KB 02 • THỢ KỸ THUẬT & TAY NGHỀ</div>
+          <h3 class="apple-card__title">Tay nghề giỏi nhưng ngại nói</h3>
+          <p class="apple-card__desc">Cách biến các thao tác sửa chữa, lắp ráp cơ khí thành nội dung cuốn hút mà không cần phải nói nhiều trước máy.</p>
+        </div>
+
+        <div class="apple-card">
+          <div class="apple-card__badge">KB 03 • ĐỒ THỦ CÔNG & CHẾ TÁC</div>
+          <h3 class="apple-card__title">Làm đồ kỹ nhưng bị chê đắt</h3>
+          <p class="apple-card__desc">Cách quay cận cảnh từng đường kim, mối hàn để chứng minh giá trị vô hình, khiến khách sẵn sàng trả giá cao.</p>
+        </div>
+
+        <div class="apple-card">
+          <div class="apple-card__badge">KB 04 • TƯ VẤN & DỊCH VỤ</div>
+          <h3 class="apple-card__title">Chuyên môn thật vs Nói hay</h3>
+          <p class="apple-card__desc">Bóc trần sự ngượng miệng khi bị cạnh tranh bởi người giỏi làm màu, lấy sự điềm đạm làm tem bảo hành dài hạn.</p>
+        </div>
+
+        <div class="apple-card">
+          <div class="apple-card__badge">KB 05 • ĐẠI LÝ & TẠP HÓA</div>
+          <h3 class="apple-card__title">Cạnh tranh với sàn TMĐT</h3>
+          <p class="apple-card__desc">Chiến lược video ngắn dựa trên sự tiện lợi và sự gần gũi của tình làng nghĩa xóm mà sàn thương mại không có được.</p>
+        </div>
+
+        <div class="apple-card">
+          <div class="apple-card__badge">KB 06 • BẮT ĐẦU LẠI & CHUYỂN NGHỀ</div>
+          <h3 class="apple-card__title">Nỗi sợ định kiến tuổi tác</h3>
+          <p class="apple-card__desc">Cách biến sự từng trải và sự điềm tĩnh của người có tuổi thành lợi thế cạnh tranh áp đảo trước giới trẻ năng động.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cl-zebra-section cl-zebra--tint" id="sec-action">
+    <div class="cl-sec-container cl-sec-container--narrow apple-reveal" style="text-align: center;">
+      <div class="cl-badge">LỜI DẶN DÒ CỦA ANH VIỆT</div>
+      <h2 class="title-short">MỖI CÂU LÀ MỘT DÒNG</h2>
+      <p class="editorial-hook" style="border-left: none; text-align: center; padding: 0;">
+        "Khi viết kịch bản để chuẩn bị quay, hãy ngắt mỗi câu thành một dòng riêng biệt. Một câu chỉ chứa một ý trọn vẹn dưới 12 chữ. Viết ngắn như hơi thở thì khi đứng trước máy bạn mới không bị hụt hơi."
+      </p>
+      <div style="margin-top: 36px;">
+        <a href="./chang-4-thiet-lap-quay-1-sai-tay.html" class="cl-btn">TIẾP TỤC SANG CHẶNG 04: THIẾT LẬP QUAY 1 SẢI TAY →</a>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll('.apple-reveal').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>

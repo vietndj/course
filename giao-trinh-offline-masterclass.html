@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Cẩm Nang Nghiên Cứu Masterclass Offline 5 Chặng | Nguyễn Đức Việt • FEDU</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&family=Playfair+Display:ital,wght@1,400;1,600&display=swap" rel="stylesheet">
+  
+  <style>
+    @font-face {
+      font-family: 'FD Aeonik Extended';
+      src: url('./fonts/FDAeonikExtended-Bold.woff2') format('woff2'),
+           url('./fonts/FDAeonikExtended-Bold.ttf') format('truetype'),
+           url('/Users/vietmac/Library/Fonts/FDAeonikExtended-Bold.otf') format('opentype'),
+           local('FD Aeonik Extended Bold');
+      font-weight: 700;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'FD Aeonik';
+      src: url('./fonts/FDAeonikRegular.ttf') format('truetype'),
+           url('/Users/vietmac/Library/Fonts/FDAeonikRegular.ttf') format('truetype'),
+           local('FD Aeonik Regular');
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'FD Aeonik';
+      src: url('./fonts/FDAeonikExtended-SemiBold.ttf') format('truetype'),
+           url('/Users/vietmac/Library/Fonts/FDAeonikExtended-SemiBold.otf') format('opentype'),
+           local('FD Aeonik SemiBold');
+      font-weight: 600;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Tiempos Text';
+      src: url('./fonts/FDTiemposText-Regular.otf') format('opentype'),
+           url('/Users/vietmac/Library/Fonts/FDTiemposText-Regular.otf') format('opentype'),
+           local('Tiempos Text Regular');
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Tiempos Text';
+      src: url('./fonts/FDTiemposText-Medium.otf') format('opentype'),
+           url('/Users/vietmac/Library/Fonts/FDTiemposText-Medium.otf') format('opentype'),
+           local('Tiempos Text Medium');
+      font-weight: 500;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Tiempos Text';
+      src: url('./fonts/FDTiemposText-RegularItalic.otf') format('opentype'),
+           url('/Users/vietmac/Library/Fonts/FDTiemposText-RegularItalic.otf') format('opentype'),
+           local('Tiempos Text Regular Italic');
+      font-weight: 400;
+      font-style: italic;
+      font-display: swap;
+    }
+
+    :root {
+      --cl-bg: #ffffff;
+      --cl-tint: #f8fafc;
+      --cl-card: #ffffff;
+      --cl-accent: #1a73e8;
+      --cl-accent-tint: rgba(26, 115, 232, 0.08);
+      --cl-line: rgba(0, 0, 0, 0.06);
+      --cl-line-strong: rgba(0, 0, 0, 0.12);
+      --cl-text-base: #090d16;
+      --cl-text-body: #0f172a;
+      --cl-text-muted: #475569;
+
+      --font-display-short: 'FD Aeonik Extended', 'Inter', -apple-system, sans-serif;
+      --font-display-long: 'FD Aeonik', 'Inter', -apple-system, sans-serif;
+      --font-body: 'Tiempos Text', Georgia, serif;
+      --font-mono: 'JetBrains Mono', monospace;
+
+      --apple-spring: cubic-bezier(0.25, 1, 0.35, 1.05);
+      --apple-ease: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background-color: var(--cl-bg);
+      color: var(--cl-text-base);
+      font-family: var(--font-body);
+    }
+
+    body {
+      overflow-x: clip;
+      min-height: 100vh;
+      line-height: 1.75;
+    }
+
+    .cl-zebra-section {
+      position: relative;
+      width: 100%;
+      min-height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: clamp(60px, 8vh, 100px) clamp(16px, 4vw, 32px);
+      box-sizing: border-box;
+    }
+
+    .cl-zebra--light {
+      background-color: var(--cl-bg);
+    }
+
+    .cl-zebra--tint {
+      background-color: var(--cl-tint);
+      border-top: 1px solid var(--cl-line);
+      border-bottom: 1px solid var(--cl-line);
+    }
+
+    .cl-sec-container {
+      width: 100%;
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    .cl-sec-container--wide {
+      max-width: 1140px;
+    }
+
+    .cl-sec-container--narrow {
+      max-width: 760px;
+    }
+
+    .cl-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--cl-accent);
+      background: var(--cl-accent-tint);
+      padding: 6px 14px;
+      border-radius: 9999px;
+      margin-bottom: 20px;
+    }
+
+    .title-short {
+      font-family: var(--font-display-short);
+      font-size: clamp(28px, 4.5vw, 46px);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: -0.01em;
+      line-height: 1.15;
+      color: var(--cl-text-base);
+      margin-bottom: 16px;
+      text-wrap: balance;
+    }
+
+    .title-long {
+      font-family: var(--font-display-long);
+      font-size: clamp(22px, 3.2vw, 34px);
+      font-weight: 600;
+      line-height: 1.35;
+      color: var(--cl-text-base);
+      margin-bottom: 16px;
+      text-wrap: balance;
+    }
+
+    .cl-body {
+      font-family: var(--font-body);
+      font-size: clamp(16px, 1.6vw, 18px);
+      line-height: 1.8;
+      color: var(--cl-text-body);
+      margin-bottom: 24px;
+    }
+
+    .editorial-hook {
+      font-family: var(--font-body);
+      font-style: italic;
+      font-size: clamp(18px, 2.2vw, 24px);
+      line-height: 1.6;
+      color: var(--cl-text-base);
+      border-left: 3px solid var(--cl-accent);
+      padding-left: 20px;
+      margin: 24px 0;
+    }
+
+    .apple-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 20px;
+      margin-top: 32px;
+    }
+
+    .apple-card {
+      background: var(--cl-card);
+      border: 1px solid var(--cl-line-strong);
+      border-radius: 20px;
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+      transition: transform 0.3s var(--apple-spring), box-shadow 0.3s ease;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .apple-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.06);
+      border-color: var(--cl-accent);
+    }
+
+    .apple-card__badge {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--cl-accent);
+      letter-spacing: 0.08em;
+    }
+
+    .apple-card__title {
+      font-family: var(--font-display-long);
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--cl-text-base);
+      line-height: 1.4;
+    }
+
+    .apple-card__desc {
+      font-family: var(--font-body);
+      font-size: 15.5px;
+      color: var(--cl-text-muted);
+      line-height: 1.7;
+    }
+
+    .apple-card__link {
+      margin-top: auto;
+      font-family: var(--font-display-long);
+      font-size: 13.5px;
+      font-weight: 600;
+      color: var(--cl-accent);
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .cl-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 14px 28px;
+      background: var(--cl-accent);
+      color: #ffffff;
+      font-family: var(--font-display-long);
+      font-size: 15px;
+      font-weight: 600;
+      text-decoration: none;
+      border-radius: 9999px;
+      transition: background 0.2s ease, transform 0.2s ease;
+      box-shadow: 0 4px 14px rgba(26, 115, 232, 0.25);
+    }
+
+    .cl-btn:hover {
+      background: #1557b0;
+      transform: translateY(-2px);
+    }
+
+    .nav-bar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255, 255, 255, 0.88);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--cl-line);
+      padding: 14px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .nav-brand {
+      font-family: var(--font-display-short);
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--cl-text-base);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 16px;
+      font-family: var(--font-display-long);
+      font-size: 13px;
+      font-weight: 500;
+    }
+
+    .nav-links a {
+      color: var(--cl-text-muted);
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--cl-accent);
+    }
+
+    .apple-reveal {
+      opacity: 0;
+      transform: translate3d(0, 24px, 0);
+      transition: opacity 0.5s var(--apple-ease), transform 0.58s var(--apple-spring);
+    }
+
+    .apple-reveal.is-visible {
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav-bar">
+    <div class="nav-brand">MASTERCLASS OFFLINE • FEDU</div>
+    <div class="nav-links">
+      <a href="#sec-matrix">Mục Lục 5 Chặng</a>
+      <a href="#sec-resources">Kho Tài Nguyên</a>
+    </div>
+  </nav>
+
+  <section class="cl-zebra-section cl-zebra--light" id="sec-hero">
+    <div class="cl-sec-container apple-reveal">
+      <div class="cl-badge">TÀI LIỆU NGHIÊN CỨU TOÀN DIỆN • OFFLINE MASTERCLASS</div>
+      <h1 class="title-short">GIÁO TRÌNH 5 CHẶNG</h1>
+      <h2 class="title-long">Kiến Trúc Nội Dung, Kỹ Thuật Quay Dựng & Chuyển Đổi Thực Chiến Dành Cho Người Làm Nghề</h2>
+      
+      <p class="editorial-hook">
+        "Khóa học này không đào tạo những người diễn xuất hay nói đạo lý trên mạng. Mục tiêu duy nhất là giúp những người có chuyên môn thật, sản phẩm thật biết cách xuất hiện đĩnh đạc, nói đúng nỗi trăn trở ngượng miệng của khách hàng và biến video thành cánh tay nối dài uy tín của bạn."
+      </p>
+
+      <p class="cl-body">
+        Tài liệu này hệ thống hóa toàn bộ 5 chặng đào tạo thực chiến tại lớp học Offline của Nguyễn Đức Việt, kết hợp giữa tâm lý học hành vi Tầng 2.5, thủ pháp văn học tả thực của Haruki Murakami, và quy trình quay dựng tối giản 1 sải tay để học viên có thể tự tin sản xuất video đều đặn mà không tốn kém thiết bị.
+      </p>
+    </div>
+  </section>
+
+  <section class="cl-zebra-section cl-zebra--tint" id="sec-matrix">
+    <div class="cl-sec-container cl-sec-container--wide apple-reveal">
+      <div class="cl-badge">BẢN ĐỒ LỘ TRÌNH / 5 CHẶNG LIÊN KẾT</div>
+      <h2 class="title-short">MỤC LỤC CHI TIẾT 5 CHẶNG</h2>
+      <p class="cl-body">Bấm vào từng chặng để mở tài liệu nghiên cứu chuyên sâu tương ứng:</p>
+
+      <div class="apple-cards-grid">
+        <a href="./chang-1-giai-toa-the-dien.html" class="apple-card">
+          <div class="apple-card__badge">CHẶNG 01 • TÂM LÝ HỌC</div>
+          <h3 class="apple-card__title">Giải Tỏa Thể Diện</h3>
+          <p class="apple-card__desc">Vì sao người có thâm niên lại ngại đứng trước máy quay? Phẫu thuật 3 cái cớ an toàn bề nổi và giải phóng áp lực giữ hình ảnh.</p>
+          <div class="apple-card__link">Xem tài liệu Chặng 01 →</div>
+        </a>
+
+        <a href="./chang-2-thu-phap-mo-ta-hanh-vi.html" class="apple-card">
+          <div class="apple-card__badge">CHẶNG 02 • BIÊN KỊCH TẢ THỰC</div>
+          <h3 class="apple-card__title">Thủ Pháp Tả Thực (Show, Don't Tell)</h3>
+          <p class="apple-card__desc">Ứng dụng logic Murakami vào kịch bản: Thay lời dạy đời, kết tội bằng lát cắt hành vi và đồ vật lấm lem đời thường.</p>
+          <div class="apple-card__link">Xem tài liệu Chặng 02 →</div>
+        </a>
+
+        <a href="./chang-3-khung-kich-ban-4-nhip.html" class="apple-card">
+          <div class="apple-card__badge">CHẶNG 03 • CẤU TRÚC KỊCH BẢN</div>
+          <h3 class="apple-card__title">Khung Kịch Bản 4 Nhịp & 9 Mẫu Ngành</h3>
+          <p class="apple-card__desc">Công thức thoại 45–60 giây bảo toàn danh dự cho khách hàng kèm kho 9 kịch bản thực chiến Buổi 1 cho từng ngành nghề.</p>
+          <div class="apple-card__link">Xem tài liệu Chặng 03 →</div>
+        </a>
+
+        <a href="./chang-4-thiet-lap-quay-1-sai-tay.html" class="apple-card">
+          <div class="apple-card__badge">CHẶNG 04 • CÔNG THÁI HỌC VẬT LÝ</div>
+          <h3 class="apple-card__title">Thiết Lập Quay 1 Sải Tay</h3>
+          <p class="apple-card__desc">Triệt tiêu ma sát kỹ thuật. Quy chuẩn cao độ ngang mắt, âm thanh sạch và 4 nhóm cảnh trám B-roll đắt giá của người làm nghề.</p>
+          <div class="apple-card__link">Xem tài liệu Chặng 04 →</div>
+        </a>
+
+        <a href="./chang-5-thuc-hanh-quay-hai-may.html" class="apple-card">
+          <div class="apple-card__badge">CHẶNG 05 • THỰC HÀNH TẠI LỚP</div>
+          <h3 class="apple-card__title">Quay 2 Máy & Đếm Nhịp 1-2</h3>
+          <p class="apple-card__desc">Kỹ thuật bố trí Talking Head 2 Cam (Máy A & Máy B) để xóa sạch lỗi nói vấp, cùng quy tắc ngắt nhịp đóng băng từ đệm.</p>
+          <div class="apple-card__link">Xem tài liệu Chặng 05 →</div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="cl-zebra-section cl-zebra--light" id="sec-resources">
+    <div class="cl-sec-container cl-sec-container--wide apple-reveal">
+      <div class="cl-badge">HỆ SINH THÁI TÀI NGUYÊN / TẢI VỀ TRỰC TIẾP</div>
+      <h2 class="title-short">TÀI NGUYÊN BỔ TRỢ KHÓA HỌC</h2>
+      <p class="cl-body">Toàn bộ slide, preset chữ động, thư mục thực hành và kịch bản mẫu sẵn sàng tải về:</p>
+
+      <div class="apple-cards-grid">
+        <div class="apple-card">
+          <div class="apple-card__badge">SLIDE BÀI GIẢNG</div>
+          <h3 class="apple-card__title">Slide Buổi 1 (PDF HD)</h3>
+          <p class="apple-card__desc">Bao gồm toàn bộ tư duy kiến trúc video, quy tắc talking head và sơ đồ phân cảnh.</p>
+          <a href="https://drive.google.com/open?id=1O4Dzjyh_dvFJ-O-peTmwxJyykiYuD0Vw" target="_blank" class="apple-card__link">Tải Slide Buổi 1 →</a>
+        </div>
+
+        <div class="apple-card">
+          <div class="apple-card__badge">MOTION PRESET</div>
+          <h3 class="apple-card__title">Text Animate Package</h3>
+          <p class="apple-card__desc">Bộ hiệu ứng chữ nảy theo lời thoại giật nảy phong cách công nghệ hiện đại.</p>
+          <a href="https://drive.google.com/open?id=1ktHmAKTylrOOhxHDE6PAorhDh_D_SOBc" target="_blank" class="apple-card__link">Tải Preset Chữ Động →</a>
+        </div>
+
+        <div class="apple-card">
+          <div class="apple-card__badge">FOOTAGE THỰC HÀNH</div>
+          <h3 class="apple-card__title">Folder Video 2 Máy Quay</h3>
+          <p class="apple-card__desc">Toàn bộ file quay thô 2 Cam để học viên thực hành cắt ghép chuyển cảnh trên CapCut.</p>
+          <a href="https://drive.google.com/drive/folders/1NmxIBetOOkKTtH14BuKwx6GNcDrRoEh3?usp=sharing" target="_blank" class="apple-card__link">Mở Thư Mục 2 Cam →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cl-zebra-section cl-zebra--tint" id="sec-action">
+    <div class="cl-sec-container cl-sec-container--narrow apple-reveal" style="text-align: center;">
+      <div class="cl-badge">LỜI KẾT TỪ NGUYỄN ĐỨC VIỆT</div>
+      <h2 class="title-short">BẮT ĐẦU TỪ CHẶNG 01</h2>
+      <p class="editorial-hook" style="border-left: none; text-align: center; padding: 0;">
+        "Hãy mở từng trang tài liệu, đọc chậm rãi và thử soi chiếu lại chính công việc hàng ngày của bạn. Đừng vội làm video triệu view, hãy làm một video mà khách hàng cũ xem xong nhắn tin: 'Anh nói đúng tâm trạng của em quá'. Đó là lúc thương hiệu của bạn bắt đầu sinh lời."
+      </p>
+      <div style="margin-top: 36px;">
+        <a href="./chang-1-giai-toa-the-dien.html" class="cl-btn">BẮT ĐẦU VỚI CHẶNG 01: GIẢI TỎA THỂ DIỆN →</a>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll('.apple-reveal').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>

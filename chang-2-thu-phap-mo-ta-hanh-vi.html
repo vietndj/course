@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Chặng 02: Thủ Pháp Tả Thực — "Show, Don't Tell" Trong Kịch Bản Video Ngắn | Masterclass FEDU</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&family=Playfair+Display:ital,wght@1,400;1,600&display=swap" rel="stylesheet">
+  
+  <style>
+    @font-face {
+      font-family: 'FD Aeonik Extended';
+      src: url('./fonts/FDAeonikExtended-Bold.woff2') format('woff2'),
+           url('./fonts/FDAeonikExtended-Bold.ttf') format('truetype'),
+           url('/Users/vietmac/Library/Fonts/FDAeonikExtended-Bold.otf') format('opentype'),
+           local('FD Aeonik Extended Bold');
+      font-weight: 700;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'FD Aeonik';
+      src: url('./fonts/FDAeonikRegular.ttf') format('truetype'),
+           url('/Users/vietmac/Library/Fonts/FDAeonikRegular.ttf') format('truetype'),
+           local('FD Aeonik Regular');
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'FD Aeonik';
+      src: url('./fonts/FDAeonikExtended-SemiBold.ttf') format('truetype'),
+           url('/Users/vietmac/Library/Fonts/FDAeonikExtended-SemiBold.otf') format('opentype'),
+           local('FD Aeonik SemiBold');
+      font-weight: 600;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Tiempos Text';
+      src: url('./fonts/FDTiemposText-Regular.otf') format('opentype'),
+           url('/Users/vietmac/Library/Fonts/FDTiemposText-Regular.otf') format('opentype'),
+           local('Tiempos Text Regular');
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Tiempos Text';
+      src: url('./fonts/FDTiemposText-Medium.otf') format('opentype'),
+           url('/Users/vietmac/Library/Fonts/FDTiemposText-Medium.otf') format('opentype'),
+           local('Tiempos Text Medium');
+      font-weight: 500;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Tiempos Text';
+      src: url('./fonts/FDTiemposText-RegularItalic.otf') format('opentype'),
+           url('/Users/vietmac/Library/Fonts/FDTiemposText-RegularItalic.otf') format('opentype'),
+           local('Tiempos Text Regular Italic');
+      font-weight: 400;
+      font-style: italic;
+      font-display: swap;
+    }
+
+    :root {
+      --cl-bg: #ffffff;
+      --cl-tint: #f8fafc;
+      --cl-card: #ffffff;
+      --cl-accent: #1a73e8;
+      --cl-accent-tint: rgba(26, 115, 232, 0.08);
+      --cl-line: rgba(0, 0, 0, 0.06);
+      --cl-line-strong: rgba(0, 0, 0, 0.12);
+      --cl-text-base: #090d16;
+      --cl-text-body: #0f172a;
+      --cl-text-muted: #475569;
+
+      --font-display-short: 'FD Aeonik Extended', 'Inter', -apple-system, sans-serif;
+      --font-display-long: 'FD Aeonik', 'Inter', -apple-system, sans-serif;
+      --font-body: 'Tiempos Text', Georgia, serif;
+      --font-mono: 'JetBrains Mono', monospace;
+
+      --apple-spring: cubic-bezier(0.25, 1, 0.35, 1.05);
+      --apple-ease: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background-color: var(--cl-bg);
+      color: var(--cl-text-base);
+      font-family: var(--font-body);
+    }
+
+    body {
+      overflow-x: clip;
+      min-height: 100vh;
+      line-height: 1.75;
+    }
+
+    .cl-zebra-section {
+      position: relative;
+      width: 100%;
+      min-height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: clamp(60px, 8vh, 100px) clamp(16px, 4vw, 32px);
+      box-sizing: border-box;
+    }
+
+    .cl-zebra--light {
+      background-color: var(--cl-bg);
+    }
+
+    .cl-zebra--tint {
+      background-color: var(--cl-tint);
+      border-top: 1px solid var(--cl-line);
+      border-bottom: 1px solid var(--cl-line);
+    }
+
+    .cl-sec-container {
+      width: 100%;
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    .cl-sec-container--wide {
+      max-width: 1140px;
+    }
+
+    .cl-sec-container--narrow {
+      max-width: 760px;
+    }
+
+    .cl-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--cl-accent);
+      background: var(--cl-accent-tint);
+      padding: 6px 14px;
+      border-radius: 9999px;
+      margin-bottom: 20px;
+    }
+
+    .title-short {
+      font-family: var(--font-display-short);
+      font-size: clamp(28px, 4.5vw, 46px);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: -0.01em;
+      line-height: 1.15;
+      color: var(--cl-text-base);
+      margin-bottom: 16px;
+      text-wrap: balance;
+    }
+
+    .title-long {
+      font-family: var(--font-display-long);
+      font-size: clamp(22px, 3.2vw, 34px);
+      font-weight: 600;
+      line-height: 1.35;
+      color: var(--cl-text-base);
+      margin-bottom: 16px;
+      text-wrap: balance;
+    }
+
+    .cl-body {
+      font-family: var(--font-body);
+      font-size: clamp(16px, 1.6vw, 18px);
+      line-height: 1.8;
+      color: var(--cl-text-body);
+      margin-bottom: 24px;
+    }
+
+    .editorial-hook {
+      font-family: var(--font-body);
+      font-style: italic;
+      font-size: clamp(18px, 2.2vw, 24px);
+      line-height: 1.6;
+      color: var(--cl-text-base);
+      border-left: 3px solid var(--cl-accent);
+      padding-left: 20px;
+      margin: 24px 0;
+    }
+
+    .apple-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+      margin-top: 32px;
+    }
+
+    .apple-card {
+      background: var(--cl-card);
+      border: 1px solid var(--cl-line-strong);
+      border-radius: 20px;
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+      transition: transform 0.3s var(--apple-spring), box-shadow 0.3s ease;
+    }
+
+    .apple-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.06);
+    }
+
+    .apple-card__badge {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--cl-text-muted);
+      letter-spacing: 0.08em;
+    }
+
+    .apple-card__title {
+      font-family: var(--font-display-long);
+      font-size: 19px;
+      font-weight: 600;
+      color: var(--cl-text-base);
+      line-height: 1.4;
+    }
+
+    .apple-card__desc {
+      font-family: var(--font-body);
+      font-size: 15.5px;
+      color: var(--cl-text-muted);
+      line-height: 1.7;
+    }
+
+    .apple-table-wrap {
+      width: 100%;
+      overflow-x: auto;
+      margin-top: 24px;
+      border: 1px solid var(--cl-line-strong);
+      border-radius: 16px;
+      background: #ffffff;
+    }
+
+    .apple-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 15px;
+    }
+
+    .apple-table th {
+      font-family: var(--font-display-long);
+      font-weight: 600;
+      padding: 16px 20px;
+      background: #f8fafc;
+      color: var(--cl-text-base);
+      border-bottom: 1px solid var(--cl-line-strong);
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .apple-table td {
+      padding: 18px 20px;
+      border-bottom: 1px solid var(--cl-line);
+      color: var(--cl-text-body);
+      line-height: 1.65;
+      vertical-align: top;
+    }
+
+    .apple-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .cl-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 14px 28px;
+      background: var(--cl-accent);
+      color: #ffffff;
+      font-family: var(--font-display-long);
+      font-size: 15px;
+      font-weight: 600;
+      text-decoration: none;
+      border-radius: 9999px;
+      transition: background 0.2s ease, transform 0.2s ease;
+      box-shadow: 0 4px 14px rgba(26, 115, 232, 0.25);
+    }
+
+    .cl-btn:hover {
+      background: #1557b0;
+      transform: translateY(-2px);
+    }
+
+    .nav-bar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255, 255, 255, 0.88);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--cl-line);
+      padding: 14px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .nav-brand {
+      font-family: var(--font-display-short);
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--cl-text-base);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 16px;
+      font-family: var(--font-display-long);
+      font-size: 13px;
+      font-weight: 500;
+    }
+
+    .nav-links a {
+      color: var(--cl-text-muted);
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--cl-accent);
+    }
+
+    .apple-reveal {
+      opacity: 0;
+      transform: translate3d(0, 24px, 0);
+      transition: opacity 0.5s var(--apple-ease), transform 0.58s var(--apple-spring);
+    }
+
+    .apple-reveal.is-visible {
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav-bar">
+    <div class="nav-brand">MASTERCLASS OFFLINE • FEDU</div>
+    <div class="nav-links">
+      <a href="./chang-1-giai-toa-the-dien.html">← Chặng 01</a>
+      <a href="./giao-trinh-offline-masterclass.html">Trang Tổng Quan</a>
+      <a href="./chang-3-khung-kich-ban-4-nhip.html">Chặng 03 →</a>
+    </div>
+  </nav>
+
+  <section class="cl-zebra-section cl-zebra--light" id="sec-hero">
+    <div class="cl-sec-container apple-reveal">
+      <div class="cl-badge">CHẶNG 02 / KỸ NĂNG BIÊN KỊCH</div>
+      <h1 class="title-short">THỦ PHÁP TẢ THỰC</h1>
+      <h2 class="title-long">Nguyên Lý "Show, Don't Tell" — Thay Lời Kết Tội Bằng Lát Cắt Hành Vi</h2>
+      
+      <p class="editorial-hook">
+        "Con người ghét nhất là bị kẻ khác chỉ tay dán nhãn: 'Bạn đang lười', 'Bạn đang thất bại'. Nhưng khi bạn chỉ ra đúng một cử chỉ vô thức, một chi tiết lấm lem trên bàn làm việc của họ, não bộ họ tự sinh ra kết luận mà không hề có chút tự ái."
+      </p>
+
+      <p class="cl-body">
+        Trong văn chương của Haruki Murakami, ông chưa bao giờ viết một câu khẳng định nhân vật đang tuyệt vọng hay cô đơn. Ông chỉ mô tả: Người đàn ông ngồi luộc một nồi mì spaghetti giữa trưa hè vắng lặng, tỉ mỉ ủi phẳng từng nếp gấp trên chiếc áo sơ mi, và lắng nghe tiếng lách cách của viên đá tan trong ly nước. Chi tiết vật lý tự thân nó mang sức nặng của hiện thực. Trong video ngắn của người làm nghề, quy luật này đúng tuyệt đối.
+      </p>
+    </div>
+  </section>
+
+  <section class="cl-zebra-section cl-zebra--tint" id="sec-contrast">
+    <div class="cl-sec-container cl-sec-container--wide apple-reveal">
+      <div class="cl-badge">BẢNG ĐỐI CHIẾU THỰC TẾ / 3 NGÀNH NGHỀ</div>
+      <h2 class="title-short">DÁN NHÃN VS TẢ THỰC</h2>
+      <p class="cl-body">So sánh giữa cách viết nông cạn của thợ content học vẹt và cách tả thực điềm đạm của người có nghề:</p>
+
+      <div class="apple-table-wrap">
+        <table class="apple-table">
+          <thead>
+            <tr>
+              <th style="width: 25%;">Ngành nghề thực tế</th>
+              <th style="width: 35%;">Cách viết nông cạn (Dán nhãn / Kết tội)</th>
+              <th style="width: 40%;">Cách viết Tầng 2.5 (Tả thực chi tiết vi mô)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Chủ shop / Cửa hàng bán lẻ</strong></td>
+              <td><em>"Bạn đang kinh doanh ế ẩm, không biết làm marketing nên khách bỏ sang sàn Shopee hết đúng không?"</em><br><small style="color: var(--cl-danger);">➔ Khách cảm thấy bị sỉ nhục, lướt qua ngay.</small></td>
+              <td><strong>Cảnh trám:</strong> 4 giờ chiều, người chủ ngồi bên bàn thu ngân, tiếng quạt trần quay đều đều. Tay cầm chiếc giẻ lau đi lau lại mặt kính tủ trưng bày vốn đã sạch bóng từ sáng, mắt nhìn ra dòng xe cộ ngoài đường.<br><strong>Lời thoại:</strong> <em>"Cảm giác sốt ruột nhất của người mở tiệm không phải là lúc bận rộn đóng hàng, mà là lúc 4h chiều ngồi lau đi lau lại cái tủ kính để tìm việc cho đỡ trống tay..."</em></td>
+            </tr>
+            <tr>
+              <td><strong>Thợ kỹ thuật / Sửa chữa xe máy - ô tô</strong></td>
+              <td><em>"Nhiều thợ tay nghề kém toàn thay đồ giả để lừa khách, các bạn đừng để bị dắt mũi!"</em><br><small style="color: var(--cl-danger);">➔ Năng lượng xấu, miệt thị đồng nghiệp.</small></td>
+              <td><strong>Cảnh trám:</strong> Đôi bàn tay dính dầu mỡ cầm chiếc bugi cũ đặt cạnh chiếc bugi mới, dùng đầu ngón tay chỉ vào khe hở bị muội than bám đen.<br><strong>Lời thoại:</strong> <em>"Cái này nhìn ngoài vỏ thì vẫn nổ máy được, nhưng khe hở đã mòn lệch 1 ly. Đi trời mưa rất dễ hụt ga giữa ngã tư. Mình tháo ra để các anh tự nhìn, thay hay không là quyền của các anh, nhưng em làm nghề thì phải nói thật..."</em></td>
+            </tr>
+            <tr>
+              <td><strong>Bác sĩ / Nha khoa thẩm mỹ</strong></td>
+              <td><em>"Răng bạn ố vàng làm mất tự tin giao tiếp, hãy đến ngay phòng khám để có nụ cười tỏa sáng!"</em><br><small style="color: var(--cl-danger);">➔ Văn mẫu quảng cáo sáo rỗng.</small></td>
+              <td><strong>Cảnh trám:</strong> Một người khách ngồi đối diện gương, tay vô thức đưa lên che miệng khi vừa bật cười nhẹ.<br><strong>Lời thoại:</strong> <em>"Nhiều anh chị đến đây bảo bận việc nên chưa đi làm răng. Nhưng mình để ý, lúc ngồi nói chuyện vui, anh chị luôn có một thói quen vô thức là đưa mu bàn tay lên che miệng khi cười. Cái sự ngượng ngùng đó nó rút cạn năng lượng của mình nhiều hơn là một buổi hẹn nha khoa..."</em></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="cl-zebra-section cl-zebra--light" id="sec-mechanism">
+    <div class="cl-sec-container apple-reveal">
+      <div class="cl-badge">CƠ CHẾ TÂM LÝ HỌC</div>
+      <h2 class="title-short">TỰ GIÁC NGỘ BÊN TRONG</h2>
+      <p class="cl-body">Tại sao việc mô tả lát cắt hành vi lại khiến khách hàng tin phục vô điều kiện?</p>
+
+      <div class="apple-cards-grid">
+        <div class="apple-card">
+          <div class="apple-card__badge">NGUYÊN LÝ 01</div>
+          <h3 class="apple-card__title">Cầu dao tự vệ không bị kích hoạt</h3>
+          <p class="apple-card__desc">
+            Khi bạn không chỉ trích ai, không khuyên bảo đạo lý, não bộ người nghe không cảm thấy bị đe dọa vị thế. Họ tiếp nhận hình ảnh như một sự quan sát khách quan, trung tính.
+          </p>
+        </div>
+
+        <div class=apple-card>
+          <div class=apple-card__badge>NGUYÊN LÝ 02</div>
+          <h3 class=apple-card__title>Kết luận do người nghe tự rút ra</h3>
+          <p class=apple-card__desc>
+            Khi nhìn thấy chi tiết lau tủ kính hay chiếc bugi muội than, người xem tự kết nối với cuộc sống của họ: <em>"Đúng là mình rồi"</em>. Kết luận tự thân sinh ra luôn là kết luận vững chắc nhất.
+          </p>
+        </div>
+
+        <div class=apple-card>
+          <div class=apple-card__badge>NGUYÊN LÝ 03</div>
+          <h3 class=apple-card__title>Tín hiệu của người làm nghề thật</h3>
+          <p class=apple-card__desc>
+            Chỉ người đã từng trải qua hàng trăm ngày ngồi trực tiệm mới biết thói quen lau mặt kính tủ. Chi tiết hiển vi đó là bằng chứng không thể chối cãi về sự từng trải.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cl-zebra-section cl-zebra--tint" id="sec-action">
+    <div class="cl-sec-container cl-sec-container--narrow apple-reveal" style="text-align: center;">
+      <div class="cl-badge">LỜI DẶN DÒ CỦA ANH VIỆT</div>
+      <h2 class="title-short">ĐỪNG DẠY ĐỜI KHÁCH HÀNG</h2>
+      <p class="editorial-hook" style="border-left: none; text-align: center; padding: 0;">
+        "Hãy để các đồ vật trong tiệm của bạn lên tiếng. Chiếc kéo cùn, cuốn sổ công nợ, đống linh kiện cũ, góc bàn làm việc lúc 6h chiều... Đó mới là thứ ngôn ngữ chân thật nhất giữ chân người xem ở lại."
+      </p>
+      <div style="margin-top: 36px;">
+        <a href="./chang-3-khung-kich-ban-4-nhip.html" class="cl-btn">TIẾP TỤC SANG CHẶNG 03: KHUNG KỊCH BẢN 4 NHỊP →</a>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll('.apple-reveal').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>

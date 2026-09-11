@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Chặng 04: Thiết Lập Quay 1 Sải Tay — Tối Giản Quy Trình & Tạo Dựng Niềm Tin | Masterclass FEDU</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&family=Playfair+Display:ital,wght@1,400;1,600&display=swap" rel="stylesheet">
+  
+  <style>
+    @font-face {
+      font-family: 'FD Aeonik Extended';
+      src: url('./fonts/FDAeonikExtended-Bold.woff2') format('woff2'),
+           url('./fonts/FDAeonikExtended-Bold.ttf') format('truetype'),
+           url('/Users/vietmac/Library/Fonts/FDAeonikExtended-Bold.otf') format('opentype'),
+           local('FD Aeonik Extended Bold');
+      font-weight: 700;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'FD Aeonik';
+      src: url('./fonts/FDAeonikRegular.ttf') format('truetype'),
+           url('/Users/vietmac/Library/Fonts/FDAeonikRegular.ttf') format('truetype'),
+           local('FD Aeonik Regular');
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'FD Aeonik';
+      src: url('./fonts/FDAeonikExtended-SemiBold.ttf') format('truetype'),
+           url('/Users/vietmac/Library/Fonts/FDAeonikExtended-SemiBold.otf') format('opentype'),
+           local('FD Aeonik SemiBold');
+      font-weight: 600;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Tiempos Text';
+      src: url('./fonts/FDTiemposText-Regular.otf') format('opentype'),
+           url('/Users/vietmac/Library/Fonts/FDTiemposText-Regular.otf') format('opentype'),
+           local('Tiempos Text Regular');
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Tiempos Text';
+      src: url('./fonts/FDTiemposText-Medium.otf') format('opentype'),
+           url('/Users/vietmac/Library/Fonts/FDTiemposText-Medium.otf') format('opentype'),
+           local('Tiempos Text Medium');
+      font-weight: 500;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Tiempos Text';
+      src: url('./fonts/FDTiemposText-RegularItalic.otf') format('opentype'),
+           url('/Users/vietmac/Library/Fonts/FDTiemposText-RegularItalic.otf') format('opentype'),
+           local('Tiempos Text Regular Italic');
+      font-weight: 400;
+      font-style: italic;
+      font-display: swap;
+    }
+
+    :root {
+      --cl-bg: #ffffff;
+      --cl-tint: #f8fafc;
+      --cl-card: #ffffff;
+      --cl-accent: #1a73e8;
+      --cl-accent-tint: rgba(26, 115, 232, 0.08);
+      --cl-line: rgba(0, 0, 0, 0.06);
+      --cl-line-strong: rgba(0, 0, 0, 0.12);
+      --cl-text-base: #090d16;
+      --cl-text-body: #0f172a;
+      --cl-text-muted: #475569;
+
+      --font-display-short: 'FD Aeonik Extended', 'Inter', -apple-system, sans-serif;
+      --font-display-long: 'FD Aeonik', 'Inter', -apple-system, sans-serif;
+      --font-body: 'Tiempos Text', Georgia, serif;
+      --font-mono: 'JetBrains Mono', monospace;
+
+      --apple-spring: cubic-bezier(0.25, 1, 0.35, 1.05);
+      --apple-ease: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background-color: var(--cl-bg);
+      color: var(--cl-text-base);
+      font-family: var(--font-body);
+    }
+
+    body {
+      overflow-x: clip;
+      min-height: 100vh;
+      line-height: 1.75;
+    }
+
+    .cl-zebra-section {
+      position: relative;
+      width: 100%;
+      min-height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: clamp(60px, 8vh, 100px) clamp(16px, 4vw, 32px);
+      box-sizing: border-box;
+    }
+
+    .cl-zebra--light {
+      background-color: var(--cl-bg);
+    }
+
+    .cl-zebra--tint {
+      background-color: var(--cl-tint);
+      border-top: 1px solid var(--cl-line);
+      border-bottom: 1px solid var(--cl-line);
+    }
+
+    .cl-sec-container {
+      width: 100%;
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    .cl-sec-container--wide {
+      max-width: 1140px;
+    }
+
+    .cl-sec-container--narrow {
+      max-width: 760px;
+    }
+
+    .cl-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--cl-accent);
+      background: var(--cl-accent-tint);
+      padding: 6px 14px;
+      border-radius: 9999px;
+      margin-bottom: 20px;
+    }
+
+    .title-short {
+      font-family: var(--font-display-short);
+      font-size: clamp(28px, 4.5vw, 46px);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: -0.01em;
+      line-height: 1.15;
+      color: var(--cl-text-base);
+      margin-bottom: 16px;
+      text-wrap: balance;
+    }
+
+    .title-long {
+      font-family: var(--font-display-long);
+      font-size: clamp(22px, 3.2vw, 34px);
+      font-weight: 600;
+      line-height: 1.35;
+      color: var(--cl-text-base);
+      margin-bottom: 16px;
+      text-wrap: balance;
+    }
+
+    .cl-body {
+      font-family: var(--font-body);
+      font-size: clamp(16px, 1.6vw, 18px);
+      line-height: 1.8;
+      color: var(--cl-text-body);
+      margin-bottom: 24px;
+    }
+
+    .editorial-hook {
+      font-family: var(--font-body);
+      font-style: italic;
+      font-size: clamp(18px, 2.2vw, 24px);
+      line-height: 1.6;
+      color: var(--cl-text-base);
+      border-left: 3px solid var(--cl-accent);
+      padding-left: 20px;
+      margin: 24px 0;
+    }
+
+    .apple-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      margin-top: 32px;
+    }
+
+    .apple-card {
+      background: var(--cl-card);
+      border: 1px solid var(--cl-line-strong);
+      border-radius: 20px;
+      padding: 26px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+      transition: transform 0.3s var(--apple-spring), box-shadow 0.3s ease;
+    }
+
+    .apple-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.06);
+    }
+
+    .apple-card__badge {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--cl-accent);
+      letter-spacing: 0.08em;
+    }
+
+    .apple-card__title {
+      font-family: var(--font-display-long);
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--cl-text-base);
+      line-height: 1.4;
+    }
+
+    .apple-card__desc {
+      font-family: var(--font-body);
+      font-size: 15px;
+      color: var(--cl-text-muted);
+      line-height: 1.65;
+    }
+
+    .cl-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 14px 28px;
+      background: var(--cl-accent);
+      color: #ffffff;
+      font-family: var(--font-display-long);
+      font-size: 15px;
+      font-weight: 600;
+      text-decoration: none;
+      border-radius: 9999px;
+      transition: background 0.2s ease, transform 0.2s ease;
+      box-shadow: 0 4px 14px rgba(26, 115, 232, 0.25);
+    }
+
+    .cl-btn:hover {
+      background: #1557b0;
+      transform: translateY(-2px);
+    }
+
+    .nav-bar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255, 255, 255, 0.88);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--cl-line);
+      padding: 14px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .nav-brand {
+      font-family: var(--font-display-short);
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--cl-text-base);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 16px;
+      font-family: var(--font-display-long);
+      font-size: 13px;
+      font-weight: 500;
+    }
+
+    .nav-links a {
+      color: var(--cl-text-muted);
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--cl-accent);
+    }
+
+    .apple-reveal {
+      opacity: 0;
+      transform: translate3d(0, 24px, 0);
+      transition: opacity 0.5s var(--apple-ease), transform 0.58s var(--apple-spring);
+    }
+
+    .apple-reveal.is-visible {
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav-bar">
+    <div class="nav-brand">MASTERCLASS OFFLINE • FEDU</div>
+    <div class="nav-links">
+      <a href="./chang-3-khung-kich-ban-4-nhip.html">← Chặng 03</a>
+      <a href="./giao-trinh-offline-masterclass.html">Trang Tổng Quan</a>
+      <a href="./chang-5-thuc-hanh-quay-hai-may.html">Chặng 05 →</a>
+    </div>
+  </nav>
+
+  <section class="cl-zebra-section cl-zebra--light" id="sec-hero">
+    <div class="cl-sec-container apple-reveal">
+      <div class="cl-badge">CHẶNG 04 / THIẾT LẬP VẬT LÝ</div>
+      <h1 class="title-short">QUAY 1 SẢI TAY</h1>
+      <h2 class="title-long">Triệt Tiêu Ma Sát Kỹ Thuật & Giữ Trọn Tín Hiệu Thật Của Người Làm Nghề</h2>
+      
+      <p class="editorial-hook">
+        "Nếu việc quay một video đòi hỏi bạn phải mất nửa tiếng kê đèn, cắm dây dợ, chỉnh máy móc phức tạp... bạn sẽ chỉ làm được 2 ngày rồi bỏ cuộc. Quy trình đúng phải đơn giản đến mức: Bạn ngồi xuống bàn làm việc, với tay bật máy, và quay xong trong 10 phút."
+      </p>
+
+      <p class="cl-body">
+        Thiết lập "1 sải tay" là giải pháp công thái học được thiết kế riêng cho các chủ tiệm và người làm chuyên môn bận rộn. Bằng cách cố định góc máy ngay trong tầm tay với, bạn triệt tiêu hoàn toàn sự lười biếng về mặt kỹ thuật và có thể sản xuất nội dung đều đặn mỗi tuần.
+      </p>
+    </div>
+  </section>
+
+  <section class="cl-zebra-section cl-zebra--tint" id="sec-rules">
+    <div class="cl-sec-container cl-sec-container--wide apple-reveal">
+      <div class="cl-badge">3 NGUYÊN TẮC VÀNG / THIẾT LẬP VẬT LÝ</div>
+      <h2 class="title-short">QUY CHUẨN 1 SẢI TAY</h2>
+      <p class="cl-body">Chỉ cần đúng 3 thông số này, hình ảnh và âm thanh của bạn sẽ lập tức toát lên vẻ chững chạc, tin cậy:</p>
+
+      <div class="apple-cards-grid">
+        <div class="apple-card">
+          <div class="apple-card__badge">THÔNG SỐ 01 • KHOẢNG CÁCH</div>
+          <h3 class="apple-card__title">Khoảng cách đúng 1 sải tay (70–80cm)</h3>
+          <p class="apple-card__desc">
+            Đặt máy cách người nói đúng bằng một với tay. Khoảng cách này tạo ra góc nhìn thân mật vừa đủ: Không quá xa như truyền hình nhà nước, không quá sát gây ngợp mặt.
+          </p>
+        </div>
+
+        <div class="apple-card">
+          <div class="apple-card__badge">THÔNG SỐ 02 • CAO ĐỘ</div>
+          <h3 class="apple-card__title">Ống kính ngang tầm mắt (Eye-Level)</h3>
+          <p class="apple-card__desc">
+            Camera đặt đúng độ cao mắt nhìn thẳng. Tránh quay hắt từ dưới cằm lên (tạo cảm giác trịch thượng) hoặc chúc từ trên trần xuống (tạo cảm giác né tránh, thiếu tự tin).
+          </p>
+        </div>
+
+        <div class="apple-card">
+          <div class="apple-card__badge">THÔNG SỐ 03 • ÂM THANH SẠCH</div>
+          <h3 class="apple-card__title">Micro cài áo khử tạp âm</h3>
+          <p class="apple-card__desc">
+            Người xem có thể tha thứ cho một khung hình tối một chút, nhưng không bao giờ kiên nhẫn nghe một giọng nói vang vọng, lẫn tiếng còi xe. Âm thanh sạch là tín hiệu tôn trọng đầu tiên.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cl-zebra-section cl-zebra--light" id="sec-broll">
+    <div class="cl-sec-container cl-sec-container--wide apple-reveal">
+      <div class="cl-badge">KỸ THUẬT TRÁM / B-ROLL TÍN HIỆU THẬT</div>
+      <h2 class="title-short">4 NHÓM CẢNH TRÁM ĐẮT GIÁ</h2>
+      <p class="cl-body">Đừng dùng video tư liệu tải trên mạng. 4 nhóm cảnh trám này chính là tem bảo hành không thể làm giả của bạn:</p>
+
+      <div class="apple-cards-grid">
+        <div class="apple-card">
+          <div class="apple-card__badge">NHÓM 01 • THAO TÁC TAY</div>
+          <h3 class="apple-card__title">Cận cảnh bàn tay làm nghề</h3>
+          <p class="apple-card__desc">Đôi bàn tay đang cầm dao tỉa, vặn ốc vít, gõ bàn phím, pha thuốc, nắn gân... Khách hàng nhìn vào bàn tay để đo lường mức độ lành nghề.</p>
+        </div>
+
+        <div class="apple-card">
+          <div class="apple-card__badge">NHÓM 02 • HIỆN TRƯỜNG THẬT</div>
+          <h3 class="apple-card__title">Góc kho hàng & xưởng làm việc</h3>
+          <p class="apple-card__desc">Những giá hàng đầy ắp, góc đóng thùng carton, hóa đơn vận chuyển... Đây là bằng chứng sống về dòng chảy kinh doanh thật sự.</p>
+        </div>
+
+        <div class="apple-card">
+          <div class="apple-card__badge">NHÓM 03 • CHI TIẾT SẢN PHẨM</div>
+          <h3 class="apple-card__title">Góc soi lỗi & độ hoàn thiện</h3>
+          <p class="apple-card__desc">Quay sát vào đường chỉ may, bề mặt kim loại, hạt men sứ... Chỉ người tự tin vào chất lượng sản phẩm mới dám quay cận cảnh 1cm.</p>
+        </div>
+
+        <div class="apple-card">
+          <div class="apple-card__badge">NHÓM 04 • GÓC NHÌN THỨ NHẤT</div>
+          <h3 class="apple-card__title">Cảnh POV trải nghiệm của khách</h3>
+          <p class="apple-card__desc">Đặt camera ngay góc nhìn của khách hàng khi bước vào tiệm, thử sản phẩm hoặc đón nhận dịch vụ từ bạn.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cl-zebra-section cl-zebra--tint" id="sec-action">
+    <div class="cl-sec-container cl-sec-container--narrow apple-reveal" style="text-align: center;">
+      <div class="cl-badge">LỜI DẶN DÒ CỦA ANH VIỆT</div>
+      <h2 class="title-short">BẬT MÁY LÀ NÓI ĐƯỢC NGAY</h2>
+      <p class="editorial-hook" style="border-left: none; text-align: center; padding: 0;">
+        "Hãy sắm một chiếc chân kẹp điện thoại để cố định sẵn ở góc bàn làm việc. Khi có một câu chuyện hay vừa xảy ra với khách, bạn chỉ cần ngồi xuống, gắn điện thoại vào, bật mic và nói trong 2 phút. Sự tức thời đó quý giá hơn bất kỳ phòng thu chuyên nghiệp nào."
+      </p>
+      <div style="margin-top: 36px;">
+        <a href="./chang-5-thuc-hanh-quay-hai-may.html" class="cl-btn">TIẾP TỤC SANG CHẶNG 05: THỰC HÀNH QUAY 2 MÁY →</a>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll('.apple-reveal').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
