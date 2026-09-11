@@ -412,6 +412,72 @@
       gap: 6px;
     }
 
+    .card-video-box--vertical {
+      aspect-ratio: 9 / 16;
+      max-height: 480px;
+      max-width: 320px;
+      margin: 12px auto 0 auto;
+    }
+
+    .card-video-box--vertical video {
+      object-fit: cover;
+    }
+
+    .apple-card--full {
+      grid-column: 1 / -1;
+    }
+
+    .trap-demos-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-top: 24px;
+      padding-top: 20px;
+      border-top: 1px solid var(--cl-line-strong);
+    }
+
+    @media (max-width: 720px) {
+      .trap-demos-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .trap-demo-card {
+      background: var(--cl-tint);
+      border: 1px solid var(--cl-line-strong);
+      border-radius: var(--cl-radius-md);
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .trap-demo-header {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      margin-bottom: 6px;
+      text-align: left;
+    }
+
+    .trap-demo-tag {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--cl-accent);
+      letter-spacing: 0.04em;
+    }
+
+    .trap-demo-tag--accent {
+      color: var(--cl-rose);
+    }
+
+    .trap-demo-title {
+      font-size: 14.5px;
+      font-weight: 700;
+      color: var(--cl-text-base);
+      line-height: 1.35;
+    }
+
     /* ═══ 6. COMPARISON TABLE / 2-COL BOX ═══ */
     .compare-grid {
       display: grid;
@@ -872,16 +938,54 @@
       <p class="editorial-hook">"Tránh được 2 điểm này, video của bạn vừa giữ chân người xem vừa làm rất nhanh gọn."</p>
 
       <div class="apple-cards-grid">
-        <div class="apple-card" style="border-top: 4px solid var(--cl-rose);">
+        <div class="apple-card apple-card--full" style="border-top: 4px solid var(--cl-rose);">
           <div class="apple-card__badge apple-card__badge--rose">ĐIỂM VẤP 01</div>
-          <h3 class="apple-card__title">NGÂM CẢNH TĨNH & NÓI GÌ CHIẾU NẤY</h3>
-          <div class="apple-card__desc" style="display: flex; flex-direction: column; gap: 8px;">
-            <div>• <b>Chỗ hay vấp:</b> Để một góc máy tĩnh ngâm quá lâu hoặc nói gì chiếu nấy khiến khung hình bị đơ cứng, người xem mất kiên nhẫn và lướt qua ngay.</div>
-            <div>• <b>Cách chỉnh:</b> Phải chuyển cảnh liên tục (đổi góc sau mỗi 2–3 giây) bằng các lát cắt đời thực, kết hợp giữ 20% tiếng hiện trường để giữ chân người xem.</div>
+          <h3 class="apple-card__title">ĐỂ CẢNH TĨNH QUÁ LÂU</h3>
+          <div class="apple-card__desc" style="display: flex; flex-direction: column; gap: 10px;">
+            <div>• <b>Chỗ hay vấp:</b> Ngâm một góc máy tĩnh quá lâu hoặc nói gì chiếu nấy làm khung hình đơ cứng, người xem mất kiên nhẫn và lướt qua ngay.</div>
+            <div>• <b>Cách 1 sửa: Cắt liên tục:</b> Cứ sau mỗi 2–3 giây đổi góc máy một lần theo từng lát cắt hành động đời thực dồn dập (thái thịt, rót nước, đảo chảo) để liên tục kích thích thị giác.</div>
+            <div>• <b>Cách 2 xịn hơn: Cắt có chuyển cảnh:</b> Dùng chuyển động vật lý và mượn điểm neo (Match Cut) để nối liền 2 không gian khác nhau, giúp mọi vết cắt tàng hình mượt mà như lụa.</div>
+          </div>
+
+          <!-- 2 Video Minh Họa -->
+          <div class="trap-demos-grid">
+            <div class="trap-demo-card">
+              <div class="trap-demo-header">
+                <span class="trap-demo-tag">CÁCH 1 • CẮT LIÊN TỤC</span>
+                <span class="trap-demo-title">Bếp Nhà Chín (Kho YouTube)</span>
+              </div>
+              <div class="card-video-box card-video-box--vertical">
+                <video 
+                  src="https://pub-447bd44dfdac4938912655c855b8631c.r2.dev/videos/bep_nha_chin_demo.mp4" 
+                  poster="https://pub-447bd44dfdac4938912655c855b8631c.r2.dev/images/bep_nha_chin_thumb.jpg" 
+                  controls 
+                  playsinline 
+                  preload="metadata">
+                </video>
+              </div>
+              <div class="card-video-meta">🍿 Thị phạm: @bepnhachin • Lát cắt băm nhỏ 2–3s</div>
+            </div>
+
+            <div class="trap-demo-card">
+              <div class="trap-demo-header">
+                <span class="trap-demo-tag trap-demo-tag--accent">CÁCH 2 XỊN HƠN • CÓ CHUYỂN CẢNH</span>
+                <span class="trap-demo-title">Bài Tập Tân Thủ (Kho Facebook)</span>
+              </div>
+              <div class="card-video-box card-video-box--vertical">
+                <video 
+                  src="https://pub-447bd44dfdac4938912655c855b8631c.r2.dev/videos/tan_thu_match_cut_demo.mp4" 
+                  poster="https://pub-447bd44dfdac4938912655c855b8631c.r2.dev/images/tan_thu_match_cut_thumb.jpg" 
+                  controls 
+                  playsinline 
+                  preload="metadata">
+                </video>
+              </div>
+              <div class="card-video-meta">🎯 Thị phạm: Facebook Tân Thủ • Match Cut Tàng Hình</div>
+            </div>
           </div>
         </div>
 
-        <div class="apple-card" style="border-top: 4px solid var(--cl-rose);">
+        <div class="apple-card apple-card--full" style="border-top: 4px solid var(--cl-rose);">
           <div class="apple-card__badge apple-card__badge--rose">ĐIỂM VẤP 02</div>
           <h3 class="apple-card__title">CẮT HÌNH TRƯỚC KHI THU TIẾNG</h3>
           <div class="apple-card__desc" style="display: flex; flex-direction: column; gap: 8px;">
