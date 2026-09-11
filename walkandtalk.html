@@ -184,6 +184,14 @@
       max-width: 1140px;
     }
 
+    @media (max-width: 768px) {
+      .cl-zebra-section {
+        min-height: auto;
+        padding: 56px 18px 72px 18px;
+        justify-content: flex-start;
+      }
+    }
+
     /* ═══ 4. TYPOGRAPHY RULES ═══ */
     .cl-badge {
       display: inline-flex;
@@ -292,11 +300,34 @@
     /* ═══ 5. CARDS & INTERACTIVE COMPONENTS ═══ */
     .apple-cards-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
       gap: 24px;
       width: 100%;
       margin-top: 32px;
       text-align: left;
+    }
+
+    .apple-cards-grid--3cols {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .apple-cards-grid--2cols {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (max-width: 980px) {
+      .apple-cards-grid--3cols {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 680px) {
+      .apple-cards-grid,
+      .apple-cards-grid--3cols,
+      .apple-cards-grid--2cols {
+        grid-template-columns: 1fr;
+        gap: 18px;
+      }
     }
 
     .apple-card {
@@ -310,6 +341,23 @@
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
+      height: 100%;
+    }
+
+    .apple-card__footer {
+      margin-top: auto;
+      padding-top: 18px;
+      border-top: 1px dashed var(--cl-line-strong);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      width: 100%;
+    }
+
+    .apple-card__links-row {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
     }
 
     .apple-card:hover {
@@ -422,13 +470,14 @@
 
     .card-video-meta {
       font-family: var(--font-mono);
-      font-size: 11px;
+      font-size: 12px;
       font-weight: 600;
       color: var(--cl-text-muted);
-      margin-top: 8px;
+      margin-top: 0;
       display: flex;
       align-items: center;
       gap: 6px;
+      flex-wrap: wrap;
     }
 
     .card-video-box--vertical {
@@ -555,8 +604,8 @@
     .compare-list li {
       position: relative;
       padding-left: 24px;
-      font-size: 15px;
-      line-height: 1.65;
+      font-size: 16px;
+      line-height: 1.75;
       color: var(--cl-text-body);
     }
 
@@ -785,29 +834,40 @@
 
     .sticky-nav {
       position: fixed;
-      bottom: 24px;
+      bottom: 20px;
       left: 50%;
       transform: translateX(-50%);
       z-index: 100;
-      background: rgba(255, 255, 255, 0.88);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
       border: 1px solid rgba(0, 0, 0, 0.1);
-      padding: 8px 18px;
+      padding: 8px 16px;
       border-radius: var(--cl-radius-full);
       display: flex;
       align-items: center;
-      gap: 16px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+      gap: 12px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      max-width: min(calc(100vw - 32px), 720px);
+      overflow-x: auto;
+      white-space: nowrap;
+      scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .sticky-nav::-webkit-scrollbar {
+      display: none;
     }
 
     .sticky-nav a {
+      flex-shrink: 0;
       font-family: var(--font-mono);
       font-size: 12px;
       font-weight: 700;
       color: var(--cl-text-muted);
       text-decoration: none;
       transition: color 0.2s;
+      padding: 4px 6px;
     }
 
     .sticky-nav a:hover {
@@ -835,12 +895,19 @@
       margin: 16px 0 0 0;
       text-align: left;
     }
+    .direct-bullets {
+      list-style: none;
+      padding: 0;
+      margin: 16px 0 0 0;
+      text-align: left;
+      flex-grow: 1;
+    }
     .direct-bullets li {
       position: relative;
       padding-left: 22px;
       margin-bottom: 12px;
-      font-size: 15px;
-      line-height: 1.72;
+      font-size: 16px;
+      line-height: 1.75;
       color: var(--cl-text-body);
       text-wrap: pretty;
     }
@@ -889,8 +956,7 @@
 <body>
 
   <!-- STICKY NAV DÀNH CHO HỌC VIÊN -->
-  <!-- STICKY NAV DÀNH CHO HỌC VIÊN -->
-  <nav class=sticky-nav>
+  <nav class="sticky-nav">
     <a href="#sec-hero">Bản chất</a>
     <a href="#sec-why">Lý do giữ chân</a>
     <a href="#sec-female">Lợi thế phái nữ</a>
@@ -915,8 +981,8 @@
         </ul>
       </div>
 
-      <!-- LƯỚI ĐỦ 6 GIÁ TRỊ THỰC TẾ -->
-      <div class="apple-cards-grid">
+      <!-- LƯỚI ĐỦ 6 GIÁ TRỊ THỰC TẾ (3 CỘT CÂN ĐỐI) -->
+      <div class="apple-cards-grid apple-cards-grid--3cols">
         <!-- Giá trị 1 -->
         <div class="apple-card">
           <div class="apple-card__icon">💈</div>
@@ -1024,8 +1090,14 @@
         </div>
       </div>
 
-      <!-- 3 ĐIỂM GIỮ CHÂN KHI BƯỚC ĐI -->
-      <div class="apple-cards-grid" style="margin-top: 36px;">
+      <!-- PHÂN TẦNG THỊ GIÁC: TIÊU ĐỀ PHỤ CHO 3 ĐIỂM GIỮ CHÂN -->
+      <div style="margin-top: 48px; margin-bottom: 20px; text-align: center; width: 100%;">
+        <div class="cl-badge" style="margin-bottom: 12px;">CHI TIẾT 3 LÝ DO • PHẢN XẠ THỊ GIÁC & ÂM THANH</div>
+        <h3 class="title-long" style="font-size: clamp(20px, 2.8vw, 26px); margin-bottom: 0;">VÌ SAO BƯỚC ĐI LẠI GIỮ ĐƯỢC MẮT NGƯỜI&nbsp;XEM?</h3>
+      </div>
+
+      <!-- 3 ĐIỂM GIỮ CHÂN KHI BƯỚC ĐI (3 CỘT CÂN ĐỐI) -->
+      <div class="apple-cards-grid apple-cards-grid--3cols" style="margin-top: 24px;">
         <div class="apple-card">
           <div class="apple-card__icon">📐</div>
           <div class="apple-card__badge apple-card__badge--blue">PHẢN XẠ THỊ GIÁC</div>
@@ -1069,7 +1141,7 @@
       <h2 class="title-short">LỢI THẾ VÓC DÁNG<br>VÀ CÁCH ĂN MẶC CỦA PHÁI&nbsp;NỮ</h2>
       <p class="editorial-hook">"Khi phụ nữ ngồi sau mặt bàn, 70% vóc dáng và trang phục bị che mất, camera chỉ chĩa vào khuôn mặt khiến bạn dễ bị săm soi khuyết điểm. Đứng dậy bước đi giúp phát huy trọn vẹn điểm mạnh tự nhiên của&nbsp;bạn."</p>
 
-      <div class="apple-cards-grid">
+      <div class="apple-cards-grid apple-cards-grid--3cols">
         <div class="apple-card">
           <div class="apple-card__icon">👠</div>
           <div class="apple-card__badge tag-female">CHUYỂN ĐỘNG NỮ TÍNH</div>
@@ -1123,7 +1195,7 @@
         </p>
       </div>
 
-      <div class="apple-cards-grid">
+      <div class="apple-cards-grid apple-cards-grid--2cols">
         <!-- Case 1: Tina Nguyễn -->
         <div class="apple-card">
           <div class="apple-card__badge tag-female">TINA NGUYỄN (@TINANGUYEN2004)</div>
@@ -1132,12 +1204,14 @@
             <li><b>Cách làm thực tế:</b> Trang phục thanh lịch, sải bước tự tin từ cửa phòng khám bước vào, vừa đi vừa nói chuyện rồi rẽ thẳng vào giường chăm sóc của khách hàng&nbsp;thật.</li>
             <li><b>Kết quả thực tế:</b> Cho thấy trọn vẹn vóc dáng và phong thái của người làm nghề, quay cận cảnh tình trạng da trước sau và chốt lịch liệu trình ưu đãi mà không hề có cảm giác chèo&nbsp;kéo.</li>
           </ul>
-          <div style="display: flex; gap: 12px; margin-top: 16px; flex-wrap: wrap;">
-            <a href="https://vietndj.github.io/reports/IG_@tinanguyen2004_7673468312290037012_Double_Day_lu%C3%B4n_l%C3%A0_d%E1%BB%8Bp_%C4%91%E1%BB%83_kh%C3%A1ch_h%C3%A0ng_l%E1%BB%B1a_%C4%91%C6%B0%E1%BB%A3c.html" target="_blank" class="apple-card__link" style="color: var(--cl-rose);">Xem Báo Cáo Phân Tích HTML ↗</a>
-            <a href="https://www.tiktok.com/@tinanguyen2004/video/7673468312290037012" target="_blank" class="apple-card__link">Video TikTok Gốc ↗</a>
-          </div>
-          <div class="card-video-meta">
-            <span>💆 Spa & Da liễu y khoa</span> • <span>⏱️ 44 giây</span> • <span>🎯 Flash Sale Double Day</span>
+          <div class="apple-card__footer">
+            <div class="apple-card__links-row">
+              <a href="https://vietndj.github.io/reports/IG_@tinanguyen2004_7673468312290037012_Double_Day_lu%C3%B4n_l%C3%A0_d%E1%BB%8Bp_%C4%91%E1%BB%83_kh%C3%A1ch_h%C3%A0ng_l%E1%BB%B1a_%C4%91%C6%B0%E1%BB%A3c.html" target="_blank" class="apple-card__link" style="color: var(--cl-rose);">Xem Báo Cáo Phân Tích HTML ↗</a>
+              <a href="https://www.tiktok.com/@tinanguyen2004/video/7673468312290037012" target="_blank" class="apple-card__link">Video TikTok Gốc ↗</a>
+            </div>
+            <div class="card-video-meta">
+              <span>💆 Spa & Da liễu y khoa</span> • <span>⏱️ 44 giây</span> • <span>🎯 Flash Sale Double Day</span>
+            </div>
           </div>
         </div>
 
@@ -1149,12 +1223,14 @@
             <li><b>Cách làm thực tế:</b> Không nói một lời đạo lý. Camera lùi góc rộng dạo quanh tiệm, bắt trọn cú xoay lưng hất tóc bung sóng lơi óng ả dưới ánh đèn&nbsp;ấm.</li>
             <li><b>Kết quả thực tế:</b> Không gian tiệm sáng sủa và chất tóc bóng mượt tự nói lên chất lượng, khách nhìn thấy kết quả thật là nhắn Zalo đặt lịch kín&nbsp;tuần.</li>
           </ul>
-          <div style="display: flex; gap: 12px; margin-top: 16px; flex-wrap: wrap;">
-            <a href="https://vietndj.github.io/chien_luoc_xay_kenh_toc_10_nam.html" target="_blank" class="apple-card__link">Xem Kế Hoạch Kênh Tóc 10 Năm ↗</a>
-            <a href="https://www.tiktok.com/@khuongminh_hcm/video/7645514396499856661" target="_blank" class="apple-card__link" style="color: var(--cl-emerald);">Video Mẫu TikTok (660K Lượt xem) ↗</a>
-          </div>
-          <div class="card-video-meta">
-            <span>💈 Salon tóc thực chiến</span> • <span>⏱️ 19 giây</span> • <span>🎯 660K Lượt xem</span>
+          <div class="apple-card__footer">
+            <div class="apple-card__links-row">
+              <a href="https://vietndj.github.io/chien_luoc_xay_kenh_toc_10_nam.html" target="_blank" class="apple-card__link">Xem Kế Hoạch Kênh Tóc 10 Năm ↗</a>
+              <a href="https://www.tiktok.com/@khuongminh_hcm/video/7645514396499856661" target="_blank" class="apple-card__link" style="color: var(--cl-emerald);">Video Mẫu TikTok (660K Lượt xem) ↗</a>
+            </div>
+            <div class="card-video-meta">
+              <span>💈 Salon tóc thực chiến</span> • <span>⏱️ 19 giây</span> • <span>🎯 660K Lượt xem</span>
+            </div>
           </div>
         </div>
 
@@ -1166,12 +1242,14 @@
             <li><b>Cách làm thực tế:</b> Vừa rảo bước trên cầu đi bộ vừa chỉ dẫn các góc máy thực tế từ toàn cảnh kiến trúc đến góc sát mặt&nbsp;đất.</li>
             <li><b>Kết quả thực tế:</b> Nhịp bước chân giữ mắt người xem đi hết từ giây đầu tiên đến giây cuối cùng mà không bị đứt&nbsp;đoạn.</li>
           </ul>
-          <div style="display: flex; gap: 12px; margin-top: 16px; flex-wrap: wrap;">
-            <a href="https://vietndj.github.io/reports/IG_@layton_video_DbILcfyxZot_6_Shots_in_60_Seconds.html" target="_blank" class="apple-card__link">Xem Báo Cáo Phân Cảnh HTML ↗</a>
-            <a href="https://www.instagram.com/reel/DbILcfyxZot/" target="_blank" class="apple-card__link" style="color: var(--cl-accent);">Video Instagram Gốc ↗</a>
-          </div>
-          <div class="card-video-meta">
-            <span>🌉 Cầu đi bộ ngoài trời</span> • <span>⏱️ 58 giây</span> • <span>🎯 9 Phân cảnh</span>
+          <div class="apple-card__footer">
+            <div class="apple-card__links-row">
+              <a href="https://vietndj.github.io/reports/IG_@layton_video_DbILcfyxZot_6_Shots_in_60_Seconds.html" target="_blank" class="apple-card__link">Xem Báo Cáo Phân Cảnh HTML ↗</a>
+              <a href="https://www.instagram.com/reel/DbILcfyxZot/" target="_blank" class="apple-card__link" style="color: var(--cl-accent);">Video Instagram Gốc ↗</a>
+            </div>
+            <div class="card-video-meta">
+              <span>🌉 Cầu đi bộ ngoài trời</span> • <span>⏱️ 58 giây</span> • <span>🎯 9 Phân cảnh</span>
+            </div>
           </div>
         </div>
 
@@ -1183,12 +1261,14 @@
             <li><b>Cách làm thực tế:</b> Sải bước qua vòm kiến trúc đá, động tác nâng máy góc nhìn người xem tự nhiên tạo hình ảnh người làm việc bận&nbsp;rộn.</li>
             <li><b>Kết quả thực tế:</b> Đón nhận hàng trăm khách hàng nhắn tin hỏi han chỉ sau 1 câu rủ rê ngắn&nbsp;gọn.</li>
           </ul>
-          <div style="display: flex; gap: 12px; margin-top: 16px; flex-wrap: wrap;">
-            <a href="https://vietndj.github.io/reports/IG_@alexboissetgrowth_DZXpNj_IveV_Masterclass_Crecer_En_Redes.html" target="_blank" class="apple-card__link">Xem Báo Cáo Phân Cảnh HTML ↗</a>
-            <a href="https://www.instagram.com/reel/DZXpNj_IveV/" target="_blank" class="apple-card__link" style="color: var(--cl-amber);">Video Instagram Gốc ↗</a>
-          </div>
-          <div class="card-video-meta">
-            <span>🏛️ Kiến trúc vòm đá</span> • <span>⏱️ 45 giây</span> • <span>🎯 5 Điểm hút mắt</span>
+          <div class="apple-card__footer">
+            <div class="apple-card__links-row">
+              <a href="https://vietndj.github.io/reports/IG_@alexboissetgrowth_DZXpNj_IveV_Masterclass_Crecer_En_Redes.html" target="_blank" class="apple-card__link">Xem Báo Cáo Phân Cảnh HTML ↗</a>
+              <a href="https://www.instagram.com/reel/DZXpNj_IveV/" target="_blank" class="apple-card__link" style="color: var(--cl-amber);">Video Instagram Gốc ↗</a>
+            </div>
+            <div class="card-video-meta">
+              <span>🏛️ Kiến trúc vòm đá</span> • <span>⏱️ 45 giây</span> • <span>🎯 5 Điểm hút mắt</span>
+            </div>
           </div>
         </div>
       </div>
@@ -1202,7 +1282,7 @@
       <h2 class="title-short">3 KẾT QUẢ THỰC&nbsp;TẾ<br>ĐO ĐƯỢC BẰNG VIỆC&nbsp;LÀM</h2>
       <p class="editorial-hook">"Học xong bài này không phải để biết thêm một lý thuyết, mà là để cầm về đúng 3 kết quả cụ thể cho công việc làm ăn hàng&nbsp;ngày:"</p>
 
-      <div class="apple-cards-grid">
+      <div class="apple-cards-grid apple-cards-grid--3cols">
         <div class="apple-card">
           <div class="apple-card__icon">🔓</div>
           <div class="apple-card__badge apple-card__badge--emerald">TẦNG 01 • THÁO BỎ ÁP LỰC</div>
