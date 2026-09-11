@@ -889,7 +889,7 @@
       try {
         const photoList = [userPhotos[1]?.dataUrl, userPhotos[2]?.dataUrl, userPhotos[3]?.dataUrl].filter(Boolean);
         let faceId = 'FACE_' + Math.random().toString(36).substring(2, 8).toUpperCase();
-        let qrPayload = `FEDU-FACE:${faceId}`;
+        let qrPayload = `VIDEO-FACE:${faceId}`;
 
         // Gọi API lưu trữ Cloudflare R2
         try {
@@ -907,7 +907,7 @@
             const data = await resp.json();
             if (data && data.face_id) {
               faceId = data.face_id;
-              qrPayload = data.qr_url || `FEDU-FACE:${faceId}`;
+              qrPayload = data.qr_url || `VIDEO-FACE:${faceId}`;
             }
           }
         } catch (apiErr) {
@@ -945,7 +945,7 @@
         // 2. Header Thẻ
         ctx.fillStyle = '#10b981';
         ctx.font = 'bold 16px monospace';
-        ctx.fillText('FEDU AI • VISUAL TWIN PRO', 35, 45);
+        ctx.fillText('VIDEO AI • VISUAL TWIN PRO', 35, 45);
 
         ctx.fillStyle = '#94a3b8';
         ctx.font = '12px sans-serif';
@@ -1191,7 +1191,7 @@
     }
 
     function copyZaloTemplate(code) {
-      const msg = `👋 Chào bạn! Đây là Mã Kích Hoạt Bản Sao Khuôn Mặt AI độc quyền của bạn:\n\n🔑 MÃ KÍCH HOẠT (DÙNG 1 LẦN): ${code}\n🌐 Link tạo Thẻ Căn Cước AI: https://fedu.vn/course/ai-face-clone.html\n\n👉 HƯỚNG DẪN 3 BƯỚC:\n1. Vào link trên, tải 3 ảnh chân dung và dán Mã Kích Hoạt vào ô bảo mật.\n2. Bấm "TẠO & TẢI THẺ CĂN CƯỚC AI" để tải ảnh thẻ về máy.\n3. Mở Antigravity, kéo thả ảnh thẻ vào chat và nhập lại mã trên để bắt đầu tạo ảnh!`;
+      const msg = `👋 Chào bạn! Đây là Mã Kích Hoạt Bản Sao Khuôn Mặt AI độc quyền của bạn:\n\n🔑 MÃ KÍCH HOẠT (DÙNG 1 LẦN): ${code}\n🌐 Link tạo Thẻ Căn Cước AI: ai-face-clone.html\n\n👉 HƯỚNG DẪN 3 BƯỚC:\n1. Vào link trên, tải 3 ảnh chân dung và dán Mã Kích Hoạt vào ô bảo mật.\n2. Bấm "TẠO & TẢI THẺ CĂN CƯỚC AI" để tải ảnh thẻ về máy.\n3. Mở Antigravity, kéo thả ảnh thẻ vào chat và nhập lại mã trên để bắt đầu tạo ảnh!`;
       navigator.clipboard.writeText(msg).then(() => {
         alert(`🚀 Đã copy sẵn nội dung tin nhắn gửi khách kèm mã ${code}!\nBạn chỉ cần dán vào Zalo/Facebook gửi cho khách hàng.`);
       });
