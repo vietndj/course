@@ -52,10 +52,18 @@ def ensure_repos():
         print(f"📦 Đang clone repo antigravity-config-backup về {BACKUP_REPO}...")
         subprocess.run(["git", "clone", "https://github.com/vietndj/antigravity-config-backup.git", str(BACKUP_REPO)], check=True)
 
-    target_course = BAI_GIANG_REPO if BAI_GIANG_REPO.exists() and (BAI_GIANG_REPO / ".git").exists() else COURSE_REPO
-    if not target_course.exists():
-        print(f"📦 Đang clone repo course về {target_course}...")
-        subprocess.run(["git", "clone", "https://github.com/vietndj/course.git", str(target_course)], check=True)
+    # Đảm bảo thư mục chuẩn luôn là 'BAI GIANG VIDEO'
+    # Nếu trên Windows đã lỡ clone thành 'course', tự động đổi tên thành 'BAI GIANG VIDEO'
+    if not BAI_GIANG_REPO.exists() and COURSE_REPO.exists() and (COURSE_REPO / ".git").exists():
+        print(f"🔄 Phát hiện thư mục '{COURSE_REPO.name}'. Đang tự động đổi tên thành '{BAI_GIANG_REPO.name}'...")
+        try:
+            COURSE_REPO.rename(BAI_GIANG_REPO)
+        except Exception:
+            shutil.move(str(COURSE_REPO), str(BAI_GIANG_REPO))
+
+    if not BAI_GIANG_REPO.exists():
+        print(f"📦 Đang clone repo Bài Giảng Video về {BAI_GIANG_REPO}...")
+        subprocess.run(["git", "clone", "https://github.com/vietndj/course.git", str(BAI_GIANG_REPO)], check=True)
 
 def pull_all():
     """Kéo toàn bộ tri thức và bài giảng về máy hiện tại"""
