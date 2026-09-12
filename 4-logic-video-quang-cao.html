@@ -1,0 +1,976 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>4 Logic Video Quảng Cáo Facebook Thực Chiến • Bóc Tách 3 Tầng</title>
+  
+  <!-- Font Definitions & System Fallbacks -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  
+  <style>
+    /* ═══ 1. FONT DECLARATIONS ═══ */
+    @font-face {
+      font-family: 'FD Aeonik Extended';
+      src: url('./fonts/FDAeonikExtended-Bold.woff2?v=20260911b') format('woff2'),
+           url('https://font.fedu.vn/fonts/FDAeonikExtended-Bold.woff2?v=20260911b') format('woff2'),
+           url('./fonts/FDAeonikExtended-Bold.ttf?v=20260911b') format('truetype'),
+           url('/Users/vietmac/Library/Fonts/FDAeonikExtended-Bold.otf') format('opentype'),
+           local('FD Aeonik Extended Bold');
+      font-weight: 700;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'FD Aeonik';
+      src: url('./fonts/FDAeonikRegular.ttf') format('truetype'),
+           url('./assets/fonts/FDAeonikRegular.ttf') format('truetype'),
+           url('/Users/vietmac/Library/Fonts/FDAeonikRegular.ttf') format('truetype'),
+           local('FD Aeonik Regular'), local('FDAeonikRegular');
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'FD Aeonik';
+      src: url('./fonts/FDAeonikExtended-SemiBold.woff2?v=20260911b') format('woff2'),
+           url('https://font.fedu.vn/fonts/FDAeonikExtended-SemiBold.woff2?v=20260911b') format('woff2'),
+           url('./fonts/FDAeonikExtended-SemiBold.ttf?v=20260911b') format('truetype'),
+           url('/Users/vietmac/Library/Fonts/FDAeonikExtended-SemiBold.otf') format('opentype'),
+           local('FD Aeonik SemiBold');
+      font-weight: 600;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Tiempos Text';
+      src: url('./fonts/FDTiemposText-Regular.otf') format('opentype'),
+           url('/Users/vietmac/Library/Fonts/FDTiemposText-Regular.otf') format('opentype'),
+           local('Tiempos Text Regular'), local('FDTiemposText-Regular');
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Tiempos Text';
+      src: url('./fonts/FDTiemposText-Medium.otf') format('opentype'),
+           url('/Users/vietmac/Library/Fonts/FDTiemposText-Medium.otf') format('opentype'),
+           local('Tiempos Text Medium'), local('FDTiemposText-Medium');
+      font-weight: 500;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Tiempos Text';
+      src: url('./fonts/FDTiemposText-RegularItalic.otf') format('opentype'),
+           url('/Users/vietmac/Library/Fonts/FDTiemposText-RegularItalic.otf') format('opentype'),
+           local('Tiempos Text Regular Italic'), local('FDTiemposText-RegularItalic');
+      font-weight: 400;
+      font-style: italic;
+      font-display: swap;
+    }
+
+    /* ═══ 2. DESIGN TOKENS ═══ */
+    :root {
+      --cl-bg:          #ffffff;
+      --cl-tint:        #f8fafc;
+      --cl-card:        #ffffff;
+      --cl-card-muted:  #f1f5f9;
+      --cl-accent:      #1a73e8;
+      --cl-accent-tint: rgba(26, 115, 232, 0.08);
+      --cl-accent-border: rgba(26, 115, 232, 0.2);
+      --cl-line:        rgba(0, 0, 0, 0.06);
+      --cl-line-strong: rgba(0, 0, 0, 0.12);
+      --cl-text-base:   #090d16;
+      --cl-text-body:   #0f172a;
+      --cl-text-muted:  #475569;
+      --cl-danger:      #dc2626;
+      --cl-warning:     #d97706;
+      --cl-success:     #16a34a;
+
+      --cl-radius-lg:   22px;
+      --cl-radius-md:   16px;
+      --cl-radius-sm:   10px;
+      --cl-radius-full: 9999px;
+
+      --font-display-short: 'FD Aeonik Extended', 'Inter', -apple-system, sans-serif;
+      --font-display-long:  'FD Aeonik', 'Inter', -apple-system, sans-serif;
+      --font-body:          'Tiempos Text', 'FD Aeonik', 'Inter', Georgia, serif;
+      --font-editorial:     'Tiempos Text', Georgia, serif;
+      --font-mono:          'JetBrains Mono', monospace;
+
+      --apple-spring: cubic-bezier(0.25, 1, 0.35, 1.05);
+      --apple-ease:   cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* ═══ 3. BASE RESET ═══ */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background-color: var(--cl-bg);
+      color: var(--cl-text-base);
+      font-family: var(--font-body);
+    }
+
+    body {
+      overflow-x: clip;
+      min-height: 100vh;
+      line-height: 1.82;
+      color: var(--cl-text-body);
+      background: var(--cl-bg);
+    }
+
+    /* ═══ 4. TOP STICKY BAR ═══ */
+    .top-nav {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 24px;
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--cl-line);
+    }
+
+    .top-nav__brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      font-family: var(--font-display-long);
+      font-weight: 700;
+      font-size: 14px;
+      letter-spacing: 0.04em;
+      color: var(--cl-text-base);
+    }
+
+    .top-nav__badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      border-radius: var(--cl-radius-full);
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      background: var(--cl-accent-tint);
+      color: var(--cl-accent);
+      border: 1px solid var(--cl-accent-border);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .top-nav__link {
+      font-family: var(--font-display-long);
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--cl-text-muted);
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+    .top-nav__link:hover {
+      color: var(--cl-accent);
+    }
+
+    /* ═══ 5. ZEBRA SECTIONS ═══ */
+    .cl-zebra-section {
+      width: 100%;
+      min-height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 96px 24px;
+      position: relative;
+    }
+
+    .cl-zebra--light {
+      background-color: var(--cl-bg);
+    }
+
+    .cl-zebra--tint {
+      background-color: var(--cl-tint);
+      border-top: 1px solid var(--cl-line);
+      border-bottom: 1px solid var(--cl-line);
+    }
+
+    .cl-sec-container {
+      width: 100%;
+      max-width: 900px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .cl-sec-container--wide {
+      max-width: 1060px;
+    }
+
+    .cl-sec-container--left {
+      align-items: flex-start;
+      text-align: left;
+    }
+
+    /* ═══ 6. TYPOGRAPHY ═══ */
+    .cl-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--cl-accent);
+      background: var(--cl-accent-tint);
+      border: 1px solid var(--cl-accent-border);
+      padding: 6px 16px;
+      border-radius: var(--cl-radius-full);
+      margin-bottom: 22px;
+    }
+
+    .title-short {
+      font-family: var(--font-display-short);
+      font-weight: 700;
+      font-size: clamp(26px, 4.2vw, 44px);
+      line-height: 1.18;
+      letter-spacing: -0.01em;
+      text-transform: uppercase;
+      color: var(--cl-text-base);
+      margin-bottom: 20px;
+      text-wrap: balance;
+    }
+
+    .title-long {
+      font-family: var(--font-display-long);
+      font-weight: 600;
+      font-size: clamp(22px, 3.4vw, 34px);
+      line-height: 1.35;
+      letter-spacing: -0.015em;
+      color: var(--cl-text-base);
+      margin-bottom: 20px;
+      text-wrap: balance;
+    }
+
+    .editorial-hook {
+      font-family: var(--font-editorial);
+      font-style: italic;
+      font-size: clamp(17px, 2.2vw, 21px);
+      line-height: 1.68;
+      color: var(--cl-accent);
+      margin-bottom: 24px;
+      max-width: 720px;
+    }
+
+    .cl-body {
+      font-family: var(--font-body);
+      font-size: 16.5px;
+      line-height: 1.82;
+      color: var(--cl-text-body);
+      margin-bottom: 28px;
+    }
+
+    /* ═══ 7. AUDIT STATS GRID ═══ */
+    .stats-strip {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      width: 100%;
+      margin: 32px 0;
+    }
+
+    .stat-pill {
+      background: #ffffff;
+      border: 1px solid var(--cl-line);
+      border-radius: var(--cl-radius-md);
+      padding: 20px 16px;
+      text-align: center;
+      box-shadow: 0 2px 10px -2px rgba(0,0,0,0.02);
+      transition: transform 0.25s var(--apple-ease);
+    }
+    .stat-pill:hover {
+      transform: translateY(-2px);
+    }
+
+    .stat-pill__num {
+      font-family: var(--font-display-short);
+      font-weight: 700;
+      font-size: 26px;
+      color: var(--cl-accent);
+      margin-bottom: 6px;
+      line-height: 1.2;
+    }
+
+    .stat-pill__label {
+      font-family: var(--font-display-long);
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--cl-text-muted);
+    }
+
+    /* ═══ 8. 3-TIER TRUTH MATRIX CARDS ═══ */
+    .tier-matrix-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      width: 100%;
+      margin: 28px 0 20px;
+      text-align: left;
+    }
+
+    .tier-card {
+      background: #ffffff;
+      border: 1px solid var(--cl-line);
+      border-radius: var(--cl-radius-md);
+      padding: 24px 22px;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      box-shadow: 0 4px 16px -2px rgba(0,0,0,0.03);
+    }
+
+    .tier-card--t1 {
+      border-top: 4px solid #94a3b8;
+    }
+    .tier-card--t2 {
+      border-top: 4px solid var(--cl-warning);
+    }
+    .tier-card--t25 {
+      border-top: 4px solid var(--cl-accent);
+      background: #ffffff;
+    }
+    .tier-card--t3 {
+      border-top: 4px solid var(--cl-danger);
+    }
+
+    .tier-tag {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: var(--cl-radius-full);
+      width: fit-content;
+      margin-bottom: 12px;
+    }
+
+    .tier-tag--t1 { background: #f1f5f9; color: #475569; }
+    .tier-tag--t2 { background: #fef3c7; color: #b45309; }
+    .tier-tag--t25 { background: #eff6ff; color: #1d4ed8; }
+    .tier-tag--t3 { background: #fee2e2; color: #b91c1c; }
+
+    .tier-card__title {
+      font-family: var(--font-display-long);
+      font-weight: 700;
+      font-size: 16.5px;
+      line-height: 1.4;
+      color: var(--cl-text-base);
+      margin-bottom: 10px;
+    }
+
+    .tier-card__desc {
+      font-family: var(--font-body);
+      font-size: 14.5px;
+      line-height: 1.7;
+      color: var(--cl-text-muted);
+    }
+
+    /* ═══ 9. REFRAME & KEY MECHANISM BOX ═══ */
+    .reframe-box {
+      width: 100%;
+      background: #ffffff;
+      border: 1px solid var(--cl-accent-border);
+      border-left: 6px solid var(--cl-accent);
+      border-radius: var(--cl-radius-md);
+      padding: 24px 28px;
+      margin: 16px 0 28px;
+      text-align: left;
+      box-shadow: 0 4px 20px -2px rgba(26, 115, 232, 0.08);
+    }
+
+    .reframe-box__header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
+    .reframe-box__badge {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      color: var(--cl-accent);
+      text-transform: uppercase;
+    }
+
+    .reframe-box__title {
+      font-family: var(--font-display-long);
+      font-weight: 700;
+      font-size: 18px;
+      color: var(--cl-text-base);
+      margin-bottom: 8px;
+    }
+
+    .reframe-box__body {
+      font-family: var(--font-body);
+      font-size: 15.5px;
+      line-height: 1.8;
+      color: var(--cl-text-body);
+    }
+
+    /* ═══ 10. SCRIPT DEMO ACCORDION / BOX ═══ */
+    .script-box {
+      width: 100%;
+      background: #fafbfc;
+      border: 1px solid var(--cl-line-strong);
+      border-radius: var(--cl-radius-md);
+      padding: 22px 26px;
+      text-align: left;
+      margin-bottom: 12px;
+    }
+
+    .script-box__title {
+      font-family: var(--font-display-long);
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--cl-text-muted);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .script-line {
+      font-family: var(--font-body);
+      font-size: 15px;
+      line-height: 1.85;
+      color: var(--cl-text-base);
+      margin-bottom: 10px;
+      padding-left: 16px;
+      border-left: 2px solid var(--cl-line-strong);
+    }
+
+    .script-line b {
+      color: var(--cl-accent);
+      font-family: var(--font-mono);
+      font-size: 12.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    /* ═══ 11. MATRIX TABLE ═══ */
+    .matrix-table-wrap {
+      width: 100%;
+      overflow-x: auto;
+      margin: 32px 0;
+      border: 1px solid var(--cl-line);
+      border-radius: var(--cl-radius-md);
+      background: #ffffff;
+      box-shadow: 0 4px 16px -2px rgba(0,0,0,0.02);
+    }
+
+    .matrix-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: var(--font-display-long);
+      font-size: 14.5px;
+      text-align: left;
+    }
+
+    .matrix-table th {
+      background: #f8fafc;
+      font-weight: 700;
+      color: var(--cl-text-base);
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--cl-line);
+      letter-spacing: 0.02em;
+    }
+
+    .matrix-table td {
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--cl-line);
+      color: var(--cl-text-body);
+      font-family: var(--font-body);
+      line-height: 1.7;
+    }
+
+    .matrix-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .matrix-table tr:hover td {
+      background: #fafbfc;
+    }
+
+    /* ═══ 12. BUTTON & ACTIONS ═══ */
+    .cl-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background-color: var(--cl-accent);
+      color: #ffffff;
+      font-family: var(--font-display-long);
+      font-weight: 700;
+      font-size: 15px;
+      letter-spacing: 0.04em;
+      padding: 16px 36px;
+      border-radius: var(--cl-radius-full);
+      text-decoration: none;
+      box-shadow: 0 6px 20px -4px rgba(26, 115, 232, 0.35);
+      transition: all 0.25s var(--apple-spring);
+      margin-top: 24px;
+    }
+
+    .cl-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 28px -4px rgba(26, 115, 232, 0.45);
+      color: #ffffff;
+    }
+
+    /* ═══ 13. APPLE REVEAL ANIMATION ═══ */
+    .apple-reveal {
+      opacity: 0;
+      transform: translate3d(0, 24px, 0);
+      transition: opacity 0.7s var(--apple-ease), transform 0.7s var(--apple-ease);
+      will-change: opacity, transform;
+    }
+
+    .apple-reveal.is-visible {
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
+      will-change: auto;
+    }
+
+    /* ═══ 14. RESPONSIVE MOBILE ═══ */
+    @media (max-width: 900px) {
+      .stats-strip {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .tier-matrix-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .cl-zebra-section {
+        padding: 72px 16px;
+        min-height: auto;
+      }
+      .stats-strip {
+        grid-template-columns: 1fr;
+      }
+      .title-short {
+        font-size: 24px;
+      }
+      .title-long {
+        font-size: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- STICKY TOP NAV -->
+  <header class="top-nav">
+    <a href="https://offline.fedu.vn" class="top-nav__brand">
+      <span class="top-nav__badge">VIDEO MARKETING</span>
+      <span>CHIẾN LƯỢC QUẢNG CÁO FACEBOOK</span>
+    </a>
+    <a href="#sec-matrix" class="top-nav__link">Ma Trận Ứng Dụng ↓</a>
+  </header>
+
+  <main>
+    <!-- KHỐI 0: HERO (Light) -->
+    <section class="cl-zebra-section cl-zebra--light" id="sec-hero">
+      <div class="cl-sec-container apple-reveal">
+        <div class="cl-badge">AUDIT ĐỐI SOÁT LEADS & HỘP THƯ MESSENGER</div>
+        <h1 class="title-short">4 LOGIC KỊCH BẢN QUẢNG CÁO FACEBOOK ĐẮT GIÁ</h1>
+        <p class="title-long" style="font-size: 22px; color: var(--cl-text-muted); margin-bottom: 18px;">
+          Bóc tách 3 tầng tâm lý (T1 ➔ T2 ➔ T2.5 ➔ T3 ➔ Nút thắt cốt lõi) may đo từ 428+ lead thực tế, giúp video chạm đúng huyệt chuyển đổi và ra số điện thoại thật.
+        </p>
+        <p class="editorial-hook">
+          "Đừng mở máy lên mải khoe thứ bạn có, hãy chạm vào sự thật ngượng miệng mà người mua đang giấu kín."
+        </p>
+
+        <!-- Stats Strip -->
+        <div class="stats-strip">
+          <div class="stat-pill">
+            <div class="stat-pill__num">428+</div>
+            <div class="stat-pill__label">Leads Đối Soát Thật</div>
+          </div>
+          <div class="stat-pill">
+            <div class="stat-pill__num">4 Trục</div>
+            <div class="stat-pill__label">Logic Bán Hàng Mạnh Mẽ</div>
+          </div>
+          <div class="stat-pill">
+            <div class="stat-pill__num">100%</div>
+            <div class="stat-pill__label">Khử Sạch Văn Mẫu Sáo Rỗng</div>
+          </div>
+          <div class="stat-pill">
+            <div class="stat-pill__num">5 Giây</div>
+            <div class="stat-pill__label">Ngắt Nhịp Theo Hơi Thở</div>
+          </div>
+        </div>
+
+        <a href="#sec-logic-1" class="cl-btn">KHÁM PHÁ 4 LOGIC THỰC CHIẾN ↓</a>
+      </div>
+    </section>
+
+    <!-- KHỐI 1: BÁO CÁO AUDIT LEADS & MESSENGER (Tint) -->
+    <section class="cl-zebra-section cl-zebra--tint" id="sec-audit">
+      <div class="cl-sec-container cl-sec-container--wide apple-reveal">
+        <div class="cl-badge">BÁO CÁO AUDIT TỆP KHÁCH HÀNG THỰC TẾ</div>
+        <h2 class="title-short">BẢN ĐỒ NỖI ĐAU TỪ DỮ LIỆU TƯ VẤN THẬT</h2>
+        <p class="cl-body" style="max-width: 780px;">
+          Khảo sát trên 428+ data đăng ký và tin nhắn Messenger của Fanpage <i>"30 Ngày Học Làm Nội Dung Viral"</i> cho thấy: khách hàng không bỏ đi vì máy quay cùi hay thiếu công nghệ, mà vì 4 điểm nghẽn tâm lý chưa được khai mở.
+        </p>
+
+        <div class="stats-strip" style="margin-top: 10px;">
+          <div class="stat-pill" style="text-align: left; padding: 22px;">
+            <div class="tier-tag tier-tag--t25">TỆP 55% • CHUYÊN GIA</div>
+            <div class="tier-card__title" style="margin-top: 8px;">Vướng Thể Diện & Sợ Cười</div>
+            <div class="tier-card__desc">Bác sĩ, giảng viên, chủ cơ sở, BĐS sợ người quen đánh giá "lên mạng làm màu", thuê ngoài thì tốn 20-30tr mà lệch chất.</div>
+          </div>
+
+          <div class="stat-pill" style="text-align: left; padding: 22px;">
+            <div class="tier-tag tier-tag--t2">TỆP 23% • BÁN HÀNG ADS</div>
+            <div class="tier-card__title" style="margin-top: 8px;">Bẫy Chào Hỏi 3s Đầu</div>
+            <div class="tier-card__desc">Chủ shop, dịch vụ F&B, thời trang mở đầu video quá lịch sự, khách quẹt qua trong 1 giây, ads cắn tiền mà không ai inbox.</div>
+          </div>
+
+          <div class="stat-pill" style="text-align: left; padding: 22px;">
+            <div class="tier-tag tier-tag--t1">TỆP 14% • SẢN XUẤT SOLO</div>
+            <div class="tier-card__title" style="margin-top: 8px;">Dùng Quy Trình 10 Người</div>
+            <div class="tier-card__desc">Chủ shop làm một mình, loay hoay kịch bản và dựng CapCut mất cả ngày Chủ Nhật, mệt mỏi bỏ bẵng cả tháng.</div>
+          </div>
+
+          <div class="stat-pill" style="text-align: left; padding: 22px;">
+            <div class="tier-tag tier-tag--t3">TỆP 8% • KÊNH TRIỆU VIEW</div>
+            <div class="tier-card__title" style="margin-top: 8px;">Bẫy View Ảo Rỗng Túi</div>
+            <div class="tier-card__desc">Đu trend bắt nhạc hot được triệu view nhưng toàn icon cười và xin link nhạc, cuối tháng tài khoản không có tiền.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- KHỐI 2: LOGIC 1 - XUNG ĐỘT VỊ THẾ (Light) -->
+    <section class="cl-zebra-section cl-zebra--light" id="sec-logic-1">
+      <div class="cl-sec-container cl-sec-container--wide apple-reveal">
+        <div class="cl-badge">LOGIC 01 • XUNG ĐỘT VỊ THẾ NGƯỜI LÀM NGHỀ</div>
+        <h2 class="title-short">THUÊ NGOÀI XÓT TIỀN, TỰ QUAY THÌ SỢ CƯỜI</h2>
+        <p class="editorial-hook">
+          "Nỗi sợ lớn nhất của người có chuyên môn không phải là sợ ống kính, mà là sợ người quen nhìn vào bảo mình dạo này ế ẩm hay sao mà phải lên mạng làm trò."
+        </p>
+
+        <!-- 3 Tầng Cards -->
+        <div class="tier-matrix-grid">
+          <div class="tier-card tier-card--t1">
+            <div class="tier-tag tier-tag--t1">TẦNG 1 • NÓI ĐÃI BÔI</div>
+            <div class="tier-card__title">Văn mẫu đạo lý bề nổi</div>
+            <div class="tier-card__desc">"Thời buổi 4.0 rồi, chủ doanh nghiệp và chuyên gia phải xây dựng nhân hiệu, phải bước ra ánh sáng để truyền cảm hứng..." ➔ Nghe sáo rỗng, lướt qua ngay.</div>
+          </div>
+
+          <div class="tier-card tier-card--t25">
+            <div class="tier-tag tier-tag--t25">TẦNG 2.5 • KHE HỞ THỂ DIỆN</div>
+            <div class="tier-card__title">Mặt nạ bận rộn & Sợ mất uy</div>
+            <div class="tier-card__desc">Ngoài đời nói chuyện với đối tác vanh vách; nhưng đứng trước camera thì mặt đơ, nói vấp 20 lần. Sợ nhất là bạn bè, đồng nghiệp quen nhìn thấy xì xào chê mình "làm màu".</div>
+          </div>
+
+          <div class="tier-card tier-card--t3">
+            <div class="tier-tag tier-tag--t3">TẦNG 3 • SỰ THẬT NGƯỢNG MIỆNG</div>
+            <div class="tier-card__title">Nỗi sợ bị đào thải âm thầm</div>
+            <div class="tier-card__desc">Sợ bị coi là hết thời. Chạnh lòng khi thấy những bạn trẻ mới vào nghề, chuyên môn kém xa mình nhưng chịu làm video ngắn lại hút hết khách hàng và được xã hội coi như chuyên gia.</div>
+          </div>
+        </div>
+
+        <!-- Hộp Reframe -->
+        <div class="reframe-box">
+          <div class="reframe-box__header">
+            <span class="reframe-box__badge">💡 NÚT THẮT CỐT LÕI (THE REFRAME)</span>
+          </div>
+          <div class="reframe-box__title">Người làm chuyên môn không cần diễn kịch hay học thuộc văn bản dài</div>
+          <div class="reframe-box__body">
+            Giải pháp nằm ở <b>Kỹ thuật ngắt nhịp 5 giây</b> và <b>Setup 2 góc máy chuyển đổi</b>. Chỉ cần ngồi mộc mạc nói từng câu ngắn theo từ khóa như tâm sự chén trà; nói vấp chỉ cần đổi góc máy là che 100% vết cắt. Video lên hình sang trọng, đĩnh đạc đúng tầm vóc người có nghề.
+          </div>
+        </div>
+
+        <!-- Kịch bản mẫu -->
+        <div class="script-box">
+          <div class="script-box__title">🎬 KỊCH BẢN QUẢNG CÁO FACEBOOK MẪU (60 GIÂY • LOGIC 1)</div>
+          <div class="script-line"><b>[0-5s • Hook Tầng 2.5]:</b> "Có anh chị nào ở đây làm nghề mười mấy năm rất chắc tay, nhưng hễ cầm điện thoại lên định quay clip là người đơ như tượng không?"</div>
+          <div class="script-line"><b>[6-18s • Đồng cảm]:</b> "Thuê ê-kíp ngoài thì xót ruột mất vài chục triệu mỗi tháng mà kịch bản họ viết nghe sáo rỗng. Còn tự mình đứng lên quay thì sợ bạn bè, đối tác quen nhìn vào lại bảo: Dạo này ế ẩm hay sao mà phải lên mạng làm trò."</div>
+          <div class="script-line"><b>[19-38s • Giải phóng & Bẻ lái]:</b> "Thực ra anh chị không cần phải học diễn xuất hay học thuộc kịch bản dài. Người có chuyên môn sâu chỉ cần ngồi xuống, nói từng câu 5 giây theo từ khóa như đang ngồi uống chén trà. Nói vấp, mình cắt sang góc máy phụ 45 độ là che sạch lỗi."</div>
+          <div class="script-line"><b>[39-60s • CTA đĩnh đạc]:</b> "Lớp offline 2 ngày tại Hà Nội mình sẽ ngồi cạnh kèm 1-1, chỉnh từ thế ngồi, góc đèn đến nhịp thở để anh chị có ngay video chuyên gia hoàn chỉnh mang về máy. Anh chị bấm nút bên dưới xem chi tiết nhé."</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- KHỐI 3: LOGIC 2 - BẪY LỊCH SỰ 3S ĐẦU (Tint) -->
+    <section class="cl-zebra-section cl-zebra--tint" id="sec-logic-2">
+      <div class="cl-sec-container cl-sec-container--wide apple-reveal">
+        <div class="cl-badge">LOGIC 02 • BẪY LỊCH SỰ 3 GIÂY ĐẦU</div>
+        <h2 class="title-short">3 GIÂY ĐẦU MẢI CHÀO, BẢO SAO KHÁCH LƯỚT</h2>
+        <p class="editorial-hook">
+          "Khán giả lướt newfeed không nợ bạn một lượt xem. Mở đầu bằng sự lịch sự xã giao chính là cách nhanh nhất để đốt sạch tiền quảng cáo."
+        </p>
+
+        <!-- 3 Tầng Cards -->
+        <div class="tier-matrix-grid">
+          <div class="tier-card tier-card--t1">
+            <div class="tier-tag tier-tag--t1">TẦNG 1 • NÓI ĐÃI BÔI</div>
+            <div class="tier-card__title">Chiêu trò giật gân vô hồn</div>
+            <div class="tier-card__desc">"Muốn video viral phải có hook sốc, phải tạo drama, phải nhảy nhót bắt trend nhạc hot..." ➔ Người làm ăn đàng hoàng nghe thấy phản cảm, không làm được.</div>
+          </div>
+
+          <div class="tier-card tier-card--t25">
+            <div class="tier-tag tier-tag--t25">TẦNG 2.5 • KHE HỞ THỂ DIỆN</div>
+            <div class="tier-card__title">Mặt nạ lịch sự an toàn</div>
+            <div class="tier-card__desc">Vì sợ bị đánh giá là lố lăng nên mở đầu video thật trang trọng: "Xin chào tất cả các anh chị em, hôm nay mình làm video chia sẻ...". Tưởng thế là chuyên nghiệp nhưng thực chất đang giấu mình sau chiếc khiên xã giao.</div>
+          </div>
+
+          <div class="tier-card tier-card--t3">
+            <div class="tier-tag tier-tag--t3">TẦNG 3 • SỰ THẬT NGƯỢNG MIỆNG</div>
+            <div class="tier-card__title">Nỗi sợ đối diện tim đen khách</div>
+            <div class="tier-card__desc">Sợ bị phán xét nên không dám nói thẳng vào nỗi đau thầm kín của khách hàng. Hậu quả: video cắn tiền quảng cáo đắt đỏ, khách lướt qua trong 1 giây không một dấu vết.</div>
+          </div>
+        </div>
+
+        <!-- Hộp Reframe -->
+        <div class="reframe-box">
+          <div class="reframe-box__header">
+            <span class="reframe-box__badge">💡 NÚT THẮT CỐT LÕI (THE REFRAME)</span>
+          </div>
+          <div class="reframe-box__title">Bóc trần Sự thật ngượng miệng (Tầng 3) ngay từ giây thứ 3</div>
+          <div class="reframe-box__body">
+            Đừng mở đầu bằng lời chào. Hãy đâm trúng vào <b>bế tắc khó giãi bày nhất</b> mà khách hàng đang âm thầm chịu đựng. Khi nghe câu đầu tiên họ thấy chính mình trong đó, ngón tay sẽ tự động dừng lướt và xem trọn vẹn clip mà bạn không cần giở chiêu trò giật gân.
+          </div>
+        </div>
+
+        <!-- Kịch bản mẫu -->
+        <div class="script-box">
+          <div class="script-box__title">🎬 KỊCH BẢN QUẢNG CÁO FACEBOOK MẪU (60 GIÂY • LOGIC 2)</div>
+          <div class="script-line"><b>[0-5s • Đâm thẳng Tầng 3]:</b> "Cứ mở đầu bằng câu: 'Xin chào các anh chị em, hôm nay mình xin chia sẻ...' thì bảo sao khách quẹt qua không một tiếng động."</div>
+          <div class="script-line"><b>[6-18s • Bóc thực tế]:</b> "Khán giả lướt Facebook rất bận và vô tình. 3 giây đầu họ không quan tâm bạn là ai hay bạn có bằng cấp gì, họ chỉ dừng lại khi bạn nói trúng thứ họ đang đau thầm kín."</div>
+          <div class="script-line"><b>[19-38s • Công thức 3 Tầng]:</b> "Thay vì khoe sản phẩm, hãy đâm thẳng vào bế tắc: 'Có phải anh chị đổ tiền chạy ads video, view thì có nhưng tin nhắn hỏi mua thì im lìm không?'. Khi bắt trúng huyệt tâm lý, tỷ lệ giữ chân tăng 88% và chuyển đổi ra đơn gấp 11 lần."</div>
+          <div class="script-line"><b>[39-60s • CTA]:</b> "Tại workshop 2 ngày, mình sẽ hướng dẫn bạn bẻ khóa công thức kịch bản 3 tầng và sửa trực tiếp kịch bản bán hàng cho chính ngành nghề của bạn. Nhấn giữ chỗ ngay hôm nay nhé."</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- KHỐI 4: LOGIC 3 - BẾ TẮC QUY TRÌNH SOLO (Light) -->
+    <section class="cl-zebra-section cl-zebra--light" id="sec-logic-3">
+      <div class="cl-sec-container cl-sec-container--wide apple-reveal">
+        <div class="cl-badge">LOGIC 03 • BẾ TẮC QUY TRÌNH SOLO</div>
+        <h2 class="title-short">DÙNG QUY TRÌNH 10 NGƯỜI CHO MỘT MÌNH</h2>
+        <p class="editorial-hook">
+          "Bạn bỏ cuộc không phải vì thiếu kiên trì, mà vì đang dùng quy trình của một đoàn làm phim cồng kềnh để sản xuất video một mình."
+        </p>
+
+        <!-- 3 Tầng Cards -->
+        <div class="tier-matrix-grid">
+          <div class="tier-card tier-card--t1">
+            <div class="tier-tag tier-tag--t1">TẦNG 1 • NÓI ĐÃI BÔI</div>
+            <div class="tier-card__title">Đạo lý chăm chỉ suông</div>
+            <div class="tier-card__desc">"Làm video là phải kiên trì, mỗi ngày đăng 1 clip, chịu khó thức khuya dậy sớm mò mẫm phần mềm..." ➔ Người bận rộn nghe xong thấy kiệt sức ngay từ vạch xuất phát.</div>
+          </div>
+
+          <div class="tier-card tier-card--t25">
+            <div class="tier-tag tier-tag--t25">TẦNG 2.5 • KHE HỞ THỂ DIỆN</div>
+            <div class="tier-card__title">Cái cớ bận việc kinh doanh</div>
+            <div class="tier-card__desc">Viện cớ: "Tôi bận việc công ty, thời gian đâu làm mấy clip vặt". Nhưng thực chất trong lòng tự ái và bất lực vì thấy mình chậm chạp trước điện thoại, mò CapCut như gà mắc tóc thua cả nhân viên mới.</div>
+          </div>
+
+          <div class="tier-card tier-card--t3">
+            <div class="tier-tag tier-tag--t3">TẦNG 3 • SỰ THẬT NGƯỢNG MIỆNG</div>
+            <div class="tier-card__title">Nỗi sợ bị bỏ lại phía sau</div>
+            <div class="tier-card__desc">Sợ cảm giác một mình không kham nổi từ ý tưởng, kịch bản, ánh sáng đến cắt ghép. Thấy mình đang bị phụ thuộc, già đi và tụt hậu trước làn sóng video ngắn của đối thủ.</div>
+          </div>
+        </div>
+
+        <!-- Hộp Reframe -->
+        <div class="reframe-box">
+          <div class="reframe-box__header">
+            <span class="reframe-box__badge">💡 NÚT THẮT CỐT LÕI (THE REFRAME)</span>
+          </div>
+          <div class="reframe-box__title">Đóng gói Quy Trình Solo 1 Buổi/Tuần: 30 Phút Xong 1 Video</div>
+          <div class="reframe-box__body">
+            Người làm kinh doanh solo không học dựng phim kiểu truyền thống. Bạn chỉ cần: 
+            1) <b>Kho B-roll Bank 50+ cảnh thao tác tay</b> quay 1 lần dùng cả tháng; 
+            2) <b>Bộ 3 Trợ lý AI</b> nhả kịch bản ngắt dòng theo nhịp thở trong 5 phút; 
+            3) Ráp nối CapCut trên điện thoại theo công thức 2 giây đổi cảnh, xuất file 1080p sắc nét trong 15 phút.
+          </div>
+        </div>
+
+        <!-- Kịch bản mẫu -->
+        <div class="script-box">
+          <div class="script-box__title">🎬 KỊCH BẢN QUẢNG CÁO FACEBOOK MẪU (60 GIÂY • LOGIC 3)</div>
+          <div class="script-line"><b>[0-5s • Đánh thức nỗi đau]:</b> "Có anh chị nào cả tuần bận kinh doanh, tính dành ngày Chủ Nhật quay clip nhưng loay hoay đến 11h đêm vẫn chưa xong không?"</div>
+          <div class="script-line"><b>[6-18s • Tẩy trắng lỗi]:</b> "Không phải anh chị thiếu kiên trì, mà vì anh chị đang dùng quy trình của một ê-kíp 10 người để làm video một mình. Cứ nghĩ ý tưởng, dựng đèn, quay đi quay lại rồi cắt ghép thì ai mà không nản."</div>
+          <div class="script-line"><b>[19-38s • Giải pháp Solo]:</b> "Chỉ cần đổi sang quy trình Solo: Quay 1 buổi có sẵn kho 50 cảnh B-roll dùng cả tháng. Cần ra clip, bật Trợ lý AI lấy kịch bản 5 phút, ghép vào CapCut trên điện thoại 15 phút là xong video chỉn chu."</div>
+          <div class="script-line"><b>[39-60s • CTA]:</b> "Toàn bộ quy trình solo và bộ 3 trợ lý AI độc quyền này mình sẽ cài trực tiếp vào máy cho bạn trong 2 ngày học offline. Bấm link để giữ chỗ sớm nhé."</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- KHỐI 5: LOGIC 4 - BẪY VIEW ẢO (Tint) -->
+    <section class="cl-zebra-section cl-zebra--tint" id="sec-logic-4">
+      <div class="cl-sec-container cl-sec-container--wide apple-reveal">
+        <div class="cl-badge">LOGIC 04 • BẪY VIEW ẢO & TRAFFIC RÁC</div>
+        <h2 class="title-short">TRIỆU VIEW RỖNG TÚI VS 500 NGƯỜI RA 50 ĐƠN</h2>
+        <p class="editorial-hook">
+          "Video triệu view có thể nuôi cái tôi của bạn trên mạng xã hội, nhưng chỉ có video marketing phễu hẹp mới nuôi sống được doanh nghiệp."
+        </p>
+
+        <!-- 3 Tầng Cards -->
+        <div class="tier-matrix-grid">
+          <div class="tier-card tier-card--t1">
+            <div class="tier-tag tier-tag--t1">TẦNG 1 • NÓI ĐÃI BÔI</div>
+            <div class="tier-card__title">Ảo tưởng sức mạnh traffic</div>
+            <div class="tier-card__desc">"Cứ làm video lên xu hướng triệu view đi đã, có traffic rồi bán gì chẳng được..." ➔ Lời khuyên độc hại khiến người kinh doanh sa vào bẫy làm trò vô bổ.</div>
+          </div>
+
+          <div class="tier-card tier-card--t25">
+            <div class="tier-tag tier-tag--t25">TẦNG 2.5 • KHE HỞ THỂ DIỆN</div>
+            <div class="tier-card__title">Huy chương view để khoe mẽ</div>
+            <div class="tier-card__desc">Chụp ảnh màn hình clip lên xu hướng khoe Facebook để giữ oai là "nhà sáng tạo nội dung". Nhưng bên trong lo ngay ngáy vì tiền mặt bằng, tiền nhân viên đến hạn mà tài khoản rỗng tuếch.</div>
+          </div>
+
+          <div class="tier-card tier-card--t3">
+            <div class="tier-tag tier-tag--t3">TẦNG 3 • SỰ THẬT NGƯỢNG MIỆNG</div>
+            <div class="tier-card__title">Cay đắng làm nô lệ thuật toán</div>
+            <div class="tier-card__desc">Nỗi chạnh lòng cay đắng khi nhìn sang người cùng ngành: video của họ quay mộc mạc, view chỉ vài trăm đến một nghìn nhưng họ chốt đơn đều đặn, sống khỏe và được khách hàng kính trọng.</div>
+          </div>
+        </div>
+
+        <!-- Hộp Reframe -->
+        <div class="reframe-box">
+          <div class="reframe-box__header">
+            <span class="reframe-box__badge">💡 NÚT THẮT CỐT LÕI (THE REFRAME)</span>
+          </div>
+          <div class="reframe-box__title">Video Marketing Phễu Hẹp (Low Views • High Conversion)</div>
+          <div class="reframe-box__body">
+            Tách bạch rạch ròi giữa Video Giải Trí và Video Chuyển Đổi. Người làm kinh doanh không cần triệu view rác. Chỉ cần <b>300 – 500 người đúng tệp có nhu cầu thật</b> xem clip, dùng cấu trúc chuyển đổi bóc đúng nỗi đau thì tỷ lệ để lại số điện thoại mua hàng sẽ gấp 10 lần những clip triệu view vô thưởng vô phạt.
+          </div>
+        </div>
+
+        <!-- Kịch bản mẫu -->
+        <div class="script-box">
+          <div class="script-box__title">🎬 KỊCH BẢN QUẢNG CÁO FACEBOOK MẪU (60 GIÂY • LOGIC 4)</div>
+          <div class="script-line"><b>[0-5s • Phản biện sắc bén]:</b> "Anh chị muốn một video triệu view nhưng cuối tháng tài khoản rỗng tuếch, hay chỉ cần 500 người xem đúng tệp mà chốt được 50 đơn hàng?"</div>
+          <div class="script-line"><b>[6-18s • Bóc bẫy view ảo]:</b> "Nhiều người thức đêm thức hôm đu trend, clip cán mốc triệu view nhìn sướng mắt thật. Nhưng bấm vào xem bình luận thì toàn thả icon cười, xin link nhạc, không có lấy một khách hàng thực sự."</div>
+          <div class="script-line"><b>[19-38s • Định vị phễu hẹp]:</b> "Làm video bán hàng không cần mua vui cho cả thiên hạ. Video chuyển đổi chỉ cần nói đúng 1 vấn đề, chạm đúng 1 nỗi bế tắc của người mua. 500 người xem nhưng là 500 người sẵn sàng rút ví."</div>
+          <div class="script-line"><b>[39-60s • CTA]:</b> "Khóa học offline 2 ngày tại Hà Nội tập trung 100% vào video marketing chuyển đổi ra doanh số thật, không dạy view ảo. Đăng ký giữ chỗ cùng mình tại link bên dưới nhé."</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- KHỐI 6: MA TRẬN ỨNG DỤNG THEO TỆP (Light) -->
+    <section class="cl-zebra-section cl-zebra--light" id="sec-matrix">
+      <div class="cl-sec-container cl-sec-container--wide apple-reveal">
+        <div class="cl-badge">MA TRẬN TRIỂN KHAI CHIẾN DỊCH</div>
+        <h2 class="title-short">BẢNG MA TRẬN 4 LOGIC QUẢNG CÁO FACEBOOK</h2>
+        <p class="cl-body">
+          Đối chiếu mục tiêu và tệp khách hàng để lựa chọn chính xác góc kịch bản đem lại tỷ lệ chuyển đổi cao nhất.
+        </p>
+
+        <div class="matrix-table-wrap">
+          <table class="matrix-table">
+            <thead>
+              <tr>
+                <th>Tên Logic</th>
+                <th>Tệp Khách Hàng Mục Tiêu</th>
+                <th>Tử Huyệt Tâm Lý Khai Thác</th>
+                <th>Định Dạng Video Tối Ưu</th>
+                <th>Hành Động Khách Hàng</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><b>Logic 01</b><br>Xung Đột Vị Thế</td>
+                <td>Giảng viên, Bác sĩ, Chuyên gia, Doanh nghiệp, BĐS</td>
+                <td>Sợ người quen cười chê "làm màu", tiếc tiền thuê ngoài nhưng tự quay bị đơ</td>
+                <td>Talking Head (2 góc máy)</td>
+                <td>Để lại SĐT xin tư vấn 1-1 vì thấy được tôn trọng vị thế</td>
+              </tr>
+              <tr>
+                <td><b>Logic 02</b><br>Bẫy Lịch Sự 3s Đầu</td>
+                <td>Người đang chạy ads video đắt, chủ shop, làm dịch vụ</td>
+                <td>Cứ nghĩ chào hỏi là lịch sự, không dám đâm vào nỗi đau của khách</td>
+                <td>Walk & Talk / Voice-over đè hình</td>
+                <td>Click link ngay vì bị điểm trúng bế tắc giấu kín</td>
+              </tr>
+              <tr>
+                <td><b>Logic 03</b><br>Bế Tắc Quy Trình Solo</td>
+                <td>Chủ cơ sở làm một mình, bận rộn, sợ công nghệ</td>
+                <td>Mệt mỏi vì làm cả ngày cuối tuần xong 1 clip rồi bỏ bẵng cả tháng</td>
+                <td>Voice-over (Thao tác tay B-roll)</td>
+                <td>Đăng ký học vì muốn có quy trình nhàn thân 30 phút</td>
+              </tr>
+              <tr>
+                <td><b>Logic 04</b><br>Bẫy View Ảo Rỗng Túi</td>
+                <td>Người từng có video triệu view, người bán sản phẩm giá trị cao</td>
+                <td>Bị con số view ảo ru ngủ, cay đắng nhận ra không đổi được ra tiền</td>
+                <td>Storytelling / Đàm đạo chén trà</td>
+                <td>Đăng ký học để thoát kiếp làm nô lệ cho thuật toán</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Lời dặn của anh Việt -->
+        <div class="reframe-box" style="margin-top: 24px; border-left-color: #090d16;">
+          <div class="reframe-box__header">
+            <span class="reframe-box__badge" style="color: #090d16;">LỜI DẶN DÒ CỦA ANH VIỆT</span>
+          </div>
+          <div class="reframe-box__body" style="font-family: var(--font-editorial); font-style: italic; font-size: 17px;">
+            "Video quảng cáo hay không phải là video dùng kỹ xảo lóa mắt, mà là video khiến người xem giật mình thảng thốt: 'Sao người này nhìn thấu ruột gan mình đến thế?'. Khi bạn chạm đúng vào sự thật ngượng miệng của họ bằng thái độ thấu cảm, việc bán hàng diễn ra tự nhiên như hơi thở."
+          </div>
+        </div>
+
+        <a href="https://offline.fedu.vn" class="cl-btn">TRUY CẬP TRANG CHỦ OFFLINE.FEDU.VN →</a>
+      </div>
+    </section>
+  </main>
+
+  <!-- INTERSECTION OBSERVER SCRIPT -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const reveals = document.querySelectorAll('.apple-reveal');
+      const observer = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            obs.unobserve(entry.target);
+          }
+        });
+      }, {
+        root: null,
+        threshold: 0.12,
+        rootMargin: '0px 0px -40px 0px'
+      });
+
+      reveals.forEach(el => observer.observe(el));
+    });
+  </script>
+</body>
+</html>
