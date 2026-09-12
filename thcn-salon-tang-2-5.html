@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>Mô Hình Xây Dựng Thương Hiệu Cá Nhân Dựa Trên Vết Nứt Thể Diện (Tầng 2.5) • Giáo Trình Thực Chiến</title>
+  <title>Chiến Lược Video Ngắn Salon Tóc: Bộ 5 Shot Tiêu Chuẩn Đầu Ra Theo Nhạc • Giáo Trình Thực Chiến</title>
   
   <!-- Font Definitions & System Fallbacks -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -97,8 +97,8 @@
       --cl-card-subtle:     #f1f5f9;
       --cl-line:            rgba(0, 0, 0, 0.06);
       --cl-line-strong:     rgba(0, 0, 0, 0.12);
-      --cl-text-base:       #090d16; /* Slate 950 (18.8:1) */
-      --cl-text-body:       #0f172a; /* Slate 900 (Mực in WCAG AAA 16.5:1) */
+      --cl-text-base:       #090d16; /* Slate 950 */
+      --cl-text-body:       #0f172a; /* Slate 900 (WCAG AAA) */
       --cl-text-muted:      #475569; /* Slate 600 */
       --cl-accent:          #1a73e8;
       --cl-accent-tint:     rgba(26, 115, 232, 0.08);
@@ -109,6 +109,8 @@
       --cl-success-tint:    #f0fdf4;
       --cl-amber:           #d97706;
       --cl-amber-tint:      #fffbeb;
+      --cl-purple:          #7c3aed;
+      --cl-purple-tint:     #f5f3ff;
 
       --cl-radius-sm:       8px;
       --cl-radius-md:       14px;
@@ -246,11 +248,6 @@
       max-width: 1080px;
     }
 
-    .cl-sec-container--left {
-      align-items: flex-start;
-      text-align: left;
-    }
-
     /* ═══ 6. TYPOGRAPHY ═══ */
     .cl-badge {
       display: inline-flex;
@@ -272,8 +269,8 @@
     .title-short {
       font-family: var(--font-display-short);
       font-weight: 700;
-      font-size: clamp(26px, 4.2vw, 46px);
-      line-height: 1.16;
+      font-size: clamp(26px, 4.2vw, 44px);
+      line-height: 1.18;
       letter-spacing: -0.01em;
       text-transform: uppercase;
       color: var(--cl-text-base);
@@ -284,8 +281,8 @@
     .title-long {
       font-family: var(--font-display-long);
       font-weight: 600;
-      font-size: clamp(22px, 3.2vw, 36px);
-      line-height: 1.32;
+      font-size: clamp(22px, 3.2vw, 34px);
+      line-height: 1.34;
       letter-spacing: -0.015em;
       color: var(--cl-text-base);
       margin-bottom: 20px;
@@ -324,7 +321,6 @@
       will-change: auto;
     }
 
-    /* Card Grids */
     .apple-cards-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
@@ -338,7 +334,7 @@
       background: var(--cl-card);
       border: 1px solid var(--cl-line);
       border-radius: var(--cl-radius-lg);
-      padding: 30px 26px;
+      padding: 28px 24px;
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.025);
       position: relative;
       opacity: 0;
@@ -372,16 +368,16 @@
       margin-bottom: 14px;
     }
 
-    .apple-card__tag--danger {
-      background: var(--cl-danger-tint);
-      color: var(--cl-danger);
-      border: 1px solid rgba(220, 38, 38, 0.15);
-    }
-
-    .apple-card__tag--accent {
+    .apple-card__tag--blue {
       background: var(--cl-accent-tint);
       color: var(--cl-accent);
       border: 1px solid rgba(26, 115, 232, 0.15);
+    }
+
+    .apple-card__tag--emerald {
+      background: var(--cl-success-tint);
+      color: var(--cl-success);
+      border: 1px solid rgba(22, 163, 74, 0.15);
     }
 
     .apple-card__tag--amber {
@@ -390,10 +386,10 @@
       border: 1px solid rgba(217, 119, 6, 0.15);
     }
 
-    .apple-card__tag--success {
-      background: var(--cl-success-tint);
-      color: var(--cl-success);
-      border: 1px solid rgba(22, 163, 74, 0.15);
+    .apple-card__tag--purple {
+      background: var(--cl-purple-tint);
+      color: var(--cl-purple);
+      border: 1px solid rgba(124, 58, 237, 0.15);
     }
 
     .apple-card__title--extended {
@@ -422,152 +418,111 @@
       line-height: 1.7;
     }
 
-    /* ═══ 8. DIAGRAM BLOCKS (SVG & CSS FLOW) ═══ */
-    .flow-diagram {
-      width: 100%;
-      background: #ffffff;
-      border: 1px solid var(--cl-line-strong);
-      border-radius: var(--cl-radius-lg);
-      padding: 32px 28px;
-      margin: 28px 0;
-      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.03);
-      text-align: left;
-    }
-
-    .flow-tier {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-      margin-bottom: 24px;
-      position: relative;
-    }
-
-    .flow-tier:last-child {
-      margin-bottom: 0;
-    }
-
-    .flow-tier__header {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .flow-tier__number {
-      width: 32px;
-      height: 32px;
-      border-radius: 50%;
-      background: var(--cl-accent);
-      color: #ffffff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: var(--font-mono);
-      font-size: 13px;
-      font-weight: 700;
-      flex-shrink: 0;
-    }
-
-    .flow-tier__title {
-      font-family: var(--font-display-short);
-      font-size: 15px;
-      font-weight: 700;
-      letter-spacing: -0.01em;
-      text-transform: uppercase;
-      color: var(--cl-text-base);
-    }
-
-    .flow-tier__content {
-      background: var(--cl-tint);
-      border-radius: var(--cl-radius-md);
-      border: 1px solid var(--cl-line);
-      padding: 18px 20px;
-      font-size: 15px;
-      color: var(--cl-text-body);
-      line-height: 1.65;
-    }
-
-    .flow-connector {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin: -12px 0 12px;
-      color: var(--cl-text-muted);
-    }
-
-    /* ═══ 9. SCRIPT BREAKDOWN CARDS (4-NHỊP PIPELINE) ═══ */
-    .script-box {
-      width: 100%;
-      background: #ffffff;
-      border: 1px solid var(--cl-line);
-      border-radius: var(--cl-radius-lg);
-      padding: 32px 28px;
-      margin-bottom: 28px;
-      text-align: left;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
-      transition: border-color 0.25s ease;
-    }
-
-    .script-box:hover {
-      border-color: var(--cl-accent);
-    }
-
-    .script-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      margin-bottom: 20px;
-      border-bottom: 1px solid var(--cl-line);
-      padding-bottom: 16px;
-      flex-wrap: wrap;
-      gap: 12px;
-    }
-
-    .script-title {
-      font-family: var(--font-display-long);
-      font-size: 20px;
-      font-weight: 600;
-      color: var(--cl-text-base);
-    }
-
-    .beat-grid {
+    /* ═══ 8. SƠ ĐỒ 5 SHOT FLOW ═══ */
+    .shot-pipeline {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
       gap: 16px;
+      width: 100%;
+      margin: 28px 0;
+      text-align: left;
     }
 
-    .beat-card {
-      background: var(--cl-tint);
+    .shot-item {
+      background: #ffffff;
       border: 1px solid var(--cl-line);
       border-radius: var(--cl-radius-md);
-      padding: 18px 16px;
+      padding: 20px 18px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.02);
+      transition: all 0.25s ease;
       display: flex;
       flex-direction: column;
       gap: 8px;
     }
 
-    .beat-name {
+    .shot-item:hover {
+      border-color: var(--cl-accent);
+      transform: translateY(-3px);
+    }
+
+    .shot-badge {
       font-family: var(--font-mono);
       font-size: 11px;
       font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
       color: var(--cl-accent);
+      background: var(--cl-accent-tint);
+      padding: 3px 8px;
+      border-radius: 4px;
+      align-self: flex-start;
     }
 
-    .beat-desc {
+    .shot-title {
+      font-family: var(--font-display-short);
       font-size: 14px;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--cl-text-base);
+      line-height: 1.3;
+    }
+
+    .shot-desc {
+      font-size: 13.5px;
       color: var(--cl-text-body);
       line-height: 1.6;
     }
 
-    .beat-quote {
+    /* ═══ 9. BOX KỊCH BẢN THỰC CHIẾN ═══ */
+    .script-box {
+      width: 100%;
+      background: #ffffff;
+      border: 1px solid var(--cl-line-strong);
+      border-radius: var(--cl-radius-lg);
+      padding: 32px 28px;
+      margin: 24px 0;
+      text-align: left;
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.03);
+    }
+
+    .script-phase {
+      margin-bottom: 20px;
+      padding-bottom: 20px;
+      border-bottom: 1px dashed var(--cl-line-strong);
+    }
+
+    .script-phase:last-child {
+      margin-bottom: 0;
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+
+    .script-phase__badge {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--cl-accent);
+      margin-bottom: 8px;
+    }
+
+    .script-phase__title {
+      font-family: var(--font-display-long);
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--cl-text-base);
+      margin-bottom: 8px;
+    }
+
+    .script-phase__dialogue {
       font-family: var(--font-editorial);
       font-style: italic;
-      font-size: 14.5px;
-      color: var(--cl-text-base);
-      border-left: 2px solid var(--cl-accent);
-      padding-left: 10px;
-      margin-top: 6px;
+      font-size: 16px;
+      color: var(--cl-accent-dark);
+      background: var(--cl-accent-tint);
+      border-left: 3px solid var(--cl-accent);
+      padding: 12px 16px;
+      border-radius: 0 var(--cl-radius-sm) var(--cl-radius-sm) 0;
+      margin-top: 10px;
     }
 
     /* ═══ 10. CTA & BUTTONS ═══ */
@@ -643,10 +598,7 @@
         padding: 80px 18px 60px;
         min-height: auto;
       }
-      .apple-cards-grid {
-        grid-template-columns: 1fr;
-      }
-      .beat-grid {
+      .apple-cards-grid, .shot-pipeline {
         grid-template-columns: 1fr;
       }
       .cl-btn {
@@ -661,28 +613,27 @@
   <header class="top-nav">
     <a href="#" class="top-nav__brand">
       <span>VIDEO COURSE</span>
-      <span class="top-nav__badge">RESEARCH • TẦNG 2.5</span>
+      <span class="top-nav__badge">SALON PLAYBOOK • 5 SHOTS</span>
     </a>
     <nav class="top-nav__links">
-      <a href="#sec-traps" class="top-nav__link">3 Cạm Bẫy</a>
-      <a href="#sec-metaphors" class="top-nav__link">3 Ẩn Dụ</a>
-      <a href="#sec-matrix" class="top-nav__link">Bản Đồ 2.5</a>
-      <a href="#sec-cinema" class="top-nav__link">Điện Ảnh Thực Chứng</a>
-      <a href="#sec-scripts" class="top-nav__link">4 Kịch Bản</a>
-      <a href="#sec-ops" class="top-nav__link">Team 3 Người</a>
+      <a href="#sec-reality" class="top-nav__link">Tâm Lý Khách</a>
+      <a href="#sec-5shots" class="top-nav__link">5 Shot Vàng</a>
+      <a href="#sec-branding" class="top-nav__link">Cấy Thương Hiệu</a>
+      <a href="#sec-script" class="top-nav__link">Kịch Bản 18s</a>
+      <a href="#sec-ops" class="top-nav__link">Quy Trình 3 Phút</a>
     </nav>
   </header>
 
   <!-- ═══ KHỐI 1: HERO SECTION (LIGHT) ═══ -->
   <section class="cl-zebra-section cl-zebra--light" id="sec-hero">
     <div class="cl-sec-container apple-reveal">
-      <div class="cl-badge">BÁO CÁO NGHIÊN CỨU HỆ THỐNG HÓA</div>
-      <h1 class="title-short">MÔ HÌNH VẾT NỨT THỂ DIỆN (TẦNG 2.5)</h1>
-      <p class="editorial-hook">"Thương hiệu cá nhân bền vững không phải là một chiếc mặt nạ hoàn hảo, mà là lòng dũng cảm phơi bày những vết nứt thực tế mà đám đông trong ngành đang cố tình né tránh."</p>
-      <p class="cl-body">Cơ sở lý luận nhận thức và chuyển hóa ngôn ngữ điện ảnh trong sản xuất video ngắn thực chiến dành cho chuyên gia, chủ salon và những người mới bắt đầu xây dựng uy tín không thể phá vỡ.</p>
+      <div class="cl-badge">CHIẾN LƯỢC VIDEO THỰC CHIẾN SALON TÓC</div>
+      <h1 class="title-short">BỘ 5 SHOT ĐẦU RA THEO NHẠC</h1>
+      <p class="editorial-hook">"Khách hàng không mua bài giảng khoa học, khách hàng mua sự xinh đẹp tức thì. Hãy để kết quả đầu ra lên tiếng theo điệu nhạc cuốn."</p>
+      <p class="cl-body">Cách tiếp cận trần trụi và hiệu quả nhất cho 90% salon tóc: biến mỗi mái tóc hoàn thiện thành cỗ máy hút khách tự động, cấy thương hiệu cá nhân vào 3 giây đọc vị trước gương mà không cần nói một câu đạo lý.</p>
       <div style="display: flex; gap: 14px; flex-wrap: wrap; justify-content: center;">
-        <a href="#sec-traps" class="cl-btn">KHÁM PHÁ BẢN ĐỒ NHẬN THỨC ↓</a>
-        <a href="#sec-scripts" class="cl-btn cl-btn--subtle">4 KỊCH BẢN THỰC CHIẾN →</a>
+        <a href="#sec-5shots" class="cl-btn">QUY CHUẨN 5 SHOT VÀNG ↓</a>
+        <a href="#sec-script" class="cl-btn cl-btn--subtle">KỊCH BẢN MẪU 18 GIÂY →</a>
       </div>
     </div>
     <div class="cl-scroll-hint">
@@ -691,450 +642,185 @@
     </div>
   </section>
 
-  <!-- ═══ KHỐI 2: 3 CẠM BẪY NỘI DUNG HIỆN NAY (TINT) ═══ -->
-  <section class="cl-zebra-section cl-zebra--tint" id="sec-traps">
+  <!-- ═══ KHỐI 2: TÂM LÝ KHÁCH HÀNG THỰC TẾ (TINT) ═══ -->
+  <section class="cl-zebra-section cl-zebra--tint" id="sec-reality">
     <div class="cl-sec-container cl-sec-container--wide apple-reveal">
-      <div class="cl-badge">01 / KHỦNG HOẢNG NIỀM TIN</div>
-      <h2 class="title-short">3 CẠM BẪY SỤP ĐỔ NIỀM TIN</h2>
-      <p class="cl-body">Khán giả thời đại số đã phát triển một hệ miễn dịch nhận thức cực kỳ nhạy bén. Khi video cố tỏ ra hoàn hảo bề mặt, người xem lập tức xếp người làm nội dung vào nhóm "diễn viên bán hàng".</p>
+      <div class="cl-badge">01 / TÂM LÝ HỌC THỊ GIÁC</div>
+      <h2 class="title-short">KHÁCH MUA SỰ XINH ĐẸP TỨC THÌ</h2>
+      <p class="cl-body">Khách hàng đi làm tóc là người tiêu dùng cảm xúc thị giác (*Visual-driven*). Họ lướt TikTok/Reels chỉ quan tâm đúng một câu hỏi: <b>"Tôi làm đầu này lên trông tôi có xinh hơn, bảnh hơn, tự tin hơn không?"</b>.</p>
 
       <div class="apple-cards-grid">
         <div class="apple-card" style="--card-delay: 0ms;">
-          <span class="apple-card__tag apple-card__tag--danger">CẠM BẪY THỊ GIÁC</span>
-          <h3 class="apple-card__title--extended">BEFORE-AFTER BIẾN HÌNH BÓNG BẨY</h3>
-          <p class="apple-card__desc">Khách bù xù đập nhạc biến hình thành minh tinh bồng bềnh dưới đèn studio. Người xem thích thú giải trí nhưng <b>tuyệt đối không tin để đặt lịch</b>. Khách sợ về nhà gội đầu xong, sáng ngủ dậy vội đi làm tóc sẽ biến thành tổ quạ.</p>
+          <span class="apple-card__tag apple-card__tag--blue">THỊ GIÁC TỐC ĐỘ</span>
+          <h3 class="apple-card__title--extended">HÌNH ẢNH NHANH GẤP 60.000 LẦN</h3>
+          <p class="apple-card__desc">Não bộ con người xử lý hình ảnh nhanh gấp 60.000 lần lời nói. Một góc nghiêng thần thánh, một cú cào tay sóng tóc nảy bồng bềnh có sức thuyết phục gấp trăm lần bài giảng lý thuyết dài dòng.</p>
         </div>
 
         <div class="apple-card" style="--card-delay: 100ms;">
-          <span class="apple-card__tag apple-card__tag--danger">CẠM BẪY KỸ NGHỆ</span>
-          <h3 class="apple-card__title--extended">MÚA KÉO BIỂU DIỄN KỸ THUẬT</h3>
-          <p class="apple-card__desc">Lộn kéo thoăn thoắt, lia tông đơ xoay tròn rào rào trên nền nhạc trap. Thợ đang làm video để khoe với thợ khác. Người xem nhìn chỉ thấy <b>bất an và sợ hãi</b>: sợ bị tỉa quá tay mỏng ngọn, sợ thợ mải diễn xiếc mà không đo xương mặt mình.</p>
+          <span class="apple-card__tag apple-card__tag--emerald">PHỄU CHUYỂN ĐỔI</span>
+          <h3 class="apple-card__title--extended">PHỄU MUA HÀNG 1-CHẠM</h3>
+          <p class="apple-card__desc">Khách lướt thấy mẫu tóc đẹp hợp gu ➔ Bấm lưu video ➔ Chụp màn hình gửi tin nhắn cho tiệm: <i>"Anh ơi làm cho em quả đầu y hệt bạn này giá bao nhiêu?"</i>. Đây là con đường ra số nhanh nhất của salon.</p>
         </div>
 
         <div class="apple-card" style="--card-delay: 200ms;">
-          <span class="apple-card__tag apple-card__tag--danger">CẠM BẪY VĂN MẪU</span>
-          <h3 class="apple-card__title--extended">ĐẠO LÝ LÀM ĐẸP SÁO RỖNG</h3>
-          <p class="apple-card__desc">Lồng giọng AI đọc triết lý: <i>"Mỗi phụ nữ là một bông hoa...", "Thay đổi mái tóc là thay đổi cuộc đời..."</i>. Người bận rộn dị ứng với sự sến súa. Họ không cần người dạy yêu bản thân; họ cần giải pháp cho việc sáng không kịp chải đầu.</p>
+          <span class="apple-card__tag apple-card__tag--amber">CẠM BẪY VÔ DANH</span>
+          <h3 class="apple-card__title--extended">BẪY CATALOGUE KHÔNG CHỦ</h3>
+          <p class="apple-card__desc">Nếu video chỉ toàn quay mẫu tóc xinh theo nhạc mà không có mỏ neo của người thợ, khách chỉ nhớ mặt cô người mẫu. Hôm sau chỗ khác làm rẻ hơn 50k là họ đi ngay. Phải cấy được <b>chữ ký của thợ</b> vào video.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ═══ KHỐI 3: 3 PHÉP ẨN DỤ CỐT TỬ (LIGHT) ═══ -->
-  <section class="cl-zebra-section cl-zebra--light" id="sec-metaphors">
+  <!-- ═══ KHỐI 3: QUY CHUẨN 5 SHOT ĐẦU RA (LIGHT) ═══ -->
+  <section class="cl-zebra-section cl-zebra--light" id="sec-5shots">
     <div class="cl-sec-container cl-sec-container--wide apple-reveal">
-      <div class="cl-badge">02 / CƠ SỞ LÝ LUẬN</div>
-      <h2 class="title-short">3 PHÉP ẨN DỤ ĐẮT GIÁ</h2>
-      <p class="editorial-hook">"Hiểu được 3 ẩn dụ này là nắm trọn lõi cơ học của sự thuyết phục mà không cần dùng đến một lời hứa hẹn sáo rỗng."</p>
+      <div class="cl-badge">02 / CỖ MÁY THỊ GIÁC</div>
+      <h2 class="title-short">QUY CHUẨN 5 SHOT VÀNG ĐẦU RA</h2>
+      <p class="editorial-hook">"Chỉ cần đúng 5 góc máy tiêu chuẩn này trong 15-20 giây, khách hàng đã đủ dữ liệu để đưa ra quyết định đặt lịch."</p>
 
-      <div class="apple-cards-grid">
-        <div class="apple-card" style="--card-delay: 0ms;">
-          <span class="apple-card__tag apple-card__tag--accent">ẨN DỤ 01 • CÔNG NĂNG</span>
-          <h3 class="apple-card__title">Chiếc Xe Đua F1 vs Xe Máy Đô Thị</h3>
-          <p class="apple-card__desc">Kiểu tóc salon cần 3 thợ sấy tạo kiểu 45 phút trong phòng lạnh là <b>chiếc xe F1</b> (chỉ chạy trên đường đua vô trùng). Đời thực của khách là <b>chiếc xe máy</b> (40 phút đội mũ bảo hiểm trời nồm ẩm, 3 phút chải đầu). Đỉnh cao của thợ là tạo ra mái tóc <b>sống sót được sau khi tháo chiếc mũ bảo hiểm</b>.</p>
+      <div class="shot-pipeline">
+        <div class="shot-item">
+          <span class="shot-badge">SHOT 1 • 2s</span>
+          <div class="shot-title">CÚ CÀO TAY KIỂM TRA ĐỘ NẢY</div>
+          <div class="shot-desc">Bàn tay thợ luồn từ trán ra sau cào nhẹ, buông tay ra thớ tóc tự nảy lại vào phom mềm mượt. Chứng minh tóc không bị bết dính keo sấy gượng gạo.</div>
         </div>
 
-        <div class="apple-card" style="--card-delay: 100ms;">
-          <span class="apple-card__tag apple-card__tag--accent">ẨN DỤ 02 • KẾT CẤU</span>
-          <h3 class="apple-card__title">Lớp Thạch Cao vs Dầm Chịu Lực</h3>
-          <p class="apple-card__desc">Nội dung Before-After biến hình giống như trét thạch cao trắng che bức tường nứt kết cấu. Người thông minh sẽ gõ thử và nhận ra sự rỗng tuếch. Nội dung Tầng 2.5 dám đập vỡ lớp thạch cao, soi thẳng vào vết nứt dầm bê tông để giải thích nguyên nhân vật lý. Khách hàng tôn sùng người dám nói thật tình trạng tóc họ.</p>
+        <div class="shot-item">
+          <span class="shot-badge">SHOT 2 • 3s</span>
+          <div class="shot-title">GÓC NGHIÊNG 45° THẦN THÁNH</div>
+          <div class="shot-desc">Góc máy tôn đường viền hàm và che gò má đỉnh nhất. Người xem nhìn vào lập tức liên tưởng: <i>"Mặt mình cắt góc này cũng sẽ thon gọn như thế."</i></div>
         </div>
 
-        <div class="apple-card" style="--card-delay: 200ms;">
-          <span class="apple-card__tag apple-card__tag--accent">ẨN DỤ 03 • KINH TẾ HỌC</span>
-          <h3 class="apple-card__title">Tín Hiệu Đắt Giá (Costly Signaling)</h3>
-          <p class="apple-card__desc">Sinh học tiến hóa chỉ ra chiếc đuôi nặng nề của con công đực là <b>bằng chứng không thể làm giả</b>. Trong kinh doanh: lời cam kết miệng là tín hiệu rẻ tiền. <b>Hành động từ chối gói dịch vụ 4 triệu</b> vì tóc khách mất độ co hồi là tín hiệu đắt giá. Sự hy sinh kinh tế trước mắt là bảo chứng thép cho uy tín lâu dài.</p>
+        <div class="shot-item">
+          <span class="shot-badge">SHOT 3 • 2s</span>
+          <div class="shot-title">TRỤC SAU GÁY ĐẲNG CẤP</div>
+          <div class="shot-desc">Khách xoay lưng nhẹ, lia máy thấy rõ phom tầng layer rơi đuôi chữ V hoặc phom gáy tém so le sắc nét, bồng bềnh tự nhiên.</div>
+        </div>
+
+        <div class="shot-item">
+          <span class="shot-badge">SHOT 4 • 2s</span>
+          <div class="shot-title">CẬN CẢNH BẮT ÁNH SÁNG</div>
+          <div class="shot-desc">Ống kính cận cảnh bắt ánh đèn spotlight thấy độ bóng trong trẻo của hạt màu nhuộm hoặc lọn sóng uốn no nước tràn đầy sức sống.</div>
+        </div>
+
+        <div class="shot-item">
+          <span class="shot-badge">SHOT 5 • 3s</span>
+          <div class="shot-title">KHÁCH CƯỜI + THỢ GẬT ĐẦU</div>
+          <div class="shot-desc">Khách nhìn vào gương mắt sáng lên cười mãn nguyện; thợ đứng sau phủi nhẹ khăn choàng, mỉm cười gật đầu tự hào về tác phẩm.</div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ═══ KHỐI 4: BẢN ĐỒ BÓC TÁCH TẦNG 2.5 (TINT) ═══ -->
-  <section class="cl-zebra-section cl-zebra--tint" id="sec-matrix">
+  <!-- ═══ KHỐI 4: CẤY THƯƠNG HIỆU CÁ NHÂN VÀO 5 SHOT (TINT) ═══ -->
+  <section class="cl-zebra-section cl-zebra--tint" id="sec-branding">
+    <div class="cl-sec-container cl-sec-container--wide apple-reveal">
+      <div class="cl-badge">03 / ĐỊNH VỊ THƯƠNG HIỆU</div>
+      <h2 class="title-short">3 ĐIỂM CHẠM CẤY THƯƠNG HIỆU CÁ NHÂN</h2>
+      <p class="cl-body">Làm thế nào để video theo nhạc vừa hút view đại chúng, vừa khắc sâu vị thế của người chủ salon mà <b>tuyệt đối không cần nói một câu đạo lý</b>?</p>
+
+      <div class="apple-cards-grid">
+        <div class="apple-card" style="--card-delay: 0ms;">
+          <span class="apple-card__tag apple-card__tag--purple">CHI TIẾT 01 • 3 GIÂY ĐẦU</span>
+          <h3 class="apple-card__title--extended">HOOK ĐỌC VỊ TRƯỚC GƯƠNG</h3>
+          <p class="apple-card__desc">Trước khi nhạc nổi lên, dùng đúng 3 giây tiếng mộc hiện trường. Khách than thở tự ti: <i>"Mặt em to quá..."</i>, thợ nâng tóc phán đúng 1 câu đanh gọn: <b>"Cắt layer bung tầng giấu gò má là nhỏ lại ngay. Ngồi yên đấy!"</b>. BÙM ➔ Nhạc vào. 3 giây này biến bạn thành chuyên gia giải quyết nỗi đau.</p>
+        </div>
+
+        <div class="apple-card" style="--card-delay: 100ms;">
+          <span class="apple-card__tag apple-card__tag--purple">CHI TIẾT 02 • GU THẨM MỸ</span>
+          <h3 class="apple-card__title--extended">CHỮ KÝ THỊ GIÁC & PHONG THÁI</h3>
+          <p class="apple-card__desc">Khách đi làm tóc là mua <b>GU CỦA THỢ</b>. Cách ăn mặc chỉn chu, đồng hồ, bao kéo da ở hông, động tác tay nâng tóc dứt khoát và ánh mắt chăm chút của người thợ qua gương chính là bảo chứng thẩm mỹ. Khách tin bạn vì thấy bạn có gu.</p>
+        </div>
+
+        <div class="apple-card" style="--card-delay: 200ms;">
+          <span class="apple-card__tag apple-card__tag--purple">CHI TIẾT 03 • ĐẶT TÊN RIÊNG</span>
+          <h3 class="apple-card__title--extended">TÊN GỌI ĐỘC QUYỀN ĐẦU RA</h3>
+          <p class="apple-card__desc">Đừng gọi chung chung là "cắt layer" hay "uốn xoăn". Hãy đặt tên riêng cho giải pháp: <i>"Layer bay giấu gò má"</i>, <i>"Uốn bung lười sấy công sở"</i>, <i>"Sidepart che trán chữ M"</i>. Khách xem xong sẽ cầm mẫu đến đòi cắt đúng gói đó của riêng bạn.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ KHỐI 5: KỊCH BẢN THỰC CHIẾN 18 GIÂY (LIGHT) ═══ -->
+  <section class="cl-zebra-section cl-zebra--light" id="sec-script">
     <div class="cl-sec-container apple-reveal">
-      <div class="cl-badge">03 / TÂM LÝ HỌC HÀNH VI</div>
-      <h2 class="title-short">BẢN ĐỒ VẾT NỨT THỂ DIỆN</h2>
-      <p class="cl-body">Công thức cốt lõi: <b>Tầng 2.5 = Hành Động Đời Thực (T2) × Xung Đột Thể Diện Vị Thế (T3)</b>. Đây là nơi toàn bộ quyết định mua hàng cao cấp được chốt hạ.</p>
+      <div class="cl-badge">04 / KỊCH BẢN MẪU THỰC CHIẾN</div>
+      <h2 class="title-short">KỊCH BẢN MẪU 18 GIÂY</h2>
+      <p class="cl-body">Áp dụng trực tiếp cho ca khách hàng thực tế tại salon: nhanh gọn, cuốn hút và chuyển đổi khách ngay lập tức.</p>
 
-      <div class="flow-diagram">
-        <div class="flow-tier">
-          <div class="flow-tier__header">
-            <div class="flow-tier__number">1</div>
-            <div class="flow-tier__title">TẦNG 1: NÓI ĐÃI BÔI (Văn mẫu an toàn)</div>
+      <div class="script-box">
+        <div class="script-phase">
+          <div class="script-phase__badge">GIAI ĐOẠN 1: 00:00 - 00:03 (ÂM THANH HIỆN TRƯỜNG MỘC)</div>
+          <div class="script-phase__title">Cú Hook Đọc Vị Trước Gương</div>
+          <div class="cl-body" style="margin-bottom: 8px; font-size: 14.5px;">
+            <b>Hình ảnh:</b> Khách ngồi trên ghế vuốt mái tóc bẹp xẹp, mặt buồn rầu nhìn vào gương. Thợ đứng cạnh, tay nâng nhẹ lớp tóc đỉnh đầu, mắt nhìn thẳng vào gương.
           </div>
-          <div class="flow-tier__content">
-            <i>"Mái tóc là vương miện của người phụ nữ...", "Hãy chăm chút cho bản thân để luôn tự tin..."</i><br>
-            ➔ <b>Hậu quả:</b> Bị lướt qua, vô cảm, kích hoạt cơ chế kháng quảng cáo.
-          </div>
-        </div>
-
-        <div class="flow-connector">▼</div>
-
-        <div class="flow-tier">
-          <div class="flow-tier__header">
-            <div class="flow-tier__number">2</div>
-            <div class="flow-tier__title">TẦNG 2: CẢM GIÁC THẬT (Bất tiện đời thường)</div>
-          </div>
-          <div class="flow-tier__content">
-            Tóc khô xơ, đuôi chẻ ngọn, gội đầu xong bết dầu, sấy mãi không cúp vào trong.<br>
-            ➔ <b>Hậu quả:</b> Tạo được sự gật gù nhưng trượt về "Tầng 2 nông" (than phiền vặt vãnh, thiếu thẩm quyền chuyên gia).
+          <div class="script-phase__dialogue">
+            Khách: "Tóc em mỏng quá anh ơi, nhìn mặt cứ bị to tròn ấy..."<br>
+            Thợ (phán đanh gọn): "Yên tâm, cắt giật tầng nâng khối đỉnh, hạ lọn tóc mai ôm hõm má là mặt nhỏ đi một nửa ngay. Ngồi yên đấy!"
           </div>
         </div>
 
-        <div class="flow-connector">▼</div>
-
-        <div class="flow-tier" style="border: 2px solid var(--cl-accent); border-radius: var(--cl-radius-md); padding: 16px; background: #ffffff;">
-          <div class="flow-tier__header">
-            <div class="flow-tier__number" style="background: var(--cl-accent);">★</div>
-            <div class="flow-tier__title" style="color: var(--cl-accent);">TẦNG 2.5: XUNG ĐỘT THỂ DIỆN & VỊ THẾ (ĐIỂM NGHẼN THEN CHỐT)</div>
-          </div>
-          <div class="flow-tier__content" style="background: #ffffff; border: none; padding: 10px 0 0;">
-            <b>• Phía Khách Hàng:</b> Sợ bị thợ bĩu môi chê tóc nát để ép gói phục hồi 2-3 triệu; ngại thừa nhận mình lười sấy và vụng tay; bất lực khi chiếc mũ bảo hiểm xe máy dập tắt toàn bộ phom tóc bồng bềnh.<br><br>
-            <b>• Phía Người Làm Nghề (Đi nước ngoài về):</b> Cái tôi nghệ sĩ thích múa kéo phô diễn; dễ rơi vào bẫy "sính ngoại" đem công thức Tây/Hàn áp đặt lên chất tóc to tròn, khí hậu nồm ẩm người Việt. Cần chuyển hóa thành: <i>"Kỹ thuật quốc tế chuẩn xác dùng để phục vụ và giải phóng người phụ nữ Việt khỏi chiếc máy sấy."</i>
-          </div>
-        </div>
-
-        <div class="flow-connector">▼</div>
-
-        <div class="flow-tier">
-          <div class="flow-tier__header">
-            <div class="flow-tier__number" style="background: var(--cl-text-muted);">3</div>
-            <div class="flow-tier__title">TẦNG 3: SỰ THẬT NGƯỢNG MIỆNG (Nỗi bất an sinh học)</div>
-          </div>
-          <div class="flow-tier__content">
-            Nỗi sợ thầm kín sâu thẳm: Sợ bị xã hội đánh giá là người già nua, lôi thôi, xuề xòa và đánh mất vị thế trong mắt gia đình, bạn bè, đồng nghiệp.
+        <div class="script-phase">
+          <div class="script-phase__badge">GIAI ĐOẠN 2: 00:04 - 00:18 (NHẠC TREND ĐẬP VÀO - 5 SHOT ĐẦU RA)</div>
+          <div class="script-phase__title">Chuỗi 5 Shot Bằng Chứng Thị Giác</div>
+          <div class="cl-body" style="font-size: 14.5px; line-height: 1.75;">
+            • <b>Beat 1 (00:04 - 00:06):</b> Cào nhẹ thớ tóc từ trán ra sau, sóng tóc nảy bồng bềnh mềm mượt.<br>
+            • <b>Beat 2 (00:07 - 00:10):</b> Góc nghiêng 45°, lọn tóc mai ôm nhẹ xương gò má, mặt khách thanh thoát rõ rệt.<br>
+            • <b>Beat 3 (00:11 - 00:13):</b> Lia máy trục sau gáy, tầng layer chữ V rơi so le bồng bềnh, phom tóc ôm gáy chuẩn xác.<br>
+            • <b>Beat 4 (00:14 - 00:15):</b> Cận cảnh thớ tóc óng ả bắt ánh đèn spotlight của tiệm.<br>
+            • <b>Beat 5 (00:16 - 00:18):</b> Khách soi gương cười tươi rạng rỡ; thợ phủi nhẹ khăn choàng, giơ ngón tay cái mỉm cười hài lòng ➔ Fade out logo tiệm.
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ═══ KHỐI 5: ĐẠO DIỄN THỊ GIÁC & QUAY VIDEO (LIGHT) ═══ -->
-  <section class="cl-zebra-section cl-zebra--light" id="sec-cinema">
+  <!-- ═══ KHỐI 6: QUY TRÌNH VẬN HÀNH DÂY CHUYỀN 3 PHÚT (TINT) ═══ -->
+  <section class="cl-zebra-section cl-zebra--tint" id="sec-ops">
     <div class="cl-sec-container cl-sec-container--wide apple-reveal">
-      <div class="cl-badge">04 / ĐẠO DIỄN THỊ GIÁC</div>
-      <h2 class="title-short">NGÔN NGỮ ĐIỆN ẢNH THỰC CHỨNG</h2>
-      <p class="editorial-hook">"Hình ảnh trong video thương hiệu không phục vụ sự diễn xuất, mà đóng vai trò như một công cụ thanh tra vật lý."</p>
+      <div class="cl-badge">05 / VẬN HÀNH SALON</div>
+      <h2 class="title-short">DÂY CHUYỀN SẢN XUẤT 3 PHÚT</h2>
+      <p class="cl-body">Quy trình đóng gói tinh gọn cho Team 3 người (hoặc chính chủ salon tự quay bằng điện thoại), khách làm xong là có ngay video đăng trong ngày.</p>
 
       <div class="apple-cards-grid">
         <div class="apple-card" style="--card-delay: 0ms;">
-          <span class="apple-card__tag apple-card__tag--amber">ÁNH SÁNG THỰC CHỨNG</span>
-          <h3 class="apple-card__title">Loại Bỏ Đèn Tròn Ring Light</h3>
-          <p class="apple-card__desc">Đèn tròn chiếu thẳng làm phẳng khối, xóa mờ kết cấu sợi tóc và biến mọi thứ thành hoạt hình lừa dối. Sử dụng <b>ánh sáng đơn hướng (Key Light) 45°</b> có độ tương phản tự nhiên: để lộ rõ chỗ nào bóng khỏe, chỗ nào cháy xơ. <i>Chính sự không hoàn hảo tạo nên thẩm quyền chuyên môn.</i></p>
+          <span class="apple-card__tag apple-card__tag--emerald">BƯỚC 1 • CỐ ĐỊNH</span>
+          <h3 class="apple-card__title">Setup "Góc Quay Vàng"</h3>
+          <p class="apple-card__desc">Chọn 1 ghế cắt có góc tường decor đẹp nhất trong tiệm. Gắn cố định 1 đèn rọi tóc (Hair-light) từ trên xuống để tóc luôn bóng. Khách nào làm xong đẹp là mời sang đúng ghế này để quay, không phải kê dọn bối cảnh.</p>
         </div>
 
         <div class="apple-card" style="--card-delay: 100ms;">
-          <span class="apple-card__tag apple-card__tag--amber">CỰ LY AN TOÀN SINH HỌC</span>
-          <h3 class="apple-card__title">Cỡ Cảnh Một Sải Tay (1.2m - 1.5m)</h3>
-          <p class="apple-card__desc">Khung trung cận (Medium Close-up) ở khoảng cách 1 sải tay là cự ly đàm đạo tin cậy giữa hai con người. Nó loại bỏ hoàn toàn cảm giác diễn viên đứng trước ống kính truyền hình, biến người xem thành nhân chứng quan sát một ca chẩn đoán y khoa.</p>
-        </div>
-
-        <div class="apple-card" style="--card-delay: 200ms;">
-          <span class="apple-card__tag apple-card__tag--amber">BẰNG CHỨNG THỊ GIÁC</span>
-          <h3 class="apple-card__title">Thanh Tra Hiển Vi (Show Don't Tell)</h3>
-          <p class="apple-card__desc">Không nói <i>"Tóc bạn rất yếu"</i>. Thay vào đó, ống kính Macro dí sát lọn tóc ướt, kéo nhẹ hai đầu: sợi tóc giãn ra như sợi bún rồi đứt phựt kèm âm thanh nhỏ. Não bộ người xem tự rút ra kết luận: lõi tóc đã rỗng. Khi vật lý lên tiếng, chuyên gia không cần thanh minh.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══ KHỐI 6: NHỊP DỰNG & ÂM THANH ASMR (TINT) ═══ -->
-  <section class="cl-zebra-section cl-zebra--tint" id="sec-audio">
-    <div class="cl-sec-container cl-sec-container--wide apple-reveal">
-      <div class="cl-badge">05 / KỸ THUẬT HẬU KỲ</div>
-      <h2 class="title-short">NHỊP THỞ & ÂM THANH MỘC</h2>
-      <p class="cl-body">Sự thao túng tâm lý dùng nhịp giật và âm thanh kích động; thẩm quyền chuyên gia được xây dựng bằng sự tĩnh tại và âm thanh vật lý trung thực.</p>
-
-      <div class="apple-cards-grid">
-        <div class="apple-card" style="--card-delay: 0ms;">
-          <span class="apple-card__tag apple-card__tag--success">MỎ NEO VẬT LÝ</span>
-          <h3 class="apple-card__title">Foley & ASMR Cơ Học</h3>
-          <p class="apple-card__desc">Cắt bỏ toàn bộ nhạc nền điện tử ồn ào. Thu âm độ nhạy cao: tiếng lách cách sắc ngọt của lưỡi kéo thép Nhật Bản, tiếng răng lược lướt qua thớ tóc, tiếng nước ấm xối qua chân tóc. Âm thanh mộc đóng vai trò chiếc mỏ neo kéo tâm trí người xem về thực tại.</p>
-        </div>
-
-        <div class="apple-card" style="--card-delay: 100ms;">
-          <span class="apple-card__tag apple-card__tag--success">TIẾT TẤU CHUYÊN GIA</span>
-          <h3 class="apple-card__title">Nhịp Dựng "Hơi Thở" (3 - 6s/Cut)</h3>
-          <p class="apple-card__desc">Video giải trí dùng nhịp cắt giật 1s để cướp giật dopamine. Video xác lập niềm tin chuyên gia đòi hỏi <b>nhịp thở tự nhiên (3 đến 6 giây mỗi cú máy)</b> để người xem kịp thẩm thấu dữ liệu thị giác và cảm nhận sự điềm tĩnh của người làm nghề.</p>
-        </div>
-
-        <div class="apple-card" style="--card-delay: 200ms;">
-          <span class="apple-card__tag apple-card__tag--success">KỸ THUẬT ĐIỆN ẢNH</span>
-          <h3 class="apple-card__title">Cắt Gối Âm Thanh (J-Cut / L-Cut)</h3>
-          <p class="apple-card__desc">Âm thanh của nhát kéo cắt tỉa hoặc câu nói nhận định vang lên trước khi khung hình chuyển cảnh 0.5s. Kỹ thuật này tạo ra một dòng chảy nhận thức liên tục, xóa bỏ hoàn toàn cảm giác video bị chắp vá, giật cục của dân nghiệp dư.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══ KHỐI 7: CỖ MÁY THUYẾT PHỤC 4 NHỊP (LIGHT) ═══ -->
-  <section class="cl-zebra-section cl-zebra--light" id="sec-pipeline">
-    <div class="cl-sec-container apple-reveal">
-      <div class="cl-badge">06 / BỘ KHUNG KỊCH BẢN</div>
-      <h2 class="title-short">CỖ MÁY THUYẾT PHỤC 4 NHỊP</h2>
-      <p class="cl-body">Quy trình tự động hóa chuyển hóa người xem từ trạng thái phòng thủ hoài nghi sang trạng thái tin tưởng và nể phục tuyệt đối.</p>
-
-      <div class="flow-diagram">
-        <div class="flow-tier">
-          <div class="flow-tier__header">
-            <div class="flow-tier__number">1</div>
-            <div class="flow-tier__title">NHỊP 1: MỎ NEO CẢM GIÁC (The Sensory Anchor)</div>
-          </div>
-          <div class="flow-tier__content">
-            Thao tác vi mô làm sụp đổ một thói quen hoặc ảo tưởng phổ biến (Ví dụ: đặt chiếc máy sấy xuống, kéo đứt sợi tóc rỗng tủy, từ chối nhận tiền dịch vụ hóa chất).
-          </div>
-        </div>
-
-        <div class="flow-connector">▼</div>
-
-        <div class="flow-tier">
-          <div class="flow-tier__header">
-            <div class="flow-tier__number">2</div>
-            <div class="flow-tier__title">NHỊP 2: BẮT QUẢ TANG VẾT NỨT THỂ DIỆN (The Status Friction)</div>
-          </div>
-          <div class="flow-tier__content">
-            Gọi tên sự thật ngượng ngùng: vẻ ngoài sang trọng ở tiệm đối đầu sự bất lực khi về nhà đội mũ bảo hiểm xe máy. Minh oan: <i>"Đó không phải do bạn vụng tay."</i>
-          </div>
-        </div>
-
-        <div class="flow-connector">▼</div>
-
-        <div class="flow-tier">
-          <div class="flow-tier__header">
-            <div class="flow-tier__number">3</div>
-            <div class="flow-tier__title">NHỊP 3: NGUYÊN LÝ CỐT LÕI (The Fundamental Principle)</div>
-          </div>
-          <div class="flow-tier__content">
-            Bẻ gãy văn mẫu bề nổi, đưa về 1 quy luật vật lý/sinh học/nhân trắc duy nhất: trọng lực rơi tự nhiên, liên kết disulfide của sợi tóc, hình học tỷ lệ khung xương.
-          </div>
-        </div>
-
-        <div class="flow-connector">▼</div>
-
-        <div class="flow-tier">
-          <div class="flow-tier__header">
-            <div class="flow-tier__number">4</div>
-            <div class="flow-tier__title">NHỊP 4: GIẢI PHÓNG & BẢO TOÀN PHẨM GIÁ (The Liberation)</div>
-          </div>
-          <div class="flow-tier__content">
-            Trao giải pháp bền vững giúp khách sống thảnh thơi trong đời thực. Không phụ thuộc vào thợ; vẻ đẹp thuộc về chính cuộc sống của khách. Kết bài ấm áp, đanh thép.
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══ KHỐI 8: 4 KỊCH BẢN MẪU CHI TIẾT (TINT) ═══ -->
-  <section class="cl-zebra-section cl-zebra--tint" id="sec-scripts">
-    <div class="cl-sec-container cl-sec-container--wide apple-reveal">
-      <div class="cl-badge">07 / KỊCH BẢN THỰC CHIẾN</div>
-      <h2 class="title-short">4 KỊCH BẢN CHẠM ĐÁY NHẬN THỨC</h2>
-      <p class="cl-body">Giữ nguyên 100% chi tiết hình ảnh và lời thoại 4 nhịp để ekip áp dụng trực tiếp tại hiện trường salon.</p>
-
-      <!-- KỊCH BẢN 1 -->
-      <div class="script-box">
-        <div class="script-header">
-          <div>
-            <span class="apple-card__tag apple-card__tag--accent">HƯỚNG 01 • CÔNG NĂNG ĐỜI SỐNG</span>
-            <h3 class="script-title">Nếp Tóc Ở Tiệm vs Nếp Tóc Ở Nhà (Thiết Kế Cho Người Lười Sấy)</h3>
-          </div>
-        </div>
-        <div class="beat-grid">
-          <div class="beat-card">
-            <span class="beat-name">NHỊP 1: HOOK TẢ THỰC</span>
-            <p class="beat-desc"><b>Hình ảnh:</b> Cận cảnh máy sấy công suất lớn và lược tròn bị đẩy sang bên. Dùng khăn bông vò nhẹ tóc, tay không cào nhẹ.</p>
-            <p class="beat-quote">"Nếu một kiểu tóc cắt xong mà bắt bạn sáng nào cũng dậy trước 30 phút, một tay lược một tay máy sấy kéo mỏi nhừ mới vào nếp... thì đó là kiểu tóc phục vụ thợ chụp ảnh, không phục vụ cuộc đời bạn."</p>
-          </div>
-          <div class="beat-card">
-            <span class="beat-name">NHỊP 2: BÓC TRẦN TẦNG 2.5</span>
-            <p class="beat-desc"><b>Hình ảnh:</b> Tay luồn vào chân tóc khách nâng nhẹ lên, chỉ vào thớ cắt bên trong.</p>
-            <p class="beat-quote">"Nhiều bạn đi làm tóc rất sợ cảm giác ở tiệm nhìn bồng bềnh như diễn viên Hàn Quốc, nhưng về nhà đội cái mũ bảo hiểm phi xe đến công ty là nó vểnh tứ tung. Các bạn ngại không dám nói mình lười, cứ nghĩ do tay mình vụng."</p>
-          </div>
-          <div class="beat-card">
-            <span class="beat-name">NHỊP 3: BẺ LÁI NGUYÊN LÝ</span>
-            <p class="beat-desc"><b>Hình ảnh:</b> Mũi kéo nhấp tỉa theo phương thẳng đứng (Point cutting), từng sợi tóc rơi nhẹ xuống vai áo choàng.</p>
-            <p class="beat-quote">"Không phải do bạn vụng. Tóc không vào nếp tại nhà là do thợ cắt sai trọng lực và cấu trúc rơi tự nhiên. Khi cấu trúc chuẩn, từng thớ tóc tự nó sẽ xếp lớp ôm lấy nhau. Bạn chỉ cần gội, lau khô, cào tay là nó tự rơi về đúng chỗ."</p>
-          </div>
-          <div class="beat-card">
-            <span class="beat-name">NHỊP 4: GIẢI PHÓNG</span>
-            <p class="beat-desc"><b>Hình ảnh:</b> Sấy gió thường, không dùng lược tròn tạo kiểu. Tóc tự cúp nhẹ ôm cổ. Khách cười nhẹ nhõm.</p>
-            <p class="beat-quote">"Ở tiệm tôi, quy tắc đầu tiên là: Không dùng lược tròn khi sấy hoàn thiện cho khách. Sấy khô thế nào, về nhà bạn sẽ có đúng mái tóc như thế. Đẹp là để sống thảnh thơi, chứ không phải để làm nô lệ cho cái máy sấy."</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- KỊCH BẢN 2 -->
-      <div class="script-box">
-        <div class="script-header">
-          <div>
-            <span class="apple-card__tag apple-card__tag--amber">HƯỚNG 02 • THẨM ĐỊNH HIỂN VI</span>
-            <h3 class="script-title">Bắt Bệnh Chất Tóc Ở Độ Phân Giải Hiển Vi (Show Don't Tell)</h3>
-          </div>
-        </div>
-        <div class="beat-grid">
-          <div class="beat-card">
-            <span class="beat-name">NHỊP 1: HOOK HIỂN VI</span>
-            <p class="beat-desc"><b>Hình ảnh:</b> Cận cảnh 1 sải tay. Kẹp một sợi tóc ướt kéo nhẹ. Sợi tóc giãn dài như sợi bún rồi đứt phựt, không co hồi.</p>
-            <p class="beat-quote">"Bạn nghe thấy tiếng đứt này không? Khi sợi tóc bị kéo mà không thể đàn hồi co lại, nghĩa là lõi liên kết disulfide bên trong đã rỗng hoàn toàn rồi."</p>
-          </div>
-          <div class="beat-card">
-            <span class="beat-name">NHỊP 2: BẮT BỆNH TẬNG GỐC</span>
-            <p class="beat-desc"><b>Hình ảnh:</b> Lấy sống lược gạt nhẹ phần ngọn khô xơ, đối lập với 3cm tóc đen mới mọc ở chân.</p>
-            <p class="beat-quote">"Nhiều người thấy đuôi tóc khô xơ thì nghĩ do mình dùng dầu gội dỏm, rồi đổ tiền mua hũ hấp dầu 2-3 triệu về bôi. Nhưng bôi lên một bề mặt đã vỡ biểu bì thì cũng giống như quét sơn lên bức tường đang mục ruỗng. Nó chỉ mượt ảo được lúc vừa xả nước."</p>
-          </div>
-          <div class="beat-card">
-            <span class="beat-name">NHỊP 3: KHOA HỌC THỰC CHỨNG</span>
-            <p class="beat-desc"><b>Hình ảnh:</b> Ống kính Macro quay cận thớ tóc dưới ánh sáng trắng trung thực (không dùng filter làm mượt).</p>
-            <p class="beat-quote">"Hồi học về hóa sinh sợi tóc, điều khiến tôi ám ảnh nhất là tóc không có tế bào sống để tự lành như da thịt. Một khi đã nát vì tẩy nhuộm vô tội vạ, thứ duy nhất cứu được nó là dũng cảm cắt bỏ phần chết và tái cấu trúc lại phần lõi còn cứu được."</p>
-          </div>
-          <div class="beat-card">
-            <span class="beat-name">NHỊP 4: LỜI KHUYÊN ĐANH THÉP</span>
-            <p class="beat-desc"><b>Hình ảnh:</b> Đưa kéo cắt ngọt một đường dứt khoát bỏ 5cm phần ngọn khô cháy. Khách thở phào nhẹ nhõm.</p>
-            <p class="beat-quote">"Đừng tiếc 5 phân tóc chết để rồi cả mái tóc trông mệt mỏi theo bạn mỗi ngày. Giữ lại ít tóc mà sợi nào sợi nấy no nước, đàn hồi, tràn đầy sức sống... nhìn gương mặt bạn nó sáng bừng lên ngay."</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- KỊCH BẢN 3 -->
-      <div class="script-box">
-        <div class="script-header">
-          <div>
-            <span class="apple-card__tag apple-card__tag--danger">HƯỚNG 03 • TÍN HIỆU ĐẮT GIÁ</span>
-            <h3 class="script-title">Dám Từ Chối Dịch Vụ (Costly Signaling: Từ Chối Tiền Ngắn Hạn)</h3>
-          </div>
-        </div>
-        <div class="beat-grid">
-          <div class="beat-card">
-            <span class="beat-name">NHỊP 1: XUNG ĐỘT TRỰC DIỆN</span>
-            <p class="beat-desc"><b>Hình ảnh:</b> Phiếu yêu cầu ghi: <i>"Tẩy 2 lần + Nhuộm xám khói"</i>. Đặt bút xuống, đẩy nhẹ tách trà nóng về phía khách.</p>
-            <p class="beat-quote">"Hôm nay chị mang 4 triệu đến đây để tẩy nhuộm màu xám khói này, nhưng em xin phép từ chối nhận dịch vụ của chị."</p>
-          </div>
-          <div class="beat-card">
-            <span class="beat-name">NHỊP 2: DOANH THU VS LƯƠNG TÂM</span>
-            <p class="beat-desc"><b>Hình ảnh:</b> Nâng lọn tóc khách lên trước đèn, chỉ vào những đoạn tóc bị nhũn khi chạm nước.</p>
-            <p class="beat-quote">"Nếu là salon chạy theo doanh thu, em nhận ngay. Tẩy 2 lần nhuộm màu xám chụp ảnh sống ảo lung linh trong tiệm, em thu 4 triệu bỏ túi êm đẹp. Nhưng em biết chắc chỉ 2 tuần nữa, tóc chị sẽ mủn ra như bột khi gội đầu, và lúc đó chị sẽ căm ghét mái tóc của mình."</p>
-          </div>
-          <div class="beat-card">
-            <span class="beat-name">NHỊP 3: TÍN HIỆU ĐẮT GIÁ</span>
-            <p class="beat-desc"><b>Hình ảnh:</b> Ánh mắt điềm đạm, kiên định của người thợ. Không trịch thượng, chỉ có sự xót xa của người yêu nghề thật lòng.</p>
-            <p class="beat-quote">"Tiền thì ai cũng cần, nhưng kiếm 4 triệu hôm nay mà đánh đổi bằng sự bế tắc của khách hàng trong 6 tháng tới thì em không làm được. Tóc chị đã qua 3 lần tẩy trong năm nay, lớp biểu bì đang kêu cứu."</p>
-          </div>
-          <div class="beat-card">
-            <span class="beat-name">NHỊP 4: PHÁC ĐỒ CHÂN THÀNH</span>
-            <p class="beat-desc"><b>Hình ảnh:</b> Dùng kéo tỉa bớt phần đuôi xơ xác, thoa tinh chất phục hồi dịu nhẹ và tư vấn màu nâu hạt dẻ ấm áp không cần tẩy.</p>
-            <p class="beat-quote">"Hôm nay em chỉ tỉa phom cho gọn và phục hồi cân bằng ẩm cho tóc chị thở. Chị giữ 4 triệu đó về bồi dưỡng sức khỏe. Bao giờ sợi tóc khỏe lại, chính em sẽ nhuộm cho chị màu đẹp nhất. Làm nghề lâu năm, em quý sự an tâm của khách hơn là một hóa đơn đẹp tức thời."</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- KỊCH BẢN 4 -->
-      <div class="script-box">
-        <div class="script-header">
-          <div>
-            <span class="apple-card__tag apple-card__tag--success">HƯỚNG 04 • HÌNH HỌC KHÔNG GIAN</span>
-            <h3 class="script-title">Cắt Tóc Theo Nhân Trắc Học Đời Thực (Cân Chỉnh Gò Má & Quai Hàm)</h3>
-          </div>
-        </div>
-        <div class="beat-grid">
-          <div class="beat-card">
-            <span class="beat-name">NHỊP 1: ĐẬP TAN ẢO TƯỞNG</span>
-            <p class="beat-desc"><b>Hình ảnh:</b> Khách giơ ảnh idol Hàn Quốc trên điện thoại. Nhìn ảnh rồi nhìn sang cấu trúc gò má và xương hàm khách trong gương.</p>
-            <p class="beat-quote">"Đừng bao giờ mang ảnh mẫu trên Pinterest ra tiệm và bảo thợ: 'Cắt cho em y hệt thế này'. Vì cái làm cho bức ảnh đó đẹp là xương hàm góc cạnh của người mẫu, không phải do mỗi kiểu tóc."</p>
-          </div>
-          <div class="beat-card">
-            <span class="beat-name">NHỊP 2: BÓC TÁCH NHÂN TRẮC</span>
-            <p class="beat-desc"><b>Hình ảnh:</b> Dùng sống lược đo tỷ lệ từ chân mày đến cằm, và khoảng cách giữa hai gò má.</p>
-            <p class="beat-quote">"Nhiều bạn mặt tròn hoặc gò má cao đi cắt layer đuôi cá về khóc ròng, vì phần tóc bay đáng lẽ phải che khuyết điểm thì lại bị cắt rơi đúng vào điểm rộng nhất của gò má, vô tình làm mặt to gấp đôi. Thợ cứ cắt theo công thức rập khuôn trên mạng mà không đo tỷ lệ xương của bạn."</p>
-          </div>
-          <div class="beat-card">
-            <span class="beat-name">NHỊP 3: HÌNH HỌC KHÔNG GIAN</span>
-            <p class="beat-desc"><b>Hình ảnh:</b> Mũi kéo nhấp chuẩn xác tạo tầng rơi ngay xương quai xanh và tạo lọn tóc mai cong ôm nhẹ hõm má.</p>
-            <p class="beat-quote">"Một đường cắt chuẩn xác của trường phái hình học là phải tạo ra các điểm neo thị giác. Nếu trán ngắn, ta nâng khối đỉnh đầu để kéo dài trục mặt. Nếu xương hàm vuông, lọn tóc rơi phải kết thúc dưới góc hàm 2 phân để làm mềm đường nét. Cắt tóc là điêu khắc lại tỉ lệ khuôn mặt."</p>
-          </div>
-          <div class="beat-card">
-            <span class="beat-name">NHỊP 4: KẾT QUẢ ĐỜI THỰC</span>
-            <p class="beat-desc"><b>Hình ảnh:</b> Khách soi gương nghiêng góc 45 độ, thấy gương mặt thanh thoát hơn hẳn dù không trang điểm cầu kỳ.</p>
-            <p class="beat-quote">"Một kiểu tóc đẹp nhất không phải là kiểu tóc giống thần tượng của bạn nhất, mà là kiểu tóc khiến người ta nhìn vào thốt lên: 'Dạo này nhìn em tươi tắn và gọn gàng thế!', chứ không phải là: 'Em mới đi cắt tóc ở đâu về đấy?'."</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══ KHỐI 9: KẾ HOẠCH TÁC CHIẾN TEAM 3 NGƯỜI (LIGHT) ═══ -->
-  <section class="cl-zebra-section cl-zebra--light" id="sec-ops">
-    <div class="cl-sec-container cl-sec-container--wide apple-reveal">
-      <div class="cl-badge">08 / TỔ CHỨC SẢN XUẤT</div>
-      <h2 class="title-short">KẾ HOẠCH TÁC CHIẾN TEAM 3 NGƯỜI</h2>
-      <p class="cl-body">Mô hình sản xuất tinh gọn: 1 Chuyên gia chủ trì + 1 Cam Chính (Dẫn chuyện) + 1 Cam B-Roll (Macro & ASMR). Quy tắc Zero-Interruption không làm phiền khách hàng thật.</p>
-
-      <div class="apple-cards-grid">
-        <div class="apple-card" style="--card-delay: 0ms;">
-          <span class="apple-card__tag apple-card__tag--accent">VỊ TRÍ 01 • LINH HỒN</span>
-          <h3 class="apple-card__title">Chủ Salon (Chuyên Gia Chính)</h3>
+          <span class="apple-card__tag apple-card__tag--emerald">BƯỚC 2 • BẤM MÁY</span>
+          <h3 class="apple-card__title">Bấm Máy 2 Lần Siêu Tốc</h3>
           <p class="apple-card__desc">
-            <b>• Tư thế:</b> Đứng góc 45° so với gương, vai thả lỏng, không nhìn chằm chằm máy quay.<br>
-            <b>• Ánh mắt:</b> 80% tập trung vào thớ tóc và gương mặt khách trong gương; 20% liếc nhẹ vào ống kính khi chốt câu đanh thép ở Nhịp 3 & 4.<br>
-            <b>• Thao tác:</b> Cẩn trọng, nâng tóc nhẹ như dải lụa; giọng trầm ấm, dứt khoát, dùng khoảng dừng lấy hơi.
-          </p>
-        </div>
-
-        <div class="apple-card" style="--card-delay: 100ms;">
-          <span class="apple-card__tag apple-card__tag--accent">VỊ TRÍ 02 • DẪN CHUYỆN</span>
-          <h3 class="apple-card__title">Media 1 (Phụ Trách Cam A)</h3>
-          <p class="apple-card__desc">
-            <b>• Thiết bị:</b> Tiêu cự 35mm hoặc 50mm, khẩu lớn xóa mờ bối cảnh khách ngồi chờ phía sau.<br>
-            <b>• Cỡ cảnh:</b> Trung cận (Medium Close-up) nằm trong cự ly <b>1 sải tay (1.2m - 1.5m)</b>.<br>
-            <b>• Nhiệm vụ:</b> Khung hình tĩnh chắc chắn, bắt trọn tương tác thật giữa chủ salon và khách, lấy nét chuẩn ánh mắt chuyên gia và cái gật đầu của khách.
+            • <b>Lần 1 (Trước khi cắt):</b> Bật máy quay 1 câu hỏi - 1 câu trả lời đọc vị khuyết điểm (mất 20 giây).<br>
+            • <b>Lần 2 (Sau khi cắt xong):</b> Lia máy đúng 5 shot tiêu chuẩn (mỗi shot bấm máy 3 giây, tổng cộng mất chưa đầy 2 phút).
           </p>
         </div>
 
         <div class="apple-card" style="--card-delay: 200ms;">
-          <span class="apple-card__tag apple-card__tag--accent">VỊ TRÍ 03 • MACRO & ASMR</span>
-          <h3 class="apple-card__title">Media 2 (Phụ Trách Cam B)</h3>
-          <p class="apple-card__desc">
-            <b>• Thiết bị:</b> Ống kính Macro hoặc 85mm; kèm Mic Shotgun định hướng hoặc mic cài gần tay cắt.<br>
-            <b>• Góc máy:</b> Trượt ngón tay trên lọn tóc căng bóng, mũi kéo nhấp ranh mãnh, thớ tóc rơi tự nhiên.<br>
-            <b>• Âm thanh:</b> Thu trọn tiếng kéo nhấp <i>"rẹt... rẹt"</i>, tiếng nước xối bồn gội, tiếng xịt sương mịn.
-          </p>
-        </div>
-      </div>
-
-      <!-- QUY TRÌNH 3 KHÔNG -->
-      <div class="flow-diagram" style="margin-top: 32px;">
-        <div style="font-family: var(--font-display-short); font-size: 16px; font-weight: 700; text-transform: uppercase; color: var(--cl-text-base); margin-bottom: 16px;">
-          QUY TRÌNH 3 KHÔNG: SẢN XUẤT NHANH VỚI KHÁCH HÀNG THẬT
-        </div>
-        <div style="display: flex; flex-direction: column; gap: 12px; font-size: 15px; color: var(--cl-text-body);">
-          <div><b>1. Không kịch bản giấy trước mặt khách:</b> Không bắt khách học thuộc thoại. Trước khi cắt, chuyên gia trò chuyện 2 phút về công việc, thói quen sấy tóc và nỗi phiền toái hiện tại. Media 1 đứng từ xa ghi lại toàn bộ câu trả lời ngượng ngùng thật nhất.</div>
-          <div><b>2. Không can thiệp hiện trường (Zero-Interruption):</b> Trong suốt 45 phút làm tóc, 2 bạn Media di chuyển không phát ra tiếng động, tuyệt đối không hô cắt hay bắt khách diễn lại. Mọi việc diễn ra như một buổi phục vụ bình thường.</div>
-          <div><b>3. Đóng gói 5 phút cuối:</b> Khi cắt xong và khách đang soi gương hài lòng, chuyên gia đứng cạnh nói câu chốt Nhịp 4 (30 giây). Khách ra về, chuyên gia đứng lại đúng vị trí đó 3 phút để quay 2-3 phương án câu Hook mở đầu.</div>
+          <span class="apple-card__tag apple-card__tag--emerald">BƯỚC 3 • HẬU KỲ</span>
+          <h3 class="apple-card__title">Dựng CapCut Theo Mẫu</h3>
+          <p class="apple-card__desc">Chọn 1 bài nhạc trend beat bắt tai trên TikTok/CapCut. Ghép đoạn nói 3s đầu ➔ Thả 5 shot vào đúng nhịp beat ➔ Thêm tên kiểu tóc độc quyền (VD: <i>Layer Giấu Gò Má</i>) ➔ Xuất video trong 3 phút.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ═══ KHỐI 10: TỔNG KẾT & 3 MỆNH LỆNH HÀNH ĐỘNG (TINT) ═══ -->
-  <section class="cl-zebra-section cl-zebra--tint" id="sec-conclusion">
+  <!-- ═══ KHỐI 7: TỔNG KẾT CHIẾN LƯỢC (LIGHT) ═══ -->
+  <section class="cl-zebra-section cl-zebra--light" id="sec-summary">
     <div class="cl-sec-container cl-sec-container--narrow apple-reveal">
       <div class="cl-badge">ĐÚC KẾT CHIẾN LƯỢC</div>
-      <h2 class="title-short">3 MỆNH LỆNH THỰC THI</h2>
+      <h2 class="title-short">BẢN CHẤT LÀ ĐẦU RA ĐẸP</h2>
       
       <blockquote class="editorial-hook" style="border-left: 4px solid var(--cl-accent); padding-left: 24px; text-align: left; margin: 28px 0;">
-        "Thương hiệu cá nhân không sinh ra từ việc cố gắng chứng minh mình tài giỏi hơn người khác. Nó được xác lập vào khoảnh khắc bạn dám từ chối lợi ích ngắn hạn để đứng về phía sự thật cuộc đời khách hàng."
+        "Khách hàng trả tiền cho sự tự tin khi bước ra khỏi tiệm. Thương hiệu cá nhân của bạn được khẳng định bằng một câu đọc vị chuẩn xác và kết quả đẹp không tì vết trên mái tóc của họ."
       </blockquote>
-
-      <div class="flow-diagram" style="margin-bottom: 32px;">
-        <div style="display: flex; flex-direction: column; gap: 14px; text-align: left; font-size: 15.5px; color: var(--cl-text-body);">
-          <div><b>1. Bỏ chiếc lược tròn khi sấy hoàn thiện:</b> Tóc ở salon sấy khô tự nhiên thế nào thì về nhà khách có y hệt như thế. Đó là bảo chứng danh dự cao nhất của người làm nghề.</div>
-          <div><b>2. Dám từ chối tiền ngắn hạn:</b> Khi tóc khách đã quá tải hóa chất, kiên quyết từ chối dịch vụ phá hoại. Lời từ chối chân thành có sức nặng gấp 100 lần lời quảng cáo hoa mỹ.</div>
-          <div><b>3. Nhún nhường trước chất tóc người Việt:</b> Không sính ngoại khoe bằng cấp quốc tế. Hãy biến kỹ thuật hình học chuẩn xác nhất thế giới thành sự thấu cảm sâu sắc cho chất tóc sợi to, khí hậu nồm ẩm và chiếc mũ bảo hiểm xe máy.</div>
-        </div>
-      </div>
 
       <div style="display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;">
         <a href="#sec-hero" class="cl-btn">QUAY LẠI ĐẦU TRANG ↑</a>
-        <a href="https://vietndj.github.io/course/" class="cl-btn cl-btn--subtle">XEM THƯ VIỆN BÀI GIẢNG ↗</a>
+        <a href="storytelling.html" class="cl-btn cl-btn--subtle">XEM BÀI STORYTELLING ↗</a>
       </div>
     </div>
   </section>
