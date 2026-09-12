@@ -502,90 +502,71 @@
       will-change: auto;
     }
   
-    /* ═══ THANH ĐIỀU HƯỚNG BỘ 4 ĐỊNH DẠNG (CROSS-LINKS) ═══ */
-    .four-formats-bar {
-      width: 100%;
+    
+
+  
+    
+
+  
+    /* ═══ CLEAN STICKY NAV & REFINED POPUP ═══ */
+    .sticky-nav {
+      position: fixed;
+      bottom: max(18px, env(safe-area-inset-bottom, 18px));
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1000;
       background: rgba(255, 255, 255, 0.94);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border-bottom: 1px solid var(--cl-line-strong);
-      padding: 8px 16px;
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      padding: 6px 12px;
+      border-radius: var(--cl-radius-full);
       display: flex;
       align-items: center;
-      justify-content: center;
-      gap: 8px;
+      gap: 6px;
+      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.12), 0 2px 8px rgba(0, 0, 0, 0.04);
+      max-width: min(calc(100vw - 28px), 760px);
       overflow-x: auto;
+      overflow-y: visible !important;
       white-space: nowrap;
       scrollbar-width: none;
       -webkit-overflow-scrolling: touch;
-      position: sticky;
-      top: 50px;
-      z-index: 999;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.03);
     }
-    .four-formats-bar::-webkit-scrollbar { display: none; }
-    .ff-item {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
+    .sticky-nav::-webkit-scrollbar { display: none; }
+
+    .sticky-nav a:not(.nav-dd-item):not(.nav-dropdown-btn) {
+      flex-shrink: 0;
       font-family: var(--font-mono);
-      font-size: 11px;
+      font-size: 11.5px;
       font-weight: 700;
       color: var(--cl-text-muted);
       text-decoration: none;
-      padding: 5px 12px;
+      padding: 5px 9px;
       border-radius: var(--cl-radius-full);
-      border: 1px solid var(--cl-line);
-      background: var(--cl-tint);
       transition: all 0.2s var(--apple-ease);
-      flex-shrink: 0;
     }
-    .ff-item:hover {
+    .sticky-nav a:not(.nav-dd-item):not(.nav-dropdown-btn):hover {
       color: var(--cl-accent);
-      border-color: rgba(26, 115, 232, 0.4);
       background: var(--cl-accent-tint);
-      transform: translateY(-1px);
-    }
-    .ff-item.is-active {
-      color: #ffffff;
-      background: var(--cl-accent);
-      border-color: var(--cl-accent);
-      box-shadow: 0 4px 12px rgba(26, 115, 232, 0.28);
-    }
-    .ff-item-hub {
-      background: #ffffff;
-      border-color: var(--cl-line-strong);
-      color: var(--cl-text-base);
-    }
-    @media (max-width: 768px) {
-      .four-formats-bar {
-        justify-content: flex-start;
-        padding: 8px 12px;
-        top: 46px;
-      }
     }
 
-  
-    /* ═══ POPUP MENU ĐỔI ĐỊNH DẠNG TỪ STICKY NAV ═══ */
-    .sticky-nav {
-      overflow: visible !important; /* Cho phép popup trồi lên trên */
-    }
     .nav-dropdown {
       position: relative;
       display: inline-flex;
       align-items: center;
+      flex-shrink: 0;
     }
     .nav-dropdown-btn {
       display: inline-flex;
       align-items: center;
-      gap: 5px;
+      gap: 6px;
       font-family: var(--font-mono);
       font-size: 11.5px;
       font-weight: 700;
       color: var(--cl-accent);
       background: var(--cl-accent-tint);
       border: 1px solid rgba(26, 115, 232, 0.25);
-      padding: 4px 10px;
+      padding: 5px 12px;
       border-radius: var(--cl-radius-full);
       cursor: pointer;
       text-decoration: none;
@@ -595,6 +576,7 @@
     .nav-dropdown-btn:hover {
       background: var(--cl-accent);
       color: #ffffff;
+      box-shadow: 0 4px 12px rgba(26, 115, 232, 0.28);
     }
     .nav-dropdown-btn svg {
       transition: transform 0.25s var(--apple-spring);
@@ -603,26 +585,20 @@
     .nav-dropdown.is-open .nav-dropdown-btn svg {
       transform: rotate(180deg);
     }
+
+    /* POPUP MENU CÓ PADDING-BOTTOM ĐỆM CHỐNG MẤT HOVER */
     .nav-dropdown-menu {
       position: absolute;
-      bottom: calc(100% + 10px);
+      bottom: 100%;
       left: 0;
-      min-width: 250px;
-      background: rgba(255, 255, 255, 0.96);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border: 1px solid var(--cl-line-strong);
-      border-radius: var(--cl-radius-md);
-      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.12), 0 4px 12px rgba(0,0,0,0.04);
-      padding: 6px;
-      display: flex;
-      flex-direction: column;
-      gap: 3px;
+      padding-bottom: 12px; /* Cầu nối chuột liền mạch */
+      min-width: 290px;
+      background: transparent;
       opacity: 0;
       visibility: hidden;
-      transform: translate3d(0, 10px, 0);
-      transition: all 0.25s var(--apple-spring);
-      z-index: 1000;
+      transform: translate3d(0, 8px, 0);
+      transition: opacity 0.22s var(--apple-ease), transform 0.25s var(--apple-spring), visibility 0.22s;
+      z-index: 2000;
       pointer-events: none;
     }
     .nav-dropdown:hover .nav-dropdown-menu,
@@ -632,28 +608,43 @@
       transform: translate3d(0, 0, 0);
       pointer-events: auto;
     }
-    .nav-dropdown-item {
+
+    .nav-dd-card {
+      background: rgba(255, 255, 255, 0.98);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border: 1px solid var(--cl-line-strong);
+      border-radius: var(--cl-radius-md);
+      box-shadow: 0 20px 48px rgba(0, 0, 0, 0.16), 0 4px 14px rgba(0, 0, 0, 0.05);
+      padding: 7px;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .nav-dd-item {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 10px;
+      gap: 12px;
       padding: 8px 12px;
       border-radius: var(--cl-radius-sm);
       text-decoration: none;
       transition: all 0.18s ease;
     }
-    .nav-dropdown-item:hover {
+    .nav-dd-item:hover {
       background: var(--cl-tint);
+      transform: translateX(2px);
     }
-    .nav-dropdown-item.is-active {
+    .nav-dd-item.is-active {
       background: var(--cl-accent-tint);
     }
-    .nav-dropdown-item__left {
+    .nav-dd-item__info {
       display: flex;
       flex-direction: column;
       text-align: left;
     }
-    .nav-dropdown-item__tag {
+    .nav-dd-item__tag {
       font-family: var(--font-mono);
       font-size: 9.5px;
       font-weight: 700;
@@ -661,86 +652,81 @@
       text-transform: uppercase;
       letter-spacing: 0.04em;
     }
-    .nav-dropdown-item__name {
+    .nav-dd-item__name {
       font-family: var(--font-display-short);
       font-size: 12.5px;
       font-weight: 700;
       color: var(--cl-text-base);
+      line-height: 1.35;
     }
-    .nav-dropdown-item__dot {
-      width: 6px;
-      height: 6px;
+    .nav-dd-dot {
+      width: 7px;
+      height: 7px;
       border-radius: 50%;
       background: var(--cl-accent);
       display: inline-block;
+      flex-shrink: 0;
     }
-    .nav-dropdown-divider {
+    .nav-dd-divider {
       height: 1px;
       background: var(--cl-line);
-      margin: 4px 0;
+      margin: 4px 6px;
     }
 
   </style>
 </head>
 <body>
 
-  <!-- ═══ THANH ĐIỀU HƯỚNG LIÊN KẾT NHANH 4 ĐỊNH DẠNG ═══ -->
-  <div class="four-formats-bar">
-    <a href="4stylevideo.html" class="ff-item is-active">🏠 BỘ 4 ĐỊNH DẠNG</a>
-    <a href="voiceover.html" class="ff-item">01. Voice-Over</a>
-    <a href="walkandtalk.html" class="ff-item">02. Walk & Talk</a>
-    <a href="talkinghead.html" class="ff-item">03. Talking Head</a>
-    <a href="storytelling.html" class="ff-item">04. Storytelling 2.5</a>
-  </div>
-
-
-  <!-- STICKY NAV AN TOÀN TRÊN DI ĐỘNG -->
+<!-- STICKY NAV AN TOÀN TRÊN DI ĐỘNG -->
   <nav class="sticky-nav">
     <!-- MENU ĐỔI ĐỊNH DẠNG (POPUP) -->
-    <div class="nav-dropdown">
-      <a href="4stylevideo.html" class="nav-dropdown-btn">
+    <div class="nav-dropdown" id="navFormatDropdown">
+      <button type="button" class="nav-dropdown-btn" aria-haspopup="true" aria-expanded="false">
         <span>🎬 4 Định Dạng</span>
-        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
-      </a>
-      <div class="nav-dropdown-menu">
-      <a href="4stylevideo.html" class="nav-dropdown-item is-active">
-        <div class="nav-dropdown-item__left">
-          <span class="nav-dropdown-item__tag" style="color: var(--cl-text-base);">TRANG CHỦ TỔNG HỢP</span>
-          <span class="nav-dropdown-item__name">🏠 Bộ 4 Định Dạng Chủ Lực</span>
-        </div>
-        <span class="nav-dropdown-item__dot"></span>
-      </a>
-      <div class="nav-dropdown-divider"></div>
-      <a href="voiceover.html" class="nav-dropdown-item">
-        <div class="nav-dropdown-item__left">
-          <span class="nav-dropdown-item__tag">ĐỊNH DẠNG 01</span>
-          <span class="nav-dropdown-item__name">Voice-Over (Quay Tay Thao Tác)</span>
-        </div>
-        
-      </a>
-      <a href="walkandtalk.html" class="nav-dropdown-item">
-        <div class="nav-dropdown-item__left">
-          <span class="nav-dropdown-item__tag">ĐỊNH DẠNG 02</span>
-          <span class="nav-dropdown-item__name">Walk & Talk (Vừa Đi Vừa Nói)</span>
-        </div>
-        
-      </a>
-      <a href="talkinghead.html" class="nav-dropdown-item">
-        <div class="nav-dropdown-item__left">
-          <span class="nav-dropdown-item__tag">ĐỊNH DẠNG 03</span>
-          <span class="nav-dropdown-item__name">Talking Head (Ngồi Bàn 2 Cam)</span>
-        </div>
-        
-      </a>
-      <a href="storytelling.html" class="nav-dropdown-item">
-        <div class="nav-dropdown-item__left">
-          <span class="nav-dropdown-item__tag">ĐỊNH DẠNG 04</span>
-          <span class="nav-dropdown-item__name">Storytelling 2.5 (Bóc Bệnh Ngầm)</span>
-        </div>
-        
-      </a>
+        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="18 15 12 9 6 15"></polyline></svg>
+      </button>
+      <div class="nav-dropdown-menu" role="menu">
+      <div class="nav-dd-card">
+        <a href="4stylevideo.html" class="nav-dd-item is-active">
+          <div class="nav-dd-item__info">
+            <span class="nav-dd-item__tag" style="color: var(--cl-text-base);">TỔNG QUAN HỆ THỐNG</span>
+            <span class="nav-dd-item__name">🏠 Trọn Bộ 4 Định Dạng Chủ Lực</span>
+          </div>
+          <span class="nav-dd-dot"></span>
+        </a>
+        <div class="nav-dd-divider"></div>
+        <a href="voiceover.html" class="nav-dd-item">
+          <div class="nav-dd-item__info">
+            <span class="nav-dd-item__tag">ĐỊNH DẠNG 01</span>
+            <span class="nav-dd-item__name">Voice-Over <span style="font-weight: 400; opacity: 0.8; font-size: 11.5px;">• Tách Hình Khỏi Tiếng</span></span>
+          </div>
+          
+        </a>
+        <a href="walkandtalk.html" class="nav-dd-item">
+          <div class="nav-dd-item__info">
+            <span class="nav-dd-item__tag">ĐỊNH DẠNG 02</span>
+            <span class="nav-dd-item__name">Walk & Talk <span style="font-weight: 400; opacity: 0.8; font-size: 11.5px;">• Vừa Đi Vừa Nói</span></span>
+          </div>
+          
+        </a>
+        <a href="talkinghead.html" class="nav-dd-item">
+          <div class="nav-dd-item__info">
+            <span class="nav-dd-item__tag">ĐỊNH DẠNG 03</span>
+            <span class="nav-dd-item__name">Talking Head <span style="font-weight: 400; opacity: 0.8; font-size: 11.5px;">• Tạo Niềm Tin Chuyên Gia</span></span>
+          </div>
+          
+        </a>
+        <a href="storytelling.html" class="nav-dd-item">
+          <div class="nav-dd-item__info">
+            <span class="nav-dd-item__tag">ĐỊNH DẠNG 04</span>
+            <span class="nav-dd-item__name">Storytelling 2.5 <span style="font-weight: 400; opacity: 0.8; font-size: 11.5px;">• Bóc Trần Tầng 2.5</span></span>
+          </div>
+          
+        </a>
+      </div>
       </div>
     </div>
+   
 <a href="#sec-hero">Tổng Quan</a>
     <a href="#sec-voiceover">01. Voice-Over</a>
     <a href="#sec-walktalk">02. Walk & Talk</a>
@@ -784,9 +770,9 @@
 
         <a href="#sec-storytelling" style="text-decoration: none; color: inherit;">
           <div class="apple-card" style="height: 100%; border-top: 4px solid var(--cl-purple);">
-            <div class="apple-card__badge apple-card__badge--purple">BƯỚC 04 • KẾT NỐI SÂU</div>
-            <h3 class="apple-card__title">KỂ CHUYỆN 2.5</h3>
-            <p class="apple-card__desc">Nói ra sự thật ngượng miệng. Chạm đúng nỗi lòng thầm kín, gắn kết tri&nbsp;kỷ.</p>
+            <div class="apple-card__badge apple-card__badge--purple">BƯỚC 04 • BẮT BỆNH NGẦM</div>
+            <h3 class="apple-card__title">STORYTELLING</h3>
+            <p class="apple-card__desc">Chỉ trúng chỗ đau giấu kín. Kẻ nào gọi đúng căn bệnh người ta ngại nói, não người nghe tự tin kẻ đó có thuốc&nbsp;chữa.</p>
           </div>
         </a>
       </div>
@@ -814,27 +800,53 @@
           </video>
         </div>
 
-        <!-- Cột Phân Tích Thực Chiến -->
+        <!-- Cột Phân Tích Thực Chiến (Lưới 6 Lợi Thế Thực Tế Đã Audit Gọn) -->
         <div class="format-content-col">
-          <div class="apple-card">
-            <div class="apple-card__badge apple-card__badge--blue">BẢN CHẤT CÁCH LÀM</div>
-            <h3 class="apple-card__title">QUAY RIÊNG B-ROLL - THU ÂM TIẾNG&nbsp;RIÊNG</h3>
-            <p class="apple-card__desc">Quay 100% hình ảnh thực tế bạn đang làm việc: bàn tay gõ phím, thao tác sản phẩm, màn hình máy tính. Sau đó ngồi nơi yên tĩnh, dùng mic điện thoại thu âm giọng nói mộc mạc đè lên hình ảnh.</p>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px;">
+            <!-- Thẻ 1 -->
+            <div class="apple-card" style="padding: 18px 20px;">
+              <div class="apple-card__badge apple-card__badge--blue" style="margin-bottom: 8px;">01 • KHÔNG CẦN LỘ MẶT</div>
+              <h3 class="apple-card__title" style="font-size: 15px; margin-bottom: 6px;">THOÁT ÁP LỰC ỐNG&nbsp;KÍNH</h3>
+              <p class="apple-card__desc" style="font-size: 13.5px; line-height: 1.55; margin-bottom: 0;">Bỏ qua trang điểm, dọn phòng hay sợ nét mặt bị đơ. Ngồi một góc tĩnh, nói bằng đúng chất giọng mộc mạc đời&nbsp;thường.</p>
+            </div>
+
+            <!-- Thẻ 2 -->
+            <div class="apple-card" style="padding: 18px 20px;">
+              <div class="apple-card__badge apple-card__badge--blue" style="margin-bottom: 8px;">02 • TÁCH TIẾNG KHỎI HÌNH</div>
+              <h3 class="apple-card__title" style="font-size: 15px; margin-bottom: 6px;">THU ÂM LẠI TÙY&nbsp;Ý</h3>
+              <p class="apple-card__desc" style="font-size: 13.5px; line-height: 1.55; margin-bottom: 0;">Nói vấp câu nào bấm dừng thu lại câu đó, không sợ hỏng cả bài. Xong phần tiếng trơn tru mới bắt đầu chèn hình ảnh đè&nbsp;lên.</p>
+            </div>
+
+            <!-- Thẻ 3 -->
+            <div class="apple-card" style="padding: 18px 20px;">
+              <div class="apple-card__badge apple-card__badge--blue" style="margin-bottom: 8px;">03 • CHI PHÍ 0 ĐỒNG</div>
+              <h3 class="apple-card__title" style="font-size: 15px; margin-bottom: 6px;">TẬN DỤNG CẢNH QUEN&nbsp;TAY</h3>
+              <p class="apple-card__desc" style="font-size: 13.5px; line-height: 1.55; margin-bottom: 0;">Bàn làm việc, tay gõ phím, thao tác pha trà đều thành cảnh đắt. Kê điện thoại quay tĩnh vài giây một góc, không tốn một đồng sắm&nbsp;đồ.</p>
+            </div>
+
+            <!-- Thẻ 4 -->
+            <div class="apple-card" style="padding: 18px 20px;">
+              <div class="apple-card__badge apple-card__badge--blue" style="margin-bottom: 8px;">04 • BẰNG CHỨNG THỰC TẾ</div>
+              <h3 class="apple-card__title" style="font-size: 15px; margin-bottom: 6px;">TẬP TRUNG VÀO TAY&nbsp;NGHỀ</h3>
+              <p class="apple-card__desc" style="font-size: 13.5px; line-height: 1.55; margin-bottom: 0;">100% khung hình dành trọn cho thao tác tay và sản phẩm thực tế. Khách nhìn thấy sự tỉ mỉ, tay nghề tự lên tiếng mà không cần tự&nbsp;khen.</p>
+            </div>
+
+            <!-- Thẻ 5 -->
+            <div class="apple-card" style="padding: 18px 20px;">
+              <div class="apple-card__badge apple-card__badge--blue" style="margin-bottom: 8px;">05 • TỐC ĐỘ SẢN XUẤT</div>
+              <h3 class="apple-card__title" style="font-size: 15px; margin-bottom: 6px;">DÙNG LẠI KHO HÌNH&nbsp;CŨ</h3>
+              <p class="apple-card__desc" style="font-size: 13.5px; line-height: 1.55; margin-bottom: 0;">Một cảnh quay thợ làm ở xưởng có thể ghép cho 5 bài chia sẻ khác. Bật máy thu đoạn tiếng mới đè lên là xong video trong 15&nbsp;phút.</p>
+            </div>
+
+            <!-- Thẻ 6 -->
+            <div class="apple-card" style="padding: 18px 20px;">
+              <div class="apple-card__badge apple-card__badge--blue" style="margin-bottom: 8px;">06 • BIÊN TẬP ÊM ÁI</div>
+              <h3 class="apple-card__title" style="font-size: 15px; margin-bottom: 6px;">CẮT NỐI KHÔNG GIẬT&nbsp;MẶT</h3>
+              <p class="apple-card__desc" style="font-size: 13.5px; line-height: 1.55; margin-bottom: 0;">Nhặt sạch từ đệm, ngắt nhịp thở tùy ý mà hình bên trên vẫn trôi êm ru. Không sợ giật khẩu hình như quay lộ mặt, câu từ gãy gọn dứt&nbsp;khoát.</p>
+            </div>
           </div>
 
-          <div class="apple-card">
-            <div class="apple-card__badge apple-card__badge--blue">TÂM LÝ NGƯỜI XEM</div>
-            <h3 class="apple-card__title">XEM TỰ NHIÊN, KHÔNG THẤY BỊ CHÀO&nbsp;MỜI</h3>
-            <p class="apple-card__desc">Người xem tập trung hoàn toàn vào thao tác tay tỉ mỉ và lắng nghe giọng chia sẻ êm tai. Họ tiếp nhận kiến thức một cách thoải mái, không có cảm giác bị ép mua hàng.</p>
-          </div>
-
-          <div class="apple-card">
-            <div class="apple-card__badge apple-card__badge--blue">THỰC HÀNH TỐI GIẢN</div>
-            <h3 class="apple-card__title">ĐIỆN THOẠI CÓ SẴN & CÔNG THỨC 3&nbsp;BƯỚC</h3>
-            <p class="apple-card__desc">Chỉ cần kê điện thoại quay cận bàn tay. Kịch bản 3 bước gọn gàng: Vấn đề thường gặp khi làm nghề &rarr; 3 bước xử lý thực tế &rarr; Kết quả hoàn thiện sạch sẽ.</p>
-          </div>
-
-          <div>
+          <div style="margin-top: 8px;">
             <a href="voiceover.html" class="btn-cta">
               <span>Xem Giáo Trình Voice-Over Chi Tiết &rarr;</span>
             </a>
@@ -865,27 +877,53 @@
           </video>
         </div>
 
-        <!-- Cột Phân Tích Thực Chiến -->
+        <!-- Cột Phân Tích Thực Chiến (Lưới 6 Giá Trị Thực Tế Đã Audit Gọn) -->
         <div class="format-content-col">
-          <div class="apple-card">
-            <div class="apple-card__badge apple-card__badge--amber">BẢN CHẤT CÁCH LÀM</div>
-            <h3 class="apple-card__title">CHUYỂN ĐỘNG CƠ THỂ ĐỂ MIỆNG TỰ TRÔI&nbsp;LỜI</h3>
-            <p class="apple-card__desc">Cầm điện thoại hoặc gậy cầm tay, vừa đi dạo vừa chia sẻ. Bước chân di chuyển giúp não bộ không bị đông cứng như khi ngồi một chỗ; câu từ tuôn ra mộc mạc, không cần học thuộc vẹt.</p>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px;">
+            <!-- Thẻ 1 -->
+            <div class="apple-card" style="padding: 18px 20px;">
+              <div class="apple-card__badge apple-card__badge--amber" style="margin-bottom: 8px;">01 • KHÔNG GIAN THẬT</div>
+              <h3 class="apple-card__title" style="font-size: 15px; margin-bottom: 6px;">KHOE KHÉO CƠ SỞ VẬT&nbsp;CHẤT</h3>
+              <p class="apple-card__desc" style="font-size: 13.5px; line-height: 1.55; margin-bottom: 0;">Sải bước đến đâu, camera tự lướt thấy máy móc, quầy kệ tươm tất đến đó. Khách tự nhìn thấy mà không bị cảm giác ép xem quảng&nbsp;cáo.</p>
+            </div>
+
+            <!-- Thẻ 2 -->
+            <div class="apple-card" style="padding: 18px 20px;">
+              <div class="apple-card__badge apple-card__badge--amber" style="margin-bottom: 8px;">02 • TÂM THẾ CHỦ NHÀ</div>
+              <h3 class="apple-card__title" style="font-size: 15px; margin-bottom: 6px;">LỢI THẾ SÂN NHÀ, HẾT&nbsp;CÓNG</h3>
+              <p class="apple-card__desc" style="font-size: 13.5px; line-height: 1.55; margin-bottom: 0;">Đi lại trong chỗ làm quen tay giúp cơ thể tự thả lỏng. Hết cảm giác bị soi mói, lời nói tuôn ra đàng hoàng và tự&nbsp;tin.</p>
+            </div>
+
+            <!-- Thẻ 3 -->
+            <div class="apple-card" style="padding: 18px 20px;">
+              <div class="apple-card__badge apple-card__badge--amber" style="margin-bottom: 8px;">03 • XÓA MẶC CẢ</div>
+              <h3 class="apple-card__title" style="font-size: 15px; margin-bottom: 6px;">KHÁCH HIỂU VÌ SAO CÓ&nbsp;GIÁ</h3>
+              <p class="apple-card__desc" style="font-size: 13.5px; line-height: 1.55; margin-bottom: 0;">Nhìn thấy đồ nghề ngăn nắp, cơ sở sạch bong, khách tự hiểu tiền nào của nấy. Bán sự an tâm, không ai so đo mặc&nbsp;cả.</p>
+            </div>
+
+            <!-- Thẻ 4 -->
+            <div class="apple-card" style="padding: 18px 20px;">
+              <div class="apple-card__badge apple-card__badge--amber" style="margin-bottom: 8px;">04 • BẰNG CHỨNG SỐNG</div>
+              <h3 class="apple-card__title" style="font-size: 15px; margin-bottom: 6px;">NGƯỜI THẬT VIỆC&nbsp;THẬT</h3>
+              <p class="apple-card__desc" style="font-size: 13.5px; line-height: 1.55; margin-bottom: 0;">Thợ đang làm thật, khách đang ngồi thật. Không tốn tiền thuê người đóng kịch làm màu, nhịp sống tạo nên độ tin cậy tuyệt&nbsp;đối.</p>
+            </div>
+
+            <!-- Thẻ 5 -->
+            <div class="apple-card" style="padding: 18px 20px;">
+              <div class="apple-card__badge apple-card__badge--amber" style="margin-bottom: 8px;">05 • TỐC ĐỘ LÀM VIDEO</div>
+              <h3 class="apple-card__title" style="font-size: 15px; margin-bottom: 6px;">LỠ LỜI THÀNH NÉT&nbsp;DUYÊN</h3>
+              <p class="apple-card__desc" style="font-size: 13.5px; line-height: 1.55; margin-bottom: 0;">Chân đang bước thì ngập ngừng một nhịp lại thành sự mộc mạc đời thường. Không sợ vấp, bật máy lên đi một vòng là xong&nbsp;video.</p>
+            </div>
+
+            <!-- Thẻ 6 -->
+            <div class="apple-card" style="padding: 18px 20px;">
+              <div class="apple-card__badge apple-card__badge--amber" style="margin-bottom: 8px;">06 • TIẾP ĐÓN TỪ XA</div>
+              <h3 class="apple-card__title" style="font-size: 15px; margin-bottom: 6px;">DẪN TOUR ĐÓN KHÁCH VÀO&nbsp;TIỆM</h3>
+              <p class="apple-card__desc" style="font-size: 13.5px; line-height: 1.55; margin-bottom: 0;">Khách xem quen mắt từng lối đi, góc tiệm và mặt chủ tiệm. Lúc đến ngoài đời bước vào tự nhiên, thân thuộc như người quen ghé&nbsp;chơi.</p>
+            </div>
           </div>
 
-          <div class="apple-card">
-            <div class="apple-card__badge apple-card__badge--amber">TÂM LÝ NGƯỜI XEM</div>
-            <h3 class="apple-card__title">THẤY NGƯỜI THẬT VIỆC THẬT NGOÀI&nbsp;ĐỜI</h3>
-            <p class="apple-card__desc">Người xem thấy bạn là một con người bằng xương bằng thịt, gần gũi, có gu sống và làm việc chỉn chu. Định dạng này rất hợp để chia sẻ góc nhìn nghề nghiệp hay trải nghiệm thực tế.</p>
-          </div>
-
-          <div class="apple-card">
-            <div class="apple-card__badge apple-card__badge--amber">THỰC HÀNH TỐI GIẢN</div>
-            <h3 class="apple-card__title">MIC CÀI ÁO LỌC GIÓ & KHUNG CẢNH TƯƠM&nbsp;TẤT</h3>
-            <p class="apple-card__desc">Dùng mic cài áo có bông lọc gió để tiếng trong trẻo. Chọn lối đi công viên hoặc hành lang thoáng sáng, mắt nhìn thẳng vào camera như đang trò chuyện cùng người bạn bên cạnh.</p>
-          </div>
-
-          <div>
+          <div style="margin-top: 8px;">
             <a href="walkandtalk.html" class="btn-cta">
               <span>Xem Giáo Trình Walk & Talk Chi Tiết &rarr;</span>
             </a>
@@ -916,27 +954,53 @@
           </video>
         </div>
 
-        <!-- Cột Phân Tích Thực Chiến -->
+        <!-- Cột Phân Tích Thực Chiến (Lưới 6 Lợi Thế Thực Tế Đã Audit Gọn) -->
         <div class="format-content-col">
-          <div class="apple-card">
-            <div class="apple-card__badge apple-card__badge--emerald">BẢN CHẤT CÁCH LÀM</div>
-            <h3 class="apple-card__title">30% MẶT A-ROLL + 70% B-ROLL CHỨNG&nbsp;MINH</h3>
-            <p class="apple-card__desc">Ngồi đĩnh đạc tại góc làm việc thực tế. Khuôn mặt làm điểm tựa uy tín ở câu mở đầu và chốt hạ; phần giữa chèn hình ảnh thao tác thực tế đè lên để chứng minh năng lực chuyên môn.</p>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px;">
+            <!-- Thẻ 1 -->
+            <div class="apple-card" style="padding: 18px 20px;">
+              <div class="apple-card__badge apple-card__badge--emerald" style="margin-bottom: 8px;">01 • CHI PHÍ 0 ĐỒNG</div>
+              <h3 class="apple-card__title" style="font-size: 15px; margin-bottom: 6px;">DỄ BẮT ĐẦU, KHÔNG CẦN&nbsp;STUDIO</h3>
+              <p class="apple-card__desc" style="font-size: 13.5px; line-height: 1.55; margin-bottom: 0;">Tận dụng chiếc điện thoại đang dùng đặt trên bàn. Bấm máy thử vài câu chưa ưng thì kéo lại ghế nói lại, không tốn một đồng chi phí phát&nbsp;sinh.</p>
+            </div>
+
+            <!-- Thẻ 2 -->
+            <div class="apple-card" style="padding: 18px 20px;">
+              <div class="apple-card__badge apple-card__badge--emerald" style="margin-bottom: 8px;">02 • TRỤC TIẾNG LINH HOẠT</div>
+              <h3 class="apple-card__title" style="font-size: 15px; margin-bottom: 6px;">DỄ ĐÈ B-ROLL, BIẾN HÓA 3 TRONG&nbsp;1</h3>
+              <p class="apple-card__desc" style="font-size: 13.5px; line-height: 1.55; margin-bottom: 0;">Thu một lần là có sẵn mạch tiếng chuẩn. Hôm bận thì để nguyên mặt nói, hôm có cảnh thợ làm hay máy chạy thì đè vài giây lên là xong video&nbsp;mới.</p>
+            </div>
+
+            <!-- Thẻ 3 -->
+            <div class="apple-card" style="padding: 18px 20px;">
+              <div class="apple-card__badge apple-card__badge--emerald" style="margin-bottom: 8px;">03 • ĐỐI THOẠI 1-1</div>
+              <h3 class="apple-card__title" style="font-size: 15px; margin-bottom: 6px;">TRÒ CHUYỆN MẶT ĐỐI&nbsp;MẶT</h3>
+              <p class="apple-card__desc" style="font-size: 13.5px; line-height: 1.55; margin-bottom: 0;">Ánh mắt nhìn thẳng vào ống kính như đang ngồi rót chén trà tư vấn riêng cho khách. Khách cảm nhận được sự chắc chắn và tôn trọng từ người làm&nbsp;nghề.</p>
+            </div>
+
+            <!-- Thẻ 4 -->
+            <div class="apple-card" style="padding: 18px 20px;">
+              <div class="apple-card__badge apple-card__badge--emerald" style="margin-bottom: 8px;">04 • UY TÍN CON NGƯỜI</div>
+              <h3 class="apple-card__title" style="font-size: 15px; margin-bottom: 6px;">ĐỨNG RA CHỊU TRÁCH&nbsp;NHIỆM</h3>
+              <p class="apple-card__desc" style="font-size: 13.5px; line-height: 1.55; margin-bottom: 0;">Không núp bóng tài khoản vô danh. Dám đưa mặt ra bảo đảm dịch vụ của tiệm thì khách tự thấy an tâm, xóa sạch nghi ngại lừa đảo trên&nbsp;mạng.</p>
+            </div>
+
+            <!-- Thẻ 5 -->
+            <div class="apple-card" style="padding: 18px 20px;">
+              <div class="apple-card__badge apple-card__badge--emerald" style="margin-bottom: 8px;">05 • GÓC QUAY 1 SẢI TAY</div>
+              <h3 class="apple-card__title" style="font-size: 15px; margin-bottom: 6px;">SETUP GỌN TRÊN BÀN LÀM&nbsp;VIỆC</h3>
+              <p class="apple-card__desc" style="font-size: 13.5px; line-height: 1.55; margin-bottom: 0;">Chỉ cần 1m² bàn làm việc, máy đặt ngang tầm mắt trong tầm với. Đóng cửa phòng lại là sáng sớm hay đêm muộn đều quay được, không phụ thuộc thời&nbsp;tiết.</p>
+            </div>
+
+            <!-- Thẻ 6 -->
+            <div class="apple-card" style="padding: 18px 20px;">
+              <div class="apple-card__badge apple-card__badge--emerald" style="margin-bottom: 8px;">06 • KỸ THUẬT SINGLE-LINE</div>
+              <h3 class="apple-card__title" style="font-size: 15px; margin-bottom: 6px;">QUAY TỪNG CÂU, KHÔNG SỢ&nbsp;VẤP</h3>
+              <p class="apple-card__desc" style="font-size: 13.5px; line-height: 1.55; margin-bottom: 0;">Nhẩm một ý trong đầu, nhìn máy nói dứt khoát 1 câu rồi dừng. Không phải học thuộc lòng cả bài, sai câu nào quay lại câu đó rất nhẹ&nbsp;đầu.</p>
+            </div>
           </div>
 
-          <div class="apple-card">
-            <div class="apple-card__badge apple-card__badge--emerald">TÂM LÝ NGƯỜI XEM</div>
-            <h3 class="apple-card__title">ĐỐI THOẠI 1-1 TẠO ĐỘ TIN CẬY TUYỆT&nbsp;ĐỐI</h3>
-            <p class="apple-card__desc">Người xem cảm nhận bạn đang ngồi tư vấn trực tiếp cho riêng họ. Ánh mắt tập trung và khẩu khí chắc chắn của người làm nghề tạo ra sự an tâm, khiến họ chủ động nhắn tin Zalo xin hỗ trợ.</p>
-          </div>
-
-          <div class="apple-card">
-            <div class="apple-card__badge apple-card__badge--emerald">THỰC HÀNH TỐI GIẢN</div>
-            <h3 class="apple-card__title">KHOẢNG CÁCH 1 SẢI TAY & NÓI THẲNG VÀO&nbsp;VIỆC</h3>
-            <p class="apple-card__desc">Đặt máy cách 60cm–80cm ngang tầm mắt. Không cần gồng mình hay diễn xuất khoa trương, nói khúc chiết, đanh thép như đang giải thích cho khách hàng ngồi trước bàn làm việc.</p>
-          </div>
-
-          <div>
+          <div style="margin-top: 8px;">
             <a href="talkinghead.html" class="btn-cta">
               <span>Xem Giáo Trình Talking Head Chi Tiết &rarr;</span>
             </a>
@@ -946,12 +1010,13 @@
     </div>
   </section>
 
-  <!-- ═══ KHỐI 5: ĐỊNH DẠNG 4 - STORYTELLING 2.5 (LIGHT) ═══ -->
+
+    <!-- ═══ KHỐI 5: ĐỊNH DẠNG 4 - STORYTELLING (LIGHT) ═══ -->
   <section class="cl-zebra-section cl-zebra--light" id="sec-storytelling">
     <div class="cl-sec-container cl-sec-container--wide apple-reveal">
-      <div class="cl-badge">ĐỊNH DẠNG 04 • KẾT NỐI TRI KỶ LÂU DÀI</div>
-      <h2 class="title-short">KỂ CHUYỆN TẦNG 2.5: BÓC SỰ THẬT NGƯỢNG&nbsp;MIỆNG</h2>
-      <p class="editorial-hook">"Bỏ qua những lời xã giao khách sáo tầng 1 và đạo lý sáo rỗng tầng 2. Đánh trúng vào sự thật ngượng miệng tầng 2.5 để người nghe giật mình thấy đúng hoàn cảnh của&nbsp;mình."</p>
+      <div class="cl-badge">ĐỊNH DẠNG 04 • NÓI ĐÚNG VIỆC THỰC TẾ</div>
+      <h2 class="title-short">STORYTELLING: NÓI ĐIỀU NGƯỜI TA NGẠI&nbsp;NÓI</h2>
+      <p class="editorial-hook">"Người ta lướt mạng để giải quyết việc của họ, chẳng ai rảnh xem mình diễn để rồi khéo léo gài bán hàng ở đuôi. Kẻ nào chỉ đúng chỗ hỏng hóc mà người trong cuộc đang giấu, người nghe tự tin người đó biết cách&nbsp;sửa."</p>
 
       <div class="format-layout-grid">
         <!-- Cột Video Player -->
@@ -971,25 +1036,25 @@
         <div class="format-content-col">
           <div class="apple-card">
             <div class="apple-card__badge apple-card__badge--purple">BẢN CHẤT CÁCH LÀM</div>
-            <h3 class="apple-card__title">QUY TRÌNH 4 BƯỚC BÓC SỰ THẬT TẦNG&nbsp;2.5</h3>
-            <p class="apple-card__desc">Khung cảnh hiện trường 5 giây &rarr; Đồng cảm hạ nhiệt tâm lý &rarr; Bẻ lái bóc trần điều ngượng miệng mà ai cũng giấu &rarr; Đúc kết chìa khóa hành động thực tế.</p>
+            <h3 class="apple-card__title">4 BƯỚC BẮT ĐÚNG VIỆC NGOÀI&nbsp;ĐỜI</h3>
+            <p class="apple-card__desc">Bắt đầu bằng 1 cảnh thật 5 giây &rarr; Hiểu cái khó của khách &rarr; Bẻ lái chỉ đúng chỗ làm ẩu mà người ta hay giấu &rarr; Đưa ra cách xử lý thực tế.</p>
           </div>
 
           <div class="apple-card">
             <div class="apple-card__badge apple-card__badge--purple">TÂM LÝ NGƯỜI XEM</div>
-            <h3 class="apple-card__title">CHẠM ĐÚNG NỖI LÒNG THẦM KÍN NGƯỜI ĐI&nbsp;LÀM</h3>
-            <p class="apple-card__desc">Đánh trúng nỗi lo giữ thể diện của người lớn đi làm — thứ mà bình thường ngại nói ra nhưng luôn đau đáu trong lòng. Khi bạn dám nói ra mộc mạc, họ coi bạn là bạn tâm giao.</p>
+            <h3 class="apple-card__title">CHỈ ĐÚNG CÁI CỚ NGƯỜI TA MƯỢN ĐỂ CHE&nbsp;GIẤU</h3>
+            <p class="apple-card__desc">Nói trúng lý do người ta hay đưa ra để lấp liếm việc mình chưa làm được. Mình không dạy đời, mình chỉ nói đúng việc để họ tự giật mình nhìn lại.</p>
           </div>
 
           <div class="apple-card">
             <div class="apple-card__badge apple-card__badge--purple">THỰC HÀNH TỐI GIẢN</div>
-            <h3 class="apple-card__title">NÓI ĐIỀU MÌNH TỪNG VA VẤP THẬT</h3>
-            <p class="apple-card__desc">Không bịa chuyện, không giảng đạo lý suông. Chỉ cần kể lại đúng một lần bạn từng bối rối, từng ngại ngùng trong nghề và cách bạn vượt qua, người nghe sẽ tự khắc tin tưởng.</p>
+            <h3 class="apple-card__title">MANG NHỮNG LẦN LÀM HỎNG RA&nbsp;NÓI</h3>
+            <p class="apple-card__desc">Không bịa chuyện. Cứ kể lại những lần mình làm hỏng, chỗ thị trường làm ẩu và bài học nhớ đời. Khách tin vì biết mình là người từng trả giá thật để thạo việc.</p>
           </div>
 
           <div>
             <a href="storytelling.html" class="btn-cta">
-              <span>Xem Giáo Trình Kể Chuyện 2.5 Chi Tiết &rarr;</span>
+              <span>Xem Giáo Trình Storytelling Chi Tiết &rarr;</span>
             </a>
           </div>
         </div>
@@ -1118,6 +1183,29 @@
       document.addEventListener("click", (e) => {
         if (!e.target.closest(".nav-dropdown")) {
           dropdowns.forEach(dd => dd.classList.remove("is-open"));
+        }
+      });
+    });
+
+  
+    // Bật/tắt và giữ popup menu trên cả máy tính lẫn di động không bị lỗi lướt chuột
+    document.addEventListener("DOMContentLoaded", () => {
+      const dd = document.querySelector(".nav-dropdown");
+      if (!dd) return;
+      const btn = dd.querySelector(".nav-dropdown-btn");
+      if (btn) {
+        btn.addEventListener("click", (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          dd.classList.toggle("is-open");
+          const expanded = dd.classList.contains("is-open");
+          btn.setAttribute("aria-expanded", expanded);
+        });
+      }
+      document.addEventListener("click", (e) => {
+        if (!dd.contains(e.target)) {
+          dd.classList.remove("is-open");
+          if (btn) btn.setAttribute("aria-expanded", "false");
         }
       });
     });
