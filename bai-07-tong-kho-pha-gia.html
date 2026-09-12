@@ -108,6 +108,8 @@
       --cl-amber-bg:    #fffbeb;
       --cl-purple:      #7c3aed;
       --cl-purple-bg:   #f5f3ff;
+      --cl-slate-200:   #e2e8f0;
+      --cl-slate-900:   #0f172a;
 
       /* Radii */
       --cl-radius-lg:   24px;
@@ -531,7 +533,8 @@
     }
     @media (max-width: 800px) {
       .step-comparison-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr !important;
+        gap: 16px;
       }
     }
     .step-card {
@@ -540,6 +543,8 @@
       border-radius: var(--cl-radius-lg);
       padding: 28px 24px;
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+      display: flex;
+      flex-direction: column;
     }
     .step-card__label {
       font-family: var(--font-mono);
@@ -568,21 +573,22 @@
     .step-card__desc {
       font-size: 15px;
       color: var(--cl-text-body);
-      line-height: 1.7;
+      line-height: 1.75;
+      text-wrap: pretty;
     }
 
     /* Step 4: 3-Cards Adult Friction Triad */
     .friction-triad-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
       gap: 20px;
       width: 100%;
       text-align: left;
       margin-top: 16px;
     }
-    @media (max-width: 900px) {
+    @media (max-width: 800px) {
       .friction-triad-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr !important;
       }
     }
     .friction-card {
@@ -669,7 +675,7 @@
     }
     .script-item-row {
       display: flex;
-      align-items: baseline;
+      align-items: center;
       gap: 18px;
       padding: 16px 0;
       border-bottom: 1px solid var(--cl-line);
@@ -684,7 +690,12 @@
     @media (max-width: 768px) {
       .script-item-row {
         flex-direction: column;
+        align-items: flex-start;
         gap: 8px;
+      }
+      .script-line-intent-pill {
+        white-space: normal;
+        font-size: 11.5px;
       }
     }
     .script-badge-tag {
@@ -1079,9 +1090,98 @@
       opacity: 0.96;
     }
 
+    /* ═══ 12. LESSON TAKEAWAYS (ĐÚC KẾT BÀI HỌC) ═══ */
+    #sec-wisdom .editorial-hook {
+      font-family: var(--font-editorial);
+      font-style: italic;
+      font-size: clamp(17px, 2.2vw, 21px);
+      border-left: 4px solid var(--cl-accent);
+      padding: 16px 22px;
+      background: var(--cl-tint);
+      border-radius: 0 var(--cl-radius-sm) var(--cl-radius-sm) 0;
+      text-align: left;
+      line-height: 1.65;
+      color: var(--cl-text-base);
+      margin-bottom: 24px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .takeaways-list {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      width: 100%;
+      text-align: left;
+      margin-top: 6px;
+      margin-bottom: 24px;
+    }
+
+    .takeaway-card {
+      display: flex;
+      align-items: flex-start;
+      gap: 18px;
+      background: #ffffff;
+      border: 1px solid var(--cl-line);
+      border-radius: var(--cl-radius-lg);
+      padding: 20px 24px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.02);
+      transition: all 0.22s ease;
+      text-align: left;
+      box-sizing: border-box;
+    }
+
+    .takeaway-card:hover {
+      border-color: rgba(26, 115, 232, 0.35);
+      box-shadow: 0 8px 24px rgba(26, 115, 232, 0.06);
+      transform: translateY(-2px);
+    }
+
+    .takeaway-num {
+      font-family: var(--font-mono);
+      font-size: 14px;
+      font-weight: 800;
+      color: var(--cl-accent);
+      background: #eff6ff;
+      border: 1px solid rgba(26, 115, 232, 0.2);
+      border-radius: 8px;
+      width: 36px;
+      height: 36px;
+      min-width: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .takeaway-content {
+      flex: 1;
+      text-align: left;
+    }
+
+    .takeaway-content h4 {
+      font-family: var(--font-display-long);
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--cl-text-base);
+      margin: 0 0 6px 0;
+      line-height: 1.4;
+      text-wrap: pretty;
+    }
+
+    .takeaway-content p {
+      font-family: var(--font-body);
+      font-size: 14.5px;
+      color: var(--cl-text-body);
+      line-height: 1.65;
+      margin: 0;
+      text-wrap: pretty;
+    }
+
     @media (max-width: 768px) {
       .cl-zebra-section {
-        padding: 70px 16px;
+        padding: 65px 16px 85px;
       }
       .exercise-hero-card, .thinking-open-card, .reflection-box, .final-script-card {
         padding: 20px 16px;
@@ -1096,6 +1196,10 @@
         gap: 10px;
         font-size: 14px;
       }
+      .takeaway-card {
+        padding: 16px;
+        gap: 14px;
+      }
       .cl-btn {
         width: 100%;
         box-sizing: border-box;
@@ -1104,10 +1208,26 @@
         text-align: center;
       }
       .top-nav {
-        padding: 10px 16px;
+        padding: 8px 12px;
+        overflow-x: auto;
       }
       .top-nav__title {
         display: none;
+      }
+      .top-nav__links {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        padding-bottom: 2px;
+      }
+      .top-nav__links::-webkit-scrollbar {
+        display: none;
+      }
+      .top-nav__link, .nav-btn {
+        flex-shrink: 0;
+        font-size: 11.5px;
+        padding: 5px 10px;
       }
     }
   </style>
@@ -1339,7 +1459,7 @@
       </p>
 
       <!-- Grid 4 Góc Nhìn Tầng 2.5 -->
-      <div class="friction-triad-grid" style="grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));">
+      <div class="friction-triad-grid">
         <div class="friction-card">
           <span class="friction-card__badge">MẮT XÍCH 01</span>
           <h3 class="friction-card__title">Cái Cớ Ngụy Trang</h3>
@@ -1403,7 +1523,7 @@
        KHỐI 6: KỊCH BẢN NÓI TRÀ ĐÁ ĐÃ CHỐT (100dvh)
        ═══════════════════════════════════════════════════════════════════ -->
   <section class="cl-zebra-section cl-zebra--tint" id="sec-script">
-    <div class="cl-sec-container apple-reveal">
+    <div class="cl-sec-container cl-sec-container--wide apple-reveal">
       <div class="cl-badge cl-badge--green">KỊCH BẢN THỰC CHIẾN • 20 - 22 GIÂY</div>
       <h2 class="title-short">KỊCH BẢN NÓI TRÀ ĐÁ ĐÃ CHỐT</h2>
       <p class="cl-body">
@@ -1440,7 +1560,7 @@
       </div>
 
       <div style="margin-top: 28px;">
-        <a href="#sec-toi-uu-hook" class="cl-btn" style="background: var(--cl-amber); color: #000; font-weight: 800;">⚡ BƯỚC TIẾP THEO: TỐI ƯU HOOK ĐỂ GIẢM THIỆT THÒI TRÊN VIDEO NGẮN ↓</a>
+        <a href="#sec-toi-uu-hook" class="cl-btn" style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: #ffffff; font-weight: 700; box-shadow: 0 6px 20px rgba(217, 119, 6, 0.28);">⚡ BƯỚC TIẾP THEO: TỐI ƯU HOOK ĐỂ GIẢM THIỆT THÒI TRÊN VIDEO NGẮN ↓</a>
       </div>
     </div>
     <a href="#sec-toi-uu-hook" class="cl-scroll-hint">
@@ -1463,7 +1583,7 @@
       </p>
 
       <!-- BẢNG 2 CỘT SO SÁNH TRỰC DIỆN -->
-      <div class="step-comparison-grid" style="grid-template-columns: 1fr 1fr; margin-top: 0; gap: 24px;">
+      <div class="step-comparison-grid" style="margin-top: 0; gap: 24px;">
         
         <!-- CỘT 1: LÚC CHƯA CÓ HOOK -->
         <div class="step-card" style="border-left: 4px solid var(--cl-danger); background: #ffffff;">
@@ -1973,7 +2093,7 @@
 
       <div style="margin-top: 32px; display: flex; gap: 16px; flex-wrap: wrap;">
         <a href="9-bai-tap-thuc-hanh.html" class="cl-btn">🏛️ QUAY VỀ MASTER HUB 9 KỊCH BẢN</a>
-        <a href="#sec-de-bai" class="cl-btn" style="background: var(--cl-slate-200); color: var(--cl-slate-900);">↑ VỀ ĐẦU TRANG</a>
+        <a href="#sec-de-bai" class="cl-btn" style="background: var(--cl-tint); color: var(--cl-text-base); border: 1px solid var(--cl-line); box-shadow: none;">↑ VỀ ĐẦU TRANG</a>
       </div>
     </div>
   </section>
@@ -2043,4 +2163,3 @@
 </body>
 </html>
 
-</html>
