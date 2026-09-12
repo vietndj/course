@@ -1,0 +1,1025 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Phương Án 1: Báo Cáo Nghiên Cứu Chuyên Khảo (Dossier Layout) • 4 Logic Video Ads</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  
+  <style>
+    /* ═══ 1. TYPOGRAPHY DECLARATIONS ═══ */
+    @font-face {
+      font-family: 'FD Aeonik Extended';
+      src: url('./fonts/FDAeonikExtended-Bold.woff2?v=20260911b') format('woff2'),
+           url('https://font.fedu.vn/fonts/FDAeonikExtended-Bold.woff2?v=20260911b') format('woff2'),
+           url('./fonts/FDAeonikExtended-Bold.ttf?v=20260911b') format('truetype'),
+           url('/Users/vietmac/Library/Fonts/FDAeonikExtended-Bold.otf') format('opentype'),
+           local('FD Aeonik Extended Bold');
+      font-weight: 700;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'FD Aeonik';
+      src: url('./fonts/FDAeonikRegular.ttf') format('truetype'),
+           url('./assets/fonts/FDAeonikRegular.ttf') format('truetype'),
+           url('/Users/vietmac/Library/Fonts/FDAeonikRegular.ttf') format('truetype'),
+           local('FD Aeonik Regular'), local('FDAeonikRegular');
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'FD Aeonik';
+      src: url('./fonts/FDAeonikExtended-SemiBold.woff2?v=20260911b') format('woff2'),
+           url('https://font.fedu.vn/fonts/FDAeonikExtended-SemiBold.woff2?v=20260911b') format('woff2'),
+           url('./fonts/FDAeonikExtended-SemiBold.ttf?v=20260911b') format('truetype'),
+           url('/Users/vietmac/Library/Fonts/FDAeonikExtended-SemiBold.otf') format('opentype'),
+           local('FD Aeonik SemiBold');
+      font-weight: 600;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Tiempos Text';
+      src: url('./fonts/FDTiemposText-Regular.otf') format('opentype'),
+           url('/Users/vietmac/Library/Fonts/FDTiemposText-Regular.otf') format('opentype'),
+           local('Tiempos Text Regular'), local('FDTiemposText-Regular');
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Tiempos Text';
+      src: url('./fonts/FDTiemposText-Medium.otf') format('opentype'),
+           url('/Users/vietmac/Library/Fonts/FDTiemposText-Medium.otf') format('opentype'),
+           local('Tiempos Text Medium'), local('FDTiemposText-Medium');
+      font-weight: 500;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Tiempos Text';
+      src: url('./fonts/FDTiemposText-RegularItalic.otf') format('opentype'),
+           url('/Users/vietmac/Library/Fonts/FDTiemposText-RegularItalic.otf') format('opentype'),
+           local('Tiempos Text Regular Italic'), local('FDTiemposText-RegularItalic');
+      font-weight: 400;
+      font-style: italic;
+      font-display: swap;
+    }
+
+    /* ═══ 2. DESIGN TOKENS ═══ */
+    :root {
+      --cl-bg:          #f8fafc;
+      --cl-surface:     #ffffff;
+      --cl-accent:      #0f62fe;
+      --cl-accent-tint: #eff6ff;
+      --cl-accent-border: #bfdbfe;
+      --cl-line:        rgba(15, 23, 42, 0.08);
+      --cl-line-strong: rgba(15, 23, 42, 0.16);
+      
+      --cl-text-head:   #090d16;
+      --cl-text-body:   #1e293b;
+      --cl-text-muted:  #64748b;
+      
+      --font-display-short: 'FD Aeonik Extended', 'Inter', sans-serif;
+      --font-display-long:  'FD Aeonik', 'Inter', sans-serif;
+      --font-body:          'Tiempos Text', Georgia, serif;
+      --font-mono:          'JetBrains Mono', monospace;
+
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 20px;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background: var(--cl-bg);
+      color: var(--cl-text-body);
+      font-family: var(--font-body);
+      font-size: 16.5px;
+      line-height: 1.85;
+    }
+
+    /* ═══ 3. TOP NAVIGATION ═══ */
+    .top-nav {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 32px;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--cl-line);
+    }
+    .top-nav__brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-family: var(--font-display-long);
+      font-weight: 700;
+      font-size: 14px;
+      color: var(--cl-text-head);
+      text-decoration: none;
+    }
+    .top-nav__badge {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      background: #eff6ff;
+      color: var(--cl-accent);
+      border: 1px solid var(--cl-accent-border);
+      padding: 3px 8px;
+      border-radius: 999px;
+      letter-spacing: 0.04em;
+    }
+    .top-nav__actions {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+    }
+    .nav-switch-btn {
+      font-family: var(--font-display-long);
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--cl-accent);
+      text-decoration: none;
+      padding: 6px 14px;
+      border-radius: 999px;
+      background: var(--cl-accent-tint);
+      border: 1px solid var(--cl-accent-border);
+      transition: all 0.2s;
+    }
+    .nav-switch-btn:hover {
+      background: #dbeafe;
+    }
+
+    /* ═══ 4. TWO-COLUMN DOSSIER LAYOUT ═══ */
+    .dossier-layout {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 310px 1fr;
+      gap: 48px;
+      padding: 40px 32px 120px;
+    }
+
+    /* Sticky Sidebar Navigation */
+    .dossier-sidebar {
+      position: sticky;
+      top: 80px;
+      height: fit-content;
+      max-height: calc(100vh - 100px);
+      overflow-y: auto;
+      padding-right: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+    .sidebar-block {
+      background: var(--cl-surface);
+      border: 1px solid var(--cl-line);
+      border-radius: var(--radius-md);
+      padding: 20px;
+      box-shadow: 0 2px 10px -2px rgba(15, 23, 42, 0.03);
+    }
+    .sidebar-heading {
+      font-family: var(--font-display-short);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--cl-text-muted);
+      margin-bottom: 14px;
+    }
+    .sidebar-menu {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .sidebar-menu__link {
+      display: block;
+      font-family: var(--font-display-long);
+      font-size: 13.5px;
+      font-weight: 600;
+      color: var(--cl-text-muted);
+      text-decoration: none;
+      padding: 8px 12px;
+      border-radius: var(--radius-sm);
+      transition: all 0.2s;
+      line-height: 1.4;
+    }
+    .sidebar-menu__link:hover, .sidebar-menu__link.active {
+      color: var(--cl-accent);
+      background: var(--cl-accent-tint);
+    }
+    .sidebar-stat-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(15, 23, 42, 0.06);
+      font-family: var(--font-display-long);
+      font-size: 13px;
+    }
+    .sidebar-stat-row:last-child {
+      border-bottom: none;
+    }
+    .sidebar-stat-row strong {
+      font-family: var(--font-mono);
+      color: var(--cl-accent);
+      font-size: 14px;
+    }
+
+    /* Reading Column */
+    .dossier-content {
+      min-width: 0;
+      max-width: 820px;
+    }
+
+    .dossier-paper {
+      background: var(--cl-surface);
+      border: 1px solid var(--cl-line);
+      border-radius: var(--radius-lg);
+      padding: 56px 64px;
+      box-shadow: 0 4px 24px -2px rgba(15, 23, 42, 0.04);
+      margin-bottom: 40px;
+    }
+
+    /* ═══ 5. TYPOGRAPHY & KICKERS ═══ */
+    .doc-kicker {
+      font-family: var(--font-display-short);
+      font-size: 11.5px;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--cl-accent);
+      margin-bottom: 14px;
+      display: inline-block;
+    }
+    .doc-title {
+      font-family: var(--font-display-short);
+      font-weight: 700;
+      font-size: 32px;
+      line-height: 1.25;
+      letter-spacing: -0.01em;
+      text-transform: uppercase;
+      color: var(--cl-text-head);
+      margin-bottom: 20px;
+    }
+    .doc-subtitle {
+      font-family: var(--font-display-long);
+      font-size: 18.5px;
+      font-weight: 500;
+      line-height: 1.6;
+      color: var(--cl-text-muted);
+      margin-bottom: 32px;
+    }
+    .editorial-quote {
+      font-family: var(--font-body);
+      font-style: italic;
+      font-size: 20px;
+      line-height: 1.7;
+      color: var(--cl-text-head);
+      border-left: 4px solid var(--cl-accent);
+      padding: 12px 0 12px 24px;
+      margin: 32px 0;
+      background: #fafbfc;
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    }
+
+    h2.section-anchor {
+      font-family: var(--font-display-short);
+      font-weight: 700;
+      font-size: 22px;
+      line-height: 1.35;
+      text-transform: uppercase;
+      color: var(--cl-text-head);
+      margin: 48px 0 18px;
+      padding-top: 24px;
+      border-top: 1px solid var(--cl-line);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    h3.sub-anchor {
+      font-family: var(--font-display-long);
+      font-weight: 700;
+      font-size: 18px;
+      color: var(--cl-text-head);
+      margin: 28px 0 12px;
+    }
+
+    p.lead-text {
+      font-size: 17.5px;
+      color: var(--cl-text-body);
+      margin-bottom: 24px;
+    }
+
+    /* ═══ 6. 3-TIER MATRIX BOXES ═══ */
+    .truth-drill-box {
+      border: 1px solid var(--cl-line-strong);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      margin: 28px 0;
+    }
+    .truth-drill-row {
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--cl-line);
+      background: #ffffff;
+      font-size: 15px;
+    }
+    .truth-drill-row:last-child {
+      border-bottom: none;
+    }
+    .truth-drill-label {
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .drill-t1 { color: #64748b; }
+    .drill-t2 { color: #d97706; }
+    .drill-t25 { color: var(--cl-accent); font-weight: 800; }
+    .drill-t3 { color: #dc2626; }
+    .drill-reframe { color: #16a34a; }
+
+    /* ═══ 7. EVIDENCE CASE CARDS (BẰNG CHỨNG HỌC VIÊN STU) ═══ */
+    .case-evidence-item {
+      background: #ffffff;
+      border: 1px solid var(--cl-line);
+      border-radius: var(--radius-md);
+      padding: 24px 28px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 8px -2px rgba(15, 23, 42, 0.02);
+      transition: all 0.2s ease;
+    }
+    .case-evidence-item:hover {
+      border-color: var(--cl-accent-border);
+      box-shadow: 0 6px 18px -4px rgba(15, 98, 254, 0.06);
+    }
+    .case-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 14px;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .case-title {
+      font-family: var(--font-display-long);
+      font-weight: 700;
+      font-size: 17.5px;
+      color: var(--cl-text-head);
+    }
+    .case-meta {
+      font-family: var(--font-display-long);
+      font-size: 13px;
+      color: var(--cl-text-muted);
+      margin-top: 2px;
+    }
+    .stu-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-display-long);
+      font-size: 12.5px;
+      font-weight: 700;
+      background: var(--cl-accent-tint);
+      color: var(--cl-accent);
+      border: 1px solid var(--cl-accent-border);
+      padding: 5px 12px;
+      border-radius: 999px;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: all 0.2s;
+    }
+    .stu-btn:hover {
+      background: #dbeafe;
+      transform: translateX(2px);
+    }
+    .verbatim-quote {
+      background: #f1f5f9;
+      border-left: 3px solid #0f172a;
+      padding: 10px 16px;
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      font-family: var(--font-mono);
+      font-size: 14px;
+      color: #0f172a;
+      margin: 12px 0;
+    }
+    .case-psychology {
+      font-family: var(--font-body);
+      font-size: 15.5px;
+      line-height: 1.75;
+      color: var(--cl-text-body);
+    }
+
+    /* Script Block */
+    .script-block {
+      background: #0f172a;
+      color: #f8fafc;
+      border-radius: var(--radius-md);
+      padding: 24px 28px;
+      margin: 28px 0;
+      font-size: 15px;
+      line-height: 1.8;
+    }
+    .script-block__title {
+      font-family: var(--font-display-short);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #93c5fd;
+      margin-bottom: 14px;
+      border-bottom: 1px solid rgba(255,255,255,0.12);
+      padding-bottom: 8px;
+    }
+    .script-cue {
+      color: #38bdf8;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    /* Responsive */
+    @media (max-width: 960px) {
+      .dossier-layout {
+        grid-template-columns: 1fr;
+        padding: 20px 16px 80px;
+      }
+      .dossier-sidebar {
+        position: static;
+        max-height: none;
+      }
+      .dossier-paper {
+        padding: 36px 24px;
+      }
+      .doc-title {
+        font-size: 26px;
+      }
+      .truth-drill-row {
+        grid-template-columns: 1fr;
+        gap: 6px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="top-nav">
+    <a href="https://vietndj.github.io/course/4-logic-video-quang-cao.html" class="top-nav__brand">
+      <span class="top-nav__badge">PHƯƠNG ÁN 1</span>
+      <span>HỒ SƠ NGHIÊN CỨU CHUYÊN KHẢO (DOSSIER)</span>
+    </a>
+    <div class="top-nav__actions">
+      <a href="./4-logic-radar-interactive.html" class="nav-switch-btn">Xem Phương Án 2 (Radar Tương Tác) →</a>
+      <a href="https://vietndj.github.io/hocvien.html" target="_blank" class="nav-switch-btn">Mở Toàn Cảnh STU ↗</a>
+    </div>
+  </header>
+
+  <div class="dossier-layout">
+    
+    <!-- LEFT SIDEBAR -->
+    <aside class="dossier-sidebar">
+      <div class="sidebar-block">
+        <div class="sidebar-heading">Mục Lục Chuyên Khảo</div>
+        <ul class="sidebar-menu">
+          <li><a href="#sec-overview" class="sidebar-menu__link active">1. Tổng Quan & Bối Cảnh Data</a></li>
+          <li><a href="#sec-logic-1" class="sidebar-menu__link">2. Logic 01: Xung Đột Vị Thế (55%)</a></li>
+          <li><a href="#sec-logic-2" class="sidebar-menu__link">3. Logic 02: Bẫy Lịch Sự 3s Đầu (23%)</a></li>
+          <li><a href="#sec-logic-3" class="sidebar-menu__link">4. Logic 03: Bế Tắc Quy Trình Solo (14%)</a></li>
+          <li><a href="#sec-logic-4" class="sidebar-menu__link">5. Logic 04: Bẫy View Ảo Rỗng Túi (8%)</a></li>
+          <li><a href="#sec-matrix" class="sidebar-menu__link">6. Ma Trận Triển Khai Ads</a></li>
+        </ul>
+      </div>
+
+      <div class="sidebar-block">
+        <div class="sidebar-heading">Thông Số Audit Đối Soát</div>
+        <div class="sidebar-stat-row">
+          <span>Tổng Lead Web:</span>
+          <strong>428+ SĐT</strong>
+        </div>
+        <div class="sidebar-stat-row">
+          <span>Chat Messenger:</span>
+          <strong>3.642 khách</strong>
+        </div>
+        <div class="sidebar-stat-row">
+          <span>Hồ sơ STU đối soát:</span>
+          <strong>24 Ca thật</strong>
+        </div>
+        <div class="sidebar-stat-row">
+          <span>Định dạng chữ:</span>
+          <strong>Tiempos 1.85</strong>
+        </div>
+      </div>
+    </aside>
+
+    <!-- RIGHT READING PAPER -->
+    <main class="dossier-content">
+      <article class="dossier-paper" id="sec-overview">
+        <span class="doc-kicker">TÀI LIỆU NGHIÊN CỨU CHIẾN LƯỢC • PHƯƠNG ÁN 1 (DOSSIER)</span>
+        <h1 class="doc-title">4 LOGIC QUẢNG CÁO FACEBOOK THỰC CHIẾN BÓC TÁCH 3 TẦNG</h1>
+        <p class="doc-subtitle">
+          Giải pháp bố cục chuyên khảo 2 cột: Tối ưu cho việc đọc lướt nghiên cứu văn bản dày đặc, giữ nguyên tương phản mực in WCAG AAA và liên kết trực tiếp vào từng hồ sơ trong Student Hub (STU).
+        </p>
+
+        <blockquote class="editorial-quote">
+          "Đừng mở máy lên mải khoe thứ bạn có. Hãy chạm đúng vào sự thật ngượng miệng mà người mua đang giấu kín, họ sẽ tự khắc lắng nghe."
+        </blockquote>
+
+        <p class="lead-text">
+          Tài liệu này được trích xuất trực tiếp từ 428+ dữ liệu khách hàng đăng ký lớp Offline và 3.642 lượt tư vấn Messenger của Fanpage <i>30 Ngày Học Làm Nội Dung Viral</i>. Dưới đây là 4 luồng tâm lý chuyển đổi cốt lõi nhất được bảo chứng bằng 24 ca thực tế có thật trong STU.
+        </p>
+
+        <!-- ═══ LOGIC 1 ═══ -->
+        <h2 class="section-anchor" id="sec-logic-1">
+          <span>01</span> XUNG ĐỘT VỊ THẾ CỦA NGƯỜI LÀM NGHỀ (55% LEADS)
+        </h2>
+        <p><b>Nhóm mục tiêu:</b> Giảng viên, Bác sĩ, Chuyên gia, Sale BĐS tiền tỷ, Chủ doanh nghiệp.</p>
+
+        <div class="truth-drill-box">
+          <div class="truth-drill-row">
+            <span class="truth-drill-label drill-t1">Tầng 1 (Đãi bôi):</span>
+            <div>"Thời buổi 4.0 rồi, chủ doanh nghiệp phải xây dựng nhân hiệu, bước ra ánh sáng để truyền cảm hứng..." (Văn mẫu sáo rỗng).</div>
+          </div>
+          <div class="truth-drill-row">
+            <span class="truth-drill-label drill-t2">Tầng 2 (Thật):</span>
+            <div>Cầm máy lên mặt đơ như tượng, mắt đảo lia lịa đọc chữ, quay đi quay lại 20 lần không xong clip 30s. Thuê ê-kíp ngoài 20-30tr/tháng thì kịch bản sáo rỗng.</div>
+          </div>
+          <div class="truth-drill-row">
+            <span class="truth-drill-label drill-t25">Tầng 2.5 (Thể diện):</span>
+            <div>Ngoài đời có thâm niên 10-15 năm, nói chuyện đối tác vanh vách; nhưng rất sợ bạn bè, đồng nghiệp nhìn thấy xì xào: "Dạo này ế ẩm hay sao mà phải lên mạng làm màu, nói đạo lý?".</div>
+          </div>
+          <div class="truth-drill-row">
+            <span class="truth-drill-label drill-t3">Tầng 3 (Tim đen):</span>
+            <div>Sợ bị coi là hết thời, sợ mất uy tín. Chạnh lòng khi thấy những bạn trẻ mới vào nghề, chuyên môn kém xa mình nhưng chịu làm video lại hút hết khách hàng.</div>
+          </div>
+          <div class="truth-drill-row" style="background: #f0fdf4;">
+            <span class="truth-drill-label drill-reframe">Nút thắt cốt lõi:</span>
+            <div><b>Kỹ thuật ngắt nhịp 5 giây & Setup 2 góc máy chuyển đổi</b>: Ngồi mộc mạc nói từng câu ngắn theo từ khóa như tâm sự chén trà, cắt sang góc 45 độ là che sạch lỗi vấp.</div>
+          </div>
+        </div>
+
+        <h3 class="sub-anchor">Bằng Chứng Đối Soát Dữ Liệu Thật (6 Ca STU):</h3>
+
+        <!-- Case 1.1 -->
+        <div class="case-evidence-item">
+          <div class="case-header">
+            <div>
+              <div class="case-title">1. Cô Nguyễn Kim Hạnh — Giảng Viên Đại Học</div>
+              <div class="case-meta">SĐT: 0969.863.488 • Email: kimhanhnguyen963@gmail.com</div>
+            </div>
+            <a href="https://vietndj.github.io/hocvien.html" target="_blank" class="stu-btn">↗ Mở STU</a>
+          </div>
+          <div class="verbatim-quote">"Tiết kiệm hàng chục triệu thuê quay"</div>
+          <p class="case-psychology">
+            Khảo sát giá thuê ngoài 20–30 triệu/tháng quá đắt đỏ và kịch bản lệch chuẩn sư phạm. Muốn tự quay nhưng sợ vụng về làm giảm uy tín học thuật.
+          </p>
+        </div>
+
+        <!-- Case 1.2 -->
+        <div class="case-evidence-item">
+          <div class="case-header">
+            <div>
+              <div class="case-title">2. Thầy Lê Đức Duy — Giảng Viên Đào Tạo</div>
+              <div class="case-meta">SĐT: 0988.685.993 • Email: leeduy9x@gmail.com</div>
+            </div>
+            <a href="https://vietndj.github.io/hocvien.html" target="_blank" class="stu-btn">↗ Mở STU</a>
+          </div>
+          <div class="verbatim-quote">"Hiểu cách đóng gói sản phẩm đào tạo & video marketing hiệu quả"</div>
+          <p class="case-psychology">
+            Muốn làm video marketing bài giảng tuyển sinh nhưng vướng khâu lên hình: sợ bị học trò, đồng nghiệp cười chê là "lên mạng diễn trò".
+          </p>
+        </div>
+
+        <!-- Case 1.3 -->
+        <div class="case-evidence-item">
+          <div class="case-header">
+            <div>
+              <div class="case-title">3. Chị Lê Thị Nhung — Trưởng Nhóm Kinh Doanh Bảo Hiểm AIA</div>
+              <div class="case-meta">SĐT: 0852.686.568 • ID: le_thi_nhung</div>
+            </div>
+            <a href="https://vietndj.github.io/hocvien.html#card-le_thi_nhung" target="_blank" class="stu-btn">↗ Xem Hồ Sơ STU</a>
+          </div>
+          <div class="verbatim-quote">"Xây kênh chuyên gia để hút khách hàng/học viên ngành bảo hiểm AIA"</div>
+          <p class="case-psychology">
+            Ngành bảo hiểm rất sợ bị mang tiếng lừa đảo, lùa gà. Chị Nhung cần phong cách video đĩnh đạc, mộc mạc và chân thật để xây dựng niềm tin thật.
+          </p>
+        </div>
+
+        <!-- Case 1.4 -->
+        <div class="case-evidence-item">
+          <div class="case-header">
+            <div>
+              <div class="case-title">4. Anh Cao Hùng Sơn — Bất Động Sản</div>
+              <div class="case-meta">SĐT: 0988.885.835 • ID: cao_hung_son • Đàm thoại 2m 35s</div>
+            </div>
+            <a href="https://vietndj.github.io/hocvien.html#card-cao_hung_son" target="_blank" class="stu-btn">↗ Xem Hồ Sơ STU</a>
+          </div>
+          <div class="verbatim-quote">"Bắt đầu làm video BĐS từ đầu"</div>
+          <p class="case-psychology">
+            Bán tài sản tiền tỷ, tư vấn ngoài đời rất trơn tru nhưng đứng trước máy quay thì sợ bị coi là môi giới chèo kéo nghiệp dư.
+          </p>
+        </div>
+
+        <!-- Case 1.5 -->
+        <div class="case-evidence-item">
+          <div class="case-header">
+            <div>
+              <div class="case-title">5. Anh Minh Vương — Sale BĐS Thổ Cư & Dự Án</div>
+              <div class="case-meta">SĐT: 0941.810.888 • ID: minh_vuong</div>
+            </div>
+            <a href="https://vietndj.github.io/hocvien.html#card-minh_vuong" target="_blank" class="stu-btn">↗ Xem Hồ Sơ STU</a>
+          </div>
+          <div class="verbatim-quote">"KT Quay làm nổi bật điểm mạnh của sổ và tạo thu hút"</div>
+          <p class="case-psychology">
+            Cần học cách quay sổ đỏ và bối cảnh đất thực tế để tạo sự tin tưởng tuyệt đối với khách mua, không thể dùng video giật gân.
+          </p>
+        </div>
+
+        <!-- Case 1.6 -->
+        <div class="case-evidence-item">
+          <div class="case-header">
+            <div>
+              <div class="case-title">6. Thầy Nguyễn Đại Giao An — Giám Đốc TT Tiếng Hàn Seoul Phổ Yên</div>
+              <div class="case-meta">Fanpage: ngoainguphoyenseoul • ID: nguyen_dai_giao_an_offline2</div>
+            </div>
+            <a href="https://vietndj.github.io/hocvien.html#card-nguyen_dai_giao_an_offline2" target="_blank" class="stu-btn">↗ Xem Hồ Sơ STU</a>
+          </div>
+          <div class="verbatim-quote">"Trung tâm tiếng Hàn Seoul tại Phổ Yên muốn đẩy mạnh tuyển sinh qua video ngắn tiếp cận công nhân Samsung"</div>
+          <p class="case-psychology">
+            Đứng đầu trung tâm ngoại ngữ địa phương, có uy tín sư phạm cao; cần các video tình huống đĩnh đạc giữ vững vị thế nhà giáo.
+          </p>
+        </div>
+
+        <!-- Kịch bản 60s -->
+        <div class="script-block">
+          <div class="script-block__title">KỊCH BẢN MẪU FACEBOOK ADS • LOGIC 01 (60 GIÂY)</div>
+          <p><span class="script-cue">[00-05s • Hook T2.5]:</span> "Có anh chị nào ở đây làm nghề mười mấy năm rất chắc tay, nhưng hễ cầm điện thoại lên định quay clip là người đơ như tượng không?"</p>
+          <p><span class="script-cue">[06-18s • Bóc kẽ hở]:</span> "Thuê ê-kíp ngoài thì xót ruột mất vài chục triệu mỗi tháng mà kịch bản họ viết nghe sáo rỗng. Còn tự mình đứng lên quay thì sợ bạn bè, đối tác quen nhìn vào lại bảo: 'Dạo này ế ẩm hay sao mà phải lên mạng làm trò?'."</p>
+          <p><span class="script-cue">[19-38s • Chìa khóa]:</span> "Thực ra anh chị không cần phải học diễn xuất hay học thuộc kịch bản dài. Người có chuyên môn sâu chỉ cần ngồi xuống, nói từng câu ngắn 5 giây theo từ khóa như đang ngồi uống chén trà. Nói vấp, mình cắt sang góc máy phụ 45 độ là che sạch lỗi."</p>
+          <p><span class="script-cue">[39-60s • CTA]:</span> "Lớp offline 2 ngày tại Hà Nội mình sẽ ngồi cạnh kèm 1-1, uốn từng góc máy để anh chị có ngay video chuyên gia hoàn chỉnh mang về máy. Bấm nút bên dưới xem chi tiết nhé."</p>
+        </div>
+
+        <!-- ═══ LOGIC 2 ═══ -->
+        <h2 class="section-anchor" id="sec-logic-2">
+          <span>02</span> BẪY LỊCH SỰ 3 GIÂY ĐẦU (23% LEADS)
+        </h2>
+        <p><b>Nhóm mục tiêu:</b> Người chạy ads video bị đắt, chủ shop online, người bán hàng dịch vụ.</p>
+
+        <div class="truth-drill-box">
+          <div class="truth-drill-row">
+            <span class="truth-drill-label drill-t1">Tầng 1 (Đãi bôi):</span>
+            <div>"Muốn video viral phải giật tít sốc, tạo drama, bắt trend nhạc hot..." (Người làm ăn đàng hoàng nghe thấy phản cảm).</div>
+          </div>
+          <div class="truth-drill-row">
+            <span class="truth-drill-label drill-t2">Tầng 2 (Thật):</span>
+            <div>Bỏ công quay cả buổi, đăng lên chỉ người nhà like. Đổ tiền chạy ads bị cắn tiền đắt đỏ mà không ai inbox.</div>
+          </div>
+          <div class="truth-drill-row">
+            <span class="truth-drill-label drill-t25">Tầng 2.5 (Thể diện):</span>
+            <div>Vì sợ bị đánh giá là lố lăng nên mở đầu video thật trang trọng: "Xin chào tất cả các anh chị em, hôm nay mình làm video chia sẻ...". Tưởng thế là chuyên nghiệp nhưng thực chất đang tự tay giết chết clip.</div>
+          </div>
+          <div class="truth-drill-row">
+            <span class="truth-drill-label drill-t3">Tầng 3 (Tim đen):</span>
+            <div>Sợ bị phán xét nên không dám nói thẳng vào nỗi đau thầm kín của khách. Khán giả lướt qua trong 1 giây không một dấu vết.</div>
+          </div>
+          <div class="truth-drill-row" style="background: #f0fdf4;">
+            <span class="truth-drill-label drill-reframe">Nút thắt cốt lõi:</span>
+            <div><b>Kịch bản 3 Tầng: Bóc trần Sự thật ngượng miệng (Tầng 3) ngay từ giây thứ 3.</b> Đâm trúng bế tắc giấu kín để khách khựng ngón tay lại nghe.</div>
+          </div>
+        </div>
+
+        <h3 class="sub-anchor">Bằng Chứng Đối Soát Dữ Liệu Thật (6 Ca STU):</h3>
+
+        <div class="case-evidence-item">
+          <div class="case-header">
+            <div>
+              <div class="case-title">1. Chị Minh Nguyệt — Người Chạy Ads Video</div>
+              <div class="case-meta">SĐT: 0902.616.466 • Email: nguyettrinh0412@gmail.com</div>
+            </div>
+            <a href="https://vietndj.github.io/hocvien.html" target="_blank" class="stu-btn">↗ Mở STU</a>
+          </div>
+          <div class="verbatim-quote">"C cần tìm khóa học để có thể lên ý tưởng, viết content, lên kịch bản, quay và edit video rồi chạy ads"</div>
+          <p class="case-psychology">Đổ tiền chạy ads nhưng video cắn tiền không ra đơn vì 3s đầu không giữ được chân người xem.</p>
+        </div>
+
+        <div class="case-evidence-item">
+          <div class="case-header">
+            <div>
+              <div class="case-title">2. Bạn TL Fruit's - Kombucha — Trà Lên Men</div>
+              <div class="case-meta">SĐT: 0966.563.136 • Messenger FB</div>
+            </div>
+            <a href="https://vietndj.github.io/hocvien.html" target="_blank" class="stu-btn">↗ Mở STU</a>
+          </div>
+          <div class="verbatim-quote">"Mà e thấy mình nói ko dc tự nhiên làm video lẹt đẹt ng xem. Mong dc a chỉ bảo ạ"</div>
+          <p class="case-psychology">Cố gồng nói lịch sự ở câu đầu khiến mặt đơ, giọng cứng như trả bài, view lẹt đẹt.</p>
+        </div>
+
+        <div class="case-evidence-item">
+          <div class="case-header">
+            <div>
+              <div class="case-title">3. Chị Lưu Thị Kim Ngân — Thời Trang Online</div>
+              <div class="case-meta">SĐT: 0898.889.090 • ID: luu_thi_kim_ngan</div>
+            </div>
+            <a href="https://vietndj.github.io/hocvien.html#card-luu_thi_kim_ngan" target="_blank" class="stu-btn">↗ Xem Hồ Sơ STU</a>
+          </div>
+          <div class="verbatim-quote">"Video bán hàng"</div>
+          <p class="case-psychology">Cần video mặc thử review chạy ads ra đơn trực tiếp thay vì video tương tác dạo chào hỏi vu vơ.</p>
+        </div>
+
+        <div class="case-evidence-item">
+          <div class="case-header">
+            <div>
+              <div class="case-title">4. Chị Nguyệt — Nguyệt Store Hải Phòng</div>
+              <div class="case-meta">Địa chỉ: 50 Hai Bà Trưng, Hải Phòng • ID: nguyet_store_hp</div>
+            </div>
+            <a href="https://vietndj.github.io/hocvien.html#card-nguyet_store_hp" target="_blank" class="stu-btn">↗ Xem Hồ Sơ STU</a>
+          </div>
+          <div class="verbatim-quote">"gỡ tâm lý học sinh trả bài... mở đầu 'Fan của nhà Táo đâu rồi' bị lướt, chuyển sang băm nhịp 1.5s và ASMR bóc seal"</div>
+          <p class="case-psychology">Bỏ câu chào thân thiện sáo rỗng, đâm thẳng vào âm thanh bóc seal và cận cảnh ốc vít máy Like New.</p>
+        </div>
+
+        <div class="case-evidence-item">
+          <div class="case-header">
+            <div>
+              <div class="case-title">5. Bạn Bùi Bích Phượng — Phượng Thích Đồ Nam</div>
+              <div class="case-meta">SĐT: 0763.937.222 • ID: phuong_tiktokshop_donam</div>
+            </div>
+            <a href="https://vietndj.github.io/hocvien.html#card-phuong_tiktokshop_donam" target="_blank" class="stu-btn">↗ Xem Hồ Sơ STU</a>
+          </div>
+          <div class="verbatim-quote">"thấy làm video one-shot thời lượng xem trung bình thấp nên muốn học chuyển cảnh để giữ chân khách"</div>
+          <p class="case-psychology">Nói liên tục 1 cú máy như livestream khiến người xem đuối sức; cần ngắt nhịp 3s và B-roll macro thớ vải.</p>
+        </div>
+
+        <div class="case-evidence-item">
+          <div class="case-header">
+            <div>
+              <div class="case-title">6. Chị Do Ha — Gội Đầu Dưỡng Sinh</div>
+              <div class="case-meta">SĐT: 0909.300.886 • Email: Dothuha3008@gmail.com</div>
+            </div>
+            <a href="https://vietndj.github.io/hocvien.html" target="_blank" class="stu-btn">↗ Mở STU</a>
+          </div>
+          <div class="verbatim-quote">"Mình muốn thuê tư vấn quay clip gội đầu dưỡng sinh | Bên bạn có tư vấn hay có dịch vụ dạy quay..."</div>
+          <p class="case-psychology">Đăng clip gội đầu trần trụi thiếu cảm xúc, cần điểm chạm 3s đầu đánh vào đau vai gáy của dân văn phòng.</p>
+        </div>
+
+        <!-- ═══ LOGIC 3 ═══ -->
+        <h2 class="section-anchor" id="sec-logic-3">
+          <span>03</span> BẾ TẮC QUY TRÌNH SOLO (14% LEADS)
+        </h2>
+        <p><b>Nhóm mục tiêu:</b> Chủ cơ sở kinh doanh, người bận rộn, người tự làm một mình.</p>
+
+        <div class="truth-drill-box">
+          <div class="truth-drill-row">
+            <span class="truth-drill-label drill-t1">Tầng 1 (Đãi bôi):</span>
+            <div>"Làm video là phải kỷ luật, mỗi ngày 1 clip, kiên trì 90 ngày..." (Lý thuyết làm người bận rộn kiệt sức).</div>
+          </div>
+          <div class="truth-drill-row">
+            <span class="truth-drill-label drill-t2">Tầng 2 (Thật):</span>
+            <div>Cả tuần lo việc kinh doanh, Chủ Nhật tính quay 1 clip thì loay hoay đèn mic, mò CapCut đến 11h đêm. Tuần sau nản bỏ bẵng cả tháng.</div>
+          </div>
+          <div class="truth-drill-row">
+            <span class="truth-drill-label drill-t25">Tầng 2.5 (Thể diện):</span>
+            <div>Viện cớ "mình bận điều hành, không rảnh làm video vặt", nhưng bên trong tự ái vì chậm chạp trước công nghệ thua cả nhân viên trẻ.</div>
+          </div>
+          <div class="truth-drill-row">
+            <span class="truth-drill-label drill-t3">Tầng 3 (Tim đen):</span>
+            <div>Nỗi sợ bị tụt hậu trong thời đại video ngắn. Cảm giác bất lực khi một mình không kham nổi cả đống khâu cồng kềnh.</div>
+          </div>
+          <div class="truth-drill-row" style="background: #f0fdf4;">
+            <span class="truth-drill-label drill-reframe">Nút thắt cốt lõi:</span>
+            <div><b>Quy trình Solo 1 Buổi/Tuần:</b> Kho B-roll Bank 50+ cảnh + Trợ lý AI ngắt dòng 5 phút + CapCut nén nhịp 2s (15 phút xong 1 video).</div>
+          </div>
+        </div>
+
+        <h3 class="sub-anchor">Bằng Chứng Đối Soát Dữ Liệu Thật (6 Ca STU):</h3>
+
+        <div class="case-evidence-item">
+          <div class="case-header">
+            <div>
+              <div class="case-title">1. Chị Lê Quỳnh Anh — Máy Nấu Ăn Thông Minh</div>
+              <div class="case-meta">SĐT: 0936.048.488 • ID: le_quynh_anh</div>
+            </div>
+            <a href="https://vietndj.github.io/hocvien.html#card-le_quynh_anh" target="_blank" class="stu-btn">↗ Xem Hồ Sơ STU</a>
+          </div>
+          <div class="verbatim-quote">"Kịch bản chuyển đổi, quay dựng, góc quay món ăn, dựng CapCut"</div>
+          <p class="case-psychology">Một mình vừa nấu món (mỳ sốt, cà phê cốt dừa) vừa quay và dựng clip, quá tải vì thiếu quy trình đóng gói.</p>
+        </div>
+
+        <div class="case-evidence-item">
+          <div class="case-header">
+            <div>
+              <div class="case-title">2. Anh Nguyễn Duy Anh — Huấn Luyện Viên Gym</div>
+              <div class="case-meta">SĐT: 0379.191.996 • Email: duyanh290696@gmail.com</div>
+            </div>
+            <a href="https://vietndj.github.io/hocvien.html" target="_blank" class="stu-btn">↗ Mở STU</a>
+          </div>
+          <div class="verbatim-quote">"Học quy [trình]"</div>
+          <p class="case-psychology">Dạy khách kín ngày, cần quy trình chuẩn để một mình tự sản xuất clip mà không bị bào mòn thời gian.</p>
+        </div>
+
+        <div class="case-evidence-item">
+          <div class="case-header">
+            <div>
+              <div class="case-title">3. Bạn Chang Chang — Makeup Studio Mini</div>
+              <div class="case-meta">SĐT: 0911.100.037 • ID: chang_chang_makeup</div>
+            </div>
+            <a href="https://vietndj.github.io/hocvien.html#card-chang_chang_makeup" target="_blank" class="stu-btn">↗ Xem Hồ Sơ STU</a>
+          </div>
+          <div class="verbatim-quote">"Làm nghề makeup 4 năm loay hoay mãi chưa tìm được hướng đi... vướng khâu hình ảnh phẳng dìm tay nghề"</div>
+          <p class="case-psychology">Một mình vừa trang điểm vừa quay, cần công thức 1 góc đèn studio + 4-7 shot ngắn sau mỗi khách để nhàn thân.</p>
+        </div>
+
+        <div class="case-evidence-item">
+          <div class="case-header">
+            <div>
+              <div class="case-title">4. Anh Hoàng Anh Tài — Thợ Sửa Xe Máy</div>
+              <div class="case-meta">SĐT: 0327.288.139 • ID: hoang_anh_tai</div>
+            </div>
+            <a href="https://vietndj.github.io/hocvien.html#card-hoang_anh_tai" target="_blank" class="stu-btn">↗ Xem Hồ Sơ STU</a>
+          </div>
+          <div class="verbatim-quote">"Làm nội dung YouTube ngành xe máy"</div>
+          <p class="case-psychology">Tay lấm dầu mỡ, một mình loay hoay cả ngày không xong clip vì thiếu kỹ thuật quay B-roll trước lồng tiếng sau.</p>
+        </div>
+
+        <div class="case-evidence-item">
+          <div class="case-header">
+            <div>
+              <div class="case-title">5. Chị Đinh Thúy — Ngũ Cốc Dinh Dưỡng</div>
+              <div class="case-meta">SĐT: 0762.272.311 • Messenger FB</div>
+            </div>
+            <a href="https://vietndj.github.io/hocvien.html" target="_blank" class="stu-btn">↗ Mở STU</a>
+          </div>
+          <div class="verbatim-quote">"thầy ơi cho e hỏi chương trình học xây kênh... thầy có cái nào trọn gói luôn ko"</div>
+          <p class="case-psychology">Ngợp trước quá nhiều công đoạn kỹ thuật rời rạc, cần giải pháp trọn gói 1 buổi/tuần.</p>
+        </div>
+
+        <div class="case-evidence-item">
+          <div class="case-header">
+            <div>
+              <div class="case-title">6. Chị Nguyễn Thị Thu Hương — Chủ Salon Tóc</div>
+              <div class="case-meta">SĐT: 0913.036.345 • ID: nguyen_thi_thu_huong</div>
+            </div>
+            <a href="https://vietndj.github.io/hocvien.html#card-nguyen_thi_thu_huong" target="_blank" class="stu-btn">↗ Xem Hồ Sơ STU</a>
+          </div>
+          <div class="verbatim-quote">"Vừa làm tóc vừa mò mẫm cắt ghép video khách đến đêm muộn, hôm sau mệt phờ"</div>
+          <p class="case-psychology">Cần quy trình băm cảnh và áp dụng preset màu CapCut 1-chạm để xuất clip trong 10 phút.</p>
+        </div>
+
+        <!-- ═══ LOGIC 4 ═══ -->
+        <h2 class="section-anchor" id="sec-logic-4">
+          <span>04</span> BẪY VIEW ẢO & VIDEO PHỄU HẸP (8% LEADS)
+        </h2>
+        <p><b>Nhóm mục tiêu:</b> Bán hàng giá trị cao, B2B, người từng có clip triệu view nhưng không ra tiền.</p>
+
+        <div class="truth-drill-box">
+          <div class="truth-drill-row">
+            <span class="truth-drill-label drill-t1">Tầng 1 (Đãi bôi):</span>
+            <div>"Ai nắm traffic người đó thắng, cứ làm clip lên xu hướng triệu view rồi bán gì cũng được..." (Lời khuyên độc hại).</div>
+          </div>
+          <div class="truth-drill-row">
+            <span class="truth-drill-label drill-t2">Tầng 2 (Thật):</span>
+            <div>Đu trend triệu view nhìn sướng mắt nhưng comment toàn xin link nhạc; hộp thư im lìm, cuối tháng tiền nhà tiền thợ vẫn phải trả.</div>
+          </div>
+          <div class="truth-drill-row">
+            <span class="truth-drill-label drill-t25">Tầng 2.5 (Thể diện):</span>
+            <div>Chụp màn hình khoe view để giữ oai "nhà sáng tạo", nhưng đêm về mất ngủ vì biết rõ view ảo không đổi được ra ổ bánh mì.</div>
+          </div>
+          <div class="truth-drill-row">
+            <span class="truth-drill-label drill-t3">Tầng 3 (Tim đen):</span>
+            <div>Cay đắng làm nô lệ thuật toán; chạnh lòng nhìn người cùng ngành view ít nhưng họ chốt đơn đều đặn, sống khỏe và được khách trân trọng.</div>
+          </div>
+          <div class="truth-drill-row" style="background: #f0fdf4;">
+            <span class="truth-drill-label drill-reframe">Nút thắt cốt lõi:</span>
+            <div><b>Video Marketing Phễu Hẹp (Low Views • High Conversion):</b> Chỉ cần 300–500 người đúng tệp xem để ra 30–50 số điện thoại thật.</div>
+          </div>
+        </div>
+
+        <h3 class="sub-anchor">Bằng Chứng Đối Soát Dữ Liệu Thật (6 Ca STU):</h3>
+
+        <div class="case-evidence-item">
+          <div class="case-header">
+            <div>
+              <div class="case-title">1. Anh Đào Huy — Phòng Gym Tuấn Tú</div>
+              <div class="case-meta">Fanpage: Gym Tuấn Tú • ID: ao_huy_gym_tuan_tu</div>
+            </div>
+            <a href="https://vietndj.github.io/hocvien.html#card-ao_huy_gym_tuan_tu" target="_blank" class="stu-btn">↗ Xem Hồ Sơ STU</a>
+          </div>
+          <div class="verbatim-quote">"Đăng đồ ăn thì nhiều view hơn tập nhưng em đang muốn kéo view từ video tập hơn"</div>
+          <p class="case-psychology">
+            <b>MINH CHỨNG SỐNG:</b> View đồ ăn là view rác không bán được gói PT. Cần video tập gym có chuyển đổi để chốt khách trả tiền thật.
+          </p>
+        </div>
+
+        <div class="case-evidence-item">
+          <div class="case-header">
+            <div>
+              <div class="case-title">2. Chị Phạm Thùy Linh — Pha Chế Dulin</div>
+              <div class="case-meta">SĐT: 0335.062.222 • ĐÃ CHUYỂN KHOẢN CỌC 3.000.000đ</div>
+            </div>
+            <a href="https://vietndj.github.io/hocvien.html" target="_blank" class="stu-btn">↗ Mở STU</a>
+          </div>
+          <div class="verbatim-quote">"Bán buôn nguyên liệu pha chế cho nhà hàng & quán bar"</div>
+          <p class="case-psychology">Bán sỉ B2B giá trị cao; chỉ cần tiếp cận đúng chủ quán bar/nhà hàng, hoàn toàn không cần view giải trí TikTok.</p>
+        </div>
+
+        <div class="case-evidence-item">
+          <div class="case-header">
+            <div>
+              <div class="case-title">3. Anh Vũ Trí Văn — Kinh Doanh Phân Bón</div>
+              <div class="case-meta">SĐT: 0832.126.789 • ID: vu_tri_van</div>
+            </div>
+            <a href="https://vietndj.github.io/hocvien.html#card-vu_tri_van" target="_blank" class="stu-btn">↗ Xem Hồ Sơ STU</a>
+          </div>
+          <div class="verbatim-quote">"Kịch bản chuyển đổi ngành phân bón"</div>
+          <p class="case-psychology">Nông nghiệp đặc thù, chỉ cần 300–500 lượt xem của đại lý và nhà vườn là chốt hợp đồng hàng trăm triệu.</p>
+        </div>
+
+        <div class="case-evidence-item">
+          <div class="case-header">
+            <div>
+              <div class="case-title">4. Chị Nguyen Lan Phương — Chủ Nhà Hàng</div>
+              <div class="case-meta">SĐT: 0925.513.636 • ID: nguyen_lan_phuong</div>
+            </div>
+            <a href="https://vietndj.github.io/hocvien.html#card-nguyen_lan_phuong" target="_blank" class="stu-btn">↗ Xem Hồ Sơ STU</a>
+          </div>
+          <div class="verbatim-quote">"Chủ nhà hàng đăng ký lớp Offline 19-20/09... cần định hướng làm video kéo khách đến quán ăn thật"</div>
+          <p class="case-psychology">Cần khách đến ăn trực tiếp tại quán ở Hà Nội, view triệu view ở các tỉnh khác không giúp tăng doanh thu.</p>
+        </div>
+
+        <div class="case-evidence-item">
+          <div class="case-header">
+            <div>
+              <div class="case-title">5. Chị Nguyễn Phương Trinh — Scantech 3D Việt Nam</div>
+              <div class="case-meta">Doanh nghiệp Scan 3D Công Nghiệp • ID: nguyen_phuong_trinh_offline2</div>
+            </div>
+            <a href="https://vietndj.github.io/hocvien.html#card-nguyen_phuong_trinh_offline2" target="_blank" class="stu-btn">↗ Xem Hồ Sơ STU</a>
+          </div>
+          <div class="verbatim-quote">"Thiết bị máy quét 3D công nghiệp và dịch vụ đo kiểm chính xác cao cho các nhà máy"</div>
+          <p class="case-psychology">Thiết bị tiền tỷ cho nhà máy sản xuất, chỉ cần đúng giám đốc kỹ thuật xem để phát sinh nhu cầu demo.</p>
+        </div>
+
+        <div class="case-evidence-item">
+          <div class="case-header">
+            <div>
+              <div class="case-title">6. Anh Viên Thế Đức — Gia Dụng Vùng Cao</div>
+              <div class="case-meta">TikTok: @vientheduc • ID: vien_the_duc_offline2</div>
+            </div>
+            <a href="https://vietndj.github.io/hocvien.html#card-vien_the_duc_offline2" target="_blank" class="stu-btn">↗ Xem Hồ Sơ STU</a>
+          </div>
+          <div class="verbatim-quote">"Quá khứ không thể mua lại nhưng khoảnh khắc thì có thể ghi lại (video 49s)"</div>
+          <p class="case-psychology">Không chiêu trò giật gân, bằng sự chân thật mộc mạc bên con cái và gia đình, đơn hàng đồ gia dụng vẫn ra đều đặn.</p>
+        </div>
+
+        <!-- ═══ SECTION MATRIX ═══ -->
+        <h2 class="section-anchor" id="sec-matrix">
+          <span>05</span> MA TRẬN PHÂN BỔ TỆP & NGÂN SÁCH QUẢNG CÁO
+        </h2>
+        <p>Bảng phân bổ ngân sách tối ưu dựa trên dữ liệu đối soát thực tế:</p>
+
+        <div class="truth-drill-box" style="margin-top: 16px;">
+          <div class="truth-drill-row">
+            <span class="truth-drill-label" style="color: var(--cl-text-head);">Tệp Chuyên Gia (50% ngân sách)</span>
+            <div>Chạy <b>Logic 01</b> (Xung đột vị thế) • Định dạng Talking Head 2 góc máy • Mục tiêu: Lấy số điện thoại tư vấn 1-1.</div>
+          </div>
+          <div class="truth-drill-row">
+            <span class="truth-drill-label" style="color: var(--cl-text-head);">Tệp Chạy Ads (25% ngân sách)</span>
+            <div>Chạy <b>Logic 02</b> (Bẫy 3s đầu) • Định dạng Walk & Talk • Mục tiêu: Kéo click về trang đích đăng ký giữ chỗ.</div>
+          </div>
+          <div class="truth-drill-row">
+            <span class="truth-drill-label" style="color: var(--cl-text-head);">Tệp Kinh Doanh Solo (15% ngân sách)</span>
+            <div>Chạy <b>Logic 03</b> (Quy trình solo) • Định dạng Voice-over thao tác tay • Mục tiêu: Đánh trúng nỗi sợ kiệt sức.</div>
+          </div>
+          <div class="truth-drill-row">
+            <span class="truth-drill-label" style="color: var(--cl-text-head);">Tệp B2B / Giá Trị Cao (10% ngân sách)</span>
+            <div>Chạy <b>Logic 04</b> (Phễu hẹp) • Định dạng Đàm đạo chén trà • Mục tiêu: Thu hút khách hàng có ngân sách lớn.</div>
+          </div>
+        </div>
+
+      </article>
+    </main>
+
+  </div>
+
+</body>
+</html>
