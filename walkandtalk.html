@@ -1124,6 +1124,121 @@
       }
     }
 
+  
+    /* ═══ POPUP MENU ĐỔI ĐỊNH DẠNG TỪ STICKY NAV ═══ */
+    .sticky-nav {
+      overflow: visible !important; /* Cho phép popup trồi lên trên */
+    }
+    .nav-dropdown {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+    }
+    .nav-dropdown-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      font-weight: 700;
+      color: var(--cl-accent);
+      background: var(--cl-accent-tint);
+      border: 1px solid rgba(26, 115, 232, 0.25);
+      padding: 4px 10px;
+      border-radius: var(--cl-radius-full);
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.2s var(--apple-ease);
+      white-space: nowrap;
+    }
+    .nav-dropdown-btn:hover {
+      background: var(--cl-accent);
+      color: #ffffff;
+    }
+    .nav-dropdown-btn svg {
+      transition: transform 0.25s var(--apple-spring);
+    }
+    .nav-dropdown:hover .nav-dropdown-btn svg,
+    .nav-dropdown.is-open .nav-dropdown-btn svg {
+      transform: rotate(180deg);
+    }
+    .nav-dropdown-menu {
+      position: absolute;
+      bottom: calc(100% + 10px);
+      left: 0;
+      min-width: 250px;
+      background: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--cl-line-strong);
+      border-radius: var(--cl-radius-md);
+      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.12), 0 4px 12px rgba(0,0,0,0.04);
+      padding: 6px;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      opacity: 0;
+      visibility: hidden;
+      transform: translate3d(0, 10px, 0);
+      transition: all 0.25s var(--apple-spring);
+      z-index: 1000;
+      pointer-events: none;
+    }
+    .nav-dropdown:hover .nav-dropdown-menu,
+    .nav-dropdown.is-open .nav-dropdown-menu {
+      opacity: 1;
+      visibility: visible;
+      transform: translate3d(0, 0, 0);
+      pointer-events: auto;
+    }
+    .nav-dropdown-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 8px 12px;
+      border-radius: var(--cl-radius-sm);
+      text-decoration: none;
+      transition: all 0.18s ease;
+    }
+    .nav-dropdown-item:hover {
+      background: var(--cl-tint);
+    }
+    .nav-dropdown-item.is-active {
+      background: var(--cl-accent-tint);
+    }
+    .nav-dropdown-item__left {
+      display: flex;
+      flex-direction: column;
+      text-align: left;
+    }
+    .nav-dropdown-item__tag {
+      font-family: var(--font-mono);
+      font-size: 9.5px;
+      font-weight: 700;
+      color: var(--cl-accent);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .nav-dropdown-item__name {
+      font-family: var(--font-display-short);
+      font-size: 12.5px;
+      font-weight: 700;
+      color: var(--cl-text-base);
+    }
+    .nav-dropdown-item__dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--cl-accent);
+      display: inline-block;
+    }
+    .nav-dropdown-divider {
+      height: 1px;
+      background: var(--cl-line);
+      margin: 4px 0;
+    }
+
   </style>
 
 </head>
@@ -1162,8 +1277,52 @@
 
   <!-- STICKY NAV DÀNH CHO HỌC VIÊN -->
   <nav class="sticky-nav">
-    <a href="4stylevideo.html" style="color: var(--cl-accent); font-weight: 700;">&larr; Bộ 4 Định Dạng</a>
-    <a href="#sec-hero">Bản chất</a>
+    <!-- MENU ĐỔI ĐỊNH DẠNG (POPUP) -->
+    <div class="nav-dropdown">
+      <a href="4stylevideo.html" class="nav-dropdown-btn">
+        <span>🎬 4 Định Dạng</span>
+        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+      </a>
+      <div class="nav-dropdown-menu">
+      <a href="4stylevideo.html" class="nav-dropdown-item">
+        <div class="nav-dropdown-item__left">
+          <span class="nav-dropdown-item__tag" style="color: var(--cl-text-base);">TRANG CHỦ TỔNG HỢP</span>
+          <span class="nav-dropdown-item__name">🏠 Bộ 4 Định Dạng Chủ Lực</span>
+        </div>
+        
+      </a>
+      <div class="nav-dropdown-divider"></div>
+      <a href="voiceover.html" class="nav-dropdown-item">
+        <div class="nav-dropdown-item__left">
+          <span class="nav-dropdown-item__tag">ĐỊNH DẠNG 01</span>
+          <span class="nav-dropdown-item__name">Voice-Over (Quay Tay Thao Tác)</span>
+        </div>
+        
+      </a>
+      <a href="walkandtalk.html" class="nav-dropdown-item is-active">
+        <div class="nav-dropdown-item__left">
+          <span class="nav-dropdown-item__tag">ĐỊNH DẠNG 02</span>
+          <span class="nav-dropdown-item__name">Walk & Talk (Vừa Đi Vừa Nói)</span>
+        </div>
+        <span class="nav-dropdown-item__dot"></span>
+      </a>
+      <a href="talkinghead.html" class="nav-dropdown-item">
+        <div class="nav-dropdown-item__left">
+          <span class="nav-dropdown-item__tag">ĐỊNH DẠNG 03</span>
+          <span class="nav-dropdown-item__name">Talking Head (Ngồi Bàn 2 Cam)</span>
+        </div>
+        
+      </a>
+      <a href="storytelling.html" class="nav-dropdown-item">
+        <div class="nav-dropdown-item__left">
+          <span class="nav-dropdown-item__tag">ĐỊNH DẠNG 04</span>
+          <span class="nav-dropdown-item__name">Storytelling 2.5 (Bóc Bệnh Ngầm)</span>
+        </div>
+        
+      </a>
+      </div>
+    </div>
+<a href="#sec-hero">Bản chất</a>
     <a href="#sec-why">Lý do giữ chân</a>
     <a href="#sec-female">Lợi thế phái nữ</a>
     <a href="#sec-benchmarks">Kênh thực tế ↗</a>
@@ -1615,6 +1774,29 @@
 
       document.querySelectorAll(".apple-reveal").forEach(el => observer.observe(el));
     });
+  
+    // Hỗ trợ bật/tắt popup dropdown trên màn hình cảm ứng di động
+    document.addEventListener("DOMContentLoaded", () => {
+      const dropdowns = document.querySelectorAll(".nav-dropdown");
+      dropdowns.forEach(dd => {
+        const btn = dd.querySelector(".nav-dropdown-btn");
+        if (btn) {
+          btn.addEventListener("click", (e) => {
+            // Nếu click trên thiết bị cảm ứng hoặc muốn toggle menu
+            if (window.innerWidth <= 768 || ('ontouchstart' in window)) {
+              e.preventDefault();
+              dd.classList.toggle("is-open");
+            }
+          });
+        }
+      });
+      document.addEventListener("click", (e) => {
+        if (!e.target.closest(".nav-dropdown")) {
+          dropdowns.forEach(dd => dd.classList.remove("is-open"));
+        }
+      });
+    });
+
   </script>
 </body>
 </html>
