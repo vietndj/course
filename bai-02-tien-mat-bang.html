@@ -49,32 +49,29 @@
       font-style: normal;
       font-display: swap;
     }
-        @font-face {
+    @font-face {
       font-family: 'Tiempos Text';
-      src: url('./fonts/FDTiemposText-Regular.woff2') format('woff2'),
-           url('./fonts/FDTiemposText-Regular.otf') format('opentype'),
-           url('https://font.fedu.vn/fonts/FDTiemposText-Regular.woff2') format('woff2'),
-           url('https://font.fedu.vn/fonts/FDTiemposText-Regular.otf') format('opentype');
+      src: url('./fonts/FDTiemposText-Regular.otf') format('opentype'),
+           url('/Users/vietmac/Library/Fonts/FDTiemposText-Regular.otf') format('opentype'),
+           local('Tiempos Text Regular'), local('FDTiemposText-Regular');
       font-weight: 400;
       font-style: normal;
       font-display: swap;
     }
     @font-face {
       font-family: 'Tiempos Text';
-      src: url('./fonts/FDTiemposText-Medium.woff2') format('woff2'),
-           url('./fonts/FDTiemposText-Medium.otf') format('opentype'),
-           url('https://font.fedu.vn/fonts/FDTiemposText-Medium.woff2') format('woff2'),
-           url('https://font.fedu.vn/fonts/FDTiemposText-Medium.otf') format('opentype');
+      src: url('./fonts/FDTiemposText-Medium.otf') format('opentype'),
+           url('/Users/vietmac/Library/Fonts/FDTiemposText-Medium.otf') format('opentype'),
+           local('Tiempos Text Medium'), local('FDTiemposText-Medium');
       font-weight: 500;
       font-style: normal;
       font-display: swap;
     }
     @font-face {
       font-family: 'Tiempos Text';
-      src: url('./fonts/FDTiemposText-RegularItalic.woff2') format('woff2'),
-           url('./fonts/FDTiemposText-RegularItalic.otf') format('opentype'),
-           url('https://font.fedu.vn/fonts/FDTiemposText-RegularItalic.woff2') format('woff2'),
-           url('https://font.fedu.vn/fonts/FDTiemposText-RegularItalic.otf') format('opentype');
+      src: url('./fonts/FDTiemposText-RegularItalic.otf') format('opentype'),
+           url('/Users/vietmac/Library/Fonts/FDTiemposText-RegularItalic.otf') format('opentype'),
+           local('Tiempos Text Regular Italic'), local('FDTiemposText-RegularItalic');
       font-weight: 400;
       font-style: italic;
       font-display: swap;
@@ -409,48 +406,118 @@
       line-height: 1.65;
     }
 
-    /* Open Thinking Box (Để Hở Cho Học Viên Suy Nghĩ) */
-    .thinking-open-card {
-      background: #fafafa;
-      border: 1.5px dashed rgba(26, 115, 232, 0.35);
+    /* ═══ Open Thinking Box (Tự Vấn 2 Phút Trước Khi Xem Lời Giải) ═══ */
+    .thinking-open-card,
+    .reflection-box {
+      background: #ffffff;
+      border: 1px solid var(--cl-line);
+      border-top: 4px solid var(--cl-accent);
       border-radius: var(--cl-radius-lg);
-      padding: 32px 36px;
+      padding: 26px 30px;
       width: 100%;
       text-align: left;
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.02);
+      box-shadow: 0 6px 24px rgba(0, 0, 0, 0.04);
+      margin-top: 6px;
+      margin-bottom: 20px;
+      box-sizing: border-box;
     }
-    .thinking-open-header {
+
+    .thinking-open-header,
+    .reflection-box-title {
       display: flex;
       align-items: center;
+      justify-content: space-between;
       gap: 12px;
+      flex-wrap: wrap;
       margin-bottom: 16px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--cl-line);
+      text-align: left;
     }
-    .thinking-open-title {
-      font-family: var(--font-display-long);
-      font-size: 16px;
+
+    .thinking-open-title,
+    .reflection-title-main {
+      font-family: var(--font-display-short);
+      font-size: 15px;
       font-weight: 700;
       color: var(--cl-accent);
       text-transform: uppercase;
-      letter-spacing: 0.05em;
+      letter-spacing: 0.03em;
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
-    .thinking-prompts-list {
+
+    .thinking-sub-badge,
+    .reflection-subtitle {
+      font-family: var(--font-display-long);
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--cl-text-muted);
+      background: var(--cl-tint);
+      padding: 4px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--cl-line);
+      white-space: nowrap;
+    }
+
+    .thinking-prompts-list,
+    .reflection-grid {
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      gap: 10px;
+      width: 100%;
+      text-align: left;
     }
-    .thinking-prompt-item {
+
+    .thinking-prompt-item,
+    .reflection-item {
       display: flex;
       align-items: flex-start;
       gap: 14px;
-      font-size: 15.5px;
+      padding: 12px 16px;
+      border-radius: 10px;
+      background: #f8fafc;
+      border: 1px solid rgba(226, 232, 240, 0.9);
+      font-family: var(--font-body);
+      font-size: 15px;
       color: var(--cl-text-body);
       line-height: 1.6;
+      text-align: left;
+      transition: all 0.2s ease;
     }
-    .thinking-prompt-bullet {
-      font-size: 18px;
-      line-height: 1;
+
+    .thinking-prompt-item:hover,
+    .reflection-item:hover {
+      background: #f1f5f9;
+      border-color: rgba(26, 115, 232, 0.35);
+      transform: translateX(3px);
+    }
+
+    .thinking-prompt-bullet,
+    .reflection-item-num {
+      width: 26px;
+      height: 26px;
+      min-width: 26px;
+      border-radius: 7px;
+      background: #eff6ff;
+      color: var(--cl-accent);
+      font-weight: 800;
+      font-family: var(--font-mono);
+      font-size: 12.5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(26, 115, 232, 0.25);
       flex-shrink: 0;
-      margin-top: 2px;
+      margin-top: 1px;
+    }
+
+    .thinking-prompt-text,
+    .reflection-item-text {
+      flex: 1;
+      text-align: left;
+      text-wrap: pretty;
     }
 
     /* Comparison Subcards for Steps 1, 2, 3 */
@@ -1016,8 +1083,25 @@
       .cl-zebra-section {
         padding: 70px 16px;
       }
-      .exercise-hero-card, .thinking-open-card, .final-script-card {
-        padding: 24px 20px;
+      .exercise-hero-card, .thinking-open-card, .reflection-box, .final-script-card {
+        padding: 20px 16px;
+      }
+      .thinking-open-header, .reflection-box-title {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+      }
+      .thinking-prompt-item, .reflection-item {
+        padding: 10px 12px;
+        gap: 10px;
+        font-size: 14px;
+      }
+      .cl-btn {
+        width: 100%;
+        box-sizing: border-box;
+        padding: 14px 18px;
+        font-size: 13.5px;
+        text-align: center;
       }
       .top-nav {
         padding: 10px 16px;
@@ -1072,27 +1156,34 @@
       <!-- Không Gian Để Hở Cho Học Viên Động Não Suy Nghĩ -->
       <div class="thinking-open-card">
         <div class="thinking-open-header">
-          <span style="font-size: 22px;">💭</span>
-          <span class="thinking-open-title">Dành 2 Phút Suy Nghĩ Trước Khi Xem Lời Giải</span>
+          <div class="thinking-open-title">
+            <span>🧠</span>
+            <span>DÀNH 2 PHÚT SUY NGHĨ: NẾU LÀ BẠN, BẠN SẼ LÀM GÌ?</span>
+          </div>
+          <span class="thinking-sub-badge">(Tự vấn trước khi kéo xuống xem hướng dẫn)</span>
         </div>
         <div class="thinking-prompts-list">
           <div class="thinking-prompt-item">
-            <span class="thinking-prompt-bullet">1.</span>
-            <span>Nếu bật máy lên đứng ngay giữa cửa hàng vắng tanh, câu đầu tiên bạn nói là gì?</span>
+            <span class="thinking-prompt-bullet">1</span>
+            <span class="thinking-prompt-text">Nếu bật máy lên đứng ngay giữa cửa hàng vắng tanh, câu đầu tiên bạn nói là gì?</span>
           </div>
           <div class="thinking-prompt-item">
-            <span class="thinking-prompt-bullet">2.</span>
-            <span>Nếu nói dối 'hôm nay đông vui lắm' hay nói đạo lý 'kinh doanh phải kiên trì', khách trên mạng có ngửi thấy mùi giả tạo không?</span>
+            <span class="thinking-prompt-bullet">2</span>
+            <span class="thinking-prompt-text">Nếu nói dối 'hôm nay đông vui lắm' hay nói đạo lý 'kinh doanh phải kiên trì', khách trên mạng có ngửi thấy mùi giả tạo không?</span>
           </div>
           <div class="thinking-prompt-item">
-            <span class="thinking-prompt-bullet">3.</span>
-            <span>Nếu than nghèo kể khổ 'tháng này ế quá, chủ nhà đòi nợ', ai còn dám tin tưởng mua hàng của một cửa hàng sắp đóng cửa?</span>
+            <span class="thinking-prompt-bullet">3</span>
+            <span class="thinking-prompt-text">Nếu than nghèo kể khổ 'tháng này ế quá, chủ nhà đòi nợ', ai còn dám tin tưởng mua hàng của một cửa hàng sắp đóng cửa?</span>
           </div>
           <div class="thinking-prompt-item">
-            <span class="thinking-prompt-bullet">4.</span>
-            <span>Cái tôi và thể diện của một người chủ cửa hàng lúc này đang bị nghẽn ở điểm nào?</span>
+            <span class="thinking-prompt-bullet">4</span>
+            <span class="thinking-prompt-text">Cái tôi và thể diện của một người chủ cửa hàng lúc này đang bị nghẽn ở điểm nào?</span>
           </div>
         </div>
+      </div>
+
+      <div style="margin-top: 24px; text-align: center; width: 100%;">
+        <a href="#sec-cau-hoi" class="cl-btn">XEM CÁCH GIẢI BÀI TOÁN BẰNG 4 BƯỚC THỰC CHIẾN →</a>
       </div>
 
     </div>
