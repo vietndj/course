@@ -1,0 +1,1159 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Bước 00: Kỹ Thuật Chuyển Cảnh • Nền Tảng Thị Giác Của Mọi Định Dạng Video</title>
+
+  <!-- Favicon System (Chuẩn Chữ VIDEO - Cinema REC Monogram) -->
+  <link rel="icon" type="image/svg+xml" href="./favicon.svg">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%230B0F19'/%3E%3Crect x='1.5' y='1.5' width='61' height='61' rx='14.5' fill='none' stroke='%23FFFFFF' stroke-opacity='0.14' stroke-width='1.5'/%3E%3Ctext x='25' y='25' text-anchor='middle' dominant-baseline='central' font-family='system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif' font-weight='900' font-size='21.5' letter-spacing='2px' fill='%23FFFFFF'%3EVI%3C/text%3E%3Ccircle cx='47' cy='25' r='7' fill='%23EF4444' fill-opacity='0.25'/%3E%3Ccircle cx='47' cy='25' r='4.2' fill='%23EF4444'/%3E%3Ccircle cx='47' cy='25' r='1.6' fill='%23FFFFFF' opacity='0.9'/%3E%3Ctext x='32' y='46' text-anchor='middle' dominant-baseline='central' font-family='system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif' font-weight='900' font-size='19' letter-spacing='1.2px' fill='%23F8FAFC'%3EDEO%3C/text%3E%3C/svg%3E">
+<!-- Font Definitions & System Fallbacks -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  
+  <style>
+    /* ═══ 1. FONT DECLARATIONS (Local Repo, System & CDN Fallbacks) ═══ */
+    @font-face {
+      font-family: 'FD Aeonik Extended';
+      src: url('./fonts/FDAeonikExtended-Bold.woff2?v=20260911b') format('woff2'),
+           url('https://font.fedu.vn/fonts/FDAeonikExtended-Bold.woff2?v=20260911b') format('woff2'),
+           url('./fonts/FDAeonikExtended-Bold.ttf?v=20260911b') format('truetype'),
+           url('/Users/vietmac/Library/Fonts/FDAeonikExtended-Bold.otf') format('opentype'),
+           local('FD Aeonik Extended Bold');
+      font-weight: 700;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'FD Aeonik';
+      src: url('./fonts/FDAeonikRegular.ttf') format('truetype'),
+           url('./assets/fonts/FDAeonikRegular.ttf') format('truetype'),
+           url('/Users/vietmac/Library/Fonts/FDAeonikRegular.ttf') format('truetype'),
+           local('FD Aeonik Regular');
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'FD Aeonik';
+      src: url('./fonts/FDAeonikMedium.ttf') format('truetype'),
+           url('./fonts/SVN-AEONIK-MEDIUM.TTF') format('truetype'),
+           url('/Users/vietmac/Library/Fonts/FDAeonikMedium.ttf') format('truetype'),
+           local('FD Aeonik Medium'), local('FD Aeonik SemiBold');
+      font-weight: 600;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Tiempos Text';
+      src: url('./fonts/FDTiemposText-Regular.woff2') format('woff2'),
+           url('./fonts/FDTiemposText-Regular.otf') format('opentype'),
+           url('https://font.fedu.vn/fonts/FDTiemposText-Regular.woff2') format('woff2'),
+           url('https://font.fedu.vn/fonts/FDTiemposText-Regular.otf') format('opentype');
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Tiempos Text';
+      src: url('./fonts/FDTiemposText-Medium.woff2') format('woff2'),
+           url('./fonts/FDTiemposText-Medium.otf') format('opentype'),
+           url('https://font.fedu.vn/fonts/FDTiemposText-Medium.woff2') format('woff2'),
+           url('https://font.fedu.vn/fonts/FDTiemposText-Medium.otf') format('opentype');
+      font-weight: 500;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Tiempos Text';
+      src: url('./fonts/FDTiemposText-Semibold.woff2') format('woff2'),
+           url('./fonts/FDTiemposText-Semibold.otf') format('opentype'),
+           url('https://font.fedu.vn/fonts/FDTiemposText-Semibold.woff2') format('woff2'),
+           url('https://font.fedu.vn/fonts/FDTiemposText-Semibold.otf') format('opentype');
+      font-weight: 600;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Tiempos Text';
+      src: url('./fonts/FDTiemposText-Bold.woff2') format('woff2'),
+           url('./fonts/FDTiemposText-Bold.otf') format('opentype'),
+           url('https://font.fedu.vn/fonts/FDTiemposText-Bold.woff2') format('woff2'),
+           url('https://font.fedu.vn/fonts/FDTiemposText-Bold.otf') format('opentype');
+      font-weight: 700;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Tiempos Text';
+      src: url('./fonts/FDTiemposText-RegularItalic.woff2') format('woff2'),
+           url('./fonts/FDTiemposText-RegularItalic.otf') format('opentype'),
+           url('https://font.fedu.vn/fonts/FDTiemposText-RegularItalic.woff2') format('woff2'),
+           url('https://font.fedu.vn/fonts/FDTiemposText-RegularItalic.otf') format('opentype');
+      font-weight: 400;
+      font-style: italic;
+      font-display: swap;
+    }
+
+    /* ═══ 2. DESIGN TOKENS (Light Theme Chuẩn Video) ═══ */
+    :root {
+      --cl-bg:              #ffffff;
+      --cl-tint:            #f8fafc;
+      --cl-card:            #ffffff;
+      --cl-card-subtle:     #f1f5f9;
+      --cl-line:            rgba(0, 0, 0, 0.06);
+      --cl-line-strong:     rgba(0, 0, 0, 0.12);
+      --cl-text-base:       #090d16;
+      --cl-text-body:       #0f172a;
+      --cl-text-muted:      #475569;
+      --cl-accent:          #1a73e8;
+      --cl-accent-tint:     rgba(26, 115, 232, 0.08);
+      --cl-accent-dark:     #0d47a1;
+      --cl-emerald:         #059669;
+      --cl-emerald-tint:    #ecfdf5;
+      --cl-amber:           #d97706;
+      --cl-amber-tint:      #fffbeb;
+      --cl-purple:          #7c3aed;
+      --cl-purple-tint:     #f5f3ff;
+      --cl-rose:            #e11d48;
+      --cl-rose-tint:       #fff1f2;
+
+      --cl-radius-sm:       8px;
+      --cl-radius-md:       14px;
+      --cl-radius-lg:       20px;
+      --cl-radius-xl:       28px;
+      --cl-radius-full:     9999px;
+
+      --font-display-short: 'FD Aeonik Extended', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-display-long:  'FD Aeonik', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-body:          'Tiempos Text', 'Inter', Georgia, serif;
+      --font-editorial:     'Tiempos Text', Georgia, serif;
+      --font-mono:          'JetBrains Mono', monospace;
+
+      --apple-spring: cubic-bezier(0.25, 1, 0.35, 1.05);
+      --apple-ease:   cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+      background-color: var(--cl-bg);
+      color: var(--cl-text-body);
+    }
+
+    body {
+      font-family: var(--font-body);
+      line-height: 1.8;
+      color: var(--cl-text-body);
+      background-color: var(--cl-bg);
+      overflow-x: hidden;
+      padding-top: 56px;
+    }
+
+    /* ═══ 3. TOP FIXED NAVIGATION ═══ */
+    .top-nav-fixed {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      width: 100%;
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--cl-line-strong);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+    }
+    .top-nav-container {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 10px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .top-nav-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--cl-accent-tint);
+      color: var(--cl-accent);
+      border: 1px solid rgba(26, 115, 232, 0.22);
+      padding: 7px 16px;
+      border-radius: var(--cl-radius-full);
+      font-family: var(--font-display-long);
+      font-size: 13px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: all 0.2s var(--apple-spring);
+      flex-shrink: 0;
+    }
+    .top-nav-back:hover {
+      background: var(--cl-accent);
+      color: #ffffff;
+      transform: translateY(-1px);
+    }
+    .top-nav-center {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .top-nav-badge {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 800;
+      background: var(--cl-accent);
+      color: #ffffff;
+      padding: 3px 8px;
+      border-radius: var(--cl-radius-sm);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+    .top-nav-title {
+      font-family: var(--font-display-short);
+      font-size: 12.5px;
+      font-weight: 700;
+      color: var(--cl-text-base);
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+    }
+
+    /* Menu Dropdown Chuyển Bài */
+    .nav-dropdown {
+      position: relative;
+    }
+    .nav-dropdown-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: #ffffff;
+      border: 1px solid var(--cl-line-strong);
+      padding: 6px 14px;
+      border-radius: var(--cl-radius-full);
+      font-family: var(--font-display-long);
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--cl-text-base);
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .nav-dropdown-btn:hover {
+      border-color: var(--cl-accent);
+      color: var(--cl-accent);
+    }
+    .nav-dd-item {
+      font-family: var(--font-display-long);
+    }
+    .nav-dropdown-menu {
+      position: absolute;
+      top: calc(100% + 8px);
+      right: 0;
+      background: #ffffff;
+      border: 1px solid var(--cl-line-strong);
+      border-radius: var(--cl-radius-md);
+      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.12);
+      min-width: 280px;
+      padding: 8px;
+      display: none;
+      flex-direction: column;
+      gap: 4px;
+      z-index: 1001;
+    }
+    .nav-dropdown:hover .nav-dropdown-menu,
+    .nav-dropdown:focus-within .nav-dropdown-menu {
+      display: flex;
+    }
+    .nav-dd-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px 12px;
+      border-radius: var(--cl-radius-sm);
+      text-decoration: none;
+      color: var(--cl-text-body);
+      font-size: 12.5px;
+      transition: all 0.15s ease;
+    }
+    .nav-dd-item:hover {
+      background: var(--cl-tint);
+      color: var(--cl-accent);
+    }
+    .nav-dd-item.is-active {
+      background: var(--cl-accent-tint);
+      color: var(--cl-accent);
+      font-weight: 700;
+    }
+    .nav-dd-item__tag {
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      font-weight: 700;
+      color: var(--cl-text-muted);
+      display: block;
+      margin-bottom: 2px;
+    }
+    .nav-dd-divider {
+      height: 1px;
+      background: var(--cl-line);
+      margin: 4px 6px;
+    }
+
+    /* ═══ 4. ZEBRA SECTIONS ═══ */
+    .cl-zebra-section {
+      width: 100%;
+      padding: 80px 24px;
+      position: relative;
+    }
+    .cl-zebra--light {
+      background-color: var(--cl-bg);
+      border-bottom: 1px solid var(--cl-line);
+    }
+    .cl-zebra--tint {
+      background-color: var(--cl-tint);
+      border-bottom: 1px solid var(--cl-line);
+    }
+    .cl-sec-container {
+      max-width: 1080px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .cl-sec-container--wide {
+      max-width: 1200px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    /* ═══ 5. TYPOGRAPHY & BADGES ═══ */
+    .cl-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--cl-accent);
+      background: var(--cl-accent-tint);
+      border: 1px solid rgba(26, 115, 232, 0.22);
+      padding: 6px 16px;
+      border-radius: var(--cl-radius-full);
+      margin-bottom: 22px;
+    }
+    .title-short {
+      font-family: var(--font-display-short);
+      font-size: clamp(26px, 4vw, 42px);
+      font-weight: 700;
+      line-height: 1.25;
+      color: var(--cl-text-base);
+      letter-spacing: -0.02em;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+      text-wrap: balance;
+    }
+    .editorial-hook {
+      font-family: var(--font-editorial);
+      font-style: italic;
+      font-size: clamp(17px, 2.2vw, 20px);
+      line-height: 1.7;
+      color: var(--cl-text-muted);
+      max-width: 860px;
+      margin: 0 auto 36px auto;
+      text-wrap: pretty;
+    }
+
+    /* ═══ 6. STATS / SPECS BAR ═══ */
+    .specs-bar {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      max-width: 920px;
+      margin: 0 auto 36px auto;
+      text-align: left;
+    }
+    .spec-item {
+      background: #ffffff;
+      border: 1px solid var(--cl-line-strong);
+      border-radius: var(--cl-radius-md);
+      padding: 16px 20px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+    }
+    .spec-item__label {
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      font-weight: 700;
+      color: var(--cl-text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .spec-item__val {
+      font-family: var(--font-display-long);
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--cl-text-base);
+      line-height: 1.4;
+    }
+
+    /* ═══ 7. COMPARISON / 2-COL CARDS ═══ */
+    .two-col-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-top: 32px;
+      text-align: left;
+    }
+    .compare-card {
+      background: #ffffff;
+      border: 1px solid var(--cl-line-strong);
+      border-radius: var(--cl-radius-lg);
+      padding: 32px 28px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
+      position: relative;
+    }
+    .compare-card--old {
+      border-top: 4px solid #94a3b8;
+      background: #f8fafc;
+    }
+    .compare-card--new {
+      border-top: 4px solid var(--cl-accent);
+      background: #ffffff;
+    }
+    .compare-card__tag {
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+      display: inline-block;
+    }
+    .compare-card__title {
+      font-family: var(--font-display-long);
+      font-size: 18.5px;
+      font-weight: 600;
+      color: var(--cl-text-base);
+      margin-bottom: 16px;
+      line-height: 1.4;
+    }
+    .compare-card__list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .compare-card__list li {
+      font-size: 15px;
+      line-height: 1.65;
+      color: var(--cl-text-body);
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+    .compare-card__list li svg {
+      flex-shrink: 0;
+      margin-top: 4px;
+    }
+
+    /* ═══ 8. 3 STEPS GRID (NHỊP THỞ THỊ GIÁC) ═══ */
+    .three-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-top: 36px;
+      text-align: left;
+    }
+    .step-box {
+      background: #ffffff;
+      border: 1px solid var(--cl-line-strong);
+      border-radius: var(--cl-radius-lg);
+      padding: 28px 24px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      transition: transform 0.25s var(--apple-spring), box-shadow 0.25s ease;
+    }
+    .step-box:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.06);
+    }
+    .step-box__num {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 800;
+      color: var(--cl-accent);
+      background: var(--cl-accent-tint);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 12px;
+      border-radius: var(--cl-radius-full);
+      margin-bottom: 14px;
+      align-self: flex-start;
+    }
+    .step-box__title {
+      font-family: var(--font-display-short);
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--cl-text-base);
+      line-height: 1.35;
+      margin-bottom: 12px;
+      text-transform: uppercase;
+    }
+    .step-box__desc {
+      font-size: 15px;
+      line-height: 1.7;
+      color: var(--cl-text-body);
+      margin: 0;
+    }
+
+    /* ═══ 9. 4 ĐỊNH DẠNG LINK CARDS ═══ */
+    .four-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-top: 36px;
+      text-align: left;
+    }
+    .format-link-card {
+      background: #ffffff;
+      border: 1px solid var(--cl-line-strong);
+      border-radius: var(--cl-radius-md);
+      padding: 22px 20px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02);
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      text-decoration: none;
+      color: inherit;
+      transition: all 0.25s var(--apple-spring);
+    }
+    .format-link-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+      border-color: var(--cl-accent);
+    }
+    .format-link-card__badge {
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      padding: 4px 8px;
+      border-radius: var(--cl-radius-sm);
+      margin-bottom: 10px;
+      align-self: flex-start;
+      text-transform: uppercase;
+    }
+    .format-link-card__title {
+      font-family: var(--font-display-short);
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--cl-text-base);
+      line-height: 1.3;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+    }
+    .format-link-card__role {
+      font-family: var(--font-display-long);
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--cl-accent);
+      margin-bottom: 8px;
+    }
+    .format-link-card__desc {
+      font-size: 13.5px;
+      line-height: 1.6;
+      color: var(--cl-text-muted);
+      margin: 0;
+    }
+
+    /* ═══ 10. THỰC HÀNH 2 LEVEL CHUYỂN CẢNH & VIDEO PLAYER ═══ */
+    .video-frame-container {
+      position: relative;
+      width: 100%;
+      max-width: 860px;
+      margin: 0 auto 28px auto;
+      aspect-ratio: 16 / 9;
+      border-radius: var(--cl-radius-lg);
+      overflow: hidden;
+      box-shadow: 0 10px 32px rgba(0, 0, 0, 0.12);
+      border: 1px solid var(--cl-line-strong);
+      background: #000000;
+    }
+    .video-frame-container iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+    .levels-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      max-width: 960px;
+      margin: 0 auto;
+      text-align: left;
+    }
+    .level-card {
+      background: #ffffff;
+      border: 1px solid var(--cl-line-strong);
+      border-radius: var(--cl-radius-lg);
+      padding: 26px 24px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
+      display: flex;
+      flex-direction: column;
+    }
+    .level-card--1 {
+      border-top: 5px solid var(--cl-accent);
+    }
+    .level-card--2 {
+      border-top: 5px solid var(--cl-emerald);
+    }
+    .level-badge {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 800;
+      padding: 3px 10px;
+      border-radius: var(--cl-radius-sm);
+      display: inline-block;
+      margin-bottom: 10px;
+      align-self: flex-start;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+    .level-title {
+      font-family: var(--font-display-short);
+      font-size: 16.5px;
+      font-weight: 700;
+      color: var(--cl-text-base);
+      line-height: 1.35;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .level-desc {
+      font-size: 14.5px;
+      line-height: 1.7;
+      color: var(--cl-text-body);
+      margin-bottom: 14px;
+    }
+    .level-checklist {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: auto;
+    }
+    .level-checklist li {
+      font-size: 13.5px;
+      line-height: 1.6;
+      color: var(--cl-text-body);
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+    @media (max-width: 768px) {
+      .levels-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    .case-study-box {
+      max-width: 960px;
+      margin: 0 auto;
+      background: #ffffff;
+      border: 1px solid var(--cl-line-strong);
+      border-left: 6px solid var(--cl-accent);
+      border-radius: var(--cl-radius-lg);
+      padding: 36px 32px;
+      text-align: left;
+      box-shadow: 0 6px 24px rgba(0, 0, 0, 0.04);
+    }
+    .case-study-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      font-weight: 700;
+      color: var(--cl-accent);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 12px;
+    }
+    .case-study-title {
+      font-family: var(--font-display-long);
+      font-size: 21px;
+      font-weight: 600;
+      color: var(--cl-text-base);
+      margin-bottom: 16px;
+      line-height: 1.45;
+    }
+    .case-study-p {
+      font-size: 16px;
+      line-height: 1.75;
+      color: var(--cl-text-body);
+      margin-bottom: 16px;
+    }
+    .case-study-p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* ═══ 11. 20 TRANSITIONS GRID PREVIEW ═══ */
+    .trans-tags-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin-top: 32px;
+      text-align: left;
+    }
+    .trans-tag-item {
+      background: #ffffff;
+      border: 1px solid var(--cl-line);
+      border-radius: var(--cl-radius-sm);
+      padding: 12px 14px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 13.5px;
+      font-family: var(--font-display-long);
+      font-weight: 600;
+      color: var(--cl-text-base);
+    }
+    .trans-tag-num {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--cl-accent);
+      background: var(--cl-accent-tint);
+      padding: 2px 6px;
+      border-radius: 4px;
+    }
+
+    /* ═══ 12. CALLOUT DẶN DÒ CỦA ANH VIỆT ═══ */
+    .viet-callout {
+      max-width: 900px;
+      margin: 0 auto 36px auto;
+      background: #ffffff;
+      border: 1px solid var(--cl-line-strong);
+      border-left: 5px solid #090d16;
+      border-radius: var(--cl-radius-md);
+      padding: 24px 28px;
+      text-align: left;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
+    }
+    .viet-callout__label {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 800;
+      color: var(--cl-text-base);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .viet-callout__quote {
+      font-family: var(--font-editorial);
+      font-style: italic;
+      font-size: 16.5px;
+      line-height: 1.75;
+      color: var(--cl-text-base);
+      margin: 0;
+    }
+
+    /* ═══ 13. CTA BUTTONS ═══ */
+    .cta-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      margin-top: 36px;
+      flex-wrap: wrap;
+    }
+    .btn-main {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: #090d16;
+      color: #ffffff;
+      font-family: var(--font-mono);
+      font-size: 14px;
+      font-weight: 700;
+      padding: 14px 32px;
+      border-radius: var(--cl-radius-full);
+      text-decoration: none;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+      transition: all 0.25s var(--apple-spring);
+    }
+    .btn-main:hover {
+      background: var(--cl-accent);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(26, 115, 232, 0.3);
+    }
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #ffffff;
+      color: var(--cl-text-base);
+      border: 1px solid var(--cl-line-strong);
+      font-family: var(--font-display-long);
+      font-size: 13.5px;
+      font-weight: 600;
+      padding: 13px 26px;
+      border-radius: var(--cl-radius-full);
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+    .btn-secondary:hover {
+      border-color: var(--cl-accent);
+      color: var(--cl-accent);
+      background: var(--cl-tint);
+    }
+
+    /* ═══ 14. RESPONSIVE ═══ */
+    @media (max-width: 980px) {
+      .specs-bar {
+        grid-template-columns: 1fr;
+      }
+      .two-col-grid {
+        grid-template-columns: 1fr;
+      }
+      .three-cards-grid {
+        grid-template-columns: 1fr;
+      }
+      .four-cards-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .trans-tags-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    @media (max-width: 560px) {
+      .four-cards-grid {
+        grid-template-columns: 1fr;
+      }
+      .trans-tags-grid {
+        grid-template-columns: 1fr;
+      }
+      .top-nav-title {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ═══ TOP FIXED HEADER ═══ -->
+  <header class="top-nav-fixed">
+    <div class="top-nav-container">
+      <a href="4stylevideo.html" class="top-nav-back">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+        <span>Về Bộ 4 Định Dạng</span>
+      </a>
+
+      <div class="top-nav-center">
+        <span class="top-nav-badge">BƯỚC 00</span>
+        <span class="top-nav-title">KỸ THUẬT CHUYỂN CẢNH (TRANSITIONS)</span>
+      </div>
+
+      <div class="nav-dropdown">
+        <button type="button" class="nav-dropdown-btn" aria-haspopup="true" aria-expanded="false">
+          <span>🎬 Đổi Bài Học</span>
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </button>
+        <div class="nav-dropdown-menu">
+          <a href="chuyen-canh.html" class="nav-dd-item is-active">
+            <div>
+              <span class="nav-dd-item__tag" style="color: var(--cl-accent);">BƯỚC 00 • NỀN TẢNG</span>
+              <span>Kỹ Thuật Chuyển Cảnh In-Camera</span>
+            </div>
+          </a>
+          <div class="nav-dd-divider"></div>
+          <a href="voiceover.html" class="nav-dd-item">
+            <div>
+              <span class="nav-dd-item__tag">ĐỊNH DẠNG 01</span>
+              <span>Voice-Over • Tách Hình Khỏi Tiếng</span>
+            </div>
+          </a>
+          <a href="walkandtalk.html" class="nav-dd-item">
+            <div>
+              <span class="nav-dd-item__tag">ĐỊNH DẠNG 02</span>
+              <span>Walk & Talk • Vừa Đi Vừa Nói</span>
+            </div>
+          </a>
+          <a href="talkinghead.html" class="nav-dd-item">
+            <div>
+              <span class="nav-dd-item__tag">ĐỊNH DẠNG 03</span>
+              <span>Talking Head • Uy Tín Người Làm Nghề</span>
+            </div>
+          </a>
+          <a href="storytelling.html" class="nav-dd-item">
+            <div>
+              <span class="nav-dd-item__tag">ĐỊNH DẠNG 04</span>
+              <span>Storytelling 2.5 • Bóc Trần Thực Tế</span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ═══ KHỐI 1: HERO - BƯỚC 00: KỸ THUẬT CHUYỂN CẢNH (LIGHT) ═══ -->
+  <section class="cl-zebra-section cl-zebra--light" id="sec-hero">
+    <div class="cl-sec-container cl-sec-container--wide">
+      <div class="cl-badge">BƯỚC 00 • BẮT BUỘC TRƯỚC KHI BẮT ĐẦU</div>
+      <h1 class="title-short">KỸ THUẬT CHUYỂN CẢNH:<br>NỀN TẢNG THỊ GIÁC CỦA MỌI ĐỊNH DẠNG VIDEO</h1>
+      <p class="editorial-hook">"Đừng vội nghĩ đến chuyện nói đạo lý gì hay bán hàng thế nào trước máy quay. Bản chất của video ngắn là thị giác phải hút mắt trước, mọi thứ khác đều đến sau. Không có kỹ thuật chuyển cảnh giữ mắt người xem, thì video nào cũng chỉ là một bài thuyết trình buồn ngủ lướt qua trong 1.5 giây."</p>
+
+      <!-- Bảng tóm tắt chỉ số thực chiến -->
+      <div class="specs-bar">
+        <div class="spec-item">
+          <div class="spec-item__label">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+            Thời Lượng Thực Hành
+          </div>
+          <div class="spec-item__val">15 - 30 Phút Cầm Máy</div>
+        </div>
+        <div class="spec-item">
+          <div class="spec-item__label">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="3"></circle></svg>
+            Mục Tiêu Cốt Lõi
+          </div>
+          <div class="spec-item__val">Băm nhỏ phân cảnh 2-3s, hết cóng trước máy</div>
+        </div>
+        <div class="spec-item">
+          <div class="spec-item__label">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="9" y1="3" x2="9" y2="21"></line></svg>
+            Phạm Vi Áp Dụng
+          </div>
+          <div class="spec-item__val">Làm nền tảng nuôi cả 4 định dạng chủ lực</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ KHỐI 2: TẠI SAO CHUYỂN CẢNH LÀ BƯỚC 0? (TINT) ═══ -->
+  <section class="cl-zebra-section cl-zebra--tint" id="sec-logic">
+    <div class="cl-sec-container">
+      <div class="cl-badge">BẢN CHẤT LÀM NGHỀ</div>
+      <h2 class="title-short">TẠI SAO PHẢI BẮT ĐẦU TỪ CHUYỂN CẢNH?</h2>
+      <p class="editorial-hook">"Người ta xem video là mắt nhìn trước rồi tai mới nghe sau. Hình ảnh mà đứng yên buồn ngủ thì bạn có nói hay đến mấy, triết lý đến mấy người ta cũng quẹt tay đi mất. 4 định dạng kia chỉ là cái vỏ để khoe khéo việc mình làm, còn chuyển cảnh mới là thứ giữ người ta ngồi lại."</p>
+
+      <!-- Hai cột đối chiếu Lối nghĩ cũ vs Lối làm thực tế -->
+      <div class="two-col-grid">
+        <div class="compare-card compare-card--old">
+          <span class="compare-card__tag" style="color: #64748b;">❌ LỐI NGHĨ CŨ (NỘI DUNG TRƯỚC - HÌNH SAU)</span>
+          <h3 class="compare-card__title">Cố rặn kịch bản hay rồi mới bật máy</h3>
+          <ul class="compare-card__list">
+            <li>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+              <span>Vắt óc nghĩ xem hôm nay nói đạo lý gì, kể câu chuyện gì cho cảm động.</span>
+            </li>
+            <li>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+              <span>Bật máy lên đứng nói một lèo 60 giây, người cứng đơ, mắt đảo lia lịa vì quên bài.</span>
+            </li>
+            <li>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+              <span>Hình ảnh đứng yên buồn ngủ, người xem lướt qua sau 1.5 giây đầu. Mọi công sức coi như đổ sông đổ biển.</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="compare-card compare-card--new">
+          <span class="compare-card__tag" style="color: var(--cl-accent);">✅ LỐI LÀM THỰC TẾ (THỊ GIÁC TRƯỚC - NỘI DUNG SAU)</span>
+          <h3 class="compare-card__title">Lấy chuyển cảnh để giữ mắt người xem</h3>
+          <ul class="compare-card__list">
+            <li>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>Băm nhỏ video thành từng mẩu ngắn 2-3 giây, nối nhau bằng chuyển động máy mượt mà.</span>
+            </li>
+            <li>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>Người quay đỡ cóng tay cóng miệng, chỉ cần quay từng mẩu ngắn quen tay rồi ghép lại.</span>
+            </li>
+            <li>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>Mắt người xem bị cuốn theo nhịp cắt, họ ở lại xem hết và tự nhìn thấy đồ xịn, việc thật của bạn.</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ KHỐI 3: ÁP DỤNG CHUYỂN CẢNH VÀO BỘ 4 ĐỊNH DẠNG (LIGHT) ═══ -->
+  <section class="cl-zebra-section cl-zebra--light" id="sec-four-formats">
+    <div class="cl-sec-container cl-sec-container--wide">
+      <div class="cl-badge">BỘ KHUNG 4 ĐỊNH DẠNG</div>
+      <h2 class="title-short">ÁP DỤNG CHUYỂN CẢNH VÀO 4 ĐỊNH DẠNG CHỦ LỰC</h2>
+      <p class="editorial-hook">"Khi đã nắm vững kỹ thuật chuyển cảnh trong tay, bạn đưa nó vào bất kỳ định dạng nào cũng làm video sống động và có sức nặng."</p>
+
+      <div class="four-cards-grid">
+        <!-- ĐỊNH DẠNG 1 -->
+        <a href="voiceover.html" class="format-link-card" style="border-top: 4px solid var(--cl-accent);">
+          <span class="format-link-card__badge" style="background: var(--cl-accent-tint); color: var(--cl-accent);">BƯỚC 01 • LỒNG TIẾNG</span>
+          <h3 class="format-link-card__title">VOICE-OVER</h3>
+          <div class="format-link-card__role">Chuyển cảnh là xương sống 100%</div>
+          <p class="format-link-card__desc">Nối các góc quay bàn tay thao tác, mở hộp, thử đồ, dọn tiệm. Người xem mải nhìn chi tiết tay làm quen việc, phần tiếng thu sau ấm áp và rõ ràng.</p>
+        </a>
+
+        <!-- ĐỊNH DẠNG 2 -->
+        <a href="walkandtalk.html" class="format-link-card" style="border-top: 4px solid var(--cl-amber);">
+          <span class="format-link-card__badge" style="background: var(--cl-amber-tint); color: var(--cl-amber);">BƯỚC 02 • TẢN BỘ</span>
+          <h3 class="format-link-card__title">WALK & TALK</h3>
+          <div class="format-link-card__role">Đổi góc qua bước chân & cột nhà</div>
+          <p class="format-link-card__desc">Vừa đi vừa nói, bước qua một cây cột (Foreground Wipe) hoặc ngoắt góc máy là đổi sang bối cảnh xưởng xôm tụ, cho khách nhìn thấy quy mô thực tế.</p>
+        </a>
+
+        <!-- ĐỊNH DẠNG 3 -->
+        <a href="talkinghead.html" class="format-link-card" style="border-top: 4px solid var(--cl-emerald);">
+          <span class="format-link-card__badge" style="background: var(--cl-emerald-tint); color: var(--cl-emerald);">BƯỚC 03 • NGỒI BÀN</span>
+          <h3 class="format-link-card__title">TALKING HEAD</h3>
+          <div class="format-link-card__role">Giật chuyển cảnh vào bằng chứng thật</div>
+          <p class="format-link-card__desc">Miệng nói một câu nguyên lý, chuyển cảnh giật ngay vào chi tiết sản phẩm hoặc tài liệu trên bàn. Phá tan cảm giác đầu tượng ngồi nói khô cứng.</p>
+        </a>
+
+        <!-- ĐỊNH DẠNG 4 -->
+        <a href="storytelling.html" class="format-link-card" style="border-top: 4px solid var(--cl-purple);">
+          <span class="format-link-card__badge" style="background: var(--cl-purple-tint); color: var(--cl-purple);">BƯỚC 04 • KỂ CHUYỆN</span>
+          <h3 class="format-link-card__title">STORYTELLING</h3>
+          <div class="format-link-card__role">Bước nhảy không gian và thời gian</div>
+          <p class="format-link-card__desc">Một cú đẩy tối (Push to Black) hoặc khép cánh cửa đưa người xem từ tiệm nhỏ 10 năm trước sang cơ ngơi tươm tất hôm nay, thể hiện thâm niên làm nghề.</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ KHỐI 4: THỰC HÀNH 2 LEVEL CỦA KỸ THUẬT CHUYỂN CẢNH (TINT) ═══ -->
+  <section class="cl-zebra-section cl-zebra--tint" id="sec-levels">
+    <div class="cl-sec-container cl-sec-container--wide">
+      <div class="cl-badge">LỘ TRÌNH THỰC HÀNH • 2 CẤP ĐỘ</div>
+      <h2 class="title-short">THỰC HÀNH 2 LEVEL CỦA KỸ THUẬT CHUYỂN CẢNH</h2>
+      <p class="editorial-hook">"Không cần kỹ xảo phần mềm cầu kỳ. Nắm chắc 2 cấp độ này là bạn đã làm chủ toàn bộ nhịp điệu thị giác của video ngắn, quay đến đâu mượt đến đó."</p>
+
+      <!-- Video Thực Hành Mẫu Trực Tiếp Từ video.fedu.vn -->
+      <div class="video-frame-container">
+        <iframe src="https://www.youtube.com/embed/CaDZiACYrV8?rel=0&modestbranding=1" title="Chuyển Cảnh Thực Chiến - Cấp Độ 1 • Nguyễn Đức Việt" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      </div>
+
+      <!-- 2 Cột Đối Chiếu: Level 1 & Level 2 -->
+      <div class="levels-grid">
+        <div class="level-card level-card--1">
+          <span class="level-badge" style="background: var(--cl-accent-tint); color: var(--cl-accent);">LEVEL 01 • CƠ BẢN</span>
+          <h3 class="level-title">CHUYỂN CẢNH IN-CAMERA CƠ HỌC</h3>
+          <p class="level-desc">Mượn chuyển động tự nhiên của đôi tay, hướng lia máy hoặc vật cản lướt qua để nối cảnh tàng hình ngay lúc quay, giấu nhẹm vết cắt mà không cần dựng phức tạp.</p>
+          <ul class="level-checklist">
+            <li>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span><strong>Mượn chuyển động:</strong> Vung tay, gạt máy, xoay người, che ống kính.</span>
+            </li>
+            <li>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span><strong>Băm nhỏ 2-3s:</strong> Quay từng mẩu ngắn, người mới đỡ cóng tay chân.</span>
+            </li>
+            <li>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span><strong>Làm được ngay:</strong> Cầm điện thoại lên là thao tác được sau 15 phút.</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="level-card level-card--2">
+          <span class="level-badge" style="background: var(--cl-emerald-tint); color: var(--cl-emerald);">LEVEL 02 • THỰC CHIẾN</span>
+          <h3 class="level-title">CHUYỂN CẢNH NỐI BẰNG CHỨNG THẬT</h3>
+          <p class="level-desc">Dùng chuyển cảnh làm cầu nối thị giác: miệng nói một câu nguyên lý làm nghề thì điểm cắt đưa mắt người xem sang ngay cảnh làm việc thật, kho hàng, chi tiết máy móc.</p>
+          <ul class="level-checklist">
+            <li>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span><strong>Nối lời với việc:</strong> Khớp câu nói với hành động B-roll thực địa.</span>
+            </li>
+            <li>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span><strong>Nhịp thở 3 giây:</strong> Luân chuyển Toàn - Trung - Cận để mắt không mỏi.</span>
+            </li>
+            <li>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span><strong>Khoe khéo giá trị:</strong> Khách tự nhìn thấy đồ xịn mà không cần quảng cáo.</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ KHỐI 5: BỘ THƯ VIỆN 20 KỸ THUẬT IN-CAMERA (LIGHT) ═══ -->
+  <section class="cl-zebra-section cl-zebra--light" id="sec-library">
+    <div class="cl-sec-container cl-sec-container--wide">
+      <div class="cl-badge">KHO TÀI NGUYÊN THỰC HÀNH</div>
+      <h2 class="title-short">20 KỸ THUẬT CHUYỂN CẢNH IN-CAMERA QUEN TAY</h2>
+      <p class="editorial-hook">"Không cần học những hiệu ứng phần mềm phức tạp. 20 kỹ thuật này được thực hiện ngay lúc cầm máy trên tay, bấm máy là ra kết quả mượt mà."</p>
+
+      <div class="trans-tags-grid">
+        <div class="trans-tag-item"><span class="trans-tag-num">01</span> Hand Swipe (Gạt Tay)</div>
+        <div class="trans-tag-item"><span class="trans-tag-num">02</span> Punch (Giật Góc)</div>
+        <div class="trans-tag-item"><span class="trans-tag-num">03</span> Push to Black (Đẩy Tối)</div>
+        <div class="trans-tag-item"><span class="trans-tag-num">04</span> Wipe (Quét Khung)</div>
+        <div class="trans-tag-item"><span class="trans-tag-num">05</span> Shirt Pull (Kéo Áo)</div>
+        <div class="trans-tag-item"><span class="trans-tag-num">06</span> Snap / Clap (Vỗ Tay)</div>
+        <div class="trans-tag-item"><span class="trans-tag-num">07</span> Jump Cut (Ngắt Nhịp)</div>
+        <div class="trans-tag-item"><span class="trans-tag-num">08</span> Whip Spin (Xoay Máy)</div>
+        <div class="trans-tag-item"><span class="trans-tag-num">09</span> Whip Look (Lia Mắt)</div>
+        <div class="trans-tag-item"><span class="trans-tag-num">10</span> Step Over (Bước Chân)</div>
+        <div class="trans-tag-item"><span class="trans-tag-num">11</span> Foreground Wipe (Vật Cản)</div>
+        <div class="trans-tag-item"><span class="trans-tag-num">12</span> Drop (Thả Máy)</div>
+        <div class="trans-tag-item"><span class="trans-tag-num">13</span> Toss (Tung Đồ)</div>
+        <div class="trans-tag-item"><span class="trans-tag-num">14</span> Object Boop (Kê Đồ Cận Cảnh)</div>
+        <div class="trans-tag-item"><span class="trans-tag-num">15</span> Doorway Match (Mở Cửa)</div>
+        <div class="trans-tag-item"><span class="trans-tag-num">16</span> Frame In / Out (Ra Vào)</div>
+        <div class="trans-tag-item"><span class="trans-tag-num">17</span> Shape Match (Đồng Dạng)</div>
+        <div class="trans-tag-item"><span class="trans-tag-num">18</span> Focus Pull (Lấy Nét)</div>
+        <div class="trans-tag-item"><span class="trans-tag-num">19</span> Light Flare (Lóe Sáng)</div>
+        <div class="trans-tag-item"><span class="trans-tag-num">20</span> Ground Match (Hạ Máy Sát Đất)</div>
+      </div>
+
+      <div class="cta-row" style="margin-top: 32px;">
+        <a href="20-ky-thuat-chuyen-canh-in-camera-video-course.html" class="btn-secondary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+          Xem Minh Họa Động 20 Kỹ Thuật Chuyển Cảnh ↗
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ KHỐI 6: ĐIỀU HƯỚNG TỚI BƯỚC 01 (TINT) ═══ -->
+  <section class="cl-zebra-section cl-zebra--tint" id="sec-next">
+    <div class="cl-sec-container">
+      <div class="cl-badge">BƯỚC TIẾP THEO</div>
+      <h2 class="title-short">SẴN SÀNG BƯỚC VÀO ĐỊNH DẠNG ĐẦU TIÊN</h2>
+      <p class="editorial-hook">"Khi tay đã quen cầm máy quay từng cú chuyển cảnh ngắn, hãy bắt đầu với định dạng dễ nhất: Tách hình khỏi tiếng, chỉ quay tay thao tác, không cần xuất hiện khuôn mặt."</p>
+
+      <div class="cta-row">
+        <a href="voiceover.html" class="btn-main">
+          Bắt Đầu Bước 01: Voice-Over &rarr;
+        </a>
+        <a href="4stylevideo.html" class="btn-secondary">
+          &larr; Về Trang Tổng Quan 4 Định Dạng
+        </a>
+      </div>
+    </div>
+  </section>
+
+</body>
+</html>
