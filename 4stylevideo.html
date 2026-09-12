@@ -501,9 +501,83 @@
       transform: translate3d(0, 0, 0);
       will-change: auto;
     }
+  
+    /* ═══ THANH ĐIỀU HƯỚNG BỘ 4 ĐỊNH DẠNG (CROSS-LINKS) ═══ */
+    .four-formats-bar {
+      width: 100%;
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--cl-line-strong);
+      padding: 8px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      overflow-x: auto;
+      white-space: nowrap;
+      scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
+      position: sticky;
+      top: 50px;
+      z-index: 999;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+    }
+    .four-formats-bar::-webkit-scrollbar { display: none; }
+    .ff-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--cl-text-muted);
+      text-decoration: none;
+      padding: 5px 12px;
+      border-radius: var(--cl-radius-full);
+      border: 1px solid var(--cl-line);
+      background: var(--cl-tint);
+      transition: all 0.2s var(--apple-ease);
+      flex-shrink: 0;
+    }
+    .ff-item:hover {
+      color: var(--cl-accent);
+      border-color: rgba(26, 115, 232, 0.4);
+      background: var(--cl-accent-tint);
+      transform: translateY(-1px);
+    }
+    .ff-item.is-active {
+      color: #ffffff;
+      background: var(--cl-accent);
+      border-color: var(--cl-accent);
+      box-shadow: 0 4px 12px rgba(26, 115, 232, 0.28);
+    }
+    .ff-item-hub {
+      background: #ffffff;
+      border-color: var(--cl-line-strong);
+      color: var(--cl-text-base);
+    }
+    @media (max-width: 768px) {
+      .four-formats-bar {
+        justify-content: flex-start;
+        padding: 8px 12px;
+        top: 46px;
+      }
+    }
+
   </style>
 </head>
 <body>
+
+  <!-- ═══ THANH ĐIỀU HƯỚNG LIÊN KẾT NHANH 4 ĐỊNH DẠNG ═══ -->
+  <div class="four-formats-bar">
+    <a href="4stylevideo.html" class="ff-item is-active">🏠 BỘ 4 ĐỊNH DẠNG</a>
+    <a href="voiceover.html" class="ff-item">01. Voice-Over</a>
+    <a href="walkandtalk.html" class="ff-item">02. Walk & Talk</a>
+    <a href="talkinghead.html" class="ff-item">03. Talking Head</a>
+    <a href="storytelling.html" class="ff-item">04. Storytelling 2.5</a>
+  </div>
+
 
   <!-- STICKY NAV AN TOÀN TRÊN DI ĐỘNG -->
   <nav class="sticky-nav">

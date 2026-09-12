@@ -404,6 +404,116 @@
       box-shadow: 0 12px 30px rgba(26, 115, 232, 0.35);
     }
 
+    /* ═══ TOP FIXED HEADER (LINK BACK VỀ 4 ĐỊNH DẠNG) ═══ */
+    .top-nav-fixed {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      width: 100%;
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--cl-line-strong);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+    }
+    .top-nav-container {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 10px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .top-nav-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--cl-accent-tint);
+      color: var(--cl-accent);
+      border: 1px solid rgba(26, 115, 232, 0.22);
+      padding: 7px 16px;
+      border-radius: var(--cl-radius-full);
+      font-family: var(--font-display-long);
+      font-size: 13.5px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: all 0.2s var(--apple-spring);
+      flex-shrink: 0;
+    }
+    .top-nav-back:hover {
+      background: var(--cl-accent);
+      color: #ffffff;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 14px rgba(26, 115, 232, 0.28);
+    }
+    .top-nav-center {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .top-nav-badge {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 800;
+      background: var(--cl-text-base);
+      color: #ffffff;
+      padding: 3px 8px;
+      border-radius: var(--cl-radius-sm);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+    .top-nav-title {
+      font-family: var(--font-display-long);
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--cl-text-base);
+    }
+    .top-nav-contact {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-display-long);
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--cl-text-muted);
+      text-decoration: none;
+      padding: 6px 14px;
+      border-radius: var(--cl-radius-full);
+      background: var(--cl-tint);
+      border: 1px solid var(--cl-line);
+      transition: all 0.2s ease;
+      flex-shrink: 0;
+    }
+    .top-nav-contact:hover {
+      color: var(--cl-accent);
+      border-color: var(--cl-accent);
+      background: var(--cl-accent-tint);
+    }
+    .top-nav-phone {
+      font-family: var(--font-mono);
+      font-weight: 700;
+      color: var(--cl-accent);
+    }
+    @media (max-width: 768px) {
+      .top-nav-center {
+        display: none;
+      }
+      .top-nav-container {
+        padding: 8px 16px;
+      }
+      .top-nav-back {
+        font-size: 12.5px;
+        padding: 6px 12px;
+      }
+      .top-nav-contact {
+        font-size: 12px;
+        padding: 5px 10px;
+      }
+    }
+
     .sticky-nav {
       position: fixed;
       bottom: 24px;
@@ -449,12 +559,108 @@
       transform: translate3d(0, 0, 0);
       will-change: auto;
     }
+  
+    /* ═══ THANH ĐIỀU HƯỚNG BỘ 4 ĐỊNH DẠNG (CROSS-LINKS) ═══ */
+    .four-formats-bar {
+      width: 100%;
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--cl-line-strong);
+      padding: 8px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      overflow-x: auto;
+      white-space: nowrap;
+      scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
+      position: sticky;
+      top: 50px;
+      z-index: 999;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+    }
+    .four-formats-bar::-webkit-scrollbar { display: none; }
+    .ff-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--cl-text-muted);
+      text-decoration: none;
+      padding: 5px 12px;
+      border-radius: var(--cl-radius-full);
+      border: 1px solid var(--cl-line);
+      background: var(--cl-tint);
+      transition: all 0.2s var(--apple-ease);
+      flex-shrink: 0;
+    }
+    .ff-item:hover {
+      color: var(--cl-accent);
+      border-color: rgba(26, 115, 232, 0.4);
+      background: var(--cl-accent-tint);
+      transform: translateY(-1px);
+    }
+    .ff-item.is-active {
+      color: #ffffff;
+      background: var(--cl-accent);
+      border-color: var(--cl-accent);
+      box-shadow: 0 4px 12px rgba(26, 115, 232, 0.28);
+    }
+    .ff-item-hub {
+      background: #ffffff;
+      border-color: var(--cl-line-strong);
+      color: var(--cl-text-base);
+    }
+    @media (max-width: 768px) {
+      .four-formats-bar {
+        justify-content: flex-start;
+        padding: 8px 12px;
+        top: 46px;
+      }
+    }
+
   </style>
 </head>
 <body>
 
+  <!-- ═══ TOP FIXED HEADER: LINK BACK VỀ BỘ 4 ĐỊNH DẠNG (FIX CỨNG TRÊN ĐẦU) ═══ -->
+  <header class="top-nav-fixed">
+    <div class="top-nav-container">
+      <a href="4stylevideo.html" class="top-nav-back">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="19" y1="12" x2="5" y2="12"></line>
+          <polyline points="12 19 5 12 12 5"></polyline>
+        </svg>
+        <span>Bộ 4 Định Dạng</span>
+      </a>
+      <div class="top-nav-center">
+        <span class="top-nav-badge">ĐỊNH DẠNG 04</span>
+        <span class="top-nav-title">Storytelling • Bóc Trần Tầng 2.5</span>
+      </div>
+      <a href="https://zalo.me/0934688632" target="_blank" rel="noopener noreferrer" class="top-nav-contact">
+        <span>Góp ý Zalo:</span>
+        <span class="top-nav-phone">0934.688.632</span>
+      </a>
+    </div>
+  </header>
+
+  <!-- ═══ THANH ĐIỀU HƯỚNG LIÊN KẾT NHANH 4 ĐỊNH DẠNG ═══ -->
+  <div class="four-formats-bar">
+    <a href="4stylevideo.html" class="ff-item ff-item-hub">🏠 BỘ 4 ĐỊNH DẠNG</a>
+    <a href="voiceover.html" class="ff-item">01. Voice-Over</a>
+    <a href="walkandtalk.html" class="ff-item">02. Walk & Talk</a>
+    <a href="talkinghead.html" class="ff-item">03. Talking Head</a>
+    <a href="storytelling.html" class="ff-item is-active">04. Storytelling 2.5</a>
+  </div>
+
+
   <!-- STICKY NAV DÀNH CHO HỌC VIÊN -->
   <nav class="sticky-nav">
+    <a href="4stylevideo.html" style="color: var(--cl-accent); font-weight: 700;">&larr; Bộ 4 Định Dạng</a>
     <a href="#sec-hero">Video Gốc 🎥</a>
     <a href="storytelling-khoa-hoc.html" style="color: var(--cl-accent); font-weight: 700;">Khoa Học 🔬</a>
     <a href="#sec-what">What (Là Gì)</a>
@@ -466,24 +672,24 @@
   </nav>
 
   <!-- ═══ KHỐI 1: HERO (LIGHT) ═══ -->
-  <section class="cl-zebra-section cl-zebra--light" id="sec-hero" style="padding-top: 60px;">
+  <section class="cl-zebra-section cl-zebra--light" id="sec-hero" style="padding-top: 104px;">
     <div class="cl-sec-container cl-sec-container--wide apple-reveal">
       <div class="cl-badge">BÀI GIẢNG THỰC CHIẾN • NGHỆ THUẬT KỂ CHUYỆN</div>
       <h1 class="title-short">CÁCH QUAY STORYTELLING:<br>BÓC TRẦN SỰ THẬT TẦNG&nbsp;2.5</h1>
       <p class="editorial-hook">"Storytelling hiểu đơn giản là kể chuyện người thật việc thật: ngồi xuống bóc trần đúng cái cớ ngụy trang của người lớn để tạo dựng niềm tin tuyệt đối trước khi bấm&nbsp;máy."</p>
 
       <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 36px; align-items: center; margin-top: 36px;">
-        <!-- Cột Video Player -->
-        <div style="background: #000; border-radius: 20px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.12); border: 1px solid rgba(0,0,0,0.08); aspect-ratio: 9/16; max-width: 360px; margin: 0 auto; width: 100%;">
-          <video 
-            src="./videos/storytelling.mp4" 
-            poster="./images/storytelling_poster.jpg" 
-            controls 
-            playsinline 
-            preload="metadata"
-            style="width: 100%; height: 100%; object-fit: cover; display: block;">
-            Trình duyệt của bạn không hỗ trợ thẻ video.
-          </video>
+        <!-- Cột Video Player (Nhúng Facebook Reel Thực Tế) -->
+        <div style="background: #000; border-radius: 20px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.12); border: 1px solid rgba(0,0,0,0.08); aspect-ratio: 9/16; max-width: 360px; margin: 0 auto; width: 100%; position: relative;">
+          <iframe 
+            src="https://www.facebook.com/plugins/video.php?height=640&href=https%3A%2F%2Fwww.facebook.com%2Freel%2F1498902625604603%2F&show_text=false&width=360&t=0" 
+            title="Facebook Reel: Storytelling Tầng 2.5 • Nguyễn Việt"
+            style="border: none; overflow: hidden; width: 100%; height: 100%; border-radius: 20px; display: block;" 
+            scrolling="no" 
+            frameborder="0" 
+            allowfullscreen="true" 
+            allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share">
+          </iframe>
         </div>
 
         <!-- Cột 4 Điểm Đinh Từ Video -->
@@ -495,21 +701,21 @@
           </div>
 
           <div class="apple-card" style="padding: 18px 22px; text-align: left; align-items: flex-start;">
-            <div class="apple-card__badge apple-card__badge--emerald" style="margin-bottom: 8px;"><span style="font-family: var(--font-mono); font-weight: 700;">01:10</span> • QUAY DỰNG THỰC ĐỊA</div>
-            <h3 class="apple-card__title" style="font-size: 15.5px; margin-bottom: 6px; text-align: left;">KHÔNG CẦN DIỄN&nbsp;MẶT</h3>
-            <p style="font-size: 14px; color: var(--cl-text-body); line-height: 1.6; margin: 0; text-align: left;">Đôi bàn tay gánh 70% hình ảnh (gõ phím, lật sổ, cầm dụng cụ). Giải phóng 100% áp lực cơ mặt và nỗi sợ nhìn vào ống&nbsp;kính.</p>
+            <div class="apple-card__badge apple-card__badge--emerald" style="margin-bottom: 8px;"><span style="font-family: var(--font-mono); font-weight: 700;">01:10</span> • THỊ GIÁC MURAKAMI</div>
+            <h3 class="apple-card__title" style="font-size: 15.5px; margin-bottom: 6px; text-align: left;">KHÔNG CẦN DIỄN CẢM XÚC TRÊN&nbsp;MẶT</h3>
+            <p style="font-size: 14px; color: var(--cl-text-body); line-height: 1.6; margin: 0; text-align: left;">70% thời lượng nhường cho cảnh quay cận cảnh đôi bàn tay thao tác nghề nghiệp và vật thể tĩnh đời thực để mắt người xem được&nbsp;thở.</p>
           </div>
 
           <div class="apple-card" style="padding: 18px 22px; text-align: left; align-items: flex-start;">
-            <div class="apple-card__badge apple-card__badge--amber" style="margin-bottom: 8px;"><span style="font-family: var(--font-mono); font-weight: 700;">02:25</span> • BẢO CHỨNG ĐỘC BẢN</div>
-            <h3 class="apple-card__title" style="font-size: 15.5px; margin-bottom: 6px; text-align: left;">KHÔNG THỂ SAO&nbsp;CHÉP</h3>
-            <p style="font-size: 14px; color: var(--cl-text-body); line-height: 1.6; margin: 0; text-align: left;">AI và đối thủ hoàn toàn mù lòa trước Tầng 2.5. Vết sẹo nghề nghiệp và trải nghiệm thật là tài sản độc bản không thể làm&nbsp;giả.</p>
+            <div class="apple-card__badge apple-card__badge--amber" style="margin-bottom: 8px;"><span style="font-family: var(--font-mono); font-weight: 700;">02:25</span> • LỜI THOẠI BĂM NHỎ</div>
+            <h3 class="apple-card__title" style="font-size: 15.5px; margin-bottom: 6px; text-align: left;">KỊCH BẢN&nbsp;SINGLE-LINE & NHỊP&nbsp;THỞ</h3>
+            <p style="font-size: 14px; color: var(--cl-text-body); line-height: 1.6; margin: 0; text-align: left;">Mỗi câu dưới 12 chữ, nói chuyện mộc mạc như người chủ nhà rót chén trà nóng, giữ khoảng lặng 1–2 giây để lời nói kịp ngấm vào lồng&nbsp;ngực.</p>
           </div>
 
           <div class="apple-card" style="padding: 18px 22px; text-align: left; align-items: flex-start;">
-            <div class="apple-card__badge apple-card__badge--rose" style="margin-bottom: 8px;"><span style="font-family: var(--font-mono); font-weight: 700;">03:40</span> • CHUYỂN ĐỔI THƯƠNG MẠI</div>
-            <h3 class="apple-card__title" style="font-size: 15.5px; margin-bottom: 6px; text-align: left;">BÁN HÀNG KHÔNG CẦN&nbsp;SALE</h3>
-            <p style="font-size: 14px; color: var(--cl-text-body); line-height: 1.6; margin: 0; text-align: left;">Minh oan và trao lối thoát danh dự, khách hàng tự tìm đến Zalo mua giải pháp giá cao trong tư thế ngẩng cao&nbsp;đầu.</p>
+            <div class="apple-card__badge apple-card__badge--rose" style="margin-bottom: 8px;"><span style="font-family: var(--font-mono); font-weight: 700;">03:40</span> • LỐI THOÁT DANH DỰ</div>
+            <h3 class="apple-card__title" style="font-size: 15.5px; margin-bottom: 6px; text-align: left;">MINH OAN VÀ TẶNG LỐI&nbsp;THOÁT</h3>
+            <p style="font-size: 14px; color: var(--cl-text-body); line-height: 1.6; margin: 0; text-align: left;">Tuyên bố đanh thép 'Đó không phải lỗi của bạn!', giúp khách hàng mua giải pháp trong tư thế ngẩng cao đầu khẳng định đẳng&nbsp;cấp.</p>
           </div>
         </div>
       </div>
@@ -600,29 +806,29 @@
 
       <div class="apple-cards-grid">
         <div class="apple-card">
-          <div class="apple-card__badge apple-card__badge--blue">GIÁ TRỊ 01 • QUAY DỰNG THỰC ĐỊA</div>
-          <h3 class="apple-card__title">KHÔNG CẦN DIỄN&nbsp;MẶT</h3>
+          <div class="apple-card__badge apple-card__badge--blue">GIÁ TRỊ 01</div>
+          <h3 class="apple-card__title">HẠ KHIÊN PHÒNG THỦ SINH&nbsp;HỌC</h3>
           <div class="apple-card__desc" style="display: flex; flex-direction: column; gap: 8px;">
-            <div>• <b>Đôi bàn tay gánh 70% hình ảnh:</b> Thao tác nghề nghiệp thật, lật sổ, gõ phím, lau đồ nghề... giải phóng 100% áp lực cơ mặt trước ống&nbsp;kính.</div>
-            <div>• <b>Không cần gồng mình:</b> Bỏ qua trang điểm, bảnh bao hay diễn nét mặt chuyên gia; chỉ việc ngồi trong phòng tĩnh nói bằng giọng mộc mạc&nbsp;nhất.</div>
+            <div>• <b>Kháng sinh chống bội thực:</b> Khán giả đã quá mệt mỏi với những màn gào thét bán hàng 3 giây đầu; câu chuyện thật đưa họ vào khoảng lặng thấu&nbsp;cảm.</div>
+            <div>• <b>Đồng bộ sóng não (Neural Coupling):</b> Hệ nơ-ron gương tự động kích hoạt, người xem trải qua cùng một xúc cảm nghẹn ngào với người&nbsp;kể.</div>
           </div>
         </div>
 
         <div class="apple-card">
-          <div class="apple-card__badge apple-card__badge--emerald">GIÁ TRỊ 02 • BẢO CHỨNG ĐỘC BẢN</div>
-          <h3 class="apple-card__title">KHÔNG THỂ SAO&nbsp;CHÉP</h3>
+          <div class="apple-card__badge apple-card__badge--emerald">GIÁ TRỊ 02</div>
+          <h3 class="apple-card__title">UY QUYỀN TỪ SỰ THẤU&nbsp;SUỐT</h3>
           <div class="apple-card__desc" style="display: flex; flex-direction: column; gap: 8px;">
-            <div>• <b>AI hoàn toàn mù lòa:</b> Trí tuệ nhân tạo chỉ viết được văn mẫu bề nổi; AI không có thể xác sinh học, không biết xấu hổ, không sợ mất mặt trước học&nbsp;trò.</div>
-            <div>• <b>Tín hiệu đắt giá (Costly Signal):</b> Vết sẹo nghề nghiệp và sự giằng xé nội tâm là thứ không một kẻ lừa đảo nào dám mượn để đóng kịch trên&nbsp;mạng.</div>
+            <div>• <b>Định lý Conant-Ashby:</b> Não người mặc định suy luận: Kẻ bóc đúng căn bệnh ngầm là kẻ duy nhất nắm phương thuốc chữa dứt&nbsp;điểm.</div>
+            <div>• <b>Tín hiệu đắt giá (Costly Signal):</b> Kẻ làm giả không bao giờ dám tự bộc bạch sự vụng về. Sự chân thật tạo nên độ trust tuyệt&nbsp;đối.</div>
           </div>
         </div>
 
         <div class="apple-card">
-          <div class="apple-card__badge apple-card__badge--amber">GIÁ TRỊ 03 • CHUYỂN ĐỔI BÁN HÀNG</div>
-          <h3 class="apple-card__title">BÁN HÀNG KHÔNG CẦN&nbsp;SALE</h3>
+          <div class="apple-card__badge apple-card__badge--amber">GIÁ TRỊ 03</div>
+          <h3 class="apple-card__title">LỐI THOÁT DANH DỰ ĐẲNG&nbsp;CẤP</h3>
           <div class="apple-card__desc" style="display: flex; flex-direction: column; gap: 8px;">
-            <div>• <b>Chuyển đổi qua lối thoát danh dự:</b> Minh oan 'Đó hoàn toàn không phải lỗi của bạn!', giải phóng mặc cảm tội lỗi cho người&nbsp;nghe.</div>
-            <div>• <b>Khách tự tìm đến mua:</b> Mua giải pháp trong tư thế ngẩng cao đầu khẳng định đẳng cấp, bạn chốt đơn giá cao mà không cần hô hào chèo&nbsp;kéo.</div>
+            <div>• <b>Tẩy trắng tội lỗi:</b> Tuyên bố đanh thép 'Đó không phải lỗi của bạn', giải phóng hoàn toàn gánh nặng xấu&nbsp;hổ.</div>
+            <div>• <b>Khách tự tìm đến mua:</b> Mua giải pháp không phải vì yếu thế, mà là hành vi khẳng định đẳng cấp của một người làm nghề thức&nbsp;thời.</div>
           </div>
         </div>
       </div>
@@ -751,72 +957,63 @@
         </div>
       </div>
 
-      <div style="margin-top: 36px; display: flex; flex-direction: column; align-items: center; gap: 20px; width: 100%;">
+      <div style="margin-top: 36px; display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
         <a href="https://vietndj.github.io/offline02/9_kich_ban_thuc_chien.html" target="_blank" class="btn-cta">
           📚 Xem Trọn Bộ 9 Kịch Bản Thực Chiến Tầng 2.5 ↗
         </a>
+        <a href="4stylevideo.html" class="btn-cta" style="background: var(--cl-tint); color: var(--cl-text-base); border: 1px solid var(--cl-line-strong); box-shadow: none;">
+          &larr; Bộ 4 Định Dạng
+        </a>
+      </div>
+    
 
-        <!-- ═══ KHỐI THAM KHẢO TÀI LIỆU MỞ RỘNG (CARD CHUẨN VĂN PHONG ANH VIỆT) ═══ -->
-        <div class="apple-card" style="margin-top: 24px; width: 100%; max-width: 820px; background: #ffffff; border: 1px solid var(--cl-line-strong); box-shadow: 0 4px 24px rgba(0,0,0,0.04); text-align: left;">
-          <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; margin-bottom: 16px;">
-            <div class="apple-card__badge apple-card__badge--blue" style="margin-bottom: 0;">TÀI LIỆU ĐỌC THÊM • HỆ THỐNG HÓA NGHIÊN CỨU</div>
-            <span style="font-family: var(--font-mono); font-size: 12px; color: var(--cl-text-muted);">TÍN HIỆU TỐN KÉM &amp; TẦNG 2.5</span>
-          </div>
-          
-          <h3 style="font-family: var(--font-display-short); font-weight: 700; font-size: clamp(18px, 2.2vw, 22px); color: var(--cl-text-base); text-transform: uppercase; letter-spacing: -0.01em; margin-bottom: 14px; line-height: 1.3;">
-            Bản Chất Thương Hiệu Cá Nhân Trên Video Ngắn
-          </h3>
-
-          <div style="font-size: 15.5px; line-height: 1.82; color: var(--cl-text-body); margin-bottom: 22px;">
-            <p style="margin-bottom: 12px;">
-              Rào cản lớn nhất khi một người có chuyên môn vững không dám quay video không nằm ở kỹ thuật, mà nằm ở <b>thể diện (Tầng 2.5)</b>: sợ người quen nhìn vào nghĩ mình dạo này ế ẩm phải lên mạng bán hàng, sợ bị đánh đồng với mấy trò làm màu... Nhưng nếu chọn im lặng thì khách quen cứ thế thưa dần.
-            </p>
-            <p style="margin-bottom: 12px;">
-              Qua màn hình điện thoại phẳng lì 2D lạnh ngắt, người xem không bao giờ tin vào lời hứa suông hay filter làm mịn ảo. Họ chỉ tin vào <b>Tín hiệu tốn kém (Costly Signals)</b> — những hành động mà người làm ngắn hạn không bao giờ dám làm: dám từ chối nhận tiền khi chưa đúng lúc, dám thừa nhận giới hạn chuyên môn, và phơi bày những thao tác vi mô vật lý không thể làm giả.
-            </p>
-            <p style="margin-bottom: 0;">
-              Tài liệu này bóc trần toàn bộ cơ chế tâm lý, cách dịch mã tư duy thành cấu trúc kịch bản 4 nhịp, góc máy ngang tầm mắt và nhịp thở cắt dựng... kèm theo 3 kịch bản mẫu bóc tách thực tế cho người làm nghề.
-            </p>
-          </div>
-
-          <div>
-            <a href="ban-chat-thuong-hieu-ca-nhan.html" class="btn-cta" style="margin-top: 0; display: inline-flex; width: auto; background: var(--cl-accent);">
-              📖 Đọc Tài Liệu: Bản Chất Thương Hiệu Cá Nhân Tầng 2.5 ↗
-            </a>
-          </div>
+      <!-- ═══ KHỐI LIÊN KẾT BỘ 4 ĐỊNH DẠNG (BOTTOM CROSS-LINKS) ═══ -->
+      <div class="apple-card" style="margin-top: 48px; width: 100%; max-width: 880px; background: #ffffff; border: 1px solid var(--cl-line-strong); box-shadow: 0 8px 30px rgba(0,0,0,0.04); text-align: left; padding: 28px 32px; border-left: 5px solid var(--cl-accent);">
+        <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; margin-bottom: 14px;">
+          <div class="apple-card__badge apple-card__badge--blue" style="margin-bottom: 0;">LỘ TRÌNH THỰC CHIẾN • BỘ 4 ĐỊNH DẠNG CHỦ LỰC</div>
+          <a href="4stylevideo.html" style="font-family: var(--font-mono); font-size: 12px; font-weight: 700; color: var(--cl-accent); text-decoration: none;">
+            &larr; Xem Bản Đồ Phối Hợp 4 Định Dạng
+          </a>
         </div>
+        
+        <h3 style="font-family: var(--font-display-short); font-weight: 700; font-size: clamp(17px, 2vw, 20px); color: var(--cl-text-base); text-transform: uppercase; letter-spacing: -0.01em; margin-bottom: 8px; line-height: 1.35;">
+          Khám Phá Các Định Dạng Video Tiếp Theo
+        </h3>
+        <p style="font-size: 14.5px; line-height: 1.7; color: var(--cl-text-muted); margin-bottom: 20px;">
+          Kênh video bền vững luôn phối hợp linh hoạt cả 4 phong cách: bắt đầu an toàn với <b>Voice-Over</b>, tạo thiện cảm đời thực bằng <b>Walk &amp; Talk</b>, khẳng định năng lực với <b>Talking Head</b>, và bóc trần sự thật ngượng miệng <b>Tầng 2.5</b> để khách hàng chủ động tìm đến.
+        </p>
 
-        <!-- ═══ KHỐI THAM KHẢO 02: BỘ 5 SHOT ĐẦU RA THEO NHẠC & HOOK 3S ═══ -->
-        <div class="apple-card" style="margin-top: 20px; width: 100%; max-width: 820px; background: #ffffff; border: 1px solid var(--cl-line-strong); box-shadow: 0 4px 24px rgba(0,0,0,0.04); text-align: left;">
-          <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; margin-bottom: 16px;">
-            <div class="apple-card__badge apple-card__badge--emerald" style="margin-bottom: 0;">THỰC CHIẾN SALON TÓC • 5 SHOTS THEO NHẠC</div>
-            <span style="font-family: var(--font-mono); font-size: 12px; color: var(--cl-text-muted);">CỖ MÁY HÚT KHÁCH 18 GIÂY</span>
-          </div>
-          
-          <h3 style="font-family: var(--font-display-short); font-weight: 700; font-size: clamp(18px, 2.2vw, 22px); color: var(--cl-text-base); text-transform: uppercase; letter-spacing: -0.01em; margin-bottom: 14px; line-height: 1.3;">
-            Chiến Lược 5 Shot Tiêu Chuẩn Đầu Ra Theo Nhạc &amp; Cú Hook Đọc Vị 3 Giây
-          </h3>
-
-          <div style="font-size: 15.5px; line-height: 1.82; color: var(--cl-text-body); margin-bottom: 22px;">
-            <p style="margin-bottom: 12px;">
-              Khách đi làm tóc là người mua bằng cảm xúc thị giác (*Visual-driven*). Họ lướt TikTok chỉ quan tâm đúng một thứ: <b>"Làm đầu này lên trông tôi có xinh hơn, bảnh hơn, thon gọn mặt hơn không?"</b>. Không ai có nhu cầu nghe triết lý làm đẹp hay khoa học sợi tóc dài dòng.
-            </p>
-            <p style="margin-bottom: 12px;">
-              Đầu ra nhanh, đẹp, nét theo điệu nhạc cuốn mới là thứ khiến khách bấm lưu video rồi gửi tin nhắn đặt lịch ngay lập tức. Nhưng nếu chỉ quay mẫu tóc theo nhạc, kênh sẽ rơi vào bẫy "catalogue vô danh" — khách chỉ nhớ mặt người mẫu mà không nhớ người thợ là ai.
-            </p>
-            <p style="margin-bottom: 0;">
-              Tài liệu này bóc tách chuẩn xác <b>quy chuẩn 5 shot vàng đầu ra</b> (cào tay nảy phom, góc nghiêng 45° tôn hàm, sau gáy chữ V, cận cảnh bắt sáng, nụ cười khách soi gương) và bí quyết cấy <b>Thương hiệu cá nhân</b> vào đúng 3 giây <i>"Hook đọc vị khuyết điểm trước gương"</i> mà không cần nói một câu đạo lý. Kèm kịch bản mẫu 18 giây và quy trình 3 phút quay nhanh tại salon.
-            </p>
-          </div>
-
-          <div>
-            <a href="thcn-salon-tang-2-5.html" class="btn-cta" style="margin-top: 0; display: inline-flex; width: auto; background: var(--cl-accent);">
-              📖 Đọc Tài Liệu: Chiến Lược 5 Shot Đầu Ra &amp; Hook Đọc Vị 3 Giây ↗
-            </a>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; width: 100%;">
+          <a href="voiceover.html" style="text-decoration: none; color: inherit; display: flex;">
+            <div style="padding: 16px 18px; border-radius: 14px; border: 1px solid var(--cl-line-strong); background: var(--cl-card); width: 100%; display: flex; flex-direction: column; transition: all 0.25s var(--apple-spring); box-shadow: 0 2px 8px rgba(0,0,0,0.02);" onmouseover="this.style.transform='translateY(-3px)';this.style.borderColor='rgba(26,115,232,0.4)';" onmouseout="this.style.transform='none';this.style.borderColor='var(--cl-line-strong)';">
+              <span style="font-family: var(--font-mono); font-size: 10px; font-weight: 700; color: var(--cl-accent); letter-spacing: 0.04em;">01 • BƯỚC AN TOÀN &rarr;</span>
+              <span style="font-family: var(--font-display-short); font-size: 14.5px; font-weight: 700; color: var(--cl-text-base); margin-top: 4px;">VOICE-OVER</span>
+              <span style="font-size: 12px; color: var(--cl-text-muted); line-height: 1.5; margin-top: 4px;">Tách hình khỏi tiếng, chỉ quay tay làm việc.</span>
+            </div>
+          </a>
+          <a href="walkandtalk.html" style="text-decoration: none; color: inherit; display: flex;">
+            <div style="padding: 16px 18px; border-radius: 14px; border: 1px solid var(--cl-line-strong); background: var(--cl-card); width: 100%; display: flex; flex-direction: column; transition: all 0.25s var(--apple-spring); box-shadow: 0 2px 8px rgba(0,0,0,0.02);" onmouseover="this.style.transform='translateY(-3px)';this.style.borderColor='rgba(26,115,232,0.4)';" onmouseout="this.style.transform='none';this.style.borderColor='var(--cl-line-strong)';">
+              <span style="font-family: var(--font-mono); font-size: 10px; font-weight: 700; color: var(--cl-accent); letter-spacing: 0.04em;">02 • THIỆN CẢM &rarr;</span>
+              <span style="font-family: var(--font-display-short); font-size: 14.5px; font-weight: 700; color: var(--cl-text-base); margin-top: 4px;">WALK & TALK</span>
+              <span style="font-size: 12px; color: var(--cl-text-muted); line-height: 1.5; margin-top: 4px;">Vừa đi vừa nói, bớt cóng, tự nhiên tản bộ.</span>
+            </div>
+          </a>
+          <a href="talkinghead.html" style="text-decoration: none; color: inherit; display: flex;">
+            <div style="padding: 16px 18px; border-radius: 14px; border: 1px solid var(--cl-line-strong); background: var(--cl-card); width: 100%; display: flex; flex-direction: column; transition: all 0.25s var(--apple-spring); box-shadow: 0 2px 8px rgba(0,0,0,0.02);" onmouseover="this.style.transform='translateY(-3px)';this.style.borderColor='rgba(26,115,232,0.4)';" onmouseout="this.style.transform='none';this.style.borderColor='var(--cl-line-strong)';">
+              <span style="font-family: var(--font-mono); font-size: 10px; font-weight: 700; color: var(--cl-accent); letter-spacing: 0.04em;">03 • TẠO ĐỘ TIN &rarr;</span>
+              <span style="font-family: var(--font-display-short); font-size: 14.5px; font-weight: 700; color: var(--cl-text-base); margin-top: 4px;">TALKING HEAD</span>
+              <span style="font-size: 12px; color: var(--cl-text-muted); line-height: 1.5; margin-top: 4px;">Nói tại bàn 2 camera, khẳng định chuyên môn.</span>
+            </div>
+          </a>
+          <div style="padding: 16px 18px; border-radius: 14px; border: 2px solid var(--cl-accent); background: var(--cl-accent-tint); display: flex; flex-direction: column; position: relative;">
+            <span style="font-family: var(--font-mono); font-size: 10px; font-weight: 800; color: var(--cl-accent); letter-spacing: 0.04em;">04 • TRI KỶ 2.5 (ĐANG XEM)</span>
+            <span style="font-family: var(--font-display-short); font-size: 14.5px; font-weight: 700; color: var(--cl-text-base); margin-top: 4px;">STORYTELLING</span>
+            <span style="font-size: 12px; color: var(--cl-text-body); line-height: 1.5; margin-top: 4px;">Bóc bệnh ngầm Tầng 2.5, chốt khách giá cao.</span>
           </div>
         </div>
       </div>
-    </div>
+
+      </div>
   </section>
 
   <!-- ═══ JAVASCRIPT: ZERO-JANK APPLE OBSERVER ═══ -->
