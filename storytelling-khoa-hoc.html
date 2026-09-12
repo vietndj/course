@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>Cơ Sở Khoa Học & Định Nghĩa Storytelling: Bóc Tách Bệnh Ngầm Tầng 2.5 • Nghiên Cứu Hệ Thống Hóa</title>
+  <title>Tập Hồ Sơ Nghiên Cứu • Khoa Học Nhận Thức & Chiến Lược Storytelling Tầng 2.5</title>
   
   <!-- Font Definitions & System Fallbacks -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -91,15 +91,15 @@
 
     /* ═══ 2. DESIGN TOKENS ═══ */
     :root {
-      --cl-bg:              #ffffff;
-      --cl-tint:            #f8fafc;
+      --cl-bg:              #f8fafc;
       --cl-card:            #ffffff;
       --cl-card-subtle:     #f1f5f9;
-      --cl-line:            rgba(0, 0, 0, 0.06);
-      --cl-line-strong:     rgba(0, 0, 0, 0.12);
+      --cl-line:            rgba(0, 0, 0, 0.07);
+      --cl-line-strong:     rgba(0, 0, 0, 0.14);
       --cl-text-base:       #090d16;
-      --cl-text-body:       #0f172a;
+      --cl-text-body:       #1e293b;
       --cl-text-muted:      #475569;
+      --cl-text-dim:        #64748b;
       --cl-accent:          #1a73e8;
       --cl-accent-tint:     rgba(26, 115, 232, 0.08);
       --cl-accent-dark:     #0d47a1;
@@ -121,7 +121,6 @@
       --font-display-short: 'FD Aeonik Extended', -apple-system, BlinkMacSystemFont, sans-serif;
       --font-display-long:  'FD Aeonik', -apple-system, BlinkMacSystemFont, sans-serif;
       --font-body:          'Tiempos Text', 'Inter', Georgia, serif;
-      --font-editorial:     'Tiempos Text', Georgia, serif;
       --font-mono:          'JetBrains Mono', monospace;
 
       --apple-spring: cubic-bezier(0.25, 1, 0.35, 1.05);
@@ -144,746 +143,1013 @@
 
     body {
       font-family: var(--font-body);
-      line-height: 1.82;
+      line-height: 1.85;
       overflow-x: hidden;
       background: var(--cl-bg);
     }
 
-    /* ═══ 3. ZEBRA STRIPING ═══ */
-    .cl-zebra-section {
-      width: 100%;
-      min-height: 100dvh;
+    /* ═══ 3. TOP FIXED HEADER ═══ */
+    .dossier-topbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 64px;
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: saturate(180%) blur(20px);
+      -webkit-backdrop-filter: saturate(180%) blur(20px);
+      border-bottom: 1px solid var(--cl-line-strong);
+      z-index: 9999;
       display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 96px 24px;
-      position: relative;
-      border-bottom: 1px solid var(--cl-line);
-      box-sizing: border-box;
-    }
-
-    .cl-zebra--light {
-      background-color: var(--cl-bg);
-    }
-
-    .cl-zebra--tint {
-      background-color: var(--cl-tint);
-    }
-
-    .cl-sec-container {
-      width: 100%;
-      max-width: 880px;
-      margin: 0 auto;
-      display: flex;
-      flex-direction: column;
       align-items: center;
-      text-align: center;
-      position: relative;
-      z-index: 2;
+      justify-content: space-between;
+      padding: 0 clamp(16px, 4vw, 40px);
     }
-
-    .cl-sec-container--wide {
-      max-width: 1140px;
+    .topbar-left {
+      display: flex;
+      align-items: center;
+      gap: 16px;
     }
-
-    /* ═══ 4. TYPOGRAPHY ═══ */
-    .cl-badge {
+    .topbar-badge {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--cl-accent);
+      background: var(--cl-accent-tint);
+      padding: 4px 10px;
+      border-radius: var(--cl-radius-full);
+      border: 1px solid rgba(26, 115, 232, 0.2);
+    }
+    .topbar-title {
+      font-family: var(--font-display-short);
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--cl-text-base);
+      letter-spacing: -0.01em;
+      text-transform: uppercase;
+    }
+    .topbar-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .topbar-contact {
       display: inline-flex;
       align-items: center;
       gap: 8px;
       font-family: var(--font-mono);
-      font-size: 11.5px;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--cl-text-body);
+      background: var(--cl-card-subtle);
+      border: 1px solid var(--cl-line-strong);
+      padding: 6px 14px;
+      border-radius: var(--cl-radius-full);
+      text-decoration: none;
+      transition: all 0.2s var(--apple-ease);
+    }
+    .topbar-contact:hover {
+      border-color: var(--cl-accent);
       color: var(--cl-accent);
       background: var(--cl-accent-tint);
-      border: 1px solid rgba(26, 115, 232, 0.2);
-      padding: 6px 16px;
-      border-radius: var(--cl-radius-full);
-      margin-bottom: 24px;
     }
-
-    .title-short {
-      font-family: var(--font-display-short);
-      font-weight: 700;
-      font-size: clamp(23px, 3.8vw, 40px);
-      line-height: 1.22;
-      letter-spacing: -0.01em;
-      text-transform: uppercase;
-      color: var(--cl-text-base);
-      margin-bottom: 20px;
-      text-wrap: balance;
-    }
-
-    .title-long {
-      font-family: var(--font-display-long);
-      font-weight: 600;
-      font-size: clamp(20px, 3vw, 30px);
-      line-height: 1.35;
-      color: var(--cl-text-base);
-      margin-bottom: 20px;
-      text-wrap: balance;
-    }
-
-    .editorial-hook {
-      font-family: var(--font-editorial);
-      font-style: italic;
-      font-size: clamp(17px, 2.2vw, 21px);
-      line-height: 1.68;
+    .topbar-contact strong {
       color: var(--cl-accent);
-      margin-bottom: 28px;
-      max-width: 820px;
-      text-wrap: balance;
     }
 
-    /* ═══ 5. CARDS & GRIDS ═══ */
-    .apple-cards-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 24px;
-      width: 100%;
-      margin-top: 32px;
-      text-align: left;
+    /* ═══ 4. 2-COLUMN DOSSIER LAYOUT ═══ */
+    .dossier-wrap {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 96px 24px 100px;
+      display: flex;
+      gap: 44px;
+      align-items: flex-start;
     }
 
-    .apple-card {
+    /* ─── CỘT TRÁI: STICKY SIDEBAR (TOC + CAPSULE) ─── */
+    .dossier-sidebar {
+      width: 330px;
+      flex-shrink: 0;
+      position: sticky;
+      top: 84px;
+      max-height: calc(100vh - 104px);
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      padding-right: 4px;
+      scrollbar-width: thin;
+      scrollbar-color: var(--cl-line-strong) transparent;
+    }
+    .dossier-sidebar::-webkit-scrollbar {
+      width: 4px;
+    }
+    .dossier-sidebar::-webkit-scrollbar-thumb {
+      background: var(--cl-line-strong);
+      border-radius: 4px;
+    }
+
+    .sidebar-card {
       background: var(--cl-card);
       border: 1px solid var(--cl-line-strong);
       border-radius: var(--cl-radius-lg);
-      padding: 32px 28px;
+      padding: 20px;
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
-      position: relative;
-      transition: all 0.35s var(--apple-spring);
+    }
+    .sidebar-card__label {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--cl-text-dim);
+      margin-bottom: 8px;
+      display: block;
+    }
+    .sidebar-card__title {
+      font-family: var(--font-display-short);
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--cl-text-base);
+      line-height: 1.4;
+      margin-bottom: 12px;
+      text-transform: uppercase;
+    }
+    .sidebar-capsule-list {
+      list-style: none;
       display: flex;
       flex-direction: column;
-      justify-content: flex-start;
+      gap: 8px;
+      font-size: 13px;
+      line-height: 1.55;
+      color: var(--cl-text-muted);
+    }
+    .sidebar-capsule-list li {
+      position: relative;
+      padding-left: 16px;
+    }
+    .sidebar-capsule-list li::before {
+      content: "•";
+      position: absolute;
+      left: 2px;
+      color: var(--cl-accent);
+      font-weight: bold;
     }
 
-    .apple-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.07);
-      border-color: rgba(26, 115, 232, 0.3);
+    /* Mục lục động Scrollspy */
+    .sidebar-toc {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
     }
-
-    .apple-card__badge {
+    .toc-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 9px 12px;
+      border-radius: var(--cl-radius-sm);
+      text-decoration: none;
+      color: var(--cl-text-muted);
+      font-family: var(--font-display-long);
+      font-size: 13px;
+      font-weight: 500;
+      line-height: 1.4;
+      transition: all 0.2s var(--apple-ease);
+      border-left: 3px solid transparent;
+    }
+    .toc-item:hover {
+      background: var(--cl-card-subtle);
+      color: var(--cl-text-base);
+    }
+    .toc-item.is-active {
+      background: var(--cl-accent-tint);
+      color: var(--cl-accent-dark);
+      font-weight: 700;
+      border-left-color: var(--cl-accent);
+    }
+    .toc-item__num {
       font-family: var(--font-mono);
       font-size: 11px;
       font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      padding: 4px 10px;
-      border-radius: var(--cl-radius-full);
-      margin-bottom: 12px;
-      align-self: flex-start;
-    }
-
-    .apple-card__badge--blue {
-      background: var(--cl-accent-tint);
       color: var(--cl-accent);
+      opacity: 0.8;
+      min-width: 20px;
     }
 
-    .apple-card__badge--rose {
-      background: var(--cl-rose-tint);
-      color: var(--cl-rose);
-    }
-
-    .apple-card__badge--emerald {
-      background: var(--cl-emerald-tint);
-      color: var(--cl-emerald);
-    }
-
-    .apple-card__badge--amber {
-      background: var(--cl-amber-tint);
-      color: var(--cl-amber);
-    }
-
-    .apple-card__badge--purple {
-      background: var(--cl-purple-tint);
-      color: var(--cl-purple);
-    }
-
-    .apple-card__title {
-      font-family: var(--font-display-short);
-      font-weight: 700;
-      font-size: clamp(16px, 1.8vw, 17.5px);
-      color: var(--cl-text-base);
-      line-height: 1.35;
-      text-transform: uppercase;
-      letter-spacing: -0.01em;
-      margin-bottom: 12px;
-      text-wrap: balance;
-    }
-
-    .apple-card__desc {
-      font-size: 15.5px;
-      line-height: 1.76;
-      color: var(--cl-text-body);
-      flex-grow: 1;
-      text-wrap: pretty;
-    }
-
-    /* ═══ 6. CALLOUT & QUOTES ═══ */
-    .quote-box {
+    .sidebar-nav-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
       width: 100%;
-      background: #ffffff;
-      border: 1px solid var(--cl-line-strong);
-      border-left: 4px solid var(--cl-accent);
+      padding: 12px 16px;
       border-radius: var(--cl-radius-md);
-      padding: 24px 28px;
-      margin: 28px 0;
-      text-align: left;
-      box-shadow: 0 4px 16px rgba(0,0,0,0.02);
-    }
-
-    .quote-box__text {
-      font-family: var(--font-editorial);
-      font-size: 18px;
-      line-height: 1.75;
-      color: var(--cl-text-base);
-      font-style: italic;
-    }
-
-    .quote-box__author {
-      font-family: var(--font-mono);
+      font-family: var(--font-display-short);
       font-size: 12.5px;
       font-weight: 700;
-      color: var(--cl-accent);
-      margin-top: 10px;
+      text-decoration: none;
       text-transform: uppercase;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.02em;
+      transition: all 0.25s var(--apple-spring);
+    }
+    .sidebar-nav-btn--primary {
+      background: var(--cl-text-base);
+      color: #ffffff;
+    }
+    .sidebar-nav-btn--primary:hover {
+      background: var(--cl-accent);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(26, 115, 232, 0.25);
+    }
+    .sidebar-nav-btn--secondary {
+      background: var(--cl-card);
+      color: var(--cl-text-body);
+      border: 1px solid var(--cl-line-strong);
+    }
+    .sidebar-nav-btn--secondary:hover {
+      background: var(--cl-card-subtle);
+      border-color: var(--cl-accent);
+      color: var(--cl-accent);
     }
 
-    /* ═══ 7. COMPARISON TABLE ═══ */
-    .table-wrapper {
+    /* ─── CỘT PHẢI: READING CANVAS ─── */
+    .dossier-canvas {
+      flex: 1;
+      min-width: 0;
+      max-width: 920px;
+      background: #ffffff;
+      border: 1px solid var(--cl-line-strong);
+      border-radius: var(--cl-radius-xl);
+      padding: clamp(28px, 5vw, 64px);
+      box-shadow: 0 8px 40px rgba(0, 0, 0, 0.03);
+    }
+
+    /* Header tài liệu chuyên khảo */
+    .dossier-header {
+      border-bottom: 2px solid var(--cl-line);
+      padding-bottom: 36px;
+      margin-bottom: 48px;
+    }
+    .dossier-pretitle {
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--cl-accent);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .dossier-h1 {
+      font-family: var(--font-display-short);
+      font-size: clamp(26px, 3.8vw, 40px);
+      font-weight: 700;
+      line-height: 1.22;
+      color: var(--cl-text-base);
+      letter-spacing: -0.02em;
+      margin-bottom: 18px;
+      text-transform: uppercase;
+    }
+    .dossier-lead {
+      font-size: clamp(17px, 1.8vw, 19.5px);
+      line-height: 1.75;
+      color: var(--cl-text-muted);
+      font-style: italic;
+      margin-bottom: 24px;
+    }
+    .dossier-meta-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px 24px;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--cl-text-dim);
+      border-top: 1px solid var(--cl-line);
+      padding-top: 18px;
+    }
+    .dossier-meta-bar span strong {
+      color: var(--cl-text-body);
+    }
+
+    /* Section & Chapter styling */
+    .dossier-section {
+      padding-bottom: 56px;
+      margin-bottom: 56px;
+      border-bottom: 1px solid var(--cl-line);
+      scroll-margin-top: 96px;
+    }
+    .dossier-section:last-of-type {
+      border-bottom: none;
+      padding-bottom: 0;
+      margin-bottom: 0;
+    }
+
+    .chapter-badge {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--cl-accent);
+      display: inline-block;
+      margin-bottom: 8px;
+    }
+    .dossier-h2 {
+      font-family: var(--font-display-short);
+      font-size: clamp(20px, 2.6vw, 27px);
+      font-weight: 700;
+      line-height: 1.3;
+      color: var(--cl-text-base);
+      letter-spacing: -0.015em;
+      margin-bottom: 20px;
+      text-transform: uppercase;
+    }
+    .dossier-h3 {
+      font-family: var(--font-display-short);
+      font-size: 18.5px;
+      font-weight: 700;
+      color: var(--cl-text-base);
+      margin: 32px 0 14px;
+      line-height: 1.35;
+    }
+
+    .dossier-canvas p {
+      font-size: 17.5px;
+      line-height: 1.85;
+      color: var(--cl-text-body);
+      margin-bottom: 20px;
+    }
+
+    /* Khối trích dẫn hiện thực (Real quote callout) */
+    .callout-box {
+      background: var(--cl-card-subtle);
+      border-left: 4px solid var(--cl-accent);
+      border-radius: 0 var(--cl-radius-md) var(--cl-radius-md) 0;
+      padding: 22px 26px;
+      margin: 28px 0;
+    }
+    .callout-box--emerald {
+      border-left-color: var(--cl-emerald);
+      background: var(--cl-emerald-tint);
+    }
+    .callout-box--amber {
+      border-left-color: var(--cl-amber);
+      background: var(--cl-amber-tint);
+    }
+    .callout-box--rose {
+      border-left-color: var(--cl-rose);
+      background: var(--cl-rose-tint);
+    }
+    .callout-box p {
+      font-size: 16.5px;
+      line-height: 1.8;
+      margin-bottom: 0;
+      color: var(--cl-text-body);
+    }
+    .callout-box b {
+      color: var(--cl-text-base);
+    }
+
+    /* Thẻ định lý lớn */
+    .theorem-card {
+      background: #ffffff;
+      border: 1px solid var(--cl-line-strong);
+      border-radius: var(--cl-radius-lg);
+      padding: 28px;
+      margin: 28px 0;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.02);
+    }
+    .theorem-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+    .theorem-tag {
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: var(--cl-radius-full);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+    .theorem-tag--blue {
+      background: var(--cl-accent-tint);
+      color: var(--cl-accent);
+      border: 1px solid rgba(26, 115, 232, 0.2);
+    }
+    .theorem-tag--emerald {
+      background: var(--cl-emerald-tint);
+      color: var(--cl-emerald);
+      border: 1px solid rgba(5, 150, 105, 0.2);
+    }
+    .theorem-tag--rose {
+      background: var(--cl-rose-tint);
+      color: var(--cl-rose);
+      border: 1px solid rgba(225, 29, 72, 0.2);
+    }
+
+    /* Bảng ma trận đối chiếu chuyên sâu */
+    .matrix-table-wrap {
       width: 100%;
       overflow-x: auto;
-      margin-top: 32px;
-      border-radius: var(--cl-radius-lg);
       border: 1px solid var(--cl-line-strong);
-      background: #ffffff;
-      box-shadow: 0 6px 24px rgba(0,0,0,0.03);
+      border-radius: var(--cl-radius-lg);
+      margin: 32px 0;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02);
     }
-
-    table {
+    .matrix-table {
       width: 100%;
       border-collapse: collapse;
       text-align: left;
-      font-size: 15px;
-      line-height: 1.7;
+      font-size: 14.5px;
+      line-height: 1.6;
     }
-
-    th {
-      font-family: var(--font-mono);
-      font-size: 12px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      padding: 18px 22px;
-      background: var(--cl-card-subtle);
-      color: var(--cl-text-base);
-      border-bottom: 1px solid var(--cl-line-strong);
-    }
-
-    td {
-      padding: 20px 22px;
+    .matrix-table th, .matrix-table td {
+      padding: 16px 20px;
       border-bottom: 1px solid var(--cl-line);
-      color: var(--cl-text-body);
       vertical-align: top;
     }
-
-    tr:last-child td {
+    .matrix-table th {
+      background: var(--cl-card-subtle);
+      font-family: var(--font-display-short);
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--cl-text-base);
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+    }
+    .matrix-table tr:last-child td {
       border-bottom: none;
     }
-
-    tr:hover td {
-      background: rgba(26, 115, 232, 0.02);
-    }
-
-    /* ═══ 8. BUTTONS & NAVIGATION ═══ */
-    .btn-cta {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      background: var(--cl-accent);
-      color: #ffffff;
-      font-family: var(--font-mono);
-      font-size: 13.5px;
+    .matrix-table td:first-child {
       font-weight: 700;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      text-decoration: none;
-      padding: 14px 28px;
-      border-radius: var(--cl-radius-full);
-      box-shadow: 0 8px 20px rgba(26, 115, 232, 0.25);
-      transition: all 0.28s var(--apple-ease);
-      border: none;
-      cursor: pointer;
-    }
-
-    .btn-cta:hover {
-      background: var(--cl-accent-dark);
-      transform: translateY(-2px);
-      box-shadow: 0 12px 30px rgba(26, 115, 232, 0.35);
-    }
-
-    .btn-secondary {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      background: #ffffff;
       color: var(--cl-text-base);
-      font-family: var(--font-mono);
-      font-size: 13.5px;
-      font-weight: 700;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      text-decoration: none;
-      padding: 14px 28px;
-      border-radius: var(--cl-radius-full);
-      border: 1px solid var(--cl-line-strong);
-      box-shadow: 0 4px 12px rgba(0,0,0,0.04);
-      transition: all 0.28s var(--apple-ease);
+      background: rgba(248, 250, 252, 0.5);
+      width: 22%;
+    }
+    .matrix-table td:last-child {
+      background: rgba(236, 253, 245, 0.4);
+      color: var(--cl-text-body);
+      font-weight: 500;
     }
 
-    .btn-secondary:hover {
-      border-color: var(--cl-accent);
-      color: var(--cl-accent);
-      transform: translateY(-2px);
-    }
-
-    .sticky-nav {
-      position: fixed;
-      bottom: 24px;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 100;
-      background: rgba(255, 255, 255, 0.92);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border: 1px solid rgba(0, 0, 0, 0.12);
-      padding: 8px 18px;
-      border-radius: var(--cl-radius-full);
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-      white-space: nowrap;
-      max-width: 95vw;
-      overflow-x: auto;
-    }
-
-    .sticky-nav a {
-      font-family: var(--font-mono);
-      font-size: 12px;
-      font-weight: 700;
-      color: var(--cl-text-muted);
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-
-    .sticky-nav a:hover,
-    .sticky-nav a.nav-highlight {
-      color: var(--cl-accent);
-    }
-
-    /* ═══ 9. APPLE MOTION REVEAL ═══ */
-    .apple-reveal {
-      opacity: 0;
-      transform: translate3d(0, 26px, 0);
-      transition: opacity 0.5s var(--apple-ease), transform 0.58s var(--apple-spring);
-      will-change: opacity, transform;
-    }
-
-    .apple-reveal.is-visible {
-      opacity: 1;
-      transform: translate3d(0, 0, 0);
-      will-change: auto;
+    /* Responsive cho màn hình nhỏ */
+    @media (max-width: 1024px) {
+      .dossier-wrap {
+        flex-direction: column;
+        padding: 80px 16px 60px;
+        gap: 32px;
+      }
+      .dossier-sidebar {
+        width: 100%;
+        position: static;
+        max-height: none;
+      }
+      .topbar-title {
+        display: none;
+      }
+      .dossier-canvas {
+        padding: 28px 20px;
+        border-radius: var(--cl-radius-lg);
+      }
     }
   </style>
 </head>
+
 <body>
 
-  <!-- ═══ STICKY NAVIGATION VỚI LINK BACK LẠI GIÁO TRÌNH ═══ -->
-  <nav class="sticky-nav">
-    <a href="storytelling.html" class="nav-highlight">← Giáo Trình Thực Hành</a>
-    <a href="#sec-hero">Khởi Điểm</a>
-    <a href="#sec-khoa-hoc">3 Cơ Sở Khoa Học</a>
-    <a href="#sec-vet-seo">Vết Sẹo Thật</a>
-    <a href="#sec-ai-vach-tran">Vạch Trần AI</a>
-    <a href="#sec-ma-tran">Ma Trận 3 Hướng</a>
-  </nav>
+  <!-- ═══ 1. THANH ĐIỀU HƯỚNG TRÊN CÙNG (TOPBAR) ═══ -->
+  <header class="dossier-topbar">
+    <div class="topbar-left">
+      <span class="topbar-badge">TẬP HỒ SƠ LƯU TRỮ</span>
+      <span class="topbar-title">Khoa Học Nhận Thức &amp; Storytelling 2.5</span>
+    </div>
+    <div class="topbar-right">
+      <a href="storytelling.html" class="topbar-contact" style="background: var(--cl-accent-tint); color: var(--cl-accent); border-color: rgba(26,115,232,0.3);">
+        <span>← Giáo Trình Cách Quay</span>
+      </a>
+      <a href="https://zalo.me/0934688632" target="_blank" rel="noopener noreferrer" class="topbar-contact">
+        <span>Zalo/imess:</span>
+        <strong>0934.688.632</strong>
+      </a>
+    </div>
+  </header>
 
-  <!-- ═══ KHỐI 1: HERO & BẺ GÃY ĐỊNH KIẾN (LIGHT) ═══ -->
-  <section class="cl-zebra-section cl-zebra--light" id="sec-hero" style="padding-top: 80px;">
-    <div class="cl-sec-container cl-sec-container--wide apple-reveal">
-      <div style="display: flex; align-items: center; justify-content: space-between; width: 100%; margin-bottom: 20px; flex-wrap: wrap; gap: 12px;">
-        <div class="cl-badge">CÔNG TRÌNH NGHIÊN CỨU HỆ THỐNG HÓA • KHOA HỌC NHẬN THỨC</div>
-        <a href="storytelling.html" class="btn-secondary" style="padding: 6px 16px; font-size: 11.5px;">
-          ← Quay Lại Giáo Trình Video
+  <!-- ═══ 2. KHUNG TẬP HỒ SƠ 2 CỘT ═══ -->
+  <div class="dossier-wrap">
+
+    <!-- ─── CỘT TRÁI: STICKY SIDEBAR (TOC + TỔNG QUAN) ─── -->
+    <aside class="dossier-sidebar">
+      <!-- Thẻ Capsule Tóm Lược -->
+      <div class="sidebar-card">
+        <span class="sidebar-card__label">HỒ SƠ NGHIÊN CỨU THỰC CHỨNG</span>
+        <h3 class="sidebar-card__title">ĐỊNH NGHĨA STORYTELLING TẦNG 2.5</h3>
+        <ul class="sidebar-capsule-list">
+          <li><strong>Bản chất:</strong> Bóc trần sự thật ngượng miệng người trong cuộc giấu kín.</li>
+          <li><strong>Cột trụ 1 (Năng lực):</strong> Bắt đúng tiếng xích cam &rarr; Khách tin &amp; nể tài.</li>
+          <li><strong>Cột trụ 2 (Tử tế):</strong> Lau sạch yên xe &rarr; Khách mang ơn &amp; không nỡ mặc cả.</li>
+          <li><strong>Không chèo kéo:</strong> Tuyệt đối Zero CTA bẫy ở cuối video.</li>
+        </ul>
+      </div>
+
+      <!-- Mục Lục Cuộn Thông Minh (Scrollspy) -->
+      <div class="sidebar-card">
+        <span class="sidebar-card__label">MỤC LỤC TẬP HỒ SƠ</span>
+        <nav class="sidebar-toc" id="sidebarToc">
+          <a href="#chuong-1" class="toc-item is-active">
+            <span class="toc-item__num">01</span>
+            <span>Nghịch Lý Nội Dung &amp; Tầng 2.5</span>
+          </a>
+          <a href="#chuong-2" class="toc-item">
+            <span class="toc-item__num">02</span>
+            <span>3 Định Lý Khoa Học Thực Chứng</span>
+          </a>
+          <a href="#chuong-3" class="toc-item">
+            <span class="toc-item__num">03</span>
+            <span>Quy Luật Chiếc Khăn Lau Xe</span>
+          </a>
+          <a href="#chuong-4" class="toc-item">
+            <span class="toc-item__num">04</span>
+            <span>Giải Phẫu 4 Hiện Trường Thực Tế</span>
+          </a>
+          <a href="#chuong-5" class="toc-item">
+            <span class="toc-item__num">05</span>
+            <span>4 Giác Quan Vạch Trần Video AI</span>
+          </a>
+          <a href="#chuong-6" class="toc-item">
+            <span class="toc-item__num">06</span>
+            <span>Ma Trận &amp; Khung Kịch Bản 4 Bước</span>
+          </a>
+        </nav>
+      </div>
+
+      <!-- Cụm Nút Điều Hướng -->
+      <div style="display: flex; flex-direction: column; gap: 8px;">
+        <a href="storytelling.html" class="sidebar-nav-btn sidebar-nav-btn--primary">
+          ← Quay Lại Thực Hành (storytelling.html)
+        </a>
+        <a href="4stylevideo.html" class="sidebar-nav-btn sidebar-nav-btn--secondary">
+          🏠 Trọn Bộ 4 Định Dạng Chủ Lực
         </a>
       </div>
+    </aside>
 
-      <h1 class="title-short">CƠ SỞ KHOA HỌC &amp; ĐỊNH NGHĨA<br>STORYTELLING BÓC TÁCH BỆNH NGẦM</h1>
-      <p class="editorial-hook">"Storytelling trên mạng dạy đầy rồi, ai đi học về cũng tưởng mình biết hết. Nhưng quay video lên chẳng ai xem, họa hoằn vài người quen vào like xã giao rồi thôi."</p>
+    <!-- ─── CỘT PHẢI: READING CANVAS (NỘI DUNG CHUYÊN KHẢO) ─── -->
+    <main class="dossier-canvas">
 
-      <div style="width: 100%; max-width: 860px; text-align: left; margin: 0 auto;">
-        <p style="font-size: 17px; line-height: 1.85; color: var(--cl-text-body); margin-bottom: 18px;">
-          Nhiều người lầm tưởng kể chuyện là phải tập diễn xuất, nặn cảm xúc cho xúc động rồi khéo léo nhét bán hàng ở đuôi. Người ta lướt mạng để giải quyết vấn đề của họ, không ai rảnh xem người lạ đóng kịch.
-        </p>
-        <p style="font-size: 17px; line-height: 1.85; color: var(--cl-text-body); margin-bottom: 24px;">
-          Kể chuyện thực chiến không phải là một mẹo làm văn bề nổi. Cốt lõi của nó vận hành dựa trên các quy luật tâm lý học nhận thức và sinh học tiến hóa đã được khoa học thực chứng:
-        </p>
-      </div>
-
-      <div class="quote-box" style="max-width: 860px; margin: 0 auto 32px;">
-        <div class="quote-box__text">
-          "NGUYÊN LÝ CHẨN ĐOÁN (DIAGNOSTIC TRUST): Người nào chỉ ra chính xác căn bệnh ngầm, bộ não người nghe tự động mặc định người đó nắm giữ phương thuốc chữa."
+      <!-- Header Bài Nghiên Cứu -->
+      <header class="dossier-header">
+        <div class="dossier-pretitle">
+          <span>● CÔNG TRÌNH HỆ THỐNG HÓA</span>
+          <span>• KHOA HỌC THẦN KINH &amp; CHIẾN LƯỢC VIDEO THỰC CHIẾN</span>
         </div>
-        <div class="quote-box__author">Quy luật tự nhiên của niềm tin con người</div>
-      </div>
+        <h1 class="dossier-h1">KHOA HỌC NHẬN THỨC, TIẾN HÓA SINH HỌC &amp; NGHỆ THUẬT BÓC TÁCH BỆNH NGẦM TẦNG 2.5</h1>
+        <p class="dossier-lead">
+          "Tại sao người xem ngày nay trơ lì trước mọi kịch bản xúc động hay lời hứa hẹn đạo lý, nhưng lại lập tức trao trọn niềm tin và không bao giờ mặc cả khi gặp một người thấu suốt nỗi sợ giấu kín của họ?"
+        </p>
+        <div class="dossier-meta-bar">
+          <span>Hệ quy chiếu: <strong>Chuẩn nhận thức thực chiến của anh Việt</strong></span>
+          <span>Cập nhật: <strong>Bản lưu trữ chuyên sâu</strong></span>
+          <span>Đối soát: <strong>Không văn mẫu AI • Không từ ngữ sáo rỗng</strong></span>
+        </div>
+      </header>
 
-      <div style="display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; margin-top: 12px;">
-        <a href="#sec-khoa-hoc" class="btn-cta">Khám Phá 3 Cơ Sở Khoa Học ↓</a>
+      <!-- ═══ CHƯƠNG 1 ═══ -->
+      <section class="dossier-section" id="chuong-1">
+        <span class="chapter-badge">CHƯƠNG 01</span>
+        <h2 class="dossier-h2">NGHỊCH LÝ NỘI DUNG SỐ &amp; KHOẢNG CHÊNH THỂ DIỆN (TẦNG 2.5)</h2>
         
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══ KHỐI 2: 3 CƠ SỞ KHOA HỌC THỰC CHỨNG (TINT) ═══ -->
-  <section class="cl-zebra-section cl-zebra--tint" id="sec-khoa-hoc">
-    <div class="cl-sec-container cl-sec-container--wide apple-reveal">
-      <div class="cl-badge">01 / NỀN TẢNG THỰC CHỨNG • 3 ĐỊNH LÝ KHOA HỌC</div>
-      <h2 class="title-short">TẠI SAO BÓC BỆNH NGẦM<br>LẠI TẠO DỰNG NIỀM TIN TUYỆT&nbsp;ĐỐI?</h2>
-      <p class="editorial-hook">"Khoa học đã chứng minh bằng toán học và sinh học tiến hóa: Bộ não con người không tin lời khen, nó chỉ trao niềm tin cho kẻ hiểu rõ cơ chế hỏng hóc và mang những tín hiệu đắt&nbsp;giá."</p>
-
-      <div class="apple-cards-grid">
-        <!-- Card 1 -->
-        <div class="apple-card">
-          <div class="apple-card__badge apple-card__badge--blue">1970 • ĐIỀU KHIỂN HỌC TOÁN HỌC</div>
-          <h3 class="apple-card__title">ĐỊNH LÝ CONANT-ASHBY</h3>
-          <div class="apple-card__desc">
-            <div style="margin-bottom: 12px;">
-              <b>Logic:</b> Hai nhà điều khiển học Roger Conant và W. Ross Ashby chứng minh: <i>Ai mô tả được chính xác cơ chế bên trong của một hệ thống, người đó nắm giữ cách điều khiển và sửa chữa nó.</i>
-            </div>
-            <div style="margin-bottom: 12px;">
-              <b>Tâm lý:</b> Khi bạn gọi trúng từng triệu chứng ngầm và chỗ ngượng miệng người trong cuộc đang giấu kín, não họ tự động quy gán bạn là chuyên gia nắm giữ giải pháp.
-            </div>
-            <div>
-              <b>Hiện trường:</b> Thợ dỏm khoe bằng khen 20 năm uy tín &rarr; khách nghi ngờ. Thợ giỏi ghé tai nghe tiếng máy gõ lách cách, chỉ đúng: <i>"Bị lỏng xích cam và mẻ bánh răng số 2"</i> &rarr; khách trao trọn xe ngay lập tức.
-            </div>
-          </div>
-        </div>
-
-        <!-- Card 2 -->
-        <div class="apple-card">
-          <div class="apple-card__badge apple-card__badge--emerald">1975 • SINH HỌC TIẾN HÓA</div>
-          <h3 class="apple-card__title">THUYẾT TÍN HIỆU ĐẮT GIÁ</h3>
-          <div class="apple-card__desc">
-            <div style="margin-bottom: 12px;">
-              <b>Logic:</b> Nhà sinh học Amotz Zahavi chứng minh: Tự xưng <i>"tôi có tâm, tôi uy tín"</i> là lời nói rẻ tiền (Cheap Talk) vì ai cũng nói được. Tự nhiên chỉ tin những <b>Tín hiệu đắt giá (Costly Signals)</b> phải trả bằng cái giá rất đắt.
-            </div>
-            <div style="margin-bottom: 12px;">
-              <b>Vết sẹo thật:</b> Không phải vết sẹo da thịt, mà là sự bầm dập, cay đắng chỉ người từng đổ máu, mất tiền, chịu đền tiền ở hiện trường mới thấu suốt.
-            </div>
-            <div>
-              <b>Tín hiệu đắt giá nhất:</b> Bản lĩnh <b>dám từ chối nhận tiền</b> của khách khi điều kiện chuyên môn chưa cho phép, đem danh dự 10 năm ra bảo chứng.
-            </div>
-          </div>
-        </div>
-
-        <!-- Card 3 -->
-        <div class="apple-card">
-          <div class="apple-card__badge apple-card__badge--rose">1992 • TÂM LÝ HỌC THẦN KINH</div>
-          <h3 class="apple-card__title">MẠCH PHÁT HIỆN GIAN LẬN</h3>
-          <div class="apple-card__desc">
-            <div style="margin-bottom: 12px;">
-              <b>Logic:</b> Cosmides &amp; Tooby chứng minh: Não người tiến hóa một <b>mạch thần kinh chuyên biệt (Cheater Detection)</b> cài sẵn vào gene để tự động cảnh giác trước kẻ cố tình làm thân để trục lợi.
-            </div>
-            <div style="margin-bottom: 12px;">
-              <b>Bản năng đứa bé 6 tháng tuổi:</b> Chưa biết chữ, chưa học kinh tế, nhưng ai mang năng lượng xấu hay nhe răng cười giả tạo bước tới &rarr; đứa bé khóc thét ngay lập tức.
-            </div>
-            <div>
-              <b>Ứng dụng video:</b> Người xem lướt mạng y hệt đứa bé đó. Ai mượn veston, bật nhạc buồn nặn giọng thấu cảm để chèn bán hàng &rarr; khiên phòng thủ bật lên trong 2 giây.
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- ═══ KHỐI ĐỐI CHIẾU THỰC CHIẾN: QUY LUẬT CHIẾC KHĂN LAU XE & NỖI SỢ MẶC CẢ ═══ -->
-      <div class="apple-card" style="margin-top: 32px; background: #ffffff; border: 1px solid var(--cl-line-strong); box-shadow: 0 10px 30px rgba(0,0,0,0.04); padding: clamp(20px, 3vw, 32px);">
-        <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; margin-bottom: 12px;">
-          <div class="apple-card__badge apple-card__badge--blue" style="margin-bottom: 0;">ĐỐI CHIẾU THỰC TẾ • 2 NỬA CỦA NIỀM TIN</div>
-          <span style="font-family: var(--font-mono); font-size: 11.5px; font-weight: 700; color: var(--cl-text-muted); letter-spacing: 0.04em;">QUY LUẬT CHIẾC KHĂN LAU XE</span>
-        </div>
-
-        <h3 style="font-family: var(--font-display-short); font-weight: 700; font-size: clamp(18px, 2.2vw, 24px); color: var(--cl-text-base); text-transform: uppercase; letter-spacing: -0.01em; margin-bottom: 8px; line-height: 1.3;">
-          BÓC ĐÚNG BỆNH ĐỂ NỂ TÀI, TỬ TẾ ĐỂ KHÔNG BỊ MẶC&nbsp;CẢ
-        </h3>
-        <p style="font-size: 14.5px; line-height: 1.65; color: var(--cl-text-muted); margin-bottom: 24px;">
-          "Người ta chỉ so đo mặc cả với kẻ làm ẩu hoặc dân buôn khôn lỏi. Không ai nỡ kì kèo từng đồng với một người làm nghề vừa giỏi tay nghề lại vừa tử tế."
+        <p>
+          Thị trường nội dung số đang trải qua một cơn bão hòa chưa từng thấy. Mỗi ngày có hàng triệu video ngắn được đăng tải. Với sự trợ giúp của trí tuệ nhân tạo, chi phí để tạo ra một kịch bản trơn tru, một bài văn mẫu kể chuyện 3 hồi đầy nước mắt hay những lời khuyên đạo lý thành công đã giảm xuống gần như bằng không.
         </p>
 
-        <!-- Lưới 2 Cột Đối Xứng -->
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin-bottom: 24px;">
-          <!-- Cột Trái: Năng Lực -->
-          <div style="background: var(--cl-accent-tint); border: 1px solid rgba(26, 115, 232, 0.2); border-radius: var(--cl-radius); padding: 20px 22px;">
-            <div class="apple-card__badge apple-card__badge--blue" style="margin-bottom: 8px;">CỘT TRỤ 01 • BẮT ĐÚNG TIẾNG XÍCH CAM</div>
-            <h4 style="font-family: var(--font-display-short); font-size: 16.5px; font-weight: 700; color: var(--cl-text-base); margin-bottom: 8px;">CHO KHÁCH THẤY MÌNH CÓ&nbsp;TÀI</h4>
-            <div style="font-size: 14px; line-height: 1.6; color: var(--cl-text-body); display: flex; flex-direction: column; gap: 6px;">
-              <div>• Ghé tai nghe tiếng máy, chỉ đúng chỗ hỏng kín trong&nbsp;lốc.</div>
-              <div>• Khách biết vào tay thợ xịn, không sợ bị vẽ bệnh moi&nbsp;tiền.</div>
-              <div style="margin-top: 4px; font-weight: 700; color: var(--cl-accent); font-family: var(--font-mono); font-size: 12.5px;">&rarr; KẾT QUẢ: KHÁCH TIN TƯỞNG &amp; NỂ&nbsp;TÀI</div>
-            </div>
-          </div>
+        <p>
+          Thế nhưng, một sự thật hiển nhiên đang diễn ra ngoài đời: <strong>càng nghe đạo lý, người xem càng trơ lì; càng xem những câu chuyện diễn biến lâm ly, khách hàng càng dựng rào chắn đề phòng.</strong> Họ biết tỏng người nói đang cố nặn cảm xúc để dẫn dụ họ vào một cái phễu bán hàng nào đó ở cuối video.
+        </p>
 
-          <!-- Cột Phải: Sự Tử Tế -->
-          <div style="background: var(--cl-emerald-tint); border: 1px solid rgba(16, 185, 129, 0.2); border-radius: var(--cl-radius); padding: 20px 22px;">
-            <div class="apple-card__badge apple-card__badge--emerald" style="margin-bottom: 8px;">CỘT TRỤ 02 • LẤY KHĂN LAU SẠCH YÊN XE</div>
-            <h4 style="font-family: var(--font-display-short); font-size: 16.5px; font-weight: 700; color: var(--cl-text-base); margin-bottom: 8px;">CHO KHÁCH THẤY MÌNH CÓ TỰ&nbsp;TRỌNG</h4>
-            <div style="font-size: 14px; line-height: 1.6; color: var(--cl-text-body); display: flex; flex-direction: column; gap: 6px;">
-              <div>• Tỉ mỉ lau sạch dầu mỡ ở tay lái và yên trước khi giao&nbsp;xe.</div>
-              <div>• Chu đáo nghĩ cho khách, làm việc không ai trả thêm tiền&nbsp;công.</div>
-              <div style="margin-top: 4px; font-weight: 700; color: var(--cl-emerald); font-family: var(--font-mono); font-size: 12.5px;">&rarr; KẾT QUẢ: KHÁCH MANG ƠN &amp; KHÔNG NỠ MẶC&nbsp;CẢ</div>
+        <div class="callout-box">
+          <p>
+            <b>Bản chất của sự đề phòng:</b> Bộ não con người không hề ngu ngốc. Nó đã trải qua hàng vạn năm tiến hóa để học cách tự vệ trước những kẻ dùng lời hay ý đẹp để trục lợi. Người xem ngày nay không thiếu thông tin; thứ họ thiếu duy nhất là <strong>sự thật nguyên bản</strong> — thứ sự thật không có mùi diễn xuất và không có sự toan tính.
+          </p>
+        </div>
+
+        <h3 class="dossier-h3">Mô hình 4 Tầng nhận thức trong kịch bản video:</h3>
+        <p>
+          Để hiểu tại sao người xem chịu mở lòng, ta phải giải phẫu 4 tầng bậc nhận thức mà một người làm nghề thể hiện ra trước ống kính:
+        </p>
+
+        <ul style="margin: 0 0 24px 24px; font-size: 17px; line-height: 1.85; color: var(--cl-text-body);">
+          <li style="margin-bottom: 12px;">
+            <strong>Tầng 1 — Sự kiện bề mặt (Plot / Physical Facts):</strong> Là những gì mắt thấy tai nghe thuần túy. Ví dụ: khoe tiệm to, đọc bảng thông số kỹ thuật, khoe doanh số, báo cáo sự việc. Dừng ở đây, video khô khan như một bản tin thời tiết và trôi tuột qua não người xem.
+          </li>
+          <li style="margin-bottom: 12px;">
+            <strong>Tầng 2 — Cảm xúc bề nổi (Emotion &amp; Surface Conflict):</strong> Than thở mệt mỏi, áp lực làm nghề, lo âu thông thường. Hầu hết các lớp dạy viết kịch bản ngoài kia đang dừng ở tầng này, biến người làm video thành những kẻ than nghèo kể khổ hoặc diễn kịch sến súa. Người lớn có chuyên môn nghe thấy rẻ tiền, không buồn để tâm.
+          </li>
+          <li style="margin-bottom: 12px;">
+            <strong>TẦNG 2.5 — SỰ THẬT NGƯỢNG MIỆNG (KHE HỞ THỂ DIỆN):</strong> Đây là vùng nhận thức đắt giá nhất. Nó là điểm giao cắt giữa <em>cái cớ đạo mạo dựng lên để bảo vệ thể diện bên ngoài</em> và <em>nỗi sợ bất lực thật sự đang giấu kín bên trong</em>. Người trong cuộc biết rất rõ mình đang giấu điều gì, nhưng không bao giờ dám mở miệng thừa nhận vì sợ mất mặt.
+          </li>
+          <li>
+            <strong>Tầng 3 — Chân lý nghề nghiệp (Universal Truth):</strong> Quy luật nhân quả sâu sắc của nghề. Khi được đánh thức ở Tầng 2.5, người xem tự mình nhìn ra Tầng 3, tự phản tỉnh và tự giác ngộ mà không cần ai phải rao giảng đạo đức.
+          </li>
+        </ul>
+
+        <div class="callout-box callout-box--emerald">
+          <p>
+            <b>Quy luật cốt lõi:</b> Khi người làm video chạm đúng vào khe hở Tầng 2.5 mà <em>tuyệt đối không mang thái độ phán xét, không cười cợt hay dạy đời</em>, toàn bộ khiên tự vệ sinh học của người xem lập tức sụp đổ. Họ nhận ra: người này đang nói đúng cái cảnh ngộ mà chính mình đang trải qua.
+          </p>
+        </div>
+      </section>
+
+      <!-- ═══ CHƯƠNG 2 ═══ -->
+      <section class="dossier-section" id="chuong-2">
+        <span class="chapter-badge">CHƯƠNG 02</span>
+        <h2 class="dossier-h2">3 ĐỊNH LÝ KHOA HỌC THỰC CHỨNG TẠO DỰNG NIỀM TIN TUYỆT ĐỐI</h2>
+
+        <p>
+          Tại sao khi bạn gọi tên đúng căn bệnh ngầm ở Tầng 2.5, người nghe lại tự động tin bạn mà không cần bạn phải đưa ra bằng khen hay tự xưng mình là chuyên gia? Điều này hoàn toàn không phải là ma thuật tâm lý, mà được bảo chứng bởi 3 định lý nền tảng của toán học điều khiển và sinh học tiến hóa:
+        </p>
+
+        <!-- Thẻ Định Lý 1 -->
+        <div class="theorem-card">
+          <div class="theorem-header">
+            <span class="theorem-tag theorem-tag--blue">1970 • ĐIỀU KHIỂN HỌC TOÁN HỌC (CYBERNETICS)</span>
+            <span style="font-family: var(--font-mono); font-size: 11px; color: var(--cl-text-dim);">GOOD REGULATOR THEOREM</span>
+          </div>
+          <h3 style="font-family: var(--font-display-short); font-size: 19px; font-weight: 700; color: var(--cl-text-base); margin-bottom: 12px;">
+            1. ĐỊNH LÝ CONANT-ASHBY: KẺ CHỈ ĐÚNG CƠ CHẾ LÀ KẺ NẮM THUỐC CHỮA
+          </h3>
+          <p style="font-size: 16.5px; line-height: 1.8; margin-bottom: 14px;">
+            Hai nhà điều khiển học Roger Conant và W. Ross Ashby đã chứng minh bằng toán học một nguyên lý bất biến: <em>"Every good regulator of a system must be a model of that system"</em> (Bất kỳ thực thể nào muốn kiểm soát hoặc sửa chữa một hệ thống, bắt buộc phải sở hữu một mô hình nhận thức chi tiết tương đương với hệ thống đó).
+          </p>
+          <div class="callout-box" style="margin: 12px 0;">
+            <p>
+              <b>Diễn giải đời thường:</b> Bạn không thể sửa được một chiếc xe máy nếu trong đầu bạn không có sơ đồ vận hành của từng bánh răng trong lốc máy. Khi một người thợ chỉ cần ghé tai nghe tiếng máy gõ lách cách rồi chỉ đúng: <em>"Bị lỏng xích cam và mẻ bánh răng số 2"</em>, não bộ của người chủ xe tự động kích hoạt phản xạ <strong>Diagnostic Trust (Niềm tin chẩn đoán vi mô)</strong>: kẻ nhìn thấu ruột gan cỗ máy thì mặc định biết cách sửa nó.
+            </p>
+          </div>
+          <p style="font-size: 15.5px; line-height: 1.75; color: var(--cl-text-muted); margin-bottom: 0;">
+            Trong video cũng vậy: khi bạn mô tả rành rẽ từng chi tiết ngượng miệng mà khách hàng đang trải qua, não họ tự động kết luận bạn nắm giữ giải pháp mà không cần bạn phải mở miệng tự khen mình một câu nào.
+          </p>
+        </div>
+
+        <!-- Thẻ Định Lý 2 -->
+        <div class="theorem-card">
+          <div class="theorem-header">
+            <span class="theorem-tag theorem-tag--emerald">1975 • SINH HỌC TIẾN HÓA</span>
+            <span style="font-family: var(--font-mono); font-size: 11px; color: var(--cl-text-dim);">COSTLY SIGNALING THEORY</span>
+          </div>
+          <h3 style="font-family: var(--font-display-short); font-size: 19px; font-weight: 700; color: var(--cl-text-base); margin-bottom: 12px;">
+            2. THUYẾT TÍN HIỆU ĐẮT GIÁ: LỜI NÓI RẺ TIỀN VS. VẾT SẸO THẬT
+          </h3>
+          <p style="font-size: 16.5px; line-height: 1.8; margin-bottom: 14px;">
+            Nhà sinh học tiến hóa Amotz Zahavi chứng minh rằng trong thế giới tự nhiên, những lời tự xưng như <em>"tôi có tâm, tôi uy tín, tôi làm nghề vì khách hàng"</em> bị xếp vào loại <strong>Lời nói rẻ tiền (Cheap Talk)</strong>. Lý do: bất kỳ kẻ lừa đảo nào cũng có thể mở miệng nói được những lời đó với chi phí bằng không.
+          </p>
+          <div class="callout-box callout-box--emerald" style="margin: 12px 0;">
+            <p>
+              <b>Định nghĩa "Vết sẹo thật":</b> Bộ não con người tiến hóa để chỉ trao niềm tin cho những <strong>Tín hiệu đắt giá (Costly Signals)</strong> — tức là những thứ phải trả bằng một cái giá rất đắt mới có được. Vết sẹo ở đây không phải vết sẹo da thịt, mà là sự bầm dập, cay đắng mà chỉ người từng đổ máu, mất tiền, từng cúi đầu đền tiền cho khách ở hiện trường mới thấu suốt được.
+            </p>
+          </div>
+          <p style="font-size: 15.5px; line-height: 1.75; color: var(--cl-text-muted); margin-bottom: 0;">
+            <strong>Tín hiệu đắt giá nhất của một người làm nghề:</strong> Là bản lĩnh <em>dám từ chối nhận tiền</em> của khách khi nhận thấy điều kiện chuyên môn chưa cho phép, đem uy tín cả đời ra bảo chứng thay vì cố vơ vét tiền bạc trước mắt.
+          </p>
+        </div>
+
+        <!-- Thẻ Định Lý 3 -->
+        <div class="theorem-card">
+          <div class="theorem-header">
+            <span class="theorem-tag theorem-tag--rose">1992 • TÂM LÝ HỌC THẦN KINH</span>
+            <span style="font-family: var(--font-mono); font-size: 11px; color: var(--cl-text-dim);">CHEATER DETECTION MECHANISM</span>
+          </div>
+          <h3 style="font-family: var(--font-display-short); font-size: 19px; font-weight: 700; color: var(--cl-text-base); margin-bottom: 12px;">
+            3. MẠCH PHÁT HIỆN GIAN LẬN BẨM SINH: BẢN NĂNG ĐỨA BÉ 6 THÁNG TUỔI
+          </h3>
+          <p style="font-size: 16.5px; line-height: 1.8; margin-bottom: 14px;">
+            Hai nhà tâm lý học tiến hóa Leda Cosmides và John Tooby phát hiện ra rằng não người sở hữu một <strong>mạch thần kinh chuyên biệt (Cheater Detection Module)</strong> được cài sẵn vào gene từ hàng trăm nghìn năm trước để nhận diện những kẻ cố tình làm thân để lừa gạt.
+          </p>
+          <div class="callout-box callout-box--rose" style="margin: 12px 0;">
+            <p>
+              <b>Minh chứng sinh học:</b> Một đứa bé 6 tháng tuổi chưa hề biết chữ, chưa từng đọc sách kinh doanh hay tâm lý. Nhưng khi một người mang tâm địa xấu hoặc nụ cười giả tạo bước đến gần, dù người đó có cố nhe răng cười duyên hay dỗ dành, đứa bé lập tức cảm nhận được sự lệch pha nguy hiểm và khóc thét lên ngay lập tức.
+            </p>
+          </div>
+          <p style="font-size: 15.5px; line-height: 1.75; color: var(--cl-text-muted); margin-bottom: 0;">
+            Người xem lướt mạng xã hội y hệt đứa bé đó. Khi bạn chưa từng có trải nghiệm thật mà cố mượn áo vest, bật nhạc buồn nặn giọng trầm để tỏ ra thấu cảm rồi chèn bán hàng ở đuôi, hệ thần kinh của họ lập tức báo động đỏ và lướt qua trong đúng 2 giây đầu.
+          </p>
+        </div>
+      </section>
+
+      <!-- ═══ CHƯƠNG 3 ═══ -->
+      <section class="dossier-section" id="chuong-3">
+        <span class="chapter-badge">CHƯƠNG 03</span>
+        <h2 class="dossier-h2">QUY LUẬT CHIẾC KHĂN LAU XE &amp; NỖI SỢ MẶC CẢ</h2>
+
+        <p>
+          Nếu chỉ dừng lại ở việc bóc đúng bệnh ngầm Tầng 2.5, bạn mới chỉ giải quyết được một nửa bài toán: làm cho người xem <strong>nể tài</strong> của bạn. Nhưng để họ không bao giờ so đo mặc cả, mà sẵn sàng trân trọng trả đúng giá trị và khao khát được bạn giúp đỡ, bạn bắt buộc phải hiểu được <strong>Quy luật chiếc khăn lau xe</strong>.
+        </p>
+
+        <div class="callout-box">
+          <p>
+            <b>Câu chuyện hiện trường:</b> Có hai người thợ sửa xe. Người thứ nhất sửa rất giỏi, nghe tiếng máy bắt đúng bệnh xe bị chùng xích cam. Nhưng sửa xong, tay dính đầy dầu luyn đen ngòm trèo lên yên xe ngồi, lúc giao xe tay lái nhờn rít. Khách trả tiền nhưng trong lòng vẫn soi xét hóa đơn, sợ bị tính đắt.  
+            <br><br>
+            Người thợ thứ hai cũng nghe tiếng máy bắt đúng bệnh xích cam. Nhưng sửa xong, anh ấy rút một chiếc khăn sạch, tỉ mỉ lau từng vết dầu trên tay nắm, lau sạch mặt yên xe, lau sạch báng tay thắng rồi mới hai tay dắt xe ra trao chìa khóa cho khách. Lúc này, người khách hoàn toàn không bao giờ mở miệng mặc cả bớt 10 nghìn hay 20 nghìn!
+          </p>
+        </div>
+
+        <h3 class="dossier-h3">Mô hình 2 Cột trụ của Niềm tin Tuyệt đối:</h3>
+        <p>
+          Tại sao người khách lại "sợ" không dám mặc cả với người thợ thứ hai?
+        </p>
+
+        <ul style="margin: 0 0 24px 24px; font-size: 17px; line-height: 1.85; color: var(--cl-text-body);">
+          <li style="margin-bottom: 12px;">
+            <strong>Cột trụ 1 — Bắt đúng tiếng xích cam:</strong> Đại diện cho <strong>TẦNG NĂNG LỰC (Competence)</strong>. Khách biết người thợ có tài thật, không lo bị vẽ bệnh. Khách tin tưởng về mặt lý trí.
+          </li>
+          <li>
+            <strong>Cột trụ 2 — Lấy khăn lau sạch yên xe:</strong> Đại diện cho <strong>TẦNG TỰ TRỌNG &amp; SỰ TẬN TÂM (Conscientiousness &amp; Benevolence)</strong>. Trong bảng giá không hề có dòng "phí lau xe 10 nghìn". Người thợ làm việc đó vì lòng tự trọng nghề nghiệp, nghĩ cho khách sợ mặc quần sạch bị lem nhớt.
+          </li>
+        </ul>
+
+        <p>
+          Khi đứng trước một người vừa giỏi nghề bậc thầy, lại vừa đàng hoàng chu đáo vượt xa số tiền họ tính trên hóa đơn... nếu người khách mở miệng ra kì kèo bớt vài đồng bạc lẻ, thì <strong>người cảm thấy xấu hổ, bủn xỉn và rẻ rúng nhất chính là BẢN THÂN NGƯỜI KHÁCH</strong>. Khách không mặc cả vì không muốn tự biến mình thành kẻ hạ đẳng trước một nhân cách làm nghề đáng kính.
+        </p>
+
+        <!-- Thẻ Đối Chiếu Ráp Vào Video 3 Tầng -->
+        <div style="background: var(--cl-card-subtle); border: 1px solid var(--cl-line-strong); border-radius: var(--cl-radius-lg); padding: 28px; margin: 32px 0;">
+          <span style="font-family: var(--font-mono); font-size: 11px; font-weight: 700; color: var(--cl-accent); text-transform: uppercase; letter-spacing: 0.06em; display: block; margin-bottom: 8px;">
+            ỨNG DỤNG VÀO VIDEO: 3 "CHIẾC KHĂN LAU XE" BẮT BUỘC PHẢI BỔ SUNG
+          </span>
+          <h4 style="font-family: var(--font-display-short); font-size: 18px; font-weight: 700; color: var(--cl-text-base); margin-bottom: 16px;">
+            LÀM SAO ĐỂ VIDEO BÓC BỆNH KHÔNG BIẾN THÀNH KẺ PHÁN XÉT KIÊU NGẠO?
+          </h4>
+          <p style="font-size: 16.5px; line-height: 1.8; margin-bottom: 16px;">
+            Nếu chỉ bóc trúng Tầng 2.5 mà thôi, người xem sẽ thấy bạn sắc bén nhưng họ bị <strong>quê, sượng sùng và cảm giác bị dồn vào chân tường</strong>. Để chuyển hóa thành sự kính phục và mang ơn, người làm video phải trang bị đủ 3 chiếc khăn sau:
+          </p>
+
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px;">
+            <div style="background: #ffffff; border-radius: var(--cl-radius-md); padding: 18px; border-left: 4px solid var(--cl-accent);">
+              <b style="font-size: 15px; color: var(--cl-text-base); display: block; margin-bottom: 6px;">1. Gỡ quê cho người xem</b>
+              <span style="font-size: 14px; color: var(--cl-text-muted); line-height: 1.6;">Bóc xong chỗ ngượng miệng, nói ngay: <i>"Ngày xưa tôi mới làm nghề cũng từng y như vậy, chuyện bình thường"</i> để giữ thể diện cho họ, không dạy đời.</span>
+            </div>
+            <div style="background: #ffffff; border-radius: var(--cl-radius-md); padding: 18px; border-left: 4px solid var(--cl-emerald);">
+              <b style="font-size: 15px; color: var(--cl-text-base); display: block; margin-bottom: 6px;">2. Chỉ mẹo miễn phí</b>
+              <span style="font-size: 14px; color: var(--cl-text-muted); line-height: 1.6;">Bày luôn 1 thao tác nhỏ tự xử lý được ngay tại nhà. Tuyệt đối không giấu nghề hay kêu <i>"muốn biết thì inbox mua khóa học"</i>.</span>
+            </div>
+            <div style="background: #ffffff; border-radius: var(--cl-radius-md); padding: 18px; border-left: 4px solid var(--cl-amber);">
+              <b style="font-size: 15px; color: var(--cl-text-base); display: block; margin-bottom: 6px;">3. Đĩnh đạc không xin xỏ</b>
+              <span style="font-size: 14px; color: var(--cl-text-muted); line-height: 1.6;">Hết video không xin like, không chèo kéo. Đứng thẳng lưng kết thúc. Người tử tế và thạo việc không bao giờ van xin khách mua hàng.</span>
             </div>
           </div>
         </div>
+      </section>
 
-        <!-- Dải Dưới Đáy: Ráp Vào Video 3 Tầng Cho Người Mới -->
-        <div style="background: #ffffff; border: 1px solid var(--cl-line); border-radius: var(--cl-radius); padding: 18px 20px;">
-          <div style="font-family: var(--font-mono); font-size: 11px; font-weight: 700; color: var(--cl-accent); text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 10px;">
-            🎯 RÁP VÀO VIDEO 3 TẦNG: 3 "CHIẾC KHĂN LAU XE" CHO NGƯỜI MỚI
-          </div>
-          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px;">
-            <div style="border-left: 3px solid var(--cl-accent); padding-left: 10px;">
-              <b style="font-size: 13.5px; color: var(--cl-text-base); display: block; margin-bottom: 2px;">1. Gỡ quê cho khách</b>
-              <span style="font-size: 13px; color: var(--cl-text-muted); line-height: 1.5;">Bóc bệnh xong nói luôn: <i>"Ngày xưa tôi cũng từng dính, chuyện bình thường"</i> để khách không thấy bị dạy đời.</span>
-            </div>
-            <div style="border-left: 3px solid var(--cl-emerald); padding-left: 10px;">
-              <b style="font-size: 13.5px; color: var(--cl-text-base); display: block; margin-bottom: 2px;">2. Chỉ luôn mẹo miễn phí</b>
-              <span style="font-size: 13px; color: var(--cl-text-muted); line-height: 1.5;">Bày luôn 1 thao tác nhỏ tự làm được ngay, không giấu nghề hay kêu <i>"inbox tôi chỉ cho"</i>.</span>
-            </div>
-            <div style="border-left: 3px solid var(--cl-amber); padding-left: 10px;">
-              <b style="font-size: 13.5px; color: var(--cl-text-base); display: block; margin-bottom: 2px;">3. Đĩnh đạc, không xin xỏ</b>
-              <span style="font-size: 13px; color: var(--cl-text-muted); line-height: 1.5;">Cuối video không giục mua, không nài nỉ xin like. Người vừa giỏi vừa tử tế thì không bao giờ chèo kéo.</span>
-            </div>
-          </div>
-        </div>
-      </div>
-  </section>
+      <!-- ═══ CHƯƠNG 4 ═══ -->
+      <section class="dossier-section" id="chuong-4">
+        <span class="chapter-badge">CHƯƠNG 04</span>
+        <h2 class="dossier-h2">GIẢI PHẪU 4 HIỆN TRƯỜNG THỰC TẾ (CASE STUDIES SÂU SẮC)</h2>
 
-  <!-- ═══ KHỐI 3: VẾT SẸO THẬT & CÁC CẶP ĐỐI CHIẾU LOGIC 2.5 ➔ 3 (LIGHT) ═══ -->
-  <section class="cl-zebra-section cl-zebra--light" id="sec-vet-seo">
-    <div class="cl-sec-container cl-sec-container--wide apple-reveal">
-      <div class="cl-badge">02 / HIỆN TRƯỜNG THỰC TẾ • KHỬ VĂN MẪU</div>
-      <h2 class="title-short">BẢN ĐỒ NHẬN THỨC TẦNG&nbsp;2.5 &amp; TẦNG&nbsp;3:<br>HÀNH ĐỘNG MƯỢN ĐỂ CHE GIẤU NỖI SỢ THẬT</h2>
-      <p class="editorial-hook">"Tầng 3 là cái muốn che giấu (nỗi sợ, sự bất lực thật). Tầng 2.5 là hành động đời thực mượn làm bình phong thể diện. Chạm đúng khe hở này mà không phán xét, khiên tự vệ tự khắc sụp&nbsp;đổ."</p>
+        <p>
+          Dưới đây là 4 case study thực địa giải phẫu tận gốc rễ nỗi sợ ngầm (Tầng 3) và hành động mượn che giấu (Tầng 2.5), được chuẩn hóa không mang tên riêng để bất kỳ ai làm nghề cũng có thể soi chiếu vào chính mình:
+        </p>
 
-      <div class="apple-cards-grid">
         <!-- Case 1 -->
-        <div class="apple-card">
-          <div class="apple-card__badge apple-card__badge--blue">CASE 01 • CHỦ TIỆM LÀM TÓC</div>
-          <h3 class="apple-card__title">SỢ MẤT THỢ CỨNG &amp; VẾT SẸO ĐỀN TIỀN</h3>
-          <div class="apple-card__desc">
-            <div style="margin-bottom: 14px; padding: 12px 14px; background: var(--cl-card-subtle); border-radius: var(--cl-radius-sm);">
-              <span style="font-family: var(--font-mono); font-size: 11.5px; font-weight: 700; color: var(--cl-rose); display: block; margin-bottom: 4px;">⚠️ TẦNG 3: CÁI MUỐN CHE GIẤU</span>
-              Sợ truyền hết ngón nghề thì thợ phụ giỏi lên sẽ dắt mối khách ruột sang tiệm bên cạnh mở quán; sợ mất trắng chén cơm gầy dựng bao năm.
-            </div>
-            <div style="margin-bottom: 14px; padding: 12px 14px; background: var(--cl-accent-tint); border-radius: var(--cl-radius-sm);">
-              <span style="font-family: var(--font-mono); font-size: 11.5px; font-weight: 700; color: var(--cl-accent); display: block; margin-bottom: 4px;">🎯 TẦNG 2.5: HÀNH ĐỘNG MƯỢN CHE GIẤU</span>
-              Giữ thợ phụ chỉ cho quét nhà, gội đầu, giấu công thức pha thuốc trong góc; luôn miệng viện cớ: <i>"Phải rèn đạo đức 2-3 năm nữa mới được cầm kéo"</i> để kìm chân thợ.
-            </div>
-            <div style="font-size: 14px; color: var(--cl-text-muted);">
-              <b>Vết sẹo thật tạo uy tín:</b> Từng xả bồn nước lúc 8h tối thấy mảng tóc khách mủn ra như sợi bún vì tẩy quá tay, cúi đầu đền tiền &rarr; Đủ bản lĩnh nhìn thẳng vào mắt khách từ chối nhận 5 triệu nhuộm tẩy để giữ uy tín 10 năm.
-            </div>
+        <div class="theorem-card">
+          <div class="theorem-header">
+            <span class="theorem-tag theorem-tag--blue">CASE 01 • CHỦ TIỆM LÀM TÓC LÂU NĂM</span>
+            <span style="font-family: var(--font-mono); font-size: 11px; color: var(--cl-text-dim);">NGÀNH TÓC &amp; DỊCH VỤ CÁ NHÂN</span>
           </div>
+          <h3 style="font-family: var(--font-display-short); font-size: 18.5px; font-weight: 700; color: var(--cl-text-base); margin-bottom: 14px;">
+            NỖI SỢ THỢ CỨNG CƯỚP KHÁCH &amp; VẾT SẸO ĐỀN TIỀN
+          </h3>
+          <div style="margin-bottom: 12px; padding: 14px 16px; background: var(--cl-rose-tint); border-radius: var(--cl-radius-sm); border-left: 3px solid var(--cl-rose);">
+            <strong style="font-family: var(--font-mono); font-size: 11px; color: var(--cl-rose); text-transform: uppercase; display: block; margin-bottom: 4px;">⚠️ Tầng 3 (Cái muốn che giấu):</strong>
+            Nỗi sợ truyền hết ngón nghề thì thợ phụ giỏi lên 'đủ lông đủ cánh' sẽ dắt theo tệp khách ruột sang tiệm bên cạnh mở quán đối đầu; sợ mất trắng chén cơm đã nhọc nhằn gầy dựng cả chục năm.
+          </div>
+          <div style="margin-bottom: 12px; padding: 14px 16px; background: var(--cl-accent-tint); border-radius: var(--cl-radius-sm); border-left: 3px solid var(--cl-accent);">
+            <strong style="font-family: var(--font-mono); font-size: 11px; color: var(--cl-accent); text-transform: uppercase; display: block; margin-bottom: 4px;">🎯 Tầng 2.5 (Hành động mượn che giấu):</strong>
+            Bắt thợ phụ chỉ được quét nhà, gội đầu, giấu kín công thức pha thuốc trong góc khuất; luôn miệng viện cớ: <i>"Phải rèn đạo đức nghề 2-3 năm nữa mới được cầm kéo"</i> để kìm chân thợ.
+          </div>
+          <p style="font-size: 15px; line-height: 1.75; color: var(--cl-text-muted); margin-bottom: 0;">
+            <strong>Vết sẹo thật tạo uy tín:</strong> Từng xả bồn nước lúc 8h tối thấy mảng tóc khách mủn ra như sợi bún vì tẩy quá tay, cúi đầu đền tiền &rarr; Từ đó rèn nên bản lĩnh nhìn thẳng vào mắt khách từ chối nhận 5 triệu nhuộm tẩy để giữ uy tín 10 năm.
+          </p>
         </div>
 
         <!-- Case 2 -->
-        <div class="apple-card">
-          <div class="apple-card__badge apple-card__badge--emerald">CASE 02 • CHỦ CƠ SỞ SPA LÂU NĂM</div>
-          <h3 class="apple-card__title">TIỆM VẮNG KHÁCH &amp; BẤT LỰC CÔNG NGHỆ</h3>
-          <div class="apple-card__desc">
-            <div style="margin-bottom: 14px; padding: 12px 14px; background: var(--cl-card-subtle); border-radius: var(--cl-radius-sm);">
-              <span style="font-family: var(--font-mono); font-size: 11.5px; font-weight: 700; color: var(--cl-rose); display: block; margin-bottom: 4px;">⚠️ TẦNG 3: CÁI MUỐN CHE GIẤU</span>
-              Sổ hẹn cả tuần trống trơn, doanh thu không đủ tiền mặt bằng; ruột nóng như cào nhưng bất lực trước công nghệ mới, nhìn tụi trẻ livestream đông nghịt mà sợ mình bị đào thải.
-            </div>
-            <div style="margin-bottom: 14px; padding: 12px 14px; background: var(--cl-emerald-tint); border-radius: var(--cl-radius-sm);">
-              <span style="font-family: var(--font-mono); font-size: 11.5px; font-weight: 700; color: var(--cl-emerald); display: block; margin-bottom: 4px;">🎯 TẦNG 2.5: HÀNH ĐỘNG MƯỢN CHE GIẤU</span>
-              Ngồi phòng lạnh viết bài chê các bên làm giá rẻ là 'thiếu y đức'; chụp ảnh lau chùi mấy chiếc máy cũ, đăng lại bằng khen từ 5 năm trước xưng <i>"chúng tôi chỉ chọn làm nghề có tâm"</i>.
-            </div>
-            <div style="font-size: 14px; color: var(--cl-text-muted);">
-              <b>Sự tự phản tỉnh:</b> Lòng tự trọng người làm nghề không phải là ngồi chê đối thủ chộp giật, mà là dám nhìn thẳng vào sự cũ kỹ của mình để học lại cách lắng nghe khách hàng.
-            </div>
+        <div class="theorem-card">
+          <div class="theorem-header">
+            <span class="theorem-tag theorem-tag--emerald">CASE 02 • CHỦ CƠ SỞ SPA &amp; THẨM MỸ</span>
+            <span style="font-family: var(--font-mono); font-size: 11px; color: var(--cl-text-dim);">NGÀNH LÀM ĐẸP TRUYỀN THỐNG</span>
           </div>
+          <h3 style="font-family: var(--font-display-short); font-size: 18.5px; font-weight: 700; color: var(--cl-text-base); margin-bottom: 14px;">
+            TIỆM VẮNG KHÁCH &amp; NỖI BẤT LỰC TRƯỚC CÔNG NGHỆ MỚI
+          </h3>
+          <div style="margin-bottom: 12px; padding: 14px 16px; background: var(--cl-rose-tint); border-radius: var(--cl-radius-sm); border-left: 3px solid var(--cl-rose);">
+            <strong style="font-family: var(--font-mono); font-size: 11px; color: var(--cl-rose); text-transform: uppercase; display: block; margin-bottom: 4px;">⚠️ Tầng 3 (Cái muốn che giấu):</strong>
+            Sổ hẹn cả tuần trống trơn, doanh thu không bù nổi tiền mặt bằng; ruột nóng như cào nhưng bất lực trước công nghệ làm video mới, nhìn tụi trẻ livestream đông nghịt mà lòng nghẹn ứ sợ mình bị đào thải.
+          </div>
+          <div style="margin-bottom: 12px; padding: 14px 16px; background: var(--cl-emerald-tint); border-radius: var(--cl-radius-sm); border-left: 3px solid var(--cl-emerald);">
+            <strong style="font-family: var(--font-mono); font-size: 11px; color: var(--cl-emerald); text-transform: uppercase; display: block; margin-bottom: 4px;">🎯 Tầng 2.5 (Hành động mượn che giấu):</strong>
+            Ngồi phòng lạnh viết bài chê các bên làm giá rẻ là 'thiếu y đức'; chụp ảnh lau chùi mấy chiếc máy cũ, đăng lại bằng khen từ 5 năm trước xưng <i>"chúng tôi chỉ chọn làm nghề có tâm"</i>.
+          </div>
+          <p style="font-size: 15px; line-height: 1.75; color: var(--cl-text-muted); margin-bottom: 0;">
+            <strong>Sự tự phản tỉnh:</strong> Lòng tự trọng người làm nghề không phải là ngồi chê đối thủ chộp giật, mà là dám nhìn thẳng vào sự cũ kỹ của mình để học lại cách lắng nghe khách hàng.
+          </p>
         </div>
 
         <!-- Case 3 -->
-        <div class="apple-card">
-          <div class="apple-card__badge apple-card__badge--amber">CASE 03 • NGƯỜI LÀM NÔNG &amp; BÁN PHÂN BÓN</div>
-          <h3 class="apple-card__title">SỢ MẤT MÙA LÀNG CHÊ &amp; VÃI ĐẠM CHO XANH</h3>
-          <div class="apple-card__desc">
-            <div style="margin-bottom: 14px; padding: 12px 14px; background: var(--cl-card-subtle); border-radius: var(--cl-radius-sm);">
-              <span style="font-family: var(--font-mono); font-size: 11.5px; font-weight: 700; color: var(--cl-rose); display: block; margin-bottom: 4px;">⚠️ TẦNG 3: CÁI MUỐN CHE GIẤU</span>
-              Nợ tiền đại lý chưa trả; sợ mất mùa phá sản và sợ nhất là bị họ hàng làng xóm chê cười: <i>"Làm ruộng mà để lúa đói ăn vàng vọt"</i> ám ảnh từng bữa cơm.
-            </div>
-            <div style="margin-bottom: 14px; padding: 12px 14px; background: var(--cl-amber-tint); border-radius: var(--cl-radius-sm);">
-              <span style="font-family: var(--font-mono); font-size: 11.5px; font-weight: 700; color: var(--cl-amber); display: block; margin-bottom: 4px;">🎯 TẦNG 2.5: HÀNH ĐỘNG MƯỢN CHE GIẤU</span>
-              Canh sáng sớm hoặc chiều tối vác bao đạm ure ra vãi cật lực, kích cho lá xanh đen óng ả để người đi ngang khen <i>"mát tay"</i> — mượn màu lá tốt giả tạo để mua sự an tâm tức thời.
-            </div>
-            <div style="font-size: 14px; color: var(--cl-text-muted);">
-              <b>Vết sẹo tại ruộng:</b> Lội bùn bốc nắm đất chai cứng như đá tảng, vạch rễ thấy lông hút thối đen vì ngộ độc phân &rarr; Dám nói thẳng căn bệnh mà các đại lý bán phân giấu kín.
-            </div>
+        <div class="theorem-card">
+          <div class="theorem-header">
+            <span class="theorem-tag theorem-tag--amber">CASE 03 • ĐẠI LÝ VẬT TƯ NÔNG NGHIỆP &amp; NHÀ NÔNG</span>
+            <span style="font-family: var(--font-mono); font-size: 11px; color: var(--cl-text-dim);">NGÀNH NÔNG NGHIỆP THỰC TẾ</span>
           </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══ KHỐI 4: NGOÀI CON MẮT THẤY, THỨ GÌ TỐ CÁO VIDEO AI? (TINT) ═══ -->
-  <section class="cl-zebra-section cl-zebra--tint" id="sec-ai-vach-tran">
-    <div class="cl-sec-container cl-sec-container--wide apple-reveal">
-      <div class="cl-badge">03 / GIẢI MÃ THẦN KINH HỌC • 4 GIÁC QUAN PHI THỊ GIÁC</div>
-      <h2 class="title-short">TẠI SAO VIDEO AI GIỐNG THẬT 99.9%<br>VẪN BỊ CƠ THỂ CON NGƯỜI TỪ&nbsp;CHỐI?</h2>
-      <p class="editorial-hook">"Mắt quang học có thể bị AI đánh lừa. Nhưng túi tiền mở ra bằng bản năng tính toán rủi ro sinh học. Khách hàng không chuyển tiền lớn cho một bóng ma kỹ thuật số không có thứ để&nbsp;mất."</p>
-
-      <div class="apple-cards-grid">
-        <!-- AI Sensor 1 -->
-        <div class="apple-card">
-          <div class="apple-card__badge apple-card__badge--blue">GIÁC QUAN 01 • CƠ HOÀNH &amp; NHỊP TIM</div>
-          <h3 class="apple-card__title">ĐỘ NGHẸN CƠ HOÀNH (GRAVITAS)</h3>
-          <div class="apple-card__desc">
-            Người thật nói về nỗi đau: Tuyến thượng thận tiết adrenaline làm khô họng, cơ hoành thắt lại tạo ra các <b>độ khựng vi mô của thanh quản (Micro-glottal stops)</b>. Giọng nói có sức nặng của lồng ngực đang đập. AI trơn tuột như bôi mỡ, thiếu trọng lực thể xác.
+          <h3 style="font-family: var(--font-display-short); font-size: 18.5px; font-weight: 700; color: var(--cl-text-base); margin-bottom: 14px;">
+            SỢ MẤT MÙA LÀNG CHÊ &amp; VÃI ĐẠM CHO XANH ĐỂ MUA AN TÂM
+          </h3>
+          <div style="margin-bottom: 12px; padding: 14px 16px; background: var(--cl-rose-tint); border-radius: var(--cl-radius-sm); border-left: 3px solid var(--cl-rose);">
+            <strong style="font-family: var(--font-mono); font-size: 11px; color: var(--cl-rose); text-transform: uppercase; display: block; margin-bottom: 4px;">⚠️ Tầng 3 (Cái muốn che giấu):</strong>
+            Nợ tiền phân bón đại lý chưa trả; sợ mất mùa phá sản và sợ nhất là bị họ hàng làng xóm chê cười: <i>"Làm ruộng mà để lúa đói ăn vàng vọt"</i> ám ảnh từng bữa cơm.
           </div>
-        </div>
-
-        <!-- AI Sensor 2 -->
-        <div class="apple-card">
-          <div class="apple-card__badge apple-card__badge--emerald">GIÁC QUAN 02 • TRỌNG LỰC &amp; NĂNG LƯỢNG</div>
-          <h3 class="apple-card__title">TIÊU HAO CALO (METABOLIC FATIGUE)</h3>
-          <div class="apple-card__desc">
-            Con người đứng máy 10 phút phải nuốt nước bọt, thở hắt ra, mỏi thắt lưng. AI chuyển động bằng pixel toán học: Nói 10 phút không cần nạp oxy, không mỏi cơ mặt. Sự <i>"không biết mệt mỏi"</i> tố cáo nó là vật thể vô tri. Con người chỉ tin ai đang tiêu hao calo thật.
+          <div style="margin-bottom: 12px; padding: 14px 16px; background: var(--cl-amber-tint); border-radius: var(--cl-radius-sm); border-left: 3px solid var(--cl-amber);">
+            <strong style="font-family: var(--font-mono); font-size: 11px; color: var(--cl-amber); text-transform: uppercase; display: block; margin-bottom: 4px;">🎯 Tầng 2.5 (Hành động mượn che giấu):</strong>
+            Canh sáng sớm hoặc chiều tối vác bao đạm ure ra vãi cật lực, kích cho lá xanh đen óng ả để người đi ngang khen <i>"mát tay"</i> — mượn màu lá tốt giả tạo để mua sự an tâm tức thời.
           </div>
+          <p style="font-size: 15px; line-height: 1.75; color: var(--cl-text-muted); margin-bottom: 0;">
+            <strong>Vết sẹo tại ruộng:</strong> Lội bùn bốc nắm đất chai cứng như đá tảng, vạch rễ thấy lông hút thối đen vì ngộ độc phân &rarr; Người bán hàng có tâm dám nói thẳng căn bệnh mà các đại lý khác giấu kín để bán được nhiều bao đạm.
+          </p>
         </div>
 
-        <!-- AI Sensor 3 -->
-        <div class="apple-card">
-          <div class="apple-card__badge apple-card__badge--amber">GIÁC QUAN 03 • MẠNG LƯỚI XÃ HỘI</div>
-          <h3 class="apple-card__title">CẮM RỄ XÃ HỘI (EMBEDDEDNESS)</h3>
-          <div class="apple-card__desc">
-            Người thật có cửa tiệm ở số nhà cụ thể, có bạn bè trêu đùa, có lịch sử 10 năm gắn với phố xá. AI là <b>"bóng ma kỹ thuật số"</b>: Không bạn học cấp 3, không bà bán nước đầu ngõ biết mặt. Không ai chuyển tiền lớn vào hư vô cho kẻ không có cội nguồn xã hội.
+        <!-- Case 4 -->
+        <div class="theorem-card">
+          <div class="theorem-header">
+            <span class="theorem-tag theorem-tag--blue">CASE 04 • THỢ CƠ KHÍ &amp; SỬA CHỮA DÂN DỤNG</span>
+            <span style="font-family: var(--font-mono); font-size: 11px; color: var(--cl-text-dim);">NGÀNH KỸ THUẬT &amp; CƠ KHÍ</span>
           </div>
-        </div>
-
-        <!-- AI Sensor 4 -->
-        <div class="apple-card">
-          <div class="apple-card__badge apple-card__badge--rose">GIÁC QUAN 04 • RỦI RO ĐỐI ỨNG</div>
-          <h3 class="apple-card__title">"TÔI TÚM TÓC AI ĐỂ ĐÒI TIỀN?"</h3>
-          <div class="apple-card__desc">
-            (Nassim Taleb - Skin in the Game): Lời hứa chỉ có giá trị khi người hứa có thứ để mất. Người thật thế chấp bằng mặt thật, tiệm thật, danh dự cả đời. Kẻ dùng AI hỏng việc xóa kênh đổi prompt trong 5 phút để trốn trách nhiệm.
+          <h3 style="font-family: var(--font-display-short); font-size: 18.5px; font-weight: 700; color: var(--cl-text-base); margin-bottom: 14px;">
+            SỢ BỊ COI THƯỜNG &amp; VẾT SẸO ĐỀN LỐC MÁY
+          </h3>
+          <div style="margin-bottom: 12px; padding: 14px 16px; background: var(--cl-rose-tint); border-radius: var(--cl-radius-sm); border-left: 3px solid var(--cl-rose);">
+            <strong style="font-family: var(--font-mono); font-size: 11px; color: var(--cl-rose); text-transform: uppercase; display: block; margin-bottom: 4px;">⚠️ Tầng 3 (Cái muốn che giấu):</strong>
+            Sợ bị khách hàng nhìn bằng ánh mắt coi thường là thợ tay chân bẩn thỉu; sợ tiệm bên cạnh phá giá vặt tiền làm khách nghi ngờ lây sang mình.
           </div>
+          <div style="margin-bottom: 12px; padding: 14px 16px; background: var(--cl-accent-tint); border-radius: var(--cl-radius-sm); border-left: 3px solid var(--cl-accent);">
+            <strong style="font-family: var(--font-mono); font-size: 11px; color: var(--cl-accent); text-transform: uppercase; display: block; margin-bottom: 4px;">🎯 Tầng 2.5 (Hành động mượn che giấu):</strong>
+            Thợ non nghề hay phán bệnh to tát: <i>"Phải bổ máy làm lại toàn bộ"</i> để chứng tỏ nguy hiểm và tính tiền cao, che đậy sự lúng túng không định vị được điểm hỏng vi mô.
+          </div>
+          <p style="font-size: 15px; line-height: 1.75; color: var(--cl-text-muted); margin-bottom: 0;">
+            <strong>Vết sẹo thật rèn nên sự tỉ mỉ:</strong> Từng siết trờn một con ốc lốc máy phải đền tiền triệu &rarr; Rèn nên thói quen siết ốc bằng tay cẩn trọng và lấy khăn sạch lau yên xe trước khi bàn giao.
+          </p>
         </div>
-      </div>
+      </section>
 
-      <div class="quote-box" style="max-width: 860px; margin: 36px auto 0;">
-        <div class="quote-box__text">
-          "Số liệu PNAS (2022) &amp; Edelman (2024): 76% người tiêu dùng khẳng định mất niềm tin hoàn toàn vào thương hiệu nếu phát hiện video tư vấn chuyên môn dùng avatar AI thay vì người làm nghề thật."
+      <!-- ═══ CHƯƠNG 5 ═══ -->
+      <section class="dossier-section" id="chuong-5">
+        <span class="chapter-badge">CHƯƠNG 05</span>
+        <h2 class="dossier-h2">4 GIÁC QUAN PHI THỊ GIÁC VẠCH TRẦN VIDEO AI</h2>
+
+        <p>
+          Nhiều người lầm tưởng rằng chỉ cần dùng AI tạo hình ảnh giống thật 99.9%, dùng giọng đọc trầm ấm và ghép nhạc du dương là có thể làm được video Tầng 2.5. Nhưng thực tế chứng minh: video AI vẫn bị cơ thể con người đào thải sau vài giây. Mắt quang học có thể bị đánh lừa, nhưng túi tiền của người xem được mở ra bằng bản năng sinh học:
+        </p>
+
+        <ul style="margin: 0 0 24px 24px; font-size: 17px; line-height: 1.85; color: var(--cl-text-body);">
+          <li style="margin-bottom: 16px;">
+            <strong>1. Độ nghẹn cơ hoành &amp; Nhịp tim (Micro-glottal stops):</strong> Khi người thật nói về nỗi đau hay trải nghiệm bầm dập, cơ hoành thắt lại tạo ra những độ khựng vi mô ở thanh quản. Giọng nói có sức nặng của một lồng ngực đang đập thật. Giọng AI trơn tuột như bôi mỡ, thiếu trọng lực thể xác nên người nghe thấy giả tạo.
+          </li>
+          <li style="margin-bottom: 16px;">
+            <strong>2. Trọng lực &amp; Tiêu hao Calo (Metabolic Fatigue):</strong> Người thật nói chuyện 10 phút phải mỏi lưng, phải nuốt nước bọt, đổi thế đứng, thở hắt ra xả áp lực. AI chuyển động bằng pixel, nói thao thao không biết mệt mỏi &rarr; sự "không mệt mỏi" tố cáo nó là vật thể vô tri.
+          </li>
+          <li style="margin-bottom: 16px;">
+            <strong>3. Mạng lưới cắm rễ xã hội (Social Embeddedness):</strong> Người làm nghề thật có cửa tiệm, có bạn bè, có địa chỉ ngoài đời để tìm đến. AI là bóng ma kỹ thuật số không nguồn gốc &rarr; không một khách hàng nghiêm túc nào chuyển tiền lớn vào hư vô.
+          </li>
+          <li>
+            <strong>4. "Tôi túm tóc ai đòi tiền?" (Skin in the Game):</strong> Người thật thế chấp bằng mặt thật, tiệm thật, danh dự cả đời. Kẻ dùng AI hỏng việc chỉ cần xóa kênh, đổi prompt trong 5 phút để trốn trách nhiệm.
+          </li>
+        </ul>
+
+        <div class="callout-box callout-box--rose">
+          <p>
+            <b>Số liệu thực nghiệm kiểm chứng:</b> Báo cáo của Viện Hàn lâm Khoa học Quốc gia Hoa Kỳ (PNAS 2022) và Báo cáo Edelman Trust Barometer (2024) khẳng định: <strong>76% người tiêu dùng</strong> mất niềm tin hoàn toàn vào thương hiệu nếu phát hiện video tư vấn chuyên môn được thực hiện bởi avatar AI thay vì người làm nghề thật.
+          </p>
         </div>
-        <div class="quote-box__author">Viện Hàn lâm Khoa học Quốc gia Hoa Kỳ &amp; Edelman Trust Barometer</div>
-      </div>
-    </div>
-  </section>
+      </section>
 
-  <!-- ═══ KHỐI 5: MA TRẬN 3 HƯỚNG ĐI DƯỚI CÙNG 1 CĂN BỆNH (LIGHT) ═══ -->
-  <section class="cl-zebra-section cl-zebra--light" id="sec-ma-tran">
-    <div class="cl-sec-container cl-sec-container--wide apple-reveal">
-      <div class="cl-badge">04 / PHẪU THUẬT CHIẾN LƯỢC • MA TRẬN 3 HƯỚNG ĐI</div>
-      <h2 class="title-short">CHỈ RA BỆNH NGẦM RỒI THÌ LÊN VIDEO THẾ&nbsp;NÀO?</h2>
-      <p class="editorial-hook">"Dưới cùng một căn bệnh ngầm, 3 kẻ với 3 đạo đức khác nhau sẽ tạo ra 3 kết cục hoàn toàn đối nghịch: Bị phòng thủ, bị pháp luật sờ gáy, hoặc xác lập vị thế chuyên gia bất khả xâm&nbsp;phạm."</p>
+      <!-- ═══ CHƯƠNG 6 ═══ -->
+      <section class="dossier-section" id="chuong-6">
+        <span class="chapter-badge">CHƯƠNG 06</span>
+        <h2 class="dossier-h2">MA TRẬN ĐỐI CHIẾU &amp; KHUNG KỊCH BẢN 4 BƯỚC THỰC CHIẾN</h2>
 
-      <div class="table-wrapper">
-        <table>
-          <thead>
-            <tr>
-              <th style="width: 22%;">Tiêu chí phân tích</th>
-              <th style="width: 26%;">1. Quảng Cáo (Hard Sell)</th>
-              <th style="width: 26%;">2. Lừa Đảo / Thao Túng (Scam)</th>
-              <th style="width: 26%;">3. THCN Mạnh (Tầng 2.5)</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><b>Mục đích tối hậu</b></td>
-              <td>Thu số điện thoại, chốt đơn hàng tức thì.</td>
-              <td>Thao túng tâm lý, thu tiền lớn, tạo sùng bái.</td>
-              <td><b>Xác lập vị thế chuyên gia, tích lũy vốn niềm tin sắt đá.</b></td>
-            </tr>
-            <tr>
-              <td><b>Thái độ khi bắt bệnh</b></td>
-              <td>Làm quá, giật tít để lấy cớ nhét sản phẩm vào.</td>
-              <td>Biến bệnh thành <b>nghiệp chướng / diệt vong</b> để dọa dẫm.</td>
-              <td><b>Tả thực hiện trường vi mô (Murakami Show), điềm đạm, không phán xét.</b></td>
-            </tr>
-            <tr>
-              <td><b>Giải pháp đưa ra</b></td>
-              <td>Sản phẩm / Khóa học giảm giá 50% hôm nay.</td>
-              <td>Phép màu độc quyền chỉ 'thầy' mới mở được.</td>
-              <td><b>Quy luật nghề nghiệp &amp; Sự tự phản tỉnh của người xem.</b></td>
-            </tr>
-            <tr>
-              <td><b>Đoạn kết (CTA)</b></td>
-              <td>Hối thúc: Để lại SĐT, số lượng có hạn.</td>
-              <td>Khóa phễu kín: Nhắn tin riêng, chuyển tiền giải hạn.</td>
-              <td><b>ĐỂ NGỎ HOÀN TOÀN (ZERO CTA).</b> Không bán gì cả. Khách tự kính nể tìm đến.</td>
-            </tr>
-            <tr>
-              <td><b>Tâm lý người xem</b></td>
-              <td>Bật khiên phòng thủ: <i>"Lại quảng cáo bán hàng".</i></td>
-              <td>Hoảng loạn sinh tồn, tê liệt tư duy phản biện.</td>
-              <td><b>Bị nói trúng tim đen, tự phản tỉnh, tin tưởng tuyệt đối.</b></td>
-            </tr>
-            <tr>
-              <td><b>Rào cản sao chép (Moat)</b></td>
-              <td>Không có. Đối thủ copy kịch bản trong 24h.</td>
-              <td>Thấp. Bị bóc phốt khi cơ quan chức năng vào cuộc.</td>
-              <td><b>Bất khả xâm phạm. AI và đối thủ mù lòa trước vết sẹo nghề nghiệp thật.</b></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+        <p>
+          Để đối soát chất lượng kịch bản trước khi bấm máy, hãy soi chiếu nội dung của bạn vào bảng ma trận 3 mô hình nội dung dưới đây:
+        </p>
 
-      <!-- ═══ NÚT ĐIỀU HƯỚNG QUAY LẠI GIÁO TRÌNH CHÍNH ═══ -->
-      <div style="display: flex; flex-direction: column; align-items: center; gap: 16px; margin-top: 40px;">
-        <a href="storytelling.html" class="btn-cta" style="padding: 18px 36px; font-size: 15px;">
-          ← Quay Lại Giáo Trình Cách Quay Storytelling (storytelling.html)
-        </a>
-        <a href="https://vietndj.github.io/offline02/9_kich_ban_thuc_chien.html" target="_blank" class="btn-secondary">
-          📚 Xem 9 Kịch Bản Mẫu Thực Chiến Tầng 2.5 ↗
-        </a>
-      </div>
-    </div>
-  </section>
+        <!-- Bảng Ma Trận -->
+        <div class="matrix-table-wrap">
+          <table class="matrix-table">
+            <thead>
+              <tr>
+                <th>Tiêu chí đối chiếu</th>
+                <th>Quảng cáo chộp giật</th>
+                <th>Thao túng lừa đảo</th>
+                <th>THCN Tầng 2.5 Chuẩn Anh Việt</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Mồi nhử mở đầu</td>
+                <td>Hứa hẹn làm giàu nhanh, cam kết giật gân.</td>
+                <td>Gieo rắc sợ hãi, nghiệp chướng, bệnh tật.</td>
+                <td>Mô tả trần trụi hiện trường mắt thấy tai nghe (Tầng 1).</td>
+              </tr>
+              <tr>
+                <td>Điểm chạm tâm lý</td>
+                <td>Đánh vào lòng tham và sự nôn nóng.</td>
+                <td>Đánh vào sự hoang mang, bất an của con người.</td>
+                <td>Chạm đúng chỗ ngượng miệng giấu kín (Tầng 2.5).</td>
+              </tr>
+              <tr>
+                <td>Giải pháp đưa ra</td>
+                <td>Giảm giá khóa học, mua 1 tặng 1 hôm nay.</td>
+                <td>Phép màu độc quyền chỉ 'thầy' mới cứu được.</td>
+                <td>Chỉ mẹo xử lý thực tế &amp; Để khách tự phản tỉnh.</td>
+              </tr>
+              <tr>
+                <td>Kêu gọi hành động</td>
+                <td>Hối thúc: Để lại SĐT, số lượng có hạn.</td>
+                <td>Khóa phễu kín: Nhắn tin chuyển tiền giải hạn.</td>
+                <td>ĐỂ NGỎ HOÀN TOÀN (ZERO CTA). Không bán gì cả.</td>
+              </tr>
+              <tr>
+                <td>Tâm lý người xem</td>
+                <td>Đề phòng: <i>"Lại quảng cáo bán hàng".</i></td>
+                <td>Hoảng loạn, tê liệt tư duy phản biện.</td>
+                <td>Bị nói trúng tim đen, nể phục và tự tìm đến.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
 
-  <!-- ═══ SCRIPT APPLE MOTION REVEAL ═══ -->
+        <h3 class="dossier-h3">Bộ khung 4 bước chuyển hóa kịch bản Storytelling 2.5:</h3>
+        <ul style="margin: 0 0 32px 24px; font-size: 17px; line-height: 1.85; color: var(--cl-text-body);">
+          <li style="margin-bottom: 12px;">
+            <strong>Bước 1 — Mô tả hiện trường vật lý (Murakami Show):</strong> Kê máy quay cận bàn tay làm việc, góc quán quen, tiếng gõ phím. Bắt đầu bằng những thứ mắt thấy tai nghe chân thật nhất.
+          </li>
+          <li style="margin-bottom: 12px;">
+            <strong>Bước 2 — Gọi tên triệu chứng ngầm (Chạm Tầng 2.5):</strong> Chỉ thẳng vào hành động người ta hay mượn để che giấu nỗi sợ mà không dùng một lời phán xét.
+          </li>
+          <li style="margin-bottom: 12px;">
+            <strong>Bước 3 — Mở lối thoát danh dự &amp; Chỉ mẹo gỡ rối:</strong> Gỡ thể diện cho người xem bằng câu *"ngày xưa tôi cũng từng như vậy"*, và cho không một cách làm nhỏ hữu ích.
+          </li>
+          <li>
+            <strong>Bước 4 — Đứng thẳng lưng kết thúc:</strong> Kết video đĩnh đạc, không nài nỉ xin like, không giục mua khóa học. Để giá trị tự lên tiếng.
+          </li>
+        </ul>
+
+        <!-- Cụm Nút Cuối Trang -->
+        <div style="display: flex; flex-direction: column; align-items: center; gap: 14px; padding-top: 24px; border-top: 1px solid var(--cl-line);">
+          <a href="storytelling.html" class="sidebar-nav-btn sidebar-nav-btn--primary" style="padding: 16px 36px; font-size: 14px; width: auto;">
+            ← Quay Lại Giáo Trình Cách Quay Storytelling (storytelling.html)
+          </a>
+          <a href="4stylevideo.html" class="sidebar-nav-btn sidebar-nav-btn--secondary" style="width: auto;">
+            🏠 Xem Bản Đồ Phối Hợp 4 Định Dạng Video Chủ Lực
+          </a>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- ═══ SCRIPT SCROLLSPY TỰ ĐỘNG BẮT VỊ TRÍ CUỘN ═══ -->
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      const reveals = document.querySelectorAll('.apple-reveal');
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('is-visible');
-            observer.unobserve(entry.target);
+      const sections = document.querySelectorAll('.dossier-section');
+      const navItems = document.querySelectorAll('.toc-item');
+
+      window.addEventListener('scroll', () => {
+        let current = '';
+        const scrollPosition = window.pageYOffset + 140;
+
+        sections.forEach(section => {
+          const top = section.offsetTop;
+          const height = section.offsetHeight;
+          if (scrollPosition >= top && scrollPosition < top + height) {
+            current = section.getAttribute('id');
           }
         });
-      }, {
-        threshold: 0.08,
-        rootMargin: '0px 0px -40px 0px'
-      });
 
-      reveals.forEach(el => observer.observe(el));
+        navItems.forEach(item => {
+          item.classList.remove('is-active');
+          if (item.getAttribute('href') === `#${current}`) {
+            item.classList.add('is-active');
+          }
+        });
+      }, { passive: true });
     });
   </script>
+
 </body>
 </html>
