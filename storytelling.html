@@ -560,90 +560,71 @@
       will-change: auto;
     }
   
-    /* ═══ THANH ĐIỀU HƯỚNG BỘ 4 ĐỊNH DẠNG (CROSS-LINKS) ═══ */
-    .four-formats-bar {
-      width: 100%;
+    
+
+  
+    
+
+  
+    /* ═══ CLEAN STICKY NAV & REFINED POPUP ═══ */
+    .sticky-nav {
+      position: fixed;
+      bottom: max(18px, env(safe-area-inset-bottom, 18px));
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1000;
       background: rgba(255, 255, 255, 0.94);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border-bottom: 1px solid var(--cl-line-strong);
-      padding: 8px 16px;
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      padding: 6px 12px;
+      border-radius: var(--cl-radius-full);
       display: flex;
       align-items: center;
-      justify-content: center;
-      gap: 8px;
+      gap: 6px;
+      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.12), 0 2px 8px rgba(0, 0, 0, 0.04);
+      max-width: min(calc(100vw - 28px), 760px);
       overflow-x: auto;
+      overflow-y: visible !important;
       white-space: nowrap;
       scrollbar-width: none;
       -webkit-overflow-scrolling: touch;
-      position: sticky;
-      top: 50px;
-      z-index: 999;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.03);
     }
-    .four-formats-bar::-webkit-scrollbar { display: none; }
-    .ff-item {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
+    .sticky-nav::-webkit-scrollbar { display: none; }
+
+    .sticky-nav a:not(.nav-dd-item):not(.nav-dropdown-btn) {
+      flex-shrink: 0;
       font-family: var(--font-mono);
-      font-size: 11px;
+      font-size: 11.5px;
       font-weight: 700;
       color: var(--cl-text-muted);
       text-decoration: none;
-      padding: 5px 12px;
+      padding: 5px 9px;
       border-radius: var(--cl-radius-full);
-      border: 1px solid var(--cl-line);
-      background: var(--cl-tint);
       transition: all 0.2s var(--apple-ease);
-      flex-shrink: 0;
     }
-    .ff-item:hover {
+    .sticky-nav a:not(.nav-dd-item):not(.nav-dropdown-btn):hover {
       color: var(--cl-accent);
-      border-color: rgba(26, 115, 232, 0.4);
       background: var(--cl-accent-tint);
-      transform: translateY(-1px);
-    }
-    .ff-item.is-active {
-      color: #ffffff;
-      background: var(--cl-accent);
-      border-color: var(--cl-accent);
-      box-shadow: 0 4px 12px rgba(26, 115, 232, 0.28);
-    }
-    .ff-item-hub {
-      background: #ffffff;
-      border-color: var(--cl-line-strong);
-      color: var(--cl-text-base);
-    }
-    @media (max-width: 768px) {
-      .four-formats-bar {
-        justify-content: flex-start;
-        padding: 8px 12px;
-        top: 46px;
-      }
     }
 
-  
-    /* ═══ POPUP MENU ĐỔI ĐỊNH DẠNG TỪ STICKY NAV ═══ */
-    .sticky-nav {
-      overflow: visible !important; /* Cho phép popup trồi lên trên */
-    }
     .nav-dropdown {
       position: relative;
       display: inline-flex;
       align-items: center;
+      flex-shrink: 0;
     }
     .nav-dropdown-btn {
       display: inline-flex;
       align-items: center;
-      gap: 5px;
+      gap: 6px;
       font-family: var(--font-mono);
       font-size: 11.5px;
       font-weight: 700;
       color: var(--cl-accent);
       background: var(--cl-accent-tint);
       border: 1px solid rgba(26, 115, 232, 0.25);
-      padding: 4px 10px;
+      padding: 5px 12px;
       border-radius: var(--cl-radius-full);
       cursor: pointer;
       text-decoration: none;
@@ -653,6 +634,7 @@
     .nav-dropdown-btn:hover {
       background: var(--cl-accent);
       color: #ffffff;
+      box-shadow: 0 4px 12px rgba(26, 115, 232, 0.28);
     }
     .nav-dropdown-btn svg {
       transition: transform 0.25s var(--apple-spring);
@@ -661,26 +643,20 @@
     .nav-dropdown.is-open .nav-dropdown-btn svg {
       transform: rotate(180deg);
     }
+
+    /* POPUP MENU CÓ PADDING-BOTTOM ĐỆM CHỐNG MẤT HOVER */
     .nav-dropdown-menu {
       position: absolute;
-      bottom: calc(100% + 10px);
+      bottom: 100%;
       left: 0;
-      min-width: 250px;
-      background: rgba(255, 255, 255, 0.96);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border: 1px solid var(--cl-line-strong);
-      border-radius: var(--cl-radius-md);
-      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.12), 0 4px 12px rgba(0,0,0,0.04);
-      padding: 6px;
-      display: flex;
-      flex-direction: column;
-      gap: 3px;
+      padding-bottom: 12px; /* Cầu nối chuột liền mạch */
+      min-width: 290px;
+      background: transparent;
       opacity: 0;
       visibility: hidden;
-      transform: translate3d(0, 10px, 0);
-      transition: all 0.25s var(--apple-spring);
-      z-index: 1000;
+      transform: translate3d(0, 8px, 0);
+      transition: opacity 0.22s var(--apple-ease), transform 0.25s var(--apple-spring), visibility 0.22s;
+      z-index: 2000;
       pointer-events: none;
     }
     .nav-dropdown:hover .nav-dropdown-menu,
@@ -690,28 +666,43 @@
       transform: translate3d(0, 0, 0);
       pointer-events: auto;
     }
-    .nav-dropdown-item {
+
+    .nav-dd-card {
+      background: rgba(255, 255, 255, 0.98);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border: 1px solid var(--cl-line-strong);
+      border-radius: var(--cl-radius-md);
+      box-shadow: 0 20px 48px rgba(0, 0, 0, 0.16), 0 4px 14px rgba(0, 0, 0, 0.05);
+      padding: 7px;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .nav-dd-item {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 10px;
+      gap: 12px;
       padding: 8px 12px;
       border-radius: var(--cl-radius-sm);
       text-decoration: none;
       transition: all 0.18s ease;
     }
-    .nav-dropdown-item:hover {
+    .nav-dd-item:hover {
       background: var(--cl-tint);
+      transform: translateX(2px);
     }
-    .nav-dropdown-item.is-active {
+    .nav-dd-item.is-active {
       background: var(--cl-accent-tint);
     }
-    .nav-dropdown-item__left {
+    .nav-dd-item__info {
       display: flex;
       flex-direction: column;
       text-align: left;
     }
-    .nav-dropdown-item__tag {
+    .nav-dd-item__tag {
       font-family: var(--font-mono);
       font-size: 9.5px;
       font-weight: 700;
@@ -719,23 +710,25 @@
       text-transform: uppercase;
       letter-spacing: 0.04em;
     }
-    .nav-dropdown-item__name {
+    .nav-dd-item__name {
       font-family: var(--font-display-short);
       font-size: 12.5px;
       font-weight: 700;
       color: var(--cl-text-base);
+      line-height: 1.35;
     }
-    .nav-dropdown-item__dot {
-      width: 6px;
-      height: 6px;
+    .nav-dd-dot {
+      width: 7px;
+      height: 7px;
       border-radius: 50%;
       background: var(--cl-accent);
       display: inline-block;
+      flex-shrink: 0;
     }
-    .nav-dropdown-divider {
+    .nav-dd-divider {
       height: 1px;
       background: var(--cl-line);
-      margin: 4px 0;
+      margin: 4px 6px;
     }
 
   </style>
@@ -763,63 +756,56 @@
     </div>
   </header>
 
-  <!-- ═══ THANH ĐIỀU HƯỚNG LIÊN KẾT NHANH 4 ĐỊNH DẠNG ═══ -->
-  <div class="four-formats-bar">
-    <a href="4stylevideo.html" class="ff-item ff-item-hub">🏠 BỘ 4 ĐỊNH DẠNG</a>
-    <a href="voiceover.html" class="ff-item">01. Voice-Over</a>
-    <a href="walkandtalk.html" class="ff-item">02. Walk & Talk</a>
-    <a href="talkinghead.html" class="ff-item">03. Talking Head</a>
-    <a href="storytelling.html" class="ff-item is-active">04. Storytelling 2.5</a>
-  </div>
-
-
-  <!-- STICKY NAV DÀNH CHO HỌC VIÊN -->
+<!-- STICKY NAV DÀNH CHO HỌC VIÊN -->
   <nav class="sticky-nav">
     <!-- MENU ĐỔI ĐỊNH DẠNG (POPUP) -->
-    <div class="nav-dropdown">
-      <a href="4stylevideo.html" class="nav-dropdown-btn">
+    <div class="nav-dropdown" id="navFormatDropdown">
+      <button type="button" class="nav-dropdown-btn" aria-haspopup="true" aria-expanded="false">
         <span>🎬 4 Định Dạng</span>
-        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
-      </a>
-      <div class="nav-dropdown-menu">
-      <a href="4stylevideo.html" class="nav-dropdown-item">
-        <div class="nav-dropdown-item__left">
-          <span class="nav-dropdown-item__tag" style="color: var(--cl-text-base);">TRANG CHỦ TỔNG HỢP</span>
-          <span class="nav-dropdown-item__name">🏠 Bộ 4 Định Dạng Chủ Lực</span>
-        </div>
-        
-      </a>
-      <div class="nav-dropdown-divider"></div>
-      <a href="voiceover.html" class="nav-dropdown-item">
-        <div class="nav-dropdown-item__left">
-          <span class="nav-dropdown-item__tag">ĐỊNH DẠNG 01</span>
-          <span class="nav-dropdown-item__name">Voice-Over (Quay Tay Thao Tác)</span>
-        </div>
-        
-      </a>
-      <a href="walkandtalk.html" class="nav-dropdown-item">
-        <div class="nav-dropdown-item__left">
-          <span class="nav-dropdown-item__tag">ĐỊNH DẠNG 02</span>
-          <span class="nav-dropdown-item__name">Walk & Talk (Vừa Đi Vừa Nói)</span>
-        </div>
-        
-      </a>
-      <a href="talkinghead.html" class="nav-dropdown-item">
-        <div class="nav-dropdown-item__left">
-          <span class="nav-dropdown-item__tag">ĐỊNH DẠNG 03</span>
-          <span class="nav-dropdown-item__name">Talking Head (Ngồi Bàn 2 Cam)</span>
-        </div>
-        
-      </a>
-      <a href="storytelling.html" class="nav-dropdown-item is-active">
-        <div class="nav-dropdown-item__left">
-          <span class="nav-dropdown-item__tag">ĐỊNH DẠNG 04</span>
-          <span class="nav-dropdown-item__name">Storytelling 2.5 (Bóc Bệnh Ngầm)</span>
-        </div>
-        <span class="nav-dropdown-item__dot"></span>
-      </a>
+        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="18 15 12 9 6 15"></polyline></svg>
+      </button>
+      <div class="nav-dropdown-menu" role="menu">
+      <div class="nav-dd-card">
+        <a href="4stylevideo.html" class="nav-dd-item">
+          <div class="nav-dd-item__info">
+            <span class="nav-dd-item__tag" style="color: var(--cl-text-base);">TỔNG QUAN HỆ THỐNG</span>
+            <span class="nav-dd-item__name">🏠 Trọn Bộ 4 Định Dạng Chủ Lực</span>
+          </div>
+          
+        </a>
+        <div class="nav-dd-divider"></div>
+        <a href="voiceover.html" class="nav-dd-item">
+          <div class="nav-dd-item__info">
+            <span class="nav-dd-item__tag">ĐỊNH DẠNG 01</span>
+            <span class="nav-dd-item__name">Voice-Over <span style="font-weight: 400; opacity: 0.8; font-size: 11.5px;">• Tách Hình Khỏi Tiếng</span></span>
+          </div>
+          
+        </a>
+        <a href="walkandtalk.html" class="nav-dd-item">
+          <div class="nav-dd-item__info">
+            <span class="nav-dd-item__tag">ĐỊNH DẠNG 02</span>
+            <span class="nav-dd-item__name">Walk & Talk <span style="font-weight: 400; opacity: 0.8; font-size: 11.5px;">• Vừa Đi Vừa Nói</span></span>
+          </div>
+          
+        </a>
+        <a href="talkinghead.html" class="nav-dd-item">
+          <div class="nav-dd-item__info">
+            <span class="nav-dd-item__tag">ĐỊNH DẠNG 03</span>
+            <span class="nav-dd-item__name">Talking Head <span style="font-weight: 400; opacity: 0.8; font-size: 11.5px;">• Tạo Niềm Tin Chuyên Gia</span></span>
+          </div>
+          
+        </a>
+        <a href="storytelling.html" class="nav-dd-item is-active">
+          <div class="nav-dd-item__info">
+            <span class="nav-dd-item__tag">ĐỊNH DẠNG 04</span>
+            <span class="nav-dd-item__name">Storytelling 2.5 <span style="font-weight: 400; opacity: 0.8; font-size: 11.5px;">• Bóc Trần Tầng 2.5</span></span>
+          </div>
+          <span class="nav-dd-dot"></span>
+        </a>
+      </div>
       </div>
     </div>
+   
 <a href="#sec-hero">Video Gốc 🎥</a>
     <a href="storytelling-khoa-hoc.html" style="color: var(--cl-accent); font-weight: 700;">Khoa Học 🔬</a>
     <a href="#sec-what">What (Là Gì)</a>
@@ -831,9 +817,14 @@
   </nav>
 
   <!-- ═══ KHỐI 1: HERO (LIGHT) ═══ -->
-  <section class="cl-zebra-section cl-zebra--light" id="sec-hero" style="padding-top: 104px;">
+  <section class="cl-zebra-section cl-zebra--light" id="sec-hero" style="padding-top: 72px;">
     <div class="cl-sec-container cl-sec-container--wide apple-reveal">
-      <div class="cl-badge">BÀI GIẢNG THỰC CHIẾN • NGHỆ THUẬT KỂ CHUYỆN</div>
+      <div style="display: inline-flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 10px; margin-bottom: 24px;">
+        <span class="cl-badge" style="margin-bottom: 0;">BÀI GIẢNG THỰC CHIẾN • NGHỆ THUẬT KỂ CHUYỆN</span>
+        <a href="storytelling-khoa-hoc.html" class="cl-badge" style="margin-bottom: 0; background: rgba(5, 150, 105, 0.08); color: var(--cl-emerald); border-color: rgba(5, 150, 105, 0.25); text-decoration: none; transition: all 0.2s var(--apple-ease);" onmouseover="this.style.background='var(--cl-emerald)';this.style.color='#ffffff';" onmouseout="this.style.background='rgba(5, 150, 105, 0.08)';this.style.color='var(--cl-emerald)';">
+          <span>🔬 Cơ Sở Khoa Học Thực Chứng ↗</span>
+        </a>
+      </div>
       <h1 class="title-short">CÁCH QUAY STORYTELLING:<br>BÓC TRẦN SỰ THẬT TẦNG&nbsp;2.5</h1>
       <p class="editorial-hook">"Storytelling hiểu đơn giản là kể chuyện người thật việc thật: ngồi xuống bóc trần đúng cái cớ ngụy trang của người lớn để tạo dựng niềm tin tuyệt đối trước khi bấm&nbsp;máy."</p>
 
@@ -1214,6 +1205,29 @@
       document.addEventListener("click", (e) => {
         if (!e.target.closest(".nav-dropdown")) {
           dropdowns.forEach(dd => dd.classList.remove("is-open"));
+        }
+      });
+    });
+
+  
+    // Bật/tắt và giữ popup menu trên cả máy tính lẫn di động không bị lỗi lướt chuột
+    document.addEventListener("DOMContentLoaded", () => {
+      const dd = document.querySelector(".nav-dropdown");
+      if (!dd) return;
+      const btn = dd.querySelector(".nav-dropdown-btn");
+      if (btn) {
+        btn.addEventListener("click", (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          dd.classList.toggle("is-open");
+          const expanded = dd.classList.contains("is-open");
+          btn.setAttribute("aria-expanded", expanded);
+        });
+      }
+      document.addEventListener("click", (e) => {
+        if (!dd.contains(e.target)) {
+          dd.classList.remove("is-open");
+          if (btn) btn.setAttribute("aria-expanded", "false");
         }
       });
     });
