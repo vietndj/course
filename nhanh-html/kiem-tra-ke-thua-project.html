@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>[Nhánh Test] Kiểm tra kế thừa Project — Tri Thức Rẽ Nhánh</title>
+  <style>
+    :root {
+      --bg-main: #ffffff;
+      --bg-tint: #f8fafc;
+      --bg-card: #ffffff;
+      --text-main: #090d16;
+      --text-body: #0f172a;
+      --text-muted: #475569;
+      --accent: #1a73e8;
+      --accent-soft: rgba(26, 115, 232, 0.08);
+      --border-color: rgba(15, 23, 42, 0.08);
+      --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: var(--font-family);
+      background-color: var(--bg-tint);
+      color: var(--text-body);
+      line-height: 1.8;
+      font-size: 16px;
+      -webkit-font-smoothing: antialiased;
+    }
+    .top-header {
+      background: #ffffff;
+      border-bottom: 1px solid var(--border-color);
+      padding: 16px 24px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .top-nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 700;
+      font-size: 14px;
+      letter-spacing: 0.04em;
+      color: var(--text-main);
+      text-decoration: none;
+    }
+    .top-badge {
+      background: var(--accent-soft);
+      color: var(--accent);
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+    .back-btn {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .back-btn:hover {
+      color: var(--accent);
+    }
+    .container {
+      max-width: 880px;
+      margin: 40px auto;
+      padding: 0 20px 80px;
+    }
+    .hero-card {
+      background: #ffffff;
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 36px 32px;
+      margin-bottom: 32px;
+      box-shadow: 0 4px 20px -2px rgba(0,0,0,0.03);
+    }
+    .hero-kicker {
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      color: var(--accent);
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .hero-title {
+      font-size: clamp(24px, 4vw, 32px);
+      font-weight: 800;
+      color: var(--text-main);
+      line-height: 1.3;
+      margin-bottom: 16px;
+      letter-spacing: -0.02em;
+    }
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      font-size: 13px;
+      color: var(--text-muted);
+      border-top: 1px solid var(--border-color);
+      padding-top: 16px;
+    }
+    .chat-bubble {
+      margin-bottom: 28px;
+      border-radius: 16px;
+      padding: 28px 30px;
+      background: #ffffff;
+      border: 1px solid var(--border-color);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+    }
+    .chat-bubble--user {
+      background: #f1f5f9;
+      border-color: rgba(15, 23, 42, 0.12);
+    }
+    .chat-bubble-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 16px;
+      font-size: 13px;
+      font-weight: 700;
+    }
+    .role-badge {
+      padding: 3px 8px;
+      border-radius: 6px;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+    .role-badge--user {
+      background: #0f172a;
+      color: #ffffff;
+    }
+    .role-badge--ai {
+      background: var(--accent);
+      color: #ffffff;
+    }
+    .role-title {
+      color: var(--text-main);
+      font-weight: 700;
+    }
+    .chat-body {
+      color: var(--text-body);
+      font-size: 16px;
+      line-height: 1.85;
+      overflow-wrap: break-word;
+    }
+    .chat-body h1, .chat-body h2, .chat-body h3 {
+      color: var(--text-main);
+      margin: 24px 0 12px;
+      font-weight: 700;
+      line-height: 1.4;
+    }
+    .chat-body h1 { font-size: 24px; }
+    .chat-body h2 { font-size: 20px; }
+    .chat-body h3 { font-size: 17px; }
+    .chat-body p { margin-bottom: 16px; }
+    .chat-body ul, .chat-body ol {
+      margin: 16px 0 20px 24px;
+    }
+    .chat-body li {
+      margin-bottom: 8px;
+    }
+    .chat-body blockquote {
+      border-left: 3px solid var(--accent);
+      background: var(--bg-tint);
+      padding: 12px 20px;
+      margin: 18px 0;
+      border-radius: 0 8px 8px 0;
+      font-style: italic;
+    }
+    .chat-body table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+      font-size: 14.5px;
+    }
+    .chat-body th, .chat-body td {
+      border: 1px solid rgba(15, 23, 42, 0.12);
+      padding: 10px 14px;
+      text-align: left;
+    }
+    .chat-body th {
+      background: #f8fafc;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+    .chat-body pre {
+      background: #0f172a;
+      color: #f8fafc;
+      padding: 16px;
+      border-radius: 8px;
+      overflow-x: auto;
+      margin: 16px 0;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+    .chat-body code {
+      background: rgba(15, 23, 42, 0.06);
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 14px;
+    }
+    .chat-body pre code {
+      background: none;
+      padding: 0;
+      color: inherit;
+    }
+    details.tool-accordion {
+      background: #f8fafc;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 10px 14px;
+      margin: 12px 0;
+      font-size: 13px;
+    }
+    details.tool-accordion summary {
+      cursor: pointer;
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+    details.tool-accordion summary:hover {
+      color: var(--accent);
+    }
+    .artifact-banner {
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      border-radius: 12px;
+      padding: 20px 24px;
+      margin: 24px 0;
+    }
+    .artifact-banner h4 {
+      color: #1e40af;
+      margin-bottom: 8px;
+      font-size: 16px;
+    }
+    .footer {
+      text-align: center;
+      padding: 30px 0;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+  </style>
+</head>
+<body>
+  <header class="top-header">
+    <a href="../index.html" class="top-nav-brand">
+      <span class="top-badge">VIDEO SYSTEM</span>
+      <span>BÀI GIẢNG 4 ĐỊNH DẠNG</span>
+    </a>
+    <a href="../index.html" class="back-btn">← Quay lại trang tổng quan</a>
+  </header>
+
+  <main class="container">
+    <div class="hero-card">
+      <div class="hero-kicker">TRI THỨC RẼ NHÁNH • TẦNG 2.5</div>
+      <h1 class="hero-title">[Nhánh Test] Kiểm tra kế thừa Project</h1>
+      <div class="hero-meta">
+        <div><b>CID:</b> <code>089b320e-6a5c-4d1a-814d-dd082bfd3cf7</code></div>
+        <div><b>Thời gian:</b> 12/09/2026 11:13</div>
+        <div><b>Số lượt thoại:</b> 2</div>
+      </div>
+    </div>
+
+    
+
+    <div class="dialogue-flow">
+      
+            <div class="chat-bubble chat-bubble--user">
+              <div class="chat-bubble-header">
+                <span class="role-badge role-badge--user">ANH VIỆT</span>
+                <span class="role-title">Yêu cầu & Câu hỏi đinh</span>
+              </div>
+              <div class="chat-body"><p>Đây là nội dung kiểm tra kế thừa Project ID</p></div>
+            </div>
+            
+
+            <div class="chat-bubble chat-bubble--ai">
+              <div class="chat-bubble-header">
+                <span class="role-badge role-badge--ai">AI ASSISTANT</span>
+                <span class="role-title">Phân tích thực chiến & Giải pháp</span>
+              </div>
+              
+                <details class="tool-accordion">
+                  <summary>⚙️ Chi tiết 9 thao tác kỹ thuật / công cụ đã thực hiện</summary>
+                  <ul style="margin: 8px 0 0 20px;">
+                <li><code>grep_search</code>: </li><li><code>grep_search</code>: "Search Project ID"</li><li><code>view_file</code>: "View re-nhanh skill"</li><li><code>view_file</code>: "View sang-trang skill"</li><li><code>view_file</code>: "View agy_sangtrang.py"</li><li><code>view_file</code>: "View transcript"</li><li><code>run_command</code>: "Check agentapi help"</li><li><code>run_command</code>: "Check agentapi commands"</li><li><code>run_command</code>: "Get conversation metadata"</li></ul></details>
+              <div class="chat-body"><h3>KẾT QUẢ KIỂM TRA KẾ THỪA PROJECT ID</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Thông số</th>
+<th style="text-align: left;">Giá trị kế thừa</th>
+<th style="text-align: left;">Trạng thái xác thực</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Project ID</strong></td>
+<td style="text-align: left;"><code>7bdb3395-3df2-4d6a-ae39-0f86294fbb35</code></td>
+<td style="text-align: left;">✅ Đã gán thành công vào metadata</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Conversation ID</strong></td>
+<td style="text-align: left;"><code>089b320e-6a5c-4d1a-814d-dd082bfd3cf7</code></td>
+<td style="text-align: left;">✅ Cấp 0 (<code>nestingDepth: 0</code>, nằm trong project trên sidebar)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Luồng cha (Source)</strong></td>
+<td style="text-align: left;"><b><code>3d6dbacd-510b-4b5f-8886-f8e243b5ec31</code></b> (<code>3d6dbacd-510b-4b5f-8886-f8e243b5ec31</code>)</td>
+<td style="text-align: left;">✅ Kích hoạt qua <code>agentapi</code> kèm <code>ANTIGRAVITY_PROJECT_ID</code></td>
+</tr>
+</tbody>
+</table>
+<p>• Biến môi trường <code>ANTIGRAVITY_PROJECT_ID</code> đã kế thừa chuẩn xác 100% vào thread mới.<br />
+• Cuộc trò chuyện này nằm đúng bên trong thư mục Project trên thanh Sidebar và Lịch sử.</p></div>
+            </div>
+            
+    </div>
+  </main>
+
+  <footer class="footer">
+    Hệ thống Bài giảng Video • Tri Thức Rẽ Nhánh Chuẩn Tầng 2.5
+  </footer>
+</body>
+</html>

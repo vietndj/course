@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>[Nhánh] Cập Nhật 11 Từ Cấm Vào Skill Văn Phong — Tri Thức Rẽ Nhánh</title>
+  <style>
+    :root {
+      --bg-main: #ffffff;
+      --bg-tint: #f8fafc;
+      --bg-card: #ffffff;
+      --text-main: #090d16;
+      --text-body: #0f172a;
+      --text-muted: #475569;
+      --accent: #1a73e8;
+      --accent-soft: rgba(26, 115, 232, 0.08);
+      --border-color: rgba(15, 23, 42, 0.08);
+      --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: var(--font-family);
+      background-color: var(--bg-tint);
+      color: var(--text-body);
+      line-height: 1.8;
+      font-size: 16px;
+      -webkit-font-smoothing: antialiased;
+    }
+    .top-header {
+      background: #ffffff;
+      border-bottom: 1px solid var(--border-color);
+      padding: 16px 24px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .top-nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 700;
+      font-size: 14px;
+      letter-spacing: 0.04em;
+      color: var(--text-main);
+      text-decoration: none;
+    }
+    .top-badge {
+      background: var(--accent-soft);
+      color: var(--accent);
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+    .back-btn {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .back-btn:hover {
+      color: var(--accent);
+    }
+    .container {
+      max-width: 880px;
+      margin: 40px auto;
+      padding: 0 20px 80px;
+    }
+    .hero-card {
+      background: #ffffff;
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 36px 32px;
+      margin-bottom: 32px;
+      box-shadow: 0 4px 20px -2px rgba(0,0,0,0.03);
+    }
+    .hero-kicker {
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      color: var(--accent);
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .hero-title {
+      font-size: clamp(24px, 4vw, 32px);
+      font-weight: 800;
+      color: var(--text-main);
+      line-height: 1.3;
+      margin-bottom: 16px;
+      letter-spacing: -0.02em;
+    }
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      font-size: 13px;
+      color: var(--text-muted);
+      border-top: 1px solid var(--border-color);
+      padding-top: 16px;
+    }
+    .chat-bubble {
+      margin-bottom: 28px;
+      border-radius: 16px;
+      padding: 28px 30px;
+      background: #ffffff;
+      border: 1px solid var(--border-color);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+    }
+    .chat-bubble--user {
+      background: #f1f5f9;
+      border-color: rgba(15, 23, 42, 0.12);
+    }
+    .chat-bubble-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 16px;
+      font-size: 13px;
+      font-weight: 700;
+    }
+    .role-badge {
+      padding: 3px 8px;
+      border-radius: 6px;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+    .role-badge--user {
+      background: #0f172a;
+      color: #ffffff;
+    }
+    .role-badge--ai {
+      background: var(--accent);
+      color: #ffffff;
+    }
+    .role-title {
+      color: var(--text-main);
+      font-weight: 700;
+    }
+    .chat-body {
+      color: var(--text-body);
+      font-size: 16px;
+      line-height: 1.85;
+      overflow-wrap: break-word;
+    }
+    .chat-body h1, .chat-body h2, .chat-body h3 {
+      color: var(--text-main);
+      margin: 24px 0 12px;
+      font-weight: 700;
+      line-height: 1.4;
+    }
+    .chat-body h1 { font-size: 24px; }
+    .chat-body h2 { font-size: 20px; }
+    .chat-body h3 { font-size: 17px; }
+    .chat-body p { margin-bottom: 16px; }
+    .chat-body ul, .chat-body ol {
+      margin: 16px 0 20px 24px;
+    }
+    .chat-body li {
+      margin-bottom: 8px;
+    }
+    .chat-body blockquote {
+      border-left: 3px solid var(--accent);
+      background: var(--bg-tint);
+      padding: 12px 20px;
+      margin: 18px 0;
+      border-radius: 0 8px 8px 0;
+      font-style: italic;
+    }
+    .chat-body table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+      font-size: 14.5px;
+    }
+    .chat-body th, .chat-body td {
+      border: 1px solid rgba(15, 23, 42, 0.12);
+      padding: 10px 14px;
+      text-align: left;
+    }
+    .chat-body th {
+      background: #f8fafc;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+    .chat-body pre {
+      background: #0f172a;
+      color: #f8fafc;
+      padding: 16px;
+      border-radius: 8px;
+      overflow-x: auto;
+      margin: 16px 0;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+    .chat-body code {
+      background: rgba(15, 23, 42, 0.06);
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 14px;
+    }
+    .chat-body pre code {
+      background: none;
+      padding: 0;
+      color: inherit;
+    }
+    details.tool-accordion {
+      background: #f8fafc;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 10px 14px;
+      margin: 12px 0;
+      font-size: 13px;
+    }
+    details.tool-accordion summary {
+      cursor: pointer;
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+    details.tool-accordion summary:hover {
+      color: var(--accent);
+    }
+    .artifact-banner {
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      border-radius: 12px;
+      padding: 20px 24px;
+      margin: 24px 0;
+    }
+    .artifact-banner h4 {
+      color: #1e40af;
+      margin-bottom: 8px;
+      font-size: 16px;
+    }
+    .footer {
+      text-align: center;
+      padding: 30px 0;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+  </style>
+</head>
+<body>
+  <header class="top-header">
+    <a href="../index.html" class="top-nav-brand">
+      <span class="top-badge">VIDEO SYSTEM</span>
+      <span>BÀI GIẢNG 4 ĐỊNH DẠNG</span>
+    </a>
+    <a href="../index.html" class="back-btn">← Quay lại trang tổng quan</a>
+  </header>
+
+  <main class="container">
+    <div class="hero-card">
+      <div class="hero-kicker">TRI THỨC RẼ NHÁNH • TẦNG 2.5</div>
+      <h1 class="hero-title">[Nhánh] Cập Nhật 11 Từ Cấm Vào Skill Văn Phong</h1>
+      <div class="hero-meta">
+        <div><b>CID:</b> <code>6b8eb747-b2ef-497d-a617-8bd25213cc97</code></div>
+        <div><b>Thời gian:</b> Gần đây</div>
+        <div><b>Số lượt thoại:</b> 2</div>
+      </div>
+    </div>
+
+    
+
+    <div class="dialogue-flow">
+      
+            <div class="chat-bubble chat-bubble--user">
+              <div class="chat-bubble-header">
+                <span class="role-badge role-badge--user">ANH VIỆT</span>
+                <span class="role-title">Yêu cầu & Câu hỏi đinh</span>
+              </div>
+              <div class="chat-body"><p>Bối cảnh kế thừa từ cuộc trò chuyện <b>Tổng Hợp Về Storytelling</b> (<code>676436f5-7193-44bd-9705-ac1dbc72908b</code>):<br />
+- Vừa qua đã chỉ ra 20 từ/cụm từ AI văn mẫu mà anh Việt không bao giờ dùng khi nói về storytelling và kinh doanh.<br />
+- Danh sách 11 từ đầu tiên cần cập nhật vào Sổ đen (Blacklist) của kỹ năng văn phong:<br />
+  1. "Nhiều người làm kinh doanh" -&gt; Đổi thành cách nói thẳng vào việc: "Đi làm nghề...", "Mở tiệm..."<br />
+  2. "Hành trình người hùng" -&gt; Thuật ngữ lý thuyết sách vở Tây phương, cấm dùng.<br />
+  3. "Cấu trúc 3 hồi" -&gt; Thuật ngữ biên kịch điện ảnh, cấm dùng.<br />
+  4. "Lối nghĩ sách vở" -&gt; Giọng phán xét dạy đời, cấm dùng.<br />
+  5. "Người làm chủ mắc kẹt" -&gt; Văn mẫu self-help, đổi thành "loay hoay", "không dứt ra được".<br />
+  6. "Người lạ đóng kịch" -&gt; Cường điệu hóa, đổi thành "người ta không rảnh xem mình diễn".<br />
+  7. "Tập làm văn" -&gt; Giọng cô giáo mắng học sinh, cấm dùng.<br />
+  8. "Điểm mấu chốt ở đây là" -&gt; Văn mẫu thuyết trình, vào thẳng ý luôn.<br />
+  9. "Căn bệnh ngầm" -&gt; Hán-Việt sách vở, đổi thành "cái tật", "chỗ ngứa", "chỗ ngượng", "vết sẹo".<br />
+  10. "Rào cản lớn nhất" -&gt; Dịch máy tiếng Anh, bỏ hẳn vào thẳng vấn đề.<br />
+  11. "Sự ngộ nhận" -&gt; Trịch thượng, hàn lâm, đổi thành "nghĩ nhầm", "tưởng là".</p>
+<p>Nhiệm vụ rẽ nhánh chuyên sâu:<br />
+Cập nhật 11 từ/cụm từ này vào Sổ đen (Blacklist) của cả 2 kỹ năng:<br />
+1. /Users/vietmac/.gemini/config/skills/nguyen-viet-voice/SKILL.md<br />
+2. /Users/vietmac/.gemini/config/skills/loc/SKILL.md<br />
+Kiểm tra cấu trúc bảng, cập nhật chuẩn xác, không làm xáo trộn các quy tắc hiện có.</p></div>
+            </div>
+            
+
+            <div class="chat-bubble chat-bubble--ai">
+              <div class="chat-bubble-header">
+                <span class="role-badge role-badge--ai">AI ASSISTANT</span>
+                <span class="role-title">Phân tích thực chiến & Giải pháp</span>
+              </div>
+              
+                <details class="tool-accordion">
+                  <summary>⚙️ Chi tiết 26 thao tác kỹ thuật / công cụ đã thực hiện</summary>
+                  <ul style="margin: 8px 0 0 20px;">
+                <li><code>view_file</code>: "View nguyen-viet-voice skill"</li><li><code>view_file</code>: "View loc skill"</li><li><code>grep_search</code>: "Grep search Rào cản"</li><li><code>grep_search</code>: "Grep search Rào cản in loc"</li><li><code>grep_search</code>: "Grep search Điểm mấu chốt"</li><li><code>view_file</code>: "View lines 24-30"</li><li><code>view_file</code>: "View lines 83-90"</li><li><code>view_file</code>: "View lines 138-148"</li><li><code>replace_file_content</code>: "Update Zero-Proxy Rule"</li><li><code>replace_file_content</code>: "Update table row for Cốt tủy"</li><li><code>view_file</code>: "View lines 140-148"</li><li><code>replace_file_content</code>: "Add 11 blacklist phrases"</li><li><code>view_file</code>: "View lines 16-28"</li><li><code>view_file</code>: "View lines 55-68"</li><li><code>view_file</code>: "View lines 112-134"</li><li><code>replace_file_content</code>: "Update blacklist bullet points in loc"</li><li><code>view_file</code>: "View lines 57-70"</li><li><code>replace_file_content</code>: "Update table header and Cốt tủy row"</li><li><code>view_file</code>: "View lines 115-135"</li><li><code>replace_file_content</code>: "Add 11 blacklist phrases to loc"</li><li><code>view_file</code>: "View lines 130-146"</li><li><code>replace_file_content</code>: "Refine example in loc skill"</li><li><code>view_file</code>: "View tail of nguyen-viet-voice skill"</li><li><code>view_file</code>: "View tail of loc skill"</li><li><code>run_command</code>: "Check git status"</li><li><code>run_command</code>: "Check git repo config"</li></ul></details>
+              <div class="chat-body"><p>Đã hoàn tất cập nhật 11 từ/cụm từ AI văn mẫu về Storytelling &amp; Kinh doanh vào Sổ đen (Blacklist) của cả 2 kỹ năng:</p>
+<ol>
+<li><a href="file:///Users/vietmac/.gemini/config/skills/nguyen-viet-voice/SKILL.md"><code>/Users/vietmac/.gemini/config/skills/nguyen-viet-voice/SKILL.md</code></a></li>
+<li><a href="file:///Users/vietmac/.gemini/config/skills/loc/SKILL.md"><code>/Users/vietmac/.gemini/config/skills/loc/SKILL.md</code></a></li>
+</ol>
+<hr />
+<h3>Chi tiết nội dung đã nạp vào Bảng Sổ đen (Blacklist):</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">❌ Từ / Cụm từ AI văn mẫu cấm tuyệt đối</th>
+<th style="text-align: left;">✅ Chuẩn hành văn mộc mạc thực chiến của anh Việt</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">❌ <em>"Nhiều người làm kinh doanh..."</em></td>
+<td style="text-align: left;">✅ Nói thẳng vào việc thực tế: <em>"Đi làm nghề..."</em>, <em>"Mở tiệm..."</em>, <em>"Đi buôn..."</em> <em>(Tuyệt đối không mượn cớ số đông)</em></td>
+</tr>
+<tr>
+<td style="text-align: left;">❌ <em>"Hành trình người hùng..."</em></td>
+<td style="text-align: left;">✅ Thuật ngữ lý thuyết sách vở Tây phương, cấm dùng. Kể việc thật: lúc mới bắt đầu, va vấp, cách gỡ</td>
+</tr>
+<tr>
+<td style="text-align: left;">❌ <em>"Cấu trúc 3 hồi..."</em></td>
+<td style="text-align: left;">✅ Thuật ngữ biên kịch điện ảnh sách vở, cấm dùng. Nói mộc mạc: <em>vào đầu, khúc giữa, đoạn kết</em></td>
+</tr>
+<tr>
+<td style="text-align: left;">❌ <em>"Lối nghĩ sách vở..."</em></td>
+<td style="text-align: left;">✅ Giọng phán xét dạy đời, cấm dùng. Nói thẳng vào cách làm thực tế ngoài đời</td>
+</tr>
+<tr>
+<td style="text-align: left;">❌ <em>"Người làm chủ mắc kẹt..."</em></td>
+<td style="text-align: left;">✅ Văn mẫu self-help sáo rỗng. Đổi thành: <em>"loay hoay"</em>, <em>"không dứt ra được"</em>, <em>"ôm đồm nhiều việc"</em></td>
+</tr>
+<tr>
+<td style="text-align: left;">❌ <em>"Người lạ đóng kịch..."</em></td>
+<td style="text-align: left;">✅ Cường điệu hóa. Đổi thành: <em>"người ta không rảnh xem mình diễn"</em>, <em>"nhìn sượng gạo, làm màu"</em></td>
+</tr>
+<tr>
+<td style="text-align: left;">❌ <em>"Tập làm văn..."</em></td>
+<td style="text-align: left;">✅ Giọng cô giáo mắng học sinh, cấm dùng. Vào thẳng ý, chỉ rõ chỗ dài dòng sáo rỗng</td>
+</tr>
+<tr>
+<td style="text-align: left;">❌ <em>"Điểm mấu chốt ở đây là..."</em></td>
+<td style="text-align: left;">✅ Văn mẫu thuyết trình. Bỏ hẳn cụm này để vào thẳng ý luôn</td>
+</tr>
+<tr>
+<td style="text-align: left;">❌ <em>"Căn bệnh ngầm..."</em></td>
+<td style="text-align: left;">✅ Hán-Việt sách vở. Đổi thành: <em>"cái tật"</em>, <em>"chỗ ngứa"</em>, <em>"chỗ ngượng"</em>, <em>"vết sẹo"</em></td>
+</tr>
+<tr>
+<td style="text-align: left;">❌ <em>"Rào cản lớn nhất..."</em></td>
+<td style="text-align: left;">✅ Dịch máy tiếng Anh (<em>biggest barrier</em>). Bỏ hẳn cụm này vào thẳng vấn đề, hoặc <em>"Chỗ vướng nhất..."</em></td>
+</tr>
+<tr>
+<td style="text-align: left;">❌ <em>"Sự ngộ nhận..."</em></td>
+<td style="text-align: left;">✅ Trịch thượng, hàn lâm. Đổi thành: <em>"nghĩ nhầm"</em>, <em>"tưởng là"</em>, <em>"cứ ngỡ là"</em></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3>Đồng bộ &amp; Tối ưu hóa bổ trợ:</h3>
+<ul>
+<li><strong>Nguyên tắc Zero-Proxy Rule</strong>: Bổ sung cấm cụm <em>"nhiều người làm kinh doanh"</em> song song với <em>"anh em mình"</em>, <em>"nhiều người ngoài kia"</em>.</li>
+<li><strong>Bước 1 của kỹ năng <a href="file:///Users/vietmac/.gemini/config/skills/loc/SKILL.md"><code>loc</code></a></strong>: Bổ sung riêng một danh mục nhận diện: <em>Nhóm thuật ngữ sách vở, biên kịch, dạy đời, dịch máy (Storytelling &amp; Kinh doanh)</em>.</li>
+<li><strong>Rà soát xung đột nội tại</strong>:</li>
+<li>Đổi từ gợi ý <em>"Điểm mấu chốt"</em> tại hàng <em>Cốt tủy</em> thành <em>"Chỗ mấu chốt"</em> để đồng nhất với việc cấm văn mẫu thuyết trình <em>"Điểm mấu chốt ở đây là"</em>.</li>
+<li>Điều chỉnh ví dụ đối chiếu trong <a href="file:///Users/vietmac/.gemini/config/skills/loc/SKILL.md#L137"><code>loc/SKILL.md</code></a> từ <em>"Rào cản lớn nhất khi một người..."</em> thành <em>"Một người có chuyên môn khi không dám quay video, cái vướng thực sự không nằm ở kỹ thuật..."</em> để không vi phạm chính quy tắc đã đề ra.</li>
+</ul></div>
+            </div>
+            
+    </div>
+  </main>
+
+  <footer class="footer">
+    Hệ thống Bài giảng Video • Tri Thức Rẽ Nhánh Chuẩn Tầng 2.5
+  </footer>
+</body>
+</html>

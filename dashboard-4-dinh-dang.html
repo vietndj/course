@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BẢNG ĐIỀU HƯỚNG TỔNG QUAN • 4 ĐỊNH DẠNG VIDEO & 14 NHÁNH TẦNG 2.5</title>
+  <style>
+    :root {
+      --bg-main: #ffffff;
+      --bg-tint: #f8fafc;
+      --text-main: #090d16;
+      --text-body: #0f172a;
+      --text-muted: #475569;
+      --accent: #1a73e8;
+      --accent-soft: rgba(26, 115, 232, 0.08);
+      --border-color: rgba(15, 23, 42, 0.08);
+      --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: var(--font-family);
+      background-color: var(--bg-tint);
+      color: var(--text-body);
+      line-height: 1.7;
+      font-size: 16px;
+      -webkit-font-smoothing: antialiased;
+      padding-bottom: 80px;
+    }
+    .top-header {
+      background: #ffffff;
+      border-bottom: 1px solid var(--border-color);
+      padding: 18px 32px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .top-brand {
+      font-weight: 800;
+      font-size: 15px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .badge-pill {
+      background: var(--accent-soft);
+      color: var(--accent);
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+    }
+    .container {
+      max-width: 1080px;
+      margin: 40px auto;
+      padding: 0 24px;
+    }
+    .hero-banner {
+      background: #ffffff;
+      border: 1px solid var(--border-color);
+      border-radius: 20px;
+      padding: 44px 36px;
+      margin-bottom: 36px;
+      box-shadow: 0 4px 20px -2px rgba(0,0,0,0.03);
+    }
+    .hero-kicker {
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      color: var(--accent);
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .hero-title {
+      font-size: clamp(28px, 4vw, 38px);
+      font-weight: 800;
+      color: var(--text-main);
+      line-height: 1.25;
+      letter-spacing: -0.02em;
+      margin-bottom: 16px;
+    }
+    .hero-desc {
+      font-size: 17px;
+      color: var(--text-muted);
+      max-width: 820px;
+      line-height: 1.7;
+    }
+    .grid-section {
+      margin-bottom: 48px;
+    }
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: 20px;
+      border-bottom: 2px solid var(--border-color);
+      padding-bottom: 12px;
+    }
+    .section-title {
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--text-main);
+      letter-spacing: -0.01em;
+      text-transform: uppercase;
+    }
+    .section-count {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-muted);
+    }
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 20px;
+    }
+    .doc-card {
+      background: #ffffff;
+      border: 1px solid var(--border-color);
+      border-radius: 14px;
+      padding: 24px;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    }
+    .doc-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px -3px rgba(0,0,0,0.06);
+      border-color: var(--accent);
+    }
+    .doc-kicker {
+      font-size: 11.5px;
+      font-weight: 800;
+      color: var(--accent);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .doc-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text-main);
+      line-height: 1.35;
+      margin-bottom: 10px;
+    }
+    .doc-desc {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 16px;
+    }
+    .doc-action {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .sync-guide-box {
+      background: #0f172a;
+      color: #f8fafc;
+      border-radius: 16px;
+      padding: 32px;
+      margin-top: 40px;
+    }
+    .sync-guide-title {
+      font-size: 20px;
+      font-weight: 800;
+      margin-bottom: 12px;
+      color: #ffffff;
+    }
+    .sync-code-block {
+      background: #1e293b;
+      padding: 14px 18px;
+      border-radius: 8px;
+      font-family: ui-monospace, monospace;
+      font-size: 14px;
+      margin: 12px 0;
+      color: #38bdf8;
+      overflow-x: auto;
+    }
+  </style>
+</head>
+<body>
+  <header class="top-header">
+    <div class="top-brand">
+      <span class="badge-pill">VIDEO SYSTEM</span>
+      <span>KHO BÀI GIẢNG & TRI THỨC ĐỒNG BỘ 2 CHIỀU</span>
+    </div>
+    <a href="index.html" style="font-size: 14px; color: var(--text-muted); text-decoration: none; font-weight: 600;">Xem Kho Bài Giảng Đầy Đủ →</a>
+  </header>
+
+  <main class="container">
+    <div class="hero-banner">
+      <div class="hero-kicker">HỆ THỐNG ĐÃ ĐÓNG GÓI CHUẨN XÁC</div>
+      <h1 class="hero-title">4 Định Dạng Video & 14 Nhánh Tri Thức Tầng 2.5</h1>
+      <p class="hero-desc">Toàn bộ tài nguyên bài giảng HTML, kịch bản thực hành, 14 cuộc trò chuyện nhánh được xuất bản sang HTML độc lập, và kho artifacts đã sẵn sàng để làm việc trên máy Windows và đồng bộ ngược về Mac không gián đoạn.</p>
+    </div>
+
+    <!-- KHỐI 1: 4 ĐỊNH DẠNG LÕI -->
+    <section class="grid-section">
+      <div class="section-header">
+        <h2 class="section-title">01 / 4 Định Dạng Video Thực Chiến</h2>
+        <span class="section-count">5 TÀI LIỆU CHỦ LỰC</span>
+      </div>
+      <div class="cards-grid">
+        <a href="4stylevideo.html" class="doc-card">
+          <div>
+            <div class="doc-kicker">TỔNG QUAN CHIẾN LƯỢC</div>
+            <h3 class="doc-title">4 Định Dạng Video Ngắn</h3>
+            <p class="doc-desc">Bản đồ so sánh và phối hợp nhịp nhàng giữa Talking Head, Walk & Talk, Voiceover và Kể chuyện.</p>
+          </div>
+          <div class="doc-action">Mở bài giảng →</div>
+        </a>
+
+        <a href="talkinghead.html" class="doc-card">
+          <div>
+            <div class="doc-kicker">ĐỊNH DẠNG 1</div>
+            <h3 class="doc-title">Talking Head Thực Chiến</h3>
+            <p class="doc-desc">Hạ áp lực trước ống kính, giải mã tâm lý thể diện, kịch bản trực diện và nhịp cắt dứt khoát.</p>
+          </div>
+          <div class="doc-action">Mở bài giảng →</div>
+        </a>
+
+        <a href="walkandtalk.html" class="doc-card">
+          <div>
+            <div class="doc-kicker">ĐỊNH DẠNG 2</div>
+            <h3 class="doc-title">Walk and Talk (Vừa Đi Vừa Nói)</h3>
+            <p class="doc-desc">Giải phóng cơ thể qua chuyển động, nhịp bước chân, điều tiết hơi thở và góc máy tự nhiên.</p>
+          </div>
+          <div class="doc-action">Mở bài giảng →</div>
+        </a>
+
+        <a href="voiceover.html" class="doc-card">
+          <div>
+            <div class="doc-kicker">ĐỊNH DẠNG 3</div>
+            <h3 class="doc-title">Voiceover & B-Roll Đời Thường</h3>
+            <p class="doc-desc">Tách lớp thu âm riêng, chất giọng mộc thong dong, thủ pháp chèn b-roll đời thật không cần lộ mặt.</p>
+          </div>
+          <div class="doc-action">Mở bài giảng →</div>
+        </a>
+
+        <a href="storytelling.html" class="doc-card">
+          <div>
+            <div class="doc-kicker">ĐỊNH DẠNG 4 • TẦNG 2.5</div>
+            <h3 class="doc-title">Storytelling & Khóa Kể Chuyện</h3>
+            <p class="doc-desc">Cấu trúc Tầng 2.5 chạm vào sự thật ngượng miệng, nghệ thuật cài đặt chi tiết đời thực và hạ màn cảm xúc.</p>
+          </div>
+          <div class="doc-action">Mở bài giảng →</div>
+        </a>
+      </div>
+    </section>
+
+    <!-- KHỐI 2: 14 CUỘC TRÒ CHUYỆN RẼ NHÁNH XUẤT HTML -->
+    <section class="grid-section">
+      <div class="section-header">
+        <h2 class="section-title">02 / 14 Cuộc Trò Chuyện [Nhánh] (Xuất Bản HTML)</h2>
+        <span class="section-count">14 TÀI LIỆU CHUYÊN SÂU</span>
+      </div>
+      <div class="cards-grid">
+        <a href="nhanh-html/co-che-trieu-chung-ngam-logic-murakami.html" class="doc-card">
+          <div>
+            <div class="doc-kicker">TÂM LÝ & VĂN HỌC</div>
+            <h3 class="doc-title">Triệu Chứng Ngầm & Logic Murakami</h3>
+            <p class="doc-desc">Khai thác cơ chế tâm lý chiều sâu, thủ pháp tả thực chi tiết đời thường của Haruki Murakami.</p>
+          </div>
+          <div class="doc-action">Đọc tài liệu →</div>
+        </a>
+
+        <a href="nhanh-html/tai-thiet-9-kich-ban-chuan-tang-2-5.html" class="doc-card">
+          <div>
+            <div class="doc-kicker">HỆ THỐNG KỊCH BẢN</div>
+            <h3 class="doc-title">Tái Thiết 9 Kịch Bản Chuẩn Tầng 2.5</h3>
+            <p class="doc-desc">Nâng cấp toàn bộ 9 kịch bản thực hành sang chuẩn bóc tách ngượng miệng, bỏ sạch văn mẫu.</p>
+          </div>
+          <div class="doc-action">Đọc tài liệu →</div>
+        </a>
+
+        <a href="nhanh-html/thcn-nganh-salon-toc-logic-cham-2-5.html" class="doc-card">
+          <div>
+            <div class="doc-kicker">CASE STUDY NGÀNH</div>
+            <h3 class="doc-title">THCN Salon Tóc: Logic Chạm 2.5</h3>
+            <p class="doc-desc">Phẫu thuật tâm lý khách hàng cắt tóc, sự e ngại và chiến lược làm thương hiệu cá nhân chủ salon.</p>
+          </div>
+          <div class="doc-action">Đọc tài liệu →</div>
+        </a>
+
+        <a href="nhanh-html/thcn-nganh-spa-quy-trinh-boc-tach-2-5.html" class="doc-card">
+          <div>
+            <div class="doc-kicker">CASE STUDY NGÀNH</div>
+            <h3 class="doc-title">THCN Spa: Quy Trình Bóc Tách 2.5</h3>
+            <p class="doc-desc">Bóc trần sự ngượng miệng của chủ spa, rào cản khoe phòng ốc và lối dẫn dắt khách hàng tin cậy.</p>
+          </div>
+          <div class="doc-action">Đọc tài liệu →</div>
+        </a>
+
+        <a href="nhanh-html/than-kinh-hoc-may-do-video-2-5.html" class="doc-card">
+          <div>
+            <div class="doc-kicker">KHOA HỌC THẦN KINH</div>
+            <h3 class="doc-title">Thần Kinh Học & Máy Dò Video 2.5</h3>
+            <p class="doc-desc">Phân tích phản xạ amygdala, cơ chế tự vệ của não bộ người xem và tín hiệu an toàn sinh học.</p>
+          </div>
+          <div class="doc-action">Đọc tài liệu →</div>
+        </a>
+
+        <a href="nhanh-html/hai-thai-cuc-dao-mao-vs-tho-thien.html" class="doc-card">
+          <div>
+            <div class="doc-kicker">BẢN CHẤT HÌNH ẢNH</div>
+            <h3 class="doc-title">Hai Thái Cực: Đạo Mạo vs Thô Thiển</h3>
+            <p class="doc-desc">Vạch trần cái bẫy gồng mình làm chuyên gia đạo mạo hoặc thả trôi thành dung tục; điểm cân bằng Tầng 2.5.</p>
+          </div>
+          <div class="doc-action">Đọc tài liệu →</div>
+        </a>
+
+        <a href="nhanh-html/nguoi-trach-nhiem-vs-dien-vien-noi-gioi.html" class="doc-card">
+          <div>
+            <div class="doc-kicker">ĐỊNH VỊ NỘI TÂM</div>
+            <h3 class="doc-title">Người Trách Nhiệm vs Diễn Viên Nói Giỏi</h3>
+            <p class="doc-desc">Sự khác biệt cốt lõi giữa người thạo nghề có trách nhiệm với người chỉ giỏi khua môi múa mép.</p>
+          </div>
+          <div class="doc-action">Đọc tài liệu →</div>
+        </a>
+
+        <a href="nhanh-html/bds-phan-bon-tin-hieu-dat-gia.html" class="doc-card">
+          <div>
+            <div class="doc-kicker">THỰC CHIẾN KINH DOANH</div>
+            <h3 class="doc-title">BĐS & Phân Bón: Tín Hiệu Đắt Giá</h3>
+            <p class="doc-desc">Phân tích tín hiệu giao tiếp đắt giá trong ngành bán tài sản lớn và ngành sản phẩm kỹ thuật cao.</p>
+          </div>
+          <div class="doc-action">Đọc tài liệu →</div>
+        </a>
+
+        <a href="nhanh-html/video-qc-vs-thcn-case-study-vncreative-anh.html" class="doc-card">
+          <div>
+            <div class="doc-kicker">CASE STUDY</div>
+            <h3 class="doc-title">Video QC vs THCN: Case Study VNCreative Ánh</h3>
+            <p class="doc-desc">Phân biệt rạch ròi giữa video quảng cáo doanh nghiệp và thương hiệu cá nhân người sáng lập.</p>
+          </div>
+          <div class="doc-action">Đọc tài liệu →</div>
+        </a>
+
+        <a href="nhanh-html/gia-tao-tung-trai-san-xuat-video-2-5.html" class="doc-card">
+          <div>
+            <div class="doc-kicker">BẢN CHẤT SÁNG TẠO</div>
+            <h3 class="doc-title">Giả Tạo Từng Trải & Sản Xuất Video 2.5</h3>
+            <p class="doc-desc">Vì sao sự giả tạo từng trải làm người xem ngán ngẩm, và cách sản xuất video giữ nguyên sự mộc mạc.</p>
+          </div>
+          <div class="doc-action">Đọc tài liệu →</div>
+        </a>
+
+        <a href="nhanh-html/tiep-tuc-sua-artifact-storytelling-tang-2-5.html" class="doc-card">
+          <div>
+            <div class="doc-kicker">TỔNG KẾT ARTIFACT</div>
+            <h3 class="doc-title">Tiếp Tục Sửa Artifact Storytelling Tầng 2.5</h3>
+            <p class="doc-desc">Hiệu chỉnh và đồng bộ trọn vẹn tài liệu Storytelling Tầng 2.5 toàn diện vào não bộ.</p>
+          </div>
+          <div class="doc-action">Đọc tài liệu →</div>
+        </a>
+
+        <a href="nhanh-html/cap-nhat-11-tu-cam-vao-skill-van-phong.html" class="doc-card">
+          <div>
+            <div class="doc-kicker">CHUẨN HÓA VĂN PHONG</div>
+            <h3 class="doc-title">Cập Nhật 11 Từ Cấm Vào Skill Văn Phong</h3>
+            <p class="doc-desc">Bổ sung danh sách từ ngữ sáo rỗng cần loại trừ và đối chiếu chuẩn giọng mộc mạc anh Việt.</p>
+          </div>
+          <div class="doc-action">Đọc tài liệu →</div>
+        </a>
+
+        <a href="nhanh-html/khoi-phuc-nhanh-hoi-thoai.html" class="doc-card">
+          <div>
+            <div class="doc-kicker">LỊCH SỬ TRAO ĐỔI</div>
+            <h3 class="doc-title">Khôi Phục Nhánh Hội Thoại</h3>
+            <p class="doc-desc">Toàn văn tiến trình trao đổi sâu và giải quyết các bài toán kỹ thuật dự án.</p>
+          </div>
+          <div class="doc-action">Đọc tài liệu →</div>
+        </a>
+
+        <a href="nhanh-html/kiem-tra-ke-thua-project.html" class="doc-card">
+          <div>
+            <div class="doc-kicker">KẾ THỪA PROJECT</div>
+            <h3 class="doc-title">Kiểm Tra Kế Thừa Project Cấp 0</h3>
+            <p class="doc-desc">Xác thực quy chuẩn hiển thị Sidebar và bảo toàn Project ID của hệ thống re_nhanh.</p>
+          </div>
+          <div class="doc-action">Đọc tài liệu →</div>
+        </a>
+      </div>
+    </section>
+
+    <!-- KHỐI 3: HƯỚNG DẪN ĐỒNG BỘ -->
+    <div class="sync-guide-box">
+      <h3 class="sync-guide-title">⚡ HƯỚNG DẪN ĐỒNG BỘ 1-CHẠM SANG MÁY WINDOWS</h3>
+      <p style="color: #94a3b8; font-size: 15px; margin-bottom: 12px;">Khi sang máy Windows, anh chỉ cần mở PowerShell hoặc Antigravity và chạy lệnh sau để kéo toàn bộ 41 skills, não bộ, lịch sử chat và tài liệu bài giảng về:</p>
+      
+      <div class="sync-code-block">python dong_bo.py --pull</div>
+      
+      <p style="color: #94a3b8; font-size: 14px; margin-top: 12px;">Sau khi làm việc xong trên máy Windows, trước khi tắt máy, chạy lệnh đẩy ngược lại lên GitHub:</p>
+      <div class="sync-code-block">python dong_bo.py --push</div>
+    </div>
+  </main>
+</body>
+</html>

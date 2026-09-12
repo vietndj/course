@@ -1,0 +1,2144 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>[Nhánh] Tái Thiết 9 Kịch Bản Chuẩn Tầng 2.5 — Tri Thức Rẽ Nhánh</title>
+  <style>
+    :root {
+      --bg-main: #ffffff;
+      --bg-tint: #f8fafc;
+      --bg-card: #ffffff;
+      --text-main: #090d16;
+      --text-body: #0f172a;
+      --text-muted: #475569;
+      --accent: #1a73e8;
+      --accent-soft: rgba(26, 115, 232, 0.08);
+      --border-color: rgba(15, 23, 42, 0.08);
+      --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: var(--font-family);
+      background-color: var(--bg-tint);
+      color: var(--text-body);
+      line-height: 1.8;
+      font-size: 16px;
+      -webkit-font-smoothing: antialiased;
+    }
+    .top-header {
+      background: #ffffff;
+      border-bottom: 1px solid var(--border-color);
+      padding: 16px 24px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .top-nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 700;
+      font-size: 14px;
+      letter-spacing: 0.04em;
+      color: var(--text-main);
+      text-decoration: none;
+    }
+    .top-badge {
+      background: var(--accent-soft);
+      color: var(--accent);
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+    .back-btn {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .back-btn:hover {
+      color: var(--accent);
+    }
+    .container {
+      max-width: 880px;
+      margin: 40px auto;
+      padding: 0 20px 80px;
+    }
+    .hero-card {
+      background: #ffffff;
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 36px 32px;
+      margin-bottom: 32px;
+      box-shadow: 0 4px 20px -2px rgba(0,0,0,0.03);
+    }
+    .hero-kicker {
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      color: var(--accent);
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .hero-title {
+      font-size: clamp(24px, 4vw, 32px);
+      font-weight: 800;
+      color: var(--text-main);
+      line-height: 1.3;
+      margin-bottom: 16px;
+      letter-spacing: -0.02em;
+    }
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      font-size: 13px;
+      color: var(--text-muted);
+      border-top: 1px solid var(--border-color);
+      padding-top: 16px;
+    }
+    .chat-bubble {
+      margin-bottom: 28px;
+      border-radius: 16px;
+      padding: 28px 30px;
+      background: #ffffff;
+      border: 1px solid var(--border-color);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+    }
+    .chat-bubble--user {
+      background: #f1f5f9;
+      border-color: rgba(15, 23, 42, 0.12);
+    }
+    .chat-bubble-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 16px;
+      font-size: 13px;
+      font-weight: 700;
+    }
+    .role-badge {
+      padding: 3px 8px;
+      border-radius: 6px;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+    .role-badge--user {
+      background: #0f172a;
+      color: #ffffff;
+    }
+    .role-badge--ai {
+      background: var(--accent);
+      color: #ffffff;
+    }
+    .role-title {
+      color: var(--text-main);
+      font-weight: 700;
+    }
+    .chat-body {
+      color: var(--text-body);
+      font-size: 16px;
+      line-height: 1.85;
+      overflow-wrap: break-word;
+    }
+    .chat-body h1, .chat-body h2, .chat-body h3 {
+      color: var(--text-main);
+      margin: 24px 0 12px;
+      font-weight: 700;
+      line-height: 1.4;
+    }
+    .chat-body h1 { font-size: 24px; }
+    .chat-body h2 { font-size: 20px; }
+    .chat-body h3 { font-size: 17px; }
+    .chat-body p { margin-bottom: 16px; }
+    .chat-body ul, .chat-body ol {
+      margin: 16px 0 20px 24px;
+    }
+    .chat-body li {
+      margin-bottom: 8px;
+    }
+    .chat-body blockquote {
+      border-left: 3px solid var(--accent);
+      background: var(--bg-tint);
+      padding: 12px 20px;
+      margin: 18px 0;
+      border-radius: 0 8px 8px 0;
+      font-style: italic;
+    }
+    .chat-body table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+      font-size: 14.5px;
+    }
+    .chat-body th, .chat-body td {
+      border: 1px solid rgba(15, 23, 42, 0.12);
+      padding: 10px 14px;
+      text-align: left;
+    }
+    .chat-body th {
+      background: #f8fafc;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+    .chat-body pre {
+      background: #0f172a;
+      color: #f8fafc;
+      padding: 16px;
+      border-radius: 8px;
+      overflow-x: auto;
+      margin: 16px 0;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+    .chat-body code {
+      background: rgba(15, 23, 42, 0.06);
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 14px;
+    }
+    .chat-body pre code {
+      background: none;
+      padding: 0;
+      color: inherit;
+    }
+    details.tool-accordion {
+      background: #f8fafc;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 10px 14px;
+      margin: 12px 0;
+      font-size: 13px;
+    }
+    details.tool-accordion summary {
+      cursor: pointer;
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+    details.tool-accordion summary:hover {
+      color: var(--accent);
+    }
+    .artifact-banner {
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      border-radius: 12px;
+      padding: 20px 24px;
+      margin: 24px 0;
+    }
+    .artifact-banner h4 {
+      color: #1e40af;
+      margin-bottom: 8px;
+      font-size: 16px;
+    }
+    .footer {
+      text-align: center;
+      padding: 30px 0;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+  </style>
+</head>
+<body>
+  <header class="top-header">
+    <a href="../index.html" class="top-nav-brand">
+      <span class="top-badge">VIDEO SYSTEM</span>
+      <span>BÀI GIẢNG 4 ĐỊNH DẠNG</span>
+    </a>
+    <a href="../index.html" class="back-btn">← Quay lại trang tổng quan</a>
+  </header>
+
+  <main class="container">
+    <div class="hero-card">
+      <div class="hero-kicker">TRI THỨC RẼ NHÁNH • TẦNG 2.5</div>
+      <h1 class="hero-title">[Nhánh] Tái Thiết 9 Kịch Bản Chuẩn Tầng 2.5</h1>
+      <div class="hero-meta">
+        <div><b>CID:</b> <code>cb4edbcf-5b26-4064-8dca-9c99177435ce</code></div>
+        <div><b>Thời gian:</b> 12/09/2026 09:55</div>
+        <div><b>Số lượt thoại:</b> 2</div>
+      </div>
+    </div>
+
+    
+
+    <div class="dialogue-flow">
+      
+            <div class="chat-bubble chat-bubble--user">
+              <div class="chat-bubble-header">
+                <span class="role-badge role-badge--user">ANH VIỆT</span>
+                <span class="role-title">Yêu cầu & Câu hỏi đinh</span>
+              </div>
+              <div class="chat-body"><p>Bối cảnh kế thừa từ cuộc trò chuyện tang 2.5 bóc tách - 03 và file kịch bản gốc 9_kich_ban_thuc_chien.html của anh Việt:</p>
+<p>Nhiệm vụ rẽ nhánh chuyên sâu:<br />
+Tái thiết toàn bộ 9 kịch bản thực chiến theo logic mới Tầng 2.5 (Freelancer 10h đêm, Chủ shop vắng khách, Dân văn phòng tuổi 30, Bán hàng online cắn tiền quảng cáo, Chuyên gia hết khách quen, Thợ kỹ thuật vắng khách, Đại lý bán lẻ tổng kho, v.v.). Chuyển toàn bộ văn mẫu AI thành lời thoại mộc mạc, chuẩn 100% văn phong anh Việt.</p></div>
+            </div>
+            
+
+            <div class="chat-bubble chat-bubble--ai">
+              <div class="chat-bubble-header">
+                <span class="role-badge role-badge--ai">AI ASSISTANT</span>
+                <span class="role-title">Phân tích thực chiến & Giải pháp</span>
+              </div>
+              
+              <div class="chat-body"><p>ĐẠI CHƯƠNG IX • GIÁO TRÌNH THỰC HÀNH TÁI THIẾT</p>
+<h2>TÁI THIẾT TOÀN BỘ 9 KỊCH BẢN THỰC CHIẾN THEO LOGIC MỚI TẦNG 2.5</h2>
+<p>📌 <em>Xuất xứ nhánh: Nâng cấp toàn bộ 9 kịch bản mẫu từ file 9_kich_ban_thuc_chien.html sang chuẩn Tầng 2.5 (4 nhịp thoại gọn, phân tách 2 cột Lời thoại &amp; Cảnh trám B-roll).</em></p>
+<h1>BÁO CÁO TÁI THIẾT TOÀN DIỆN 9 KỊCH BẢN THỰC CHIẾN CHUẨN TẦNG 2.5</h1>
+<h3>Kế thừa Cổng Nghiên Cứu Tầng 2.5 &amp; Nâng cấp Kho Kịch Bản Lớp Masterclass Offline VIDEO</h3>
+<p><em>Tài liệu gốc đã được cập nhật trực tiếp tại:</em> <a href="file:///Users/Nguyễn Việt/Documents/CODE/vietndj.github.io/offline02/9_kich_ban_thuc_chien.html">9_kich_ban_thuc_chien.html</a> <em>(Đã commit &amp; push trực tiếp lên nhánh <code>master</code> của GitHub Pages <code>vietndj.github.io</code>)</em>.</p>
+<hr />
+<h2>PHẦN 1: GIẢI MÃ NGUYÊN TẮC NÂNG CẤP KỊCH BẢN TỪ BẢN CŨ SANG TẦNG 2.5</h2>
+<h3>1. Giải phẫu 3 vết sẹo của bản kịch bản cũ</h3>
+<p>Bản kịch bản cũ trước đây được viết theo cấu trúc 3 tầng sơ khai nhưng tồn tại 3 nhược điểm cốt tử khiến người làm nghề ngần ngại khi đứng trước máy quay:<br />
+1. <strong>Trượt vào văn mẫu phán xét &amp; kết tội (Toxic Call-out):</strong> Bản cũ lạm dụng các từ ngữ mang tính xỉ vả thô bạo như <em>"ăn cám"</em> , <em>"chờ chết"</em> , <em>"run vãi đạn"</em> , <em>"dẹp tự ái đi"</em> , <em>"buôn nước bọt"</em>. Khi người có học thức, người có thâm niên nghe những từ này, họ sẽ kích hoạt cơ chế tự vệ tâm lý (amygdala), cảm thấy bị xúc phạm và lập tức đóng video.<br />
+2. <strong>Kể lể than vãn thay vì mô tả vật lý (Tell, Don't Show):</strong> Bản cũ mở đầu bằng những câu than thở nội tâm trừu tượng: <em>"Ở nhà thấy tội lỗi..."</em> , <em>"Cứ 5 phút thót tim..."</em> , <em>"Thấy cay thật..."</em>. Điều này biến người nói thành một kẻ đang kể khổ, thiếu đi vẻ đĩnh đạc và sức nặng của người làm chủ.<br />
+3. <strong>Bỏ quên "Khe hở thể diện" (The Adult Gap):</strong> Bản cũ nhảy cóc từ sự sốt ruột bề mặt (Tầng 2) sang thẳng sự bất lực cạn kiệt (Tầng 3), bỏ qua khoảng đệm <strong>Tầng 2.5</strong> — nơi người lớn luôn dựng lên một cái cớ đạo mạo đàng hoàng bên ngoài để che chở cho sự ngượng ngùng, bối rối bên trong.</p>
+<hr />
+<h3>2. Ba trụ cột chuyển hóa sang chuẩn Tầng 2.5</h3>
+<pre><code>┌────────────────────────────────────────────────────────────────────────┐
+│                        CÔNG THỨC CHUYỂN HÓA TẦNG 2.5                   │
+│                                                                        │
+│   TẦNG 2.5 = [Thao tác vật lý vi mô (Murakami)]                        │
+│            + [Cái cớ đàng hoàng (The Alibi) vs Bối rối bên trong]      │
+│            + [Giải phóng minh oan (Guilt Relief) bằng sự bao dung]    │
+│            + [Lối đi đàng hoàng bảo toàn nhân cách làm nghề]           │
+└────────────────────────────────────────────────────────────────────────┘
+</code></pre>
+<ul>
+<li><strong>Trụ cột 1 — Khử sạch từ ngữ phán xét (Zero-Toxic &amp; Pure Descriptive):</strong> Tuyệt đối cấm danh xưng <em>"ông giáo"</em> , cấm các từ miệt thị như <em>lùa gà, bất tài, làm màu, trò hề, nhảy nhót, rẻ tiền</em>. Thay toàn bộ bằng các quan sát trung tính, bao dung: <em>có chút chạnh lòng, thấy ngượng ngùng, còn nhiều băn khoăn, làm hình ảnh cá nhân, tiếp cận số đông</em>.</li>
+<li><strong>Trụ cột 2 — Thủ pháp Haruki Murakami (Show, Don't Tell):</strong> Bắt đầu kịch bản bằng một hành động cơ học của đồ vật và cơ thể: <em>ngón tay rê chuột trên mặt bàn gỗ trơn, ly cà phê tan đá loãng toẹt, vệt dầu mỡ lau vào giẻ xơ, bàn tay miết đi miết lại mặt kính tủ đã sạch bóng, ngón tay bấm nút Backspace xóa sạch tin nhắn Zalo vừa soạn dở...</em>. Não bộ người xem buông bỏ phòng vệ khi nhìn thấy một triệu chứng có thật.</li>
+<li><strong>Trụ cột 3 — Khóa khe hở thể diện người lớn:</strong> Chỉ ra cái cớ mà người làm nghề đang dùng để xoa dịu bản thân trước mặt người thân, nhân viên, bạn bè; sau đó đồng điệu bằng vết sẹo của chính mình và mở ra lối đi danh giá: <strong>Mang chuyên môn và trách nhiệm thật lên khung hình sạch sẽ.</strong></li>
+</ul>
+<hr />
+<h2>PHẦN 2: TÁI THIẾT TOÀN BỘ 9 KỊCH BẢN THỰC CHIẾN (CHUẨN SẢN XUẤT 45–60S)</h2>
+<hr />
+<h3>KỊCH BẢN 01 • FREELANCER &amp; NGƯỜI LÀM VIỆC TỰ DO</h3>
+<p><strong>Tên kịch bản:</strong> Ngồi Cà Phê 10h Tối<br />
+<strong>Bối cảnh:</strong> Bàn cà phê đêm / Góc làm việc cá nhân<br />
+<strong>Đối tượng:</strong> Designer, Copywriter, IT, Editor sợ cạn việc nhưng giằng xé thể diện trước gia đình.</p>
+<h4>Bảng Bóc Tách Tâm Lý 4 Tầng:</h4>
+<ul>
+<li><strong>Tầng 1 (Đãi bôi):</strong> <em>"Ra quán cà phê đêm đổi gió cho thoáng đầu, đang hoàn thiện mấy dự án gấp."</em></li>
+<li><strong>Tầng 2 (Cảm giác thật):</strong> <em>"Ở nhà nằm lướt máy thấy sốt ruột, ra đây ngồi nhìn màn hình cho đỡ bồn chồn."</em></li>
+<li><strong>Tầng 2.5 (Xung đột thể diện):</strong> Dự án cũ vừa bàn giao xong, dự án mới chưa thấy đâu. Ở nhà thì sợ người thân nghĩ mình thất nghiệp, xách laptop ra quán mở máy giả vờ bận rộn để giữ thể diện của một freelancer tự do.</li>
+<li><strong>Tầng 3 (Sự thật bao dung):</strong> Sợ cạn tiền và sợ cách làm cũ không còn ai gọi việc. Nhưng khách lớn không thuê người thức trắng đêm để thương hại, họ thuê người có quy trình làm việc rõ ràng.</li>
+</ul>
+<h4>Bảng Sản Xuất 2 Cột Chuẩn Quay Phim:</h4>
+<table>
+<thead>
+<tr>
+<th>Thời lượng</th>
+<th>Cảnh Trám Murakami (B-Roll Action)</th>
+<th>Lời Thoại Băm Nhỏ (&lt;12 từ, nhịp thở 1-2)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>00:00 - 00:12</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>Nhịp 1: Hành vi</code></td>
+<td><strong>B-Roll Cận Cảnh:</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>Ngón tay rê chuột trên mặt bàn gỗ trơn.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Cốc cà phê đá đã tan hết chỉ còn nước loãng.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Quạt laptop kêu rì rì trong quán đêm vắng.</td>
+<td>10h đêm rồi... <code>[đếm 1-2]</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Cốc cà phê tan đá hết rồi...</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Ngón tay vẫn rê chuột trên màn hình... <code>[thở dài nhẹ]</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>00:12 - 00:26</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>Nhịp 2: Khe hở 2.5</code></td>
+<td><strong>B-Roll &amp; A-Roll Lướt:</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>Mở một folder dự án cũ ra rồi lại đóng lại.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Ngước mắt nhìn ra ngoài cửa kính quán vắng người.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Cười trừ tự sự.</td>
+<td>Nói với nhà là ra quán đổi gió... <code>[đếm 1-2]</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Để tập trung làm dự án mới...</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Nhưng thực ra là đang ngồi chờ việc... <code>[nghỉ 1 nhịp]</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Dự án cũ vừa bàn giao xong...</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Dự án mới thì chưa thấy đâu...</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Ở nhà nằm thì thấy sốt ruột...</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Ra đây ngồi cho đỡ bồn chồn...</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>00:26 - 00:40</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>Nhịp 3: Vết sẹo nghề</code></td>
+<td><strong>A-Roll Trực Diện:</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>Máy đặt trên bàn làm việc, ánh sáng đèn quán ấm áp.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Tựa lưng vào ghế, hai tay đan nhẹ, nói mộc mạc và chân thành.</td>
+<td>Mình làm tự do nhiều năm rồi... <code>[đếm 1-2]</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Cũng từng có những đêm như thế...</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Gõ phím rất bận rộn...</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Nhưng trong lòng trống rỗng... <code>[nghỉ 1 nhịp]</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Càng cày đêm trong im lặng...</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Khách hàng càng không biết mình là ai...</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>00:40 - 00:55</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>Nhịp 4: Lối đi đàng hoàng</code></td>
+<td><strong>A-Roll Chốt:</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>Tay gập nhẹ nắp laptop lại, mắt nhìn thẳng ống kính đầy vững chãi.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Mỉm cười nhẹ giải tỏa tâm lý.</td>
+<td>Khách tìm người có quy trình... <code>[đếm 1-2]</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Không tìm người thức trắng đêm...</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Sáng mai dọn lại bàn làm việc... <code>[nghỉ 1 nhịp]</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Quay lại cách bạn giải quyết một bài toán thật...</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Đàng hoàng đưa lên kênh...</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Dự án tử tế sẽ tự tìm đến bạn! <code>[mỉm cười]</code></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Điểm chạm Tầng 2.5:</strong> Bắt đúng vở kịch "xách laptop ra quán ngồi cho đỡ mang tiếng ở nhà lông bông", chuyển hóa nỗi lo cạn việc thành hành động đóng gói quy trình làm nghề lên video.</p>
+</blockquote>
+<hr />
+<h3>KỊCH BẢN 02 • CHỦ SHOP &amp; CỬA HÀNG BÁN LẺ</h3>
+<p><strong>Tên kịch bản:</strong> Tiền Mặt Bằng &amp; Cửa Hàng Vắng Khách<br />
+<strong>Bối cảnh:</strong> Quầy kệ cửa hàng / Bàn thu ngân<br />
+<strong>Đối tượng:</strong> Chủ shop thời trang, gia dụng, tiệm ăn chịu áp lực chi phí cố định và giữ thể diện với nhân viên.</p>
+<h4>Bảng Bóc Tách Tâm Lý 4 Tầng:</h4>
+<ul>
+<li><strong>Tầng 1 (Đãi bôi):</strong> <em>"Dạo này kinh tế chung chậm lại, tiệm mình chủ yếu giữ chân khách quen quanh khu vực."</em></li>
+<li><strong>Tầng 2 (Cảm giác thật):</strong> <em>"Ngồi ở quán cả ngày ngóng khách, mở app ngân hàng chỉ thấy tin trừ tiền nhà."</em></li>
+<li><strong>Tầng 2.5 (Xung đột thể diện):</strong> Làm chủ thì trước mặt nhân viên lúc nào cũng phải giữ vẻ đĩnh đạc, thảnh thơi. Nhưng ngày mùng 1 trừ tiền nhà đến gần là ruột gan nóng như lửa đốt. Muốn quay video thì sợ nhân viên đánh giá sếp làm màu, sợ bạn bè nghĩ tiệm mình ế ẩm sắp sập tiệm.</li>
+<li><strong>Tầng 3 (Sự thật bao dung):</strong> Không phải sản phẩm bạn dở, mà hành vi mua hàng đã dịch chuyển lên màn hình. Cửa hàng vật lý chính là chứng chỉ uy tín lớn nhất nếu bạn biết mang sự chăm chút đó lên khung hình.</li>
+</ul>
+<h4>Bảng Sản Xuất 2 Cột Chuẩn Quay Phim:</h4>
+<table>
+<thead>
+<tr>
+<th>Thời lượng</th>
+<th>Cảnh Trám Murakami (B-Roll Action)</th>
+<th>Lời Thoại Băm Nhỏ (&lt;12 từ, nhịp thở 1-2)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>00:00 - 00:12</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>Nhịp 1: Hành vi</code></td>
+<td><strong>B-Roll Cận Cảnh:</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>Bàn tay cầm khăn mềm miết đi miết lại mặt kính tủ trưng bày đã sạch bóng.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Tiếng chuông gió cửa tiệm khẽ rung do gió tạt ngoài đường.</td>
+<td>Mặt kính này lau sạch lắm rồi... <code>[đếm 1-2]</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Nhưng tay vẫn cầm khăn miết mãi...</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Tiếng chuông cửa rung lên...</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Hóa ra chỉ là gió ngoài đường... <code>[thở dài nhẹ]</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>00:12 - 00:26</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>Nhịp 2: Khe hở 2.5</code></td>
+<td><strong>B-Roll Sổ Sách:</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>Cuốn sổ thu chi mở ở trang ngày mùng 1.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Ngón tay dừng lại ở dòng tiền thuê mặt bằng.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Nhìn qua quầy nhân viên đang ngồi bấm điện thoại.</td>
+<td>Ai hỏi cũng bảo tiệm vẫn ổn... <code>[đếm 1-2]</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Chủ yếu phục vụ khách quen...</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Nhưng ngày mùng 1 sắp đến rồi... <code>[nghỉ 1 nhịp]</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Tiền nhà trừ đều như vắt chanh...</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Trước mặt nhân viên vẫn phải cười tươi...</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Ngại nhất là cầm máy lên quay...</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Sợ người ta nghĩ tiệm mình đang khó khăn...</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>00:26 - 00:40</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>Nhịp 3: Vết sẹo nghề</code></td>
+<td><strong>A-Roll Quầy Tiệm:</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>Đứng bên kệ hàng tươm tất, ánh sáng ấm cúng.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Nét mặt người chủ từng trải, nói điềm tĩnh, ấm áp.</td>
+<td>Làm chủ thì phải giữ thể diện... <code>[đếm 1-2]</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Mình hiểu cảm giác này lắm...</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Càng giấu khó khăn sau cánh cửa... <code>[nghỉ 1 nhịp]</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Cửa tiệm lại càng vắng người ghé thăm...</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Trong khi khách bây giờ...</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Họ đang tìm kiếm trên chiếc màn hình này...</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>00:40 - 00:55</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>Nhịp 4: Lối đi đàng hoàng</code></td>
+<td><strong>A-Roll &amp; Cận Hàng:</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>Bàn tay nhấc một sản phẩm lên kiểm tra cẩn thận, xếp lại ngay ngắn.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Mắt nhìn vào camera nói chắc chắn.</td>
+<td>Cửa hàng có thật là uy tín lớn nhất... <code>[đếm 1-2]</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Khách trên mạng thèm nhìn thấy người thật...</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Thèm nhìn sự chăm chút từng món đồ... <code>[nghỉ 1 nhịp]</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Cứ đặt máy ngang tầm mắt...</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Kể câu chuyện bạn chọn sản phẩm thế nào...</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Khách quý sẽ tự tìm về tiệm của bạn! <code>[gật đầu nhẹ]</code></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Điểm chạm Tầng 2.5:</strong> Tháo gỡ nỗi sợ bị mang tiếng "tiệm ế mới đi làm clip", biến cửa hàng vật lý và sự chăm chút của người chủ thành thỏi nam châm uy tín.</p>
+</blockquote>
+<hr />
+<h3>KỊCH BẢN 03 • DÂN VĂN PHÒNG &amp; CHUYÊN VIÊN THÂM NIÊN</h3>
+<p><strong>Tên kịch bản:</strong> Chững Lại Sau Tuổi 30<br />
+<strong>Bối cảnh:</strong> Phòng họp sau giờ làm / Bàn làm việc công sở<br />
+<strong>Đối tượng:</strong> Người có 7-10 năm thâm niên, sợ tụt hậu trước lứa trẻ nhưng ngại học lại vì lòng tự trọng.</p>
+<h4>Bảng Bóc Tách Tâm Lý 4 Tầng:</h4>
+<ul>
+<li><strong>Tầng 1 (Đãi bôi):</strong> <em>"Tuổi này công việc ổn định rồi, tập trung vào chiều sâu quản trị chứ không chạy theo hào nhoáng bên ngoài."</em></li>
+<li><strong>Tầng 2 (Cảm giác thật):</strong> <em>"Lương mấy năm nay đứng yên, đi họp thấy tụi trẻ nói công nghệ mới mà mình không bắt kịp."</em></li>
+<li><strong>Tầng 2.5 (Xung đột thể diện):</strong> Ở công ty được gọi bằng anh/chị, có danh dự chuyên môn lâu năm. Nghe người trẻ nói AI, video ngắn thì gật đầu giả vờ rành rẽ, nhưng tay lén search Google dưới gầm bàn. Ngại ngồi học lại cùng lứa trẻ vì sợ mất hình tượng quản lý.</li>
+<li><strong>Tầng 3 (Sự thật bao dung):</strong> 10 năm kinh nghiệm xử lý khủng hoảng thực tế của bạn là kho báu mà người trẻ không thể đốt cháy giai đoạn để có được. Người ta không cần bạn nhảy nhót theo xu hướng, họ cần sự từng trải đĩnh đạc.</li>
+</ul>
+<h4>Bảng Sản Xuất 2 Cột Chuẩn Quay Phim:</h4>
+<table>
+<thead>
+<tr>
+<th>Thời lượng</th>
+<th>Cảnh Trám Murakami (B-Roll Action)</th>
+<th>Lời Thoại Băm Nhỏ (&lt;12 từ, nhịp thở 1-2)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>00:00 - 00:12</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>Nhịp 1: Hành vi</code></td>
+<td><strong>B-Roll Cận Cảnh:</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>Ngón tay xoay chiếc bút bi trên mép cuốn sổ họp kín chữ.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Màn hình máy tính công ty vẫn sáng giữa căn phòng đã tắt bớt đèn.</td>
+<td>Tan họp một dự án nữa... <code>[đếm 1-2]</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Ngồi lại một mình trong phòng...</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Ngón tay xoay chiếc bút bi quen thuộc...</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Gắn bó với vị trí này 7 năm rồi... <code>[nghỉ 1 nhịp]</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>00:12 - 00:26</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>Nhịp 2: Khe hở 2.5</code></td>
+<td><strong>B-Roll Thao Tác:</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>Điện thoại sáng lên thông báo tin nhắn lương đầu tháng.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Ngón tay trượt qua ngập ngừng.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Chỉnh lại cổ áo sơ mi trước cửa kính phản chiếu.</td>
+<td>Ngoài miệng ai cũng bảo công việc ổn định... <code>[đếm 1-2]</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Nhưng lương 3 năm nay đứng yên...</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Chi phí nuôi gia đình thì tăng gấp đôi... <code>[nghỉ 1 nhịp]</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Nghe tụi trẻ nói công nghệ mới...</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Mình gật đầu như đã hiểu hết...</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Nhưng tay lén mở máy tra cứu...</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Muốn học cái mới thì ngại tuổi tác...</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>00:26 - 00:40</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>Nhịp 3: Vết sẹo nghề</code></td>
+<td><strong>A-Roll Trực Diện:</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>Ngồi ở góc bàn thư viện hoặc bàn làm việc.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Ánh mắt điềm tĩnh, chia sẻ chân thành như người anh đi trước.</td>
+<td>Sau tuổi 30 rồi... <code>[đếm 1-2]</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Thừa nhận mình chững lại khó khăn lắm...</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Cái tôi thâm niên giữ chặt mình lại... <code>[nghỉ 1 nhịp]</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Nhưng bạn ơi...</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>10 năm kinh nghiệm va vấp của bạn...</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Là thứ người trẻ không thể mua được...</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>00:40 - 00:55</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>Nhịp 4: Lối đi đàng hoàng</code></td>
+<td><strong>A-Roll Đĩnh Đạc:</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>Mở cuốn sổ tay ghi lại một bài học xử lý thực tế, gập máy tính lại đĩnh đạc, mỉm cười tự tin.</td>
+<td>Đừng cố bắt chước người trẻ nhảy nhót... <code>[đếm 1-2]</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Người ta tìm kiếm một người từng trải...</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Nói về bản chất công việc thật điềm tĩnh... <code>[nghỉ 1 nhịp]</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Một khung hình sạch sẽ và chân thành...</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Sẽ mở ra cánh cửa mới cho bạn! <code>[mỉm cười ấm áp]</code></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Điểm chạm Tầng 2.5:</strong> Giải tỏa nỗi sợ mất mặt của người có thâm niên, khẳng định kinh nghiệm thực chiến chính là lợi thế cạnh tranh áp đảo.</p>
+</blockquote>
+<hr />
+<h3>KỊCH BẢN 04 • BÁN HÀNG ONLINE &amp; DOANH CHỦ NHỎ</h3>
+<p><strong>Tên kịch bản:</strong> Tiền Quảng Cáo Ăn Hết Tiền Lãi<br />
+<strong>Bối cảnh:</strong> Phòng đóng hàng / Bàn làm việc<br />
+<strong>Đối tượng:</strong> Người bán hàng online kiệt sức vì nuôi nền tảng quảng cáo nhưng sợ tự xuất hiện trước máy.</p>
+<h4>Bảng Bóc Tách Tâm Lý 4 Tầng:</h4>
+<ul>
+<li><strong>Tầng 1 (Đãi bôi):</strong> <em>"Đang giai đoạn thử nghiệm tệp khách mới để tối ưu chi phí chuyển đổi cho các chiến dịch."</em></li>
+<li><strong>Tầng 2 (Cảm giác thật):</strong> <em>"Cứ 15 phút lại vuốt app ads một lần, tiền cắn đều mà hộp thư vắng tanh."</em></li>
+<li><strong>Tầng 2.5 (Xung đột thể diện):</strong> Khoe với bạn bè ngày cả trăm đơn hàng, quay kho hàng ngập phòng nhìn rất oai. Nhưng sự thật là tiền lời nộp hết cho nền tảng ads và phí hoàn trả. Muốn tự lên hình thì sợ mặt mình không đẹp, sợ người quen nhìn thấy bảo chèo kéo rẻ tiền.</li>
+<li><strong>Tầng 3 (Sự thật bao dung):</strong> Người mua vì quảng cáo giảm giá hôm nay sẽ bỏ bạn theo bên khác vào ngày mai. Khách hàng thông minh muốn nhìn thấy người chịu trách nhiệm đứng sau sản phẩm.</li>
+</ul>
+<h4>Bảng Sản Xuất 2 Cột Chuẩn Quay Phim:</h4>
+<table>
+<thead>
+<tr>
+<th>Thời lượng</th>
+<th>Cảnh Trám Murakami (B-Roll Action)</th>
+<th>Lời Thoại Băm Nhỏ (&lt;12 từ, nhịp thở 1-2)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>00:00 - 00:12</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>Nhịp 1: Hành vi</code></td>
+<td><strong>B-Roll Cận Cảnh:</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>Ngón tay cái vuốt kéo màn hình app Ads Manager để làm mới (pull to refresh).</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Chi phí nhích số đều đặn, hộp thư tin nhắn khách đứng yên.</td>
+<td>Lại vuốt làm mới màn hình... <code>[đếm 1-2]</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Cứ mười lăm phút lại kiểm tra một lần...</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Tiền quảng cáo trừ đều như đồng hồ...</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Hộp thư đến thì im ắng lạ lùng... <code>[thở dài nhẹ]</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>00:12 - 00:26</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>Nhịp 2: Khe hở 2.5</code></td>
+<td><strong>B-Roll Thùng Hàng:</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>Góc phòng xếp đầy thùng hàng đóng sẵn.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Cầm một món hàng lên xem rồi đặt xuống.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Nhìn bảng doanh thu với ánh mắt suy tư.</td>
+<td>Nói với bạn bè là ngày trăm đơn... <code>[đếm 1-2]</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Hàng xếp kín phòng nhìn rất oai...</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Nhưng tiền lãi thực sự cầm về... <code>[nghỉ 1 nhịp]</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Nộp hết cho tiền tài trợ quảng cáo rồi...</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Muốn tự quay video giới thiệu...</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Lại sợ mặt mình lên hình không đẹp...</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Sợ người quen nhìn thấy bảo chèo kéo...</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>00:26 - 00:40</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>Nhịp 3: Vết sẹo nghề</code></td>
+<td><strong>A-Roll Bàn Đóng Hàng:</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>Ngồi bên bàn đóng gói sản phẩm, cầm một sản phẩm thật trên tay, chia sẻ mộc mạc như người từng trải.</td>
+<td>Mình từng đốt tiền chạy quảng cáo như thế... <code>[đếm 1-2]</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Càng phụ thuộc vào nạp tiền...</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Đêm ngủ càng thấp thỏm lo âu... <code>[nghỉ 1 nhịp]</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Khách mua chỉ vì giảm giá hôm nay...</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Ngày mai họ sẽ mua bên khác rẻ hơn...</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>00:40 - 00:55</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>Nhịp 4: Lối đi đàng hoàng</code></td>
+<td><strong>A-Roll Chắc Chắn:</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>Bàn tay soi kỹ đường chỉ hoặc chất liệu sản phẩm trước ống kính.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Nhìn thẳng camera với nụ cười chân thành.</td>
+<td>Khách hàng thông minh mua vì tin người bán... <code>[đếm 1-2]</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Không mua vì tấm ảnh quảng cáo hào nhoáng...</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Dũng cảm xuất hiện đàng hoàng... <code>[nghỉ 1 nhịp]</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Nói rõ ưu điểm và nhược điểm của món đồ...</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Người kinh doanh tử tế luôn có khách trung thành! <code>[mỉm cười]</code></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Điểm chạm Tầng 2.5:</strong> Bóc trần cái oai "ngày trăm đơn" nhưng rỗng túi vì tiền ads, hướng người bán hàng đến vị thế của một người chủ chịu trách nhiệm về món đồ.</p>
+</blockquote>
+<hr />
+<h3>KỊCH BẢN 05 • TƯ VẤN &amp; DỊCH VỤ CHUYÊN MÔN</h3>
+<p><strong>Tên kịch bản:</strong> Hết Khách Từ Mối Quan Hệ Quen<br />
+<strong>Bối cảnh:</strong> Bàn làm việc gỗ gụ / Kệ sách chuyên môn<br />
+<strong>Đối tượng:</strong> Luật sư, kiến trúc sư, bác sĩ, kế toán, chuyên gia tư vấn ngại chào mời dịch vụ.</p>
+<h4>Bảng Bóc Tách Tâm Lý 4 Tầng:</h4>
+<ul>
+<li><strong>Tầng 1 (Đãi bôi):</strong> <em>"Bên mình chỉ làm việc qua lời giới thiệu của đối tác uy tín, không nhận khách đại trà."</em></li>
+<li><strong>Tầng 2 (Cảm giác thật):</strong> <em>"Mở Zalo định nhắn hỏi thăm nhờ vả người quen mà thấy ngập ngừng, sợ người ta nghĩ mình ế việc."</em></li>
+<li><strong>Tầng 2.5 (Xung đột thể diện):</strong> Cả đời xây dựng vị thế chuyên môn đàng hoàng, giờ vòng tròn bạn bè quen đã cạn hợp đồng. Soạn tin nhắn định gửi đối tác cũ nhưng bấm xóa hết vì lòng tự trọng. Ngồi nhìn cuốn lịch trống mà ruột gan như lửa đốt nhưng bề ngoài vẫn phải tỏ ra bận rộn.</li>
+<li><strong>Tầng 3 (Sự thật bao dung):</strong> Người làm chuyên môn không cần đi bán hàng. Một video phân tích cặn kẽ một lỗi sai thực tế chính là lời giới thiệu tự nhiên nhất để khách hàng văn minh tìm đến bạn.</li>
+</ul>
+<h4>Bảng Sản Xuất 2 Cột Chuẩn Quay Phim:</h4>
+<table>
+<thead>
+<tr>
+<th>Thời lượng</th>
+<th>Cảnh Trám Murakami (B-Roll Action)</th>
+<th>Lời Thoại Băm Nhỏ (&lt;12 từ, nhịp thở 1-2)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>00:00 - 00:12</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>Nhịp 1: Hành vi</code></td>
+<td><strong>B-Roll Cận Cảnh:</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>Ngón tay gõ vài chữ vào ô tin nhắn Zalo gửi bạn cũ, rồi ngập ngừng bấm giữ nút xóa (Backspace) sạch trơn.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Tách trà trên bàn đã nguội.</td>
+<td>Soạn tin nhắn được nửa chừng... <code>[đếm 1-2]</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Lại bấm phím xóa sạch đi...</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Tách trà trên bàn đã nguội ngắt...</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Lịch hẹn tuần này còn nhiều chỗ trống... <code>[nghỉ 1 nhịp]</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>00:12 - 00:26</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>Nhịp 2: Khe hở 2.5</code></td>
+<td><strong>B-Roll Sổ Lịch:</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>Cuốn sổ lịch hẹn lật sang trang mới chỉ có vài dòng gạch trống.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Ánh mắt nhìn ra cửa sổ văn phòng đầy suy nghĩ.</td>
+<td>Làm chuyên môn ngại nhất đi chào mời... <code>[đếm 1-2]</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Sợ người quen nghĩ mình đang khó khăn...</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Trước giờ toàn sống nhờ khách giới thiệu... <code>[nghỉ 1 nhịp]</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Giờ mối quen cũng cạn dần rồi...</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Ngồi chờ thì trong lòng sốt ruột...</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Nhưng mở lời đi nhờ vả thì không đành...</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>00:26 - 00:40</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>Nhịp 3: Vết sẹo nghề</code></td>
+<td><strong>A-Roll Góc Bàn Làm Việc:</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>Ngồi ngay ngắn bên giá sách hoặc bàn hồ sơ, ánh mắt điềm tĩnh, hai tay đan nhẹ trên bàn.</td>
+<td>Cái giá của sự tự trọng làm nghề... <code>[đếm 1-2]</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Nhiều khi là sự cô độc...</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Mình hiểu cảm giác này của bạn... <code>[nghỉ 1 nhịp]</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Nhưng chuyên môn sâu giấu trong phòng...</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Thì người đang gặp rắc rối biết tìm ở đâu?</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>00:40 - 00:55</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>Nhịp 4: Lối đi đàng hoàng</code></td>
+<td><strong>A-Roll Chuyên Môn:</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>Tay cầm bút gạch dưới một điểm mấu chốt trong tài liệu, ngẩng lên nhìn ống kính với ánh mắt ấm áp, tin cậy.</td>
+<td>Bạn không cần phải đi bán dịch vụ... <code>[đếm 1-2]</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Hãy phân tích một khúc mắc nghề nghiệp thật rõ...</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Chỉ ra một cạm bẫy khách hàng hay mắc phải... <code>[nghỉ 1 nhịp]</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Một video đàng hoàng và thấu đáo...</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Sẽ đưa những đối tác tử tế tự tìm đến bạn! <code>[mỉm cười nhẹ]</code></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Điểm chạm Tầng 2.5:</strong> Bảo toàn 100% lòng tự trọng của người có học thức, chuyển hóa từ tâm thế "đi nhờ vả việc" sang vị thế "người giải đáp bài toán khó của thị trường".</p>
+</blockquote>
+<hr />
+<h3>KỊCH BẢN 06 • THỢ &amp; NGHỀ KỸ THUẬT</h3>
+<p><strong>Tên kịch bản:</strong> Tay Nghề Tốt Nhưng Vẫn Vắng Khách<br />
+<strong>Bối cảnh:</strong> Xưởng cơ khí / Gara sửa xe / Bàn sửa chữa thiết bị<br />
+<strong>Đối tượng:</strong> Thợ máy, thợ kim hoàn, thợ mộc, kỹ thuật viên có tay nghề cao nhưng ghét làm màu.</p>
+<h4>Bảng Bóc Tách Tâm Lý 4 Tầng:</h4>
+<ul>
+<li><strong>Tầng 1 (Đãi bôi):</strong> <em>"Hữu xạ tự nhiên hương, thợ chuẩn thì khách khắc tìm đến, việc gì phải lên mạng làm màu."</em></li>
+<li><strong>Tầng 2 (Cảm giác thật):</strong> <em>"Nhìn mấy tiệm tay nghề non nớt mà khách xếp hàng nườm nượp, trong bụng thấy chạnh lòng."</em></li>
+<li><strong>Tầng 2.5 (Xung đột thể diện):</strong> Đôi bàn tay làm nghề cả chục năm, quý từng con ốc linh kiện chuẩn. Miệng chê người ta làm màu, nhưng tối về nằm xem video của họ thấy hàng vạn người khen thì lòng nhói đau. Sợ cầm máy quay lên thì bạn bè trong nghề cười bảo <em>"dạo này cũng đú đởn làm TikToker"</em>.</li>
+<li><strong>Tầng 3 (Sự thật bao dung):</strong> Khách hàng không hiểu kỹ thuật, họ sợ nhất là bị luộc đồ và chặt chém. Bạn quay video không phải để làm màu, mà để dùng đôi bàn tay trung thực bảo vệ khách hàng khỏi những nơi làm ẩu.</li>
+</ul>
+<h4>Bảng Sản Xuất 2 Cột Chuẩn Quay Phim:</h4>
+<table>
+<thead>
+<tr>
+<th>Thời lượng</th>
+<th>Cảnh Trám Murakami (B-Roll Action)</th>
+<th>Lời Thoại Băm Nhỏ (&lt;12 từ, nhịp thở 1-2)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>00:00 - 00:12</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>Nhịp 1: Hành vi</code></td>
+<td><strong>B-Roll Cận Cảnh:</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>Bàn tay dính vệt dầu lau vào giẻ lau xơ xác.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Chiếc mỏ lết đặt cộp xuống mặt bàn sắt.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Xưởng chiều muộn vắng tiếng động cơ.</td>
+<td>Tiếng máy vừa tắt hẳn... <code>[đếm 1-2]</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Lau vệt dầu trên bàn tay...</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Xưởng chiều nay vắng lặng quá...</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Đồ nghề chuẩn chỉ nằm ngay ngắn trên giá... <code>[nghỉ 1 nhịp]</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>00:12 - 00:26</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>Nhịp 2: Khe hở 2.5</code></td>
+<td><strong>B-Roll Điện Thoại:</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>Mở điện thoại xem video của tiệm đối thủ trên mạng, khách xếp hàng dài.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Ngón tay khẽ bấm nút nguồn tắt màn hình, thở dài nhẹ.</td>
+<td>Bụng bảo dạ hữu xạ tự nhiên hương... <code>[đếm 1-2]</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Tay nghề chuẩn thì lo gì không có khách...</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Nhưng nhìn tiệm khác ốc siết còn lỏng... <code>[nghỉ 1 nhịp]</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Mà khách xếp hàng đông nghẹt...</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Trong lòng thấy có chút chạnh lòng...</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Muốn quay video thì sợ bạn nghề chê làm màu...</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Đôi tay thô ráp này biết nói gì trước máy?</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>00:26 - 00:40</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>Nhịp 3: Vết sẹo nghề</code></td>
+<td><strong>A-Roll Tại Xưởng:</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>Đứng cạnh máy móc thiết bị, ánh mắt ấm áp và trung thực.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Chỉ nhẹ vào đôi bàn tay làm nghề.</td>
+<td>Người làm nghề thật thường tin vào cái máy... <code>[đếm 1-2]</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Hơn là tin vào chiếc máy quay...</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Mình rất trọng những người như bạn... <code>[nghỉ 1 nhịp]</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Nhưng người đi sửa đồ đâu có rành kỹ thuật...</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Họ sợ nhất là bị luộc đồ và chặt chém...</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>00:40 - 00:55</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>Nhịp 4: Lối đi đàng hoàng</code></td>
+<td><strong>A-Roll &amp; Cận Thao Tác:</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>Cận cảnh siết ốc bằng cờ lê cân lực, chỉ vào một chi tiết bị mòn rỉ.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Nhìn thẳng ống kính nói dứt khoát.</td>
+<td>Không cần phải nói lời hoa mỹ... <code>[đếm 1-2]</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Cứ quay lại đôi bàn tay bạn đang làm việc...</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Chỉ cho khách biết con ốc nào sắp mòn... <code>[nghỉ 1 nhịp]</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Món nào còn dùng tốt không cần thay...</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Sự tử tế của đôi tay làm nghề...</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Chính là lời quảng cáo đắt giá nhất! <code>[gật đầu chắc nịch]</code></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Điểm chạm Tầng 2.5:</strong> Xóa bỏ định kiến "quay video là làm màu", định vị video là tấm khiên bảo vệ khách hàng bằng chính sự trung thực của người thợ giỏi.</p>
+</blockquote>
+<hr />
+<h3>KỊCH BẢN 07 • ĐẠI LÝ BÁN LẺ &amp; TRUNG GIAN</h3>
+<p><strong>Tên kịch bản:</strong> Bị Cạnh Tranh Bởi Tổng Kho &amp; Giá Gốc<br />
+<strong>Bối cảnh:</strong> Kệ hàng đại lý / Quầy thanh toán<br />
+<strong>Đối tượng:</strong> Đại lý thiết bị, vật liệu, đồ gia dụng bị sàn thương mại điện tử và tổng kho ép giá.</p>
+<h4>Bảng Bóc Tách Tâm Lý 4 Tầng:</h4>
+<ul>
+<li><strong>Tầng 1 (Đãi bôi):</strong> <em>"Hàng ở tiệm là hàng chính hãng có bảo hành tại chỗ, đâu như đồ mua trên mạng trôi nổi."</em></li>
+<li><strong>Tầng 2 (Cảm giác thật):</strong> <em>"Khách vào xem mẫu sờ tận tay, xong mở điện thoại so giá tổng kho livestream rồi về đặt mạng."</em></li>
+<li><strong>Tầng 2.5 (Xung đột thể diện):</strong> Đầu tư cửa hàng mặt đường khang trang, vốn chôn chặt từng kệ hàng. Khách vào sờ thử hỏi han chán chê rồi bảo <em>"để chị suy nghĩ thêm"</em>. Nhìn khách bước ra khỏi cửa mà lòng nghẹn đắng vì biết mình vừa làm showroom không công cho tổng kho.</li>
+<li><strong>Tầng 3 (Sự thật bao dung):</strong> Tổng kho bán rẻ nhưng họ ở xa lắc. Họ không có mặt lúc 10h đêm nhà khách bị rò nước hay chập điện. Thứ khách mua ở bạn là sự an tâm và trách nhiệm bảo hành ngay tại chỗ.</li>
+</ul>
+<h4>Bảng Sản Xuất 2 Cột Chuẩn Quay Phim:</h4>
+<table>
+<thead>
+<tr>
+<th>Thời lượng</th>
+<th>Cảnh Trám Murakami (B-Roll Action)</th>
+<th>Lời Thoại Băm Nhỏ (&lt;12 từ, nhịp thở 1-2)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>00:00 - 00:12</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>Nhịp 1: Hành vi</code></td>
+<td><strong>B-Roll Cận Cảnh:</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>Bàn tay nhấc món hàng khách vừa đặt lại lên kệ, vuốt nhẹ lớp hộp giấy.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Ánh mắt nhìn theo bóng khách bước qua bậc tam cấp tiệm.</td>
+<td>Khách vừa bước ra khỏi cửa... <code>[đếm 1-2]</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Món hàng cầm lên sờ rất kỹ...</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Rồi lại đặt nhẹ nhàng xuống kệ...</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Ánh mắt nhìn theo có chút ngậm ngùi... <code>[nghỉ 1 nhịp]</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>00:12 - 00:26</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>Nhịp 2: Khe hở 2.5</code></td>
+<td><strong>B-Roll Kệ Hàng Tồn:</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>Kệ hàng thiết bị xếp kín, tem mác chính hãng rõ ràng.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Điện thoại vang lên thông báo livestream tổng kho xả hàng giá sốc.</td>
+<td>Khách mở điện thoại so giá trước mặt mình... <code>[đếm 1-2]</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Tổng kho livestream bán rẻ hơn giá nhập...</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Trong bụng nghẹn lại mà vẫn phải mỉm cười... <code>[nghỉ 1 nhịp]</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Vốn liếng chôn chặt trên từng giá kệ...</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Đua hạ giá thì cầm chắc phần lỗ...</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Chẳng lẽ mình cứ làm phòng trưng bày miễn phí?</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>00:26 - 00:40</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>Nhịp 3: Vết sẹo nghề</code></td>
+<td><strong>A-Roll Quầy Bán Lẻ:</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>Ngồi ở bàn nước đón khách của đại lý, rót chén trà mời khách, phong thái đĩnh đạc và gần gũi của người làm nghề lâu năm.</td>
+<td>Kinh doanh bán lẻ bây giờ nghiệt ngã thật... <code>[đếm 1-2]</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Nhưng tổng kho ở xa lắc...</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Họ không ở đây lúc nửa đêm khách cần sửa chữa... <code>[nghỉ 1 nhịp]</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Họ không thể chạy sang nhà xem sự cố...</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Thứ khách mua ở bạn...</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Không chỉ đơn thuần là một món đồ...</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>00:40 - 00:55</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>Nhịp 4: Lối đi đàng hoàng</code></td>
+<td><strong>A-Roll Cam Kết:</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>Tay thử cắm điện kiểm tra một thiết bị trước khi giao, dán tem bảo hành cẩn thận.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Mắt nhìn thẳng camera nói ấm áp.</td>
+<td>Khách mua ở bạn sự an tâm... <code>[đếm 1-2]</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Và trách nhiệm có mặt sau khi bán...</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Hãy quay video chỉ cách phân biệt đồ chuẩn... <code>[nghỉ 1 nhịp]</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Cam kết bảo hành hỗ trợ tận nhà...</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Sự kề vai sát cánh của người bán gần nhà...</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Không một tổng kho nào cạnh tranh nổi! <code>[mỉm cười tin cậy]</code></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Điểm chạm Tầng 2.5:</strong> Vạch trần nỗi đau "làm showroom không công cho tổng kho", giúp đại lý bán lẻ lấy lại vị thế bằng dịch vụ bảo hành kề cận và trách nhiệm tại chỗ.</p>
+</blockquote>
+<hr />
+<h3>KỊCH BẢN 08 • BẮT ĐẦU LẠI &amp; CHUYỂN NGHỀ</h3>
+<p><strong>Tên kịch bản:</strong> Bắt Đầu Lại Từ Con Số 0<br />
+<strong>Bối cảnh:</strong> Bàn làm việc mới / Cuốn sổ tay mới tinh<br />
+<strong>Đối tượng:</strong> Người từng vấp ngã hoặc chuyển hướng nghề nghiệp sau tuổi 35, sợ bạn bè nhìn vào bàn tán.</p>
+<h4>Bảng Bóc Tách Tâm Lý 4 Tầng:</h4>
+<ul>
+<li><strong>Tầng 1 (Đãi bôi):</strong> <em>"Mình đang dành một khoảng lặng để tái cơ cấu định hướng cá nhân và chuẩn bị mô hình mới."</em></li>
+<li><strong>Tầng 2 (Cảm giác thật):</strong> <em>"Tiền tiết kiệm vơi dần, mở cuốn sổ mới ra mà không biết bắt đầu từ đâu, định đăng bài lại sợ người quen bàn tán."</em></li>
+<li><strong>Tầng 2.5 (Xung đột thể diện):</strong> Từng có sự nghiệp, từng được bạn bè nể trọng. Giờ bắt đầu lại ở tuổi này thấy ngượng vô cùng. Ngón tay chạm hờ nút đăng bài trên mạng xã hội rồi bấm hủy vì sợ người cũ nhìn vào bảo <em>"dạo này làm ăn bết bát hay sao mà phải làm clip"</em>.</li>
+<li><strong>Tầng 3 (Sự thật bao dung):</strong> Bạn không bắt đầu lại từ con số 0. Bạn bắt đầu lại từ toàn bộ kinh nghiệm và vết sẹo của nửa đời người. Người ta không cười người ngã xuống đang đứng dậy, họ kính trọng sự kiên cường đó.</li>
+</ul>
+<h4>Bảng Sản Xuất 2 Cột Chuẩn Quay Phim:</h4>
+<table>
+<thead>
+<tr>
+<th>Thời lượng</th>
+<th>Cảnh Trám Murakami (B-Roll Action)</th>
+<th>Lời Thoại Băm Nhỏ (&lt;12 từ, nhịp thở 1-2)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>00:00 - 00:12</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>Nhịp 1: Hành vi</code></td>
+<td><strong>B-Roll Cận Cảnh:</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>Mở trang đầu cuốn sổ mới tinh.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Đầu bút bi dừng lại lơ lửng trên trang giấy trắng.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Ngụm nước lọc uống vội trong tĩnh lặng.</td>
+<td>Mở cuốn sổ mới tinh ra... <code>[đếm 1-2]</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Trang đầu tiên viết vài dòng...</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Trang thứ hai để trống hai tuần nay...</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Căn phòng yên ắng đến lạ lùng... <code>[nghỉ 1 nhịp]</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>00:12 - 00:26</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>Nhịp 2: Khe hở 2.5</code></td>
+<td><strong>B-Roll Ngập Ngừng:</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>Ngón tay trỏ chạm hờ vào nút 'Đăng' màu xanh trên màn hình điện thoại, ngập ngừng một lúc rồi bấm 'Hủy'.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Nhìn ra khoảng không.</td>
+<td>Ai hỏi cũng bảo đang chuẩn bị dự án mới... <code>[đếm 1-2]</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Nghỉ ngơi một thời gian cho thư thả...</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Nhưng trong bụng sốt ruột từng ngày... <code>[nghỉ 1 nhịp]</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Tiền tiết kiệm thì cứ vơi dần...</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Định đăng bài giới thiệu hướng đi mới...</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Lại sợ bạn bè ngày xưa nhìn vào xì xào...</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Sợ làm lần này mà vẫn dang dở thì mất hết mặt mũi...</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>00:26 - 00:40</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>Nhịp 3: Vết sẹo nghề</code></td>
+<td><strong>A-Roll Trực Diện:</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>Ngồi bên chiếc bàn làm việc đơn sơ nhưng sạch sẽ.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Ánh mắt điềm tĩnh, giọng nói ấm áp và thấu cảm.</td>
+<td>Bắt đầu lại khi không còn trẻ... <code>[đếm 1-2]</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Cần rất nhiều lòng dũng cảm...</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Nó cô đơn hơn người ngoài tưởng tượng... <code>[nghỉ 1 nhịp]</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Nhưng bạn ơi...</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Bạn không hề đi từ con số không...</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Bạn đi từ tất cả những bài học xương máu cũ...</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>00:40 - 00:55</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>Nhịp 4: Lối đi đàng hoàng</code></td>
+<td><strong>A-Roll Vững Vàng:</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>Ngòi bút đặt xuống viết dứt khoát vào trang sổ.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Cầm chiếc điện thoại lên đặt vào chân máy.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Mỉm cười nhẹ.</td>
+<td>Đừng giấu đi hành trình của mình... <code>[đếm 1-2]</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Cứ chân thật kể về ngã rẽ này...</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Kể về bài học bạn đã nhận ra... <code>[nghỉ 1 nhịp]</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Sự trung thực và bản lĩnh đứng dậy...</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Sẽ thu hút đúng những người bạn đồng hành mới...</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Cứ đàng hoàng bước tiếp thôi! <code>[mỉm cười ấm áp]</code></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Điểm chạm Tầng 2.5:</strong> Chạm vào nỗi sợ bị bạn bè ngày xưa cười chê khi làm lại từ đầu, biến vết thương quá khứ thành huy chương của lòng dũng cảm.</p>
+</blockquote>
+<hr />
+<h3>KỊCH BẢN 09 • THỦ CÔNG CHẾ TÁC &amp; BESPOKE</h3>
+<p><strong>Tên kịch bản:</strong> Hàng Làm Kỹ Nhưng Bị So Sánh Giá<br />
+<strong>Bối cảnh:</strong> Bàn làm việc thủ công / Xưởng chế tác đồ da, mộc, gốm<br />
+<strong>Đối tượng:</strong> Nghệ nhân, người làm đồ kỹ bị so sánh với hàng gia công công nghiệp giá rẻ.</p>
+<h4>Bảng Bóc Tách Tâm Lý 4 Tầng:</h4>
+<ul>
+<li><strong>Tầng 1 (Đãi bôi):</strong> <em>"Đồ thủ công chỉ dành cho người thực sự biết thưởng thức giá trị, mình không làm đại trà."</em></li>
+<li><strong>Tầng 2 (Cảm giác thật):</strong> <em>"Cứ báo giá xong là khách im lặng hoặc kêu đắt, gửi link hàng chợ so sánh thấy bực mình."</em></li>
+<li><strong>Tầng 2.5 (Xung đột thể diện):</strong> Mài một mép da, đục một đường chỉ mất 3 ngày ròng rã. Báo giá đúng công sức thì khách so sánh với hàng dập máy giá rẻ bằng một phần ba. Trong bụng vừa tự ái vừa tủi thân, tự hỏi mình giữ chuẩn mực để làm gì. Nhưng bảo làm ẩu đi cho rẻ thì lương tâm người thợ không cho phép.</li>
+<li><strong>Tầng 3 (Sự thật bao dung):</strong> Khách hàng không thể quý thứ họ không nhìn thấy. Bạn gửi một tấm ảnh tĩnh thì họ chỉ so sánh bằng mắt và giá. Nhưng khi bạn cho họ xem quy trình bạn nâng niu từng công đoạn, giá trị món đồ tự khắc được đặt đúng chỗ.</li>
+</ul>
+<h4>Bảng Sản Xuất 2 Cột Chuẩn Quay Phim:</h4>
+<table>
+<thead>
+<tr>
+<th>Thời lượng</th>
+<th>Cảnh Trám Murakami (B-Roll Action)</th>
+<th>Lời Thoại Băm Nhỏ (&lt;12 từ, nhịp thở 1-2)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>00:00 - 00:12</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>Nhịp 1: Hành vi</code></td>
+<td><strong>B-Roll Cận Cảnh:</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>Ngón tay cái miết nhẹ dọc đường chỉ khâu tay tinh xảo trên mép da.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Đèn bàn vàng rọi rõ từng vết xước dụng cụ mộc mạc.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Không một chút keo thừa.</td>
+<td>Đường chỉ này khâu tay mất cả buổi... <code>[đếm 1-2]</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Từng mép da được mài nhẵn thín...</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Đèn bàn rọi sáng từng đường kim nhỏ...</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Không một chút keo thừa vương lại... <code>[nghỉ 1 nhịp]</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>00:12 - 00:26</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>Nhịp 2: Khe hở 2.5</code></td>
+<td><strong>B-Roll Tin Nhắn:</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>Màn hình điện thoại có tin nhắn khách gửi: 'Sao đắt gấp đôi chỗ này thế shop?'.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Nhẹ nhàng buông điện thoại xuống bàn gỗ, thở dài không tiếng động.</td>
+<td>Thế mà cứ báo giá xong... <code>[đếm 1-2]</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Khách lại gửi tấm ảnh hàng chợ so sánh...</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Hỏi sao bên kia bán rẻ bằng một phần ba... <code>[nghỉ 1 nhịp]</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Cảm giác vừa nghẹn ngào vừa tự ái...</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Tự hỏi mình kỳ công thế này để làm gì...</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Nhưng bảo bớt công đoạn đi cho rẻ...</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Thì lương tâm người làm nghề không chịu nổi...</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>00:26 - 00:40</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>Nhịp 3: Vết sẹo nghề</code></td>
+<td><strong>A-Roll Tại Bàn Chế Tác:</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>Ngồi trước bàn chế tác thủ công, hai tay nâng niu sản phẩm mộc mạc, ánh mắt ấm áp của người gắn bó với nghề.</td>
+<td>Nỗi khổ của người làm đồ kỹ... <code>[đếm 1-2]</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Là công sức nằm ở những thứ khó nhìn thấy...</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Khách không chê món đồ đắt... <code>[nghỉ 1 nhịp]</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Họ chỉ chưa thấy được giọt mồ hôi đằng sau thôi...</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Nếu mình chỉ gửi một tấm ảnh thành phẩm...</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Thì họ chỉ so sánh bằng mắt và giá...</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>00:40 - 00:55</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>Nhịp 4: Lối đi đàng hoàng</code></td>
+<td><strong>A-Roll &amp; Cận Dùi Đục:</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>Cận cảnh mũi dùi đục từng lỗ trên mặt da, tiếng gõ êm tai.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Ngẩng lên nhìn thẳng ống kính mỉm cười tự hào.</td>
+<td>Đừng thanh minh bằng những lời đôi co... <code>[đếm 1-2]</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Hãy cho họ nghe tiếng dùi đục từng mũi kim...</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Cho họ thấy bạn tỉ mỉ từng góc cạnh lúc nửa đêm... <code>[nghỉ 1 nhịp]</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Khi người ta nhìn thấy sự nâng niu của người thợ...</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Giá trị của món đồ...</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Tự khắc sẽ được đặt đúng chỗ xứng đáng! <code>[mỉm cười đĩnh đạc]</code></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Điểm chạm Tầng 2.5:</strong> Giải tỏa sự tự ái nghề nghiệp khi bị so sánh với hàng chợ, biến công đoạn thủ công tỉ mỉ thành thứ tài sản vô giá không thể sao chép.</p>
+</blockquote>
+<hr />
+<h2>PHẦN 3: HƯỚNG DẪN THỰC HÀNH TẠI LỚP (PRODUCTION CHECKLIST)</h2>
+<ol>
+<li><strong>Thiết lập 1 sải tay:</strong> Đặt điện thoại cố định trên mặt bàn cách người ngồi 70cm, góc máy ngang tầm mắt (eye-level), không ngước lên và không chúc xuống.</li>
+<li><strong>Kỹ thuật đếm nhịp 1-2:</strong> Sau mỗi câu thoại dưới 12 chữ, dừng lại ngậm miệng và đếm thầm trong đầu <em>1-2</em>. Nhịp dừng này giúp:</li>
+<li>Triệt tiêu 100% từ đệm (<em>"à", "ờ", "thì", "là"</em>).</li>
+<li>CapCut tự động nhận diện khoảng trống để cắt gọt hoặc chèn cảnh trám B-roll mượt mà.</li>
+<li><strong>Phối hợp 2 máy A-Cam / B-Cam:</strong></li>
+<li><strong>Máy A (Chính diện):</strong> Đảm nhiệm các câu nói đĩnh đạc ở Nhịp 3 và Nhịp 4.</li>
+<li><strong>Máy B (Góc 45 độ hoặc quay tay thao tác):</strong> Thu lại toàn bộ các lát cắt Murakami ở Nhịp 1 và Nhịp 2.</li>
+<li><strong>Nút Copy 1-Chạm:</strong> Trong file HTML <a href="file:///Users/Nguyễn Việt/Documents/CODE/vietndj.github.io/offline02/9_kich_ban_thuc_chien.html">9_kich_ban_thuc_chien.html</a>, mỗi kịch bản đều có nút <strong>"📋 Copy Lời Thoại"</strong> để học viên bấm một phát là đưa thẳng vào máy nhắc chữ (Teleprompter) hoặc ứng dụng Ghi chú để quay ngay tại chỗ.</li>
+</ol>
+<blockquote>
+<p>Toàn bộ nội dung đã được lưu trữ an toàn và phát hành trực tuyến tại:<br />
+ 🔗 <strong>Trang kịch bản:</strong> https://vietndj.github.io/offline02/9_kich_ban_thuc_chien.html (và fedu.vn)<br />
+ 🔗 <strong>Cổng nghiên cứu hệ thống:</strong> <a href="file:///Users/Nguyễn Việt/Documents/CODE/course/nghien-cuu-tang-2-5.html">nghien-cuu-tang-2-5.html</a></p>
+</blockquote></div>
+            </div>
+            
+    </div>
+  </main>
+
+  <footer class="footer">
+    Hệ thống Bài giảng Video • Tri Thức Rẽ Nhánh Chuẩn Tầng 2.5
+  </footer>
+</body>
+</html>
