@@ -232,6 +232,7 @@
       position: relative;
       padding: 90px 24px;
       box-sizing: border-box;
+      scroll-margin-top: 60px;
     }
 
     .cl-zebra--light {
@@ -423,35 +424,225 @@
       border: 2px solid var(--cl-accent);
     }
 
-    /* ═══ 8. THE INTERACTIVE MASTER TABLE ═══ */
+    /* ═══ 8. THE INTERACTIVE MASTER TABLE & MOBILE CARD VIEW ═══ */
+    .table-toolbar {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin: 28px 0 16px;
+    }
+
+    .table-toolbar__actions {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .view-mode-switcher {
+      display: inline-flex;
+      background: #e2e8f0;
+      padding: 4px;
+      border-radius: var(--cl-radius-full);
+      gap: 4px;
+      box-shadow: inset 0 1px 3px rgba(0,0,0,0.08);
+    }
+
+    .view-mode-btn {
+      border: none;
+      background: transparent;
+      padding: 8px 16px;
+      border-radius: var(--cl-radius-full);
+      font-family: var(--font-sans);
+      font-size: 13px;
+      font-weight: 700;
+      color: #64748b;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .view-mode-btn:hover {
+      color: var(--cl-text-base);
+    }
+
+    .view-mode-btn.is-active {
+      background: #ffffff;
+      color: var(--cl-accent);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .table-search-box {
+      display: inline-flex;
+      align-items: center;
+      background: #ffffff;
+      border: 1px solid var(--cl-line-strong);
+      border-radius: var(--cl-radius-full);
+      padding: 7px 16px;
+      gap: 8px;
+      min-width: 250px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .table-search-box:focus-within {
+      border-color: var(--cl-accent);
+      box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.15);
+    }
+
+    .table-search-box input {
+      border: none;
+      outline: none;
+      font-family: var(--font-sans);
+      font-size: 13.5px;
+      width: 100%;
+      background: transparent;
+      color: var(--cl-text-base);
+    }
+
+    .table-search-box input::placeholder {
+      color: #94a3b8;
+    }
+
+    .table-group-tabs {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      white-space: nowrap;
+      padding: 4px 2px 8px;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+
+    .table-group-tabs::-webkit-scrollbar {
+      display: none;
+    }
+
+    .group-tab-item {
+      background: #ffffff;
+      border: 1px solid var(--cl-line-strong);
+      border-radius: var(--cl-radius-full);
+      padding: 7px 15px;
+      font-family: var(--font-sans);
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--cl-text-muted);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      flex-shrink: 0;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .group-tab-item:hover {
+      border-color: var(--cl-accent);
+      color: var(--cl-accent);
+      background: #f8fafc;
+    }
+
+    .group-tab-item.is-active {
+      background: var(--cl-accent);
+      border-color: var(--cl-accent);
+      color: #ffffff;
+      box-shadow: 0 3px 10px rgba(26, 115, 232, 0.25);
+    }
+
+    .group-tab-item__count {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 18px;
+      height: 18px;
+      padding: 0 5px;
+      border-radius: 10px;
+      font-size: 11px;
+      font-family: var(--font-mono);
+      background: rgba(0,0,0,0.06);
+    }
+
+    .group-tab-item.is-active .group-tab-item__count {
+      background: rgba(255,255,255,0.25);
+      color: #ffffff;
+    }
+
+    .table-sticky-hint {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 12.5px;
+      color: var(--cl-text-muted);
+      margin-bottom: 8px;
+      padding: 0 4px;
+    }
+
     .table-container {
       width: 100%;
+      max-height: 72vh;
+      overflow-y: auto;
       overflow-x: auto;
       background: #ffffff;
       border: 1px solid var(--cl-line-strong);
       border-radius: var(--cl-radius-lg);
       box-shadow: 0 10px 30px rgba(0,0,0,0.04);
-      margin: 32px 0 48px;
+      margin: 4px 0 48px;
+      position: relative;
+      scroll-behavior: smooth;
     }
 
     .master-table {
       width: 100%;
-      border-collapse: collapse;
+      border-collapse: separate;
+      border-spacing: 0;
       text-align: left;
       font-size: 15px;
       min-width: 1150px;
     }
 
-    .master-table th {
+    .master-table thead th {
+      position: sticky;
+      top: 0;
+      z-index: 40;
       background: #0f172a;
       color: #ffffff;
       font-family: var(--font-display-short);
       font-weight: 700;
       text-transform: uppercase !important;
       padding: 16px 18px;
-      border-bottom: 1px solid rgba(0,0,0,0.1);
-      font-size: 13px;
-      letter-spacing: 0.04em;
+      border-bottom: 2px solid #1e293b;
+      font-size: 12px;
+      letter-spacing: 0.05em;
+      box-shadow: 0 4px 12px rgba(15, 23, 42, 0.18);
+    }
+
+    .master-table th:first-child {
+      position: sticky;
+      left: 0;
+      top: 0;
+      z-index: 50;
+      background: #0f172a;
+    }
+
+    .master-table td:first-child {
+      position: sticky;
+      left: 0;
+      z-index: 25;
+      background: #ffffff;
+      box-shadow: 2px 0 8px rgba(0,0,0,0.04);
+    }
+
+    .master-table tr:hover td:first-child {
+      background: #f8fafc;
+    }
+
+    .master-table tr.group-header-row td {
+      position: sticky;
+      left: 0;
+      z-index: 28;
     }
 
     .master-table td {
@@ -459,6 +650,7 @@
       border-bottom: 1px solid var(--cl-line);
       vertical-align: top;
       line-height: 1.65;
+      background: #ffffff;
     }
 
     .master-table tr:last-child td {
@@ -481,6 +673,7 @@
       background: var(--cl-accent-tint);
       border-radius: var(--cl-radius-sm);
       transition: all 0.2s ease;
+      font-size: 14px;
     }
 
     .table-link:hover {
@@ -496,7 +689,7 @@
       padding: 3px 8px;
       border-radius: 6px;
       display: inline-block;
-      font-size: 13.5px;
+      font-size: 13px;
     }
 
     .tag-success {
@@ -506,20 +699,171 @@
       padding: 3px 8px;
       border-radius: 6px;
       display: inline-block;
-      font-size: 13.5px;
+      font-size: 13px;
     }
 
     .quote-bubble {
       font-family: var(--font-body);
       font-style: italic;
-      color: var(--cl-text-base);
-      background: #f1f5f9;
-      padding: 8px 12px;
+      color: #0f172a;
+      background: #eff6ff;
+      padding: 10px 14px;
       border-radius: 8px;
       border-left: 3px solid var(--cl-accent);
       display: block;
       margin-top: 4px;
       font-size: 14.5px;
+      line-height: 1.6;
+    }
+
+    /* ═══ MOBILE CARDS VIEW (CHUẨN ĐIỆN THOẠI ĐỨNG) ═══ */
+    .mobile-cards-list {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      margin: 12px 0 48px;
+    }
+
+    .m-reflex-card {
+      background: #ffffff;
+      border: 1px solid var(--cl-line-strong);
+      border-radius: 16px;
+      padding: 22px 18px;
+      box-shadow: 0 4px 18px rgba(0,0,0,0.04);
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      transition: all 0.2s ease;
+    }
+
+    .m-reflex-card:hover {
+      border-color: rgba(26, 115, 232, 0.35);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.07);
+    }
+
+    .m-reflex-card__head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 10px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--cl-line);
+      flex-wrap: wrap;
+    }
+
+    .m-reflex-card__title-box {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .m-reflex-card__group-tag {
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 4px;
+      width: fit-content;
+    }
+
+    .m-reflex-card__name {
+      font-family: var(--font-display-short);
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--cl-text-base);
+      margin: 0;
+      line-height: 1.35;
+    }
+
+    .m-reflex-card__btn {
+      font-family: var(--font-sans);
+      font-size: 12.5px;
+      font-weight: 700;
+      color: #ffffff;
+      background: var(--cl-accent);
+      padding: 6px 14px;
+      border-radius: var(--cl-radius-full);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      transition: all 0.2s ease;
+      flex-shrink: 0;
+    }
+
+    .m-reflex-card__btn:hover {
+      background: #1557b0;
+      transform: translateY(-1px);
+    }
+
+    .m-reflex-card__tiers {
+      display: flex;
+      flex-direction: column;
+      gap: 11px;
+    }
+
+    .m-tier-row {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .m-tier-label {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .m-tier-t1 .m-tier-label { color: #64748b; }
+    .m-tier-t2 .m-tier-label { color: #2563eb; }
+    .m-tier-t3 .m-tier-label { color: #b45309; }
+    .m-tier-mask .m-tier-label { color: #166534; }
+    .m-tier-t25 .m-tier-label { color: var(--cl-accent); font-weight: 800; font-size: 11.5px; }
+
+    .m-tier-t1 .m-tier-val {
+      font-family: var(--font-body);
+      font-style: italic;
+      color: #475569;
+      font-size: 14.5px;
+      line-height: 1.6;
+      background: #f8fafc;
+      padding: 8px 12px;
+      border-radius: 6px;
+      border-left: 3px solid #cbd5e1;
+    }
+
+    .m-tier-t2 .m-tier-val {
+      color: #1e293b;
+      font-size: 14.5px;
+      line-height: 1.6;
+      padding: 2px 0 2px 2px;
+    }
+
+    .m-tier-t3 .m-tier-val {
+      display: inline-block;
+      width: fit-content;
+    }
+
+    .m-tier-t25 .m-tier-val {
+      font-family: var(--font-body);
+      font-style: italic;
+      font-weight: 600;
+      color: #0f172a;
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      border-left: 4px solid var(--cl-accent);
+      padding: 10px 14px;
+      border-radius: 8px;
+      font-size: 15px;
+      line-height: 1.65;
     }
 
     /* ═══ 9. DETAIL MECHANISM CARDS (18 CARDS) ═══ */
@@ -730,7 +1074,69 @@
     }
 
     /* ═══ 12. RESPONSIVE DESIGN ═══ */
+    @media (min-width: 769px) {
+      .mobile-cards-list {
+        display: none;
+      }
+      .table-container {
+        display: block;
+      }
+      .view-mode-cards .mobile-cards-list {
+        display: flex;
+      }
+      .view-mode-cards .table-container {
+        display: none;
+      }
+    }
+
     @media (max-width: 768px) {
+      /* Mặc định trên Mobile: ẩn Table ngang, kích hoạt giao diện Thẻ Dọc */
+      .table-container {
+        display: none;
+      }
+      .mobile-cards-list {
+        display: flex;
+      }
+
+      /* Khi người dùng chủ động chọn xem Bảng trên Mobile */
+      .view-mode-table .table-container {
+        display: block;
+      }
+      .view-mode-table .mobile-cards-list {
+        display: none;
+      }
+
+      .table-toolbar__actions {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .view-mode-switcher {
+        width: 100%;
+        display: flex;
+      }
+      .view-mode-btn {
+        flex: 1;
+        justify-content: center;
+        padding: 8px 10px;
+        font-size: 12px;
+      }
+      .table-search-box {
+        width: 100%;
+        box-sizing: border-box;
+      }
+
+      .table-group-tabs {
+        position: sticky;
+        top: 86px;
+        z-index: 70;
+        background: rgba(248, 250, 252, 0.95);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        margin: 0 -16px;
+        padding: 8px 16px;
+        border-bottom: 1px solid rgba(0,0,0,0.06);
+      }
+
       .detail-row {
         grid-template-columns: 1fr;
         gap: 10px;
@@ -945,7 +1351,7 @@
           </div>
 
           <div class="quote-box">
-            <span class="detail-label" style="color: var(--cl-accent);">🗣️ CÂU NÓI OAI MỒM TẦNG 2.5</span>
+            <span class="detail-label" style="color: var(--cl-accent);">🗣️ CÂU NÓI BẢO VỆ THỂ DIỆN (TẦNG 2.5)</span>
             <p>“Thời buổi này người ta làm video toàn diễn trò trên mạng để tìm kiếm lượt xem nhanh. Mình là người làm nghề đàng hoàng, có học thức, ai lại đi làm ba cái trò mua vui cho thiên hạ như thế! Khách hàng kỹ tính họ tìm đến mình vì năng lực thật, chứ đâu ai tin mấy người nói suông trên mạng!”</p>
           </div>
 
@@ -971,7 +1377,7 @@
           </div>
 
           <div class="quote-box">
-            <span class="detail-label" style="color: var(--cl-accent);">🗣️ CÂU NÓI OAI MỒM TẦNG 2.5</span>
+            <span class="detail-label" style="color: var(--cl-accent);">🗣️ CÂU NÓI BẢO VỆ THỂ DIỆN (TẦNG 2.5)</span>
             <p>“Xưa nay triết lý của mình luôn là hữu xạ tự nhiên hương. Người có thực tài thì cứ âm thầm trau dồi chuyên môn, phục vụ khách hàng bằng cái tâm, việc gì phải lên mạng khoe mẽ? Mình chọn lối sống khiêm nhường, không thích phô trương danh hão, giá trị thật tự khắc người ta sẽ tìm đến!”</p>
           </div>
 
@@ -997,7 +1403,7 @@
           </div>
 
           <div class="quote-box">
-            <span class="detail-label" style="color: var(--cl-accent);">🗣️ CÂU NÓI OAI MỒM TẦNG 2.5 (9H SÁNG HÔM SAU RA QUÁN CAFE VỚI BẠN)</span>
+            <span class="detail-label" style="color: var(--cl-accent);">🗣️ CÂU NÓI BẢO VỆ THỂ DIỆN (TẦNG 2.5 - KHI RA CAFE VỚI BẠN)</span>
             <p>“Dạo này công việc bận tối mắt tối mũi, thời gian chăm sóc mấy khách ruột còn không đủ, hơi đâu mà rảnh rỗi ngồi làm mấy cái video vô thưởng vô phạt ấy. Khi nào doanh nghiệp vận hành tự động, rảnh rang hẳn thì mình mới tính đến chuyện làm hình ảnh cá nhân!”</p>
           </div>
 
@@ -1028,7 +1434,7 @@
       <div class="beats-grid" style="grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); margin-top: 24px;">
         <div class="beat-card">
           <span class="beat-card__num">NHỊP 1 [TẦNG 2.5]</span>
-          <h3 class="beat-card__title">CÁI CỚ OAI MIỆNG BAN ĐẦU</h3>
+          <h3 class="beat-card__title">CÁI CỚ HỢP THỨC HÓA BAN ĐẦU</h3>
           <p class="beat-card__content">
             “Hồi mới thấy phong trào làm video rộ lên, mình hay nói cứng: ‘Mấy cái trào lưu trên mạng chỉ dành cho người rảnh rỗi. Mình làm nghề đàng hoàng, có chuyên môn thì hữu xạ tự nhiên hương, việc gì phải lên mạng nói nhiều!’”
           </p>
@@ -1088,7 +1494,7 @@
       <div class="formula-banner">
         <div class="formula-banner__title">THUẬT TOÁN SUY LUẬN NGHỊCH ĐẢO GIÁ TRỊ</div>
         <div class="formula-math">
-          TẦNG 2.5 = NGHỊCH ĐẢO [TỪ SÁT THƯƠNG T3] ➔ [TỪ DANH GIÁ OAI MỒM]
+          TẦNG 2.5 = NGHỊCH ĐẢO [TỪ SÁT THƯƠNG T3] ➔ [TỪ DANH GIÁ GIỮ THỂ DIỆN]
         </div>
         <p style="font-size: 14.5px; color: #94a3b8; max-width: 640px; margin: 0 auto; line-height: 1.65;">
           Bộ não tự động tìm đến những giá trị cao quý ở chiều ngược lại (đạo đức, chuyên môn sâu, sự cẩn trọng, phong cách kín tiếng) để giải thích cho sự bế tắc hoặc chậm chạp của mình ở Tầng 2.
@@ -1124,28 +1530,80 @@
       <!-- NHỊP 2: TIÊU ĐỀ ĐANH THÉP -->
       <h2 class="title-short">18 PHẢN XẠ GIỮ THỂ DIỆN<br>PHỔ BIẾN NHẤT CỦA NGƯỜI LỚN</h2>
       
-      <p class="editorial-hook">“Nhấn vào từng phản xạ để cuộn nhanh xuống xem phân tích cơ chế, câu hỏi nhận diện và câu nói đời thực.”</p>
+      <p class="editorial-hook">“Bảng đối chiếu 4 tầng tâm lý và lời phòng vệ thể diện. Trên điện thoại đứng, bạn có thể xem chế độ thẻ vuốt mượt mà hoặc lọc nhanh theo từng nhóm.”</p>
 
-      <div class="table-container">
-        <table class="master-table">
+      <!-- THANH ĐIỀU KHIỂN & BỘ LỌC THÔNG MINH -->
+      <div class="table-toolbar" id="master-table-toolbar">
+        <div class="table-toolbar__actions">
+          <!-- NÚT CHUYỂN CHẾ ĐỘ XEM: THẺ DI ĐỘNG VS BẢNG -->
+          <div class="view-mode-switcher" role="tablist" aria-label="Chế độ hiển thị">
+            <button type="button" class="view-mode-btn" id="btn-view-cards" onclick="switchTableViewMode('cards')">
+              📱 Dạng Thẻ Di Động
+            </button>
+            <button type="button" class="view-mode-btn is-active" id="btn-view-table" onclick="switchTableViewMode('table')">
+              📊 Dạng Bảng Đối Chiếu
+            </button>
+          </div>
+
+          <!-- Ô TÌM KIẾM NHANH TỨC THÌ -->
+          <div class="table-search-box">
+            <span style="font-size: 14px; color: #94a3b8;">🔍</span>
+            <input type="text" id="tableSearchInput" placeholder="Tìm kiếm phản xạ, từ khóa..." oninput="handleTableSearch(this.value)" autocomplete="off">
+          </div>
+        </div>
+
+        <!-- THANH TAB LỌC THEO NHÓM (STICKY KHI CUỘN) -->
+        <div class="table-group-tabs" id="tableGroupTabs" role="tablist">
+          <button type="button" class="group-tab-item is-active" data-group="all" onclick="filterReflexGroup('all', this)">
+            <span>Tất cả</span>
+            <span class="group-tab-item__count" id="count-all">18</span>
+          </button>
+          <button type="button" class="group-tab-item" data-group="1" onclick="filterReflexGroup('1', this)">
+            <span>Nhóm 1: Chê bai người khác</span>
+            <span class="group-tab-item__count">4</span>
+          </button>
+          <button type="button" class="group-tab-item" data-group="2" onclick="filterReflexGroup('2', this)">
+            <span>Nhóm 2: Mượn đạo đức & cầu toàn</span>
+            <span class="group-tab-item__count">4</span>
+          </button>
+          <button type="button" class="group-tab-item" data-group="3" onclick="filterReflexGroup('3', this)">
+            <span>Nhóm 3: Bận việc phụ né tránh</span>
+            <span class="group-tab-item__count">4</span>
+          </button>
+          <button type="button" class="group-tab-item" data-group="4" onclick="filterReflexGroup('4', this)">
+            <span>Nhóm 4: Lối thoát an toàn</span>
+            <span class="group-tab-item__count">6</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- CHỈ DẪN CUỘN TRÊN DESKTOP -->
+      <div class="table-sticky-hint" id="tableStickyHint">
+        <span>💡 <b>Thanh tiêu đề tự động cố định khi cuộn</b> • Kéo sang phải để xem trọn vẹn 6 cột</span>
+        <span id="searchStatusLabel" style="font-weight: 600; color: var(--cl-accent);">Đang hiển thị 18 phản xạ</span>
+      </div>
+
+      <!-- GIAO DIỆN 1: BẢNG TRA CỨU ĐỐI SOÁT (STICKY HEADER KHI CUỘN) -->
+      <div class="table-container" id="masterTableContainer">
+        <table class="master-table" id="mainMasterTable">
           <thead>
             <tr>
-              <th style="width: 15%;">TÊN PHẢN XẠ (NHẤN ĐỂ XEM)</th>
-              <th style="width: 17%;">VĂN MẪU BỀ NỔI (TẦNG 1)</th>
-              <th style="width: 17%;">THỰC TẾ LÚNG TÚNG (TẦNG 2)</th>
-              <th style="width: 14%;">NỖI E NGẠI THẦM KÍN (TẦNG 3)</th>
-              <th style="width: 15%;">LÝ DO CHỈN CHU TRÁO VÀO</th>
-              <th style="width: 22%;">CÂU NÓI OAI MIỆNG (TẦNG 2.5)</th>
+              <th style="width: 15%;">18 PHẢN XẠ THỂ DIỆN</th>
+              <th style="width: 17%;">LỜI NÓI ĐÃI BÔI (TẦNG 1)</th>
+              <th style="width: 17%;">CẢM GIÁC ĐỜI THỰC (TẦNG 2)</th>
+              <th style="width: 14%;">SỰ THẬT CHỖ KHÓ NÓI (TẦNG 3)</th>
+              <th style="width: 15%;">BÌNH PHONG THỂ DIỆN</th>
+              <th style="width: 22%;">LỜI PHÒNG VỆ THỂ DIỆN (TẦNG 2.5)</th>
             </tr>
           </thead>
           <tbody>
             <!-- NHÓM 1 -->
-            <tr style="background: #fdf2f8;">
+            <tr class="group-header-row" data-group-header="1" style="background: #fdf2f8;">
               <td colspan="6" style="font-weight: 700; font-family: var(--font-sans); color: #9d174d; font-size: 13.5px; letter-spacing: 0.08em; text-transform: uppercase;">
-                NHÓM 1: NHÌN NHẬN CHƯA ĐÚNG VỀ CÁCH LÀM CỦA NGƯỜI KHÁC (4 PHẢN XẠ)
+                NHÓM 1: CHÊ BAI CÁCH LÀM CỦA NGƯỜI KHÁC ĐỂ THẤY MÌNH ĐÀNG HOÀNG (4 PHẢN XẠ)
               </td>
             </tr>
-            <tr>
+            <tr data-group="1" data-id="01">
               <td><a href="#cach-01" class="table-link">01. Soi sự khác biệt →</a></td>
               <td><span style="color: #64748b; font-style: italic; font-size: 14px;">“Tôi thích làm việc trực tiếp, không thích chạy theo mấy trào lưu ngắn hạn trên mạng.”</span></td>
               <td>Chưa quen quay, video ít người xem.</td>
@@ -1153,7 +1611,7 @@
               <td><span class="tag-success">➔ Giữ chuẩn mực nghề</span></td>
               <td><span class="quote-bubble">“Mình là người có chuyên môn, ai lại làm mấy nội dung đại trà để tìm lượt xem nhanh!”</span></td>
             </tr>
-            <tr>
+            <tr data-group="1" data-id="09">
               <td><a href="#cach-09" class="table-link">09. Đứng ở góc độ người xem →</a></td>
               <td><span style="color: #64748b; font-style: italic; font-size: 14px;">“Nội dung truyền thông thời nay cần phải được kiểm duyệt khắt khe hơn về tính học thuật.”</span></td>
               <td>Bản thân chưa bắt tay vào làm sản phẩm nào.</td>
@@ -1161,7 +1619,7 @@
               <td><span class="tag-success">➔ Góc nhìn học thuật</span></td>
               <td><span class="quote-bubble">“Video này nhịp cắt quá nhanh, thiếu chiều sâu. Mình làm là phải chuẩn mực sư phạm!”</span></td>
             </tr>
-            <tr>
+            <tr data-group="1" data-id="10">
               <td><a href="#cach-10" class="table-link">10. Đổ lỗi cho công nghệ →</a></td>
               <td><span style="color: #64748b; font-style: italic; font-size: 14px;">“Mạng xã hội và thuật toán video ngắn đang làm giảm chất lượng các mối quan hệ thực chất.”</span></td>
               <td>Chưa hiểu cách phân phối của nền tảng.</td>
@@ -1169,7 +1627,7 @@
               <td><span class="tag-success">➔ Giữ tư duy chiều sâu</span></td>
               <td><span class="quote-bubble">“Video ngắn làm giảm sự tập trung. Tôi muốn giữ sự tĩnh lặng của tư duy chuyên môn!”</span></td>
             </tr>
-            <tr>
+            <tr data-group="1" data-id="11">
               <td><a href="#cach-11" class="table-link">11. Để ý chi tiết nhỏ →</a></td>
               <td><span style="color: #64748b; font-style: italic; font-size: 14px;">“Làm chuyên môn là phải chuẩn chỉ từng dấu chấm, dấu phẩy, không được phép sai sót.”</span></td>
               <td>Thấy người khác hút khách, mình dậm chân tại chỗ.</td>
@@ -1179,12 +1637,12 @@
             </tr>
 
             <!-- NHÓM 2 -->
-            <tr style="background: #f0fdf4;">
+            <tr class="group-header-row" data-group-header="2" style="background: #f0fdf4;">
               <td colspan="6" style="font-weight: 700; font-family: var(--font-sans); color: #166534; font-size: 13.5px; letter-spacing: 0.08em; text-transform: uppercase;">
-                NHÓM 2: MƯỢN ĐẠO ĐỨC HOẶC SỰ CẦU TOÀN ĐỂ TỰ AN ỦI (4 PHẢN XẠ)
+                NHÓM 2: MƯỢN ĐẠO ĐỨC & SỰ CẦU TOÀN LÀM BÌNH PHONG (4 PHẢN XẠ)
               </td>
             </tr>
-            <tr>
+            <tr data-group="2" data-id="02">
               <td><a href="#cach-02" class="table-link">02. Tựa vào chữ tâm →</a></td>
               <td><span style="color: #64748b; font-style: italic; font-size: 14px;">“Triết lý của tôi xưa nay là tập trung chăm sóc khách quen, hữu xạ tự nhiên hương.”</span></td>
               <td>Chưa thích nghi được với nhịp độ mới.</td>
@@ -1192,7 +1650,7 @@
               <td><span class="tag-success">➔ Làm việc có tâm</span></td>
               <td><span class="quote-bubble">“Mình làm việc bằng cái tâm. Hữu xạ tự nhiên hương, việc gì phải lên mạng nói nhiều!”</span></td>
             </tr>
-            <tr>
+            <tr data-group="2" data-id="06">
               <td><a href="#cach-06" class="table-link">06. Yêu cầu quá cao →</a></td>
               <td><span style="color: #64748b; font-style: italic; font-size: 14px;">“Đã không làm thì thôi, một khi đã đưa ra công chúng là phải đạt chuẩn tuyệt đối.”</span></td>
               <td>Trì hoãn lâu ngày chưa dám ra mắt nội dung.</td>
@@ -1200,7 +1658,7 @@
               <td><span class="tag-success">➔ Tính cầu toàn</span></td>
               <td><span class="quote-bubble">“Tính mình cầu toàn, không cho phép đưa sản phẩm chưa ưng ý ra đời. Đợi kịch bản thật chín đã!”</span></td>
             </tr>
-            <tr>
+            <tr data-group="2" data-id="08">
               <td><a href="#cach-08" class="table-link">08. Chọn lối sống chậm →</a></td>
               <td><span style="color: #64748b; font-style: italic; font-size: 14px;">“Đến một độ tuổi nào đó, con người ta sẽ hướng về sự cân bằng và bình an nội tâm.”</span></td>
               <td>Công việc chậm lại, chưa tìm được lối ra.</td>
@@ -1208,7 +1666,7 @@
               <td><span class="tag-success">➔ Tìm sự an yên</span></td>
               <td><span class="quote-bubble">“Đến tuổi này mình chọn lối sống chậm, quay về bên trong tìm sự an yên hơn là cạnh tranh!”</span></td>
             </tr>
-            <tr>
+            <tr data-group="2" data-id="14">
               <td><a href="#cach-14" class="table-link">14. Tập trung khách quen →</a></td>
               <td><span style="color: #64748b; font-style: italic; font-size: 14px;">“Mô hình của tôi tập trung vào chiều sâu dịch vụ cho tệp khách ruột am hiểu.”</span></td>
               <td>Sản phẩm ít người biết tới.</td>
@@ -1218,12 +1676,12 @@
             </tr>
 
             <!-- NHÓM 3 -->
-            <tr style="background: #eff6ff;">
+            <tr class="group-header-row" data-group-header="3" style="background: #eff6ff;">
               <td colspan="6" style="font-weight: 700; font-family: var(--font-sans); color: #1e40af; font-size: 13.5px; letter-spacing: 0.08em; text-transform: uppercase;">
-                NHÓM 3: THAY ĐỔI HÀNH VI ĐỂ NÉ TRÁNH VIỆC CỐT LÕI (4 PHẢN XẠ)
+                NHÓM 3: BẬN VIỆC PHỤ ĐỂ NÉ TRÁNH BẤM MÁY QUAY (4 PHẢN XẠ)
               </td>
             </tr>
-            <tr>
+            <tr data-group="3" data-id="04">
               <td><a href="#cach-04" class="table-link">04. Đầu tư thiết bị →</a></td>
               <td><span style="color: #64748b; font-style: italic; font-size: 14px;">“Muốn làm việc gì chuyên nghiệp thì hạ tầng ban đầu phải được chuẩn bị bài bản.”</span></td>
               <td>Mua máy ảnh xịn về để đấy, chưa dám bấm quay.</td>
@@ -1231,7 +1689,7 @@
               <td><span class="tag-success">➔ Chuẩn bị bài bản</span></td>
               <td><span class="quote-bubble">“Làm gì cũng phải chuẩn chỉ từ thiết bị. Đạt chuẩn hình ảnh đẹp thì mới bấm máy!”</span></td>
             </tr>
-            <tr>
+            <tr data-group="3" data-id="05">
               <td><a href="#cach-05" class="table-link">05. Viện cớ đối tác →</a></td>
               <td><span style="color: #64748b; font-style: italic; font-size: 14px;">“Doanh nghiệp chúng tôi luôn đặt tính bảo mật và sự kín kẽ của đối tác lên hàng đầu.”</span></td>
               <td>Ngại xuất hiện trước ống kính.</td>
@@ -1239,7 +1697,7 @@
               <td><span class="tag-success">➔ Giữ hình ảnh đối tác</span></td>
               <td><span class="quote-bubble">“Khách bên mình toàn lãnh đạo kín tiếng. Xuất hiện trên mạng nhiều sợ ảnh hưởng uy tín chung!”</span></td>
             </tr>
-            <tr>
+            <tr data-group="3" data-id="12">
               <td><a href="#cach-12" class="table-link">12. Bận việc chân tay →</a></td>
               <td><span style="color: #64748b; font-style: italic; font-size: 14px;">“Người làm chủ là người phải tận tụy, sâu sát với từng chi tiết vận hành nhỏ nhất.”</span></td>
               <td>Lao vào việc quen thuộc để né việc mới.</td>
@@ -1247,7 +1705,7 @@
               <td><span class="tag-success">➔ Tận tụy gánh vác</span></td>
               <td><span class="quote-bubble">“Một mình lo trăm thứ việc từ sáng đến đêm. Thời gian thở còn thiếu, tâm trí đâu mà lên hình!”</span></td>
             </tr>
-            <tr>
+            <tr data-group="3" data-id="15">
               <td><a href="#cach-15" class="table-link">15. Giao cho bên ngoài →</a></td>
               <td><span style="color: #64748b; font-style: italic; font-size: 14px;">“Lãnh đạo cấp cao cần tập trung vào quản trị và sử dụng đòn bẩy chuyên gia.”</span></td>
               <td>Thuê đơn vị khác làm thay nhưng chưa hiệu quả.</td>
@@ -1257,12 +1715,12 @@
             </tr>
 
             <!-- NHÓM 4 -->
-            <tr style="background: #faf5ff;">
+            <tr class="group-header-row" data-group-header="4" style="background: #faf5ff;">
               <td colspan="6" style="font-weight: 700; font-family: var(--font-sans); color: #6b21a8; font-size: 13.5px; letter-spacing: 0.08em; text-transform: uppercase;">
-                NHÓM 4: TÌM LỐI LUI AN TOÀN CHO CẢM XÚC (6 PHẢN XẠ)
+                NHÓM 4: TÌM LỐI THOÁT AN TOÀN CHO CẢM XÚC (6 PHẢN XẠ)
               </td>
             </tr>
-            <tr>
+            <tr data-group="4" data-id="03">
               <td><a href="#cach-03" class="table-link">03. Khác biệt ngày & đêm →</a></td>
               <td><span style="color: #64748b; font-style: italic; font-size: 14px;">“Dạo này lịch trình công việc của tôi rất dày đặc, chỉ ưu tiên những việc thực sự khẩn cấp.”</span></td>
               <td>Tối quay thử lúng túng, xóa vội vì ngượng.</td>
@@ -1270,7 +1728,7 @@
               <td><span class="tag-success">➔ Người bận rộn</span></td>
               <td><span class="quote-bubble">“Dạo này công việc bận quá, chăm sóc khách ruột còn thiếu thời gian, hơi đâu ngồi quay clip!”</span></td>
             </tr>
-            <tr>
+            <tr data-group="4" data-id="07">
               <td><a href="#cach-07" class="table-link">07. Nhìn về chặng đường cũ →</a></td>
               <td><span style="color: #64748b; font-style: italic; font-size: 14px;">“Kinh doanh bền vững phải dựa trên mối quan hệ thực chất và chữ tín tích lũy nhiều năm.”</span></td>
               <td>Mối quan hệ cũ không còn sinh ra khách mới.</td>
@@ -1278,7 +1736,7 @@
               <td><span class="tag-success">➔ Trọng chiều sâu</span></td>
               <td><span class="quote-bubble">“Thời trước chỉ cần cái bắt tay là chốt dự án. Làm ăn bằng quan hệ thực chất chứ ai đi làm clip!”</span></td>
             </tr>
-            <tr>
+            <tr data-group="4" data-id="13">
               <td><a href="#cach-13" class="table-link">13. Nhận mình chưa rành →</a></td>
               <td><span style="color: #64748b; font-style: italic; font-size: 14px;">“Tôi thuộc thế hệ đi trước, quen làm việc thủ công và giao tiếp trực tiếp con người.”</span></td>
               <td>Chưa quen dùng công cụ, mò mẫm chưa ra.</td>
@@ -1286,7 +1744,7 @@
               <td><span class="tag-success">➔ Thật thà, khiêm tốn</span></td>
               <td><span class="quote-bubble">“Anh thế hệ cũ mù tịt công nghệ. Thôi để tụi trẻ nhạy bén làm, mình lớn tuổi rồi theo sao kịp!”</span></td>
             </tr>
-            <tr>
+            <tr data-group="4" data-id="16">
               <td><a href="#cach-16" class="table-link">16. Thay đổi mục tiêu →</a></td>
               <td><span style="color: #64748b; font-style: italic; font-size: 14px;">“Truyền thông là một hành trình dài hạn để tích lũy chứ không nên nhìn vào số liệu nhất thời.”</span></td>
               <td>Video phát hành có ít người xem.</td>
@@ -1294,7 +1752,7 @@
               <td><span class="tag-success">➔ Lưu giữ kỷ niệm</span></td>
               <td><span class="quote-bubble">“Làm chuỗi này để lưu giữ kỷ niệm làm nghề thôi, chứ mình đâu có đặt nặng chuyện người xem!”</span></td>
             </tr>
-            <tr>
+            <tr data-group="4" data-id="17">
               <td><a href="#cach-17" class="table-link">17. Tìm người đồng cảm →</a></td>
               <td><span style="color: #64748b; font-style: italic; font-size: 14px;">“Làm kinh doanh là phải nhìn vào bức tranh kinh tế vĩ mô và chu kỳ chung của toàn ngành.”</span></td>
               <td>Công việc chậm lại, chưa tìm được khách mới.</td>
@@ -1302,7 +1760,7 @@
               <td><span class="tag-success">➔ Khó khăn chung ngành</span></td>
               <td><span class="quote-bubble">“Ngồi với mấy anh em lâu năm ai cũng thấy thị trường chung đang chững lại, thôi cứ túc tắc làm!”</span></td>
             </tr>
-            <tr>
+            <tr data-group="4" data-id="18">
               <td><a href="#cach-18" class="table-link">18. Chờ thời điểm thích hợp →</a></td>
               <td><span style="color: #64748b; font-style: italic; font-size: 14px;">“Đầu tư và kinh doanh luôn đòi hỏi sự cẩn trọng, không nên chạy theo những làn sóng nhất thời.”</span></td>
               <td>Chần chừ chưa dám bắt tay vào thử nghiệm.</td>
@@ -1312,6 +1770,605 @@
             </tr>
           </tbody>
         </table>
+      </div>
+
+      <!-- GIAO DIỆN 2: CHẾ ĐỘ THẺ DI ĐỘNG (CHUẨN XEM ĐIỆN THOẠI ĐỨNG) -->
+      <div class="mobile-cards-list" id="masterMobileCards">
+        
+        <!-- CARD 01 -->
+        <article class="m-reflex-card" data-group="1" data-id="01">
+          <div class="m-reflex-card__head">
+            <div class="m-reflex-card__title-box">
+              <span class="m-reflex-card__group-tag" style="background: #fdf2f8; color: #9d174d;">Nhóm 1: Chê bai người khác</span>
+              <h3 class="m-reflex-card__name">01. Soi sự khác biệt</h3>
+            </div>
+            <a href="#cach-01" class="m-reflex-card__btn">Xem kịch bản →</a>
+          </div>
+          <div class="m-reflex-card__tiers">
+            <div class="m-tier-row m-tier-t1">
+              <span class="m-tier-label">💬 Tầng 1: Lời nói đãi bôi (Văn mẫu)</span>
+              <div class="m-tier-val">“Tôi thích làm việc trực tiếp, không thích chạy theo mấy trào lưu ngắn hạn trên mạng.”</div>
+            </div>
+            <div class="m-tier-row m-tier-t2">
+              <span class="m-tier-label">⚡ Tầng 2: Cảm giác đời thực</span>
+              <div class="m-tier-val">Chưa quen quay, video ít người xem.</div>
+            </div>
+            <div class="m-tier-row m-tier-t3">
+              <span class="m-tier-label">⚠️ Tầng 3: Sự thật chỗ khó nói</span>
+              <div class="m-tier-val"><span class="tag-warm">Sốt ruột, chạnh lòng</span></div>
+            </div>
+            <div class="m-tier-row m-tier-mask">
+              <span class="m-tier-label">🛡️ Bình phong thể diện</span>
+              <div class="m-tier-val"><span class="tag-success">➔ Giữ chuẩn mực nghề</span></div>
+            </div>
+            <div class="m-tier-row m-tier-t25">
+              <span class="m-tier-label">🎯 Tầng 2.5: Lời phòng vệ giữ thể diện</span>
+              <div class="m-tier-val">“Mình là người có chuyên môn, ai lại làm mấy nội dung đại trà để tìm lượt xem nhanh!”</div>
+            </div>
+          </div>
+        </article>
+
+        <!-- CARD 09 -->
+        <article class="m-reflex-card" data-group="1" data-id="09">
+          <div class="m-reflex-card__head">
+            <div class="m-reflex-card__title-box">
+              <span class="m-reflex-card__group-tag" style="background: #fdf2f8; color: #9d174d;">Nhóm 1: Chê bai người khác</span>
+              <h3 class="m-reflex-card__name">09. Đứng ở góc độ người xem</h3>
+            </div>
+            <a href="#cach-09" class="m-reflex-card__btn">Xem kịch bản →</a>
+          </div>
+          <div class="m-reflex-card__tiers">
+            <div class="m-tier-row m-tier-t1">
+              <span class="m-tier-label">💬 Tầng 1: Lời nói đãi bôi (Văn mẫu)</span>
+              <div class="m-tier-val">“Nội dung truyền thông thời nay cần phải được kiểm duyệt khắt khe hơn về tính học thuật.”</div>
+            </div>
+            <div class="m-tier-row m-tier-t2">
+              <span class="m-tier-label">⚡ Tầng 2: Cảm giác đời thực</span>
+              <div class="m-tier-val">Bản thân chưa bắt tay vào làm sản phẩm nào.</div>
+            </div>
+            <div class="m-tier-row m-tier-t3">
+              <span class="m-tier-label">⚠️ Tầng 3: Sự thật chỗ khó nói</span>
+              <div class="m-tier-val"><span class="tag-warm">Chưa tự tin thi đấu</span></div>
+            </div>
+            <div class="m-tier-row m-tier-mask">
+              <span class="m-tier-label">🛡️ Bình phong thể diện</span>
+              <div class="m-tier-val"><span class="tag-success">➔ Góc nhìn học thuật</span></div>
+            </div>
+            <div class="m-tier-row m-tier-t25">
+              <span class="m-tier-label">🎯 Tầng 2.5: Lời phòng vệ giữ thể diện</span>
+              <div class="m-tier-val">“Video này nhịp cắt quá nhanh, thiếu chiều sâu. Mình làm là phải chuẩn mực sư phạm!”</div>
+            </div>
+          </div>
+        </article>
+
+        <!-- CARD 10 -->
+        <article class="m-reflex-card" data-group="1" data-id="10">
+          <div class="m-reflex-card__head">
+            <div class="m-reflex-card__title-box">
+              <span class="m-reflex-card__group-tag" style="background: #fdf2f8; color: #9d174d;">Nhóm 1: Chê bai người khác</span>
+              <h3 class="m-reflex-card__name">10. Đổ lỗi cho công nghệ</h3>
+            </div>
+            <a href="#cach-10" class="m-reflex-card__btn">Xem kịch bản →</a>
+          </div>
+          <div class="m-reflex-card__tiers">
+            <div class="m-tier-row m-tier-t1">
+              <span class="m-tier-label">💬 Tầng 1: Lời nói đãi bôi (Văn mẫu)</span>
+              <div class="m-tier-val">“Mạng xã hội và thuật toán video ngắn đang làm giảm chất lượng các mối quan hệ thực chất.”</div>
+            </div>
+            <div class="m-tier-row m-tier-t2">
+              <span class="m-tier-label">⚡ Tầng 2: Cảm giác đời thực</span>
+              <div class="m-tier-val">Chưa hiểu cách phân phối của nền tảng.</div>
+            </div>
+            <div class="m-tier-row m-tier-t3">
+              <span class="m-tier-label">⚠️ Tầng 3: Sự thật chỗ khó nói</span>
+              <div class="m-tier-val"><span class="tag-warm">Chưa rành công nghệ</span></div>
+            </div>
+            <div class="m-tier-row m-tier-mask">
+              <span class="m-tier-label">🛡️ Bình phong thể diện</span>
+              <div class="m-tier-val"><span class="tag-success">➔ Giữ tư duy chiều sâu</span></div>
+            </div>
+            <div class="m-tier-row m-tier-t25">
+              <span class="m-tier-label">🎯 Tầng 2.5: Lời phòng vệ giữ thể diện</span>
+              <div class="m-tier-val">“Video ngắn làm giảm sự tập trung. Tôi muốn giữ sự tĩnh lặng của tư duy chuyên môn!”</div>
+            </div>
+          </div>
+        </article>
+
+        <!-- CARD 11 -->
+        <article class="m-reflex-card" data-group="1" data-id="11">
+          <div class="m-reflex-card__head">
+            <div class="m-reflex-card__title-box">
+              <span class="m-reflex-card__group-tag" style="background: #fdf2f8; color: #9d174d;">Nhóm 1: Chê bai người khác</span>
+              <h3 class="m-reflex-card__name">11. Để ý chi tiết nhỏ</h3>
+            </div>
+            <a href="#cach-11" class="m-reflex-card__btn">Xem kịch bản →</a>
+          </div>
+          <div class="m-reflex-card__tiers">
+            <div class="m-tier-row m-tier-t1">
+              <span class="m-tier-label">💬 Tầng 1: Lời nói đãi bôi (Văn mẫu)</span>
+              <div class="m-tier-val">“Làm chuyên môn là phải chuẩn chỉ từng dấu chấm, dấu phẩy, không được phép sai sót.”</div>
+            </div>
+            <div class="m-tier-row m-tier-t2">
+              <span class="m-tier-label">⚡ Tầng 2: Cảm giác đời thực</span>
+              <div class="m-tier-val">Thấy người khác hút khách, mình dậm chân tại chỗ.</div>
+            </div>
+            <div class="m-tier-row m-tier-t3">
+              <span class="m-tier-label">⚠️ Tầng 3: Sự thật chỗ khó nói</span>
+              <div class="m-tier-val"><span class="tag-warm">Có chút băn khoăn</span></div>
+            </div>
+            <div class="m-tier-row m-tier-mask">
+              <span class="m-tier-label">🛡️ Bình phong thể diện</span>
+              <div class="m-tier-val"><span class="tag-success">➔ Kỹ tính chuyên môn</span></div>
+            </div>
+            <div class="m-tier-row m-tier-t25">
+              <span class="m-tier-label">🎯 Tầng 2.5: Lời phòng vệ giữ thể diện</span>
+              <div class="m-tier-val">“Họ dùng từ chưa chuẩn ở giây 45 kìa! Thà làm ít người biết nhưng câu nào cũng phải chuẩn chỉ!”</div>
+            </div>
+          </div>
+        </article>
+
+        <!-- CARD 02 -->
+        <article class="m-reflex-card" data-group="2" data-id="02">
+          <div class="m-reflex-card__head">
+            <div class="m-reflex-card__title-box">
+              <span class="m-reflex-card__group-tag" style="background: #f0fdf4; color: #166534;">Nhóm 2: Mượn đạo đức & cầu toàn</span>
+              <h3 class="m-reflex-card__name">02. Tựa vào chữ tâm</h3>
+            </div>
+            <a href="#cach-02" class="m-reflex-card__btn">Xem kịch bản →</a>
+          </div>
+          <div class="m-reflex-card__tiers">
+            <div class="m-tier-row m-tier-t1">
+              <span class="m-tier-label">💬 Tầng 1: Lời nói đãi bôi (Văn mẫu)</span>
+              <div class="m-tier-val">“Triết lý của tôi xưa nay là tập trung chăm sóc khách quen, hữu xạ tự nhiên hương.”</div>
+            </div>
+            <div class="m-tier-row m-tier-t2">
+              <span class="m-tier-label">⚡ Tầng 2: Cảm giác đời thực</span>
+              <div class="m-tier-val">Chưa thích nghi được với nhịp độ mới.</div>
+            </div>
+            <div class="m-tier-row m-tier-t3">
+              <span class="m-tier-label">⚠️ Tầng 3: Sự thật chỗ khó nói</span>
+              <div class="m-tier-val"><span class="tag-warm">Ngại thay đổi</span></div>
+            </div>
+            <div class="m-tier-row m-tier-mask">
+              <span class="m-tier-label">🛡️ Bình phong thể diện</span>
+              <div class="m-tier-val"><span class="tag-success">➔ Làm việc có tâm</span></div>
+            </div>
+            <div class="m-tier-row m-tier-t25">
+              <span class="m-tier-label">🎯 Tầng 2.5: Lời phòng vệ giữ thể diện</span>
+              <div class="m-tier-val">“Mình làm việc bằng cái tâm. Hữu xạ tự nhiên hương, việc gì phải lên mạng nói nhiều!”</div>
+            </div>
+          </div>
+        </article>
+
+        <!-- CARD 06 -->
+        <article class="m-reflex-card" data-group="2" data-id="06">
+          <div class="m-reflex-card__head">
+            <div class="m-reflex-card__title-box">
+              <span class="m-reflex-card__group-tag" style="background: #f0fdf4; color: #166534;">Nhóm 2: Mượn đạo đức & cầu toàn</span>
+              <h3 class="m-reflex-card__name">06. Yêu cầu quá cao</h3>
+            </div>
+            <a href="#cach-06" class="m-reflex-card__btn">Xem kịch bản →</a>
+          </div>
+          <div class="m-reflex-card__tiers">
+            <div class="m-tier-row m-tier-t1">
+              <span class="m-tier-label">💬 Tầng 1: Lời nói đãi bôi (Văn mẫu)</span>
+              <div class="m-tier-val">“Đã không làm thì thôi, một khi đã đưa ra công chúng là phải đạt chuẩn tuyệt đối.”</div>
+            </div>
+            <div class="m-tier-row m-tier-t2">
+              <span class="m-tier-label">⚡ Tầng 2: Cảm giác đời thực</span>
+              <div class="m-tier-val">Trì hoãn lâu ngày chưa dám ra mắt nội dung.</div>
+            </div>
+            <div class="m-tier-row m-tier-t3">
+              <span class="m-tier-label">⚠️ Tầng 3: Sự thật chỗ khó nói</span>
+              <div class="m-tier-val"><span class="tag-warm">Sợ bị nhận xét chưa hay</span></div>
+            </div>
+            <div class="m-tier-row m-tier-mask">
+              <span class="m-tier-label">🛡️ Bình phong thể diện</span>
+              <div class="m-tier-val"><span class="tag-success">➔ Tính cầu toàn</span></div>
+            </div>
+            <div class="m-tier-row m-tier-t25">
+              <span class="m-tier-label">🎯 Tầng 2.5: Lời phòng vệ giữ thể diện</span>
+              <div class="m-tier-val">“Tính mình cầu toàn, không cho phép đưa sản phẩm chưa ưng ý ra đời. Đợi kịch bản thật chín đã!”</div>
+            </div>
+          </div>
+        </article>
+
+        <!-- CARD 08 -->
+        <article class="m-reflex-card" data-group="2" data-id="08">
+          <div class="m-reflex-card__head">
+            <div class="m-reflex-card__title-box">
+              <span class="m-reflex-card__group-tag" style="background: #f0fdf4; color: #166534;">Nhóm 2: Mượn đạo đức & cầu toàn</span>
+              <h3 class="m-reflex-card__name">08. Chọn lối sống chậm</h3>
+            </div>
+            <a href="#cach-08" class="m-reflex-card__btn">Xem kịch bản →</a>
+          </div>
+          <div class="m-reflex-card__tiers">
+            <div class="m-tier-row m-tier-t1">
+              <span class="m-tier-label">💬 Tầng 1: Lời nói đãi bôi (Văn mẫu)</span>
+              <div class="m-tier-val">“Đến một độ tuổi nào đó, con người ta sẽ hướng về sự cân bằng và bình an nội tâm.”</div>
+            </div>
+            <div class="m-tier-row m-tier-t2">
+              <span class="m-tier-label">⚡ Tầng 2: Cảm giác đời thực</span>
+              <div class="m-tier-val">Công việc chậm lại, chưa tìm được lối ra.</div>
+            </div>
+            <div class="m-tier-row m-tier-t3">
+              <span class="m-tier-label">⚠️ Tầng 3: Sự thật chỗ khó nói</span>
+              <div class="m-tier-val"><span class="tag-warm">Mệt mỏi, sốt ruột</span></div>
+            </div>
+            <div class="m-tier-row m-tier-mask">
+              <span class="m-tier-label">🛡️ Bình phong thể diện</span>
+              <div class="m-tier-val"><span class="tag-success">➔ Tìm sự an yên</span></div>
+            </div>
+            <div class="m-tier-row m-tier-t25">
+              <span class="m-tier-label">🎯 Tầng 2.5: Lời phòng vệ giữ thể diện</span>
+              <div class="m-tier-val">“Đến tuổi này mình chọn lối sống chậm, quay về bên trong tìm sự an yên hơn là cạnh tranh!”</div>
+            </div>
+          </div>
+        </article>
+
+        <!-- CARD 14 -->
+        <article class="m-reflex-card" data-group="2" data-id="14">
+          <div class="m-reflex-card__head">
+            <div class="m-reflex-card__title-box">
+              <span class="m-reflex-card__group-tag" style="background: #f0fdf4; color: #166534;">Nhóm 2: Mượn đạo đức & cầu toàn</span>
+              <h3 class="m-reflex-card__name">14. Tập trung khách quen</h3>
+            </div>
+            <a href="#cach-14" class="m-reflex-card__btn">Xem kịch bản →</a>
+          </div>
+          <div class="m-reflex-card__tiers">
+            <div class="m-tier-row m-tier-t1">
+              <span class="m-tier-label">💬 Tầng 1: Lời nói đãi bôi (Văn mẫu)</span>
+              <div class="m-tier-val">“Mô hình của tôi tập trung vào chiều sâu dịch vụ cho tệp khách ruột am hiểu.”</div>
+            </div>
+            <div class="m-tier-row m-tier-t2">
+              <span class="m-tier-label">⚡ Tầng 2: Cảm giác đời thực</span>
+              <div class="m-tier-val">Sản phẩm ít người biết tới.</div>
+            </div>
+            <div class="m-tier-row m-tier-t3">
+              <span class="m-tier-label">⚠️ Tầng 3: Sự thật chỗ khó nói</span>
+              <div class="m-tier-val"><span class="tag-warm">Chưa mở rộng được tệp</span></div>
+            </div>
+            <div class="m-tier-row m-tier-mask">
+              <span class="m-tier-label">🛡️ Bình phong thể diện</span>
+              <div class="m-tier-val"><span class="tag-success">➔ Phục vụ người am tường</span></div>
+            </div>
+            <div class="m-tier-row m-tier-t25">
+              <span class="m-tier-label">🎯 Tầng 2.5: Lời phòng vệ giữ thể diện</span>
+              <div class="m-tier-val">“Sản phẩm của tôi kén người dùng, chỉ phục vụ số ít những người thực sự am tường thôi!”</div>
+            </div>
+          </div>
+        </article>
+
+        <!-- CARD 04 -->
+        <article class="m-reflex-card" data-group="3" data-id="04">
+          <div class="m-reflex-card__head">
+            <div class="m-reflex-card__title-box">
+              <span class="m-reflex-card__group-tag" style="background: #eff6ff; color: #1e40af;">Nhóm 3: Bận việc phụ né tránh</span>
+              <h3 class="m-reflex-card__name">04. Đầu tư thiết bị</h3>
+            </div>
+            <a href="#cach-04" class="m-reflex-card__btn">Xem kịch bản →</a>
+          </div>
+          <div class="m-reflex-card__tiers">
+            <div class="m-tier-row m-tier-t1">
+              <span class="m-tier-label">💬 Tầng 1: Lời nói đãi bôi (Văn mẫu)</span>
+              <div class="m-tier-val">“Muốn làm việc gì chuyên nghiệp thì hạ tầng ban đầu phải được chuẩn bị bài bản.”</div>
+            </div>
+            <div class="m-tier-row m-tier-t2">
+              <span class="m-tier-label">⚡ Tầng 2: Cảm giác đời thực</span>
+              <div class="m-tier-val">Mua máy ảnh xịn về để đấy, chưa dám bấm quay.</div>
+            </div>
+            <div class="m-tier-row m-tier-t3">
+              <span class="m-tier-label">⚠️ Tầng 3: Sự thật chỗ khó nói</span>
+              <div class="m-tier-val"><span class="tag-warm">Chưa tự tin nói</span></div>
+            </div>
+            <div class="m-tier-row m-tier-mask">
+              <span class="m-tier-label">🛡️ Bình phong thể diện</span>
+              <div class="m-tier-val"><span class="tag-success">➔ Chuẩn bị bài bản</span></div>
+            </div>
+            <div class="m-tier-row m-tier-t25">
+              <span class="m-tier-label">🎯 Tầng 2.5: Lời phòng vệ giữ thể diện</span>
+              <div class="m-tier-val">“Làm gì cũng phải chuẩn chỉ từ thiết bị. Đạt chuẩn hình ảnh đẹp thì mới bấm máy!”</div>
+            </div>
+          </div>
+        </article>
+
+        <!-- CARD 05 -->
+        <article class="m-reflex-card" data-group="3" data-id="05">
+          <div class="m-reflex-card__head">
+            <div class="m-reflex-card__title-box">
+              <span class="m-reflex-card__group-tag" style="background: #eff6ff; color: #1e40af;">Nhóm 3: Bận việc phụ né tránh</span>
+              <h3 class="m-reflex-card__name">05. Viện cớ đối tác</h3>
+            </div>
+            <a href="#cach-05" class="m-reflex-card__btn">Xem kịch bản →</a>
+          </div>
+          <div class="m-reflex-card__tiers">
+            <div class="m-tier-row m-tier-t1">
+              <span class="m-tier-label">💬 Tầng 1: Lời nói đãi bôi (Văn mẫu)</span>
+              <div class="m-tier-val">“Doanh nghiệp chúng tôi luôn đặt tính bảo mật và sự kín kẽ của đối tác lên hàng đầu.”</div>
+            </div>
+            <div class="m-tier-row m-tier-t2">
+              <span class="m-tier-label">⚡ Tầng 2: Cảm giác đời thực</span>
+              <div class="m-tier-val">Ngại xuất hiện trước ống kính.</div>
+            </div>
+            <div class="m-tier-row m-tier-t3">
+              <span class="m-tier-label">⚠️ Tầng 3: Sự thật chỗ khó nói</span>
+              <div class="m-tier-val"><span class="tag-warm">E ngại ngoại hình</span></div>
+            </div>
+            <div class="m-tier-row m-tier-mask">
+              <span class="m-tier-label">🛡️ Bình phong thể diện</span>
+              <div class="m-tier-val"><span class="tag-success">➔ Giữ hình ảnh đối tác</span></div>
+            </div>
+            <div class="m-tier-row m-tier-t25">
+              <span class="m-tier-label">🎯 Tầng 2.5: Lời phòng vệ giữ thể diện</span>
+              <div class="m-tier-val">“Khách bên mình toàn lãnh đạo kín tiếng. Xuất hiện trên mạng nhiều sợ ảnh hưởng uy tín chung!”</div>
+            </div>
+          </div>
+        </article>
+
+        <!-- CARD 12 -->
+        <article class="m-reflex-card" data-group="3" data-id="12">
+          <div class="m-reflex-card__head">
+            <div class="m-reflex-card__title-box">
+              <span class="m-reflex-card__group-tag" style="background: #eff6ff; color: #1e40af;">Nhóm 3: Bận việc phụ né tránh</span>
+              <h3 class="m-reflex-card__name">12. Bận việc chân tay</h3>
+            </div>
+            <a href="#cach-12" class="m-reflex-card__btn">Xem kịch bản →</a>
+          </div>
+          <div class="m-reflex-card__tiers">
+            <div class="m-tier-row m-tier-t1">
+              <span class="m-tier-label">💬 Tầng 1: Lời nói đãi bôi (Văn mẫu)</span>
+              <div class="m-tier-val">“Người làm chủ là người phải tận tụy, sâu sát với từng chi tiết vận hành nhỏ nhất.”</div>
+            </div>
+            <div class="m-tier-row m-tier-t2">
+              <span class="m-tier-label">⚡ Tầng 2: Cảm giác đời thực</span>
+              <div class="m-tier-val">Lao vào việc quen thuộc để né việc mới.</div>
+            </div>
+            <div class="m-tier-row m-tier-t3">
+              <span class="m-tier-label">⚠️ Tầng 3: Sự thật chỗ khó nói</span>
+              <div class="m-tier-val"><span class="tag-warm">Ngại thử thách mới</span></div>
+            </div>
+            <div class="m-tier-row m-tier-mask">
+              <span class="m-tier-label">🛡️ Bình phong thể diện</span>
+              <div class="m-tier-val"><span class="tag-success">➔ Tận tụy gánh vác</span></div>
+            </div>
+            <div class="m-tier-row m-tier-t25">
+              <span class="m-tier-label">🎯 Tầng 2.5: Lời phòng vệ giữ thể diện</span>
+              <div class="m-tier-val">“Một mình lo trăm thứ việc từ sáng đến đêm. Thời gian thở còn thiếu, tâm trí đâu mà lên hình!”</div>
+            </div>
+          </div>
+        </article>
+
+        <!-- CARD 15 -->
+        <article class="m-reflex-card" data-group="3" data-id="15">
+          <div class="m-reflex-card__head">
+            <div class="m-reflex-card__title-box">
+              <span class="m-reflex-card__group-tag" style="background: #eff6ff; color: #1e40af;">Nhóm 3: Bận việc phụ né tránh</span>
+              <h3 class="m-reflex-card__name">15. Giao cho bên ngoài</h3>
+            </div>
+            <a href="#cach-15" class="m-reflex-card__btn">Xem kịch bản →</a>
+          </div>
+          <div class="m-reflex-card__tiers">
+            <div class="m-tier-row m-tier-t1">
+              <span class="m-tier-label">💬 Tầng 1: Lời nói đãi bôi (Văn mẫu)</span>
+              <div class="m-tier-val">“Lãnh đạo cấp cao cần tập trung vào quản trị và sử dụng đòn bẩy chuyên gia.”</div>
+            </div>
+            <div class="m-tier-row m-tier-t2">
+              <span class="m-tier-label">⚡ Tầng 2: Cảm giác đời thực</span>
+              <div class="m-tier-val">Thuê đơn vị khác làm thay nhưng chưa hiệu quả.</div>
+            </div>
+            <div class="m-tier-row m-tier-t3">
+              <span class="m-tier-label">⚠️ Tầng 3: Sự thật chỗ khó nói</span>
+              <div class="m-tier-val"><span class="tag-warm">Chưa nắm bản chất</span></div>
+            </div>
+            <div class="m-tier-row m-tier-mask">
+              <span class="m-tier-label">🛡️ Bình phong thể diện</span>
+              <div class="m-tier-val"><span class="tag-success">➔ Dùng đòn bẩy quản trị</span></div>
+            </div>
+            <div class="m-tier-row m-tier-t25">
+              <span class="m-tier-label">🎯 Tầng 2.5: Lời phòng vệ giữ thể diện</span>
+              <div class="m-tier-val">“Lãnh đạo là phải biết dùng đòn bẩy. Đơn vị bên ngoài làm chưa đúng ý mình chứ lỗi gì tại mình!”</div>
+            </div>
+          </div>
+        </article>
+
+        <!-- CARD 03 -->
+        <article class="m-reflex-card" data-group="4" data-id="03">
+          <div class="m-reflex-card__head">
+            <div class="m-reflex-card__title-box">
+              <span class="m-reflex-card__group-tag" style="background: #faf5ff; color: #6b21a8;">Nhóm 4: Lối thoát an toàn</span>
+              <h3 class="m-reflex-card__name">03. Khác biệt ngày & đêm</h3>
+            </div>
+            <a href="#cach-03" class="m-reflex-card__btn">Xem kịch bản →</a>
+          </div>
+          <div class="m-reflex-card__tiers">
+            <div class="m-tier-row m-tier-t1">
+              <span class="m-tier-label">💬 Tầng 1: Lời nói đãi bôi (Văn mẫu)</span>
+              <div class="m-tier-val">“Dạo này lịch trình công việc của tôi rất dày đặc, chỉ ưu tiên những việc thực sự khẩn cấp.”</div>
+            </div>
+            <div class="m-tier-row m-tier-t2">
+              <span class="m-tier-label">⚡ Tầng 2: Cảm giác đời thực</span>
+              <div class="m-tier-val">Tối quay thử lúng túng, xóa vội vì ngượng.</div>
+            </div>
+            <div class="m-tier-row m-tier-t3">
+              <span class="m-tier-label">⚠️ Tầng 3: Sự thật chỗ khó nói</span>
+              <div class="m-tier-val"><span class="tag-warm">Ngại ngùng khi một mình</span></div>
+            </div>
+            <div class="m-tier-row m-tier-mask">
+              <span class="m-tier-label">🛡️ Bình phong thể diện</span>
+              <div class="m-tier-val"><span class="tag-success">➔ Người bận rộn</span></div>
+            </div>
+            <div class="m-tier-row m-tier-t25">
+              <span class="m-tier-label">🎯 Tầng 2.5: Lời phòng vệ giữ thể diện</span>
+              <div class="m-tier-val">“Dạo này công việc bận quá, chăm sóc khách ruột còn thiếu thời gian, hơi đâu ngồi quay clip!”</div>
+            </div>
+          </div>
+        </article>
+
+        <!-- CARD 07 -->
+        <article class="m-reflex-card" data-group="4" data-id="07">
+          <div class="m-reflex-card__head">
+            <div class="m-reflex-card__title-box">
+              <span class="m-reflex-card__group-tag" style="background: #faf5ff; color: #6b21a8;">Nhóm 4: Lối thoát an toàn</span>
+              <h3 class="m-reflex-card__name">07. Nhìn về chặng đường cũ</h3>
+            </div>
+            <a href="#cach-07" class="m-reflex-card__btn">Xem kịch bản →</a>
+          </div>
+          <div class="m-reflex-card__tiers">
+            <div class="m-tier-row m-tier-t1">
+              <span class="m-tier-label">💬 Tầng 1: Lời nói đãi bôi (Văn mẫu)</span>
+              <div class="m-tier-val">“Kinh doanh bền vững phải dựa trên mối quan hệ thực chất và chữ tín tích lũy nhiều năm.”</div>
+            </div>
+            <div class="m-tier-row m-tier-t2">
+              <span class="m-tier-label">⚡ Tầng 2: Cảm giác đời thực</span>
+              <div class="m-tier-val">Mối quan hệ cũ không còn sinh ra khách mới.</div>
+            </div>
+            <div class="m-tier-row m-tier-t3">
+              <span class="m-tier-label">⚠️ Tầng 3: Sự thật chỗ khó nói</span>
+              <div class="m-tier-val"><span class="tag-warm">Lo cách cũ hết hiệu quả</span></div>
+            </div>
+            <div class="m-tier-row m-tier-mask">
+              <span class="m-tier-label">🛡️ Bình phong thể diện</span>
+              <div class="m-tier-val"><span class="tag-success">➔ Trọng chiều sâu</span></div>
+            </div>
+            <div class="m-tier-row m-tier-t25">
+              <span class="m-tier-label">🎯 Tầng 2.5: Lời phòng vệ giữ thể diện</span>
+              <div class="m-tier-val">“Thời trước chỉ cần cái bắt tay là chốt dự án. Làm ăn bằng quan hệ thực chất chứ ai đi làm clip!”</div>
+            </div>
+          </div>
+        </article>
+
+        <!-- CARD 13 -->
+        <article class="m-reflex-card" data-group="4" data-id="13">
+          <div class="m-reflex-card__head">
+            <div class="m-reflex-card__title-box">
+              <span class="m-reflex-card__group-tag" style="background: #faf5ff; color: #6b21a8;">Nhóm 4: Lối thoát an toàn</span>
+              <h3 class="m-reflex-card__name">13. Nhận mình chưa rành</h3>
+            </div>
+            <a href="#cach-13" class="m-reflex-card__btn">Xem kịch bản →</a>
+          </div>
+          <div class="m-reflex-card__tiers">
+            <div class="m-tier-row m-tier-t1">
+              <span class="m-tier-label">💬 Tầng 1: Lời nói đãi bôi (Văn mẫu)</span>
+              <div class="m-tier-val">“Tôi thuộc thế hệ đi trước, quen làm việc thủ công và giao tiếp trực tiếp con người.”</div>
+            </div>
+            <div class="m-tier-row m-tier-t2">
+              <span class="m-tier-label">⚡ Tầng 2: Cảm giác đời thực</span>
+              <div class="m-tier-val">Chưa quen dùng công cụ, mò mẫm chưa ra.</div>
+            </div>
+            <div class="m-tier-row m-tier-t3">
+              <span class="m-tier-label">⚠️ Tầng 3: Sự thật chỗ khó nói</span>
+              <div class="m-tier-val"><span class="tag-warm">Ngại học cái mới</span></div>
+            </div>
+            <div class="m-tier-row m-tier-mask">
+              <span class="m-tier-label">🛡️ Bình phong thể diện</span>
+              <div class="m-tier-val"><span class="tag-success">➔ Thật thà, khiêm tốn</span></div>
+            </div>
+            <div class="m-tier-row m-tier-t25">
+              <span class="m-tier-label">🎯 Tầng 2.5: Lời phòng vệ giữ thể diện</span>
+              <div class="m-tier-val">“Anh thế hệ cũ mù tịt công nghệ. Thôi để tụi trẻ nhạy bén làm, mình lớn tuổi rồi theo sao kịp!”</div>
+            </div>
+          </div>
+        </article>
+
+        <!-- CARD 16 -->
+        <article class="m-reflex-card" data-group="4" data-id="16">
+          <div class="m-reflex-card__head">
+            <div class="m-reflex-card__title-box">
+              <span class="m-reflex-card__group-tag" style="background: #faf5ff; color: #6b21a8;">Nhóm 4: Lối thoát an toàn</span>
+              <h3 class="m-reflex-card__name">16. Thay đổi mục tiêu</h3>
+            </div>
+            <a href="#cach-16" class="m-reflex-card__btn">Xem kịch bản →</a>
+          </div>
+          <div class="m-reflex-card__tiers">
+            <div class="m-tier-row m-tier-t1">
+              <span class="m-tier-label">💬 Tầng 1: Lời nói đãi bôi (Văn mẫu)</span>
+              <div class="m-tier-val">“Truyền thông là một hành trình dài hạn để tích lũy chứ không nên nhìn vào số liệu nhất thời.”</div>
+            </div>
+            <div class="m-tier-row m-tier-t2">
+              <span class="m-tier-label">⚡ Tầng 2: Cảm giác đời thực</span>
+              <div class="m-tier-val">Video phát hành có ít người xem.</div>
+            </div>
+            <div class="m-tier-row m-tier-t3">
+              <span class="m-tier-label">⚠️ Tầng 3: Sự thật chỗ khó nói</span>
+              <div class="m-tier-val"><span class="tag-warm">Hơi hụt hẫng</span></div>
+            </div>
+            <div class="m-tier-row m-tier-mask">
+              <span class="m-tier-label">🛡️ Bình phong thể diện</span>
+              <div class="m-tier-val"><span class="tag-success">➔ Lưu giữ kỷ niệm</span></div>
+            </div>
+            <div class="m-tier-row m-tier-t25">
+              <span class="m-tier-label">🎯 Tầng 2.5: Lời phòng vệ giữ thể diện</span>
+              <div class="m-tier-val">“Làm chuỗi này để lưu giữ kỷ niệm làm nghề thôi, chứ mình đâu có đặt nặng chuyện người xem!”</div>
+            </div>
+          </div>
+        </article>
+
+        <!-- CARD 17 -->
+        <article class="m-reflex-card" data-group="4" data-id="17">
+          <div class="m-reflex-card__head">
+            <div class="m-reflex-card__title-box">
+              <span class="m-reflex-card__group-tag" style="background: #faf5ff; color: #6b21a8;">Nhóm 4: Lối thoát an toàn</span>
+              <h3 class="m-reflex-card__name">17. Tìm người đồng cảm</h3>
+            </div>
+            <a href="#cach-17" class="m-reflex-card__btn">Xem kịch bản →</a>
+          </div>
+          <div class="m-reflex-card__tiers">
+            <div class="m-tier-row m-tier-t1">
+              <span class="m-tier-label">💬 Tầng 1: Lời nói đãi bôi (Văn mẫu)</span>
+              <div class="m-tier-val">“Làm kinh doanh là phải nhìn vào bức tranh kinh tế vĩ mô và chu kỳ chung của toàn ngành.”</div>
+            </div>
+            <div class="m-tier-row m-tier-t2">
+              <span class="m-tier-label">⚡ Tầng 2: Cảm giác đời thực</span>
+              <div class="m-tier-val">Công việc chậm lại, chưa tìm được khách mới.</div>
+            </div>
+            <div class="m-tier-row m-tier-t3">
+              <span class="m-tier-label">⚠️ Tầng 3: Sự thật chỗ khó nói</span>
+              <div class="m-tier-val"><span class="tag-warm">Băn khoăn lo lắng</span></div>
+            </div>
+            <div class="m-tier-row m-tier-mask">
+              <span class="m-tier-label">🛡️ Bình phong thể diện</span>
+              <div class="m-tier-val"><span class="tag-success">➔ Khó khăn chung ngành</span></div>
+            </div>
+            <div class="m-tier-row m-tier-t25">
+              <span class="m-tier-label">🎯 Tầng 2.5: Lời phòng vệ giữ thể diện</span>
+              <div class="m-tier-val">“Ngồi với mấy anh em lâu năm ai cũng thấy thị trường chung đang chững lại, thôi cứ túc tắc làm!”</div>
+            </div>
+          </div>
+        </article>
+
+        <!-- CARD 18 -->
+        <article class="m-reflex-card" data-group="4" data-id="18">
+          <div class="m-reflex-card__head">
+            <div class="m-reflex-card__title-box">
+              <span class="m-reflex-card__group-tag" style="background: #faf5ff; color: #6b21a8;">Nhóm 4: Lối thoát an toàn</span>
+              <h3 class="m-reflex-card__name">18. Chờ thời điểm thích hợp</h3>
+            </div>
+            <a href="#cach-18" class="m-reflex-card__btn">Xem kịch bản →</a>
+          </div>
+          <div class="m-reflex-card__tiers">
+            <div class="m-tier-row m-tier-t1">
+              <span class="m-tier-label">💬 Tầng 1: Lời nói đãi bôi (Văn mẫu)</span>
+              <div class="m-tier-val">“Đầu tư và kinh doanh luôn đòi hỏi sự cẩn trọng, không nên chạy theo những làn sóng nhất thời.”</div>
+            </div>
+            <div class="m-tier-row m-tier-t2">
+              <span class="m-tier-label">⚡ Tầng 2: Cảm giác đời thực</span>
+              <div class="m-tier-val">Chần chừ chưa dám bắt tay vào thử nghiệm.</div>
+            </div>
+            <div class="m-tier-row m-tier-t3">
+              <span class="m-tier-label">⚠️ Tầng 3: Sự thật chỗ khó nói</span>
+              <div class="m-tier-val"><span class="tag-warm">Ngại rủi ro</span></div>
+            </div>
+            <div class="m-tier-row m-tier-mask">
+              <span class="m-tier-label">🛡️ Bình phong thể diện</span>
+              <div class="m-tier-val"><span class="tag-success">➔ Quan sát chu kỳ</span></div>
+            </div>
+            <div class="m-tier-row m-tier-t25">
+              <span class="m-tier-label">🎯 Tầng 2.5: Lời phòng vệ giữ thể diện</span>
+              <div class="m-tier-val">“Làn sóng này mới ở giai đoạn đầu. Người có tầm nhìn phải biết kiên nhẫn quan sát đã!”</div>
+            </div>
+          </div>
+        </article>
+
       </div>
 
     </div>
@@ -1326,7 +2383,7 @@
       <div class="cl-badge">07 / CHI TIẾT 18 PHẢN XẠ</div>
 
       <!-- NHỊP 2: TIÊU ĐỀ ĐANH THÉP -->
-      <h2 class="title-short">CHI TIẾT 18 PHẢN XẠ<br>VÀ CÂU NÓI OAI MIỆNG ĐỜI THƯỜNG</h2>
+      <h2 class="title-short">CHI TIẾT 18 PHẢN XẠ<br>VÀ LỜI NÓI GIỮ THỂ DIỆN ĐỜI THỰC</h2>
       
       <p class="editorial-hook">“Cơ chế tâm lý tự nhiên, câu hỏi nhận diện nhẹ nhàng và lời bộc bạch quen thuộc của người làm nghề.”</p>
 
@@ -1409,7 +2466,7 @@
             <div><b>• Câu 1 (Tầng 2 - Độ chênh lệch thực tế):</b> Công sức nhiều <i>(dựng cả buổi tối)</i> vs. Kết quả bèo bọt <i>(ba chục view)</i> ➔ Dừng ngay ngón tay người xem vì đúng cảnh thật.</div>
             <div><b>• Câu 2 (Tầng 2 sâu - Hạ cái tôi):</b> Thừa nhận sự bất công và sốt ruột ➔ Tháo gỡ khiên tự vệ, tạo an toàn sinh học giữa hai người làm nghề.</div>
             <div><b>• Câu 3 (Cầu nối tâm lý):</b> Dùng chữ <i>"phản xạ tự nhiên"</i> và <i>"đỡ ngượng miệng"</i> ➔ Hợp thức hóa tâm lý để người xem không tự ái khi soi gương.</div>
-            <div><b>• Câu 4 (Tầng 2.5 - Bắt bài mặt nạ):</b> Bắt trúng câu nói oai miệng mượn chuẩn mực nghề che đậy ➔ Đánh trúng tim đen khiến người nghe giật mình.</div>
+            <div><b>• Câu 4 (Tầng 2.5 - Bắt bài mặt nạ):</b> Bắt trúng câu nói phòng vệ mượn chuẩn mực nghề che đậy ➔ Đánh trúng tim đen khiến người nghe giật mình.</div>
             <div><b>• Câu 5 (Bóc vỏ mặt nạ):</b> Đối diện với lương tâm lúc <i>"đêm về ngẫm lại"</i> ➔ Chấm dứt sự ngụy biện một cách êm ái.</div>
             <div><b>• Câu 6 (Tầng 3 - Chỉ đúng huyệt):</b> Chỉ ra nỗi sợ thật <i>"ngượng mồm, sợ người quen chê"</i> + ham muốn thật <i>"muốn có nhiều người biết đến"</i> ➔ Giải oan cho độc giả.</div>
             <div><b>• Câu 7 (Chiếc chìa khóa mới):</b> Định nghĩa lại quay video chỉ là ngồi nói chuyện tiếp 1 người khách ➔ Đập tan rào cản hành động và bảo toàn vị thế đàng hoàng.</div>
@@ -1507,7 +2564,10 @@
       <!-- CARD 03 -->
       <div class="mechanism-card" id="cach-03">
         <div class="mechanism-card__header">
-          <span class="mechanism-card__id">PHẢN XẠ 03 / 18</span>
+          <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+            <span class="mechanism-card__id">PHẢN XẠ 03 / 18</span>
+            <span style="font-family: var(--font-mono); font-size: 11px; font-weight: 700; color: #6b21a8; background: #faf5ff; padding: 4px 10px; border-radius: 6px; text-transform: uppercase;">Xung đột: “Bận rộn việc lớn” vs. “Vụng về lúc một mình”</span>
+          </div>
           <a href="#sec-master-table" class="back-to-table-btn">↑ Lên bảng tra cứu</a>
         </div>
         <h3 class="mechanism-card__title">03. KHOẢNG CÁCH GIỮA LÚC MỘT MÌNH VÀ BAN NGÀY</h3>
@@ -1515,22 +2575,76 @@
         <div class="detail-grid">
           <div class="detail-row">
             <span class="detail-label">🔍 Cơ Chế Tâm Lý Tự Nhiên</span>
-            <div class="detail-content">Khoảng cách giữa những lúc một mình tự thử nghiệm nhưng thấy vụng về, với câu nói điềm tĩnh giữ thể diện khi gặp gỡ bạn bè, đối tác vào ban ngày.</div>
+            <div class="detail-content">Độ vênh tâm lý giữa sự lúng túng, vụng về khi một mình tự thử nghiệm trong phòng kín vào ban đêm, với phong thái đạo mạo, nói cứng mượn cớ bận rộn để bảo vệ vị thế người làm chủ khi gặp gỡ bạn bè, đối tác vào ban ngày.</div>
           </div>
           <div class="detail-row">
-            <span class="detail-label">🎯 Câu Hỏi Nhận Diện</span>
-            <div class="detail-content"><strong>“Đêm về họ đã thử làm điều gì nhưng chưa được như ý, để rồi ban ngày phải nói cứng điều gì trước mặt mọi người?”</strong></div>
+            <span class="detail-label">🎯 Câu Hỏi Nhận Diện Trực Diện</span>
+            <div class="detail-content"><strong>“Đêm về họ đã thử bấm máy nhưng thấy ngượng ngùng thế nào, để rồi ban ngày phải lấy cớ ‘bận việc lớn’ trước mặt mọi người?”</strong></div>
           </div>
         </div>
 
-        <div class="quote-box">
-          <span class="detail-label" style="color: var(--cl-accent);">🗣️ CÂU NÓI OAI MIỆNG QUEN THUỘC (TẦNG 2.5)</span>
-          <p>“Dạo này công việc bận tối mắt tối mũi, thời gian chăm sóc mấy khách ruột còn không đủ, hơi đâu mà rảnh rỗi ngồi làm mấy cái video giải trí ấy. Khi nào doanh nghiệp vận hành ổn thỏa, rảnh rang hẳn thì mình mới tính đến chuyện làm hình ảnh cá nhân!”</p>
+        <!-- BẢNG BÓC TÁCH 4 TẦNG NHẬN THỨC -->
+        <div style="margin: 24px 0; border: 1px solid var(--cl-line-strong); border-radius: 12px; overflow: hidden; background: #ffffff;">
+          <div style="background: #f8fafc; padding: 12px 18px; border-bottom: 1px solid var(--cl-line-strong); font-family: var(--font-display-short); font-size: 13px; font-weight: 700; color: #334155; text-transform: uppercase; letter-spacing: 0.05em; display: flex; align-items: center; gap: 8px;">
+            <span>🧬 GIẢI PHẪU 4 TẦNG NHẬN THỨC THỰC CHIẾN</span>
+          </div>
+          <div style="display: grid; grid-template-columns: 1fr;">
+            <div style="padding: 14px 18px; border-bottom: 1px solid #f1f5f9; display: grid; grid-template-columns: 140px 1fr; gap: 14px; align-items: baseline;">
+              <span style="font-family: var(--font-mono); font-size: 11.5px; font-weight: 700; color: #64748b; text-transform: uppercase;">Tầng 1 (Văn mẫu)</span>
+              <div style="font-size: 14.5px; color: #475569; font-style: italic;">“Dạo này lịch trình công việc của tôi rất dày đặc, chỉ ưu tiên những việc thực sự khẩn cấp và mang tính chiến lược.”</div>
+            </div>
+            <div style="padding: 14px 18px; border-bottom: 1px solid #f1f5f9; display: grid; grid-template-columns: 140px 1fr; gap: 14px; align-items: baseline; background: #fcfcfd;">
+              <span style="font-family: var(--font-mono); font-size: 11.5px; font-weight: 700; color: #2563eb; text-transform: uppercase;">Tầng 2 (Hiện thực)</span>
+              <div style="font-size: 14.5px; color: #1e293b; line-height: 1.6;">Đêm đóng chặt cửa phòng lén kê điện thoại quay thử, nói được ba câu thấy mặt đơ, giọng the thé kì cục ➔ xấu hổ vội bấm xóa video vì sợ người nhà nhìn thấy.</div>
+            </div>
+            <div style="padding: 14px 18px; border-bottom: 1px solid #f1f5f9; display: grid; grid-template-columns: 140px 1fr; gap: 14px; align-items: baseline; background: #f0f7ff;">
+              <span style="font-family: var(--font-mono); font-size: 11.5px; font-weight: 700; color: #1d4ed8; text-transform: uppercase;">Tầng 2.5 (Mặt nạ)</span>
+              <div style="font-size: 15px; color: #0f172a; font-weight: 600; line-height: 1.6;">“Dạo này công việc bận tối mắt tối mũi, thời gian chăm sóc mấy khách ruột còn không đủ, hơi đâu mà rảnh rỗi ngồi làm mấy cái video vô thưởng vô phạt ấy. Khi nào doanh nghiệp vận hành tự động, rảnh rang hẳn thì mình mới tính đến!”</div>
+            </div>
+            <div style="padding: 14px 18px; display: grid; grid-template-columns: 140px 1fr; gap: 14px; align-items: baseline; background: #fffdf5;">
+              <span style="font-family: var(--font-mono); font-size: 11.5px; font-weight: 700; color: #b45309; text-transform: uppercase;">Tầng 3 (Chỗ khó nói)</span>
+              <div style="font-size: 14.5px; color: #78350f; line-height: 1.6;">Xấu hổ với chính sự vụng về của bản thân khi đối diện với ống kính. Sợ người khác biết một người làm chủ, làm nghề lâu năm như mình mà đứng trước camera lại lóng ngóng ➔ đành dựng lên cái cớ "bận việc lớn" để che đậy.</div>
+            </div>
+          </div>
         </div>
 
-        <div class="truth-box">
-          <div class="truth-box__label">⚡ NỖI LÒNG THẦM KÍN (TẦNG 3)</div>
-          <div class="truth-box__content">Lấy lý do bận việc để giấu đi sự ngượng ngùng của buổi tối hôm trước: ngồi trước điện thoại thử nói vài câu thấy chưa tự nhiên, vội xóa video đi vì sợ người nhà nhìn thấy.</div>
+        <!-- KHỐI KỊCH BẢN QUAY THỰC CHIẾN (CHẨN ANH VIỆT) -->
+        <div style="background: #0f172a; color: #f8fafc; border-radius: 14px; padding: 24px 28px; margin: 24px 0; box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.25);">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; flex-wrap: wrap; gap: 12px; border-bottom: 1px solid rgba(255,255,255,0.12); padding-bottom: 14px;">
+            <div>
+              <div style="font-family: var(--font-mono); font-size: 11px; font-weight: 700; color: #38bdf8; text-transform: uppercase; letter-spacing: 0.08em;">KỊCH BẢN THỰC CHIẾN (35 - 40 GIÂY)</div>
+              <div style="font-family: var(--font-display-short); font-size: 17px; font-weight: 700; color: #ffffff; margin-top: 2px;">LỜI THOẠI QUAY BẬT MÁY NÓI NGAY (CHUẨN VĂN PHONG ANH VIỆT)</div>
+            </div>
+            <button onclick="copyScriptText('script-text-03', this)" style="background: #2563eb; color: #ffffff; border: none; padding: 8px 16px; border-radius: 8px; font-family: var(--font-sans); font-size: 13px; font-weight: 600; cursor: pointer; transition: all 0.2s ease; display: inline-flex; align-items: center; gap: 6px;">
+              📋 Sao chép kịch bản
+            </button>
+          </div>
+
+          <div id="script-text-03" style="font-family: var(--font-body); font-size: 16.5px; line-height: 1.85; color: #e2e8f0;">
+            <p style="margin-bottom: 12px;">“Có bao giờ bạn đợi cả nhà đi ngủ hết, lén đóng chặt cửa phòng... kê cái điện thoại lên bàn quay thử chưa?</p>
+            <p style="margin-bottom: 12px;">Bấm máy lên, nói được đúng ba câu thấy mặt mình đơ như tượng, giọng the thé kì cục... ngượng chín cả mặt, vội bấm nút xóa đi vì sợ người nhà nhìn thấy!</p>
+            <p style="margin-bottom: 12px;">Thế mà sáng hôm sau ra quán cafe ngồi với bạn bè, mặt vẫn lạnh tanh bảo:</p>
+            <p style="margin-bottom: 12px; color: #38bdf8; font-weight: 500;"><em>‘Dạo này công việc bận tối mắt tối mũi, thời gian đâu mà ngồi làm mấy cái video vô thưởng vô phạt!’</em></p>
+            <p style="margin-bottom: 12px;">Nói câu đấy xong thì giữ được cái oai của người bận rộn việc lớn... Nhưng trong bụng mình tự biết: đâu phải mình bận đến mức không có nổi 15 phút.</p>
+            <p style="margin-bottom: 12px;">Chỉ là mình xấu hổ với chính sự vụng về của bản thân lúc một mình trong phòng tối... sợ người ta biết một người làm chủ, làm nghề bao năm như mình... mà đứng trước cái camera lại lóng ngóng như gà mắc tóc.</p>
+            <p style="margin-bottom: 0; color: #86efac; font-weight: 600;">Thực ra, chẳng ai sinh ra là đã nói trơn tru trước ống kính cả. Cứ thừa nhận là mình chưa quen đi cho nó nhẹ đầu... Càng gồng mình làm người bận rộn, thì khoảng cách với khách hàng lại càng xa.”</p>
+          </div>
+        </div>
+
+        <!-- GIẢI MÃ LOGIC SUY LUẬN 7 CÂU -->
+        <div style="background: #f8fafc; border: 1px solid var(--cl-line-strong); border-radius: 12px; padding: 20px 22px; margin-top: 20px;">
+          <div style="font-family: var(--font-display-short); font-size: 13px; font-weight: 700; color: var(--cl-accent); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 14px;">
+            🧩 LOGIC BÓC TÁCH TÂM LÝ TỪNG CÂU THOẠI:
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 10px; font-size: 14px; line-height: 1.6; color: #334155;">
+            <div><b>• Câu 1 (Cửa vào A - Bắt quả tang thao tác lén lút):</b> Bắt đúng cảnh đêm khuya đóng cửa kê điện thoại quay thử ➔ Người xem giật bắn mình vì tưởng có camera quay lén trong phòng ngủ.</div>
+            <div><b>• Câu 2 (Tầng 2 - Thao tác thật & ngượng ngùng):</b> Mặt đơ, giọng the thé, xóa vội vì sợ người nhà thấy ➔ Mô tả chính xác 100% cảm giác lóng ngóng của người mới.</div>
+            <div><b>• Câu 3 (Cú va đập Ngày & Đêm):</b> Chuyển cảnh sang 9h sáng hôm sau ra quán cafe ➔ Tạo độ vênh đau đớn giữa hành động đêm và lời nói ngày.</div>
+            <div><b>• Câu 4 (Tầng 2.5 - Trích nguyên văn mặt nạ):</b> Trích câu nói oai <i>"bận tối mắt tối mũi, hơi đâu làm clip"</i> ➔ Đánh trúng cái cớ ngụy trang quen thuộc nhất.</div>
+            <div><b>• Câu 5 (Bóc vỏ mặt nạ):</b> <i>"Đâu phải bận đến mức không có 15 phút"</i> ➔ Đập tan chiếc khiên tự lừa dối bản thân.</div>
+            <div><b>• Câu 6 (Tầng 3 - Chỉ đúng huyệt sợ mất uy tín):</b> Sợ người ta biết một người làm chủ/làm thợ giỏi mà trước camera lại vụng về ➔ Giải tỏa hoàn toàn gánh nặng phải tỏ ra hoàn hảo.</div>
+            <div><b>• Câu 7 (Chiếc chìa khóa mới):</b> Tự trào hạ cái tôi: <i>"Thừa nhận chưa quen cho nhẹ đầu"</i> ➔ Kéo họ về mặt đất, phá bỏ rào cản hành động để bắt đầu làm lại.</div>
+          </div>
         </div>
       </div>
 
@@ -1554,7 +2668,7 @@
         </div>
 
         <div class="quote-box">
-          <span class="detail-label" style="color: var(--cl-accent);">🗣️ CÂU NÓI OAI MIỆNG QUEN THUỘC (TẦNG 2.5)</span>
+          <span class="detail-label" style="color: var(--cl-accent);">🗣️ CÂU NÓI BẢO VỆ THỂ DIỆN (TẦNG 2.5)</span>
           <p>“Tính mình làm gì cũng phải chỉn chu, chuyên nghiệp từ hạ tầng thiết bị. Sắm máy ảnh tốt, đèn chiếu sáng, micro thu âm chuẩn đâu ra đấy, đạt chất lượng hình ảnh đẹp thì mới bấm máy, chứ không làm kiểu vội vàng bằng điện thoại!”</p>
         </div>
 
@@ -1584,7 +2698,7 @@
         </div>
 
         <div class="quote-box">
-          <span class="detail-label" style="color: var(--cl-accent);">🗣️ CÂU NÓI OAI MIỆNG QUEN THUỘC (TẦNG 2.5)</span>
+          <span class="detail-label" style="color: var(--cl-accent);">🗣️ CÂU NÓI BẢO VỆ THỂ DIỆN (TẦNG 2.5)</span>
           <p>“Tệp khách hàng của bên mình toàn các bác lãnh đạo, chủ doanh nghiệp kín tiếng, họ quen làm việc trực tiếp và kín đáo. Mình mà xuất hiện trên mạng nhiều sợ khách hàng quen họ đánh giá doanh nghiệp bớt chỉn chu, phải giữ gìn hình ảnh cho đối tác chứ!”</p>
         </div>
 
@@ -1614,7 +2728,7 @@
         </div>
 
         <div class="quote-box">
-          <span class="detail-label" style="color: var(--cl-accent);">🗣️ CÂU NÓI OAI MIỆNG QUEN THUỘC (TẦNG 2.5)</span>
+          <span class="detail-label" style="color: var(--cl-accent);">🗣️ CÂU NÓI BẢO VỆ THỂ DIỆN (TẦNG 2.5)</span>
           <p>“Nội dung mình đưa ra cho công chúng là phải mang giá trị sâu sắc, kịch bản phải chuẩn bị thật kỹ càng từng câu chữ, đạt độ chín về tư tưởng. Khi nào sắp xếp góc làm việc thật tươm tất thì mình mới quay!”</p>
         </div>
 
@@ -1644,7 +2758,7 @@
         </div>
 
         <div class="quote-box">
-          <span class="detail-label" style="color: var(--cl-accent);">🗣️ CÂU NÓI OAI MIỆNG QUEN THUỘC (TẦNG 2.5)</span>
+          <span class="detail-label" style="color: var(--cl-accent);">🗣️ CÂU NÓI BẢO VỆ THỂ DIỆN (TẦNG 2.5)</span>
           <p>“Thời trước của anh, chỉ cần uy tín cá nhân với một cái bắt tay chân thành là dự án lớn đã được chốt xong. Làm ăn cốt ở mối quan hệ gắn bó thực chất, chứ thời nay cứ phải lên mạng làm hình ảnh để tìm người xem, anh thấy không quen!”</p>
         </div>
 
@@ -1674,7 +2788,7 @@
         </div>
 
         <div class="quote-box">
-          <span class="detail-label" style="color: var(--cl-accent);">🗣️ CÂU NÓI OAI MIỆNG QUEN THUỘC (TẦNG 2.5)</span>
+          <span class="detail-label" style="color: var(--cl-accent);">🗣️ CÂU NÓI BẢO VỆ THỂ DIỆN (TẦNG 2.5)</span>
           <p>“Đến tuổi này rồi, mình nhận ra danh tiếng hay sự ồn ào cũng không phải là tất cả. Mình chọn lối sống chậm, quay về bên trong tìm sự an yên hơn là lao vào vòng xoáy cạnh tranh trên mạng xã hội. Ai thích sôi động thì cứ làm, mình chọn bình yên!”</p>
         </div>
 
@@ -1704,7 +2818,7 @@
         </div>
 
         <div class="quote-box">
-          <span class="detail-label" style="color: var(--cl-accent);">🗣️ CÂU NÓI OAI MIỆNG QUEN THUỘC (TẦNG 2.5)</span>
+          <span class="detail-label" style="color: var(--cl-accent);">🗣️ CÂU NÓI BẢO VỆ THỂ DIỆN (TẦNG 2.5)</span>
           <p>“Video này nhịp cắt hơi dồn dập, nội dung hơi vội vàng, chưa đủ chiều sâu để người xem ngẫm nghĩ. Làm truyền thông mà giản lược quá mức thế này thì chưa thực sự chuẩn mực. Mình không làm thì thôi, chứ làm là phải chuẩn chỉ có tính sư phạm!”</p>
         </div>
 
@@ -1734,7 +2848,7 @@
         </div>
 
         <div class="quote-box">
-          <span class="detail-label" style="color: var(--cl-accent);">🗣️ CÂU NÓI OAI MIỆNG QUEN THUỘC (TẦNG 2.5)</span>
+          <span class="detail-label" style="color: var(--cl-accent);">🗣️ CÂU NÓI BẢO VỆ THỂ DIỆN (TẦNG 2.5)</span>
           <p>“Video ngắn trên các nền tảng thực chất hướng người xem vào sự chú ý ngắn hạn, làm giảm khả năng tư duy sâu của người trẻ. Tôi muốn giữ sự tĩnh lặng và chiều sâu tư duy của một người làm chuyên môn, chứ không muốn cuốn theo cách làm ấy!”</p>
         </div>
 
@@ -1764,7 +2878,7 @@
         </div>
 
         <div class="quote-box">
-          <span class="detail-label" style="color: var(--cl-accent);">🗣️ CÂU NÓI OAI MIỆNG QUEN THUỘC (TẦNG 2.5)</span>
+          <span class="detail-label" style="color: var(--cl-accent);">🗣️ CÂU NÓI BẢO VỆ THỂ DIỆN (TẦNG 2.5)</span>
           <p>“Cái video nhiều người xem ấy ở đoạn giữa dùng từ chuyên ngành chưa thật chuẩn xác. Kiến thức chuyên môn là phải chuẩn chỉ từng chút một. Mình làm nghề là phải nghiêm cẩn, thà ít người biết nhưng nói câu nào phải chuẩn xác câu đấy!”</p>
         </div>
 
@@ -1794,7 +2908,7 @@
         </div>
 
         <div class="quote-box">
-          <span class="detail-label" style="color: var(--cl-accent);">🗣️ CÂU NÓI OAI MIỆNG QUEN THUỘC (TẦNG 2.5)</span>
+          <span class="detail-label" style="color: var(--cl-accent);">🗣️ CÂU NÓI BẢO VỆ THỂ DIỆN (TẦNG 2.5)</span>
           <p>“Mọi người cứ bảo tôi phải lên mạng làm hình ảnh đi... Nhưng ai sẽ là người ở lại xưởng kiểm tra từng đơn hàng, rà soát từng chi tiết cho khách đây? Một mình tôi lo trăm thứ việc từ sáng đến đêm vì trách nhiệm. Thời gian thở còn thiếu, tâm trí đâu mà đứng trước ống kính!”</p>
         </div>
 
@@ -1824,7 +2938,7 @@
         </div>
 
         <div class="quote-box">
-          <span class="detail-label" style="color: var(--cl-accent);">🗣️ CÂU NÓI OAI MIỆNG QUEN THUỘC (TẦNG 2.5)</span>
+          <span class="detail-label" style="color: var(--cl-accent);">🗣️ CÂU NÓI BẢO VỆ THỂ DIỆN (TẦNG 2.5)</span>
           <p>“Anh là người thế hệ trước, quen làm việc trực tiếp chứ mù tịt ba cái đồ công nghệ thông minh với mạng xã hội. Thôi để tụi trẻ nhạy bén nó làm, chứ mình lớn tuổi rồi theo sao kịp!”</p>
         </div>
 
@@ -1854,7 +2968,7 @@
         </div>
 
         <div class="quote-box">
-          <span class="detail-label" style="color: var(--cl-accent);">🗣️ CÂU NÓI OAI MIỆNG QUEN THUỘC (TẦNG 2.5)</span>
+          <span class="detail-label" style="color: var(--cl-accent);">🗣️ CÂU NÓI BẢO VỆ THỂ DIỆN (TẦNG 2.5)</span>
           <p>“Sản phẩm của tôi không hướng đến số đông đại trà, cũng không cần tìm kiếm sự chú ý rộng rãi. Tôi chỉ tập trung phục vụ một nhóm rất nhỏ những người thực sự am tường và hiểu được giá trị. Chất lượng thực sự thì luôn có lối đi riêng!”</p>
         </div>
 
@@ -1884,7 +2998,7 @@
         </div>
 
         <div class="quote-box">
-          <span class="detail-label" style="color: var(--cl-accent);">🗣️ CÂU NÓI OAI MIỆNG QUEN THUỘC (TẦNG 2.5)</span>
+          <span class="detail-label" style="color: var(--cl-accent);">🗣️ CÂU NÓI BẢO VỆ THỂ DIỆN (TẦNG 2.5)</span>
           <p>“Làm quản lý là phải biết dùng đòn bẩy và phân công công việc. Anh thuê hẳn đơn vị truyền thông về làm video, nhưng cách làm của họ chưa thực sự hiểu đúng cái hồn của nghề mình, nên kết quả chưa được như ý!”</p>
         </div>
 
@@ -1914,7 +3028,7 @@
         </div>
 
         <div class="quote-box">
-          <span class="detail-label" style="color: var(--cl-accent);">🗣️ CÂU NÓI OAI MIỆNG QUEN THUỘC (TẦNG 2.5)</span>
+          <span class="detail-label" style="color: var(--cl-accent);">🗣️ CÂU NÓI BẢO VỆ THỂ DIỆN (TẦNG 2.5)</span>
           <p>“Ngay từ đầu mình làm chuỗi video này đâu phải để tìm kiếm lượt xem hay bán hàng. Mình làm cốt để lưu giữ lại chặng đường làm nghề và rèn luyện sự kiên nhẫn cho bản thân thôi. Chỉ cần một người xem mà thấy hữu ích là mình vui rồi!”</p>
         </div>
 
@@ -1944,7 +3058,7 @@
         </div>
 
         <div class="quote-box">
-          <span class="detail-label" style="color: var(--cl-accent);">🗣️ CÂU NÓI OAI MIỆNG QUEN THUỘC (TẦNG 2.5)</span>
+          <span class="detail-label" style="color: var(--cl-accent);">🗣️ CÂU NÓI BẢO VỆ THỂ DIỆN (TẦNG 2.5)</span>
           <p>“Hôm qua vừa ngồi với mấy anh em lâu năm trong nghề, ai cũng thấy giai đoạn này thị trường chung đang chậm lại. Những bên làm rầm rộ trên mạng nhìn thế thôi chứ thực tế cũng phải cân đối nhiều thứ. Thôi mình cứ túc tắc làm chắc chắn từng bước!”</p>
         </div>
 
@@ -1974,7 +3088,7 @@
         </div>
 
         <div class="quote-box">
-          <span class="detail-label" style="color: var(--cl-accent);">🗣️ CÂU NÓI OAI MIỆNG QUEN THUỘC (TẦNG 2.5)</span>
+          <span class="detail-label" style="color: var(--cl-accent);">🗣️ CÂU NÓI BẢO VỆ THỂ DIỆN (TẦNG 2.5)</span>
           <p>“Làn sóng video ngắn này hiện tại mới chỉ ở giai đoạn đầu thôi. Người làm ăn có kinh nghiệm là phải biết điềm tĩnh quan sát, đợi khi nào thị trường ổn định và sàng lọc bớt thì lúc đấy mình tham gia một cách bài bản cũng chưa muộn!”</p>
         </div>
 
@@ -2082,7 +3196,150 @@
         console.error('Lỗi sao chép: ', err);
       });
     }
-  </script>
 
+    /* ═══ MASTER TABLE & MOBILE CARDS INTERACTION CONTROLLER ═══ */
+    var currentReflexGroup = 'all';
+    var currentSearchKeyword = '';
+
+    function normalizeVietnamese(str) {
+      if (!str) return '';
+      return str.normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .replace(/đ/g, 'd').replace(/Đ/g, 'D')
+        .toLowerCase()
+        .trim();
+    }
+
+    function switchTableViewMode(mode) {
+      var sec = document.getElementById('sec-master-table');
+      var btnCards = document.getElementById('btn-view-cards');
+      var btnTable = document.getElementById('btn-view-table');
+      var hint = document.getElementById('tableStickyHint');
+      if (!sec) return;
+
+      if (mode === 'cards') {
+        sec.classList.remove('view-mode-table');
+        sec.classList.add('view-mode-cards');
+        if (btnCards) btnCards.classList.add('is-active');
+        if (btnTable) btnTable.classList.remove('is-active');
+        if (hint) hint.style.display = 'none';
+      } else {
+        sec.classList.remove('view-mode-cards');
+        sec.classList.add('view-mode-table');
+        if (btnTable) btnTable.classList.add('is-active');
+        if (btnCards) btnCards.classList.remove('is-active');
+        if (hint) hint.style.display = 'flex';
+      }
+    }
+
+    function filterReflexGroup(groupId, tabEl) {
+      currentReflexGroup = groupId;
+      
+      // Update active tab style
+      var tabs = document.querySelectorAll('.group-tab-item');
+      tabs.forEach(function(t) { t.classList.remove('is-active'); });
+      if (tabEl) tabEl.classList.add('is-active');
+
+      applyTableFilters();
+    }
+
+    function handleTableSearch(keyword) {
+      currentSearchKeyword = keyword || '';
+      applyTableFilters();
+    }
+
+    function applyTableFilters() {
+      var searchKey = normalizeVietnamese(currentSearchKeyword);
+      var tableRows = document.querySelectorAll('#mainMasterTable tbody tr[data-group]');
+      var groupHeaders = document.querySelectorAll('#mainMasterTable tbody tr[data-group-header]');
+      var mobileCards = document.querySelectorAll('#masterMobileCards .m-reflex-card');
+      var statusLabel = document.getElementById('searchStatusLabel');
+
+      var visibleCount = 0;
+      var activeGroupMap = {};
+
+      // 1. Filter Table Rows
+      tableRows.forEach(function(row) {
+        var group = row.getAttribute('data-group');
+        var textContent = normalizeVietnamese(row.innerText || row.textContent);
+        var matchGroup = (currentReflexGroup === 'all' || group === currentReflexGroup);
+        var matchSearch = (!searchKey || textContent.indexOf(searchKey) !== -1);
+
+        if (matchGroup && matchSearch) {
+          row.style.display = '';
+          visibleCount++;
+          activeGroupMap[group] = (activeGroupMap[group] || 0) + 1;
+        } else {
+          row.style.display = 'none';
+        }
+      });
+
+      // 2. Filter Table Group Header Rows
+      groupHeaders.forEach(function(gh) {
+        var ghGroup = gh.getAttribute('data-group-header');
+        if (currentReflexGroup === 'all') {
+          gh.style.display = (activeGroupMap[ghGroup] && activeGroupMap[ghGroup] > 0) ? '' : 'none';
+        } else {
+          gh.style.display = (ghGroup === currentReflexGroup && activeGroupMap[ghGroup] > 0) ? '' : 'none';
+        }
+      });
+
+      // 3. Filter Mobile Cards
+      mobileCards.forEach(function(card) {
+        var group = card.getAttribute('data-group');
+        var textContent = normalizeVietnamese(card.innerText || card.textContent);
+        var matchGroup = (currentReflexGroup === 'all' || group === currentReflexGroup);
+        var matchSearch = (!searchKey || textContent.indexOf(searchKey) !== -1);
+
+        if (matchGroup && matchSearch) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+
+      // 4. Update Status Label
+      if (statusLabel) {
+        if (searchKey) {
+          statusLabel.innerHTML = 'Tìm thấy <b>' + visibleCount + '</b> phản xạ phù hợp';
+        } else if (currentReflexGroup !== 'all') {
+          statusLabel.innerHTML = 'Đang lọc Nhóm ' + currentReflexGroup + ' (<b>' + visibleCount + '</b> phản xạ)';
+        } else {
+          statusLabel.innerHTML = 'Đang hiển thị đủ <b>18</b> phản xạ';
+        }
+      }
+    }
+
+    // Auto-detect view mode on load & resize
+    (function initViewMode() {
+      function checkScreen() {
+        var isMobile = window.innerWidth <= 768;
+        var sec = document.getElementById('sec-master-table');
+        if (!sec) return;
+        
+        // If user hasn't manually overridden
+        if (!sec.classList.contains('view-mode-cards') && !sec.classList.contains('view-mode-table')) {
+          if (isMobile) {
+            switchTableViewMode('cards');
+          } else {
+            switchTableViewMode('table');
+          }
+        }
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', checkScreen);
+      } else {
+        checkScreen();
+      }
+      window.addEventListener('resize', function() {
+        // Only adjust if no manual toggle happened
+        var sec = document.getElementById('sec-master-table');
+        if (sec && !sec.dataset.manualMode) {
+          checkScreen();
+        }
+      });
+    })();
+  </script>
 </body>
 </html>
