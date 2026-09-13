@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>BÓC TÁCH 4 TẦNG & KỊCH BẢN 1 DÒNG • VIDEO MASTER ENGINE</title>
+  <title>BÓC TÁCH TÂM LÝ ĐỜI THƯỜNG & KỊCH BẢN VIDEO • MASTER ENGINE</title>
   
   <!-- Favicon Vector Chuẩn Cinema REC Monogram (VI + REC + DEO) -->
   <link rel="icon" type="image/svg+xml" href="./favicon.svg">
@@ -74,12 +74,10 @@
       --cl-bg: #ffffff;
       --cl-tint: #f8fafc;
       --cl-line: #e2e8f0;
-      --cl-line-focus: #94a3b8;
       --cl-text-base: #090d16;
       --cl-text-body: #0f172a;
       --cl-text-muted: #475569;
       --cl-accent: #1a73e8;
-      --cl-accent-hover: #1557b0;
       --cl-accent-soft: rgba(26, 115, 232, 0.08);
 
       --font-display-short: 'FD Aeonik Extended', 'Inter', -apple-system, sans-serif;
@@ -111,7 +109,7 @@
       padding-bottom: 60px;
     }
 
-    /* Top Navigation Bar */
+    /* Top Bar */
     .top-nav {
       position: sticky;
       top: 0;
@@ -164,7 +162,7 @@
       color: var(--cl-accent);
     }
 
-    /* Zebra Sections */
+    /* Sections */
     .cl-zebra-section {
       width: 100%;
       padding: clamp(36px, 5vw, 64px) 20px;
@@ -178,7 +176,6 @@
       margin: 0 auto;
     }
 
-    /* Badges & Headings */
     .cl-badge {
       font-family: var(--font-mono);
       font-size: 11px;
@@ -224,9 +221,7 @@
       text-wrap: balance;
     }
 
-    /* ========================================================
-       PHẦN CHÍNH (PRIMARY AREA): ACTION CONTROL CENTER
-       ======================================================== */
+    /* Launchpad Primary Action Card */
     .launchpad-card {
       background: #ffffff;
       border: 1px solid var(--cl-line);
@@ -236,7 +231,6 @@
       margin-bottom: 20px;
     }
 
-    /* Nút Chính Số 1 (Hero Primary Action) */
     .btn-copy-hero {
       width: 100%;
       background: var(--cl-text-base);
@@ -261,10 +255,7 @@
       transform: scale(0.985);
     }
 
-    .btn-copy-hero__icon {
-      font-size: 20px;
-      line-height: 1;
-    }
+    .btn-copy-hero__icon { font-size: 20px; }
     .btn-copy-hero__title {
       font-family: var(--font-display-short);
       font-size: clamp(14px, 1.8vw, 16.5px);
@@ -273,7 +264,6 @@
       letter-spacing: 0.04em;
     }
 
-    /* Nút Phụ Bậc 1: Launcher Buttons (Mở AI) */
     .launcher-row {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -311,9 +301,7 @@
       font-size: 13px;
     }
 
-    /* ========================================================
-       PHẦN PHỤ BẬC 1 (SECONDARY UTILITY): ACCORDION GẬP GỌN CODE
-       ======================================================== */
+    /* Accordion Drawer */
     .prompt-drawer {
       border: 1px solid var(--cl-line);
       border-radius: 12px;
@@ -344,7 +332,7 @@
       display: none;
       background: #0f172a;
       padding: 18px 20px;
-      max-height: 300px;
+      max-height: 320px;
       overflow-y: auto;
       font-family: var(--font-mono);
       font-size: 12px;
@@ -358,9 +346,7 @@
       display: block;
     }
 
-    /* ========================================================
-       PHẦN PHỤ BẬC 2: 3 NHỊP VẬN HÀNH (TIMELINE LINEAR)
-       ======================================================== */
+    /* 3 Nhịp Vận Hành */
     .flow-stack {
       display: flex;
       flex-direction: column;
@@ -403,9 +389,7 @@
       font-weight: 600;
     }
 
-    /* ========================================================
-       PHẦN PHỤ BẬC 3: SHOWCASE LÁT CẮT KỊCH BẢN (EDITORIAL CARDS)
-       ======================================================== */
+    /* Showcase Selector */
     .showcase-selector {
       display: flex;
       gap: 8px;
@@ -432,9 +416,7 @@
       border-color: var(--cl-text-base);
     }
 
-    .showcase-display {
-      display: none;
-    }
+    .showcase-display { display: none; }
     .showcase-display.is-active {
       display: block;
       animation: fadeIn 0.25s var(--apple-ease);
@@ -444,54 +426,79 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* Hero Punchline Box */
-    .punchline-banner {
+    /* Box Kịch Bản Đầy Đủ (Full Script Box) */
+    .script-box-full {
       background: #090d16;
       border-radius: 16px;
-      padding: 24px 28px;
+      padding: clamp(20px, 3vw, 26px);
       color: #ffffff;
-      margin-bottom: 20px;
-      position: relative;
+      margin-bottom: 22px;
     }
-    .punchline-tag {
+
+    .script-box-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 14px;
+      border-bottom: 1px solid rgba(255,255,255,0.12);
+      padding-bottom: 10px;
+    }
+    .sb-tag {
       font-family: var(--font-mono);
       font-size: 11px;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.1em;
       color: #38bdf8;
-      margin-bottom: 10px;
-      display: flex;
-      align-items: center;
-      gap: 6px;
     }
-    .punchline-quote {
+    .sb-meta {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: #94a3b8;
+    }
+
+    .sb-hook-line {
       font-family: var(--font-display-long);
-      font-size: clamp(17px, 2.3vw, 21px);
+      font-size: clamp(17px, 2.3vw, 20px);
       font-weight: 600;
       line-height: 1.45;
       color: #f8fafc;
-      margin-bottom: 14px;
-    }
-    .punchline-broll {
-      border-top: 1px solid rgba(255,255,255,0.12);
-      padding-top: 12px;
-      font-family: var(--font-body);
-      font-size: 14.5px;
-      color: #94a3b8;
-      line-height: 1.6;
-    }
-    .punchline-broll b {
-      color: #f1f5f9;
+      margin-bottom: 18px;
+      background: rgba(255,255,255,0.06);
+      padding: 12px 16px;
+      border-left: 3px solid #38bdf8;
+      border-radius: 0 8px 8px 0;
     }
 
-    /* 4 Tầng Editorial Stack */
-    .truth-stack {
+    .sb-voiceover {
+      font-family: var(--font-body);
+      font-size: 15.5px;
+      line-height: 1.75;
+      color: #e2e8f0;
+      margin-bottom: 18px;
+    }
+    .sb-voiceover b {
+      color: #38bdf8;
+      font-weight: 500;
+    }
+
+    .sb-broll-plan {
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding-top: 14px;
+      font-family: var(--font-display-long);
+      font-size: 13.5px;
+      color: #94a3b8;
+      line-height: 1.65;
+    }
+    .sb-broll-plan b { color: #ffffff; }
+
+    /* 4 Nấc Thang Tâm Lý */
+    .psych-stack {
       display: flex;
       flex-direction: column;
       gap: 10px;
     }
-    .truth-card {
+    .psych-card {
       background: #ffffff;
       border: 1px solid var(--cl-line);
       border-radius: 12px;
@@ -500,7 +507,7 @@
       gap: 16px;
       align-items: flex-start;
     }
-    .truth-badge {
+    .psych-badge {
       font-family: var(--font-mono);
       font-size: 10.5px;
       font-weight: 700;
@@ -511,19 +518,39 @@
       flex-shrink: 0;
       margin-top: 2px;
     }
-    .tb-t1 { background: #fee2e2; color: #991b1b; }
-    .tb-t2 { background: #e0f2fe; color: #075985; }
-    .tb-t25 { background: #fef3c7; color: #92400e; }
-    .tb-t3 { background: #dcfce7; color: #166534; }
+    .pb-1 { background: #fee2e2; color: #991b1b; }
+    .pb-2 { background: #e0f2fe; color: #075985; }
+    .pb-3 { background: #fef3c7; color: #92400e; }
+    .pb-4 { background: #dcfce7; color: #166534; }
+    .pb-core { background: #f3e8ff; color: #6b21a8; }
 
-    .truth-content {
+    .psych-body {
       font-family: var(--font-body);
       font-size: 15.5px;
       color: var(--cl-text-body);
       line-height: 1.65;
     }
+    .psych-body b {
+      color: var(--cl-text-base);
+    }
 
-    /* Toast Notification */
+    /* Desk Filming Guide Card */
+    .desk-filming-card {
+      background: var(--cl-tint);
+      border: 1px dashed var(--cl-accent);
+      border-radius: 12px;
+      padding: 18px 20px;
+      margin-top: 18px;
+      font-family: var(--font-display-long);
+      font-size: 14.5px;
+      color: var(--cl-text-body);
+      line-height: 1.65;
+    }
+    .desk-filming-card b {
+      color: var(--cl-accent);
+    }
+
+    /* Toast */
     .toast {
       position: fixed;
       bottom: 24px;
@@ -571,7 +598,7 @@
   <nav class="top-nav">
     <a href="./4tang.html" class="top-nav__brand">
       <span class="top-nav__badge">VIDEO</span>
-      <span class="top-nav__title">BÓC TÁCH 4 TẦNG</span>
+      <span class="top-nav__title">BÓC TÁCH TÂM LÝ & KỊCH BẢN</span>
     </a>
     <a href="#sec-showcase" class="top-nav__navlink">Xem Mẫu Kịch Bản ↓</a>
   </nav>
@@ -581,9 +608,9 @@
     <section class="cl-zebra-section cl-zebra--light" id="sec-hero">
       <div class="cl-sec-container">
         <div class="cl-badge">01 / VẬN HÀNH 1-CHẠM</div>
-        <h1 class="title-short">CỖ MÁY BÓC TÁCH 4 TẦNG & KỊCH BẢN 1 DÒNG</h1>
+        <h1 class="title-short">BÓC TÁCH TÂM LÝ ĐỜI THƯỜNG & KỊCH BẢN THỰC CHIẾN</h1>
         <p class="sub-hook">
-          Biến 1 hành động đời thường thành bảng bóc tách tâm lý sắc bén và câu thoại 1 dòng nói trúng nỗi niềm người lớn.
+          Biến 1 việc nhỏ đời thường thành bảng bóc tách sâu sắc và bộ kịch bản hoàn chỉnh tự quay tại bàn trong 60 giây.
         </p>
 
         <!-- KHỐI ĐIỀU KHIỂN CHÍNH (PRIMARY ACTION CENTER) -->
@@ -610,67 +637,73 @@
           <!-- PHẦN PHỤ BẬC 1: XEM CÂU LỆNH CHI TIẾT (MẶC ĐỊNH GẬP GỌN) -->
           <div class="prompt-drawer" id="promptDrawer">
             <button class="prompt-drawer__trigger" onclick="toggleDrawer()">
-              <span>Xem chi tiết câu lệnh (104 dòng)</span>
+              <span>Xem chi tiết câu lệnh (105 dòng)</span>
               <span id="drawerArrow">▼</span>
             </button>
-            <pre class="prompt-drawer__content" id="masterCodeBlock">Bạn là người làm nghề bóc tách tâm lý đời thường và viết kịch bản thực chiến, nói chuyện mộc mạc, điềm đạm, khiêm nhường và thẳng thắn. Bạn vận hành theo phương pháp 4 Tầng Nhận Thức (T1 -> T2 -> T2.5 -> T3) của anh Nguyễn Việt.
+            <pre class="prompt-drawer__content" id="masterCodeBlock">Bạn là chuyên gia bóc tách tâm lý đời thường và biên kịch video thực chiến. Bạn nói chuyện mộc mạc, điềm đạm, khiêm nhường, thấu cảm và nhìn thẳng vào sự thật bằng con mắt của người làm nghề lâu năm từng trải.
 
-Nhiệm vụ của bạn: Giúp người dùng biến một HÀNH ĐỘNG ĐỜI THƯỜNG rất nhỏ (như bấm điện thoại, nán lại trên xe, đón con đi tập thể thao, ngẩn người ở ban công...) thành một BẢNG BÓC TÁCH SỰ THẬT RÀNH MẠCH và một KỊCH BẢN NGẮN ĐÚNG 1 DÒNG nói trúng chỗ khó nói của người lớn, không dạy đời, không sáo rỗng.
+NGUYÊN TẮC BẤT DI BẤT DỊCH TRONG CÂU CHỮ VÀ VĂN PHONG CỦA BẠN:
+1. Xưng hô mộc mạc: Dùng "mình - bạn". Tuyệt đối không đứng trên bục giảng dạy đời, không gồng mình làm chuyên gia, không mượn cớ số đông ("anh em mình", "nhiều người ngoài kia"). Tuyệt đối CẤM dùng từ "ông giáo" trong bất kỳ hoàn cảnh nào.
+2. Diệt sạch 100% văn mẫu AI và từ ngữ sáo rỗng: Cấm dùng các từ đao to búa lớn (vũ khí, ma trận, tử huyệt, đòn bẩy, đột phá, tối ưu, bứt phá, chuyển hóa, sinh học, vỏ não, khai phóng, nâng tầm...).
+3. Nói đúng chuyện đời thật: Nhịp câu gãy gọn, dùng dấu ba chấm "..." để lấy hơi tự nhiên. Bóc trần chỗ khó nói của người lớn nhưng bằng sự thấu cảm, bao dung, giải tỏa tâm lý; tuyệt đối không miệt thị hay phán xét.
 
-Để người dùng không phải gõ nhiều, không bị mệt đầu, bạn bắt buộc tuân thủ đúng quy trình 3 NHỊP sau:
+Nhiệm vụ của bạn: Giúp người dùng biến một HÀNH ĐỘNG ĐỜI THƯỜNG rất nhỏ thành một BẢNG BÓC TÁCH SỰ THẬT SÂU SẮC và một BỘ KỊCH BẢN HOÀN CHỈNH (gồm câu chốt 1 dòng, bài thoại 30-45 giây và cách đặt máy tự quay tại bàn trong 60 giây).
+
+Để người dùng không phải gõ nhiều và không bị mệt đầu, bạn bắt buộc tuân thủ đúng quy trình 3 NHỊP sau:
 
 ---
 
-### 🟢 NHỊP 1: LẮNG NGHE HÀNH ĐỘNG THÔ
-Khi bắt đầu, bạn chỉ nhắn đúng 2 câu ngắn, kéo ghế rót trà tiếp khách, không hỏi han lan man:
-"Chào bạn, bạn vừa làm xong hành động đời thường gì gần đây? (Ví dụ: 'Đón con đi tập bóng rổ về', 'Ngồi nán lại trên xe 5 phút', 'Úp điện thoại xuống bàn sau khi nhắn tin cho khách'...). 
+### 🟢 NHỊP 1: LẮNG NGHE HÀNH ĐỘNG THÔ (KHÔNG HỎI LAN MAN)
+Khi bắt đầu, bạn chỉ nhắn đúng 2 câu ngắn, kéo ghế rót trà tiếp khách:
+"Chào bạn, bạn vừa làm xong việc gì đời thường gần đây? (Ví dụ: 'Đón con đi tập bóng rổ về', 'Ngồi nán lại trên xe 5 phút', 'Úp điện thoại xuống bàn sau khi nhắn tin cho khách'...). 
 Bạn chỉ cần nhắn đúng 1 câu ngắn, phần bóc tách còn lại cứ để mình lo."
 
 Sau đó DỪNG LẠI và đợi người dùng nhắn.
 
 ---
 
-### 🟡 NHỊP 2: BẮT ĐÚNG CHỖ VƯỚNG & GỢI Ý 3 LỰA CHỌN 1 CHẠM
-Ngay khi nhận được hành động, bạn TUYỆT ĐỐI KHÔNG hỏi những câu lý thuyết bắt người ta phải viết văn tự sự. 
+### 🟡 NHỊP 2: BẮT ĐÚNG CHỖ VƯỚNG & ĐƯA 3 LỰA CHỌN 1 CHẠM
+Ngay khi nhận được hành động, bạn TUYỆT ĐỐI KHÔNG hỏi những câu lý thuyết bắt người ta phải giải thích dông dài. 
 Người lớn đi làm ai cũng có lòng tự trọng và cái cớ giữ thể diện bên ngoài. Bạn hãy suy đoán ngay 3 tình huống giằng xé thể diện điển hình nhất:
 
-"Mình bắt được việc bạn vừa làm rồi. Thường những khoảnh khắc đời thường thế này hay ẩn chứa một trong ba nỗi niềm thầm kín dưới đây của người lớn. Bạn thấy mình gần với cái nào nhất?
+"Mình bắt được việc bạn vừa làm rồi. Thường khoảnh khắc đời thường thế này hay ẩn chứa 1 trong 3 nỗi niềm thầm kín dưới đây của người lớn. Bạn thấy mình gần với cái nào nhất?
 
 👉 Lựa chọn A - Chuyện công việc & Vị thế làm nghề: (Nói ngắn 1 câu về cái cớ nói khéo bên ngoài và nỗi e ngại bị đánh giá thấp hoặc mất uy tín).
 👉 Lựa chọn B - Cơm áo gạo tiền & Chi tiêu: (Nói ngắn 1 câu về cái cớ tiết kiệm, tính toán đàng hoàng và nỗi lo thắt ruột về tiền nong).
 👉 Lựa chọn C - Bản thân & Trách nhiệm gia đình: (Nói ngắn 1 câu về việc lấy cớ bận rộn hoặc muốn tốt cho người thân, nhưng bên trong là sự áy náy vì chưa trọn vẹn).
 
-Bạn chỉ cần nhắn lại đúng 1 chữ cái: A, B hoặc C. (Nếu đang bận tay, bạn chỉ cần gõ Enter hoặc nhắn 'OK', mình sẽ tự chọn phương án A sắc nét nhất cho bạn)."
+Bạn chỉ cần nhắn lại đúng 1 chữ cái: A, B hoặc C. (Nếu đang bận tay, bạn chỉ cần gõ Enter hoặc nhắn 'OK', mình sẽ tự chọn phương án sắc nét nhất cho bạn)."
 
 Sau đó DỪNG LẠI chờ người dùng chọn.
 
 ---
 
-### 🔴 NHỊP 3: XUẤT XƯỞNG THÀNH PHẨM THỰC CHIẾN
-Khi nhận được chữ A, B hoặc C (hoặc người dùng nhắn thêm vài chữ hoàn cảnh), bạn trả về ngay thành phẩm hoàn chỉnh gồm đúng 3 phần:
+### 🔴 NHỊP 3: XUẤT XƯỞNG THÀNH PHẨM THỰC CHIẾN HOÀN CHỈNH
+Khi nhận được chữ A, B hoặc C, bạn lập tức xuất xưởng thành phẩm đầy đủ gồm 3 phần:
 
-#### 1. BẢNG BÓC TÁCH SỰ THẬT 4 TẦNG
-Trình bày bảng đối chiếu rõ ràng:
-* **Tầng 1 - Nói đãi bôi (Lời an toàn bề mặt):** Lời nói sách vở, đạo lý sáo rỗng người ta hay nói ngoài miệng khiến bài viết bị nhạt.
-* **Tầng 2 - Cảm giác thật (Thao tác bề mặt):** Hành động lóng ngóng, cảm giác mệt mỏi, bất lực đời thường.
-* **Tầng 2.5 - Cái cớ giữ thể diện (Điểm giằng xé của người lớn):** Lời nói khéo để người ngoài nhìn vào thấy mình vẫn đàng hoàng, có trách nhiệm; và cảm giác tự ái, cắn rứt bên trong khi biết mình đang phải diễn kịch để giữ vị thế.
-* **Tầng 3 - Nỗi niềm thầm kín (Chỗ khó nói giấu kín):** Nỗi bất an sâu thẳm nhất. (LƯU Ý: Dùng từ ngữ thấu cảm, bao dung, trung tính; tuyệt đối không miệt thị, không phán xét).
-* **Chỗ mấu chốt (Nút thắt cốt lõi):** Chỉ rõ nguyên nhân thật sự để tháo gỡ gánh nặng tâm lý cho người xem.
+#### 1. BẢNG BÓC TÁCH 4 TẦNG SỰ THẬT TÂM LÝ
+Trình bày rõ ràng theo đúng 4 nấc thang nhận thức sâu sắc sau:
+* **Nấc 1: Lời nói đãi bôi ngoài miệng** *(Văn mẫu xã giao, lời giải thích an toàn ai cũng nói được để lấp liếm sự thật).*
+* **Nấc 2: Hành vi lúng túng đời thực** *(Thao tác chân tay bề mặt, cảm giác mệt mỏi, bất lực khi đối diện thực tế).*
+* **Nấc 3: Cái cớ giữ thể diện của người lớn** *(Điểm giằng xé nhất: ngoài mặt phải gồng lên diễn vai ổn và có trách nhiệm để bảo vệ vị thế, bên trong là sự cắn rứt và tự ái khi biết mình đang phải diễn kịch).*
+* **Nấc 4: Chuyện khó nói giấu kín** *(Nỗi bất an sâu thẳm nhất, góc khuất tâm can không dám thừa nhận cùng ai).*
+* **💡 Điểm giác ngộ tháo gỡ** *(Quy về 1 nguyên nhân bản chất duy nhất để giải phóng gánh nặng tâm lý, nghe xong thở phào).*
 
-#### 2. KỊCH BẢN NGẮN 1 DÒNG
-* **Câu thoại 1 dòng:** Viết đúng 1 câu thoại ngắn (dưới 25 từ), gãy gọn, mộc mạc, nói trúng tim đen.
-* **Quy chuẩn văn phong:** Văn phong tự sự của người từng trải, biết hạ mình, điềm đạm; tuyệt đối CẤM dùng từ "ông giáo", không đao to búa lớn, không sáo rỗng.
-* **Ý tại ngôn ngoại (Subtext):** 1 câu giải thích vì sao câu này khiến người xem dừng lại gật gù.
+#### 2. BỘ KỊCH BẢN VIDEO THỰC CHIẾN ĐẦY ĐỦ
+Cung cấp đầy đủ 3 phần để người dùng cầm máy lên quay là xong:
+* **A. Câu chốt 1 dòng (Hook & Chữ to trên màn hình):** Đúng 1 câu thoại ngắn đanh thép (dưới 20 từ) chèn chữ to giữa video, đọc lên là người xem giật mình bấm lưu.
+* **B. Kịch bản thoại hoàn chỉnh 30-45 giây (Voice-over):** Một đoạn thoại ngắn 3-4 câu (khoảng 60-80 từ), đọc chậm rãi, mộc mạc, có nhịp thở dấu ba chấm `...`, đi từ hành vi thật ➔ cái cớ giữ thể diện ➔ chạm vào chỗ khó nói ➔ câu chốt nhẹ nhõm, bao dung.
+* **C. Phân cảnh hình ảnh khớp từng câu (B-roll Beats):** Chia rõ 3-4 nhịp quay khớp với lời đọc (Cảnh 1: Tay làm gì ➔ Cảnh 2: Điểm dừng khựng lại ➔ Cảnh 3: Cử chỉ buông lỏng/thở dài ➔ Cảnh 4: Trở lại nhịp bình thản).
 
-#### 3. CÁCH QUAY 1 SẢI TAY TẠI CHỖ (TRONG 60 GIÂY)
-* **Góc máy:** Điện thoại để ngang tầm mắt hoặc tựa cốc nước/sách, khoảng cách 1 sải tay (~70cm).
-* **Cử chỉ tự nhiên (3 giây):** 1 hành động đời thường ăn khớp với câu thoại, quay 1 mình không cần ai phụ.</pre>
+#### 3. CÁCH ĐẶT MÁY TỰ QUAY TẠI BÀN (KHÔNG CẦN AI PHỤ)
+* **Vị trí đặt máy:** Đặt điện thoại lên bàn, tựa vào cốc nước hoặc cuốn sách, cách người khoảng 1 cánh tay (~70cm), máy ngang tầm ngực.
+* **Thao tác 60 giây:** Bấm nút quay, ngồi làm việc tự nhiên trong 30-60 giây rồi tắt máy. Không cần đèn chiếu sáng cầu kỳ, không cần ai quay hộ.</pre>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- KHỐI 2: PHẦN PHỤ BẬC 2 - 3 NHỊP VẬN HÀNH (LINEAR FLOW) -->
+    <!-- KHỐI 2: 3 NHỊP VẬN HÀNH (LINEAR FLOW) -->
     <section class="cl-zebra-section cl-zebra--tint" id="sec-flow">
       <div class="cl-sec-container">
         <div class="cl-badge">02 / QUY TRÌNH 15 GIÂY</div>
@@ -681,7 +714,7 @@ Trình bày bảng đối chiếu rõ ràng:
           <div class="flow-row">
             <span class="flow-badge">NHỊP 1</span>
             <div class="flow-text">
-              <b>Gõ 1 câu việc vừa làm:</b> Nhập một hành động đời thường (VD: <i>Đón con đi tập bóng rổ về</i>).
+              <b>Gõ 1 câu việc vừa làm:</b> Nhập một hành động đời thường (VD: <i>Ngồi ở bàn ăn khi mẹ đang nấu bếp</i>).
             </div>
           </div>
           <div class="flow-row">
@@ -693,119 +726,227 @@ Trình bày bảng đối chiếu rõ ràng:
           <div class="flow-row">
             <span class="flow-badge">NHỊP 3</span>
             <div class="flow-text">
-              <b>Nhận kịch bản 1 dòng:</b> AI xuất xưởng bảng 4 tầng và câu thoại ngắn sắc lẹm kèm góc máy quay 1 sải tay.
+              <b>Nhận kịch bản hoàn chỉnh:</b> Có ngay bảng 4 nấc thang tâm lý, câu chốt 1 dòng, bài thoại 30-45s và cảnh quay tự quay tại bàn.
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- KHỐI 3: PHẦN PHỤ BẬC 3 - LÁT CẮT KỊCH BẢN MẪU (EDITORIAL CARDS) -->
+    <!-- KHỐI 3: LÁT CẮT KỊCH BẢN MẪU (EDITORIAL CARDS) -->
     <section class="cl-zebra-section cl-zebra--light" id="sec-showcase">
       <div class="cl-sec-container">
         <div class="cl-badge">03 / KẾT QUẢ MÔ PHỎNG</div>
         <h2 class="title-short">LÁT CẮT ĐỜI THỰC ĐÃ CHẠY THỬ</h2>
-        <p class="sub-hook">Chạm vào từng ví dụ để xem cỗ máy chuyển hóa hành động thành kịch bản 1 dòng:</p>
+        <p class="sub-hook">Chạm vào từng ví dụ để xem cỗ máy chuyển hóa hành động thành kịch bản hoàn chỉnh:</p>
 
         <div class="showcase-selector">
-          <button class="pill-tab is-active" onclick="switchShowcase(0)">🏀 Đón con tập bóng rổ</button>
-          <button class="pill-tab" onclick="switchShowcase(1)">📱 Úp máy sau khi rep khách</button>
-          <button class="pill-tab" onclick="switchShowcase(2)">🛵 Nán lại trên xe 10 phút</button>
+          <button class="pill-tab is-active" onclick="switchShowcase(0)">🍲 Ngồi bàn ăn khi mẹ nấu bếp</button>
+          <button class="pill-tab" onclick="switchShowcase(1)">🏀 Đón con tập bóng rổ về</button>
+          <button class="pill-tab" onclick="switchShowcase(2)">📱 Úp máy sau khi rep khách</button>
         </div>
 
-        <!-- MẪU 1: Đón con đi tập bóng rổ -->
+        <!-- MẪU 1: Ngồi bàn ăn khi mẹ nấu bếp (Case study thực tế từ ảnh chụp) -->
         <div class="showcase-display is-active" id="sc0">
-          <div class="punchline-banner">
-            <div class="punchline-tag">KỊCH BẢN NGẮN 1 DÒNG (THÀNH PHẨM)</div>
-            <div class="punchline-quote">
+          <div class="script-box-full">
+            <div class="script-box-header">
+              <span class="sb-tag">BỘ KỊCH BẢN VIDEO HOÀN CHỈNH</span>
+              <span class="sb-meta">Thời lượng: 35 giây • 74 chữ</span>
+            </div>
+
+            <!-- Hook 1 dòng -->
+            <div class="sb-hook-line">
+              "Ngoài kia sứt mẻ thế nào cũng được, về nhà đành mượn tạm cái mác bận rộn để mẹ yên lòng."
+            </div>
+
+            <!-- Bài thoại Voiceover 30-45s -->
+            <div class="sb-voiceover">
+              "Có những bữa cơm về nhà, rõ ràng bụng đói... mà tay cứ cầm khư khư cái điện thoại gõ gõ lướt lướt. 
+              Mẹ dưới bếp hỏi vọng lên thì vội bảo: <i>'Mẹ cứ từ từ, con đang check nốt cái mail công ty'</i>... 
+              Thực ra trong đầu trống rỗng, chẳng đọc nổi chữ nào. 
+              Đàn ông có tuổi rồi, ngoài kia bế tắc sứt mẻ thế nào cũng được... về nhà chỉ dám mượn tạm cái mác bận rộn, để mẹ già nhìn vào thấy yên lòng."
+            </div>
+
+            <!-- Phân cảnh B-roll -->
+            <div class="sb-broll-plan">
+              <b>Phân cảnh tự quay tại bàn:</b><br>
+              • <i>00–05s:</i> Máy đặt trên bàn ăn, cận cảnh ngón tay lướt chậm trên màn hình điện thoại hắt sáng.<br>
+              • <i>05–15s:</i> Ngón tay khựng lại, mắt nhìn vô định về phía gian bếp (hậu cảnh có tiếng lách cách dao thớt).<br>
+              • <i>15–25s:</i> Khẽ thở dài nhẹ nhõm, nhẹ nhàng úp màn hình điện thoại xuống mặt bàn gỗ.<br>
+              • <i>25–35s:</i> Đứng dậy bước về phía gian bếp bưng mâm cơm, phong thái bình thản trở lại.
+            </div>
+          </div>
+
+          <!-- Bảng 4 Nấc Thang Tâm Lý -->
+          <div class="psych-stack">
+            <div class="psych-card">
+              <span class="psych-badge pb-1">NẤC 1</span>
+              <div class="psych-body">
+                <b>Lời nói đãi bôi ngoài miệng:</b> <i>"Mẹ cứ từ từ nấu nhé, con đang tranh thủ check nốt mấy cái mail báo cáo, đợt này công ty nhiều việc quá."</i> (Văn mẫu thể hiện mình thành đạt, tất bật để lấp liếm).
+              </div>
+            </div>
+            <div class="psych-card">
+              <span class="psych-badge pb-2">NẤC 2</span>
+              <div class="psych-body">
+                <b>Hành vi lúng túng đời thực:</b> Ngồi ở bàn ăn, mắt dán vào màn hình điện thoại nhưng ngón tay chỉ lướt vô định. Nghe tiếng xào nấu dưới bếp mà lồng ngực thấy nghẹn lại.
+              </div>
+            </div>
+            <div class="psych-card">
+              <span class="psych-badge pb-3">NẤC 3</span>
+              <div class="psych-body">
+                <b>Cái cớ giữ thể diện của người lớn:</b> Mượn cái mác "bận rộn, có trách nhiệm" làm bình phong che đi việc công việc đang chững lại. Tự ái của người đàn ông không cho phép mình than thở, nhưng cắn rứt vì trước mặt mẹ già vẫn phải gồng lên diễn vở kịch "con vẫn rất ổn".
+              </div>
+            </div>
+            <div class="psych-card">
+              <span class="psych-badge pb-4">NẤC 4</span>
+              <div class="psych-body">
+                <b>Chuyện khó nói giấu kín:</b> Nỗi chông chênh sâu thẳm của người mang nhiều gánh nặng trên vai. Sợ mình chưa đủ vững chãi làm chỗ dựa, sợ mẹ già phải phấp phỏng lo âu cho đứa con ngỡ đã trưởng thành.
+              </div>
+            </div>
+            <div class="psych-card">
+              <span class="psych-badge pb-core">GIÁC NGỘ</span>
+              <div class="psych-body">
+                <b>Điểm giác ngộ tháo gỡ:</b> Gánh nặng mệt mỏi nhất không nằm ở áp lực công việc ngoài xã hội, mà là áp lực phải luôn che giấu sự chật vật để bảo vệ sự bình yên cho người thân.
+              </div>
+            </div>
+          </div>
+
+          <!-- Desk Filming Guide -->
+          <div class="desk-filming-card">
+            📍 <b>Cách đặt máy tự quay tại bàn (không cần ai phụ):</b><br>
+            Đặt điện thoại lên bàn ăn (tựa vào cốc nước hoặc chân đế), cách người khoảng 1 cánh tay (~70cm), máy ngang tầm ngực. Bấm nút quay rồi ngồi diễn tự nhiên trong 40 giây.
+          </div>
+        </div>
+
+        <!-- MẪU 2: Đón con đi tập bóng rổ -->
+        <div class="showcase-display" id="sc1">
+          <div class="script-box-full">
+            <div class="script-box-header">
+              <span class="sb-tag">BỘ KỊCH BẢN VIDEO HOÀN CHỈNH</span>
+              <span class="sb-meta">Thời lượng: 30 giây • 68 chữ</span>
+            </div>
+
+            <div class="sb-hook-line">
               "Đón con thì không muộn một phút... nhưng cả đoạn đường về, tai nghe con kể chuyện mà mắt chỉ dán vào tin nhắn khách hàng."
             </div>
-            <div class="punchline-broll">
-              🎥 <b>Góc máy 1 sải tay:</b> Điện thoại tựa cốc nước bàn ăn, bàn tay đặt chùm chìa khóa xe xuống cái "cạch" nhẹ rồi úp màn hình điện thoại.
+
+            <div class="sb-voiceover">
+              "Chiều nào cũng thế, đón con thì chẳng bao giờ dám muộn một phút... 
+              Con leo lên xe tíu tít kể chuyện bóng rổ trên sân, mình vừa lái vừa gật đầu: <i>'Ừ bố nghe đây'</i>... 
+              Nhưng thực ra tai nghe mà mắt thì dán chặt vào tin nhắn báo giá. 
+              Nhiều khi giật mình nghĩ lại... con không cần một tài xế kiêm người làm việc, con chỉ cần 15 phút người bố thực sự hiện diện."
+            </div>
+
+            <div class="sb-broll-plan">
+              <b>Phân cảnh tự quay tại bàn:</b><br>
+              • <i>00–05s:</i> Tay đặt chùm chìa khóa xe xuống mặt bàn cái "cạch" nhẹ.<br>
+              • <i>05–15s:</i> Màn hình điện thoại đặt bên cạnh khẽ sáng tin nhắn đến, tay chạm vào định bấm rồi lại khựng lại.<br>
+              • <i>15–30s:</i> Thở ra một hơi chậm rãi, úp màn hình điện thoại xuống mặt bàn rồi với lấy cốc nước uống.
             </div>
           </div>
 
-          <div class="truth-stack">
-            <div class="truth-card">
-              <span class="truth-badge tb-t1">TẦNG 1</span>
-              <div class="truth-content"><i>"Dù bận rộn đến đâu cũng hãy luôn dành thời gian cho con..."</i> (Văn mẫu sáo rỗng ngoài kia).</div>
+          <div class="psych-stack">
+            <div class="psych-card">
+              <span class="psych-badge pb-1">NẤC 1</span>
+              <div class="psych-body">
+                <b>Lời nói đãi bôi ngoài miệng:</b> <i>"Dù bận rộn đến đâu cũng hãy luôn dành thời gian đồng hành cùng con..."</i> (Lý thuyết suông trên mạng).
+              </div>
             </div>
-            <div class="truth-card">
-              <span class="truth-badge tb-t2">TẦNG 2</span>
-              <div class="truth-content">Đứng chờ trước cổng sân bóng, vừa mệt vừa tranh thủ rep tin nhắn, con kể chuyện chỉ gật đầu ậm ừ.</div>
+            <div class="psych-card">
+              <span class="psych-badge pb-2">NẤC 2</span>
+              <div class="psych-body">
+                <b>Hành vi lúng túng đời thực:</b> Đứng đợi trước cổng sân bóng, vừa mệt vừa tranh thủ trả lời nốt tin nhắn công việc, con kể chuyện chỉ gật đầu ậm ừ.
+              </div>
             </div>
-            <div class="truth-card">
-              <span class="truth-badge tb-t25">TẦNG 2.5</span>
-              <div class="truth-content"><b>Mặt nạ thể diện:</b> Lấy cớ mình vẫn là bố tốt vì đón con đúng giờ, nhưng cắn rứt vì không rời nổi điện thoại.</div>
+            <div class="psych-card">
+              <span class="psych-badge pb-3">NẤC 3</span>
+              <div class="psych-body">
+                <b>Cái cớ giữ thể diện của người lớn:</b> Tự thấy mình vẫn là ông bố chu đáo vì đón con đúng giờ, nhưng bên trong cắn rứt vì không rời nổi điện thoại.
+              </div>
             </div>
-            <div class="truth-card">
-              <span class="truth-badge tb-t3">TẦNG 3</span>
-              <div class="truth-content"><b>Chỗ khó nói:</b> Sợ con lớn lên chỉ nhớ bóng lưng bận rộn của bố bên chiếc màn hình phẳng.</div>
+            <div class="psych-card">
+              <span class="psych-badge pb-4">NẤC 4</span>
+              <div class="psych-body">
+                <b>Chuyện khó nói giấu kín:</b> Nỗi sợ rằng con đang lớn nhanh từng ngày mà mình thì đang đánh mất kết nối với con; sợ sau này trong mắt con, bố chỉ là bóng lưng bận rộn.
+              </div>
             </div>
+            <div class="psych-card">
+              <span class="psych-badge pb-core">GIÁC NGỘ</span>
+              <div class="psych-body">
+                <b>Điểm giác ngộ tháo gỡ:</b> Cái con cần trên đoạn đường về không phải là người lái xe, mà là 15 phút người bố thực sự lắng nghe.
+              </div>
+            </div>
+          </div>
+
+          <div class="desk-filming-card">
+            📍 <b>Cách đặt máy tự quay tại bàn (không cần ai phụ):</b><br>
+            Điện thoại tựa cốc nước trên bàn, cách người 1 cánh tay (~70cm). Quay cận cảnh tay đặt chùm chìa khóa xe xuống bàn và động tác úp điện thoại.
           </div>
         </div>
 
-        <!-- MẪU 2: Úp máy rep khách -->
-        <div class="showcase-display" id="sc1">
-          <div class="punchline-banner">
-            <div class="punchline-tag">KỊCH BẢN NGẮN 1 DÒNG (THÀNH PHẨM)</div>
-            <div class="punchline-quote">
+        <!-- MẪU 3: Úp điện thoại sau khi rep khách -->
+        <div class="showcase-display" id="sc2">
+          <div class="script-box-full">
+            <div class="script-box-header">
+              <span class="sb-tag">BỘ KỊCH BẢN VIDEO HOÀN CHỈNH</span>
+              <span class="sb-meta">Thời lượng: 30 giây • 65 chữ</span>
+            </div>
+
+            <div class="sb-hook-line">
               "Soạn tin rõ dài, thêm đủ dạ vâng... để rồi nhìn hai chữ 'Đã xem' tự an ủi rằng người ta đang bận."
             </div>
-            <div class="punchline-broll">
-              🎥 <b>Góc máy 1 sải tay:</b> Máy đặt ngang mặt bàn, tay khẽ thở dài úp màn hình xuống mặt gỗ rồi với lấy cốc nước uống chậm rãi.
+
+            <div class="sb-voiceover">
+              "Khách hỏi một câu, mình ngồi nắn nót gõ trả lời nửa trang giấy, thêm đủ dạ vâng rất lễ phép... 
+              Bấm gửi đi xong, màn hình hiện hai chữ 'Đã xem' rồi im bặt cả buổi. 
+              Ai hỏi thì cười bảo: <i>'Khách kỹ tính đang cân nhắc thôi'</i>... 
+              Nhưng lẳng lặng úp cái máy xuống bàn, thấy trong bụng thắt lại vì tiền mặt bằng tuần tới lại đến hạn."
+            </div>
+
+            <div class="sb-broll-plan">
+              <b>Phân cảnh tự quay tại bàn:</b><br>
+              • <i>00–05s:</i> Hai ngón tay cái bấm phím nắn nót trên điện thoại rồi bấm Gửi.<br>
+              • <i>05–15s:</i> Cầm máy chờ đợi 3 giây, ngón tay cuộn nhẹ màn hình đọc lại tin nhắn.<br>
+              • <i>15–30s:</i> Thở dài nhẹ, úp màn hình điện thoại xuống mặt bàn gỗ cái 'cộp' nhẹ rồi tựa lưng vào ghế.
             </div>
           </div>
 
-          <div class="truth-stack">
-            <div class="truth-card">
-              <span class="truth-badge tb-t1">TẦNG 1</span>
-              <div class="truth-content"><i>"Bí quyết chăm sóc khách hàng: phản hồi 24/7 tận tâm tạo dựng mối quan hệ..."</i> (Lý thuyết suông).</div>
+          <div class="psych-stack">
+            <div class="psych-card">
+              <span class="psych-badge pb-1">NẤC 1</span>
+              <div class="psych-body">
+                <b>Lời nói đãi bôi ngoài miệng:</b> <i>"Bí quyết chăm sóc khách hàng: luôn niềm nở, phản hồi 24/7 để tạo dựng mối quan hệ lâu dài..."</i>
+              </div>
             </div>
-            <div class="truth-card">
-              <span class="truth-badge tb-t2">TẦNG 2</span>
-              <div class="truth-content">Nắn nót gõ báo giá, gửi đi thấy hiện "Đã xem" rồi im bặt cả buổi.</div>
+            <div class="psych-card">
+              <span class="psych-badge pb-2">NẤC 2</span>
+              <div class="psych-body">
+                <b>Hành vi lúng túng đời thực:</b> Nắn nót gõ từng câu báo giá, gửi đi thấy hiện "Đã xem" rồi im bặt cả buổi.
+              </div>
             </div>
-            <div class="truth-card">
-              <span class="truth-badge tb-t25">TẦNG 2.5</span>
-              <div class="truth-content"><b>Mặt nạ thể diện:</b> Cười bảo khách kỹ tính đang cân nhắc, nhưng bụng dạ lo lắng vì tiền mặt bằng đang đến hạn.</div>
+            <div class="psych-card">
+              <span class="psych-badge pb-3">NẤC 3</span>
+              <div class="psych-body">
+                <b>Cái cớ giữ thể diện của người lớn:</b> Cười bảo khách kỹ tính đang cân nhắc, nhưng thực chất đang lo lắng vì cả tuần chưa chốt được khách nào.
+              </div>
             </div>
-            <div class="truth-card">
-              <span class="truth-badge tb-t3">TẦNG 3</span>
-              <div class="truth-content"><b>Chỗ khó nói:</b> Nỗi sợ cách làm cũ hết hiệu quả, e ngại khi thấy người ta làm được còn mình thì chưa quen.</div>
+            <div class="psych-card">
+              <span class="psych-badge pb-4">NẤC 4</span>
+              <div class="psych-body">
+                <b>Chuyện khó nói giấu kín:</b> Nỗi sợ cách làm cũ không còn hiệu quả; tự ti và e ngại khi thấy người ta làm được còn mình thì chưa quen.
+              </div>
+            </div>
+            <div class="psych-card">
+              <span class="psych-badge pb-core">GIÁC NGỘ</span>
+              <div class="psych-body">
+                <b>Điểm giác ngộ tháo gỡ:</b> Khách im lặng không phải do bạn tư vấn dở, mà do cách tư vấn dồn dập đang làm khách thấy bị áp lực.
+              </div>
             </div>
           </div>
-        </div>
 
-        <!-- MẪU 3: Nán lại trên xe -->
-        <div class="showcase-display" id="sc2">
-          <div class="punchline-banner">
-            <div class="punchline-tag">KỊCH BẢN NGẮN 1 DÒNG (THÀNH PHẨM)</div>
-            <div class="punchline-quote">
-              "Cả ngày cười nói gật đầu ngoài xã hội... chỉ mong 10 phút ngồi im dưới hầm xe để được làm chính mình."
-            </div>
-            <div class="punchline-broll">
-              🎥 <b>Góc máy 1 sải tay:</b> Điện thoại tựa mặt đồng hồ xe máy, quay cận bàn tay tháo găng tắt chìa khóa, thở dài nhẹ trong hầm tối.
-            </div>
-          </div>
-
-          <div class="truth-stack">
-            <div class="truth-card">
-              <span class="truth-badge tb-t1">TẦNG 1</span>
-              <div class="truth-content"><i>"Hãy dành thời gian tĩnh tâm tái tạo năng lượng tích cực sau giờ làm việc..."</i></div>
-            </div>
-            <div class="truth-card">
-              <span class="truth-badge tb-t2">TẦNG 2</span>
-              <div class="truth-content">Tắt máy xe dưới hầm tối, tháo mũ bảo hiểm ngồi bất động, vuốt điện thoại vô định.</div>
-            </div>
-            <div class="truth-card">
-              <span class="truth-badge tb-t25">TẦNG 2.5</span>
-              <div class="truth-content"><b>Mặt nạ thể diện:</b> Lấy cớ xem nốt lịch làm việc, bên trong kiệt sức vì cả ngày phải đóng vai người thành đạt vui vẻ.</div>
-            </div>
-            <div class="truth-card">
-              <span class="truth-badge tb-t3">TẦNG 3</span>
-              <div class="truth-content"><b>Chỗ khó nói:</b> Nỗi sợ bị người thân nhìn thấy sự mệt mỏi và yếu đuối của chính mình.</div>
-            </div>
+          <div class="desk-filming-card">
+            📍 <b>Cách đặt máy tự quay tại bàn (không cần ai phụ):</b><br>
+            Điện thoại đặt ngang mặt bàn cách 1 cánh tay (~70cm). Quay cận cảnh thao tác gõ phím và khoảnh khắc úp điện thoại xuống mặt bàn.
           </div>
         </div>
 
@@ -816,7 +957,7 @@ Trình bày bảng đối chiếu rõ ràng:
     <footer class="cl-zebra-section cl-zebra--tint" style="padding: 24px 20px;">
       <div class="cl-sec-container">
         <div class="page-footer">
-          <div>© 2026 VIDEO System • Học Thuyết 4 Tầng</div>
+          <div>© 2026 VIDEO System • Học Thuyết Tâm Lý Đời Thường</div>
           <div>Mở trực tiếp: <code>vietndj.github.io/course/4tang.html</code></div>
         </div>
       </div>
