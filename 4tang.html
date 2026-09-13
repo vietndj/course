@@ -332,7 +332,7 @@
       display: none;
       background: #0f172a;
       padding: 18px 20px;
-      max-height: 320px;
+      max-height: 340px;
       overflow-y: auto;
       font-family: var(--font-mono);
       font-size: 12px;
@@ -344,6 +344,43 @@
     }
     .prompt-drawer.is-open .prompt-drawer__content {
       display: block;
+    }
+
+    /* Formulas Visual Section */
+    .formula-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+      margin-top: 20px;
+    }
+    .formula-card {
+      background: #ffffff;
+      border: 1px solid var(--cl-line);
+      border-radius: 14px;
+      padding: 18px 22px;
+      border-left: 4px solid var(--cl-accent);
+    }
+    .formula-name {
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      font-weight: 700;
+      color: var(--cl-accent);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 6px;
+    }
+    .formula-eq {
+      font-family: var(--font-display-long);
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--cl-text-base);
+      margin-bottom: 6px;
+    }
+    .formula-desc {
+      font-family: var(--font-body);
+      font-size: 14.5px;
+      color: var(--cl-text-muted);
+      line-height: 1.6;
     }
 
     /* 3 Nhịp Vận Hành */
@@ -426,7 +463,7 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* Box Kịch Bản Đầy Đủ (Full Script Box) */
+    /* Box Kịch Bản Đầy Đủ */
     .script-box-full {
       background: #090d16;
       border-radius: 16px;
@@ -434,7 +471,6 @@
       color: #ffffff;
       margin-bottom: 22px;
     }
-
     .script-box-header {
       display: flex;
       justify-content: space-between;
@@ -456,7 +492,6 @@
       font-size: 11px;
       color: #94a3b8;
     }
-
     .sb-hook-line {
       font-family: var(--font-display-long);
       font-size: clamp(17px, 2.3vw, 20px);
@@ -469,7 +504,6 @@
       border-left: 3px solid #38bdf8;
       border-radius: 0 8px 8px 0;
     }
-
     .sb-voiceover {
       font-family: var(--font-body);
       font-size: 15.5px;
@@ -481,7 +515,6 @@
       color: #38bdf8;
       font-weight: 500;
     }
-
     .sb-broll-plan {
       border-top: 1px solid rgba(255,255,255,0.1);
       padding-top: 14px;
@@ -530,11 +563,8 @@
       color: var(--cl-text-body);
       line-height: 1.65;
     }
-    .psych-body b {
-      color: var(--cl-text-base);
-    }
+    .psych-body b { color: var(--cl-text-base); }
 
-    /* Desk Filming Guide Card */
     .desk-filming-card {
       background: var(--cl-tint);
       border: 1px dashed var(--cl-accent);
@@ -546,9 +576,7 @@
       color: var(--cl-text-body);
       line-height: 1.65;
     }
-    .desk-filming-card b {
-      color: var(--cl-accent);
-    }
+    .desk-filming-card b { color: var(--cl-accent); }
 
     /* Toast */
     .toast {
@@ -594,7 +622,6 @@
 </head>
 <body>
 
-  <!-- Top Bar -->
   <nav class="top-nav">
     <a href="./4tang.html" class="top-nav__brand">
       <span class="top-nav__badge">VIDEO</span>
@@ -604,7 +631,7 @@
   </nav>
 
   <main>
-    <!-- KHỐI 1: HERO & TRUNG TÂM VẬN HÀNH (CHÍNH TUYỆT ĐỐI) -->
+    <!-- KHỐI 1: HERO & TRUNG TÂM VẬN HÀNH -->
     <section class="cl-zebra-section cl-zebra--light" id="sec-hero">
       <div class="cl-sec-container">
         <div class="cl-badge">01 / VẬN HÀNH 1-CHẠM</div>
@@ -613,15 +640,12 @@
           Biến 1 việc nhỏ đời thường thành bảng bóc tách sâu sắc và bộ kịch bản hoàn chỉnh tự quay tại bàn trong 60 giây.
         </p>
 
-        <!-- KHỐI ĐIỀU KHIỂN CHÍNH (PRIMARY ACTION CENTER) -->
         <div class="launchpad-card">
-          <!-- NÚT CHÍNH DUY NHẤT: SAO CHÉP PROMPT -->
           <button class="btn-copy-hero" id="btnCopyPrompt" onclick="copyMasterPrompt()">
             <span class="btn-copy-hero__icon" id="copyIcon">📋</span>
             <span class="btn-copy-hero__title" id="copyText">SAO CHÉP CÂU LỆNH (MEGAPROMPT)</span>
           </button>
 
-          <!-- 3 NÚT ĐIỀU HƯỚNG NHANH SANG AI (BẬT TAB MỚI ĐỂ DÁN) -->
           <div class="launcher-row">
             <a href="https://chatgpt.com" target="_blank" rel="noopener noreferrer" class="btn-ai-launch">
               <span>ChatGPT</span> <span class="btn-ai-launch__arrow">↗</span>
@@ -634,10 +658,9 @@
             </a>
           </div>
 
-          <!-- PHẦN PHỤ BẬC 1: XEM CÂU LỆNH CHI TIẾT (MẶC ĐỊNH GẬP GỌN) -->
           <div class="prompt-drawer" id="promptDrawer">
             <button class="prompt-drawer__trigger" onclick="toggleDrawer()">
-              <span>Xem chi tiết câu lệnh (105 dòng)</span>
+              <span>Xem chi tiết câu lệnh (128 dòng — Có bộ công thức suy luận)</span>
               <span id="drawerArrow">▼</span>
             </button>
             <pre class="prompt-drawer__content" id="masterCodeBlock">Bạn là chuyên gia bóc tách tâm lý đời thường và biên kịch video thực chiến. Bạn nói chuyện mộc mạc, điềm đạm, khiêm nhường, thấu cảm và nhìn thẳng vào sự thật bằng con mắt của người làm nghề lâu năm từng trải.
@@ -646,6 +669,35 @@ NGUYÊN TẮC BẤT DI BẤT DỊCH TRONG CÂU CHỮ VÀ VĂN PHONG CỦA BẠN:
 1. Xưng hô mộc mạc: Dùng "mình - bạn". Tuyệt đối không đứng trên bục giảng dạy đời, không gồng mình làm chuyên gia, không mượn cớ số đông ("anh em mình", "nhiều người ngoài kia"). Tuyệt đối CẤM dùng từ "ông giáo" trong bất kỳ hoàn cảnh nào.
 2. Diệt sạch 100% văn mẫu AI và từ ngữ sáo rỗng: Cấm dùng các từ đao to búa lớn (vũ khí, ma trận, tử huyệt, đòn bẩy, đột phá, tối ưu, bứt phá, chuyển hóa, sinh học, vỏ não, khai phóng, nâng tầm...).
 3. Nói đúng chuyện đời thật: Nhịp câu gãy gọn, dùng dấu ba chấm "..." để lấy hơi tự nhiên. Bóc trần chỗ khó nói của người lớn nhưng bằng sự thấu cảm, bao dung, giải tỏa tâm lý; tuyệt đối không miệt thị hay phán xét.
+
+---
+
+### 🧠 HỆ THỐNG CÔNG THỨC SUY LUẬN LOGIC 4 TẦNG (BẮT BUỘC ÁP DỤNG TRƯỚC KHI VIẾT)
+Để bóc tách chuẩn xác và sâu sắc, bạn bắt buộc chạy quy trình suy luận ngầm theo đúng 4 công thức toán học tâm lý sau:
+
+1. CÔNG THỨC TẦNG 1 (Lời nói đãi bôi):
+   TẦNG 1 = LỜI KHUYÊN SÁCH VỞ + VỎ BỌC ĐẠO ĐỨC GIẢ
+   👉 Câu hỏi truy vết: Người ngoài nhìn vào hoặc người ta hay nói câu đạo lý sáo rỗng nào để tỏ ra mình luôn đúng, luôn chuẩn mực và có trách nhiệm?
+
+2. CÔNG THỨC TẦNG 2 (Cảm giác thật):
+   TẦNG 2 = HÀNH ĐỘNG ĐỜI THỰC + CẢM GIÁC MỆT MỎI TỨC THỜI
+   👉 Câu hỏi truy vết: Khi ở một mình hoặc khi bắt tay vào làm, mắt họ nhìn thấy gì, tay họ thao tác lóng ngóng cái gì, và cảm giác bất lực bề mặt lúc đó là gì?
+
+3. CÔNG THỨC TẦNG 3 (Chuyện khó nói giấu kín):
+   TẦNG 3 = BẢN NĂNG GỐC (NỖI SỢ CẠN TIỀN / MẤT VỊ THẾ / BỊ COI THƯỜNG)
+   👉 Câu hỏi truy vết: Góc khuất xấu xí nhất hoặc nỗi bất an sâu thẳm nhất mà họ sợ người khác biết được là gì? (Lưu ý: Dùng từ ngữ thấu cảm, bao dung; tuyệt đối không sỉ nhục).
+
+4. CÔNG THỨC THEN CHỐT TẦNG 2.5 (Cái cớ giữ thể diện của người lớn):
+   TẦNG 2.5 = HÀNH ĐỘNG ĐỜI THỰC (T2) × VỊ THẾ & LÒNG TỰ TRỌNG (T3)
+   👉 3 Bước suy luận bóc tách Tầng 2.5:
+   - Bước 1 (Soi vị thế): Họ là ai ngoài đời? (Người làm nghề có thâm niên, người trụ cột gánh vác, người có tự trọng nghề nghiệp).
+   - Bước 2 (Tìm cái cớ hợp thức hóa): Để vừa làm được hành vi ở T2 mà không bị lộ sự bế tắc ở T3, họ mượn cái cớ gì để người ngoài nhìn vào vẫn thấy họ đàng hoàng, bận rộn, có trách nhiệm?
+   - Bước 3 (Bắt quả tang sự giằng xé): Vạch trần sự cắn rứt bên trong: ở ngoài thì gồng lên diễn kịch, bên trong thì tự ái và xấu hổ vì biết mình đang phải diễn kịch để giữ vị thế.
+
+5. CÔNG THỨC ĐIỂM GIÁC NGỘ (Tháo gỡ nút thắt):
+   GIÁC NGỘ = ĐẬP VỠ TẦNG 1 + MINH OAN TẦNG 3 QUA LĂNG KÍNH TẦNG 2.5 ➔ GOM VỀ 1 NGUYÊN NHÂN CỐT LÕI
+
+---
 
 Nhiệm vụ của bạn: Giúp người dùng biến một HÀNH ĐỘNG ĐỜI THƯỜNG rất nhỏ thành một BẢNG BÓC TÁCH SỰ THẬT SÂU SẮC và một BỘ KỊCH BẢN HOÀN CHỈNH (gồm câu chốt 1 dòng, bài thoại 30-45 giây và cách đặt máy tự quay tại bàn trong 60 giây).
 
@@ -663,8 +715,7 @@ Sau đó DỪNG LẠI và đợi người dùng nhắn.
 ---
 
 ### 🟡 NHỊP 2: BẮT ĐÚNG CHỖ VƯỚNG & ĐƯA 3 LỰA CHỌN 1 CHẠM
-Ngay khi nhận được hành động, bạn TUYỆT ĐỐI KHÔNG hỏi những câu lý thuyết bắt người ta phải giải thích dông dài. 
-Người lớn đi làm ai cũng có lòng tự trọng và cái cớ giữ thể diện bên ngoài. Bạn hãy suy đoán ngay 3 tình huống giằng xé thể diện điển hình nhất:
+Ngay khi nhận được hành động, bạn áp dụng ngay CÔNG THỨC TẦNG 2.5 để suy đoán 3 tình huống giằng xé thể diện điển hình nhất:
 
 "Mình bắt được việc bạn vừa làm rồi. Thường khoảnh khắc đời thường thế này hay ẩn chứa 1 trong 3 nỗi niềm thầm kín dưới đây của người lớn. Bạn thấy mình gần với cái nào nhất?
 
@@ -681,13 +732,13 @@ Sau đó DỪNG LẠI chờ người dùng chọn.
 ### 🔴 NHỊP 3: XUẤT XƯỞNG THÀNH PHẨM THỰC CHIẾN HOÀN CHỈNH
 Khi nhận được chữ A, B hoặc C, bạn lập tức xuất xưởng thành phẩm đầy đủ gồm 3 phần:
 
-#### 1. BẢNG BÓC TÁCH 4 TẦNG SỰ THẬT TÂM LÝ
+#### 1. BẢNG BÓC TÁCH 4 TẦNG SỰ THẬT TÂM LÝ (THEO ĐÚNG CÔNG THỨC)
 Trình bày rõ ràng theo đúng 4 nấc thang nhận thức sâu sắc sau:
-* **Nấc 1: Lời nói đãi bôi ngoài miệng** *(Văn mẫu xã giao, lời giải thích an toàn ai cũng nói được để lấp liếm sự thật).*
-* **Nấc 2: Hành vi lúng túng đời thực** *(Thao tác chân tay bề mặt, cảm giác mệt mỏi, bất lực khi đối diện thực tế).*
-* **Nấc 3: Cái cớ giữ thể diện của người lớn** *(Điểm giằng xé nhất: ngoài mặt phải gồng lên diễn vai ổn và có trách nhiệm để bảo vệ vị thế, bên trong là sự cắn rứt và tự ái khi biết mình đang phải diễn kịch).*
-* **Nấc 4: Chuyện khó nói giấu kín** *(Nỗi bất an sâu thẳm nhất, góc khuất tâm can không dám thừa nhận cùng ai).*
-* **💡 Điểm giác ngộ tháo gỡ** *(Quy về 1 nguyên nhân bản chất duy nhất để giải phóng gánh nặng tâm lý, nghe xong thở phào).*
+* **Nấc 1: Lời nói đãi bôi ngoài miệng** *(Áp dụng công thức T1: Lời giải thích an toàn, văn mẫu đạo lý ai cũng nói được để lấp liếm sự thật).*
+* **Nấc 2: Hành vi lúng túng đời thực** *(Áp dụng công thức T2: Thao tác chân tay bề mặt, cảm giác mệt mỏi, bất lực khi đối diện thực tế).*
+* **Nấc 3: Cái cớ giữ thể diện của người lớn** *(Áp dụng công thức T2.5: Điểm giằng xé nhất: ngoài mặt gồng lên diễn vai ổn và có trách nhiệm để bảo vệ vị thế, bên trong cắn rứt và tự ái khi biết mình đang phải diễn kịch).*
+* **Nấc 4: Chuyện khó nói giấu kín** *(Áp dụng công thức T3: Nỗi bất an sâu thẳm nhất, góc khuất tâm can không dám thừa nhận cùng ai).*
+* **💡 Điểm giác ngộ tháo gỡ** *(Áp dụng công thức Giác ngộ: Quy về 1 nguyên nhân bản chất duy nhất để giải phóng gánh nặng tâm lý, nghe xong thở phào).*
 
 #### 2. BỘ KỊCH BẢN VIDEO THỰC CHIẾN ĐẦY ĐỦ
 Cung cấp đầy đủ 3 phần để người dùng cầm máy lên quay là xong:
@@ -703,10 +754,55 @@ Cung cấp đầy đủ 3 phần để người dùng cầm máy lên quay là x
       </div>
     </section>
 
-    <!-- KHỐI 2: 3 NHỊP VẬN HÀNH (LINEAR FLOW) -->
-    <section class="cl-zebra-section cl-zebra--tint" id="sec-flow">
+    <!-- KHỐI 2: BỘ CÔNG THỨC SUY LUẬN LOGIC 4 TẦNG (TINT #f8fafc) -->
+    <section class="cl-zebra-section cl-zebra--tint" id="sec-formulas">
       <div class="cl-sec-container">
-        <div class="cl-badge">02 / QUY TRÌNH 15 GIÂY</div>
+        <div class="cl-badge">02 / KHUÔN SUY LUẬN LOGIC</div>
+        <h2 class="title-short">BỘ CÔNG THỨC TOÁN HỌC TÂM LÝ</h2>
+        <p class="sub-hook">
+          Lý do AI suy luận sâu sắc và không đoán mò là nhờ bộ 4 công thức toán học tâm lý được cài sẵn vào nhân suy luận ngầm:
+        </p>
+
+        <div class="formula-grid">
+          <div class="formula-card">
+            <div class="formula-name">CÔNG THỨC NẤC 1 • LỜI NÓI ĐÃI BÔI</div>
+            <div class="formula-eq">TẦNG 1 = Lời khuyên sách vở + Vỏ bọc đạo đức giả</div>
+            <div class="formula-desc">Lời giải thích an toàn bề nổi mà người ta hay nói ngoài miệng để tỏ ra mình luôn đúng và chuẩn mực.</div>
+          </div>
+
+          <div class="formula-card">
+            <div class="formula-name">CÔNG THỨC NẤC 2 • HÀNH VI LÚNG TÚNG</div>
+            <div class="formula-eq">TẦNG 2 = Hành động đời thực + Cảm giác mệt mỏi tức thời</div>
+            <div class="formula-desc">Cái mắt thấy tay làm: lướt điện thoại vô định, sống lưng mỏi, tiếng thở dài lúc ngồi một mình.</div>
+          </div>
+
+          <div class="formula-card" style="border-left-color: #f59e0b;">
+            <div class="formula-name" style="color: #d97706;">CÔNG THỨC THEN CHỐT NẤC 3 • CÁI CỚ GIỮ THỂ DIỆN (TẦNG 2.5)</div>
+            <div class="formula-eq">TẦNG 2.5 = Hành động thật (T2) × Vị thế & Lòng tự trọng (T3)</div>
+            <div class="formula-desc">
+              <b>Vở kịch ngụy trang:</b> Để làm được hành vi ở T2 mà không bị lộ sự bế tắc ở T3, người lớn mượn cái cớ gì để người ngoài nhìn vào thấy mình vẫn đàng hoàng, có trách nhiệm?
+            </div>
+          </div>
+
+          <div class="formula-card" style="border-left-color: #16a34a;">
+            <div class="formula-name" style="color: #16a34a;">CÔNG THỨC NẤC 4 • CHUYỆN KHÓ NÓI GIẤU KÍN</div>
+            <div class="formula-eq">TẦNG 3 = Bản năng gốc (Nỗi sợ cạn tiền / Mất vị thế / Bị coi thường)</div>
+            <div class="formula-desc">Nỗi bất an sâu thẳm nhất không dám thừa nhận trước mặt người khác.</div>
+          </div>
+
+          <div class="formula-card" style="border-left-color: #9333ea;">
+            <div class="formula-name" style="color: #9333ea;">CÔNG THỨC ĐIỂM GIÁC NGỘ • THÁO GỠ NÚT THẮT</div>
+            <div class="formula-eq">GIÁC NGỘ = Đập vỡ T1 + Minh oan T3 qua lăng kính T2.5 ➔ Gom về 1 nút thắt</div>
+            <div class="formula-desc">Chỉ ra một nguyên nhân cốt lõi duy nhất để giải phóng tâm lý, nghe xong thở phào nhẹ nhõm.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- KHỐI 3: 3 NHỊP VẬN HÀNH (LIGHT #ffffff) -->
+    <section class="cl-zebra-section cl-zebra--light" id="sec-flow">
+      <div class="cl-sec-container">
+        <div class="cl-badge">03 / QUY TRÌNH 15 GIÂY</div>
         <h2 class="title-short">3 NHỊP VẬN HÀNH THỰC TẾ</h2>
         <p class="sub-hook">Không điền biểu mẫu, không viết tự luận. Mọi thứ chỉ mất 2 lượt gõ phím:</p>
 
@@ -720,7 +816,7 @@ Cung cấp đầy đủ 3 phần để người dùng cầm máy lên quay là x
           <div class="flow-row">
             <span class="flow-badge">NHỊP 2</span>
             <div class="flow-text">
-              <b>Chọn 1 chữ cái:</b> AI suy đoán 3 góc độ giằng xé thể diện, bạn chỉ cần gõ <b>A</b>, <b>B</b> hoặc <b>C</b> (hoặc bấm Enter).
+              <b>Chọn 1 chữ cái:</b> AI áp dụng công thức T2.5 suy đoán 3 góc độ thể diện, bạn chỉ cần gõ <b>A</b>, <b>B</b> hoặc <b>C</b> (hoặc bấm Enter).
             </div>
           </div>
           <div class="flow-row">
@@ -733,10 +829,10 @@ Cung cấp đầy đủ 3 phần để người dùng cầm máy lên quay là x
       </div>
     </section>
 
-    <!-- KHỐI 3: LÁT CẮT KỊCH BẢN MẪU (EDITORIAL CARDS) -->
-    <section class="cl-zebra-section cl-zebra--light" id="sec-showcase">
+    <!-- KHỐI 4: LÁT CẮT KỊCH BẢN MẪU (TINT #f8fafc) -->
+    <section class="cl-zebra-section cl-zebra--tint" id="sec-showcase">
       <div class="cl-sec-container">
-        <div class="cl-badge">03 / KẾT QUẢ MÔ PHỎNG</div>
+        <div class="cl-badge">04 / KẾT QUẢ MÔ PHỎNG</div>
         <h2 class="title-short">LÁT CẮT ĐỜI THỰC ĐÃ CHẠY THỬ</h2>
         <p class="sub-hook">Chạm vào từng ví dụ để xem cỗ máy chuyển hóa hành động thành kịch bản hoàn chỉnh:</p>
 
@@ -746,7 +842,7 @@ Cung cấp đầy đủ 3 phần để người dùng cầm máy lên quay là x
           <button class="pill-tab" onclick="switchShowcase(2)">📱 Úp máy sau khi rep khách</button>
         </div>
 
-        <!-- MẪU 1: Ngồi bàn ăn khi mẹ nấu bếp (Case study thực tế từ ảnh chụp) -->
+        <!-- MẪU 1: Ngồi bàn ăn khi mẹ nấu bếp -->
         <div class="showcase-display is-active" id="sc0">
           <div class="script-box-full">
             <div class="script-box-header">
@@ -754,12 +850,10 @@ Cung cấp đầy đủ 3 phần để người dùng cầm máy lên quay là x
               <span class="sb-meta">Thời lượng: 35 giây • 74 chữ</span>
             </div>
 
-            <!-- Hook 1 dòng -->
             <div class="sb-hook-line">
               "Ngoài kia sứt mẻ thế nào cũng được, về nhà đành mượn tạm cái mác bận rộn để mẹ yên lòng."
             </div>
 
-            <!-- Bài thoại Voiceover 30-45s -->
             <div class="sb-voiceover">
               "Có những bữa cơm về nhà, rõ ràng bụng đói... mà tay cứ cầm khư khư cái điện thoại gõ gõ lướt lướt. 
               Mẹ dưới bếp hỏi vọng lên thì vội bảo: <i>'Mẹ cứ từ từ, con đang check nốt cái mail công ty'</i>... 
@@ -767,17 +861,15 @@ Cung cấp đầy đủ 3 phần để người dùng cầm máy lên quay là x
               Đàn ông có tuổi rồi, ngoài kia bế tắc sứt mẻ thế nào cũng được... về nhà chỉ dám mượn tạm cái mác bận rộn, để mẹ già nhìn vào thấy yên lòng."
             </div>
 
-            <!-- Phân cảnh B-roll -->
             <div class="sb-broll-plan">
               <b>Phân cảnh tự quay tại bàn:</b><br>
               • <i>00–05s:</i> Máy đặt trên bàn ăn, cận cảnh ngón tay lướt chậm trên màn hình điện thoại hắt sáng.<br>
               • <i>05–15s:</i> Ngón tay khựng lại, mắt nhìn vô định về phía gian bếp (hậu cảnh có tiếng lách cách dao thớt).<br>
               • <i>15–25s:</i> Khẽ thở dài nhẹ nhõm, nhẹ nhàng úp màn hình điện thoại xuống mặt bàn gỗ.<br>
-              • <i>25–35s:</i> Đứng dậy bước về phía gian bếp bưng mâm cơm, phong thái bình thản trở lại.
+              • <i>25–35s:</i> Đứng dậy bước về phía gian bếp bưng mâm cơm phụ mẹ, phong thái bình thản trở lại.
             </div>
           </div>
 
-          <!-- Bảng 4 Nấc Thang Tâm Lý -->
           <div class="psych-stack">
             <div class="psych-card">
               <span class="psych-badge pb-1">NẤC 1</span>
@@ -811,7 +903,6 @@ Cung cấp đầy đủ 3 phần để người dùng cầm máy lên quay là x
             </div>
           </div>
 
-          <!-- Desk Filming Guide -->
           <div class="desk-filming-card">
             📍 <b>Cách đặt máy tự quay tại bàn (không cần ai phụ):</b><br>
             Đặt điện thoại lên bàn ăn (tựa vào cốc nước hoặc chân đế), cách người khoảng 1 cánh tay (~70cm), máy ngang tầm ngực. Bấm nút quay rồi ngồi diễn tự nhiên trong 40 giây.
