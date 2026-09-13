@@ -11,7 +11,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
   
   <style>
     @font-face {
@@ -72,16 +72,15 @@
 
     :root {
       --cl-bg: #ffffff;
-      --cl-card: #ffffff;
       --cl-tint: #f8fafc;
       --cl-line: #e2e8f0;
-      --cl-line-dark: #cbd5e1;
+      --cl-line-focus: #94a3b8;
       --cl-text-base: #090d16;
       --cl-text-body: #0f172a;
       --cl-text-muted: #475569;
       --cl-accent: #1a73e8;
       --cl-accent-hover: #1557b0;
-      --cl-success: #16a34a;
+      --cl-accent-soft: rgba(26, 115, 232, 0.08);
 
       --font-display-short: 'FD Aeonik Extended', 'Inter', -apple-system, sans-serif;
       --font-display-long: 'FD Aeonik', 'Inter', -apple-system, sans-serif;
@@ -108,8 +107,8 @@
 
     body {
       min-height: 100vh;
-      line-height: 1.82;
-      padding-bottom: 80px;
+      line-height: 1.8;
+      padding-bottom: 60px;
     }
 
     /* Top Navigation Bar */
@@ -120,12 +119,11 @@
       background: rgba(255, 255, 255, 0.94);
       backdrop-filter: blur(14px);
       border-bottom: 1px solid var(--cl-line);
-      padding: 14px 24px;
+      padding: 12px 20px;
       display: flex;
       justify-content: space-between;
       align-items: center;
       font-family: var(--font-display-long);
-      font-size: 13.5px;
     }
 
     .top-nav__brand {
@@ -149,48 +147,38 @@
 
     .top-nav__title {
       font-family: var(--font-display-short);
-      font-size: 13px;
+      font-size: 12.5px;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.04em;
     }
 
-    .top-nav__links {
-      display: flex;
-      gap: 18px;
-    }
-    .top-nav__links a {
+    .top-nav__navlink {
       color: var(--cl-text-muted);
       text-decoration: none;
+      font-size: 13.5px;
       font-weight: 500;
       transition: color 0.2s;
     }
-    .top-nav__links a:hover {
+    .top-nav__navlink:hover {
       color: var(--cl-accent);
     }
 
-    /* Zebra Layout Sections */
+    /* Zebra Sections */
     .cl-zebra-section {
       width: 100%;
-      padding: clamp(48px, 7vw, 90px) 24px;
+      padding: clamp(36px, 5vw, 64px) 20px;
       border-bottom: 1px solid var(--cl-line);
     }
-    .cl-zebra--light {
-      background-color: var(--cl-bg);
-    }
-    .cl-zebra--tint {
-      background-color: var(--cl-tint);
-    }
+    .cl-zebra--light { background-color: var(--cl-bg); }
+    .cl-zebra--tint { background-color: var(--cl-tint); }
 
     .cl-sec-container {
-      max-width: 860px;
+      max-width: 820px;
       margin: 0 auto;
     }
-    .cl-sec-container--wide {
-      max-width: 1000px;
-    }
 
-    /* Badges & Titles */
+    /* Badges & Headings */
     .cl-badge {
       font-family: var(--font-mono);
       font-size: 11px;
@@ -198,11 +186,11 @@
       text-transform: uppercase;
       letter-spacing: 0.12em;
       color: var(--cl-accent);
-      margin-bottom: 14px;
+      margin-bottom: 12px;
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      background: rgba(26, 115, 232, 0.08);
+      background: var(--cl-accent-soft);
       padding: 4px 12px;
       border-radius: 100px;
     }
@@ -217,232 +205,219 @@
 
     .title-short {
       font-family: var(--font-display-short);
-      font-size: clamp(26px, 4.2vw, 42px);
+      font-size: clamp(24px, 3.8vw, 38px);
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: -0.01em;
       line-height: 1.15;
       color: var(--cl-text-base);
-      margin-bottom: 16px;
+      margin-bottom: 10px;
       text-wrap: balance;
     }
 
-    .title-long {
-      font-family: var(--font-display-long);
-      font-size: clamp(20px, 2.8vw, 26px);
-      font-weight: 600;
-      color: var(--cl-text-base);
-      line-height: 1.35;
-      margin-bottom: 14px;
-    }
-
-    .editorial-hook {
+    .sub-hook {
       font-family: var(--font-body);
-      font-style: italic;
-      font-size: clamp(17px, 2.2vw, 20px);
-      line-height: 1.7;
-      color: var(--cl-text-body);
-      border-left: 3px solid var(--cl-accent);
-      padding-left: 20px;
-      margin: 20px 0 28px 0;
-      background: rgba(26, 115, 232, 0.03);
-      padding: 14px 20px;
-      border-radius: 0 10px 10px 0;
-    }
-
-    .cl-body {
-      font-family: var(--font-body);
-      font-size: 17px;
-      color: var(--cl-text-body);
-      line-height: 1.8;
+      font-size: clamp(16px, 2vw, 18px);
+      color: var(--cl-text-muted);
+      line-height: 1.65;
       margin-bottom: 24px;
+      text-wrap: balance;
     }
 
-    /* Action Box: Big Copy Button & AI Launchers */
-    .action-box {
+    /* ========================================================
+       PHẦN CHÍNH (PRIMARY AREA): ACTION CONTROL CENTER
+       ======================================================== */
+    .launchpad-card {
       background: #ffffff;
-      border: 1px solid var(--cl-line-dark);
-      border-radius: 16px;
-      padding: clamp(24px, 4vw, 36px);
-      box-shadow: 0 8px 30px rgba(0,0,0,0.04);
-      margin-top: 32px;
+      border: 1px solid var(--cl-line);
+      border-radius: 18px;
+      padding: clamp(20px, 3.5vw, 28px);
+      box-shadow: 0 10px 32px rgba(9, 13, 22, 0.05);
+      margin-bottom: 20px;
     }
 
-    .btn-copy-master {
+    /* Nút Chính Số 1 (Hero Primary Action) */
+    .btn-copy-hero {
       width: 100%;
       background: var(--cl-text-base);
       color: #ffffff;
       border: none;
-      border-radius: 12px;
-      padding: 20px 28px;
-      font-family: var(--font-display-short);
-      font-size: clamp(14px, 2vw, 17px);
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
+      border-radius: 14px;
+      padding: 20px 24px;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 12px;
-      transition: all 0.22s var(--apple-ease);
       box-shadow: 0 4px 14px rgba(0,0,0,0.12);
+      transition: all 0.22s var(--apple-spring);
     }
-    .btn-copy-master:hover {
+    .btn-copy-hero:hover {
       background: var(--cl-accent);
       transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(26, 115, 232, 0.28);
+      box-shadow: 0 8px 24px rgba(26, 115, 232, 0.32);
     }
-    .btn-copy-master:active {
-      transform: scale(0.98);
+    .btn-copy-hero:active {
+      transform: scale(0.985);
     }
 
-    .ai-launchers {
+    .btn-copy-hero__icon {
+      font-size: 20px;
+      line-height: 1;
+    }
+    .btn-copy-hero__title {
+      font-family: var(--font-display-short);
+      font-size: clamp(14px, 1.8vw, 16.5px);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    /* Nút Phụ Bậc 1: Launcher Buttons (Mở AI) */
+    .launcher-row {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 12px;
-      margin-top: 18px;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-top: 14px;
+    }
+    @media (max-width: 540px) {
+      .launcher-row { grid-template-columns: 1fr; }
     }
 
-    .btn-launcher {
+    .btn-ai-launch {
       background: var(--cl-tint);
       border: 1px solid var(--cl-line);
       border-radius: 10px;
-      padding: 13px 16px;
+      padding: 12px 14px;
       font-family: var(--font-display-long);
       font-size: 14px;
       font-weight: 600;
-      color: var(--cl-text-base);
+      color: var(--cl-text-body);
       text-decoration: none;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 8px;
+      gap: 6px;
       transition: all 0.2s ease;
     }
-    .btn-launcher:hover {
+    .btn-ai-launch:hover {
       background: #ffffff;
       border-color: var(--cl-accent);
       color: var(--cl-accent);
       transform: translateY(-1px);
     }
+    .btn-ai-launch__arrow {
+      color: var(--cl-accent);
+      font-size: 13px;
+    }
 
-    /* Code Snippet Box */
-    .code-container {
-      margin-top: 24px;
+    /* ========================================================
+       PHẦN PHỤ BẬC 1 (SECONDARY UTILITY): ACCORDION GẬP GỌN CODE
+       ======================================================== */
+    .prompt-drawer {
       border: 1px solid var(--cl-line);
       border-radius: 12px;
-      background: #0f172a;
+      background: #ffffff;
       overflow: hidden;
+      margin-top: 14px;
     }
-    .code-header {
-      background: #1e293b;
-      padding: 10px 18px;
+    .prompt-drawer__trigger {
+      width: 100%;
+      background: var(--cl-tint);
+      border: none;
+      padding: 12px 18px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      font-family: var(--font-mono);
-      font-size: 11.5px;
-      color: #94a3b8;
-    }
-    .code-body {
-      padding: 18px;
-      max-height: 280px;
-      overflow-y: auto;
+      cursor: pointer;
       font-family: var(--font-mono);
       font-size: 12.5px;
+      font-weight: 600;
+      color: var(--cl-text-muted);
+      transition: background 0.2s;
+    }
+    .prompt-drawer__trigger:hover {
+      background: #f1f5f9;
+      color: var(--cl-text-base);
+    }
+    .prompt-drawer__content {
+      display: none;
+      background: #0f172a;
+      padding: 18px 20px;
+      max-height: 300px;
+      overflow-y: auto;
+      font-family: var(--font-mono);
+      font-size: 12px;
       line-height: 1.7;
       color: #e2e8f0;
       white-space: pre-wrap;
       word-break: break-word;
+      border-top: 1px solid var(--cl-line);
+    }
+    .prompt-drawer.is-open .prompt-drawer__content {
+      display: block;
     }
 
-    /* Toast Notification */
-    .toast {
-      position: fixed;
-      bottom: 30px;
-      left: 50%;
-      transform: translateX(-50%) translateY(100px);
-      background: #090d16;
-      color: #ffffff;
-      padding: 14px 24px;
-      border-radius: 100px;
-      font-family: var(--font-display-long);
-      font-size: 14px;
-      font-weight: 600;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+    /* ========================================================
+       PHẦN PHỤ BẬC 2: 3 NHỊP VẬN HÀNH (TIMELINE LINEAR)
+       ======================================================== */
+    .flow-stack {
       display: flex;
-      align-items: center;
-      gap: 10px;
-      opacity: 0;
-      pointer-events: none;
-      transition: all 0.35s var(--apple-spring);
-      z-index: 9999;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 20px;
     }
-    .toast.is-show {
-      transform: translateX(-50%) translateY(0);
-      opacity: 1;
-    }
-    .toast__icon {
-      color: #22c55e;
-      font-size: 16px;
-    }
-
-    /* 3 Nhịp Vận Hành Cards */
-    .steps-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 18px;
-      margin-top: 28px;
-    }
-    .step-card {
+    .flow-row {
       background: #ffffff;
       border: 1px solid var(--cl-line);
-      border-radius: 14px;
-      padding: 24px 22px;
-      position: relative;
+      border-radius: 12px;
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
       transition: all 0.2s ease;
     }
-    .step-card:hover {
+    .flow-row:hover {
       border-color: var(--cl-accent);
-      transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(0,0,0,0.03);
+      transform: translateX(3px);
     }
-    .step-num {
+    .flow-badge {
       font-family: var(--font-mono);
-      font-size: 12px;
+      font-size: 11.5px;
       font-weight: 700;
       color: var(--cl-accent);
-      margin-bottom: 8px;
-      letter-spacing: 0.08em;
+      background: var(--cl-accent-soft);
+      padding: 4px 10px;
+      border-radius: 6px;
+      white-space: nowrap;
+      flex-shrink: 0;
     }
-    .step-title {
+    .flow-text {
       font-family: var(--font-display-long);
-      font-size: 17px;
-      font-weight: 600;
-      color: var(--cl-text-base);
-      margin-bottom: 8px;
+      font-size: 15px;
+      color: var(--cl-text-body);
+      line-height: 1.5;
     }
-    .step-desc {
-      font-family: var(--font-body);
-      font-size: 14.5px;
-      color: var(--cl-text-muted);
-      line-height: 1.65;
+    .flow-text b {
+      color: var(--cl-text-base);
+      font-weight: 600;
     }
 
-    /* Interactive Showcase Simulator */
-    .sim-tabs {
+    /* ========================================================
+       PHẦN PHỤ BẬC 3: SHOWCASE LÁT CẮT KỊCH BẢN (EDITORIAL CARDS)
+       ======================================================== */
+    .showcase-selector {
       display: flex;
-      gap: 10px;
-      margin-bottom: 20px;
+      gap: 8px;
+      margin: 18px 0 20px 0;
       overflow-x: auto;
       padding-bottom: 4px;
     }
-    .sim-tab-btn {
+    .pill-tab {
       background: var(--cl-tint);
       border: 1px solid var(--cl-line);
-      border-radius: 8px;
-      padding: 10px 16px;
+      border-radius: 100px;
+      padding: 8px 16px;
       font-family: var(--font-display-long);
       font-size: 13.5px;
       font-weight: 600;
@@ -451,95 +426,135 @@
       white-space: nowrap;
       transition: all 0.2s ease;
     }
-    .sim-tab-btn.is-active {
+    .pill-tab.is-active {
       background: var(--cl-text-base);
       color: #ffffff;
       border-color: var(--cl-text-base);
     }
 
-    .sim-view {
+    .showcase-display {
       display: none;
-      background: #ffffff;
-      border: 1px solid var(--cl-line);
-      border-radius: 14px;
-      padding: 26px;
     }
-    .sim-view.is-active {
+    .showcase-display.is-active {
       display: block;
-      animation: fadeIn 0.3s ease;
+      animation: fadeIn 0.25s var(--apple-ease);
     }
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(6px); }
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* Comparison Table */
-    .truth-table {
-      width: 100%;
-      border-collapse: collapse;
-      margin: 20px 0;
-      font-size: 14.5px;
-    }
-    .truth-table th, .truth-table td {
-      border: 1px solid var(--cl-line);
-      padding: 14px 16px;
-      text-align: left;
-      vertical-align: top;
-    }
-    .truth-table th {
-      background: var(--cl-tint);
-      font-family: var(--font-display-long);
-      font-weight: 600;
-      color: var(--cl-text-base);
-    }
-    .truth-table td {
-      font-family: var(--font-body);
-      color: var(--cl-text-body);
-      line-height: 1.65;
-    }
-    .truth-tag {
-      display: inline-block;
-      font-family: var(--font-mono);
-      font-size: 11px;
-      font-weight: 700;
-      padding: 2px 8px;
-      border-radius: 4px;
-      margin-bottom: 4px;
-    }
-    .tag-t1 { background: #fee2e2; color: #991b1b; }
-    .tag-t2 { background: #e0f2fe; color: #075985; }
-    .tag-t25 { background: #fef3c7; color: #92400e; }
-    .tag-t3 { background: #dcfce7; color: #166534; }
-
-    .punchline-card {
+    /* Hero Punchline Box */
+    .punchline-banner {
       background: #090d16;
+      border-radius: 16px;
+      padding: 24px 28px;
       color: #ffffff;
-      padding: 22px 26px;
-      border-radius: 12px;
-      margin: 20px 0;
+      margin-bottom: 20px;
       position: relative;
     }
-    .punchline-label {
+    .punchline-tag {
       font-family: var(--font-mono);
       font-size: 11px;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.1em;
       color: #38bdf8;
-      margin-bottom: 8px;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
     }
-    .punchline-text {
+    .punchline-quote {
       font-family: var(--font-display-long);
-      font-size: 19px;
+      font-size: clamp(17px, 2.3vw, 21px);
       font-weight: 600;
       line-height: 1.45;
       color: #f8fafc;
+      margin-bottom: 14px;
+    }
+    .punchline-broll {
+      border-top: 1px solid rgba(255,255,255,0.12);
+      padding-top: 12px;
+      font-family: var(--font-body);
+      font-size: 14.5px;
+      color: #94a3b8;
+      line-height: 1.6;
+    }
+    .punchline-broll b {
+      color: #f1f5f9;
     }
 
-    .footer-bar {
-      max-width: 860px;
-      margin: 50px auto 0 auto;
-      padding-top: 24px;
+    /* 4 Tầng Editorial Stack */
+    .truth-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .truth-card {
+      background: #ffffff;
+      border: 1px solid var(--cl-line);
+      border-radius: 12px;
+      padding: 16px 20px;
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+    .truth-badge {
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 3px 8px;
+      border-radius: 4px;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .tb-t1 { background: #fee2e2; color: #991b1b; }
+    .tb-t2 { background: #e0f2fe; color: #075985; }
+    .tb-t25 { background: #fef3c7; color: #92400e; }
+    .tb-t3 { background: #dcfce7; color: #166534; }
+
+    .truth-content {
+      font-family: var(--font-body);
+      font-size: 15.5px;
+      color: var(--cl-text-body);
+      line-height: 1.65;
+    }
+
+    /* Toast Notification */
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      background: #090d16;
+      color: #ffffff;
+      padding: 12px 22px;
+      border-radius: 100px;
+      font-family: var(--font-display-long);
+      font-size: 14px;
+      font-weight: 600;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.32s var(--apple-spring);
+      z-index: 9999;
+    }
+    .toast.is-show {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+    }
+
+    /* Footer */
+    .page-footer {
+      max-width: 820px;
+      margin: 40px auto 0 auto;
+      padding-top: 20px;
       border-top: 1px solid var(--cl-line);
       display: flex;
       justify-content: space-between;
@@ -552,58 +567,53 @@
 </head>
 <body>
 
-  <!-- Header Navigation -->
+  <!-- Top Bar -->
   <nav class="top-nav">
     <a href="./4tang.html" class="top-nav__brand">
       <span class="top-nav__badge">VIDEO</span>
-      <span class="top-nav__title">CỖ MÁY BÓC TÁCH 4 TẦNG</span>
+      <span class="top-nav__title">BÓC TÁCH 4 TẦNG</span>
     </a>
-    <div class="top-nav__links">
-      <a href="#sec-engine">Lấy Câu Lệnh</a>
-      <a href="#sec-process">3 Nhịp Vận Hành</a>
-      <a href="#sec-showcase">Xem Chạy Mẫu</a>
-    </div>
+    <a href="#sec-showcase" class="top-nav__navlink">Xem Mẫu Kịch Bản ↓</a>
   </nav>
 
   <main>
-    <!-- KHỐI 1: HERO & ACTION CENTER (Light #ffffff) -->
-    <section class="cl-zebra-section cl-zebra--light" id="sec-engine">
+    <!-- KHỐI 1: HERO & TRUNG TÂM VẬN HÀNH (CHÍNH TUYỆT ĐỐI) -->
+    <section class="cl-zebra-section cl-zebra--light" id="sec-hero">
       <div class="cl-sec-container">
         <div class="cl-badge">01 / VẬN HÀNH 1-CHẠM</div>
-        <h1 class="title-short">BÓC TÁCH 4 TẦNG & KỊCH BẢN 1 DÒNG</h1>
-        <p class="editorial-hook">
-          "Từ một việc nhỏ đời thường đến kịch bản ngắn đanh thép nói trúng nỗi niềm thầm kín của người lớn... không dạy đời, không văn mẫu."
-        </p>
-        <p class="cl-body">
-          Đây là trang web độc lập giúp bạn lấy nhanh <b>Megaprompt Bóc Tách 4 Tầng Tâm Lý (T1 ➔ T2 ➔ T2.5 ➔ T3)</b>. Toàn bộ câu lệnh đã được lọc sạch văn mẫu AI, ép chuẩn văn phong mộc mạc của anh Việt và tối ưu cơ chế <b>Trắc nghiệm 1 chạm</b> để bạn không phải gõ nhiều.
+        <h1 class="title-short">CỖ MÁY BÓC TÁCH 4 TẦNG & KỊCH BẢN 1 DÒNG</h1>
+        <p class="sub-hook">
+          Biến 1 hành động đời thường thành bảng bóc tách tâm lý sắc bén và câu thoại 1 dòng nói trúng nỗi niềm người lớn.
         </p>
 
-        <!-- Khối Hành Động Chính -->
-        <div class="action-box">
-          <button class="btn-copy-master" id="btnCopyPrompt" onclick="copyMasterPrompt()">
-            <span id="copyBtnIcon">📋</span>
-            <span id="copyBtnText">SAO CHÉP CÂU LỆNH (MEGAPROMPT)</span>
+        <!-- KHỐI ĐIỀU KHIỂN CHÍNH (PRIMARY ACTION CENTER) -->
+        <div class="launchpad-card">
+          <!-- NÚT CHÍNH DUY NHẤT: SAO CHÉP PROMPT -->
+          <button class="btn-copy-hero" id="btnCopyPrompt" onclick="copyMasterPrompt()">
+            <span class="btn-copy-hero__icon" id="copyIcon">📋</span>
+            <span class="btn-copy-hero__title" id="copyText">SAO CHÉP CÂU LỆNH (MEGAPROMPT)</span>
           </button>
 
-          <div class="ai-launchers">
-            <a href="https://chatgpt.com" target="_blank" class="btn-launcher" rel="noopener noreferrer">
-              <span>↗</span> Mở ChatGPT
+          <!-- 3 NÚT ĐIỀU HƯỚNG NHANH SANG AI (BẬT TAB MỚI ĐỂ DÁN) -->
+          <div class="launcher-row">
+            <a href="https://chatgpt.com" target="_blank" rel="noopener noreferrer" class="btn-ai-launch">
+              <span>ChatGPT</span> <span class="btn-ai-launch__arrow">↗</span>
             </a>
-            <a href="https://claude.ai" target="_blank" class="btn-launcher" rel="noopener noreferrer">
-              <span>↗</span> Mở Claude
+            <a href="https://claude.ai" target="_blank" rel="noopener noreferrer" class="btn-ai-launch">
+              <span>Claude</span> <span class="btn-ai-launch__arrow">↗</span>
             </a>
-            <a href="https://gemini.google.com" target="_blank" class="btn-launcher" rel="noopener noreferrer">
-              <span>↗</span> Mở Gemini
+            <a href="https://gemini.google.com" target="_blank" rel="noopener noreferrer" class="btn-ai-launch">
+              <span>Gemini</span> <span class="btn-ai-launch__arrow">↗</span>
             </a>
           </div>
 
-          <!-- Khung xem mã câu lệnh -->
-          <div class="code-container">
-            <div class="code-header">
-              <span>MEGAPROMPT-4TANG-MASTER.MD</span>
-              <span style="cursor: pointer; color: #38bdf8;" onclick="toggleCodeBody()" id="toggleCodeBtn">Thu gọn ▲</span>
-            </div>
-            <pre class="code-body" id="masterCodeBlock">Bạn là người làm nghề bóc tách tâm lý đời thường và viết kịch bản thực chiến, nói chuyện mộc mạc, điềm đạm, khiêm nhường và thẳng thắn. Bạn vận hành theo phương pháp 4 Tầng Nhận Thức (T1 -> T2 -> T2.5 -> T3) của anh Nguyễn Việt.
+          <!-- PHẦN PHỤ BẬC 1: XEM CÂU LỆNH CHI TIẾT (MẶC ĐỊNH GẬP GỌN) -->
+          <div class="prompt-drawer" id="promptDrawer">
+            <button class="prompt-drawer__trigger" onclick="toggleDrawer()">
+              <span>Xem chi tiết câu lệnh (104 dòng)</span>
+              <span id="drawerArrow">▼</span>
+            </button>
+            <pre class="prompt-drawer__content" id="masterCodeBlock">Bạn là người làm nghề bóc tách tâm lý đời thường và viết kịch bản thực chiến, nói chuyện mộc mạc, điềm đạm, khiêm nhường và thẳng thắn. Bạn vận hành theo phương pháp 4 Tầng Nhận Thức (T1 -> T2 -> T2.5 -> T3) của anh Nguyễn Việt.
 
 Nhiệm vụ của bạn: Giúp người dùng biến một HÀNH ĐỘNG ĐỜI THƯỜNG rất nhỏ (như bấm điện thoại, nán lại trên xe, đón con đi tập thể thao, ngẩn người ở ban công...) thành một BẢNG BÓC TÁCH SỰ THẬT RÀNH MẠCH và một KỊCH BẢN NGẮN ĐÚNG 1 DÒNG nói trúng chỗ khó nói của người lớn, không dạy đời, không sáo rỗng.
 
@@ -660,219 +670,168 @@ Trình bày bảng đối chiếu rõ ràng:
       </div>
     </section>
 
-    <!-- KHỐI 2: 3 NHỊP VẬN HÀNH THỰC CHIẾN (Tint #f8fafc) -->
-    <section class="cl-zebra-section cl-zebra--tint" id="sec-process">
-      <div class="cl-sec-container cl-sec-container--wide">
-        <div class="cl-badge">02 / QUY TRÌNH THỰC THI</div>
-        <h2 class="title-short">3 NHỊP VẬN HÀNH KHÔNG ĐAU ĐẦU</h2>
-        <p class="cl-body">
-          Tại sao cách làm này không làm bạn nản chí? Vì bạn không phải ngồi làm bài tập hay điền bảng khảo sát. Mọi thứ vận hành trong 15 giây qua đúng 3 nhịp:
-        </p>
+    <!-- KHỐI 2: PHẦN PHỤ BẬC 2 - 3 NHỊP VẬN HÀNH (LINEAR FLOW) -->
+    <section class="cl-zebra-section cl-zebra--tint" id="sec-flow">
+      <div class="cl-sec-container">
+        <div class="cl-badge">02 / QUY TRÌNH 15 GIÂY</div>
+        <h2 class="title-short">3 NHỊP VẬN HÀNH THỰC TẾ</h2>
+        <p class="sub-hook">Không điền biểu mẫu, không viết tự luận. Mọi thứ chỉ mất 2 lượt gõ phím:</p>
 
-        <div class="steps-grid">
-          <div class="step-card">
-            <div class="step-num">NHỊP 01 • GÕ 1 CÂU</div>
-            <h3 class="step-title">Thả Hành Động Thô</h3>
-            <p class="step-desc">
-              Bạn chỉ cần gõ đúng việc mình vừa làm ngoài đời. Ví dụ: <i>"Đón con đi tập bóng rổ về"</i> hoặc <i>"Úp điện thoại xuống bàn sau khi báo giá"</i>. Không cần thêm mắm thêm muối.
-            </p>
+        <div class="flow-stack">
+          <div class="flow-row">
+            <span class="flow-badge">NHỊP 1</span>
+            <div class="flow-text">
+              <b>Gõ 1 câu việc vừa làm:</b> Nhập một hành động đời thường (VD: <i>Đón con đi tập bóng rổ về</i>).
+            </div>
           </div>
-
-          <div class="step-card">
-            <div class="step-num">NHỊP 02 • BẤM 1 PHÍM</div>
-            <h3 class="step-title">Chọn Trắc Nghiệm A / B / C</h3>
-            <p class="step-desc">
-              AI tự động suy đoán 3 góc độ giằng xé thể diện (Công việc, Tiền bạc, Gia đình). Bạn chỉ việc gõ đúng 1 chữ cái: <b>A</b>, <b>B</b> hoặc <b>C</b>. Lười gõ chỉ cần ấn Enter.
-            </p>
+          <div class="flow-row">
+            <span class="flow-badge">NHỊP 2</span>
+            <div class="flow-text">
+              <b>Chọn 1 chữ cái:</b> AI suy đoán 3 góc độ giằng xé thể diện, bạn chỉ cần gõ <b>A</b>, <b>B</b> hoặc <b>C</b> (hoặc bấm Enter).
+            </div>
           </div>
-
-          <div class="step-card">
-            <div class="step-num">NHỊP 03 • XONG VIỆC</div>
-            <h3 class="step-title">Nhận Kịch Bản 1 Dòng</h3>
-            <p class="step-desc">
-              AI trả về ngay Bảng 4 tầng thấu suốt tâm can, kèm 1 câu thoại ngắn đúng 1 dòng sắc lẹm và hướng dẫn đặt điện thoại tự quay trong 60 giây.
-            </p>
+          <div class="flow-row">
+            <span class="flow-badge">NHỊP 3</span>
+            <div class="flow-text">
+              <b>Nhận kịch bản 1 dòng:</b> AI xuất xưởng bảng 4 tầng và câu thoại ngắn sắc lẹm kèm góc máy quay 1 sải tay.
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- KHỐI 3: KHO VÍ DỤ MÔ PHỎNG TRỰC QUAN (Light #ffffff) -->
+    <!-- KHỐI 3: PHẦN PHỤ BẬC 3 - LÁT CẮT KỊCH BẢN MẪU (EDITORIAL CARDS) -->
     <section class="cl-zebra-section cl-zebra--light" id="sec-showcase">
-      <div class="cl-sec-container cl-sec-container--wide">
-        <div class="cl-badge">03 / MÔ PHỎNG THỰC TẾ</div>
-        <h2 class="title-short">KHO VÍ DỤ ĐỜI THƯỜNG ĐÃ CHẠY THỬ</h2>
-        <p class="cl-body">
-          Bấm vào từng ví dụ bên dưới để xem cách cỗ máy bóc tách từ hành động đời thường thành kịch bản 1 dòng:
-        </p>
+      <div class="cl-sec-container">
+        <div class="cl-badge">03 / KẾT QUẢ MÔ PHỎNG</div>
+        <h2 class="title-short">LÁT CẮT ĐỜI THỰC ĐÃ CHẠY THỬ</h2>
+        <p class="sub-hook">Chạm vào từng ví dụ để xem cỗ máy chuyển hóa hành động thành kịch bản 1 dòng:</p>
 
-        <!-- Tabs chuyển đổi ví dụ -->
-        <div class="sim-tabs">
-          <button class="sim-tab-btn is-active" onclick="switchTab(0)">🏀 Đón con tập bóng rổ về</button>
-          <button class="sim-tab-btn" onclick="switchTab(1)">📱 Úp máy sau khi rep khách</button>
-          <button class="sim-tab-btn" onclick="switchTab(2)">🛵 Nán lại trên xe máy 10 phút</button>
+        <div class="showcase-selector">
+          <button class="pill-tab is-active" onclick="switchShowcase(0)">🏀 Đón con tập bóng rổ</button>
+          <button class="pill-tab" onclick="switchShowcase(1)">📱 Úp máy sau khi rep khách</button>
+          <button class="pill-tab" onclick="switchShowcase(2)">🛵 Nán lại trên xe 10 phút</button>
         </div>
 
-        <!-- VÍ DỤ 1: Đón con đi tập bóng rổ về -->
-        <div class="sim-view is-active" id="tabView0">
-          <div style="font-family: var(--font-mono); font-size: 12px; color: var(--cl-accent); margin-bottom: 8px;">
-            HÀNH ĐỘNG THÔ: "Đón con đi tập bóng rổ về" • ĐÃ CHỌN PHƯƠNG ÁN C (TRÁCH NHIỆM GIA ĐÌNH)
-          </div>
-
-          <table class="truth-table">
-            <thead>
-              <tr>
-                <th style="width: 25%;">Tầng nhận thức</th>
-                <th>Biểu hiện & Suy nghĩ thực tế</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><span class="truth-tag tag-t1">TẦNG 1: NÓI ĐÃI BÔI</span><br>Văn mẫu an toàn</td>
-                <td><i>"Dù bận rộn đến đâu cũng hãy luôn dành thời gian cho con. Làm bạn cùng con là món quà vô giá nhất của cha mẹ."</i> (Bị lướt qua ngay vì lý thuyết suông).</td>
-              </tr>
-              <tr>
-                <td><span class="truth-tag tag-t2">TẦNG 2: CẢM GIÁC THẬT</span><br>Thao tác bề mặt</td>
-                <td>Đứng chờ trước cổng sân bóng, tranh thủ trả lời nốt tin nhắn công việc. Con leo lên xe tíu tít kể chuyện, mình vừa lái xe vừa ậm ừ gật đầu cho qua chuyện.</td>
-              </tr>
-              <tr>
-                <td><span class="truth-tag tag-t25">TẦNG 2.5: GIỮ THỂ DIỆN</span><br>Điểm giằng xé</td>
-                <td><b>Cái cớ nói khéo:</b> Tự thấy mình vẫn là người cha chu đáo vì dù bận vẫn đón con đúng giờ.<br><b>Sự cắn rứt bên trong:</b> Biết con chỉ mong bố lắng nghe, nhưng mắt mình không dứt nổi màn hình điện thoại vì sợ lỡ việc làm ăn.</td>
-              </tr>
-              <tr>
-                <td><span class="truth-tag tag-t3">TẦNG 3: NỖI NIỀM SÂU</span><br>Chỗ khó nói</td>
-                <td>Nỗi sợ rằng con đang lớn nhanh từng ngày mà mình thì đang đánh mất kết nối với con; sợ rằng trong mắt con, bố chỉ là một bóng lưng bận rộn.</td>
-              </tr>
-            </tbody>
-          </table>
-
-          <div class="punchline-card">
-            <div class="punchline-label">KỊCH BẢN NGẮN 1 DÒNG (PUNCHLINE)</div>
-            <div class="punchline-text">
+        <!-- MẪU 1: Đón con đi tập bóng rổ -->
+        <div class="showcase-display is-active" id="sc0">
+          <div class="punchline-banner">
+            <div class="punchline-tag">KỊCH BẢN NGẮN 1 DÒNG (THÀNH PHẨM)</div>
+            <div class="punchline-quote">
               "Đón con thì không muộn một phút... nhưng cả đoạn đường về, tai nghe con kể chuyện mà mắt chỉ dán vào tin nhắn khách hàng."
             </div>
+            <div class="punchline-broll">
+              🎥 <b>Góc máy 1 sải tay:</b> Điện thoại tựa cốc nước bàn ăn, bàn tay đặt chùm chìa khóa xe xuống cái "cạch" nhẹ rồi úp màn hình điện thoại.
+            </div>
           </div>
 
-          <p class="cl-body" style="font-size: 15px; margin-bottom: 0;">
-            🎥 <b>Góc quay 1 sải tay:</b> Điện thoại tựa cốc nước trên bàn ăn, cự ly 70cm. Bàn tay đặt chùm chìa khóa xe xuống cái "cạch" nhẹ, ngước nhìn ra cửa sổ rồi úp màn hình điện thoại xuống.
-          </p>
+          <div class="truth-stack">
+            <div class="truth-card">
+              <span class="truth-badge tb-t1">TẦNG 1</span>
+              <div class="truth-content"><i>"Dù bận rộn đến đâu cũng hãy luôn dành thời gian cho con..."</i> (Văn mẫu sáo rỗng ngoài kia).</div>
+            </div>
+            <div class="truth-card">
+              <span class="truth-badge tb-t2">TẦNG 2</span>
+              <div class="truth-content">Đứng chờ trước cổng sân bóng, vừa mệt vừa tranh thủ rep tin nhắn, con kể chuyện chỉ gật đầu ậm ừ.</div>
+            </div>
+            <div class="truth-card">
+              <span class="truth-badge tb-t25">TẦNG 2.5</span>
+              <div class="truth-content"><b>Mặt nạ thể diện:</b> Lấy cớ mình vẫn là bố tốt vì đón con đúng giờ, nhưng cắn rứt vì không rời nổi điện thoại.</div>
+            </div>
+            <div class="truth-card">
+              <span class="truth-badge tb-t3">TẦNG 3</span>
+              <div class="truth-content"><b>Chỗ khó nói:</b> Sợ con lớn lên chỉ nhớ bóng lưng bận rộn của bố bên chiếc màn hình phẳng.</div>
+            </div>
+          </div>
         </div>
 
-        <!-- VÍ DỤ 2: Úp điện thoại sau khi rep khách -->
-        <div class="sim-view" id="tabView1">
-          <div style="font-family: var(--font-mono); font-size: 12px; color: var(--cl-accent); margin-bottom: 8px;">
-            HÀNH ĐỘNG THÔ: "Úp điện thoại xuống bàn sau khi rep khách" • ĐÃ CHỌN PHƯƠNG ÁN A (CÔNG VIỆC)
-          </div>
-
-          <table class="truth-table">
-            <thead>
-              <tr>
-                <th style="width: 25%;">Tầng nhận thức</th>
-                <th>Biểu hiện & Suy nghĩ thực tế</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><span class="truth-tag tag-t1">TẦNG 1: NÓI ĐÃI BÔI</span></td>
-                <td><i>"Bí quyết chăm sóc khách hàng đỉnh cao: luôn phản hồi nhanh chóng, tận tâm 24/7 để tạo dựng mối quan hệ bền chặt."</i></td>
-              </tr>
-              <tr>
-                <td><span class="truth-tag tag-t2">TẦNG 2: CẢM GIÁC THẬT</span></td>
-                <td>Ngồi nắn nót gõ từng câu báo giá, thêm đủ "dạ vâng". Bấm gửi đi xong, màn hình hiện hai chữ "Đã xem" rồi im bặt cả buổi.</td>
-              </tr>
-              <tr>
-                <td><span class="truth-tag tag-t25">TẦNG 2.5: GIỮ THỂ DIỆN</span></td>
-                <td><b>Cái cớ nói khéo:</b> Cười bảo <i>"Khách người ta kỹ tính đang cân nhắc thôi, mình làm cao cấp không nên giục"</i>.<br><b>Sự giằng xé:</b> Hụt hẫng và lo lắng vì cả tuần nay chưa chốt được khách nào, nợ tiền nhà đang đến gần.</td>
-              </tr>
-              <tr>
-                <td><span class="truth-tag tag-t3">TẦNG 3: NỖI NIỀM SÂU</span></td>
-                <td>Nỗi sợ cách làm cũ không còn hiệu quả; tự ti và e ngại khi thấy người ta làm được còn mình thì chưa quen.</td>
-              </tr>
-            </tbody>
-          </table>
-
-          <div class="punchline-card">
-            <div class="punchline-label">KỊCH BẢN NGẮN 1 DÒNG (PUNCHLINE)</div>
-            <div class="punchline-text">
+        <!-- MẪU 2: Úp máy rep khách -->
+        <div class="showcase-display" id="sc1">
+          <div class="punchline-banner">
+            <div class="punchline-tag">KỊCH BẢN NGẮN 1 DÒNG (THÀNH PHẨM)</div>
+            <div class="punchline-quote">
               "Soạn tin rõ dài, thêm đủ dạ vâng... để rồi nhìn hai chữ 'Đã xem' tự an ủi rằng người ta đang bận."
             </div>
-          </div>
-
-          <p class="cl-body" style="font-size: 15px; margin-bottom: 0;">
-            🎥 <b>Góc quay 1 sải tay:</b> Điện thoại để ngang mặt bàn, bàn tay khẽ thở dài úp màn hình xuống mặt gỗ rồi với lấy cốc nước uống chậm rãi.
-          </p>
-        </div>
-
-        <!-- VÍ DỤ 3: Nán lại trên xe máy 10 phút -->
-        <div class="sim-view" id="tabView2">
-          <div style="font-family: var(--font-mono); font-size: 12px; color: var(--cl-accent); margin-bottom: 8px;">
-            HÀNH ĐỘNG THÔ: "Ngồi nán lại trên xe máy 10 phút dưới hầm" • ĐÃ CHỌN PHƯƠNG ÁN C (BẢN THÂN)
-          </div>
-
-          <table class="truth-table">
-            <thead>
-              <tr>
-                <th style="width: 25%;">Tầng nhận thức</th>
-                <th>Biểu hiện & Suy nghĩ thực tế</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><span class="truth-tag tag-t1">TẦNG 1: NÓI ĐÃI BÔI</span></td>
-                <td><i>"Hãy dành thời gian tĩnh tâm sau giờ làm việc để tái tạo năng lượng tích cực cho bản thân."</i></td>
-              </tr>
-              <tr>
-                <td><span class="truth-tag tag-t2">TẦNG 2: CẢM GIÁC THẬT</span></td>
-                <td>Tắt máy xe dưới hầm tối, tháo mũ bảo hiểm treo lên gương rồi ngồi bất động, mở điện thoại ra vuốt vuốt vô định.</td>
-              </tr>
-              <tr>
-                <td><span class="truth-tag tag-t25">TẦNG 2.5: GIỮ THỂ DIỆN</span></td>
-                <td><b>Cái cớ nói khéo:</b> Lấy cớ kiểm tra nốt lịch trình ngày mai.<br><b>Sự giằng xé:</b> Kiệt sức vì cả ngày phải đóng vai người vui vẻ, thành đạt ngoài xã hội, không còn chút năng lượng nào để bước qua cửa nhà.</td>
-              </tr>
-              <tr>
-                <td><span class="truth-tag tag-t3">TẦNG 3: NỖI NIỀM SÂU</span></td>
-                <td>Nỗi sợ bị người thân nhìn thấy sự mệt mỏi và yếu đuối của chính mình.</td>
-              </tr>
-            </tbody>
-          </table>
-
-          <div class="punchline-card">
-            <div class="punchline-label">KỊCH BẢN NGẮN 1 DÒNG (PUNCHLINE)</div>
-            <div class="punchline-text">
-              "Cả ngày cười nói gật đầu ngoài xã hội... chỉ mong 10 phút ngồi im dưới hầm xe để được làm chính mình."
+            <div class="punchline-broll">
+              🎥 <b>Góc máy 1 sải tay:</b> Máy đặt ngang mặt bàn, tay khẽ thở dài úp màn hình xuống mặt gỗ rồi với lấy cốc nước uống chậm rãi.
             </div>
           </div>
 
-          <p class="cl-body" style="font-size: 15px; margin-bottom: 0;">
-            🎥 <b>Góc quay 1 sải tay:</b> Điện thoại tựa mặt đồng hồ xe máy, máy quay cận bàn tay tháo găng tắt chìa khóa, tiếng thở phào trong hầm yên ắng.
-          </p>
+          <div class="truth-stack">
+            <div class="truth-card">
+              <span class="truth-badge tb-t1">TẦNG 1</span>
+              <div class="truth-content"><i>"Bí quyết chăm sóc khách hàng: phản hồi 24/7 tận tâm tạo dựng mối quan hệ..."</i> (Lý thuyết suông).</div>
+            </div>
+            <div class="truth-card">
+              <span class="truth-badge tb-t2">TẦNG 2</span>
+              <div class="truth-content">Nắn nót gõ báo giá, gửi đi thấy hiện "Đã xem" rồi im bặt cả buổi.</div>
+            </div>
+            <div class="truth-card">
+              <span class="truth-badge tb-t25">TẦNG 2.5</span>
+              <div class="truth-content"><b>Mặt nạ thể diện:</b> Cười bảo khách kỹ tính đang cân nhắc, nhưng bụng dạ lo lắng vì tiền mặt bằng đang đến hạn.</div>
+            </div>
+            <div class="truth-card">
+              <span class="truth-badge tb-t3">TẦNG 3</span>
+              <div class="truth-content"><b>Chỗ khó nói:</b> Nỗi sợ cách làm cũ hết hiệu quả, e ngại khi thấy người ta làm được còn mình thì chưa quen.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- MẪU 3: Nán lại trên xe -->
+        <div class="showcase-display" id="sc2">
+          <div class="punchline-banner">
+            <div class="punchline-tag">KỊCH BẢN NGẮN 1 DÒNG (THÀNH PHẨM)</div>
+            <div class="punchline-quote">
+              "Cả ngày cười nói gật đầu ngoài xã hội... chỉ mong 10 phút ngồi im dưới hầm xe để được làm chính mình."
+            </div>
+            <div class="punchline-broll">
+              🎥 <b>Góc máy 1 sải tay:</b> Điện thoại tựa mặt đồng hồ xe máy, quay cận bàn tay tháo găng tắt chìa khóa, thở dài nhẹ trong hầm tối.
+            </div>
+          </div>
+
+          <div class="truth-stack">
+            <div class="truth-card">
+              <span class="truth-badge tb-t1">TẦNG 1</span>
+              <div class="truth-content"><i>"Hãy dành thời gian tĩnh tâm tái tạo năng lượng tích cực sau giờ làm việc..."</i></div>
+            </div>
+            <div class="truth-card">
+              <span class="truth-badge tb-t2">TẦNG 2</span>
+              <div class="truth-content">Tắt máy xe dưới hầm tối, tháo mũ bảo hiểm ngồi bất động, vuốt điện thoại vô định.</div>
+            </div>
+            <div class="truth-card">
+              <span class="truth-badge tb-t25">TẦNG 2.5</span>
+              <div class="truth-content"><b>Mặt nạ thể diện:</b> Lấy cớ xem nốt lịch làm việc, bên trong kiệt sức vì cả ngày phải đóng vai người thành đạt vui vẻ.</div>
+            </div>
+            <div class="truth-card">
+              <span class="truth-badge tb-t3">TẦNG 3</span>
+              <div class="truth-content"><b>Chỗ khó nói:</b> Nỗi sợ bị người thân nhìn thấy sự mệt mỏi và yếu đuối của chính mình.</div>
+            </div>
+          </div>
         </div>
 
       </div>
     </section>
 
-    <!-- FOOTER -->
-    <footer class="cl-zebra-section cl-zebra--tint" style="padding-top: 40px; padding-bottom: 50px;">
+    <!-- Footer -->
+    <footer class="cl-zebra-section cl-zebra--tint" style="padding: 24px 20px;">
       <div class="cl-sec-container">
-        <div class="footer-bar">
-          <div>© 2026 VIDEO System • Học Thuyết 4 Tầng Thực Chiến</div>
-          <div>Mở trên điện thoại: <code>vietndj.github.io/course/4tang.html</code></div>
+        <div class="page-footer">
+          <div>© 2026 VIDEO System • Học Thuyết 4 Tầng</div>
+          <div>Mở trực tiếp: <code>vietndj.github.io/course/4tang.html</code></div>
         </div>
       </div>
     </footer>
   </main>
 
-  <!-- Toast Thông Báo -->
+  <!-- Toast Copy -->
   <div class="toast" id="copyToast">
-    <span class="toast__icon">✓</span>
-    <span>Đã sao chép câu lệnh! Bạn có thể dán sang ChatGPT / Claude ngay.</span>
+    <span>✓</span>
+    <span>Đã sao chép câu lệnh! Bạn có thể dán sang AI ngay.</span>
   </div>
 
   <script>
-    // Hàm sao chép Megaprompt vào Clipboard
     function copyMasterPrompt() {
       const codeText = document.getElementById('masterCodeBlock').innerText;
-      
       if (navigator.clipboard && window.isSecureContext) {
         navigator.clipboard.writeText(codeText).then(showToast).catch(err => fallbackCopy(codeText));
       } else {
@@ -885,7 +844,6 @@ Trình bày bảng đối chiếu rõ ràng:
       textArea.value = text;
       textArea.style.position = 'fixed';
       textArea.style.left = '-9999px';
-      textArea.style.top = '0';
       document.body.appendChild(textArea);
       textArea.focus();
       textArea.select();
@@ -900,53 +858,33 @@ Trình bày bảng đối chiếu rõ ràng:
 
     function showToast() {
       const toast = document.getElementById('copyToast');
-      const btnText = document.getElementById('copyBtnText');
-      const btnIcon = document.getElementById('copyBtnIcon');
+      const copyText = document.getElementById('copyText');
+      const copyIcon = document.getElementById('copyIcon');
 
-      btnText.innerText = 'ĐÃ SAO CHÉP THÀNH CÔNG!';
-      btnIcon.innerText = '✓';
+      copyText.innerText = 'ĐÃ SAO CHÉP THÀNH CÔNG!';
+      copyIcon.innerText = '✓';
       toast.classList.add('is-show');
 
       setTimeout(() => {
         toast.classList.remove('is-show');
-        btnText.innerText = 'SAO CHÉP CÂU LỆNH (MEGAPROMPT)';
-        btnIcon.innerText = '📋';
-      }, 2500);
+        copyText.innerText = 'SAO CHÉP CÂU LỆNH (MEGAPROMPT)';
+        copyIcon.innerText = '📋';
+      }, 2200);
     }
 
-    // Toggle thu gọn/mở rộng mã
-    function toggleCodeBody() {
-      const codeBody = document.getElementById('masterCodeBlock');
-      const toggleBtn = document.getElementById('toggleCodeBtn');
-      if (codeBody.style.display === 'none') {
-        codeBody.style.display = 'block';
-        toggleBtn.innerText = 'Thu gọn ▲';
-      } else {
-        codeBody.style.display = 'none';
-        toggleBtn.innerText = 'Mở rộng ▼';
-      }
+    function toggleDrawer() {
+      const drawer = document.getElementById('promptDrawer');
+      const arrow = document.getElementById('drawerArrow');
+      drawer.classList.toggle('is-open');
+      arrow.innerText = drawer.classList.contains('is-open') ? '▲' : '▼';
     }
 
-    // Chuyển Tab Showcase
-    function switchTab(index) {
-      const tabs = document.querySelectorAll('.sim-tab-btn');
-      const views = document.querySelectorAll('.sim-view');
+    function switchShowcase(idx) {
+      const tabs = document.querySelectorAll('.pill-tab');
+      const displays = document.querySelectorAll('.showcase-display');
 
-      tabs.forEach((tab, i) => {
-        if (i === index) {
-          tab.classList.add('is-active');
-        } else {
-          tab.classList.remove('is-active');
-        }
-      });
-
-      views.forEach((view, i) => {
-        if (i === index) {
-          view.classList.add('is-active');
-        } else {
-          view.classList.remove('is-active');
-        }
-      });
+      tabs.forEach((t, i) => t.classList.toggle('is-active', i === idx));
+      displays.forEach((d, i) => d.classList.toggle('is-active', i === idx));
     }
   </script>
 </body>
