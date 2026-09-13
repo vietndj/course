@@ -68,6 +68,36 @@
       font-style: italic;
       font-display: swap;
     }
+    @font-face {
+      font-family: 'FD Aeonik Mono';
+      src: url('https://font.fedu.vn/fonts/FDAeonikMono-Regular.woff2') format('woff2'),
+           url('./fonts/FDAeonikMono-Regular.woff2') format('woff2'),
+           url('/Users/vietmac/Library/Fonts/FDAeonikMono-Regular.otf') format('opentype'),
+           local('FD Aeonik Mono Regular'), local('FDAeonikMono-Regular');
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'FD Aeonik Mono';
+      src: url('https://font.fedu.vn/fonts/FDAeonikMono-Medium.woff2') format('woff2'),
+           url('./fonts/FDAeonikMono-Medium.woff2') format('woff2'),
+           url('/Users/vietmac/Library/Fonts/FDAeonikMono-Medium.otf') format('opentype'),
+           local('FD Aeonik Mono Medium'), local('FDAeonikMono-Medium');
+      font-weight: 500;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'FD Aeonik Mono';
+      src: url('https://font.fedu.vn/fonts/FDAeonikMono-Bold.woff2') format('woff2'),
+           url('./fonts/FDAeonikMono-Bold.woff2') format('woff2'),
+           url('/Users/vietmac/Library/Fonts/FDAeonikMono-Bold.otf') format('opentype'),
+           local('FD Aeonik Mono Bold'), local('FDAeonikMono-Bold');
+      font-weight: 700;
+      font-style: normal;
+      font-display: swap;
+    }
 
     :root {
       --cl-bg: #ffffff;
@@ -82,7 +112,7 @@
       --font-display-short: 'FD Aeonik Extended', 'Inter', sans-serif;
       --font-display-long: 'FD Aeonik', 'Inter', sans-serif;
       --font-body: 'Tiempos Text', Georgia, serif;
-      --font-mono: 'JetBrains Mono', monospace;
+      --font-mono: 'FD Aeonik Mono', 'JetBrains Mono', monospace;
     }
 
     *, *::before, *::after {
@@ -341,15 +371,15 @@
     }
     .wiki-chapter th {
       background: var(--cl-sidebar-bg);
-      font-family: var(--font-display-long);
-      font-weight: 600;
+      font-family: var(--font-mono);
+      font-weight: 700;
       text-align: left;
       padding: 12px 14px;
       border-bottom: 1px solid var(--cl-line);
       color: var(--cl-text-base);
-      font-size: 12.5px;
+      font-size: 11.5px;
       text-transform: uppercase;
-      letter-spacing: 0.04em;
+      letter-spacing: 0.06em;
     }
     .wiki-chapter td {
       padding: 12px 14px;
@@ -362,21 +392,34 @@
       border-bottom: none;
     }
 
+    /* KHỐI CODE TỐI ƯU CHỐNG THANH CUỘN NGANG (ZERO HORIZONTAL SCROLL) */
     .wiki-chapter pre {
+      position: relative;
       background: #f8fafc;
       border: 1px solid #e2e8f0;
       border-radius: 12px;
-      padding: 16px 20px;
-      overflow-x: auto;
+      padding: 18px 20px;
       font-family: var(--font-mono);
-      font-size: 13.5px;
+      font-size: 13px;
       line-height: 1.65;
       color: #1e293b;
       margin: 24px 0;
+      white-space: pre-wrap;
+      word-break: break-word;
+      overflow-wrap: anywhere;
+      overflow-x: auto;
+      scrollbar-width: thin;
+    }
+    .wiki-chapter pre::-webkit-scrollbar {
+      height: 4px;
+    }
+    .wiki-chapter pre::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 4px;
     }
     .wiki-chapter code {
       font-family: var(--font-mono);
-      font-size: 14px;
+      font-size: 13.5px;
       background: rgba(0,0,0,0.04);
       padding: 2px 6px;
       border-radius: 4px;
@@ -384,6 +427,31 @@
     .wiki-chapter pre code {
       background: transparent;
       padding: 0;
+    }
+
+    .copy-code-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: #ffffff;
+      color: #475569;
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+      padding: 4px 9px;
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      cursor: pointer;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+      transition: all 0.15s ease;
+      z-index: 10;
+    }
+    .copy-code-btn:hover {
+      background: var(--cl-accent);
+      color: #ffffff;
+      border-color: var(--cl-accent);
     }
 
     /* Wikipedia Cross-Links */
@@ -2587,6 +2655,24 @@ Không dùng hình ảnh trừu tượng để minh họa cho một vấn đề 
 
       document.querySelectorAll('.wiki-chapter').forEach(chapter => {
         observer.observe(chapter);
+      });
+
+      // Tự động gắn nút sao chép cho toàn bộ khối code pre
+      document.querySelectorAll('.wiki-chapter pre').forEach(pre => {
+        if (pre.querySelector('.copy-code-btn')) return;
+        const copyBtn = document.createElement('button');
+        copyBtn.className = 'copy-code-btn';
+        copyBtn.textContent = 'Sao chép';
+        copyBtn.onclick = (e) => {
+          e.stopPropagation();
+          const codeEl = pre.querySelector('code');
+          const textToCopy = codeEl ? codeEl.innerText : pre.innerText;
+          navigator.clipboard.writeText(textToCopy).then(() => {
+            copyBtn.textContent = '✓ Đã chép!';
+            setTimeout(() => copyBtn.textContent = 'Sao chép', 2000);
+          });
+        };
+        pre.appendChild(copyBtn);
       });
     });
   </script>
