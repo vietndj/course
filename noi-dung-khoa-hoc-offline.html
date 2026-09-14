@@ -468,24 +468,24 @@
     .gear-grid {
       display: grid;
       grid-template-columns: 1fr;
-      gap: 16px;
+      gap: 20px;
     }
 
-    @media (min-width: 860px) {
+    @media (min-width: 900px) {
       .gear-grid {
-        grid-template-columns: 1fr 1fr 1fr;
-        gap: 20px;
+        grid-template-columns: 1.35fr 1fr;
+        align-items: stretch;
       }
     }
 
     .gear-card {
       background: #ffffff;
       border: 1px solid var(--cl-line-strong);
-      border-radius: var(--cl-radius-sm);
-      padding: 20px 18px;
+      border-radius: var(--cl-radius-md);
+      padding: 22px 20px;
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: 12px;
       transition: transform 0.2s ease, border-color 0.2s ease;
     }
 
@@ -496,8 +496,7 @@
 
     .gear-card--featured {
       border-color: rgba(26, 115, 232, 0.4);
-      box-shadow: 0 4px 16px rgba(26, 115, 232, 0.08);
-      background: linear-gradient(180deg, #ffffff 0%, #fbfdff 100%);
+      box-shadow: 0 4px 18px rgba(26, 115, 232, 0.07);
     }
 
     .gear-card__top {
@@ -532,15 +531,88 @@
 
     .gear-title {
       font-family: var(--font-display-long);
-      font-size: 16px;
+      font-size: 17px;
       font-weight: 700;
       color: var(--cl-text-base);
       line-height: 1.35;
     }
 
     .gear-summary {
-      font-size: 14px;
+      font-size: 14.5px;
       line-height: 1.6;
+      color: var(--cl-text-body);
+    }
+
+    /* 2 Lựa Chọn Mic Trong 1 Khối */
+    .mic-subgrid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+      margin-top: 4px;
+    }
+
+    @media (min-width: 580px) {
+      .mic-subgrid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .mic-option {
+      background: var(--cl-tint);
+      border: 1px solid var(--cl-line);
+      border-radius: var(--cl-radius-sm);
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      transition: border-color 0.2s ease;
+    }
+
+    .mic-option:hover {
+      border-color: var(--cl-accent);
+    }
+
+    .mic-option--featured {
+      background: rgba(26, 115, 232, 0.03);
+      border-color: rgba(26, 115, 232, 0.25);
+    }
+
+    .mic-option__header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 6px;
+    }
+
+    .mic-option__tag {
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      font-weight: 700;
+      color: var(--cl-text-muted);
+    }
+
+    .mic-option__tag--accent {
+      color: var(--cl-accent);
+    }
+
+    .mic-option__price {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--cl-emerald);
+    }
+
+    .mic-option__name {
+      font-family: var(--font-display-long);
+      font-size: 14.5px;
+      font-weight: 700;
+      color: var(--cl-text-base);
+      line-height: 1.3;
+    }
+
+    .mic-option__desc {
+      font-size: 13px;
+      line-height: 1.55;
       color: var(--cl-text-body);
       flex: 1;
     }
@@ -551,15 +623,15 @@
       justify-content: center;
       gap: 6px;
       font-family: var(--font-display-long);
-      font-size: 13px;
+      font-size: 12.5px;
       font-weight: 600;
       color: var(--cl-accent);
-      background: var(--cl-accent-tint);
+      background: #ffffff;
       border: 1px solid rgba(26, 115, 232, 0.25);
-      padding: 9px 14px;
+      padding: 8px 12px;
       border-radius: 6px;
       text-decoration: none;
-      margin-top: 8px;
+      margin-top: 6px;
       transition: all 0.2s ease;
     }
 
@@ -960,47 +1032,66 @@
       </div>
 
       <div class="gear-grid">
-        <!-- Món 1: Mic khởi đầu -->
-        <div class="gear-card">
-          <div class="gear-card__top">
-            <span class="gear-tag">KHỞI ĐẦU • TIỆN LỢI</span>
-            <span class="gear-price">200k – 300k</span>
-          </div>
-          <h4 class="gear-title">1. Mic Cài Áo Không Dây Ulanzi</h4>
-          <p class="gear-summary">
-            Cắm trực tiếp đầu thu vào điện thoại là nhận ngay, không cần cài app rườm rà. Nhỏ gọn, pin bền, thu âm giọng rõ ràng, cực kỳ phù hợp cho người mới bắt đầu mà chưa cần đầu tư nhiều.
-          </p>
-          <a href="https://www.lazada.vn/products/ulanzi-multi-device-compatibility-lavalier-microphone-i13420918958-s117151055178.html?sbucket=y&dsource=share&laz_share_info=4029595876_0_100_604840_4029597876_null&laz_token=ea0ae8d6f8f113a17c3596b6807f79ed&c=w&exlaz=e_LD%2BWs5ElHhXGip8qo24MCXRib2ph7O2ICC6FqKlh%2FLXCXvTKdNAtBZQY0KVTPT6FRzGUIFPICwrE7WLYoHefSZ23n24RbgrfD3WnASIas1Y%3D&sub_aff_id=social_share&sub_id2=4029595876&sub_id3=604840&sub_id6=CPI_EXLAZ&sub_id1=snshare-U51196D116L78" target="_blank" rel="noopener noreferrer" class="gear-link">
-            Xem Mẫu Mic Ulanzi (Lazada) ↗
-          </a>
-        </div>
-
-        <!-- Món 2: Mic đầu tư hơn -->
+        <!-- Khối 1: Mic Thu Âm (Lựa chọn 1 hoặc 2) -->
         <div class="gear-card gear-card--featured">
           <div class="gear-card__top">
-            <span class="gear-tag gear-tag--accent">ĐẦU TƯ CHUYÊN NGHIỆP</span>
-            <span class="gear-price">> 1 Triệu</span>
+            <span class="gear-tag gear-tag--accent">QUAN TRỌNG NHẤT • CHỌN 1 TRONG 2</span>
+            <span class="gear-price">200k – >1Tr</span>
           </div>
-          <h4 class="gear-title">2. Mic DJI (Bản 1 Mic Loại 1)</h4>
+          <h4 class="gear-title">1. Mic Thu Âm (Lựa Chọn 1 Hoặc 2)</h4>
           <p class="gear-summary">
-            Chất âm trong vắt chuẩn truyền hình, độ trễ cực thấp và khả năng lọc gió, khử ồn ngoại cảnh đỉnh cao. Lựa chọn số 1 cho ai xác định xây kênh nhân hiệu và quay chuyên gia lâu dài.
+            Âm thanh quyết định 70% trải nghiệm xem. Tùy theo ngân sách, bạn chỉ cần chọn <b>1 trong 2 loại</b> sau là đủ dùng:
           </p>
-          <a href="https://www.lazada.vn/products/portable-low-latency-wireless-microphone-i13383852141-s116968971643.html?sbucket=y&dsource=share&laz_share_info=4029610230_0_100_604840_4029612230_null&laz_token=472f3d875f5b955d068308af8a8a2e0a&c=v&exlaz=e_LD%2BWs5ElHhXGip8qo24MCXRib2ph7O2ICC6FqKlh%2FLXCXvTKdNAtBZQY0KVTPT6FRzGUIFPICwrE7WLYoHefSZ23n24RbgrfD3WnASIas1Y%3D&sub_aff_id=social_share&sub_id2=4029610230&sub_id3=604840&sub_id6=CPI_EXLAZ&sub_id1=snshare-U51196D116L78" target="_blank" rel="noopener noreferrer" class="gear-link gear-link--accent">
-            Xem Mẫu Mic DJI Loại 1 (Lazada) ↗
-          </a>
+
+          <div class="mic-subgrid">
+            <!-- Lựa chọn 1: Ulanzi -->
+            <div class="mic-option">
+              <div class="mic-option__header">
+                <span class="mic-option__tag">LỰA CHỌN 1 • KHỞI ĐẦU</span>
+                <span class="mic-option__price">200k – 300k</span>
+              </div>
+              <div class="mic-option__name">Mic Không Dây Ulanzi</div>
+              <p class="mic-option__desc">
+                Cắm đầu thu vào điện thoại là thu ngay, nhỏ gọn, tiện lợi, đủ dùng cho người mới bắt đầu mà chưa cần đầu tư nhiều.
+              </p>
+              <a href="https://www.lazada.vn/products/ulanzi-multi-device-compatibility-lavalier-microphone-i13420918958-s117151055178.html?sbucket=y&dsource=share&laz_share_info=4029595876_0_100_604840_4029597876_null&laz_token=ea0ae8d6f8f113a17c3596b6807f79ed&c=w&exlaz=e_LD%2BWs5ElHhXGip8qo24MCXRib2ph7O2ICC6FqKlh%2FLXCXvTKdNAtBZQY0KVTPT6FRzGUIFPICwrE7WLYoHefSZ23n24RbgrfD3WnASIas1Y%3D&sub_aff_id=social_share&sub_id2=4029595876&sub_id3=604840&sub_id6=CPI_EXLAZ&sub_id1=snshare-U51196D116L78" target="_blank" rel="noopener noreferrer" class="gear-link">
+                Xem Mẫu Ulanzi (Lazada) ↗
+              </a>
+            </div>
+
+            <!-- Lựa chọn 2: DJI -->
+            <div class="mic-option mic-option--featured">
+              <div class="mic-option__header">
+                <span class="mic-option__tag mic-option__tag--accent">LỰA CHỌN 2 • NÂNG CAO</span>
+                <span class="mic-option__price">> 1 Triệu</span>
+              </div>
+              <div class="mic-option__name">Mic DJI (Bản 1 Mic Loại 1)</div>
+              <p class="mic-option__desc">
+                Chất âm trong vắt chuẩn truyền hình, lọc gió khử ồn đỉnh cao, độ trễ thấp cho ai xác định xây kênh nhân hiệu lâu dài.
+              </p>
+              <a href="https://www.lazada.vn/products/portable-low-latency-wireless-microphone-i13383852141-s116968971643.html?sbucket=y&dsource=share&laz_share_info=4029610230_0_100_604840_4029612230_null&laz_token=472f3d875f5b955d068308af8a8a2e0a&c=v&exlaz=e_LD%2BWs5ElHhXGip8qo24MCXRib2ph7O2ICC6FqKlh%2FLXCXvTKdNAtBZQY0KVTPT6FRzGUIFPICwrE7WLYoHefSZ23n24RbgrfD3WnASIas1Y%3D&sub_aff_id=social_share&sub_id2=4029610230&sub_id3=604840&sub_id6=CPI_EXLAZ&sub_id1=snshare-U51196D116L78" target="_blank" rel="noopener noreferrer" class="gear-link gear-link--accent">
+                Xem Mẫu DJI Loại 1 (Lazada) ↗
+              </a>
+            </div>
+          </div>
         </div>
 
-        <!-- Món 3: Chân máy cơ bản -->
+        <!-- Khối 2: Chân Máy Tripod -->
         <div class="gear-card">
           <div class="gear-card__top">
             <span class="gear-tag">CHÂN MÁY GỌN NHẸ</span>
             <span class="gear-price">200k – 300k</span>
           </div>
-          <h4 class="gear-title">3. Chân Máy Tripod / Gậy Selfie Ulanzi</h4>
+          <h4 class="gear-title">2. Chân Máy Tripod / Gậy Selfie Ulanzi</h4>
           <p class="gear-summary">
             Chân máy kiêm gậy cầm tay gọn nhẹ, tương thích MagSafe hít điện thoại cực nhanh. Dễ dàng để bàn quay Talking Head hoặc cầm đi quay Walk & Talk mà không sợ mỏi tay.
           </p>
-          <a href="https://www.lazada.vn/products/ulanzi-magsafe-compatible-selfie-stick-tripod-product-demonstration-and-vlogging-i13414547716-s117128779090.html?tradePath=coins_itemId-13414547716%24t-1788970080229%24actualPrice-1%24subsidy-standard%24v-2%24utdid-aXlrM8bYp3sDAA08X23K6D4M%24sign-23576787849bb2610d45f13fa8426a41%24subsidyV-2%24tracking-*100*0*0*0*0*100*60900*JFY*0*100*60900.00%24et-1789056480229%2Cpdp%2CcartPriceDrop%2Ccart&sbucket=x&dsource=share&laz_share_info=4029611267_0_100_604840_4029613267_null&laz_token=00a0314959fd0adca4521507f920a7c8&c=s&exlaz=e_LD%2BWs5ElHhXGip8qo24MCXRib2ph7O2ICC6FqKlh%2FLXCXvTKdNAtBZQY0KVTPT6FRzGUIFPICwrE7WLYoHefSZ23n24RbgrfD3WnASIas1Y%3D&sub_aff_id=social_share&sub_id2=4029611267&sub_id3=604840&sub_id6=CPI_EXLAZ&sub_id1=snshare-U51196D116L78" target="_blank" rel="noopener noreferrer" class="gear-link">
+          <div style="background: var(--cl-tint); padding: 12px 14px; border-radius: var(--cl-radius-sm); font-size: 13.5px; color: var(--cl-text-body); margin: 6px 0 12px; border: 1px solid var(--cl-line); line-height: 1.6;">
+            • Gấp gọn bỏ túi balo dễ dàng mang đi<br>
+            • Khớp xoay 360 độ chỉnh góc ngang / dọc linh hoạt<br>
+            • Dùng vững vàng cả trên bàn và quay ngoại cảnh
+          </div>
+          <a href="https://www.lazada.vn/products/ulanzi-magsafe-compatible-selfie-stick-tripod-product-demonstration-and-vlogging-i13414547716-s117128779090.html?tradePath=coins_itemId-13414547716%24t-1788970080229%24actualPrice-1%24subsidy-standard%24v-2%24utdid-aXlrM8bYp3sDAA08X23K6D4M%24sign-23576787849bb2610d45f13fa8426a41%24subsidyV-2%24tracking-*100*0*0*0*0*100*60900*JFY*0*100*60900.00%24et-1789056480229%2Cpdp%2CcartPriceDrop%2Ccart&sbucket=x&dsource=share&laz_share_info=4029611267_0_100_604840_4029613267_null&laz_token=00a0314959fd0adca4521507f920a7c8&c=s&exlaz=e_LD%2BWs5ElHhXGip8qo24MCXRib2ph7O2ICC6FqKlh%2FLXCXvTKdNAtBZQY0KVTPT6FRzGUIFPICwrE7WLYoHefSZ23n24RbgrfD3WnASIas1Y%3D&sub_aff_id=social_share&sub_id2=4029611267&sub_id3=604840&sub_id6=CPI_EXLAZ&sub_id1=snshare-U51196D116L78" target="_blank" rel="noopener noreferrer" class="gear-link" style="margin-top: auto;">
             Xem Chân Máy Ulanzi (Lazada) ↗
           </a>
         </div>
