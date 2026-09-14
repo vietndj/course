@@ -252,9 +252,16 @@
       font-family: var(--font-display-long);
     }
 
-    /* Day Section */
+    /* Day Section & 2-Column Desktop Grid */
+    .days-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 28px;
+      margin-bottom: 32px;
+    }
+
     .day-block {
-      margin-bottom: 40px;
+      margin-bottom: 0;
     }
 
     .day-header {
@@ -429,6 +436,59 @@
       line-height: 1.6;
     }
 
+    /* Desktop 2-Column Optimization */
+    @media (min-width: 960px) {
+      body {
+        padding: 40px 24px 80px;
+      }
+      .syllabus-wrapper {
+        max-width: 1200px;
+        padding: 52px 48px;
+      }
+      .days-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 32px;
+        align-items: stretch;
+      }
+      .day-block {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+      .day-header {
+        margin-bottom: 0;
+      }
+      .session-card {
+        margin-bottom: 0;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+      }
+      .module-table {
+        flex: 1;
+      }
+      .module-output {
+        margin-top: auto;
+      }
+      .pillars-list {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 20px;
+      }
+      .pillars-list li {
+        padding-left: 0;
+        padding-top: 24px;
+      }
+      .pillars-list li::before {
+        left: 0;
+        top: 0;
+      }
+      .info-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 28px;
+      }
+    }
+
     /* Print Styles */
     @media print {
       body {
@@ -497,8 +557,11 @@
       </ul>
     </div>
 
-    <!-- ==================== NGÀY 01 ==================== -->
-    <div class="day-block">
+    <!-- ==================== LỘ TRÌNH 2 NGÀY (2 CỘT DESKTOP) ==================== -->
+    <div class="days-grid">
+
+      <!-- ==================== NGÀY 01 ==================== -->
+      <div class="day-block">
       <div class="day-header">
         <div class="day-header__title">NGÀY 01: KỊCH BẢN & DỰNG PHIM TRÊN ĐIỆN THOẠI</div>
         <div class="day-header__badge">THỨ BẢY (09:00 – 17:00)</div>
@@ -742,6 +805,7 @@
         </div>
       </div>
     </div>
+  </div> <!-- end days-grid -->
 
     <!-- Hậu Thuẫn & Chuẩn Bị -->
     <div class="info-grid">
