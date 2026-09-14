@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>LOGIC STORYTELLING & BẢN CHẤT NIỀM TIN • NGUYỄN ĐỨC VIỆT</title>
+
+  <!-- Favicon Vector Chuẩn Cinema REC Monogram (VI + REC + DEO) -->
+  <link rel="icon" type="image/svg+xml" href="./favicon.svg">
+  <link rel="alternate icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%230B0F19'/%3E%3Ctext x='25' y='25' text-anchor='middle' dominant-baseline='central' font-family='sans-serif' font-weight='900' font-size='21' fill='%23FFF'%3EVI%3C/text%3E%3Ccircle cx='47' cy='25' r='5' fill='%23EF4444'/%3E%3Ctext x='32' y='46' text-anchor='middle' dominant-baseline='central' font-family='sans-serif' font-weight='900' font-size='18' fill='%23F8FAFC'%3EDEO%3C/text%3E%3C/svg%3E">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    @font-face {
+      font-family: 'FD Aeonik Extended';
+      src: url('./fonts/FDAeonikExtended-Bold.woff2') format('woff2'),
+           url('./fonts/FDAeonikExtended-Bold.ttf') format('truetype'),
+           local('FD Aeonik Extended Bold');
+      font-weight: 700;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'FD Aeonik';
+      src: url('./fonts/FDAeonik-Regular.woff2') format('woff2'),
+           url('./fonts/FDAeonik-Regular.ttf') format('truetype'),
+           local('FD Aeonik Regular');
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'FD Aeonik';
+      src: url('./fonts/FDAeonik-Medium.woff2') format('woff2'),
+           url('./fonts/FDAeonik-Medium.ttf') format('truetype'),
+           local('FD Aeonik Medium');
+      font-weight: 500;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'FD Aeonik';
+      src: url('./fonts/FDAeonik-Bold.woff2') format('woff2'),
+           url('./fonts/FDAeonik-Bold.ttf') format('truetype'),
+           local('FD Aeonik Bold');
+      font-weight: 600 700;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Tiempos Text';
+      src: url('./fonts/FDTiemposText-Regular.woff2') format('woff2'),
+           url('./fonts/FDTiemposText-Regular.otf') format('opentype'),
+           url('./fonts/TiemposText-Regular.woff2') format('woff2');
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Tiempos Text';
+      src: url('./fonts/FDTiemposText-Medium.woff2') format('woff2'),
+           url('./fonts/FDTiemposText-Medium.otf') format('opentype'),
+           url('./fonts/TiemposText-Medium.woff2') format('woff2');
+      font-weight: 500;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Tiempos Text';
+      src: url('./fonts/FDTiemposText-RegularItalic.woff2') format('woff2'),
+           url('./fonts/FDTiemposText-RegularItalic.otf') format('opentype'),
+           url('./fonts/TiemposText-RegularItalic.woff2') format('woff2');
+      font-weight: 400;
+      font-style: italic;
+      font-display: swap;
+    }
+
+    :root {
+      --cl-bg: #ffffff;
+      --cl-tint: #f8fafc;
+      --cl-line: #e2e8f0;
+      --cl-text-base: #090d16;
+      --cl-text-body: #0f172a;
+      --cl-text-muted: #475569;
+      --cl-accent: #1a73e8;
+      --cl-accent-soft: rgba(26, 115, 232, 0.08);
+
+      --font-display-short: 'FD Aeonik Extended', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      --font-display-long: 'FD Aeonik', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      --font-body: 'Tiempos Text', Georgia, 'Times New Roman', serif;
+      --font-mono: 'JetBrains Mono', Consolas, Monaco, monospace;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    html {
+      background-color: var(--cl-bg);
+      color: var(--cl-text-base);
+      font-family: var(--font-body);
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100vh;
+      line-height: 1.8;
+      padding-bottom: 80px;
+    }
+
+    /* Top Bar */
+    .top-nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--cl-line);
+      padding: 12px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: var(--font-display-long);
+    }
+    .top-nav__brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--cl-text-base);
+    }
+    .top-nav__badge {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 700;
+      background: var(--cl-text-base);
+      color: #ffffff;
+      padding: 3px 8px;
+      border-radius: 6px;
+      letter-spacing: 0.08em;
+    }
+    .top-nav__title {
+      font-family: var(--font-display-short);
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .top-nav__links {
+      display: flex;
+      gap: 14px;
+      align-items: center;
+    }
+    .top-nav__link {
+      color: var(--cl-text-muted);
+      text-decoration: none;
+      font-size: 13.5px;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .top-nav__link:hover {
+      color: var(--cl-accent);
+    }
+
+    /* Sections */
+    .cl-zebra-section {
+      width: 100%;
+      padding: clamp(48px, 6vw, 84px) 20px;
+      border-bottom: 1px solid var(--cl-line);
+    }
+    .cl-zebra--light { background-color: var(--cl-bg); }
+    .cl-zebra--tint { background-color: var(--cl-tint); }
+
+    .cl-sec-container {
+      max-width: 820px;
+      margin: 0 auto;
+    }
+
+    .cl-badge {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--cl-accent);
+      margin-bottom: 12px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--cl-accent-soft);
+      padding: 4px 12px;
+      border-radius: 100px;
+    }
+    .cl-badge::before {
+      content: '';
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      background: var(--cl-accent);
+      border-radius: 50%;
+    }
+
+    .title-short {
+      font-family: var(--font-display-short);
+      font-size: clamp(24px, 3.8vw, 36px);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: -0.01em;
+      line-height: 1.2;
+      color: var(--cl-text-base);
+      margin-bottom: 16px;
+      text-wrap: balance;
+    }
+
+    .title-long {
+      font-family: var(--font-display-long);
+      font-size: clamp(20px, 2.8vw, 26px);
+      font-weight: 600;
+      line-height: 1.35;
+      color: var(--cl-text-base);
+      margin-bottom: 14px;
+    }
+
+    .cl-body {
+      font-family: var(--font-body);
+      font-size: clamp(16.5px, 1.8vw, 18px);
+      line-height: 1.85;
+      color: var(--cl-text-body);
+      margin-bottom: 20px;
+    }
+
+    .editorial-hook {
+      font-family: var(--font-body);
+      font-style: italic;
+      font-size: clamp(17px, 2vw, 20px);
+      line-height: 1.65;
+      color: var(--cl-text-base);
+      border-left: 3px solid var(--cl-accent);
+      padding-left: 20px;
+      margin: 24px 0;
+    }
+
+    /* Cards */
+    .apple-card {
+      background: #ffffff;
+      border: 1px solid var(--cl-line);
+      border-radius: 16px;
+      padding: clamp(20px, 3vw, 26px);
+      margin-bottom: 20px;
+      box-shadow: 0 4px 20px rgba(9, 13, 22, 0.03);
+    }
+    .apple-card__badge {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--cl-accent);
+      margin-bottom: 8px;
+    }
+    .apple-card__title {
+      font-family: var(--font-display-long);
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--cl-text-base);
+      margin-bottom: 10px;
+    }
+
+    .quote-box {
+      background: #f1f5f9;
+      border-radius: 12px;
+      padding: 16px 20px;
+      font-family: var(--font-body);
+      font-size: 16px;
+      color: var(--cl-text-body);
+      line-height: 1.7;
+      margin: 14px 0;
+    }
+
+    .comparison-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin: 24px 0;
+    }
+    @media (max-width: 640px) {
+      .comparison-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .compare-card {
+      border-radius: 14px;
+      padding: 20px;
+      border: 1px solid var(--cl-line);
+    }
+    .compare-card--wrong {
+      background: #fffdfd;
+      border-color: #fecaca;
+    }
+    .compare-card--right {
+      background: #f0fdf4;
+      border-color: #bbf7d0;
+    }
+    .compare-card__tag {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .compare-card--wrong .compare-card__tag { color: #dc2626; }
+    .compare-card--right .compare-card__tag { color: #16a34a; }
+
+    .btn-action {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--cl-text-base);
+      color: #ffffff;
+      text-decoration: none;
+      font-family: var(--font-display-long);
+      font-size: 14.5px;
+      font-weight: 600;
+      padding: 12px 22px;
+      border-radius: 10px;
+      transition: opacity 0.2s;
+      margin-top: 10px;
+    }
+    .btn-action:hover {
+      opacity: 0.9;
+    }
+
+    .highlight-rule {
+      background: #eff6ff;
+      border-left: 4px solid var(--cl-accent);
+      padding: 16px 20px;
+      border-radius: 0 12px 12px 0;
+      margin: 20px 0;
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- TOP NAV -->
+  <nav class="top-nav">
+    <a href="./wikicontent.html" class="top-nav__brand">
+      <span class="top-nav__badge">VIDEO</span>
+      <span class="top-nav__title">LOGIC STORYTELLING & NIỀM TIN</span>
+    </a>
+    <div class="top-nav__links">
+      <a href="./wikicontent.html" class="top-nav__link">← Wikipedia Hệ Thống</a>
+      <a href="./4tang.html" class="top-nav__link">Công Cụ 4 Tầng ↗</a>
+    </div>
+  </nav>
+
+  <!-- MÀN 1: BÁN ĐỒ RẺ TIỀN CẦN VIEW, BÁN ĐỒ GIÁ CAO CẦN NIỀM TIN -->
+  <section class="cl-zebra-section cl-zebra--light">
+    <div class="cl-sec-container">
+      <div class="cl-badge">01 / PHÂN ĐỊNH MỤC TIÊU</div>
+      <h1 class="title-short">BÁN ĐỒ RẺ THÌ CẦN VIEW, BÁN GIÁ CAO THÌ CẦN NIỀM TIN</h1>
+      
+      <p class="cl-body">
+        Nếu em làm video chỉ để bán cái ốp lưng 30 nghìn, bịch đồ ăn vặt, hay mấy thứ tiện tay mua một lần rồi thôi: Em chỉ cần quảng bá số lượng. Nhạc giật gân, nhảy nhót bắt trend, video nhảy số triệu view là ra đơn. Ở phân khúc đấy, khách hàng không cần niềm tin ở em.
+      </p>
+
+      <p class="cl-body">
+        Nhưng nếu em xác định làm video để làm thương hiệu lâu dài, để bán sản phẩm giá cao, tư vấn dịch vụ hay làm nghề chuyên môn: Khách hàng không bao giờ rút ví vì một cái video vui mắt. Người ta chỉ trả tiền khi có một thứ duy nhất: <b>Niềm tin</b>.
+      </p>
+
+      <div class="highlight-rule">
+        <b>Câu hỏi đặt ra là:</b> Niềm tin của một người lạ trên mạng đến từ đâu? Nó không đến từ việc mặc vest đứng trước phông xanh bóng bẩy. <b>Niềm tin đến từ việc em dám nói thật.</b>
+      </div>
+    </div>
+  </section>
+
+  <!-- MÀN 2: NIỀM TIN ĐẾN TỪ VIỆC NÓI THẬT (MỔ XẺ 3 TẦNG) -->
+  <section class="cl-zebra-section cl-zebra--tint">
+    <div class="cl-sec-container">
+      <div class="cl-badge">02 / MỔ XẺ 3 TẦNG THỰC TẾ</div>
+      <h2 class="title-short">ANH HỎI THẬT EM, EM HỌC LÀM VIDEO ĐỂ LÀM GÌ?</h2>
+
+      <p class="cl-body">
+        Nếu anh gặp em buổi đầu, anh hỏi: <i>"Em đi học làm video để làm gì?"</i>.
+      </p>
+
+      <div class="comparison-grid">
+        <div class="compare-card compare-card--wrong">
+          <div class="compare-card__tag">TẦNG 1: LỜI NÓI ĐÃI BÔI (GOOGLE CÓ SẴN)</div>
+          <p style="font-size: 15px; line-height: 1.6; color: #0f172a;">
+            <i>"Dạ em học để xây kênh, để làm video nhiều người biết đến."</i>
+          </p>
+          <p style="font-size: 13.5px; color: #64748b; margin-top: 10px;">
+            Anh nghe xong sẽ lướt qua ngay. Giữa anh và em không có chút kết nối nào. Đây là thứ văn mẫu ngoài miệng, ai cũng gõ Google lấy ra được, không có con người thật của em ở đó.
+          </p>
+        </div>
+
+        <div class="compare-card compare-card--right">
+          <div class="compare-card__tag">TẦNG 2: CẢM GIÁC THẬT VI MÔ</div>
+          <p style="font-size: 15px; line-height: 1.6; color: #0f172a;">
+            <i>"Em thấy trong ngành ai cũng làm video. Em không biết có ăn thua không nhưng em sợ bị bỏ lại cuộc chơi. Em xem video của anh thấy có vẻ đáng tin nên đi học để rút ngắn thời gian."</i>
+          </p>
+          <p style="font-size: 13.5px; color: #15803d; margin-top: 10px;">
+            Anh kết nối với em ngay lập tức. Câu nói sợ bị bỏ lại, muốn rút ngắn thời gian là một trải nghiệm rất nhỏ, rất chi ly mà chỉ người có suy nghĩ thật mới nói ra được.
+          </p>
+        </div>
+      </div>
+
+      <div class="apple-card" style="margin-top: 24px; border-left: 4px solid #f59e0b;">
+        <div class="apple-card__badge" style="color: #b45309;">TẦNG 3: NỖI SỢ THẦM KÍN & CHIẾC MẶT NẠ GIỮ THỂ DIỆN (TẦNG 2.5)</div>
+        <p class="cl-body" style="margin-bottom: 12px;">
+          Đến tầng thứ ba là những thứ em không dám nói ra: Em thấy người ta làm được, em cũng đã thức đêm tự mày mò, quay thử, cắt thử trên điện thoại theo hướng dẫn trên mạng. Mất cả tuần trời mà video ra nhìn vẫn dở tệ. Em vừa tức, vừa sốt ruột vì tiền nhà, tiền học con, hóa đơn nó vẫn tới đều mỗi ngày. Em đang rất bế tắc.
+        </p>
+        <p class="cl-body" style="margin-bottom: 12px;">
+          Nhưng vì lòng tự trọng của người đi làm có vị thế, em không bao giờ thừa nhận mình bất lực. Em sẽ tìm những lý do nghe rất đàng hoàng để ngụy trang:
+        </p>
+        <div class="quote-box">
+          • <i>"Bận rộn công việc cơ quan, thời gian đâu mà làm video."</i><br>
+          • <i>"Làm ăn là phải quan hệ thật ngoài đời chứ ai làm trò trên mạng."</i><br>
+          • <i>"Khách của mình toàn khách VIP, lên mạng nói lung tung người ta đánh giá."</i><br>
+          • <i>"Anh già rồi, dốt công nghệ, thôi nhường lớp trẻ nhạy bén."</i>
+        </div>
+        <p class="cl-body" style="margin-bottom: 0;">
+          Em chủ động nhận mình dốt công nghệ không phải vì em dốt thật, mà đó là <b>cách tốt nhất để không ai bắt bẻ được việc em đang sợ thay đổi</b>. Nếu em đưa đúng cái cớ đó vào video, gọi tên nó một cách bình thản, những người cùng cảnh ngộ sẽ thấy lạnh sống lưng và tin em tuyệt đối.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- MÀN 3: VÍ DỤ QUỐC DÂN - ĐI CÀ PHÊ CHẠY DEADLINE -->
+  <section class="cl-zebra-section cl-zebra--light">
+    <div class="cl-sec-container">
+      <div class="cl-badge">03 / VÍ DỤ QUỐC DÂN</div>
+      <h2 class="title-short">CHUYỆN XÁCH MÁY TÍNH RA CÀ PHÊ CHẠY DEADLINE</h2>
+
+      <p class="cl-body">
+        Một ví dụ nữa rất gần gũi mà ai đi làm cũng từng nếm qua: Chuyện ra quán cà phê.
+      </p>
+
+      <div class="apple-card">
+        <div class="apple-card__title">4 Nấc Nhận Thức Trong Một Hành Động Quen Thuộc</div>
+        <ul style="padding-left: 20px; font-size: 16px; line-height: 1.8; color: var(--cl-text-body);">
+          <li><b>Tầng 1 (Văn mẫu Google):</b> <i>"Ra quán cà phê đổi gió lấy cảm hứng, chạy deadline cho tập trung."</i></li>
+          <li><b>Tầng 2 (Hiện trường thật):</b> Thật ra là ở nhà tiếng con khóc, việc gia đình lắt nhắt làm đầu óc ngột ngạt. Phải trốn ra ngoài tìm vài mét vuông tĩnh lặng để thở.</li>
+          <li><b>Tầng 3 (Nỗi bế tắc giấu kín):</b> Ngồi trước cốc nước 2 tiếng đồng hồ không gõ nổi một dòng. Trong đầu bế tắc hoàn toàn, áp lực tiền nong, trách nhiệm của một người chồng, người cha, người con lớn trong nhà đè nặng lên vai.</li>
+          <li><b>Tầng 2.5 (Cái cớ khi về nhà):</b> Tối dắt xe vào nhà, vẫn phải nói cứng với vợ: <i>"Hôm nay anh đi gặp đối tác bàn việc dự án quan trọng."</i></li>
+        </ul>
+      </div>
+
+      <p class="editorial-hook">
+        "Khi em kể lại đúng cái khoảnh khắc ngồi nhìn cốc nước tan hết đá mà màn hình vẫn trắng tinh... em không cần giảng giải đạo lý, người nghe tự thấy chính họ trong đó."
+      </p>
+    </div>
+  </section>
+
+  <!-- MÀN 4: ĐỊNH LUẬT WOODSMALL - MÔ TẢ ĐÚNG BỆNH LÀ NẮM THUỐC GIẢI -->
+  <section class="cl-zebra-section cl-zebra--tint">
+    <div class="cl-sec-container">
+      <div class="cl-badge">04 / BẢN CHẤT TÂM LÝ HỌC</div>
+      <h2 class="title-short">MÔ TẢ ĐÚNG BỆNH Ở CẤP ĐỘ VI MÔ LÀ NẮM THUỐC GIẢI</h2>
+
+      <p class="cl-body">
+        Nhà nghiên cứu tâm lý học <b>Wyatt Woodsmall</b> có một định luật kinh điển:
+      </p>
+
+      <div class="highlight-rule" style="font-size: 18px; font-family: var(--font-body); font-style: italic;">
+        "Nếu bạn có thể mô tả vấn đề của người khác ở cấp độ vi mô chính xác hơn chính họ, họ sẽ mặc định tin rằng bạn đang nắm trong tay thuốc giải."
+      </div>
+
+      <div class="apple-card" style="margin-top: 20px;">
+        <div class="apple-card__title">1. Ví Dụ Anh Thợ Sửa Xe Máy</div>
+        <p class="cl-body">
+          Em dắt xe vào tiệm, anh thợ không hỏi han dông dài. Anh ấy chỉ cúi xuống kéo ga một nhịp, nghe tiếng máy nổ khục khục vài giây rồi bảo: <i>"Xe này hỏng trục cam với đánh lửa trễ rồi."</i>. Em giao xe ngay lập tức, không mặc cả một lời. Vì anh ấy mô tả đúng bệnh ở cấp độ vi mô, em mặc định anh ấy biết cách chữa.
+        </p>
+      </div>
+
+      <div class="apple-card">
+        <div class="apple-card__title">2. Trải Nghiệm Thật Của Anh Việt: Cuối Tháng Chi Phí Ads 80%</div>
+        <p class="cl-body">
+          Ngày xưa lúc anh chưa làm video lên mặt, cuối tháng nhìn báo cáo thấy tiền quảng cáo ngốn mất 80% doanh thu. Trừ hết chi phí, tiền về túi mình chỉ còn vỏn vẹn 10%. Anh làm giáo dục 15 năm mà lúc đó thất vọng, tức giận, nuốt nước bọt khan không nói nên lời. Cứ tưởng làm lớn là lãi nhiều.
+        </p>
+        <p class="cl-body" style="margin-bottom: 0;">
+          Cái cảm giác nuốt nước bọt khan đấy, vì nó nằm trong trải nghiệm thật của anh nên anh mô tả lại rất sống. Và khi người làm chủ nghe anh nói đúng cái khoảnh khắc đó, họ tự tin là anh có giải pháp gỡ cho họ.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- MÀN 5: ĐÓNG GÓI - CHIẾC NHẪN VÀNG TRONG TÚI NILON -->
+  <section class="cl-zebra-section cl-zebra--light">
+    <div class="cl-sec-container">
+      <div class="cl-badge">05 / ĐÓNG GÓI THỊ GIÁC</div>
+      <h2 class="title-short">NHẪN VÀNG BỌC TÚI NILON THÌ AI TIN LÀ VÀNG THẬT?</h2>
+
+      <p class="cl-body">
+        Nội dung chân thật của em giống như một <b>chiếc nhẫn vàng</b>.
+      </p>
+
+      <p class="cl-body">
+        Nhưng nếu em đem chiếc nhẫn vàng đó bọc trong một cái túi nilon nhàu nhĩ rồi đưa cho người ta, người ta sẽ nghi ngờ ngay: <i>"Đồ giả, hoặc đồ đi trộm cắp ở đâu chứ vàng thật ai lại gói thế này!"</i>.
+      </p>
+
+      <div class="apple-card" style="border-left: 4px solid var(--cl-accent);">
+        <div class="apple-card__title">Video Chỉn Chu Chính Là Chiếc Hộp Nhung</div>
+        <p class="cl-body" style="margin-bottom: 0;">
+          Kỹ thuật quay dựng, cắt cúp sạch sẽ, chuyển cảnh êm ái không ngắt quãng thị giác, âm thanh rõ ràng và nhạc nền ăn khớp... chính là chiếc hộp nhung sang trọng để xứng tầm với chiếc nhẫn vàng bên trong. Đó là sự tôn trọng tối thiểu dành cho mắt và tai của người xem.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- MÀN 6: GOOGLE 7-11-4 & BÀI TOÁN TẦN SUẤT -->
+  <section class="cl-zebra-section cl-zebra--tint">
+    <div class="cl-sec-container">
+      <div class="cl-badge">06 / TẦN SUẤT & ĐỘ DÀI TIẾP XÚC</div>
+      <h2 class="title-short">MUỐN NGƯỜI TA TIN, PHẢI ĐỂ HỌ GẶP MÌNH ĐỦ 7 TIẾNG</h2>
+
+      <p class="cl-body">
+        Google đã chứng minh bằng công thức <b>7 - 11 - 4</b>: Một người cần tiếp xúc đủ <b>7 giờ</b>, qua <b>11 điểm chạm</b>, ở <b>4 không gian</b> khác nhau thì mới hình thành niềm tin sâu sắc để mua hàng giá trị cao.
+      </p>
+
+      <div class="apple-card">
+        <div class="apple-card__title">Mỗi video 1 phút ➔ Cần hàng trăm video</div>
+        <p class="cl-body">
+          Video sâu sắc bóc tách tâm lý không thể sản xuất hàng loạt mỗi ngày như bắp cải ngoài chợ. Em không thể ngày nào cũng ngồi triết lý nặng nề.
+        </p>
+        <p class="cl-body">
+          <b>Cách làm đúng:</b> Đa dạng hóa định dạng đời sống (tập thể thao, chăm con, góc làm việc, hướng dẫn mẹo nghề, đi dạy...). Những video đời sống này làm theo các nhịp điệu quen thuộc sẽ ăn đề xuất và viral.
+        </p>
+        <div class="highlight-rule" style="margin-bottom: 0;">
+          <b>Video viral đời sống là đòn bẩy kéo người ta vào</b>, để rồi khi họ tò mò, họ sẽ xem tiếp các video sâu sắc của em. Xem đủ 7 tiếng, họ thấy em như người quen trong nhà.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MÀN 7: BỘ CÔNG CỤ & KHỞI ĐẦU CHUYỂN ĐỔI -->
+  <section class="cl-zebra-section cl-zebra--light">
+    <div class="cl-sec-container">
+      <div class="cl-badge">07 / CÔNG CỤ THỰC HÀNH</div>
+      <h2 class="title-short">KHO Ý TƯỞNG & BẮT ĐẦU TỪ MỘT VIỆC NHỎ HÔM NAY</h2>
+
+      <p class="cl-body">
+        Để em không phải mỗi sáng thức dậy vò đầu bứt tai nghĩ xem hôm nay quay cái gì, anh có sẵn 2 công cụ:
+      </p>
+
+      <div class="apple-card">
+        <div class="apple-card__title">1. Bóc Tách Kịch Bản 4 Tầng: <a href="./4tang.html" style="color: var(--cl-accent);">fedu.vn/course/4tang.html</a></div>
+        <p class="cl-body">
+          Nhập một hành động đời thường bất kỳ, công cụ tự bóc tách ra các phản xạ giữ thể diện và xuất kịch bản 7 câu. Điểm mấu chốt: <b>Em chỉ chọn cái nào nằm trong trải nghiệm thật của em</b> thì em mới nói thật được.
+        </p>
+        <a href="./4tang.html" class="btn-action">MỞ CÔNG CỤ 4 TẦNG →</a>
+      </div>
+
+      <div class="apple-card">
+        <div class="apple-card__title">2. Kho Định Dạng Quốc Tế: <a href="https://ytuong.fedu.vn" target="_blank" style="color: var(--cl-accent);">ytuong.fedu.vn</a></div>
+        <p class="cl-body">
+          Cập nhật các kênh lớn trên thế giới ở mọi ngành nghề. Lướt 10 phút mỗi ngày để nền tảng gợi ý các định dạng phù hợp, có ý tưởng làm liên tục để tích lũy đủ 7 giờ tiếp xúc.
+        </p>
+        <a href="https://ytuong.fedu.vn" target="_blank" class="btn-action">MỞ KHO Ý TƯỞNG QUỐC TẾ →</a>
+      </div>
+
+      <div class="editorial-hook" style="font-size: 20px;">
+        "Chuyển đổi thực sự bắt đầu từ khoảnh khắc: Khi người ta gặp khó khăn trong nghề của em, người đầu tiên họ nghĩ đến để hỏi ý kiến chính là em."
+      </div>
+    </div>
+  </section>
+
+</body>
+</html>
