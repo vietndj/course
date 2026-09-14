@@ -141,7 +141,7 @@
       left: 0;
       width: 100%;
       height: 64px;
-      background: rgba(255, 255, 255, 0.9);
+      background: rgba(255, 255, 255, 0.92);
       backdrop-filter: blur(20px) saturate(180%);
       -webkit-backdrop-filter: blur(20px) saturate(180%);
       border-bottom: 1px solid var(--cl-line);
@@ -149,7 +149,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 0 clamp(16px, 4vw, 40px);
+      padding: 0 clamp(16px, 4vw, 48px);
     }
 
     .nav-brand {
@@ -160,114 +160,115 @@
       color: var(--cl-text-base);
     }
 
-    .nav-brand__rec {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
+    .nav-logo-rec {
       width: 34px;
       height: 34px;
-      background: #090d16;
-      border-radius: 10px;
-      color: #ffffff;
-      font-family: var(--font-mono);
+      border-radius: 9px;
+      background: #0b0f19;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-family: system-ui, -apple-system, sans-serif;
       font-weight: 900;
-      font-size: 13px;
+      font-size: 11px;
+      letter-spacing: 1px;
       position: relative;
     }
 
-    .nav-brand__rec::after {
-      content: "";
+    .nav-logo-rec::after {
+      content: '';
       position: absolute;
       top: 6px;
       right: 6px;
       width: 6px;
       height: 6px;
-      background: #ef4444;
       border-radius: 50%;
-      box-shadow: 0 0 6px rgba(239, 68, 68, 0.8);
+      background: #ef4444;
+      animation: recPulse 2s infinite ease-in-out;
     }
 
-    .nav-brand__text {
+    @keyframes recPulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.8); }
+    }
+
+    .nav-title {
       font-family: var(--font-display-short);
       font-weight: 700;
-      font-size: 13px;
-      letter-spacing: 0.06em;
+      font-size: 14px;
+      letter-spacing: -0.01em;
       text-transform: uppercase;
-      color: var(--cl-text-base);
     }
 
     .nav-links {
       display: flex;
+      gap: 20px;
       align-items: center;
-      gap: 8px;
     }
 
     .nav-link {
       font-family: var(--font-display-long);
-      font-size: 13px;
-      font-weight: 500;
-      color: var(--cl-text-muted);
+      font-size: 13.5px;
+      font-weight: 600;
       text-decoration: none;
-      padding: 6px 12px;
-      border-radius: var(--cl-radius-sm);
-      transition: all 0.2s ease;
+      color: var(--cl-text-muted);
+      transition: color 0.2s var(--apple-ease);
     }
 
     .nav-link:hover {
       color: var(--cl-accent);
-      background: var(--cl-accent-tint);
     }
 
-    .nav-link--active {
+    .nav-badge-pill {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      background: var(--cl-accent-tint);
       color: var(--cl-accent);
-      font-weight: 600;
-      background: var(--cl-accent-tint);
+      padding: 4px 12px;
+      border-radius: var(--cl-radius-full);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
     }
 
-    /* SECTIONS */
+    /* ═══ 3. ZEBRA STRIPING SECTION ARCHITECTURE ═══ */
     .cl-zebra-section {
+      position: relative;
       width: 100%;
       min-height: 100dvh;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      position: relative;
-      padding: 100px 24px 80px;
+      padding: clamp(60px, 8vh, 100px) clamp(16px, 5vw, 40px);
       box-sizing: border-box;
+      border-bottom: 1px solid var(--cl-line);
     }
 
-    .cl-zebra--light {
+    .cl-zebra--white {
       background-color: var(--cl-bg);
     }
 
     .cl-zebra--tint {
       background-color: var(--cl-tint);
-      border-top: 1px solid var(--cl-line);
-      border-bottom: 1px solid var(--cl-line);
     }
 
     .cl-sec-container {
       width: 100%;
-      max-width: 880px;
+      max-width: 1120px;
       margin: 0 auto;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      position: relative;
-      z-index: 2;
     }
 
     .cl-sec-container--wide {
-      max-width: 1140px;
+      max-width: 1280px;
     }
 
     .cl-sec-container--narrow {
-      max-width: 720px;
+      max-width: 860px;
     }
 
-    /* BADGES */
+    /* TYPOGRAPHY */
     .cl-badge {
       display: inline-flex;
       align-items: center;
@@ -275,175 +276,204 @@
       font-family: var(--font-mono);
       font-size: 12px;
       font-weight: 700;
-      letter-spacing: 0.16em;
       text-transform: uppercase;
+      letter-spacing: 0.1em;
       color: var(--cl-accent);
       background: var(--cl-accent-tint);
-      border: 1px solid rgba(26, 115, 232, 0.16);
-      padding: 6px 16px;
+      padding: 6px 14px;
       border-radius: var(--cl-radius-full);
       margin-bottom: 20px;
+      width: fit-content;
     }
 
     .cl-badge--danger {
       color: var(--cl-danger);
       background: var(--cl-danger-tint);
-      border-color: rgba(220, 38, 38, 0.18);
     }
 
     .cl-badge--purple {
       color: var(--cl-purple);
       background: var(--cl-purple-tint);
-      border-color: rgba(124, 58, 237, 0.18);
     }
 
-    /* HEADINGS */
     .title-short {
       font-family: var(--font-display-short);
       font-weight: 700;
       font-size: clamp(26px, 4.2vw, 44px);
-      line-height: 1.18;
-      letter-spacing: -0.01em;
+      line-height: 1.15;
+      letter-spacing: -0.03em;
       text-transform: uppercase;
       color: var(--cl-text-base);
-      margin-bottom: 20px;
+      margin-bottom: 18px;
       text-wrap: balance;
     }
 
     .title-long {
       font-family: var(--font-display-long);
       font-weight: 600;
-      font-size: clamp(22px, 3.4vw, 36px);
-      line-height: 1.35;
-      letter-spacing: -0.015em;
+      font-size: clamp(20px, 2.6vw, 30px);
+      line-height: 1.3;
       color: var(--cl-text-base);
-      margin-bottom: 20px;
+      margin-bottom: 16px;
       text-wrap: balance;
     }
 
-    .editorial-hook {
-      font-family: var(--font-editorial);
-      font-style: italic;
-      font-size: clamp(17px, 2.2vw, 21px);
-      line-height: 1.6;
-      color: var(--cl-accent);
-      margin-bottom: 24px;
-      max-width: 720px;
+    .cl-lead {
+      font-family: var(--font-body);
+      font-size: clamp(17px, 1.8vw, 20px);
+      line-height: 1.75;
+      color: var(--cl-text-body);
+      margin-bottom: 28px;
+      text-wrap: pretty;
     }
 
     .cl-body {
       font-family: var(--font-body);
-      font-size: clamp(16px, 1.6vw, 17.5px);
-      color: var(--cl-text-body);
-      line-height: 1.78;
-      margin-bottom: 28px;
-      max-width: 760px;
-    }
-
-    /* APPLE REVEAL */
-    .apple-reveal {
-      opacity: 0;
-      transform: translate3d(0, 24px, 0);
-      transition: opacity 0.5s var(--apple-ease), transform 0.58s var(--apple-spring);
-      will-change: opacity, transform;
-    }
-
-    .apple-reveal.is-visible {
-      opacity: 1;
-      transform: translate3d(0, 0, 0);
-      will-change: auto;
-    }
-
-    /* HERO BOX */
-    .hero-pain-box {
-      width: 100%;
-      max-width: 840px;
-      background: #ffffff;
-      border: 1px solid var(--cl-line-strong);
-      border-radius: var(--cl-radius-lg);
-      padding: 32px 36px;
-      text-align: left;
-      margin-top: 12px;
-      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.04);
-    }
-
-    .hero-pain-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 24px;
-      margin-top: 20px;
-    }
-
-    @media (max-width: 720px) {
-      .hero-pain-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    .hero-pain-item {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-
-    .hero-pain-label {
-      font-family: var(--font-display-short);
-      font-weight: 700;
-      font-size: 13px;
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
-    }
-
-    .hero-pain-label--red { color: var(--cl-danger); }
-    .hero-pain-label--green { color: var(--cl-success); }
-
-    .hero-pain-desc {
-      font-size: 15px;
+      font-size: 16.5px;
+      line-height: 1.8;
       color: var(--cl-text-muted);
-      line-height: 1.65;
+      margin-bottom: 20px;
+      text-wrap: pretty;
     }
 
-    /* BINARY SPLIT CARDS */
-    .binary-split-grid {
+    /* ═══ 4. HERO PARADOX BOX ═══ */
+    .hero-paradox-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 28px;
-      width: 100%;
-      margin-top: 24px;
+      margin-top: 36px;
     }
 
-    @media (max-width: 860px) {
-      .binary-split-grid {
+    @media (max-width: 820px) {
+      .hero-paradox-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+    }
+
+    .paradox-card {
+      background: #ffffff;
+      border: 1px solid var(--cl-line);
+      border-radius: var(--cl-radius-lg);
+      padding: clamp(24px, 3.5vw, 36px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .paradox-card--problem {
+      border-top: 4px solid var(--cl-danger);
+    }
+
+    .paradox-card--solution {
+      border-top: 4px solid var(--cl-accent);
+      background: linear-gradient(180deg, #ffffff 0%, #f0f7ff 100%);
+    }
+
+    .paradox-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .paradox-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    .paradox-icon--danger {
+      background: var(--cl-danger-tint);
+      color: var(--cl-danger);
+    }
+
+    .paradox-icon--success {
+      background: var(--cl-accent-tint);
+      color: var(--cl-accent);
+    }
+
+    .paradox-title {
+      font-family: var(--font-display-short);
+      font-size: 17px;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--cl-text-base);
+    }
+
+    .paradox-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 14px;
+    }
+
+    .paradox-item {
+      font-size: 15px;
+      line-height: 1.6;
+      color: var(--cl-text-body);
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    .paradox-item::before {
+      content: '•';
+      color: var(--cl-accent);
+      font-weight: bold;
+      font-size: 18px;
+      line-height: 1;
+    }
+
+    /* ═══ 5. BINARY SYSTEM 2-PHASE CARDS ═══ */
+    .binary-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      margin-top: 32px;
+    }
+
+    @media (max-width: 900px) {
+      .binary-container {
         grid-template-columns: 1fr;
       }
     }
 
     .binary-card {
       background: #ffffff;
+      border: 1px solid var(--cl-line);
       border-radius: var(--cl-radius-lg);
-      border: 1px solid var(--cl-line-strong);
-      padding: 36px 32px;
-      text-align: left;
+      padding: clamp(24px, 4vw, 40px);
+      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.04);
+      display: flex;
+      flex-direction: column;
       position: relative;
       overflow: hidden;
-      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.03);
-      transition: transform 0.35s var(--apple-hover), box-shadow 0.35s ease;
+      transition: transform 0.3s var(--apple-ease), box-shadow 0.3s var(--apple-ease);
     }
 
     .binary-card:hover {
       transform: translateY(-4px);
-      box-shadow: 0 24px 50px rgba(0, 0, 0, 0.06);
+      box-shadow: 0 20px 48px rgba(0, 0, 0, 0.08);
     }
 
     .binary-card--tension {
-      border-top: 4px solid var(--cl-danger);
+      border-left: 6px solid var(--cl-danger);
     }
 
     .binary-card--collapse {
-      border-top: 4px solid var(--cl-purple);
+      border-left: 6px solid var(--cl-purple);
     }
 
-    .binary-card__phase {
+    .binary-phase-label {
       font-family: var(--font-mono);
       font-size: 12px;
       font-weight: 700;
@@ -452,113 +482,110 @@
       margin-bottom: 8px;
     }
 
-    .binary-card__title {
+    .binary-phase-label--tension { color: var(--cl-danger); }
+    .binary-phase-label--collapse { color: var(--cl-purple); }
+
+    .binary-h3 {
       font-family: var(--font-display-short);
+      font-size: clamp(20px, 2.4vw, 26px);
       font-weight: 700;
-      font-size: 24px;
       text-transform: uppercase;
-      margin-bottom: 16px;
       color: var(--cl-text-base);
+      margin-bottom: 12px;
     }
 
-    .binary-card__neuro {
+    .binary-neuro-box {
       background: var(--cl-card-muted);
       border-radius: var(--cl-radius-sm);
       padding: 14px 18px;
+      margin: 16px 0;
       font-size: 14.5px;
-      line-height: 1.6;
+      line-height: 1.65;
       color: var(--cl-text-body);
-      margin-bottom: 24px;
-      border-left: 3px solid var(--cl-text-base);
     }
 
-    .binary-card__action {
-      background: #ffffff;
-      border: 1.5px dashed var(--cl-line-strong);
+    .binary-action-box {
+      margin-top: auto;
+      background: #0f172a;
+      color: #ffffff;
       border-radius: var(--cl-radius-md);
-      padding: 18px 20px;
+      padding: 20px 22px;
     }
 
-    .binary-card__action-badge {
-      display: inline-block;
+    .binary-action-tag {
       font-family: var(--font-mono);
       font-size: 11px;
       font-weight: 700;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
-      letter-spacing: 0.08em;
-      padding: 3px 10px;
-      border-radius: var(--cl-radius-full);
-      margin-bottom: 8px;
-    }
-
-    .binary-card__action-cmd {
-      font-family: var(--font-display-long);
-      font-weight: 600;
-      font-size: 17px;
-      color: var(--cl-text-base);
+      color: #38bdf8;
       margin-bottom: 6px;
     }
 
-    .binary-card__action-quote {
-      font-family: var(--font-editorial);
-      font-style: italic;
-      font-size: 15px;
-      color: var(--cl-accent);
+    .binary-action-title {
+      font-family: var(--font-display-short);
+      font-size: 16.5px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      line-height: 1.35;
+    }
+
+    .binary-action-desc {
+      font-size: 14px;
       line-height: 1.6;
+      color: #cbd5e1;
     }
 
-    /* DRILL TOOLBAR & FLIP CARDS */
-    .drill-toolbar {
+    /* ═══ 6. INTERACTIVE 3D FLASHCARDS ═══ */
+    .filter-bar {
       display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: center;
       gap: 12px;
-      margin-bottom: 36px;
-      width: 100%;
+      margin-bottom: 32px;
+      flex-wrap: wrap;
+      justify-content: center;
     }
 
-    .drill-btn {
+    .filter-btn {
       font-family: var(--font-display-long);
       font-size: 13.5px;
       font-weight: 600;
-      padding: 9px 20px;
+      padding: 10px 22px;
       border-radius: var(--cl-radius-full);
       border: 1px solid var(--cl-line-strong);
       background: #ffffff;
       color: var(--cl-text-muted);
       cursor: pointer;
-      transition: all 0.25s ease;
+      transition: all 0.25s var(--apple-ease);
     }
 
-    .drill-btn:hover {
-      color: var(--cl-text-base);
-      border-color: var(--cl-text-base);
+    .filter-btn:hover {
+      border-color: var(--cl-accent);
+      color: var(--cl-accent);
     }
 
-    .drill-btn--active {
-      background: #090d16;
+    .filter-btn.active {
+      background: var(--cl-text-base);
       color: #ffffff;
-      border-color: #090d16;
+      border-color: var(--cl-text-base);
     }
 
     .flashcards-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
       gap: 28px;
       width: 100%;
     }
 
-    @media (min-width: 1040px) {
+    @media (max-width: 640px) {
       .flashcards-grid {
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: 1fr;
       }
     }
 
     .flip-card {
       background-color: transparent;
-      height: 490px;
-      perspective: 1000px;
+      height: 560px;
+      perspective: 1200px;
       border-radius: var(--cl-radius-lg);
     }
 
@@ -598,7 +625,7 @@
 
     .flip-card-media {
       width: 100%;
-      height: 260px;
+      height: 280px;
       position: relative;
       overflow: hidden;
       background: #f1f5f9;
@@ -631,12 +658,12 @@
     }
 
     .flip-card-phase-tag--tension {
-      background: rgba(220, 38, 38, 0.88);
+      background: rgba(220, 38, 38, 0.9);
       color: #ffffff;
     }
 
     .flip-card-phase-tag--collapse {
-      background: rgba(124, 58, 237, 0.88);
+      background: rgba(124, 58, 237, 0.9);
       color: #ffffff;
     }
 
@@ -691,93 +718,290 @@
     /* Back Card Styling */
     .flip-card-back {
       transform: rotateY(180deg);
-      padding: 24px 22px;
+      padding: 20px 20px;
       text-align: left;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       background: #fafbfc;
       border: 2px solid var(--cl-accent);
+      overflow-y: auto;
+    }
+
+    /* Slim custom scrollbar for back card */
+    .flip-card-back::-webkit-scrollbar {
+      width: 4px;
+    }
+    .flip-card-back::-webkit-scrollbar-thumb {
+      background: rgba(0, 0, 0, 0.18);
+      border-radius: 4px;
     }
 
     .flip-back-header {
       border-bottom: 1px solid var(--cl-line);
-      padding-bottom: 12px;
-      margin-bottom: 12px;
+      padding-bottom: 10px;
+      margin-bottom: 10px;
     }
 
     .flip-back-title {
       font-family: var(--font-display-short);
       font-weight: 700;
-      font-size: 16px;
+      font-size: 15px;
       text-transform: uppercase;
       color: var(--cl-text-base);
       margin-bottom: 4px;
     }
 
     .flip-back-neuro {
-      font-size: 13.5px;
+      font-size: 12.5px;
       color: var(--cl-text-body);
-      line-height: 1.55;
-      margin-bottom: 12px;
+      line-height: 1.5;
+      margin-bottom: 8px;
     }
 
     .flip-back-box {
       background: #ffffff;
       border: 1px solid var(--cl-line-strong);
       border-radius: var(--cl-radius-sm);
-      padding: 12px 14px;
+      padding: 10px 12px;
       margin-bottom: 10px;
     }
 
     .flip-back-label {
       font-family: var(--font-mono);
-      font-size: 10.5px;
+      font-size: 10px;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.08em;
       color: var(--cl-accent);
-      margin-bottom: 4px;
+      margin-bottom: 3px;
     }
 
     .flip-back-reflex {
       font-family: var(--font-display-long);
       font-weight: 600;
-      font-size: 14px;
+      font-size: 13px;
       color: var(--cl-text-base);
-      line-height: 1.4;
+      line-height: 1.35;
     }
 
     .flip-back-script {
       font-family: var(--font-editorial);
       font-style: italic;
-      font-size: 13px;
+      font-size: 12.5px;
       color: #0f172a;
-      line-height: 1.45;
-      margin-top: 6px;
+      line-height: 1.4;
+      margin-top: 5px;
       padding-left: 8px;
       border-left: 2px solid var(--cl-accent);
     }
 
+    .flip-back-examples {
+      background: #f8fafc;
+      border: 1px dashed var(--cl-line-strong);
+      border-radius: var(--cl-radius-sm);
+      padding: 10px 12px;
+      margin-bottom: 8px;
+    }
+
+    .flip-back-ex-item {
+      font-size: 11.5px;
+      line-height: 1.45;
+      color: var(--cl-text-body);
+      margin-bottom: 6px;
+      padding-bottom: 6px;
+      border-bottom: 1px dotted rgba(0,0,0,0.08);
+    }
+
+    .flip-back-ex-item:last-child {
+      margin-bottom: 0;
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+
+    .flip-back-ex-tag {
+      font-family: var(--font-mono);
+      font-weight: 700;
+      font-size: 10px;
+      color: var(--cl-danger);
+    }
+
     .flip-back-footer {
       font-family: var(--font-mono);
-      font-size: 11px;
+      font-size: 10.5px;
       color: var(--cl-text-muted);
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding-top: 8px;
+      padding-top: 6px;
       border-top: 1px solid var(--cl-line);
+      margin-top: 4px;
     }
 
-    /* MATRIX TABLE */
+    /* ═══ 7. KHỐI 4: 30 KỊCH BẢN GIẢI PHẪU TÌNH HUỐNG THỰC CHIẾN ═══ */
+    .combat-section {
+      width: 100%;
+    }
+
+    .combat-group {
+      margin-bottom: 48px;
+    }
+
+    .combat-group-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding-bottom: 16px;
+      border-bottom: 2px solid var(--cl-line-strong);
+      margin-bottom: 28px;
+    }
+
+    .combat-group-badge {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 700;
+      padding: 6px 16px;
+      border-radius: var(--cl-radius-full);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .combat-group-badge--tension {
+      background: var(--cl-danger-tint);
+      color: var(--cl-danger);
+      border: 1px solid rgba(220, 38, 38, 0.2);
+    }
+
+    .combat-group-badge--collapse {
+      background: var(--cl-purple-tint);
+      color: var(--cl-purple);
+      border: 1px solid rgba(124, 58, 237, 0.2);
+    }
+
+    .combat-group-title {
+      font-family: var(--font-display-short);
+      font-size: clamp(18px, 2.2vw, 24px);
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--cl-text-base);
+    }
+
+    .combat-marker-card {
+      background: #ffffff;
+      border: 1px solid var(--cl-line);
+      border-radius: var(--cl-radius-lg);
+      padding: clamp(20px, 3vw, 32px);
+      margin-bottom: 24px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+      transition: border-color 0.2s var(--apple-ease);
+    }
+
+    .combat-marker-card:hover {
+      border-color: var(--cl-line-strong);
+    }
+
+    .combat-marker-head {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+
+    .combat-marker-thumb {
+      width: 72px;
+      height: 72px;
+      border-radius: 16px;
+      object-fit: cover;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      border: 2px solid #ffffff;
+    }
+
+    .combat-marker-info {
+      flex: 1;
+      min-width: 240px;
+    }
+
+    .combat-marker-name {
+      font-family: var(--font-display-short);
+      font-size: 18px;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--cl-text-base);
+      margin-bottom: 4px;
+    }
+
+    .combat-marker-mech {
+      font-size: 14px;
+      color: var(--cl-text-muted);
+      line-height: 1.5;
+    }
+
+    .combat-scenarios-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+    }
+
+    .scenario-box {
+      background: #f8fafc;
+      border: 1px solid var(--cl-line);
+      border-radius: var(--cl-radius-md);
+      padding: 16px 18px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .scenario-tag {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 8px;
+      color: #0284c7;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .scenario-desc {
+      font-size: 14.5px;
+      line-height: 1.6;
+      color: var(--cl-text-body);
+      margin-bottom: 12px;
+    }
+
+    .scenario-verdict {
+      margin-top: auto;
+      padding: 8px 12px;
+      border-radius: var(--cl-radius-sm);
+      font-size: 13px;
+      line-height: 1.5;
+      font-weight: 500;
+    }
+
+    .scenario-verdict--alert {
+      background: rgba(220, 38, 38, 0.07);
+      color: #b91c1c;
+      border-left: 3px solid var(--cl-danger);
+    }
+
+    .scenario-verdict--close {
+      background: rgba(124, 58, 237, 0.07);
+      color: #6d28d9;
+      border-left: 3px solid var(--cl-purple);
+    }
+
+    /* ═══ 8. MA TRẬN ĐỐI CHIẾU HÀNH ĐỘNG TABLE ═══ */
     .matrix-table-wrap {
       width: 100%;
       overflow-x: auto;
       background: #ffffff;
+      border: 1px solid var(--cl-line);
       border-radius: var(--cl-radius-lg);
-      border: 1px solid var(--cl-line-strong);
-      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.04);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
       margin-top: 24px;
     }
 
@@ -785,308 +1009,306 @@
       width: 100%;
       border-collapse: collapse;
       text-align: left;
-      min-width: 820px;
+      font-size: 14px;
     }
 
     .matrix-table th {
-      font-family: var(--font-display-short);
-      font-weight: 700;
-      font-size: 12px;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      padding: 16px 20px;
       background: #f8fafc;
-      color: var(--cl-text-base);
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--cl-text-muted);
+      padding: 16px 20px;
       border-bottom: 1px solid var(--cl-line-strong);
     }
 
     .matrix-table td {
       padding: 16px 20px;
-      font-size: 14px;
       border-bottom: 1px solid var(--cl-line);
       vertical-align: middle;
+      color: var(--cl-text-body);
+      line-height: 1.55;
     }
 
     .matrix-table tr:hover td {
-      background: #fbfcfe;
+      background-color: #fafbfc;
     }
 
     .matrix-thumb {
-      width: 52px;
-      height: 52px;
-      border-radius: 8px;
+      width: 48px;
+      height: 48px;
+      border-radius: 10px;
       object-fit: cover;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
     }
 
     .matrix-marker-name {
-      font-family: var(--font-display-long);
-      font-weight: 600;
-      font-size: 15px;
+      font-family: var(--font-display-short);
+      font-weight: 700;
+      font-size: 14.5px;
       color: var(--cl-text-base);
-      margin-bottom: 2px;
     }
 
     .matrix-sub {
+      font-size: 12px;
+      color: var(--cl-text-muted);
+      font-family: var(--font-mono);
+    }
+
+    /* ═══ 9. POCKET CHEAT SHEET (PHONE WALLPAPER 1-SCREEN) ═══ */
+    .cheat-sheet-box {
+      background: #090d16;
+      color: #ffffff;
+      border-radius: 32px;
+      padding: clamp(28px, 5vw, 48px);
+      max-width: 720px;
+      margin: 0 auto;
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.25);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      position: relative;
+    }
+
+    .cheat-sheet-header {
+      text-align: center;
+      margin-bottom: 28px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+      padding-bottom: 20px;
+    }
+
+    .cheat-sheet-title {
+      font-family: var(--font-display-short);
+      font-size: 20px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 6px;
+    }
+
+    .cheat-sheet-rule {
       font-family: var(--font-mono);
       font-size: 11px;
+      color: #94a3b8;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .cheat-sheet-phase {
+      margin-bottom: 24px;
+    }
+
+    .cheat-sheet-phase-title {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      padding: 4px 12px;
+      border-radius: var(--cl-radius-full);
+      display: inline-block;
+      margin-bottom: 12px;
+    }
+
+    .cheat-sheet-phase-title--red {
+      background: rgba(220, 38, 38, 0.25);
+      color: #f87171;
+    }
+
+    .cheat-sheet-phase-title--purple {
+      background: rgba(124, 58, 237, 0.25);
+      color: #c084fc;
+    }
+
+    .cheat-sheet-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .cheat-sheet-item {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      font-size: 14px;
+      border-bottom: 1px dashed rgba(255, 255, 255, 0.08);
+      padding-bottom: 6px;
+    }
+
+    .cheat-sheet-cue {
+      color: #f1f5f9;
+      font-weight: 500;
+    }
+
+    .cheat-sheet-reflex {
+      font-family: var(--font-display-long);
+      font-size: 13px;
+      color: #38bdf8;
+      font-weight: 600;
+      text-align: right;
+    }
+
+    /* FOOTER */
+    .site-footer {
+      background: #ffffff;
+      border-top: 1px solid var(--cl-line);
+      padding: 40px clamp(16px, 4vw, 48px);
+      text-align: center;
+      font-size: 14px;
       color: var(--cl-text-muted);
     }
 
-    /* POCKET SHEET */
-    .pocket-sheet {
-      width: 100%;
-      max-width: 840px;
-      background: #090d16;
-      color: #ffffff;
-      border-radius: var(--cl-radius-lg);
-      padding: 40px 36px;
-      text-align: left;
-      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.18);
-      position: relative;
-      margin-top: 20px;
-    }
-
-    .pocket-sheet__header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
-      padding-bottom: 20px;
-      margin-bottom: 28px;
-    }
-
-    .pocket-sheet__brand {
-      font-family: var(--font-display-short);
-      font-weight: 700;
-      font-size: 18px;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: #ffffff;
-    }
-
-    .pocket-sheet__grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 28px;
-    }
-
-    @media (max-width: 700px) {
-      .pocket-sheet__grid {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    .pocket-col__head {
-      font-family: var(--font-mono);
-      font-size: 13px;
-      font-weight: 700;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      margin-bottom: 16px;
-      padding-bottom: 8px;
-      border-bottom: 2px solid;
-    }
-
-    .pocket-col--red .pocket-col__head {
-      color: #f87171;
-      border-color: #ef4444;
-    }
-
-    .pocket-col--purple .pocket-col__head {
-      color: #c084fc;
-      border-color: #a855f7;
-    }
-
-    .pocket-item {
-      margin-bottom: 16px;
-    }
-
-    .pocket-item__title {
-      font-family: var(--font-display-long);
-      font-weight: 600;
-      font-size: 14.5px;
-      color: #ffffff;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .pocket-item__reflex {
-      font-size: 13px;
-      color: rgba(255, 255, 255, 0.65);
-      margin-left: 20px;
-      line-height: 1.45;
-    }
-
-    .pocket-reflex-pill {
-      display: inline-block;
-      margin-top: 4px;
-      font-family: var(--font-mono);
-      font-size: 11px;
-      padding: 2px 8px;
-      border-radius: 4px;
-      background: rgba(255, 255, 255, 0.08);
-      color: #38bdf8;
-    }
-
-    .wisdom-quote {
-      font-family: var(--font-editorial);
-      font-style: italic;
-      font-size: clamp(20px, 3.2vw, 28px);
-      line-height: 1.6;
+    .site-footer a {
       color: var(--cl-text-base);
-      border-left: 4px solid var(--cl-accent);
-      padding-left: 28px;
-      text-align: left;
-      margin: 28px 0;
-    }
-
-    .cl-footer {
-      width: 100%;
-      background: #090d16;
-      color: #ffffff;
-      padding: 60px 24px;
-      text-align: center;
-      border-top: 1px solid var(--cl-line-strong);
-    }
-
-    .cl-footer__text {
-      font-family: var(--font-display-long);
-      font-size: 14px;
-      color: rgba(255, 255, 255, 0.5);
-      margin-top: 12px;
-    }
-
-    .cl-btn-back {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-family: var(--font-display-short);
-      font-weight: 700;
-      font-size: 13px;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      color: #ffffff;
-      background: var(--cl-accent);
-      padding: 12px 28px;
-      border-radius: var(--cl-radius-full);
       text-decoration: none;
-      margin-bottom: 24px;
-      transition: transform 0.25s var(--apple-hover);
+      font-weight: 600;
     }
 
-    .cl-btn-back:hover {
-      transform: translateY(-2px);
+    /* APPLE MOTION SMOOTH ENTRANCE */
+    .apple-reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.8s var(--apple-ease), transform 0.8s var(--apple-ease);
+    }
+
+    .apple-reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
     }
   </style>
 </head>
 <body>
 
-  <!-- TOP NAVIGATION -->
-  <nav class="top-nav">
+  <!-- TOP NAVIGATION BAR -->
+  <header class="top-nav">
     <a href="#" class="nav-brand">
-      <div class="nav-brand__rec">VI</div>
-      <div class="nav-brand__text">SOMATIC LAB</div>
+      <div class="nav-logo-rec">VI</div>
+      <span class="nav-title">VIDEO • SOMATIC SYSTEM</span>
     </a>
-    <div class="nav-links">
-      <a href="#sec-why" class="nav-link">BẢN CHẤT</a>
-      <a href="#sec-binary" class="nav-link">2 PHA NHỊ PHÂN</a>
-      <a href="#sec-drill" class="nav-link nav-link--active">LUYỆN 10 DẤU ẤN</a>
-      <a href="#sec-matrix" class="nav-link">MA TRẬN</a>
-      <a href="#sec-pocket" class="nav-link">CHEAT SHEET</a>
-    </div>
-  </nav>
+    <nav class="nav-links">
+      <a href="#sec-engine" class="nav-link">Quy Tắc Nhị Phân</a>
+      <a href="#sec-flashcards" class="nav-link">10 Thẻ Luyện</a>
+      <a href="#sec-combat" class="nav-link">30 Kịch Bản</a>
+      <a href="#sec-matrix" class="nav-link">Ma Trận 3s</a>
+      <a href="#sec-cheatsheet" class="nav-badge-pill">Bỏ Túi 1s</a>
+    </nav>
+  </header>
 
-  <!-- KHỐI 1: HERO & TẠI SAO 10 DẤU ẤN LẠI KHÓ NHỚ? (LIGHT) -->
-  <section class="cl-zebra-section cl-zebra--light" id="sec-why">
+  <!-- KHỐI 1: HERO & LỜI GIẢI CHO NGHỊCH LÝ (WHITE) -->
+  <section class="cl-zebra-section cl-zebra--white" id="sec-hero" style="padding-top: 110px;">
     <div class="cl-sec-container apple-reveal">
-      <div class="cl-badge">01 / THẦN KINH HỌC & ĐÀM PHÁN THỰC CHIẾN</div>
+      <div class="cl-badge">01 / NỀN TẢNG PHẢN XẠ THỰC CHIẾN</div>
       <h1 class="title-short">10 DẤU ẤN CƠ THỂ & PHẢN XẠ 3 GIÂY</h1>
-      <p class="editorial-hook">"Đừng cố đọc tâm trí. Hãy nhìn cách cơ thể họ tự động phản bội sự thật."</p>
-      
-      <p class="cl-body">
-        Khi bạn đối thoại căng thẳng (báo giá, đàm phán, họp giải trình hay tự soi chính mình khi đốt 70% tiền ads), não bộ đang chịu tải cực đại. Bạn <b>không thể vừa nói vừa lật sổ tay dò 10 mục rời rạc</b>. Đó là lý do mọi lý thuyết ngôn ngữ cơ thể thông thường đều sụp đổ khi ra trận.
+      <p class="cl-lead">
+        Hệ thống thần kinh học vi mô nhận diện biến động nội tâm và kịch bản ứng biến 3 giây cứu thể diện — Chuẩn hóa từ phong cách thực chiến của anh Nguyễn Việt.
       </p>
 
-      <div class="hero-pain-box">
-        <div class="hero-pain-grid">
-          <div class="hero-pain-item">
-            <span class="hero-pain-label hero-pain-label--red">✕ TẠI SAO BẠN KHÓ NHỚ?</span>
-            <p class="hero-pain-desc">
-              10 dấu hiệu bị phân mảnh, tên gọi dài dòng và thiếu "hành động đối ứng". Bạn thấy họ nuốt khan nhưng không biết 3 giây tiếp theo miệng mình phải nói câu gì để không làm hỏng cuộc đối thoại.
+      <!-- HERO PARADOX COMPARISON -->
+      <div class="hero-paradox-grid">
+        <div class="paradox-card paradox-card--problem">
+          <div>
+            <div class="paradox-header">
+              <div class="paradox-icon paradox-icon--danger">✕</div>
+              <h2 class="paradox-title">Nghịch lý trước đây (Tại sao khó nhớ?)</h2>
+            </div>
+            <p class="cl-body" style="font-size: 14.5px;">
+              Khi ngồi trước đối tác, khách hàng hoặc trong cuộc họp căng thẳng, não bộ của bạn phải phân bổ năng lượng để vừa nói, vừa phân tích lý lẽ.
             </p>
+            <ul class="paradox-list">
+              <li class="paradox-item">10 gạch đầu dòng rời rạc khiến vỏ não bị quá tải dữ liệu (Cognitive Overload).</li>
+              <li class="paradox-item">Nhận biết được họ nuốt khan nhưng 3 giây sau không biết phải nói câu gì để đỡ.</li>
+              <li class="paradox-item">Nhầm lẫn giữa phản ứng phòng thủ sinh tồn và khoảnh khắc họ đã sẵn sàng chốt đơn.</li>
+            </ul>
           </div>
-          <div class="hero-pain-item">
-            <span class="hero-pain-label hero-pain-label--green">✓ GIẢI PHÁP NÂNG CẤP THỰC CHIẾN</span>
-            <p class="hero-pain-desc">
-              Nén toàn bộ 10 dấu ấn thành <b>QUY TẮC NHỊ PHÂN 1 CHẠM</b>: Chỉ cần nhận biết cơ thể đối phương đang <b>THẮT LẠI</b> hay <b>CHÙNG XUỐNG</b> để kích hoạt phản xạ 3 giây tương ứng.
+        </div>
+
+        <div class="paradox-card paradox-card--solution">
+          <div>
+            <div class="paradox-header">
+              <div class="paradox-icon paradox-icon--success">✓</div>
+              <h2 class="paradox-title">Lời giải nâng cấp (Mô hình Nhị phân 1 chạm)</h2>
+            </div>
+            <p class="cl-body" style="font-size: 14.5px;">
+              Nén toàn bộ 10 dấu ấn thành <b>2 PHA DUY NHẤT</b>. Chỉ cần một cái liếc mắt trong 0.5 giây, bạn biết chính xác cần <b>IM LẶNG</b> hay <b>CHÌA TAY ĐỠ</b>.
             </p>
+            <ul class="paradox-list">
+              <li class="paradox-item"><b>Pha Thắt (Tension):</b> Não họ đang giãy giụa tự vệ ➔ <b>Phản xạ: Giữ im lặng 3 giây</b>.</li>
+              <li class="paradox-item"><b>Pha Chùng (Collapse):</b> Bản ngã họ đã đầu hàng ➔ <b>Phản xạ: Đưa tay cứu thể diện</b>.</li>
+              <li class="paradox-item">Đính kèm 30 ví dụ tình huống chốt sale, đàm phán, quản trị và 10 ảnh điện ảnh Face DNA.</li>
+            </ul>
           </div>
         </div>
       </div>
+
     </div>
   </section>
 
-  <!-- KHỐI 2: MÔ HÌNH NHỊ PHÂN 2 PHA THẮT VS CHÙNG (TINT) -->
-  <section class="cl-zebra-section cl-zebra--tint" id="sec-binary">
-    <div class="cl-sec-container cl-sec-container--wide apple-reveal">
-      <div class="cl-badge cl-badge--danger">02 / QUY TẮC RÚT GỌN THỰC CHIẾN</div>
+  <!-- KHỐI 2: CỖ MÁY NHỊ PHÂN 1 CHẠM (TINT) -->
+  <section class="cl-zebra-section cl-zebra--tint" id="sec-engine">
+    <div class="cl-sec-container apple-reveal">
+      <div class="cl-badge">02 / QUY TẮC NHỊ PHÂN</div>
       <h2 class="title-short">MÔ HÌNH NHỊ PHÂN 1 CHẠM</h2>
       <p class="cl-body">
-        Trong phòng họp hay lúc tư vấn, hãy vứt bỏ mọi suy nghĩ phức tạp. Bạn chỉ cần quét mắt nhìn xem cơ thể người đối diện đang rơi vào pha nào:
+        Đừng cố nhớ 10 dấu ấn. Hãy chia cơ thể đối phương thành 2 trạng thái vật lý duy nhất:
       </p>
 
-      <div class="binary-split-grid">
+      <div class="binary-container">
         <!-- PHA THẮT -->
         <div class="binary-card binary-card--tension">
-          <div class="binary-card__phase" style="color: var(--cl-danger);">NHÓM 1 • DẤU 1 ĐẾN 5</div>
-          <h3 class="binary-card__title">PHA THẮT (TENSION)</h3>
-          <div class="binary-card__neuro">
-            <b>Cơ chế Thần kinh:</b> Đụng trúng điểm mù & Sự hoảng loạn sinh tồn. Não gặp lỗi dự đoán (RPE), ảo tưởng an toàn bị phá vỡ. Cơ thể co cụm: Nín thở, cắn răng, nuốt khan, thắt bụng, siết chặt tay.
+          <div class="binary-phase-label binary-phase-label--tension">NHÓM 1 • DẤU 01 ĐẾN 05</div>
+          <h3 class="binary-h3">PHA THẮT (TENSION)</h3>
+          <p style="font-size: 15px; color: var(--cl-text-muted); line-height: 1.6;">
+            <b>Tín hiệu vi mô:</b> Nín thở, cắn răng, nuốt khan, bấu mép bàn, thắt dạ dày.
+          </p>
+          <div class="binary-neuro-box">
+            <b>Cơ chế thần kinh:</b> Lỗi dự đoán (RPE) bùng phát cực đại. Ảo tưởng an toàn bị vỡ nát. Não bò sát kích hoạt bản năng tự vệ: Đóng băng (Freeze) hoặc Kháng cự ngầm (Flight/Fight).
           </div>
-          <div class="binary-card__action">
-            <span class="binary-card__action-badge" style="background: var(--cl-danger-tint); color: var(--cl-danger);">LỆNH PHẢN XẠ 3 GIÂY</span>
-            <div class="binary-card__action-cmd">DỪNG NÓI & GIỮ IM LẶNG 3 GIÂY (HOLD SPACE)</div>
-            <p class="binary-card__action-quote">
-              "Tuyệt đối KHÔNG bồi thêm lập luận. Không tấn công dồn dập kẻo kích hoạt não bò sát chiến-biến. Hãy để sự thật tự ngấm qua khoảng lặng."
+          <div class="binary-action-box">
+            <div class="binary-action-tag">LỆNH PHẢN XẠ 3 GIÂY</div>
+            <div class="binary-action-title">DỪNG NÓI & GIỮ IM LẶNG (HOLD SPACE)</div>
+            <p class="binary-action-desc">
+              Hạ cằm xuống 1cm, giữ ánh mắt bình thản. Tuyệt đối không bồi thêm lý lẽ hay dồn ép, để sự thật tự thẩm thấu vào não họ.
             </p>
           </div>
         </div>
 
         <!-- PHA CHÙNG -->
         <div class="binary-card binary-card--collapse">
-          <div class="binary-card__phase" style="color: var(--cl-purple);">NHÓM 2 • DẤU 6 ĐẾN 10</div>
-          <h3 class="binary-card__title">PHA CHÙNG (COLLAPSE)</h3>
-          <div class="binary-card__neuro">
-            <b>Cơ chế Thần kinh:</b> Bản ngã sụp đổ & Đầu hàng. Họ đã kiệt sức vì ngụy biện và bao biện. Lớp vỏ Ego nứt vỡ: Thở hắt ra xả khí, sập bờ vai, cụp ánh mắt, sờ gáy tự trấn an, vỡ âm vực giọng.
+          <div class="binary-phase-label binary-phase-label--collapse">NHÓM 2 • DẤU 06 ĐẾN 10</div>
+          <h3 class="binary-h3">PHA CHÙNG (COLLAPSE)</h3>
+          <p style="font-size: 15px; color: var(--cl-text-muted); line-height: 1.6;">
+            <b>Tín hiệu vi mô:</b> Thở hắt ra xả khí, sập bờ vai, cụp ánh mắt nhìn đùi, xoa gáy, vỡ giọng.
+          </p>
+          <div class="binary-neuro-box">
+            <b>Cơ chế thần kinh:</b> Bản ngã (Ego) sụp đổ hoàn toàn. Họ kiệt sức vì ngụy biện và đã đầu hàng vô điều kiện. Chuẩn bị thú tội hoặc trao quyền kiểm soát cho bạn.
           </div>
-          <div class="binary-card__action">
-            <span class="binary-card__action-badge" style="background: var(--cl-purple-tint); color: var(--cl-purple);">LỆNH PHẢN XẠ 3 GIÂY</span>
-            <div class="binary-card__action-cmd">ĐƯA TAY ĐỠ & MỞ ĐƯỜNG THOÁT THỂ DIỆN</div>
-            <p class="binary-card__action-quote">
-              "Đừng đắc thắng! Bắt đầu ngay bằng câu cứu thể diện: <i>'Em biết đoạn này không hề dễ dàng gì...'</i> rồi chìa tay chốt giải pháp nhẹ gánh nhất."
+          <div class="binary-action-box" style="background: #1e1b4b;">
+            <div class="binary-action-tag" style="color: #c084fc;">LỆNH PHẢN XẠ 3 GIÂY</div>
+            <div class="binary-action-title">ĐƯA TAY ĐỠ & CỨU THỂ DIỆN (SAFE HARBOR)</div>
+            <p class="binary-action-desc">
+              Mở đầu bằng câu cứu thể diện: "Em biết đoạn này không hề dễ dàng..." rồi đưa ra phương án hành động cực nhỏ để họ gật đầu.
             </p>
           </div>
         </div>
       </div>
+
     </div>
   </section>
 
-  <!-- KHỐI 3 & 4: TRÌNH LUYỆN PHẢN XẠ 3D FLIP CARDS (LIGHT) -->
-  <section class="cl-zebra-section cl-zebra--light" id="sec-drill">
+  <!-- KHỐI 3: TRÌNH LUYỆN 10 FLASHCARDS 3D FLIP (WHITE) -->
+  <section class="cl-zebra-section cl-zebra--white" id="sec-flashcards">
     <div class="cl-sec-container cl-sec-container--wide apple-reveal">
-      <div class="cl-badge">03 / HUẤN LUYỆN TƯƠNG TÁC</div>
-      <h2 class="title-short">10 FLASHCARDS LUYỆN PHẢN XẠ</h2>
+      <div class="cl-badge">03 / BỘ THẺ LUYỆN PHẢN XẠ</div>
+      <h2 class="title-short">10 FLASHCARDS TƯƠNG TÁC 3D</h2>
       <p class="cl-body">
-        Mỗi bức ảnh chân thực ghi lại vi mô chuyển động của chính anh Việt. <b>Chạm hoặc click vào từng thẻ</b> để lật mặt sau xem cơ chế thần kinh và kịch bản phản xạ 3 giây xử lý dứt điểm.
+        Chạm hoặc nhấp vào từng thẻ để lật xem cơ chế thần kinh, kịch bản hành động 3 giây và 3 tình huống thực chiến.
       </p>
 
-      <!-- TOOLBAR FILTER -->
-      <div class="drill-toolbar">
-        <button class="drill-btn drill-btn--active" onclick="filterCards('all')">TẤT CẢ (10 DẤU ẤN)</button>
-        <button class="drill-btn" onclick="filterCards('tension')">🔴 PHA THẮT: BÁO ĐỘNG (1-5)</button>
-        <button class="drill-btn" onclick="filterCards('collapse')">🟣 PHA CHÙNG: ĐẦU HÀNG (6-10)</button>
+      <!-- FILTER CONTROLS -->
+      <div class="filter-bar">
+        <button class="filter-btn active" onclick="filterCards('all')">Tất cả (10 Dấu ấn)</button>
+        <button class="filter-btn" onclick="filterCards('tension')">🔴 Pha Thắt (Báo động & Che giấu)</button>
+        <button class="filter-btn" onclick="filterCards('collapse')">🟣 Pha Chùng (Đầu hàng & Sụp đổ)</button>
       </div>
 
       <!-- CARDS GRID -->
@@ -1103,22 +1325,27 @@
               <div class="flip-card-content">
                 <div>
                   <div class="flip-card-num">DẤU ẤN 01 / 10</div>
-                  <h3 class="flip-card-title">NHỊP THỞ KHỰNG LẠI</h3>
-                  <p class="flip-card-cue">Đang nói chuyện, đột nhiên nín thở 1-2 giây, lồng ngực treo lơ lửng, mắt mở to sững sờ.</p>
+                  <h3 class="flip-card-title">KHỰNG NHỊP THỞ / NÍN THỞ</h3>
+                  <p class="flip-card-cue">Đang nói chuyện, đột nhiên nín thở 1-2 giây, lồng ngực treo lơ lửng, mắt sững sờ đóng băng.</p>
                 </div>
-                <div class="flip-card-hint">↷ CHẠM ĐỂ XEM PHẢN XẠ 3 GIÂY</div>
+                <div class="flip-card-hint">↷ CHẠM ĐỂ XEM PHẢN XẠ & VÍ DỤ</div>
               </div>
             </div>
             <div class="flip-card-back">
               <div>
                 <div class="flip-back-header">
                   <div class="flip-back-title">01 • THE MICRO-FREEZE</div>
-                  <p class="flip-back-neuro"><b>Bản chất ngầm:</b> Bản năng đóng băng của động vật khi giáp mặt thú dữ. Bạn vừa đâm trúng nỗi sợ rủi ro cốt lõi của họ.</p>
+                  <p class="flip-back-neuro"><b>Cơ chế:</b> Động vật đóng băng/giả chết khi gặp thú dữ để giấu âm thanh sinh tồn. Đụng trúng rủi ro tài chính hoặc điểm mù cốt lõi.</p>
                 </div>
                 <div class="flip-back-box">
                   <div class="flip-back-label">LỆNH PHẢN XẠ 3 GIÂY:</div>
-                  <div class="flip-back-reflex">KHÔNG BỒI THÊM LỜI • HẠ CẦM XUỐNG 1CM</div>
+                  <div class="flip-back-reflex">DỪNG NÓI NGAY • HẠ CẦM XUỐNG 1CM</div>
                   <div class="flip-back-script">"Ngừng nói ngay tại chữ vừa dứt. Im lặng nhìn nhẹ nhàng, chờ họ tự thở lại nhịp bình thường."</div>
+                </div>
+                <div class="flip-back-examples">
+                  <div class="flip-back-ex-item"><span class="flip-back-ex-tag">[CHỐT SALE]:</span> Báo giá 200tr, khách mỉm cười nhưng ngực treo lơ lửng nín thở 1.5s ➔ <i>Sốc rủi ro tiền bạc nhưng gồng sĩ diện.</i></div>
+                  <div class="flip-back-ex-item"><span class="flip-back-ex-tag">[TUYỂN DỤNG]:</span> Hỏi sao nghỉ việc, khựng thở 1 nhịp, chớp mắt nhanh ➔ <i>Lục não bịa lý do che phốt tồi tệ.</i></div>
+                  <div class="flip-back-ex-item"><span class="flip-back-ex-tag">[GIA ĐÌNH]:</span> Vợ hỏi đi với ai, chồng ngừng nhai cơm, quên thở ra ➔ <i>Báo động đỏ hoảng loạn ngầm.</i></div>
                 </div>
               </div>
               <div class="flip-back-footer">
@@ -1140,22 +1367,27 @@
               <div class="flip-card-content">
                 <div>
                   <div class="flip-card-num">DẤU ẤN 02 / 10</div>
-                  <h3 class="flip-card-title">CĂNG CƠ HÀM & THÁI DƯƠNG</h3>
-                  <p class="flip-card-cue">Răng nghiến chặt vô thức, cơ nhai góc hàm phồng bạnh ra, thái dương giật nhẹ.</p>
+                  <h3 class="flip-card-title">CĂNG CƠ HÀM / BẠNH THÁI DƯƠNG</h3>
+                  <p class="flip-card-cue">Môi ngậm chặt, cơ nhai góc hàm bạnh nổi cục, thái dương giật nhẹ kìm nén uất ức.</p>
                 </div>
-                <div class="flip-card-hint">↷ CHẠM ĐỂ XEM PHẢN XẠ 3 GIÂY</div>
+                <div class="flip-card-hint">↷ CHẠM ĐỂ XEM PHẢN XẠ & VÍ DỤ</div>
               </div>
             </div>
             <div class="flip-card-back">
               <div>
                 <div class="flip-back-header">
                   <div class="flip-back-title">02 • JAW CLENCHING</div>
-                  <p class="flip-back-neuro"><b>Bản chất ngầm:</b> Cơn uất ức hoặc bất công bị kìm nén phải nuốt vào. Họ cảm thấy bị đe dọa vị thế hoặc bị dồn ép.</p>
+                  <p class="flip-back-neuro"><b>Cơ chế:</b> Bản năng chuẩn bị "cắn xé" kẻ thù, hoặc đang phải nuốt một cục tức vào trong. Cảm thấy bất công hoặc bị đè nén.</p>
                 </div>
                 <div class="flip-back-box">
                   <div class="flip-back-label">LỆNH PHẢN XẠ 3 GIÂY:</div>
                   <div class="flip-back-reflex">CÔNG NHẬN SỰ CỐ GẮNG TRƯỚC ĐÓ</div>
                   <div class="flip-back-script">"Em thấy đoạn vừa rồi anh em mình đã cày rất rát, không phải do team không nỗ lực..."</div>
+                </div>
+                <div class="flip-back-examples">
+                  <div class="flip-back-ex-item"><span class="flip-back-ex-tag">[HỌP HÀNH]:</span> Sếp mắng, nhân viên cúi mặt vâng dạ nhưng ngạnh hàm giật cục ➔ <i>Căm phẫn tột độ, 90% sẽ nộp đơn nghỉ.</i></div>
+                  <div class="flip-back-ex-item"><span class="flip-back-ex-tag">[ĐÀM PHÁN]:</span> Ép giá gắt, khách cười đồng ý nhưng răng siết chặt ➔ <i>Nhượng bộ vì thế yếu nhưng ghim hận trả đũa.</i></div>
+                  <div class="flip-back-ex-item"><span class="flip-back-ex-tag">[TÌNH CẢM]:</span> Vợ bảo "Em không sao đâu" nhưng răng nghiến rít lên ➔ <i>Cơn bão cấp 12 chuẩn bị đổ bộ.</i></div>
                 </div>
               </div>
               <div class="flip-back-footer">
@@ -1180,19 +1412,24 @@
                   <h3 class="flip-card-title">NUỐT KHAN / YẾT HẦU TRƯỢT</h3>
                   <p class="flip-card-cue">Cổ họng khô khốc, yết hầu giật ngược lên nuốt một ngụm khan đắng ngắt, môi mím chặt.</p>
                 </div>
-                <div class="flip-card-hint">↷ CHẠM ĐỂ XEM PHẢN XẠ 3 GIÂY</div>
+                <div class="flip-card-hint">↷ CHẠM ĐỂ XEM PHẢN XẠ & VÍ DỤ</div>
               </div>
             </div>
             <div class="flip-card-back">
               <div>
                 <div class="flip-back-header">
                   <div class="flip-back-title">03 • DRY SWALLOW</div>
-                  <p class="flip-back-neuro"><b>Bản chất ngầm:</b> Đang phải nuốt ngược một sự thật cay đắng vào trong, hoặc đang cắn răng nhịn không thốt ra điều sợ hãi.</p>
+                  <p class="flip-back-neuro"><b>Cơ chế:</b> Cortisol tăng vọt ép tuyến nước bọt ngừng tiết, cổ họng khô khốc. Phải nuốt ngược sự nhục nhã hoặc sợ hãi vào bụng.</p>
                 </div>
                 <div class="flip-back-box">
                   <div class="flip-back-label">LỆNH PHẢN XẠ 3 GIÂY:</div>
                   <div class="flip-back-reflex">ĐƯA LY NƯỚC HOẶC TẠO NHỊP NGHỈ</div>
                   <div class="flip-back-script">"Uống hớp nước đã anh. Con số này nhìn ban đầu ai cũng gai người cả..."</div>
+                </div>
+                <div class="flip-back-examples">
+                  <div class="flip-back-ex-item"><span class="flip-back-ex-tag">[ÁP LỰC]:</span> Diễn giả lên sân khấu nuốt "ực" cái trước khi nói ➔ <i>Nỗi sợ bầy đàn đào thải.</i></div>
+                  <div class="flip-back-ex-item"><span class="flip-back-ex-tag">[BỊ BÓC MẼ]:</span> Vạch mặt kẻ dối trá, họ không cãi được chỉ nuốt khan liên tục ➔ <i>Dồn vào chân tường, nuốt nhục.</i></div>
+                  <div class="flip-back-ex-item"><span class="flip-back-ex-tag">[THIẾU TỰ TIN]:</span> Sale báo giá chục tỷ họng khô khốc phải nuốt khan ➔ <i>Tự bản thân sale cũng hoảng sợ mức giá đó.</i></div>
                 </div>
               </div>
               <div class="flip-back-footer">
@@ -1203,74 +1440,84 @@
           </div>
         </div>
 
-        <!-- CARD 4: GUT DROP -->
+        <!-- CARD 4: WHITE KNUCKLING -->
         <div class="flip-card" data-phase="tension" onclick="toggleFlip(this)">
           <div class="flip-card-inner">
             <div class="flip-card-front">
               <div class="flip-card-media">
-                <img src="./images/somatic/somatic_04_gut.jpg" alt="Dạ dày lộn nhào lạnh bụng" class="flip-card-img" loading="lazy">
+                <img src="./images/somatic/somatic_04_knuckles.jpg" alt="Trắng đốt ngón tay" class="flip-card-img" loading="lazy">
                 <span class="flip-card-phase-tag flip-card-phase-tag--tension">PHA THẮT</span>
               </div>
               <div class="flip-card-content">
                 <div>
                   <div class="flip-card-num">DẤU ẤN 04 / 10</div>
-                  <h3 class="flip-card-title">DẠ DÀY LỘN NHÀO / LẠNH BỤNG</h3>
-                  <p class="flip-card-cue">Tay ôm vùng bụng trên/chấn thủy, cảm giác hẫng và lạnh toát đáy dạ dày. (Tự soi mình).</p>
+                  <h3 class="flip-card-title">BẤU CHẶT / TRẮNG ĐỐT NGÓN TAY</h3>
+                  <p class="flip-card-cue">Bấu chặt mép bàn, thành ghế, siết hai bàn tay vào nhau đến mức các khớp ngón tay trắng bệch.</p>
                 </div>
-                <div class="flip-card-hint">↷ CHẠM ĐỂ XEM PHẢN XẠ 3 GIÂY</div>
+                <div class="flip-card-hint">↷ CHẠM ĐỂ XEM PHẢN XẠ & VÍ DỤ</div>
               </div>
             </div>
             <div class="flip-card-back">
               <div>
                 <div class="flip-back-header">
-                  <div class="flip-back-title">04 • THE GUT DROP</div>
-                  <p class="flip-back-neuro"><b>Bản chất ngầm:</b> Cảm biến rủi ro nhạy nhất của hệ thần kinh ruột (Enteric). Sự hoảng loạn sinh tồn, sợ mất kiểm soát, sợ sụp đổ danh tính.</p>
+                  <div class="flip-back-title">04 • WHITE KNUCKLING</div>
+                  <p class="flip-back-neuro"><b>Cơ chế:</b> Bám víu vật lý để tìm điểm tựa khi nội tâm đang rơi tự do. Cơ vận động siết cực đại nhằm kìm nén xung động bùng nổ.</p>
                 </div>
                 <div class="flip-back-box">
-                  <div class="flip-back-label">LỆNH PHẢN XẠ 3 GIÂY (TỰ SOI):</div>
-                  <div class="flip-back-reflex">CHẠM 2 BÀN CHÂN XUỐNG ĐẤT • GỌI TÊN SỰ THẬT</div>
-                  <div class="flip-back-script">"Dừng tay khỏi chuột. Tự nhủ: 'Mình đang sợ mất mặt, không phải công ty sắp phá sản'."</div>
+                  <div class="flip-back-label">LỆNH PHẢN XẠ 3 GIÂY:</div>
+                  <div class="flip-back-reflex">GIẢI PHÓNG ĐÔI BÀN TAY</div>
+                  <div class="flip-back-script">"Đẩy nhẹ cuốn sổ hoặc tờ giấy sang: 'Anh xem giúp em con số này trên giấy có lệch không'."</div>
+                </div>
+                <div class="flip-back-examples">
+                  <div class="flip-back-ex-item"><span class="flip-back-ex-tag">[LÊN HÌNH]:</span> Cười nói nhưng dưới gầm bàn vò nát vạt áo, bấu chặt tay vịn ➔ <i>Nỗi sợ mất kiểm soát hiện sinh.</i></div>
+                  <div class="flip-back-ex-item"><span class="flip-back-ex-tag">[KIỀM CHẾ]:</span> Bị mắng xối xả, móng tay ấn sâu vào lòng bàn tay rướm máu ➔ <i>Dùng đau đớn kìm cơn xung động muốn đấm.</i></div>
+                  <div class="flip-back-ex-item"><span class="flip-back-ex-tag">[BẾ TẮC]:</span> Kể về nợ nần, hai tay đan nhau bóp nghẹt cào miết liên tục ➔ <i>Tuyệt vọng, tự trừng phạt bản thân.</i></div>
                 </div>
               </div>
               <div class="flip-back-footer">
-                <span>Hệ TK ruột: Vagus Nerve Shock</span>
+                <span>Cơ vận động: Cực đại kiểm soát</span>
                 <span>↶ CHẠM ĐỂ LẬT LẠI</span>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- CARD 5: WHITE KNUCKLING -->
+        <!-- CARD 5: GUT DROP -->
         <div class="flip-card" data-phase="tension" onclick="toggleFlip(this)">
           <div class="flip-card-inner">
             <div class="flip-card-front">
               <div class="flip-card-media">
-                <img src="./images/somatic/somatic_05_knuckles.jpg" alt="Trắng đốt ngón tay" class="flip-card-img" loading="lazy">
+                <img src="./images/somatic/somatic_05_gut.jpg" alt="Dạ dày lộn nhào lạnh bụng" class="flip-card-img" loading="lazy">
                 <span class="flip-card-phase-tag flip-card-phase-tag--tension">PHA THẮT</span>
               </div>
               <div class="flip-card-content">
                 <div>
                   <div class="flip-card-num">DẤU ẤN 05 / 10</div>
-                  <h3 class="flip-card-title">TRẮNG ĐỐT NGÓN TAY</h3>
-                  <p class="flip-card-cue">Bấu chặt mép bàn, thành ghế, siết hai bàn tay vào nhau đến mức các khớp ngón trắng bệch.</p>
+                  <h3 class="flip-card-title">LẠNH BỤNG / DẠ DÀY LỘN NHÀO</h3>
+                  <p class="flip-card-cue">Tay ôm vùng bụng trên/chấn thủy, cảm giác hẫng và lạnh toát đáy dạ dày. (Tự soi chính mình).</p>
                 </div>
-                <div class="flip-card-hint">↷ CHẠM ĐỂ XEM PHẢN XẠ 3 GIÂY</div>
+                <div class="flip-card-hint">↷ CHẠM ĐỂ XEM PHẢN XẠ & VÍ DỤ</div>
               </div>
             </div>
             <div class="flip-card-back">
               <div>
                 <div class="flip-back-header">
-                  <div class="flip-back-title">05 • WHITE KNUCKLING</div>
-                  <p class="flip-back-neuro"><b>Bản chất ngầm:</b> Nỗ lực bám víu tuyệt vọng vào vật chất cụ thể để tìm lại cảm giác kiểm soát khi nội tâm đang chao đảo sụp đổ.</p>
+                  <div class="flip-back-title">05 • THE GUT DROP</div>
+                  <p class="flip-back-neuro"><b>Cơ chế:</b> Máu rút cạn khỏi hệ tiêu hóa dồn về tứ chi chuẩn bị "Chiến hay Biến". Trực giác ngửi thấy mùi nguy hiểm trước vỏ não.</p>
                 </div>
                 <div class="flip-back-box">
-                  <div class="flip-back-label">LỆNH PHẢN XẠ 3 GIÂY:</div>
-                  <div class="flip-back-reflex">MỜI HỌ THAY ĐỔI TƯ THẾ TỰ NHIÊN</div>
-                  <div class="flip-back-script">"Đẩy nhẹ cuốn sổ hoặc tờ giấy sang: 'Anh xem giúp em con số này trên giấy có lệch không' để giải phóng bàn tay."</div>
+                  <div class="flip-back-label">LỆNH PHẢN XẠ 3 GIÂY (TỰ SOI):</div>
+                  <div class="flip-back-reflex">CHẠM 2 BÀN CHÂN XUỐNG ĐẤT • ĐẶT TÊN CẢM XÚC</div>
+                  <div class="flip-back-script">"Dừng tay khỏi chuột. Tự nhủ: 'Mình đang sợ mất mặt, không phải công ty sắp phá sản'."</div>
+                </div>
+                <div class="flip-back-examples">
+                  <div class="flip-back-ex-item"><span class="flip-back-ex-tag">[MẤT KIỂM SOÁT]:</span> Vừa ấn gửi nhầm file mật cho đối thủ, dạ dày rơi thịch lạnh toát ➔ <i>Báo động sinh tồn cấp cao nhất.</i></div>
+                  <div class="flip-back-ex-item"><span class="flip-back-ex-tag">[THẤT VỌNG]:</span> Doanh số tụt thảm hại, buồn nôn cồn cào ruột gan ➔ <i>Hãy mang cảm giác dạ dày này lên video.</i></div>
+                  <div class="flip-back-ex-item"><span class="flip-back-ex-tag">[TRỰC GIÁC]:</span> Hợp đồng đẹp như mơ nhưng cầm bút lên là bụng thắt lại ➔ <i>Trực giác ngửi thấy mùi lừa đảo.</i></div>
                 </div>
               </div>
               <div class="flip-back-footer">
-                <span>Cơ vận động: Cực đại kiểm soát</span>
+                <span>Hệ TK ruột: Vagus Shock</span>
                 <span>↶ CHẠM ĐỂ LẬT LẠI</span>
               </div>
             </div>
@@ -1289,21 +1536,26 @@
                 <div>
                   <div class="flip-card-num">DẤU ẤN 06 / 10</div>
                   <h3 class="flip-card-title">THỞ HẮT RA THƯỜN THƯỢT</h3>
-                  <p class="flip-card-cue">Miệng hé mở thổi ra một luồng khí nén dài, ngực xẹp xuống, mắt nhắm lại buông xuôi.</p>
+                  <p class="flip-card-cue">Miệng hé mở thổi ra một luồng khí nén dài, ngực xẹp xuống, mắt nhắm lại trút gánh nặng.</p>
                 </div>
-                <div class="flip-card-hint">↷ CHẠM ĐỂ XEM PHẢN XẠ 3 GIÂY</div>
+                <div class="flip-card-hint">↷ CHẠM ĐỂ XEM PHẢN XẠ & VÍ DỤ</div>
               </div>
             </div>
             <div class="flip-card-back">
               <div>
                 <div class="flip-back-header">
                   <div class="flip-back-title">06 • THE HEAVY EXHALE</div>
-                  <p class="flip-back-neuro"><b>Bản chất ngầm:</b> Lớp vỏ bọc gồng gánh (Ego Defense) vừa vỡ vụn. Sự buông xuôi. Lời thú tội và sự thật chuẩn bị bắt đầu.</p>
+                  <p class="flip-back-neuro"><b>Cơ chế:</b> Trút bỏ toàn bộ khí oxy bị nén. Từ bỏ lớp vỏ bọc ngụy trang (Ego). Lớp giáp vỡ nát, họ chuẩn bị trao sinh mệnh.</p>
                 </div>
                 <div class="flip-back-box">
                   <div class="flip-back-label">LỆNH PHẢN XẠ 3 GIÂY:</div>
-                  <div class="flip-back-reflex">ĐÓN BẰNG CÂU MỞ LÒNG KHÔNG ĐÁNH GIÁ</div>
+                  <div class="flip-back-reflex">ĐÓN BẰNG CÂU MỞ LÒNG KHÔNG PHÁN XÉT</div>
                   <div class="flip-back-script">"Anh thấy mệt mỏi nhất ở khâu nào? Cứ chia sẻ thật, ở đây không ai phán xét ai cả."</div>
+                </div>
+                <div class="flip-back-examples">
+                  <div class="flip-back-ex-item"><span class="flip-back-ex-tag" style="color:var(--cl-purple);">[BỊ BÓC TRẦN]:</span> "Anh mệt vì sự cô độc", sếp sững lại thở hắt "phù" rũ rượi ➔ <i>Lớp giáp vỡ nát, họ giao quyền lực.</i></div>
+                  <div class="flip-back-ex-item"><span class="flip-back-ex-tag" style="color:var(--cl-purple);">[NHẸ NHÕM]:</span> Bác sĩ báo u lành, bệnh nhân xẹp lồng ngực thở dài một hơi ➔ <i>Mạng sống được trả lại.</i></div>
+                  <div class="flip-back-ex-item"><span class="flip-back-ex-tag" style="color:var(--cl-purple);">[BỎ CUỘC]:</span> Bị logic sắc bén đập tan cớ chê đắt, khách thở phì rút ví ➔ <i>Vũ khí ngụy biện đã cạn kiệt.</i></div>
                 </div>
               </div>
               <div class="flip-back-footer">
@@ -1325,22 +1577,27 @@
               <div class="flip-card-content">
                 <div>
                   <div class="flip-card-num">DẤU ẤN 07 / 10</div>
-                  <h3 class="flip-card-title">BỜ VAI CHÙNG THÕNG</h3>
-                  <p class="flip-card-cue">Toàn bộ trương lực cơ vai sụp xuống, đầu hơi chúi về phía trước, lưng gập nhẹ.</p>
+                  <h3 class="flip-card-title">BỜ VAI CHÙNG THÕNG / SẬP KHUNG</h3>
+                  <p class="flip-card-cue">Toàn bộ trương lực cơ vai sụp xuống, đầu hơi chúi về phía trước, lưng gập nhẹ buông bỏ.</p>
                 </div>
-                <div class="flip-card-hint">↷ CHẠM ĐỂ XEM PHẢN XẠ 3 GIÂY</div>
+                <div class="flip-card-hint">↷ CHẠM ĐỂ XEM PHẢN XẠ & VÍ DỤ</div>
               </div>
             </div>
             <div class="flip-card-back">
               <div>
                 <div class="flip-back-header">
                   <div class="flip-back-title">07 • SHOULDER COLLAPSE</div>
-                  <p class="flip-back-neuro"><b>Bản chất ngầm:</b> Trút bỏ gánh nặng. Họ đã kiệt sức vì ngụy biện. Đây chính là giây phút họ chính thức trao quyền kiểm soát cho bạn.</p>
+                  <p class="flip-back-neuro"><b>Cơ chế:</b> Não ngưng bơm năng lượng để "gồng", cơ vai mất trương lực. Họ đã kiệt sức vì ngụy biện và đầu hàng vật lý.</p>
                 </div>
                 <div class="flip-back-box">
                   <div class="flip-back-label">LỆNH PHẢN XẠ 3 GIÂY:</div>
                   <div class="flip-back-reflex">CHỐT PHƯƠNG ÁN GIẢM TẢI NGAY</div>
                   <div class="flip-back-script">"Việc nặng nhất để em lo. Giờ mình chỉ cần gỡ đúng 1 nút thắt này trước..."</div>
+                </div>
+                <div class="flip-back-examples">
+                  <div class="flip-back-ex-item"><span class="flip-back-ex-tag" style="color:var(--cl-purple);">[NHẬN TỘI]:</span> Tung camera an ninh, hai vai đang gồng nhô cao đột ngột sập hẳn ➔ <i>Đầu hàng vật lý vô điều kiện.</i></div>
+                  <div class="flip-back-ex-item"><span class="flip-back-ex-tag" style="color:var(--cl-purple);">[THẤU CẢM]:</span> Khách xù lông chửi, nói trúng uất ức người họ nhũn ra vai xệ ➔ <i>Chuyển từ thù địch sang khuất phục.</i></div>
+                  <div class="flip-back-ex-item"><span class="flip-back-ex-tag" style="color:var(--cl-purple);">[KIỆT SỨC]:</span> Sau 1 ngày diễn kịch giả tạo, về phòng thân thể sụp xuống ghế ➔ <i>Năng lượng sinh tồn cạn ráo.</i></div>
                 </div>
               </div>
               <div class="flip-back-footer">
@@ -1363,21 +1620,26 @@
                 <div>
                   <div class="flip-card-num">DẤU ẤN 08 / 10</div>
                   <h3 class="flip-card-title">ÁNH MẮT CỤP XUỐNG ĐẤT</h3>
-                  <p class="flip-card-cue">Nhìn thẳng xuống mũi chân hoặc đùi, phá vỡ liên lạc mắt, mi mắt trĩu nặng tổn thương.</p>
+                  <p class="flip-card-cue">Nhìn thẳng xuống mũi chân hoặc đùi, mi mắt trĩu nặng thể hiện sự hổ thẹn tổn thương thể diện.</p>
                 </div>
-                <div class="flip-card-hint">↷ CHẠM ĐỂ XEM PHẢN XẠ 3 GIÂY</div>
+                <div class="flip-card-hint">↷ CHẠM ĐỂ XEM PHẢN XẠ & VÍ DỤ</div>
               </div>
             </div>
             <div class="flip-card-back">
               <div>
                 <div class="flip-back-header">
                   <div class="flip-back-title">08 • DOWNWARD AVERSION</div>
-                  <p class="flip-back-neuro"><b>Bản chất ngầm:</b> Nếu nhìn ngang là suy nghĩ logic, nhưng cụp mắt thẳng xuống là dấu hiệu của Sự Xấu Hổ (Shame), cảm giác tội lỗi và bản ngã bị tổn thương.</p>
+                  <p class="flip-back-neuro"><b>Cơ chế:</b> Tránh né ánh sáng và sự phán xét để che giấu Sự Xấu Hổ (Shame). Khác với nhìn ngang suy nghĩ logic, cụp mắt là Ego bị tổn thương.</p>
                 </div>
                 <div class="flip-back-box">
                   <div class="flip-back-label">LỆNH PHẢN XẠ 3 GIÂY:</div>
                   <div class="flip-back-reflex">CỨU THỂ DIỆN BẰNG BỐI CẢNH CHUNG</div>
                   <div class="flip-back-script">"Thực ra thị trường đợt này ai làm cũng dính đòn, không riêng gì bên mình đâu anh."</div>
+                </div>
+                <div class="flip-back-examples">
+                  <div class="flip-back-ex-item"><span class="flip-back-ex-tag" style="color:var(--cl-purple);">[SĨ DIỆN TIỀN]:</span> Hỏi đủ 50tr không, bảo "Đủ" nhưng mắt cụp thẳng mép bàn ➔ <i>Sĩ diện, thực ra không có tiền.</i></div>
+                  <div class="flip-back-ex-item"><span class="flip-back-ex-tag" style="color:var(--cl-purple);">[PHẢN BỘI]:</span> Kẻ nợ tiền chạm mặt không bao giờ dám nhìn thẳng, mắt dán sàn ➔ <i>Sự nhục nhã bẩm sinh.</i></div>
+                  <div class="flip-back-ex-item"><span class="flip-back-ex-tag" style="color:var(--cl-purple);">[IMPOSTER]:</span> Nhận giải thưởng mua bằng tiền bẩn, mắt cắm gằm kịch bản ➔ <i>Tâm lý kẻ mạo danh xấu hổ.</i></div>
                 </div>
               </div>
               <div class="flip-back-footer">
@@ -1399,22 +1661,27 @@
               <div class="flip-card-content">
                 <div>
                   <div class="flip-card-num">DẤU ẤN 09 / 10</div>
-                  <h3 class="flip-card-title">HÀNH VI TỰ XOA DỊU</h3>
-                  <p class="flip-card-cue">Vô thức đưa tay xoa gáy, vuốt cổ, xoa nhẹ cánh tay hoặc bóp nhẹ dái tai.</p>
+                  <h3 class="flip-card-title">HÀNH VI TỰ XOA DỊU (PACIFYING)</h3>
+                  <p class="flip-card-cue">Vô thức đưa tay xoa gáy, vuốt cổ, chà xát cánh tay hoặc bóp nhẹ dái tai tự trấn an.</p>
                 </div>
-                <div class="flip-card-hint">↷ CHẠM ĐỂ XEM PHẢN XẠ 3 GIÂY</div>
+                <div class="flip-card-hint">↷ CHẠM ĐỂ XEM PHẢN XẠ & VÍ DỤ</div>
               </div>
             </div>
             <div class="flip-card-back">
               <div>
                 <div class="flip-back-header">
                   <div class="flip-back-title">09 • PACIFYING GESTURES</div>
-                  <p class="flip-back-neuro"><b>Bản chất ngầm:</b> Cortisol tăng vọt, cơ thể tự động thực hiện hành vi mơn trớn, ôm ấp để kích thích dây thần kinh phế vị, tự trấn an và hạ nhịp tim.</p>
+                  <p class="flip-back-neuro"><b>Cơ chế:</b> Huyết áp tăng vọt, hệ thần kinh ra lệnh tự vuốt ve cơ thể (như cái ôm của mẹ) để kích thích dây phế vị hạ nhịp tim.</p>
                 </div>
                 <div class="flip-back-box">
                   <div class="flip-back-label">LỆNH PHẢN XẠ 3 GIÂY:</div>
                   <div class="flip-back-reflex">TẠO SỰ ĐỒNG MINH VẬT LÝ</div>
                   <div class="flip-back-script">"Ngả lưng ra sau ghế cùng nhịp với họ, hạ âm lượng xuống 20%, tạo cảm giác an toàn."</div>
+                </div>
+                <div class="flip-back-examples">
+                  <div class="flip-back-ex-item"><span class="flip-back-ex-tag" style="color:var(--cl-purple);">[BỊ TẤN CÔNG]:</span> Trả lời trơn tru nhưng tay vô thức đưa ra sau xoa vuốt gáy ➔ <i>Cảm giác bị đe dọa sinh mạng.</i></div>
+                  <div class="flip-back-ex-item"><span class="flip-back-ex-tag" style="color:var(--cl-purple);">[BẤT AN]:</span> Trước người quyền lực, cô gái vòng chéo tay tự vuốt chà cánh tay ➔ <i>Tự ôm tạo lá chắn an toàn.</i></div>
+                  <div class="flip-back-ex-item"><span class="flip-back-ex-tag" style="color:var(--cl-purple);">[NÓI DỐI]:</span> Chém gió doanh số, tay gãi nhẹ sống mũi/vành tai ➔ <i>Mao mạch ngứa (Hiệu ứng Pinocchio).</i></div>
                 </div>
               </div>
               <div class="flip-back-footer">
@@ -1437,21 +1704,26 @@
                 <div>
                   <div class="flip-card-num">DẤU ẤN 10 / 10</div>
                   <h3 class="flip-card-title">GIỌNG VỠ / TỤT ÂM VỰC</h3>
-                  <p class="flip-card-cue">Đang nói dõng dạc đột nhiên giọng tẽn lại, mỏng đứt quãng, tụt âm lượng về tiếng thì thầm.</p>
+                  <p class="flip-card-cue">Đang nói dõng dạc đột nhiên giọng nghẹn lại, rè rè đứt quãng, tụt âm lượng về tiếng thì thầm.</p>
                 </div>
-                <div class="flip-card-hint">↷ CHẠM ĐỂ XEM PHẢN XẠ 3 GIÂY</div>
+                <div class="flip-card-hint">↷ CHẠM ĐỂ XEM PHẢN XẠ & VÍ DỤ</div>
               </div>
             </div>
             <div class="flip-card-back">
               <div>
                 <div class="flip-back-header">
                   <div class="flip-back-title">10 • VOCAL FRY / BREAK</div>
-                  <p class="flip-back-neuro"><b>Bản chất ngầm:</b> Năng lượng sinh tồn cạn kiệt, họ đã hoàn toàn mất niềm tin vào chính lời bao biện của mình. Rào chắn cuối cùng đã gãy.</p>
+                  <p class="flip-back-neuro"><b>Cơ chế:</b> Năng lượng sinh tồn cạn kiệt, không đủ hơi đẩy lên thanh quản gây co thắt. Họ đã mất niềm tin vào chính lời bao biện của mình.</p>
                 </div>
                 <div class="flip-back-box">
                   <div class="flip-back-label">LỆNH PHẢN XẠ 3 GIÂY:</div>
                   <div class="flip-back-reflex">CHỐT BƯỚC ĐẦU TIÊN CỰC NHỎ</div>
                   <div class="flip-back-script">"Thế này đi anh, tuần này mình chưa cần làm gì lớn, chỉ làm đúng bước này trước..."</div>
+                </div>
+                <div class="flip-back-examples">
+                  <div class="flip-back-ex-item"><span class="flip-back-ex-tag" style="color:var(--cl-purple);">[MẤT NIỀM TIN]:</span> Cam kết KPI nhưng cuối câu giọng tụt rè đứt quãng ➔ <i>Chính họ không tin lời mình nói.</i></div>
+                  <div class="flip-back-ex-item"><span class="flip-back-ex-tag" style="color:var(--cl-purple);">[KHUẤT PHỤC]:</span> Cãi cố trước khi thua giọng the thé vỡ nát rồi im ➔ <i>Tuyến phòng ngự ngôn từ sụp đổ.</i></div>
+                  <div class="flip-back-ex-item"><span class="flip-back-ex-tag" style="color:var(--cl-purple);">[CHẠM ĐAU]:</span> Bạn chẩn đoán trúng u 10 năm, họ đáp "Sao cậu biết..." giọng khàn đặc ➔ <i>Đoạt hoàn toàn linh hồn.</i></div>
                 </div>
               </div>
               <div class="flip-back-footer">
@@ -1466,10 +1738,320 @@
     </div>
   </section>
 
-  <!-- KHỐI 5: MA TRẬN ĐỐI CHIẾU HÀNH ĐỘNG (TINT) -->
-  <section class="cl-zebra-section cl-zebra--tint" id="sec-matrix">
+  <!-- KHỐI 4: 30 KỊCH BẢN GIẢI PHẪU TÌNH HUỐNG THỰC CHIẾN (TINT) -->
+  <section class="cl-zebra-section cl-zebra--tint combat-section" id="sec-combat">
     <div class="cl-sec-container cl-sec-container--wide apple-reveal">
-      <div class="cl-badge">04 / BẢNG TRA CỨU NHANH</div>
+      <div class="cl-badge">04 / BẢN ĐỒ CHIẾN TRƯỜNG THỰC TẾ</div>
+      <h2 class="title-short">30 KỊCH BẢN GIẢI PHẪU TÌNH HUỐNG THỰC CHIẾN</h2>
+      <p class="cl-body">
+        Từ phòng họp kín, bàn đàm phán triệu đô cho tới xung đột gia đình — Toàn bộ 30 bệnh án tâm lý vi mô và cơ chế chốt hạ:
+      </p>
+
+      <!-- NHÓM 1: PHA THẮT -->
+      <div class="combat-group">
+        <div class="combat-group-header">
+          <span class="combat-group-badge combat-group-badge--tension">NHÓM 1</span>
+          <h3 class="combat-group-title">TRẠNG THÁI BÁO ĐỘNG & CHE GIẤU (SỢ HÃI, DỐI TRÁ, UẤT ỨC)</h3>
+        </div>
+
+        <!-- DẤU 1 -->
+        <div class="combat-marker-card">
+          <div class="combat-marker-head">
+            <img src="./images/somatic/somatic_01_freeze.jpg" class="combat-marker-thumb" alt="Freeze">
+            <div class="combat-marker-info">
+              <h4 class="combat-marker-name">1. KHỰNG NHỊP THỞ / NÍN THỞ (MICRO-FREEZE)</h4>
+              <p class="combat-marker-mech"><b>Cơ chế thần kinh:</b> Động vật đóng băng / giả chết khi gặp thú dữ để giấu âm thanh sinh tồn.</p>
+            </div>
+          </div>
+          <div class="combat-scenarios-grid">
+            <div class="scenario-box">
+              <div class="scenario-tag">⚡ VD1: CHỐT SALE</div>
+              <p class="scenario-desc">Bạn báo giá "Gói này 200 triệu". Khách vẫn mỉm cười nhưng lồng ngực treo lơ lửng, nín thở mất 1.5 giây.</p>
+              <div class="scenario-verdict scenario-verdict--alert"><b>Bắt bệnh:</b> Sốc rủi ro tài chính, nhưng gồng mình giữ sĩ diện.</div>
+            </div>
+            <div class="scenario-box">
+              <div class="scenario-tag">⚡ VD2: TUYỂN DỤNG</div>
+              <p class="scenario-desc">Hỏi: "Tại sao em nghỉ công ty cũ?". Ứng viên khựng thở 1 nhịp, mắt chớp nhanh liên hồi.</p>
+              <div class="scenario-verdict scenario-verdict--alert"><b>Bắt bệnh:</b> Đang lục tung não để bịa ra lý do che giấu một phốt tồi tệ.</div>
+            </div>
+            <div class="scenario-box">
+              <div class="scenario-tag">⚡ VD3: GIA ĐÌNH</div>
+              <p class="scenario-desc">Vợ lướt điện thoại hỏi: "Hôm qua anh đi với ai?". Chồng đang nhai cơm đột ngột dừng lại, quên nhịp thở ra.</p>
+              <div class="scenario-verdict scenario-verdict--alert"><b>Bắt bệnh:</b> Báo động đỏ, hoảng loạn ngầm trong tâm trí.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- DẤU 2 -->
+        <div class="combat-marker-card">
+          <div class="combat-marker-head">
+            <img src="./images/somatic/somatic_02_jaw.jpg" class="combat-marker-thumb" alt="Jaw">
+            <div class="combat-marker-info">
+              <h4 class="combat-marker-name">2. CĂNG CƠ HÀM / BẠNH THÁI DƯƠNG (JAW CLENCHING)</h4>
+              <p class="combat-marker-mech"><b>Cơ chế thần kinh:</b> Bản năng chuẩn bị "cắn xé" kẻ thù, hoặc đang phải nuốt một cục tức vào trong.</p>
+            </div>
+          </div>
+          <div class="combat-scenarios-grid">
+            <div class="scenario-box">
+              <div class="scenario-tag">⚡ VD1: HỌP HÀNH</div>
+              <p class="scenario-desc">Sếp mắng vô lý. Nhân viên cúi mặt vâng dạ, nhưng phần ngạnh hàm dưới mang tai giật giật, nổi cục cơ.</p>
+              <div class="scenario-verdict scenario-verdict--alert"><b>Bắt bệnh:</b> Sự căm phẫn tột độ, 90% sẽ nộp đơn nghỉ việc ngầm.</div>
+            </div>
+            <div class="scenario-box">
+              <div class="scenario-tag">⚡ VD2: ĐÀM PHÁN</div>
+              <p class="scenario-desc">Bạn ép giá gắt. Khách hàng cười đồng ý nhưng hai hàm răng siết chặt một tích tắc rồi mới nói.</p>
+              <div class="scenario-verdict scenario-verdict--alert"><b>Bắt bệnh:</b> Nhượng bộ vì thế yếu, nhưng ghim hận và sẽ trả đũa ngầm.</div>
+            </div>
+            <div class="scenario-box">
+              <div class="scenario-tag">⚡ VD3: TÌNH CẢM</div>
+              <p class="scenario-desc">Vợ bảo "Em không sao đâu", nhưng hai hàm răng nghiến chặt rít lên từng tiếng qua kẽ môi.</p>
+              <div class="scenario-verdict scenario-verdict--alert"><b>Bắt bệnh:</b> Cơn bão cấp 12 chuẩn bị đổ bộ, tuyệt đối không chủ quan.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- DẤU 3 -->
+        <div class="combat-marker-card">
+          <div class="combat-marker-head">
+            <img src="./images/somatic/somatic_03_swallow.jpg" class="combat-marker-thumb" alt="Swallow">
+            <div class="combat-marker-info">
+              <h4 class="combat-marker-name">3. NUỐT KHAN / YẾT HẦU TRƯỢT (DRY SWALLOW)</h4>
+              <p class="combat-marker-mech"><b>Cơ chế thần kinh:</b> Cortisol tăng vọt ép tuyến nước bọt ngừng tiết, cổ họng khô khốc đắng ngắt.</p>
+            </div>
+          </div>
+          <div class="combat-scenarios-grid">
+            <div class="scenario-box">
+              <div class="scenario-tag">⚡ VD1: ÁP LỰC ĐÁM ĐÔNG</div>
+              <p class="scenario-desc">Diễn giả bước lên sân khấu, trước khi cất giọng phải nuốt nước bọt cái "ực", yết hầu trượt mạnh lên cao.</p>
+              <div class="scenario-verdict scenario-verdict--alert"><b>Bắt bệnh:</b> Nỗi sợ bầy đàn đào thải, cơ thể đang co thắt sinh tồn.</div>
+            </div>
+            <div class="scenario-box">
+              <div class="scenario-tag">⚡ VD2: BỊ BÓC MẼ</div>
+              <p class="scenario-desc">Vạch mặt kẻ nói dối, họ không cãi được, chỉ nuốt khan liên tục và cắn chặt môi dưới.</p>
+              <div class="scenario-verdict scenario-verdict--alert"><b>Bắt bệnh:</b> Bị dồn vào chân tường, nuốt sự nhục nhã vào bụng.</div>
+            </div>
+            <div class="scenario-box">
+              <div class="scenario-tag">⚡ VD3: THIẾU TỰ TIN</div>
+              <p class="scenario-desc">Sale non tay chuẩn bị báo giá hợp đồng chục tỷ, họng khô khốc phải nuốt khan trước khi thốt ra con số.</p>
+              <div class="scenario-verdict scenario-verdict--alert"><b>Bắt bệnh:</b> Tự bản thân sale cũng đang hoảng sợ với chính mức giá đó.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- DẤU 4 -->
+        <div class="combat-marker-card">
+          <div class="combat-marker-head">
+            <img src="./images/somatic/somatic_04_knuckles.jpg" class="combat-marker-thumb" alt="Knuckles">
+            <div class="combat-marker-info">
+              <h4 class="combat-marker-name">4. BẤU CHẶT / TRẮNG ĐỐT NGÓN TAY (WHITE KNUCKLING)</h4>
+              <p class="combat-marker-mech"><b>Cơ chế thần kinh:</b> Bám víu vật lý để tìm điểm tựa khi nội tâm đang rơi tự do không trọng lượng.</p>
+            </div>
+          </div>
+          <div class="combat-scenarios-grid">
+            <div class="scenario-box">
+              <div class="scenario-tag">⚡ VD1: LÊN HÌNH / ĐÁM ĐÔNG</div>
+              <p class="scenario-desc">Người mới lên sóng, miệng cười nói nhưng tay giấu dưới gầm bàn vò nát vạt áo hoặc bấu chặt tay vịn đến trắng ngón.</p>
+              <div class="scenario-verdict scenario-verdict--alert"><b>Bắt bệnh:</b> Nỗi sợ mất kiểm soát hiện sinh, đang bấu víu tìm an toàn.</div>
+            </div>
+            <div class="scenario-box">
+              <div class="scenario-tag">⚡ VD2: KIỀM CHẾ CỰC ĐỘ</div>
+              <p class="scenario-desc">Bị khách chửi xối xả, nhân viên CSKH bấm móng tay ấn sâu vào lòng bàn tay đến rướm máu.</p>
+              <div class="scenario-verdict scenario-verdict--alert"><b>Bắt bệnh:</b> Dùng nỗi đau vật lý để kìm nén cơn xung động muốn đấm đối phương.</div>
+            </div>
+            <div class="scenario-box">
+              <div class="scenario-tag">⚡ VD3: BẾ TẮC NỢ NẦN</div>
+              <p class="scenario-desc">Khách kể về các khoản nợ, hai bàn tay đan chặt vào nhau bóp nghẹt, cào miết khớp ngón tay liên tục.</p>
+              <div class="scenario-verdict scenario-verdict--alert"><b>Bắt bệnh:</b> Cảm giác tuyệt vọng tột cùng, vô thức tự trừng phạt bản thân.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- DẤU 5 -->
+        <div class="combat-marker-card">
+          <div class="combat-marker-head">
+            <img src="./images/somatic/somatic_05_gut.jpg" class="combat-marker-thumb" alt="Gut">
+            <div class="combat-marker-info">
+              <h4 class="combat-marker-name">5. LẠNH BỤNG / DẠ DÀY LỘN NHÀO (GUT DROP - TỰ QUÉT BẢN THÂN)</h4>
+              <p class="combat-marker-mech"><b>Cơ chế thần kinh:</b> Máu rút cạn khỏi hệ tiêu hóa dồn về tứ chi để chuẩn bị "Chiến hay Biến".</p>
+            </div>
+          </div>
+          <div class="combat-scenarios-grid">
+            <div class="scenario-box">
+              <div class="scenario-tag">⚡ VD1: MẤT KIỂM SOÁT</div>
+              <p class="scenario-desc">Vừa ấn "Gửi" nhầm báo cáo tài chính mật cho đối thủ. Dạ dày lập tức rơi thịch xuống, lạnh toát vùng chấn thủy.</p>
+              <div class="scenario-verdict scenario-verdict--alert"><b>Bắt bệnh:</b> Báo động sinh tồn cấp độ cao nhất của hệ thần kinh ruột.</div>
+            </div>
+            <div class="scenario-box">
+              <div class="scenario-tag">⚡ VD2: THẤT VỌNG VI MÔ</div>
+              <p class="scenario-desc">Mở xem doanh số tụt thê thảm, không thấy đau đầu mà thấy buồn nôn, ruột gan cồn cào như đói lả.</p>
+              <div class="scenario-verdict scenario-verdict--alert"><b>Bắt bệnh:</b> Đừng dùng từ "chán nản", hãy mang cảm giác dạ dày này lên mô tả trong Video.</div>
+            </div>
+            <div class="scenario-box">
+              <div class="scenario-tag">⚡ VD3: TRỰC GIÁC CẢNH BÁO</div>
+              <p class="scenario-desc">Chuẩn bị ký hợp đồng đẹp như mơ, logic không thấy lỗi, nhưng cứ cầm bút lên là bụng lại thắt quặn lại.</p>
+              <div class="scenario-verdict scenario-verdict--alert"><b>Bắt bệnh:</b> Trực giác đã ngửi thấy mùi lừa đảo mà vỏ não chưa kịp phân tích.</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- NHÓM 2: PHA CHÙNG -->
+      <div class="combat-group" style="margin-bottom: 0;">
+        <div class="combat-group-header">
+          <span class="combat-group-badge combat-group-badge--collapse">NHÓM 2</span>
+          <h3 class="combat-group-title">SỰ ĐẦU HÀNG & SỤP ĐỔ (KHOẢNH KHẮC BẠN ĐÂM TRÚNG VÀ CHỐT HẠ)</h3>
+        </div>
+
+        <!-- DẤU 6 -->
+        <div class="combat-marker-card">
+          <div class="combat-marker-head">
+            <img src="./images/somatic/somatic_06_exhale.jpg" class="combat-marker-thumb" alt="Exhale">
+            <div class="combat-marker-info">
+              <h4 class="combat-marker-name">6. TIẾNG THỞ HẮT RA THƯỜN THƯỢT (THE HEAVY EXHALE)</h4>
+              <p class="combat-marker-mech"><b>Cơ chế thần kinh:</b> Trút bỏ toàn bộ khí oxy bị nén. Từ bỏ lớp vỏ bọc ngụy trang (Ego).</p>
+            </div>
+          </div>
+          <div class="combat-scenarios-grid">
+            <div class="scenario-box">
+              <div class="scenario-tag" style="color:var(--cl-purple);">🎯 VD1: BỊ BÓC TRẦN</div>
+              <p class="scenario-desc">Bạn nói: "Anh kiệt sức không phải vì thiếu tiền, mà vì sự cô độc". Sếp sững lại, há miệng thở hắt ra tiếng "phù" rũ rượi.</p>
+              <div class="scenario-verdict scenario-verdict--close"><b>Chốt hạ:</b> Lớp giáp vỡ nát, họ chính thức giao sinh mệnh và lòng tin cho bạn.</div>
+            </div>
+            <div class="scenario-box">
+              <div class="scenario-tag" style="color:var(--cl-purple);">🎯 VD2: NHẸ NHÕM SINH MỆNH</div>
+              <p class="scenario-desc">Bác sĩ báo: "Chỉ là u lành". Bệnh nhân xẹp lồng ngực xuống, thở dài một hơi thật sâu như vừa tái sinh.</p>
+              <div class="scenario-verdict scenario-verdict--close"><b>Chốt hạ:</b> Mạng sống được trả lại, nỗi sợ tử thần hoàn toàn tan biến.</div>
+            </div>
+            <div class="scenario-box">
+              <div class="scenario-tag" style="color:var(--cl-purple);">🎯 VD3: BỎ CUỘC TRANH LUẬN</div>
+              <p class="scenario-desc">Khách chê đắt, bạn dùng logic sắc bén đập tan mọi cớ. Khách thở phì một cái, lặng lẽ rút ví.</p>
+              <div class="scenario-verdict scenario-verdict--close"><b>Chốt hạ:</b> Vũ khí ngụy biện đã cạn, chấp nhận mua giải pháp của bạn.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- DẤU 7 -->
+        <div class="combat-marker-card">
+          <div class="combat-marker-head">
+            <img src="./images/somatic/somatic_07_shoulder.jpg" class="combat-marker-thumb" alt="Shoulder">
+            <div class="combat-marker-info">
+              <h4 class="combat-marker-name">7. BỜ VAI CHÙNG THÕNG / SẬP KHUNG (SHOULDER COLLAPSE)</h4>
+              <p class="combat-marker-mech"><b>Cơ chế thần kinh:</b> Não ngưng bơm năng lượng để "gồng", toàn bộ cơ vai mất trương lực.</p>
+            </div>
+          </div>
+          <div class="combat-scenarios-grid">
+            <div class="scenario-box">
+              <div class="scenario-tag" style="color:var(--cl-purple);">🎯 VD1: NHẬN TỘI</div>
+              <p class="scenario-desc">Nhân viên gân cổ cãi, bạn quăng ra video camera an ninh. Hai bờ vai đang gồng nhô cao đột ngột sập hẳn xuống, lưng gù lại.</p>
+              <div class="scenario-verdict scenario-verdict--close"><b>Chốt hạ:</b> Đầu hàng vật lý vô điều kiện, không còn cửa chống chế.</div>
+            </div>
+            <div class="scenario-box">
+              <div class="scenario-tag" style="color:var(--cl-purple);">🎯 VD2: THẤU CẢM ĐỈNH CAO</div>
+              <p class="scenario-desc">Khách đang xù lông nhím chửi bới. Bạn nói trúng nỗi đau uất ức của họ. Người họ nhũn ra, tựa hẳn lưng ra sau ghế, vai xệ xuống.</p>
+              <div class="scenario-verdict scenario-verdict--close"><b>Chốt hạ:</b> Chuyển hóa tức thì từ thái độ thù địch sang sự khuất phục và tin cẩn.</div>
+            </div>
+            <div class="scenario-box">
+              <div class="scenario-tag" style="color:var(--cl-purple);">🎯 VD3: KIỆT SỨC NGUỴ TRANG</div>
+              <p class="scenario-desc">Đi làm về sau 1 ngày diễn kịch giả tạo ngoài xã hội, đóng cánh cửa phòng, toàn thân sụp xuống ghế nhão như bún.</p>
+              <div class="scenario-verdict scenario-verdict--close"><b>Chốt hạ:</b> Nguồn năng lượng sinh tồn cạn ráo, lớp mặt nạ xã hội rơi xuống.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- DẤU 8 -->
+        <div class="combat-marker-card">
+          <div class="combat-marker-head">
+            <img src="./images/somatic/somatic_08_eyes.jpg" class="combat-marker-thumb" alt="Eyes">
+            <div class="combat-marker-info">
+              <h4 class="combat-marker-name">8. ÁNH MẮT CỤP XUỐNG ĐẤT / NHÌN RỐN (DOWNWARD AVERSION)</h4>
+              <p class="combat-marker-mech"><b>Cơ chế thần kinh:</b> Tránh né ánh sáng và sự phán xét để che giấu Sự Xấu Hổ (Shame).</p>
+            </div>
+          </div>
+          <div class="combat-scenarios-grid">
+            <div class="scenario-box">
+              <div class="scenario-tag" style="color:var(--cl-purple);">🎯 VD1: XẤU HỔ TÀI CHÍNH</div>
+              <p class="scenario-desc">Hỏi: "Gói này 50 triệu, anh đủ tài chính chứ?". Khách nói "Đủ", nhưng ánh mắt cụp thẳng xuống mép bàn hoặc mũi giày.</p>
+              <div class="scenario-verdict scenario-verdict--close"><b>Bắt bệnh:</b> Sĩ diện. Thực tế tài khoản đang rỗng, không đủ khả năng chi trả.</div>
+            </div>
+            <div class="scenario-box">
+              <div class="scenario-tag" style="color:var(--cl-purple);">🎯 VD2: KẺ PHẢN BỘI NỢ NẦN</div>
+              <p class="scenario-desc">Kẻ vay tiền không chịu trả, khi vô tình chạm mặt ở hành lang, không bao giờ dám nhìn thẳng, mắt dán chặt xuống sàn nhà.</p>
+              <div class="scenario-verdict scenario-verdict--close"><b>Bắt bệnh:</b> Sự nhục nhã bẩm sinh khi bản ngã không thể biện minh được nữa.</div>
+            </div>
+            <div class="scenario-box">
+              <div class="scenario-tag" style="color:var(--cl-purple);">🎯 VD3: IMPOSTER SYNDROME</div>
+              <p class="scenario-desc">Lên bục nhận giải thưởng mà mình mua bằng tiền bẩn, mắt không dám nhìn thẳng khán giả, cắm gằm xuống tờ kịch bản.</p>
+              <div class="scenario-verdict scenario-verdict--close"><b>Bắt bệnh:</b> Tâm lý kẻ mạo danh, sợ hãi bị hàng trăm con mắt nhìn thấu tim gan.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- DẤU 9 -->
+        <div class="combat-marker-card">
+          <div class="combat-marker-head">
+            <img src="./images/somatic/somatic_09_pacify.jpg" class="combat-marker-thumb" alt="Pacify">
+            <div class="combat-marker-info">
+              <h4 class="combat-marker-name">9. HÀNH VI TỰ XOA DỊU (PACIFYING GESTURES)</h4>
+              <p class="combat-marker-mech"><b>Cơ chế thần kinh:</b> Huyết áp tăng, hệ thần kinh ra lệnh tự vuốt ve cơ thể để hạ nhịp tim.</p>
+            </div>
+          </div>
+          <div class="combat-scenarios-grid">
+            <div class="scenario-box">
+              <div class="scenario-tag" style="color:var(--cl-purple);">🎯 VD1: BỊ TẤN CÔNG CHẤT VẤN</div>
+              <p class="scenario-desc">Bị hỏi xoáy, ứng viên trả lời trơn tru nhưng tay vô thức đưa ra sau gáy xoa xoa, vuốt vuốt đốt sống cổ liên tục.</p>
+              <div class="scenario-verdict scenario-verdict--close"><b>Bắt bệnh:</b> Cảm giác bị đe dọa sinh mạng sau lưng, bản năng tìm che chắn.</div>
+            </div>
+            <div class="scenario-box">
+              <div class="scenario-tag" style="color:var(--cl-purple);">🎯 VD2: BẤT AN VỊ THẾ</div>
+              <p class="scenario-desc">Ngồi đối diện người có quyền lực áp đảo, cô gái vòng chéo hai tay tự vuốt ve, chà xát cẳng tay của chính mình.</p>
+              <div class="scenario-verdict scenario-verdict--close"><b>Bắt bệnh:</b> Đang tự ôm bản thân để tạo lá chắn an toàn trước năng lượng đối phương.</div>
+            </div>
+            <div class="scenario-box">
+              <div class="scenario-tag" style="color:var(--cl-purple);">🎯 VD3: NÓI DỐI THỔI PHỒNG</div>
+              <p class="scenario-desc">Chém gió về lợi nhuận công ty, tay đưa lên gãi nhẹ sống mũi hoặc vành tai trong lúc nói.</p>
+              <div class="scenario-verdict scenario-verdict--close"><b>Bắt bệnh:</b> Huyết áp tăng làm mao mạch mặt ngứa (Hiệu ứng Pinocchio thần kinh).</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- DẤU 10 -->
+        <div class="combat-marker-card">
+          <div class="combat-marker-head">
+            <img src="./images/somatic/somatic_10_vocal.jpg" class="combat-marker-thumb" alt="Vocal">
+            <div class="combat-marker-info">
+              <h4 class="combat-marker-name">10. GIỌNG NÓI VỠ / TỤT ÂM VỰC (VOCAL FRY / BREAK)</h4>
+              <p class="combat-marker-mech"><b>Cơ chế thần kinh:</b> Năng lượng sinh tồn cạn kiệt, không đủ hơi đẩy lên thanh quản gây co thắt.</p>
+            </div>
+          </div>
+          <div class="combat-scenarios-grid">
+            <div class="scenario-box">
+              <div class="scenario-tag" style="color:var(--cl-purple);">🎯 VD1: MẤT NIỀM TIN</div>
+              <p class="scenario-desc">Đang dõng dạc cam kết KPI, đến đoạn cuối cùng giọng tụt xuống, mỏng dính, rè rè đứt quãng từng từ.</p>
+              <div class="scenario-verdict scenario-verdict--close"><b>Bắt bệnh:</b> Chính bản thân họ cũng không còn tin vào lời mình đang nói ra.</div>
+            </div>
+            <div class="scenario-box">
+              <div class="scenario-tag" style="color:var(--cl-purple);">🎯 VD2: KHUẤT PHỤC TRANH CÃI</div>
+              <p class="scenario-desc">Cố cãi câu cuối cùng trước khi thua, giọng the thé lên một tiếng, vỡ nát rồi im bặt hoàn toàn.</p>
+              <div class="scenario-verdict scenario-verdict--close"><b>Chốt hạ:</b> Tuyến phòng ngự ngôn từ chính thức sụp đổ, sẵn sàng nghe chỉ đạo.</div>
+            </div>
+            <div class="scenario-box">
+              <div class="scenario-tag" style="color:var(--cl-purple);">🎯 VD3: CHẠM TẬN CÙNG NỖI ĐAU</div>
+              <p class="scenario-desc">Khi bạn chẩn đoán trúng khối u 10 năm của họ, họ đáp "Làm sao cậu biết..." bằng chất giọng khàn đặc nghẹn ngào.</p>
+              <div class="scenario-verdict scenario-verdict--close"><b>Chốt hạ:</b> Bạn đã đoạt được hoàn toàn linh hồn và sự trao gửi của họ.</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- KHỐI 5: MA TRẬN ĐỐI CHIẾU HÀNH ĐỘNG (WHITE) -->
+  <section class="cl-zebra-section cl-zebra--white" id="sec-matrix">
+    <div class="cl-sec-container cl-sec-container--wide apple-reveal">
+      <div class="cl-badge">05 / BẢNG TRA CỨU NHANH</div>
       <h2 class="title-short">MA TRẬN HÀNH ĐỘNG 3 GIÂY</h2>
       <p class="cl-body">
         Đối chiếu 1 giây nhận biết vi mô cơ thể và hành động phản xạ chuẩn mực tương ứng:
@@ -1481,61 +2063,61 @@
             <tr>
               <th style="width: 70px;">HÌNH</th>
               <th style="width: 220px;">DẤU ẤN (SOMATIC)</th>
-              <th style="width: 220px;">TÍN HIỆU VI MÔ (1S)</th>
-              <th>BẢN CHẤT NGẦM</th>
-              <th style="width: 280px;">KỊCH BẢN PHẢN XẠ 3 GIÂY</th>
+              <th style="width: 200px;">TÍN HIỆU VI MÔ (1S)</th>
+              <th>BẢN CHẤT NGẦM & VÍ DỤ ĐIỂN HÌNH</th>
+              <th style="width: 260px;">KỊCH BẢN PHẢN XẠ 3 GIÂY</th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <td><img src="./images/somatic/somatic_01_freeze.jpg" class="matrix-thumb" alt="Freeze"></td>
               <td>
-                <div class="matrix-marker-name">1. Nhịp thở khựng lại</div>
+                <div class="matrix-marker-name">1. Khựng nhịp thở</div>
                 <div class="matrix-sub">Micro-Freeze • Pha Thắt</div>
               </td>
               <td>Nín thở 1-2s, lồng ngực treo lơ lửng</td>
-              <td>Đụng trúng rủi ro cốt lõi, não bò sát đóng băng</td>
+              <td><b>Sốc rủi ro tài chính:</b> Báo giá 200tr khách cười nhưng quên thở 1.5s. Đụng trúng điểm mù sinh tồn.</td>
               <td><b>Dừng nói ngay lập tức.</b> Giữ im lặng 3s, chờ họ thở lại nhịp bình thường.</td>
             </tr>
             <tr>
               <td><img src="./images/somatic/somatic_02_jaw.jpg" class="matrix-thumb" alt="Jaw"></td>
               <td>
-                <div class="matrix-marker-name">2. Căng cơ hàm / Thái dương</div>
+                <div class="matrix-marker-name">2. Căng cơ hàm</div>
                 <div class="matrix-sub">Jaw Clenching • Pha Thắt</div>
               </td>
               <td>Răng nghiến chặt, cơ nhai phồng lên</td>
-              <td>Uất ức kìm nén, bất công phải nuốt vào</td>
+              <td><b>Căm phẫn / uất ức ngầm:</b> Sếp mắng, nhân viên vâng dạ nhưng ngạnh hàm giật cục, chuẩn bị nghỉ việc.</td>
               <td><b>Công nhận nỗ lực:</b> "Em biết anh em mình đã cày rất rát đoạn vừa rồi..."</td>
             </tr>
             <tr>
               <td><img src="./images/somatic/somatic_03_swallow.jpg" class="matrix-thumb" alt="Swallow"></td>
               <td>
-                <div class="matrix-marker-name">3. Nuốt khan / Yết hầu trượt</div>
+                <div class="matrix-marker-name">3. Nuốt khan / Yết hầu</div>
                 <div class="matrix-sub">Dry Swallow • Pha Thắt</div>
               </td>
               <td>Yết hầu trượt mạnh, cổ họng khô khốc</td>
-              <td>Nuốt ngược sự thật cay đắng, nhịn sợ hãi</td>
+              <td><b>Nuốt nhục / sợ hãi:</b> Bị bóc phốt dồn vào chân tường; sale non tay chuẩn bị báo giá chục tỷ.</td>
               <td><b>Tạo nhịp thở:</b> Đưa ly nước hoặc bảo "Uống ngụm nước đã anh..."</td>
             </tr>
             <tr>
-              <td><img src="./images/somatic/somatic_04_gut.jpg" class="matrix-thumb" alt="Gut"></td>
+              <td><img src="./images/somatic/somatic_04_knuckles.jpg" class="matrix-thumb" alt="Knuckles"></td>
               <td>
-                <div class="matrix-marker-name">4. Dạ dày lộn nhào</div>
-                <div class="matrix-sub">Gut Drop • Pha Thắt</div>
-              </td>
-              <td>Tay ôm chấn thủy, hẫng lạnh bụng</td>
-              <td>Sợ mất kiểm soát, sụp đổ bản ngã (tự soi)</td>
-              <td><b>Thả lỏng 2 bàn chân:</b> Tự gọi tên: "Mình chỉ đang sợ mất mặt."</td>
-            </tr>
-            <tr>
-              <td><img src="./images/somatic/somatic_05_knuckles.jpg" class="matrix-thumb" alt="Knuckles"></td>
-              <td>
-                <div class="matrix-marker-name">5. Trắng đốt ngón tay</div>
+                <div class="matrix-marker-name">4. Trắng đốt ngón tay</div>
                 <div class="matrix-sub">White Knuckling • Pha Thắt</div>
               </td>
               <td>Bấu chặt mép bàn, khớp tay trắng bệch</td>
-              <td>Bám víu vật chất tìm lại cảm giác kiểm soát</td>
+              <td><b>Bám víu tìm kiểm soát:</b> Người mới lên sóng tay bấu chặt vịn ghế; nhân viên bấm móng tay kìm cơn giận.</td>
               <td><b>Đổi thế cầm nắm:</b> Đẩy cuốn sổ/tài liệu sang để họ thả lỏng bàn tay.</td>
+            </tr>
+            <tr>
+              <td><img src="./images/somatic/somatic_05_gut.jpg" class="matrix-thumb" alt="Gut"></td>
+              <td>
+                <div class="matrix-marker-name">5. Lạnh bụng / Dạ dày</div>
+                <div class="matrix-sub">Gut Drop • Pha Thắt</div>
+              </td>
+              <td>Tay ôm chấn thủy, hẫng lạnh ruột gan</td>
+              <td><b>Trực giác ngửi mùi nguy hiểm:</b> Vừa gửi nhầm email mật; doanh số tụt dốc cồn cào buồn nôn (Tự soi).</td>
+              <td><b>Thả lỏng 2 bàn chân:</b> Tự gọi tên: "Mình chỉ đang sợ mất mặt."</td>
             </tr>
             <tr>
               <td><img src="./images/somatic/somatic_06_exhale.jpg" class="matrix-thumb" alt="Exhale"></td>
@@ -1544,7 +2126,7 @@
                 <div class="matrix-sub">Heavy Exhale • Pha Chùng</div>
               </td>
               <td>Xả luồng khí nén dài, ngực sụp xuống</td>
-              <td>Vỏ bọc Ego vỡ vụn, chuẩn bị thú tội</td>
+              <td><b>Vỏ bọc Ego vỡ vụn:</b> Bị chẩn đoán đúng sự cô độc, thở hắt "phù" rũ rượi giao sinh mệnh.</td>
               <td><b>Mở lối không phán xét:</b> "Anh thấy mệt nhất ở đoạn nào, cứ nói thật..."</td>
             </tr>
             <tr>
@@ -1553,9 +2135,9 @@
                 <div class="matrix-marker-name">7. Bờ vai chùng thõng</div>
                 <div class="matrix-sub">Shoulder Collapse • Pha Chùng</div>
               </td>
-              <td>Vai sụp xuống, đầu gục nhẹ về trước</td>
-              <td>Kiệt sức vì ngụy biện, trao quyền cho bạn</td>
-              <td><b>Gánh bớt việc:</b> "Việc nặng nhất em lo, giờ mình chỉ làm bước này..."</td>
+              <td>Vai sập xuống, người nhũn ra tựa ghế</td>
+              <td><b>Đầu hàng vật lý:</b> Bị chìa camera an ninh nhân viên sập vai; khách xù lông chuyển sang khuất phục.</td>
+              <td><b>Chốt giảm tải:</b> "Việc nặng nhất để em lo. Giờ mình gỡ đúng 1 nút thắt này..."</td>
             </tr>
             <tr>
               <td><img src="./images/somatic/somatic_08_eyes.jpg" class="matrix-thumb" alt="Eyes"></td>
@@ -1563,19 +2145,19 @@
                 <div class="matrix-marker-name">8. Ánh mắt cụp xuống đất</div>
                 <div class="matrix-sub">Downward Aversion • Pha Chùng</div>
               </td>
-              <td>Cụp mắt xuống mũi chân, đùi</td>
-              <td>Xấu hổ (Shame), tổn thương thể diện</td>
-              <td><b>Cứu thể diện bằng số đông:</b> "Thị trường đợt này ai cũng dính đòn cả anh."</td>
+              <td>Nhìn chằm chằm mũi giày hoặc mép bàn</td>
+              <td><b>Sự Xấu Hổ (Shame):</b> Sĩ diện nhận đủ 50tr nhưng mắt cắm xuống đất; con nợ lẩn tránh ánh nhìn.</td>
+              <td><b>Cứu thể diện:</b> "Thực ra thị trường đợt này ai làm cũng dính đòn..."</td>
             </tr>
             <tr>
               <td><img src="./images/somatic/somatic_09_pacify.jpg" class="matrix-thumb" alt="Pacify"></td>
               <td>
-                <div class="matrix-marker-name">9. Tự xoa dịu (xoa gáy)</div>
-                <div class="matrix-sub">Pacifying Gestures • Pha Chùng</div>
+                <div class="matrix-marker-name">9. Hành vi tự xoa dịu</div>
+                <div class="matrix-sub">Pacifying • Pha Chùng</div>
               </td>
-              <td>Tay xoa gáy, vuốt cổ, ôm tay</td>
-              <td>Cortisol tăng cao, cơ thể mơn trớn để hạ nhịp tim</td>
-              <td><b>Đồng minh vật lý:</b> Ngả lưng ra sau ghế, hạ giọng nói 20% tạo an toàn.</td>
+              <td>Tay xoa gáy, vuốt cổ, chà cánh tay</td>
+              <td><b>Hạ Cortisol khẩn cấp:</b> Ứng viên bị hỏi xoáy tay xoa gáy; nói dối gãi nhẹ vành tai.</td>
+              <td><b>Đồng minh vật lý:</b> Ngả lưng ra sau ghế cùng nhịp, hạ âm lượng xuống 20%.</td>
             </tr>
             <tr>
               <td><img src="./images/somatic/somatic_10_vocal.jpg" class="matrix-thumb" alt="Vocal"></td>
@@ -1583,133 +2165,143 @@
                 <div class="matrix-marker-name">10. Giọng vỡ / Tụt âm vực</div>
                 <div class="matrix-sub">Vocal Fry • Pha Chùng</div>
               </td>
-              <td>Giọng tẽn lại, mỏng đứt quãng</td>
-              <td>Mất niềm tin vào lời bao biện, năng lượng cạn</td>
-              <td><b>Chốt việc siêu nhỏ:</b> "Chưa cần làm gì to tát, tuần này chỉ chốt 1 việc này."</td>
+              <td>Giọng nghẹn mỏng, rè đứt quãng thì thầm</td>
+              <td><b>Tuyến phòng ngự gãy vụn:</b> Hết hơi ngụy biện KPI; nhận ra khối u 10 năm "Làm sao cậu biết...".</td>
+              <td><b>Chốt việc cực nhỏ:</b> "Tuần này mình chưa cần làm gì lớn, chỉ làm đúng bước này..."</td>
             </tr>
           </tbody>
         </table>
       </div>
+
     </div>
   </section>
 
-  <!-- KHỐI 6: POCKET CHEAT SHEET 1 MÀN HÌNH BỎ TÚI (LIGHT) -->
-  <section class="cl-zebra-section cl-zebra--light" id="sec-pocket">
+  <!-- KHỐI 6: POCKET CHEAT SHEET 1 MÀN HÌNH (TINT) -->
+  <section class="cl-zebra-section cl-zebra--tint" id="sec-cheatsheet">
     <div class="cl-sec-container apple-reveal">
-      <div class="cl-badge">05 / BỎ TÚI ĐIỆN THOẠI</div>
-      <h2 class="title-short">CHEAT SHEET 1 MÀN HÌNH</h2>
-      <p class="cl-body">
-        Chụp màn hình khối bên dưới để lưu vào Album ảnh. Trước khi bước vào bất kỳ cuộc đàm phán hay buổi tư vấn nào, <b>liếc 5 giây là nhớ ngay phản xạ</b>:
+      <div class="cl-badge">06 / LƯU TRỮ VỀ ĐIỆN THOẠI</div>
+      <h2 class="title-short" style="text-align: center;">CHEAT SHEET BỎ TÚI 1 MÀN HÌNH</h2>
+      <p class="cl-body" style="text-align: center; max-width: 600px; margin: 0 auto 36px auto;">
+        Chụp lại màn hình bên dưới lưu vào album ảnh điện thoại. Liếc nhìn 5 giây trước khi bước vào phòng họp hoặc bàn đàm phán:
       </p>
 
-      <div class="pocket-sheet">
-        <div class="pocket-sheet__header">
-          <div class="pocket-sheet__brand">SOMATIC COMBAT PROTOCOL</div>
-          <span style="font-family: var(--font-mono); font-size: 11px; color: #38bdf8;">VIDEO SYSTEM</span>
+      <div class="cheat-sheet-box">
+        <div class="cheat-sheet-header">
+          <div class="cheat-sheet-title">SOMATIC 3-SECOND REFLEX</div>
+          <div class="cheat-sheet-rule">QUY TẮC NHỊ PHÂN • NGUYEN VIET SYSTEM</div>
         </div>
 
-        <div class="pocket-sheet__grid">
-          <!-- CỘT ĐỎ: PHA THẮT -->
-          <div class="pocket-col pocket-col--red">
-            <div class="pocket-col__head">PHA THẮT ➔ IM LẶNG 3 GIÂY</div>
-            
-            <div class="pocket-item">
-              <div class="pocket-item__title">① Nín thở (Micro-Freeze)</div>
-              <div class="pocket-item__reflex">Dừng nói ngay lập tức. Giữ nguyên ánh nhìn.</div>
-              <div class="pocket-reflex-pill">Lệnh: Im lặng 3s</div>
-            </div>
-
-            <div class="pocket-item">
-              <div class="pocket-item__title">② Cắn răng (Jaw Clench)</div>
-              <div class="pocket-item__reflex">Công nhận nỗ lực: "Biết anh em cày rất rát..."</div>
-              <div class="pocket-reflex-pill">Lệnh: Giảm tức giận</div>
-            </div>
-
-            <div class="pocket-item">
-              <div class="pocket-item__title">③ Nuốt khan (Dry Swallow)</div>
-              <div class="pocket-item__reflex">Mời nước: "Uống ngụm nước đã anh..."</div>
-              <div class="pocket-reflex-pill">Lệnh: Tạo nhịp nuốt</div>
-            </div>
-
-            <div class="pocket-item">
-              <div class="pocket-item__title">④ Lạnh bụng (Gut Drop)</div>
-              <div class="pocket-item__reflex">Tự soi mình: Chân chạm đất, gạt sợ mất mặt.</div>
-              <div class="pocket-reflex-pill">Lệnh: Tiếp đất (Grounding)</div>
-            </div>
-
-            <div class="pocket-item">
-              <div class="pocket-item__title">⑤ Bấu bàn (White Knuckles)</div>
-              <div class="pocket-item__reflex">Đẩy tài liệu sang để họ thả lỏng tay.</div>
-              <div class="pocket-reflex-pill">Lệnh: Đổi vật lý</div>
-            </div>
-          </div>
-
-          <!-- CỘT TÍM: PHA CHÙNG -->
-          <div class="pocket-col pocket-col--purple">
-            <div class="pocket-col__head">PHA CHÙNG ➔ CỨU THỂ DIỆN & CHỐT</div>
-
-            <div class="pocket-item">
-              <div class="pocket-item__title">⑥ Thở hắt ra (Heavy Exhale)</div>
-              <div class="pocket-item__reflex">Hỏi câu mở: "Anh mệt nhất ở đoạn nào?"</div>
-              <div class="pocket-reflex-pill">Lệnh: Đón thú tội</div>
-            </div>
-
-            <div class="pocket-item">
-              <div class="pocket-item__title">⑦ Sập bờ vai (Shoulder Collapse)</div>
-              <div class="pocket-item__reflex">Chìa tay gánh: "Việc nặng nhất em lo..."</div>
-              <div class="pocket-reflex-pill">Lệnh: Nhận quyền kiểm soát</div>
-            </div>
-
-            <div class="pocket-item">
-              <div class="pocket-item__title">⑧ Cụp mắt (Downward Aversion)</div>
-              <div class="pocket-item__reflex">Cứu thể diện: "Đợt này ai cũng dính đòn..."</div>
-              <div class="pocket-reflex-pill">Lệnh: Chữa lành vết thương Ego</div>
-            </div>
-
-            <div class="pocket-item">
-              <div class="pocket-item__title">⑨ Xoa gáy (Pacifying Gesture)</div>
-              <div class="pocket-item__reflex">Ngả lưng ra sau ghế, hạ 20% âm lượng.</div>
-              <div class="pocket-reflex-pill">Lệnh: Đồng minh an toàn</div>
-            </div>
-
-            <div class="pocket-item">
-              <div class="pocket-item__title">⑩ Vỡ giọng (Vocal Fry)</div>
-              <div class="pocket-item__reflex">Chốt việc cực nhỏ: "Tuần này chỉ làm 1 việc..."</div>
-              <div class="pocket-reflex-pill">Lệnh: Đóng deal nhẹ nợ</div>
-            </div>
-          </div>
+        <!-- PHA THẮT -->
+        <div class="cheat-sheet-phase">
+          <div class="cheat-sheet-phase-title cheat-sheet-phase-title--red">🔴 PHA THẮT ➔ LỆNH: DỪNG NÓI & GIỮ IM LẶNG</div>
+          <ul class="cheat-sheet-list">
+            <li class="cheat-sheet-item">
+              <span class="cheat-sheet-cue">1. Nín thở 1.5s (ngực treo)</span>
+              <span class="cheat-sheet-reflex">Dừng nói, hạ cằm 1cm, chờ họ thở lại</span>
+            </li>
+            <li class="cheat-sheet-item">
+              <span class="cheat-sheet-cue">2. Căng cơ hàm (bạnh góc tai)</span>
+              <span class="cheat-sheet-reflex">Công nhận nỗ lực cày cuốc trước đó</span>
+            </li>
+            <li class="cheat-sheet-item">
+              <span class="cheat-sheet-cue">3. Nuốt khan (yết hầu trượt)</span>
+              <span class="cheat-sheet-reflex">Đưa ly nước, giãn nhịp nghỉ</span>
+            </li>
+            <li class="cheat-sheet-item">
+              <span class="cheat-sheet-cue">4. Trắng đốt tay (bấu mép bàn)</span>
+              <span class="cheat-sheet-reflex">Đẩy nhẹ cuốn sổ giải phóng bàn tay</span>
+            </li>
+            <li class="cheat-sheet-item">
+              <span class="cheat-sheet-cue">5. Lạnh bụng (tay ôm chấn thủy)</span>
+              <span class="cheat-sheet-reflex">Chạm 2 bàn chân đất, tự gọi tên sợ hãi</span>
+            </li>
+          </ul>
         </div>
+
+        <!-- PHA CHÙNG -->
+        <div class="cheat-sheet-phase" style="margin-bottom: 0;">
+          <div class="cheat-sheet-phase-title cheat-sheet-phase-title--purple">🟣 PHA CHÙNG ➔ LỆNH: ĐƯA TAY ĐỠ & CỨU THỂ DIỆN</div>
+          <ul class="cheat-sheet-list">
+            <li class="cheat-sheet-item">
+              <span class="cheat-sheet-cue">6. Thở hắt ra xả khí (ngực xẹp)</span>
+              <span class="cheat-sheet-reflex">Hỏi câu mở lòng không phán xét</span>
+            </li>
+            <li class="cheat-sheet-item">
+              <span class="cheat-sheet-cue">7. Sập vai (mất trương lực cơ)</span>
+              <span class="cheat-sheet-reflex">Chốt ngay việc gánh bớt tải nặng</span>
+            </li>
+            <li class="cheat-sheet-item">
+              <span class="cheat-sheet-cue">8. Cụp mắt xuống đất (nhìn rốn)</span>
+              <span class="cheat-sheet-reflex">Cứu thể diện bằng bối cảnh chung</span>
+            </li>
+            <li class="cheat-sheet-item">
+              <span class="cheat-sheet-cue">9. Tự xoa gáy / vuốt cổ</span>
+              <span class="cheat-sheet-reflex">Ngả lưng ra sau ghế, hạ giọng 20%</span>
+            </li>
+            <li class="cheat-sheet-item">
+              <span class="cheat-sheet-cue">10. Giọng vỡ / thì thầm đứt quãng</span>
+              <span class="cheat-sheet-reflex">Chốt hành động đầu tiên cực nhỏ</span>
+            </li>
+          </ul>
+        </div>
+
       </div>
+
     </div>
   </section>
 
-  <!-- KHỐI 7: LỜI DẶN DÒ CỦA ANH VIỆT (TINT) -->
-  <section class="cl-zebra-section cl-zebra--tint" id="sec-wisdom">
-    <div class="cl-sec-container cl-sec-container--narrow apple-reveal">
-      <div class="cl-badge">LỜI DẶN DÒ CỦA ANH VIỆT</div>
-      <blockquote class="wisdom-quote">
-        "Khi bạn nhìn thấy đối phương thở hắt ra hay cụp mắt xuống đất, kẻ tầm thường sẽ đắc thắng dồn họ vào chân tường. Còn người khôn ngoan sẽ xây cho họ một cây cầu vàng để giữ thể diện và bước qua."
-      </blockquote>
-      <p class="cl-body" style="text-align: left;">
-        Mọi kỹ thuật đọc vị ngôn ngữ cơ thể sinh ra không phải để thao túng hay bắt chẹt người khác. Nó sinh ra để bạn biết chính xác <b>khoảnh khắc nào người đối diện đang chịu đựng nhiều nhất</b>, để chìa tay nâng đỡ và cùng nhau giải quyết sự việc một cách thực chiến và đàng hoàng nhất.
+  <!-- KHỐI 7: LỜI DẶN DÒ TRIẾT LÝ THỂ DIỆN (WHITE) -->
+  <section class="cl-zebra-section cl-zebra--white" id="sec-wisdom">
+    <div class="cl-sec-container cl-sec-container--narrow apple-reveal" style="text-align: center;">
+      <div class="cl-badge">07 / NGUYÊN TẮC CỐT LÕI</div>
+      <h2 class="title-short">THỂ DIỆN LÀ HƠI THỞ CUỐI CÙNG</h2>
+      <p class="cl-lead" style="font-style: italic; font-family: var(--font-editorial); margin-bottom: 24px;">
+        "Trong mọi cuộc đàm phán hay xung đột, người chiến thắng thực sự không phải là người dồn đối phương vào chân tường để họ nhục nhã, mà là người biết nhận ra khoảnh khắc họ sụp đổ để chìa tay nâng đỡ và giữ lại cho họ một con đường thoát thể diện."
       </p>
+      <div style="font-family: var(--font-display-short); font-weight: 700; font-size: 15px; color: var(--cl-text-base); text-transform: uppercase;">
+        NGUYỄN VIỆT • 30 NGÀY VIRAL
+      </div>
     </div>
   </section>
 
   <!-- FOOTER -->
-  <footer class="cl-footer">
-    <div class="cl-sec-container">
-      <a href="#sec-why" class="cl-btn-back">↑ VỀ ĐẦU TRANG</a>
-      <div class="nav-brand" style="justify-content: center; margin-bottom: 8px;">
-        <div class="nav-brand__rec">VI</div>
-        <div class="nav-brand__text" style="color: #ffffff;">VIDEO SYSTEM</div>
-      </div>
-      <p class="cl-footer__text">Tài liệu thẩm nghiệm thực tế & Huấn luyện phản xạ thần kinh học © 2026. Chuẩn thiết kế 30ngayviral.</p>
+  <footer class="site-footer">
+    <div style="font-family: var(--font-mono); font-size: 12px; margin-bottom: 8px;">
+      HỆ THỐNG GIẢI PHÃU TÂM LÝ & THẦN KINH HỌC VI MÔ • NGUYỄN VIỆT
+    </div>
+    <div style="color: var(--cl-text-muted); font-size: 13px;">
+      Thiết kế chuẩn mực theo hệ thống <a href="https://30ngayviral.fedu.vn" target="_blank">30ngayviral.fedu.vn</a> • Chuẩn WCAG AAA
     </div>
   </footer>
 
-  <!-- APPLE MOTION INTERSECTION OBSERVER & INTERACTIVE JS -->
+  <!-- ═══ 10. JAVASCRIPT CONTROLLER ═══ -->
   <script>
+    // 1. Flip Card Toggle
+    function toggleFlip(cardElement) {
+      cardElement.classList.toggle('is-flipped');
+    }
+
+    // 2. Filter Cards by Phase
+    function filterCards(phase) {
+      const buttons = document.querySelectorAll('.filter-btn');
+      buttons.forEach(btn => btn.classList.remove('active'));
+      event.target.classList.add('active');
+
+      const cards = document.querySelectorAll('.flip-card');
+      cards.forEach(card => {
+        if (phase === 'all') {
+          card.style.display = 'block';
+        } else {
+          if (card.getAttribute('data-phase') === phase) {
+            card.style.display = 'block';
+          } else {
+            card.style.display = 'none';
+          }
+        }
+      });
+    }
+
+    // 3. Apple Motion Intersection Observer for Smooth Reveal
     document.addEventListener('DOMContentLoaded', () => {
       const reveals = document.querySelectorAll('.apple-reveal');
       const observer = new IntersectionObserver((entries, obs) => {
@@ -1720,33 +2312,12 @@
           }
         });
       }, {
-        threshold: 0.1,
+        threshold: 0.12,
         rootMargin: '0px 0px -40px 0px'
       });
 
       reveals.forEach(el => observer.observe(el));
     });
-
-    function toggleFlip(cardElement) {
-      cardElement.classList.toggle('is-flipped');
-    }
-
-    function filterCards(phase) {
-      const cards = document.querySelectorAll('.flip-card');
-      const buttons = document.querySelectorAll('.drill-btn');
-
-      buttons.forEach(btn => btn.classList.remove('drill-btn--active'));
-      event.target.classList.add('drill-btn--active');
-
-      cards.forEach(card => {
-        card.classList.remove('is-flipped');
-        if (phase === 'all' || card.getAttribute('data-phase') === phase) {
-          card.style.display = 'block';
-        } else {
-          card.style.display = 'none';
-        }
-      });
-    }
   </script>
 </body>
 </html>
