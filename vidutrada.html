@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Ví Dụ Thực Chiến: Ngồi Uống Trà Đá Một Mình — Bóc Tách 4 Tầng & 18 Phản Xạ Thể Diện | Nguyễn Đức Việt</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  
+  <style>
+    @font-face {
+      font-family: 'FD Aeonik Extended';
+      src: url('./fonts/FDAeonikExtended-Bold.woff2') format('woff2'),
+           url('./fonts/FDAeonikExtended-Bold.ttf') format('truetype'),
+           url('/Users/vietmac/Library/Fonts/FDAeonikExtended-Bold.otf') format('opentype'),
+           local('FD Aeonik Extended Bold');
+      font-weight: 700;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'FD Aeonik';
+      src: url('./fonts/FDAeonikRegular.ttf') format('truetype'),
+           url('/Users/vietmac/Library/Fonts/FDAeonikRegular.ttf') format('truetype'),
+           local('FD Aeonik Regular');
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'FD Aeonik';
+      src: url('./fonts/FDAeonikExtended-SemiBold.ttf') format('truetype'),
+           url('/Users/vietmac/Library/Fonts/FDAeonikExtended-SemiBold.otf') format('opentype'),
+           local('FD Aeonik SemiBold');
+      font-weight: 600;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Tiempos Text';
+      src: url('./fonts/FDTiemposText-Regular.woff2') format('woff2'),
+           url('./fonts/FDTiemposText-Regular.otf') format('opentype'),
+           url('https://font.fedu.vn/fonts/FDTiemposText-Regular.woff2') format('woff2'),
+           url('https://font.fedu.vn/fonts/FDTiemposText-Regular.otf') format('opentype');
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Tiempos Text';
+      src: url('./fonts/FDTiemposText-Medium.woff2') format('woff2'),
+           url('./fonts/FDTiemposText-Medium.otf') format('opentype'),
+           url('https://font.fedu.vn/fonts/FDTiemposText-Medium.woff2') format('woff2'),
+           url('https://font.fedu.vn/fonts/FDTiemposText-Medium.otf') format('opentype');
+      font-weight: 500;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Tiempos Text';
+      src: url('./fonts/FDTiemposText-RegularItalic.woff2') format('woff2'),
+           url('./fonts/FDTiemposText-RegularItalic.otf') format('opentype'),
+           url('https://font.fedu.vn/fonts/FDTiemposText-RegularItalic.woff2') format('woff2'),
+           url('https://font.fedu.vn/fonts/FDTiemposText-RegularItalic.otf') format('opentype');
+      font-weight: 400;
+      font-style: italic;
+      font-display: swap;
+    }
+
+    :root {
+      --cl-bg: #ffffff;
+      --cl-card: #ffffff;
+      --cl-tint: #f8fafc;
+      --cl-line: #e2e8f0;
+      --cl-line-strong: #cbd5e1;
+      --cl-text-base: #090d16;
+      --cl-text-body: #0f172a;
+      --cl-text-muted: #475569;
+      --cl-accent: #1a73e8;
+      --cl-accent-soft: rgba(26, 115, 232, 0.08);
+      --cl-warm: #b45309;
+      --cl-warm-soft: #fef3c7;
+      --cl-success: #16a34a;
+      --cl-success-soft: #dcfce7;
+
+      --font-display-short: 'FD Aeonik Extended', 'Inter', -apple-system, sans-serif;
+      --font-display-long: 'FD Aeonik', 'Inter', -apple-system, sans-serif;
+      --font-body: 'Tiempos Text', Georgia, serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    html {
+      background-color: var(--cl-bg);
+      color: var(--cl-text-base);
+      font-family: var(--font-body);
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100vh;
+      line-height: 1.82;
+      padding-bottom: 80px;
+    }
+
+    /* Top Navigation */
+    .top-nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--cl-line);
+      padding: 12px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: var(--font-display-long);
+    }
+
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      font-size: 14px;
+      color: var(--cl-text-base);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      font-size: 13px;
+    }
+
+    .nav-link {
+      color: var(--cl-text-muted);
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.15s;
+    }
+    .nav-link:hover {
+      color: var(--cl-accent);
+    }
+    .nav-link.active {
+      color: var(--cl-accent);
+    }
+
+    /* Layout Containers */
+    .doc-container {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 40px 24px;
+    }
+
+    /* Hero Section */
+    .hero-kicker {
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      font-weight: 700;
+      color: var(--cl-warm);
+      background: var(--cl-warm-soft);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 12px;
+      border-radius: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 16px;
+    }
+
+    .hero-title {
+      font-family: var(--font-display-short);
+      font-size: clamp(26px, 4vw, 36px);
+      font-weight: 700;
+      line-height: 1.25;
+      color: var(--cl-text-base);
+      margin-bottom: 16px;
+      text-wrap: balance;
+    }
+
+    .hero-lead {
+      font-size: 17.5px;
+      color: #334155;
+      line-height: 1.75;
+      margin-bottom: 24px;
+    }
+
+    .meta-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 36px;
+    }
+    .meta-pill {
+      font-family: var(--font-display-long);
+      font-size: 12.5px;
+      font-weight: 600;
+      background: var(--cl-tint);
+      border: 1px solid var(--cl-line);
+      color: var(--cl-text-muted);
+      padding: 4px 12px;
+      border-radius: 99px;
+    }
+
+    /* Section styling */
+    .content-section {
+      margin-top: 50px;
+      padding-top: 36px;
+      border-top: 1px solid var(--cl-line);
+    }
+
+    .section-badge {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--cl-accent);
+      background: var(--cl-accent-soft);
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 12px;
+    }
+
+    .section-heading {
+      font-family: var(--font-display-short);
+      font-size: clamp(20px, 3vw, 26px);
+      font-weight: 700;
+      color: var(--cl-text-base);
+      line-height: 1.35;
+      margin-bottom: 16px;
+      text-wrap: balance;
+    }
+
+    /* Highlight Input Box */
+    .input-spotlight {
+      background: #0f172a;
+      color: #f8fafc;
+      border-radius: 14px;
+      padding: 24px 28px;
+      margin: 24px 0;
+      border-left: 5px solid var(--cl-accent);
+      box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.15);
+    }
+    .input-spotlight__label {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      color: #38bdf8;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 6px;
+    }
+    .input-spotlight__text {
+      font-family: var(--font-display-short);
+      font-size: 19px;
+      font-weight: 700;
+      color: #ffffff;
+      line-height: 1.45;
+    }
+
+    /* Matrix Cards (Top 3) */
+    .matrix-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 18px;
+      margin: 24px 0;
+    }
+    @media (min-width: 720px) {
+      .matrix-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .option-card {
+      background: #ffffff;
+      border: 1.5px solid var(--cl-line);
+      border-radius: 12px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: all 0.2s ease;
+    }
+    .option-card.is-recommended {
+      border-color: var(--cl-accent);
+      background: #fcfdff;
+      box-shadow: 0 8px 20px -4px rgba(26, 115, 232, 0.12);
+      position: relative;
+    }
+    .option-card__tag {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 6px;
+      display: inline-block;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+    }
+    .option-card__title {
+      font-family: var(--font-display-short);
+      font-size: 15.5px;
+      font-weight: 700;
+      color: var(--cl-text-base);
+      line-height: 1.4;
+      margin-bottom: 12px;
+    }
+    .option-card__desc {
+      font-size: 13.5px;
+      color: var(--cl-text-muted);
+      line-height: 1.6;
+      margin-bottom: 16px;
+    }
+    .option-card__btn {
+      font-family: var(--font-display-long);
+      font-size: 13px;
+      font-weight: 600;
+      text-decoration: none;
+      color: var(--cl-accent);
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      margin-top: auto;
+    }
+
+    /* 4-Tier Anatomy Table */
+    .tier-box {
+      border: 1px solid var(--cl-line-strong);
+      border-radius: 12px;
+      overflow: hidden;
+      background: #ffffff;
+      margin: 24px 0;
+    }
+    .tier-header {
+      background: #f8fafc;
+      padding: 12px 18px;
+      border-bottom: 1px solid var(--cl-line-strong);
+      font-family: var(--font-display-short);
+      font-size: 13px;
+      font-weight: 700;
+      color: #334155;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .tier-row {
+      padding: 14px 18px;
+      border-bottom: 1px solid var(--cl-line);
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      gap: 16px;
+      align-items: baseline;
+    }
+    .tier-row:last-child {
+      border-bottom: none;
+    }
+    .tier-label {
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+    .tier-content {
+      font-size: 15px;
+      color: var(--cl-text-body);
+      line-height: 1.65;
+    }
+    @media (max-width: 600px) {
+      .tier-row {
+        grid-template-columns: 1fr;
+        gap: 6px;
+      }
+    }
+
+    /* Teleprompter Script Card */
+    .teleprompter-card {
+      background: #0f172a;
+      color: #f8fafc;
+      border-radius: 16px;
+      padding: 28px 30px;
+      margin: 28px 0;
+      box-shadow: 0 15px 35px -5px rgba(15, 23, 42, 0.25);
+    }
+    .teleprompter-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+      padding-bottom: 16px;
+      margin-bottom: 20px;
+    }
+    .teleprompter-title {
+      font-family: var(--font-display-short);
+      font-size: 17px;
+      font-weight: 700;
+      color: #ffffff;
+    }
+    .btn-copy {
+      background: var(--cl-accent);
+      color: #ffffff;
+      border: none;
+      padding: 8px 18px;
+      border-radius: 8px;
+      font-family: var(--font-display-long);
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+    }
+    .btn-copy:hover {
+      background: #2563eb;
+      transform: translateY(-1px);
+    }
+
+    .teleprompter-body {
+      font-size: 17px;
+      line-height: 1.9;
+      color: #e2e8f0;
+    }
+    .teleprompter-hook {
+      background: rgba(56, 189, 248, 0.1);
+      border-left: 3px solid #38bdf8;
+      padding: 10px 14px;
+      border-radius: 0 8px 8px 0;
+      margin-bottom: 18px;
+      font-family: var(--font-display-short);
+      font-size: 15.5px;
+      font-weight: 700;
+      color: #38bdf8;
+    }
+
+    /* Logic Breakdown Block */
+    .logic-block {
+      background: #f8fafc;
+      border: 1px solid var(--cl-line-strong);
+      border-radius: 14px;
+      padding: 24px;
+      margin: 24px 0;
+    }
+    .logic-block__title {
+      font-family: var(--font-display-short);
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--cl-accent);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 16px;
+    }
+    .logic-item {
+      margin-bottom: 14px;
+      padding-bottom: 14px;
+      border-bottom: 1px dashed var(--cl-line);
+      font-size: 14.5px;
+      line-height: 1.65;
+      color: #334155;
+    }
+    .logic-item:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    /* Formula Banner */
+    .formula-capsule {
+      background: #fffdf5;
+      border: 1px dashed #f59e0b;
+      border-radius: 10px;
+      padding: 14px 18px;
+      margin: 20px 0;
+      font-family: var(--font-mono);
+      font-size: 13px;
+      color: #92400e;
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+    }
+
+    /* Jump box */
+    .jump-box {
+      background: var(--cl-tint);
+      border: 1px solid var(--cl-line);
+      border-radius: 12px;
+      padding: 16px 20px;
+      margin: 30px 0;
+      font-size: 14px;
+    }
+
+    /* Toast */
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: #0f172a;
+      color: #ffffff;
+      padding: 12px 20px;
+      border-radius: 10px;
+      font-family: var(--font-display-long);
+      font-size: 13.5px;
+      font-weight: 600;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+      transform: translateY(100px);
+      opacity: 0;
+      transition: all 0.25s ease;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Navigation -->
+  <nav class="top-nav">
+    <a href="./wikicontent.html" class="nav-brand">
+      <span style="display:inline-flex; width:22px; height:22px; background:#0f172a; color:#fff; border-radius:6px; align-items:center; justify-content:center; font-size:11px; font-weight:900;">VI</span>
+      <span>WIKIPEDIA HỆ THỐNG • TẦNG 2.5</span>
+    </a>
+    <div class="nav-links">
+      <a href="./wikicontent.html" class="nav-link">← Mục Lục Wiki</a>
+      <a href="./18kichban.html" class="nav-link">18 Phản Xạ</a>
+      <a href="./4tang.html" class="nav-link">Cỗ Máy Megaprompt</a>
+      <a href="https://go.fedu.vn" target="_blank" class="nav-link">go.fedu.vn ↗</a>
+    </div>
+  </nav>
+
+  <main class="doc-container">
+    
+    <!-- Hero Block -->
+    <header>
+      <div class="hero-kicker">THỰC NGHIỆM TÂM LÝ HỌC HÀNH VI • NGUYỄN ĐỨC VIỆT</div>
+      <h1 class="hero-title">VÍ DỤ THỰC CHIẾN: "NGỒI UỐNG TRÀ ĐÁ MỘT MÌNH NHÌN NGƯỜI TA ĐI LẠI TẤP NẬP NGOÀI ĐƯỜNG"</h1>
+      <p class="hero-lead">
+        Từ một khoảnh khắc đời thường ba ngàn đồng vỉa hè — Phẫu thuật toàn diện 4 tầng nhận thức, đối chiếu Ma Trận 18 Phản Xạ Thể Diện, chọn góc chạm nhất và xuất bản kịch bản 35 giây chạm đáy tim đen người lớn.
+      </p>
+
+      <div class="meta-pills">
+        <span class="meta-pill">☕ Case Study Đời Thường</span>
+        <span class="meta-pill">🎯 Tam Giác Tâm Lý A - B - C</span>
+        <span class="meta-pill">🎬 Kịch Bản 7 Câu (35-40s)</span>
+        <span class="meta-pill">🧩 Giải Phẫu Logic Chuẩn 3 Chỉ Số</span>
+        <span class="meta-pill">📱 Tự Quay 60s Tại Bàn</span>
+      </div>
+    </header>
+
+    <!-- KHỐI 1: TIẾP NHẬN ĐẦU VÀO & BỘ LỌC 3 CHIỀU -->
+    <section class="content-section" style="margin-top: 20px; border-top: none; padding-top: 0;">
+      <span class="section-badge">GIAI ĐOẠN 01 / ĐẦU VÀO THÔ</span>
+      <h2 class="section-heading">KHOẢNH KHẮC ĐỜI THƯỜNG & LĂNG KÍNH THỂ DIỆN</h2>
+      
+      <div class="input-spotlight">
+        <div class="input-spotlight__label">HÀNH ĐỘNG ĐỜI THƯỜNG ĐẦU VÀO:</div>
+        <div class="input-spotlight__text">“Ngồi uống trà đá một mình nhìn người ta đi lại tấp nập ngoài đường”</div>
+      </div>
+
+      <p>
+        Trong mắt người mới làm video, đây chỉ là một việc vặt không có gì để nói, hoặc cùng lắm sẽ quay vài cảnh xe cộ mờ ảo chèn nhạc lofi buồn bã (Tầng 2 nông cạn). Nhưng qua lăng kính <b>Học thuyết Tầng 2.5 của anh Việt</b>, đây là một <b>hiện trường tâm lý đắt giá</b> chứa đựng đầy đủ độ vênh giữa lòng tự trọng của một người lớn làm nghề và thực tế cơm áo gạo tiền:
+      </p>
+
+      <ul style="margin: 16px 0 20px 24px; color: #334155; line-height: 1.8;">
+        <li><b>Trụ cột đời sống:</b> 💵 <i>Tiền bạc &amp; Vị thế làm nghề</i> (Quan sát dòng tiền và sự nhộn nhịp của xã hội bên ngoài).</li>
+        <li><b>Hiện trường giác quan (T2):</b> Cốc trà đá ba ngàn vỉa hè, bàn tay xoay xoay cốc nước, điện thoại nằm im trên bàn không thông báo đơn hàng, dòng người ngoài phố hối hả ngược xuôi.</li>
+        <li><b>Độ vênh thể diện (T2.5):</b> Ngoài mặt thì tỏ ra thư thái, đĩnh đạc, ung dung ngắm phố phường; nhưng trong bụng thì cồn cào sốt ruột vì công việc kinh doanh của mình đang chững lại.</li>
+      </ul>
+    </section>
+
+    <!-- KHỐI 2: TAM GIÁC GÓC NHÌN A - B - C -->
+    <section class="content-section" id="sec-top3">
+      <span class="section-badge">GIAI ĐOẠN 02 / ĐỐI SOÁT MA TRẬN 18 CÁCH</span>
+      <h2 class="section-heading">TAM GIÁC GÓC NHÌN TÂM LÝ: ĐỀ XUẤT TOP 3 PHƯƠNG ÁN</h2>
+      <p style="color: #475569; margin-bottom: 20px;">
+        Khi đối chiếu với <b>Ma Trận 18 Phản Xạ Giữ Thể Diện</b>, hành động ngồi uống trà đá một mình kích hoạt 3 góc nhìn tâm lý hoàn toàn khác biệt:
+      </p>
+
+      <div class="matrix-grid">
+        <!-- CARD A -->
+        <div class="option-card is-recommended">
+          <div>
+            <span class="option-card__tag" style="background: var(--cl-warm-soft); color: var(--cl-warm);">Phương án A • Khuyên dùng</span>
+            <div class="option-card__title">[Phản Xạ 08] Lối Sống Chậm An Yên</div>
+            <div class="option-card__desc">
+              <b>Mặt nạ T2.5:</b> Mượn cớ "đến tuổi này mình chọn sống chậm, tìm sự an yên nội tâm hơn là bon chen".<br>
+              <b>Tim đen T3:</b> Việc làm ăn chững lại, nhìn thiên hạ tấp nập kiếm tiền trong bụng vừa sốt ruột vừa sợ mình đang tụt hậu.
+            </div>
+          </div>
+          <a href="#sec-drilldown" class="option-card__btn">Xem triển khai chi tiết ↓</a>
+        </div>
+
+        <!-- CARD B -->
+        <div class="option-card">
+          <div>
+            <span class="option-card__tag" style="background: #fdf2f8; color: #9d174d;">Phương án B • Phản biện</span>
+            <div class="option-card__title">[Phản Xạ 01] Soi Sự Khác Biệt & Giữ Chuẩn Mực</div>
+            <div class="option-card__desc">
+              <b>Mặt nạ T2.5:</b> Tự nhủ thiên hạ cứ cắm đầu chạy theo mấy trò câu view nhảm nhí mì ăn liền, mình người làm nghề đàng hoàng phải giữ chất riêng.<br>
+              <b>Tim đen T3:</b> Thấy người ta nườm nượp đơn hàng còn mình ngồi không, cay cú vì ít ai biết tới nhưng sợ học đòi thì người quen chê cười.
+            </div>
+          </div>
+          <a href="#sec-phuongan-b" class="option-card__btn">Xem kịch bản phương án B →</a>
+        </div>
+
+        <!-- CARD C -->
+        <div class="option-card">
+          <div>
+            <span class="option-card__tag" style="background: #eff6ff; color: #1e40af;">Phương án C • Kén khách</span>
+            <div class="option-card__title">[Phản Xạ 14] Tập Trung Khách Quen Am Tường</div>
+            <div class="option-card__desc">
+              <b>Mặt nạ T2.5:</b> Tự nhủ sản phẩm của mình kén khách, chỉ dành cho số ít người am tường sành sỏi, không hợp chỗ chợ búa xô bồ.<br>
+              <b>Tim đen T3:</b> Khách quen cũ ngày một thưa thớt, bất lực vì không biết cách mở lời bắt chuyện với khách lạ ngoài kia.
+            </div>
+          </div>
+          <a href="#sec-phuongan-c" class="option-card__btn">Xem kịch bản phương án C →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- KHỐI 3: TRIỂN KHAI CHUYÊN SÂU PHƯƠNG ÁN TỐI ƯU [08] -->
+    <section class="content-section" id="sec-drilldown">
+      <span class="section-badge">GIAI ĐOẠN 03 / THÀNH PHẨM XUẤT XƯỞNG</span>
+      <h2 class="section-heading">TRIỂN KHAI PHƯƠNG ÁN TỐI ƯU: [08] LỐI SỐNG CHẬM AN YÊN</h2>
+      <p style="color: #475569; margin-bottom: 20px;">
+        Áp dụng <b>Cửa Vào B (Bẻ gãy câu khẩu hiệu đạo lý)</b> kết hợp với <b>Cấu trúc 7 câu thoại nhịp thở</b> chuẩn phong cách anh Việt:
+      </p>
+
+      <!-- Bảng 4 tầng -->
+      <div class="tier-box">
+        <div class="tier-header">🧬 BẢNG GIẢI PHẪU 4 TẦNG NHẬN THỨC (THE TRUTH MATRIX)</div>
+        <div class="tier-row">
+          <div class="tier-label" style="color: #64748b;">Tầng 1 (Đãi bôi)</div>
+          <div class="tier-content">“Mình sống đơn giản quen rồi, đến tuổi này thích ngồi ngắm phố phường tĩnh lặng, an yên tự tại chứ ham hố gì mấy trò bon chen xô bồ ngoài kia.”</div>
+        </div>
+        <div class="tier-row" style="background: #fcfcfd;">
+          <div class="tier-label" style="color: #2563eb;">Tầng 2 (Hiện thực)</div>
+          <div class="tier-content">Ngồi bần thần cầm cốc trà đá xoay xoay trên tay, mắt nhìn dòng xe cộ hối hả chở hàng chở khách, điện thoại đặt trên bàn cả buổi không có lấy một thông báo đơn hàng mới.</div>
+        </div>
+        <div class="tier-row" style="background: #f0f7ff;">
+          <div class="tier-label" style="color: #1d4ed8;">Tầng 2.5 (Mặt nạ)</div>
+          <div class="tier-content">Mượn triết lý <i>"sống chậm, an yên, không màng danh lợi"</i> để hợp thức hóa cho sự đình trệ công việc kinh doanh, che giấu cảm giác bất lực vì chưa tìm ra lối thoát.</div>
+        </div>
+        <div class="tier-row" style="background: #fffdf5;">
+          <div class="tier-label" style="color: #b45309;">Tầng 3 (Tim đen)</div>
+          <div class="tier-content">Nỗi bất an cồn cào về tài chính. Sợ công việc làm ăn của mình đang bước vào giai đoạn thoái trào, sợ mở miệng than thở thì người quen đối tác coi thường, đành ngồi một mình gặm nhấm nỗi cô đơn.</div>
+        </div>
+        <div class="tier-row" style="background: #f0fdf4;">
+          <div class="tier-label" style="color: #16a34a;">Điểm giác ngộ</div>
+          <div class="tier-content"><b>An yên thật sự là khi công việc vẫn vận hành đàng hoàng</b>, chứ không phải ngồi trốn tránh thực tại. Thay vì đóng cửa "sống chậm", chỉ cần ngồi xuống kể lại một câu chuyện nghề chân thật để kết nối lại với khách hàng.</div>
+        </div>
+      </div>
+
+      <!-- Kịch bản Teleprompter -->
+      <div class="teleprompter-card">
+        <div class="teleprompter-head">
+          <div>
+            <div style="font-family: var(--font-mono); font-size: 11px; font-weight: 700; color: #38bdf8; text-transform: uppercase;">KỊCH BẢN THOẠI 35 - 40 GIÂY • CHUẨN ANH VIỆT</div>
+            <div class="teleprompter-title">LỜI THOẠI ĐỌC TỰ NHIÊN TRƯỚC MÁY QUAY</div>
+          </div>
+          <button class="btn-copy" onclick="copyScript('script-08', this)">
+            <span>📋</span> <span>Sao chép kịch bản</span>
+          </button>
+        </div>
+
+        <div class="teleprompter-hook">
+          [HOOK CHỮ TO]: "NGỒI UỐNG CỐC TRÀ ĐÁ AN YÊN... HAY LÀ ĐANG BẤT LỰC NÉ TRÁNH THỰC TẠI?"
+        </div>
+
+        <div class="teleprompter-body" id="script-08">
+          <p style="margin-bottom: 12px;">“Chiều nay ngồi uống cốc trà đá vỉa hè ba ngàn... nhìn dòng người xe cộ tấp nập ngoài đường tự nhiên thấy lòng chùng xuống.</p>
+          <p style="margin-bottom: 12px;">Miệng thì nhấp ngụm trà, nhưng trong bụng tự nhiên thấy một cảm giác sốt ruột và chênh vênh khó tả...</p>
+          <p style="margin-bottom: 12px; color: #93c5fd;">Lúc đấy cái phản xạ tự nhiên nhất để đỡ ngượng miệng với chính mình là gì bạn biết không?...</p>
+          <p style="margin-bottom: 12px; color: #38bdf8; font-weight: 500;">Lại tự nhủ thầm: <em>‘Thôi, đến tuổi này mình chọn lối sống chậm, tìm sự an yên nội tâm... chứ hơi đâu bon chen xô bồ như người ta!’</em>.</p>
+          <p style="margin-bottom: 12px;">Nói xong câu đấy thì thấy êm tai thật... nhưng đêm về ngồi một mình mới dám nhìn thẳng vào sự thật:</p>
+          <p style="margin-bottom: 12px;">Là việc làm ăn của mình đang chững lại, khách khứa ngày một thưa... trong lòng lo ngay ngáy mà không biết mở lời cùng ai vì sợ mất mặt.</p>
+          <p style="margin-bottom: 0; color: #86efac; font-weight: 600;">Thực ra, an yên là khi công việc vẫn đàng hoàng chạy... Nếu đang vướng, chiều nay cứ kéo ghế ngồi xuống, nói thật một câu chuyện nghề thôi... tự khắc lòng sẽ nhẹ nhõm.”</p>
+        </div>
+      </div>
+
+      <!-- B-roll beats -->
+      <div style="background: #ffffff; border: 1px solid var(--cl-line); border-radius: 12px; padding: 20px 24px; margin-bottom: 24px;">
+        <div style="font-family: var(--font-display-short); font-size: 13.5px; font-weight: 700; color: #334155; text-transform: uppercase; margin-bottom: 10px;">
+          🎥 PHÂN CẢNH HÌNH ẢNH (B-ROLL BEATS):
+        </div>
+        <div style="font-size: 14px; color: #475569; line-height: 1.7;">
+          <div><b>• Cảnh 1 (0-6s):</b> Cận cảnh bàn tay xoay nhẹ cốc trà đá lấm tấm hơi nước trên mặt bàn ghế nhựa, phía xa là dòng xe cộ mờ ảo lao vội vã.</div>
+          <div><b>• Cảnh 2 (7-15s):</b> Trung cảnh góc nghiêng, khuôn mặt trầm ngâm nhìn xa xăm, khẽ nhấp một ngụm trà rồi thở hắt nhẹ ra một nhịp.</div>
+          <div><b>• Cảnh 3 (16-28s):</b> Góc máy ngang ngực tựa điện thoại vào hộp khăn giấy, nhìn thẳng vào ống kính với ánh mắt chân tình, điềm đạm của người từng trải.</div>
+          <div><b>• Cảnh 4 (29-40s):</b> Nụ cười nhẹ tự trào, đưa tay nhấc cốc trà đá lên uống ngụm cuối, đặt cốc xuống bàn dứt khoát như trút bỏ được gánh nặng.</div>
+        </div>
+      </div>
+
+      <!-- Giải phẫu logic từng câu -->
+      <div class="logic-block">
+        <div class="logic-block__title">🧩 GIẢI PHẪU LOGIC TÂM LÝ TỪNG CÂU THOẠI (CHUẨN 3 CHỈ SỐ)</div>
+        
+        <div class="logic-item">
+          <b>• Câu 1 (Tầng 2 - Neo giữ bối cảnh thật):</b><br>
+          <i>Chi tiết:</i> Cốc trà đá ba ngàn đối lập với dòng người tấp nập ➔ <i>Mục đích:</i> Bắt đúng hiện trường quen thuộc ➔ <i>Giữ chân:</i> Người xem khựng ngón tay lại ngay vì thấy chính cảnh mình vừa trải qua chiều nay, xóa sạch cảm giác bị quảng cáo.
+        </div>
+
+        <div class="logic-item">
+          <b>• Câu 2 (Tầng 2 sâu - Hạ cái tôi):</b><br>
+          <i>Chi tiết:</i> Thừa nhận cảm giác “sốt ruột và chênh vênh khó tả” ➔ <i>Mục đích:</i> Người nói tự nhận sự bối rối của mình ➔ <i>Giữ chân:</i> Tạo an toàn sinh học giữa hai người làm nghề, người xem hạ khiên tự vệ vì không bị dạy đời.
+        </div>
+
+        <div class="logic-item">
+          <b>• Câu 3 (Cầu nối tâm lý):</b><br>
+          <i>Chi tiết:</i> Dùng cụm từ “phản xạ tự nhiên nhất để đỡ ngượng miệng” ➔ <i>Mục đích:</i> Hợp thức hóa tâm lý tự vệ ➔ <i>Giữ chân:</i> Giữ thể diện cho người nghe, giúp họ chuẩn bị soi gương mà không cảm thấy mình bị kết tội hay xấu hổ.
+        </div>
+
+        <div class="logic-item">
+          <b>• Câu 4 (Tầng 2.5 - Bắt bài mặt nạ):</b><br>
+          <i>Chi tiết:</i> Trích nguyên văn cái cớ sang tai “chọn lối sống chậm, tìm sự an yên” ➔ <i>Mục đích:</i> Lột trần câu nói ngụy biện của người lớn ➔ <i>Giữ chân:</i> Đánh trúng tim đen khiến người nghe giật mình vì câu cửa miệng bị đọc vị chính xác.
+        </div>
+
+        <div class="logic-item">
+          <b>• Câu 5 (Khoảng lặng đối diện một mình):</b><br>
+          <i>Chi tiết:</i> Kéo về khoảnh khắc “đêm về ngồi một mình mới dám nhìn thẳng sự thật” ➔ <i>Mục đích:</i> Đưa người nghe từ ồn ào xã giao về tiếng nói lương tâm ➔ <i>Giữ chân:</i> Chấm dứt sự tự dối lòng trong êm ái, chạm vào khoảng lặng sâu nhất.
+        </div>
+
+        <div class="logic-item">
+          <b>• Câu 6 (Tầng 3 - Chỉ đúng huyệt khó nói):</b><br>
+          <i>Chi tiết:</i> Gọi tên 2 nỗi sợ: việc làm ăn chững lại + sợ mất mặt không dám mở lời ➔ <i>Mục đích:</i> Chạm đúng nỗi đau sâu kín nhất ➔ <i>Giữ chân:</i> Giải oan cho độc giả rằng họ không dối trá, họ chỉ đang cố bảo vệ lòng tự trọng.
+        </div>
+
+        <div class="logic-item">
+          <b>• Câu 7 (Chiếc chìa khóa mới & Giải tỏa):</b><br>
+          <i>Chi tiết:</i> Tái định nghĩa chữ “an yên” và hạ thấp độ cao hành động (kéo ghế ngồi nói chuyện nghề) ➔ <i>Mục đích:</i> Đập tan rào cản hành động ➔ <i>Giữ chân:</i> Trao lại sự đàng hoàng để người làm nghề bắt tay hành động ngay.
+        </div>
+      </div>
+
+      <!-- Công thức 1 dòng -->
+      <div class="formula-capsule">
+        <span style="font-weight: 700; color: #b45309; white-space: nowrap;">📐 CÔNG THỨC [08]:</span>
+        <span>CỐC TRÀ ĐÁ LẶNG LẼ (T2) ➔ BÓC MẶT NẠ "SỐNG CHẬM AN YÊN" (T2.5) ➔ CHỈ ĐÚNG NỖI BẤT AN CƠM ÁO VÀ SỢ MẤT MẶT (T3) ➔ TÁI ĐỊNH NGHĨA SỰ ĐÀNG HOÀNG.</span>
+      </div>
+
+      <!-- Hướng dẫn tự quay 60 giây -->
+      <div style="background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 12px; padding: 20px 22px; margin-top: 20px;">
+        <div style="font-family: var(--font-display-short); font-size: 13.5px; font-weight: 700; color: #166534; text-transform: uppercase; margin-bottom: 8px;">
+          📱 CÁCH TỰ ĐẶT MÁY QUAY TẠI BÀN TRÀ ĐÁ TRONG 60 GIÂY
+        </div>
+        <ul style="font-size: 14.5px; color: #1e293b; line-height: 1.7; margin-left: 20px;">
+          <li><b>Vị trí đặt máy:</b> Đặt điện thoại tựa vào hộp khăn giấy hoặc ống đũa quán nước, cách người khoảng 60-70cm (ngang tầm ngực/cằm).</li>
+          <li><b>Đạo cụ tự nhiên:</b> Cầm cốc trà đá trên tay hoặc đặt ngay trước mặt. Giữ nguyên âm thanh còi xe, tiếng đá lanh keng và ánh sáng tự nhiên vỉa hè.</li>
+          <li><b>Thao tác quay:</b> Bấm nút quay ➔ khẽ thở hắt ra một nhịp tự nhiên như người vừa trầm ngâm xong ➔ đọc đúng 7 câu thoại mộc mạc theo nhịp thở ➔ bấm tắt máy.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- KHỐI 4: KỊCH BẢN THỰC CHIẾN CHO 2 PHƯƠNG ÁN CÒN LẠI -->
+    <section class="content-section" id="sec-phuongan-b">
+      <span class="section-badge">MỞ RỘNG ĐA NHÁNH / PHƯƠNG ÁN B</span>
+      <h2 class="section-heading">[PHẢN XẠ 01] SOI SỰ KHÁC BIỆT & GIỮ CHUẨN MỰC NGHỀ</h2>
+      <p style="color: #475569; margin-bottom: 20px;">
+        Nếu chọn góc độ phản biện lại sự ồn ào ngoài đường, kịch bản sẽ rẽ nhánh theo <b>Cửa Vào A (Hiện trường thật)</b>:
+      </p>
+
+      <div class="teleprompter-card">
+        <div class="teleprompter-head">
+          <div>
+            <div style="font-family: var(--font-mono); font-size: 11px; font-weight: 700; color: #f472b6; text-transform: uppercase;">KỊCH BẢN THOẠI PHƯƠNG ÁN B • 35 GIÂY</div>
+            <div class="teleprompter-title">KỊCH BẢN CHUẨN MỰC NGHỀ VS. ĐỔI MỚI</div>
+          </div>
+          <button class="btn-copy" onclick="copyScript('script-01', this)">
+            <span>📋</span> <span>Sao chép kịch bản B</span>
+          </button>
+        </div>
+
+        <div class="teleprompter-hook" style="border-left-color: #f472b6; color: #f472b6; background: rgba(244, 114, 182, 0.1);">
+          [HOOK CHỮ TO]: "CHÊ NGƯỜI KHÁC LÀM MÀU... THỰC RA LÀ VÌ MÌNH SỢ BỊ CHÊ HỌC ĐÒI."
+        </div>
+
+        <div class="teleprompter-body" id="script-01">
+          <p style="margin-bottom: 12px;">“Ngồi uống cốc trà đá nhìn người ta chạy quảng cáo rầm rộ, livestream bán hàng nườm nượp ngoài đường... Thú thật, trong bụng sốt ruột chứ!</p>
+          <p style="margin-bottom: 12px;">Lúc đấy cái phản xạ tự nhiên nhất để đỡ ngượng miệng là gì bạn biết không?</p>
+          <p style="margin-bottom: 12px; color: #f472b6; font-weight: 500;">Tự nhủ: <em>‘Thời buổi này toàn mấy trò nhảm nhí đại trà câu view. Mình người làm nghề đàng hoàng, ai đi làm ba cái thứ đấy!’</em>.</p>
+          <p style="margin-bottom: 12px;">Nói xong câu đấy thì thấy sướng miệng... nhưng đêm về ngẫm lại mới thấy: đâu phải mình ghét truyền thông.</p>
+          <p style="margin-bottom: 12px;">Trong lòng mình cũng muốn có nhiều người biết đến tay nghề của mình chứ... Chỉ là bấm máy lên thì ngượng mồm, sợ người quen nhìn thấy lại bảo mình học đòi... nên đành mượn cái cớ <em>‘giữ chuẩn mực’</em> để đứng ngoài cho an toàn.</p>
+          <p style="margin-bottom: 0; color: #86efac; font-weight: 600;">Thực ra, người có nghề thì cứ ngồi xuống nói chuyện đàng hoàng thôi. Giải thích cho một người nghe hiểu... bằng mười lần đứng ngoài chê người khác.”</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-section" id="sec-phuongan-c">
+      <span class="section-badge">MỞ RỘNG ĐA NHÁNH / PHƯƠNG ÁN C</span>
+      <h2 class="section-heading">[PHẢN XẠ 14] TẬP TRUNG KHÁCH QUEN & KÉN KHÁCH</h2>
+      <p style="color: #475569; margin-bottom: 20px;">
+        Nếu chọn góc độ kén khách, kịch bản sẽ đánh thẳng vào nỗi cô đơn khi cơ sở vắng vẻ:
+      </p>
+
+      <div class="teleprompter-card">
+        <div class="teleprompter-head">
+          <div>
+            <div style="font-family: var(--font-mono); font-size: 11px; font-weight: 700; color: #60a5fa; text-transform: uppercase;">KỊCH BẢN THOẠI PHƯƠNG ÁN C • 35 GIÂY</div>
+            <div class="teleprompter-title">KỊCH BẢN KÉN KHÁCH VS. CẠN TỆP CŨ</div>
+          </div>
+          <button class="btn-copy" onclick="copyScript('script-14', this)">
+            <span>📋</span> <span>Sao chép kịch bản C</span>
+          </button>
+        </div>
+
+        <div class="teleprompter-hook" style="border-left-color: #60a5fa; color: #60a5fa; background: rgba(96, 165, 250, 0.1);">
+          [HOOK CHỮ TO]: "KHÔNG PHẢI SẢN PHẨM KÉN KHÁCH... MÀ LÀ MÌNH CHƯA BIẾT NÓI VỚI KHÁCH LẠ."
+        </div>
+
+        <div class="teleprompter-body" id="script-14">
+          <p style="margin-bottom: 12px;">“Ngồi ở quán trà đá cả buổi chiều nhìn người ta nườm nượp vào cửa hàng bên cạnh mua sắm... còn bên mình thì cả tuần không có lấy một người hỏi.</p>
+          <p style="margin-bottom: 12px;">Thấy cảnh đấy, trong bụng vừa lo vừa sốt ruột... nhưng cái câu cửa miệng người làm nghề hay nói để đỡ mất mặt là gì?</p>
+          <p style="margin-bottom: 12px; color: #60a5fa; font-weight: 500;">Là bảo: <em>‘Sản phẩm của tôi kén khách, chỉ phục vụ số ít những người thực sự am tường sành sỏi thôi!’</em>.</p>
+          <p style="margin-bottom: 12px;">Nói câu đấy nghe rất có gu, rất oai... nhưng đêm về ngồi nhìn đống hàng tồn mới thấy xót ruột:</p>
+          <p style="margin-bottom: 12px;">Đâu phải người ngoài đường người ta không cần đồ tốt. Chỉ là mình cậy mình có tay nghề kỹ, nhưng lại lúng túng không biết cách mở lời bắt chuyện với người lạ... thế là đành gắn cái mác <em>‘kén khách’</em> để trốn tránh việc phải học cách chia sẻ.</p>
+          <p style="margin-bottom: 0; color: #86efac; font-weight: 600;">Thực ra, đồ tốt mà để trong bóng tối thì có ích gì đâu? Cầm sản phẩm lên, ngồi xuống kể tại sao mình làm nó kỹ... Người hiểu chuyện tự khắc sẽ tìm đến với bạn.”</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- KHỐI 5: KẾT LUẬN & ĐIỀU HƯỚNG LIÊN KẾT -->
+    <section class="content-section">
+      <span class="section-badge">TỔNG KẾT BÀI HỌC</span>
+      <h2 class="section-heading">BẢN CHẤT CỐT LÕI: TẠI SAO CỐC TRÀ ĐÁ BA NGÀN LẠI ĐẮT GIÁ?</h2>
+      <p>
+        Cốc trà đá vỉa hè ba ngàn không đơn thuần là một thức uống giải khát. Nó là <b>không gian trung lập duy nhất</b> mà người lớn đi làm có thể hạ thấp hai bờ vai gồng gánh, ngồi lặng lẽ nhìn cuộc đời trôi qua mà không bị ai soi mói hay đòi hỏi trách nhiệm.
+      </p>
+      <p style="margin-top: 12px;">
+        Chính vì thế, khi bạn biến khoảnh khắc này thành một video chia sẻ mộc mạc:
+      </p>
+      <ul style="margin: 16px 0 20px 24px; color: #334155; line-height: 1.8;">
+        <li><b>Bạn không cần bối cảnh trường quay triệu đô:</b> Sự bừa bộn và tiếng còi xe tự nhiên tạo ra <b>uy tín người thật việc thật 100%</b> mà không kỹ xảo nào làm giả được.</li>
+        <li><b>Bạn kích hoạt an toàn sinh học:</b> Người xem thấy bạn ngồi vỉa hè uống trà đá, họ không còn phòng thủ trước những bài học đao to búa lớn.</li>
+        <li><b>Bạn bóc đúng tim đen nhưng giữ trọn sự đàng hoàng:</b> Nhờ có chiếc cầu nối <i>"phản xạ tự nhiên để đỡ ngượng miệng"</i>, bạn giúp độc giả cởi bỏ chiếc mặt nạ mà không làm tổn thương lòng tự trọng của họ.</li>
+      </ul>
+
+      <div class="jump-box">
+        💡 <b>Tài liệu liên quan trong hệ thống:</b>
+        <div style="margin-top: 8px; display: flex; flex-direction: column; gap: 6px;">
+          <div>• Toàn bộ 18 phản xạ giữ thể diện: <a href="./18kichban.html" style="color: var(--cl-accent); font-weight: 600;">18kichban.html ↗</a></div>
+          <div>• Cỗ máy Megaprompt bóc tách 4 tầng: <a href="./4tang.html" style="color: var(--cl-accent); font-weight: 600;">4tang.html ↗</a></div>
+          <div>• Bài giảng hai ví dụ cá nhân (bán khóa học & cà phê): <a href="./co-co-chuyen-mon-tang-2-5.html" style="color: var(--cl-accent); font-weight: 600;">co-co-chuyen-mon-tang-2-5.html ↗</a></div>
+          <div>• Quay về Wikipedia tổng thể: <a href="./wikicontent.html" style="color: var(--cl-accent); font-weight: 600;">wikicontent.html ↗</a></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer style="margin-top: 60px; padding-top: 30px; border-top: 1px solid var(--cl-line); font-size: 13px; color: var(--cl-text-muted); text-align: center;">
+      <div>Công trình nghiên cứu hệ thống Học thuyết Tầng 2.5 © 2026 Nguyễn Đức Việt • VIDEO</div>
+      <div style="margin-top: 6px;">Kho tài nguyên giảng dạy trực tuyến: <a href="https://fedu.vn/course/vidutrada.html" target="_blank" style="color: var(--cl-accent);">fedu.vn/course/vidutrada.html</a></div>
+    </footer>
+  </main>
+
+  <!-- Toast Copy Notification -->
+  <div id="copyToast" class="toast">
+    <span>✓</span> <span>Đã sao chép kịch bản thành công!</span>
+  </div>
+
+  <script>
+    function copyScript(elementId, btn) {
+      const el = document.getElementById(elementId);
+      if (!el) return;
+      
+      const text = el.innerText;
+      navigator.clipboard.writeText(text).then(() => {
+        const toast = document.getElementById('copyToast');
+        const origText = btn.innerHTML;
+        
+        btn.innerHTML = '<span>✓</span> <span>Đã chép!</span>';
+        btn.style.background = '#16a34a';
+        toast.classList.add('show');
+        
+        setTimeout(() => {
+          btn.innerHTML = origText;
+          btn.style.background = '';
+          toast.classList.remove('show');
+        }, 2200);
+      });
+    }
+  </script>
+</body>
+</html>
