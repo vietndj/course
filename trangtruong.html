@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>CASE TRANG TRƯƠNG: TÂM LÝ HỌC SAU TỦ QUẦN ÁO & 7 GIỜ GÂY DỰNG NIỀM TIN • NGUYỄN ĐỨC VIỆT</title>
+
+  <link rel="icon" type="image/svg+xml" href="./favicon.svg">
+  <link rel="alternate icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%230B0F19'/%3E%3Ctext x='25' y='25' text-anchor='middle' dominant-baseline='central' font-family='sans-serif' font-weight='900' font-size='21' fill='%23FFF'%3EVI%3C/text%3E%3Ccircle cx='47' cy='25' r='5' fill='%23EF4444'/%3E%3Ctext x='32' y='46' text-anchor='middle' dominant-baseline='central' font-family='sans-serif' font-weight='900' font-size='18' fill='%23F8FAFC'%3EDEO%3C/text%3E%3C/svg%3E">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    @font-face {
+      font-family: 'FD Aeonik Extended';
+      src: url('./fonts/FDAeonikExtended-Bold.woff2') format('woff2'),
+           url('./fonts/FDAeonikExtended-Bold.ttf') format('truetype'),
+           local('FD Aeonik Extended Bold');
+      font-weight: 700;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'FD Aeonik';
+      src: url('./fonts/FDAeonik-Regular.woff2') format('woff2'),
+           url('./fonts/FDAeonik-Regular.ttf') format('truetype'),
+           local('FD Aeonik Regular');
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'FD Aeonik';
+      src: url('./fonts/FDAeonik-Medium.woff2') format('woff2'),
+           url('./fonts/FDAeonik-Medium.ttf') format('truetype'),
+           local('FD Aeonik Medium');
+      font-weight: 500;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'FD Aeonik';
+      src: url('./fonts/FDAeonik-Bold.woff2') format('woff2'),
+           url('./fonts/FDAeonik-Bold.ttf') format('truetype'),
+           local('FD Aeonik Bold');
+      font-weight: 600 700;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Tiempos Text';
+      src: url('./fonts/FDTiemposText-Regular.woff2') format('woff2'),
+           url('./fonts/FDTiemposText-Regular.otf') format('opentype'),
+           url('./fonts/TiemposText-Regular.woff2') format('woff2');
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Tiempos Text';
+      src: url('./fonts/FDTiemposText-Medium.woff2') format('woff2'),
+           url('./fonts/FDTiemposText-Medium.otf') format('opentype'),
+           url('./fonts/TiemposText-Medium.woff2') format('woff2');
+      font-weight: 500;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Tiempos Text';
+      src: url('./fonts/FDTiemposText-RegularItalic.woff2') format('woff2'),
+           url('./fonts/FDTiemposText-RegularItalic.otf') format('opentype'),
+           url('./fonts/TiemposText-RegularItalic.woff2') format('woff2');
+      font-weight: 400;
+      font-style: italic;
+      font-display: swap;
+    }
+
+    :root {
+      --cl-bg: #ffffff;
+      --cl-tint: #f8fafc;
+      --cl-line: #e2e8f0;
+      --cl-text-base: #090d16;
+      --cl-text-body: #0f172a;
+      --cl-text-muted: #475569;
+      --cl-accent: #be185d;
+      --cl-accent-soft: rgba(190, 24, 93, 0.08);
+      --cl-purple: #7c3aed;
+      --cl-purple-soft: rgba(124, 58, 237, 0.08);
+      --cl-green: #15803d;
+      --cl-green-soft: #f0fdf4;
+
+      --font-display-short: 'FD Aeonik Extended', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-display-long: 'FD Aeonik', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-body: 'Tiempos Text', Georgia, serif;
+      --font-mono: 'JetBrains Mono', Consolas, monospace;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    html {
+      background-color: var(--cl-bg);
+      color: var(--cl-text-base);
+      font-family: var(--font-body);
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100vh;
+      line-height: 1.82;
+      padding-bottom: 80px;
+    }
+
+    /* Top Nav */
+    .top-nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--cl-line);
+      padding: 12px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: var(--font-display-long);
+    }
+    .top-nav__breadcrumbs {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--cl-text-muted);
+    }
+    .top-nav__breadcrumbs a {
+      color: var(--cl-text-base);
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .top-nav__breadcrumbs a:hover {
+      color: var(--cl-accent);
+    }
+    .top-nav__links {
+      display: flex;
+      gap: 14px;
+      align-items: center;
+    }
+    .top-nav__link {
+      color: var(--cl-text-muted);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .top-nav__link:hover {
+      color: var(--cl-accent);
+    }
+
+    /* Zebra Sections */
+    .cl-zebra-section {
+      width: 100%;
+      padding: clamp(48px, 6vw, 80px) 20px;
+      border-bottom: 1px solid var(--cl-line);
+    }
+    .cl-zebra--light { background-color: var(--cl-bg); }
+    .cl-zebra--tint { background-color: var(--cl-tint); }
+
+    .cl-sec-container {
+      max-width: 820px;
+      margin: 0 auto;
+    }
+
+    /* Badges & Headers */
+    .cl-badge {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--cl-accent);
+      margin-bottom: 12px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--cl-accent-soft);
+      padding: 4px 12px;
+      border-radius: 100px;
+    }
+    .cl-badge::before {
+      content: '';
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      background: var(--cl-accent);
+      border-radius: 50%;
+    }
+
+    .title-short {
+      font-family: var(--font-display-short);
+      font-size: clamp(23px, 3.6vw, 34px);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: -0.01em;
+      line-height: 1.25;
+      color: var(--cl-text-base);
+      margin-bottom: 18px;
+      text-wrap: balance;
+    }
+
+    .title-long {
+      font-family: var(--font-display-long);
+      font-size: clamp(19px, 2.5vw, 24px);
+      font-weight: 600;
+      line-height: 1.35;
+      color: var(--cl-text-base);
+      margin-top: 24px;
+      margin-bottom: 14px;
+    }
+
+    .cl-body {
+      font-family: var(--font-body);
+      font-size: clamp(16px, 1.8vw, 17.5px);
+      line-height: 1.82;
+      color: var(--cl-text-body);
+      margin-bottom: 20px;
+    }
+
+    /* Khối Thơ Lục Bát Đầu Trang */
+    .luc-bat-card {
+      background: #0f172a;
+      color: #f8fafc;
+      border-radius: 18px;
+      padding: clamp(28px, 4vw, 40px) clamp(24px, 4vw, 36px);
+      margin-top: 10px;
+      margin-bottom: 36px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 12px 36px rgba(15, 23, 42, 0.12);
+      text-align: center;
+    }
+    .luc-bat-tag {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #f472b6;
+      margin-bottom: 16px;
+      display: inline-block;
+      background: rgba(244, 114, 182, 0.15);
+      padding: 4px 14px;
+      border-radius: 100px;
+    }
+    .luc-bat-poem {
+      font-family: var(--font-body);
+      font-size: clamp(19px, 2.4vw, 25px);
+      line-height: 1.7;
+      font-style: italic;
+      color: #ffffff;
+      margin-bottom: 18px;
+      letter-spacing: 0.01em;
+    }
+    .luc-bat-poem p {
+      margin-bottom: 4px;
+    }
+    .luc-bat-sub {
+      font-family: var(--font-display-long);
+      font-size: 13.5px;
+      color: #cbd5e1;
+      max-width: 640px;
+      margin: 0 auto;
+      line-height: 1.6;
+      border-top: 1px solid rgba(255, 255, 255, 0.12);
+      padding-top: 14px;
+    }
+    .luc-bat-sub b {
+      color: #fce7f3;
+    }
+
+    /* Cards */
+    .apple-card {
+      background: #ffffff;
+      border: 1px solid var(--cl-line);
+      border-radius: 16px;
+      padding: clamp(20px, 3vw, 28px);
+      margin-bottom: 22px;
+      box-shadow: 0 4px 20px rgba(9, 13, 22, 0.02);
+    }
+    .apple-card__title {
+      font-family: var(--font-display-long);
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--cl-text-base);
+      margin-bottom: 12px;
+    }
+
+    /* Comparison Box */
+    .compare-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin: 20px 0 24px 0;
+    }
+    @media (max-width: 680px) {
+      .compare-grid { grid-template-columns: 1fr; }
+    }
+    .compare-card {
+      border-radius: 14px;
+      padding: 20px;
+      border: 1px solid var(--cl-line);
+    }
+    .compare-card--trap {
+      background: #fff5f5;
+      border-color: #fecaca;
+    }
+    .compare-card--gold {
+      background: #fdf2f8;
+      border-color: #fbcfe8;
+    }
+    .compare-card__header {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 8px;
+    }
+
+    /* Audit Table */
+    .audit-table-wrap {
+      overflow-x: auto;
+      margin: 24px 0;
+      border: 1px solid var(--cl-line);
+      border-radius: 14px;
+      background: #ffffff;
+    }
+    table.audit-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14.5px;
+      text-align: left;
+    }
+    table.audit-table th {
+      background: var(--cl-tint);
+      font-family: var(--font-display-long);
+      font-weight: 700;
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--cl-line);
+      color: var(--cl-text-base);
+      font-size: 12.5px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    table.audit-table td {
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--cl-line);
+      vertical-align: top;
+      line-height: 1.6;
+    }
+    table.audit-table tr:last-child td {
+      border-bottom: none;
+    }
+    .col-wrong {
+      color: #b91c1c;
+      background: #fffafa;
+      font-family: var(--font-mono);
+      font-size: 13.5px;
+    }
+    .col-right {
+      color: #15803d;
+      font-weight: 600;
+    }
+
+    /* Highlight Rules */
+    .highlight-rule {
+      background: #eff6ff;
+      border-left: 4px solid #2563eb;
+      padding: 16px 20px;
+      border-radius: 0 12px 12px 0;
+      margin: 20px 0;
+      font-size: 16px;
+    }
+    .highlight-rule--rose {
+      background: #fdf2f8;
+      border-left: 4px solid var(--cl-accent);
+    }
+
+    .quote-box {
+      background: #f8fafc;
+      border-radius: 12px;
+      padding: 18px 22px;
+      font-family: var(--font-body);
+      font-size: 16px;
+      color: var(--cl-text-body);
+      line-height: 1.75;
+      margin: 16px 0;
+      border-left: 3px solid #cbd5e1;
+    }
+    .quote-box--dialogue {
+      background: #faf5ff;
+      border-left: 3px solid var(--cl-purple);
+    }
+
+    .editorial-hook {
+      font-family: var(--font-body);
+      font-style: italic;
+      font-size: clamp(17px, 2vw, 20px);
+      line-height: 1.65;
+      color: var(--cl-text-base);
+      border-left: 3px solid var(--cl-accent);
+      padding-left: 20px;
+      margin: 26px 0;
+    }
+
+    /* Student Profile Header Box */
+    .profile-banner {
+      background: linear-gradient(135deg, #1e1b4b 0%, #0f172a 100%);
+      color: #ffffff;
+      border-radius: 16px;
+      padding: 24px 28px;
+      margin-bottom: 28px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .profile-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-top: 14px;
+      font-size: 13px;
+      font-family: var(--font-mono);
+      color: #cbd5e1;
+    }
+    .profile-tag {
+      background: rgba(255, 255, 255, 0.12);
+      padding: 3px 10px;
+      border-radius: 6px;
+      color: #fbcfe8;
+    }
+
+    /* Bottom Nav */
+    .bottom-nav {
+      margin-top: 50px;
+      padding-top: 28px;
+      border-top: 1px solid var(--cl-line);
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+      font-family: var(--font-display-long);
+      font-size: 14px;
+    }
+    .bottom-nav a {
+      color: var(--cl-text-muted);
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .bottom-nav a:hover {
+      color: var(--cl-accent);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- TOP NAV -->
+  <nav class="top-nav">
+    <div class="top-nav__breadcrumbs">
+      <a href="./wikicontent.html">Wiki Content</a>
+      <span>/</span>
+      <span>Case Trang Trương (Offline 3)</span>
+    </div>
+    <div class="top-nav__links">
+      <a href="./logic-storytelling-niem-tin.html" class="top-nav__link">7 Màn Storytelling ↗</a>
+      <a href="./4tang.html" class="top-nav__link">Công Cụ 4 Tầng ↗</a>
+      <a href="./wikicontent.html" class="top-nav__link">← Mục Lục Tổng</a>
+    </div>
+  </nav>
+
+  <!-- MÀN 1: 4 CÂU LỤC BÁT & ĐỊNH HƯỚNG TỔNG QUAN -->
+  <section class="cl-zebra-section cl-zebra--light">
+    <div class="cl-sec-container">
+      <div class="cl-badge">01 / TỔNG KHO TRÍ TUỆ • NGUYỄN ĐỨC VIỆT</div>
+      <h1 class="title-short">CASE TRANG TRƯƠNG: TÂM LÝ HỌC SAU TỦ QUẦN ÁO &amp; 7 GIỜ GÂY DỰNG NIỀM TIN</h1>
+
+      <!-- HỒ SƠ HỌC VIÊN OFFLINE 3 -->
+      <div class="profile-banner">
+        <div style="font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; color: #f472b6; margin-bottom: 6px;">
+          HỒ SƠ HỌC VIÊN OFFLINE 3 (HÀ NỘI) • HÀNH TRÌNH CHUYỂN ĐỔI BẢN SẮC
+        </div>
+        <h2 style="font-family: var(--font-display-long); font-size: 20px; font-weight: 700; color: #ffffff; margin-bottom: 8px;">
+          Học Viên: Trang Trương (Zalo: Trang Trương - lớp offline 3)
+        </h2>
+        <p style="font-size: 14.5px; color: #e2e8f0; line-height: 1.65; margin-bottom: 0;">
+          Đang ở Đà Nẵng, tình cờ xem video tâm sự sau lớp K2 của anh Việt (<i>"mình là chủ nhà..."</i>), bị chạm cảm xúc mạnh và quyết định bay về Hà Nội sớm để học lớp Offline 3. Gặp sự cố sale hỏi <i>"Em có phải bên Cam k 😅"</i> nhưng bỏ qua vì: <i>"Em tin anh là người có tâm. Em đặt hết niềm tin nơi anh..."</i>. Hiện sở hữu <b>1 kênh Tâm Lý</b> và <b>1 kênh Thời Trang</b>, đang bế tắc vì <i>"em không nghĩ ra được đâu ý"</i> và khao khát <i>"sang một màu khác đi"</i>.
+        </p>
+        <div class="profile-meta">
+          <span class="profile-tag">2 Kênh Độc Lập</span>
+          <span class="profile-tag">Bế Tắc Ý Tưởng</span>
+          <span class="profile-tag">Khao Khát Định Vị Mới</span>
+          <span class="profile-tag">Tầng 2.5: Thời Trang Tâm Lý</span>
+        </div>
+      </div>
+
+      <p class="cl-body">
+        Phụ nữ không rút ví mua một bộ đồ vài triệu bạc chỉ vì miếng vải hay đường may. Người ta mua vì một bộ đồ giúp họ <b>che đi phần cơ thể làm họ mất tự tin</b>, hoặc giúp họ <b>thở phào nhẹ nhõm khi bước vào một căn phòng đông người</b>. Quần áo chính là chiếc mặt nạ giữ thể diện (Tầng 2.5) tối thượng của con người.
+      </p>
+
+      <!-- 4 CÂU THƠ LỤC BÁT GHI NHỚ -->
+      <div class="luc-bat-card">
+        <div class="luc-bat-tag">4 CÂU LỤC BÁT DỄ NHỚ • ĐÚC KẾT BẢN SẮC TRANG TRƯƠNG</div>
+        <div class="luc-bat-poem">
+          <p>“Mượn manh áo giấu nỗi lo,</p>
+          <p>Tủ đồ mở hé, ai đo lòng mình.</p>
+          <p>Bảy giờ thấu nghĩa trọn tình,</p>
+          <p>Hộp nhung nâng bước, dáng hình thảnh thơi.”</p>
+        </div>
+        <div class="luc-bat-sub">
+          <b>Ý nghĩa 4 câu:</b> Thấu hiểu hành vi mượn quần áo để giấu nỗi bất an hình thể + Mở cánh cửa tủ đồ bóc đúng góc khuất tâm lý của phụ nữ + Xuất hiện đủ 7 giờ qua sự đồng hành thủ thỉ đời thường + Đóng gói hình ảnh âm thanh ấm cúng như chiếc hộp nhung để trả lại sự tự do thanh thản cho người mặc.
+        </div>
+      </div>
+
+      <div class="highlight-rule highlight-rule--rose">
+        <b>Chỗ mấu chốt giải phóng Trang Trương:</b> Không phải là chọn bỏ kênh Tâm Lý hay bỏ kênh Thời Trang, mà là <b>thổi hồn Tâm Lý vào từng nếp vải Thời Trang</b>. Khi bóc được sự thật ngượng ngùng đằng sau chiếc tủ đồ, Trang Trương biến thành một người bạn tri kỷ thấu hiểu người phụ nữ hơn cả chính họ.
+      </div>
+    </div>
+  </section>
+
+  <!-- MÀN 2: BẢNG AUDIT TỪ NGỮ VĂN PHONG MỘC MẠC -->
+  <section class="cl-zebra-section cl-zebra--tint">
+    <div class="cl-sec-container">
+      <div class="cl-badge">02 / AUDIT VĂN PHONG THỰC CHIẾN</div>
+      <h2 class="title-short">LỌC BỎ VĂN MẪU SÁCH VỞ &amp; CHUẨN HÓA GIỌNG ANH VIỆT</h2>
+
+      <p class="cl-body">
+        Làm nội dung về thời trang và tâm lý là hai mảng dễ dính văn mẫu sáo rỗng nhất mạng xã hội: một bên là khoe mẽ hàng hiệu sang chảnh, một bên là rao giảng đạo lý chữa lành viển vông. Để chạm vào trái tim phụ nữ, Trang Trương phải <b>lọc sạch 100% thứ ngôn từ bóng bẩy đó</b>.
+      </p>
+
+      <div class="audit-table-wrap">
+        <table class="audit-table">
+          <thead>
+            <tr>
+              <th style="width: 48%;">❌ Văn mẫu sáo rỗng / Marketing (Cần bỏ)</th>
+              <th style="width: 52%;">✅ Từ ngữ mộc mạc chuẩn anh Việt (Bắt buộc dùng)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="col-wrong">Đòn bẩy tâm lý / Tâm lý thời trang cao cấp</td>
+              <td class="col-right">Chạm đúng chỗ ngại ngùng của chị em khi đứng trước gương</td>
+            </tr>
+            <tr>
+              <td class="col-wrong">Tỷ lệ chuyển đổi / Phễu bán hàng quần áo</td>
+              <td class="col-right">Người ta tin mình, nhắn tin nhờ mình chọn giúp set đồ</td>
+            </tr>
+            <tr>
+              <td class="col-wrong">Nỗi đau hình thể / Thao túng sự bất an</td>
+              <td class="col-right">Nỗi tự ti giấu kín: bụng mỡ sau sinh, bắp tay to, ngại mặc hở</td>
+            </tr>
+            <tr>
+              <td class="col-wrong">Chữa lành tâm hồn / Năng lượng chữa lành tích cực</td>
+              <td class="col-right">Cảm giác trút được gánh nặng, thấy nhẹ nhõm và dễ thở</td>
+            </tr>
+            <tr>
+              <td class="col-wrong">Khí chất tiểu thư / Phong cách thượng lưu sang chảnh</td>
+              <td class="col-right">Mặc đàng hoàng, vừa vặn, đúng với con người thật của mình</td>
+            </tr>
+            <tr>
+              <td class="col-wrong">Vũ khí định hình phong cách / Bí quyết triệu đô</td>
+              <td class="col-right">Mẹo nhỏ rất đời: chỉnh lại cái ve áo, chọn chất vải không dính da</td>
+            </tr>
+            <tr>
+              <td class="col-wrong">Gồng lên làm Chuyên gia / Stylist quốc tế</td>
+              <td class="col-right">Người bạn hiểu chuyện ngồi gấp quần áo tâm sự bên mép giường</td>
+            </tr>
+            <tr>
+              <td class="col-wrong">Nhảy nhót biến hình / Giật giật đổi 10 bộ đồ bắt trend</td>
+              <td class="col-right">Quay chậm rãi, cho người xem thấy thớ vải, đường may, cách mặc</td>
+            </tr>
+            <tr>
+              <td class="col-wrong">Hạ khiên phòng vệ sinh học của khách</td>
+              <td class="col-right">Chị em thấy mình được tôn trọng, không bị phán xét hình thể</td>
+            </tr>
+            <tr>
+              <td class="col-wrong">Tự xưng hay chèn chữ "ông giáo"</td>
+              <td class="col-right">Tuyệt đối cấm. Xưng hô tự nhiên: Mình - Bạn, Trang - Chị em, Em - Các chị</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p class="editorial-hook">
+        "Phụ nữ không cần một người đứng trên cao phán xét họ mặc xấu hay đẹp. Họ cần một người phụ nữ khác ngồi xuống cạnh tủ đồ, cầm chiếc váy lên và nói: 'Em hiểu vì sao 2 năm nay chị không dám mặc chiếc váy này rồi'."
+      </p>
+    </div>
+  </section>
+
+  <!-- MÀN 3: PHẪU THUẬT BÀI TOÁN GỐC CỦA TRANG TRƯƠNG -->
+  <section class="cl-zebra-section cl-zebra--light">
+    <div class="cl-sec-container">
+      <div class="cl-badge">03 / PHẪU THUẬT BÀI TOÁN HIỆN TRƯỜNG</div>
+      <h2 class="title-short">BÀI TOÁN 2 KÊNH: NÊN TÁCH RỜI HAY HỢP NHẤT THIÊN TÀI?</h2>
+
+      <p class="cl-body">
+        Trang Trương đang đứng ở ngã ba đường của hầu hết người làm nội dung có nhiều mối quan tâm: <b>một kênh nói về tâm lý, một kênh làm về thời trang</b>. Sự phân mảnh này dẫn tới sự kiệt sức: mỗi sáng thức dậy phải nghĩ hai luồng nội dung khác nhau, kênh thời trang thì trôi vào cuộc chiến giá rẻ, kênh tâm lý thì không biết bán gì để sống.
+      </p>
+
+      <!-- 2 CÁI BẪY CHẾT NGƯỜI -->
+      <div class="compare-grid">
+        <div class="compare-card compare-card--trap">
+          <div class="compare-card__header" style="color: #b91c1c;">CÁI BẪY KÊNH THỜI TRANG ĐƠN THUẦN</div>
+          <p class="cl-body" style="font-size: 15px; margin-bottom: 8px;">
+            <b>• Rơi vào biển người bán quần áo ngoài chợ:</b> Đua nhau hạ giá, livestream xả kho, nhảy múa giật cục theo nhạc remix để giữ chân người xem 3 giây.
+          </p>
+          <p class="cl-body" style="font-size: 15px; margin-bottom: 0;">
+            <b>• Bán cái áo lời 30k–50k:</b> Khách vào xem chỉ hỏi <i>"bao nhiêu tiền", "có freeship không"</i>, sẵn sàng hủy đơn sang shop khác rẻ hơn 5 ngàn. Không có lòng tin, người bán như con thoi đóng hàng mỏi rã rời mà tài khoản chẳng thấy tiền đâu.
+          </p>
+        </div>
+
+        <div class="compare-card compare-card--trap">
+          <div class="compare-card__header" style="color: #b91c1c;">CÁI BẪY KÊNH TÂM LÝ ĐƠN THUẦN</div>
+          <p class="cl-body" style="font-size: 15px; margin-bottom: 8px;">
+            <b>• Sa đà vào đạo lý sáo rỗng:</b> Ngồi trước mic phòng thu giảng giải về self-help, trích dẫn triết học, nói về "yêu bản thân", "buông bỏ" bằng thứ giọng đều đều ru ngủ.
+          </p>
+          <p class="cl-body" style="font-size: 15px; margin-bottom: 0;">
+            <b>• Không có sản phẩm chuyển đổi:</b> Người xem thả tim rất nhiều, để lại bình luận khen hay, nhưng người làm kênh đói mốc mồm vì chẳng có dịch vụ hay sản phẩm vật lý nào để nuôi sống bản thân đường dài.
+          </p>
+        </div>
+      </div>
+
+      <!-- ĐIỂM CHẠM THIÊN TÀI TẦNG 2.5 -->
+      <div class="apple-card" style="border-left: 4px solid var(--cl-accent);">
+        <div class="apple-card__title" style="color: var(--cl-accent);">
+          Điểm Chạm Thiên Tài Ở Tầng 2.5: "Tâm Lý Học Sau Tủ Quần Áo" (Fashion Psychology)
+        </div>
+        <p class="cl-body">
+          Khoa học tâm lý gọi hiện tượng này là <b>Enclothed Cognition</b> (Nhận thức qua trang phục): Bộ quần áo bạn mặc trên người tác động trực tiếp lên suy nghĩ, cảm xúc và sự tự tin của bạn. Nhưng trong văn hóa Á Đông của phụ nữ Việt Nam, nó còn sâu hơn thế: <b>Quần áo là chiếc áo giáp giữ thể diện</b>.
+        </p>
+
+        <div class="quote-box quote-box--dialogue">
+          <b>Bóc tách 3 sự thật ngượng ngùng của phụ nữ trước tủ đồ:</b><br><br>
+          <b>1. Nỗi sợ "bụng mỡ sau sinh":</b> Có những chị sinh con xong 3 năm, trong tủ chất đầy áo thun đen form rộng thùng thình. Không phải họ thích phong cách hip-hop đường phố, mà vì mỗi lần mặc chiếc váy ôm thời con gái, nhìn vòng hai ngấn mỡ trong gương là nước mắt trào ra. Chiếc áo đen rộng là cái mai rùa để họ trốn tránh ánh mắt soi mói của đồng nghiệp.<br><br>
+          <b>2. Thói quen mua sắm lúc 12 giờ đêm:</b> Sau một ngày bị sếp khiển trách ở cơ quan, về nhà chồng con hờ hững, nằm trên giường lướt điện thoại và bấm mua 4 chiếc váy liên tiếp. Mua không phải vì thiếu đồ mặc, mà vì cảm giác bấm nút "Đặt hàng" là khoảnh khắc duy nhất trong ngày họ thấy mình còn có quyền kiểm soát cuộc đời mình.<br><br>
+          <b>3. Bộ vest gồng mình nơi công sở:</b> Sáng nào cũng mặc chiếc vest cứng ngắc, vai độn dày cộp, cổ áo cài kín mít. Cố tỏ ra bản lĩnh, đàn anh đàn chị để không ai bắt nạt, nhưng tối về cởi bộ đồ ra thấy vai mỏi nhừ, lưng đau ê ẩm và kiệt sức vì cả ngày phải diễn tròn vai một người mạnh mẽ.
+        </div>
+
+        <p class="cl-body" style="margin-bottom: 0;">
+          <b>Chìa khóa độc quyền của Trang Trương:</b> Nắm trong tay cả hai thứ vũ khí mạnh nhất. <b>Dùng Tâm Lý làm linh hồn</b> để bóc tách sự thật vi mô trong lòng phụ nữ; <b>Dùng Thời Trang làm đôi tay hành động</b> để giúp họ mặc đẹp, giải phóng hình thể và trút bỏ gánh nặng.
+        </p>
+      </div>
+
+      <div class="highlight-rule">
+        <b>Chiến Lược 2 Kênh Bền Vững:</b>
+        <br>• <b>Phương Án Hợp Nhất (Tối Ưu 1 Kênh):</b> Biến kênh thành <i>"Trang Trương — Tâm Lý Sau Tủ Đồ"</i>. Mọi video thời trang đều có lý do tâm lý phía sau; mọi câu chuyện tâm lý đều kết thúc bằng hành động chọn lại chiếc áo, chiếc quần phù hợp.
+        <br>• <b>Phương Án Bổ Trợ (2 Kênh Bắc Cầu):</b> Kênh Tâm Lý tập trung bóc tách những trăn trở, thói quen giữ thể diện của phụ nữ (Top of Funnel); Kênh Thời Trang là nơi hướng dẫn phối đồ thực chiến, giới thiệu các bộ sưu tập thiết kế giấu khuyết điểm và nhận lịch tư vấn định hình phong cách cá nhân 1-1 (Bottom of Funnel).
+      </div>
+    </div>
+  </section>
+
+  <!-- MÀN 4: 5 NẤC NÂNG CẤP THEO BÀI TRÌNH 7 MÀN -->
+  <section class="cl-zebra-section cl-zebra--tint">
+    <div class="cl-sec-container">
+      <div class="cl-badge">04 / BƯỚC CHUYỂN TOÀN DIỆN</div>
+      <h2 class="title-short">5 ĐIỂM NÂNG CẤP BẮT BUỘC THEO BÀI TRÌNH 7 MÀN</h2>
+
+      <p class="cl-body">
+        Đem nguyên lý cốt lõi của bài giảng <b>Logic Storytelling &amp; Bản Chất Niềm Tin</b> đặt vào case Trang Trương, chúng ta thực hiện cuộc đại phẫu qua 5 nấc hành động dứt điểm:
+      </p>
+
+      <!-- NẤC 1 -->
+      <div class="apple-card">
+        <div class="apple-card__title">Nấc 1: Áp Dụng Công Thức Google 7 - 11 - 4: Tách 70% Đời Thường &amp; 30% Nhát Cắt</div>
+        <p class="cl-body">
+          Một người phụ nữ muốn giao tủ đồ của họ cho bạn tư vấn, hoặc sẵn sàng mua set đồ thiết kế giá 2–3 triệu đồng, họ phải xem đủ <b>7 giờ nội dung, qua 11 điểm chạm, ở 4 không gian khác nhau</b>. Nếu clip nào Trang Trương cũng gồng lên phân tích tâm lý cao siêu, người xem sẽ ngộp thở và mỏi não.
+        </p>
+        <p class="cl-body" style="margin-bottom: 0;">
+          <b>Cách phân bổ tỷ lệ vàng:</b>
+          <br>• <b>70% Video Nhịp Đệm Đời Thường (Thân Thuộc, Dễ Chịu):</b> Cảnh Trang Trương sáng sớm mở toang cửa sổ đón nắng; cảnh ngồi ủi phẳng một chiếc áo sơ mi trắng nghe tiếng hơi nước xì xèo; cảnh đi lùng sục từng súc vải lụa tơ tằm, sờ tay cảm nhận độ rủ của thớ vải; cảnh ngồi uống tách trà nóng cuối ngày gấp đồ... Những video này không dạy đời ai, chỉ tạo ra một sự hiện diện ấm áp, đáng tin cậy.
+          <br>• <b>30% Video Nhát Cắt Lòng Tin (Bóc Tách Vi Mô):</b> Chỉ ra đúng khoảnh khắc người phụ nữ đứng tần ngần 15 phút trước tủ đồ đầy ắp mà than thở <i>"chẳng có gì để mặc"</i>. Khi họ thấy Trang Trương đọc vanh vách nỗi khổ tâm của mình sau hàng chục video đời thường, họ lập tức trao trọn niềm tin.
+        </p>
+      </div>
+
+      <!-- NẤC 2 -->
+      <div class="apple-card">
+        <div class="apple-card__title">Nấc 2: Bắt Bệnh Vi Mô 5 Giây Theo Định Luật Woodsmall: "Cúi Xuống Nghe Tiếng Kéo Áo"</div>
+        <p class="cl-body">
+          Định luật Wyatt Woodsmall: <i>"Nói đúng chi tiết vi mô trong trải nghiệm của một người, họ sẽ mặc định bạn nắm thuốc chữa cho toàn bộ cuộc đời họ"</i>. Không cần dài dòng giới thiệu học hàm học vị, Trang Trương chỉ cần mở đầu video bằng 1 hành vi vi mô 5 giây:
+        </p>
+        <div class="quote-box" style="font-size: 15.5px;">
+          <b>3 Nhát cắt 5 giây điển hình của Trang Trương:</b><br>
+          1. <i>"Có chị nào ngồi xuống quán cà phê là hai tay bất giác kéo cái gấu áo thun xuống để che bụng dưới không? Mặc một bộ đồ mà cả buổi phải canh chừng nó co lên thì đẹp mấy cũng thành cực hình."</i><br>
+          2. <i>"Mở tủ ra thấy 20 cái áo thun thì hết 18 cái màu đen form rộng... Đừng dối lòng là mình mê phong cách tối giản nữa, chị em mình chỉ đang cố giấu đi sự tự ti sau sinh thôi."</i><br>
+          3. <i>"Thử nhìn lại xem, cái áo chị mua tuần trước còn nguyên mác giá đang treo ở góc tủ kia kìa. Mua lúc 11 giờ đêm sau khi cãi nhau với chồng đúng không?"</i>
+        </div>
+      </div>
+
+      <!-- NẤC 3 -->
+      <div class="apple-card">
+        <div class="apple-card__title">Nấc 3: Đóng Gói Thị Giác — Nhẫn Vàng Trong Chiếc Hộp Nhung Ấm Áp</div>
+        <p class="cl-body">
+          Kênh thời trang thông thường chuộng đèn RGB nhấp nháy, nhạc sàn giật gân, khung hình rối rắm. Ngược lại, <b>chiếc hộp nhung của Trang Trương</b> phải mang phong vị của sự tĩnh lặng, sang trọng và êm đềm:
+        </p>
+        <p class="cl-body" style="margin-bottom: 0;">
+          • <b>Âm thanh ASMR mộc mạc:</b> Thu cận tiếng vuốt phẳng nếp vải linen thô, tiếng móc gỗ va lách cách khi lùa vào thanh treo tủ, tiếng bàn là hơi nước phì nhẹ, tiếng kéo khóa êm ru.<br>
+          • <b>Ánh sáng &amp; Màu sắc:</b> Ánh sáng tự nhiên 45 độ dịu mắt, không dùng filter làm mịn da giả tạo. Gam màu ấm áp (kem, be, nâu gỗ, trắng ngà) tạo cảm giác an toàn tuyệt đối.<br>
+          • <b>Vị trí ngồi tâm tình:</b> Ngồi trên thảm len bên cạnh mép giường, hoặc đứng gấp áo bên cạnh chiếc tủ gỗ mở hé. Giọng nói thủ thỉ, ngắt nhịp chậm rãi như hai người bạn thân nói chuyện thầm kín với nhau.
+        </p>
+      </div>
+
+      <!-- NẤC 4 -->
+      <div class="apple-card">
+        <div class="apple-card__title">Nấc 4: Chuyển Dịch Từ Bán Quần Áo Rẻ Tiền Sang Dịch Vụ &amp; Sản Phẩm Giá Trị Cao</div>
+        <p class="cl-body">
+          Khi đã có niềm tin sâu sắc, Trang Trương không bao giờ phải đi bán những chiếc áo 150k lời 30k để cạnh tranh với chợ mạng. Khách hàng tìm đến Trang Trương là tìm đến <b>sự bình an và tự tin</b>:
+        </p>
+        <p class="cl-body" style="margin-bottom: 0;">
+          • <b>Gói dịch vụ cao cấp: "Dọn Tủ Quần Áo &amp; Tái Định Vị Bản Thân 1-1":</b> Mức phí 3 – 5 triệu đồng/buổi. Trang Trương trực tiếp đến nhà (hoặc video call), cùng khách sàng lọc từng chiếc áo, bỏ đi những món đồ tích tụ năng lượng tiêu cực, giữ lại món đồ tôn dáng và lên công thức 10 set đồ mặc cả tháng không lo nghĩ.<br>
+          • <b>Bộ sưu tập may đo / Thiết kế giới hạn:</b> Các set đồ thiết kế giải phóng cơ thể cho phụ nữ công sở sau sinh (chất liệu lụa tơ, đũi, linen tự nhiên) với mức giá 1.8 – 3.5 triệu đồng/set. Khách sẵn sàng trả giá cao vì biết bộ đồ này được may bởi một người thực sự hiểu cơ thể họ.
+        </p>
+      </div>
+
+      <!-- NẤC 5 -->
+      <div class="apple-card">
+        <div class="apple-card__title">Nấc 5: Thoát Bế Tắc Ý Tưởng Bằng Cỗ Máy 4 Tầng &amp; Công Thức 7 Câu</div>
+        <p class="cl-body" style="margin-bottom: 0;">
+          Trang Trương từng than thở <i>"em không nghĩ ra được đâu ý"</i>. Đó là vì Trang Trương đang cố ngồi trong phòng kín rặn ra triết lý cao siêu. Khi áp dụng cỗ máy bóc tách 4 tầng (<a href="./4tang.html" style="color: var(--cl-accent); font-weight: 600;">4tang.html</a>), bất kỳ câu than thở nào của khách nữ (<i>"dạo này béo quá chẳng dám mặc gì", "sắp họp phụ huynh cho con mà không biết mặc sao cho vừa sang vừa không bị nói làm màu"</i>) cũng lập tức biến thành kịch bản 7 câu hoàn chỉnh trong 3 phút.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- MÀN 5: 3 KỊCH BẢN MẪU THỰC CHIẾN -->
+  <section class="cl-zebra-section cl-zebra--light">
+    <div class="cl-sec-container">
+      <div class="cl-badge">05 / KỊCH BẢN THỰC ĐỊA</div>
+      <h2 class="title-short">3 KỊCH BẢN MẪU THỰC HÀNH CHUẨN NHỊP 7 CÂU</h2>
+
+      <!-- KỊCH BẢN 1 -->
+      <div class="apple-card">
+        <div class="apple-card__title">Kịch Bản 1: Bắt Bệnh Thói Quen Kéo Gấu Áo (Nhát Cắt Vi Mô 5 Giây)</div>
+        <div class="quote-box" style="font-size: 15.5px;">
+          <b>[Góc máy &amp; Khung hình]:</b> Góc cận trung 45 độ, Trang Trương ngồi ghế gỗ quán cà phê, tay khẽ kéo nhẹ gấu áo xuống đùi. Giọng nói thủ thỉ, êm ái.<br><br>
+          <b>[Kịch bản 7 câu thực chiến]:</b><br>
+          <i>1. Có bao giờ chị em bước vào quán cà phê với bạn bè, mà cứ ngồi xuống là hai tay lại bất giác kéo cái gấu áo thun xuống để che bụng dưới không?<br>
+          2. Miệng thì vẫn cười nói rôm rả kể chuyện gia đình công việc, nhưng trong bụng lúc nào cũng thấp thỏm sợ cái ngấn mỡ lồi ra sau lớp vải mỏng.<br>
+          3. Mặc một bộ đồ mà cả buổi phải canh chừng nó co lên hay xộc xệch, thì đẹp mấy cũng thành một gánh nặng.<br>
+          4. Phụ nữ sau sinh hay ngoài 30 tuổi thường hay tự trách mình ăn uống không kiềm chế để mất dáng.<br>
+          5. Nhưng sự thật không phải tại cơ thể của các chị, mà tại cái áo phông cotton co giãn 4 chiều nó không sinh ra để nâng đỡ cơ thể phụ nữ trưởng thành.<br>
+          6. Đổi sang một chiếc sơ mi đũi dáng suông có độ rủ tự nhiên, vạt sau dài hơn vạt trước 3 phân, chị em ngồi xuống sẽ thấy bụng mình được thả lỏng hoàn toàn.<br>
+          7. Đừng ép cơ thể mình phải vừa vặn với một chiếc áo rẻ tiền; hãy để chiếc áo làm tròn bổn phận che chở và bao bọc cho sự tự tin của mình.</i>
+        </div>
+      </div>
+
+      <!-- KỊCH BẢN 2 -->
+      <div class="apple-card">
+        <div class="apple-card__title">Kịch Bản 2: Ủi Phẳng Chiếc Áo Sơ Mi Lúc 6 Giờ Sáng (Nhịp Đệm Đời Thường)</div>
+        <div class="quote-box" style="font-size: 15.5px;">
+          <b>[Góc máy &amp; Khung hình]:</b> Khung hình tĩnh, ánh sáng ban mai lọt qua khe rèm, khói hơi nước bốc lên từ bàn là. Âm thanh ASMR xèo xèo êm tai.<br><br>
+          <b>[Kịch bản 7 câu thực chiến]:</b><br>
+          <i>1. Mỗi sáng thức dậy, thói quen giúp mình lấy lại sự bình tĩnh nhanh nhất là đứng ủi phẳng một chiếc áo sơ mi.<br>
+          2. Đi qua những ngày công việc dồn dập hay trong lòng có chuyện ngổn ngang, nhìn từng nếp nhăn trên cổ áo phẳng phiu dần dưới hơi nước nóng, tự nhiên thấy lòng mình cũng dịu lại.<br>
+          3. Nhiều người nghĩ ủi đồ là việc vặt mất thời gian, cứ vơ vội cái áo trong tủ mặc đại cho xong.<br>
+          4. Nhưng khi bạn bước ra đường với một chiếc cổ áo phẳng phiu và thơm mùi nắng, bước đi của bạn tự khắc sẽ đàng hoàng và dứt khoát hơn hẳn.<br>
+          5. Trang phục không làm thay đổi con người bên trong, nhưng nó là tín hiệu đầu tiên báo cho não bộ biết: hôm nay mình xứng đáng được đối xử chỉn chu.<br>
+          6. Sáng nay dù ngoài kia có nhiều áp lực đến mấy, cũng hãy dành cho mình 3 phút để chăm chút lại bộ đồ trước khi bước chân ra cửa.<br>
+          7. Mình đàng hoàng với chính mình trước, cuộc đời mới đàng hoàng lại với mình.</i>
+        </div>
+      </div>
+
+      <!-- KỊCH BẢN 3 -->
+      <div class="apple-card">
+        <div class="apple-card__title">Kịch Bản 3: Dọn Tủ Đồ Cho Người Mẹ 2 Con (Chuyển Đổi Dịch Vụ Cao Cấp)</div>
+        <div class="quote-box" style="font-size: 15.5px;">
+          <b>[Góc máy &amp; Khung hình]:</b> Góc nhìn người thứ nhất (POV), Trang Trương cùng một vị khách nữ ngồi bệt trên sàn, xung quanh là 3 cọc quần áo được phân loại.<br><br>
+          <b>[Kịch bản 7 câu thực chiến]:</b><br>
+          <i>1. Hôm nay mình sang dọn tủ đồ cho một người chị 38 tuổi, làm kế toán trưởng và có hai con nhỏ.<br>
+          2. Mở cánh tủ ra, đập vào mắt mình là cả một góc tủ treo đầy những chiếc váy bodycon ôm sát từ thời con gái, bụi đã bám mờ trên vai áo.<br>
+          3. Chị bảo tiếc tiền nên không nỡ vứt, nhưng mình biết mỗi lần nhìn thấy chúng, chị lại thầm trách bản thân sao không giữ được dáng như xưa.<br>
+          4. Việc đầu tiên hai chị em làm không phải là đi mua đồ mới, mà là dũng cảm cất những chiếc váy cũ ấy vào hộp cất đi.<br>
+          5. Phụ nữ chúng mình hay mắc kẹt giữa việc nuối tiếc thanh xuân đã qua và cảm giác ngượng ngùng với cơ thể hiện tại.<br>
+          6. Khi tủ đồ chỉ còn lại những bộ trang phục vừa vặn với cân nặng và vị thế hiện tại, chị thở phào nhẹ nhõm như vừa trút được tảng đá trong lòng.<br>
+          7. Tủ đồ sạch sẽ thì tâm trí mới thảnh thơi; muốn tái định vị bản thân, hãy bắt đầu từ việc dọn dẹp lại những gì mình mặc mỗi ngày.</i>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MÀN 6: LỘ TRÌNH VẬN HÀNH 1 TUẦN -->
+  <section class="cl-zebra-section cl-zebra--tint">
+    <div class="cl-sec-container">
+      <div class="cl-badge">06 / LỊCH TRÌNH VẬN HÀNH</div>
+      <h2 class="title-short">LỘ TRÌNH 1 TUẦN QUAY GỌN NHẸ CHO NỮ CREATOR SOLO</h2>
+
+      <p class="cl-body">
+        Trang Trương không cần ekip rườm rà hay máy quay cồng kềnh. Chỉ cần <b>1 điện thoại iPhone + 1 tripod nhỏ + 1 mic cài áo không dây + 1 đèn tản sáng dịu</b>, mỗi ngày dành đúng 20 phút là có 1 video chỉn chu:
+      </p>
+
+      <div class="audit-table-wrap">
+        <table class="audit-table">
+          <thead>
+            <tr>
+              <th style="width: 20%;">Ngày</th>
+              <th style="width: 40%;">Định dạng &amp; Bối cảnh</th>
+              <th style="width: 40%;">Mục tiêu tiếp xúc (Google 7-11-4)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><b>Thứ 2</b></td>
+              <td>Ủi phẳng chiếc sơ mi buổi sáng (ASMR hơi nước + suy ngẫm đầu tuần)</td>
+              <td>Nhịp đệm đời thường êm dịu, tạo năng lượng tích cực bắt đầu tuần mới.</td>
+            </tr>
+            <tr>
+              <td><b>Thứ 3</b></td>
+              <td>Bắt bệnh vi mô: Thói quen kéo áo che bụng khi ngồi cà phê</td>
+              <td>Nhát cắt vi mô Woodsmall: Đọc trúng nỗi ngượng ngùng giấu kín của chị em.</td>
+            </tr>
+            <tr>
+              <td><b>Thứ 4</b></td>
+              <td>Đi lựa vải ở chợ hoặc xưởng dệt (Góc cận sờ bề mặt sợi lụa/linen)</td>
+              <td>Cho thấy sự am hiểu thấu đáo về chất liệu và sự kỹ tính của người làm nghề.</td>
+            </tr>
+            <tr>
+              <td><b>Thứ 5</b></td>
+              <td>Bóc tách tâm lý mua sắm 12h đêm trên sàn thương mại điện tử</td>
+              <td>Chạm tầng 2.5: Phân tích cơ chế dùng việc "chốt đơn" để xoa dịu stress.</td>
+            </tr>
+            <tr>
+              <td><b>Thứ 6</b></td>
+              <td>Gợi ý phối 3 set đồ đi họp cuối tuần cho phụ nữ bắp tay to/hông nở</td>
+              <td>Cung cấp giải pháp vật lý thiết thực, người xem lưu video về áp dụng ngay.</td>
+            </tr>
+            <tr>
+              <td><b>Thứ 7</b></td>
+              <td>Một buổi dọn tủ đồ thực tế tại nhà khách hàng (Case chuyển đổi 1-1)</td>
+              <td>Khóa chặt niềm tin: Minh chứng năng lực tái định vị phong cách sống giá trị cao.</td>
+            </tr>
+            <tr>
+              <td><b>Chủ nhật</b></td>
+              <td>Ngồi bên mép giường, đọc tin nhắn tâm sự của chị em và trả lời</td>
+              <td>Gắn kết cảm xúc sâu sắc, dẫn dắt học viên/khách hàng kết nối Zalo tư vấn.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="highlight-rule highlight-rule--rose">
+        <b>Đích đến của Trang Trương:</b> Không phải trở thành một người bán quần áo cạnh tranh từng chục ngàn ngoài chợ, mà trở thành <b>người tri kỷ độc quyền về phong cách sống và tâm lý tủ đồ</b> trong lòng hàng vạn phụ nữ. Đó là lúc khách hàng tự tìm đến, sẵn sàng chi trả mức giá xứng đáng cho sự thấu hiểu và tay nghề của Trang Trương.
+      </div>
+
+      <!-- BOTTOM NAV -->
+      <div class="bottom-nav">
+        <a href="./logic-storytelling-niem-tin.html">← Xem Giáo Án 7 Màn Storytelling</a>
+        <a href="./4tang.html">Công Cụ Bóc Tách 4 Tầng →</a>
+        <a href="./wikicontent.html">Quay Về Wiki Content Tổng ↗</a>
+      </div>
+    </div>
+  </section>
+
+</body>
+</html>
