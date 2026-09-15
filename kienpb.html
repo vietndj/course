@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>CASE KIÊN PHÂN BÓN: TỪ BỐC ĐẤT HIỆN TRƯỜNG ĐẾN 7 GIỜ GÂY DỰNG LÒNG TIN • NGUYỄN ĐỨC VIỆT</title>
+
+  <link rel="icon" type="image/svg+xml" href="./favicon.svg">
+  <link rel="alternate icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%230B0F19'/%3E%3Ctext x='25' y='25' text-anchor='middle' dominant-baseline='central' font-family='sans-serif' font-weight='900' font-size='21' fill='%23FFF'%3EVI%3C/text%3E%3Ccircle cx='47' cy='25' r='5' fill='%23EF4444'/%3E%3Ctext x='32' y='46' text-anchor='middle' dominant-baseline='central' font-family='sans-serif' font-weight='900' font-size='18' fill='%23F8FAFC'%3EDEO%3C/text%3E%3C/svg%3E">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    @font-face {
+      font-family: 'FD Aeonik Extended';
+      src: url('./fonts/FDAeonikExtended-Bold.woff2') format('woff2'),
+           url('./fonts/FDAeonikExtended-Bold.ttf') format('truetype'),
+           local('FD Aeonik Extended Bold');
+      font-weight: 700;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'FD Aeonik';
+      src: url('./fonts/FDAeonik-Regular.woff2') format('woff2'),
+           url('./fonts/FDAeonik-Regular.ttf') format('truetype'),
+           local('FD Aeonik Regular');
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'FD Aeonik';
+      src: url('./fonts/FDAeonik-Medium.woff2') format('woff2'),
+           url('./fonts/FDAeonik-Medium.ttf') format('truetype'),
+           local('FD Aeonik Medium');
+      font-weight: 500;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'FD Aeonik';
+      src: url('./fonts/FDAeonik-Bold.woff2') format('woff2'),
+           url('./fonts/FDAeonik-Bold.ttf') format('truetype'),
+           local('FD Aeonik Bold');
+      font-weight: 600 700;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Tiempos Text';
+      src: url('./fonts/FDTiemposText-Regular.woff2') format('woff2'),
+           url('./fonts/FDTiemposText-Regular.otf') format('opentype'),
+           url('./fonts/TiemposText-Regular.woff2') format('woff2');
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Tiempos Text';
+      src: url('./fonts/FDTiemposText-Medium.woff2') format('woff2'),
+           url('./fonts/FDTiemposText-Medium.otf') format('opentype'),
+           url('./fonts/TiemposText-Medium.woff2') format('woff2');
+      font-weight: 500;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Tiempos Text';
+      src: url('./fonts/FDTiemposText-RegularItalic.woff2') format('woff2'),
+           url('./fonts/FDTiemposText-RegularItalic.otf') format('opentype'),
+           url('./fonts/TiemposText-RegularItalic.woff2') format('woff2');
+      font-weight: 400;
+      font-style: italic;
+      font-display: swap;
+    }
+
+    :root {
+      --cl-bg: #ffffff;
+      --cl-tint: #f8fafc;
+      --cl-line: #e2e8f0;
+      --cl-text-base: #090d16;
+      --cl-text-body: #0f172a;
+      --cl-text-muted: #475569;
+      --cl-accent: #1a73e8;
+      --cl-accent-soft: rgba(26, 115, 232, 0.08);
+      --cl-green: #15803d;
+      --cl-green-soft: #f0fdf4;
+      --cl-green-border: #bbf7d0;
+
+      --font-display-short: 'FD Aeonik Extended', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-display-long: 'FD Aeonik', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-body: 'Tiempos Text', Georgia, serif;
+      --font-mono: 'JetBrains Mono', Consolas, monospace;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    html {
+      background-color: var(--cl-bg);
+      color: var(--cl-text-base);
+      font-family: var(--font-body);
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100vh;
+      line-height: 1.82;
+      padding-bottom: 80px;
+    }
+
+    /* Top Nav */
+    .top-nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--cl-line);
+      padding: 12px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: var(--font-display-long);
+    }
+    .top-nav__breadcrumbs {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--cl-text-muted);
+    }
+    .top-nav__breadcrumbs a {
+      color: var(--cl-text-base);
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .top-nav__breadcrumbs a:hover {
+      color: var(--cl-accent);
+    }
+    .top-nav__links {
+      display: flex;
+      gap: 14px;
+      align-items: center;
+    }
+    .top-nav__link {
+      color: var(--cl-text-muted);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .top-nav__link:hover {
+      color: var(--cl-accent);
+    }
+
+    /* Zebra Sections */
+    .cl-zebra-section {
+      width: 100%;
+      padding: clamp(48px, 6vw, 80px) 20px;
+      border-bottom: 1px solid var(--cl-line);
+    }
+    .cl-zebra--light { background-color: var(--cl-bg); }
+    .cl-zebra--tint { background-color: var(--cl-tint); }
+
+    .cl-sec-container {
+      max-width: 820px;
+      margin: 0 auto;
+    }
+
+    /* Badges & Headers */
+    .cl-badge {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--cl-accent);
+      margin-bottom: 12px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--cl-accent-soft);
+      padding: 4px 12px;
+      border-radius: 100px;
+    }
+    .cl-badge::before {
+      content: '';
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      background: var(--cl-accent);
+      border-radius: 50%;
+    }
+
+    .title-short {
+      font-family: var(--font-display-short);
+      font-size: clamp(24px, 3.8vw, 36px);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: -0.01em;
+      line-height: 1.22;
+      color: var(--cl-text-base);
+      margin-bottom: 18px;
+      text-wrap: balance;
+    }
+
+    .title-long {
+      font-family: var(--font-display-long);
+      font-size: clamp(19px, 2.5vw, 24px);
+      font-weight: 600;
+      line-height: 1.35;
+      color: var(--cl-text-base);
+      margin-top: 24px;
+      margin-bottom: 14px;
+    }
+
+    .cl-body {
+      font-family: var(--font-body);
+      font-size: clamp(16px, 1.8vw, 17.5px);
+      line-height: 1.82;
+      color: var(--cl-text-body);
+      margin-bottom: 20px;
+    }
+
+    /* Khối Thơ Lục Bát Đầu Trang */
+    .luc-bat-card {
+      background: #0f172a;
+      color: #f8fafc;
+      border-radius: 18px;
+      padding: clamp(28px, 4vw, 40px) clamp(24px, 4vw, 36px);
+      margin-top: 10px;
+      margin-bottom: 36px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 12px 36px rgba(15, 23, 42, 0.12);
+      text-align: center;
+    }
+    .luc-bat-tag {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #93c5fd;
+      margin-bottom: 16px;
+      display: inline-block;
+      background: rgba(147, 197, 253, 0.15);
+      padding: 4px 14px;
+      border-radius: 100px;
+    }
+    .luc-bat-poem {
+      font-family: var(--font-body);
+      font-size: clamp(19px, 2.4vw, 25px);
+      line-height: 1.7;
+      font-style: italic;
+      color: #ffffff;
+      margin-bottom: 18px;
+      letter-spacing: 0.01em;
+    }
+    .luc-bat-poem p {
+      margin-bottom: 4px;
+    }
+    .luc-bat-sub {
+      font-family: var(--font-display-long);
+      font-size: 13.5px;
+      color: #94a3b8;
+      max-width: 620px;
+      margin: 0 auto;
+      line-height: 1.6;
+      border-top: 1px solid rgba(255, 255, 255, 0.12);
+      padding-top: 14px;
+    }
+    .luc-bat-sub b {
+      color: #f1f5f9;
+    }
+
+    /* Cards */
+    .apple-card {
+      background: #ffffff;
+      border: 1px solid var(--cl-line);
+      border-radius: 16px;
+      padding: clamp(20px, 3vw, 28px);
+      margin-bottom: 22px;
+      box-shadow: 0 4px 20px rgba(9, 13, 22, 0.02);
+    }
+    .apple-card__title {
+      font-family: var(--font-display-long);
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--cl-text-base);
+      margin-bottom: 12px;
+    }
+
+    /* Audit Table */
+    .audit-table-wrap {
+      overflow-x: auto;
+      margin: 24px 0;
+      border: 1px solid var(--cl-line);
+      border-radius: 14px;
+      background: #ffffff;
+    }
+    table.audit-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14.5px;
+      text-align: left;
+    }
+    table.audit-table th {
+      background: var(--cl-tint);
+      font-family: var(--font-display-long);
+      font-weight: 700;
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--cl-line);
+      color: var(--cl-text-base);
+      font-size: 12.5px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    table.audit-table td {
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--cl-line);
+      vertical-align: top;
+      line-height: 1.6;
+    }
+    table.audit-table tr:last-child td {
+      border-bottom: none;
+    }
+    .col-wrong {
+      color: #b91c1c;
+      background: #fffafa;
+      font-family: var(--font-mono);
+      font-size: 13.5px;
+    }
+    .col-right {
+      color: #15803d;
+      font-weight: 600;
+    }
+
+    /* Highlight Rules */
+    .highlight-rule {
+      background: #eff6ff;
+      border-left: 4px solid var(--cl-accent);
+      padding: 16px 20px;
+      border-radius: 0 12px 12px 0;
+      margin: 20px 0;
+      font-size: 16px;
+    }
+
+    .quote-box {
+      background: #f1f5f9;
+      border-radius: 12px;
+      padding: 18px 22px;
+      font-family: var(--font-body);
+      font-size: 16px;
+      color: var(--cl-text-body);
+      line-height: 1.75;
+      margin: 16px 0;
+      border-left: 3px solid #94a3b8;
+    }
+
+    .editorial-hook {
+      font-family: var(--font-body);
+      font-style: italic;
+      font-size: clamp(17px, 2vw, 20px);
+      line-height: 1.65;
+      color: var(--cl-text-base);
+      border-left: 3px solid var(--cl-accent);
+      padding-left: 20px;
+      margin: 26px 0;
+    }
+
+    /* Bottom Nav */
+    .bottom-nav {
+      margin-top: 50px;
+      padding-top: 28px;
+      border-top: 1px solid var(--cl-line);
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+      font-family: var(--font-display-long);
+      font-size: 14px;
+    }
+    .bottom-nav a {
+      color: var(--cl-text-muted);
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .bottom-nav a:hover {
+      color: var(--cl-accent);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- TOP NAV -->
+  <nav class="top-nav">
+    <div class="top-nav__breadcrumbs">
+      <a href="./wikicontent.html">Wiki Content</a>
+      <span>/</span>
+      <span>Case Kiên Phân Bón</span>
+    </div>
+    <div class="top-nav__links">
+      <a href="./case-study-kien-phan-bon.html" class="top-nav__link">Case Gốc ↗</a>
+      <a href="./logic-storytelling-niem-tin.html" class="top-nav__link">7 Màn Storytelling ↗</a>
+      <a href="./wikicontent.html" class="top-nav__link">← Mục lục</a>
+    </div>
+  </nav>
+
+  <!-- MÀN 1: 4 CÂU LỤC BÁT & ĐỊNH HƯỚNG TỔNG QUAN -->
+  <section class="cl-zebra-section cl-zebra--light">
+    <div class="cl-sec-container">
+      <div class="cl-badge">01 / TỔNG KHO TRÍ TUỆ • NGUYỄN ĐỨC VIỆT</div>
+      <h1 class="title-short">CASE KIÊN PHÂN BÓN: TỪ BỐC ĐẤT HIỆN TRƯỜNG ĐẾN 7 GIỜ GÂY DỰNG LÒNG TIN</h1>
+
+      <p class="cl-body">
+        Một người làm nông nghiệp bỏ ra vài chục triệu hay vài trăm triệu cho một vụ mùa sầu riêng, cà phê không bao giờ rút ví vì một người đứng trước máy quay hót hay. Người ta chỉ đưa tiền cho một người mà họ thấy <b>thấu suốt mảnh vườn và dám chịu thiệt vì họ</b>.
+      </p>
+
+      <!-- 4 CÂU THƠ LỤC BÁT GHI NHỚ -->
+      <div class="luc-bat-card">
+        <div class="luc-bat-tag">4 CÂU LỤC BÁT DỄ NHỚ • BẢN GHI NHỚ LÀM NGHỀ</div>
+        <div class="luc-bat-poem">
+          <p>“Bới nắm đất, ngửi rễ tơ,</p>
+          <p>Thấy điều khó nói, ai ngờ tin ngay.</p>
+          <p>Bảy giờ quen mặt quen tay,</p>
+          <p>Hộp nhung gói nhẫn, tháng ngày bền lâu.”</p>
+        </div>
+        <div class="luc-bat-sub">
+          <b>Ý nghĩa 4 câu:</b> Bới đất bắt đúng bệnh vi mô + Nói trúng điều người làm vườn ngại nói để giữ thể diện cho họ + Xuất hiện đủ 7 giờ qua nếp sống đời thường + Đóng gói hình ảnh âm thanh sạch sẽ như chiếc hộp nhung.
+        </div>
+      </div>
+
+      <div class="highlight-rule">
+        <b>Chỗ mấu chốt:</b> Trước đây, chúng ta trang bị cho anh Kiên <b>một mũi khoan sắc bén</b> (kịch bản ngồi bới đất, từ chối bán phân). Nhưng nếu chỉ có mũi khoan đó, anh Kiên sẽ nhanh chóng cạn kiệt ý tưởng và người xem sẽ ngấy. Khi kết hợp với bài giảng 7 Màn Storytelling mới nhất, anh Kiên có <b>cả một cỗ máy làm kênh hoàn chỉnh</b>: vừa có video đời thường để người ta quen mặt, vừa có nhát cắt vi mô để chốt chặt lòng tin.
+      </div>
+    </div>
+  </section>
+
+  <!-- MÀN 2: BẢNG AUDIT TỪ NGỮ VĂN PHONG MỘC MẠC -->
+  <section class="cl-zebra-section cl-zebra--tint">
+    <div class="cl-sec-container">
+      <div class="cl-badge">02 / AUDIT VĂN PHONG THỰC CHIẾN</div>
+      <h2 class="title-short">LỌC BỎ VĂN MẪU SÁCH VỞ &amp; CHUẨN HÓA GIỌNG ANH VIỆT</h2>
+
+      <p class="cl-body">
+        Để video chạm được vào những người nông dân dãi nắng dầm sương và các chủ đại lý sành sỏi, ngôn từ phải <b>sạch bóng văn mẫu marketing</b>. Tuyệt đối không dùng những từ đao to búa lớn khiến người nghe thấy sượng gạo và đề phòng.
+      </p>
+
+      <div class="audit-table-wrap">
+        <table class="audit-table">
+          <thead>
+            <tr>
+              <th style="width: 48%;">❌ Từ ngữ sách vở / Marketing (Cần bỏ)</th>
+              <th style="width: 52%;">✅ Từ ngữ mộc mạc chuẩn anh Việt (Bắt buộc dùng)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="col-wrong">Đòn bẩy tâm lý / Đòn bẩy nội dung</td>
+              <td class="col-right">Điểm tựa quen thuộc / Nhịp đệm giúp người ta dừng lại xem</td>
+            </tr>
+            <tr>
+              <td class="col-wrong">Tỷ lệ chuyển đổi / Phễu chuyển đổi</td>
+              <td class="col-right">Ra được đơn thật / Khách tự nhắn tin hỏi mua</td>
+            </tr>
+            <tr>
+              <td class="col-wrong">Căn bệnh ngầm của khách</td>
+              <td class="col-right">Chỗ khó nói / Chuyện tế nhị người ta ngại kể ra</td>
+            </tr>
+            <tr>
+              <td class="col-wrong">Sự thật ngượng miệng / Vết sẹo nghề</td>
+              <td class="col-right">Điều giấu kín trong bụng / Những lần làm hỏng mất tiền ngu</td>
+            </tr>
+            <tr>
+              <td class="col-wrong">Tín hiệu đắt giá (Costly Signal)</td>
+              <td class="col-right">Hành động chịu thiệt vì khách / Dám từ chối để bảo vệ vườn cây</td>
+            </tr>
+            <tr>
+              <td class="col-wrong">Vũ khí bán hàng / Đỉnh cao chốt đơn</td>
+              <td class="col-right">Cách làm rất tới / Điểm mạnh tự nhiên của người làm nghề</td>
+            </tr>
+            <tr>
+              <td class="col-wrong">Gồng lên làm chuyên gia / Uy quyền</td>
+              <td class="col-right">Người làm nghề thạo việc / Cách nói chuyện đàng hoàng</td>
+            </tr>
+            <tr>
+              <td class="col-wrong">Nhảy nhót làm trò câu view rẻ tiền</td>
+              <td class="col-right">Video chạy theo trào lưu ngắn hạn / Tìm kiếm lượt xem nhanh</td>
+            </tr>
+            <tr>
+              <td class="col-wrong">Hạ khiên phòng vệ sinh học</td>
+              <td class="col-right">Khách bớt e ngại, thấy an tâm và mở lòng</td>
+            </tr>
+            <tr>
+              <td class="col-wrong">Tự xưng hay chèn chữ "ông giáo"</td>
+              <td class="col-right">Tuyệt đối cấm. Xưng hô tự nhiên: Tôi - Bạn, Mình - Anh em, Cháu - Chú</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p class="editorial-hook">
+        "Người làm nông không nghe lời một người nói đạo lý trên mạng. Họ chỉ nghe một người lấm lem chân tay, cúi xuống cầm hòn đất lên ngửi mà nói trúng cái bụng họ đang lo."
+      </p>
+    </div>
+  </section>
+
+  <!-- MÀN 3: ĐIỂM LẠI BÀI TOÁN CŨ TRONG WIKICONTENT -->
+  <section class="cl-zebra-section cl-zebra--light">
+    <div class="cl-sec-container">
+      <div class="cl-badge">03 / ĐỐI SOÁT BÀI TOÁN GỐC</div>
+      <h2 class="title-short">NHÌN LẠI CASE THỰC ĐỊA: CHÚ BA VÀ VƯỜN SẦU RIÊNG</h2>
+
+      <p class="cl-body">
+        Trong tài liệu ban đầu ở Chapter 07 của Wiki Content, bài toán của anh Kiên được giải quyết bằng một tình huống thực địa mẫu mực:
+      </p>
+
+      <div class="apple-card">
+        <div class="apple-card__title">1. Chuyện Tế Nhị Của Chú Ba (Điều Giấu Kín Trong Bụng)</div>
+        <p class="cl-body" style="margin-bottom: 10px;">
+          Vụ trước vì kẹt tiền hoặc nghe chỗ quen ham rẻ, chú Ba mua một lô phân lót ủ chưa tới về bón. Đất bị chua, rễ tơ cháy đen ngộ độc hữu cơ. Nhìn đợt đọt khựng lại, hoa nhấp nhổm bung mà rễ yếu, ruột gan chú xót như cào.
+        </p>
+        <p class="cl-body" style="margin-bottom: 0;">
+          Nhưng vì cái danh "lão nông tri điền" mấy chục năm trong xóm, ra quán cà phê chú vẫn phải nói cứng: <i>"Năm nay tao chủ động hãm cơi đọt làm bông tự nhiên"</i>. Chú sợ nhất là bị người ta cười vào mặt: <i>"Già đời rồi mà còn bị lừa"</i>.
+        </p>
+      </div>
+
+      <div class="apple-card" style="border-left: 4px solid var(--cl-green);">
+        <div class="apple-card__title" style="color: var(--cl-green);">2. Nhát Cắt Tạo Niềm Tin: Dám Từ Chối Bán Phân</div>
+        <p class="cl-body" style="margin-bottom: 10px;">
+          Anh Kiên xuống vườn, không cầm bảng báo giá hay catalogue ra khoe. Anh ngồi xổm mép tán, dùng que nhỏ bới lớp đất mặt, cầm nắm đất lên ngửi rồi nhìn đầu rễ tơ thâm đen:
+        </p>
+        <div class="quote-box">
+          <i>"Chú Ba này... Cháu ngồi xuống bới lớp đất này lên, rễ tơ ra được hai phân là đầu rễ thâm lại, đất chua ngai ngái thế này... Cháu biết mấy tuần nay trong bụng chú nóng như lửa đốt. Chắc vụ vừa rồi mưa dầm, chú dặm đợt phân hữu cơ ủ chưa tới nên rễ nó nghẹt thở.<br><br>
+          Cháu nói thật, hôm nay cháu tới thăm vườn thôi, tuyệt đối không bán cho chú bao phân hay chai thuốc kích rễ nào hết. Cây đang ngột thở mà tọng phân vào là tự tay giết vườn. Giờ việc đầu tiên là xả chua, rải vôi nâng pH lên đã. Chú làm theo cháu chỉ, tốn mấy đồng đâu, dăm bữa rễ trắng nhú ra rồi cháu với chú tính tiếp."</i>
+        </div>
+        <p class="cl-body" style="margin-bottom: 0;">
+          <b>Cái giá anh Kiên phải trả:</b> Bỏ qua tiền hoa hồng bán hàng trước mắt để giữ an toàn cho vườn cây của khách. Chú Ba thấy thể diện của mình được bảo bọc, lập tức buông bỏ sự dè chừng.
+        </p>
+      </div>
+
+      <div class="highlight-rule">
+        <b>Hạn chế của cách làm cũ:</b> Đây là một kịch bản xuất sắc cho cuộc gặp 1-1 hoặc một video mẫu. Nhưng nếu anh Kiên xây kênh mạng xã hội mà clip nào cũng ngồi bới đất rồi nói đạo lý từ chối bán hàng, anh Kiên sẽ nhanh chóng bí đề tài và khán giả cũng không xem mãi một kịch bản được.
+      </div>
+    </div>
+  </section>
+
+  <!-- MÀN 4: HỢP NHẤT VỚI BÀI TRÌNH 7 MÀN: 5 BƯỚC THAY ĐỔI -->
+  <section class="cl-zebra-section cl-zebra--tint">
+    <div class="cl-sec-container">
+      <div class="cl-badge">04 / BƯỚC CHUYỂN TOÀN DIỆN</div>
+      <h2 class="title-short">5 ĐIỂM NÂNG CẤP BẮT BUỘC THEO BÀI TRÌNH 7 MÀN</h2>
+
+      <p class="cl-body">
+        Khi đưa toàn bộ tư tưởng của bài giảng <b>Logic Storytelling &amp; Bản Chất Niềm Tin</b> vào trường hợp anh Kiên, chúng ta nâng cấp phương án làm kênh theo 5 nấc:
+      </p>
+
+      <!-- NẤC 1 -->
+      <div class="apple-card">
+        <div class="apple-card__title">Nấc 1: Áp Dụng Công Thức Google 7 - 11 - 4 (Giải Bài Toán 7 Giờ)</div>
+        <p class="cl-body">
+          Muốn khách trao niềm tin để mua đơn hàng vật tư tiền triệu hay ký hợp đồng phân bón cho cả mùa vụ, họ phải tiếp xúc đủ <b>7 giờ, qua 11 điểm chạm, ở 4 không gian khác nhau</b>. Nếu mỗi video chỉ dài 1 phút, anh Kiên cần hàng trăm video.
+        </p>
+        <p class="cl-body" style="margin-bottom: 0;">
+          <b>Cách chia tỷ lệ nội dung:</b>
+          <br>• <b>70% Video Đời Sống Thực Địa (Nhịp Đệm):</b> Cảnh lái xe bán tải qua đường đất đỏ Tây Nguyên lúc 5h sáng; cảnh ngồi uống chén chè đặc với các anh em lái xe tải; cảnh bốc vác mồ hôi nhễ nhại; mẹo nhỏ nhìn mây đoán gió bão... Các clip này quay nhanh, thân thuộc, giúp tích lũy số giờ xem của người nông dân mà không gây cảm giác nặng nề.
+          <br>• <b>30% Video Nhát Cắt Lòng Tin:</b> Những pha bới rễ, đo pH đất, chỉ đúng chỗ sai lầm và từ chối bán hàng. Khi người ta đã quen mặt anh Kiên suốt hàng chục clip đời thường, chỉ cần xem 1 clip này là niềm tin được khóa chặt.
+        </p>
+      </div>
+
+      <!-- NẤC 2 -->
+      <div class="apple-card">
+        <div class="apple-card__title">Nấc 2: Tinh Gọn Theo Định Luật Woodsmall: "Bắt Bệnh 5 Giây Như Anh Thợ Sửa Xe"</div>
+        <p class="cl-body">
+          Nhà nghiên cứu Wyatt Woodsmall chỉ ra: <i>Mô tả đúng bệnh ở cấp độ vi mô là người ta mặc định mình nắm thuốc giải</i>. Giống như anh thợ sửa xe máy chỉ cần cúi xuống vít ga nghe tiếng khục khục 2 giây là khách giao xe ngay không cần mặc cả.
+        </p>
+        <p class="cl-body" style="margin-bottom: 0;">
+          <b>Ứng dụng cho anh Kiên:</b> Bỏ những đoạn độc thoại tâm sự dông dài. Thay bằng hành động vi mô dứt khoát trong 5 giây đầu:
+          <br>• Cầm kéo bấm cành nghe tiếng <i>"tách"</i> giòn tan hoặc bẻ khúc rễ thâm đen: <i>"Đầu rễ thâm sì thế này mà ông nào xúi tưới kích đọt là tự tay đốt vườn"</i>.
+          <br>• Khách hàng xem xong thấy ngay tay nghề người thạo việc, không cần giảng giải bằng cấp.
+        </p>
+      </div>
+
+      <!-- NẤC 3 -->
+      <div class="apple-card">
+        <div class="apple-card__title">Nấc 3: Đóng Gói Thị Giác — Nhẫn Vàng Phải Nằm Trong Hộp Nhung</div>
+        <p class="cl-body">
+          Dân làm nông hay mắc cái tật: mộc mạc quá hóa luộm thuộm (quay video rung lắc, tiếng gió rít ù tai mic, hình ảnh cháy sáng). Kiến thức quý như chiếc nhẫn vàng nhưng gói trong túi nilon nhàu nhĩ thì người ta vẫn nghi ngờ là đồ giả.
+        </p>
+        <p class="cl-body" style="margin-bottom: 0;">
+          <b>Chiếc hộp nhung của anh Kiên:</b>
+          <br>• <b>Âm thanh sạch:</b> Gắn đầu lọc gió (Deadcat) vào mic. Thu rõ mồn một tiếng bóp đất lạo xạo, tiếng rễ cây gãy, tiếng nước tưới vườn.
+          <br>• <b>Góc máy cận (Macro):</b> Quay sát vào từng sợi lông hút của rễ, từng đốm nấm trên cuống lá.
+          <br>• <b>Trang phục làm nghề:</b> Áo thun/polo tối màu gọn gàng, ủng đi vườn sạch sẽ — phong thái người làm kỹ thuật đàng hoàng, không phải người quay clip mua vui.
+        </p>
+      </div>
+
+      <!-- NẤC 4 -->
+      <div class="apple-card">
+        <div class="apple-card__title">Nấc 4: Mở Rộng Sang Tệp Chủ Đại Lý Vật Tư (B2B)</div>
+        <p class="cl-body">
+          Muốn đi đường dài và bán số lượng lớn, anh Kiên cần kết nối với <b>các chủ đại lý cấp 2, cấp 3</b>.
+        </p>
+        <p class="cl-body" style="margin-bottom: 0;">
+          Chủ đại lý cũng có nỗi niềm giấu kín: Ôm kho hàng tiền tỷ, bị công ty mẹ ép doanh số; bán chịu cho bà con thì nơm nớp sợ mất vốn, đến mùa đi đòi nợ thì sợ mất tình làng nghĩa xóm; ban ngày cười nói rổn rảng nhưng đêm về mở cuốn sổ nợ ra nuốt nước bọt khan. Khi anh Kiên làm video nói trúng nỗi lòng này, các đại lý sẽ chủ động liên hệ xin làm nhà phân phối cho anh.
+        </p>
+      </div>
+
+      <!-- NẤC 5 -->
+      <div class="apple-card">
+        <div class="apple-card__title">Nấc 5: Sản Xuất Bền Bỉ Bằng Bộ Công Cụ 4 Tầng &amp; Kho Ý Tưởng</div>
+        <p class="cl-body" style="margin-bottom: 0;">
+          Thay vì mỗi sáng vò đầu bứt tai nghĩ xem hôm nay quay gì, anh Kiên chỉ cần ghi lại một câu nói ngoài vườn của nông dân, đưa vào công cụ bóc tách 4 tầng (<a href="./4tang.html" style="color: var(--cl-accent); font-weight: 600;">4tang.html</a>) để xuất kịch bản 7 câu ngắn gọn. Đồng thời lướt kho định dạng (<a href="https://ytuong.fedu.vn" target="_blank" style="color: var(--cl-accent); font-weight: 600;">ytuong.fedu.vn</a>) để chọn góc quay quen thuộc, giúp sản xuất 20–30 video/tháng nhẹ tênh.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- MÀN 5: 3 KỊCH BẢN MẪU THỰC CHIẾN -->
+  <section class="cl-zebra-section cl-zebra--light">
+    <div class="cl-sec-container">
+      <div class="cl-badge">05 / KỊCH BẢN THỰC ĐỊA</div>
+      <h2 class="title-short">3 KỊCH BẢN MẪU THỰC HÀNH TẠI HIỆN TRƯỜNG</h2>
+
+      <!-- KỊCH BẢN 1 -->
+      <div class="apple-card">
+        <div class="apple-card__title">Kịch Bản 1: Bắt Bệnh 5 Giây Ngoài Vườn (Nhát Cắt Vi Mô)</div>
+        <div class="quote-box" style="font-size: 15.5px;">
+          <b>[Hình ảnh]:</b> Máy quay cận cảnh đôi tay anh Kiên bới lớp đất mép tán sầu riêng, bẻ nhẹ một nhánh rễ tơ nghe tiếng <i>tách</i>.<br>
+          <b>[Lời thoại anh Kiên]:</b><br>
+          <i>"Cầm cái rễ tơ lên mà thấy đầu rễ thâm sì, bóp cục đất ra có mùi chua ngai ngái thế này... thì anh em đừng dại mà đổ phân đạm hay xịt kích rễ vội.<br>
+          Đất đang ngột thở vì ngộ độc hữu cơ, càng tọng phân hóa học vào là càng làm cháy rễ non. Ra quán cà phê thì chú Ba vẫn bảo đang hãm đọt làm bông sớm, chứ trong bụng đang xót đứt ruột.<br>
+          Việc đầu tiên bây giờ là xả chua, rải vôi nâng pH cho đất thở lại đã. Cây khỏe tự khắc nhú rễ trắng, lúc đấy bón gì cũng chưa muộn."</i>
+        </div>
+      </div>
+
+      <!-- KỊCH BẢN 2 -->
+      <div class="apple-card">
+        <div class="apple-card__title">Kịch Bản 2: Chuyện Đi Đường Lúc 5 Giờ Sáng (Nhịp Đệm Đời Thường)</div>
+        <div class="quote-box" style="font-size: 15.5px;">
+          <b>[Hình ảnh]:</b> Bán tải lội qua vũng bùn đất đỏ, anh Kiên tấp vào quán nước ven đường uống chén chè nóng bốc khói cùng cánh tài xế.<br>
+          <b>[Lời thoại anh Kiên]:</b><br>
+          <i>"Nhiều người hỏi mình đi làm kỹ thuật nông nghiệp sướng hay khổ? Sướng là ngày nào cũng được hít mùi đất mùi sương sớm. Còn khổ là sáng nào cũng 5 giờ mở mắt, chạy xe cả trăm cây số vào rẫy.<br>
+          Ghé làm chén nước chè đặc với mấy anh em lái xe phân, nghe chuyện giá tiêu giá sầu lên xuống từng ngày. Làm cái nghề nông này, không bám đất bám đường với bà con thì ngồi phòng lạnh có chỉ tay năm ngón cũng chẳng giải quyết được việc gì."</i>
+        </div>
+      </div>
+
+      <!-- KỊCH BẢN 3 -->
+      <div class="apple-card">
+        <div class="apple-card__title">Kịch Bản 3: Nỗi Niềm Chủ Đại Lý Vật Tư (Chạm Tệp B2B)</div>
+        <div class="quote-box" style="font-size: 15.5px;">
+          <b>[Hình ảnh]:</b> Anh Kiên ngồi nói chuyện bên quầy bao bì của một đại lý quen, tay lật nhẹ góc cuốn sổ ghi chép.<br>
+          <b>[Lời thoại anh Kiên]:</b><br>
+          <i>"Người ngoài nhìn vào tưởng mở đại lý phân bón giàu lắm, tiền tỷ trong tay. Chỉ có anh em trong nghề mới hiểu cái cảnh cuối mùa ngồi ôm cuốn sổ ghi nợ.<br>
+          Cho bà con nợ gối đầu thì nơm nớp sợ rủi ro mất giá, mà đi siết nợ thì ngại cái tình làng nghĩa xóm bao năm. Tiền công ty hối thúc, hàng tồn nằm im trong kho... tối về nuốt chén cơm mà nghẹn ở cổ.<br>
+          Làm ăn đàng hoàng thì phải cùng nhau tìm cách giúp bà con làm vườn trúng mùa được giá, người ta có tiền trả nợ thì đại lý mới sống khỏe được."</i>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MÀN 6: LỘ TRÌNH PHÂN BỔ NỘI DUNG TUẦN -->
+  <section class="cl-zebra-section cl-zebra--tint">
+    <div class="cl-sec-container">
+      <div class="cl-badge">06 / LỊCH TRÌNH VẬN HÀNH</div>
+      <h2 class="title-short">LỘ TRÌNH 1 TUẦN QUAY GỌN NHẸ TẠI THỰC ĐỊA</h2>
+
+      <p class="cl-body">
+        Anh Kiên không cần thuê cả ekip rườm rà. Chỉ cần 1 chiếc điện thoại có ốp gắn mic lọc gió và 1 bạn kỹ thuật đi cùng bấm máy:
+      </p>
+
+      <div class="audit-table-wrap">
+        <table class="audit-table">
+          <thead>
+            <tr>
+              <th style="width: 25%;">Ngày</th>
+              <th style="width: 35%;">Định dạng &amp; Không gian</th>
+              <th style="width: 40%;">Mục tiêu tiếp xúc (Google 7-11-4)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><b>Thứ 2</b></td>
+              <td>Chạy xe vào rẫy lúc sáng sớm (POV lái xe + chè sáng)</td>
+              <td>Kéo lượt xem tự nhiên, để người ta thấy sự chăm chỉ, chịu khó.</td>
+            </tr>
+            <tr>
+              <td><b>Thứ 3</b></td>
+              <td>Bắt bệnh vi mô tại mép tán sầu riêng (Định luật Woodsmall)</td>
+              <td>Khẳng định tay nghề chẩn đoán cực nhanh, gây dựng uy tín.</td>
+            </tr>
+            <tr>
+              <td><b>Thứ 4</b></td>
+              <td>Mẹo nhìn mắt lá đoán độ ẩm đất (Kiến thức thực tế)</td>
+              <td>Cho đi giá trị dễ áp dụng, khách lưu video về xem lại.</td>
+            </tr>
+            <tr>
+              <td><b>Thứ 5</b></td>
+              <td>Tâm sự với anh em bốc vác tại kho hàng</td>
+              <td>Hiện trường người thật việc thật, tích lũy thêm số phút tiếp xúc.</td>
+            </tr>
+            <tr>
+              <td><b>Thứ 6</b></td>
+              <td>Góc nhìn nỗi khổ sổ nợ của đại lý vật tư (B2B)</td>
+              <td>Hút các chủ đại lý đồng cảm và liên hệ hợp tác nhập hàng.</td>
+            </tr>
+            <tr>
+              <td><b>Thứ 7</b></td>
+              <td>Tình huống từ chối bán thuốc kích rễ cho khách quen</td>
+              <td>Chốt hạ lòng tin: Người làm nghề dám chịu thiệt vì khách hàng.</td>
+            </tr>
+            <tr>
+              <td><b>Chủ nhật</b></td>
+              <td>Nghỉ ngơi, ngồi uống trà tại nhà kiểm lại các phản hồi</td>
+              <td>Trả lời tin nhắn Zalo của bà con, chọn ý tưởng cho tuần mới.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="highlight-rule">
+        <b>Đích đến cuối cùng:</b> Khi một người làm vườn hay một chủ đại lý gặp khó khăn về cây trồng hay phân bón, <b>người đầu tiên họ nghĩ đến trong đầu để gọi điện hỏi ý kiến chính là anh Kiên</b>. Đó là lúc việc bán hàng diễn ra tự nhiên, không cần chào mời một lời.
+      </div>
+
+      <!-- BOTTOM NAV -->
+      <div class="bottom-nav">
+        <a href="./case-study-kien-phan-bon.html">← Đọc lại Case Study Gốc</a>
+        <a href="./logic-storytelling-niem-tin.html">Xem Giáo Án 7 Màn Storytelling →</a>
+        <a href="./wikicontent.html">Quay Về Wiki Content Tổng ↗</a>
+      </div>
+    </div>
+  </section>
+
+</body>
+</html>

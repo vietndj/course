@@ -1,0 +1,929 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>CASE CHỊ KAT: TỪ BỘT BƠ LÒ NƯỚNG ĐẾN 7 GIỜ GÂY DỰNG LÒNG TIN • NGUYỄN ĐỨC VIỆT</title>
+
+  <!-- Favicon Vector Chuẩn Cinema REC Monogram (VI + REC + DEO) -->
+  <link rel="icon" type="image/svg+xml" href="./favicon.svg">
+  <link rel="alternate icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%230B0F19'/%3E%3Ctext x='25' y='25' text-anchor='middle' dominant-baseline='central' font-family='sans-serif' font-weight='900' font-size='21' fill='%23FFF'%3EVI%3C/text%3E%3Ccircle cx='47' cy='25' r='5' fill='%23EF4444'/%3E%3Ctext x='32' y='46' text-anchor='middle' dominant-baseline='central' font-family='sans-serif' font-weight='900' font-size='18' fill='%23F8FAFC'%3EDEO%3C/text%3E%3C/svg%3E">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    @font-face {
+      font-family: 'FD Aeonik Extended';
+      src: url('./fonts/FDAeonikExtended-Bold.woff2') format('woff2'),
+           url('./fonts/FDAeonikExtended-Bold.ttf') format('truetype'),
+           local('FD Aeonik Extended Bold');
+      font-weight: 700;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'FD Aeonik';
+      src: url('./fonts/FDAeonik-Regular.woff2') format('woff2'),
+           url('./fonts/FDAeonik-Regular.ttf') format('truetype'),
+           local('FD Aeonik Regular');
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'FD Aeonik';
+      src: url('./fonts/FDAeonik-Medium.woff2') format('woff2'),
+           url('./fonts/FDAeonik-Medium.ttf') format('truetype'),
+           local('FD Aeonik Medium');
+      font-weight: 500;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'FD Aeonik';
+      src: url('./fonts/FDAeonik-Bold.woff2') format('woff2'),
+           url('./fonts/FDAeonik-Bold.ttf') format('truetype'),
+           local('FD Aeonik Bold');
+      font-weight: 600 700;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Tiempos Text';
+      src: url('./fonts/FDTiemposText-Regular.woff2') format('woff2'),
+           url('./fonts/FDTiemposText-Regular.otf') format('opentype'),
+           url('./fonts/TiemposText-Regular.woff2') format('woff2');
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Tiempos Text';
+      src: url('./fonts/FDTiemposText-Medium.woff2') format('woff2'),
+           url('./fonts/FDTiemposText-Medium.otf') format('opentype'),
+           url('./fonts/TiemposText-Medium.woff2') format('woff2');
+      font-weight: 500;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Tiempos Text';
+      src: url('./fonts/FDTiemposText-RegularItalic.woff2') format('woff2'),
+           url('./fonts/FDTiemposText-RegularItalic.otf') format('opentype'),
+           url('./fonts/TiemposText-RegularItalic.woff2') format('woff2');
+      font-weight: 400;
+      font-style: italic;
+      font-display: swap;
+    }
+
+    :root {
+      --cl-bg: #ffffff;
+      --cl-tint: #f8fafc;
+      --cl-line: #e2e8f0;
+      --cl-text-base: #090d16;
+      --cl-text-body: #0f172a;
+      --cl-text-muted: #475569;
+      --cl-accent: #d97706;
+      --cl-accent-soft: rgba(217, 119, 6, 0.09);
+      --cl-amber: #b45309;
+      --cl-amber-soft: #fffbeb;
+      --cl-amber-border: #fde68a;
+
+      --font-display-short: 'FD Aeonik Extended', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-display-long: 'FD Aeonik', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-body: 'Tiempos Text', Georgia, serif;
+      --font-mono: 'JetBrains Mono', Consolas, monospace;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    html {
+      background-color: var(--cl-bg);
+      color: var(--cl-text-base);
+      font-family: var(--font-body);
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100vh;
+      line-height: 1.82;
+      padding-bottom: 80px;
+    }
+
+    /* Top Nav */
+    .top-nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--cl-line);
+      padding: 12px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: var(--font-display-long);
+    }
+    .top-nav__breadcrumbs {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--cl-text-muted);
+    }
+    .top-nav__breadcrumbs a {
+      color: var(--cl-text-base);
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .top-nav__breadcrumbs a:hover {
+      color: var(--cl-accent);
+    }
+    .top-nav__links {
+      display: flex;
+      gap: 14px;
+      align-items: center;
+    }
+    .top-nav__link {
+      color: var(--cl-text-muted);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .top-nav__link:hover {
+      color: var(--cl-accent);
+    }
+
+    /* Zebra Sections */
+    .cl-zebra-section {
+      width: 100%;
+      padding: clamp(48px, 6vw, 80px) 20px;
+      border-bottom: 1px solid var(--cl-line);
+    }
+    .cl-zebra--light { background-color: var(--cl-bg); }
+    .cl-zebra--tint { background-color: var(--cl-tint); }
+
+    .cl-sec-container {
+      max-width: 820px;
+      margin: 0 auto;
+    }
+
+    /* Badges & Headers */
+    .cl-badge {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--cl-accent);
+      margin-bottom: 12px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--cl-accent-soft);
+      padding: 4px 12px;
+      border-radius: 100px;
+    }
+    .cl-badge::before {
+      content: '';
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      background: var(--cl-accent);
+      border-radius: 50%;
+    }
+    .cl-badge--amber {
+      color: var(--cl-amber);
+      background: rgba(180, 83, 9, 0.09);
+    }
+    .cl-badge--amber::before {
+      background: var(--cl-amber);
+    }
+
+    .title-short {
+      font-family: var(--font-display-short);
+      font-size: clamp(24px, 3.8vw, 36px);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: -0.01em;
+      line-height: 1.22;
+      color: var(--cl-text-base);
+      margin-bottom: 18px;
+      text-wrap: balance;
+    }
+
+    .title-long {
+      font-family: var(--font-display-long);
+      font-size: clamp(19px, 2.5vw, 24px);
+      font-weight: 600;
+      line-height: 1.35;
+      color: var(--cl-text-base);
+      margin-top: 24px;
+      margin-bottom: 14px;
+    }
+
+    .cl-body {
+      font-family: var(--font-body);
+      font-size: clamp(16px, 1.8vw, 17.5px);
+      line-height: 1.82;
+      color: var(--cl-text-body);
+      margin-bottom: 20px;
+    }
+
+    /* Khối Thơ Lục Bát Đầu Trang */
+    .luc-bat-card {
+      background: #181512;
+      color: #f8fafc;
+      border-radius: 18px;
+      padding: clamp(28px, 4vw, 40px) clamp(24px, 4vw, 36px);
+      margin-top: 10px;
+      margin-bottom: 36px;
+      border: 1px solid rgba(245, 158, 11, 0.2);
+      box-shadow: 0 12px 36px rgba(24, 21, 18, 0.14);
+      text-align: center;
+    }
+    .luc-bat-tag {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #fcd34d;
+      margin-bottom: 16px;
+      display: inline-block;
+      background: rgba(245, 158, 11, 0.15);
+      padding: 4px 14px;
+      border-radius: 100px;
+    }
+    .luc-bat-poem {
+      font-family: var(--font-body);
+      font-size: clamp(19px, 2.4vw, 25px);
+      line-height: 1.7;
+      font-style: italic;
+      color: #ffffff;
+      margin-bottom: 18px;
+      letter-spacing: 0.01em;
+    }
+    .luc-bat-poem p {
+      margin-bottom: 4px;
+    }
+    .luc-bat-sub {
+      font-family: var(--font-display-long);
+      font-size: 13.5px;
+      color: #d1d5db;
+      max-width: 620px;
+      margin: 0 auto;
+      line-height: 1.6;
+      border-top: 1px solid rgba(255, 255, 255, 0.12);
+      padding-top: 14px;
+    }
+    .luc-bat-sub b {
+      color: #fef08a;
+    }
+
+    /* Cards */
+    .apple-card {
+      background: #ffffff;
+      border: 1px solid var(--cl-line);
+      border-radius: 16px;
+      padding: clamp(20px, 3vw, 28px);
+      margin-bottom: 22px;
+      box-shadow: 0 4px 20px rgba(9, 13, 22, 0.02);
+    }
+    .apple-card__badge {
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      font-weight: 700;
+      color: var(--cl-amber);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 8px;
+    }
+    .apple-card__title {
+      font-family: var(--font-display-long);
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--cl-text-base);
+      margin-bottom: 12px;
+    }
+
+    /* Kịch Bản 2 Cột */
+    .script-columns {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 14px;
+      background: var(--cl-tint);
+      border: 1px solid var(--cl-line);
+      border-radius: 12px;
+      padding: 16px;
+    }
+    @media (max-width: 640px) {
+      .script-columns {
+        grid-template-columns: 1fr;
+      }
+    }
+    .script-col {
+      font-size: 14.5px;
+      line-height: 1.65;
+    }
+    .script-col__tag {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--cl-text-muted);
+      margin-bottom: 8px;
+      padding-bottom: 4px;
+      border-bottom: 1px solid var(--cl-line);
+    }
+    .script-col--visual {
+      color: #334155;
+    }
+    .script-col--audio {
+      color: var(--cl-text-body);
+      font-family: var(--font-body);
+    }
+
+    /* Audit Table */
+    .audit-table-wrap {
+      overflow-x: auto;
+      margin: 24px 0;
+      border: 1px solid var(--cl-line);
+      border-radius: 14px;
+      background: #ffffff;
+    }
+    table.audit-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14.5px;
+      text-align: left;
+    }
+    table.audit-table th {
+      background: var(--cl-tint);
+      font-family: var(--font-display-long);
+      font-weight: 700;
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--cl-line);
+      color: var(--cl-text-base);
+      font-size: 12.5px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    table.audit-table td {
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--cl-line);
+      vertical-align: top;
+      line-height: 1.6;
+    }
+    table.audit-table tr:last-child td {
+      border-bottom: none;
+    }
+    .col-wrong {
+      color: #b91c1c;
+      background: #fffafa;
+      font-family: var(--font-mono);
+      font-size: 13.5px;
+    }
+    .col-right {
+      color: #15803d;
+      font-weight: 600;
+    }
+
+    /* Highlight Rules */
+    .highlight-rule {
+      background: #eff6ff;
+      border-left: 4px solid var(--cl-accent);
+      padding: 16px 20px;
+      border-radius: 0 12px 12px 0;
+      margin: 20px 0;
+      font-size: 16px;
+    }
+    .highlight-rule--amber {
+      background: #fffbeb;
+      border-left: 4px solid var(--cl-amber);
+    }
+
+    .quote-box {
+      background: #f1f5f9;
+      border-radius: 12px;
+      padding: 18px 22px;
+      font-family: var(--font-body);
+      font-size: 16px;
+      color: var(--cl-text-body);
+      line-height: 1.75;
+      margin: 16px 0;
+      border-left: 3px solid #94a3b8;
+    }
+
+    .editorial-hook {
+      font-family: var(--font-body);
+      font-style: italic;
+      font-size: clamp(17px, 2vw, 20px);
+      line-height: 1.65;
+      color: var(--cl-text-base);
+      border-left: 3px solid var(--cl-accent);
+      padding-left: 20px;
+      margin: 26px 0;
+    }
+    .editorial-hook--amber {
+      border-left-color: var(--cl-amber);
+    }
+
+    /* Bottom Nav */
+    .bottom-nav {
+      margin-top: 50px;
+      padding-top: 28px;
+      border-top: 1px solid var(--cl-line);
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+      font-family: var(--font-display-long);
+      font-size: 14px;
+    }
+    .bottom-nav a {
+      color: var(--cl-text-muted);
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .bottom-nav a:hover {
+      color: var(--cl-accent);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- TOP NAV -->
+  <nav class="top-nav">
+    <div class="top-nav__breadcrumbs">
+      <a href="./wikicontent.html">Wiki Content</a>
+      <span>/</span>
+      <span>Case Chị Kat (Tiệm Bánh)</span>
+    </div>
+    <div class="top-nav__links">
+      <a href="./kienpb.html" class="top-nav__link">Case Kiên Phân Bón ↗</a>
+      <a href="./huuviet.html" class="top-nav__link">Case Đoàn Hữu Việt ↗</a>
+      <a href="./logic-storytelling-niem-tin.html" class="top-nav__link">7 Màn Storytelling ↗</a>
+      <a href="./wikicontent.html" class="top-nav__link">← Mục lục</a>
+    </div>
+  </nav>
+
+  <!-- MÀN 1: 4 CÂU LỤC BÁT & BẢN CHẤT NIỀM TIN TRONG NGHỀ BÁNH THỦ CÔNG -->
+  <section class="cl-zebra-section cl-zebra--light">
+    <div class="cl-sec-container">
+      <div class="cl-badge cl-badge--amber">01 / TỔNG KHO TRÍ TUỆ • NGUYỄN ĐỨC VIỆT</div>
+      <h1 class="title-short">CASE CHỊ KAT: TỪ BỘT BƠ LÒ NƯỚNG ĐẾN 7 GIỜ GÂY DỰNG LÒNG TIN</h1>
+
+      <p class="cl-body">
+        Một chiếc bánh kem đại trà ngoài chợ hay bánh ngọt công nghiệp giá vài chục nghìn: Người ta mua vội để ăn lót dạ hay dỗ con trẻ, chỉ cần rẻ và ngọt là xong. Nhưng khi một người bỏ ra từ 500 nghìn đến vài triệu đồng cho một chiếc bánh kem nghệ thuật thủ công, hay một học viên gom góp 15 - 20 triệu đi học nghề mở tiệm: Khách hàng không bao giờ rút ví vì vài lời rao hoa mỹ <i>"chuẩn vị Pháp"</i> hay <i>"ngon từ tâm"</i>. Người ta chỉ trao tiền cho một người thợ mà họ thấy <b>thấu suốt nỗi sợ thầm kín trong bụng và dám chịu thiệt để bảo bọc thể diện cho họ</b>.
+      </p>
+
+      <!-- 4 CÂU THƠ LỤC BÁT GHI NHỚ -->
+      <div class="luc-bat-card">
+        <div class="luc-bat-tag">4 CÂU LỤC BÁT DỄ NHỚ • BẢN GHI NHỚ LÀM NGHỀ BÁNH</div>
+        <div class="luc-bat-poem">
+          <p>“Nhìn bọt khí, ngửi men nồng,</p>
+          <p>Nói trúng nỗi sợ, khách không tiếc tiền.</p>
+          <p>Bảy giờ lửa ấm bên hiên,</p>
+          <p>Hộp nhung chiếc bánh, thảo hiền trao tay.”</p>
+        </div>
+        <div class="luc-bat-sub">
+          <b>Ý nghĩa 4 câu:</b> Bắt bệnh vi mô từ mắt rỗ bọt khí và độ dẻo của men + Nói trúng nỗi bất an giấu kín (sợ ngọt khé cổ, sợ phẩm màu hại con, sợ học nghề về vữa kem) để bảo bọc thể diện cho khách + Xuất hiện đủ 7 giờ qua nếp sống xưởng bánh mộc mạc + Đóng gói âm thanh ASMR và hình ảnh tinh tươm như chiếc hộp nhung.
+        </div>
+      </div>
+
+      <div class="highlight-rule highlight-rule--amber">
+        <b>Chỗ mấu chốt của sự chuyển đổi:</b> Trước đây, chị Kat hay mắc kẹt giữa hai thái cực: hoặc là chỉ quay clip khoe bánh đẹp lung linh như tranh vẽ (khách xem khen đẹp rồi lướt qua), hoặc là quay clip dạy làm bánh chung chung kiểu "chia sẻ công thức miễn phí" (hút toàn người tò mò, không chuyển thành đơn hàng hay học viên chất lượng). Khi đưa bài giảng 7 Màn Storytelling vào xưởng bánh, chị Kat có <b>cả một cỗ máy làm kênh hoàn chỉnh</b>: 70% video đời thường xưởng bánh để người ta quen mặt, tin cậy + 30% nhát cắt chuyên môn vi mô chẩn đoán 5 giây kiểu Woodsmall để chốt chặt lòng tin.
+      </div>
+    </div>
+  </section>
+
+  <!-- MÀN 2: BẢNG AUDIT VĂN PHONG THỰC CHIẾN CHUẨN TIỆM BÁNH -->
+  <section class="cl-zebra-section cl-zebra--tint">
+    <div class="cl-sec-container">
+      <div class="cl-badge cl-badge--amber">02 / AUDIT VĂN PHONG THỰC CHIẾN</div>
+      <h2 class="title-short">LỌC BỎ VĂN MẪU HOA MỸ &amp; CHUẨN HÓA GIỌNG ANH VIỆT</h2>
+
+      <p class="cl-body">
+        Để video chạm được vào những bà mẹ kỹ tính đặt bánh sinh nhật cho con, những người phụ nữ sành ăn sẵn sàng trả tiền triệu cho chiếc bánh kem bơ thủ công, và những bạn trẻ đang ấp ủ ước mơ mở tiệm bánh khởi nghiệp, ngôn từ của chị Kat phải <b>sạch bóng văn mẫu ẩm thực sáo rỗng và tiếp thị đao to búa lớn</b>.
+      </p>
+
+      <div class="audit-table-wrap">
+        <table class="audit-table">
+          <thead>
+            <tr>
+              <th style="width: 48%;">❌ Từ ngữ sách vở / Văn mẫu marketing (Cần bỏ)</th>
+              <th style="width: 52%;">✅ Từ ngữ mộc mạc chuẩn anh Việt (Bắt buộc dùng)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="col-wrong">Bánh làm từ tâm / Gửi trọn yêu thương</td>
+              <td class="col-right">Dám tự tay đổ bỏ mẻ bánh lỗi / Cân chuẩn từng gram bột gram bơ</td>
+            </tr>
+            <tr>
+              <td class="col-wrong">Nguyên liệu organic cao cấp chuẩn Pháp 100%</td>
+              <td class="col-right">Dùng bơ động vật ngậy béo tự nhiên, không pha mỡ trừu hay kem topping công nghiệp để chống chảy</td>
+            </tr>
+            <tr>
+              <td class="col-wrong">Đòn bẩy tâm lý / Nghệ thuật chốt sale đỉnh cao</td>
+              <td class="col-right">Nói trúng nỗi bất an giấu kín của khách để họ thở phào an tâm</td>
+            </tr>
+            <tr>
+              <td class="col-wrong">Tỷ lệ chuyển đổi đơn hàng / Phễu khách hàng tiệm bánh</td>
+              <td class="col-right">Khách quen tự động nhắn tin đặt trước cả tuần, tiệc xong nhắn lời cảm ơn</td>
+            </tr>
+            <tr>
+              <td class="col-wrong">Căn bệnh ngầm / Nỗi đau của người tiêu dùng</td>
+              <td class="col-right">Chỗ khó nói: muốn bánh đẹp lộng lẫy để chụp ảnh giữ thể diện, nhưng sợ nhất bánh ngọt khé cổ và phẩm màu độc hại làm con ho</td>
+            </tr>
+            <tr>
+              <td class="col-wrong">Học viên thiếu tư duy làm nghề / Không có hoa tay</td>
+              <td class="col-right">Học viên làm hỏng vì âu đánh trứng còn dính nước, cốt bánh xẹp vì đảo bột quá tay làm vỡ bọt khí</td>
+            </tr>
+            <tr>
+              <td class="col-wrong">Vũ khí bán hàng / Bí quyết độc quyền triệu đô</td>
+              <td class="col-right">Cách làm rất tới của người thạo việc đứng lò lâu năm</td>
+            </tr>
+            <tr>
+              <td class="col-wrong">Gồng lên làm Master Chef / Chuyên gia bánh ngọt quốc tế</td>
+              <td class="col-right">Chị thợ làm bánh đàng hoàng, mặc tạp dề dính vệt bột mì, nói chuyện mộc mạc</td>
+            </tr>
+            <tr>
+              <td class="col-wrong">Hạ khiên phòng thủ sinh học của khách hàng</td>
+              <td class="col-right">Khách bớt e ngại, thấy người làm bánh thật thà nên mở lòng tin tưởng</td>
+            </tr>
+            <tr>
+              <td class="col-wrong">Tự xưng hay chèn chữ "ông giáo"</td>
+              <td class="col-right">Tuyệt đối cấm. Xưng hô tự nhiên, đàng hoàng: Tôi - Bạn, Chị Kat - Khách hàng, Chị - Em</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p class="editorial-hook editorial-hook--amber">
+        "Khách hàng sành ăn và học viên nghiêm túc không nghe lời một người đứng trước ống kính tán dương chiếc bánh của mình 'ngon nhất thế giới'. Họ chỉ tin một người thợ hai bàn tay phủi bột mì, cắt đôi ổ bánh ra mà chỉ đúng từng bọt khí li ti bên trong."
+      </p>
+    </div>
+  </section>
+
+  <!-- MÀN 3: BÓC TÁCH HIỆN TRƯỜNG THỰC TẾ: 3 TẦNG NHẬN THỨC CỦA NGHỀ BÁNH CHỊ KAT -->
+  <section class="cl-zebra-section cl-zebra--light">
+    <div class="cl-sec-container">
+      <div class="cl-badge cl-badge--amber">03 / BÓC TÁCH HIỆN TRƯỜNG</div>
+      <h2 class="title-short">HIỆN TRƯỜNG NGHỀ BÁNH: TỪ LỜI RAO ĐÃI BÔI ĐẾN TẦNG 2.5 GIẤU KÍN</h2>
+
+      <p class="cl-body">
+        Nghề bánh thủ công nhìn bề ngoài có vẻ ngọt ngào, thơ mộng như phim Hàn Quốc. Nhưng thực tế hiện trường là sự vật lộn giữa áp lực nguyên liệu đắt đỏ, thời tiết nồm ẩm xứ nhiệt đới và tâm lý phức tạp của khách hàng:
+      </p>
+
+      <div class="apple-card">
+        <div class="apple-card__title">1. Tầng 1: Lời Rao Đãi Bôi Ngoài Thị Trường (Ai Cũng Nói, Không Ai Nhớ)</div>
+        <p class="cl-body" style="margin-bottom: 0;">
+          <i>"Bánh nhà làm không chất bảo quản", "Ngọt thanh thanh ít đường", "Nguyên liệu nhập khẩu chuẩn Pháp"...</i> Đây là những câu khẩu hiệu đãi bôi mà 100 tiệm bánh từ vỉa hè đến cửa hàng mặt phố đều rêu rao mỗi ngày. Khách hàng lướt qua hàng trăm video như vậy và não bộ tự động gạt bỏ vì không có bất kỳ chi tiết người thật việc thật nào để neo đậu niềm tin.
+        </p>
+      </div>
+
+      <div class="apple-card">
+        <div class="apple-card__title">2. Tầng 2: Bề Mặt Khó Khăn Thường Nhật (Cái Khổ Nhìn Thấy Bằng Mắt)</div>
+        <p class="cl-body" style="margin-bottom: 0;">
+          Bánh làm thủ công tỉ mẩn từng chi tiết nhưng hay bị ế ẩm; mùa hè giao bánh đi xa gặp nắng nóng thì kem bơ, kem tươi chảy xệ hoa văn; khách hàng đem chiếc bánh thủ công làm từ bơ động vật ra so sánh giá với chiếc bánh bông lan công nghiệp 100k ngoài chợ; thức khuya dậy sớm từ 4h sáng canh lò nướng, nhồi bột rã cả hai cánh tay mà doanh thu vẫn bấp bênh.
+        </p>
+      </div>
+
+      <div class="apple-card">
+        <div class="apple-card__title">3. Tầng 2.5: Nỗi Niềm Giấu Kín &amp; Cái Cớ Thể Diện (Mỏ Vàng Chuyển Hóa)</div>
+        <p class="cl-body" style="margin-bottom: 12px;">
+          Đây là nơi quyết định hành vi rút ví của cả 2 tệp khách hàng mà chị Kat phục vụ:
+        </p>
+        <p class="cl-body" style="margin-bottom: 10px;">
+          • <b>Tệp 1: Khách đặt bánh sinh nhật / sự kiện cao cấp (B2C):</b><br>
+          - <i>Cái cớ thể diện:</i> Chiếc bánh phải lộng lẫy, sang chảnh, bề thế để đặt trang trọng giữa bàn tiệc, chụp ảnh up Facebook cho nở mày nở mặt với người thân, bạn bè và đồng nghiệp.<br>
+          - <i>Nỗi sợ giấu kín:</i> Sợ bánh ngọt lợ khé cổ ai ăn xong cũng bỏ dở cả tảng kem béo ngấy; sợ phẩm màu hóa chất công nghiệp làm con nít ăn vào đỏ loét miệng lưỡi rồi ho sốt; sợ shipper phóng nhanh phanh gấp làm bánh xiêu vẹo biến dạng trước giờ khai tiệc làm mất mặt chủ nhà.
+        </p>
+        <p class="cl-body" style="margin-bottom: 0;">
+          • <b>Tệp 2: Học viên học nghề làm bánh mở tiệm (B2B / Nghề):</b><br>
+          - <i>Cái cớ thể diện:</i> Muốn học một cái nghề tử tế, tự chủ tài chính, mở tiệm bánh xinh xắn để người thân tự hào.<br>
+          - <i>Nỗi niềm giấu kín:</i> Bỏ ra chục triệu đi học các trung tâm nhưng về nhà làm mẻ nào hỏng mẻ đó (cốt bánh xẹp lép như cao su, kem tươi tách nước vữa ra như cháo). Không dám nhắn tin hỏi thầy cô vì sợ bị chê là <i>"vụng về, dốt nát, không có hoa tay"</i>. Cắn răng tự đổ từng âu bơ sữa tiền triệu vào sọt rác trong sự bất lực và hoang mang.
+        </p>
+      </div>
+
+      <div class="apple-card" style="border-left: 4px solid var(--cl-amber);">
+        <div class="apple-card__title" style="color: var(--cl-amber);">4. Nhát Cắt Tạo Niềm Tin Của Người Thạo Việc (Hành Động Chịu Thiệt Vì Khách)</div>
+        <p class="cl-body" style="margin-bottom: 10px;">
+          Chị Kat không cần chứng minh mình là nghệ nhân thế giới. Niềm tin được đóng đinh ngay lập tức khi chị làm những điều mà những người bán hàng chộp giật không bao giờ dám làm:
+        </p>
+        <div class="quote-box">
+          <i>"Cầm khay bánh ra khỏi lò, thấy bột ủ non 15 phút làm thớ bánh hơi đặc, chị Kat lặng lẽ đổ thẳng cả mẻ bánh 500 nghìn vào thùng rác trước ống kính: 'Mẻ này ăn vẫn được, nhưng thớ bánh không đạt độ xốp nhẹ tiêu chuẩn của tiệm, em tuyệt đối không đóng hộp giao cho khách'.<br><br>
+          Hay khi khách gọi điện nài nỉ: 'Chị cần gấp chiếc bánh sinh nhật 3 tầng lấy sau 2 tiếng nữa, trả bao nhiêu tiền cũng được'. Chị Kat từ tốn từ chối: 'Nếu dùng kem công nghiệp pha phụ gia chống chảy thì em nhận ngay. Nhưng tiệm em chỉ làm kem bơ tươi nguyên chất, bánh cần ít nhất 4 tiếng để ổn định kết cấu lạnh. Em thà mất một đơn hàng còn hơn để chiếc bánh bị sụp đổ giữa bàn tiệc của gia đình chị'."</i>
+        </div>
+        <p class="cl-body" style="margin-bottom: 0;">
+          <b>Cái giá chị Kat chấp nhận trả:</b> Đổ bỏ mẻ bánh lỗi và từ chối tiền nóng trước mắt. Hành động chịu thiệt đó chính là <b>tín hiệu đắt giá (Costly Signal)</b> khiến khách hàng và học viên trao trọn niềm tin.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- MÀN 4: HỢP NHẤT VỚI BÀI TRÌNH 7 MÀN: 5 BƯỚC NÂNG CẤP BẮT BUỘC -->
+  <section class="cl-zebra-section cl-zebra--tint">
+    <div class="cl-sec-container">
+      <div class="cl-badge cl-badge--amber">04 / BƯỚC CHUYỂN TOÀN DIỆN</div>
+      <h2 class="title-short">5 NẤC NÂNG CẤP BẮT BUỘC THEO BÀI TRÌNH 7 MÀN</h2>
+
+      <p class="cl-body">
+        Khi đưa toàn bộ tư tưởng của bài giảng <b>Logic Storytelling &amp; Bản Chất Niềm Tin</b> vào tiệm bánh của chị Kat, chúng ta tái cấu trúc lại toàn bộ hệ thống nội dung:
+      </p>
+
+      <!-- NẤC 1 -->
+      <div class="apple-card">
+        <div class="apple-card__title">Nấc 1: Áp Dụng Công Thức Google 7 - 11 - 4 (Giải Bài Toán 7 Giờ Quen Mặt)</div>
+        <p class="cl-body">
+          Khách hàng không bao giờ bỏ ra 1 triệu cho chiếc bánh kem hay 20 triệu cho khóa học nghề nếu họ chỉ mới xem 1 video ngắn ngủi. Họ cần tích lũy đủ <b>7 giờ tiếp xúc, qua 11 điểm chạm, ở 4 không gian khác nhau</b> thì mới thấy an tâm gửi gắm tiền bạc.
+        </p>
+        <p class="cl-body" style="margin-bottom: 0;">
+          <b>Cách phân bổ tỷ lệ nội dung của xưởng bánh:</b>
+          <br>• <b>70% Video Đời Sống Tiệm Bánh (Nhịp Đệm Quen Mặt):</b> Cảnh đốt lò nướng lúc 4h sáng khi trời còn mờ sương; cảnh rây bột mì xào xạc rơi như tuyết; cảnh lau bàn đá granite mát rượi; cảnh rửa từng chiếc khuôn bánh nhôm sáng bóng; cảnh dính vệt bột trắng trên tạp dề; cảnh ngồi nhấp ngụm cà phê ấm bên mẻ bánh mới ra lò thơm nức... Những video này quay cực nhanh, mộc mạc, giúp người xem thấy thư giãn, tích lũy đủ 7 giờ mà không có chút cảm giác bị bán hàng.
+          <br>• <b>30% Video Nhát Cắt Niềm Tin:</b> Những pha bẻ đôi cốt bánh bắt bệnh bọt khí, quệt muỗng kem kiểm tra độ vữa, từ chối nhận đơn bánh gấp, đổ bỏ mẻ bánh lỗi. Khi đã quen mặt chị Kat suốt hàng tuần, chỉ cần 1 nhát cắt này là niềm tin được khóa chặt 100%.
+        </p>
+      </div>
+
+      <!-- NẤC 2 -->
+      <div class="apple-card">
+        <div class="apple-card__title">Nấc 2: Tinh Gọn Theo Định Luật Woodsmall: "Bắt Bệnh 5 Giây Như Bác Sĩ Cầm Dao Mổ"</div>
+        <p class="cl-body">
+          Nhà nghiên cứu Wyatt Woodsmall chỉ ra: <i>Mô tả đúng bệnh ở cấp độ vi mô là người ta mặc định mình nắm thuốc giải</i>. Khách hàng và học viên không cần nghe bài giảng lý thuyết hóa học về cấu trúc phân tử của lòng trắng trứng. Họ cần một người thợ nhìn qua 5 giây là phán đúng chỗ sai:
+        </p>
+        <p class="cl-body" style="margin-bottom: 0;">
+          • <b>Bắt bệnh cốt bánh xẹp:</b> Bẻ đôi ổ bánh ra, nhìn vào mặt cắt bọt khí: <i>"Cốt bánh này nhìn ngoài vàng ruộm nhưng bẻ ra bọt khí to nhỏ lộn xộn, đáy bánh chai lỳ thế này... là do lúc fold bột bạn đảo vòng tròn làm vỡ bọt khí, chứ không phải do lò nướng hỏng"</i>.
+          <br>• <b>Bắt bệnh kem vữa:</b> Nhấc phới lồng lên nhìn vệt nước lợn cợn: <i>"Đánh kem bơ mà thấy tách nước như bã đậu... là do cái âu inox của bạn còn dính nước, hoặc nhiệt độ phòng vượt quá 22 độ C"</i>.
+          <br>• Chỉ cần 5 giây chẩn đoán vi mô, người xem nhận ra ngay tay nghề lão luyện của người thạo việc.
+        </p>
+      </div>
+
+      <!-- NẤC 3 -->
+      <div class="apple-card">
+        <div class="apple-card__title">Nấc 3: Đóng Gói Thị Giác — Chiếc Hộp Nhung Của Tiệm Bánh Thủ Công</div>
+        <p class="cl-body">
+          Đồ ăn ngon và chiếc bánh kem thủ công đắt tiền ăn nhau ở <b>cảm giác thèm (Appetite Appeal)</b> và <b>sự sạch sẽ tinh tươm</b>. Kiến thức hay và bánh ngon đến mấy mà quay video mờ mờ, bàn bếp bừa bộn thì người ta vẫn nghi ngờ vệ sinh an toàn thực phẩm.
+        </p>
+        <p class="cl-body" style="margin-bottom: 0;">
+          <b>Chiếc hộp nhung của chị Kat:</b>
+          <br>• <b>Âm thanh ASMR chân thật:</b> Tiếng bột rơi xào xạc qua rây lọc, tiếng dao gợn sóng cắt lớp vỏ bánh giòn rụm, tiếng máy đánh trứng vo ve đều nhịp, tiếng que trộn bột vét quanh thành âu láng bóng.
+          <br>• <b>Góc máy cận (Macro):</b> Cận cảnh lớp kem bơ mướt mát lấp lánh ánh sáng tự nhiên, từng bọt khí li ti đều tăm tắp trong thớ bánh bông lan, lát dâu tây tươi mọng nước đặt nhẹ lên lớp kem trắng muốt.
+          <br>• <b>Tác phong người thợ:</b> Tạp dề vải canvas gọn gàng, tóc búi cao có nẹp gọn, móng tay cắt ngắn sạch bong, bàn đá granite lau sáng bóng — toát lên vẻ đàng hoàng, cẩn trọng của một người yêu nghề.
+        </p>
+      </div>
+
+      <!-- NẤC 4 -->
+      <div class="apple-card">
+        <div class="apple-card__title">Nấc 4: Mở Rộng Sang Cả 2 Tệp (Khách Mua Bánh B2C &amp; Học Viên Mở Tiệm B2B)</div>
+        <p class="cl-body">
+          Một kênh nội dung của người làm bánh thủ công không nên chỉ dừng lại ở việc bán lẻ từng chiếc bánh sinh nhật:
+        </p>
+        <p class="cl-body" style="margin-bottom: 0;">
+          • <b>Khách mua bánh cao cấp (B2C):</b> Các bà mẹ trẻ, các cặp đôi, các công ty cần bánh tiệc sang trọng. Họ mua chiếc bánh không phải để ăn no, mà mua sự an tâm tuyệt đối cho sức khỏe con cái và sự hãnh diện khi chiếc bánh được mang ra giữa buổi tiệc.
+          <br>• <b>Học viên học nghề mở tiệm (B2B):</b> Những bạn trẻ, mẹ bỉm muốn học nghề làm bánh bài bản để tự kinh doanh. Họ cần một người thầy thấu suốt những lần làm hỏng, chỉ đúng lỗi vi mô và không bao giờ chê bai học viên. Tệp này mang lại nguồn doanh thu đào tạo bền vững và giá trị cao cho chị Kat.
+        </p>
+      </div>
+
+      <!-- NẤC 5 -->
+      <div class="apple-card">
+        <div class="apple-card__title">Nấc 5: Sản Xuất Bền Bỉ Với Công Cụ 4 Tầng &amp; Bối Cảnh Xưởng Bánh Quen Thuộc</div>
+        <p class="cl-body" style="margin-bottom: 0;">
+          Chị Kat không cần phải thuê studio đắt đỏ hay chạy theo các trào lưu nhảy nhót trên mạng. Toàn bộ nội dung đều được sản xuất ngay trên mặt bàn đá granite quen thuộc của xưởng bánh, với một chiếc chân máy cố định và một chiếc micro gắn áo. Mỗi mẻ bánh hỏng, mỗi câu hỏi của khách hàng hay học viên đều là nguyên liệu dồi dào để đưa vào công cụ bóc tách 4 tầng (<a href="./4tang.html" style="color: var(--cl-accent); font-weight: 600;">4tang.html</a>) xuất ra kịch bản 7 câu sắc nét trong 30 giây.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- MÀN 5: 4 KỊCH BẢN MẪU THỰC CHIẾN TẠI XƯỞNG BÁNH -->
+  <section class="cl-zebra-section cl-zebra--light">
+    <div class="cl-sec-container">
+      <div class="cl-badge cl-badge--amber">05 / KỊCH BẢN THỰC ĐỊA</div>
+      <h2 class="title-short">4 KỊCH BẢN MẪU THỰC CHIẾN TẠI XƯỞNG BÁNH CHỊ KAT</h2>
+
+      <p class="cl-body">
+        Dưới đây là 4 kịch bản mẫu được chuẩn hóa theo cấu trúc 2 cột (Hình ảnh B-roll &amp; Lời thoại thực tế), giúp chị Kat cầm điện thoại lên là bấm máy quay được ngay:
+      </p>
+
+      <!-- KỊCH BẢN 1 -->
+      <div class="apple-card">
+        <div class="apple-card__badge">KỊCH BẢN 1 • ĐỜI THƯỜNG TIỆM BÁNH (70% NHỊP ĐỆM QUEN MẶT)</div>
+        <div class="apple-card__title">Đốt Lò Nướng 4h Sáng &amp; Tách Cà Phê Bên Mẻ Bánh Nóng</div>
+
+        <div class="script-columns">
+          <div class="script-col script-col--visual">
+            <div class="script-col__tag">📹 HÌNH ẢNH B-ROLL (CAM A &amp; B)</div>
+            • <b>Cam A:</b> Khung cảnh xưởng bánh lúc 4h sáng, trời còn tối đen, chị Kat bấm công tắc khởi động lò nướng, ánh đèn vàng ấm áp hắt qua ô kính lò.<br>
+            • <b>Cam B (Macro &amp; ASMR):</b> Cận cảnh rây bột mì trắng mịn rơi xào xạc xuống mặt bàn đá granite như tuyết rơi.<br>
+            • <b>Cam B:</b> Mẻ bánh mì hoa cúc nở căng mọng, bề mặt vàng ươm tỏa hơi khói nghi ngút.<br>
+            • <b>Cam A:</b> Chị Kat ngồi tựa vào mép bàn đá, nhấp ngụm cà phê ấm, mỉm cười nhìn ra con phố còn đang ngái ngủ.
+          </div>
+          <div class="script-col script-col--audio">
+            <div class="script-col__tag">🎙️ LỜI THOẠI CHỊ KAT (MỘC MẠC)</div>
+            <i>"Nhiều người hỏi mình làm thợ bánh thủ công sướng hay khổ? Sướng là ngày nào đôi bàn tay cũng thơm mùi bơ sữa, được thấy ánh mắt rạng rỡ của khách lúc nhận chiếc bánh cho ngày vui.<br><br>
+            Còn khổ là sáng nào cũng phải thức dậy từ 4 giờ, khi cả thành phố còn đang trùm chăn ấm. Mùa đông lạnh buốt, chạm tay vào âu inox hay nước lạnh buốt thấu xương.<br><br>
+            Nhưng ngồi nhấp ngụm cà phê nóng, ngửi mẻ bánh đầu tiên thơm nức vừa ra lò... mình hiểu làm cái nghề này, nếu không yêu từng hạt bột, không kiên nhẫn với từng độ lửa thì chẳng thể nào đi đường dài được."</i>
+          </div>
+        </div>
+      </div>
+
+      <!-- KỊCH BẢN 2 -->
+      <div class="apple-card">
+        <div class="apple-card__badge">KỊCH BẢN 2 • ĐỊNH LUẬT WOODSMALL (30% NHÁT CẮT VI MÔ - B2B)</div>
+        <div class="apple-card__title">Bẻ Đôi Ổ Bánh Nhìn Bọt Khí: Bắt Bệnh Cốt Bánh Xẹp Lép</div>
+
+        <div class="script-columns">
+          <div class="script-col script-col--visual">
+            <div class="script-col__tag">📹 HÌNH ẢNH B-ROLL (CAM A &amp; B)</div>
+            • <b>Cam B (Macro):</b> Ống kính dí sát vào bàn tay chị Kat bẻ đôi một miếng cốt bánh bông lan. Mặt cắt lộ rõ những lỗ khí to tổ bố xen lẫn những mảng bột chai đặc quánh ở đáy.<br>
+            • <b>Cam A:</b> Chị Kat cầm miếng bánh chỉ vào lớp đáy chai lỳ, ánh mắt nghiêm cẩn của người thạo việc.<br>
+            • <b>Cam B (So sánh):</b> Chị Kat bẻ đôi một miếng bánh chuẩn: thớ bánh đều tăm tắp, xốp nhẹ như bọt biển, ấn nhẹ tay xuống là tự đàn hồi phồng trở lại.<br>
+            • <b>Cam B:</b> Thao tác tay cầm phới dẹt (spatula) thực hiện kỹ thuật fold bột đúng: vét từ đáy âu hắt nhẹ lên.
+          </div>
+          <div class="script-col script-col--audio">
+            <div class="script-col__tag">🎙️ LỜI THOẠI CHỊ KAT (MỘC MẠC)</div>
+            <i>"Bạn bẻ miếng bánh ra mà thấy bọt khí to nhỏ lộn xộn, đáy bánh chai lỳ như miếng cao su thế này... thì đừng vội đổ lỗi do lò nướng nhiệt không đều hay bột nở dỏm.<br><br>
+            Lỗi này 90% các bạn mới học nghề đều mắc: lúc trộn bột với lòng trắng trứng, các bạn dùng phới đảo vòng tròn như quấy bột trẻ con, làm vỡ nát hết các bọt khí li ti.<br><br>
+            Cốt bánh muốn bông xốp như mây thì kỹ thuật fold bột phải dứt khoát: vét phới sát đáy âu rồi hắt nhẹ lên, xoay âu đều nhịp. Nhẹ nhàng như dỗ một đứa trẻ. Làm bánh thủ công, sai một cử động tay là hỏng cả mẻ bột."</i>
+          </div>
+        </div>
+      </div>
+
+      <!-- KỊCH BẢN 3 -->
+      <div class="apple-card">
+        <div class="apple-card__badge">KỊCH BẢN 3 • TỪ CHỐI TIỀN NÓNG (HÀNH ĐỘNG CHỊU THIỆT - B2C)</div>
+        <div class="apple-card__title">Từ Chối Đơn Bánh Kem Gấp Trong 2 Tiếng Để Cứu Bàn Tiệc</div>
+
+        <div class="script-columns">
+          <div class="script-col script-col--visual">
+            <div class="script-col__tag">📹 HÌNH ẢNH B-ROLL (CAM A &amp; B)</div>
+            • <b>Cam A:</b> Màn hình điện thoại hiện tin nhắn của khách: <i>"Chị cần gấp bánh sinh nhật 3 tầng lấy sau 2 tiếng nữa, trả gấp đôi tiền em làm gấp giúp chị"</i>. Chị Kat nhìn tin nhắn, thở dài nhẹ rồi gõ hồi đáp.<br>
+            • <b>Cam B (Macro):</b> Cận cảnh chị Kat quệt lớp kem bơ tươi nguyên chất lên cốt bánh lạnh, lớp kem mướt mịn không có phụ gia tạo đông.<br>
+            • <b>Cam B:</b> Chiếc bánh mẫu bị chảy nhão xệ cánh khi đem ra ngoài trời nắng mà chưa đủ giờ ổn định lạnh.<br>
+            • <b>Cam A:</b> Chị Kat gọi điện thoại tư vấn chân thành cho khách một phương án an toàn khác.
+          </div>
+          <div class="script-col script-col--audio">
+            <div class="script-col__tag">🎙️ LỜI THOẠI CHỊ KAT (MỘC MẠC)</div>
+            <i>"Hôm nay có một chị nhắn tin sẵn sàng trả gấp đôi tiền để lấy một chiếc bánh kem 3 tầng sau đúng 2 tiếng nữa, nhưng em đành xin phép từ chối.<br><br>
+            Nếu dùng kem topping công nghiệp pha chất chống chảy, em nhận ngay, 1 tiếng là xong chiếc bánh lộng lẫy bỏ túi tiền triệu dễ ợt. Nhưng tiệm em chỉ dùng kem bơ động vật nguyên chất, cốt bánh mới nướng xong còn nóng, nếu cố trét kem lên thì chỉ đi được nửa đường là bánh sụp đổ, kem chảy nhão nhoét.<br><br>
+            Em thà mang tiếng là tiệm khó tính mất một đơn hàng, còn hơn giao một chiếc bánh thảm họa làm hỏng buổi tiệc sinh nhật cả năm chỉ có một lần của gia đình chị."</i>
+          </div>
+        </div>
+      </div>
+
+      <!-- KỊCH BẢN 4 -->
+      <div class="apple-card">
+        <div class="apple-card__badge">KỊCH BẢN 4 • GIẢI CỨU HỌC VIÊN GIẤU DỐT (TẦNG 2.5 - B2B)</div>
+        <div class="apple-card__title">Vì Sao Kem Bơ Động Vật Bị Tách Nước Vữa Như Cháo?</div>
+
+        <div class="script-columns">
+          <div class="script-col script-col--visual">
+            <div class="script-col__tag">📹 HÌNH ẢNH B-ROLL (CAM A &amp; B)</div>
+            • <b>Cam B (Macro):</b> Cận cảnh chiếc phới lồng nhấc lên một âu kem bơ bị tách nước, lợn cợn rời rạc như bã đậu vữa.<br>
+            • <b>Cam A:</b> Chị Kat lấy một chiếc khăn bông sạch lau khô ráo từng ngóc ngách của chiếc âu inox mới.<br>
+            • <b>Cam B (ASMR):</b> Tiếng máy đánh trứng vo ve đều đặn, lớp kem bơ chuyển dần từ màu vàng ngà sang trắng mịn màng như dải lụa.<br>
+            • <b>Cam A:</b> Chị Kat múc một muỗng kem dốc ngược phới xuống, kem đứng chóp bóng mượt không rơi rớt.
+          </div>
+          <div class="script-col script-col--audio">
+            <div class="script-col__tag">🎙️ LỜI THOẠI CHỊ KAT (MỘC MẠC)</div>
+            <i>"Nhiều bạn đi học làm bánh tốn cả chục triệu, về nhà đánh kem bị vữa ra như cháo, không dám nhắn tin hỏi thầy cô vì sợ bị chê là vụng về dốt nát, rồi lẳng lặng tự đổ cả âu bơ đắt tiền vào sọt rác.<br><br>
+            Đừng nản lòng. Kem bị tách nước không phải do bạn không có hoa tay. Nó chỉ vì 2 lỗi vi mô này thôi: Thứ nhất là cái âu đánh của bạn còn dính đúng 1 giọt nước hoặc vệt dầu thừa. Thứ hai là bơ đem ra ngoài quá lâu bị chảy dầu mềm nhũn trước khi đánh.<br><br>
+            Chỉ cần âu thật khô ráo và bơ đạt độ dẻo lạnh 18-20 độ C, kem sẽ mướt mịn như lụa. Cứ bình tĩnh làm lại, làm thợ ai cũng phải trải qua những mẻ kem hỏng mới thành nghề được."</i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MÀN 6: LỘ TRÌNH 1 TUẦN QUAY GỌN NHẸ TẠI XƯỞNG BÁNH -->
+  <section class="cl-zebra-section cl-zebra--tint">
+    <div class="cl-sec-container">
+      <div class="cl-badge cl-badge--amber">06 / LỊCH TRÌNH VẬN HÀNH</div>
+      <h2 class="title-short">LỘ TRÌNH 1 TUẦN QUAY GỌN NHẸ TẠI XƯỞNG BÁNH</h2>
+
+      <p class="cl-body">
+        Chị Kat hoàn toàn có thể tự vận hành việc quay video với 1 chiếc điện thoại và 1 chân máy đặt ngay góc bàn đá, không làm ảnh hưởng đến tiến độ ra bánh của xưởng:
+      </p>
+
+      <div class="audit-table-wrap">
+        <table class="audit-table">
+          <thead>
+            <tr>
+              <th style="width: 18%;">Ngày</th>
+              <th style="width: 32%;">Định dạng &amp; Không gian</th>
+              <th style="width: 25%;">Góc máy &amp; Thao tác</th>
+              <th style="width: 25%;">Mục tiêu tiếp xúc (Google 7-11-4)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><b>Thứ 2</b></td>
+              <td>Đốt lò nướng 4h sáng, rây bột mì, uống ngụm cà phê ấm</td>
+              <td>Cam A quay không gian rộng mờ sương; Cam B quay bột bay</td>
+              <td>70% đời sống: Cho thấy sự chăm chỉ, thức khuya dậy sớm làm nghề đàng hoàng.</td>
+            </tr>
+            <tr>
+              <td><b>Thứ 3</b></td>
+              <td>Bẻ đôi ổ bánh bắt bệnh bọt khí to nhỏ, cốt bánh xẹp (Woodsmall)</td>
+              <td>Cam B dí sát macro mặt cắt bánh; Cam A quay biểu cảm điềm tĩnh</td>
+              <td>30% nhát cắt vi mô: Khẳng định tay nghề chẩn đoán sắc bén, hút học viên B2B.</td>
+            </tr>
+            <tr>
+              <td><b>Thứ 4</b></td>
+              <td>Âm thanh ASMR cắt vỏ bánh giòn rụm &amp; chà láng lớp kem mịn</td>
+              <td>Cam B quay macro lớp kem mướt bóng, thu rõ âm thanh dao gợn sóng</td>
+              <td>Chiếc hộp nhung: Tạo cảm giác thèm ăn (Appetite Appeal), thu hút khách mua B2C.</td>
+            </tr>
+            <tr>
+              <td><b>Thứ 5</b></td>
+              <td>Cảnh rửa từng chiếc khuôn nhôm, lau bàn đá granite lúc 10h đêm</td>
+              <td>Cam A quay góc xưởng gọn gàng, khuôn bánh xếp ngay ngắn</td>
+              <td>70% đời sống: Chứng minh quy chuẩn vệ sinh sạch sẽ tuyệt đối của tiệm.</td>
+            </tr>
+            <tr>
+              <td><b>Thứ 6</b></td>
+              <td>Tình huống từ chối đơn bánh kem gấp 2 tiếng để bảo vệ tiệc</td>
+              <td>Cam A quay màn hình tin nhắn; Cam B quay lớp kem bơ bảo quản lạnh</td>
+              <td>Chốt hạ lòng tin: Người làm nghề có tâm, không vì tiền nóng mà làm ẩu.</td>
+            </tr>
+            <tr>
+              <td><b>Thứ 7</b></td>
+              <td>Bắt bệnh kem bơ tách nước vữa như cháo (Giải cứu học viên giấu dốt)</td>
+              <td>Cam B quay âu kem vữa và âu kem mướt mịn đối chứng</td>
+              <td>Chạm Tầng 2.5: Bảo bọc thể diện cho học viên, chuyển đổi khóa đào tạo nghề.</td>
+            </tr>
+            <tr>
+              <td><b>Chủ nhật</b></td>
+              <td>Ngồi kiểm tra lịch đặt tiệc tuần tới, trả lời tin nhắn học viên</td>
+              <td>Cam A quay góc bàn làm việc yên tĩnh bên cuốn sổ công thức</td>
+              <td>Lắng nghe phản hồi từ khách ăn bánh và học viên, gom ý tưởng tuần mới.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="highlight-rule highlight-rule--amber">
+        <b>Đích đến tối thượng:</b> Khi một gia đình chuẩn bị tổ chức sinh nhật cho con hay một công ty cần đặt tiệc bánh kem trang trọng, <b>người đầu tiên họ nhớ tới chính là chị Kat</b>. Và khi một bạn trẻ muốn học nghề bánh để mở tiệm tự chủ, người duy nhất họ tin tưởng gửi gắm học phí chính là người thợ đã chỉ cho họ từng bọt khí nhỏ trên mạng xã hội.
+      </div>
+    </div>
+  </section>
+
+  <!-- MÀN 7: 3 NGUYÊN TẮC CỐT TỬ CỦA TIỆM BÁNH THỦ CÔNG & ĐIỀU HƯỚNG BÀI GIẢNG -->
+  <section class="cl-zebra-section cl-zebra--light">
+    <div class="cl-sec-container">
+      <div class="cl-badge cl-badge--amber">07 / NGUYÊN TẮC CỐT TỬ</div>
+      <h2 class="title-short">3 NGUYÊN TẮC BẤT DI BẤT DỊCH CỦA NGƯỜI LÀM BÁNH THỦ CÔNG</h2>
+
+      <p class="cl-body">
+        Dù sau này xưởng bánh có mở rộng quy mô hay đào tạo hàng trăm học viên, chị Kat chỉ cần khắc cốt ghi tâm 3 nguyên tắc sống còn:
+      </p>
+
+      <div class="apple-card">
+        <div class="apple-card__title">1. Tuyệt Đối Không Dùng Kem Topping Phụ Gia Để Chống Chảy</div>
+        <p class="cl-body" style="margin-bottom: 0;">
+          Kem bơ động vật nguyên chất có thể đỏng đảnh, dễ chảy khi gặp nhiệt độ cao, đòi hỏi vận chuyển bằng thùng xốp giữ nhiệt và dặn khách kỹ lưỡng. Nhưng đổi lại, nó tan ngay trên đầu lưỡi, thơm ngậy tự nhiên và an toàn cho sức khỏe con trẻ. Đừng bao giờ vì tiện lợi hay hám lợi trước mắt mà pha mỡ trừu hay chất ổn định nhân tạo để làm đứng phom bánh giả.
+        </p>
+      </div>
+
+      <div class="apple-card">
+        <div class="apple-card__title">2. Dám Tự Tay Đổ Bỏ Mẻ Bánh Lỗi</div>
+        <p class="cl-body" style="margin-bottom: 0;">
+          Một mẻ bánh ủ non bột, một ổ bánh nở không đều thớ hay một âu kem có dấu hiệu tách nước dứt khoát không bao giờ được phép đóng hộp giao cho khách hay dạy cho học viên. Sự khắt khe không nhân nhượng với chính tay nghề của mình là tấm danh thiếp uy tín nhất mà không tiền bạc nào mua được.
+        </p>
+      </div>
+
+      <div class="apple-card">
+        <div class="apple-card__title">3. Bảo Bọc Thể Diện Cho Người Ăn Và Người Học</div>
+        <p class="cl-body" style="margin-bottom: 0;">
+          Khách mua bánh muốn chiếc bánh thật sang để nở mày nở mặt với bàn tiệc nhưng trong bụng sợ phẩm màu làm con ho. Học viên đi học muốn có nghề nhưng sợ bị chê vụng về khi làm hỏng kem. Hãy nói trúng nỗi sợ đó và đưa ra giải pháp bảo bọc họ. Khi thể diện của họ được giữ gìn, họ sẽ trở thành khách hàng trung thành suốt đời của tiệm.
+        </p>
+      </div>
+
+      <p class="editorial-hook editorial-hook--amber">
+        "Một chiếc bánh ngon nhất không phải là chiếc bánh trát nhiều đường và phẩm màu sặc sỡ nhất, mà là chiếc bánh ăn xong còn đọng lại vị béo thanh của bơ sữa tươi và nụ cười an tâm của những người ngồi quanh bàn tiệc."
+      </p>
+
+      <!-- BOTTOM NAV -->
+      <div class="bottom-nav">
+        <a href="./wikicontent.html">← Quay Về Wiki Content Tổng</a>
+        <a href="./logic-storytelling-niem-tin.html">Xem Giáo Án 7 Màn Storytelling ↗</a>
+        <a href="./kienpb.html">Xem Case Kiên Phân Bón ↗</a>
+        <a href="./huuviet.html">Xem Case Đoàn Hữu Việt ↗</a>
+      </div>
+    </div>
+  </section>
+
+</body>
+</html>

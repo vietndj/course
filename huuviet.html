@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>CASE ĐOÀN HỮU VIỆT: TỪ VẾT KÉO QUỐC TẾ ĐẾN 7 GIỜ THẤU CẢM CHẤT TÓC VIỆT • NGUYỄN ĐỨC VIỆT</title>
+
+  <!-- Favicon Vector Chuẩn Cinema REC Monogram (VI + REC + DEO) -->
+  <link rel="icon" type="image/svg+xml" href="./favicon.svg">
+  <link rel="alternate icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%230B0F19'/%3E%3Ctext x='25' y='25' text-anchor='middle' dominant-baseline='central' font-family='sans-serif' font-weight='900' font-size='21' fill='%23FFF'%3EVI%3C/text%3E%3Ccircle cx='47' cy='25' r='5' fill='%23EF4444'/%3E%3Ctext x='32' y='46' text-anchor='middle' dominant-baseline='central' font-family='sans-serif' font-weight='900' font-size='18' fill='%23F8FAFC'%3EDEO%3C/text%3E%3C/svg%3E">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    @font-face {
+      font-family: 'FD Aeonik Extended';
+      src: url('./fonts/FDAeonikExtended-Bold.woff2') format('woff2'),
+           url('./fonts/FDAeonikExtended-Bold.ttf') format('truetype'),
+           local('FD Aeonik Extended Bold');
+      font-weight: 700;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'FD Aeonik';
+      src: url('./fonts/FDAeonik-Regular.woff2') format('woff2'),
+           url('./fonts/FDAeonik-Regular.ttf') format('truetype'),
+           local('FD Aeonik Regular');
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'FD Aeonik';
+      src: url('./fonts/FDAeonik-Medium.woff2') format('woff2'),
+           url('./fonts/FDAeonik-Medium.ttf') format('truetype'),
+           local('FD Aeonik Medium');
+      font-weight: 500;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'FD Aeonik';
+      src: url('./fonts/FDAeonik-Bold.woff2') format('woff2'),
+           url('./fonts/FDAeonik-Bold.ttf') format('truetype'),
+           local('FD Aeonik Bold');
+      font-weight: 600 700;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Tiempos Text';
+      src: url('./fonts/FDTiemposText-Regular.woff2') format('woff2'),
+           url('./fonts/FDTiemposText-Regular.otf') format('opentype'),
+           url('./fonts/TiemposText-Regular.woff2') format('woff2');
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Tiempos Text';
+      src: url('./fonts/FDTiemposText-Medium.woff2') format('woff2'),
+           url('./fonts/FDTiemposText-Medium.otf') format('opentype'),
+           url('./fonts/TiemposText-Medium.woff2') format('woff2');
+      font-weight: 500;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Tiempos Text';
+      src: url('./fonts/FDTiemposText-RegularItalic.woff2') format('woff2'),
+           url('./fonts/FDTiemposText-RegularItalic.otf') format('opentype'),
+           url('./fonts/TiemposText-RegularItalic.woff2') format('woff2');
+      font-weight: 400;
+      font-style: italic;
+      font-display: swap;
+    }
+
+    :root {
+      --cl-bg: #ffffff;
+      --cl-tint: #f8fafc;
+      --cl-line: #e2e8f0;
+      --cl-text-base: #090d16;
+      --cl-text-body: #0f172a;
+      --cl-text-muted: #475569;
+      --cl-accent: #1a73e8;
+      --cl-accent-soft: rgba(26, 115, 232, 0.08);
+      --cl-purple: #7c3aed;
+      --cl-purple-soft: #f5f3ff;
+      --cl-purple-border: #ddd6fe;
+
+      --font-display-short: 'FD Aeonik Extended', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-display-long: 'FD Aeonik', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-body: 'Tiempos Text', Georgia, serif;
+      --font-mono: 'JetBrains Mono', Consolas, monospace;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    html {
+      background-color: var(--cl-bg);
+      color: var(--cl-text-base);
+      font-family: var(--font-body);
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100vh;
+      line-height: 1.82;
+      padding-bottom: 80px;
+    }
+
+    /* Top Nav */
+    .top-nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--cl-line);
+      padding: 12px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: var(--font-display-long);
+    }
+    .top-nav__breadcrumbs {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--cl-text-muted);
+    }
+    .top-nav__breadcrumbs a {
+      color: var(--cl-text-base);
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .top-nav__breadcrumbs a:hover {
+      color: var(--cl-accent);
+    }
+    .top-nav__links {
+      display: flex;
+      gap: 14px;
+      align-items: center;
+    }
+    .top-nav__link {
+      color: var(--cl-text-muted);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .top-nav__link:hover {
+      color: var(--cl-accent);
+    }
+
+    /* Zebra Sections */
+    .cl-zebra-section {
+      width: 100%;
+      padding: clamp(48px, 6vw, 80px) 20px;
+      border-bottom: 1px solid var(--cl-line);
+    }
+    .cl-zebra--light { background-color: var(--cl-bg); }
+    .cl-zebra--tint { background-color: var(--cl-tint); }
+
+    .cl-sec-container {
+      max-width: 820px;
+      margin: 0 auto;
+    }
+
+    /* Badges & Headers */
+    .cl-badge {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--cl-accent);
+      margin-bottom: 12px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--cl-accent-soft);
+      padding: 4px 12px;
+      border-radius: 100px;
+    }
+    .cl-badge::before {
+      content: '';
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      background: var(--cl-accent);
+      border-radius: 50%;
+    }
+    .cl-badge--purple {
+      color: var(--cl-purple);
+      background: var(--cl-purple-soft);
+    }
+    .cl-badge--purple::before {
+      background: var(--cl-purple);
+    }
+
+    .title-short {
+      font-family: var(--font-display-short);
+      font-size: clamp(23px, 3.6vw, 34px);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: -0.01em;
+      line-height: 1.24;
+      color: var(--cl-text-base);
+      margin-bottom: 18px;
+      text-wrap: balance;
+    }
+
+    .title-long {
+      font-family: var(--font-display-long);
+      font-size: clamp(19px, 2.5vw, 24px);
+      font-weight: 600;
+      line-height: 1.35;
+      color: var(--cl-text-base);
+      margin-top: 24px;
+      margin-bottom: 14px;
+    }
+
+    .cl-body {
+      font-family: var(--font-body);
+      font-size: clamp(16px, 1.8vw, 17.5px);
+      line-height: 1.82;
+      color: var(--cl-text-body);
+      margin-bottom: 20px;
+    }
+
+    /* Khối Thơ Lục Bát Đầu Trang */
+    .luc-bat-card {
+      background: #0f172a;
+      color: #f8fafc;
+      border-radius: 18px;
+      padding: clamp(28px, 4vw, 40px) clamp(24px, 4vw, 36px);
+      margin-top: 10px;
+      margin-bottom: 36px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 12px 36px rgba(15, 23, 42, 0.12);
+      text-align: center;
+    }
+    .luc-bat-tag {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #c4b5fd;
+      margin-bottom: 16px;
+      display: inline-block;
+      background: rgba(196, 181, 253, 0.15);
+      padding: 4px 14px;
+      border-radius: 100px;
+    }
+    .luc-bat-poem {
+      font-family: var(--font-body);
+      font-size: clamp(19px, 2.4vw, 25px);
+      line-height: 1.7;
+      font-style: italic;
+      color: #ffffff;
+      margin-bottom: 18px;
+      letter-spacing: 0.01em;
+    }
+    .luc-bat-poem p {
+      margin-bottom: 4px;
+    }
+    .luc-bat-sub {
+      font-family: var(--font-display-long);
+      font-size: 13.5px;
+      color: #94a3b8;
+      max-width: 650px;
+      margin: 0 auto;
+      line-height: 1.65;
+      border-top: 1px solid rgba(255, 255, 255, 0.12);
+      padding-top: 14px;
+    }
+    .luc-bat-sub b {
+      color: #f1f5f9;
+    }
+
+    /* Cards */
+    .apple-card {
+      background: #ffffff;
+      border: 1px solid var(--cl-line);
+      border-radius: 16px;
+      padding: clamp(20px, 3vw, 28px);
+      margin-bottom: 22px;
+      box-shadow: 0 4px 20px rgba(9, 13, 22, 0.02);
+    }
+    .apple-card__badge {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--cl-accent);
+      margin-bottom: 8px;
+    }
+    .apple-card__title {
+      font-family: var(--font-display-long);
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--cl-text-base);
+      margin-bottom: 12px;
+    }
+
+    /* Audit Table */
+    .audit-table-wrap {
+      overflow-x: auto;
+      margin: 24px 0;
+      border: 1px solid var(--cl-line);
+      border-radius: 14px;
+      background: #ffffff;
+    }
+    table.audit-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14.5px;
+      text-align: left;
+    }
+    table.audit-table th {
+      background: var(--cl-tint);
+      font-family: var(--font-display-long);
+      font-weight: 700;
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--cl-line);
+      color: var(--cl-text-base);
+      font-size: 12.5px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    table.audit-table td {
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--cl-line);
+      vertical-align: top;
+      line-height: 1.6;
+    }
+    table.audit-table tr:last-child td {
+      border-bottom: none;
+    }
+    .col-wrong {
+      color: #b91c1c;
+      background: #fffafa;
+      font-family: var(--font-mono);
+      font-size: 13.5px;
+    }
+    .col-right {
+      color: #15803d;
+      font-weight: 600;
+    }
+
+    /* Highlight Rules */
+    .highlight-rule {
+      background: #eff6ff;
+      border-left: 4px solid var(--cl-accent);
+      padding: 16px 20px;
+      border-radius: 0 12px 12px 0;
+      margin: 20px 0;
+      font-size: 16px;
+    }
+    .highlight-rule--purple {
+      background: #f5f3ff;
+      border-left-color: var(--cl-purple);
+    }
+
+    .quote-box {
+      background: #f1f5f9;
+      border-radius: 12px;
+      padding: 18px 22px;
+      font-family: var(--font-body);
+      font-size: 16px;
+      color: var(--cl-text-body);
+      line-height: 1.75;
+      margin: 16px 0;
+      border-left: 3px solid #94a3b8;
+    }
+
+    .editorial-hook {
+      font-family: var(--font-body);
+      font-style: italic;
+      font-size: clamp(17px, 2vw, 20px);
+      line-height: 1.65;
+      color: var(--cl-text-base);
+      border-left: 3px solid var(--cl-accent);
+      padding-left: 20px;
+      margin: 26px 0;
+    }
+    .editorial-hook--purple {
+      border-left-color: var(--cl-purple);
+    }
+
+    /* Kịch Bản 2 Cột */
+    .script-columns {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin: 16px 0;
+    }
+    @media (max-width: 640px) {
+      .script-columns {
+        grid-template-columns: 1fr;
+      }
+    }
+    .script-col {
+      background: #f8fafc;
+      border: 1px solid var(--cl-line);
+      border-radius: 12px;
+      padding: 16px 18px;
+      font-size: 15px;
+      line-height: 1.65;
+    }
+    .script-col__tag {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 8px;
+    }
+    .script-col--visual .script-col__tag { color: #0369a1; }
+    .script-col--audio .script-col__tag { color: #7c3aed; }
+
+    /* Bottom Nav */
+    .bottom-nav {
+      margin-top: 50px;
+      padding-top: 28px;
+      border-top: 1px solid var(--cl-line);
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+      font-family: var(--font-display-long);
+      font-size: 14px;
+    }
+    .bottom-nav a {
+      color: var(--cl-text-muted);
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .bottom-nav a:hover {
+      color: var(--cl-accent);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- TOP NAV -->
+  <nav class="top-nav">
+    <div class="top-nav__breadcrumbs">
+      <a href="./wikicontent.html">Wiki Content</a>
+      <span>/</span>
+      <span>Case Đoàn Hữu Việt</span>
+    </div>
+    <div class="top-nav__links">
+      <a href="./wikicontent.html#chuong-8" class="top-nav__link">Chương 8 Wiki ↗</a>
+      <a href="./logic-storytelling-niem-tin.html" class="top-nav__link">7 Màn Storytelling ↗</a>
+      <a href="./kienpb.html" class="top-nav__link">Case Kiên Phân Bón ↗</a>
+      <a href="./wikicontent.html" class="top-nav__link">← Mục lục</a>
+    </div>
+  </nav>
+
+  <!-- MÀN 1: 4 CÂU LỤC BÁT & PHÂN ĐỊNH MỤC TIÊU LÀM KÊNH NGÀNH TÓC -->
+  <section class="cl-zebra-section cl-zebra--light">
+    <div class="cl-sec-container">
+      <div class="cl-badge cl-badge--purple">01 / TỔNG KHO TRÍ TUỆ • NGUYỄN ĐỨC VIỆT</div>
+      <h1 class="title-short">CASE ĐOÀN HỮU VIỆT: TỪ VẾT KÉO QUỐC TẾ ĐẾN 7 GIỜ THẤU CẢM CHẤT TÓC VIỆT</h1>
+
+      <p class="cl-body">
+        Nếu làm video để bán một chiếc kẹp tóc 20 nghìn hay một chai xịt dưỡng đại trà trên mạng: Em chỉ cần nhạc giật gân, thợ nhảy nhót hay trước sau biến hình ảo ảnh triệu view là bán được. Nhưng nếu xác định xây dựng thương hiệu cá nhân để khách hàng <b>tin tưởng trao trọn mái đầu</b>, sẵn sàng chi vài triệu đồng cho một lần thiết kế và phó thác ngoại hình của họ cho em: Khách hàng không bao giờ rút ví vì một màn xiếc múa kéo. Người ta chỉ trả tiền cho một người mà họ thấy <b>thấu suốt nỗi sợ tóc hư tổn và dám bảo bọc thể diện cho họ</b>.
+      </p>
+
+      <!-- 4 CÂU THƠ LỤC BÁT GHI NHỚ -->
+      <div class="luc-bat-card">
+        <div class="luc-bat-tag">4 CÂU LỤC BÁT DỄ NHỚ • BẢN GHI NHỚ LÀM NGHỀ TÓC</div>
+        <div class="luc-bat-poem">
+          <p>“Ngọn tóc chẻ, nhát kéo rơi,</p>
+          <p>Nói trúng nỗi sợ, người đời tin ngay.</p>
+          <p>Bảy giờ quen mặt quen tay,</p>
+          <p>Hộp nhung tiếng kéo, tháng ngày bền lâu.”</p>
+        </div>
+        <div class="luc-bat-sub">
+          <b>Ý nghĩa 4 câu:</b> Bắt bệnh hiển vi trên sợi tóc hư tổn + Nói trúng nỗi bất an giấu kín (sợ ép gói, sợ nát tóc, sợ lười sấy) để bảo vệ thể diện cho khách + Xuất hiện đủ 7 giờ qua nếp sống chân thật của tiệm tóc + Đóng gói âm thanh ASMR và hình ảnh tinh tươm như chiếc hộp nhung.
+        </div>
+      </div>
+
+      <div class="highlight-rule highlight-rule--purple">
+        <b>Chỗ mấu chốt của sự nâng cấp:</b> Trước đây, ở Chương 8 Wiki Content, chúng ta đã trang bị cho anh Đoàn Hữu Việt <b>những nhát cắt Tầng 2.5 rất bén</b> (kịch bản từ chối nhận nhuộm tẩy 4 triệu, sấy tay không dùng lược tròn). Nhưng nếu chỉ có những pha cắt đó, anh Việt sẽ nhanh chóng cạn kiệt ý tưởng và người xem sẽ ngấy. Khi kết hợp với bài giảng 7 Màn Storytelling mới nhất, ekip 3 người của anh Việt có <b>cả một cỗ máy làm kênh hoàn chỉnh</b>: 70% video đời thường tiệm tóc để tích lũy đủ 7 giờ quen mặt + 30% nhát cắt chuyên môn vi mô để chốt chặt niềm tin.
+      </div>
+    </div>
+  </section>
+
+  <!-- MÀN 2: BẢNG AUDIT TỪ NGỮ VĂN PHONG MỘC MẠC -->
+  <section class="cl-zebra-section cl-zebra--tint">
+    <div class="cl-sec-container">
+      <div class="cl-badge">02 / AUDIT VĂN PHONG THỰC CHIẾN</div>
+      <h2 class="title-short">LỌC BỎ VĂN MẪU SÁCH VỞ &amp; CHUẨN HÓA GIỌNG ANH VIỆT</h2>
+
+      <p class="cl-body">
+        Để video chạm được vào những người phụ nữ công sở bận rộn, các mẹ bỉm sữa tự ti về mái tóc xơ rối hay những khách hàng có học thức sẵn sàng chi trả cao, ngôn từ của người chủ salon phải <b>sạch bóng văn mẫu marketing và sính ngoại</b>. Không dùng thuật ngữ Tây học để dọa nạt, không dùng lời lẽ đao to búa lớn.
+      </p>
+
+      <div class="audit-table-wrap">
+        <table class="audit-table">
+          <thead>
+            <tr>
+              <th style="width: 48%;">❌ Từ ngữ sách vở / Marketing (Cần bỏ)</th>
+              <th style="width: 52%;">✅ Từ ngữ mộc mạc chuẩn anh Việt (Bắt buộc dùng)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="col-wrong">Tín hiệu đắt giá (Costly Signaling)</td>
+              <td class="col-right">Hành động chịu thiệt vì khách / Dám từ chối gói nhuộm 4 triệu để cứu tóc khách</td>
+            </tr>
+            <tr>
+              <td class="col-wrong">Tỷ lệ chuyển đổi / Phễu khách hàng</td>
+              <td class="col-right">Khách an tâm đặt lịch / Khách ngồi lên ghế là phó thác cho mình</td>
+            </tr>
+            <tr>
+              <td class="col-wrong">Căn bệnh ngầm / Nỗi đau khách hàng</td>
+              <td class="col-right">Chuyện tế nhị khách ngại nói (lười sấy tóc, đi làm đội mũ bảo hiểm bị bẹp đỉnh đầu)</td>
+            </tr>
+            <tr>
+              <td class="col-wrong">Sự thật ngượng miệng / Vết sẹo nghề</td>
+              <td class="col-right">Điều giấu kín trong bụng / Những lần thợ làm ẩu khiến khách về nhà khóc ròng</td>
+            </tr>
+            <tr>
+              <td class="col-wrong">Vũ khí bán hàng / Đỉnh cao chốt đơn</td>
+              <td class="col-right">Tay nghề người thạo việc / Nhát kéo có trách nhiệm</td>
+            </tr>
+            <tr>
+              <td class="col-wrong">Trưng trổ thuật ngữ ngoại quốc (Vidal Sassoon, Balayage, Graduation...)</td>
+              <td class="col-right">Giải thích bình dị bằng tiếng Việt: Đo góc hàm, tính độ rơi tự nhiên theo trọng lực</td>
+            </tr>
+            <tr>
+              <td class="col-wrong">Gồng lên làm chuyên gia / Tạo vỏ bọc chảnh chọe</td>
+              <td class="col-right">Người thợ lành nghề / Ăn nói đàng hoàng, ân cần, chân thành</td>
+            </tr>
+            <tr>
+              <td class="col-wrong">Biến hình Before - After bóng bẩy ảo ảnh</td>
+              <td class="col-right">Tóc diễn ở tiệm vs Tóc sống ở nhà / Mái tóc sấy tay không lược tròn về nhà vẫn vào nếp</td>
+            </tr>
+            <tr>
+              <td class="col-wrong">Múa kéo biểu diễn xiếc giật gân</td>
+              <td class="col-right">Thao tác cẩn trọng, nâng lọn tóc như nâng dải lụa, bấm mũi kéo chính xác</td>
+            </tr>
+            <tr>
+              <td class="col-wrong">Hạ khiên phòng vệ sinh học</td>
+              <td class="col-right">Khách thở phào nhẹ nhõm, hết e dè sợ bị ép hóa chất đắt tiền</td>
+            </tr>
+            <tr>
+              <td class="col-wrong">Lối xưng hô kiểu cũ, giả thanh đạo mạo / Tự phong danh xưng</td>
+              <td class="col-right">Xưng hô mộc mạc, tôn trọng người nghe: Tôi - Bạn, Anh - Em, Mình - Bạn</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p class="editorial-hook editorial-hook--purple">
+        "Người đi làm tóc không cần một nghệ sĩ xiếc múa kéo để họ trầm trồ trên mạng. Họ cần một người thợ thấu hiểu rằng sáng mai thức dậy, họ chỉ có đúng 3 phút để chải đầu rồi lao ra đường đội mũ bảo hiểm."
+      </p>
+    </div>
+  </section>
+
+  <!-- MÀN 3: ĐIỂM LẠI BÀI TOÁN GỐC CỦA ANH ĐOÀN HỮU VIỆT Ở CHƯƠNG 8 -->
+  <section class="cl-zebra-section cl-zebra--light">
+    <div class="cl-sec-container">
+      <div class="cl-badge">03 / ĐỐI SOÁT BÀI TOÁN GỐC</div>
+      <h2 class="title-short">NHÌN LẠI BÀI TOÁN GỐC: CHỦ SALON &amp; EKIP 2 MEDIA</h2>
+
+      <p class="cl-body">
+        Trong tài liệu ban đầu ở Chương 8 Wiki Content, anh Đoàn Hữu Việt là một Hair Designer có tay nghề cao, từng tu nghiệp nước ngoài và dẫn theo 2 bạn media đi học lớp Offline. Toàn bộ bài toán xoay quanh việc thoát khỏi 3 cạm bẫy lớn của ngành tóc:
+      </p>
+
+      <div class="apple-card">
+        <div class="apple-card__title">1. Ba Cạm Bẫy Khiến Video Ngành Tóc Nhiều View Nhưng Không Kéo Được Khách Chất</div>
+        <p class="cl-body" style="margin-bottom: 10px;">
+          • <b>Bẫy "Before - After biến hình ảo ảnh":</b> Đập nhạc biến hình lung linh dưới đèn studio. Nhưng khách xem chỉ nghĩ: <i>"Tóc này ở tiệm 3 thợ sấy 45 phút, xịt cả lọ keo thì chả đẹp. Mai về nhà gội đầu xong thành cái tổ quạ ngay!"</i>.<br>
+          • <b>Bẫy "Múa kéo làm xiếc":</b> Thợ xoay tông đơ, tỉa tóc bay rào rào trên nền nhạc trap. Khách nhìn thấy sợ: sợ thợ làm ẩu, sợ tỉa mỏng đuôi tóc, sợ thợ mải biểu diễn mà không hiểu mặt mình.<br>
+          • <b>Bẫy "Văn mẫu đạo lý làm đẹp":</b> Lồng tiếng AI: <i>"Mỗi phụ nữ là một bông hoa...", "Thay đổi mái tóc đổi cuộc đời..."</i>. Người đi làm bận rộn nghe thấy sến súa và lướt qua ngay.
+        </p>
+      </div>
+
+      <div class="apple-card">
+        <div class="apple-card__title">2. Ba Điểm Ngượng Miệng Thầm Kín Của Khách (Tầng 2.5)</div>
+        <p class="cl-body" style="margin-bottom: 10px;">
+          • <b>Sợ bị thợ chê để ép hóa chất đắt tiền:</b> Khách sợ cảm giác bước vào tiệm bị thợ bĩu môi: <i>"Tóc nát thế này không phục hồi 2 triệu thì hỏng hết!"</i>. Khách từ chối thì sợ mang tiếng keo kiệt, mà gật đầu thì xót tiền và thấy bị coi thường.<br>
+          • <b>Hội chứng "người lười sấy tóc":</b> Khách ngại thú nhận: <i>"Em không biết cầm lược tròn sấy cúp đâu, sáng dậy em chỉ có 3 phút thôi"</i>. Đành nhận kiểu tóc cầu kỳ rồi về nhà bất lực nhìn tóc vểnh tứ tung.<br>
+          • <b>Cú va chạm với chiếc mũ bảo hiểm:</b> Khách muốn tóc bồng bềnh, nhưng thực tế là 45 phút chạy xe máy dưới trời nồm ẩm, chiếc mũ bảo hiểm đè bẹp dí đỉnh đầu.
+        </p>
+      </div>
+
+      <div class="apple-card" style="border-left: 4px solid var(--cl-purple);">
+        <div class="apple-card__title" style="color: var(--cl-purple);">3. Cú Lật Chuyển Định Vị: Mang Kỹ Thuật Quốc Tế Về Thấu Cảm Chất Tóc Việt</div>
+        <p class="cl-body" style="margin-bottom: 0;">
+          Đi tu nghiệp nước ngoài về rất dễ sa vào bẫy sính ngoại, nói từ ngữ Tây học khiến khách thấy xa cách. Cú lật chuyển định vị đắt giá nhất của anh Việt là: <b>Biến kỹ thuật quốc tế thành sự thấu hiểu sâu sắc cho người phụ nữ Việt Nam</b>:
+          <br><i>"Học kỹ thuật cắt chuẩn xác từ London đến Seoul, điều lớn nhất tôi nhận ra không phải là bê nguyên kiểu tóc Tây về áp lên đầu người Việt. Chất tóc người mình sợi to tròn, khí hậu nồm ẩm và phải đội mũ bảo hiểm mỗi ngày. Kỹ thuật chuẩn xác không phải để làm màu, mà là dùng đường kéo chính xác để <b>giải phóng khách hàng khỏi chiếc máy sấy</b>."</i>
+        </p>
+      </div>
+
+      <div class="highlight-rule">
+        <b>Hạn chế của cách làm cũ:</b> Các kịch bản mẫu trước đây là những nhát cắt xuất sắc cho những pha chốt niềm tin. Nhưng nếu ngày nào anh Việt cũng đứng trước ống kính từ chối nhuộm hay chê lược tròn, kênh sẽ bị một màu và nặng nề. Cần một cỗ máy vận hành toàn diện theo bài trình 7 Màn.
+      </div>
+    </div>
+  </section>
+
+  <!-- MÀN 4: HỢP NHẤT VỚI BÀI TRÌNH 7 MÀN: 5 BƯỚC NÂNG CẤP BẮT BUỘC -->
+  <section class="cl-zebra-section cl-zebra--tint">
+    <div class="cl-sec-container">
+      <div class="cl-badge">04 / BƯỚC CHUYỂN TOÀN DIỆN</div>
+      <h2 class="title-short">5 ĐIỂM NÂNG CẤP BẮT BUỘC THEO BÀI TRÌNH 7 MÀN</h2>
+
+      <p class="cl-body">
+        Khi đưa toàn bộ tư tưởng của bài giảng <b>Logic Storytelling &amp; Bản Chất Niềm Tin</b> vào salon của anh Đoàn Hữu Việt, chúng ta tái cấu trúc lại toàn bộ hệ thống nội dung:
+      </p>
+
+      <!-- NẤC 1 -->
+      <div class="apple-card">
+        <div class="apple-card__title">Nấc 1: Áp Dụng Công Thức Google 7 - 11 - 4 (Giải Bài Toán 7 Giờ Quen Mặt)</div>
+        <p class="cl-body">
+          Khách hàng không bao giờ giao mái đầu cho một người lạ hoắc vừa xem được 1 clip trên mạng. Họ cần tiếp xúc đủ <b>7 giờ, qua 11 điểm chạm, ở 4 không gian khác nhau</b> thì mới thấy an tâm bước chân vào salon.
+        </p>
+        <p class="cl-body" style="margin-bottom: 0;">
+          <b>Cách phân bổ tỷ lệ nội dung của tiệm:</b>
+          <br>• <b>70% Video Đời Sống Tiệm Tóc (Nhịp Đệm Quen Mặt):</b> Cảnh sáng sớm mở cửa kéo xếp, pha ấm trà nóng; cảnh lau gương, sắp xếp từng cây kéo thẳng thớm; cảnh thợ trong tiệm ngồi ăn chung hộp cơm trưa; cảnh khách ruột ngồi đọc sách nhâm nhi cà phê; mẹo nhỏ gỡ tóc rối khi vừa tháo mũ bảo hiểm... Những clip này nhẹ nhàng, quay cực nhanh, tạo cảm giác thân thuộc như tiệm tóc cạnh nhà.
+          <br>• <b>30% Video Nhát Cắt Niềm Tin:</b> Những pha bắt bệnh vi mô sợi tóc, đo góc hàm nhân trắc học, từ chối gói nhuộm tẩy làm hỏng tóc, sấy khô bằng tay không dùng lược tròn. Khi người ta đã xem hàng chục clip đời thường và quen mặt anh Việt, chỉ cần gặp 1 clip nhát cắt này là bấm máy đặt lịch ngay.
+        </p>
+      </div>
+
+      <!-- NẤC 2 -->
+      <div class="apple-card">
+        <div class="apple-card__title">Nấc 2: Tinh Gọn Theo Định Luật Woodsmall: "Bắt Bệnh Sợi Tóc Trong 5 Giây Đầu"</div>
+        <p class="cl-body">
+          Định luật Woodsmall: <i>Mô tả đúng bệnh ở cấp độ vi mô là người ta mặc định mình nắm thuốc giải</i>.
+        </p>
+        <p class="cl-body" style="margin-bottom: 0;">
+          <b>Ứng dụng cho anh Việt:</b> Bỏ những đoạn độc thoại giảng giải dài dòng. Mở đầu video bằng một hành vi vi mô dứt khoát trong 5 giây đầu:
+          <br>• Dùng 2 ngón tay kẹp một sợi tóc ướt kéo nhẹ, sợi tóc giãn dài như cọng bún rồi đứt phựt: <i>"Kéo mà không đàn hồi thế này nghĩa là lõi tóc đã rỗng hoàn toàn rồi. Ông nào xúi chị uốn nóng là tự tay đốt tóc."</i>
+          <br>• Người xem lập tức nhận ra người thợ thạo việc, không cần khoe bằng cấp quốc tế.
+        </p>
+      </div>
+
+      <!-- NẤC 3 -->
+      <div class="apple-card">
+        <div class="apple-card__title">Nấc 3: Đóng Gói Thị Giác &amp; Âm Thanh — Chiếc Hộp Nhung ASMR Ngành Tóc</div>
+        <p class="cl-body">
+          Mái tóc đẹp và kỹ thuật chuẩn xác chính là chiếc nhẫn vàng. Nhưng nếu video quay rung lắc, ánh sáng nhờ nhờ, tiếng ồn xe cộ lẫn lộn thì đó là chiếc nhẫn vàng gói trong túi nilon.
+        </p>
+        <p class="cl-body" style="margin-bottom: 0;">
+          <b>Chiếc hộp nhung của anh Đoàn Hữu Việt:</b>
+          <br>• <b>Âm thanh ASMR siêu sạch:</b> Gắn mic định hướng hoặc cài mic gần tay cắt để thu trọn tiếng kéo nhấp <i>"tách... tách"</i> giòn tan, tiếng nước xả bồng bềnh, tiếng bọt dầu gội lách tách, tiếng thổi gió ấm êm tai của máy sấy.
+          <br>• <b>Khung hình Macro cận cảnh:</b> Ống kính tiêu cự lớn quay sát từng thớ tóc xếp lớp ôm sát cổ, giọt nước đọng trên lọn tóc mượt.
+          <br>• <b>Phong thái đĩnh đạc:</b> Trang phục tối màu chỉn chu, cử chỉ nâng lọn tóc nâng niu như dải lụa, nói chuyện điềm đạm, không lên gân.
+        </p>
+      </div>
+
+      <!-- NẤC 4 -->
+      <div class="apple-card">
+        <div class="apple-card__title">Nấc 4: Kế Hoạch Tác Chiến Cho Ekip 3 Người (Chủ Salon + 2 Media)</div>
+        <p class="cl-body" style="margin-bottom: 10px;">
+          Đi học cùng 2 bạn media là một lợi thế cực lớn. Cần phân vai rạch ròi để vận hành trơn tru mà không làm phiền khách hàng thật:
+        </p>
+        <p class="cl-body" style="margin-bottom: 0;">
+          • <b>Chủ Salon (Đoàn Hữu Việt - Người giữ linh hồn):</b> Đứng góc 45 độ, chăm chú vào mái tóc. 80% ánh mắt nhìn vào lọn tóc và tương tác với khách qua gương; chỉ 20% liếc nhẹ vào ống kính khi chốt câu đanh thép ở cuối video.<br>
+          • <b>Bạn Media 1 (Cam A - Dẫn chuyện &amp; Cảm xúc):</b> Ống kính 35mm hoặc 50mm, cự ly 1 sải tay (1.2m - 1.5m). Bắt trọn ánh mắt, biểu cảm gật gù, nụ cười thở phào của khách khi nhìn thấy kiểu tóc mới.<br>
+          • <b>Bạn Media 2 (Cam B - Macro &amp; Âm thanh ASMR):</b> Ống kính 85mm hoặc Macro. Chuyên săn các khoảnh khắc vi mô: thớ tóc rơi xuống sàn, mũi kéo tỉa nhấp nhẹ, giọt dầu dưỡng tan trên lòng bàn tay.<br>
+          • <b>Quy trình "3 Không":</b> Không kịch bản giấy trước mặt khách — Không làm phiền hay bắt khách diễn lại — Chỉ dành 5 phút cuối sau khi hoàn thiện để đóng gói câu chốt.
+        </p>
+      </div>
+
+      <!-- NẤC 5 -->
+      <div class="apple-card">
+        <div class="apple-card__title">Nấc 5: Sản Xuất Bền Bỉ Bằng Bộ Công Cụ 4 Tầng &amp; Kho Ý Tưởng</div>
+        <p class="cl-body" style="margin-bottom: 0;">
+          Mỗi ngày tiệm đón tiếp hàng chục khách hàng với đủ câu chuyện đời thường. Chỉ cần nhặt một câu nói băn khoăn của khách khi ngồi vào ghế, đưa vào công cụ bóc tách 4 tầng (<a href="./4tang.html" style="color: var(--cl-accent); font-weight: 600;">4tang.html</a>) để sinh ra kịch bản 7 câu. Kết hợp tham khảo kho định dạng quốc tế (<a href="https://ytuong.fedu.vn" target="_blank" style="color: var(--cl-accent); font-weight: 600;">ytuong.fedu.vn</a>) để chọn góc máy quen thuộc, giúp ekip sản xuất đều đặn 20–30 video/tháng nhẹ tênh.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- MÀN 5: 4 KỊCH BẢN MẪU THỰC CHIẾN TẠI SALON -->
+  <section class="cl-zebra-section cl-zebra--light">
+    <div class="cl-sec-container">
+      <div class="cl-badge">05 / KỊCH BẢN THỰC ĐỊA</div>
+      <h2 class="title-short">4 KỊCH BẢN MẪU THỰC CHIẾN TẠI HIỆN TRƯỜNG SALON</h2>
+
+      <p class="cl-body">
+        Dưới đây là 4 kịch bản mẫu được chuẩn hóa theo cấu trúc 2 cột (Hình ảnh B-roll &amp; Lời thoại thực tế), giúp ekip 3 người bấm máy là quay được ngay:
+      </p>
+
+      <!-- KỊCH BẢN 1 -->
+      <div class="apple-card">
+        <div class="apple-card__badge">KỊCH BẢN 1 • ĐỜI THƯỜNG & THỂ DIỆN (70% NHỊP ĐỆM)</div>
+        <div class="apple-card__title">Sấy Tay Không Lược Tròn: Kiểu Tóc Cho Người Lười Sấy</div>
+
+        <div class="script-columns">
+          <div class="script-col script-col--visual">
+            <div class="script-col__tag">📹 HÌNH ẢNH B-ROLL (CAM A &amp; B)</div>
+            • <b>Cam A:</b> Anh Việt đẩy chiếc lược tròn và máy sấy công suất lớn sang một bên bàn.<br>
+            • <b>Cam B (Macro):</b> Cận cảnh đôi bàn tay anh Việt dùng khăn bông vò nhẹ ngọn tóc, rồi lấy các ngón tay cào nhẹ luồn qua chân tóc.<br>
+            • <b>Cam B (ASMR):</b> Thu rõ tiếng thổi gió ấm thoang thoảng của máy sấy chế độ thường.<br>
+            • <b>Cam A:</b> Khách soi gương ngạc nhiên thấy các lọn tóc tự cúp nhẹ ôm lấy xương hàm.
+          </div>
+          <div class="script-col script-col--audio">
+            <div class="script-col__tag">🎙️ LỜI THOẠI ANH VIỆT (MỘC MẠC)</div>
+            <i>"Nếu một kiểu tóc cắt xong mà bắt bạn sáng nào cũng phải dậy trước 30 phút, một tay cầm lược tròn một tay cầm máy sấy kéo mỏi nhừ thì mới vào nếp... thì đó là kiểu tóc phục vụ cho thợ chụp ảnh, không phải phục vụ cuộc đời bạn.<br><br>
+            Nhiều bạn đi tiệm về gội đầu xong là khóc ròng, vì đội mũ bảo hiểm phi xe đến chỗ làm là vểnh tứ tung. Các bạn ngại không dám nói mình lười sấy, cứ tự trách là do tay mình vụng.<br><br>
+            Ở tiệm tôi, quy tắc đầu tiên là: Không dùng lược tròn khi sấy hoàn thiện. Cắt chuẩn cấu trúc rơi thì chỉ cần sấy khô tự nhiên là nó tự ôm vào mặt. Đẹp là để sống thảnh thơi, không phải để làm nô lệ cho cái máy sấy."</i>
+          </div>
+        </div>
+      </div>
+
+      <!-- KỊCH BẢN 2 -->
+      <div class="apple-card">
+        <div class="apple-card__badge">KỊCH BẢN 2 • ĐỊNH LUẬT WOODSMALL (30% NHÁT CẮT VI MÔ)</div>
+        <div class="apple-card__title">Bắt Bệnh Sợi Tóc Co Giãn Như Cọng Bún (5 Giây Đầu)</div>
+
+        <div class="script-columns">
+          <div class="script-col script-col--visual">
+            <div class="script-col__tag">📹 HÌNH ẢNH B-ROLL (CAM A &amp; B)</div>
+            • <b>Cam B (Macro):</b> Ống kính sát rạt vào 2 ngón tay anh Việt kẹp một sợi tóc ướt của khách kéo nhẹ ra. Sợi tóc giãn dài ra rồi đứt phựt.<br>
+            • <b>Cam B (ASMR):</b> Tiếng <i>"phựt"</i> đứt giòn tan của sợi tóc rỗng lõi.<br>
+            • <b>Cam A:</b> Anh Việt nâng nhẹ lọn tóc ngọn xơ xác, ánh mắt điềm tĩnh.<br>
+            • <b>Cam B:</b> Đường kéo ngọt xớt cắt bỏ đúng 5cm ngọn tóc chết rơi xuống sàn.
+          </div>
+          <div class="script-col script-col--audio">
+            <div class="script-col__tag">🎙️ LỜI THOẠI ANH VIỆT (MỘC MẠC)</div>
+            <i>"Bạn nghe thấy tiếng đứt này không? Khi sợi tóc kéo ra mà giãn dài như cọng bún rồi đứt phựt, không co hồi lại được... nghĩa là liên kết keratin bên trong đã rỗng hoàn toàn rồi.<br><br>
+            Nhiều người thấy ngọn tóc khô thì nghĩ do dầu gội dỏm, rồi đổ tiền mua hũ hấp vài triệu về bôi. Nhưng bôi lên một sợi tóc đã vỡ biểu bì thì giống như quét sơn lên bức tường đang mục nát. Nó chỉ mượt ảo lúc vừa xả nước thôi.<br><br>
+            Tóc không tự lành như da thịt được. Một khi đã nát vì tẩy uốn quá đà, thứ duy nhất cứu được nó là dũng cảm cắt bỏ phần chết và nuôi lại từ chân tóc. Đừng tiếc 5 phân tóc chết để cả mái đầu trông mệt mỏi theo bạn mỗi ngày."</i>
+          </div>
+        </div>
+      </div>
+
+      <!-- KỊCH BẢN 3 -->
+      <div class="apple-card">
+        <div class="apple-card__badge">KỊCH BẢN 3 • TỪ CHỐI TIỀN NGẮN HẠN (HÀNH ĐỘNG CHỊU THIỆT)</div>
+        <div class="apple-card__title">Từ Chối Nhận Gói Tẩy Nhuộm 4 Triệu Để Cứu Mái Tóc</div>
+
+        <div class="script-columns">
+          <div class="script-col script-col--visual">
+            <div class="script-col__tag">📹 HÌNH ẢNH B-ROLL (CAM A &amp; B)</div>
+            • <b>Cam A:</b> Phiếu yêu cầu của khách ghi: <i>"Tẩy 2 lần + Nhuộm xám khói"</i>. Anh Việt đặt nhẹ cây bút xuống, đẩy ly trà ấm về phía khách.<br>
+            • <b>Cam B:</b> Anh Việt dùng ngón tay nâng lọn tóc sau gáy của khách chỉ vào đoạn tóc mềm nhũn.<br>
+            • <b>Cam A:</b> Khách thở phào nhẹ nhõm, từ lo lắng chuyển sang mỉm cười an tâm.
+          </div>
+          <div class="script-col script-col--audio">
+            <div class="script-col__tag">🎙️ LỜI THOẠI ANH VIỆT (MỘC MẠC)</div>
+            <i>"Hôm nay chị mang 4 triệu đến đây để tẩy nhuộm màu này, nhưng em xin phép từ chối nhận dịch vụ của chị.<br><br>
+            Nếu chạy theo doanh thu, em nhận ngay. Tẩy 2 lần, nhuộm màu xám chụp ảnh trong tiệm lung linh rực rỡ, em thu 4 triệu bỏ túi êm đẹp. Nhưng em biết chắc 2 tuần nữa gội đầu, tóc chị sẽ mủn ra như bột, và lúc đó chị sẽ căm ghét mái tóc của mình.<br><br>
+            Kiếm 4 triệu hôm nay mà đánh đổi bằng sự bế tắc của khách trong nửa năm tới thì em không làm được. Hôm nay em chỉ tỉa phom và dưỡng ẩm cho tóc chị thở. Chị giữ 4 triệu đó về. Bao giờ sợi tóc khỏe lại, chính em sẽ nhuộm cho chị màu đẹp nhất."</i>
+          </div>
+        </div>
+      </div>
+
+      <!-- KỊCH BẢN 4 -->
+      <div class="apple-card">
+        <div class="apple-card__badge">KỊCH BẢN 4 • NHÂN TRẮC HỌC ĐỜI THỰC (GIẢI PHÁP HÌNH HỌC)</div>
+        <div class="apple-card__title">Đo Khung Xương Gò Má: Đừng Mang Ảnh Mạng Ra Tiệm Cắt</div>
+
+        <div class="script-columns">
+          <div class="script-col script-col--visual">
+            <div class="script-col__tag">📹 HÌNH ẢNH B-ROLL (CAM A &amp; B)</div>
+            • <b>Cam A:</b> Khách giơ chiếc điện thoại có hình idol Hàn Quốc. Anh Việt nhìn ảnh rồi nhìn góc xương hàm khách qua gương.<br>
+            • <b>Cam B:</b> Dùng sống lược đo khoảng cách từ đỉnh gò má xuống góc cằm.<br>
+            • <b>Cam B (ASMR):</b> Từng nhát kéo bấm tỉa theo phương đứng (Point cutting), lọn tóc mai cong nhẹ ôm sát hõm má.<br>
+            • <b>Cam A:</b> Khách nghiêng mặt 45 độ ngắm gương, gương mặt trông thanh thoát hơn hẳn.
+          </div>
+          <div class="script-col script-col--audio">
+            <div class="script-col__tag">🎙️ LỜI THOẠI ANH VIỆT (MỘC MẠC)</div>
+            <i>"Đừng bao giờ mang ảnh mẫu trên mạng ra tiệm và bảo thợ: 'Cắt cho em y hệt thế này'. Vì cái làm cho bức ảnh đó đẹp là khung xương của người mẫu, không phải do mỗi kiểu tóc.<br><br>
+            Nhiều bạn gò má cao cắt layer về khóc ròng, vì phần tóc bay đáng lẽ che khuyết điểm thì lại bị cắt rơi đúng vào điểm rộng nhất của gò má, vô tình làm mặt to gấp đôi.<br><br>
+            Cắt tóc chuẩn xác là phải đo tỷ lệ xương mặt. Nếu hàm vuông, lọn tóc phải kết thúc dưới góc hàm 2 phân để làm mềm nét. Một kiểu tóc đẹp nhất không phải là kiểu tóc giống thần tượng nhất, mà là kiểu tóc khiến người ta nhìn vào thốt lên: 'Dạo này nhìn em tươi tắn thế!', chứ không phải hỏi: 'Em mới cắt tóc ở đâu về đấy?'."</i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MÀN 6: LỘ TRÌNH 7 NGÀY VẬN HÀNH CỦA EKIP 3 NGƯỜI TẠI SALON -->
+  <section class="cl-zebra-section cl-zebra--tint">
+    <div class="cl-sec-container">
+      <div class="cl-badge">06 / LỊCH TRÌNH VẬN HÀNH</div>
+      <h2 class="title-short">LỘ TRÌNH 1 TUẦN TÁC CHIẾN CỦA EKIP 3 NGƯỜI</h2>
+
+      <p class="cl-body">
+        Ekip 3 người (Chủ salon + 2 bạn media) hoàn toàn có thể sản xuất nội dung đều đặn mỗi tuần mà không làm ảnh hưởng đến trải nghiệm làm tóc của khách hàng:
+      </p>
+
+      <div class="audit-table-wrap">
+        <table class="audit-table">
+          <thead>
+            <tr>
+              <th style="width: 18%;">Ngày</th>
+              <th style="width: 32%;">Định dạng &amp; Không gian</th>
+              <th style="width: 25%;">Phân công Cam A / B</th>
+              <th style="width: 25%;">Mục tiêu tiếp xúc (Google 7-11-4)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><b>Thứ 2</b></td>
+              <td>Mở cửa tiệm đầu tuần, lau gương, mài kéo, pha ấm trà nóng</td>
+              <td>Cam A quay không gian rộng; Cam B cận cảnh kéo xếp ngay ngắn</td>
+              <td>70% đời sống: Cho thấy sự chỉn chu, sạch sẽ và trân trọng đồ nghề.</td>
+            </tr>
+            <tr>
+              <td><b>Thứ 3</b></td>
+              <td>Bắt bệnh sợi tóc ướt giãn như cọng bún (Định luật Woodsmall)</td>
+              <td>Cam A bắt biểu cảm khách; Cam B thu ASMR tiếng tóc đứt</td>
+              <td>30% nhát cắt: Khẳng định tay nghề chẩn đoán vi mô cực sắc bén.</td>
+            </tr>
+            <tr>
+              <td><b>Thứ 4</b></td>
+              <td>Mẹo xử lý tóc xẹp sau khi tháo mũ bảo hiểm 45 phút chạy xe</td>
+              <td>Cam B quay thao tác luồn tay cào chân tóc không cần máy sấy</td>
+              <td>Cho đi mẹo thực tế đời thường, khách lưu video về xem lại mỗi ngày.</td>
+            </tr>
+            <tr>
+              <td><b>Thứ 5</b></td>
+              <td>Bữa cơm trưa bình dị của anh em thợ tóc trong góc tiệm</td>
+              <td>Cam A bắt cảnh tiếng cười đùa ấm cúng, chia nhau đĩa cơm</td>
+              <td>70% đời sống: Tích lũy số giờ tiếp xúc, cảm giác như người nhà.</td>
+            </tr>
+            <tr>
+              <td><b>Thứ 6</b></td>
+              <td>Tình huống từ chối nhận nhuộm tẩy 4 triệu để bảo vệ tóc khách</td>
+              <td>Cam A quay đối thoại chân thành; Cam B quay tách trà đẩy sang</td>
+              <td>Chốt hạ lòng tin: Người làm nghề có tâm, không vụ lợi trước mắt.</td>
+            </tr>
+            <tr>
+              <td><b>Thứ 7</b></td>
+              <td>Cắt tóc theo khung xương gò má (Sấy tay không dùng lược tròn)</td>
+              <td>Cam A quay nụ cười hài lòng; Cam B quay nhát kéo chuẩn xác</td>
+              <td>Chứng minh lời hứa: Tóc sấy ở tiệm thế nào thì về nhà y như thế.</td>
+            </tr>
+            <tr>
+              <td><b>Chủ nhật</b></td>
+              <td>Ngồi kiểm tra lịch hẹn tuần tới, trả lời tin nhắn tư vấn</td>
+              <td>Cam A quay góc bàn làm việc yên tĩnh cuối ngày</td>
+              <td>Lắng nghe phản hồi của khách, chọn lọc câu chuyện cho tuần mới.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="highlight-rule highlight-rule--purple">
+        <b>Đích đến tối thượng:</b> Khi một người phụ nữ nhìn vào gương thấy mái tóc mình khô xơ, hay khi chuẩn bị đi cắt tóc cho một dịp quan trọng trong đời, <b>người đầu tiên họ nghĩ đến và tin tưởng tuyệt đối chính là anh Đoàn Hữu Việt</b>. Khi đó, mức giá không còn là rào cản, và khách hàng sẽ kiên nhẫn đặt lịch trước cả tuần để được ngồi vào ghế cắt của anh.
+      </div>
+    </div>
+  </section>
+
+  <!-- MÀN 7: ĐÚC KẾT 3 NGUYÊN TẮC CỐT TỬ & ĐIỀU HƯỚNG BÀI GIẢNG -->
+  <section class="cl-zebra-section cl-zebra--light">
+    <div class="cl-sec-container">
+      <div class="cl-badge cl-badge--purple">07 / NGUYÊN TẮC CỐT TỬ</div>
+      <h2 class="title-short">3 NGUYÊN TẮC BẤT DI BẤT DỊCH CỦA NGƯỜI LÀM NGHỀ</h2>
+
+      <p class="cl-body">
+        Khi truyền đạt lại cho ekip 3 người vận hành salon, chỉ cần khắc cốt ghi tâm 3 nguyên tắc sống còn:
+      </p>
+
+      <div class="apple-card">
+        <div class="apple-card__title">1. Bỏ Chiếc Lược Tròn Khi Hoàn Thiện</div>
+        <p class="cl-body" style="margin-bottom: 0;">
+          Tóc ở tiệm sấy khô tự nhiên thế nào thì về nhà khách có y hệt như thế. Đừng dùng lược tròn và lọ gôm để tạo ra một vẻ đẹp ảo ảnh chỉ tồn tại được 30 phút trong tiệm. Sự tự nhiên và dễ chăm sóc ở nhà chính là bảo chứng cao nhất cho uy tín của người làm nghề.
+        </p>
+      </div>
+
+      <div class="apple-card">
+        <div class="apple-card__title">2. Dám Từ Chối Tiền Ngắn Hạn</div>
+        <p class="cl-body" style="margin-bottom: 0;">
+          Khách hàng có ép làm dịch vụ làm hại đến sợi tóc thì kiên quyết từ chối. Lời từ chối chân thành kèm theo giải pháp phục hồi dưỡng ẩm có sức nặng gấp 100 lần những lời chào mời quảng cáo hoa mỹ.
+        </p>
+      </div>
+
+      <div class="apple-card">
+        <div class="apple-card__title">3. Thể Hiện Chuẩn Mực Quốc Tế Bằng Sự Khiêm Nhường</div>
+        <p class="cl-body" style="margin-bottom: 0;">
+          Đi tu nghiệp nước ngoài về không phải để mang thuật ngữ Tây ra khoe mẽ, mà là mang sự chính xác hình học và độ tỉ mỉ quốc tế về phục vụ đời sống của người phụ nữ Việt Nam, giúp họ tiết kiệm thời gian và tự tin hơn mỗi ngày.
+        </p>
+      </div>
+
+      <p class="editorial-hook editorial-hook--purple">
+        "Một kiểu tóc đẹp nhất không phải là kiểu tóc giống người mẫu trên mạng nhất, mà là kiểu tóc khiến người phụ nữ sáng mai thức dậy thấy yêu đời hơn và không còn sợ chiếc máy sấy."
+      </p>
+
+      <!-- BOTTOM NAV -->
+      <div class="bottom-nav">
+        <a href="./wikicontent.html#chuong-8">← Đọc Chương 8 Trong Wiki Content</a>
+        <a href="./logic-storytelling-niem-tin.html">Xem Giáo Án 7 Màn Storytelling →</a>
+        <a href="./kienpb.html">Xem Case Kiên Phân Bón ↗</a>
+        <a href="./wikicontent.html">Về Mục Lục Tổng ↗</a>
+      </div>
+    </div>
+  </section>
+
+</body>
+</html>
