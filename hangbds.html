@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>CASE CHỊ HẰNG BĐS DỰ ÁN: TỪ SA BÀN TRONG MƠ ĐẾN 7 GIỜ BẢO VỆ DÒNG TIỀN KHÁCH HÀNG • NGUYỄN ĐỨC VIỆT</title>
+
+  <!-- Favicon Vector Chuẩn Cinema REC Monogram (VI + REC + DEO) -->
+  <link rel="icon" type="image/svg+xml" href="./favicon.svg">
+  <link rel="alternate icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%230B0F19'/%3E%3Ctext x='25' y='25' text-anchor='middle' dominant-baseline='central' font-family='sans-serif' font-weight='900' font-size='21' fill='%23FFF'%3EVI%3C/text%3E%3Ccircle cx='47' cy='25' r='5' fill='%23EF4444'/%3E%3Ctext x='32' y='46' text-anchor='middle' dominant-baseline='central' font-family='sans-serif' font-weight='900' font-size='18' fill='%23F8FAFC'%3EDEO%3C/text%3E%3C/svg%3E">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    @font-face {
+      font-family: 'FD Aeonik Extended';
+      src: url('./fonts/FDAeonikExtended-Bold.woff2') format('woff2'),
+           url('./fonts/FDAeonikExtended-Bold.ttf') format('truetype'),
+           local('FD Aeonik Extended Bold');
+      font-weight: 700;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'FD Aeonik';
+      src: url('./fonts/FDAeonik-Regular.woff2') format('woff2'),
+           url('./fonts/FDAeonik-Regular.ttf') format('truetype'),
+           local('FD Aeonik Regular');
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'FD Aeonik';
+      src: url('./fonts/FDAeonik-Medium.woff2') format('woff2'),
+           url('./fonts/FDAeonik-Medium.ttf') format('truetype'),
+           local('FD Aeonik Medium');
+      font-weight: 500;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'FD Aeonik';
+      src: url('./fonts/FDAeonik-Bold.woff2') format('woff2'),
+           url('./fonts/FDAeonik-Bold.ttf') format('truetype'),
+           local('FD Aeonik Bold');
+      font-weight: 600 700;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Tiempos Text';
+      src: url('./fonts/FDTiemposText-Regular.woff2') format('woff2'),
+           url('./fonts/FDTiemposText-Regular.otf') format('opentype'),
+           url('./fonts/TiemposText-Regular.woff2') format('woff2');
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Tiempos Text';
+      src: url('./fonts/FDTiemposText-Medium.woff2') format('woff2'),
+           url('./fonts/FDTiemposText-Medium.otf') format('opentype'),
+           url('./fonts/TiemposText-Medium.woff2') format('woff2');
+      font-weight: 500;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Tiempos Text';
+      src: url('./fonts/FDTiemposText-RegularItalic.woff2') format('woff2'),
+           url('./fonts/FDTiemposText-RegularItalic.otf') format('opentype'),
+           url('./fonts/TiemposText-RegularItalic.woff2') format('woff2');
+      font-weight: 400;
+      font-style: italic;
+      font-display: swap;
+    }
+
+    :root {
+      --cl-bg: #ffffff;
+      --cl-tint: #f8fafc;
+      --cl-line: #e2e8f0;
+      --cl-text-base: #090d16;
+      --cl-text-body: #0f172a;
+      --cl-text-muted: #475569;
+      --cl-accent: #0f766e; /* Deep Emerald Teal - Tài sản & Niềm tin */
+      --cl-accent-soft: rgba(15, 118, 110, 0.08);
+      --cl-blue: #1d4ed8;
+      --cl-blue-soft: #eff6ff;
+      --cl-blue-border: #bfdbfe;
+
+      --font-display-short: 'FD Aeonik Extended', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-display-long: 'FD Aeonik', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-body: 'Tiempos Text', Georgia, serif;
+      --font-mono: 'JetBrains Mono', Consolas, monospace;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    html {
+      background-color: var(--cl-bg);
+      color: var(--cl-text-base);
+      font-family: var(--font-body);
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100vh;
+      line-height: 1.82;
+      padding-bottom: 80px;
+    }
+
+    /* Top Nav */
+    .top-nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--cl-line);
+      padding: 12px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: var(--font-display-long);
+    }
+    .top-nav__breadcrumbs {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--cl-text-muted);
+    }
+    .top-nav__breadcrumbs a {
+      color: var(--cl-text-base);
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .top-nav__breadcrumbs a:hover {
+      color: var(--cl-accent);
+    }
+    .top-nav__links {
+      display: flex;
+      gap: 14px;
+      align-items: center;
+    }
+    .top-nav__link {
+      color: var(--cl-text-muted);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .top-nav__link:hover {
+      color: var(--cl-accent);
+    }
+
+    /* Zebra Sections */
+    .cl-zebra-section {
+      width: 100%;
+      padding: clamp(48px, 6vw, 80px) 20px;
+      border-bottom: 1px solid var(--cl-line);
+    }
+    .cl-zebra--light { background-color: var(--cl-bg); }
+    .cl-zebra--tint { background-color: var(--cl-tint); }
+
+    .cl-sec-container {
+      max-width: 820px;
+      margin: 0 auto;
+    }
+
+    /* Badges & Headers */
+    .cl-badge {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--cl-accent);
+      margin-bottom: 12px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--cl-accent-soft);
+      padding: 4px 12px;
+      border-radius: 100px;
+    }
+    .cl-badge::before {
+      content: '';
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      background: var(--cl-accent);
+      border-radius: 50%;
+    }
+    .cl-badge--blue {
+      color: var(--cl-blue);
+      background: var(--cl-blue-soft);
+    }
+    .cl-badge--blue::before {
+      background: var(--cl-blue);
+    }
+
+    .title-short {
+      font-family: var(--font-display-short);
+      font-size: clamp(23px, 3.6vw, 34px);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: -0.01em;
+      line-height: 1.24;
+      color: var(--cl-text-base);
+      margin-bottom: 18px;
+      text-wrap: balance;
+    }
+
+    .title-long {
+      font-family: var(--font-display-long);
+      font-size: clamp(19px, 2.5vw, 24px);
+      font-weight: 600;
+      line-height: 1.35;
+      color: var(--cl-text-base);
+      margin-top: 24px;
+      margin-bottom: 14px;
+    }
+
+    .cl-body {
+      font-family: var(--font-body);
+      font-size: clamp(16px, 1.8vw, 17.5px);
+      line-height: 1.82;
+      color: var(--cl-text-body);
+      margin-bottom: 20px;
+    }
+
+    /* Khối Thơ Lục Bát Đầu Trang */
+    .luc-bat-card {
+      background: #092625; /* Dark Teal Slate */
+      color: #f8fafc;
+      border-radius: 18px;
+      padding: clamp(28px, 4vw, 40px) clamp(24px, 4vw, 36px);
+      margin-top: 10px;
+      margin-bottom: 36px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 12px 36px rgba(9, 38, 37, 0.18);
+      text-align: center;
+    }
+    .luc-bat-tag {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #5eead4;
+      margin-bottom: 16px;
+      display: inline-block;
+      background: rgba(94, 234, 212, 0.15);
+      padding: 4px 14px;
+      border-radius: 100px;
+    }
+    .luc-bat-poem {
+      font-family: var(--font-body);
+      font-size: clamp(19px, 2.4vw, 25px);
+      line-height: 1.7;
+      font-style: italic;
+      color: #ffffff;
+      margin-bottom: 18px;
+      letter-spacing: 0.01em;
+    }
+    .luc-bat-poem p {
+      margin-bottom: 4px;
+    }
+    .luc-bat-sub {
+      font-family: var(--font-display-long);
+      font-size: 13.5px;
+      color: #99f6e4;
+      max-width: 650px;
+      margin: 0 auto;
+      line-height: 1.65;
+      border-top: 1px solid rgba(255, 255, 255, 0.12);
+      padding-top: 14px;
+      opacity: 0.9;
+    }
+    .luc-bat-sub b {
+      color: #ffffff;
+    }
+
+    /* Cards */
+    .apple-card {
+      background: #ffffff;
+      border: 1px solid var(--cl-line);
+      border-radius: 16px;
+      padding: clamp(20px, 3vw, 28px);
+      margin-bottom: 22px;
+      box-shadow: 0 4px 20px rgba(9, 13, 22, 0.02);
+    }
+    .apple-card__badge {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--cl-accent);
+      margin-bottom: 8px;
+    }
+    .apple-card__title {
+      font-family: var(--font-display-long);
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--cl-text-base);
+      margin-bottom: 12px;
+    }
+
+    /* Audit Table */
+    .audit-table-wrap {
+      overflow-x: auto;
+      margin: 24px 0;
+      border: 1px solid var(--cl-line);
+      border-radius: 14px;
+      background: #ffffff;
+    }
+    table.audit-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14.5px;
+      text-align: left;
+    }
+    table.audit-table th {
+      background: var(--cl-tint);
+      font-family: var(--font-display-long);
+      font-weight: 700;
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--cl-line);
+      color: var(--cl-text-base);
+      font-size: 12.5px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    table.audit-table td {
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--cl-line);
+      vertical-align: top;
+      line-height: 1.6;
+    }
+    table.audit-table tr:last-child td {
+      border-bottom: none;
+    }
+    .col-wrong {
+      color: #b91c1c;
+      background: #fffafa;
+      font-family: var(--font-mono);
+      font-size: 13.5px;
+    }
+    .col-right {
+      color: #0f766e;
+      font-weight: 600;
+    }
+
+    /* Highlight Rules */
+    .highlight-rule {
+      background: #f0fdf4;
+      border-left: 4px solid var(--cl-accent);
+      padding: 16px 20px;
+      border-radius: 0 12px 12px 0;
+      margin: 20px 0;
+      font-size: 16px;
+    }
+    .highlight-rule--blue {
+      background: #eff6ff;
+      border-left-color: var(--cl-blue);
+    }
+
+    .editorial-hook {
+      font-family: var(--font-body);
+      font-style: italic;
+      font-size: clamp(17px, 2vw, 20px);
+      line-height: 1.65;
+      color: var(--cl-text-base);
+      border-left: 3px solid var(--cl-accent);
+      padding-left: 20px;
+      margin: 26px 0;
+    }
+    .editorial-hook--blue {
+      border-left-color: var(--cl-blue);
+    }
+
+    /* Kịch Bản 2 Cột */
+    .script-columns {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin: 16px 0;
+    }
+    @media (max-width: 640px) {
+      .script-columns {
+        grid-template-columns: 1fr;
+      }
+    }
+    .script-col {
+      background: #f8fafc;
+      border: 1px solid var(--cl-line);
+      border-radius: 12px;
+      padding: 16px 18px;
+      font-size: 15px;
+      line-height: 1.65;
+    }
+    .script-col__tag {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 8px;
+    }
+    .script-col--visual .script-col__tag { color: #0369a1; }
+    .script-col--audio .script-col__tag { color: #0f766e; }
+
+    /* Bottom Nav */
+    .bottom-nav {
+      margin-top: 50px;
+      padding-top: 28px;
+      border-top: 1px solid var(--cl-line);
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+      font-family: var(--font-display-long);
+      font-size: 14px;
+    }
+    .bottom-nav a {
+      color: var(--cl-text-muted);
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .bottom-nav a:hover {
+      color: var(--cl-accent);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- TOP NAV -->
+  <nav class="top-nav">
+    <div class="top-nav__breadcrumbs">
+      <a href="./wikicontent.html">Wiki Content</a>
+      <span>/</span>
+      <span>Case Chị Hằng BĐS Dự Án</span>
+    </div>
+    <div class="top-nav__links">
+      <a href="./wikicontent.html#chuong-8" class="top-nav__link">Chương 8 Wiki ↗</a>
+      <a href="./logic-storytelling-niem-tin.html" class="top-nav__link">7 Màn Storytelling ↗</a>
+      <a href="./huuviet.html" class="top-nav__link">Case Đoàn Hữu Việt ↗</a>
+      <a href="./kienpb.html" class="top-nav__link">Case Kiên Phân Bón ↗</a>
+      <a href="./wikicontent.html" class="top-nav__link">← Mục lục</a>
+    </div>
+  </nav>
+
+  <!-- MÀN 1: 4 CÂU LỤC BÁT & PHÂN ĐỊNH MỤC TIÊU LÀM KÊNH BĐS DỰ ÁN -->
+  <section class="cl-zebra-section cl-zebra--light">
+    <div class="cl-sec-container">
+      <div class="cl-badge cl-badge--blue">01 / TỔNG KHO TRÍ TUỆ • NGUYỄN ĐỨC VIỆT</div>
+      <h1 class="title-short">CASE CHỊ HẰNG BĐS DỰ ÁN: TỪ SA BÀN TRONG MƠ ĐẾN 7 GIỜ BẢO VỆ DÒNG TIỀN KHÁCH HÀNG</h1>
+
+      <p class="cl-body">
+        Nếu làm video để bán một món đồ vài chục nghìn hay một khóa học vài trăm nghìn: Người ta có thể mua bằng cảm xúc bốc đồng, bằng một cú giật gân hài hước hay một điệu nhảy bắt trend. Nhưng với <b>bất động sản dự án hình thành trong tương lai</b> — nơi một căn nhà có giá từ 4 tỷ đến 15 tỷ đồng, nơi người mua phải ký vào hợp đồng vay ngân hàng 20 năm và đem theo cả gia tài tích cóp của gia đình vào một bãi đất còn đang ép cọc: <b>Khách hàng không bao giờ xuống tiền vì những lời tán dương sa bàn lộng lẫy</b>.
+      </p>
+
+      <p class="cl-body">
+        Càng nghe môi giới ca ngợi <i>"vị trí kim cương, tiềm năng x2, ngập tràn tiện ích resort"</i>, trung khu cảnh giác sinh tồn trong não bộ (Amygdala) của người mua càng gào thét báo động. Người ta sợ bị lừa, sợ dự án đắp chiếu, sợ nhà bàn giao không giống sa bàn, và trên hết: <b>Họ sợ gánh nặng nợ nần bóp nghẹt cuộc sống gia đình sau khi hết ân hạn lãi suất</b>. Khách hàng chỉ trao trọn niềm tin cho một người môi giới dám nói thẳng sự thật, dám cầm thước dây bóc trần nhà mẫu và dám đặt an toàn tài chính của khách lên trên tiền hoa hồng.
+      </p>
+
+      <!-- 4 CÂU THƠ LỤC BÁT GHI NHỚ -->
+      <div class="luc-bat-card">
+        <div class="luc-bat-tag">4 CÂU LỤC BÁT DỄ NHỚ • BẢN GHI NHỚ LÀM KÊNH BĐS DỰ ÁN</div>
+        <div class="luc-bat-poem">
+          <p>“Sa bàn lấp lánh trời mây,</p>
+          <p>Nói trúng gánh nợ, người đời tin ngay.</p>
+          <p>Bảy giờ lội gió mưa bay,</p>
+          <p>Hộp nhung thước cuộn, tháng ngày bền lâu.”</p>
+        </div>
+        <div class="luc-bat-sub">
+          <b>Ý nghĩa 4 câu:</b> Bóc trần ảo ảnh sa bàn và nhà mẫu trong mơ + Chạm trúng nỗi sợ lãi suất thả nổi sau ân hạn để bảo bọc thể diện khách + Xuất hiện đủ 7 giờ thực địa (quán trà đá, kẹt xe giờ cao điểm, lội bùn công trường) + Đóng gói âm thanh thước đo và hình ảnh mộc mạc như chiếc hộp nhung chuẩn mực.
+        </div>
+      </div>
+
+      <div class="highlight-rule highlight-rule--blue">
+        <b>Chỗ mấu chốt của sự nâng cấp:</b> Thay vì tiếp tục làm một "cò đất đọc tờ rơi" đứng trước sa bàn lộng lẫy và đọc vanh vách văn mẫu chủ đầu tư, chị Hằng được nâng cấp thành một <b>Bác sĩ chẩn đoán tài sản &amp; Người đồng hành thực địa</b>. Áp dụng công thức Google 7-11-4: Dành <b>70% thời lượng video</b> cho đời sống công trường thực tế (quán trà đá hỏi quy hoạch, đo kẹt xe giờ tan tầm, kiểm tra tiến độ cẩu tháp 7h sáng) để tích lũy đủ 7 giờ quen mặt; và <b>30% nhát cắt chuyên môn vi mô</b> (thước dây bóc trần vách ngăn nhà mẫu, bảng tính dòng tiền sau ân hạn) để chốt chặt niềm tin tối thượng.
+      </div>
+    </div>
+  </section>
+
+  <!-- MÀN 2: BẢNG AUDIT TỪ NGỮ VĂN PHONG MỘC MẠC -->
+  <section class="cl-zebra-section cl-zebra--tint">
+    <div class="cl-sec-container">
+      <div class="cl-badge">02 / AUDIT VĂN PHONG THỰC CHIẾN</div>
+      <h2 class="title-short">LỌC BỎ VĂN MẪU CÒ ĐẤT &amp; CHUẨN HÓA GIỌNG BÁC SĨ TÀI SẢN</h2>
+
+      <p class="cl-body">
+        Để chạm được vào tầng lớp khách hàng trung lưu, các chủ doanh nghiệp hay trụ cột gia đình từ 35 đến 48 tuổi — những người có trình độ, có tiền nhưng cực kỳ thận trọng — ngôn từ của người làm kênh BĐS phải <b>gột rửa 100% văn mẫu quảng cáo khoa trương</b>. Không dùng từ sính ngoại, không dùng thuật ngữ thao túng tâm lý rẻ tiền, xưng hô mộc mạc và chân thành.
+      </p>
+
+      <div class="audit-table-wrap">
+        <table class="audit-table">
+          <thead>
+            <tr>
+              <th style="width: 48%;">❌ Từ ngữ sách vở / Cò đất / Marketing (Cần bỏ)</th>
+              <th style="width: 52%;">✅ Từ ngữ mộc mạc chuẩn anh Việt (Bắt buộc dùng)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="col-wrong">Tín hiệu đắt giá (Costly Signaling)</td>
+              <td class="col-right">Hành động chịu thiệt vì khách / Dám khuyên khách hạ từ căn 3 ngủ xuống căn 2 ngủ để an toàn dòng tiền</td>
+            </tr>
+            <tr>
+              <td class="col-wrong">Tỷ lệ chuyển đổi / Phễu chốt cọc / Bẫy tâm lý</td>
+              <td class="col-right">Khách an tâm xuống tiền / Khách giao phó cả gia tài tích cóp cả đời cho mình</td>
+            </tr>
+            <tr>
+              <td class="col-wrong">Vị trí kim cương kết nối hoàn hảo / Trái tim đại đô thị</td>
+              <td class="col-right">Đoạn đường đi làm thực tế: Giờ cao điểm kẹt xe bao nhiêu phút, trời mưa có ngập bánh xe không</td>
+            </tr>
+            <tr>
+              <td class="col-wrong">Tiện ích resort 5 sao đỉnh cao / Không gian sống nghỉ dưỡng</td>
+              <td class="col-right">Tiện nghi thiết thực cho con cái học hành, lối đi bộ an toàn cho bố mẹ già tập thể dục</td>
+            </tr>
+            <tr>
+              <td class="col-wrong">Tiềm năng tăng giá x2 sau 2 năm / Cơ hội đầu tư số 1</td>
+              <td class="col-right">Tính toán bài toán cho thuê thực tế, tỷ suất dòng tiền trừ đi chi phí khấu hao và lãi vay</td>
+            </tr>
+            <tr>
+              <td class="col-wrong">Chính sách ân hạn lãi suất 0% ngập tràn ưu đãi</td>
+              <td class="col-right">Bảng tính nợ tháng thứ 25: Lãi suất thả nổi 12% thì mỗi tháng phải móc túi ra bao nhiêu tiền trả ngân hàng</td>
+            </tr>
+            <tr>
+              <td class="col-wrong">Nhà mẫu sang trọng đẳng cấp thượng lưu</td>
+              <td class="col-right">Bóc trần kích thước lọt lòng: Vách ngăn bị tháo bỏ, tủ âm tường nông hơn chuẩn, trần thạch cao giấu ống gió</td>
+            </tr>
+            <tr>
+              <td class="col-wrong">Căn bệnh ngầm / Nỗi đau khách hàng</td>
+              <td class="col-right">Chuyện khó mở miệng của người trụ cột: Vốn tự có mới được 35%, sợ mất việc thì cả nhà ra đường</td>
+            </tr>
+            <tr>
+              <td class="col-wrong">Vũ khí chốt sale / Nghệ thuật dẫn dắt khách hàng</td>
+              <td class="col-right">Chuyên môn người thạo việc / Cây thước dây và bảng tính dòng tiền sòng phẳng</td>
+            </tr>
+            <tr>
+              <td class="col-wrong">Hạ khiên phòng thủ của não bộ (Amygdala)</td>
+              <td class="col-right">Khách thở phào nhẹ nhõm, cảm nhận được người môi giới đứng về phe mình bảo vệ túi tiền cho họ</td>
+            </tr>
+            <tr>
+              <td class="col-wrong">Xưng hô đạo mạo / Bác sĩ vĩ mô / Tự xưng chuyên gia số 1</td>
+              <td class="col-right">Xưng hô đàng hoàng, tôn trọng: Tôi - Bạn, Em - Anh/Chị. Phong thái điềm đạm, khiêm nhường</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p class="editorial-hook">
+        "Người mua nhà không cần một môi giới dẻo miệng đọc vanh vách lời khen của chủ đầu tư. Họ cần một người đủ dũng cảm để chỉ ra chỗ thiếu sót của căn nhà, và đủ thấu cảm để giữ cho họ một giấc ngủ ngon không bị nợ nần bóp nghẹt."
+      </p>
+    </div>
+  </section>
+
+  <!-- MÀN 3: HIỆN TRƯỜNG THỰC TẾ & 3 TẦNG TÂM LÝ NGÀNH BĐS DỰ ÁN -->
+  <section class="cl-zebra-section cl-zebra--light">
+    <div class="cl-sec-container">
+      <div class="cl-badge">03 / GIẢI PHÃU HIỆN TRƯỜNG</div>
+      <h2 class="title-short">BÓC TÁCH 3 TẦNG TÂM LÝ: KHÁCH HÀNG &amp; MÔI GIỚI BĐS</h2>
+
+      <p class="cl-body">
+        Bán bất động sản dự án (nhà hình thành trong tương lai) là một trong những ngành bán hàng khó nhất, bởi sản phẩm thực tế chưa tồn tại. Thứ duy nhất khách hàng nhìn thấy là mô hình sa bàn nhựa, cuốn catalogue bóng bẩy và căn nhà mẫu được thắp sáng bằng hàng trăm bóng đèn lung linh. Muốn tạo được niềm tin, phải hiểu tường tận 3 tầng tâm lý đang diễn ra trong đầu người mua:
+      </p>
+
+      <!-- TẦNG 1 -->
+      <div class="apple-card">
+        <div class="apple-card__title">1. Tầng 1: Đãi Bôi Ngoài Thị Trường (Văn Mẫu Cò Đất &amp; Sa Bàn Ảo Ảnh)</div>
+        <p class="cl-body" style="margin-bottom: 10px;">
+          • <b>Hiện tượng:</b> Hàng nghìn môi giới ngoài kia cùng đăng một kiểu bài: <i>"Đại đô thị đáng sống nhất, vị trí kim cương kết nối hoàn hảo, hỗ trợ vay 70% ân hạn gốc lãi 0% trong 24 tháng, nhận nhà ở ngay không lo trả nợ, cam kết lợi nhuận x2 sau khi thông cầu..."</i>.<br>
+          • <b>Phản ứng của khách:</b> Tai này lọt sang tai kia. Khách hàng thời nay đã chứng kiến quá nhiều dự án đắp chiếu, quá nhiều người vỡ nợ vì lãi suất thả nổi. Ngay khi môi giới mở miệng ca ngợi, khách lập tức bật chế độ đề phòng, coi môi giới là kẻ chỉ rình rập móc tiền cọc để ăn hoa hồng rồi đem con bỏ chợ.
+        </p>
+      </div>
+
+      <!-- TẦNG 2 -->
+      <div class="apple-card">
+        <div class="apple-card__title">2. Tầng 2: Bề Mặt Đời Thực (Giá Nhà Cao &amp; Đi Xem Nhà Mẫu Hoa Cả Mắt)</div>
+        <p class="cl-body" style="margin-bottom: 10px;">
+          • <b>Thực tế:</b> Giá chung cư và nhà phố dự án leo thang chóng mặt. Căn hộ 2 ngủ bình dân giờ cũng 3.5 – 4.5 tỷ, căn 3 ngủ lên tới 6 – 8 tỷ.<br>
+          • <b>Cảm giác của khách khi đi xem nhà mẫu:</b> Vừa bước chân vào sa bàn máy lạnh thơm phức, nhạc du dương, nhân viên rót nước chào mời, nhìn căn nhà mẫu trang hoàng nội thất đắt tiền thấy mê mẩn. Nhưng khi bước ra cửa, cảm giác bất an lại ùa về: <i>"Liệu bàn giao thật có được thế này không? Hay lại là treo đầu dê bán thịt chó? Pháp lý có sạch không? Nếu chủ đầu tư hết tiền dừng thi công thì tiền tỷ của mình đi đâu?"</i>.
+        </p>
+      </div>
+
+      <!-- TẦNG 2.5 -->
+      <div class="apple-card" style="border-left: 4px solid var(--cl-accent);">
+        <div class="apple-card__title" style="color: var(--cl-accent);">3. Tầng 2.5: Nỗi Niềm Giấu Kín &amp; Chiếc Mặt Nạ Thể Diện Của Người Mua Nhà</div>
+        <p class="cl-body" style="margin-bottom: 10px;">
+          Đây là nơi quyết định 90% thành bại của giao dịch tiền tỷ, nhưng không bao giờ xuất hiện trong sách vở bán hàng:
+        </p>
+        <p class="cl-body" style="margin-bottom: 0;">
+          • <b>Khách hàng (Người trụ cột gia đình 35–48 tuổi):</b><br>
+          - <i>Chiếc mặt nạ đàng hoàng:</i> Đi xem nhà săm soi rất kỹ hướng gió Đông Nam, hỏi về kính Low-E 2 lớp chống ồn, gõ tay vào đá bếp nhân tạo, miệng nói rất đĩnh đạc: <i>"Anh là người kỹ tính, muốn chọn không gian sống chuẩn mực để các cháu có môi trường phát triển toàn diện, bạn bè đến chơi cũng thấy đàng hoàng"</i>.<br>
+          - <i>Nỗi sợ sâu kín không dám nói ra:</i> Tiền tự có trong tài khoản thực chất chỉ có 1.5 tỷ (khoảng 30–35% giá trị căn 5 tỷ). 65% còn lại (3.5 tỷ) đang trông chờ hoàn toàn vào gói ân hạn lãi suất 0% của ngân hàng. Nỗi kinh hoàng lớn nhất khiến người đàn ông này mất ngủ lúc 2 giờ sáng là: <b>Đến tháng thứ 25, khi hết thời gian hỗ trợ lãi suất, ngân hàng thả nổi lên 12–13%</b>. Lúc đó mỗi tháng phải è cổ trả 40–45 triệu cả gốc lẫn lãi. Nếu công ty cắt giảm biên chế, nếu kinh doanh gặp trục trặc, nếu thị trường không tăng giá để bán lướt sóng... thì cả gia đình sẽ bị dòng nợ đó bóp nghẹt chi tiêu, bố mẹ già đau ốm không có tiền lo, con cái phải cắt bớt học phí. Đó là nỗi sợ nhục nhã và bế tắc cùng cực mà không người đàn ông nào dám thú nhận trước mặt vợ con hay bạn bè.<br><br>
+          • <b>Cú lật chuyển của Chị Hằng (Người môi giới có tâm):</b><br>
+          Đa số môi giới chọn hùa theo sự huyễn hoặc của khách để đẩy khách ký cọc ăn hoa hồng 100–150 triệu. Nhưng chị Hằng chọn <b>hành động chịu thiệt vì khách</b>: Dám vạch trần con số dòng tiền tháng thứ 25, dám chỉ rõ những điểm ảo ảnh trong nhà mẫu, và dám khuyên khách: <i>"Anh chị hạ xuống mua căn 2 ngủ 3.8 tỷ thôi, đừng mua căn 3 ngủ 5.5 tỷ này. Tiền hoa hồng của em có thể ít đi một nửa, nhưng em muốn anh chị tối về đặt lưng xuống là ngủ ngon, con cái ăn học không phải nơm nớp lo sợ ngân hàng siết nợ"</i>.
+        </p>
+      </div>
+
+      <div class="highlight-rule">
+        <b>Định luật Woodsmall &amp; Cú cắt niềm tin:</b> Mô tả đúng bệnh ở cấp độ vi mô là người ta mặc định mình nắm thuốc giải. Khi chị Hằng nói trúng cảm giác sợ hãi tháng thứ 25 sau ân hạn và chỉ ra từng phân khoảng trống bị giấu trong nhà mẫu, chiếc mặt nạ thể diện của khách được cởi bỏ, và họ xem chị Hằng là người bảo hộ tài chính duy nhất mà họ tin tưởng.
+      </div>
+    </div>
+  </section>
+
+  <!-- MÀN 4: 5 BƯỚC NÂNG CẤP TOÀN DIỆN THEO BÀI TRÌNH 7 MÀN -->
+  <section class="cl-zebra-section cl-zebra--tint">
+    <div class="cl-sec-container">
+      <div class="cl-badge">04 / BƯỚC CHUYỂN TOÀN DIỆN</div>
+      <h2 class="title-short">5 ĐIỂM NÂNG CẤP BẮT BUỘC THEO 7 MÀN STORYTELLING</h2>
+
+      <p class="cl-body">
+        Để chị Hằng thoát khỏi hình ảnh một người môi giới tầm thường và trở thành một cố vấn tài sản uy tín được khách hàng tự tìm đến, toàn bộ chiến lược làm kênh được nâng cấp theo 5 trụ cột:
+      </p>
+
+      <!-- NẤC 1 -->
+      <div class="apple-card">
+        <div class="apple-card__title">Trụ Cột 1: Áp Dụng Công Thức Google 7 - 11 - 4 (Giải Bài Toán 7 Giờ Quen Mặt)</div>
+        <p class="cl-body">
+          Mua nhà tiền tỷ không giống mua áo quần. Khách hàng phải tiếp xúc đủ <b>7 giờ, qua 11 điểm chạm, tại 4 không gian khác nhau</b> thì mới dám gửi gắm số tiền tích góp 15 năm cho người môi giới.
+        </p>
+        <p class="cl-body" style="margin-bottom: 0;">
+          <b>Phân bổ cấu trúc nội dung trên kênh chị Hằng:</b>
+          <br>• <b>70% Video Đời Sống Thực Địa (Nhịp Đệm Quen Mặt):</b><br>
+          - Chị Hằng đội mũ bảo hộ, xỏ ủng cao su đi quanh dự án lúc 7 giờ sáng chủ nhật để kiểm tra xem cẩu tháp có quay không, công nhân có thi công không.<br>
+          - Chị Hằng ngồi quán nước chè chén đầu ngõ đối diện cổng dự án, trò chuyện với bác bảo vệ, cô bán xôi về quy hoạch con đường mở rộng trước mặt.<br>
+          - Chị Hằng tự lái xe máy và ô tô đi từ cổng dự án vào trung tâm quận 1 hoặc Hoàn Kiếm đúng khung giờ 17h30 - 18h30 để đo thời gian kẹt xe thực tế.<br>
+          - Chị Hằng quay cảnh lội đường sau một cơn mưa rào xem nước có ngập bánh xe không.<br>
+          <i>→ Những video này chân thực đến từng hạt bụi, quay bằng điện thoại, không cần kịch bản cầu kỳ, nhưng tạo ra sự thân quen và tin cậy tuyệt đối: Khách thấy chị Hằng lăn lộn với dự án như chính căn nhà của mình.</i><br><br>
+          • <b>30% Video Nhát Cắt Niềm Tin Vi Mô:</b><br>
+          Những pha bóc trần kích thước nhà mẫu, dùng thước kéo đo lọt lòng, phân tích bảng dòng tiền trả nợ ngân hàng, bóc tách điều khoản phạt trong hợp đồng mua bán. Khi khách đã xem hàng chục clip đời thường và quen mặt chị Hằng, chỉ cần chạm vào 1 clip nhát cắt này là họ bấm máy gọi ngay: <i>"Em Hằng ơi, nghiên cứu cho anh căn này với!"</i>.
+        </p>
+      </div>
+
+      <!-- NẤC 2 -->
+      <div class="apple-card">
+        <div class="apple-card__title">Trụ Cột 2: Bắt Bệnh Vi Mô Theo Định Luật Woodsmall (5 Giây Đầu Bóc Trần Nhà Mẫu)</div>
+        <p class="cl-body">
+          Bỏ hoàn toàn mở đầu bằng câu chào: <i>"Xin chào anh chị, hôm nay em Hằng đang có mặt tại dự án X..."</i>. Mở đầu bằng một hành động vi mô dứt khoát trong 5 giây đầu:
+        </p>
+        <p class="cl-body" style="margin-bottom: 0;">
+          • Tay chị Hằng bấm nút kéo thước cuộn kêu <i>"xoạch... tanh tách"</i>, đặt thước sát sàn phòng ngủ nhà mẫu: <i>"5 giây đầu: Bạn nhìn phòng ngủ nhà mẫu thấy thênh thang đúng không? Để tôi kéo thước đo: Toàn bộ cửa phòng đã bị tháo bỏ, và vách ngăn bê tông 10 phân bị thay bằng vách kính trong suốt để đánh lừa thị giác của bạn đấy!"</i>.<br>
+          • Khán giả lập tức dán mắt vào màn hình vì nhận ra đây là người trong nghề dám nói thật, không phải người đi diễn tuồng.
+        </p>
+      </div>
+
+      <!-- NẤC 3 -->
+      <div class="apple-card">
+        <div class="apple-card__title">Trụ Cột 3: Đóng Gói Thị Giác &amp; Âm Thanh — Chiếc Hộp Nhung BĐS Thực Địa</div>
+        <p class="cl-body">
+          Kiến thức chuẩn xác là viên ngọc quý, nhưng cách trình bày vụng về sẽ biến nó thành hàng chợ. Đóng gói kênh chị Hằng theo chuẩn chiếc hộp nhung:
+        </p>
+        <p class="cl-body" style="margin-bottom: 0;">
+          • <b>Âm thanh ASMR thực tế:</b> Tiếng kéo thước dây kim loại tanh tách giòn tan; tiếng gõ ngón tay vào vách thạch cao phát ra tiếng lộp bộp rỗng ruột đối nghịch với tiếng gõ vách bê tông đặc; tiếng còi xe inh ỏi lúc 18h tan tầm minh chứng cho thời gian kẹt xe thực tế.<br>
+          • <b>Góc máy trung thực (Nói không với lens mắt cá):</b> Cấm dùng ống kính góc siêu rộng (Ultra-wide 0.5x) làm méo hình và phóng to phòng ngủ một cách giả tạo. Dùng tiêu cự chuẩn 28mm – 35mm để giữ nguyên tỷ lệ không gian như mắt người thật nhìn thấy.<br>
+          • <b>Phong thái &amp; Trang phục:</b> Không mặc vest bóng lộn đeo kính râm như đa cấp. Trang phục áo sơ mi mộc mạc, quần tây hoặc quần jean lịch sự, giày bệt hoặc giày thể thao thuận tiện lội công trường, phong thái đĩnh đạc, ánh mắt cương nghị.
+        </p>
+      </div>
+
+      <!-- NẤC 4 -->
+      <div class="apple-card">
+        <div class="apple-card__title">Trụ Cột 4: Kế Hoạch Tác Chiến Độc Lập Cho Chị Hằng (Cùng 1 Trợ Lý Hoặc Tự Quay)</div>
+        <p class="cl-body" style="margin-bottom: 10px;">
+          Chị Hằng không cần cả đoàn làm phim cồng kềnh. Chỉ cần 1 chiếc iPhone, 1 chân tripod nhỏ gọn, 1 micro cài áo không dây (như DJI Mic hoặc Rode) và 1 cuộn thước dây kim loại 5 mét:
+        </p>
+        <p class="cl-body" style="margin-bottom: 0;">
+          • <b>Góc quay 1 (Cam chính - Chị Hằng tương tác):</b> Đặt máy ngang tầm mắt, cự ly 1.5 mét. Chị Hằng nhìn thẳng ống kính, nói năng điềm đạm, không hoa chân múa tay.<br>
+          • <b>Góc quay 2 (Cận cảnh vi mô - B-Roll):</b> Điện thoại cầm tay quay sát: vạch số trên thước dây, mép cửa kính, vị trí giấu cục nóng điều hòa trên ban công, tờ thông báo tiến độ thi công ở cổng công trường.<br>
+          • <b>Quy trình quay nhanh:</b> Mỗi buổi đi hiện trường hoặc nhà mẫu, quay 30 phút là đủ nguyên liệu cho 3-4 video ngắn.
+        </p>
+      </div>
+
+      <!-- NẤC 5 -->
+      <div class="apple-card">
+        <div class="apple-card__title">Trụ Cột 5: Sản Xuất Nội Dung Bền Bỉ Bằng Bộ Bóc Tách 4 Tầng</div>
+        <p class="cl-body" style="margin-bottom: 0;">
+          Bất kỳ câu hỏi nào khách hàng nhắn tin hỏi chị Hằng (<i>"Dự án này có sổ chưa em?", "Nên chọn căn tầng thấp hay tầng cao?", "Có nên vay 70% không?"</i>), chị Hằng chỉ cần đưa vào công cụ bóc tách 4 tầng (<a href="./4tang.html" style="color: var(--cl-accent); font-weight: 600;">4tang.html</a>) để sinh ra kịch bản 7 câu sắc nét. Không bao giờ lo cạn kiệt ý tưởng, sản xuất đều đặn 15–20 video chất lượng mỗi tháng.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- MÀN 5: 4 KỊCH BẢN MẪU THỰC CHIẾN TẠI DỰ ÁN & NHÀ MẪU -->
+  <section class="cl-zebra-section cl-zebra--light">
+    <div class="cl-sec-container">
+      <div class="cl-badge">05 / KỊCH BẢN THỰC ĐỊA</div>
+      <h2 class="title-short">4 KỊCH BẢN MẪU THỰC CHIẾN TẠI DỰ ÁN &amp; NHÀ MẪU</h2>
+
+      <p class="cl-body">
+        Dưới đây là 4 kịch bản mẫu được thiết kế theo cấu trúc 2 cột chuẩn mực (Hình ảnh B-roll &amp; Lời thoại thực tế), chị Hằng chỉ việc cầm máy ra hiện trường là quay được ngay:
+      </p>
+
+      <!-- KỊCH BẢN 1 -->
+      <div class="apple-card">
+        <div class="apple-card__badge">KỊCH BẢN 1 • ĐỜI THƯỜNG THỰC ĐỊA (70% NHỊP ĐỆM QUEN MẶT)</div>
+        <div class="apple-card__title">Quán Trà Đá Đối Diện Dự Án: Sự Thật Về "10 Phút Vào Trung Tâm"</div>
+
+        <div class="script-columns">
+          <div class="script-col script-col--visual">
+            <div class="script-col__tag">📹 HÌNH ẢNH B-ROLL</div>
+            • <b>Cảnh 1:</b> Chị Hằng ngồi uống nước chè trên chiếc ghế nhựa quán cóc đối diện dự án, tay cầm cốc trà nóng, xa xa là hàng rào tôn của công trường.<br>
+            • <b>Cảnh 2:</b> Cắt sang màn hình đồng hồ điện thoại chỉ 17h45 chiều. Góc máy gắn trên xe ô tô quay cảnh dòng xe máy, ô tô kẹt cứng nhích từng mét dưới trời mưa phùn.<br>
+            • <b>Cảnh 3:</b> Chị Hằng chỉ tay vào ngã tư nút giao đang thi công dang dở.<br>
+            • <b>Cảnh 4:</b> Quay lại quán trà đá, chị Hằng mỉm cười điềm tĩnh nhìn ống kính.
+          </div>
+          <div class="script-col script-col--audio">
+            <div class="script-col__tag">🎙️ LỜI THOẠI CHỊ HẰNG (MỘC MẠC)</div>
+            <i>"Nếu bạn đọc tờ rơi quảng cáo bảo từ dự án này vào trung tâm phố cổ chỉ mất đúng 10 phút, thì tôi khẳng định với bạn: Đó là 10 phút lúc 2 giờ sáng, khi đường không có một bóng người.<br><br>
+            Còn lúc 5 rưỡi chiều tan tầm thế này, mời bạn ngồi lên xe đi cùng tôi. Chỉ riêng đoạn nút giao này thôi, bạn phải chôn chân qua 4 nhịp đèn đỏ, mất đứt 25 phút trong khói bụi.<br><br>
+            Chủ đầu tư không nói dối, họ chỉ nói thời gian trong điều kiện lý tưởng. Nhưng cuộc sống của vợ chồng bạn và con cái là cuộc sống diễn ra lúc 7 giờ sáng đi làm và 6 giờ chiều đón con. Khi mua nhà, đừng nhìn bản đồ chim bay. Hãy tự mình xách xe đi đúng giờ tan tầm. Thấy chấp nhận được thì hãy xuống tiền, kẻo mua xong lại ôm bực bội mỗi ngày."</i>
+          </div>
+        </div>
+      </div>
+
+      <!-- KỊCH BẢN 2 -->
+      <div class="apple-card">
+        <div class="apple-card__badge">KỊCH BẢN 2 • ĐỊNH LUẬT WOODSMALL (30% NHÁT CẮT BÓC TRẦN NHÀ MẪU)</div>
+        <div class="apple-card__title">Cây Thước Dây Bóc Trần "Ảo Ảnh Không Gian" Trong Nhà Mẫu</div>
+
+        <div class="script-columns">
+          <div class="script-col script-col--visual">
+            <div class="script-col__tag">📹 HÌNH ẢNH B-ROLL</div>
+            • <b>Cảnh 1 (5s đầu):</b> Tiếng thước dây kéo xoạch, chị Hằng đặt mép thước đo chiều sâu của chiếc tủ quần áo trong phòng ngủ nhà mẫu.<br>
+            • <b>Cảnh 2 (Macro):</b> Cận cảnh con số trên thước: chỉ đúng 45cm thay vị 60cm.<br>
+            • <b>Cảnh 3:</b> Chị Hằng chỉ tay vào khoảng trống nơi đáng lẽ có cánh cửa phòng ngủ mở ra đóng vào, nhưng ở đây hoàn toàn trống trơn.<br>
+            • <b>Cảnh 4:</b> Chị Hằng dùng bàn tay gõ nhẹ vào tấm kính ngăn phòng khách và phòng ngủ.
+          </div>
+          <div class="script-col script-col--audio">
+            <div class="script-col__tag">🎙️ LỜI THOẠI CHỊ HẰNG (MỘC MẠC)</div>
+            <i>"Bạn bước vào căn nhà mẫu 65 mét vuông này thấy sao mà rộng rãi, thoáng đãng thế đúng không? Để tôi kéo cái thước đo cho bạn xem ảo ảnh nằm ở đâu nhé.<br><br>
+            Thứ nhất: Chiếc tủ quần áo này chiều sâu chỉ có 45 phân. Sau này bạn bàn giao nhà thật, mua một chiếc tủ tiêu chuẩn 60 phân để treo vừa móc áo vest, thì lối đi từ giường ra cửa sẽ bị bóp hẹp lại đúng một nửa.<br><br>
+            Thứ hai: Toàn bộ cửa phòng ngủ và cửa vệ sinh trong nhà mẫu này đều bị tháo bỏ, thay bằng vách kính để tầm mắt thông thoáng. Đến khi nhận nhà thật, dựng cánh cửa gỗ lên, bạn sẽ thấy nó chật hơn cảm giác hôm nay đi xem rất nhiều.<br><br>
+            Đi xem nhà mẫu, đừng để ánh đèn lung linh đánh lừa cảm giác. Hãy mang theo một cuộn thước dây và một cái đầu lạnh."</i>
+          </div>
+        </div>
+      </div>
+
+      <!-- KỊCH BẢN 3 -->
+      <div class="apple-card">
+        <div class="apple-card__badge">KỊCH BẢN 3 • HÀNH ĐỘNG CHỊU THIỆT VÌ KHÁCH (COSTLY SIGNALING TỐI THƯỢNG)</div>
+        <div class="apple-card__title">Từ Chối Bán Căn 3 Ngủ 6 Tỷ Để Giữ Giấc Ngủ Cho Khách Hàng</div>
+
+        <div class="script-columns">
+          <div class="script-col script-col--visual">
+            <div class="script-col__tag">📹 HÌNH ẢNH B-ROLL</div>
+            • <b>Cảnh 1:</b> Tờ bảng tính lãi suất ngân hàng đặt trên bàn, chiếc máy tính Casio hiển thị con số 42.500.000 đ.<br>
+            • <b>Cảnh 2:</b> Chị Hằng dùng bút bi gạch chéo vào dòng chữ "Căn hộ 3PN - 105m2 - 5.8 Tỷ", rồi khoanh tròn vào "Căn hộ 2PN - 70m2 - 3.8 Tỷ".<br>
+            • <b>Cảnh 3:</b> Chị Hằng nhìn thẳng ống kính, giọng điềm tĩnh, ấm áp nhưng kiên quyết.<br>
+            • <b>Cảnh 4:</b> Đôi vợ chồng khách hàng ngồi đối diện thở phào nhẹ nhõm, gật gù đồng tình.
+          </div>
+          <div class="script-col script-col--audio">
+            <div class="script-col__tag">🎙️ LỜI THOẠI CHỊ HẰNG (MỘC MẠC)</div>
+            <i>"Hôm qua có hai vợ chồng anh chị gom góp được 1.8 tỷ, thu nhập hai người cộng lại 60 triệu một tháng, nằng nặc nhờ em làm thủ tục cọc căn 3 ngủ gần 6 tỷ này. Nhưng em xin phép từ chối nhận cọc của anh chị.<br><br>
+            Nếu em là môi giới chỉ chăm chăm lấy hoa hồng, em chốt ngay. Hai năm đầu chủ đầu tư ân hạn gốc lãi, anh chị không phải trả một đồng, nghe thì êm ru như ru ngủ. Nhưng anh chị có tính đến tháng thứ 25 chưa? Khi hết ưu đãi, lãi suất thả nổi 12%, mỗi tháng anh chị phải è cổ trả cho ngân hàng 42 triệu đồng.<br><br>
+            Thu nhập 60 triệu mà trả nợ 42 triệu, còn đúng 18 triệu để nuôi 2 đứa con và trang trải ăn học ở thành phố. Lỡ một đợt ốm đau, lỡ công ty chậm lương, là cả gia đình rơi vào hoảng loạn.<br><br>
+            Em khuyên anh chị mua căn 2 ngủ 3.8 tỷ thôi. Mỗi tháng trả nợ 18 - 20 triệu vừa sức, số tiền còn lại để con cái học hành đàng hoàng, và quan trọng nhất: Tối về đặt lưng xuống là ngủ ngon, không phải giật mình thon thót vì khoản nợ ngân hàng."</i>
+          </div>
+        </div>
+      </div>
+
+      <!-- KỊCH BẢN 4 -->
+      <div class="apple-card">
+        <div class="apple-card__badge">KỊCH BẢN 4 • THỰC ĐỊA CÔNG TRƯỜNG (KIỂM TRA TIẾN ĐỘ THẬT)</div>
+        <div class="apple-card__title">Đếm Số Cẩu Tháp Lúc 7h Sáng Chủ Nhật: Tiến Độ Thật Hay Vẽ Giấy?</div>
+
+        <div class="script-columns">
+          <div class="script-col script-col--visual">
+            <div class="script-col__tag">📹 HÌNH ẢNH B-ROLL</div>
+            • <b>Cảnh 1:</b> Chị Hằng đội mũ bảo hộ lao động màu trắng, đi ủng cao su dính chút bùn non, đứng trước cổng đại công trường dự án lúc bình minh.<br>
+            • <b>Cảnh 2:</b> Ống kính zoom lên đỉnh tòa nhà tầng 18: Hai cánh tay cẩu tháp đang cẩu bó thép lên sàn, công nhân mặc áo phản quang vàng đang di chuyển làm việc.<br>
+            • <b>Cảnh 3:</b> Chị Hằng lật cuốn sổ tay công trường ghi chép tiến độ đổ sàn cách đây 2 tuần so với hiện tại.<br>
+            • <b>Cảnh 4:</b> Chị Hằng giơ ngón tay chỉ lên kết cấu cốp pha sàn đang lắp đặt.
+          </div>
+          <div class="script-col script-col--audio">
+            <div class="script-col__tag">🎙️ LỜI THOẠI CHỊ HẰNG (MỘC MẠC)</div>
+            <i>"Muốn biết một dự án hình thành trong tương lai có kịp bàn giao đúng hạn cho bạn vào ở hay không, đừng bao giờ ngồi trong phòng máy lạnh nghe môi giới hứa hẹn.<br><br>
+            Cứ đúng 7 giờ sáng chủ nhật, bạn hãy xỏ đôi giày hoặc đôi ủng, đi ra cổng công trường như tôi đang đứng đây này.<br><br>
+            Nếu là dự án chủ đầu tư đang dồn dòng tiền thật vào thi công: Sáng chủ nhật cẩu tháp vẫn quay đều, tiếng máy trộn bê tông vẫn gầm rú, trên sàn vẫn có hàng chục công nhân buộc thép. Cứ trung bình 7 đến 10 ngày họ đổ xong một sàn, thì bạn mới an tâm tiền tỷ của mình không bị chôn vùi.<br><br>
+            Còn nếu bạn đến mà cổng đóng then cài, cẩu tháp đứng im lìm, chỉ có bác bảo vệ ngồi ngáp dài... thì dù chính sách bán hàng có chiết khấu 15-20% bạn cũng phải hết sức cẩn trọng. Tiến độ xây dựng chính là sinh mạng của nhà dự án."</i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MÀN 6: LỘ TRÌNH 7 NGÀY TÁC CHIẾN CỦA CHỊ HẰNG -->
+  <section class="cl-zebra-section cl-zebra--tint">
+    <div class="cl-sec-container">
+      <div class="cl-badge">06 / LỊCH TRÌNH VẬN HÀNH</div>
+      <h2 class="title-short">LỘ TRÌNH 1 TUẦN TÁC CHIẾN THỰC ĐỊA CỦA CHỊ HẰNG</h2>
+
+      <p class="cl-body">
+        Chị Hằng hoàn toàn có thể tự vận hành kênh nội dung này một cách bền bỉ mỗi tuần, kết hợp ngay trong lịch trình đi thị trường và dẫn khách mà không tốn thêm chi phí sản xuất:
+      </p>
+
+      <div class="audit-table-wrap">
+        <table class="audit-table">
+          <thead>
+            <tr>
+              <th style="width: 18%;">Ngày</th>
+              <th style="width: 32%;">Định dạng &amp; Không gian</th>
+              <th style="width: 25%;">Thao tác vi mô / Âm thanh</th>
+              <th style="width: 25%;">Mục tiêu tiếp xúc (Google 7-11-4)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><b>Thứ 2</b></td>
+              <td>Khảo sát giao thông giờ tan tầm (17h30 - 18h30) từ dự án về trung tâm</td>
+              <td>Bật đồng hồ đo giờ, thu tiếng còi xe và hình ảnh kẹt xe thực tế</td>
+              <td>70% đời thường: Bóc trần lời hứa ảo "10 phút vào phố cổ".</td>
+            </tr>
+            <tr>
+              <td><b>Thứ 3</b></td>
+              <td>Cầm thước dây kéo tanh tách đo lọt lòng căn hộ mẫu (Định luật Woodsmall)</td>
+              <td>Macro thước đo tủ quần áo 45cm, chỉ ra vách ngăn bị tháo dỡ</td>
+              <td>30% nhát cắt: Khẳng định chuyên môn và sự trung thực tuyệt đối.</td>
+            </tr>
+            <tr>
+              <td><b>Thứ 4</b></td>
+              <td>Quán trà đá cổng dự án nói chuyện với bác xe ôm, cô bán xôi về quy hoạch</td>
+              <td>Góc máy mộc mạc, chén trà nóng, không khí đời thường dân dã</td>
+              <td>Tích lũy giờ tiếp xúc thân thiện, gần gũi như người trong nhà.</td>
+            </tr>
+            <tr>
+              <td><b>Thứ 5</b></td>
+              <td>Khảo sát tiện ích ngoại khu thực tế: Trường tiểu học công lập, bệnh viện, chợ dân sinh</td>
+              <td>Quay đường đi bộ của trẻ em, độ an toàn của vỉa hè</td>
+              <td>Đánh trúng mối quan tâm thực sự của các bậc phụ huynh trụ cột.</td>
+            </tr>
+            <tr>
+              <td><b>Thứ 6</b></td>
+              <td>Bảng tính dòng tiền sau ân hạn: Dám khuyên khách hạ từ căn 3 ngủ xuống 2 ngủ</td>
+              <td>Tờ giấy trắng, máy tính Casio, gạch bỏ phương án rủi ro nợ nần</td>
+              <td>Chốt chặt niềm tin: Người môi giới dám chịu thiệt hoa hồng vì an toàn của khách.</td>
+            </tr>
+            <tr>
+              <td><b>Thứ 7</b></td>
+              <td>Dẫn khách đi xem sa bàn nhưng đứng ở góc phân tích hướng nắng hướng gió</td>
+              <td>Góc quay từ sau lưng, thái độ tư vấn chân tình, không chèo kéo</td>
+              <td>Minh chứng phong thái làm việc chuyên nghiệp, điềm tĩnh.</td>
+            </tr>
+            <tr>
+              <td><b>Chủ nhật</b></td>
+              <td>Lội bùn công trường lúc 7h sáng đếm cẩu tháp và kiểm tra tiến độ đổ sàn</td>
+              <td>Đội mũ bảo hộ, ủng cao su, zoom cận cảnh công nhân đang buộc thép</td>
+              <td>Bảo chứng an toàn: Báo cáo thực địa cho những khách hàng ở xa.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="highlight-rule highlight-rule--blue">
+        <b>Đích đến tối thượng:</b> Sau 1 đến 2 tháng kiên trì đăng tải, chị Hằng sẽ không còn phải đi rải tờ rơi hay gọi điện thoại chào mời (cold-calling) làm phiền người khác. Khách hàng xem kênh của chị sẽ cảm nhận được: <i>"Đây là một người làm nghề đàng hoàng, có tâm, không giấu giếm, hiểu tường tận từng viên gạch của dự án và thực sự lo cho túi tiền của mình"</i>. Khi họ quyết định mua nhà, chị Hằng là người đầu tiên và duy nhất họ gọi điện để gửi gắm số tiền tích cóp cả đời.
+      </div>
+    </div>
+  </section>
+
+  <!-- MÀN 7: 3 NGUYÊN TẮC CỐT TỬ CỦA NGƯỜI CỐ VẤN BĐS CÓ TÂM -->
+  <section class="cl-zebra-section cl-zebra--light">
+    <div class="cl-sec-container">
+      <div class="cl-badge cl-badge--blue">07 / NGUYÊN TẮC CỐT TỬ</div>
+      <h2 class="title-short">3 NGUYÊN TẮC BẤT DI BẤT DỊCH CỦA NGƯỜI CỐ VẤN TÀI SẢN</h2>
+
+      <p class="cl-body">
+        Để giữ vững uy tín và xây dựng thương hiệu cá nhân bền bỉ trong ngành bất động sản dự án, chị Hằng chỉ cần ghi nhớ 3 nguyên tắc sống còn:
+      </p>
+
+      <div class="apple-card">
+        <div class="apple-card__title">1. Đặt An Toàn Dòng Tiền Của Khách Lên Trên Tiền Hoa Hồng</div>
+        <p class="cl-body" style="margin-bottom: 0;">
+          Tiền hoa hồng chỉ tiêu trong vài tháng là hết, nhưng một quyết định mua nhà sai lầm có thể đẩy cả một gia đình vào cảnh bế tắc nợ nần suốt 10 năm. Luôn tính toán kịch bản xấu nhất về lãi suất thả nổi sau ân hạn. Thấy khách gồng nợ quá 50% thu nhập thì phải kiên quyết can ngăn, hướng khách về sản phẩm vừa sức. Sự chân thành và can ngăn đó sẽ mang lại cho chị Hằng những khách hàng trung thành trọn đời và vô số lời giới thiệu tự nhiên.
+        </p>
+      </div>
+
+      <div class="apple-card">
+        <div class="apple-card__title">2. Luôn Dùng Thước Đo &amp; Hiện Trường Thay Cho Lời Hứa Suông</div>
+        <p class="cl-body" style="margin-bottom: 0;">
+          Đừng bao giờ nói <i>"nhà này rộng lắm", "đường này thoáng lắm", "tiến độ nhanh lắm"</i>. Hãy mang cây thước dây ra đo từng centimet lọt lòng, hãy bấm đồng hồ đo từng phút kẹt xe giờ cao điểm, hãy lội bùn chụp ảnh từng cẩu tháp công trường. Dữ liệu vi mô thực tế có sức nặng thuyết phục gấp vạn lần những lời hót hoa mỹ của nhân viên bán hàng.
+        </p>
+      </div>
+
+      <div class="apple-card">
+        <div class="apple-card__title">3. Bảo Bọc Thể Diện Cho Người Trụ Cột Gia Đình</div>
+        <p class="cl-body" style="margin-bottom: 0;">
+          Hiểu sâu sắc rằng người đàn ông đi mua nhà luôn mang trên mình gánh nặng kỳ vọng của gia đình, vợ con và xã hội. Đừng bao giờ bóc mẽ việc họ thiếu tiền hay chê họ không đủ lực tài chính. Hãy khéo léo biến việc chọn căn nhà vừa sức thành một quyết định thông minh của một nhà đầu tư có tầm nhìn thận trọng: <i>"Người biết giữ vốn và thủ thế mới là người chiến thắng đường dài"</i>. Khi giữ được thể diện cho khách, khách sẽ coi chị Hằng như tri kỷ.
+        </p>
+      </div>
+
+      <p class="editorial-hook">
+        "Ngôi nhà đẹp nhất không phải là ngôi nhà lộng lẫy nhất trên sa bàn, mà là ngôi nhà mà sau khi nhận chìa khóa, gia đình bước vào trong lòng thấy bình an, và mỗi đêm người trụ cột đều ngủ một giấc thật ngon."
+      </p>
+
+      <!-- BOTTOM NAV -->
+      <div class="bottom-nav">
+        <a href="./wikicontent.html#chuong-8">← Đọc Chương 8 Trong Wiki Content</a>
+        <a href="./logic-storytelling-niem-tin.html">Xem Giáo Án 7 Màn Storytelling →</a>
+        <a href="./huuviet.html">Xem Case Đoàn Hữu Việt ↗</a>
+        <a href="./kienpb.html">Xem Case Kiên Phân Bón ↗</a>
+        <a href="./wikicontent.html">Về Mục Lục Tổng ↗</a>
+      </div>
+    </div>
+  </section>
+
+</body>
+</html>
