@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>CASE LINH DULIN: TỪ QUẦY TEST NGUYÊN LIỆU ĐẾN 7 GIỜ GÂY DỰNG NIỀM TIN B2B • NGUYỄN ĐỨC VIỆT</title>
+
+  <!-- Favicon Vector Chuẩn Cinema REC Monogram (VI + REC + DEO) -->
+  <link rel="icon" type="image/svg+xml" href="./favicon.svg">
+  <link rel="alternate icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%230B0F19'/%3E%3Ctext x='25' y='25' text-anchor='middle' dominant-baseline='central' font-family='sans-serif' font-weight='900' font-size='21' fill='%23FFF'%3EVI%3C/text%3E%3Ccircle cx='47' cy='25' r='5' fill='%23EF4444'/%3E%3Ctext x='32' y='46' text-anchor='middle' dominant-baseline='central' font-family='sans-serif' font-weight='900' font-size='18' fill='%23F8FAFC'%3EDEO%3C/text%3E%3C/svg%3E">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    @font-face {
+      font-family: 'FD Aeonik Extended';
+      src: url('./fonts/FDAeonikExtended-Bold.woff2') format('woff2'),
+           url('./fonts/FDAeonikExtended-Bold.ttf') format('truetype'),
+           local('FD Aeonik Extended Bold');
+      font-weight: 700;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'FD Aeonik';
+      src: url('./fonts/FDAeonik-Regular.woff2') format('woff2'),
+           url('./fonts/FDAeonik-Regular.ttf') format('truetype'),
+           local('FD Aeonik Regular');
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'FD Aeonik';
+      src: url('./fonts/FDAeonik-Medium.woff2') format('woff2'),
+           url('./fonts/FDAeonik-Medium.ttf') format('truetype'),
+           local('FD Aeonik Medium');
+      font-weight: 500;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'FD Aeonik';
+      src: url('./fonts/FDAeonik-Bold.woff2') format('woff2'),
+           url('./fonts/FDAeonik-Bold.ttf') format('truetype'),
+           local('FD Aeonik Bold');
+      font-weight: 600 700;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Tiempos Text';
+      src: url('./fonts/FDTiemposText-Regular.woff2') format('woff2'),
+           url('./fonts/FDTiemposText-Regular.otf') format('opentype'),
+           url('./fonts/TiemposText-Regular.woff2') format('woff2');
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Tiempos Text';
+      src: url('./fonts/FDTiemposText-Medium.woff2') format('woff2'),
+           url('./fonts/FDTiemposText-Medium.otf') format('opentype'),
+           url('./fonts/TiemposText-Medium.woff2') format('woff2');
+      font-weight: 500;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Tiempos Text';
+      src: url('./fonts/FDTiemposText-RegularItalic.woff2') format('woff2'),
+           url('./fonts/FDTiemposText-RegularItalic.otf') format('opentype'),
+           url('./fonts/TiemposText-RegularItalic.woff2') format('woff2');
+      font-weight: 400;
+      font-style: italic;
+      font-display: swap;
+    }
+
+    :root {
+      --cl-bg: #ffffff;
+      --cl-tint: #f8fafc;
+      --cl-line: #e2e8f0;
+      --cl-text-base: #090d16;
+      --cl-text-body: #0f172a;
+      --cl-text-muted: #475569;
+      --cl-accent: #1a73e8;
+      --cl-accent-soft: rgba(26, 115, 232, 0.08);
+      --cl-amber: #b45309;
+      --cl-amber-soft: #fffbeb;
+      --cl-amber-border: #fde68a;
+      --cl-bar-dark: #1c1917;
+
+      --font-display-short: 'FD Aeonik Extended', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-display-long: 'FD Aeonik', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-body: 'Tiempos Text', Georgia, serif;
+      --font-mono: 'JetBrains Mono', Consolas, monospace;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    html {
+      background-color: var(--cl-bg);
+      color: var(--cl-text-base);
+      font-family: var(--font-body);
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100vh;
+      line-height: 1.82;
+      padding-bottom: 80px;
+    }
+
+    /* Top Nav */
+    .top-nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--cl-line);
+      padding: 12px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: var(--font-display-long);
+    }
+    .top-nav__breadcrumbs {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--cl-text-muted);
+    }
+    .top-nav__breadcrumbs a {
+      color: var(--cl-text-base);
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .top-nav__breadcrumbs a:hover {
+      color: var(--cl-amber);
+    }
+    .top-nav__links {
+      display: flex;
+      gap: 14px;
+      align-items: center;
+    }
+    .top-nav__link {
+      color: var(--cl-text-muted);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .top-nav__link:hover {
+      color: var(--cl-amber);
+    }
+
+    /* Zebra Sections */
+    .cl-zebra-section {
+      width: 100%;
+      padding: clamp(48px, 6vw, 80px) 20px;
+      border-bottom: 1px solid var(--cl-line);
+    }
+    .cl-zebra--light { background-color: var(--cl-bg); }
+    .cl-zebra--tint { background-color: var(--cl-tint); }
+
+    .cl-sec-container {
+      max-width: 820px;
+      margin: 0 auto;
+    }
+
+    /* Badges & Headers */
+    .cl-badge {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--cl-amber);
+      margin-bottom: 12px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--cl-amber-soft);
+      padding: 4px 12px;
+      border-radius: 100px;
+      border: 1px solid var(--cl-amber-border);
+    }
+    .cl-badge::before {
+      content: '';
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      background: var(--cl-amber);
+      border-radius: 50%;
+    }
+
+    .title-short {
+      font-family: var(--font-display-short);
+      font-size: clamp(23px, 3.6vw, 34px);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: -0.01em;
+      line-height: 1.24;
+      color: var(--cl-text-base);
+      margin-bottom: 18px;
+      text-wrap: balance;
+    }
+
+    .title-long {
+      font-family: var(--font-display-long);
+      font-size: clamp(19px, 2.5vw, 24px);
+      font-weight: 600;
+      line-height: 1.35;
+      color: var(--cl-text-base);
+      margin-top: 24px;
+      margin-bottom: 14px;
+    }
+
+    .cl-body {
+      font-family: var(--font-body);
+      font-size: clamp(16px, 1.8vw, 17.5px);
+      line-height: 1.82;
+      color: var(--cl-text-body);
+      margin-bottom: 20px;
+    }
+
+    /* Khối Thơ Lục Bát Đầu Trang */
+    .luc-bat-card {
+      background: var(--cl-bar-dark);
+      color: #f8fafc;
+      border-radius: 18px;
+      padding: clamp(28px, 4vw, 40px) clamp(24px, 4vw, 36px);
+      margin-top: 10px;
+      margin-bottom: 36px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 12px 36px rgba(28, 25, 23, 0.16);
+      text-align: center;
+    }
+    .luc-bat-tag {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #fde68a;
+      margin-bottom: 16px;
+      display: inline-block;
+      background: rgba(245, 158, 11, 0.15);
+      padding: 4px 14px;
+      border-radius: 100px;
+    }
+    .luc-bat-poem {
+      font-family: var(--font-body);
+      font-size: clamp(19px, 2.4vw, 25px);
+      line-height: 1.7;
+      font-style: italic;
+      color: #ffffff;
+      margin-bottom: 18px;
+      letter-spacing: 0.01em;
+    }
+    .luc-bat-poem p {
+      margin-bottom: 4px;
+    }
+    .luc-bat-sub {
+      font-family: var(--font-display-long);
+      font-size: 13.5px;
+      color: #d6d3d1;
+      max-width: 650px;
+      margin: 0 auto;
+      line-height: 1.65;
+      border-top: 1px solid rgba(255, 255, 255, 0.12);
+      padding-top: 14px;
+    }
+    .luc-bat-sub b {
+      color: #fef3c7;
+    }
+
+    /* Cards */
+    .apple-card {
+      background: #ffffff;
+      border: 1px solid var(--cl-line);
+      border-radius: 16px;
+      padding: clamp(20px, 3vw, 28px);
+      margin-bottom: 22px;
+      box-shadow: 0 4px 20px rgba(9, 13, 22, 0.02);
+    }
+    .apple-card__badge {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--cl-amber);
+      margin-bottom: 8px;
+    }
+    .apple-card__title {
+      font-family: var(--font-display-long);
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--cl-text-base);
+      margin-bottom: 12px;
+    }
+
+    /* Audit Table */
+    .audit-table-wrap {
+      overflow-x: auto;
+      margin: 24px 0;
+      border: 1px solid var(--cl-line);
+      border-radius: 14px;
+      background: #ffffff;
+    }
+    table.audit-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14.5px;
+      text-align: left;
+    }
+    table.audit-table th {
+      background: var(--cl-tint);
+      font-family: var(--font-display-long);
+      font-weight: 700;
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--cl-line);
+      color: var(--cl-text-base);
+      font-size: 12.5px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    table.audit-table td {
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--cl-line);
+      vertical-align: top;
+      line-height: 1.6;
+    }
+    table.audit-table tr:last-child td {
+      border-bottom: none;
+    }
+    .col-wrong {
+      color: #b91c1c;
+      background: #fffafa;
+      font-family: var(--font-mono);
+      font-size: 13.5px;
+    }
+    .col-right {
+      color: #15803d;
+      font-weight: 600;
+    }
+
+    /* Highlight Rules */
+    .highlight-rule {
+      background: #fffbeb;
+      border-left: 4px solid var(--cl-amber);
+      padding: 16px 20px;
+      border-radius: 0 12px 12px 0;
+      margin: 20px 0;
+      font-size: 16px;
+    }
+
+    .editorial-hook {
+      font-family: var(--font-body);
+      font-style: italic;
+      font-size: clamp(17px, 2vw, 20px);
+      line-height: 1.65;
+      color: var(--cl-text-base);
+      border-left: 3px solid var(--cl-amber);
+      padding-left: 20px;
+      margin: 26px 0;
+    }
+
+    /* Kịch Bản 2 Cột */
+    .script-columns {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin: 16px 0;
+    }
+    @media (max-width: 640px) {
+      .script-columns {
+        grid-template-columns: 1fr;
+      }
+    }
+    .script-col {
+      background: #f8fafc;
+      border: 1px solid var(--cl-line);
+      border-radius: 12px;
+      padding: 16px 18px;
+      font-size: 15px;
+      line-height: 1.65;
+    }
+    .script-col__tag {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 8px;
+    }
+    .script-col--visual .script-col__tag { color: #0369a1; }
+    .script-col--audio .script-col__tag { color: var(--cl-amber); }
+
+    /* Bottom Nav */
+    .bottom-nav {
+      margin-top: 50px;
+      padding-top: 28px;
+      border-top: 1px solid var(--cl-line);
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+      font-family: var(--font-display-long);
+      font-size: 14px;
+    }
+    .bottom-nav a {
+      color: var(--cl-text-muted);
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .bottom-nav a:hover {
+      color: var(--cl-amber);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- TOP NAV -->
+  <nav class="top-nav">
+    <div class="top-nav__breadcrumbs">
+      <a href="./wikicontent.html">Wiki Content</a>
+      <span>/</span>
+      <span>Case Linh Dulin</span>
+    </div>
+    <div class="top-nav__links">
+      <a href="./wikicontent.html#chuong-8" class="top-nav__link">Chương 8 Wiki ↗</a>
+      <a href="./logic-storytelling-niem-tin.html" class="top-nav__link">7 Màn Storytelling ↗</a>
+      <a href="./kienpb.html" class="top-nav__link">Kiên Phân Bón ↗</a>
+      <a href="./huuviet.html" class="top-nav__link">Đoàn Hữu Việt ↗</a>
+      <a href="./wikicontent.html" class="top-nav__link">← Mục lục</a>
+    </div>
+  </nav>
+
+  <!-- MÀN 1: 4 CÂU LỤC BÁT & ĐỊNH VỊ BÁN BUÔN NGUYÊN LIỆU PHA CHẾ B2B -->
+  <section class="cl-zebra-section cl-zebra--light">
+    <div class="cl-sec-container">
+      <div class="cl-badge">01 / TỔNG KHO TRÍ TUỆ • NGUYỄN ĐỨC VIỆT</div>
+      <h1 class="title-short">CASE LINH DULIN: TỪ QUẦY TEST NGUYÊN LIỆU ĐẾN 7 GIỜ GÂY DỰNG NIỀM TIN B2B</h1>
+
+      <p class="cl-body">
+        Nếu em làm video để bán một ly trà sữa 25 nghìn cho học sinh sinh viên: Em chỉ cần nhạc giật gân, vũ điệu bắt trend hay những pha đổ trân châu tràn ly triệu view là có người ghé mua. Nhưng chị <b>Linh Dulin bán buôn nguyên liệu pha chế cho các nhà hàng, quán cà phê và quán bar</b>: Một khách sỉ lấy hàng định kỳ mỗi tháng từ vài chục triệu đến cả trăm triệu đồng. 
+      </p>
+
+      <p class="cl-body">
+        Những ông chủ quán cà phê nhiều năm lăn lộn và những bạn barista lành nghề không bao giờ ký hợp đồng sỉ vì mấy clip biến hình triệu view của các bạn trẻ uống trà sữa. View đại trà của học sinh sinh viên đối với xưởng của chị là <b>"view rác"</b> — không đổi ra được một thùng siro nào. Chị Linh chỉ cần đúng <b>200 đến 500 chủ quán và barista có trách nhiệm</b> tin tưởng vào tay nghề thẩm vị và đạo đức nghề nghiệp của chị là xưởng của chị kín lịch đóng hàng quanh năm.
+      </p>
+
+      <!-- 4 CÂU THƠ LỤC BÁT GHI NHỚ -->
+      <div class="luc-bat-card">
+        <div class="luc-bat-tag">4 CÂU LỤC BÁT DỄ NHỚ • BẢN GHI NHỚ LÀM KÊNH PHA CHẾ B2B</div>
+        <div class="luc-bat-poem">
+          <p>“Giọt siro sánh, bọt tơi,</p>
+          <p>Bắt trúng vị gắt, người đời tin ngay.</p>
+          <p>Bảy giờ quầy bar quen tay,</p>
+          <p>Hộp nhung rót vị, tháng ngày bền lâu.”</p>
+        </div>
+        <div class="luc-bat-sub">
+          <b>Ý nghĩa 4 câu:</b> Bắt bệnh vi mô tách lớp &amp; vị ngọt gắt hóa chất + Nói trúng nỗi niềm giấu kín về cost nguyên liệu và giữ thể diện quán + Xuất hiện đủ 7 giờ nếp sống thử vị quầy bar + Đóng gói âm thanh ASMR và hình ảnh rót nguyên liệu chuẩn xác như chiếc hộp nhung.
+        </div>
+      </div>
+
+      <div class="highlight-rule">
+        <b>Chỗ mấu chốt của sự nâng cấp:</b> Đây là bài toán kinh doanh B2B giá trị cao đặc thù. Khi áp dụng chuẩn bài giảng 7 Màn Storytelling, chị Linh Dulin không còn phải lo đi tìm những điệu nhảy triệu view hay các công thức giật gân. Kênh của chị vận hành bằng công thức: <b>70% video đời sống thử vị quầy bar &amp; xưởng test món</b> để tích lũy đủ 7 giờ quen mặt + <b>30% nhát cắt kỹ thuật cân cost và bóc trần nguyên liệu dỏm</b> để chốt chặt hợp đồng bán sỉ về Zalo.
+      </div>
+    </div>
+  </section>
+
+  <!-- MÀN 2: BẢNG AUDIT TỪ NGỮ VĂN PHONG MỘC MẠC -->
+  <section class="cl-zebra-section cl-zebra--tint">
+    <div class="cl-sec-container">
+      <div class="cl-badge">02 / AUDIT VĂN PHONG THỰC CHIẾN</div>
+      <h2 class="title-short">LỌC BỎ VĂN MẪU MARKETING &amp; CHUẨN HÓA GIỌNG ANH VIỆT</h2>
+
+      <p class="cl-body">
+        Chủ quán cà phê và barista thực chiến là những người tiếp xúc với hàng chục nhân viên tiếp thị nguyên liệu mỗi tuần. Họ đã quá chai lỳ với những bài quảng cáo hoa mỹ. Muốn chạm vào lòng tin của họ, ngôn từ của chị Linh phải <b>sạch bóng văn mẫu tiếp thị</b>, nói chuyện như một người đồng nghiệp thạo việc, ăn ngay nói thẳng.
+      </p>
+
+      <div class="audit-table-wrap">
+        <table class="audit-table">
+          <thead>
+            <tr>
+              <th style="width: 48%;">❌ Từ ngữ sách vở / Marketing (Cần bỏ)</th>
+              <th style="width: 52%;">✅ Từ ngữ mộc mạc chuẩn anh Việt (Bắt buộc dùng)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="col-wrong">Nguyên liệu tự nhiên 100%, chiết khấu kịch sàn</td>
+              <td class="col-right">Hàng chuẩn xưởng, thử vị tại quầy, vị thanh không ngọt gắt cổ họng</td>
+            </tr>
+            <tr>
+              <td class="col-wrong">Tín hiệu đắt giá (Costly Signaling)</td>
+              <td class="col-right">Dám test mù (Blind Test) với hàng nhập khẩu Pháp/Ý / Chỉ rõ hóa chất tạo mùi dỏm</td>
+            </tr>
+            <tr>
+              <td class="col-wrong">Tỷ lệ chuyển đổi / Phễu khách sỉ B2B</td>
+              <td class="col-right">Chủ quán nhắn Zalo gửi mẫu thử / Barista thử xong gật đầu duyệt đơn</td>
+            </tr>
+            <tr>
+              <td class="col-wrong">Căn bệnh ngầm / Nỗi đau khách hàng</td>
+              <td class="col-right">Chuyện khó nói của chủ quán (cost nguyên liệu ngốn 38%, tiền mặt cạn kiệt mà sợ mang tiếng bớt xén)</td>
+            </tr>
+            <tr>
+              <td class="col-wrong">Sự thật ngượng miệng / Vết sẹo nghề</td>
+              <td class="col-right">Nỗi sợ của barista (sợ ly nước tách lớp, sợ bị chủ nghi ngờ ăn hoa hồng nhà cung cấp)</td>
+            </tr>
+            <tr>
+              <td class="col-wrong">Vũ khí bán sỉ / Đỉnh cao chốt hợp đồng</td>
+              <td class="col-right">Tay nghề cân cost từng mililit / Công thức chuẩn không làm mất chất ly nước</td>
+            </tr>
+            <tr>
+              <td class="col-wrong">Gồng lên làm "Chuyên gia pha chế hàng đầu"</td>
+              <td class="col-right">Người thạo việc quầy bar / Người đứng test vị mỗi sáng cùng anh em pha chế</td>
+            </tr>
+            <tr>
+              <td class="col-wrong">Trưng trổ thuật ngữ Tây hóa (Mixology, Infusion, Brix Level...)</td>
+              <td class="col-right">Giải thích bình dị: Độ đậm đặc của đường, độ lưu hương cuống họng, độ sủi tăm của bọt</td>
+            </tr>
+            <tr>
+              <td class="col-wrong">Hạ khiên phòng vệ sinh học</td>
+              <td class="col-right">Chủ quán thở phào, an tâm vì vừa giữ được uy tín quán mà vừa có lãi mang về</td>
+            </tr>
+            <tr>
+              <td class="col-wrong">Lối xưng hô đạo mạo, tự xưng danh hiệu</td>
+              <td class="col-right">Xưng hô chân thành, mộc mạc: Em Linh - Anh/Chị chủ quán, Mình - Bạn</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p class="editorial-hook">
+        "Chủ quán cà phê không cần một người đứng giảng đạo lý làm giàu hay khoe mẽ công thức triệu view. Họ cần một người xắn tay áo vào quầy cùng họ, nếm một ngụm siro và chỉ cho họ cách giữ cost dưới 22% mà khách uống ngụm đầu tiên vẫn khen ngon."
+      </p>
+    </div>
+  </section>
+
+  <!-- MÀN 3: BÓC TÁCH HIỆN TRƯỜNG THỰC TẾ & NỖI NIỀM GIẤU KÍN (TẦNG 2.5) -->
+  <section class="cl-zebra-section cl-zebra--light">
+    <div class="cl-sec-container">
+      <div class="cl-badge">03 / BÓC TÁCH HIỆN TRƯỜNG THỰC ĐỊA</div>
+      <h2 class="title-short">BÓC TÁCH 3 TẦNG TÂM LÝ: CHỦ QUÁN &amp; BARISTA</h2>
+
+      <p class="cl-body">
+        Để bán được đơn hàng sỉ định kỳ hàng chục triệu mỗi tháng, chị Linh Dulin phải nhìn thấu suốt hai nhân vật quyền lực nhất trong một quán đồ uống: <b>Chủ quán (người giữ túi tiền)</b> và <b>Barista / Bartender (người giữ chất lượng ly nước)</b>:
+      </p>
+
+      <!-- TẦNG 1 -->
+      <div class="apple-card">
+        <div class="apple-card__badge">TẦNG 1 • NÓI ĐÃI BÔI NGOÀI THỊ TRƯỜNG (AI CŨNG NÓI)</div>
+        <div class="apple-card__title">Những Lời Rao Bán Hàng Công Nghiệp Rẻ Tiền</div>
+        <p class="cl-body" style="margin-bottom: 0;">
+          • <b>Sale nguyên liệu thông thường:</b> <i>"Bên em cung cấp siro trái cây cô đặc 100% tự nhiên, chiết khấu lên đến 35%, tặng kèm bộ công thức bắt trend triệu view, freeship toàn quốc..."</i>.<br>
+          • <b>Phản ứng của chủ quán &amp; barista:</b> Vứt tờ rơi vào sọt rác hoặc lướt qua video trong 1 giây. Bởi vì 100 nhà cung cấp ngoài chợ đầu mối đều nói y hệt nhau. Lời nói rẻ tiền (Cheap Talk) không đổi lại được sự an tâm.
+        </p>
+      </div>
+
+      <!-- TẦNG 2 -->
+      <div class="apple-card">
+        <div class="apple-card__badge">TẦNG 2 • BỀ MẶT ĐỜI THỰC ĐẦY BẤT ỔN</div>
+        <div class="apple-card__title">Thị Trường Cạnh Tranh &amp; Nỗi Sợ Hàng Tồn</div>
+        <p class="cl-body" style="margin-bottom: 0;">
+          Hàng loạt quán cà phê, tiệm trà mở ra rầm rộ rồi âm thầm sang nhượng sau 6 tháng. Chủ quán sợ ôm hàng tồn hạn dùng ngắn, sợ gặp phải nguyên liệu trôi nổi dán mác nhập khẩu giả mạo, và luôn tìm cách ép giá sỉ từng đồng để sống sót qua mùa thấp điểm.
+        </p>
+      </div>
+
+      <!-- TẦNG 2.5 -->
+      <div class="apple-card" style="border-left: 4px solid var(--cl-amber);">
+        <div class="apple-card__badge">TẦNG 2.5 • KHE HỞ THỂ DIỆN & SỰ THẬT GIẤU KÍN</div>
+        <div class="apple-card__title" style="color: var(--cl-amber);">Cuộc Giằng Xé Thầm Kín Giữa Chủ Quán &amp; Barista</div>
+        
+        <p class="cl-body" style="margin-bottom: 12px;">
+          <b>1. Nỗi niềm của Chủ Quán (Người nắm dòng tiền):</b>
+          <br>• <i>Cái cớ giữ thể diện:</i> Ra ngoài tiếp bạn bè hay giới thiệu với khách quen, miệng luôn nói: <i>"Quán anh chỉ nhập siro của Pháp, mứt của Ý cao cấp, chấp nhận lãi mỏng để giữ uy tín và sức khỏe cho khách hàng"</i>.
+          <br>• <i>Sự thật ngượng ngùng bên dưới:</i> Cuối tháng ngồi cộng sổ sách, chi phí nguyên vật liệu (Food Cost) đang đội lên tới <b>35% – 40%</b>. Doanh thu tiền trăm triệu nhưng sau khi trừ tiền mặt bằng, tiền điện điều hòa, tiền lương nhân viên thì tiền mặt cạn kiệt, không có đồng lãi nào đút túi. Chủ quán rất muốn tìm một nguồn nguyên liệu chất lượng tương đương với giá hợp lý hơn để giảm cost xuống 20–25%, nhưng <b>không dám mở lời vì sợ người ta bảo quán mình bớt xén, sợ barista bĩu môi nghĩ mình keo kiệt</b>.
+        </p>
+
+        <p class="cl-body" style="margin-bottom: 0;">
+          <b>2. Nỗi sợ của Barista / Bartender (Người đứng quầy):</b>
+          <br>• Sợ nhất là nguyên liệu dỏm có mùi hương liệu nồng nặc hóa chất, ngọt gắt ở cuống họng, làm hỏng kết cấu bọt hoặc khiến ly trà sữa bị tách lớp nước sau 10 phút mang đi giao hàng (bị khách đánh giá 1 sao).
+          <br>• Nhưng barista lại <b>ngại không dám chủ động kiến nghị đổi nhà cung cấp</b>, vì sợ chủ quán nghi ngờ mình cấu kết với bên bán để ăn hoa hồng sau lưng. Đành nhắm mắt dùng nguyên liệu cũ dù trong bụng rất khó chịu.
+        </p>
+      </div>
+
+      <div class="highlight-rule">
+        <b>Nhát Cắt Tạo Niềm Tin Của Chị Linh Dulin:</b> Khi chị Linh xuất hiện trên video, chị không khen nguyên liệu của mình ngon nhất. Chị <b>test mù (Blind Test)</b> trực diện 3 ly nước: 1 ly dùng siro nhập khẩu đắt đỏ, 1 ly dùng siro trôi nổi đầy phẩm màu, và 1 ly dùng nguyên liệu xưởng Dulin. Chị chỉ rõ cho chủ quán cách cân đo từng mililit siro để <b>hạ cost ly nước từ 14.000đ xuống 9.000đ mà hương vị đậm đà không đổi</b>. Chị giải phóng chủ quán khỏi nỗi sợ mất thể diện và giúp barista an tâm tuyệt đối về chất lượng.
+      </div>
+    </div>
+  </section>
+
+  <!-- MÀN 4: HỢP NHẤT VỚI BÀI TRÌNH 7 MÀN: 5 BƯỚC NÂNG CẤP BẮT BUỘC -->
+  <section class="cl-zebra-section cl-zebra--tint">
+    <div class="cl-sec-container">
+      <div class="cl-badge">04 / BƯỚC CHUYỂN TOÀN DIỆN</div>
+      <h2 class="title-short">5 ĐIỂM NÂNG CẤP BẮT BUỘC THEO BÀI TRÌNH 7 MÀN</h2>
+
+      <p class="cl-body">
+        Khi đưa toàn bộ nguyên lý của bài giảng <b>Logic Storytelling &amp; Bản Chất Niềm Tin</b> vào xưởng pha chế Dulin, chúng ta tái cấu trúc cỗ máy nội dung thành 5 mắt xích không thể tách rời:
+      </p>
+
+      <!-- NẤC 1 -->
+      <div class="apple-card">
+        <div class="apple-card__title">Nấc 1: Áp Dụng Công Thức Google 7 - 11 - 4 Cho Khách Hàng Sỉ B2B</div>
+        <p class="cl-body">
+          Một chủ quán không bao giờ bỏ ra vài chục triệu nhập sỉ nguyên liệu từ một người lạ chỉ sau 1 video lướt qua trên mạng. Họ cần tích lũy đủ <b>7 giờ tiếp xúc, qua 11 điểm chạm, tại 4 không gian khác nhau</b> (quầy test món, kho nguyên liệu, xưởng đóng gói, và các quán đối tác).
+        </p>
+        <p class="cl-body" style="margin-bottom: 0;">
+          <b>Phân bổ tỷ lệ nội dung theo chuẩn 70 / 30:</b>
+          <br>• <b>70% Video Đời Sống Quầy Bar &amp; Xưởng Pha Chế (Nhịp Đệm Quen Mặt):</b> Cảnh 8h sáng mở cửa quầy test món, bật ấm đun nước sôi; cảnh chị Linh cùng anh em barista thử vị từng mẻ trà ủ lạnh; cảnh dọn rửa ca đong, lau khô mặt quầy inox; cảnh đóng thùng cẩn thận từng chai siro dán nhãn niêm phong; cảnh ngồi uống trà tán gẫu với một chủ quán ruột về những ngày đầu khởi nghiệp... Những video này mộc mạc, quay cực nhanh, tạo cảm giác thân quen và đáng tin cậy như một người bạn thâm niên trong nghề.
+          <br>• <b>30% Video Nhát Cắt Kỹ Thuật Vi Mô:</b> Những pha bắt bệnh ly nước bị tách lớp, dùng khúc xạ kế đo độ Brix của đường, phân tích độ sánh của puree trái cây tươi, và bảng tính cost chi tiết từng mililit. Khi chủ quán đã quen mặt chị Linh qua hàng chục video đời thường, chỉ cần 1 clip nhát cắt kỹ thuật này xuất hiện là họ bấm ngay vào liên kết Zalo để xin mẫu thử.
+        </p>
+      </div>
+
+      <!-- NẤC 2 -->
+      <div class="apple-card">
+        <div class="apple-card__title">Nấc 2: Bắt Bệnh Vi Mô Theo Định Luật Woodsmall Trong 5 Giây Đầu</div>
+        <p class="cl-body">
+          Định luật Woodsmall: <i>Mô tả đúng bệnh ở cấp độ vi mô là người ta mặc định mình nắm phương thuốc giải</i>.
+        </p>
+        <p class="cl-body" style="margin-bottom: 0;">
+          <b>Ứng dụng cho chị Linh Dulin:</b> Loại bỏ mọi đoạn mở đầu chào hỏi lê thê. Đập ngay vào mắt người xem bằng một chi tiết lỗi kỹ thuật mà chỉ người trong nghề mới thấy:
+          <br>• Cầm ly trà đào sữa lắc nhẹ, để trước ống kính thấy rõ vệt váng dầu lơ lửng và sữa bắt đầu kết tủa lợn cợn: <i>"Nếu ly nước của quán anh để 10 phút mà bắt đầu kết tủa lợn cợn như bã đậu thế này... đừng vội mắng barista pha ẩu. Vấn đề nằm ở chai siro đào có hàm lượng axit citric công nghiệp quá cao làm đông tụ protein của sữa."</i>
+          <br>• Chủ quán và barista xem đến đây giật mình, lập tức nể phục tay nghề bắt bệnh của chị.
+        </p>
+      </div>
+
+      <!-- NẤC 3 -->
+      <div class="apple-card">
+        <div class="apple-card__title">Nấc 3: Đóng Gói Thị Giác &amp; Âm Thanh — Chiếc Hộp Nhung ASMR Quầy Bar</div>
+        <p class="cl-body">
+          Chất lượng nguyên liệu chuẩn xưởng chính là chiếc nhẫn vàng. Nhưng nếu quay bằng điện thoại nhòe nhoẹt, lẫn tiếng còi xe inh ỏi ngoài đường thì khách sỉ sẽ nghĩ đây là xưởng gia công rẻ tiền.
+        </p>
+        <p class="cl-body" style="margin-bottom: 0;">
+          <b>Chiếc hộp nhung của Linh Dulin:</b>
+          <br>• <b>Âm thanh ASMR quầy bar tinh tế:</b> Thu trọn tiếng dòng siro đặc quánh chảy từ vòi rót <i>"tong tỏng"</i> êm ru; tiếng đá viên va lách cách trong bình lắc shaker; tiếng bọt soda sủi tăm li ti; tiếng bấm nắp chai niêm phong <i>"tách"</i> dứt khoát.
+          <br>• <b>Khung hình Macro quang học chuẩn xác:</b> Quay sát dòng siro hòa tan dần trong tầng nước, màu sắc trái cây tự nhiên không chói gắt phẩm màu, mặt quầy bar inox sáng bóng sạch sẽ không một giọt nước đọng.
+          <br>• <b>Phong thái người thạo việc:</b> Động tác dứt khoát, sạch sẽ, cầm chai rót không bị rớt giọt, đeo găng tay vệ sinh thực phẩm khi thao tác trong xưởng.
+        </p>
+      </div>
+
+      <!-- NẤC 4 -->
+      <div class="apple-card">
+        <div class="apple-card__title">Nấc 4: Quy Trình Dẫn Dắt Khách Sỉ Tự Động Về Zalo B2B</div>
+        <p class="cl-body" style="margin-bottom: 0;">
+          Khách hàng B2B không mua hàng bằng giỏ hàng TikTok. Quy trình chuyển đổi thực chiến của chị Linh gồm 3 bước:
+          <br>1. <b>Video trên kênh:</b> Bắt trúng bệnh cost ngầm hoặc lỗi kỹ thuật ly nước &rarr; Khơi gợi sự tò mò của chủ quán.
+          <br>2. <b>Lời kêu gọi nhẹ nhàng (Soft CTA):</b> <i>"Anh chị nào đang vận hành quán muốn thử vị trực tiếp, nhắn Zalo em gửi tặng bộ kit test mẫu 3 vị siro và bảng tính cost mẫu về quầy tự pha thử."</i>
+          <br>3. <b>Chăm sóc trên Zalo:</b> Gửi bộ kit thử kèm tờ hướng dẫn định lượng chi tiết. Khi chủ quán tự tay pha và nếm vị, họ sẽ tự động gọi điện đặt đơn hàng sỉ đầu tiên.
+        </p>
+      </div>
+
+      <!-- NẤC 5 -->
+      <div class="apple-card">
+        <div class="apple-card__title">Nấc 5: Sản Xuất Đều Đặn Bằng Bóc Tách Tình Huống Đời Thường</div>
+        <p class="cl-body" style="margin-bottom: 0;">
+          Mỗi ngày tại xưởng Dulin có hàng chục cuộc trò chuyện với các chủ quán gửi mẫu hỏi, các ca đong thử nghiệm món mới. Mỗi lời phàn nàn của chủ quán là một kịch bản đắt giá. Đưa câu chuyện vào công cụ <a href="./4tang.html" style="color: var(--cl-amber); font-weight: 600;">4tang.html</a> là sinh ra ngay kịch bản 7 câu sắc bén, không bao giờ lo cạn kiệt ý tưởng.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- MÀN 5: 4 KỊCH BẢN MẪU THỰC CHIẾN TẠI XƯỞNG & QUẦY BAR -->
+  <section class="cl-zebra-section cl-zebra--light">
+    <div class="cl-sec-container">
+      <div class="cl-badge">05 / KỊCH BẢN THỰC ĐỊA</div>
+      <h2 class="title-short">4 KỊCH BẢN MẪU THỰC CHIẾN B2B CHO CHỊ LINH DULIN</h2>
+
+      <p class="cl-body">
+        Dưới đây là 4 kịch bản mẫu được viết chuẩn theo phong cách mộc mạc của anh Việt, phân vai 2 cột (Hình ảnh B-Roll hiện trường &amp; Lời thoại thực tế), bấm máy là quay được ngay tại xưởng hoặc quầy bar:
+      </p>
+
+      <!-- KỊCH BẢN 1 -->
+      <div class="apple-card">
+        <div class="apple-card__badge">KỊCH BẢN 1 • 70% ĐỜI SỐNG QUẦY BAR (NHỊP ĐỆM QUEN MẶT)</div>
+        <div class="apple-card__title">Thử Vị Mẻ Trà Lúc 8 Giờ Sáng: Vì Sao Không Được Để Khách Uống Trà Cũ?</div>
+
+        <div class="script-columns">
+          <div class="script-col script-col--visual">
+            <div class="script-col__tag">📹 HÌNH ẢNH B-ROLL (CAM A &amp; B)</div>
+            • <b>Cam A:</b> 8h sáng, ánh nắng rọi vào góc quầy bar sạch bóng. Chị Linh rót nước sôi từ ấm cổ ngỗng vào 3 chiếc bình ủ trà thủy tinh.<br>
+            • <b>Cam B (Macro &amp; ASMR):</b> Cận cảnh dòng nước sôi làm nở bung từng búp trà ô long; tiếng rót nước róc rách trong trẻo.<br>
+            • <b>Cam B:</b> Chị Linh dùng thìa nếm thử một ngụm nhỏ, nhắm mắt cảm nhận hậu vị cuống họng.<br>
+            • <b>Cam A:</b> Đổ bỏ một bình trà ủ quá 4 tiếng tối qua xuống bồn rửa, ánh mắt kiên quyết.
+          </div>
+          <div class="script-col script-col--audio">
+            <div class="script-col__tag">🎙️ LỜI THOẠI CHỊ LINH (MỘC MẠC)</div>
+            <i>"Nhiều người bảo em kỹ tính quá, trà ủ từ chiều hôm qua để tủ lạnh qua đêm vẫn còn thơm, sao lại đổ đi cho phí của.<br><br>
+            Nhưng các anh chị làm quán lâu năm sẽ hiểu: Cốt trà để qua 4 tiếng là tanin bắt đầu bị oxy hóa, chuyển từ vị chát thanh sang chát đắng và khô rát cuống họng. Khách uống vào ngụm đầu tiên thấy vị siro ngọt thì tưởng ngon, nhưng 15 phút sau vị đắng chát đọng lại sẽ khiến họ không bao giờ muốn quay lại quán nữa.<br><br>
+            Em làm xưởng cung cấp trà và siro, việc đầu tiên mỗi sáng không phải là ngồi đếm đơn hàng, mà là đứng đây nếm từng mẻ cốt trà. Mình làm nghề mà tặc lưỡi cho qua những chi tiết nhỏ này, thì làm sao dám khuyên các chủ quán giữ uy tín với khách hàng của họ được."</i>
+          </div>
+        </div>
+      </div>
+
+      <!-- KỊCH BẢN 2 -->
+      <div class="apple-card">
+        <div class="apple-card__badge">KỊCH BẢN 2 • 30% ĐỊNH LUẬT WOODSMALL (BẮT BỆNH VI MÔ 5 GIÂY)</div>
+        <div class="apple-card__title">Bắt Bệnh Ly Trà Đào Tách Lớp &amp; Siro Hương Liệu Hóa Chất</div>
+
+        <div class="script-columns">
+          <div class="script-col script-col--visual">
+            <div class="script-col__tag">📹 HÌNH ẢNH B-ROLL (CAM A &amp; B)</div>
+            • <b>Cam B (Macro 5s đầu):</b> Ống kính dí sát ly trà đào sữa đang bị tách làm 2 tầng rõ rệt: phía trên là lớp nước lờ nhờ, phía dưới là lớp cặn lợn cợn như bã đậu nành.<br>
+            • <b>Cam B (ASMR):</b> Tiếng que khuấy chạm vào thành ly lách cách khi chị Linh khuấy thử nhưng không tan.<br>
+            • <b>Cam A:</b> Chị Linh đặt chai siro đào trôi nổi không nhãn phụ bên cạnh chai siro xưởng Dulin.<br>
+            • <b>Cam B:</b> Nhỏ một giọt siro Dulin vào ly trà khác, siro hòa quyện mượt mà, tạo lớp bọt mịn màng.
+          </div>
+          <div class="script-col script-col--audio">
+            <div class="script-col__tag">🎙️ LỜI THOẠI CHỊ LINH (MỘC MẠC)</div>
+            <i>"Các bạn barista nhìn ly nước này có thấy quen không? Pha xong giao cho shipper mang đi 15 phút, đến tay khách là tách làm 2 tầng, sữa vón cục lợn cợn như bã đậu rồi ăn ngay đánh giá 1 sao.<br><br>
+            Nhiều chủ quán không biết lại quay sang mắng barista pha ẩu, đánh sữa không đều tay. Nhưng sự thật là do chai siro này: Để tạo mùi đào nồng nặc và giữ được lâu, người ta dùng hàm lượng axit citric và hương liệu hóa học quá đậm đặc. Chính lượng axit này đã làm đông tụ protein trong sữa tươi ngay khi gặp nhiệt độ thường.<br><br>
+            Nguyên liệu chuẩn xưởng làm từ thịt trái cây nghiền, độ pH được cân bằng tự nhiên. Các bạn có lắc shaker hay để shipper chở qua nửa thành phố thì ly nước vẫn giữ nguyên kết cấu mịn màng. Đừng vì tiết kiệm vài nghìn đồng tiền siro mà làm mất đi cả một khách quen của quán."</i>
+          </div>
+        </div>
+      </div>
+
+      <!-- KỊCH BẢN 3 -->
+      <div class="apple-card">
+        <div class="apple-card__badge">KỊCH BẢN 3 • BÓC TÁCH NỖI NIỀM TẦNG 2.5 (CHỊU THIỆT ĐỂ BẢO VỆ CHỦ QUÁN)</div>
+        <div class="apple-card__title">Cân Cost Từng Mililit: Cách Giảm 8% Giá Vốn Mà Không Bị Mang Tiếng Bớt Xén</div>
+
+        <div class="script-columns">
+          <div class="script-col script-col--visual">
+            <div class="script-col__tag">📹 HÌNH ẢNH B-ROLL (CAM A &amp; B)</div>
+            • <b>Cam A:</b> Chị Linh ngồi cùng một chủ quán quen bên bàn gỗ, trên bàn có chiếc cân tiểu ly điện tử và cuốn sổ tay ghi chép chi phí.<br>
+            • <b>Cam B (Macro):</b> Cận cảnh màn hình cân điện tử nhảy số chính xác từng 0.1 gram khi rót 15ml siro đậm đặc thay vì 30ml siro loãng.<br>
+            • <b>Cam A:</b> Chủ quán cầm chiếc máy tính bấm số, thở phào nhẹ nhõm khi nhìn thấy con số chi phí giảm xuống.<br>
+            • <b>Cam B:</b> Nụ cười bắt tay ấm áp giữa hai người.
+          </div>
+          <div class="script-col script-col--audio">
+            <div class="script-col__tag">🎙️ LỜI THOẠI CHỊ LINH (MỘC MẠC)</div>
+            <i>"Hôm qua có một anh chủ quán cà phê tâm sự thật với em: 'Linh ơi, quán anh doanh thu mỗi tháng gần hai trăm triệu, mà trừ hết chi phí tiền mặt chẳng còn bao nhiêu. Tiền nguyên liệu đang ngốn gần 38%. Anh muốn đổi loại siro khác tiết kiệm hơn, nhưng sợ khách quen phát hiện vị nhạt đi thì mang tiếng quán bớt xén chất lượng'.<br><br>
+            Em hiểu cái khó của người làm chủ. Ra ngoài thì ai cũng bảo quán đông khách thế lãi to, nhưng áp lực tiền mặt từng ngày thì chỉ người trả tiền nhà mới thấu.<br><br>
+            Hôm nay em ngồi cân lại định lượng cho anh: Không phải là bớt xén, mà là dùng dòng siro có độ Brix đậm đặc hơn. Trước đây anh dùng 30ml siro loãng giá rẻ, vừa ngấy vừa tốn. Giờ chỉ cần đúng 15ml siro chuẩn, vị trái cây tự nhiên đậm đà hơn mà cost ly nước giảm ngay từ 13.500đ xuống còn 9.200đ. Mỗi tháng quán anh giữ lại được hơn 15 triệu tiền mặt để thở. Làm ăn bền vững là phải giúp nhau có lãi thật sự, chứ không phải gồng mình chịu trận."</i>
+          </div>
+        </div>
+      </div>
+
+      <!-- KỊCH BẢN 4 -->
+      <div class="apple-card">
+        <div class="apple-card__badge">KỊCH BẢN 4 • TEST MÙ TRỰC DIỆN (TÍN HIỆU ĐẮT GIÁ BLIND TEST)</div>
+        <div class="apple-card__title">Test Mù 3 Vị Siro Không Nhãn Mác Cùng 3 Barista Thâm Niên</div>
+
+        <div class="script-columns">
+          <div class="script-col script-col--visual">
+            <div class="script-col__tag">📹 HÌNH ẢNH B-ROLL (CAM A &amp; B)</div>
+            • <b>Cam A:</b> 3 chiếc ly thủy tinh giống hệt nhau đánh số 1, 2, 3. Chị Linh mời 3 bạn barista thâm niên bịt mắt hoặc chỉ nhìn ly nước không có chai nhãn.<br>
+            • <b>Cam B (Macro):</b> Cận cảnh 3 barista lần lượt ngửi mùi hương, nhấp từng ngụm nhỏ và ghi nhận xét vào bảng.<br>
+            • <b>Cam A:</b> Bóc băng dính che nhãn: Ly số 1 là thương hiệu Pháp đắt đỏ 280k/chai, Ly số 2 là siro Dulin 125k/chai, Ly số 3 là hàng trôi nổi 65k/chai.<br>
+            • <b>Cam A:</b> Cả 3 barista đều ngạc nhiên vì ly số 2 có vị trái cây tươi thanh thoát không hề thua kém ly số 1.
+          </div>
+          <div class="script-col script-col--audio">
+            <div class="script-col__tag">🎙️ LỜI THOẠI CHỊ LINH (MỘC MẠC)</div>
+            <i>"Nhiều người có tâm lý sính ngoại, cứ nghĩ phải nhập chai siro gần ba trăm nghìn của Pháp hay Ý về thì đồ uống mới đẳng cấp. Còn hàng sản xuất trong nước thì mặc định coi là hàng kém.<br><br>
+            Hôm nay em làm bài test mù trực diện với 3 bạn barista lành nghề. Cả 3 bạn đều không biết chai nào là chai nào. Kết quả: Ly hàng rẻ tiền bị loại ngay vì mùi hương liệu gắt nồng xộc thẳng lên mũi. Còn ly số 2 của xưởng Dulin được chấm điểm ngang ngửa với hàng nhập khẩu châu Âu về độ thơm tự nhiên và hậu vị thanh khiết sau khi nuốt.<br><br>
+            Em dám làm bài test này trước ống kính vì em tin vào cái tâm và kỹ thuật tinh chế của xưởng mình. Chất lượng ly nước nằm ở sự trung thực của nguyên liệu, không nằm ở cái mác ngoại quốc để làm màu."</i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MÀN 6: LỘ TRÌNH 7 NGÀY VẬN HÀNH NỘI DUNG TẠI XƯỞNG & QUẦY BAR -->
+  <section class="cl-zebra-section cl-zebra--tint">
+    <div class="cl-sec-container">
+      <div class="cl-badge">06 / LỊCH TRÌNH VẬN HÀNH</div>
+      <h2 class="title-short">LỘ TRÌNH 7 NGÀY VẬN HÀNH TẠI XƯỞNG DULIN</h2>
+
+      <p class="cl-body">
+        Chị Linh Dulin hoàn toàn có thể tự quay hoặc cùng 1 bạn nhân viên ghi lại các khoảnh khắc làm việc thực tế mỗi ngày mà không làm gián đoạn việc đóng hàng và giao sỉ:
+      </p>
+
+      <div class="audit-table-wrap">
+        <table class="audit-table">
+          <thead>
+            <tr>
+              <th style="width: 16%;">Ngày</th>
+              <th style="width: 34%;">Nội dung &amp; Bối cảnh</th>
+              <th style="width: 25%;">Góc máy &amp; Thao tác</th>
+              <th style="width: 25%;">Mục tiêu niềm tin (7-11-4)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><b>Thứ 2</b></td>
+              <td>8h sáng mở quầy, lau mặt bàn inox, ủ và thử vị từng mẻ trà tươi</td>
+              <td>Cam A quay góc rộng; Cam B cận cảnh rót nước sôi nở búp trà</td>
+              <td>70% đời sống: Tạo thói quen bắt đầu tuần mới chỉn chu, vệ sinh sạch sẽ.</td>
+            </tr>
+            <tr>
+              <td><b>Thứ 3</b></td>
+              <td>Bắt bệnh ly trà đào sữa tách lớp vón cục (Định luật Woodsmall)</td>
+              <td>Cam B quay Macro ly nước tách tầng trong 5s đầu; thu ASMR tiếng khuấy</td>
+              <td>30% nhát cắt: Khẳng định kiến thức chuyên môn bắt bệnh vi mô chuẩn xác.</td>
+            </tr>
+            <tr>
+              <td><b>Thứ 4</b></td>
+              <td>Đóng thùng hàng sỉ gửi các tỉnh, kiểm tra tem niêm phong từng chai</td>
+              <td>Cam A quay không gian xưởng nhộn nhịp; Cam B quay tay dán tem chắc chắn</td>
+              <td>Bằng chứng xã hội (Social Proof): Cho thấy xưởng luôn kín đơn hàng đi khắp nơi.</td>
+            </tr>
+            <tr>
+              <td><b>Thứ 5</b></td>
+              <td>Ngồi cân cost từng mililit cùng một chủ quán đang gặp khó khăn dòng tiền</td>
+              <td>Cam A quay đối thoại chân thành; Cam B quay cân tiểu ly nhảy số</td>
+              <td>Thấu cảm Tầng 2.5: Giúp chủ quán gỡ bài toán tài chính mà không mất thể diện.</td>
+            </tr>
+            <tr>
+              <td><b>Thứ 6</b></td>
+              <td>Bài test mù Blind Test so sánh vị siro với hàng ngoại nhập khẩu</td>
+              <td>Cam A quay 3 barista bịt mắt thử vị; Cam B quay biểu cảm gật gù bất ngờ</td>
+              <td>Tín hiệu đắt giá (Costly Signal): Dám so sánh trực diện, chứng minh chất lượng thật.</td>
+            </tr>
+            <tr>
+              <td><b>Thứ 7</b></td>
+              <td>Ghé thăm một quán đối tác ruột, ngắm nhìn khách hàng ngồi thưởng thức đồ uống</td>
+              <td>Cam A bắt cảnh khách cười nói, nhấp từng ngụm nước ngon lành</td>
+              <td>70% đời sống: Khẳng định thành quả hợp tác bền lâu giữa xưởng và đối tác.</td>
+            </tr>
+            <tr>
+              <td><b>Chủ nhật</b></td>
+              <td>Cuối tuần ngồi kiểm tra tin nhắn Zalo, đóng gói bộ kit test gửi cho khách mới</td>
+              <td>Cam A quay góc bàn làm việc tĩnh lặng cuối ngày, xếp các chai mẫu thử</td>
+              <td>Kêu gọi hành động nhẹ nhàng: Mời chủ quán mới nhận bộ mẫu thử miễn phí.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="highlight-rule">
+        <b>Đích đến tối thượng:</b> Khi một chủ quán chuẩn bị mở quán cà phê mới, hoặc khi một barista đau đầu vì ly nước của mình chưa đạt vị chuẩn, <b>người đầu tiên họ nhớ đến và muốn nhắn tin Zalo xin tư vấn chính là chị Linh Dulin</b>. Khi niềm tin về sự trung thực và am hiểu kỹ thuật đã được xác lập, việc chốt đơn sỉ hàng chục triệu diễn ra tự nhiên và bền chặt qua năm tháng.
+      </div>
+    </div>
+  </section>
+
+  <!-- MÀN 7: 3 NGUYÊN TẮC CỐT TỬ CỦA NGƯỜI BÁN BUÔN NGUYÊN LIỆU B2B -->
+  <section class="cl-zebra-section cl-zebra--light">
+    <div class="cl-sec-container">
+      <div class="cl-badge">07 / NGUYÊN TẮC CỐT TỬ</div>
+      <h2 class="title-short">3 NGUYÊN TẮC BẤT DI BẤT DỊCH CỦA CHỊ LINH DULIN</h2>
+
+      <p class="cl-body">
+        Để giữ vững uy tín của Xưởng Pha Chế Dulin và không bao giờ bị cuốn vào vòng xoáy cạnh tranh phá giá rẻ tiền, chị Linh chỉ cần khắc cốt ghi tâm 3 nguyên tắc sống còn:
+      </p>
+
+      <div class="apple-card">
+        <div class="apple-card__title">1. Không Đu Theo "View Rác" Của Khán Giả Đại Trà</div>
+        <p class="cl-body" style="margin-bottom: 0;">
+          Tuyệt đối không làm video hài nhảm, nhảy nhót bắt trend chỉ để kiếm triệu view từ các bạn trẻ uống nước giải trí. Một video chỉ cần 300 lượt xem nhưng người xem là các chủ quán cà phê, chủ nhà hàng và barista thực chiến là đã có giá trị gấp 100 lần một video triệu view vô thưởng vô phạt.
+        </p>
+      </div>
+
+      <div class="apple-card">
+        <div class="apple-card__title">2. Lấy Sự Thấu Cảm Cost Làm Chiếc Cầu Nối Thể Diện</div>
+        <p class="cl-body" style="margin-bottom: 0;">
+          Chủ quán ai cũng muốn có lãi nhưng không ai muốn mang tiếng bớt xén. Hãy giúp họ tối ưu cost bằng kỹ thuật chiết xuất chuẩn xác và công thức đậm đặc, chứ không bao giờ xúi họ mua nguyên liệu rẻ tiền độc hại. Bảo vệ được thể diện và túi tiền của chủ quán là bảo vệ được hợp đồng bán sỉ của chính mình.
+        </p>
+      </div>
+
+      <div class="apple-card">
+        <div class="apple-card__title">3. Luôn Mở Cửa Quầy Test Vị Minh Bạch</div>
+        <p class="cl-body" style="margin-bottom: 0;">
+          Tất cả những gì chị Linh chia sẻ trên video đều phải có thể kiểm chứng được tại quầy test vị. Sẵn sàng gửi bộ kit mẫu thử về tận quán cho khách tự pha, tự nếm và tự so sánh. Sự tự tin của người làm nghề chân chính là vũ khí mạnh nhất đánh bại mọi chiêu trò giảm giá ngoài chợ.
+        </p>
+      </div>
+
+      <p class="editorial-hook">
+        "Một xưởng nguyên liệu uy tín không phải là xưởng có chiết khấu cao nhất, mà là nơi người chủ quán an tâm gửi gắm linh hồn của từng ly nước và người barista thấy tự hào khi cầm chai nguyên liệu rót cho khách hàng."
+      </p>
+
+      <!-- BOTTOM NAV -->
+      <div class="bottom-nav">
+        <a href="./wikicontent.html#chuong-8">← Đọc Chương 8 Trong Wiki Content</a>
+        <a href="./logic-storytelling-niem-tin.html">Xem Giáo Án 7 Màn Storytelling →</a>
+        <a href="./kienpb.html">Case Kiên Phân Bón ↗</a>
+        <a href="./huuviet.html">Case Đoàn Hữu Việt ↗</a>
+        <a href="./wikicontent.html">Về Mục Lục Tổng ↗</a>
+      </div>
+    </div>
+  </section>
+
+</body>
+</html>
