@@ -1,0 +1,935 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>CASE ĐÀO TRUNG NGHĨA: TỪ NÉT KIM VÔ TRÙNG ĐẾN 7 GIỜ GÂY DỰNG LÒNG TIN DẠY NGHỀ XĂM • NGUYỄN ĐỨC VIỆT</title>
+
+  <!-- Favicon Vector Chuẩn Cinema REC Monogram (VI + REC + DEO) -->
+  <link rel="icon" type="image/svg+xml" href="./favicon.svg">
+  <link rel="alternate icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%230B0F19'/%3E%3Ctext x='25' y='25' text-anchor='middle' dominant-baseline='central' font-family='sans-serif' font-weight='900' font-size='21' fill='%23FFF'%3EVI%3C/text%3E%3Ccircle cx='47' cy='25' r='5' fill='%23EF4444'/%3E%3Ctext x='32' y='46' text-anchor='middle' dominant-baseline='central' font-family='sans-serif' font-weight='900' font-size='18' fill='%23F8FAFC'%3EDEO%3C/text%3E%3C/svg%3E">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    @font-face {
+      font-family: 'FD Aeonik Extended';
+      src: url('./fonts/FDAeonikExtended-Bold.woff2') format('woff2'),
+           url('./fonts/FDAeonikExtended-Bold.ttf') format('truetype'),
+           local('FD Aeonik Extended Bold');
+      font-weight: 700;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'FD Aeonik';
+      src: url('./fonts/FDAeonik-Regular.woff2') format('woff2'),
+           url('./fonts/FDAeonik-Regular.ttf') format('truetype'),
+           local('FD Aeonik Regular');
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'FD Aeonik';
+      src: url('./fonts/FDAeonik-Medium.woff2') format('woff2'),
+           url('./fonts/FDAeonik-Medium.ttf') format('truetype'),
+           local('FD Aeonik Medium');
+      font-weight: 500;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'FD Aeonik';
+      src: url('./fonts/FDAeonik-Bold.woff2') format('woff2'),
+           url('./fonts/FDAeonik-Bold.ttf') format('truetype'),
+           local('FD Aeonik Bold');
+      font-weight: 600 700;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Tiempos Text';
+      src: url('./fonts/FDTiemposText-Regular.woff2') format('woff2'),
+           url('./fonts/FDTiemposText-Regular.otf') format('opentype'),
+           url('./fonts/TiemposText-Regular.woff2') format('woff2');
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Tiempos Text';
+      src: url('./fonts/FDTiemposText-Medium.woff2') format('woff2'),
+           url('./fonts/FDTiemposText-Medium.otf') format('opentype'),
+           url('./fonts/TiemposText-Medium.woff2') format('woff2');
+      font-weight: 500;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Tiempos Text';
+      src: url('./fonts/FDTiemposText-RegularItalic.woff2') format('woff2'),
+           url('./fonts/FDTiemposText-RegularItalic.otf') format('opentype'),
+           url('./fonts/TiemposText-RegularItalic.woff2') format('woff2');
+      font-weight: 400;
+      font-style: italic;
+      font-display: swap;
+    }
+
+    :root {
+      --cl-bg: #ffffff;
+      --cl-tint: #f8fafc;
+      --cl-line: #e2e8f0;
+      --cl-text-base: #090d16;
+      --cl-text-body: #0f172a;
+      --cl-text-muted: #475569;
+      --cl-accent: #0284c7;
+      --cl-accent-soft: rgba(2, 132, 199, 0.08);
+      --cl-teal: #0f766e;
+      --cl-teal-soft: #f0fdfa;
+      --cl-teal-border: #99f6e4;
+      --cl-dark: #0f172a;
+
+      --font-display-short: 'FD Aeonik Extended', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-display-long: 'FD Aeonik', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-body: 'Tiempos Text', Georgia, serif;
+      --font-mono: 'JetBrains Mono', Consolas, monospace;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    html {
+      background-color: var(--cl-bg);
+      color: var(--cl-text-base);
+      font-family: var(--font-body);
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100vh;
+      line-height: 1.82;
+      padding-bottom: 80px;
+    }
+
+    /* Top Nav */
+    .top-nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--cl-line);
+      padding: 12px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: var(--font-display-long);
+    }
+    .top-nav__breadcrumbs {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--cl-text-muted);
+    }
+    .top-nav__breadcrumbs a {
+      color: var(--cl-text-base);
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .top-nav__breadcrumbs a:hover {
+      color: var(--cl-accent);
+    }
+    .top-nav__links {
+      display: flex;
+      gap: 14px;
+      align-items: center;
+    }
+    .top-nav__link {
+      color: var(--cl-text-muted);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .top-nav__link:hover {
+      color: var(--cl-accent);
+    }
+
+    /* Zebra Sections */
+    .cl-zebra-section {
+      width: 100%;
+      padding: clamp(48px, 6vw, 80px) 20px;
+      border-bottom: 1px solid var(--cl-line);
+    }
+    .cl-zebra--light { background-color: var(--cl-bg); }
+    .cl-zebra--tint { background-color: var(--cl-tint); }
+
+    .cl-sec-container {
+      max-width: 820px;
+      margin: 0 auto;
+    }
+
+    /* Badges & Headers */
+    .cl-badge {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--cl-accent);
+      margin-bottom: 12px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--cl-accent-soft);
+      padding: 4px 12px;
+      border-radius: 100px;
+    }
+    .cl-badge::before {
+      content: '';
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      background: var(--cl-accent);
+      border-radius: 50%;
+    }
+    .cl-badge--teal {
+      color: var(--cl-teal);
+      background: rgba(15, 118, 110, 0.09);
+    }
+    .cl-badge--teal::before {
+      background: var(--cl-teal);
+    }
+
+    .title-short {
+      font-family: var(--font-display-short);
+      font-size: clamp(24px, 3.8vw, 36px);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: -0.01em;
+      line-height: 1.22;
+      color: var(--cl-text-base);
+      margin-bottom: 18px;
+      text-wrap: balance;
+    }
+
+    .title-long {
+      font-family: var(--font-display-long);
+      font-size: clamp(19px, 2.5vw, 24px);
+      font-weight: 600;
+      line-height: 1.35;
+      color: var(--cl-text-base);
+      margin-top: 24px;
+      margin-bottom: 14px;
+    }
+
+    .cl-body {
+      font-family: var(--font-body);
+      font-size: clamp(16px, 1.8vw, 17.5px);
+      line-height: 1.82;
+      color: var(--cl-text-body);
+      margin-bottom: 20px;
+    }
+
+    /* Khối Thơ Lục Bát Đầu Trang */
+    .luc-bat-card {
+      background: #090e17;
+      color: #f8fafc;
+      border-radius: 18px;
+      padding: clamp(28px, 4vw, 40px) clamp(24px, 4vw, 36px);
+      margin-top: 10px;
+      margin-bottom: 36px;
+      border: 1px solid rgba(2, 132, 199, 0.3);
+      box-shadow: 0 12px 36px rgba(9, 14, 23, 0.16);
+      text-align: center;
+    }
+    .luc-bat-tag {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #38bdf8;
+      margin-bottom: 16px;
+      display: inline-block;
+      background: rgba(2, 132, 199, 0.18);
+      padding: 4px 14px;
+      border-radius: 100px;
+    }
+    .luc-bat-poem {
+      font-family: var(--font-body);
+      font-size: clamp(19px, 2.4vw, 25px);
+      line-height: 1.7;
+      font-style: italic;
+      color: #ffffff;
+      margin-bottom: 18px;
+      letter-spacing: 0.01em;
+    }
+    .luc-bat-poem p {
+      margin-bottom: 4px;
+    }
+    .luc-bat-sub {
+      font-family: var(--font-display-long);
+      font-size: 13.5px;
+      color: #cbd5e1;
+      max-width: 660px;
+      margin: 0 auto;
+      line-height: 1.65;
+      border-top: 1px solid rgba(255, 255, 255, 0.12);
+      padding-top: 14px;
+      text-align: left;
+    }
+    .luc-bat-sub b {
+      color: #7dd3fc;
+    }
+
+    /* Cards */
+    .apple-card {
+      background: #ffffff;
+      border: 1px solid var(--cl-line);
+      border-radius: 16px;
+      padding: clamp(20px, 3vw, 28px);
+      margin-bottom: 22px;
+      box-shadow: 0 4px 20px rgba(9, 13, 22, 0.02);
+    }
+    .apple-card__badge {
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      font-weight: 700;
+      color: var(--cl-accent);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 8px;
+    }
+    .apple-card__title {
+      font-family: var(--font-display-long);
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--cl-text-base);
+      margin-bottom: 12px;
+    }
+
+    /* Kịch Bản 2 Cột */
+    .script-columns {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 14px;
+      background: var(--cl-tint);
+      border: 1px solid var(--cl-line);
+      border-radius: 12px;
+      padding: 16px;
+    }
+    @media (max-width: 640px) {
+      .script-columns {
+        grid-template-columns: 1fr;
+      }
+    }
+    .script-col {
+      font-size: 14.5px;
+      line-height: 1.65;
+    }
+    .script-col__tag {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--cl-text-muted);
+      margin-bottom: 8px;
+      padding-bottom: 4px;
+      border-bottom: 1px solid var(--cl-line);
+    }
+    .script-col--visual {
+      color: #334155;
+    }
+    .script-col--audio {
+      color: var(--cl-text-body);
+      font-family: var(--font-body);
+    }
+
+    /* Audit Table */
+    .audit-table-wrap {
+      overflow-x: auto;
+      margin: 24px 0;
+      border: 1px solid var(--cl-line);
+      border-radius: 14px;
+      background: #ffffff;
+    }
+    table.audit-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14.5px;
+      text-align: left;
+    }
+    table.audit-table th {
+      background: var(--cl-tint);
+      font-family: var(--font-display-long);
+      font-weight: 700;
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--cl-line);
+      color: var(--cl-text-base);
+      font-size: 12.5px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    table.audit-table td {
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--cl-line);
+      vertical-align: top;
+      line-height: 1.6;
+    }
+    table.audit-table tr:last-child td {
+      border-bottom: none;
+    }
+    .col-wrong {
+      color: #b91c1c;
+      background: #fffafa;
+      font-family: var(--font-mono);
+      font-size: 13.5px;
+    }
+    .col-right {
+      color: #0f766e;
+      font-weight: 600;
+    }
+
+    /* Highlight Rules */
+    .highlight-rule {
+      background: #f0f9ff;
+      border-left: 4px solid var(--cl-accent);
+      padding: 16px 20px;
+      border-radius: 0 12px 12px 0;
+      margin: 20px 0;
+      font-size: 16px;
+    }
+    .highlight-rule--teal {
+      background: #f0fdfa;
+      border-left: 4px solid var(--cl-teal);
+    }
+
+    .quote-box {
+      background: #f1f5f9;
+      border-radius: 12px;
+      padding: 18px 22px;
+      font-family: var(--font-body);
+      font-size: 16px;
+      color: var(--cl-text-body);
+      line-height: 1.75;
+      margin: 16px 0;
+      border-left: 3px solid #94a3b8;
+    }
+
+    .editorial-hook {
+      font-family: var(--font-body);
+      font-style: italic;
+      font-size: clamp(17px, 2vw, 20px);
+      line-height: 1.65;
+      color: var(--cl-text-base);
+      border-left: 3px solid var(--cl-accent);
+      padding-left: 20px;
+      margin: 26px 0;
+    }
+    .editorial-hook--teal {
+      border-left-color: var(--cl-teal);
+    }
+
+    /* Bottom Nav */
+    .bottom-nav {
+      margin-top: 50px;
+      padding-top: 28px;
+      border-top: 1px solid var(--cl-line);
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+      font-family: var(--font-display-long);
+      font-size: 14px;
+    }
+    .bottom-nav a {
+      color: var(--cl-text-muted);
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .bottom-nav a:hover {
+      color: var(--cl-accent);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- TOP NAV -->
+  <nav class="top-nav">
+    <div class="top-nav__breadcrumbs">
+      <a href="./wikicontent.html">Wiki Content</a>
+      <span>/</span>
+      <span>Case Đào Trung Nghĩa (Tattoo Studio &amp; Đào Tạo)</span>
+    </div>
+    <div class="top-nav__links">
+      <a href="./huuviet.html" class="top-nav__link">Case Đoàn Hữu Việt ↗</a>
+      <a href="./katbanh.html" class="top-nav__link">Case Chị Kat ↗</a>
+      <a href="./kienpb.html" class="top-nav__link">Case Kiên Phân Bón ↗</a>
+      <a href="./logic-storytelling-niem-tin.html" class="top-nav__link">7 Màn Storytelling ↗</a>
+      <a href="./wikicontent.html" class="top-nav__link">← Mục lục</a>
+    </div>
+  </nav>
+
+  <!-- MÀN 1: 4 CÂU LỤC BÁT & BẢN CHẤT NIỀM TIN TRONG ĐÀO TẠO NGHỀ XĂM GIÁ TRỊ CAO -->
+  <section class="cl-zebra-section cl-zebra--light">
+    <div class="cl-sec-container">
+      <div class="cl-badge cl-badge--teal">01 / TỔNG KHO TRÍ TUỆ • NGUYỄN ĐỨC VIỆT</div>
+      <h1 class="title-short">CASE ĐÀO TRUNG NGHĨA: TỪ NÉT KIM VÔ TRÙNG ĐẾN 7 GIỜ GÂY DỰNG LÒNG TIN DẠY NGHỀ XĂM</h1>
+
+      <p class="cl-body">
+        Một hình xăm mini giá vài trăm nghìn ở góc phố: Khách hàng ghé vội lúc hứng chí, xăm xong trả tiền rồi về. Nhưng khi một bạn trẻ bỏ ra <b>25 đến 50 triệu đồng</b> tiền mồ hôi nước mắt tích cóp để học nghề xăm hình nghệ thuật, hay một người cha người mẹ gật đầu trao khoản tiền dành dụm cho con theo học: Họ <b>tuyệt đối không bao giờ trao tương lai và tiền bạc cho những lời hứa hẹn sáo rỗng</b> kiểu <i>"bao ra nghề kiếm 50 củ/tháng"</i> hay những clip khoe mẽ hổ báo trên mạng. Người ta chỉ gửi gắm niềm tin vào một người thầy nghiêm cẩn, có studio sạch bóng như phòng mổ, và dám chịu thiệt để bảo bọc thể diện cho học viên lẫn gia đình họ.
+      </p>
+
+      <!-- 4 CÂU THƠ LỤC BÁT GHI NHỚ -->
+      <div class="luc-bat-card">
+        <div class="luc-bat-tag">4 CÂU LỤC BÁT DỄ NHỚ • BẢN GHI NHỚ LÀM NGHỀ XĂM HÌNH</div>
+        <div class="luc-bat-poem">
+          <p>“Nghe tiếng kim run, bắt nét sâu,</p>
+          <p>Nói trúng nỗi lo, dạ hết âu.</p>
+          <p>Bảy giờ nghiêm cẩn bên bàn máy,</p>
+          <p>Hộp nhung vô trùng, vững nghiệp lâu.”</p>
+        </div>
+        <div class="luc-bat-sub">
+          <b>Giải phẫu logic 4 câu:</b><br>
+          • <b>Nghe tiếng kim run, bắt nét sâu:</b> Khả năng chẩn đoán vi mô 5 giây (Định luật Woodsmall) — người thợ lành nghề chỉ cần nghe tiếng vo ve của máy xăm và nhìn độ sâu mũi kim trên lớp biểu bì là bắt đúng bệnh nhòe mực (blowout), tay run hay chỉnh sai vôn điện.<br>
+          • <b>Nói trúng nỗi lo, dạ hết âu:</b> Chạm đúng Tầng 2.5 giấu kín — nói trúng nỗi sợ bị gia đình cấm cản, sợ thầy giấu nghề bắt làm chân sai vặt, sợ run tay rách da khách đền tiền nhục nhã để bảo bọc thể diện cho học viên.<br>
+          • <b>Bảy giờ nghiêm cẩn bên bàn máy:</b> Quy trình tích lũy 7 giờ tiếp xúc (Google 7-11-4) — 70% video đời sống xưởng xăm nghiêm cẩn, sạch sẽ, vẽ chì đêm muộn giúp học viên và phụ huynh quen mặt, thấu cảm nếp làm nghề.<br>
+          • <b>Hộp nhung vô trùng, vững nghiệp lâu:</b> Đóng gói thị giác studio chuẩn y tế vô trùng, găng tay nitrile, kim bóc seal — đập tan định kiến xăm trổ bặm trợn, gây dựng sự nghiệp đào tạo danh giá, bền vững.
+        </div>
+      </div>
+
+      <div class="highlight-rule highlight-rule--teal">
+        <b>Điểm nghẽn cốt tử của anh Đào Trung Nghĩa:</b> Hiện tại anh Nghĩa muốn xây kênh để <b>đào tạo dạy nghề xăm hình</b>, nhưng nếu đi theo vết xe đổ của thị trường ngoài kia (hoặc là khoe hình xăm hoành tráng nhưng bặm trợn làm người ngoài e sợ, hoặc là chạy quảng cáo tuyển sinh lùa gà cam kết thu nhập khủng), anh sẽ chỉ hút về những bạn trẻ bốc đồng, ham làm giàu nhanh mà đẩy lùi những học viên nghiêm túc và làm phụ huynh nghi ngại. Áp dụng <b>7 Màn Storytelling &amp; Logic Niềm Tin</b>, kênh của anh Nghĩa sẽ trở thành biểu tượng của <b>sự nghiêm cẩn, vô trùng y tế và tay nghề thực chiến</b>.
+      </div>
+    </div>
+  </section>
+
+  <!-- MÀN 2: BẢNG AUDIT VĂN PHONG THỰC CHIẾN CHUẨN NGHỀ XĂM -->
+  <section class="cl-zebra-section cl-zebra--tint">
+    <div class="cl-sec-container">
+      <div class="cl-badge cl-badge--teal">02 / AUDIT VĂN PHONG THỰC CHIẾN</div>
+      <h2 class="title-short">LỌC BỎ VĂN MẪU MARKETING &amp; CHUẨN HÓA GIỌNG ANH VIỆT</h2>
+
+      <p class="cl-body">
+        Nghề xăm hình vốn đã chịu nhiều ánh nhìn định kiến xã hội. Nếu kênh đào tạo của anh Nghĩa lại chêm vào những thuật ngữ marketing đao to búa lớn hay lời lẽ hoa mỹ thì người xem sẽ lập tức dựng khiên phòng thủ vì ngửi thấy mùi đa cấp, lùa gà. Ngôn từ của anh Nghĩa phải <b>đanh thép, mộc mạc, chuẩn xác như một bác sĩ phẫu thuật ngoại khoa</b>.
+      </p>
+
+      <div class="audit-table-wrap">
+        <table class="audit-table">
+          <thead>
+            <tr>
+              <th style="width: 48%;">❌ Từ ngữ sách vở / Văn mẫu marketing (Cần bỏ)</th>
+              <th style="width: 52%;">✅ Từ ngữ mộc mạc chuẩn anh Việt (Bắt buộc dùng)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="col-wrong">Khóa học xăm hình nghệ thuật chuẩn quốc tế / Đào tạo Artist đỉnh cao</td>
+              <td class="col-right">Rèn từng nét vẽ chì 3 tuần trước khi bấm máy / Tập đi kim thẳng tay trên quả chuối và miếng da nhân tạo</td>
+            </tr>
+            <tr>
+              <td class="col-wrong">Cam kết bao ra nghề thu nhập 30 - 50 củ/tháng</td>
+              <td class="col-right">Chỉ nghề tận tay, rèn cho đôi tay không run, kim đi đúng tầng biểu bì không rách da khách</td>
+            </tr>
+            <tr>
+              <td class="col-wrong">Đòn bẩy tâm lý / Nghệ thuật chốt sale khóa học giá trị cao</td>
+              <td class="col-right">Nói trúng nỗi bất an giấu kín của học viên và phụ huynh để họ yên tâm gửi gắm tương lai</td>
+            </tr>
+            <tr>
+              <td class="col-wrong">Căn bệnh ngầm / Nỗi đau của người muốn học nghề</td>
+              <td class="col-right">Chỗ khó nói: Sợ bố mẹ họ hàng chê bai theo nghề xăm trổ giang hồ, sợ vào xưởng bị thầy giấu nghề bắt làm chân sai vặt, sợ run tay rách da khách đền tiền nhục nhã</td>
+            </tr>
+            <tr>
+              <td class="col-wrong">Bao trọn bộ đồ nghề máy xăm cao cấp độc quyền</td>
+              <td class="col-right">Chỉ rõ cách phân biệt kim đạn chuẩn vô trùng với kim nhái cùn đầu làm xé da, chọn đúng máy đầm tay không rung</td>
+            </tr>
+            <tr>
+              <td class="col-wrong">Vũ khí bí truyền / Kỹ thuật đánh bóng ma thuật triệu đô</td>
+              <td class="col-right">Cách căng da 3 điểm bằng 2 ngón tay và góc nghiêng kim 45 độ của người thạo việc đứng xưởng lâu năm</td>
+            </tr>
+            <tr>
+              <td class="col-wrong">Gồng lên làm Master Artist / Bậc thầy xăm hình thế giới</td>
+              <td class="col-right">Anh thợ xăm đàng hoàng, đeo găng tay y tế đen, kiểm tra từng vỉ kim bóc seal, nói chuyện mộc mạc và chuẩn mực</td>
+            </tr>
+            <tr>
+              <td class="col-wrong">Hạ khiên phòng thủ sinh học của phụ huynh học viên</td>
+              <td class="col-right">Phụ huynh nhìn thấy xưởng xăm sáng trưng, sạch bóng như phòng khám ngoại khoa thì thở phào yên tâm cho con theo học</td>
+            </tr>
+            <tr>
+              <td class="col-wrong">Tỷ lệ chuyển đổi học viên / Phễu tuyển sinh ngành xăm</td>
+              <td class="col-right">Học viên nghiêm túc tự nhắn tin xin theo học, bố mẹ đích thân dẫn con đến studio gặp thầy gửi gắm</td>
+            </tr>
+            <tr>
+              <td class="col-wrong">Tự xưng hay chèn chữ "ông giáo"</td>
+              <td class="col-right">Tuyệt đối cấm. Xưng hô tự nhiên, đàng hoàng: Tôi - Bạn, Anh Nghĩa - Học viên, Thầy - Trò</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p class="editorial-hook editorial-hook--teal">
+        "Một học viên sẵn sàng vay mượn 30–50 triệu đi học nghề không bao giờ nghe lời một người lên mạng khoe kiếm tiền tỷ từ xăm hình. Họ chỉ tin một người thầy dám cầm cây kẹp nhổ đi vỉ kim cùn, chỉ cho họ từng milimet kim đi vào da mà không làm khách chảy máu."
+      </p>
+    </div>
+  </section>
+
+  <!-- MÀN 3: BÓC TÁCH HIỆN TRƯỜNG THỰC TẾ: 3 TẦNG NHẬN THỨC CỦA NGHỀ ĐÀO TẠO XĂM -->
+  <section class="cl-zebra-section cl-zebra--light">
+    <div class="cl-sec-container">
+      <div class="cl-badge cl-badge--teal">03 / BÓC TÁCH HIỆN TRƯỜNG</div>
+      <h2 class="title-short">HIỆN TRƯỜNG NGHỀ XĂM: TỪ VĂN MẪU LÙA GÀ ĐẾN TẦNG 2.5 GIẤU KÍN</h2>
+
+      <p class="cl-body">
+        Nghề xăm hình nghệ thuật ở Việt Nam đang nằm ở ngã ba đường: Một bên là sự thương mại hóa xô bồ với những lò dạy xăm chớp nhoáng, một bên là định kiến xã hội nặng nề xem xăm trổ là bất hảo. Để tuyển được học viên chất lượng cao, anh Nghĩa phải thấu suốt 3 tầng thực tế:
+      </p>
+
+      <div class="apple-card">
+        <div class="apple-card__title">1. Tầng 1: Lời Rao Đãi Bôi Ngoài Thị Trường (Văn Mẫu Lùa Gà Công Nghiệp)</div>
+        <p class="cl-body" style="margin-bottom: 0;">
+          <i>"Khóa học xăm hình nghệ thuật chuẩn quốc tế", "Bao trọn gói đồ nghề máy móc nhập khẩu", "Cam kết ra nghề thu nhập 30 - 50 củ/tháng sau 2 tháng", "Cấp bằng chứng chỉ hành nghề danh giá"...</i> Đây là bài văn mẫu mà hàng trăm cơ sở đào tạo xăm đang chạy quảng cáo tràn lan trên mạng xã hội. Người xem lướt qua hàng chục clip như vậy và não bộ tự động phân loại đây là các bẫy tuyển sinh chộp giật, không có lấy một hạt bụi chuyên môn thực tế.
+        </p>
+      </div>
+
+      <div class="apple-card">
+        <div class="apple-card__title">2. Tầng 2: Bề Mặt Định Kiến &amp; Khó Khăn Thường Nhật (Cái Khổ Nhìn Thấy)</div>
+        <p class="cl-body" style="margin-bottom: 0;">
+          Nghề xăm bị xã hội nhìn với ánh mắt soi xét khắt khe; học phí học nghề cao (25 - 50 triệu), cộng thêm tiền máy xăm pen, nguồn điện, mực USA xịn lên tới 15 - 20 triệu; người mới sợ mình không có năng khiếu vẽ vời hay "hoa tay"; sợ học xong mở tiệm không có khách thì phá sản; ngồi xăm còng lưng 6 - 8 tiếng liên tục đau mỏi vai gáy, mắt mờ vì soi từng nét kim nhỏ xíu.
+        </p>
+      </div>
+
+      <div class="apple-card">
+        <div class="apple-card__title">3. Tầng 2.5: Nỗi Niềm Giấu Kín &amp; Chiếc Mặt Nạ Thể Diện (Mỏ Vàng Chuyển Hóa)</div>
+        <p class="cl-body" style="margin-bottom: 12px;">
+          Đây là sự thật ngượng miệng nằm sâu dưới đáy bụng của cả 2 phía mà không ai dám nói ra trên mạng xã hội:
+        </p>
+        <p class="cl-body" style="margin-bottom: 10px;">
+          • <b>Phía học viên (Người chuẩn bị nộp 30–50 triệu học phí):</b><br>
+          - <i>Mặt nạ thể diện ngoài miệng:</i> <i>"Em đam mê nghệ thuật thị giác cá tính, muốn theo đuổi phong cách tự do, không thích môi trường văn phòng gò bó"</i>.<br>
+          - <i>Sự thật giấu kín ngượng miệng:</i> Thực ra là đã bỏ ngang đại học hoặc vừa chán chường nghỉ việc văn phòng lương 7 triệu bế tắc. Về nhà bị bố mẹ họ hàng mắng chửi te tua, coi như đứa con hư hỏng sa chân vào giới <i>"xăm trổ giang hồ"</i>. Cắn răng gom góp tiền mồ hôi nước mắt đi học, trong bụng sợ nhất 3 điều: <b>(1)</b> Gặp phải ông thầy làm màu trên mạng, vào xưởng chỉ bắt làm chân sai vặt (quét nhà, rửa máy, bưng nước, thầy giấu nhẹm kỹ thuật cốt lõi); <b>(2)</b> Sợ ngày đầu cầm máy xăm lên người thật thì tay run bần bật, ghì kim quá sâu làm rách da chảy máu be bét, mực loang nhòe nhoẹt (blowout) khách bắt đền tiền nhục nhã, bêu riếu lên mạng; <b>(3)</b> Học xong không kiếm nổi tiền nuôi thân, lại phải muối mặt ngửa tay xin tiền gia đình, bị họ hàng chì chiết cười chê.
+        </p>
+        <p class="cl-body" style="margin-bottom: 0;">
+          • <b>Phía người thầy (Anh Đào Trung Nghĩa):</b><br>
+          - <i>Nỗi trăn trở làm nghề:</i> Muốn tìm những học viên nghiêm túc, có đạo đức làm nghề, biết nâng niu trân trọng làn da và thể diện của khách hàng. Anh Nghĩa sợ nhất những bạn trẻ bốc đồng thích thể hiện, mới học được vài đường nét cơ bản đã đòi xăm dạo lên người bạn bè, làm ẩu làm bừa gây nhiễm trùng lây bệnh, làm hoen ố danh dự của cả nghề xăm nghệ thuật.
+        </p>
+      </div>
+
+      <div class="apple-card" style="border-left: 4px solid var(--cl-teal);">
+        <div class="apple-card__title" style="color: var(--cl-teal);">4. Nhát Cắt Tạo Niềm Tin Của Người Thạo Việc (Định Luật Wyatt Woodsmall)</div>
+        <p class="cl-body" style="margin-bottom: 10px;">
+          Anh Nghĩa không cần phải lên mạng thanh minh hay thề thốt đạo đức. Niềm tin được đóng đinh ngay lập tức khi anh làm những hành động chịu thiệt (Costly Signals) và chẩn đoán vi mô 5 giây:
+        </p>
+        <div class="quote-box">
+          <i>"Cầm máy xăm bấm nút nguồn chạy vo vo, anh Nghĩa đi 1 đường kim trên quả chuối tiêu hoặc miếng da nhân tạo, nhìn vết mực thâm đen loang nhẹ ra xung quanh rồi chỉ thẳng vào ống kính: 'Nét này bị nhòe mực (blowout) không phải do mực dởm hay kim cùn. Bạn bị lỗi vì cổ tay ghì quá mạnh, mũi kim đâm lút qua lớp hạ bì chạm vào mô mỡ khiến mực bị mao dẫn loang ra như giọt mực rơi vào giấy thấm. Kim xăm chỉ được phép đi sâu đúng 1.5mm ở tầng trung bì'.<br><br>
+          Và khi một học viên mới đến xin học đòi tuần sau được cầm máy xăm ngay lên người mẫu, anh Nghĩa từ tốn từ chối: 'Nếu bạn vội vàng kiếm tiền nhanh thì studio tôi không nhận. Học ở đây, 3 tuần đầu tiên bạn chỉ có ngồi vẽ chì, dựng giải phẫu cơ thể và luyện nét thẳng trên giấy. Chưa làm chủ được cây bút chì thì tuyệt đối không được phép cầm máy xăm để tàn phá da thịt người khác'."</i>
+        </div>
+        <p class="cl-body" style="margin-bottom: 0;">
+          <b>Cái giá anh Nghĩa dám trả:</b> Từ chối nhận học viên nôn nóng và sẵn sàng vứt bỏ kim cùn trước mặt học viên. Hành động chịu thiệt đó chính là <b>tín hiệu đắt giá (Costly Signal)</b> khiến cả học viên lẫn phụ huynh họ tin tưởng tuyệt đối.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- MÀN 4: HỢP NHẤT VỚI BÀI TRÌNH 7 MÀN: 5 NẤC NÂNG CẤP BẮT BUỘC -->
+  <section class="cl-zebra-section cl-zebra--tint">
+    <div class="cl-sec-container">
+      <div class="cl-badge cl-badge--teal">04 / BƯỚC CHUYỂN TOÀN DIỆN</div>
+      <h2 class="title-short">5 NẤC NÂNG CẤP BẮT BUỘC THEO BÀI TRÌNH 7 MÀN</h2>
+
+      <p class="cl-body">
+        Khi đưa toàn bộ logic của bài giảng <b>Logic Storytelling &amp; Bản Chất Niềm Tin</b> vào studio xăm hình của anh Đào Trung Nghĩa, chúng ta tái cấu trúc cỗ máy nội dung theo 5 nấc then chốt:
+      </p>
+
+      <!-- NẤC 1 -->
+      <div class="apple-card">
+        <div class="apple-card__title">Nấc 1: Áp Dụng Công Thức Google 7 - 11 - 4 (Giải Bài Toán 7 Giờ Tích Lũy Niềm Tin)</div>
+        <p class="cl-body">
+          Không một ai bỏ ra 30 - 50 triệu tiền học phí chỉ sau khi xem 1 hay 2 video ngắn ngủi trên TikTok. Học viên và gia đình họ cần tích lũy đủ <b>7 giờ tiếp xúc, qua 11 điểm chạm, ở 4 không gian khác nhau</b> (TikTok/Reels, Kênh YouTube dài, Website giáo trình, Trải nghiệm trực tiếp tại xưởng xăm).
+        </p>
+        <p class="cl-body" style="margin-bottom: 0;">
+          <b>Cách phân bổ nội dung của xưởng xăm anh Nghĩa:</b>
+          <br>• <b>70% Video Đời Sống Xưởng Xăm Nghiêm Cẩn (Nhịp Đệm Quen Mặt):</b> Cảnh ngồi vẽ phác thảo chì tỉ mẩn lúc 11h đêm bên tách trà; cảnh lau khử khuẩn bàn ghế bằng cồn y tế; cảnh phân loại kim đạn cartridge ngay ngắn vào khay inox; cảnh hướng dẫn học viên cách ngồi thẳng lưng chống thoái hóa cột sống; cảnh tâm sự chuyện nghề mộc mạc về những hình xăm ý nghĩa của khách... Những video này quay rất nhanh, tự nhiên, giúp người xem và phụ huynh thấy xưởng xăm đàng hoàng, sạch sẽ như một phòng nghiên cứu nghệ thuật.
+          <br>• <b>30% Video Nhát Cắt Kỹ Thuật Vi Mô:</b> Những pha bắt bệnh nhòe mực blowout trong 5 giây, bẻ kim cùn đầu, hướng dẫn căng da 3 điểm, từ chối nhận học viên bốc đồng. Đây là những nhát cắt chốt hạ niềm tin tuyệt đối vào tay nghề của người thầy.
+        </p>
+      </div>
+
+      <!-- NẤC 2 -->
+      <div class="apple-card">
+        <div class="apple-card__title">Nấc 2: Tinh Gọn Theo Định Luật Woodsmall: "Bắt Bệnh 5 Giây Như Bác Sĩ Cầm Dao Mổ"</div>
+        <p class="cl-body">
+          Wyatt Woodsmall đã chứng minh: <i>Khi bạn mô tả chính xác triệu chứng vi mô mà người khác đang âm thầm trải qua, họ tự động mặc định bạn là người nắm giữ thuốc giải</i>. Học viên học xăm không cần nghe triết lý hội họa viển vông, họ cần người thầy chỉ đúng lỗi sai trong từng cử động tay:
+        </p>
+        <p class="cl-body" style="margin-bottom: 0;">
+          • <b>Bắt bệnh xé da chảy máu:</b> Nhìn vết xăm ửng đỏ rách mép da: <i>"Bạn bị rách da không phải vì kim sắc nhọn, mà vì bạn để máy chạy vôn quá cao (8.5V) trong khi tay kéo nét lại quá chậm, kim đâm lặp lại tại một điểm quá nhiều lần làm nát mô da"</i>.
+          <br>• <b>Bắt bệnh bóng đánh bị bết:</b> <i>"Đánh bóng mà bị đốm đen lổn nhổn là do bạn quét kim vuông góc 90 độ thay vì nghiêng 45 độ đưa theo chuyển động con lắc vung nhẹ"</i>.
+          <br>• Bắt bệnh vi mô 5 giây khẳng định vị thế của một bậc thầy thực chiến, đập tan mọi nghi ngờ về năng lực sư phạm.
+        </p>
+      </div>
+
+      <!-- NẤC 3 -->
+      <div class="apple-card">
+        <div class="apple-card__title">Nấc 3: Đóng Gói Thị Giác — "Chiếc Hộp Nhung Chuẩn Y Tế Vô Trùng"</div>
+        <p class="cl-body">
+          Hình ảnh xưởng xăm tối tăm, tường vẽ đầu lâu ma quái, khói thuốc lá mù mịt chính là rào cản lớn nhất khiến phụ huynh ngăn cấm con em đi học. Chiếc hộp nhung của anh Đào Trung Nghĩa phải <b>đập tan hoàn toàn định kiến giang hồ bặm trợn</b> bằng chuẩn mực phòng khám ngoại khoa:
+        </p>
+        <p class="cl-body" style="margin-bottom: 0;">
+          • <b>Ánh sáng &amp; Không gian:</b> Studio sơn tông màu sáng sạch sẽ (trắng - xám titan), đèn mổ 5500K trắng tinh chuẩn màu da, không gian thoáng đãng thơm mùi tinh dầu tràm trà và cồn y tế.
+          <br>• <b>Quy chuẩn vô trùng y tế:</b> Mọi máy xăm pen đều được bọc màng co nilon bảo vệ; dây dẫn bọc clip cord sleeve; khay mực dùng 1 lần; kim xăm đạn cartridge bóc seal trước ống kính; nghệ nhân đeo găng tay y tế nitrile đen sạch bong; thùng rác sinh học đựng vật sắc nhọn đạt chuẩn Bộ Y tế.
+          <br>• <b>Âm thanh ASMR tinh tế:</b> Tiếng máy xăm pen chạy vo vo êm ru như tiếng động cơ xe điện, tiếng bóc tách túi seal kim rột rẹt giòn tan, tiếng lau khăn ướt lướt nhẹ trên da.
+        </p>
+      </div>
+
+      <!-- NẤC 4 -->
+      <div class="apple-card">
+        <div class="apple-card__title">Nấc 4: Chinh Phục Cả 2 Đối Tượng: Người Học Nghề &amp; Phụ Huynh Đứng Sau Chi Tiền</div>
+        <p class="cl-body">
+          Một khóa học 30 - 50 triệu của anh Nghĩa phục vụ đối tượng học viên trẻ tuổi, nhưng <b>người ra quyết định chi tiền hoặc ủng hộ tinh thần lớn nhất lại chính là phụ huynh</b>:
+        </p>
+        <p class="cl-body" style="margin-bottom: 0;">
+          • <b>Với học viên:</b> Kênh mang lại sự an tâm tuyệt đối vì thầy dạy tận tâm từ nét vẽ chì, không giấu nghề, bảo bọc thể diện khi họ lỡ tay làm sai, dạy cả cách nói chuyện tư vấn khách và quản lý studio.
+          <br>• <b>Với phụ huynh:</b> Khi xem video thấy một người thầy ăn mặc đàng hoàng, nói năng mực thước, studio sạch sẽ như bệnh viện, phụ huynh nhận ra: <i>"Hóa ra đây là một nghề thủ công mỹ nghệ cao cấp, đòi hỏi kỷ luật thép và sự tỉ mỉ chứ không phải giang hồ tệ nạn"</i>. Sự đồng thuận của gia đình giúp học viên tự tin đóng học phí mà không còn cảm giác tội lỗi.
+        </p>
+      </div>
+
+      <!-- NẤC 5 -->
+      <div class="apple-card">
+        <div class="apple-card__title">Nấc 5: Sản Xuất Bền Bỉ Với Công Cụ 4 Tầng Ngay Tại Bàn Làm Việc Studio</div>
+        <p class="cl-body" style="margin-bottom: 0;">
+          Anh Nghĩa không cần thuê ekip quay phim cồng kềnh. Chỉ cần 1 chiếc điện thoại gắn trên tay arm kim loại kẹp mép bàn xăm, 1 chiếc đèn led bàn xoay chỉnh hướng và 1 chiếc micro cài cổ áo. Mọi tình huống học viên vẽ sai nét, mọi câu hỏi về kỹ thuật đi kim đều được đưa vào công cụ bóc tách 4 tầng (<a href="./4tang.html" style="color: var(--cl-accent); font-weight: 600;">4tang.html</a>) xuất ra kịch bản 7 câu sắc nét để quay ngay trong 15 phút rảnh rỗi giữa các ca xăm.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- MÀN 5: 4 KỊCH BẢN MẪU THỰC CHIẾN TẠI STUDIO ANH ĐÀO TRUNG NGHĨA -->
+  <section class="cl-zebra-section cl-zebra--light">
+    <div class="cl-sec-container">
+      <div class="cl-badge cl-badge--teal">05 / KỊCH BẢN THỰC ĐỊA</div>
+      <h2 class="title-short">4 KỊCH BẢN MẪU THỰC CHIẾN TẠI STUDIO ANH ĐÀO TRUNG NGHĨA</h2>
+
+      <p class="cl-body">
+        Dưới đây là 4 kịch bản mẫu được chuẩn hóa theo cấu trúc 2 cột (Hình ảnh B-roll &amp; Lời thoại thực tế), giúp anh Nghĩa bật máy lên là quay được ngay:
+      </p>
+
+      <!-- KỊCH BẢN 1 -->
+      <div class="apple-card">
+        <div class="apple-card__badge">KỊCH BẢN 1 • ĐỜI THƯỜNG XƯỞNG XĂM (70% NHỊP ĐỆM QUEN MẶT)</div>
+        <div class="apple-card__title">Lau Bàn Khử Khuẩn Lúc 11h Đêm &amp; Sự Nghiêm Cẩn Của Người Thợ Xăm</div>
+
+        <div class="script-columns">
+          <div class="script-col script-col--visual">
+            <div class="script-col__tag">📹 HÌNH ẢNH B-ROLL (CAM A &amp; B)</div>
+            • <b>Cam A:</b> Khung cảnh studio lúc 11h đêm, không gian yên tĩnh sáng đèn led trắng. Khách đã về hết, anh Nghĩa một mình đứng bên bàn xăm.<br>
+            • <b>Cam B (Macro &amp; ASMR):</b> Cận cảnh anh Nghĩa xịt dung dịch cồn sát khuẩn lên mặt bàn kim loại, cầm khăn lau sạch bóng từng góc cạnh.<br>
+            • <b>Cam B:</b> Thao tác bóc lớp màng bọc nilon của máy xăm pen bỏ vào thùng rác y tế, lau sạch thân máy bằng dung dịch khử khuẩn chuyên dụng.<br>
+            • <b>Cam A:</b> Anh Nghĩa ngồi xuống bàn làm việc, rót một chén trà nóng, lật mở cuốn sổ phác thảo chì chuẩn bị hình cho khách ngày mai.
+          </div>
+          <div class="script-col script-col--audio">
+            <div class="script-col__tag">🎙️ LỜI THOẠI ANH NGHĨA (MỘC MẠC)</div>
+            <i>"Nhiều người nghĩ làm thợ xăm là tối ngày tụ tập đàn đúm, xăm trổ bặm trợn. Nhưng thực tế một ngày của mình thường kết thúc lúc 11 giờ đêm trong sự tĩnh lặng thế này.<br><br>
+            Sau mỗi ca xăm, việc đầu tiên không phải là đếm tiền, mà là tháo găng tay, lột bỏ toàn bộ màng bọc nilon và khử khuẩn từng centimet bàn máy bằng cồn y tế. Da thịt con người là nơi nhạy cảm nhất, một hạt bụi hay một vết mực vương vãi cũng có thể gây nhiễm trùng cho người kế tiếp.<br><br>
+            Cái nghề này, nếu đôi bàn tay không sạch sẽ và cái tâm không nghiêm cẩn, bạn chẳng thể nào đi đường dài được."</i>
+          </div>
+        </div>
+      </div>
+
+      <!-- KỊCH BẢN 2 -->
+      <div class="apple-card">
+        <div class="apple-card__badge">KỊCH BẢN 2 • ĐỊNH LUẬT WOODSMALL (30% NHÁT CẮT VI MÔ - CHẨN ĐOÁN 5 GIÂY)</div>
+        <div class="apple-card__title">Đi Nét Trên Quả Chuối: Bắt Bệnh Nhòe Mực (Blowout) Do Ghì Cổ Tay</div>
+
+        <div class="script-columns">
+          <div class="script-col script-col--visual">
+            <div class="script-col__tag">📹 HÌNH ẢNH B-ROLL (CAM A &amp; B)</div>
+            • <b>Cam B (Macro):</b> Ống kính dí sát vào một quả chuối tiêu vỏ vàng. Anh Nghĩa cầm máy xăm pen đi 1 nét kim. Nét xăm bị thâm đen và loang lổ mực ra xung quanh mép vỏ chuối.<br>
+            • <b>Cam A:</b> Anh Nghĩa chỉ tay vào vết mực loang, ánh mắt nghiêm cẩn của người thạo việc.<br>
+            • <b>Cam B (So sánh nét chuẩn):</b> Anh Nghĩa đi 1 nét thứ hai nhẹ nhàng: nét mực mảnh như sợi chỉ, đen tuyền, vỏ chuối không bị rách, không hề có giọt mực thừa loang ra.<br>
+            • <b>Cam B (Thao tác tay):</b> Cận cảnh ngón tay út tì nhẹ làm điểm tựa giảm rung, cổ tay thả lỏng di chuyển đều nhịp.
+          </div>
+          <div class="script-col script-col--audio">
+            <div class="script-col__tag">🎙️ LỜI THOẠI ANH NGHĨA (MỘC MẠC)</div>
+            <i>"Bạn xăm lên da khách mà thấy nét mực bị thâm tím, mực loang nhòe ra như giọt mực rơi vào giấy thấm thế này... thì đừng vội đổ lỗi do mực dởm hay kim cùn.<br><br>
+            Lỗi này 90% các bạn mới vào nghề đều mắc: đó là ghì cổ tay quá mạnh làm mũi kim đâm lút qua lớp biểu bì, chọc thẳng xuống tầng mỡ dưới da gây hiện tượng vỡ nét nhòe mực (blowout). Vết này một khi đã loang là vĩnh viễn không sửa được.<br><br>
+            Muốn nét kim sắc lẹm, kim chỉ được đi sâu đúng 1.5 đến 2mm. Tì ngón út làm điểm tựa, cổ tay thả lỏng đưa đều như viết bút mực trên giấy. Làm thợ xăm, một cử động tay ẩu là khách mang vết sẹo hỏng cả đời."</i>
+          </div>
+        </div>
+      </div>
+
+      <!-- KỊCH BẢN 3 -->
+      <div class="apple-card">
+        <div class="apple-card__badge">KỊCH BẢN 3 • TỪ CHỐI TIỀN NÓNG (HÀNH ĐỘNG CHỊU THIỆT - TUYỂN SINH CÓ CHỌN LỌC)</div>
+        <div class="apple-card__title">Từ Chối Nhận Học Viên Đòi Cầm Máy Xăm Ngay Trong Tuần Đầu</div>
+
+        <div class="script-columns">
+          <div class="script-col script-col--visual">
+            <div class="script-col__tag">📹 HÌNH ẢNH B-ROLL (CAM A &amp; B)</div>
+            • <b>Cam A:</b> Anh Nghĩa ngồi bên bàn trà tiếp một bạn trẻ đến xin học nghề, trên bàn có tệp giấy vẽ chì luyện nét thẳng và hình khối.<br>
+            • <b>Cam B (Macro):</b> Cận cảnh những bài tập vẽ chì của học viên khóa trước: từng nét gạch song song đều tăm tắp, các mảng đánh bóng chuyển sắc từ đậm sang nhạt mịn màng.<br>
+            • <b>Cam B:</b> Bàn tay anh Nghĩa cầm cây bút chì gỗ chuốt nhọn, đi một nét thẳng thớm trên trang giấy trắng.<br>
+            • <b>Cam A:</b> Anh Nghĩa nhìn thẳng vào mắt bạn trẻ, điềm đạm chia sẻ quan điểm đào tạo của mình.
+          </div>
+          <div class="script-col script-col--audio">
+            <div class="script-col__tag">🎙️ LỜI THOẠI ANH NGHĨA (MỘC MẠC)</div>
+            <i>"Hôm nay có một bạn đến studio mang theo 30 triệu học phí, nhưng nằng nặc đòi tuần sau phải được cầm máy xăm ngay lên người mẫu để mau ra nghề kiếm tiền. Mình đành từ chối nhận.<br><br>
+            Cầm máy xăm bấm nút cho kim chạy thì đứa trẻ con 10 tuổi cũng bấm được. Nhưng điều khiển được lực tay, cảm nhận được độ đàn hồi của từng vùng da thịt thì phải bắt đầu từ cây bút chì.<br><br>
+            Tại studio của mình, học viên phải ngồi vẽ chì, dựng hình khối và đi nét thẳng trên giấy ít nhất 3 tuần. Đến cây bút chì trên giấy trắng mà bạn còn run tay gạch nguệch ngoạc, thì làm sao tôi dám trao cây máy xăm để bạn đặt lên thân thể người khác?"</i>
+          </div>
+        </div>
+      </div>
+
+      <!-- KỊCH BẢN 4 -->
+      <div class="apple-card">
+        <div class="apple-card__badge">KỊCH BẢN 4 • GIẢI CỨU TÂM LÝ HỌC VIÊN (CHẠM TẦNG 2.5 - BẢO BỌC THỂ DIỆN)</div>
+        <div class="apple-card__title">Vì Sao Lần Đầu Cầm Máy Xăm Lên Da Thật Lại Bị Run Tay?</div>
+
+        <div class="script-columns">
+          <div class="script-col script-col--visual">
+            <div class="script-col__tag">📹 HÌNH ẢNH B-ROLL (CAM A &amp; B)</div>
+            • <b>Cam B (Macro):</b> Cận cảnh bàn tay một bạn học viên cầm máy xăm pen, đầu kim hơi rung rinh, nét kim ngập ngừng trên bề mặt miếng da nhân tạo.<br>
+            • <b>Cam A:</b> Anh Nghĩa đứng cạnh, nhẹ nhàng đặt tay lên vai bạn học viên, mỉm cười trấn an.<br>
+            • <b>Cam B (Hướng dẫn kỹ thuật):</b> Anh Nghĩa dùng ngón cái và ngón trỏ bàn tay trái căng căng mặt da tạo độ phẳng căng (Kỹ thuật căng da 3 điểm), tay phải cầm máy xăm tì ngón út vững chãi.<br>
+            • <b>Cam A:</b> Bạn học viên thở phào, ánh mắt tự tin trở lại, nét kim bắt đầu đi êm ru mượt mà.
+          </div>
+          <div class="script-col script-col--audio">
+            <div class="script-col__tag">🎙️ LỜI THOẠI ANH NGHĨA (MỘC MẠC)</div>
+            <i>"Nhiều bạn đi học xăm, ngày đầu tiên cầm máy lên da thật tay run bần bật, mồ hôi vã ra như tắm, chỉ sợ lỡ làm rách da khách đền tiền nhục nhã. Rồi tự ti nghĩ mình không có hoa tay, không có khiếu.<br><br>
+            Đừng sợ. Ai mới vào nghề cũng từng trải qua cảm giác tim đập thình thịch đó, kể cả mình cách đây mười mấy năm. Run tay không phải do bạn kém, mà vì bạn chưa biết kỹ thuật căng da 3 điểm.<br><br>
+            Nhìn này: Hai ngón tay bàn tay trái kéo căng da thành mặt phẳng tuyệt đối, tay phải tì ngón út làm điểm tựa triệt tiêu 90% độ rung của máy. Da căng phẳng thì kim vào êm như ru, khách không đau mà nét mực ăn ngay. Cứ vững tâm, có mình đứng cạnh kèm cặp từng nét một."</i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MÀN 6: LỘ TRÌNH 1 TUẦN QUAY GỌN NHẸ TẠI STUDIO XĂM -->
+  <section class="cl-zebra-section cl-zebra--tint">
+    <div class="cl-sec-container">
+      <div class="cl-badge cl-badge--teal">06 / LỊCH TRÌNH VẬN HÀNH</div>
+      <h2 class="title-short">LỘ TRÌNH 1 TUẦN QUAY GỌN NHẸ TẠI STUDIO XĂM HÌNH</h2>
+
+      <p class="cl-body">
+        Anh Đào Trung Nghĩa hoàn toàn có thể tự vận hành việc sản xuất nội dung với 1 chiếc điện thoại gắn chân kẹp mép bàn, không làm gián đoạn lịch làm việc của studio:
+      </p>
+
+      <div class="audit-table-wrap">
+        <table class="audit-table">
+          <thead>
+            <tr>
+              <th style="width: 18%;">Ngày</th>
+              <th style="width: 32%;">Định dạng &amp; Không gian</th>
+              <th style="width: 25%;">Góc máy &amp; Thao tác</th>
+              <th style="width: 25%;">Mục tiêu tiếp xúc (Google 7-11-4)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><b>Thứ 2</b></td>
+              <td>Vệ sinh khử khuẩn xưởng xăm 11h đêm &amp; chuẩn bị bàn máy sáng trưng</td>
+              <td>Cam A quay không gian rộng sạch bóng; Cam B quay vòi xịt cồn y tế</td>
+              <td>70% đời sống: Đập tan định kiến xăm trổ bặm trợn, chứng minh nếp sống nghiêm cẩn.</td>
+            </tr>
+            <tr>
+              <td><b>Thứ 3</b></td>
+              <td>Đi nét trên quả chuối bắt bệnh nhòe mực blowout do ghì cổ tay (Woodsmall)</td>
+              <td>Cam B dí sát macro vết mực loang; Cam A quay phân tích điềm tĩnh</td>
+              <td>30% nhát cắt vi mô: Khẳng định chuyên môn chẩn đoán 5 giây, hút học viên nghiêm túc.</td>
+            </tr>
+            <tr>
+              <td><b>Thứ 4</b></td>
+              <td>Âm thanh ASMR bóc seal kim cartridge &amp; tiếng máy pen chạy vo vo êm ru</td>
+              <td>Cam B quay cận cảnh vỉ kim vô trùng bóc tách, thu âm thanh cơ khí sạch sẽ</td>
+              <td>Chiếc hộp nhung: Tạo cảm giác an toàn y tế tuyệt đối cho cả học viên và khách xăm.</td>
+            </tr>
+            <tr>
+              <td><b>Thứ 5</b></td>
+              <td>Cảnh kèm học viên luyện vẽ chì 3 tuần trước khi bấm máy xăm</td>
+              <td>Cam A quay thầy trò ngồi bên bàn vẽ; Cam B quay chi tiết bóng chì</td>
+              <td>70% đời sống: Cho thấy sự tận tâm kèm cặp, không giấu nghề, không bắt làm sai vặt.</td>
+            </tr>
+            <tr>
+              <td><b>Thứ 6</b></td>
+              <td>Tình huống từ chối nhận học viên nóng vội đòi kiếm tiền nhanh</td>
+              <td>Cam A quay trò chuyện thẳng thắn; Cam B quay giáo án luyện nét từng bước</td>
+              <td>Chốt hạ lòng tin: Người thầy có đạo đức làm nghề, giữ gìn uy tín danh dự cho học viên.</td>
+            </tr>
+            <tr>
+              <td><b>Thứ 7</b></td>
+              <td>Giải tỏa tâm lý run tay rách da &amp; Kỹ thuật căng da 3 điểm (Giải cứu học viên)</td>
+              <td>Cam B quay thao tác 2 ngón tay căng da và ngón út tì điểm tựa</td>
+              <td>Chạm Tầng 2.5: Bảo bọc thể diện cho học viên, chuyển đổi học viên đóng học phí 30-50 triệu.</td>
+            </tr>
+            <tr>
+              <td><b>Chủ nhật</b></td>
+              <td>Ngồi phác thảo hình xăm ý nghĩa cho khách, trả lời câu hỏi của phụ huynh</td>
+              <td>Cam A quay góc bàn làm việc bên chén trà nóng và cuốn sổ ký họa</td>
+              <td>Lắng nghe tâm tư học viên và phụ huynh, tích lũy đủ 7 giờ quen mặt bền bỉ.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="highlight-rule highlight-rule--teal">
+        <b>Đích đến tối thượng:</b> Khi một bạn trẻ nuôi ước mơ theo đuổi nghề xăm hình nghệ thuật, <b>người đầu tiên bạn ấy nghĩ đến để tầm sư học đạo chính là anh Đào Trung Nghĩa</b>. Và khi người cha người mẹ lo lắng hỏi: <i>"Mày học xăm ở đâu, có đàng hoàng không?"</i>, bạn trẻ chỉ cần mở kênh của anh Nghĩa ra cho bố mẹ xem: Xưởng xăm sạch như phòng mổ, người thầy mực thước nghiêm cẩn — mọi nỗi lo âu định kiến lập tức tan biến.
+      </div>
+    </div>
+  </section>
+
+  <!-- MÀN 7: 3 NGUYÊN TẮC CỐT TỬ CỦA NGHỆ NHÂN ĐÀO TẠO XĂM & ĐIỀU HƯỚNG HỆ THỐNG -->
+  <section class="cl-zebra-section cl-zebra--light">
+    <div class="cl-sec-container">
+      <div class="cl-badge cl-badge--teal">07 / NGUYÊN TẮC CỐT TỬ</div>
+      <h2 class="title-short">3 NGUYÊN TẮC BẤT DI BẤT DỊCH CỦA NGHỆ NHÂN ĐÀO TẠO XĂM HÌNH</h2>
+
+      <p class="cl-body">
+        Dù studio có mở rộng quy mô hay đào tạo hàng trăm học viên khắp cả nước, anh Đào Trung Nghĩa chỉ cần khắc cốt ghi tâm 3 nguyên tắc sống còn:
+      </p>
+
+      <div class="apple-card">
+        <div class="apple-card__title">1. Da Thịt Con Người Không Có Nút "Undo" — Đạo Đức Làm Nghề Là Số Một</div>
+        <p class="cl-body" style="margin-bottom: 0;">
+          Một bức tranh vẽ hỏng trên giấy có thể vò ném vào sọt rác, nhưng một nét kim đi sai trên cơ thể người là một vết sẹo họ phải mang theo suốt cuộc đời. Đừng bao giờ vì ham tiền học phí mà nhận bừa học viên vô kỷ luật, và tuyệt đối không bao giờ cho phép học viên chạm máy xăm vào da người thật khi chưa làm chủ được nét vẽ chì và kỹ thuật kiểm soát lực tay.
+        </p>
+      </div>
+
+      <div class="apple-card">
+        <div class="apple-card__title">2. Kỷ Luật Vô Trùng Y Tế Là Ranh Giới Giữa Nghệ Nhân Và Kẻ Xăm Dạo</div>
+        <p class="cl-body" style="margin-bottom: 0;">
+          Tay nghề vẽ đẹp đến mấy mà để xảy ra nhiễm trùng hay lây nhiễm chéo thì toàn bộ sự nghiệp đều tan thành mây khói. Một cây kim bị tà đầu, một vỉ kim hết hạn hay một miếng găng tay bị rách dứt khoát phải vứt bỏ ngay lập tức. Sự khắt khe tuyệt đối với quy chuẩn vệ sinh y tế chính là tấm khiên bảo vệ danh dự nghề nghiệp của người thầy và học viên.
+        </p>
+      </div>
+
+      <div class="apple-card">
+        <div class="apple-card__title">3. Bảo Bọc Thể Diện Cho Cả Học Viên Lẫn Phụ Huynh</div>
+        <p class="cl-body" style="margin-bottom: 0;">
+          Học viên tìm đến học nghề xăm mang theo chiếc mặt nạ đam mê cá tính nhưng trong bụng là nỗi sợ gia đình chối bỏ, sợ thầy giấu nghề và sợ run tay làm hỏng. Phụ huynh chi tiền mang nỗi sợ con sa vào cạm bẫy xã hội. Hãy nói trúng nỗi sợ đó, kiên nhẫn cầm tay chỉ việc và xây dựng một môi trường đào tạo đàng hoàng, tri thức. Khi thể diện của họ được bảo bọc, họ sẽ trở thành những đại sứ uy tín nhất lan tỏa tên tuổi của studio.
+        </p>
+      </div>
+
+      <p class="editorial-hook editorial-hook--teal">
+        "Một hình xăm đẹp nhất không phải là hình xăm phủ kín da thịt nhiều màu mè nhất, mà là nét kim mang lại sự tự tin cho người mang nó và nụ cười tự hào của người thợ sau bao đêm nghiêm cẩn khổ luyện."
+      </p>
+
+      <!-- BOTTOM NAV -->
+      <div class="bottom-nav">
+        <a href="./wikicontent.html">← Quay Về Wiki Content Tổng</a>
+        <a href="./logic-storytelling-niem-tin.html">Xem Giáo Án 7 Màn Storytelling ↗</a>
+        <a href="./katbanh.html">Xem Case Chị Kat (Tiệm Bánh) ↗</a>
+        <a href="./huuviet.html">Xem Case Đoàn Hữu Việt (Salon Tóc) ↗</a>
+        <a href="./kienpb.html">Xem Case Kiên Phân Bón ↗</a>
+      </div>
+    </div>
+  </section>
+
+</body>
+</html>
