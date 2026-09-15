@@ -1,0 +1,994 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>SO SÁNH 2 MẪU POSTER: LOGIC CỦA LÀM VIDEO</title>
+  
+  <!-- Favicon System (Chuẩn Chữ VIDEO - Cinema REC Monogram) -->
+  <link rel="icon" type="image/svg+xml" href="./favicon.svg">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%230B0F19'/%3E%3Crect x='1.5' y='1.5' width='61' height='61' rx='14.5' fill='none' stroke='%23FFFFFF' stroke-opacity='0.14' stroke-width='1.5'/%3E%3Ctext x='25' y='25' text-anchor='middle' dominant-baseline='central' font-family='system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif' font-weight='900' font-size='21.5' letter-spacing='2px' fill='%23FFFFFF'%3EVI%3C/text%3E%3Ccircle cx='47' cy='25' r='7' fill='%23EF4444' fill-opacity='0.25'/%3E%3Ccircle cx='47' cy='25' r='4.2' fill='%23EF4444'/%3E%3Ccircle cx='47' cy='25' r='1.6' fill='%23FFFFFF' opacity='0.9'/%3E%3Ctext x='32' y='46' text-anchor='middle' dominant-baseline='central' font-family='system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif' font-weight='900' font-size='19' letter-spacing='1.2px' fill='%23F8FAFC'%3EDEO%3C/text%3E%3C/svg%3E">
+
+  <!-- Font Definitions & System Fallbacks -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  
+  <style>
+    /* ═══ 1. FONT DECLARATIONS ═══ */
+    @font-face {
+      font-family: 'FD Aeonik Extended';
+      src: url('./fonts/FDAeonikExtended-Bold.woff2?v=20260911b') format('woff2'),
+           url('https://font.fedu.vn/fonts/FDAeonikExtended-Bold.woff2?v=20260911b') format('woff2'),
+           url('./fonts/FDAeonikExtended-Bold.ttf?v=20260911b') format('truetype'),
+           url('/Users/vietmac/Library/Fonts/FDAeonikExtended-Bold.otf') format('opentype'),
+           local('FD Aeonik Extended Bold');
+      font-weight: 700;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'FD Aeonik';
+      src: url('./fonts/FDAeonikRegular.ttf') format('truetype'),
+           url('./assets/fonts/FDAeonikRegular.ttf') format('truetype'),
+           url('/Users/vietmac/Library/Fonts/FDAeonikRegular.ttf') format('truetype'),
+           local('FD Aeonik Regular');
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'FD Aeonik';
+      src: url('./fonts/FDAeonikExtended-SemiBold.woff2?v=20260911b') format('woff2'),
+           url('./fonts/FDAeonikExtended-SemiBold.ttf?v=20260911b') format('truetype'),
+           url('/Users/vietmac/Library/Fonts/FDAeonikExtended-SemiBold.otf') format('opentype'),
+           local('FD Aeonik SemiBold');
+      font-weight: 600;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Tiempos Text';
+      src: url('./fonts/FDTiemposText-Regular.otf') format('opentype'),
+           url('/Users/vietmac/Library/Fonts/FDTiemposText-Regular.otf') format('opentype'),
+           local('Tiempos Text Regular');
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Tiempos Text';
+      src: url('./fonts/FDTiemposText-Medium.otf') format('opentype'),
+           url('/Users/vietmac/Library/Fonts/FDTiemposText-Medium.otf') format('opentype'),
+           local('Tiempos Text Medium');
+      font-weight: 500;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Tiempos Text';
+      src: url('./fonts/FDTiemposText-RegularItalic.otf') format('opentype'),
+           url('/Users/vietmac/Library/Fonts/FDTiemposText-RegularItalic.otf') format('opentype'),
+           local('Tiempos Text Regular Italic');
+      font-weight: 400;
+      font-style: italic;
+      font-display: swap;
+    }
+
+    /* ═══ 2. DESIGN TOKENS ═══ */
+    :root {
+      --cl-bg:          #ffffff;
+      --cl-tint:        #f8fafc;
+      --cl-card:        #ffffff;
+      --cl-accent:      #0d9488;
+      --cl-accent-dark: #0f766e;
+      --cl-accent-tint: rgba(13, 148, 136, 0.08);
+      --cl-accent-text: #ffffff;
+      --cl-line:        rgba(0, 0, 0, 0.07);
+      --cl-text-base:   #090d16;
+      --cl-text-body:   #0f172a;
+      --cl-text-muted:  #475569;
+      
+      --cl-radius-lg:   24px;
+      --cl-radius-md:   16px;
+      --cl-radius-sm:   10px;
+      --cl-radius-full: 9999px;
+
+      --font-display-short: 'FD Aeonik Extended', 'Inter', -apple-system, sans-serif;
+      --font-display-long:  'FD Aeonik', 'Inter', -apple-system, sans-serif;
+      --font-body:          'Tiempos Text', Georgia, serif;
+      --font-editorial:     'Tiempos Text', Georgia, serif;
+      --font-mono:          'JetBrains Mono', monospace;
+
+      --apple-spring: cubic-bezier(0.25, 1, 0.35, 1.05);
+      --apple-ease:   cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background-color: var(--cl-bg);
+      color: var(--cl-text-base);
+      font-family: var(--font-body);
+    }
+
+    body {
+      overflow-x: clip;
+      min-height: 100vh;
+      line-height: 1.7;
+    }
+
+    .cl-zebra-section {
+      width: 100%;
+      min-height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      padding: 96px 24px;
+      box-sizing: border-box;
+    }
+
+    .cl-zebra--light { background-color: var(--cl-bg); }
+    .cl-zebra--tint {
+      background-color: var(--cl-tint);
+      border-top: 1px solid var(--cl-line);
+      border-bottom: 1px solid var(--cl-line);
+    }
+
+    .cl-sec-container {
+      width: 100%;
+      max-width: 860px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .cl-sec-container--wide { max-width: 1120px; }
+
+    .cl-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-mono);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--cl-accent-dark);
+      background: var(--cl-accent-tint);
+      border: 1px solid rgba(13, 148, 136, 0.2);
+      padding: 7px 18px;
+      border-radius: var(--cl-radius-full);
+      margin-bottom: 24px;
+    }
+
+    .title-short {
+      font-family: var(--font-display-short);
+      font-weight: 700;
+      font-size: clamp(28px, 4.2vw, 46px);
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+      text-transform: uppercase;
+      color: var(--cl-text-base);
+      margin-bottom: 20px;
+      text-wrap: balance;
+    }
+
+    .editorial-hook {
+      font-family: var(--font-editorial);
+      font-style: italic;
+      font-size: clamp(18px, 2.2vw, 22px);
+      line-height: 1.6;
+      color: var(--cl-accent-dark);
+      margin-bottom: 24px;
+      max-width: 720px;
+    }
+
+    .cl-body {
+      font-size: clamp(16px, 1.6vw, 18px);
+      color: var(--cl-text-body);
+      line-height: 1.75;
+      margin-bottom: 32px;
+      max-width: 720px;
+    }
+
+    .compare-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 32px;
+      width: 100%;
+      margin-top: 32px;
+      text-align: left;
+    }
+
+    .compare-card {
+      background: var(--cl-card);
+      border-radius: var(--cl-radius-lg);
+      border: 1px solid var(--cl-line);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.4s var(--apple-spring), box-shadow 0.35s ease, border-color 0.3s ease;
+    }
+
+    .compare-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 40px -10px rgba(0,0,0,0.08);
+      border-color: var(--cl-accent);
+    }
+
+    .compare-card__header {
+      padding: 24px 28px 20px;
+      border-bottom: 1px solid var(--cl-line);
+      background: #fafbfc;
+    }
+
+    .compare-card__tag {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: var(--cl-radius-full);
+      display: inline-block;
+      margin-bottom: 10px;
+    }
+
+    .compare-card__tag--m1 { background: #e0f2fe; color: #0369a1; }
+    .compare-card__tag--m2 { background: #ccfbf1; color: #0f766e; }
+
+    .compare-card__title {
+      font-family: var(--font-display-short);
+      font-weight: 700;
+      font-size: 20px;
+      letter-spacing: -0.01em;
+      text-transform: uppercase;
+      color: var(--cl-text-base);
+    }
+
+    .compare-card__preview {
+      position: relative;
+      background: #f1f5f9;
+      aspect-ratio: 3/4;
+      max-height: 440px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .compare-card__preview img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+
+    .compare-card:hover .compare-card__preview img { transform: scale(1.03); }
+
+    .compare-card__body {
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      flex-grow: 1;
+    }
+
+    .feature-item {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      font-size: 15px;
+      line-height: 1.6;
+      color: var(--cl-text-body);
+    }
+
+    .feature-icon {
+      flex-shrink: 0;
+      width: 24px;
+      height: 24px;
+      border-radius: 6px;
+      background: var(--cl-tint);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 700;
+      margin-top: 2px;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 18px;
+      width: 100%;
+      margin-top: 36px;
+    }
+
+    .poster-item {
+      position: relative;
+      border-radius: var(--cl-radius-md);
+      overflow: hidden;
+      aspect-ratio: 3/4;
+      background: #e2e8f0;
+      border: 1px solid var(--cl-line);
+      box-shadow: 0 4px 14px rgba(0,0,0,0.04);
+      cursor: pointer;
+      transition: transform 0.35s var(--apple-spring), box-shadow 0.3s ease, border-color 0.25s ease;
+    }
+
+    .poster-item:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 16px 32px -8px rgba(0,0,0,0.12), 0 0 20px rgba(13,148,136,0.15);
+      border-color: var(--cl-accent);
+      z-index: 5;
+    }
+
+    .poster-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .poster-item__meta {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 12px 10px;
+      background: linear-gradient(to top, rgba(9, 13, 22, 0.88), transparent);
+      color: #ffffff;
+      font-family: var(--font-display-long);
+      font-size: 12px;
+      font-weight: 600;
+      line-height: 1.3;
+      text-align: left;
+      opacity: 0;
+      transform: translateY(6px);
+      transition: opacity 0.25s ease, transform 0.25s ease;
+    }
+
+    .poster-item:hover .poster-item__meta {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .compare-viewer {
+      width: 100%;
+      max-width: 920px;
+      background: #ffffff;
+      border-radius: var(--cl-radius-lg);
+      border: 1px solid var(--cl-line);
+      padding: 36px;
+      box-shadow: 0 12px 36px rgba(0,0,0,0.04);
+      margin-top: 24px;
+    }
+
+    .viewer-switch {
+      display: inline-flex;
+      background: #f1f5f9;
+      padding: 6px;
+      border-radius: var(--cl-radius-full);
+      gap: 6px;
+      margin-bottom: 28px;
+    }
+
+    .switch-btn {
+      border: none;
+      background: transparent;
+      padding: 10px 24px;
+      border-radius: var(--cl-radius-full);
+      font-family: var(--font-display-long);
+      font-size: 14.5px;
+      font-weight: 600;
+      color: var(--cl-text-muted);
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+
+    .switch-btn.active {
+      background: #ffffff;
+      color: var(--cl-text-base);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+
+    .dual-showcase {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+      align-items: stretch;
+    }
+
+    .showcase-slot {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .showcase-frame {
+      width: 100%;
+      aspect-ratio: 3/4;
+      border-radius: var(--cl-radius-md);
+      overflow: hidden;
+      border: 1px solid var(--cl-line);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+      background: #f8fafc;
+    }
+
+    .showcase-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .showcase-label {
+      font-family: var(--font-display-short);
+      font-size: 15px;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--cl-text-base);
+    }
+
+    .matrix-table-wrapper {
+      width: 100%;
+      overflow-x: auto;
+      margin-top: 32px;
+      border-radius: var(--cl-radius-md);
+      border: 1px solid var(--cl-line);
+      box-shadow: 0 4px 18px rgba(0,0,0,0.02);
+      background: #ffffff;
+    }
+
+    .matrix-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 15.5px;
+    }
+
+    .matrix-table th {
+      padding: 18px 24px;
+      background: #f8fafc;
+      font-family: var(--font-display-short);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--cl-text-base);
+      border-bottom: 1px solid var(--cl-line);
+    }
+
+    .matrix-table td {
+      padding: 20px 24px;
+      border-bottom: 1px solid var(--cl-line);
+      color: var(--cl-text-body);
+      vertical-align: top;
+      line-height: 1.6;
+    }
+
+    .matrix-table tr:last-child td { border-bottom: none; }
+    .matrix-table tr:hover td { background: rgba(13, 148, 136, 0.02); }
+
+    .tag-star { color: #eab308; font-weight: 700; }
+
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(9, 13, 22, 0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      z-index: 9999;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .lightbox.active { display: flex; opacity: 1; }
+
+    .lightbox__content {
+      position: relative;
+      max-width: 90vw;
+      max-height: 90vh;
+      border-radius: var(--cl-radius-md);
+      overflow: hidden;
+      box-shadow: 0 24px 60px rgba(0,0,0,0.5);
+    }
+
+    .lightbox__img {
+      max-width: 100%;
+      max-height: 85vh;
+      object-fit: contain;
+      display: block;
+      border-radius: var(--cl-radius-md);
+    }
+
+    .lightbox__close {
+      position: absolute;
+      top: 16px;
+      right: 20px;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.18);
+      color: #ffffff;
+      border: none;
+      font-size: 24px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s ease, transform 0.2s ease;
+    }
+
+    .lightbox__close:hover {
+      background: rgba(255,255,255,0.35);
+      transform: scale(1.08);
+    }
+
+    .lightbox__caption {
+      color: #ffffff;
+      font-family: var(--font-display-long);
+      font-size: 15px;
+      margin-top: 12px;
+      text-align: center;
+    }
+
+    .apple-reveal {
+      opacity: 0;
+      transform: translate3d(0, 24px, 0);
+      transition: opacity 0.5s var(--apple-ease), transform 0.58s var(--apple-spring);
+      will-change: opacity, transform;
+    }
+
+    .apple-reveal.is-visible {
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
+      will-change: auto;
+    }
+
+    .cl-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background: var(--cl-accent);
+      color: var(--cl-accent-text);
+      font-family: var(--font-body);
+      font-weight: 700;
+      font-size: 16.5px;
+      padding: 16px 36px;
+      border-radius: var(--cl-radius-md);
+      text-decoration: none;
+      cursor: pointer;
+      box-shadow: 0 8px 24px rgba(13, 148, 136, 0.25);
+      transition: transform 0.22s var(--apple-spring), box-shadow 0.22s ease;
+      border: none;
+    }
+
+    .cl-btn:hover {
+      transform: translateY(-2px) scale(1.02);
+      box-shadow: 0 14px 32px rgba(13, 148, 136, 0.35);
+    }
+
+    .cl-scroll-hint {
+      position: absolute;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--cl-text-muted);
+      opacity: 0.7;
+      animation: bounce 2s infinite ease-in-out;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translate(-50%, 0); }
+      50% { transform: translate(-50%, 8px); }
+    }
+
+    @media (max-width: 1024px) {
+      .gallery-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    @media (max-width: 768px) {
+      .cl-zebra-section { padding: 72px 18px; }
+      .compare-grid { grid-template-columns: 1fr; gap: 24px; }
+      .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+      .dual-showcase { grid-template-columns: 1fr; gap: 20px; }
+      .compare-viewer { padding: 20px; }
+      .cl-btn { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ═══ KHỐI 1: HERO SECTION (LIGHT) ═══ -->
+  <section class="cl-zebra-section cl-zebra--light" id="sec-hero">
+    <div class="cl-sec-container apple-reveal">
+      <div class="cl-badge">VIDEO VISUAL IDENTITY • LAB 2026</div>
+      <h1 class="title-short">SO SÁNH 2 MẪU POSTER: LOGIC CỦA LÀM VIDEO</h1>
+      <p class="editorial-hook">"Một concept tạo ra sự đồng cảm chân thành nơi hậu trường; một concept định hình quyền uy và sự chuẩn mực của chuyên gia."</p>
+      <p class="cl-body">Khám phá chi tiết 2 định hướng hình ảnh cá nhân hóa được tạo bởi công nghệ AI Multimodal Anchor của anh Nguyễn Việt: Đối chiếu tác động thị giác giữa phong cách <b>Uniqlo Casual Creator</b> và <b>Executive Vest Đen May Đo</b>.</p>
+      <div style="display: flex; gap: 14px; flex-wrap: wrap; justify-content: center;">
+        <a href="#sec-overview" class="cl-btn">XEM BẢNG PHÂN TÍCH ↓</a>
+        <a href="#sec-gallery-m2" class="cl-btn" style="background: #0f172a;">10 ẢNH MẪU 2 (VEST ĐEN) →</a>
+      </div>
+    </div>
+    <div class="cl-scroll-hint">
+      <span>Cuộn khám phá</span>
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 13l5 5 5-5M7 6l5 5 5-5"/></svg>
+    </div>
+  </section>
+
+  <!-- ═══ KHỐI 2: ĐỐI CHIẾU CỐT LÕI (TINT) ═══ -->
+  <section class="cl-zebra-section cl-zebra--tint" id="sec-overview">
+    <div class="cl-sec-container cl-sec-container--wide apple-reveal">
+      <div class="cl-badge">01 / TỔNG QUAN HAI PHONG CÁCH</div>
+      <h2 class="title-short">ĐỐI CHIẾU BẢN SẮC THỊ GIÁC</h2>
+      <p class="editorial-hook">Hai bộ trang phục đại diện cho 2 nấc thang tâm lý khác biệt trong hành trình tiếp nhận của học viên.</p>
+
+      <div class="compare-grid">
+        <!-- MẪU 1 -->
+        <div class="compare-card">
+          <div class="compare-card__header">
+            <span class="compare-card__tag compare-card__tag--m1">MẪU 1 • CASUAL CREATOR</span>
+            <h3 class="compare-card__title">UNIQLO & SƠ MI CÓ CỔ</h3>
+          </div>
+          <div class="compare-card__preview">
+            <img src="assets/images/logic-video/m1_01.jpg" alt="Mẫu 1 Uniqlo + Sơ mi" loading="lazy" onclick="openLightbox(this.src, 'Mẫu 1: Áo chống nắng Uniqlo mỏng nhẹ bên trong là sơ mi trắng')">
+          </div>
+          <div class="compare-card__body">
+            <div class="feature-item">
+              <div class="feature-icon" style="color: #0284c7;">🌿</div>
+              <div><b>Trang phục chủ đạo:</b> Áo khoác chống nắng Uniqlo (xám sáng, navy, rêu olive, be) khoác ngoài áo sơ mi có cổ.</div>
+            </div>
+            <div class="feature-item">
+              <div class="feature-icon" style="color: #0284c7;">🤝</div>
+              <div><b>Tâm lý tiếp nhận:</b> Cảm giác gần gũi, đời thường, như người anh đi trước chia sẻ kinh nghiệm quay tại hiện trường.</div>
+            </div>
+            <div class="feature-item">
+              <div class="feature-icon" style="color: #0284c7;">📱</div>
+              <div><b>Kịch bản tối ưu:</b> Video ngắn TikTok/Reels, vlog hiện trường, hướng dẫn thực hành máy quay, chia sẻ tâm sự đời làm nội dung.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- MẪU 2 -->
+        <div class="compare-card">
+          <div class="compare-card__header">
+            <span class="compare-card__tag compare-card__tag--m2">MẪU 2 • EXECUTIVE MENTOR</span>
+            <h3 class="compare-card__title">VEST ĐEN & PHÔNG TRẮNG</h3>
+          </div>
+          <div class="compare-card__preview">
+            <img src="assets/images/logic-video/m2_01.jpg" alt="Mẫu 2 Vest đen + Phông trắng" loading="lazy" onclick="openLightbox(this.src, 'Mẫu 2: Vest đen may đo hiện đại bên trong là áo phông trắng cổ tròn')">
+          </div>
+          <div class="compare-card__body">
+            <div class="feature-item">
+              <div class="feature-icon" style="color: #0d9488;">⚡</div>
+              <div><b>Trang phục chủ đạo:</b> Vest may đo màu đen tối giản, phom dáng sắc nét, bên trong là áo phông trắng cổ tròn trơn.</div>
+            </div>
+            <div class="feature-item">
+              <div class="feature-icon" style="color: #0d9488;">💎</div>
+              <div><b>Tâm lý tiếp nhận:</b> Uy tín tuyệt đối, đanh thép, chuẩn mực diễn giả quốc tế, phong cách bìa tạp chí Tatler sang trọng.</div>
+            </div>
+            <div class="feature-item">
+              <div class="feature-icon" style="color: #0d9488;">🎯</div>
+              <div><b>Kịch bản tối ưu:</b> Poster khóa học chính thức, ảnh thumbnail Youtube chiến lược, landing page đào tạo offline cao cấp, keynote sự kiện.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ KHỐI 3: TRÌNH SO SÁNH TƯƠNG TÁC (LIGHT) ═══ -->
+  <section class="cl-zebra-section cl-zebra--light" id="sec-interactive">
+    <div class="cl-sec-container cl-sec-container--wide apple-reveal">
+      <div class="cl-badge">02 / INTERACTIVE LAB</div>
+      <h2 class="title-short">TRÌNH SO SÁNH ĐỐI ỨNG</h2>
+      <p class="editorial-hook">Quan sát cùng một biểu cảm nụ cười chuẩn Face DNA anh Việt dưới hai cách phối trang phục.</p>
+
+      <div class="compare-viewer">
+        <div class="viewer-switch">
+          <button class="switch-btn active" onclick="switchPair(0, this)">Cặp 1: Pose Ngồi Thẳng</button>
+          <button class="switch-btn" onclick="switchPair(1, this)">Cặp 2: Pose Cận Trung</button>
+          <button class="switch-btn" onclick="switchPair(2, this)">Cặp 3: Tông Xanh Navy</button>
+        </div>
+
+        <div class="dual-showcase">
+          <div class="showcase-slot">
+            <div class="showcase-frame">
+              <img id="view-m1-img" src="assets/images/logic-video/m1_01.jpg" alt="Mẫu 1" onclick="openLightbox(this.src, 'Mẫu 1: Uniqlo + Sơ mi')">
+            </div>
+            <div class="showcase-label" id="view-m1-title">Mẫu 1: Uniqlo Xám + Sơ mi trắng</div>
+          </div>
+
+          <div class="showcase-slot">
+            <div class="showcase-frame">
+              <img id="view-m2-img" src="assets/images/logic-video/m2_01.jpg" alt="Mẫu 2" onclick="openLightbox(this.src, 'Mẫu 2: Vest Đen + Phông trắng')">
+            </div>
+            <div class="showcase-label" id="view-m2-title">Mẫu 2: Vest Đen + Phông trắng</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ KHỐI 4: 10 ẢNH MẪU 2 (TINT) ═══ -->
+  <section class="cl-zebra-section cl-zebra--tint" id="sec-gallery-m2">
+    <div class="cl-sec-container cl-sec-container--wide apple-reveal">
+      <div class="cl-badge">03 / BỘ SƯU TẬP MẪU 2</div>
+      <h2 class="title-short">10 TẠO DÁNG VEST ĐEN MAY ĐO</h2>
+      <p class="editorial-hook">Toàn bộ 10 tạo hình theo mẫu 2 được sinh với độ giống khuôn mặt 100%, dải lụa 3D ngọc bích và bố cục tạp chí sạch tuyệt đối.</p>
+
+      <div class="gallery-grid">
+        <div class="poster-item" onclick="openLightbox('assets/images/logic-video/m2_01.jpg', '01. Pose chống cằm kinh điển • Vest đen')">
+          <img src="assets/images/logic-video/m2_01.jpg" alt="Pose 01" loading="lazy">
+          <div class="poster-item__meta">01. Chống cằm kinh điển</div>
+        </div>
+        <div class="poster-item" onclick="openLightbox('assets/images/logic-video/m2_02.jpg', '02. Mở 2 tay chào đón • Nụ cười rạng rỡ')">
+          <img src="assets/images/logic-video/m2_02.jpg" alt="Pose 02" loading="lazy">
+          <div class="poster-item__meta">02. Mở tay chia sẻ</div>
+        </div>
+        <div class="poster-item" onclick="openLightbox('assets/images/logic-video/m2_03.jpg', '03. Hơi cúi người về trước • Hai tay đan')">
+          <img src="assets/images/logic-video/m2_03.jpg" alt="Pose 03" loading="lazy">
+          <div class="poster-item__meta">03. Hai tay đan gối</div>
+        </div>
+        <div class="poster-item" onclick="openLightbox('assets/images/logic-video/m2_04.jpg', '04. Góc nghiêng 3/4 • Tựa tay ghế')">
+          <img src="assets/images/logic-video/m2_04.jpg" alt="Pose 04" loading="lazy">
+          <div class="poster-item__meta">04. Nghiêng 3/4 tựa ghế</div>
+        </div>
+        <div class="poster-item" onclick="openLightbox('assets/images/logic-video/m2_05.jpg', '05. Một tay giơ thuyết trình • Phong thái mentor')">
+          <img src="assets/images/logic-video/m2_05.jpg" alt="Pose 05" loading="lazy">
+          <div class="poster-item__meta">05. Cử chỉ thuyết trình</div>
+        </div>
+        <div class="poster-item" onclick="openLightbox('assets/images/logic-video/m2_06.jpg', '06. Chân dung cận trung • Khung nhìn truyền cảm hứng')">
+          <img src="assets/images/logic-video/m2_06.jpg" alt="Pose 06" loading="lazy">
+          <div class="poster-item__meta">06. Cận trung ấm áp</div>
+        </div>
+        <div class="poster-item" onclick="openLightbox('assets/images/logic-video/m2_07.jpg', '07. Ghế đẩu gỗ cao • Thẳng thớm, đĩnh đạc')">
+          <img src="assets/images/logic-video/m2_07.jpg" alt="Pose 07" loading="lazy">
+          <div class="poster-item__meta">07. Ghế đẩu cao hiện đại</div>
+        </div>
+        <div class="poster-item" onclick="openLightbox('assets/images/logic-video/m2_08.jpg', '08. Ngả lưng sofa bành • Tự tin, thư thái')">
+          <img src="assets/images/logic-video/m2_08.jpg" alt="Pose 08" loading="lazy">
+          <div class="poster-item__meta">08. Ngả lưng thư thái</div>
+        </div>
+        <div class="poster-item" onclick="openLightbox('assets/images/logic-video/m2_09.jpg', '09. Đứng đút một tay túi quần • Quyền uy sân khấu')">
+          <img src="assets/images/logic-video/m2_09.jpg" alt="Pose 09" loading="lazy">
+          <div class="poster-item__meta">09. Đứng đút túi quần</div>
+        </div>
+        <div class="poster-item" onclick="openLightbox('assets/images/logic-video/m2_10.jpg', '10. Cử chỉ mentor sâu sắc • Rực rỡ và đĩnh đạc')">
+          <img src="assets/images/logic-video/m2_10.jpg" alt="Pose 10" loading="lazy">
+          <div class="poster-item__meta">10. Mentor sâu sắc</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ KHỐI 5: 10 ẢNH MẪU 1 (LIGHT) ═══ -->
+  <section class="cl-zebra-section cl-zebra--light" id="sec-gallery-m1">
+    <div class="cl-sec-container cl-sec-container--wide apple-reveal">
+      <div class="cl-badge">04 / BỘ SƯU TẬP MẪU 1</div>
+      <h2 class="title-short">10 TẠO HÌNH UNIQLO & SMART CASUAL</h2>
+      <p class="editorial-hook">Đa dạng chất liệu áo chống nắng mỏng nhẹ, sơ mi Oxford, phối đồ phóng khoáng đậm chất người làm phim thực chiến.</p>
+
+      <div class="gallery-grid">
+        <div class="poster-item" onclick="openLightbox('assets/images/logic-video/m1_01.jpg', '01. Uniqlo Xám sáng + Sơ mi trắng')">
+          <img src="assets/images/logic-video/m1_01.jpg" alt="M1 01" loading="lazy">
+          <div class="poster-item__meta">01. Uniqlo xám + Sơ mi trắng</div>
+        </div>
+        <div class="poster-item" onclick="openLightbox('assets/images/logic-video/m1_02.jpg', '02. Uniqlo Navy + Sơ mi xanh Oxford')">
+          <img src="assets/images/logic-video/m1_02.jpg" alt="M1 02" loading="lazy">
+          <div class="poster-item__meta">02. Uniqlo Navy + Oxford</div>
+        </div>
+        <div class="poster-item" onclick="openLightbox('assets/images/logic-video/m1_03.jpg', '03. Sơ mi trắng Oxford xắn tay áo')">
+          <img src="assets/images/logic-video/m1_03.jpg" alt="M1 03" loading="lazy">
+          <div class="poster-item__meta">03. Sơ mi trắng xắn tay</div>
+        </div>
+        <div class="poster-item" onclick="openLightbox('assets/images/logic-video/m1_04.jpg', '04. Uniqlo Xanh rêu Olive + Sơ mi trắng')">
+          <img src="assets/images/logic-video/m1_04.jpg" alt="M1 04" loading="lazy">
+          <div class="poster-item__meta">04. Uniqlo Olive + Sơ mi</div>
+        </div>
+        <div class="poster-item" onclick="openLightbox('assets/images/logic-video/m1_05.jpg', '05. Vest xám than + Thun đen tối giản')">
+          <img src="assets/images/logic-video/m1_05.jpg" alt="M1 05" loading="lazy">
+          <div class="poster-item__meta">05. Vest than + Thun đen</div>
+        </div>
+        <div class="poster-item" onclick="openLightbox('assets/images/logic-video/m1_06.jpg', '06. Uniqlo Be nhạt + Sơ mi xanh pastel')">
+          <img src="assets/images/logic-video/m1_06.jpg" alt="M1 06" loading="lazy">
+          <div class="poster-item__meta">06. Uniqlo Be + Sơ mi pastel</div>
+        </div>
+        <div class="poster-item" onclick="openLightbox('assets/images/logic-video/m1_07.jpg', '07. Vest xanh navy + Sơ mi trắng mở cúc')">
+          <img src="assets/images/logic-video/m1_07.jpg" alt="M1 07" loading="lazy">
+          <div class="poster-item__meta">07. Vest Navy + Sơ mi trắng</div>
+        </div>
+        <div class="poster-item" onclick="openLightbox('assets/images/logic-video/m1_08.jpg', '08. Uniqlo Đen mờ + Sơ mi xám sáng')">
+          <img src="assets/images/logic-video/m1_08.jpg" alt="M1 08" loading="lazy">
+          <div class="poster-item__meta">08. Uniqlo Đen + Sơ mi xám</div>
+        </div>
+        <div class="poster-item" onclick="openLightbox('assets/images/logic-video/m1_09.jpg', '09. Vest xám sáng hiện đại + Sơ mi trắng')">
+          <img src="assets/images/logic-video/m1_09.jpg" alt="M1 09" loading="lazy">
+          <div class="poster-item__meta">09. Vest xám sáng + Sơ mi</div>
+        </div>
+        <div class="poster-item" onclick="openLightbox('assets/images/logic-video/m1_10.jpg', '10. Uniqlo Xám mỏng nhẹ dáng ngồi studio')">
+          <img src="assets/images/logic-video/m1_10.jpg" alt="M1 10" loading="lazy">
+          <div class="poster-item__meta">10. Uniqlo Studio Pose</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ KHỐI 6: MA TRẬN QUYẾT ĐỊNH & ĐÚC KẾT (TINT) ═══ -->
+  <section class="cl-zebra-section cl-zebra--tint" id="sec-matrix">
+    <div class="cl-sec-container cl-sec-container--wide apple-reveal">
+      <div class="cl-badge">05 / BẢNG MA TRẬN CHIẾN LƯỢC</div>
+      <h2 class="title-short">KHI NÀO NÊN DÙNG MẪU NÀO?</h2>
+      <p class="editorial-hook">"Trang phục không chỉ là chiếc áo bạn mặc, mà là công cụ gài đặt kỳ vọng tâm lý của người xem ngay trong 1.5 giây đầu tiên."</p>
+
+      <div class="matrix-table-wrapper">
+        <table class="matrix-table">
+          <thead>
+            <tr>
+              <th>Tiêu Chí Đối Soát</th>
+              <th>Mẫu 1 (Uniqlo + Sơ mi)</th>
+              <th>Mẫu 2 (Vest Đen May Đo)</th>
+              <th>Lời Khuyên Của Anh Việt</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><b>Độ uy tín chuyên gia</b></td>
+              <td>7.5 / 10 (Thực tế, gần gũi)</td>
+              <td><span class="tag-star">★ 9.8 / 10</span> (Rất cao, đĩnh đạc)</td>
+              <td>Dùng <b>Mẫu 2</b> khi bán khóa học vé cao hoặc xuất hiện trên báo chí/keynote.</td>
+            </tr>
+            <tr>
+              <td><b>Độ thân thiện & kết nối</b></td>
+              <td><span class="tag-star">★ 9.5 / 10</span> (Không khoảng cách)</td>
+              <td>8.0 / 10 (Lịch sự, tôn trọng)</td>
+              <td>Dùng <b>Mẫu 1</b> cho các video review, hậu trường, bài học đời thường TikTok.</td>
+            </tr>
+            <tr>
+              <td><b>Độ nhận diện thương hiệu</b></td>
+              <td>8.5 / 10 (Đặc trưng chất creator)</td>
+              <td><span class="tag-star">★ 9.5 / 10</span> (Nhận diện sắc nét trên poster)</td>
+              <td><b>Mẫu 2</b> tạo khối tương phản cực mạnh với dải lụa ngọc bích.</td>
+            </tr>
+            <tr>
+              <td><b>Khả năng giữ chân người xem</b></td>
+              <td>Rất tốt cho video dạng câu chuyện thực tế</td>
+              <td>Rất tốt cho video phân tích logic, bài giảng chiến lược</td>
+              <td>Xen kẽ cả 2: Mẫu 2 làm bìa thumbnail, Mẫu 1 xuất hiện trong video.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div style="margin-top: 40px; padding: 28px; background: #ffffff; border-radius: var(--cl-radius-md); border-left: 4px solid var(--cl-accent); text-align: left; width: 100%;">
+        <p style="font-family: var(--font-editorial); font-size: 19px; font-style: italic; color: var(--cl-text-base); margin-bottom: 8px;">
+          "Nếu bạn muốn người ta tin vào tầm vóc của hệ thống, hãy để họ nhìn thấy một chuyên gia chỉn chu trong bộ vest đen. Nhưng nếu bạn muốn họ tự tin rằng chính họ cũng làm được, hãy cho họ thấy bạn sẵn sàng khoác chiếc áo chống nắng ra hiện trường."
+        </p>
+        <p style="font-family: var(--font-mono); font-size: 13px; color: var(--cl-text-muted); text-transform: uppercase; letter-spacing: 0.1em;">
+          — Nguyễn Việt • Logic của làm video
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ LIGHTBOX COMPONENT ═══ -->
+  <div class="lightbox" id="appLightbox" onclick="closeLightbox(event)">
+    <button class="lightbox__close" onclick="closeLightbox(event)">✕</button>
+    <div class="lightbox__content" onclick="event.stopPropagation()">
+      <img id="lightboxImg" class="lightbox__img" src="" alt="Zoomed Poster">
+      <div id="lightboxCaption" class="lightbox__caption"></div>
+    </div>
+  </div>
+
+  <!-- ═══ SCRIPTS ═══ -->
+  <script>
+    // 1. Intersection Observer
+    document.addEventListener('DOMContentLoaded', () => {
+      const observer = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            obs.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1 });
+
+      document.querySelectorAll('.apple-reveal').forEach(el => observer.observe(el));
+    });
+
+    // 2. Interactive Comparison Pairs
+    const pairs = [
+      {
+        m1Img: 'assets/images/logic-video/m1_01.jpg',
+        m1Title: 'Mẫu 1: Uniqlo Xám + Sơ mi trắng',
+        m2Img: 'assets/images/logic-video/m2_01.jpg',
+        m2Title: 'Mẫu 2: Vest Đen + Phông trắng (Chống cằm)'
+      },
+      {
+        m1Img: 'assets/images/logic-video/m1_06.jpg',
+        m1Title: 'Mẫu 1: Uniqlo Be + Sơ mi pastel',
+        m2Img: 'assets/images/logic-video/m2_06.jpg',
+        m2Title: 'Mẫu 2: Vest Đen + Phông trắng (Cận trung)'
+      },
+      {
+        m1Img: 'assets/images/logic-video/m1_02.jpg',
+        m1Title: 'Mẫu 1: Uniqlo Navy + Sơ mi Oxford',
+        m2Img: 'assets/images/logic-video/m2_07.jpg',
+        m2Title: 'Mẫu 2: Vest Đen + Ghế đẩu cao hiện đại'
+      }
+    ];
+
+    function switchPair(index, btn) {
+      document.querySelectorAll('.switch-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const p = pairs[index];
+      const m1 = document.getElementById('view-m1-img');
+      const m2 = document.getElementById('view-m2-img');
+      
+      m1.style.opacity = '0.3';
+      m2.style.opacity = '0.3';
+      
+      setTimeout(() => {
+        m1.src = p.m1Img;
+        document.getElementById('view-m1-title').textContent = p.m1Title;
+        m2.src = p.m2Img;
+        document.getElementById('view-m2-title').textContent = p.m2Title;
+        m1.style.opacity = '1';
+        m2.style.opacity = '1';
+      }, 180);
+    }
+
+    // 3. Lightbox Functions
+    function openLightbox(src, caption) {
+      const lb = document.getElementById('appLightbox');
+      const img = document.getElementById('lightboxImg');
+      const cap = document.getElementById('lightboxCaption');
+      img.src = src;
+      cap.textContent = caption || '';
+      lb.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox(e) {
+      const lb = document.getElementById('appLightbox');
+      lb.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeLightbox();
+    });
+  </script>
+</body>
+</html>
