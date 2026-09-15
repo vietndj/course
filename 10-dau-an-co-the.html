@@ -1166,15 +1166,51 @@
 
     /* APPLE MOTION SMOOTH ENTRANCE */
     .apple-reveal {
-      opacity: 0;
-      transform: translateY(24px);
-      transition: opacity 0.8s var(--apple-ease), transform 0.8s var(--apple-ease);
+      opacity: 1;
+      transform: none;
+      transition: opacity 0.6s var(--apple-ease), transform 0.6s var(--apple-ease);
     }
 
-    .apple-reveal.is-visible {
-      opacity: 1;
-      transform: translateY(0);
+    @media (min-width: 769px) {
+      .js-reveal .apple-reveal {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      .js-reveal .apple-reveal.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
+    @media (max-width: 768px) {
+      .top-nav {
+        padding: 0 16px;
+        height: 56px;
+      }
+      .nav-links {
+        display: none !important;
+      }
+      .nav-title {
+        font-size: 12px;
+      }
+      .cl-zebra-section {
+        min-height: auto !important;
+        padding: 60px 16px !important;
+        justify-content: flex-start !important;
+      }
+      body {
+        overflow-x: hidden !important;
+      }
+      .title-short {
+        font-size: 24px !important;
+      }
+      .binary-container, .hero-paradox-grid {
+        grid-template-columns: 1fr !important;
+      }
+      .flip-card {
+        height: 540px !important;
+      }
+    }
+
   </style>
 </head>
 <body>
@@ -1306,9 +1342,9 @@
 
       <!-- FILTER CONTROLS -->
       <div class="filter-bar">
-        <button class="filter-btn active" onclick="filterCards('all')">Tất cả (10 Dấu ấn)</button>
-        <button class="filter-btn" onclick="filterCards('tension')">🔴 Pha Thắt (Báo động & Che giấu)</button>
-        <button class="filter-btn" onclick="filterCards('collapse')">🟣 Pha Chùng (Đầu hàng & Sụp đổ)</button>
+        <button class="filter-btn active" onclick="filterCards('all', event)">Tất cả (10 Dấu ấn)</button>
+        <button class="filter-btn" onclick="filterCards('tension', event)">🔴 Pha Thắt (Báo động & Che giấu)</button>
+        <button class="filter-btn" onclick="filterCards('collapse', event)">🟣 Pha Chùng (Đầu hàng & Sụp đổ)</button>
       </div>
 
       <!-- CARDS GRID -->
@@ -2282,10 +2318,14 @@
     }
 
     // 2. Filter Cards by Phase
-    function filterCards(phase) {
+    function filterCards(phase, evt) {
       const buttons = document.querySelectorAll('.filter-btn');
       buttons.forEach(btn => btn.classList.remove('active'));
-      event.target.classList.add('active');
+      if (evt && evt.target) {
+        evt.target.classList.add('active');
+      } else if (window.event && window.event.target) {
+        window.event.target.classList.add('active');
+      }
 
       const cards = document.querySelectorAll('.flip-card');
       cards.forEach(card => {
@@ -2301,9 +2341,17 @@
       });
     }
 
-    // 3. Apple Motion Intersection Observer for Smooth Reveal
+    // 3. Robust Reveal & Fallback (Guaranteed No Blank Screen)
     document.addEventListener('DOMContentLoaded', () => {
       const reveals = document.querySelectorAll('.apple-reveal');
+      
+      // Always immediately reveal all elements if on mobile or small screen
+      if (window.innerWidth <= 768 || !('IntersectionObserver' in window)) {
+        reveals.forEach(el => el.classList.add('is-visible'));
+        return;
+      }
+
+      document.body.classList.add('js-reveal');
       const observer = new IntersectionObserver((entries, obs) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
@@ -2312,11 +2360,16 @@
           }
         });
       }, {
-        threshold: 0.12,
-        rootMargin: '0px 0px -40px 0px'
+        threshold: 0.05,
+        rootMargin: '50px 0px 50px 0px'
       });
 
       reveals.forEach(el => observer.observe(el));
+
+      // Ultimate safety fallback: make everything visible after 500ms no matter what
+      setTimeout(() => {
+        reveals.forEach(el => el.classList.add('is-visible'));
+      }, 500);
     });
   </script>
 </body>
