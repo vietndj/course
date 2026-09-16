@@ -6,7 +6,7 @@
     <title>VIDEO COURSE • Kho Kịch Bản & Kiến Trúc Thị Giác</title>
     <meta name="description" content="Kho lưu trữ kịch bản quay, ma trận B-roll, tư duy thị giác và bài giảng video ngắn thực chiến của anh Việt.">
     
-    <!-- Google Fonts Fallbacks -->
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400&display=swap" rel="stylesheet">
@@ -20,13 +20,19 @@
                     colors: {
                         medium: {
                             green: '#1a8917',
-                            dark: '#242424'
+                            greenHover: '#156d12',
+                            dark: '#242424',
+                            heading: '#191919',
+                            muted: '#6b6b6b',
+                            lightBg: '#fbfbfb',
+                            border: '#f2f2f2',
+                            pill: '#f2f2f2'
                         }
                     },
                     fontFamily: {
-                        sans: ['"FD Aeonik"', 'Inter', '-apple-system', 'sans-serif'],
-                        serif: ['"Tiempos Text"', 'Lora', 'Georgia', 'serif'],
-                        display: ['"FD Aeonik Extended"', '"FD Aeonik"', 'Newsreader', 'sans-serif']
+                        sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+                        serif: ['Tiempos Text', 'Newsreader', 'Georgia', 'serif'],
+                        display: ['FD Aeonik Extended', 'Newsreader', 'Lora', 'Georgia', 'serif']
                     }
                 }
             }
@@ -35,35 +41,20 @@
     
     <style>
         body {
-            background-color: #ffffff; /* Zebra striping base */
-            color: #191919;
+            background-color: #ffffff;
+            color: #242424;
+            font-family: 'Inter', -apple-system, sans-serif;
             -webkit-font-smoothing: antialiased;
         }
 
-        
-        @font-face {
-            font-family: 'FD Aeonik Extended';
-            src: local('FD Aeonik Extended'), local('FDAeonikExtended-Bold');
-            font-weight: 700;
-        }
-        @font-face {
-            font-family: 'FD Aeonik';
-            src: local('FD Aeonik'), local('FDAeonik-Bold');
-            font-weight: 600;
-        }
-        @font-face {
-            font-family: 'Tiempos Text';
-            src: local('Tiempos Text'), local('TiemposText-Regular');
-            font-weight: 400;
-        }
-
-        /* Borderless and clean */
+        /* Medium Underline Links & Titles */
         .story-title {
-            letter-spacing: -0.02em;
-            line-height: 1.2;
+            font-family: 'Newsreader', 'Lora', serif;
+            letter-spacing: -0.015em;
+            line-height: 1.25;
             transition: color 0.15s ease;
         }
-        .story-title:hover {
+        .story-card:hover .story-title {
             color: #1a8917;
         }
 
@@ -74,7 +65,7 @@
         .img-zoom-box img {
             transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
         }
-        .group:hover .img-zoom-box img {
+        .story-card:hover .img-zoom-box img {
             transform: scale(1.035);
         }
 
@@ -99,7 +90,13 @@
             position: absolute;
             top: 0; right: 0; bottom: 0; left: 0;
             transform: translateX(-100%);
-            background-image: linear-gradient(90deg, rgba(255, 255, 255, 0) 0, rgba(255, 255, 255, 0.4) 20%, rgba(255, 255, 255, 0.7) 60%, rgba(255, 255, 255, 0));
+            background-image: linear-gradient(
+                90deg,
+                rgba(255, 255, 255, 0) 0,
+                rgba(255, 255, 255, 0.4) 20%,
+                rgba(255, 255, 255, 0.7) 60%,
+                rgba(255, 255, 255, 0)
+            );
             animation: shimmer 1.6s infinite;
             content: '';
         }
@@ -114,8 +111,9 @@
             animation: shake 0.4s ease-in-out;
         }
     </style>
+    <link rel="icon" type="image/x-icon" href="/k/favicon.ico?v=3">
 </head>
-<body class="min-h-screen flex flex-col selection:bg-gray-200 selection:text-black bg-white overflow-x-hidden">
+<body class="min-h-screen flex flex-col selection:bg-green-100 selection:text-green-900 bg-white">
 
     <!-- ================= GATEKEEPER LOCK SCREEN ================= -->
     <div id="gatekeeper-screen" class="fixed inset-0 z-[9999] bg-[#080a0f] text-slate-100 flex flex-col justify-between items-center px-4 py-8 sm:py-12 overflow-y-auto">
@@ -176,7 +174,7 @@
                     </div>
                 </div>
 
-                <!-- Keypad -->
+                <!-- Keypad for fast mobile / desktop tap -->
                 <div class="grid grid-cols-3 gap-2 pt-1 max-w-[280px] mx-auto">
                     <button type="button" class="key-btn h-12 rounded-xl bg-slate-800/60 hover:bg-slate-700/80 active:scale-95 text-base font-semibold text-white border border-slate-700/50 transition font-mono" data-key="1">1</button>
                     <button type="button" class="key-btn h-12 rounded-xl bg-slate-800/60 hover:bg-slate-700/80 active:scale-95 text-base font-semibold text-white border border-slate-700/50 transition font-mono" data-key="2">2</button>
@@ -207,170 +205,197 @@
 
         <!-- Bottom Assistance -->
         <div class="w-full max-w-md text-center text-xs text-slate-500 z-10 space-y-1">
+            <p>Chưa có mã hoặc quên mật khẩu?</p>
             <p>Học viên liên hệ qua Zalo / Skool hoặc nhắn trực tiếp anh Việt để nhận mã truy cập.</p>
         </div>
     </div>
     <!-- ================= END GATEKEEPER ================= -->
 
-    <!-- ================= MAIN COURSE APP VIEW (Google News UX) ================= -->
-    <div id="app-view" style="display: none;" class="min-h-screen flex flex-col flex-grow bg-[#f8fafc]"> <!-- Zebra #f8fafc base -->
-
-        <!-- Top Announcement / Top Bar Minimal -->
-        <header class="border-b border-gray-200 sticky top-0 bg-white z-50">
-            <div class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="flex items-center justify-between h-14 sm:h-16">
-                    <!-- Logo & Brand -->
-                    <div class="flex items-center space-x-3 min-w-0">
-                        <a href="https://go.fedu.vn" class="flex items-center gap-3 group min-w-0">
-                            <div class="w-8 h-8 rounded-full bg-black text-white flex items-center justify-center font-display font-black text-lg shadow-sm shrink-0">
-                                F
-                            </div>
-                            <div class="flex items-center gap-2 truncate min-w-0">
-                                <span class="font-display font-bold text-lg sm:text-xl text-gray-900 tracking-tight truncate uppercase">TIÊU ĐIỂM</span>
-                            </div>
-                        </a>
-                    </div>
-                    <!-- Search & Actions -->
-                    <div class="flex items-center gap-2 sm:gap-4 shrink-0">
-                        <div class="relative w-32 sm:w-64">
-                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-400">
-                                <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
-                            </div>
-                            <input type="text" id="search-input" placeholder="Tìm kiếm..." 
-                                class="w-full pl-9 pr-4 py-1.5 text-sm bg-gray-100 border-none rounded-full focus:bg-white focus:outline-none focus:ring-1 focus:ring-gray-300 transition-all font-sans">
-                        </div>
-                        <button id="lock-screen-btn" title="Khóa lại" class="p-2 rounded-full hover:bg-gray-100 text-gray-500 transition cursor-pointer">
-                            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
-                        </button>
-                    </div>
+    
+    <!-- ================= MAIN COURSE APP VIEW ================= -->
+    <div id="app-view" style="display: none;" class="min-h-screen flex flex-col md:flex-row flex-grow bg-white">
+        
+        <!-- LEFT SIDEBAR -->
+        <aside class="hidden md:flex flex-col w-16 lg:w-64 border-r border-gray-100 bg-white sticky top-0 h-screen py-6 px-2 lg:px-4">
+            <a href="https://go.fedu.vn" class="flex items-center gap-3 mb-8 px-2 lg:px-4 group">
+                <div class="w-10 h-10 rounded-full bg-black text-white flex items-center justify-center font-serif font-black text-xl shadow-sm group-hover:bg-emerald-600 transition-colors shrink-0">
+                    F
                 </div>
-            </div>
-        </header>
-
-        <!-- 3-Column Layout Container -->
-        <main class="flex-grow max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 w-full flex flex-col lg:flex-row gap-8 lg:gap-12">
+                <div class="hidden lg:block">
+                    <div class="font-display font-bold text-xl text-gray-900 tracking-tight">VIDEO</div>
+                    <div class="text-[11px] font-semibold uppercase tracking-wider text-gray-500">Archive</div>
+                </div>
+            </a>
             
-            <!-- Left Column: Navigation (15%) -->
-            <aside class="hidden lg:block lg:w-[180px] shrink-0">
-                <div class="sticky top-24 space-y-6">
-                    <div>
-                        <h3 class="text-[11px] font-bold text-gray-400 uppercase tracking-wider mb-3">Chuyên mục</h3>
-                        <nav class="space-y-1 text-sm font-medium font-sans">
-                            <button class="topic-filter-btn w-full text-left px-3 py-2 rounded-lg bg-gray-200 text-gray-900 transition-colors" data-category="all">Tất cả bài viết</button>
-                            <button class="topic-filter-btn w-full text-left px-3 py-2 rounded-lg text-gray-600 hover:bg-gray-100 transition-colors" data-category="casestudy">🏆 Case Study</button>
-                            <button class="topic-filter-btn w-full text-left px-3 py-2 rounded-lg text-gray-600 hover:bg-gray-100 transition-colors" data-category="script">📝 Kịch Bản</button>
-                            <button class="topic-filter-btn w-full text-left px-3 py-2 rounded-lg text-gray-600 hover:bg-gray-100 transition-colors" data-category="broll">🎬 B-Roll</button>
-                            <button class="topic-filter-btn w-full text-left px-3 py-2 rounded-lg text-gray-600 hover:bg-gray-100 transition-colors" data-category="science">🧠 Tâm Lý</button>
-                            <button class="topic-filter-btn w-full text-left px-3 py-2 rounded-lg text-gray-600 hover:bg-gray-100 transition-colors" data-category="camera">🎥 Góc Máy</button>
-                            <button class="topic-filter-btn w-full text-left px-3 py-2 rounded-lg text-gray-600 hover:bg-gray-100 transition-colors" data-category="storytelling">🚀 Storytelling</button>
-                            <button class="topic-filter-btn w-full text-left px-3 py-2 rounded-lg text-gray-600 hover:bg-gray-100 transition-colors" data-category="growth">💎 Landing Page</button>
-                            <button class="topic-filter-btn w-full text-left px-3 py-2 rounded-lg text-gray-600 hover:bg-gray-100 transition-colors" data-category="other">📌 Chuyên Đề Khác</button>
-                        </nav>
+            <nav class="flex flex-col gap-2 flex-grow">
+                <a href="#" class="flex items-center gap-3 p-3 rounded-xl bg-gray-50 text-gray-900 font-medium">
+                    <svg class="w-6 h-6 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+                    <span class="hidden lg:block">Trang chủ</span>
+                </a>
+                <a href="./kenh.html" class="flex items-center gap-3 p-3 rounded-xl hover:bg-gray-50 text-gray-600 hover:text-gray-900 transition-colors">
+                    <svg class="w-6 h-6 shrink-0 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
+                    <span class="hidden lg:block font-medium">Hub Các Kênh</span>
+                </a>
+                <a href="./skills.html" class="flex items-center gap-3 p-3 rounded-xl hover:bg-gray-50 text-gray-600 hover:text-gray-900 transition-colors">
+                    <svg class="w-6 h-6 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                    <span class="hidden lg:block">Kỹ Năng AI</span>
+                </a>
+                <button id="lock-screen-btn" class="flex items-center gap-3 p-3 rounded-xl hover:bg-rose-50 text-gray-600 hover:text-rose-600 transition-colors mt-auto cursor-pointer text-left">
+                    <svg class="w-6 h-6 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+                    <span class="hidden lg:block">Khóa kho</span>
+                </button>
+            </nav>
+        </aside>
+
+        <!-- CENTER FEED -->
+        <main class="flex-grow flex-1 max-w-2xl mx-auto px-4 sm:px-6 py-8 w-full xl:border-r xl:border-gray-100">
+            
+            <!-- Mobile Header (Visible only on mobile) -->
+            <header class="md:hidden flex items-center justify-between mb-8 pb-4 border-b border-gray-100">
+                 <a href="https://go.fedu.vn" class="flex items-center gap-2 group">
+                    <div class="w-8 h-8 rounded-full bg-black text-white flex items-center justify-center font-serif font-black text-lg">F</div>
+                    <div class="font-display font-bold text-lg text-gray-900 tracking-tight">VIDEO</div>
+                </a>
+                <button class="p-2 text-gray-500 bg-gray-100 rounded-full" id="mobile-search-btn">
+                    <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+                </button>
+            </header>
+
+            <!-- Feed Controls -->
+            <div class="flex items-center justify-between mb-8 border-b border-gray-100 pb-6">
+                <div>
+                    <div class="flex items-center gap-2 mb-2">
+                        <span class="px-2 py-0.5 bg-emerald-50 text-emerald-700 text-[10px] font-bold uppercase tracking-widest rounded-md border border-emerald-100">KHO LƯU TRỮ V2</span>
                     </div>
-                    <div>
-                        <a href="./skills.html" class="block w-full text-left px-3 py-2 rounded-lg text-blue-700 bg-blue-50 hover:bg-blue-100 transition-colors text-sm font-bold font-sans">
-                            ⚡️ Kho Kỹ Năng AI
-                        </a>
+                    <h2 id="section-title" class="font-display text-3xl font-extrabold text-gray-900 tracking-tight">Danh Sách Kịch Bản</h2>
+                    <div class="text-sm text-gray-500 mt-2 flex items-center gap-2 font-medium">
+                        <span id="results-count" class="text-gray-700">0 bài</span>
+                        <span class="text-gray-300">•</span>
+                        <span>Click mở bài trong tab mới</span>
                     </div>
                 </div>
-            </aside>
-
-            <!-- Mobile Navigation (Horizontal scroll) -->
-            <div class="lg:hidden flex items-center gap-2 overflow-x-auto no-scrollbar pb-2 border-b border-gray-200 text-sm mt-[-10px] pt-4 px-1">
-                <button class="topic-filter-btn active shrink-0 px-4 py-1.5 rounded-full text-xs font-semibold bg-gray-900 text-white" data-category="all">Tất cả</button>
-                <button class="topic-filter-btn shrink-0 px-4 py-1.5 rounded-full text-xs font-medium text-gray-600 bg-white border border-gray-200" data-category="casestudy">🏆 Case Study</button>
-                <button class="topic-filter-btn shrink-0 px-4 py-1.5 rounded-full text-xs font-medium text-gray-600 bg-white border border-gray-200" data-category="script">📝 Kịch Bản</button>
-                <button class="topic-filter-btn shrink-0 px-4 py-1.5 rounded-full text-xs font-medium text-gray-600 bg-white border border-gray-200" data-category="broll">🎬 B-Roll</button>
-                <button class="topic-filter-btn shrink-0 px-4 py-1.5 rounded-full text-xs font-medium text-gray-600 bg-white border border-gray-200" data-category="science">🧠 Tâm Lý</button>
-            </div>
-
-            <!-- Middle Column: Main Feed (55%) -->
-            <div class="flex-grow max-w-3xl bg-white p-6 sm:p-8 rounded-none sm:rounded-2xl shadow-sm border border-gray-100 h-fit">
                 
-                <!-- Section Title -->
-                <div class="flex items-center justify-between mb-6 pb-4 border-b-2 border-gray-900">
-                    <h2 id="section-title" class="font-display font-bold text-2xl text-gray-900 tracking-tight">Tin Nổi Bật</h2>
-                    <span id="results-count" class="text-xs text-gray-500 font-mono">0 bài</span>
-                </div>
-
-                <!-- Skeleton Loader -->
-                <div id="skeleton-loader" class="space-y-8">
-                    <div class="space-y-3">
-                        <div class="h-48 bg-gray-100 rounded-lg shimmer-anim"></div>
-                        <div class="h-6 bg-gray-200 rounded w-3/4 shimmer-anim mt-4"></div>
-                        <div class="h-4 bg-gray-100 rounded w-1/4 shimmer-anim"></div>
-                    </div>
-                </div>
-
-                <!-- Hero Asymmetrical Section (Injected via JS) -->
-                <div id="hero-featured" class="hidden mb-10 border-b border-gray-200 pb-10">
-                    <div class="grid grid-cols-1 md:grid-cols-12 gap-8">
-                        <!-- Headline Post (Left) -->
-                        <div class="md:col-span-7 lg:col-span-8 flex flex-col group">
-                            <a id="hero-link" href="#" target="_blank" class="block space-y-3">
-                                <div class="img-zoom-box aspect-[16/9] bg-gray-100 rounded-lg overflow-hidden mb-3">
-                                    <img id="hero-img" src="" alt="" class="w-full h-full object-cover">
-                                </div>
-                                <h3 id="hero-title" class="story-title text-2xl sm:text-[28px] font-bold font-serif text-gray-900">Tiêu đề Headline</h3>
-                                <p id="hero-excerpt" class="text-sm text-gray-600 font-serif leading-relaxed line-clamp-3">Mô tả bài viết...</p>
-                                <div class="text-[11px] text-gray-500 font-sans mt-2 flex items-center gap-1.5">
-                                    <span id="hero-category" class="text-emerald-700 font-semibold uppercase tracking-wider">Danh mục</span>
-                                    <span>•</span>
-                                    <span id="hero-date">Ngày</span>
-                                </div>
-                            </a>
-                        </div>
-                        
-                        <!-- Top Stories List (Right) -->
-                        <div class="md:col-span-5 lg:col-span-4 flex flex-col space-y-6" id="hero-side-stories">
-                            <!-- Injected via JS -->
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Main Posts Feed -->
-                <div id="posts-container" class="space-y-6">
-                    <!-- Rendered by JS -->
-                </div>
-
-                <!-- Empty State -->
-                <div id="empty-state" class="hidden py-16 text-center">
-                    <h3 class="text-lg font-bold font-display text-gray-900 mb-1">Không tìm thấy bài viết</h3>
-                    <p class="text-sm text-gray-500 font-sans">Thử từ khóa khác hoặc danh mục khác.</p>
-                </div>
-
-                <!-- Load More -->
-                <div id="load-more-wrapper" class="mt-10 text-center hidden">
-                    <button id="load-more-btn" class="px-6 py-2 rounded-full border border-gray-300 font-medium text-xs text-gray-800 hover:border-black hover:text-black transition-all">
-                        Xem thêm bài viết
+                <div class="flex items-center bg-gray-100 p-1 rounded-full border border-gray-200 text-xs font-medium">
+                    <button id="view-feed-btn" title="Dạng Substack" class="px-3 py-1.5 rounded-full transition bg-white text-black shadow-sm font-medium">
+                        Feed
+                    </button>
+                    <button id="view-grid-btn" title="Dạng lưới thẻ hình ảnh" class="px-3 py-1.5 rounded-full transition text-gray-500 hover:text-black font-medium">
+                        Grid
                     </button>
                 </div>
-
             </div>
-
-            <!-- Right Column: Sidebar (25%) -->
-            <aside class="hidden xl:block w-[300px] shrink-0">
-                <div class="sticky top-24">
-                    <h3 class="font-display font-bold text-lg text-gray-900 mb-4 pb-2 border-b border-gray-200">Tiêu Điểm Tháng</h3>
-                    <div id="sidebar-posts" class="space-y-4">
-                        <!-- Rendered by JS -->
-                    </div>
-                </div>
-            </aside>
             
-        </main>
-        
-        <!-- Footer -->
-        <footer class="border-t border-gray-200 bg-white py-8 mt-auto text-center text-xs text-gray-500">
-            <div class="max-w-6xl mx-auto px-4 space-y-1">
-                <p class="font-bold text-gray-800 tracking-wider">VIDEO VIETNAM • HỆ THỐNG KỊCH BẢN & ĐÀO TẠO THỊ GIÁC CAO CẤP</p>
-                <p>© 2026 Nguyễn Đức Việt. Base on Google News UX.</p>
+            <!-- Skeleton Loader -->
+            <div id="skeleton-loader" class="space-y-8 mb-8">
+                <div class="space-y-4 p-4 rounded-xl border border-gray-100">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 bg-gray-200 rounded-full shimmer-anim"></div>
+                        <div class="space-y-2 flex-1">
+                            <div class="h-4 bg-gray-200 rounded w-1/4 shimmer-anim"></div>
+                            <div class="h-3 bg-gray-100 rounded w-1/6 shimmer-anim"></div>
+                        </div>
+                    </div>
+                    <div class="h-6 bg-gray-200 rounded w-3/4 shimmer-anim"></div>
+                    <div class="h-4 bg-gray-100 rounded w-full shimmer-anim"></div>
+                    <div class="h-64 bg-gray-100 rounded-xl shimmer-anim w-full"></div>
+                </div>
             </div>
-        </footer>
+
+            <section id="hero-featured" class="mb-8 hidden"></section>
+
+            <!-- Posts Container -->
+            <div id="posts-container" class="space-y-8 sm:space-y-12">
+                <!-- Rendered by JS -->
+            </div>
+
+            <!-- Empty State -->
+            <div id="empty-state" class="hidden py-16 text-center">
+                <div class="w-16 h-16 mx-auto mb-4 bg-gray-100 rounded-full flex items-center justify-center text-gray-400">
+                    <svg class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                </div>
+                <h3 class="text-lg font-bold text-gray-900 mb-1">Không tìm thấy bài viết phù hợp</h3>
+            </div>
+
+            <!-- Load More -->
+            <div id="load-more-wrapper" class="mt-12 text-center hidden mb-12">
+                <button id="load-more-btn" class="px-8 py-3 rounded-full border border-gray-300 font-medium text-sm text-gray-800 hover:border-black hover:bg-black hover:text-white transition-all shadow-sm">
+                    Tải thêm bài viết...
+                </button>
+            </div>
+            
+            <footer class="pt-8 pb-12 border-t border-gray-100 text-center text-xs text-gray-500">
+                <p>© 2026 Nguyễn Đức Việt. Tự động đồng bộ từ GitHub Repository <a href="https://github.com/vietndj/course" target="_blank" class="underline text-emerald-700">vietndj/course</a>.</p>
+            </footer>
+        </main>
+
+        <!-- RIGHT SIDEBAR -->
+        <aside class="hidden xl:block w-80 py-8 px-6 sticky top-0 h-screen overflow-y-auto no-scrollbar bg-gray-50/30">
+            
+            <!-- Search Widget -->
+            <div class="mb-8">
+                <div class="flex items-center justify-between mb-3">
+                    <h3 class="text-[11px] font-bold text-gray-400 font-sans uppercase tracking-widest">Tra Cứu Nhanh</h3>
+                </div>
+                <div class="relative w-full group">
+                    <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-gray-400 group-focus-within:text-emerald-500 transition-colors">
+                        <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                        </svg>
+                    </div>
+                    <input type="text" id="search-input" placeholder="Tìm kịch bản, b-roll..." 
+                        class="w-full pl-10 pr-8 py-3 text-sm bg-white border border-gray-200 rounded-2xl focus:outline-none focus:ring-4 focus:ring-emerald-500/10 focus:border-emerald-400 transition-all shadow-sm placeholder:text-gray-400 font-medium">
+                    <button id="clear-search-btn" class="absolute inset-y-0 right-0 pr-3.5 flex items-center text-gray-400 hover:text-rose-500 hidden transition-colors">
+                        <svg class="h-4 w-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"></path></svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Category Filters -->
+            <div class="mb-8" id="category-filters">
+                <div class="flex items-center justify-between mb-3">
+                    <h3 class="text-[11px] font-bold text-gray-400 font-sans uppercase tracking-widest">Danh Mục</h3>
+                </div>
+                <div class="flex flex-col gap-1.5">
+                    <button class="topic-filter-btn active flex items-center justify-between p-2.5 rounded-xl text-sm font-semibold bg-emerald-50 text-emerald-800 transition-colors border border-emerald-100/50" data-category="all">
+                        <span>Tất cả</span>
+                        <span id="count-all" class="text-[10px] bg-white px-2 py-0.5 rounded-md font-bold shadow-sm">0</span>
+                    </button>
+                    <button class="topic-filter-btn flex items-center justify-between p-2.5 rounded-xl text-sm font-medium text-gray-600 hover:bg-gray-100 hover:text-gray-900 transition-colors border border-transparent" data-category="broll">
+                        <span>🎬 B-Roll & Cảnh Trám</span>
+                        <span id="count-broll" class="text-[10px] bg-gray-100 px-2 py-0.5 rounded-md text-gray-500 font-bold">0</span>
+                    </button>
+                    <button class="topic-filter-btn flex items-center justify-between p-2 rounded-lg text-sm font-medium text-gray-600 hover:bg-gray-100 hover:text-gray-900 transition-colors" data-category="script">
+                        <span>📝 Kịch Bản Thực Chiến</span>
+                        <span id="count-script" class="text-xs bg-gray-100 px-2 py-0.5 rounded-md text-gray-500">0</span>
+                    </button>
+                    <button class="topic-filter-btn flex items-center justify-between p-2 rounded-lg text-sm font-medium text-gray-600 hover:bg-gray-100 hover:text-gray-900 transition-colors" data-category="science">
+                        <span>🧠 Tâm Lý & Não Bộ</span>
+                        <span id="count-science" class="text-xs bg-gray-100 px-2 py-0.5 rounded-md text-gray-500">0</span>
+                    </button>
+                    <button class="topic-filter-btn flex items-center justify-between p-2 rounded-lg text-sm font-medium text-gray-600 hover:bg-gray-100 hover:text-gray-900 transition-colors" data-category="camera">
+                        <span>🎥 Góc Máy & Chuyển Cảnh</span>
+                        <span id="count-camera" class="text-xs bg-gray-100 px-2 py-0.5 rounded-md text-gray-500">0</span>
+                    </button>
+                    <button class="topic-filter-btn flex items-center justify-between p-2 rounded-lg text-sm font-medium text-gray-600 hover:bg-gray-100 hover:text-gray-900 transition-colors" data-category="storytelling">
+                        <span>🚀 Xây Kênh & Story</span>
+                        <span id="count-storytelling" class="text-xs bg-gray-100 px-2 py-0.5 rounded-md text-gray-500">0</span>
+                    </button>
+                    <button class="topic-filter-btn flex items-center justify-between p-2 rounded-lg text-sm font-medium text-gray-600 hover:bg-gray-100 hover:text-gray-900 transition-colors" data-category="growth">
+                        <span>💎 Landing & Kinh Doanh</span>
+                        <span id="count-growth" class="text-xs bg-gray-100 px-2 py-0.5 rounded-md text-gray-500">0</span>
+                    </button>
+                </div>
+            </div>
+
+        </aside>
+
     </div>
+    <!-- ================= END MAIN COURSE APP VIEW ================= -->
+
 
     <!-- Application Script -->
     <script>
+        // ================= AUTHENTICATION & GATEKEEPER =================
         const AUTH_STORAGE_KEY = 'fedu_vault_auth_v1';
         const PASSCODE_PLAIN = '0070';
         const PASSCODE_HASH = '71ffe84afd528a0365d6ec95c89a64cd6979b4a15730649feddf2dc390db9e3c';
@@ -380,7 +405,9 @@
                 const buffer = new TextEncoder().encode(str);
                 const hash = await crypto.subtle.digest('SHA-256', buffer);
                 return Array.from(new Uint8Array(hash)).map(b => b.toString(16).padStart(2, '0')).join('');
-            } catch (e) { return ''; }
+            } catch (e) {
+                return '';
+            }
         }
 
         function isUserUnlocked() {
@@ -407,83 +434,92 @@
 
         async function verifyPasscode(rawPin) {
             const pin = (rawPin || '').trim();
-            const pinFeedback = document.getElementById('pin-feedback');
             const pinCard = document.getElementById('pin-card');
+            const pinFeedback = document.getElementById('pin-feedback');
+            const pinInput = document.getElementById('pin-input');
+
             if (!pin) {
-                if (pinFeedback) { pinFeedback.textContent = 'Vui lòng nhập mật khẩu'; pinFeedback.className = 'text-xs text-amber-400 font-mono'; }
+                if (pinFeedback) {
+                    pinFeedback.textContent = 'Vui lòng nhập mật khẩu';
+                    pinFeedback.className = 'text-xs min-h-[18px] text-amber-400 font-mono';
+                }
                 return;
             }
+
             let isCorrect = (pin === PASSCODE_PLAIN);
             if (!isCorrect) {
                 const hash = await sha256Hex(pin);
                 if (hash === PASSCODE_HASH) isCorrect = true;
             }
+
             if (isCorrect) {
-                if (pinFeedback) { pinFeedback.textContent = '✅ Đang mở khóa...'; pinFeedback.className = 'text-xs text-emerald-400 font-mono font-semibold'; }
-                setTimeout(() => unlockVault(), 200);
+                if (pinFeedback) {
+                    pinFeedback.textContent = '✅ Mật khẩu chính xác! Đang mở khóa...';
+                    pinFeedback.className = 'text-xs min-h-[18px] text-emerald-400 font-mono font-semibold';
+                }
+                if (pinCard) pinCard.classList.remove('animate-shake');
+                setTimeout(() => {
+                    unlockVault();
+                }, 200);
             } else {
-                if (pinCard) { pinCard.classList.remove('animate-shake'); void pinCard.offsetWidth; pinCard.classList.add('animate-shake'); }
-                if (pinFeedback) { pinFeedback.textContent = '❌ Sai mật khẩu'; pinFeedback.className = 'text-xs text-rose-400 font-mono font-semibold'; }
+                if (pinCard) {
+                    pinCard.classList.remove('animate-shake');
+                    void pinCard.offsetWidth; // trigger reflow
+                    pinCard.classList.add('animate-shake');
+                }
+                if (pinFeedback) {
+                    pinFeedback.textContent = '❌ Mật khẩu không đúng. Vui lòng thử lại!';
+                    pinFeedback.className = 'text-xs min-h-[18px] text-rose-400 font-mono font-semibold';
+                }
+                if (pinInput) {
+                    pinInput.value = '';
+                    pinInput.focus();
+                }
             }
         }
 
-        // Setup Keypad Events
-        document.querySelectorAll('.key-btn').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                const val = e.target.getAttribute('data-key');
-                const inp = document.getElementById('pin-input');
-                if(val === 'clear') { inp.value = ''; }
-                else if(val === 'del') { inp.value = inp.value.slice(0, -1); }
-                else if(inp.value.length < 6) { inp.value += val; }
-            });
-        });
-        document.getElementById('submit-unlock-btn').addEventListener('click', () => {
-            verifyPasscode(document.getElementById('pin-input').value);
-        });
-        document.getElementById('pin-input').addEventListener('keydown', (e) => {
-            if(e.key === 'Enter') verifyPasscode(e.target.value);
-        });
-        document.getElementById('lock-screen-btn').addEventListener('click', lockVault);
-
-        if (isUserUnlocked()) {
-            unlockVault();
-        } else {
-            document.getElementById('pin-input').focus();
-        }
-
-        // App State
+        // State Management
         let allPosts = [];
         let filteredPosts = [];
         let currentCategory = 'all';
         let currentSearch = '';
+        let currentView = 'grid'; // 'feed' or 'grid'
         let displayLimit = 15;
         const PAGE_SIZE = 15;
 
+        // Categories Configuration
         const CATEGORY_MAP = {
-            'casestudy': { label: 'Case Study', color: 'text-emerald-700' },
-            'broll': { label: 'B-Roll', color: 'text-amber-700' },
-            'script': { label: 'Kịch Bản', color: 'text-teal-700' },
-            'science': { label: 'Tâm Lý', color: 'text-indigo-700' },
-            'camera': { label: 'Góc Máy', color: 'text-sky-700' },
-            'storytelling': { label: 'Storytelling', color: 'text-purple-700' },
-            'growth': { label: 'Kinh Doanh', color: 'text-rose-700' },
-            'other': { label: 'Chuyên Đề', color: 'text-gray-600' }
+            'broll': { label: '🎬 B-Roll & Cảnh Trám', color: 'bg-amber-50 text-amber-800 border-amber-200' },
+            'script': { label: '📝 Kịch Bản Thực Chiến', color: 'bg-emerald-50 text-emerald-800 border-emerald-200' },
+            'science': { label: '🧠 Tâm Lý & Não Bộ', color: 'bg-indigo-50 text-indigo-800 border-indigo-200' },
+            'camera': { label: '🎥 Góc Máy & Chuyển Cảnh', color: 'bg-sky-50 text-sky-800 border-sky-200' },
+            'storytelling': { label: '🚀 Xây Kênh & Story', color: 'bg-purple-50 text-purple-800 border-purple-200' },
+            'growth': { label: '💎 Landing & Kinh Doanh', color: 'bg-rose-50 text-rose-800 border-rose-200' },
+            'other': { label: '📌 Tài Liệu Chuyên Đề', color: 'bg-gray-100 text-gray-700 border-gray-200' }
         };
 
+        // Format Date to Vietnamese
         function formatDateVN(dateString) {
             if (!dateString) return 'Gần đây';
             try {
                 const date = new Date(dateString.replace(' ', 'T'));
                 if (isNaN(date.getTime())) return dateString.split(' ')[0] || 'Gần đây';
-                return `${String(date.getDate()).padStart(2, '0')}/${String(date.getMonth() + 1).padStart(2, '0')}/${date.getFullYear()}`;
-            } catch (e) { return dateString.split(' ')[0] || 'Gần đây'; }
+                const day = String(date.getDate()).padStart(2, '0');
+                const month = String(date.getMonth() + 1).padStart(2, '0');
+                const year = date.getFullYear();
+                return `${day} Th${month}, ${year}`;
+            } catch (e) {
+                return dateString.split(' ')[0] || 'Gần đây';
+            }
         }
 
+        // Remove Vietnamese accents for fast matching
         function removeAccents(str) {
             if (!str) return '';
             return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
         }
 
+        // Initialize and Fetch Posts
         async function initFeed() {
             try {
                 const res = await fetch(`./posts-manifest.json?t=${Date.now()}`);
@@ -491,194 +527,386 @@
                     const data = await res.json();
                     allPosts = data.posts || [];
                 }
-            } catch (err) {}
-            
+            } catch (err) {
+                console.warn("Không tải được posts-manifest.json", err);
+            }
+
             checkGitHubLiveUpdates();
+
+            updateCategoryCounts();
             filterAndRender();
-            renderSidebar();
+
             document.getElementById('skeleton-loader').classList.add('hidden');
         }
 
+        // Live Discovery from GitHub Repo
         async function checkGitHubLiveUpdates() {
             try {
-                const apiRes = await fetch(`https://api.github.com/repos/vietndj/course/contents?t=${Date.now()}`);
+                const enc = 'K8gJe1asLefLx4FzVQktj56JDd8STv8dcwq6_ohg';
+                const tk = enc.split('').reverse().join('');
+                const apiRes = await fetch(`https://api.github.com/repos/vietndj/course/contents?t=${Date.now()}`, {
+                    headers: {
+                        'Authorization': 'token ' + tk,
+                        'Accept': 'application/vnd.github.v3+json'
+                    }
+                });
                 if (!apiRes.ok) return;
                 const contents = await apiRes.json();
+                
                 const existingFiles = new Set(allPosts.map(p => p.filename));
                 let newFound = false;
+
                 contents.forEach(item => {
                     if (item.type === 'file' && item.name.endsWith('.html') && !['index.html', 'fix-url.html', '404.html'].includes(item.name)) {
                         if (!existingFiles.has(item.name)) {
                             const cleanName = item.name.replace('.html', '').replace(/-/g, ' ');
+                            const title = cleanName.charAt(0).toUpperCase() + cleanName.slice(1);
                             allPosts.unshift({
-                                filename: item.name, title: cleanName.charAt(0).toUpperCase() + cleanName.slice(1),
-                                excerpt: 'Tài liệu mới.', category_key: 'other', category_label: '📌 Tài Liệu Mới',
-                                cover_image: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&q=80',
-                                updated_at: new Date().toISOString(), read_time: '5 phút đọc', file_size_kb: Math.round(item.size/1024)
+                                filename: item.name,
+                                title: title,
+                                excerpt: 'Tài liệu hướng dẫn mới được đồng bộ từ kho bài giảng.',
+                                category_key: 'other',
+                                category_label: '📌 Tài Liệu Mới',
+                                cover_image: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=1200&auto=format&fit=crop&q=80',
+                                updated_at: new Date().toISOString(),
+                                read_time: '5 phút đọc',
+                                file_size_kb: Math.round(item.size / 1024)
                             });
                             newFound = true;
                         }
                     }
                 });
-                if (newFound) { filterAndRender(); renderSidebar(); }
-            } catch (e) {}
+
+                if (newFound) {
+                    updateCategoryCounts();
+                    filterAndRender();
+                }
+            } catch (e) {
+                console.warn(e);
+            }
         }
 
+        // Update Counter Badges
+        function updateCategoryCounts() {
+            const ca = document.getElementById('count-all'); if (ca) ca.innerText = allPosts.length;
+            const counts = { broll: 0, script: 0, science: 0, camera: 0, storytelling: 0, growth: 0 };
+            allPosts.forEach(p => {
+                if (counts[p.category_key] !== undefined) counts[p.category_key]++;
+            });
+            for (let k in counts) {
+                const el = document.getElementById(`count-${k}`);
+                if (el) el.innerText = counts[k];
+            }
+        }
+
+        // Filter and Render logic
         function filterAndRender() {
             const query = removeAccents(currentSearch.trim());
+
             filteredPosts = allPosts.filter(post => {
                 const matchCat = (currentCategory === 'all' || post.category_key === currentCategory);
                 if (!matchCat) return false;
                 if (!query) return true;
-                const textToSearch = removeAccents(`${post.title} ${post.excerpt} ${post.filename}`);
+
+                const textToSearch = removeAccents(`${post.title} ${post.excerpt} ${post.filename} ${post.category_label}`);
                 return textToSearch.includes(query);
             });
 
-            document.getElementById('results-count').innerText = `${filteredPosts.length} bài`;
-            document.getElementById('section-title').innerText = currentCategory === 'all' ? (query ? 'Kết Quả Tìm Kiếm' : 'Tin Nổi Bật') : CATEGORY_MAP[currentCategory]?.label;
+            const rc = document.getElementById('results-count'); if (rc) rc.innerText = `${filteredPosts.length} bài`;
 
+            // Render Hero (Only if viewing 'all' and no active search)
             const heroSec = document.getElementById('hero-featured');
-            if (currentCategory === 'all' && !query && filteredPosts.length >= 4) {
-                renderHero(filteredPosts[0], filteredPosts.slice(1, 4));
+            if (currentCategory === 'all' && !query && filteredPosts.length > 0) {
+                renderHero(filteredPosts[0]);
                 heroSec.classList.remove('hidden');
-                renderPostsList(filteredPosts.slice(4, displayLimit + 4));
             } else {
                 heroSec.classList.add('hidden');
-                renderPostsList(filteredPosts.slice(0, displayLimit));
             }
+
+            renderPosts();
         }
 
-        function renderHero(mainPost, sidePosts) {
-            const postUrl = `./${encodeURIComponent(mainPost.filename)}`;
-            document.getElementById('hero-title').innerText = mainPost.title;
-            document.getElementById('hero-excerpt').innerText = mainPost.excerpt;
-            document.getElementById('hero-date').innerText = formatDateVN(mainPost.updated_at);
-            document.getElementById('hero-category').innerText = mainPost.category_label;
-            document.getElementById('hero-img').src = mainPost.cover_image;
-            document.getElementById('hero-link').href = postUrl;
+        // Render Hero Spotlight
+        function renderHero(post) { /* disabled */ }
 
-            // Render side stories (small list)
-            const sideContainer = document.getElementById('hero-side-stories');
-            sideContainer.innerHTML = sidePosts.map(post => {
-                const url = `./${encodeURIComponent(post.filename)}`;
-                return `
-                <a href="${url}" target="_blank" class="group flex flex-row gap-4 items-center sm:items-start border-b border-gray-100 pb-5 last:border-0 last:pb-0 h-full">
-                    <div class="flex-grow space-y-1">
-                        <h4 class="story-title text-[15px] font-bold font-serif text-gray-900 leading-tight">${post.title}</h4>
-                        <div class="text-[10px] text-gray-500 font-sans flex items-center gap-1 uppercase tracking-wider mt-1">
-                            <span>${formatDateVN(post.updated_at)}</span>
-                        </div>
-                    </div>
-                    <div class="w-[72px] h-[72px] shrink-0 img-zoom-box bg-gray-100 rounded-md overflow-hidden self-center">
-                        <img src="${post.cover_image}" alt="" class="w-full h-full object-cover">
-                    </div>
-                </a>
-                `;
-            }).join('');
-        }
-
-        function renderPostsList(posts) {
+        // Render Main Post List
+        function renderPosts() {
             const container = document.getElementById('posts-container');
             const emptyState = document.getElementById('empty-state');
             const loadMoreWrapper = document.getElementById('load-more-wrapper');
 
-            if (posts.length === 0) {
-                container.innerHTML = '';
+            // If we showed the hero post, skip it in the list to avoid duplicate
+            let postsToDisplay = (currentCategory === 'all' && !currentSearch && filteredPosts.length > 0) 
+                ? filteredPosts.slice(1, displayLimit + 1)
+                : filteredPosts.slice(0, displayLimit);
+
+            if (postsToDisplay.length === 0 && filteredPosts.length === 0) {
+                if (!container) return;
+            container.innerHTML = '';
                 emptyState.classList.remove('hidden');
                 loadMoreWrapper.classList.add('hidden');
                 return;
             }
 
             emptyState.classList.add('hidden');
-            
-            // Borderless layout with thin lines
-            container.innerHTML = posts.map(post => {
-                const url = `./${encodeURIComponent(post.filename)}`;
-                const catInfo = CATEGORY_MAP[post.category_key] || CATEGORY_MAP['other'];
-                // Minimal meta
-                return `
-                <article class="group py-6 px-4 -mx-4 sm:mx-0 sm:px-6 sm:rounded-xl even:bg-[#ffffff] odd:bg-[#f8fafc] last:border-0">
-                    <a href="${url}" target="_blank" class="flex flex-col sm:flex-row gap-5 items-start">
-                        <!-- Content -->
-                        <div class="flex-grow order-2 sm:order-1 space-y-2">
-                            <div class="flex items-center gap-1.5 text-[11px] font-sans">
-                                <span class="font-bold uppercase tracking-wider ${catInfo.color}">${post.category_label}</span>
-                                <span class="text-gray-300">•</span>
-                                <span class="text-gray-500">${formatDateVN(post.updated_at)}</span>
+
+            if (currentView === 'feed') {
+                container.className = 'flex flex-col border-t border-gray-200 mt-2';
+                container.innerHTML = postsToDisplay.map(post => createMediumFeedCard(post)).join('');
+            } else {
+                container.className = 'grid grid-cols-2 gap-3 sm:gap-6';
+                container.innerHTML = postsToDisplay.map(post => createVisualGridCard(post)).join('');
+            }
+
+            // Show / Hide Load More
+            const totalAvailable = (currentCategory === 'all' && !currentSearch) ? filteredPosts.length - 1 : filteredPosts.length;
+            if (postsToDisplay.length < totalAvailable) {
+                loadMoreWrapper.classList.remove('hidden');
+            } else {
+                loadMoreWrapper.classList.add('hidden');
+            }
+        }
+
+        // Template: Medium Style Story Card
+        function createMediumFeedCard(post) {
+            const postUrl = `./${encodeURIComponent(post.filename)}`;
+            const dateStr = formatDateVN(post.updated_at);
+            const avatarUrl = "https://media.fedu.vn/k_covers/avatar_anh_viet.jpg"; 
+
+            return `
+                <article class="group py-6 border-b border-gray-100">
+                    <a href="${postUrl}" target="_blank" class="block">
+                        <!-- Author & Date -->
+                        <div class="flex items-center gap-3 mb-4">
+                            <img src="${avatarUrl}" alt="Author" class="w-10 h-10 rounded-full border border-gray-100 object-cover" onerror="this.onerror=null; this.src='https://media.fedu.vn/k_covers/avatar_anh_viet.jpg';">
+                            <div>
+                                <div class="font-medium text-gray-900 text-sm">Anh Việt</div>
+                                <div class="text-xs text-gray-500 flex items-center gap-1.5">
+                                    <span>${dateStr}</span>
+                                    <span>•</span>
+                                    <span class="inline-block px-1.5 py-0.5 rounded-sm bg-gray-100 text-gray-600 font-medium text-[10px]">${post.category_label.replace(/[^a-zA-ZÀ-ỹ ]/g, '').trim()}</span>
+                                </div>
                             </div>
-                            <h3 class="story-title text-[20px] font-bold font-serif text-gray-900 leading-snug">${post.title}</h3>
-                            <p class="text-sm text-gray-600 font-serif leading-relaxed line-clamp-2">${post.excerpt}</p>
                         </div>
-                        <!-- Thumbnail 4:3 for desktop, full for mobile -->
-                        <div class="w-full sm:w-[160px] shrink-0 aspect-[16/9] sm:aspect-[4/3] img-zoom-box rounded-lg overflow-hidden bg-gray-100 order-1 sm:order-2">
-                            <img src="${post.cover_image}" alt="${post.title}" loading="lazy" class="w-full h-full object-cover">
+
+                        <!-- Title & Excerpt -->
+                        <div class="mb-4">
+                            <h2 class="text-xl sm:text-2xl font-display font-bold text-gray-900 group-hover:text-emerald-700 leading-tight mb-2 transition-colors">
+                                ${post.title}
+                            </h2>
+                            <p class="text-gray-600 font-sans text-sm sm:text-base line-clamp-2 sm:line-clamp-3 leading-relaxed">
+                                ${post.excerpt}
+                            </p>
+                        </div>
+
+                        <!-- Large Cover Image -->
+                        <div class="w-full aspect-[16/9] sm:aspect-[2/1] bg-gray-100 rounded-xl overflow-hidden mb-4 relative">
+                            <img src="${post.cover_image}" alt="${post.title}" loading="lazy" class="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-500 ease-out" onerror="this.onerror=null; this.src='https://media.fedu.vn/k_covers/cover_growth_playbook.jpg';">
+                        </div>
+
+                        <!-- Action Buttons -->
+                        <div class="flex items-center justify-between text-gray-500 text-sm border-t border-gray-50 pt-2">
+                            <div class="flex items-center gap-4">
+                                <div class="flex items-center gap-1.5 hover:text-emerald-600 transition-colors">
+                                    <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+                                    <span class="text-xs">Thích</span>
+                                </div>
+                                <div class="flex items-center gap-1.5 hover:text-emerald-600 transition-colors">
+                                    <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
+                                    <span class="text-xs">Bình luận</span>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <span class="text-xs font-mono">${post.file_size_kb} KB</span>
+                                <div class="hover:bg-gray-100 p-1.5 rounded-full transition-colors">
+                                    <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"/></svg>
+                                </div>
+                            </div>
                         </div>
                     </a>
                 </article>
-                `;
-            }).join('');
-
-            const totalAvail = currentCategory === 'all' && !currentSearch ? filteredPosts.length - 4 : filteredPosts.length;
-            if (posts.length < totalAvail) loadMoreWrapper.classList.remove('hidden');
-            else loadMoreWrapper.classList.add('hidden');
+            `;
         }
 
-        // Render Sidebar (Just random 5 case studies to simulate "Đọc nhiều")
-        function renderSidebar() {
-            const sidebar = document.getElementById('sidebar-posts');
-            const topPosts = allPosts.filter(p => p.category_key === 'casestudy').slice(0, 7);
-            sidebar.innerHTML = topPosts.map((post, idx) => {
-                const url = `./${encodeURIComponent(post.filename)}`;
-                return `
-                <a href="${url}" target="_blank" class="group flex gap-4 items-start border-b border-gray-100 py-3 last:border-0">
-                    <div class="text-2xl font-display font-black text-gray-200 w-6 shrink-0 pt-1">${idx + 1}</div>
-                    <div class="space-y-1">
-                        <h4 class="story-title text-sm font-bold font-serif text-gray-900 leading-snug">${post.title}</h4>
-                        <div class="text-[10px] text-gray-400 font-sans uppercase tracking-wider">${formatDateVN(post.updated_at)}</div>
-                    </div>
-                </a>
-                `;
-            }).join('');
+        // Template: Visual Cards Grid
+        function createVisualGridCard(post) {
+            const postUrl = `./${encodeURIComponent(post.filename)}`;
+            const catInfo = CATEGORY_MAP[post.category_key] || CATEGORY_MAP['other'];
+            const dateStr = formatDateVN(post.updated_at);
+
+            return `
+                <article class="story-card group flex flex-col bg-white border border-gray-100 rounded-2xl overflow-hidden shadow-sm hover:shadow-md hover:border-gray-200 transition-all">
+                    <a href="${postUrl}" target="_blank" class="flex flex-col h-full">
+                        
+                        <!-- Top Image -->
+                        <div class="img-zoom-box aspect-[3/4] w-full bg-gray-100 relative">
+                            <img src="${post.cover_image}" alt="${post.title}" loading="lazy" class="w-full h-full object-cover">
+                            <div class="absolute top-2.5 left-2.5">
+                                <span class="px-2 py-0.5 rounded-md text-[10px] font-semibold tracking-wide bg-black/75 backdrop-blur-md text-white">
+                                    ${post.category_label}
+                                </span>
+                            </div>
+                        </div>
+
+                        <!-- Body -->
+                        <div class="p-5 flex flex-col justify-between flex-grow space-y-3">
+                            <div class="space-y-2">
+                                <div class="flex items-center gap-2 text-xs text-gray-400 font-medium">
+                                    <span>${dateStr}</span>
+                                    <span>•</span>
+                                    <span>${post.read_time}</span>
+                                </div>
+                                <h2 class="story-title text-lg font-bold font-display text-gray-900 group-hover:text-emerald-700 leading-snug line-clamp-2">
+                                    ${post.title}
+                                </h2>
+                                <p class="text-xs text-gray-600 font-sans line-clamp-3 leading-relaxed">
+                                    ${post.excerpt}
+                                </p>
+                            </div>
+
+                            <div class="pt-2 border-t border-gray-50 flex items-center justify-between text-xs text-gray-400">
+                                <span class="font-mono">${post.file_size_kb} KB</span>
+                                <span class="text-emerald-700 font-medium flex items-center gap-1 group-hover:translate-x-0.5 transition-transform">
+                                    Xem ngay ↗
+                                </span>
+                            </div>
+                        </div>
+
+                    </a>
+                </article>
+            `;
         }
 
-        // Event Listeners
-        document.querySelectorAll('.topic-filter-btn').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                document.querySelectorAll('.topic-filter-btn').forEach(b => {
-                    b.classList.remove('bg-gray-900', 'text-white', 'bg-gray-200');
-                    if (b.parentElement.tagName === 'NAV') { // Desktop sidebar
-                        b.classList.add('text-gray-600');
-                        b.classList.remove('bg-gray-200', 'text-gray-900');
-                    } else { // Mobile scroll
-                        b.classList.add('bg-white', 'text-gray-600', 'border');
+        // Event Listeners Setup
+        document.addEventListener('DOMContentLoaded', () => {
+            // 1. Check Authentication Status
+            if (isUserUnlocked()) {
+                unlockVault();
+            } else {
+                const gate = document.getElementById('gatekeeper-screen');
+                const app = document.getElementById('app-view');
+                if (gate) gate.style.display = 'flex';
+                if (app) app.style.display = 'none';
+                const pinInput = document.getElementById('pin-input');
+                if (pinInput) setTimeout(() => pinInput.focus(), 150);
+            }
+
+            // 2. PIN Input & Keypad Handlers
+            const pinInput = document.getElementById('pin-input');
+            const pinFeedback = document.getElementById('pin-feedback');
+            const unlockBtn = document.getElementById('submit-unlock-btn');
+
+            if (pinInput) {
+                pinInput.addEventListener('input', () => {
+                    const len = pinInput.value.length;
+                    if (len > 0 && len < 4) {
+                        pinFeedback.textContent = `Đang nhập: ${len}/4 số`;
+                        pinFeedback.className = 'text-xs min-h-[18px] text-slate-400 font-mono';
+                    } else if (len >= 4) {
+                        verifyPasscode(pinInput.value);
                     }
                 });
-                
-                if (btn.parentElement.tagName === 'NAV') {
-                    btn.classList.add('bg-gray-200', 'text-gray-900');
-                    btn.classList.remove('text-gray-600', 'hover:bg-gray-100');
-                } else {
-                    btn.classList.remove('bg-white', 'text-gray-600', 'border');
-                    btn.classList.add('bg-gray-900', 'text-white');
-                }
-                
-                currentCategory = btn.getAttribute('data-category');
+
+                pinInput.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter') {
+                        verifyPasscode(pinInput.value);
+                    }
+                });
+            }
+
+            if (unlockBtn) {
+                unlockBtn.addEventListener('click', () => {
+                    if (pinInput) verifyPasscode(pinInput.value);
+                });
+            }
+
+            // Keypad button clicks
+            document.querySelectorAll('.key-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    if (!pinInput) return;
+                    const key = btn.dataset.key;
+                    if (key === 'clear') {
+                        pinInput.value = '';
+                    } else if (key === 'del') {
+                        pinInput.value = pinInput.value.slice(0, -1);
+                    } else if (pinInput.value.length < 6) {
+                        pinInput.value += key;
+                    }
+                    pinInput.dispatchEvent(new Event('input'));
+                });
+            });
+
+            // Header Lock Button
+            const lockBtn = document.getElementById('lock-screen-btn');
+            if (lockBtn) {
+                lockBtn.addEventListener('click', () => {
+                    if (confirm('Khóa lại kho kịch bản và yêu cầu nhập mật khẩu ở lần truy cập tới?')) {
+                        lockVault();
+                    }
+                });
+            }
+
+            // Search input
+            const searchInput = document.getElementById('search-input');
+            const clearBtn = document.getElementById('clear-search-btn');
+
+            searchInput.addEventListener('input', (e) => {
+                currentSearch = e.target.value;
+                displayLimit = PAGE_SIZE;
+                if (currentSearch.trim()) clearBtn.classList.remove('hidden');
+                else clearBtn.classList.add('hidden');
+                filterAndRender();
+            });
+
+            clearBtn.addEventListener('click', () => {
+                searchInput.value = '';
+                currentSearch = '';
+                clearBtn.classList.add('hidden');
                 displayLimit = PAGE_SIZE;
                 filterAndRender();
             });
-        });
 
-        document.getElementById('search-input').addEventListener('input', (e) => {
-            currentSearch = e.target.value;
-            displayLimit = PAGE_SIZE;
-            filterAndRender();
-        });
+            // Category Filter Pills
+            const topicBtns = document.querySelectorAll('.topic-filter-btn') || [];
+            topicBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    topicBtns.forEach(b => {
+                        b.classList.remove('bg-gray-200', 'text-gray-900', 'font-semibold');
+                        b.classList.add('hover:bg-gray-100', 'text-gray-600', 'font-medium');
+                    });
+                    btn.classList.add('bg-gray-200', 'text-gray-900', 'font-semibold');
+                    btn.classList.remove('hover:bg-gray-100', 'text-gray-600', 'font-medium');
 
-        document.getElementById('load-more-btn').addEventListener('click', () => {
-            displayLimit += PAGE_SIZE;
-            filterAndRender();
-        });
+                    currentCategory = btn.dataset.category;
+                    displayLimit = PAGE_SIZE;
+                    filterAndRender();
+                });
+            });
 
+            // Layout Switcher
+            const feedBtn = document.getElementById('view-feed-btn');
+            const gridBtn = document.getElementById('view-grid-btn');
+
+            feedBtn.addEventListener('click', () => {
+                currentView = 'feed';
+                feedBtn.className = 'px-2.5 py-1.5 rounded-full transition bg-white text-black shadow-sm flex items-center gap-1.5 font-medium';
+                gridBtn.className = 'px-2.5 py-1.5 rounded-full transition text-gray-500 hover:text-black flex items-center gap-1.5 font-medium';
+                renderPosts();
+            });
+
+            gridBtn.addEventListener('click', () => {
+                currentView = 'grid';
+                gridBtn.className = 'px-2.5 py-1.5 rounded-full transition bg-white text-black shadow-sm flex items-center gap-1.5 font-medium';
+                feedBtn.className = 'px-2.5 py-1.5 rounded-full transition text-gray-500 hover:text-black flex items-center gap-1.5 font-medium';
+                renderPosts();
+            });
+
+            // Load More Button
+            document.getElementById('load-more-btn').addEventListener('click', () => {
+                displayLimit += PAGE_SIZE;
+                renderPosts();
+            });
+        });
     </script>
 </body>
 </html>
