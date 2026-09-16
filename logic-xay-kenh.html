@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>LOGIC XÂY KÊNH CHUYÊN GIA • NGUYỄN ĐỨC VIỆT</title>
+  
+  <!-- Favicon System (Chuẩn Chữ VIDEO - Cinema REC Monogram) -->
+  <link rel="icon" type="image/svg+xml" href="./favicon.svg">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%230B0F19'/%3E%3Crect x='1.5' y='1.5' width='61' height='61' rx='14.5' fill='none' stroke='%23FFFFFF' stroke-opacity='0.14' stroke-width='1.5'/%3E%3Ctext x='25' y='25' text-anchor='middle' dominant-baseline='central' font-family='system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif' font-weight='900' font-size='21.5' letter-spacing='2px' fill='%23FFFFFF'%3EVI%3C/text%3E%3Ccircle cx='47' cy='25' r='7' fill='%23EF4444' fill-opacity='0.25'/%3E%3Ccircle cx='47' cy='25' r='4.2' fill='%23EF4444'/%3E%3Ccircle cx='47' cy='25' r='1.6' fill='%23FFFFFF' opacity='0.9'/%3E%3Ctext x='32' y='46' text-anchor='middle' dominant-baseline='central' font-family='system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif' font-weight='900' font-size='19' letter-spacing='1.2px' fill='%23F8FAFC'%3EDEO%3C/text%3E%3C/svg%3E">
+<!-- Font Definitions & System Fallbacks -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&family=Playfair+Display:ital,wght@1,400;1,600&display=swap" rel="stylesheet">
+  
+  <style>
+    /* ═══ 1. FONT DECLARATIONS (Local Repo, System & CDN Fallbacks) ═══ */
+    @font-face {
+      font-family: 'FD Aeonik Extended';
+      src: url('./fonts/FDAeonikExtended-Bold.woff2?v=20260911b') format('woff2'),
+           url('https://font.fedu.vn/fonts/FDAeonikExtended-Bold.woff2?v=20260911b') format('woff2'),
+           url('./fonts/FDAeonikExtended-Bold.ttf?v=20260911b') format('truetype'),
+           url('/Users/vietmac/Library/Fonts/FDAeonikExtended-Bold.otf') format('opentype'),
+           local('FD Aeonik Extended Bold');
+      font-weight: 700;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'FD Aeonik';
+      src: url('./fonts/FDAeonikRegular.ttf') format('truetype'),
+           url('./assets/fonts/FDAeonikRegular.ttf') format('truetype'),
+           url('/Users/vietmac/Library/Fonts/FDAeonikRegular.ttf') format('truetype'),
+           local('FD Aeonik Regular'), local('FDAeonikRegular');
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'FD Aeonik';
+      src: url('./fonts/FDAeonikExtended-SemiBold.woff2?v=20260911b') format('woff2'),
+           url('https://font.fedu.vn/fonts/FDAeonikExtended-SemiBold.woff2?v=20260911b') format('woff2'),
+           url('./fonts/FDAeonikExtended-SemiBold.ttf?v=20260911b') format('truetype'),
+           url('/Users/vietmac/Library/Fonts/FDAeonikExtended-SemiBold.otf') format('opentype'),
+           local('FD Aeonik SemiBold');
+      font-weight: 600;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'FD Aeonik';
+      src: url('./fonts/FDAeonikBold.ttf') format('truetype'),
+           url('/Users/vietmac/Library/Fonts/FDAeonikBold.ttf') format('truetype'),
+           local('FD Aeonik Bold'), local('FDAeonikBold');
+      font-weight: 700;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Tiempos Text';
+      src: url('./fonts/FDTiemposText-Regular.otf') format('opentype'),
+           url('/Users/vietmac/Library/Fonts/FDTiemposText-Regular.otf') format('opentype'),
+           local('Tiempos Text Regular'), local('FDTiemposText-Regular');
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Tiempos Text';
+      src: url('./fonts/FDTiemposText-Medium.otf') format('opentype'),
+           url('/Users/vietmac/Library/Fonts/FDTiemposText-Medium.otf') format('opentype'),
+           local('Tiempos Text Medium'), local('FDTiemposText-Medium');
+      font-weight: 500;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Tiempos Text';
+      src: url('./fonts/FDTiemposText-RegularItalic.otf') format('opentype'),
+           url('/Users/vietmac/Library/Fonts/FDTiemposText-RegularItalic.otf') format('opentype'),
+           local('Tiempos Text Regular Italic'), local('FDTiemposText-RegularItalic');
+      font-weight: 400;
+      font-style: italic;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'SVN-Integral';
+      src: url('./fonts/SVN-IntegralCF-Regular.ttf') format('truetype'),
+           url('./assets/fonts/SVN-IntegralCF-Regular.ttf') format('truetype'),
+           local('SVN-Integral CF Regular');
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    /* ═══ 2. DESIGN TOKENS (30ngayviral.fedu.vn Light Theme) ═══ */
+    :root {
+      --cl-bg:          #ffffff;
+      --cl-tint:        #f8fafc;
+      --cl-card:        #ffffff;
+      --cl-card-muted:  #f1f5f9;
+      --cl-accent:      #1a73e8;
+      --cl-accent-tint: rgba(26, 115, 232, 0.08);
+      --cl-accent-text: #ffffff;
+      --cl-line:        rgba(0, 0, 0, 0.06);
+      --cl-line-strong: rgba(0, 0, 0, 0.12);
+      --cl-text-base:   #090d16; /* Slate 950 (Tương phản 18.8:1) */
+      --cl-text-body:   #0f172a; /* Slate 900 (Mực in WCAG AAA 16.5:1) */
+      --cl-text-muted:  #475569; /* Slate 600 */
+      --cl-danger:      #dc2626;
+      --cl-success:     #16a34a;
+
+      /* Radii */
+      --cl-radius-lg:   24px;
+      --cl-radius-md:   16px;
+      --cl-radius-sm:   10px;
+      --cl-radius-full: 9999px;
+
+      /* Typography Stacks */
+      --font-display-short: 'FD Aeonik Extended', 'SVN-Integral', 'Inter', -apple-system, sans-serif;
+      --font-display-long:  'FD Aeonik', 'FD Aeonick', 'Inter', -apple-system, sans-serif;
+      --font-body:          'Tiempos Text', 'FD Aeonik', 'Inter', Georgia, serif;
+      --font-editorial:     'Tiempos Text', Georgia, serif;
+      --font-mono:          'JetBrains Mono', 'SVN-Sonoma', monospace;
+
+      /* Apple Motion Physics Curves */
+      --apple-spring: cubic-bezier(0.25, 1, 0.35, 1.05);
+      --apple-ease:   cubic-bezier(0.16, 1, 0.3, 1);
+      --apple-hover:  cubic-bezier(0.2, 0.9, 0.3, 1.08);
+    }
+
+    /* ═══ 3. RESET & BASE ═══ */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background-color: var(--cl-bg);
+      color: var(--cl-text-base);
+      font-family: var(--font-body);
+    }
+
+    body {
+      overflow-x: clip;
+      min-height: 100vh;
+      line-height: 1.7;
+    }
+
+    /* ═══ 4. VIEWPORT-FRAMED ZEBRA SECTIONS ═══ */
+    /* 1 Khối = 1 Màn Hình = 1 Nội Dung */
+    .cl-zebra-section {
+      width: 100%;
+      min-height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      padding: 90px 24px;
+      box-sizing: border-box;
+      transition: background-color 0.3s ease;
+    }
+
+    /* Nền trắng tinh khiết */
+    .cl-zebra--light {
+      background-color: var(--cl-bg);
+    }
+
+    /* Nền xám Slate-50 ấm nhẹ */
+    .cl-zebra--tint {
+      background-color: var(--cl-tint);
+      border-top: 1px solid var(--cl-line);
+      border-bottom: 1px solid var(--cl-line);
+    }
+
+    /* Container bên trong section */
+    .cl-sec-container {
+      width: 100%;
+      max-width: 840px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .cl-sec-container--wide {
+      max-width: 980px;
+    }
+
+    .cl-sec-container--narrow {
+      max-width: 720px;
+    }
+
+    .cl-sec-container--left {
+      align-items: flex-start;
+      text-align: left;
+    }
+
+    /* ═══ 5. TYPOGRAPHY & HEADINGS ═══ */
+    /* Micro Badge */
+    .cl-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-mono);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--cl-accent);
+      background: var(--cl-accent-tint);
+      border: 1px solid rgba(26, 115, 232, 0.15);
+      padding: 7px 18px;
+      border-radius: var(--cl-radius-full);
+      margin-bottom: 24px;
+    }
+
+    /* Tiêu đề ngắn <= 8 từ: FD Aeonik Extended Bold 700 */
+    .title-short {
+      font-family: var(--font-display-short);
+      font-weight: 700;
+      font-size: clamp(28px, 4.5vw, 48px);
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+      text-transform: uppercase;
+      color: var(--cl-text-base);
+      margin-bottom: 24px;
+      text-wrap: balance;
+    }
+
+    /* Tiêu đề dài > 8 từ: FD Aeonick SemiBold */
+    .title-long {
+      font-family: var(--font-display-long);
+      font-weight: 600;
+      font-size: clamp(24px, 3.8vw, 40px);
+      line-height: 1.35;
+      letter-spacing: -0.015em;
+      color: var(--cl-text-base);
+      margin-bottom: 24px;
+      text-wrap: balance;
+    }
+
+    /* Trích dẫn / Hook / Thơ / Lời khuyên */
+    .editorial-hook {
+      font-family: var(--font-editorial);
+      font-style: italic;
+      font-size: clamp(18px, 2.4vw, 22px);
+      line-height: 1.6;
+      color: var(--cl-accent);
+      margin-bottom: 28px;
+      max-width: 680px;
+    }
+
+    /* Thân bài / Mô tả */
+    .cl-body {
+      font-size: clamp(16px, 1.7vw, 18px);
+      color: var(--cl-text-body);
+      line-height: 1.75;
+      margin-bottom: 32px;
+      max-width: 700px;
+    }
+
+    /* ═══ 6. APPLE MOTION & SPRING SYSTEM (GPU OPTIMIZED 60/120 FPS) ═══ */
+    .apple-reveal {
+      opacity: 0;
+      transform: translate3d(0, 26px, 0);
+      transition: 
+        opacity 0.5s var(--apple-ease),
+        transform 0.58s var(--apple-spring);
+      transition-delay: var(--delay, 0ms);
+      will-change: opacity, transform;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+    }
+
+    .apple-reveal.is-visible {
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
+      will-change: auto;
+    }
+
+    /* Card Stagger Waterfall */
+    .apple-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+      width: 100%;
+      margin-top: 16px;
+    }
+
+    .apple-card {
+      background: var(--cl-card);
+      border: 1px solid var(--cl-line);
+      border-radius: var(--cl-radius-lg);
+      padding: 32px 28px;
+      text-align: left;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+      position: relative;
+      opacity: 0;
+      transform: translate3d(0, 22px, 0) scale(0.985);
+      transition:
+        opacity 0.45s var(--apple-ease),
+        transform 0.52s var(--apple-spring),
+        box-shadow 0.35s ease,
+        border-color 0.25s ease;
+      transition-delay: var(--card-delay, 0ms);
+      will-change: opacity, transform;
+      backface-visibility: hidden;
+    }
+
+    .is-visible .apple-card,
+    .apple-card.is-visible {
+      opacity: 1;
+      transform: translate3d(0, 0, 0) scale(1);
+      will-change: auto;
+    }
+
+    .apple-card:hover {
+      transform: translate3d(0, -6px, 0) scale(1.01);
+      border-color: rgba(26, 115, 232, 0.35);
+      box-shadow: 0 16px 36px -10px rgba(0, 0, 0, 0.08), 0 0 24px rgba(26, 115, 232, 0.06);
+    }
+
+    .apple-card__icon {
+      font-size: 28px;
+      margin-bottom: 16px;
+      display: inline-block;
+    }
+
+    /* Tiêu đề thẻ mặc định: FD Aeonik regular width (Title Case / Sentence case tự nhiên) */
+    .apple-card__title {
+      font-family: var(--font-display-long);
+      font-weight: 600;
+      font-size: 20px;
+      color: var(--cl-text-base);
+      margin-bottom: 10px;
+    }
+
+    /* Tiêu đề thẻ dãn ngang đanh thép (BẮT BUỘC IN HOA, ngắn gọn <= 5 từ) */
+    .apple-card__title--extended {
+      font-family: var(--font-display-short);
+      font-weight: 700;
+      font-size: 18px;
+      letter-spacing: -0.01em;
+      text-transform: uppercase;
+      color: var(--cl-text-base);
+      margin-bottom: 10px;
+    }
+
+    .apple-card__desc {
+      font-size: 15.5px;
+      color: var(--cl-text-body);
+      line-height: 1.65;
+    }
+
+    /* ═══ 7. LIST & KEYPOINT ITEMS ═══ */
+    .apple-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      width: 100%;
+      max-width: 680px;
+      margin: 0 auto 32px;
+      text-align: left;
+    }
+
+    .apple-list-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      background: #ffffff;
+      padding: 18px 22px;
+      border-radius: var(--cl-radius-md);
+      border: 1px solid var(--cl-line);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+      transition: transform 0.25s ease, border-color 0.25s ease;
+    }
+
+    .cl-zebra--tint .apple-list-item {
+      background: #ffffff;
+    }
+
+    .cl-zebra--light .apple-list-item {
+      background: var(--cl-tint);
+    }
+
+    .apple-list-item:hover {
+      transform: translateX(4px);
+      border-color: var(--cl-accent);
+    }
+
+    .apple-list-item__bullet {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--cl-accent-tint);
+      color: var(--cl-accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .apple-list-item__content {
+      font-size: 16.5px;
+      color: var(--cl-text-body);
+      line-height: 1.6;
+    }
+
+    /* ═══ 8. CTA BUTTON (30ngayviral style) ═══ */
+    .cl-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background: var(--cl-accent);
+      color: var(--cl-accent-text);
+      font-family: var(--font-body);
+      font-weight: 700;
+      font-size: 16.5px;
+      letter-spacing: 0.02em;
+      padding: 18px 44px;
+      border-radius: var(--cl-radius-md);
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 8px 24px rgba(26, 115, 232, 0.25);
+      transition: transform 0.22s var(--apple-spring), box-shadow 0.22s ease, opacity 0.2s ease;
+    }
+
+    .cl-btn:hover {
+      transform: translateY(-3px) scale(1.015);
+      box-shadow: 0 14px 36px rgba(26, 115, 232, 0.35);
+      opacity: 0.96;
+    }
+
+    .cl-btn:active {
+      transform: translateY(0) scale(0.985);
+    }
+
+    /* ═══ 9. SCROLL DOWN HINT ═══ */
+    .cl-scroll-hint {
+      position: absolute;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--cl-text-muted);
+      opacity: 0.7;
+      animation: bounce 2s infinite ease-in-out;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translate(-50%, 0); }
+      50% { transform: translate(-50%, 8px); }
+    }
+
+    /* ═══ 10. MOBILE OPTIMIZATIONS ═══ */
+    @media (max-width: 768px) {
+      .cl-zebra-section {
+        min-height: 100dvh;
+        padding: 64px 20px;
+      }
+      .apple-cards-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+      .apple-card {
+        padding: 24px 20px;
+      }
+      .cl-btn {
+        width: 100%;
+        max-width: 100%;
+        padding: 16px 24px;
+      }
+      .cl-scroll-hint {
+        bottom: 16px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .apple-reveal, .apple-card, .cl-scroll-hint {
+        transition: none !important;
+        animation: none !important;
+        transform: none !important;
+        opacity: 1 !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ═══ KHỐI 1: HERO SECTION (LIGHT) ═══ -->
+  <section class="cl-zebra-section cl-zebra--light" id="sec-hero">
+    <div class="cl-sec-container apple-reveal">
+      <div class="cl-badge">01 / LUỒNG TƯ DUY GỐC</div>
+      <h1 class="title-short">LÀM KÊNH LÀ LÀM THẬT</h1>
+      <p class="editorial-hook">"Niềm tin của một người lạ không đến từ việc mặc vest đứng trước phông xanh... Nó đến từ việc mình dám nói thật."</p>
+      <p class="cl-body">Đi làm nghề bao năm, kinh nghiệm đầy mình nhưng lên mạng lại bị khớp. Nhiều người ngại, loay hoay không biết bắt đầu từ đâu. Hôm nay mình ngồi lại, kéo ghế uống chén trà, bóc tách cho bạn đúng 3 cái gốc rễ để xây kênh ra được khách thật... chứ không phải đua đòi dăm ba cái view rỗng.</p>
+    </div>
+    <div class="cl-scroll-hint">
+      <span>Cuộn khám phá</span>
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 13l5 5 5-5M7 6l5 5 5-5"/></svg>
+    </div>
+  </section>
+
+  <!-- ═══ KHỐI 2: 7 TIẾNG HIỆN DIỆN (TINT) ═══ -->
+  <section class="cl-zebra-section cl-zebra--tint" id="sec-7-hours">
+    <div class="cl-sec-container cl-sec-container--wide apple-reveal">
+      <div class="cl-badge">02 / ĐIỀU KIỆN CẦN</div>
+      <h2 class="title-short">7 TIẾNG ĐỂ QUEN MẶT</h2>
+      <p class="cl-body">Tại sao phải cần đủ 7 tiếng tiếp xúc? Đơn giản là để quen thuộc... Gặp ngoài đời, người ta thấy mặt mình quen thì tự khắc gật đầu chào. Nhưng làm sao để người ta xem mình đủ 7 tiếng trên mạng mà không chán?</p>
+      
+      <div class="apple-cards-grid">
+        <div class="apple-card" style="--card-delay: 0ms;">
+          <div class="apple-card__icon">🎭</div>
+          <h3 class="apple-card__title">Cái bẫy của view rỗng</h3>
+          <p class="apple-card__desc">Lúc mệt, người ta cần giải trí. Nhưng nếu bạn nhảy nhót, làm trò chọc cười... nền tảng sẽ dán nhãn kênh bạn là kênh giải trí đơn thuần. Đến lúc đăng video tư vấn đàng hoàng, video chết sặc vì tệp người xem kia họ đâu có nhu cầu mua hàng thật.</p>
+        </div>
+        <div class="apple-card" style="--card-delay: 100ms;">
+          <div class="apple-card__icon">💡</div>
+          <h3 class="apple-card__title">Giải trí kiểu người thạo việc</h3>
+          <p class="apple-card__desc">Giải trí ở mức cao không phải là chọc cười. Nó là cảm giác "sướng", là cái gật đầu thấu hiểu (Aha moment) khi bạn giúp họ gỡ được một mớ bòng bong trong đầu một cách nhẹ nhàng... mà không bắt họ vắt óc.</p>
+        </div>
+        <div class="apple-card" style="--card-delay: 200ms;">
+          <div class="apple-card__icon">📦</div>
+          <h3 class="apple-card__title">Mượn vỏ bọc xu hướng</h3>
+          <p class="apple-card__desc">Mình vẫn làm theo định dạng người ta đang thích (như POV, 3 sự thật trong nghề)... nhưng mình châm cái chuyên môn của mình vào cái "bình mới" đó. Vừa dễ gần, vừa đàng hoàng giữ được chất riêng.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ KHỐI 3: ĐIỂM CHẠM NIỀM TIN (LIGHT) ═══ -->
+  <section class="cl-zebra-section cl-zebra--light" id="sec-truth">
+    <div class="cl-sec-container apple-reveal">
+      <div class="cl-badge">03 / BÓC TÁCH TÂM LÝ</div>
+      <h2 class="title-long">Phơi bày chỗ ngượng và đọc vị vi mô</h2>
+      <p class="editorial-hook">"Ai dám phơi bày chỗ ngượng ra trước, người đó phát đi tín hiệu: Tôi vô hại, ở cạnh tôi rất an tâm."</p>
+      
+      <div class="cl-body" style="text-align: left;">
+        <p>Trong tự nhiên, hở sườn là bị ăn thịt. Ở con người, "điểm yếu" chính là sự kém cỏi, là những lần va vấp lúc mới vào nghề... Tại sao nói về cái dở của mình mà người ta lại tin mình? Bí mật nó nằm ở hai chữ <b>Bình thản</b>.</p>
+        <p>Khi bạn dám cười xòa kể về lần đền tiền nhớ đời... [Mỉm cười nhẹ]... người ta tự hiểu là bạn đã đứng cao hơn cái sự việc đó rồi. Bạn đã xử lý xong nó từ lâu nên mới kể lại nhẹ nhàng như thế.</p>
+        <br>
+        <p><b>Cái gốc của việc ra đơn:</b> Nó nằm ở chỗ bạn gọi đúng tên vấn đề ở mức vi mô. Chỗ này giống hệt chuyện cãi nhau với bạn gái.</p>
+        <p>Cô ấy đang bực, mớ cảm xúc bòng bong. Bạn hỏi "Em sao thế?", cô bảo "Em chả sao!". Nhưng nếu bạn bảo: <i>"Anh biết em im lặng không phải vì câu nói lúc nãy... mà vì lúc đi ăn anh cứ cầm điện thoại bấm bấm, làm em thấy không được tôn trọng đúng không?"</i></p>
+        <p>Khoảnh khắc bạn "gọi đúng tên" cái cục tức vô hình đó... cô ấy sẽ òa khóc. Nhẹ nhõm vì cuối cùng cũng có người gãi đúng chỗ ngứa. Khách hàng cũng thế, bạn tả đúng cái khó của họ chi li hơn cả họ... thì họ mặc định bạn đang cầm thuốc giải trong tay.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ KHỐI 4: VÀO VIỆC THỰC CHIẾN (TINT) ═══ -->
+  <section class="cl-zebra-section cl-zebra--tint" id="sec-action">
+    <div class="cl-sec-container apple-reveal">
+      <div class="cl-badge">04 / BẮT TAY VÀO LÀM</div>
+      <h2 class="title-short">KHUNG SƯỜN VỮNG CHẮC</h2>
+      <p class="cl-body">Hiểu cách làm rồi thì bây giờ mình xoắn tay áo lên thôi... Không cần to tát đâu, tận dụng đồ có sẵn là làm được hết.</p>
+      
+      <div class="apple-list">
+        <div class="apple-list-item">
+          <div class="apple-list-item__bullet">1</div>
+          <div class="apple-list-item__content"><b>Quay 2 máy đơn giản:</b> Cứ đặt một máy quay thẳng, một máy lấy góc nghiêng cảnh bạn đang gõ máy tính. Nhìn nó có không khí làm việc thật... [Chỉ tay]... Khách thấy cảnh mình cặm cụi họ cũng quý hơn.</div>
+        </div>
+        <div class="apple-list-item">
+          <div class="apple-list-item__bullet">2</div>
+          <div class="apple-list-item__content"><b>Lồng tiếng nhẹ nhàng (Voice-over):</b> Nếu đứng trước ống kính mà hay bị gượng, quên bài... thì mình cứ quay cảnh làm việc, rồi thu âm lời nói ghép vào sau. Vừa đỡ áp lực, vừa luyện được cách nhả chữ cho rõ ràng.</div>
+        </div>
+        <div class="apple-list-item">
+          <div class="apple-list-item__bullet">3</div>
+          <div class="apple-list-item__content"><b>Thủ thuật ngắt nhịp:</b> Lúc dựng trên CapCut, kết hợp với các hiệu ứng chuyển cảnh... ví dụ đoạn nào cần nghỉ, cho một cảnh massage mắt. Nó làm dịu mắt người xem ngay lập tức.</div>
+        </div>
+        <div class="apple-list-item">
+          <div class="apple-list-item__bullet">4</div>
+          <div class="apple-list-item__content"><b>Tích lũy giờ bay quen tay:</b> Cứ lên <i>ytuong.fedu.vn</i> lấy chủ đề, tập quay mặt nói (Talking head) tại bàn... Lắp đúng kịch bản bóc tách vào là mượt ngay. Làm nhiều khắc quen!</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 11. HARDWARE-ACCELERATED ZERO-JANK OBSERVER SCRIPT ═══ -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const observerOptions = {
+        root: null,
+        rootMargin: '0px 0px -40px 0px',
+        threshold: 0.1
+      };
+
+      const observer = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            obs.unobserve(entry.target);
+          }
+        });
+      }, observerOptions);
+
+      const animatedElements = document.querySelectorAll('.apple-reveal, .apple-card');
+      animatedElements.forEach(el => observer.observe(el));
+    });
+  </script>
+</body>
+</html>
