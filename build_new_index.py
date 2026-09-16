@@ -1,4 +1,6 @@
-<!DOCTYPE html>
+import re
+
+html_content = r"""<!DOCTYPE html>
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
@@ -38,23 +40,6 @@
             background-color: #ffffff; /* Zebra striping base */
             color: #191919;
             -webkit-font-smoothing: antialiased;
-        }
-
-        
-        @font-face {
-            font-family: 'FD Aeonik Extended';
-            src: local('FD Aeonik Extended'), local('FDAeonikExtended-Bold');
-            font-weight: 700;
-        }
-        @font-face {
-            font-family: 'FD Aeonik';
-            src: local('FD Aeonik'), local('FDAeonik-Bold');
-            font-weight: 600;
-        }
-        @font-face {
-            font-family: 'Tiempos Text';
-            src: local('Tiempos Text'), local('TiemposText-Regular');
-            font-weight: 400;
         }
 
         /* Borderless and clean */
@@ -115,7 +100,7 @@
         }
     </style>
 </head>
-<body class="min-h-screen flex flex-col selection:bg-gray-200 selection:text-black bg-white overflow-x-hidden">
+<body class="min-h-screen flex flex-col selection:bg-gray-200 selection:text-black bg-white">
 
     <!-- ================= GATEKEEPER LOCK SCREEN ================= -->
     <div id="gatekeeper-screen" class="fixed inset-0 z-[9999] bg-[#080a0f] text-slate-100 flex flex-col justify-between items-center px-4 py-8 sm:py-12 overflow-y-auto">
@@ -220,19 +205,19 @@
             <div class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="flex items-center justify-between h-14 sm:h-16">
                     <!-- Logo & Brand -->
-                    <div class="flex items-center space-x-3 min-w-0">
-                        <a href="https://go.fedu.vn" class="flex items-center gap-3 group min-w-0">
-                            <div class="w-8 h-8 rounded-full bg-black text-white flex items-center justify-center font-display font-black text-lg shadow-sm shrink-0">
+                    <div class="flex items-center space-x-3">
+                        <a href="https://go.fedu.vn" class="flex items-center gap-3 group">
+                            <div class="w-8 h-8 rounded-full bg-black text-white flex items-center justify-center font-display font-black text-lg shadow-sm">
                                 F
                             </div>
-                            <div class="flex items-center gap-2 truncate min-w-0">
-                                <span class="font-display font-bold text-lg sm:text-xl text-gray-900 tracking-tight truncate uppercase">TIÊU ĐIỂM</span>
+                            <div class="flex items-center gap-2">
+                                <span class="font-display font-bold text-lg sm:text-xl text-gray-900 tracking-tight">Tiêu Điểm Thực Chiến</span>
                             </div>
                         </a>
                     </div>
                     <!-- Search & Actions -->
-                    <div class="flex items-center gap-2 sm:gap-4 shrink-0">
-                        <div class="relative w-32 sm:w-64">
+                    <div class="flex items-center gap-3 sm:gap-4">
+                        <div class="relative w-44 sm:w-64">
                             <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-400">
                                 <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
                             </div>
@@ -261,7 +246,6 @@
                             <button class="topic-filter-btn w-full text-left px-3 py-2 rounded-lg text-gray-600 hover:bg-gray-100 transition-colors" data-category="script">📝 Kịch Bản</button>
                             <button class="topic-filter-btn w-full text-left px-3 py-2 rounded-lg text-gray-600 hover:bg-gray-100 transition-colors" data-category="broll">🎬 B-Roll</button>
                             <button class="topic-filter-btn w-full text-left px-3 py-2 rounded-lg text-gray-600 hover:bg-gray-100 transition-colors" data-category="science">🧠 Tâm Lý</button>
-                            <button class="topic-filter-btn w-full text-left px-3 py-2 rounded-lg text-gray-600 hover:bg-gray-100 transition-colors" data-category="camera">🎥 Góc Máy</button>
                             <button class="topic-filter-btn w-full text-left px-3 py-2 rounded-lg text-gray-600 hover:bg-gray-100 transition-colors" data-category="storytelling">🚀 Storytelling</button>
                             <button class="topic-filter-btn w-full text-left px-3 py-2 rounded-lg text-gray-600 hover:bg-gray-100 transition-colors" data-category="growth">💎 Landing Page</button>
                             <button class="topic-filter-btn w-full text-left px-3 py-2 rounded-lg text-gray-600 hover:bg-gray-100 transition-colors" data-category="other">📌 Chuyên Đề Khác</button>
@@ -276,16 +260,15 @@
             </aside>
 
             <!-- Mobile Navigation (Horizontal scroll) -->
-            <div class="lg:hidden flex items-center gap-2 overflow-x-auto no-scrollbar pb-2 border-b border-gray-200 text-sm mt-[-10px] pt-4 px-1">
+            <div class="lg:hidden flex items-center gap-2 overflow-x-auto no-scrollbar pb-2 border-b border-gray-200 text-sm">
                 <button class="topic-filter-btn active shrink-0 px-4 py-1.5 rounded-full text-xs font-semibold bg-gray-900 text-white" data-category="all">Tất cả</button>
                 <button class="topic-filter-btn shrink-0 px-4 py-1.5 rounded-full text-xs font-medium text-gray-600 bg-white border border-gray-200" data-category="casestudy">🏆 Case Study</button>
                 <button class="topic-filter-btn shrink-0 px-4 py-1.5 rounded-full text-xs font-medium text-gray-600 bg-white border border-gray-200" data-category="script">📝 Kịch Bản</button>
-                <button class="topic-filter-btn shrink-0 px-4 py-1.5 rounded-full text-xs font-medium text-gray-600 bg-white border border-gray-200" data-category="broll">🎬 B-Roll</button>
-                <button class="topic-filter-btn shrink-0 px-4 py-1.5 rounded-full text-xs font-medium text-gray-600 bg-white border border-gray-200" data-category="science">🧠 Tâm Lý</button>
+                <!-- Add others if needed -->
             </div>
 
             <!-- Middle Column: Main Feed (55%) -->
-            <div class="flex-grow max-w-3xl bg-white p-6 sm:p-8 rounded-none sm:rounded-2xl shadow-sm border border-gray-100 h-fit">
+            <div class="flex-grow max-w-3xl bg-white p-6 sm:p-8 rounded-none sm:rounded-2xl shadow-sm border border-gray-100">
                 
                 <!-- Section Title -->
                 <div class="flex items-center justify-between mb-6 pb-4 border-b-2 border-gray-900">
@@ -306,12 +289,12 @@
                 <div id="hero-featured" class="hidden mb-10 border-b border-gray-200 pb-10">
                     <div class="grid grid-cols-1 md:grid-cols-12 gap-8">
                         <!-- Headline Post (Left) -->
-                        <div class="md:col-span-7 lg:col-span-8 flex flex-col group">
+                        <div class="md:col-span-8 flex flex-col group">
                             <a id="hero-link" href="#" target="_blank" class="block space-y-3">
                                 <div class="img-zoom-box aspect-[16/9] bg-gray-100 rounded-lg overflow-hidden mb-3">
                                     <img id="hero-img" src="" alt="" class="w-full h-full object-cover">
                                 </div>
-                                <h3 id="hero-title" class="story-title text-2xl sm:text-[28px] font-bold font-serif text-gray-900">Tiêu đề Headline</h3>
+                                <h3 id="hero-title" class="story-title text-2xl sm:text-[28px] font-bold font-display text-gray-900">Tiêu đề Headline</h3>
                                 <p id="hero-excerpt" class="text-sm text-gray-600 font-serif leading-relaxed line-clamp-3">Mô tả bài viết...</p>
                                 <div class="text-[11px] text-gray-500 font-sans mt-2 flex items-center gap-1.5">
                                     <span id="hero-category" class="text-emerald-700 font-semibold uppercase tracking-wider">Danh mục</span>
@@ -322,7 +305,7 @@
                         </div>
                         
                         <!-- Top Stories List (Right) -->
-                        <div class="md:col-span-5 lg:col-span-4 flex flex-col space-y-6" id="hero-side-stories">
+                        <div class="md:col-span-4 flex flex-col space-y-6" id="hero-side-stories">
                             <!-- Injected via JS -->
                         </div>
                     </div>
@@ -351,22 +334,14 @@
             <!-- Right Column: Sidebar (25%) -->
             <aside class="hidden xl:block w-[300px] shrink-0">
                 <div class="sticky top-24">
-                    <h3 class="font-display font-bold text-lg text-gray-900 mb-4 pb-2 border-b border-gray-200">Tiêu Điểm Tháng</h3>
-                    <div id="sidebar-posts" class="space-y-4">
+                    <h3 class="font-display font-bold text-lg text-gray-900 mb-4 pb-2 border-b border-gray-200">Đọc Nhiều Nhất</h3>
+                    <div id="sidebar-posts" class="space-y-5">
                         <!-- Rendered by JS -->
                     </div>
                 </div>
             </aside>
             
         </main>
-        
-        <!-- Footer -->
-        <footer class="border-t border-gray-200 bg-white py-8 mt-auto text-center text-xs text-gray-500">
-            <div class="max-w-6xl mx-auto px-4 space-y-1">
-                <p class="font-bold text-gray-800 tracking-wider">VIDEO VIETNAM • HỆ THỐNG KỊCH BẢN & ĐÀO TẠO THỊ GIÁC CAO CẤP</p>
-                <p>© 2026 Nguyễn Đức Việt. Base on Google News UX.</p>
-            </div>
-        </footer>
     </div>
 
     <!-- Application Script -->
@@ -475,7 +450,7 @@
             try {
                 const date = new Date(dateString.replace(' ', 'T'));
                 if (isNaN(date.getTime())) return dateString.split(' ')[0] || 'Gần đây';
-                return `${String(date.getDate()).padStart(2, '0')}/${String(date.getMonth() + 1).padStart(2, '0')}/${date.getFullYear()}`;
+                return `${String(date.getDate()).padStart(2, '0')}/${String(date.getMonth() + 1).padStart(2, '0')}`;
             } catch (e) { return dateString.split(' ')[0] || 'Gần đây'; }
         }
 
@@ -562,14 +537,14 @@
             sideContainer.innerHTML = sidePosts.map(post => {
                 const url = `./${encodeURIComponent(post.filename)}`;
                 return `
-                <a href="${url}" target="_blank" class="group flex flex-row gap-4 items-center sm:items-start border-b border-gray-100 pb-5 last:border-0 last:pb-0 h-full">
+                <a href="${url}" target="_blank" class="group flex gap-4 items-start border-b border-gray-100 pb-4 last:border-0 last:pb-0">
                     <div class="flex-grow space-y-1">
-                        <h4 class="story-title text-[15px] font-bold font-serif text-gray-900 leading-tight">${post.title}</h4>
-                        <div class="text-[10px] text-gray-500 font-sans flex items-center gap-1 uppercase tracking-wider mt-1">
+                        <h4 class="story-title text-[15px] font-bold font-display text-gray-900 leading-tight">${post.title}</h4>
+                        <div class="text-[10px] text-gray-500 font-sans flex items-center gap-1 uppercase tracking-wider">
                             <span>${formatDateVN(post.updated_at)}</span>
                         </div>
                     </div>
-                    <div class="w-[72px] h-[72px] shrink-0 img-zoom-box bg-gray-100 rounded-md overflow-hidden self-center">
+                    <div class="w-16 h-16 shrink-0 img-zoom-box bg-gray-100 rounded-md overflow-hidden">
                         <img src="${post.cover_image}" alt="" class="w-full h-full object-cover">
                     </div>
                 </a>
@@ -597,7 +572,7 @@
                 const catInfo = CATEGORY_MAP[post.category_key] || CATEGORY_MAP['other'];
                 // Minimal meta
                 return `
-                <article class="group py-6 px-4 -mx-4 sm:mx-0 sm:px-6 sm:rounded-xl even:bg-[#ffffff] odd:bg-[#f8fafc] last:border-0">
+                <article class="group py-5 border-b border-gray-100 last:border-0">
                     <a href="${url}" target="_blank" class="flex flex-col sm:flex-row gap-5 items-start">
                         <!-- Content -->
                         <div class="flex-grow order-2 sm:order-1 space-y-2">
@@ -605,12 +580,14 @@
                                 <span class="font-bold uppercase tracking-wider ${catInfo.color}">${post.category_label}</span>
                                 <span class="text-gray-300">•</span>
                                 <span class="text-gray-500">${formatDateVN(post.updated_at)}</span>
+                                <span class="text-gray-300 hidden sm:inline">•</span>
+                                <span class="text-gray-500 hidden sm:inline">${post.read_time}</span>
                             </div>
-                            <h3 class="story-title text-[20px] font-bold font-serif text-gray-900 leading-snug">${post.title}</h3>
+                            <h3 class="story-title text-xl font-bold font-display text-gray-900 leading-snug">${post.title}</h3>
                             <p class="text-sm text-gray-600 font-serif leading-relaxed line-clamp-2">${post.excerpt}</p>
                         </div>
-                        <!-- Thumbnail 4:3 for desktop, full for mobile -->
-                        <div class="w-full sm:w-[160px] shrink-0 aspect-[16/9] sm:aspect-[4/3] img-zoom-box rounded-lg overflow-hidden bg-gray-100 order-1 sm:order-2">
+                        <!-- Thumbnail 1:1 or 4:3 for desktop, full for mobile -->
+                        <div class="w-full sm:w-32 lg:w-40 shrink-0 aspect-[16/9] sm:aspect-square img-zoom-box rounded-lg overflow-hidden bg-gray-100 order-1 sm:order-2">
                             <img src="${post.cover_image}" alt="${post.title}" loading="lazy" class="w-full h-full object-cover">
                         </div>
                     </a>
@@ -626,15 +603,15 @@
         // Render Sidebar (Just random 5 case studies to simulate "Đọc nhiều")
         function renderSidebar() {
             const sidebar = document.getElementById('sidebar-posts');
-            const topPosts = allPosts.filter(p => p.category_key === 'casestudy').slice(0, 7);
+            const topPosts = allPosts.filter(p => p.category_key === 'casestudy').slice(0, 5);
             sidebar.innerHTML = topPosts.map((post, idx) => {
                 const url = `./${encodeURIComponent(post.filename)}`;
                 return `
                 <a href="${url}" target="_blank" class="group flex gap-4 items-start border-b border-gray-100 py-3 last:border-0">
-                    <div class="text-2xl font-display font-black text-gray-200 w-6 shrink-0 pt-1">${idx + 1}</div>
+                    <div class="text-2xl font-display font-black text-gray-200 w-6 shrink-0">${idx + 1}</div>
                     <div class="space-y-1">
-                        <h4 class="story-title text-sm font-bold font-serif text-gray-900 leading-snug">${post.title}</h4>
-                        <div class="text-[10px] text-gray-400 font-sans uppercase tracking-wider">${formatDateVN(post.updated_at)}</div>
+                        <h4 class="story-title text-sm font-bold font-display text-gray-900 leading-snug">${post.title}</h4>
+                        <div class="text-[10px] text-gray-400 font-sans uppercase">${formatDateVN(post.updated_at)}</div>
                     </div>
                 </a>
                 `;
