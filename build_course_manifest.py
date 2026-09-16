@@ -15,9 +15,18 @@ from bs4 import BeautifulSoup
 from datetime import datetime
 
 COURSE_DIR = Path("/Users/vietmac/Documents/CODE/course")
+BAI_GIANG_DIR = Path("/Users/vietmac/Documents/CODE/BAI GIANG VIDEO")
 OUTPUT_MANIFEST = COURSE_DIR / "posts-manifest.json"
 
 CURATED_COVERS = {
+    'casestudy': [
+        'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=1200&auto=format&fit=crop&q=80',
+        'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=1200&auto=format&fit=crop&q=80',
+        'https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=1200&auto=format&fit=crop&q=80',
+        'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1200&auto=format&fit=crop&q=80',
+        'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=1200&auto=format&fit=crop&q=80',
+        'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=1200&auto=format&fit=crop&q=80'
+    ],
     'broll': [
         'https://images.unsplash.com/photo-1536240478700-b869070f9279?w=1200&auto=format&fit=crop&q=80',
         'https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?w=1200&auto=format&fit=crop&q=80',
@@ -54,21 +63,47 @@ CURATED_COVERS = {
         'https://images.unsplash.com/photo-1553877522-43269d4ea984?w=1200&auto=format&fit=crop&q=80'
     ],
     'other': [
-        'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=1200&auto=format&fit=crop&q=80'
+        'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=1200&auto=format&fit=crop&q=80',
+        'https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=1200&auto=format&fit=crop&q=80',
+        'https://images.unsplash.com/photo-1457369804613-52c61a468e7d?w=1200&auto=format&fit=crop&q=80'
     ]
 }
 
-def get_git_info(filename):
+def sync_folders():
+    """Tự động đồng bộ các file HTML mới giữa BAI GIANG VIDEO và course"""
+    if not BAI_GIANG_DIR.exists() or not COURSE_DIR.exists():
+        return
+    import shutil
+    # Copy missing files from BAI GIANG VIDEO to course
+    for f in BAI_GIANG_DIR.glob("*.html"):
+        dest = COURSE_DIR / f.name
+        if not dest.exists():
+            shutil.copy2(f, dest)
+            print(f"📋 Đã đồng bộ sang course: {f.name}")
+        elif f.stat().st_mtime > dest.stat().st_mtime:
+            shutil.copy2(f, dest)
+            print(f"🔄 Đã cập nhật sang course: {f.name}")
+
+def get_file_time(filename):
+    """Lấy thời gian cập nhật chính xác (ưu tiên mtime nếu file mới sửa gần đây)"""
+    file_path = COURSE_DIR / filename
+    mtime = file_path.stat().st_mtime if file_path.exists() else 0
+    mtime_str = datetime.fromtimestamp(mtime).strftime('%Y-%m-%d %H:%M:%S +0700')
+    
     try:
         res = subprocess.run(['git', 'log', '-1', '--format=%ci|%s', '--', filename], cwd=COURSE_DIR, stdout=subprocess.PIPE, text=True)
         out = res.stdout.strip()
         if out:
             date_str, msg = out.split('|', 1)
+            # Kiểm tra nếu file có thay đổi unstaged thì lấy mtime
+            status_res = subprocess.run(['git', 'status', '--porcelain', '--', filename], cwd=COURSE_DIR, stdout=subprocess.PIPE, text=True)
+            if status_res.stdout.strip():
+                return mtime_str, 'Vừa cập nhật'
             return date_str, msg
     except Exception:
         pass
-    mtime = os.path.getmtime(COURSE_DIR / filename)
-    return datetime.fromtimestamp(mtime).strftime('%Y-%m-%d %H:%M:%S +0700'), 'Local file'
+        
+    return mtime_str, 'Local file'
 
 def clean_title(title_raw, filename):
     if not title_raw:
@@ -81,13 +116,17 @@ def clean_title(title_raw, filename):
     title = title.strip()
     return title if len(title) > 3 else filename.replace('.html', '').replace('-', ' ').title()
 
-def categorize(filename, title, content):
-    lower = (filename + ' ' + title + ' ' + content[:800]).lower()
-    if 'broll' in lower or 'b-roll' in lower or 'cảnh trám' in lower:
+def categorize(filename, title, text_content):
+    lower = (filename + ' ' + title + ' ' + text_content[:5000]).lower()
+    
+    # 1. Case Study thực chiến học viên
+    if ('case' in lower or 'học viên' in lower or '7 màn' in lower or '7-man' in lower) and any(k in lower for k in ['chị hằng', 'hangbds', 'trang trương', 'trangtruong', 'đào trung nghĩa', 'daotrungnghia', 'quỳnh anh', 'quynhanhbep', 'linh dulin', 'linhdulin', 'hữu việt', 'huuviet', 'kiên phân bón', 'kienpb', 'chị kat', 'katbanh', 'bất động sản', 'tiệm bánh', 'dạy nghề', 'đồ bếp', 'tóc', 'salon', 'offline 3', 'offline 2', 'offline']):
+        return 'casestudy', '🏆 Case Study Thực Chiến'
+    elif 'broll' in lower or 'b-roll' in lower or 'cảnh trám' in lower:
         return 'broll', '🎬 B-Roll & Cảnh Trám'
     elif 'kich-ban' in lower or 'kịch bản' in lower or 'script' in lower or 'bat-dau' in lower or 'thu-vo-van' in lower:
         return 'script', '📝 Kịch Bản Thực Chiến'
-    elif 'tam-ly' in lower or 'than-kinh' in lower or 'cang-thang' in lower or 'science' in lower:
+    elif 'tam-ly' in lower or 'than-kinh' in lower or 'cang-thang' in lower or 'science' in lower or 'não bộ' in lower or 'dopamine' in lower or 'con kiến' in lower:
         return 'science', '🧠 Tâm Lý & Não Bộ'
     elif 'chuyen-canh' in lower or 'camera-motion' in lower or 'co-canh' in lower or 'goc-may' in lower or 'match-cut' in lower or 'loop' in lower:
         return 'camera', '🎥 Góc Máy & Chuyển Cảnh'
@@ -98,6 +137,7 @@ def categorize(filename, title, content):
     return 'other', '📌 Tài Liệu Chuyên Đề'
 
 def build_manifest():
+    sync_folders()
     files = glob.glob(os.path.join(COURSE_DIR, '*.html'))
     posts = []
 
@@ -117,6 +157,9 @@ def build_manifest():
         raw_title = soup.title.string if soup.title else (soup.h1.get_text(strip=True) if soup.h1 else '')
         title = clean_title(raw_title, name)
         
+        # Extract full plain text for accurate categorization
+        text_content = soup.get_text(separator=' ', strip=True)
+        
         # Extract excerpt
         p_tags = soup.find_all('p')
         excerpt = ''
@@ -135,7 +178,7 @@ def build_manifest():
         if len(excerpt) > 170:
             excerpt = excerpt[:167] + '...'
             
-        cat_key, cat_label = categorize(name, title, content)
+        cat_key, cat_label = categorize(name, title, text_content)
         
         # Find embedded image
         img_urls = re.findall(r'https?://[^\s\"\'\(\)<>]+\.(?:jpg|jpeg|png|webp)', content, re.I)
@@ -150,10 +193,10 @@ def build_manifest():
             pool = CURATED_COVERS.get(cat_key, CURATED_COVERS['other'])
             cover_img = pool[idx % len(pool)]
             
-        date_str, commit_msg = get_git_info(name)
+        date_str, commit_msg = get_file_time(name)
         
         # Estimation of read time
-        word_count = len(re.findall(r'\w+', soup.get_text()))
+        word_count = len(re.findall(r'\w+', text_content))
         read_mins = max(2, min(18, round(word_count / 170)))
         
         posts.append({

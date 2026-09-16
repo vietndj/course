@@ -279,6 +279,9 @@
                 <button class="topic-filter-btn active shrink-0 px-3.5 py-1 rounded-full text-xs font-semibold bg-black text-white transition-all shadow-sm" data-category="all">
                     Tất cả (<span id="count-all">0</span>)
                 </button>
+                <button class="topic-filter-btn shrink-0 px-3.5 py-1 rounded-full text-xs font-medium text-gray-600 bg-gray-100 hover:bg-gray-200 transition-all" data-category="casestudy">
+                    🏆 Case Study Thực Chiến (<span id="count-casestudy">0</span>)
+                </button>
                 <button class="topic-filter-btn shrink-0 px-3.5 py-1 rounded-full text-xs font-medium text-gray-600 bg-gray-100 hover:bg-gray-200 transition-all" data-category="broll">
                     🎬 B-Roll & Cảnh Trám (<span id="count-broll">0</span>)
                 </button>
@@ -296,6 +299,9 @@
                 </button>
                 <button class="topic-filter-btn shrink-0 px-3.5 py-1 rounded-full text-xs font-medium text-gray-600 bg-gray-100 hover:bg-gray-200 transition-all" data-category="growth">
                     💎 Landing & Kinh Doanh (<span id="count-growth">0</span>)
+                </button>
+                <button class="topic-filter-btn shrink-0 px-3.5 py-1 rounded-full text-xs font-medium text-gray-600 bg-gray-100 hover:bg-gray-200 transition-all" data-category="other">
+                    📌 Chuyên Đề Khác (<span id="count-other">0</span>)
                 </button>
             </div>
         </div>
@@ -513,8 +519,9 @@
 
         // Categories Configuration
         const CATEGORY_MAP = {
+            'casestudy': { label: '🏆 Case Study Thực Chiến', color: 'bg-emerald-50 text-emerald-800 border-emerald-200' },
             'broll': { label: '🎬 B-Roll & Cảnh Trám', color: 'bg-amber-50 text-amber-800 border-amber-200' },
-            'script': { label: '📝 Kịch Bản Thực Chiến', color: 'bg-emerald-50 text-emerald-800 border-emerald-200' },
+            'script': { label: '📝 Kịch Bản Thực Chiến', color: 'bg-teal-50 text-teal-800 border-teal-200' },
             'science': { label: '🧠 Tâm Lý & Não Bộ', color: 'bg-indigo-50 text-indigo-800 border-indigo-200' },
             'camera': { label: '🎥 Góc Máy & Chuyển Cảnh', color: 'bg-sky-50 text-sky-800 border-sky-200' },
             'storytelling': { label: '🚀 Xây Kênh & Story', color: 'bg-purple-50 text-purple-800 border-purple-200' },
@@ -610,7 +617,7 @@
         // Update Counter Badges
         function updateCategoryCounts() {
             document.getElementById('count-all').innerText = allPosts.length;
-            const counts = { broll: 0, script: 0, science: 0, camera: 0, storytelling: 0, growth: 0 };
+            const counts = { casestudy: 0, broll: 0, script: 0, science: 0, camera: 0, storytelling: 0, growth: 0, other: 0 };
             allPosts.forEach(p => {
                 if (counts[p.category_key] !== undefined) counts[p.category_key]++;
             });

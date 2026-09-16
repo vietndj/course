@@ -147,8 +147,16 @@ def push_all():
         print("\n1️⃣  Đang xuất bản các cuộc trò chuyện [Nhánh] sang HTML...")
         subprocess.run([sys.executable, str(export_script)], check=False)
 
-    # 2. Đẩy tài liệu bài giảng
+    # 2. Đẩy tài liệu bài giảng & Cập nhật trang chủ manifest
     print("\n2️⃣  Đang kiểm tra và đẩy tài liệu Bài Giảng...")
+    manifest_script = COURSE_REPO / "build_course_manifest.py"
+    if manifest_script.exists():
+        subprocess.run([sys.executable, str(manifest_script)], cwd=str(COURSE_REPO), check=False)
+        if (COURSE_REPO / "posts-manifest.json").exists() and BAI_GIANG_REPO.exists():
+            shutil.copy2(COURSE_REPO / "posts-manifest.json", BAI_GIANG_REPO / "posts-manifest.json")
+        if (COURSE_REPO / "index.html").exists() and BAI_GIANG_REPO.exists():
+            shutil.copy2(COURSE_REPO / "index.html", BAI_GIANG_REPO / "index.html")
+
     now_str = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     for rpath in [COURSE_REPO, BAI_GIANG_REPO]:
         if rpath.exists() and (rpath / ".git").exists():
