@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>CỖ MÁY DOPAMINE TRÍ TUỆ</title>
+  
+  <!-- Favicon System (Chuẩn Chữ VIDEO - Cinema REC Monogram) -->
+  <link rel="icon" type="image/svg+xml" href="./favicon.svg">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%230B0F19'/%3E%3Crect x='1.5' y='1.5' width='61' height='61' rx='14.5' fill='none' stroke='%23FFFFFF' stroke-opacity='0.14' stroke-width='1.5'/%3E%3Ctext x='25' y='25' text-anchor='middle' dominant-baseline='central' font-family='system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif' font-weight='900' font-size='21.5' letter-spacing='2px' fill='%23FFFFFF'%3EVI%3C/text%3E%3Ccircle cx='47' cy='25' r='7' fill='%23EF4444' fill-opacity='0.25'/%3E%3Ccircle cx='47' cy='25' r='4.2' fill='%23EF4444'/%3E%3Ccircle cx='47' cy='25' r='1.6' fill='%23FFFFFF' opacity='0.9'/%3E%3Ctext x='32' y='46' text-anchor='middle' dominant-baseline='central' font-family='system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif' font-weight='900' font-size='19' letter-spacing='1.2px' fill='%23F8FAFC'%3EDEO%3C/text%3E%3C/svg%3E">
+<!-- Font Definitions & System Fallbacks -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&family=Playfair+Display:ital,wght@1,400;1,600&display=swap" rel="stylesheet">
+  
+  <style>
+    /* ═══ 1. FONT DECLARATIONS (Local Repo, System & CDN Fallbacks) ═══ */
+    @font-face {
+      font-family: 'FD Aeonik Extended';
+      src: url('./fonts/FDAeonikExtended-Bold.woff2?v=20260911b') format('woff2'),
+           url('https://font.fedu.vn/fonts/FDAeonikExtended-Bold.woff2?v=20260911b') format('woff2'),
+           url('./fonts/FDAeonikExtended-Bold.ttf?v=20260911b') format('truetype'),
+           url('/Users/vietmac/Library/Fonts/FDAeonikExtended-Bold.otf') format('opentype'),
+           local('FD Aeonik Extended Bold');
+      font-weight: 700;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'FD Aeonik';
+      src: url('./fonts/FDAeonikRegular.ttf') format('truetype'),
+           url('./assets/fonts/FDAeonikRegular.ttf') format('truetype'),
+           url('/Users/vietmac/Library/Fonts/FDAeonikRegular.ttf') format('truetype'),
+           local('FD Aeonik Regular'), local('FDAeonikRegular');
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'FD Aeonik';
+      src: url('./fonts/FDAeonikExtended-SemiBold.woff2?v=20260911b') format('woff2'),
+           url('https://font.fedu.vn/fonts/FDAeonikExtended-SemiBold.woff2?v=20260911b') format('woff2'),
+           url('./fonts/FDAeonikExtended-SemiBold.ttf?v=20260911b') format('truetype'),
+           url('/Users/vietmac/Library/Fonts/FDAeonikExtended-SemiBold.otf') format('opentype'),
+           local('FD Aeonik SemiBold');
+      font-weight: 600;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'FD Aeonik';
+      src: url('./fonts/FDAeonikBold.ttf') format('truetype'),
+           url('/Users/vietmac/Library/Fonts/FDAeonikBold.ttf') format('truetype'),
+           local('FD Aeonik Bold'), local('FDAeonikBold');
+      font-weight: 700;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Tiempos Text';
+      src: url('./fonts/FDTiemposText-Regular.otf') format('opentype'),
+           url('/Users/vietmac/Library/Fonts/FDTiemposText-Regular.otf') format('opentype'),
+           local('Tiempos Text Regular'), local('FDTiemposText-Regular');
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Tiempos Text';
+      src: url('./fonts/FDTiemposText-Medium.otf') format('opentype'),
+           url('/Users/vietmac/Library/Fonts/FDTiemposText-Medium.otf') format('opentype'),
+           local('Tiempos Text Medium'), local('FDTiemposText-Medium');
+      font-weight: 500;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Tiempos Text';
+      src: url('./fonts/FDTiemposText-RegularItalic.otf') format('opentype'),
+           url('/Users/vietmac/Library/Fonts/FDTiemposText-RegularItalic.otf') format('opentype'),
+           local('Tiempos Text Regular Italic'), local('FDTiemposText-RegularItalic');
+      font-weight: 400;
+      font-style: italic;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'SVN-Integral';
+      src: url('./fonts/SVN-IntegralCF-Regular.ttf') format('truetype'),
+           url('./assets/fonts/SVN-IntegralCF-Regular.ttf') format('truetype'),
+           local('SVN-Integral CF Regular');
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    /* ═══ 2. DESIGN TOKENS (30ngayviral Light Theme) ═══ */
+    :root {
+      --cl-bg:          #ffffff;
+      --cl-tint:        #f8fafc;
+      --cl-card:        #ffffff;
+      --cl-card-muted:  #f1f5f9;
+      --cl-accent:      #1a73e8;
+      --cl-accent-tint: rgba(26, 115, 232, 0.08);
+      --cl-accent-text: #ffffff;
+      --cl-line:        rgba(0, 0, 0, 0.06);
+      --cl-line-strong: rgba(0, 0, 0, 0.12);
+      --cl-text-base:   #090d16;
+      --cl-text-body:   #0f172a;
+      --cl-text-muted:  #475569;
+      --cl-danger:      #dc2626;
+      --cl-success:     #16a34a;
+
+      /* Radii */
+      --cl-radius-lg:   24px;
+      --cl-radius-md:   16px;
+      --cl-radius-sm:   10px;
+      --cl-radius-full: 9999px;
+
+      /* Typography Stacks */
+      --font-display-short: 'FD Aeonik Extended', 'SVN-Integral', 'Inter', -apple-system, sans-serif;
+      --font-display-long:  'FD Aeonik', 'FD Aeonick', 'Inter', -apple-system, sans-serif;
+      --font-body:          'Tiempos Text', 'FD Aeonik', 'Inter', Georgia, serif;
+      --font-editorial:     'Tiempos Text', Georgia, serif;
+      --font-mono:          'JetBrains Mono', 'SVN-Sonoma', monospace;
+
+      /* Apple Motion Physics Curves */
+      --apple-spring: cubic-bezier(0.25, 1, 0.35, 1.05);
+      --apple-ease:   cubic-bezier(0.16, 1, 0.3, 1);
+      --apple-hover:  cubic-bezier(0.2, 0.9, 0.3, 1.08);
+    }
+
+    /* ═══ 3. RESET & BASE ═══ */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background-color: var(--cl-bg);
+      color: var(--cl-text-base);
+      font-family: var(--font-body);
+    }
+
+    body {
+      overflow-x: clip;
+      min-height: 100vh;
+      line-height: 1.7;
+    }
+
+    /* ═══ 4. VIEWPORT-FRAMED ZEBRA SECTIONS ═══ */
+    .cl-zebra-section {
+      width: 100%;
+      min-height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      padding: 90px 24px;
+      box-sizing: border-box;
+      transition: background-color 0.3s ease;
+    }
+
+    .cl-zebra--light {
+      background-color: var(--cl-bg);
+    }
+
+    .cl-zebra--tint {
+      background-color: var(--cl-tint);
+      border-top: 1px solid var(--cl-line);
+      border-bottom: 1px solid var(--cl-line);
+    }
+
+    .cl-sec-container {
+      width: 100%;
+      max-width: 840px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .cl-sec-container--wide {
+      max-width: 980px;
+    }
+
+    .cl-sec-container--narrow {
+      max-width: 720px;
+    }
+
+    /* ═══ 5. TYPOGRAPHY & HEADINGS ═══ */
+    .cl-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-mono);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--cl-accent);
+      background: var(--cl-accent-tint);
+      border: 1px solid rgba(26, 115, 232, 0.15);
+      padding: 7px 18px;
+      border-radius: var(--cl-radius-full);
+      margin-bottom: 24px;
+    }
+
+    .title-short {
+      font-family: var(--font-display-short);
+      font-weight: 700;
+      font-size: clamp(28px, 4.5vw, 48px);
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+      text-transform: uppercase;
+      color: var(--cl-text-base);
+      margin-bottom: 24px;
+      text-wrap: balance;
+    }
+
+    .title-long {
+      font-family: var(--font-display-long);
+      font-weight: 600;
+      font-size: clamp(24px, 3.8vw, 40px);
+      line-height: 1.35;
+      letter-spacing: -0.015em;
+      color: var(--cl-text-base);
+      margin-bottom: 24px;
+      text-wrap: balance;
+    }
+
+    .editorial-hook {
+      font-family: var(--font-editorial);
+      font-style: italic;
+      font-size: clamp(18px, 2.4vw, 22px);
+      line-height: 1.6;
+      color: var(--cl-accent);
+      margin-bottom: 28px;
+      max-width: 680px;
+    }
+
+    .cl-body {
+      font-size: clamp(16px, 1.7vw, 18px);
+      color: var(--cl-text-body);
+      line-height: 1.75;
+      margin-bottom: 32px;
+      max-width: 700px;
+    }
+
+    /* ═══ 6. APPLE MOTION ═══ */
+    .apple-reveal {
+      opacity: 0;
+      transform: translate3d(0, 26px, 0);
+      transition: 
+        opacity 0.5s var(--apple-ease),
+        transform 0.58s var(--apple-spring);
+      transition-delay: var(--delay, 0ms);
+      will-change: opacity, transform;
+      backface-visibility: hidden;
+    }
+
+    .apple-reveal.is-visible {
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
+      will-change: auto;
+    }
+
+    .apple-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+      width: 100%;
+      margin-top: 16px;
+    }
+
+    .apple-card {
+      background: var(--cl-card);
+      border: 1px solid var(--cl-line);
+      border-radius: var(--cl-radius-lg);
+      padding: 32px 28px;
+      text-align: left;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+      opacity: 0;
+      transform: translate3d(0, 22px, 0) scale(0.985);
+      transition:
+        opacity 0.45s var(--apple-ease),
+        transform 0.52s var(--apple-spring),
+        box-shadow 0.35s ease,
+        border-color 0.25s ease;
+      transition-delay: var(--card-delay, 0ms);
+      will-change: opacity, transform;
+    }
+
+    .is-visible .apple-card,
+    .apple-card.is-visible {
+      opacity: 1;
+      transform: translate3d(0, 0, 0) scale(1);
+      will-change: auto;
+    }
+
+    .apple-card:hover {
+      transform: translate3d(0, -6px, 0) scale(1.01);
+      border-color: rgba(26, 115, 232, 0.35);
+      box-shadow: 0 16px 36px -10px rgba(0, 0, 0, 0.08), 0 0 24px rgba(26, 115, 232, 0.06);
+    }
+
+    .apple-card__icon {
+      font-size: 28px;
+      margin-bottom: 16px;
+      display: inline-block;
+    }
+
+    .apple-card__title {
+      font-family: var(--font-display-long);
+      font-weight: 600;
+      font-size: 20px;
+      color: var(--cl-text-base);
+      margin-bottom: 10px;
+    }
+    
+    .apple-card__title--extended {
+      font-family: var(--font-display-short);
+      font-weight: 700;
+      font-size: 18px;
+      letter-spacing: -0.01em;
+      text-transform: uppercase;
+      color: var(--cl-text-base);
+      margin-bottom: 10px;
+    }
+
+    .apple-card__desc {
+      font-size: 15.5px;
+      color: var(--cl-text-body);
+      line-height: 1.65;
+    }
+
+    /* ═══ 7. LIST & KEYPOINT ITEMS ═══ */
+    .apple-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      width: 100%;
+      max-width: 680px;
+      margin: 0 auto 32px;
+      text-align: left;
+    }
+
+    .apple-list-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      background: #ffffff;
+      padding: 18px 22px;
+      border-radius: var(--cl-radius-md);
+      border: 1px solid var(--cl-line);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+      transition: transform 0.25s ease, border-color 0.25s ease;
+    }
+
+    .cl-zebra--light .apple-list-item {
+      background: var(--cl-tint);
+    }
+
+    .apple-list-item:hover {
+      transform: translateX(4px);
+      border-color: var(--cl-accent);
+    }
+
+    .apple-list-item__bullet {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--cl-accent-tint);
+      color: var(--cl-accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .apple-list-item__content {
+      font-size: 16.5px;
+      color: var(--cl-text-body);
+      line-height: 1.6;
+    }
+
+    /* ═══ 8. CTA BUTTON ═══ */
+    .cl-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background: var(--cl-accent);
+      color: var(--cl-accent-text);
+      font-family: var(--font-body);
+      font-weight: 700;
+      font-size: 16.5px;
+      letter-spacing: 0.02em;
+      padding: 18px 44px;
+      border-radius: var(--cl-radius-md);
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 8px 24px rgba(26, 115, 232, 0.25);
+      transition: transform 0.22s var(--apple-spring), box-shadow 0.22s ease, opacity 0.2s ease;
+    }
+
+    .cl-btn:hover {
+      transform: translateY(-3px) scale(1.015);
+      box-shadow: 0 14px 36px rgba(26, 115, 232, 0.35);
+      opacity: 0.96;
+    }
+
+    /* ═══ 9. SCROLL DOWN HINT ═══ */
+    .cl-scroll-hint {
+      position: absolute;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--cl-text-muted);
+      opacity: 0.7;
+      animation: bounce 2s infinite ease-in-out;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translate(-50%, 0); }
+      50% { transform: translate(-50%, 8px); }
+    }
+
+    @media (max-width: 768px) {
+      .cl-zebra-section {
+        padding: 64px 20px;
+      }
+      .apple-cards-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- KHỐI 1: HERO SECTION (LIGHT) -->
+  <section class="cl-zebra-section cl-zebra--light" id="sec-hero">
+    <div class="cl-sec-container apple-reveal">
+      <div class="cl-badge">01 / BẢN CHẤT CỖ MÁY</div>
+      <h1 class="title-short">CỖ MÁY DOPAMINE</h1>
+      <p class="editorial-hook">"Thời đại này, Khoe Mẽ là tự sát! Hãy đập bỏ bức tường giấu nghề và xây một CĂN BẾP KÍNH."</p>
+      <p class="cl-body">Phát tặng trải nghiệm vi mô bằng "Chiếc thìa nếm thử" và khóa chặt niềm tin bằng khoa học thần kinh qua hệ thống phân phối 90/10.</p>
+      <a href="#sec-nhanh-phai" class="cl-btn">GIẢI PHẪU CẤU TRÚC →</a>
+    </div>
+    <div class="cl-scroll-hint">
+      <span>Cuộn khám phá</span>
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 13l5 5 5-5M7 6l5 5 5-5"/></svg>
+    </div>
+  </section>
+
+  <!-- KHỐI 2: 3 NHÁT BÚA TÂM LÝ (TINT) -->
+  <section class="cl-zebra-section cl-zebra--tint" id="sec-nhanh-phai">
+    <div class="cl-sec-container cl-sec-container--wide apple-reveal">
+      <div class="cl-badge">02 / TRỤ CỘT TRÍ TUỆ</div>
+      <h2 class="title-short">3 NHÁT BÚA TÂM LÝ</h2>
+      <p class="editorial-hook">"Đây là loại Dopamine đắt tiền nhất của não bộ - Dopamine Khai sáng (Aha Moment)."</p>
+      <p class="cl-body">Khách hàng không bao giờ trả tiền cho một người chỉ làm họ vui mắt. Họ trả tiền cho sự kính trọng khi được khai sáng nguyên lý.</p>
+      
+      <div class="apple-cards-grid">
+        <div class="apple-card" style="--card-delay: 0ms;">
+          <div class="apple-card__icon">🎭</div>
+          <h3 class="apple-card__title--extended">HỘP 1: BÓC MẶT NẠ</h3>
+          <p class="apple-card__desc">Đâm xuyên thể diện tầng 2.5. Đập vỡ cái khiên phòng thủ của khách hàng, ép não họ phải mở cửa để đối diện sự thật.</p>
+        </div>
+        <div class="apple-card" style="--card-delay: 100ms;">
+          <div class="apple-card__icon">🥄</div>
+          <h3 class="apple-card__title--extended">HỘP 2: NẾM THỬ</h3>
+          <p class="apple-card__desc">Dội bom kiến thức vi mô tốc độ cao. Kích hoạt Dopamine Khai sáng giúp họ giải tỏa bế tắc ngay lập tức.</p>
+        </div>
+        <div class="apple-card" style="--card-delay: 200ms;">
+          <div class="apple-card__icon">⚖️</div>
+          <h3 class="apple-card__title--extended">QUY LUẬT 90/10</h3>
+          <p class="apple-card__desc">Bảo chứng quyền lực. 90% đám đông rảnh rỗi sẽ cày view lan tỏa, 10% khách VIP choáng ngợp và tự mang tiền đến giao cho bạn.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- KHỐI 3: HỢP NHẤT TOÀN CỤC (LIGHT) -->
+  <section class="cl-zebra-section cl-zebra--light" id="sec-hop-nhat">
+    <div class="cl-sec-container apple-reveal">
+      <div class="cl-badge">03 / SỰ TÍCH LŨY TỰ NGUYỆN</div>
+      <h2 class="title-long">Cơ Chế Khóa Chặt Niềm Tin Đủ 7 Giờ</h2>
+      <p class="editorial-hook">"Khi kim đồng hồ điểm 7h, sự đề phòng người lạ bị xóa sổ hoàn toàn."</p>
+
+      <div class="apple-list">
+        <div class="apple-list-item">
+          <div class="apple-list-item__bullet">✓</div>
+          <div class="apple-list-item__content"><b>Bánh răng Trái (Thỏa mãn Thị giác):</b> Hình ảnh mượt mà, cắt cảnh dồn dập giúp MẮT khách hàng không bị mỏi. Nó giữ khách NGỒI LẠI mà không sinh ra ma sát.</div>
+        </div>
+        <div class="apple-list-item">
+          <div class="apple-list-item__bullet">✓</div>
+          <div class="apple-list-item__content"><b>Bánh răng Phải (Thỏa mãn Trí tuệ):</b> Mới là CHẤT GÂY NGHIỆN. Cứ mỗi video gỡ 1 nút thắt, não bị ghiền cái Dopamine Khai sáng. Họ khao khát xem tiếp.</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- KHỐI 4: LỜI DẶN DÒ (TINT) -->
+  <section class="cl-zebra-section cl-zebra--tint" id="sec-wisdom">
+    <div class="cl-sec-container cl-sec-container--narrow apple-reveal">
+      <div class="cl-badge">KẾT LUẬN TỪ ANH VIỆT</div>
+      <blockquote class="editorial-hook" style="font-size: clamp(20px, 3vw, 26px); border-left: 4px solid var(--cl-accent); padding-left: 24px; text-align: left;">
+        "Tuyệt đối không xui khách tự làm ở nhà (Không dạy nghề). Sự kết hợp của tốc độ Edit và lượng từ khóa dày đặc sẽ biến lĩnh vực của bạn thành một thứ vĩ đại, phức tạp."
+      </blockquote>
+      <p class="cl-body" style="text-align: left; margin-top: 16px;">— Đúc kết từ nghệ thuật "Chuyên gia mở két sắt 10 tỷ".</p>
+    </div>
+  </section>
+
+  <!-- ZERO-JANK SCRIPT -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const observer = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            obs.unobserve(entry.target);
+          }
+        });
+      }, { rootMargin: '0px 0px -40px 0px', threshold: 0.1 });
+
+      document.querySelectorAll('.apple-reveal, .apple-card').forEach(el => observer.observe(el));
+    });
+  </script>
+</body>
+</html>
