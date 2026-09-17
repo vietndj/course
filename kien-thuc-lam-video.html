@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Kiến Thức Làm Video Quảng Cáo | VIDEO COURSE</title>
+  
+  <link rel="icon" type="image/svg+xml" href="./favicon.svg">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%230B0F19'/%3E%3Crect x='1.5' y='1.5' width='61' height='61' rx='14.5' fill='none' stroke='%23FFFFFF' stroke-opacity='0.14' stroke-width='1.5'/%3E%3Ctext x='25' y='25' text-anchor='middle' dominant-baseline='central' font-family='system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif' font-weight='900' font-size='21.5' letter-spacing='2px' fill='%23FFFFFF'%3EVI%3C/text%3E%3Ccircle cx='47' cy='25' r='7' fill='%23EF4444' fill-opacity='0.25'/%3E%3Ccircle cx='47' cy='25' r='4.2' fill='%23EF4444'/%3E%3Ccircle cx='47' cy='25' r='1.6' fill='%23FFFFFF' opacity='0.9'/%3E%3Ctext x='32' y='46' text-anchor='middle' dominant-baseline='central' font-family='system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif' font-weight='900' font-size='19' letter-spacing='1.2px' fill='%23F8FAFC'%3EDEO%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&family=Playfair+Display:ital,wght@1,400;1,600&display=swap" rel="stylesheet">
+  
+  <style>
+    /* ═══ 1. FONT DECLARATIONS ═══ */
+    @font-face {
+      font-family: 'FD Aeonik Extended'; text-transform: uppercase;
+      src: url('./fonts/FDAeonikExtended-Bold.woff2?v=20260911b') format('woff2'),
+           url('https://font.fedu.vn/fonts/FDAeonikExtended-Bold.woff2?v=20260911b') format('woff2');
+      font-weight: 700; font-style: normal; font-display: swap;
+    }
+    @font-face {
+      font-family: 'FD Aeonik';
+      src: url('./fonts/FDAeonikRegular.ttf') format('truetype');
+      font-weight: 400; font-style: normal; font-display: swap;
+    }
+    @font-face {
+      font-family: 'FD Aeonik';
+      src: url('./fonts/FDAeonikExtended-SemiBold.woff2?v=20260911b') format('woff2');
+      font-weight: 600; font-style: normal; font-display: swap;
+    }
+    @font-face {
+      font-family: 'Tiempos Text';
+      src: url('./fonts/FDTiemposText-Regular.otf') format('opentype');
+      font-weight: 400; font-style: normal; font-display: swap;
+    }
+    @font-face {
+      font-family: 'Tiempos Text';
+      src: url('./fonts/FDTiemposText-Medium.otf') format('opentype');
+      font-weight: 500; font-style: normal; font-display: swap;
+    }
+    @font-face {
+      font-family: 'Tiempos Text';
+      src: url('./fonts/FDTiemposText-RegularItalic.otf') format('opentype');
+      font-weight: 400; font-style: italic; font-display: swap;
+    }
+
+    /* ═══ 2. DESIGN TOKENS ═══ */
+    :root {
+      --cl-bg:          #ffffff;
+      --cl-tint:        #f8fafc;
+      --cl-card:        #ffffff;
+      --cl-accent:      #1a73e8;
+      --cl-accent-tint: rgba(26, 115, 232, 0.08);
+      --cl-accent-text: #ffffff;
+      --cl-line:        rgba(0, 0, 0, 0.06);
+      --cl-text-base:   #090d16;
+      --cl-text-body:   #0f172a;
+      --cl-text-muted:  #475569;
+      --cl-radius-lg:   24px;
+      --cl-radius-md:   16px;
+      --cl-radius-full: 9999px;
+      --font-display-short: 'FD Aeonik Extended', -apple-system, sans-serif;
+      --font-display-long:  'FD Aeonik', -apple-system, sans-serif;
+      --font-body:          'Tiempos Text', serif;
+      --font-editorial:     'Tiempos Text', serif;
+      --font-mono:          'JetBrains Mono', monospace;
+      --apple-spring: cubic-bezier(0.25, 1, 0.35, 1.05);
+      --apple-ease:   cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* ═══ 3. RESET & BASE ═══ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; -webkit-font-smoothing: antialiased; }
+    html { scroll-behavior: smooth; background-color: var(--cl-bg); color: var(--cl-text-base); font-family: var(--font-body); }
+    body { overflow-x: clip; min-height: 100vh; line-height: 1.7; }
+
+    /* ═══ 4. VIEWPORT-FRAMED ZEBRA SECTIONS ═══ */
+    .cl-zebra-section { width: 100%; min-height: 100dvh; display: flex; flex-direction: column; justify-content: center; align-items: center; position: relative; padding: 90px 24px; box-sizing: border-box; }
+    .cl-zebra--light { background-color: var(--cl-bg); }
+    .cl-zebra--tint { background-color: var(--cl-tint); border-top: 1px solid var(--cl-line); border-bottom: 1px solid var(--cl-line); }
+    .cl-sec-container { width: 100%; max-width: 840px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; text-align: center; position: relative; z-index: 2; }
+    .cl-sec-container--wide { max-width: 980px; }
+
+    /* ═══ 5. TYPOGRAPHY ═══ */
+    .cl-badge { display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-mono); font-size: 13px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--cl-accent); background: var(--cl-accent-tint); border: 1px solid rgba(26, 115, 232, 0.15); padding: 7px 18px; border-radius: var(--cl-radius-full); margin-bottom: 24px; }
+    .title-short { font-family: var(--font-display-short); text-transform: uppercase; font-weight: 700; font-size: clamp(28px, 4.5vw, 48px); line-height: 1.15; letter-spacing: -0.01em; color: var(--cl-text-base); margin-bottom: 24px; text-wrap: balance; }
+    .title-long { font-family: var(--font-display-long); font-weight: 600; font-size: clamp(24px, 3.8vw, 40px); line-height: 1.35; letter-spacing: -0.015em; color: var(--cl-text-base); margin-bottom: 24px; text-wrap: balance; }
+    .editorial-hook { font-family: var(--font-editorial); font-style: italic; font-size: clamp(18px, 2.4vw, 22px); line-height: 1.6; color: var(--cl-accent); margin-bottom: 28px; max-width: 680px; }
+    .cl-body { font-size: clamp(16px, 1.7vw, 18px); color: var(--cl-text-body); line-height: 1.75; margin-bottom: 32px; max-width: 700px; }
+
+    /* ═══ 6. APPLE MOTION ═══ */
+    .apple-reveal { opacity: 0; transform: translate3d(0, 26px, 0); transition: opacity 0.5s var(--apple-ease), transform 0.58s var(--apple-spring); transition-delay: var(--delay, 0ms); will-change: opacity, transform; backface-visibility: hidden; }
+    .apple-reveal.is-visible { opacity: 1; transform: translate3d(0, 0, 0); will-change: auto; }
+    .apple-cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; width: 100%; margin-top: 16px; }
+    .apple-card { background: var(--cl-card); border: 1px solid var(--cl-line); border-radius: var(--cl-radius-lg); padding: 32px 28px; text-align: left; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03); opacity: 0; transform: translate3d(0, 22px, 0) scale(0.985); transition: opacity 0.45s var(--apple-ease), transform 0.52s var(--apple-spring), box-shadow 0.35s ease, border-color 0.25s ease; transition-delay: var(--card-delay, 0ms); will-change: opacity, transform; }
+    .is-visible .apple-card { opacity: 1; transform: translate3d(0, 0, 0) scale(1); will-change: auto; }
+    .apple-card:hover { transform: translate3d(0, -6px, 0) scale(1.01); border-color: rgba(26, 115, 232, 0.35); box-shadow: 0 16px 36px -10px rgba(0, 0, 0, 0.08); }
+    .apple-card__icon { font-size: 28px; margin-bottom: 16px; display: inline-block; }
+    .apple-card__title { font-family: var(--font-display-long); font-weight: 600; font-size: 20px; color: var(--cl-text-base); margin-bottom: 10px; }
+    .apple-card__title--extended { font-family: var(--font-display-short); text-transform: uppercase; font-weight: 700; font-size: 18px; letter-spacing: -0.01em; color: var(--cl-text-base); margin-bottom: 10px; }
+    .apple-card__desc { font-size: 15.5px; color: var(--cl-text-body); line-height: 1.65; }
+
+    /* ═══ 7. LIST ITEMS ═══ */
+    .apple-list { display: flex; flex-direction: column; gap: 16px; width: 100%; max-width: 680px; margin: 0 auto 32px; text-align: left; }
+    .apple-list-item { display: flex; align-items: flex-start; gap: 16px; background: #ffffff; padding: 18px 22px; border-radius: var(--cl-radius-md); border: 1px solid var(--cl-line); transition: transform 0.25s ease, border-color 0.25s ease; }
+    .apple-list-item:hover { transform: translateX(4px); border-color: var(--cl-accent); }
+    .apple-list-item__bullet { width: 28px; height: 28px; border-radius: 50%; background: var(--cl-accent-tint); color: var(--cl-accent); display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700; flex-shrink: 0; margin-top: 2px; }
+    .apple-list-item__content { font-size: 16.5px; color: var(--cl-text-body); line-height: 1.6; }
+
+    /* ═══ 8. CTA BUTTON ═══ */
+    .cl-btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; background: var(--cl-accent); color: var(--cl-accent-text); font-family: var(--font-body); font-weight: 700; font-size: 16.5px; padding: 18px 44px; border-radius: var(--cl-radius-md); text-decoration: none; border: none; cursor: pointer; transition: transform 0.22s var(--apple-spring), box-shadow 0.22s ease; }
+    .cl-btn:hover { transform: translateY(-3px) scale(1.015); box-shadow: 0 14px 36px rgba(26, 115, 232, 0.35); }
+
+    .cl-scroll-hint { position: absolute; bottom: 24px; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 6px; font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; color: var(--cl-text-muted); opacity: 0.7; animation: bounce 2s infinite ease-in-out; }
+    @keyframes bounce { 0%, 100% { transform: translate(-50%, 0); } 50% { transform: translate(-50%, 8px); } }
+
+    @media (max-width: 768px) {
+      .cl-zebra-section { padding: 64px 20px; }
+      .apple-cards-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- KHỐI 1: HERO SECTION -->
+  <section class="cl-zebra-section cl-zebra--light" id="sec-hero">
+    <div class="cl-sec-container apple-reveal">
+      <div class="cl-badge">TỔNG QUAN KIẾN THỨC</div>
+      <h1 class="title-short">LÀM VIDEO QUẢNG CÁO</h1>
+      <p class="editorial-hook">"Phân biệt rõ ràng đâu là video bán hàng, đâu là video xây dựng niềm tin."</p>
+      <p class="cl-body">Hệ thống kiến thức toàn diện để sản xuất video quảng cáo thực chiến, bóc tách tâm lý khách hàng và giữ chân họ bằng giá trị thật.</p>
+      <a href="#sec-phan-biet" class="cl-btn">KHÁM PHÁ NGAY →</a>
+    </div>
+    <div class="cl-scroll-hint">
+      <span>Cuộn khám phá</span>
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 13l5 5 5-5M7 6l5 5 5-5"/></svg>
+    </div>
+  </section>
+
+  <!-- KHỐI 2: PHÂN BIỆT -->
+  <section class="cl-zebra-section cl-zebra--tint" id="sec-phan-biet">
+    <div class="cl-sec-container cl-sec-container--wide apple-reveal">
+      <div class="cl-badge">01 / PHÂN BIỆT CỐT LÕI</div>
+      <h2 class="title-short">QUẢNG CÁO VS NIỀM TIN</h2>
+      <p class="cl-body">Sự khác biệt lớn nhất nằm ở đích đến của quá trình bóc tách tâm lý.</p>
+      
+      <div class="apple-cards-grid">
+        <div class="apple-card" style="--card-delay: 0ms;">
+          <div class="apple-card__icon">💰</div>
+          <h3 class="apple-card__title--extended">VIDEO QUẢNG CÁO</h3>
+          <p class="apple-card__desc">Bóc tách nỗi đau của khách hàng theo hướng <b>đưa chiếc chìa khóa giải quyết vấn đề</b>. Mục tiêu cuối cùng là giới thiệu sản phẩm/dịch vụ như một giải pháp thực chiến, trực tiếp và đo lường được hiệu quả.</p>
+        </div>
+        <div class="apple-card" style="--card-delay: 100ms;">
+          <div class="apple-card__icon">🤝</div>
+          <h3 class="apple-card__title--extended">VIDEO LẤY NIỀM TIN</h3>
+          <p class="apple-card__desc">Bóc tách theo <b>hệ thống 3 tầng tâm lý</b>. T1 (Đãi bôi ngoài miệng) ➔ T2 (Hiện thực mệt mỏi) ➔ T2.5 (Vỏ bọc giữ thể diện) ➔ T3 (Chỗ khó nói thầm kín). Giải pháp ở đây là sự thấu hiểu, đồng cảm, giải tỏa áp lực và cởi bỏ nút thắt tâm lý cho khách hàng.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- KHỐI 3: THỜI GIAN HIỆU QUẢ -->
+  <section class="cl-zebra-section cl-zebra--light" id="sec-thoi-gian">
+    <div class="cl-sec-container apple-reveal">
+      <div class="cl-badge">02 / THỜI LƯỢNG</div>
+      <h2 class="title-short">THỜI GIAN HIỆU QUẢ</h2>
+      <p class="editorial-hook">"Ngắn gọn, đanh thép và đánh thẳng vào trọng tâm."</p>
+      <div class="cl-body" style="text-align: left;">
+        <p>Thời lượng hiệu quả cho một video quảng cáo trên các nền tảng mạng xã hội hiện nay rơi vào khoảng <b>30 đến 60 giây</b>.</p>
+        <p style="margin-top: 12px;">Trong đó, <b>3 giây đầu tiên (Hook)</b> quyết định 80% thành bại của video. Nếu không bóc trúng tâm lý ở Tầng 2 (Hiện trường thật) hoặc Tầng 2.5 (Vỏ bọc thể diện) ngay lập tức, khách hàng sẽ lướt qua.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- KHỐI 4: BƯỚC 1 -->
+  <section class="cl-zebra-section cl-zebra--tint" id="sec-buoc-1">
+    <div class="cl-sec-container cl-sec-container--wide apple-reveal">
+      <div class="cl-badge">03 / QUY TRÌNH - BƯỚC 1</div>
+      <h2 class="title-long">Viết Kịch Bản 1 Dòng & Chuốt Chi Tiết</h2>
+      <p class="cl-body">Sử dụng sức mạnh của AI để xây dựng khung sườn vững chắc trước khi bấm máy.</p>
+      
+      <div class="apple-list">
+        <div class="apple-list-item">
+          <div class="apple-list-item__bullet">✓</div>
+          <div class="apple-list-item__content"><b>Công thức 1 dòng:</b> [HÀNH VI T2] ➔ BÓC MẶT NẠ [T2.5] ➔ CHỈ ĐÚNG [T3] ➔ MỞ NÚT THẮT BẰNG [GIẢI PHÁP MỘC MẠC].</div>
+        </div>
+        <div class="apple-list-item">
+          <div class="apple-list-item__bullet">✓</div>
+          <div class="apple-list-item__content"><b>Chuốt chi tiết cùng AI:</b> Giao cho AI phân tích, lọc sạch từ ngữ "ông giáo", văn mẫu. Đảm bảo kịch bản chuẩn 7 câu, sắc nét, mộc mạc và nhịp điệu đanh thép.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- KHỐI 5: BƯỚC 2 -->
+  <section class="cl-zebra-section cl-zebra--light" id="sec-buoc-2">
+    <div class="cl-sec-container cl-sec-container--wide apple-reveal">
+      <div class="cl-badge">04 / QUY TRÌNH - BƯỚC 2</div>
+      <h2 class="title-long">Quay Video Ngồi Chia Sẻ (Voice & Visual)</h2>
+      
+      <div class="apple-cards-grid">
+        <div class="apple-card" style="--card-delay: 0ms;">
+          <div class="apple-card__icon">🎙️</div>
+          <h3 class="apple-card__title">Lấy Tiếng Và Hình Chuẩn Nhất</h3>
+          <p class="apple-card__desc">Quay footage gốc bằng cách ngồi đối diện ống kính chia sẻ. Đây là lúc bạn có luồng tư duy rõ ràng nhất về kiến trúc nội dung, đảm bảo âm lượng và thần thái tốt nhất.</p>
+        </div>
+        <div class="apple-card" style="--card-delay: 100ms;">
+          <div class="apple-card__icon">🎬</div>
+          <h3 class="apple-card__title">Bản Chất Của Trám Hình</h3>
+          <p class="apple-card__desc">Ngay cả khi sau này bạn phủ 100% cảnh trám lên trên, biến video thành dạng <b>Voice-over (đọc off)</b>, thì cái cốt lõi vẫn phải là một file quay hình/ngồi nói chuyện liền mạch ban đầu.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- KHỐI 6: BƯỚC 3 -->
+  <section class="cl-zebra-section cl-zebra--tint" id="sec-buoc-3">
+    <div class="cl-sec-container apple-reveal">
+      <div class="cl-badge">05 / QUY TRÌNH - BƯỚC 3</div>
+      <h2 class="title-short">PHÂN TÍCH CHUYỂN CẢNH</h2>
+      <p class="editorial-hook">"Không để người xem phải tự tưởng tượng cấu trúc bài nói."</p>
+      
+      <div class="cl-body" style="text-align: left;">
+        <p><b>Xuất kịch bản đưa vào AI:</b> Yêu cầu AI phân tích lại toàn bộ nội dung vừa quay.</p>
+        <p style="margin-top: 12px;"><b>Chỉ định màn hình chữ:</b> AI sẽ tự động đề xuất các <i>Title Card</i> (màn hình chữ tóm tắt) để dùng làm chuyển cảnh. Điều này giúp hỗ trợ cho video chính, bẻ gãy nhịp điệu đều đều và giúp người xem nhớ nội dung hiệu quả hơn rất nhiều.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- KHỐI 7: BƯỚC 4, 5, 6 -->
+  <section class="cl-zebra-section cl-zebra--light" id="sec-buoc-cuoi">
+    <div class="cl-sec-container cl-sec-container--wide apple-reveal">
+      <div class="cl-badge">06 / HOÀN THIỆN ĐÓNG GÓI</div>
+      <h2 class="title-long">Cảnh Trám, Âm Thanh & Xuất Bản</h2>
+      
+      <div class="apple-list">
+        <div class="apple-list-item">
+          <div class="apple-list-item__bullet">4</div>
+          <div class="apple-list-item__content"><b>Tìm và lắp cảnh trám:</b> Dựa vào bảng phân cảnh từ AI gợi ý, tiến hành quay hoặc tìm source cảnh trám (B-roll) tương ứng và lắp đè lên trục chính.</div>
+        </div>
+        <div class="apple-list-item">
+          <div class="apple-list-item__bullet">5</div>
+          <div class="apple-list-item__content"><b>Xử lý hậu kỳ âm thanh:</b> Lọc ồn tiếng nói, thêm nhạc nền (BGM) ở mức nhỏ gọn không lấn át tiếng chính, và chèn hiệu ứng âm thanh (SFX) cho các điểm nhấn chuyển cảnh.</div>
+        </div>
+        <div class="apple-list-item">
+          <div class="apple-list-item__bullet">6</div>
+          <div class="apple-list-item__content"><b>Tối ưu nội dung đăng tải:</b> Yêu cầu AI tạo caption/bài đăng dựa trên file phụ đề (SRT) xuất ra từ video, hoặc dựa trên chính cuộc nói chuyện/kịch bản gốc với AI. Đồng bộ thông điệp đa nền tảng.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- KHỐI 8: VÍ DỤ MINH HỌA -->
+  <section class="cl-zebra-section cl-zebra--tint" id="sec-vi-du">
+    <div class="cl-sec-container cl-sec-container--wide apple-reveal">
+      <div class="cl-badge">07 / VÍ DỤ THỰC CHIẾN</div>
+      <h2 class="title-short">VIDEO MINH HỌA</h2>
+      <p class="cl-body">Các mẫu video quảng cáo chuẩn cấu trúc, áp dụng bóc tách tâm lý.</p>
+      
+      <div style="display: flex; flex-direction: column; gap: 32px; width: 100%; margin-top: 24px;">
+        <div style="text-align: left;">
+            <h3 class="apple-card__title">Video Quảng Cáo của Tôi</h3>
+            <div style="border-radius: var(--cl-radius-lg); overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1); width: 100%; aspect-ratio: 16/9; background: #000; margin-top: 12px;">
+              <iframe width="100%" height="100%" src="https://www.youtube.com/embed/6Oiugt77imE" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </div>
+        
+        <div style="text-align: left;">
+            <h3 class="apple-card__title">Video Quảng Cáo của Ánh</h3>
+            <div style="border-radius: var(--cl-radius-lg); overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1); width: 100%; aspect-ratio: 16/9; background: #000; margin-top: 12px;">
+              <iframe width="100%" height="100%" src="https://www.youtube.com/embed/ScMzIvxBSi4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </div>
+
+        <div style="text-align: left;">
+            <h3 class="apple-card__title">Danh Sách Video Trên Tài Khoản YouTube</h3>
+            <div style="border-radius: var(--cl-radius-lg); overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1); width: 100%; aspect-ratio: 16/9; background: #000; margin-top: 12px;">
+              <iframe width="100%" height="100%" src="https://www.youtube.com/embed/videoseries?list=PLyqSpQzTE6M8h02tZ1fW5o2Y-H2rB4Y0U" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </div>
+      </div>
+      
+    </div>
+  </section>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const observer = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            obs.unobserve(entry.target);
+          }
+        });
+      }, { root: null, rootMargin: '0px 0px -40px 0px', threshold: 0.1 });
+      document.querySelectorAll('.apple-reveal, .apple-card').forEach(el => observer.observe(el));
+    });
+  </script>
+</body>
+</html>

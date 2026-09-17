@@ -10,7 +10,7 @@ content = content.replace('<body class="min-h-screen flex flex-col selection:bg-
 # 2. Thêm @font-face
 font_faces = """
         @font-face {
-            font-family: 'FD Aeonik Extended';
+            font-family: 'FD Aeonik Extended'; text-transform: uppercase;
             src: local('FD Aeonik Extended'), local('FDAeonikExtended-Bold');
             font-weight: 700;
         }
