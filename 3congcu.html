@@ -378,6 +378,34 @@
   
     details.prompt-container summary { list-style: none; cursor: pointer; }
     details.prompt-container summary::-webkit-details-marker { display: none; }
+  
+    /* DARK MODE AUTO SWITCH */
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --cl-bg: #0b0f19;
+        --cl-tint: #111827;
+        --cl-line: #1e293b;
+        --cl-text-base: #f8fafc;
+        --cl-text-body: #cbd5e1;
+        --cl-text-muted: #64748b;
+        --cl-accent: #3b82f6;
+        --cl-accent-soft: rgba(59, 130, 246, 0.15);
+      }
+      body { background-color: var(--cl-bg); }
+      .topbar { background: rgba(11, 15, 25, 0.94); border-bottom-color: var(--cl-line); }
+      .hero-badge { background: var(--cl-text-base); color: var(--cl-bg); }
+      .suite-card { background: var(--cl-tint); border-color: var(--cl-line); }
+      .tab-btn:hover { background: rgba(255, 255, 255, 0.05); color: var(--cl-text-base); }
+      .tab-btn.active { color: var(--cl-bg); background: var(--cl-text-base); }
+      .ext-panel { background: var(--cl-tint); border-color: var(--cl-line); }
+      
+      .btn-action--copy { background: #1e293b; color: #f8fafc; border-color: #334155; }
+      .btn-action--copy:hover { background: #334155; }
+      
+      .cl-zebra--light { background-color: var(--cl-bg); }
+      .cl-zebra--tint { background-color: var(--cl-tint); }
+    }
+
   </style>
 </head>
 <body>
@@ -781,17 +809,28 @@ Nếu tôi gõ LOGIC, hãy giải phẫu chi tiết chức năng tâm lý của 
 
   
   <!-- FOOTER -->
-  <footer class="cl-zebra-section cl-zebra--tint" style="padding: 60px 0; border-top: 1px solid var(--cl-line);">
-    <div class="cl-sec-container cl-sec-container--narrow" style="text-align: center;">
-      <h3 style="font-family: var(--font-display-short); font-size: 16px; letter-spacing: 0.1em; color: var(--cl-text-muted); margin-bottom: 24px; text-transform: uppercase;">Kết Nối Trực Tiếp</h3>
+  <footer class="cl-zebra-section cl-zebra--tint" style="padding: 80px 0 60px; border-top: 1px solid var(--cl-line);">
+    <div class="cl-sec-container cl-sec-container--narrow" style="display: flex; flex-direction: column; align-items: center; text-align: center;">
+      <div class="cl-badge" style="margin-bottom: 20px;">LIÊN HỆ & CỘNG ĐỒNG</div>
       
-      <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-bottom: 32px;">
-        <a href="https://www.facebook.com/nguyenducviet.video/reels/" target="_blank" style="padding: 8px 16px; background: #fff; border: 1px solid var(--cl-line); border-radius: 100px; color: var(--cl-text-body); font-weight: 600; font-size: 14px; text-decoration: none;">▶ FB Reels</a>
-        <a href="https://www.tiktok.com/nguyenducviet.viral" target="_blank" style="padding: 8px 16px; background: #fff; border: 1px solid var(--cl-line); border-radius: 100px; color: var(--cl-text-body); font-weight: 600; font-size: 14px; text-decoration: none;">▶ TikTok Viral</a>
-        <a href="http://facebook.com/nddviet" target="_blank" style="padding: 8px 16px; background: #fff; border: 1px solid var(--cl-line); border-radius: 100px; color: var(--cl-text-body); font-weight: 600; font-size: 14px; text-decoration: none;">👤 FB Cá Nhân</a>
+      <h2 class="title-short" style="font-size: clamp(24px, 4vw, 32px); margin-bottom: 16px;">KẾT NỐI VỚI NGUYỄN VIỆT</h2>
+      <p class="cl-body" style="margin-bottom: 40px; color: var(--cl-text-muted); max-width: 480px;">
+        Đừng ngại nhắn tin trực tiếp để trao đổi công việc, đăng ký khóa học hoặc nhờ tư vấn giải pháp thực chiến.
+      </p>
+
+      <a href="https://zalo.me/0934688632" target="_blank" class="btn-action" style="margin-bottom: 48px; width: 100%; max-width: 340px; font-family: var(--font-display-short); letter-spacing: 0.05em; padding: 18px 24px; border-radius: 100px; font-size: 15px;">
+        💬 NHẮN TIN ZALO / IMESSAGE
+      </a>
+      
+      <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 32px; font-family: var(--font-display-long); font-size: 15px; font-weight: 600;">
+        <a href="https://www.facebook.com/nguyenducviet.video/reels/" target="_blank" style="color: var(--cl-text-base); text-decoration: none; border-bottom: 2px solid var(--cl-accent); padding-bottom: 4px; transition: opacity 0.2s;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">Facebook Reels ↗</a>
+        <a href="https://www.tiktok.com/nguyenducviet.viral" target="_blank" style="color: var(--cl-text-base); text-decoration: none; border-bottom: 2px solid var(--cl-accent); padding-bottom: 4px; transition: opacity 0.2s;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">TikTok Viral ↗</a>
+        <a href="http://facebook.com/nddviet" target="_blank" style="color: var(--cl-text-base); text-decoration: none; border-bottom: 2px solid var(--cl-accent); padding-bottom: 4px; transition: opacity 0.2s;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">Facebook Cá Nhân ↗</a>
       </div>
 
-      <a href="https://zalo.me/0934688632" target="_blank" class="btn-action" style="display: inline-block; width: auto; padding: 14px 40px; border-radius: 100px;">💬 Nhắn Tin Zalo / iMessage</a>
+      <div style="margin-top: 64px; font-family: var(--font-mono); font-size: 13px; color: var(--cl-text-muted); opacity: 0.7;">
+        © NGUYEN VIET VIDEO STUDIO
+      </div>
     </div>
   </footer>
 
