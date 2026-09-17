@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>BỘ TỨ TIỆN ÍCH AI & MEGAPROMPTS • FEDU MISS SUITE</title>
+  <title>BỘ BA TIỆN ÍCH AI & MEGAPROMPTS • FEDU MISS SUITE</title>
   
   <link rel="icon" type="image/svg+xml" href="./favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -375,6 +375,9 @@
       .ext-actions { width: 100%; justify-content: flex-start; flex-wrap: wrap; }
       .btn-action { flex: 1; justify-content: center; }
     }
+  
+    details.prompt-container summary { list-style: none; cursor: pointer; }
+    details.prompt-container summary::-webkit-details-marker { display: none; }
   </style>
 </head>
 <body>
@@ -395,9 +398,9 @@
   <section class="cl-zebra-section cl-zebra--light">
     <div class="cl-container">
       <div class="hero-badge">💎 HỆ THỐNG MEGAPROMPTS & EXTENSIONS CHUẨN THỰC CHIẾN</div>
-      <h1 class="hero-title">BỘ TỨ TIỆN ÍCH AI & MEGAPROMPTS<br>ĐÃ NẠP BỘ LỌC VĂN PHONG THỰC CHIẾN</h1>
+      <h1 class="hero-title">BỘ BA TIỆN ÍCH AI & MEGAPROMPTS<br>ĐÃ NẠP BỘ LỌC VĂN PHONG THỰC CHIẾN</h1>
       <p class="hero-desc">
-        Toàn bộ 4 Trợ lý chuyên trách (Miss Idea, Miss Vlog, Miss Video Ads, Miss Sale Page) đã được 
+        Toàn bộ 3 Trợ lý chuyên trách (Miss Idea, Miss Vlog, Miss Video Ads) đã được 
         <strong>bóc sạch 100% văn mẫu AI sáo rỗng</strong>, khóa cứng danh sách từ cấm tuyệt đối, 
         tích hợp trực tiếp <strong><a href="https://fedu.vn/course/4tang.html" target="_blank" style="color: var(--cl-accent); text-decoration: underline;">Cỗ Máy Bóc Tách 4 Tầng & Kịch Bản 1 Dòng</a></strong> 
         và cơ chế <strong>Tự Phản Hồi (Self-Reflection) tối thiểu 2 vòng lặp</strong> để xuất bản kịch bản mộc mạc sẵn sàng bấm máy.
@@ -453,20 +456,6 @@
           </div>
         </div>
 
-        <!-- 4. Miss Sale Page -->
-        <div class="suite-card" onclick="switchTab('salepage')">
-          <div>
-            <div class="suite-card__header">
-              <div class="suite-card__icon">🛍️</div>
-              <span class="suite-card__tag">Landing Page 7 Khối</span>
-            </div>
-            <div class="suite-card__title">Miss Sale Page</div>
-            <div class="suite-card__desc">Đóng gói sự thật, bóc tách phản xạ hợp lý hóa từ chối của khách và biên soạn Landing Page 7 Khối chuẩn Canvas.</div>
-          </div>
-          <div class="suite-card__footer">
-            <span>Xem Mega Prompt & Cài Đặt</span>
-            <span>→</span>
-          </div>
         </div>
       </div>
     </div>
@@ -481,7 +470,7 @@
         <button class="tab-btn active" id="tabbtn-idea" onclick="switchTab('idea')">💡 01. Miss Idea (Talking Head)</button>
         <button class="tab-btn" id="tabbtn-vlog" onclick="switchTab('vlog')">📹 02. Miss Vlog (Xây Kênh)</button>
         <button class="tab-btn" id="tabbtn-ads" onclick="switchTab('ads')">🎬 03. Miss Video Ads (Bán Hàng &lt;60s)</button>
-        <button class="tab-btn" id="tabbtn-salepage" onclick="switchTab('salepage')">🛍️ 04. Miss Sale Page (Landing Page)</button>
+        
       </nav>
 
       <!-- TAB 1: MISS IDEA -->
@@ -538,14 +527,14 @@
           </div>
         </div>
 
-        <div class="prompt-container">
-          <div class="prompt-header">
+        <details class="prompt-container">
+          <summary class="prompt-header">
             <div class="prompt-label">
               <span>⚡ MEGA PROMPT MASTER ĐÃ QUA BỘ LỌC — DÙNG CHO CHATGPT & GEMINI</span>
               <span class="prompt-badge">V1.2 Clean Voice</span>
             </div>
             <button class="prompt-btn-copy" onclick="copyPrompt('prompt-idea-code', this)">Sao Chép Prompt</button>
-          </div>
+          </summary>
           <pre class="prompt-content" id="prompt-idea-code">[ĐỊNH VỊ VAI TRÒ]
 Bạn là "Trợ lý Cố vấn Kịch bản Talking Head" - một chuyên gia phân tích tâm lý hành vi và biên kịch thực chiến. Nhiệm vụ của bạn là dắt tay tôi lên kịch bản video ngồi nói trực diện trước máy quay, hoàn toàn không học vẹt, mộc mạc và sắc lẹm.
 Xưng hô: "mình - bạn" hoặc "tôi - bạn", đi thẳng vào việc, tuyệt đối không rườm rà.
@@ -610,29 +599,7 @@ Nếu tôi gõ LOGIC, hãy phân tích ngắn gọn:
 - Chức năng tâm lý của Câu 4 & 5 (Đập vỡ sự hợp lý hóa T2.5).
 - Chức năng của Câu 7 (Giữ vị thế đàng hoàng).
 - `📐 CÔNG THỨC 1 DÒNG: BỊ NGHI NGỜ (T2) ➔ HỢP LÝ HÓA BẰNG [X] (T2.5) ➔ CHỈ ĐÚNG NỖI SỢ THẬT (T3) ➔ MỞ NÚT THẮT BẰNG [HÀNH ĐỘNG VẬT LÝ].`</pre>
-        </div>
-
-        <div class="sim-box">
-          <div class="sim-header">
-            <div class="sim-title">🧪 Kết Quả Mô Phỏng Kịch Bản Thực Tế (Đã Kiểm Định 100%)</div>
-            <span class="sim-badge">✓ Zero AI Slop • Đạt Chuẩn</span>
-          </div>
-          <div class="sim-body">
-            <p><strong>Bối cảnh thử nghiệm:</strong> Thợ sửa ống nước & lắp máy lọc nước gia đình tại nhà, giải quyết nỗi lo <em>"sợ bị thợ kê giá phụ kiện và làm ẩu"</em> (Video 60s).</p>
-            <div class="sim-line">① <strong>Mở bài: Chỉ thẳng nỗi sợ mặc cả</strong><br>
-            <em>Hành động:</em> Vừa lau khô chiếc cờ-lê vừa ngước lên nhìn thẳng máy quay, nét mặt điềm đạm.<br>
-            <em>Lời thoại:</em> "Gọi thợ vào nhà sửa đồ, điều người ta ngại nhất không phải là tiền công, mà là sợ bị nói thách giá phụ kiện."<br>
-            <em>Chữ hiển thị:</em> Nỗi lo bị kê giá phụ kiện</div>
-            <div class="sim-line">② <strong>Thân bài: Bằng chứng thực tế tại chỗ</strong><br>
-            <em>Hành động & B-roll:</em> Cận cảnh mở hộp phụ kiện có tem niêm phong và bảng giá in sẵn của hãng.<br>
-            <em>Lời thoại:</em> "Mỗi van khóa hay đoạn ống mình thay cho khách đều có mã vạch và giá niêm yết của công ty. Mình bóc hộp trước mặt bạn, bạn tự quét mã kiểm tra, ưng ý thì mình mới bắt đầu siết ốc."<br>
-            <em>Chữ hiển thị:</em> Quét mã kiểm tra tại bàn</div>
-            <div class="sim-line">③ <strong>Kết luận: Không câu nệ</strong><br>
-            <em>Hành động:</em> Khóa nắp túi đồ nghề, cười nhẹ.<br>
-            <em>Lời thoại:</em> "Làm nghề đàng hoàng thì cứ minh bạch ngay từ đầu cho nhẹ đầu cả hai bên. Cần kiểm tra đường nước cứ nhắn thẳng mình qua xem giúp."<br>
-            <em>Chữ hiển thị:</em> Minh bạch từ đầu • An tâm dùng lâu</div>
-          </div>
-        </div>
+        </details>
       </div>
 
       <!-- TAB 2: MISS VLOG -->
@@ -683,14 +650,14 @@ Nếu tôi gõ LOGIC, hãy phân tích ngắn gọn:
           </div>
         </div>
 
-        <div class="prompt-container">
-          <div class="prompt-header">
+        <details class="prompt-container">
+          <summary class="prompt-header">
             <div class="prompt-label">
               <span>⚡ MEGA PROMPT MASTER MISS VLOG — CHUẨN XÂY KÊNH MỘC MẠC</span>
               <span class="prompt-badge">V2.0 Logic Hợp Lý Hóa</span>
             </div>
             <button class="prompt-btn-copy" onclick="copyPrompt('prompt-vlog-code', this)">Sao Chép Prompt</button>
-          </div>
+          </summary>
           <pre class="prompt-content" id="prompt-vlog-code">[ĐỊNH VỊ VAI TRÒ]
 Bạn là "Miss Vlog - Huấn Luyện Viên Kịch Bản Xây Kênh & Vlog Đời Thường" - một chuyên gia phân tích tâm lý hành vi và biên kịch thực chiến. Nhiệm vụ của bạn là đồng hành cùng tôi (người làm nghề, chủ tiệm, chuyên gia độc lập) biến những lát cắt công việc, thao tác nghề và tình huống đời thường mỗi ngày thành kịch bản video ngắn mộc mạc, sâu sắc, xây dựng niềm tin hữu cơ (Organic Trust) mà không cần diễn trò làm màu.
 Xưng hô: "mình - bạn" hoặc "tôi - bạn", đi thẳng vào việc, mộc mạc, tuyệt đối không rườm rà.
@@ -766,29 +733,7 @@ Nếu tôi gõ LOGIC, hãy phân tích ngắn gọn:
 Nếu tôi gõ QUAY, lập tức tách kịch bản thành 2 khối độc lập để đem đi quay ngay:
 1. **TELEPROMPTER (Lời thoại sạch):** Lọc bỏ toàn bộ B-roll, ghi chú, ký hiệu. Chỉ giữ lại văn bản thoại thuần túy, ngắt dòng chuẩn nhịp thở để copy thẳng vào máy nhắc chữ CapCut.
 2. **CHECKLIST B-ROLL (Shotlist):** Liệt kê 4-5 shot quay hiện trường dưới dạng hộp kiểm `[ ]` ngắn gọn (VD: `[ ] Cận cảnh tay bắt vít`) để thợ phụ dễ dàng đối chiếu bấm máy.</pre>
-        </div>
-
-        <div class="sim-box">
-          <div class="sim-header">
-            <div class="sim-title">🧪 Kết Quả Mô Phỏng Kịch Bản Miss Vlog V2 (Đã Kiểm Định 100%)</div>
-            <span class="sim-badge">✓ Mộc Mạc • Không Diễn Kịch</span>
-          </div>
-          <div class="sim-body">
-            <p><strong>Bối cảnh thử nghiệm:</strong> Chủ tiệm bánh mì nhỏ buổi sáng, đối diện thắc mắc <em>"tại sao không nhập pate công nghiệp làm sẵn cho nhàn"</em> (Video 45s).</p>
-            <div class="sim-line"><strong>Hook:</strong> Dậy từ 4 giờ sáng tự xay pate • Khổ trước sướng sau</div>
-            <div class="sim-line">1. <strong>(Neo hiện trường T2):</strong> "Mở tiệm bánh mì, cực nhất không phải lúc đứng nướng bánh đón khách, mà là cái công đoạn tự xay tự hấp nồi pate từ 4 giờ sáng."<br><em>B-roll:</em> Cận cảnh khói bốc nghi ngút từ nồi hấp gang, tay xúc từng thìa gan tươi.</div>
-            <div class="sim-line">2. <strong>(Hạ cái tôi):</strong> "Nhiều hôm trời mưa rét buốt, đứng đảo nồi gan cay xè cả mắt mà trong bụng chỉ ước được ngủ thêm một tiếng."<br><em>B-roll:</em> Góc máy ngang vai, quệt vội mồ hôi trên trán rồi thở dài một nhịp.</div>
-            <div class="sim-line">3. <strong>(Cầu nối):</strong> "Lúc đấy cái phản xạ tự nhiên nhất để tự trấn an mình là gì bạn biết không?"</div>
-            <div class="sim-line"><strong>[Nhịp nghỉ 1 giây / Âm thanh thìa gõ lách cách vào thành nồi]</strong></div>
-            <div class="sim-line">4. <strong>(Bắt bài T2.5):</strong> "Là tự hợp lý hóa rằng: 'Mình làm nghề bằng cái tâm, đồ nhà tự làm nó mới sạch sẽ chứ ai lại đi ăn xổi!'"<br><em>B-roll:</em> Cắt nhanh sang cảnh siết chặt nắp cối xay, nét mặt cố tỏ ra cứng cỏi.</div>
-            <div class="sim-line">5. <strong>(Bóc vỏ lúc một mình):</strong> "Nói thì oai thế thôi, chứ lúc vắng khách nhìn đống nồi niêu ngập dầu mỡ, lại chột dạ nghĩ hay là mình đang tự làm khổ mình."<br><em>B-roll:</em> Cảnh cúi người cọ rửa chậu inox dưới vòi nước lạnh lúc xế trưa.</div>
-            <div class="sim-line">6. <strong>(Chỉ đúng chỗ khó nói T3):</strong> "Sợ nhất là cặm cụi cho cố mà tiền lãi chẳng thấy đâu, người nhà lại bảo mình bảo thủ gàn dở."</div>
-            <div class="sim-line"><strong>[Punch-in: Cắt cận cảnh / Quết dứt khoát thìa pate đặc quánh vào ruột bánh mì giòn tan]</strong></div>
-            <div class="sim-line">7. <strong>(Chìa khóa mở nút):</strong> "Nhưng cắn miếng bánh thấy cái vị béo ngậy thơm nức tự nhiên, khách quen quay lại gật đầu khen một câu, là biết mình không chọn sai đường."<br><em>B-roll:</em> Trao tận tay khách ổ bánh nóng giòn, nụ cười nhẹ nhõm.</div>
-            <div class="sim-line"><strong>[Chữ kết thúc]:</strong> Bánh giòn mỗi sáng • Giữ trọn vị nhà làm</div>
-            <div class="sim-line" style="margin-top: 12px; color: var(--cl-accent);">👉 <em>Gõ <strong>LOGIC</strong> để xem giải phẫu tâm lý, hoặc gõ <strong>QUAY</strong> để xuất bản sạch cho máy nhắc chữ.</em></div>
-          </div>
-        </div>
+        </details>
       </div>
 
       <!-- TAB 3: MISS VIDEO ADS -->
@@ -839,14 +784,14 @@ Nếu tôi gõ QUAY, lập tức tách kịch bản thành 2 khối độc lập
           </div>
         </div>
 
-        <div class="prompt-container">
-          <div class="prompt-header">
+        <details class="prompt-container">
+          <summary class="prompt-header">
             <div class="prompt-label">
               <span>⚡ MEGA PROMPT MASTER MISS VIDEO ADS — BÁN HÀNG SÚC TÍCH &lt;60S</span>
               <span class="prompt-badge">V2.0 Behavioral Ads</span>
             </div>
             <button class="prompt-btn-copy" onclick="copyPrompt('prompt-ads-code', this)">Sao Chép Prompt</button>
-          </div>
+          </summary>
           <pre class="prompt-content" id="prompt-ads-code">[ĐỊNH VỊ VAI TRÒ]
 Bạn là "Miss Video Ads" - Cố vấn Biên kịch Video Quảng cáo Bán hàng thực chiến dưới 60 giây (tối đa 130-160 từ). Nhiệm vụ của bạn là dắt tay tôi lên kịch bản video bán sản phẩm/dịch vụ súc tích, chuyển đổi cao, đàng hoàng, tuyệt đối không lùa gà, không giật gân rẻ tiền, không văn mẫu AI.
 Xưng hô: "mình - bạn" hoặc "tôi - bạn", đi thẳng vào việc, tuyệt đối không rườm rà.
@@ -916,192 +861,9 @@ Nếu tôi gõ LOGIC, hãy giải phẫu chi tiết chức năng tâm lý của 
 - **Câu 6 (Chỉ đúng chỗ khó nói T3):** Gọi tên nỗi bất an sâu thẳm giấu kín (sợ bị lừa, sợ hỏng việc).
 - **Câu 7 (Chìa khóa Vật lý):** Dùng hành động thực tế để chứng minh thay vì thề thốt, kèm cam kết nhận rủi ro thay cho khách.
 - `📐 CÔNG THỨC 1 DÒNG VIDEO ADS: NỖI BỰC MÌNH T2 ➔ BẮT BÀI CỚ TỰ DỐI LÒNG T2.5 ➔ CHỈ ĐÚNG NỖI SỢ MẤT TIỀN T3 ➔ MỞ VÍ BẰNG BẰNG CHỨNG VẬT LÝ & CAM KẾT ĐÀNG HOÀNG.`</pre>
-        </div>
-
-        <div class="sim-box">
-          <div class="sim-header">
-            <div class="sim-title">🧪 Kết Quả Mô Phỏng Kịch Bản (Teleprompter-Ready)</div>
-            <span class="sim-badge">✓ Đã Lọc 100% Văn Mẫu AI</span>
-          </div>
-          <div class="sim-body">
-            <p><strong>Bối cảnh thử nghiệm:</strong> Thớt gỗ nghiến nguyên khối Tây Bắc khử trùng bằng sáp ong (Video 50s, 138 từ, giải quyết tâm lý chê thớt đắt và sợ mua phải hàng dỏm).</p>
-            <div class="sim-line">
-              <strong>Hook (Chữ to):</strong> Chiếc thớt mùn mốc &amp; Bữa cơm gia đình<br>
-              <strong>[Diễn xuất 1: Vai hơi rụt lại, ánh mắt ái ngại, tay cầm con dao cạo nhẹ lên mặt thớt đầy mùn đen]</strong><br>
-              1. "Chiếc thớt nhà bạn cứ dùng được ba bữa là lên mốc đen với dăm mùn bám vào thức ăn đúng không?" [//]<br>
-              2. "Nhiều khi muốn đổi cái mới cho sạch sẽ, nhưng lại đắn đo vì thấy cái thớt thôi mà sao giá đắt thế."<br>
-              3. "Lúc đấy cái phản xạ tự nhiên nhất để mình tặc lưỡi bỏ qua là gì bạn biết không?"<br>
-              <strong>[Trạng thái: Thở hắt ra nhẹ, thả lỏng vai, ánh mắt chùng xuống thấu hiểu]</strong><br>
-              4. "Là tự hợp lý hóa rằng: 'Thôi cọ kỹ lại dùng tạm, đồ bếp núc ai để ý làm gì cho tốn kém'."<br>
-              5. "Nhưng rồi mỗi lần băm thịt cho con ăn, nhìn mẩu mùn gỗ dính vào thức ăn lại thấy gợn gợn trong lòng." [//]<br>
-              6. "Thực ra bạn không tiếc tiền, bạn chỉ sợ bỏ tiền trăm ra mua cái thớt trên mạng về dùng vài hôm lại nứt toác như cũ."<br>
-              <strong>[Diễn xuất 2: Cử chỉ dứt khoát, ánh mắt sòng phẳng, tay giơ thớt lên xối mạnh nước rửa trôi dầu mỡ]</strong><br>
-              7. "Đây là gỗ nghiến già nguyên khối, sớ gỗ đanh như thép và được tôi sáp ong chống ngấm nước [//] Nhận hàng bạn cứ bóc ra chặt thử, không đanh chắc và sạch bong như lời mình nói thì hoàn về tiệm chịu toàn bộ phí."<br>
-              <strong>[Chữ kết thúc]:</strong> Chặt thử tại bàn • Bảo hành nứt vỡ 1 năm
-            </div>
-          </div>
-        </div>
+        </details>
       </div>
 
-      <!-- TAB 4: MISS SALE PAGE -->
-      <div class="ext-panel" id="panel-salepage">
-        <div class="ext-meta-bar">
-          <div class="ext-meta-info">
-            <div class="ext-meta-icon">🛍️</div>
-            <div>
-              <div class="ext-meta-title">Miss Sale Page — Đóng Gói Sự Thật & Biên Soạn Landing Page 7 Khối</div>
-              <div class="ext-meta-sub">Bóc tách phản xạ hợp lý hóa từ chối của khách hàng, cấu trúc 7 section chống ngợp thị giác và đóng gói full copy chuẩn Canvas.</div>
-            </div>
-          </div>
-          <div class="ext-actions">
-            <button class="btn-action btn-action--copy" onclick="copyPrompt('prompt-salepage-code', this)">
-              📋 Copy Mega Prompt
-            </button>
-          </div>
-        </div>
-
-        <div class="insight-box">
-          <h4>Cốt Lõi Nhận Thức: Đóng Gói Sự Thật & Tối Ưu UI/UX Nhịp Thở</h4>
-          <p>
-            Landing Page chuyển đổi cao không phải là viết lời có cánh để bẫy khách. 
-            <strong>Về nội dung: Là tài liệu giải trình minh bạch, bẻ gãy câu tự dối lòng (T2.5) và giải tỏa nỗi sợ (T3). Về UI/UX: Bắt buộc áp dụng Zebra Striping (nền xen kẽ trắng/xám) để chống ngợp, dùng Accordion cho FAQ và ghim Sticky CTA bám đáy màn hình Mobile để chốt đơn ngay tại "điểm rơi tâm lý".</strong>
-          </p>
-        </div>
-
-        <div class="guard-card">
-          <div class="guard-header">🛡️ ĐÃ LỌC SẠCH 100% CÁC TỪ CẤM & VĂN MẪU AI</div>
-          <div class="guard-list">
-            <span class="guard-tag">❌ ông giáo</span>
-            <span class="guard-tag">❌ mặt nạ</span>
-            <span class="guard-tag">❌ chiếc khiên</span>
-            <span class="guard-tag">❌ hành trình người hùng</span>
-            <span class="guard-tag">❌ khơi gợi nhu cầu</span>
-            <span class="guard-tag">❌ kiến tạo giá trị</span>
-            <span class="guard-tag">❌ bứt phá doanh số</span>
-            <span class="guard-tag">❌ giải pháp toàn diện</span>
-            <span class="guard-tag">❌ tử huyệt chốt đơn</span>
-            <span class="guard-tag">❌ anh em mình</span>
-          </div>
-        </div>
-
-        <div class="prompt-container">
-          <div class="prompt-header">
-            <div class="prompt-label">
-              <span>⚡ MEGA PROMPT MASTER MISS SALE PAGE — LANDING PAGE 7 KHỐI (HỆ HỢP LÝ HÓA)</span>
-              <span class="prompt-badge">V2.0 Clean Voice</span>
-            </div>
-            <button class="prompt-btn-copy" onclick="copyPrompt('prompt-salepage-code', this)">Sao Chép Prompt</button>
-          </div>
-          <pre class="prompt-content" id="prompt-salepage-code"># VAI TRÒ
-Bạn là Miss Sale Page - Cố vấn Đóng gói Sản phẩm &amp; Biên kịch Landing Page Thực chiến. Nhiệm vụ của bạn là dắt tay tôi chuyển hóa sản phẩm/dịch vụ của người làm nghề, chủ kinh doanh thành một trang bán hàng minh bạch, sắc lẹm, bóc trần đúng các "phản xạ hợp lý hóa" (lý do từ chối và trì hoãn) của khách hàng mà không cần chiêu trò giật gân hay lùa gà.
-Xưng hô: "mình - bạn" hoặc "tôi - bạn", đi thẳng vào việc, tuyệt đối không rườm rà.
-
-⚠️ [SỔ ĐEN TỪ CẤM TUYỆT ĐỐI - LINTER 100%]:
-1. CẤM từ "ông giáo", "thầy giáo".
-2. CẤM các từ giật gân, đao to búa lớn: "vũ khí", "thần thái", "ma trận", "bắt sống", "thôi miên", "tử huyệt", "đòn bẩy", "bứt phá", "đột phá", "kiến tạo giá trị", "khơi gợi nhu cầu", "chuyển hóa", "nâng tầm", "toàn diện", "đẳng cấp", "mặt nạ", "chiếc khiên", "siêu phẩm", "đỉnh cao".
-3. CẤM thuật ngữ sách vở sáo rỗng: "hành trình người hùng", "cấu trúc 3 hồi", "căn bệnh ngầm", "rào cản lớn nhất", "người làm chủ mắc kẹt".
-4. CẤM mượn cớ số đông: "anh em mình", "nhiều anh em ngoài kia", "chúng ta thường hay".
-5. Thay từ: *chuyên gia* -&gt; *người làm nghề*; *lý do từ chối/biện minh* -&gt; *phản xạ hợp lý hóa*.
-
-[QUY TRÌNH TƯƠNG TÁC CHUẨN 3 BƯỚC TUYẾN TÍNH (CHỐNG NGỢP UX)]
-Ở mỗi lượt chat, bạn PHẢI tuân thủ trình tự tuyến tính, tuyệt đối không tự ý nhảy bước:
-
---- BẮT ĐẦU BƯỚC 1: BÓC TÁCH "PHẢN XẠ HỢP LÝ HÓA" CỦA KHÁCH HÀNG ---
-Hãy hỏi tôi 3 thông tin cốt lõi:
-1. Bạn đang bán sản phẩm/dịch vụ gì và mức giá cụ thể là bao nhiêu?
-2. Khách hàng của bạn là ai và họ đang gặp khó khăn, bực bội thực tế nào nhất khi chưa có giải pháp này (Hiện trường T2)?
-3. Khách hàng hay đưa ra câu từ chối hoặc lý do trì hoãn nào nhất trước khi xuống tiền?
-
-Sau khi tôi trả lời, hãy phân tích tâm lý khách hàng dưới góc độ "Phản xạ hợp lý hóa" theo cấu trúc nguyên văn:
-"Đã định vị xong điểm nghẽn của khách hàng. Khi đứng trước một quyết định chi tiền, khách hàng không từ chối vì thiếu nhu cầu, mà họ luôn vô thức kích hoạt các 'phản xạ hợp lý hóa' để tự bảo vệ sự an toàn và lòng tự trọng. Hãy đối chiếu xem khách của bạn đang bám vào lý do hợp lý hóa nào dưới đây:
-
-👉 **Lựa chọn A (Hợp lý hóa bằng Tự mày mò / Lý trí):** 
-"[Câu cửa miệng: Tự tìm hiểu/mày mò trên mạng cho tiết kiệm, cần gì mua/thuê]" *(Tim đen T3: Sợ bỏ tiền ra mà không làm được thì vừa mất tiền vừa mang tiếng dốt).*
-👉 **Lựa chọn B (Hợp lý hóa bằng Sự cầu toàn / Chờ thời điểm):** 
-"[Câu cửa miệng: Đợi chuẩn bị đủ điều kiện / Chờ xong việc này rồi mới tính]" *(Tim đen T3: Trì hoãn an toàn vì sợ đối mặt với áp lực thực tế và nỗi sợ thất bại).*
-👉 **Lựa chọn C (Hợp lý hóa bằng Hoàn cảnh / Đổ lỗi thị trường):** 
-"[Câu cửa miệng: Ngành mình đặc thù / Thị trường dạo này khó, mua về chắc gì áp dụng được]" *(Tim đen T3: Bất an, sợ bản thân mình không theo kịp).*
-👉 **Lựa chọn D (Trạng thái Bản năng - Cơm áo gạo tiền / Sợ rủi ro):** 
-"[Câu cửa miệng: Giá này đắt quá / Để tiền lo việc khác thiết thực hơn]" *(Tim đen T3: Thắt ruột vì tiền nong, sợ bị người thân phán xét là mua đồ phù phiếm).*
-👉 **Lựa chọn 5:** Nhắn 5 để xem tiếp các phản xạ từ chối khác trong 18 cách nếu chưa trúng tim đen.
-
-*DỪNG LẠI chờ tôi chọn A, B, C, D hoặc 5.*
-
---- BƯỚC 2: XUẤT BẢN DÀN KHUNG LANDING PAGE 7 KHỐI SẮC NÉT ---
-Khi tôi đã chọn, lập tức xuất bản khung sườn Landing Page chuẩn 7 khối nội dung đanh thép (Trình bày dạng danh sách khối dọc. Nhắc nhở UI/UX: Thiết kế xen kẽ nền Trắng/Xám nhạt (Zebra Striping) giữa các khối, dùng Accordion cho FAQ và ghim Sticky CTA bám đáy Mobile):
-
-**[Khối 1: HERO SECTION - TRỰC DIỆN &amp; MINH BẠCH]**
-- Tiêu đề chính (H1): [Giải quyết đúng việc nhức nhối trong thời gian cam kết - dưới 18 từ]
-- Tiêu đề phụ (H2): [1 câu nêu rõ sản phẩm dành cho ai và KHÔNG PHÙ HỢP với ai]
-- Giá bán &amp; Nút mua (CTA): [Mức giá minh bạch kèm cam kết trách nhiệm, tuyệt đối không đồng hồ đếm ngược giả tạo]
-
-**[Khối 2: HIỆN TRƯỜNG T2 - 3 CHỖ VƯỚNG CÓ THẬT HÀNG NGÀY]**
-- Chỉ ra 3 cảnh tượng bế tắc, vất vả thực tế mà khách hàng đang chịu đựng khi chưa có giải pháp.
-
-**[Khối 3: BẺ GÃY PHẢN XẠ HỢP LÝ HÓA T2.5]**
-- Đọc vị câu tự dối lòng: "[Trích câu nói ở Lựa chọn người dùng đã chốt]"
-- Bóc trần sự thật: "Bạn tự bảo mình như thế để thấy an tâm tạm thời... nhưng bạn biết thừa là sau [thời gian] mọi chuyện vẫn y nguyên..."
-
-**[Khối 4: GIẢI PHÁP LÕI &amp; 3 GIÁ TRỊ VẬT LÝ]**
-- Giới thiệu giải pháp bằng các danh từ sờ thấy được, đo đếm được (vật liệu, thời gian, quy trình các bước) thay vì tính năng trừu tượng.
-
-**[Khối 5: KẼ HỞ ĐỐI THỦ &amp; BẰNG CHỨNG LÀM THẬT]**
-- Chỉ rõ 2 điểm các bên ngoài thị trường làm dở dang hoặc qua quýt.
-- Cách mình làm tử tế và trách nhiệm hơn (kèm bằng chứng cụ thể).
-
-**[Khối 6: BẢNG GIÁ MINH BẠCH &amp; CAM KẾT RỦI RO BẰNG 0]**
-- Chi tiết những gì nhận được khi chi tiền (không chi phí ẩn).
-- Cam kết trách nhiệm vật lý: Dùng thử/kiểm tra trước, không đúng cam kết hoàn tiền 100%.
-
-**[Khối 7: FAQ (Thiết kế Accordion) - GIẢI TỎA 3 TIM ĐEN SÂU NHẤT (T3)]**
-- Câu 1: Giải tỏa nỗi sợ "Không làm được / Không có năng khiếu".
-- Câu 2: Giải tỏa nỗi sợ "Mất thời gian / Công việc quá bận".
-- Câu 3: Giải tỏa nỗi sợ "Bị bỏ rơi sau khi thanh toán".
-
-Dưới cùng, in 2 dòng điều hướng:
-&gt; 👉 *Gõ **LOGIC** để xem Bảng giải phẫu tâm lý từng Section (Tại sao cấu trúc này bẻ gãy được sự trì hoãn của khách hàng?)*
-&gt; 👉 *Gõ **CANVAS** để xuất toàn bộ nội dung chi tiết từng chữ (Full Copy) sẵn sàng đưa lên Web/HTML.*
-
-*DỪNG LẠI chờ tôi gõ LOGIC hoặc CANVAS.*
-
---- BƯỚC 3: XUẤT BẢNG GIẢI PHẪU LOGIC HOẶC FULL COPY ---
-- Nếu tôi gõ **LOGIC**: Phân tích ngắn gọn cơ chế tâm lý:
-  * Khối 1 &amp; 2 gỡ bỏ khiên phòng thủ ban đầu như thế nào.
-  * Khối 3 đập vỡ sự hợp lý hóa T2.5 ra sao để khách không thể trốn tránh việc ra quyết định.
-  * Khối 6 &amp; 7 bảo vệ khách hàng trước nỗi sợ mất tiền T3 như thế nào.
-  * `📐 CÔNG THỨC 1 DÒNG: HIỆN TRƯỜNG BẾ TẮC (T2) ➔ ĐẬP PHẢN XẠ TRÌ HOÃN (T2.5) ➔ CHỈ ĐÚNG TIM ĐEN E NGẠI (T3) ➔ GIẢI TỎA BẰNG MINH BẠCH VẬT LÝ.`
-- Nếu tôi gõ **CANVAS**: Xuất bản toàn văn bản viết chi tiết 100% của cả 7 Section để tôi copy dán thẳng vào trang web.</pre>
-        </div>
-
-        <div class="sim-box">
-          <div class="sim-header">
-            <div class="sim-title">🧪 Kết Quả Mô Phỏng Miss Sale Page (Dữ Liệu Học Viên STU Offline)</div>
-            <span class="sim-badge">✓ 7 Khối Chuyển Đổi • Bẻ Gãy Trì Hoãn</span>
-          </div>
-          <div class="sim-body">
-            <p><strong>Bối cảnh thử nghiệm:</strong> Gói <em>"Sản Xuất 15 Video Ngắn Chân Dung Nghề Nghiệp Tại Cơ Sở Trong 1 Ngày"</em> (Giá trọn gói 12.000.000đ dành cho chủ tiệm dịch vụ &amp; người làm nghề).</p>
-            <div class="sim-line">
-              <strong>Bước 1: Bắt trúng phản xạ hợp lý hóa từ chối của khách</strong><br>
-              Khách chọn 👉 <strong>Lựa chọn A (Tự mày mò):</strong> <em>"Thôi để tự mua chân máy về tập quay bằng điện thoại cho đỡ tốn tiền, bao giờ quen mới thuê thợ."</em><br>
-              <em>Tim đen T3:</em> Sợ chi 12 triệu ra mà mặt đơ, nói vấp thì vừa mất tiền vừa ngượng với người quen.
-            </div>
-            <div class="sim-line">
-              <strong>Bước 2: Dàn khung Landing Page 7 Khối đanh thép</strong><br>
-              ① <strong>Khối 1 (Hero):</strong> H1: "Gói Sản Xuất 15 Video Chân Dung Nghề Nghiệp Tại Cơ Sở Trong 1 Ngày" • H2: "Dành cho chủ tiệm muốn có kênh video mộc mạc — Không dành cho người thích diễn kịch làm màu" • Giá: 12.000.000đ trọn gói • CTA: Quay thử 1 clip tại bàn, ưng mới ký hợp đồng.<br>
-              ② <strong>Khối 2 (Hiện trường T2):</strong> Tự mua đèn chân máy về dựng giữa tiệm nhưng đứng trước máy quay là cứng họng; thuê đội ngoài thì bắt diễn kịch gượng gạo; điện thoại đầy ắp clip quay dở cả tháng không dựng nổi.<br>
-              ③ <strong>Khối 3 (Bẻ gãy T2.5):</strong> "Bạn tự bảo mình 'để tự mày mò cho đỡ tốn' để thấy an tâm tạm thời. Nhưng bạn biết thừa 6 tháng nay chân máy vẫn bám bụi ở góc nhà và bạn vẫn chưa có nổi 1 clip ra hồn."<br>
-              ④ <strong>Khối 4 (Giải pháp vật lý):</strong> Ekip 2 người tinh gọn không làm phiền khách; kịch bản 7 câu tại bàn chỉ nói việc quen thuộc; bàn giao 15 clip hoàn chỉnh sau 5 ngày (phụ đề 2 dòng, cắt gọt sạch câu thừa).<br>
-              ⑤ <strong>Khối 5 (Kẽ hở thị trường):</strong> Thị trường bán theo số phút và ép diễn trò giật gân. Chúng tôi chỉ quay sự thật tại bàn, không phát sinh chi phí, bàn giao toàn bộ file gốc 4K.<br>
-              ⑥ <strong>Khối 6 (Bảng giá &amp; Cam kết):</strong> 12.000.000đ trọn gói. Cam kết: Buổi sáng quay thử 1 clip dựng mẫu tại chỗ, không ưng dừng máy không thu 1 đồng.<br>
-              ⑦ <strong>Khối 7 (FAQ giải tỏa T3):</strong> Trả lời trực diện vào nỗi sợ nói vấp (kịch bản băm nhỏ 5-7 chữ), sợ tiệm bừa bộn (ống kính cận cảnh thao tác tay) và sợ chỉnh sửa (sửa 2 vòng miễn phí).<br>
-              💡 <strong>Lưu ý UI/UX:</strong> Trình bày xen kẽ nền Trắng/Xám (Zebra Striping), gộp Khối 7 thành dạng Accordion đóng/mở và ghim cố định nút "Nhận Tư Vấn Ngay" dưới đáy màn hình Mobile.
-            </div>
-            <div class="sim-line">
-              <strong>Bước 3: Lệnh điều hướng sâu</strong><br>
-              <code>Gõ LOGIC ➔ Phân tích giải phẫu tháo gỡ tâm lý • Gõ CANVAS ➔ Xuất toàn văn bản 100% sẵn sàng copy vào Web.</code>
-            </div>
-          </div>
-        </div>
       </div>
 
     </div>
@@ -1114,33 +876,12 @@ Dưới cùng, in 2 dòng điều hướng:
       <h2 style="font-family: var(--font-display-short); font-size: 26px; font-weight: 700; margin-bottom: 20px; text-transform: uppercase;">CÁCH CÀI ĐẶT EXTENSION LÊN CHROME</h2>
 
       <div style="display: flex; flex-direction: column; gap: 16px;">
-        <div style="background: var(--cl-tint); border: 1px solid var(--cl-line); border-radius: 12px; padding: 18px 20px; display: flex; gap: 14px;">
-          <div style="font-family: var(--font-mono); font-size: 16px; font-weight: 700; color: var(--cl-accent);">01</div>
-          <div>
-            <strong style="font-family: var(--font-display-long); font-size: 17px;">Cài đặt trực tiếp từ Chrome Web Store:</strong>
-            <p style="font-size: 16px; color: var(--cl-text-muted); margin-top: 4px;">
-              Bấm vào nút <strong>"Cài Đặt Trên Chrome Web Store"</strong> ở trên, nhấn <strong>"Thêm vào Chrome" (Add to Chrome)</strong>. Biểu tượng tiện ích sẽ xuất hiện ngay ở thanh công cụ trình duyệt.
-            </p>
-          </div>
-        </div>
-
-        <div style="background: var(--cl-tint); border: 1px solid var(--cl-line); border-radius: 12px; padding: 18px 20px; display: flex; gap: 14px;">
-          <div style="font-family: var(--font-mono); font-size: 16px; font-weight: 700; color: var(--cl-accent);">02</div>
-          <div>
-            <strong style="font-family: var(--font-display-long); font-size: 17px;">Mở bảng điều khiển Side Panel:</strong>
-            <p style="font-size: 16px; color: var(--cl-text-muted); margin-top: 4px;">
-              Nhấp vào biểu tượng Miss Suite ở góc trên bên phải Chrome. Bảng điều khiển sẽ trượt ra ở cạnh phải màn hình. Mở song song tab <strong>ChatGPT</strong> hoặc <strong>Gemini</strong> ở bên trái để tiện ích tự động nạp prompt.
-            </p>
-          </div>
-        </div>
-
-        <div style="background: var(--cl-tint); border: 1px solid var(--cl-line); border-radius: 12px; padding: 18px 20px; display: flex; gap: 14px;">
-          <div style="font-family: var(--font-mono); font-size: 16px; font-weight: 700; color: var(--cl-accent);">03</div>
-          <div>
-            <strong style="font-family: var(--font-display-long); font-size: 17px;">Sử dụng linh hoạt không cần Extension:</strong>
-            <p style="font-size: 16px; color: var(--cl-text-muted); margin-top: 4px;">
-              Nếu đang dùng điện thoại hoặc máy tính khác không cài tiện ích, bạn chỉ cần bấm nút <strong>"Copy Mega Prompt"</strong> trên trang này và dán trực tiếp vào cuộc trò chuyện ChatGPT / Gemini để bắt đầu ngay lập tức.
-            </p>
+        <div style="background: var(--cl-tint); border: 1px solid var(--cl-line); border-radius: 12px; padding: 18px 20px;">
+          <strong style="font-family: var(--font-display-long); font-size: 17px; display: block; margin-bottom: 12px;">Link Cài Đặt 3 Extension:</strong>
+          <div style="display: flex; flex-direction: column; gap: 12px;">
+            <a href="https://chromewebstore.google.com/detail/miss-idea-%E2%80%94-tr%E1%BB%A3-l%C3%BD-c%E1%BB%91-v%E1%BA%A5n/gcaepndecljnaifdbicjaijndohfjdem" target="_blank" rel="noopener" class="btn-action btn-action--cws" style="width: fit-content;">💡 Miss Idea ↗</a>
+            <a href="https://chromewebstore.google.com/detail/miss-vlog-%E2%80%94-tr%E1%BB%A3-l%C3%BD-k%E1%BB%8Bch-b%E1%BA%A5n-x%C3%A2y-k%C3%AAnh/mbhaoimppkeikgjnjebppglamceilbhi" target="_blank" rel="noopener" class="btn-action btn-action--cws" style="width: fit-content;">📹 Miss Vlog ↗</a>
+            <a href="https://chromewebstore.google.com/detail/miss-video-ads-%E2%80%94-tr%E1%BB%A3-l%C3%BD-k%E1%BB%8Bch-b%E1%BA%A5n/inmgamfhjhbkejanlljppaflicemgbpe" target="_blank" rel="noopener" class="btn-action btn-action--cws" style="width: fit-content;">🎬 Miss Video Ads ↗</a>
           </div>
         </div>
       </div>
@@ -1161,7 +902,7 @@ Dưới cùng, in 2 dòng điều hướng:
       if (activePanel) activePanel.classList.add("active");
 
       document.querySelectorAll(".suite-card").forEach((card, idx) => {
-        const ids = ["idea", "vlog", "ads", "salepage"];
+        const ids = ["idea", "vlog", "ads"];
         if (ids[idx] === tabId) {
           card.classList.add("active");
         } else {
