@@ -256,23 +256,39 @@
     .ext-meta-sub { font-size: 17px; color: var(--cl-text-muted); }
     
     .ext-actions {
-      display: flex; align-items: center; gap: 10px;
+      display: flex; align-items: center; gap: 12px;
     }
     .btn-action {
-      font-family: var(--font-display-long); font-size: 17px; font-weight: 700;
-      padding: 8px 18px; border-radius: 8px; text-decoration: none; cursor: pointer;
-      display: inline-flex; align-items: center; gap: 8px; transition: all 0.2s;
+      font-family: var(--font-display-long); font-weight: 700;
+      text-decoration: none; cursor: pointer;
+      display: inline-flex; align-items: center; gap: 8px; transition: all 0.22s var(--apple-spring);
     }
-    .btn-action--cws {
-      background: #1a73e8; color: #fff; border: 1px solid #1a73e8;
-    }
-    .btn-action--cws:hover { background: #1557b0; }
+    /* CẤP 1 - PRIMARY CTA: COPY MEGA PROMPT (TO HƠN, BỰ HƠN, NỔI BẬT NHẤT) */
     .btn-action--copy {
-      background: #0f172a; color: #fff; border: 1px solid #0f172a;
+      background: #1a73e8; color: #ffffff; border: 1px solid #1a73e8;
+      font-size: 18px; padding: 13px 26px; border-radius: 12px;
+      box-shadow: 0 4px 16px rgba(26, 115, 232, 0.3);
     }
-    .btn-action--copy:hover { background: #1e293b; }
+    .btn-action--copy:hover {
+      background: #1557b0; border-color: #1557b0; color: #ffffff;
+      transform: translateY(-2px); box-shadow: 0 8px 24px rgba(26, 115, 232, 0.42);
+    }
+    .btn-action--copy.copied {
+      background: #10b981 !important; border-color: #10b981 !important; color: #fff !important;
+      box-shadow: 0 4px 16px rgba(16, 185, 129, 0.35) !important;
+    }
+
+    /* CẤP 2 - SECONDARY: CHROME WEB STORE (MỜ HƠN, NHỎ HƠN, DẠNG OUTLINE) */
+    .btn-action--cws {
+      background: #ffffff; color: var(--cl-text-muted); border: 1px solid var(--cl-line);
+      font-size: 15px; font-weight: 600; padding: 10px 18px; border-radius: 10px;
+    }
+    .btn-action--cws:hover {
+      background: var(--cl-tint); color: var(--cl-text-base); border-color: #cbd5e1;
+    }
     .btn-action--zip {
       background: var(--cl-tint); color: var(--cl-text-body); border: 1px solid var(--cl-line);
+      font-size: 15px; font-weight: 600; padding: 10px 18px; border-radius: 10px;
     }
     .btn-action--zip:hover { background: #e2e8f0; }
 
@@ -372,8 +388,8 @@
       .topbar-title { font-size: 14px; }
       .cl-zebra-section { padding: 40px 16px; }
       .ext-meta-bar { flex-direction: column; align-items: flex-start; }
-      .ext-actions { width: 100%; justify-content: flex-start; flex-wrap: wrap; }
-      .btn-action { flex: 1; justify-content: center; }
+      .ext-actions { width: 100%; flex-direction: column; align-items: stretch; gap: 10px; }
+      .btn-action { width: 100%; justify-content: center; text-align: center; }
     }
   
     details.prompt-container summary { list-style: none; cursor: pointer; }
@@ -399,8 +415,20 @@
       .tab-btn.active { color: var(--cl-bg); background: var(--cl-text-base); }
       .ext-panel { background: var(--cl-tint); border-color: var(--cl-line); }
       
-      .btn-action--copy { background: #1e293b; color: #f8fafc; border-color: #334155; }
-      .btn-action--copy:hover { background: #334155; }
+      .btn-action--copy {
+        background: #2563eb; color: #ffffff; border-color: #2563eb;
+        box-shadow: 0 4px 18px rgba(37, 99, 235, 0.45);
+      }
+      .btn-action--copy:hover {
+        background: #3b82f6; border-color: #3b82f6;
+        box-shadow: 0 8px 24px rgba(59, 130, 246, 0.55);
+      }
+      .btn-action--cws {
+        background: var(--cl-tint); color: var(--cl-text-muted); border-color: var(--cl-line);
+      }
+      .btn-action--cws:hover {
+        background: rgba(255, 255, 255, 0.08); color: var(--cl-text-base); border-color: #475569;
+      }
       
       .cl-zebra--light { background-color: var(--cl-bg); }
       .cl-zebra--tint { background-color: var(--cl-tint); }
@@ -489,12 +517,12 @@
             </div>
           </div>
           <div class="ext-actions">
-            <a href="https://chromewebstore.google.com/detail/miss-idea-%E2%80%94-tr%E1%BB%A3-l%C3%BD-c%E1%BB%91-v%E1%BA%A5n/gcaepndecljnaifdbicjaijndohfjdem" target="_blank" rel="noopener" class="btn-action btn-action--cws">
-              🌐 Cài Đặt Trên Chrome Web Store ↗
-            </a>
             <button class="btn-action btn-action--copy" onclick="copyPrompt('prompt-idea-code', this)">
               📋 Copy Mega Prompt
             </button>
+            <a href="https://chromewebstore.google.com/detail/miss-idea-%E2%80%94-tr%E1%BB%A3-l%C3%BD-c%E1%BB%91-v%E1%BA%A5n/gcaepndecljnaifdbicjaijndohfjdem" target="_blank" rel="noopener" class="btn-action btn-action--cws">
+              🌐 Cài Đặt Trên Chrome Web Store ↗
+            </a>
           </div>
         </div>
 
@@ -584,12 +612,12 @@ Nếu tôi gõ LOGIC, hãy phân tích ngắn gọn:
             </div>
           </div>
           <div class="ext-actions">
-            <a href="https://chromewebstore.google.com/detail/miss-vlog-%E2%80%94-tr%E1%BB%A3-l%C3%BD-k%E1%BB%8Bch-b%E1%BA%A5n-x%C3%A2y-k%C3%AAnh/mbhaoimppkeikgjnjebppglamceilbhi" target="_blank" rel="noopener" class="btn-action btn-action--cws">
-              🌐 Cài Đặt Trên Chrome Web Store ↗
-            </a>
             <button class="btn-action btn-action--copy" onclick="copyPrompt('prompt-vlog-code', this)">
               📋 Copy Mega Prompt
             </button>
+            <a href="https://chromewebstore.google.com/detail/miss-vlog-%E2%80%94-tr%E1%BB%A3-l%C3%BD-k%E1%BB%8Bch-b%E1%BA%A5n-x%C3%A2y-k%C3%AAnh/mbhaoimppkeikgjnjebppglamceilbhi" target="_blank" rel="noopener" class="btn-action btn-action--cws">
+              🌐 Cài Đặt Trên Chrome Web Store ↗
+            </a>
           </div>
         </div>
 
@@ -690,12 +718,12 @@ Nếu tôi gõ QUAY, lập tức tách kịch bản thành 2 khối độc lập
             </div>
           </div>
           <div class="ext-actions">
-            <a href="https://chromewebstore.google.com/detail/miss-video-ads-%E2%80%94-tr%E1%BB%A3-l%C3%BD-k%E1%BB%8Bch-b%E1%BA%A5n/inmgamfhjhbkejanlljppaflicemgbpe" target="_blank" rel="noopener" class="btn-action btn-action--cws">
-              🌐 Cài Đặt Trên Chrome Web Store ↗
-            </a>
             <button class="btn-action btn-action--copy" onclick="copyPrompt('prompt-ads-code', this)">
               📋 Copy Mega Prompt
             </button>
+            <a href="https://chromewebstore.google.com/detail/miss-video-ads-%E2%80%94-tr%E1%BB%A3-l%C3%BD-k%E1%BB%8Bch-b%E1%BA%A5n/inmgamfhjhbkejanlljppaflicemgbpe" target="_blank" rel="noopener" class="btn-action btn-action--cws">
+              🌐 Cài Đặt Trên Chrome Web Store ↗
+            </a>
           </div>
         </div>
 
@@ -785,33 +813,34 @@ Nếu tôi gõ LOGIC, hãy giải phẫu chi tiết chức năng tâm lý của 
   
   <!-- FOOTER -->
   <footer class="cl-zebra-section cl-zebra--tint" style="padding: 24px 0; border-top: 1px solid var(--cl-line);">
-    <div class="cl-sec-container" style="display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 32px;">
+    <div class="cl-sec-container" style="display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 24px;">
       
-      <div style="display: flex; gap: 24px; align-items: center;">
+      <div style="display: flex; gap: 16px; align-items: center;">
+        
         <!-- Zalo / Message -->
-        <a href="https://zalo.me/0934688632" target="_blank" style="color: var(--cl-text-muted); transition: color 0.2s, transform 0.2s;" onmouseover="this.style.color='var(--cl-accent)'; this.style.transform='translateY(-2px)'" onmouseout="this.style.color='var(--cl-text-muted)'; this.style.transform='translateY(0)'" title="Nhắn tin Zalo / iMessage">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M17 2H7C4.24 2 2 4.24 2 7v10c0 2.76 2.24 5 5 5h2v3.5l4-3.5h4c2.76 0 5-2.24 5-5V7c0-2.76-2.24-5-5-5zm-3 11H10v-1.5h4V13zm2-4H8V7.5h8V9z"/>
+        <a href="https://zalo.me/0934688632" target="_blank" style="width: 40px; height: 40px; border-radius: 50%; background-color: transparent; border: 1px solid var(--cl-line); color: var(--cl-text-muted); display: inline-flex; align-items: center; justify-content: center; transition: all 0.2s;" onmouseover="this.style.color='var(--cl-accent)'; this.style.borderColor='var(--cl-accent)'; this.style.transform='translateY(-2px)'" onmouseout="this.style.color='var(--cl-text-muted)'; this.style.borderColor='var(--cl-line)'; this.style.transform='translateY(0)'" title="Nhắn tin Zalo">
+          <svg width="24" height="12" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12.49 10.2722v-.4496h1.3467v6.3218h-.7704a.576.576 0 01-.5763-.5729l-.0006.0005a3.273 3.273 0 01-1.9372.6321c-1.8138 0-3.2844-1.4697-3.2844-3.2823 0-1.8125 1.4706-3.2822 3.2844-3.2822a3.273 3.273 0 011.9372.6321l.0006.0005zM6.9188 7.7896v.205c0 .3823-.051.6944-.2995 1.0605l-.03.0343c-.0542.0615-.1815.206-.2421.2843L2.024 14.8h4.8948v.7682a.5764.5764 0 01-.5767.5761H0v-.3622c0-.4436.1102-.6414.2495-.8476L4.8582 9.23H.1922V7.7896h6.7266zm8.5513 8.3548a.4805.4805 0 01-.4803-.4798v-7.875h1.4416v8.3548H15.47zM20.6934 9.6C22.52 9.6 24 11.0807 24 12.9044c0 1.8252-1.4801 3.306-3.3066 3.306-1.8264 0-3.3066-1.4808-3.3066-3.306 0-1.8237 1.4802-3.3044 3.3066-3.3044zm-10.1412 5.253c1.0675 0 1.9324-.8645 1.9324-1.9312 0-1.065-.865-1.9295-1.9324-1.9295s-1.9324.8644-1.9324 1.9295c0 1.0667.865 1.9312 1.9324 1.9312zm10.1412-.0033c1.0737 0 1.945-.8707 1.945-1.9453 0-1.073-.8713-1.9436-1.945-1.9436-1.0753 0-1.945.8706-1.945 1.9436 0 1.0746.8697 1.9453 1.945 1.9453z"/>
           </svg>
         </a>
 
         <!-- Facebook Page -->
-        <a href="https://www.facebook.com/nguyenducviet.video/reels/" target="_blank" style="color: var(--cl-text-muted); transition: color 0.2s, transform 0.2s;" onmouseover="this.style.color='var(--cl-accent)'; this.style.transform='translateY(-2px)'" onmouseout="this.style.color='var(--cl-text-muted)'; this.style.transform='translateY(0)'" title="Facebook Reels">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M12 2C6.477 2 2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.879V15.32h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 3.32h-2.33v6.559C18.343 21.129 22 16.99 22 12c0-5.523-4.477-10-10-10z"/>
+        <a href="https://www.facebook.com/nguyenducviet.video/reels/" target="_blank" style="width: 40px; height: 40px; border-radius: 50%; background-color: transparent; border: 1px solid var(--cl-line); color: var(--cl-text-muted); display: inline-flex; align-items: center; justify-content: center; transition: all 0.2s;" onmouseover="this.style.color='var(--cl-accent)'; this.style.borderColor='var(--cl-accent)'; this.style.transform='translateY(-2px)'" onmouseout="this.style.color='var(--cl-text-muted)'; this.style.borderColor='var(--cl-line)'; this.style.transform='translateY(0)'" title="Facebook Reels">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
           </svg>
         </a>
         
         <!-- TikTok -->
-        <a href="https://www.tiktok.com/nguyenducviet.viral" target="_blank" style="color: var(--cl-text-muted); transition: color 0.2s, transform 0.2s;" onmouseover="this.style.color='var(--cl-text-base)'; this.style.transform='translateY(-2px)'" onmouseout="this.style.color='var(--cl-text-muted)'; this.style.transform='translateY(0)'" title="TikTok Viral">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.01.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.95v7.4c-.01 2.98-1.73 5.82-4.5 6.9-2.77 1.09-6.07.67-8.41-1.1C1.34 19.5 0 16.63 0 13.62c0-2.9 1.25-5.7 3.44-7.53 2.2-1.84 5.25-2.4 8.02-1.55v4.22c-1.39-.48-2.98-.32-4.24.4-1.26.73-2.12 2.05-2.28 3.52-.16 1.48.37 2.97 1.43 3.99 1.06 1.01 2.58 1.41 4.02 1.05 1.43-.36 2.59-1.44 3.03-2.82.44-1.38.31-2.92-.35-4.18V.02z"/>
+        <a href="https://www.tiktok.com/nguyenducviet.viral" target="_blank" style="width: 40px; height: 40px; border-radius: 50%; background-color: transparent; border: 1px solid var(--cl-line); color: var(--cl-text-muted); display: inline-flex; align-items: center; justify-content: center; transition: all 0.2s;" onmouseover="this.style.color='var(--cl-text-base)'; this.style.borderColor='var(--cl-text-base)'; this.style.transform='translateY(-2px)'" onmouseout="this.style.color='var(--cl-text-muted)'; this.style.borderColor='var(--cl-line)'; this.style.transform='translateY(0)'" title="TikTok Viral">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.97-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/>
           </svg>
         </a>
         
         <!-- Personal Facebook -->
-        <a href="http://facebook.com/nddviet" target="_blank" style="color: var(--cl-text-muted); transition: color 0.2s, transform 0.2s;" onmouseover="this.style.color='var(--cl-accent)'; this.style.transform='translateY(-2px)'" onmouseout="this.style.color='var(--cl-text-muted)'; this.style.transform='translateY(0)'" title="Facebook Cá Nhân">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+        <a href="http://facebook.com/nddviet" target="_blank" style="width: 40px; height: 40px; border-radius: 50%; background-color: transparent; border: 1px solid var(--cl-line); color: var(--cl-text-muted); display: inline-flex; align-items: center; justify-content: center; transition: all 0.2s;" onmouseover="this.style.color='var(--cl-accent)'; this.style.borderColor='var(--cl-accent)'; this.style.transform='translateY(-2px)'" onmouseout="this.style.color='var(--cl-text-muted)'; this.style.borderColor='var(--cl-line)'; this.style.transform='translateY(0)'" title="Facebook Cá Nhân">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
             <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 4c1.93 0 3.5 1.57 3.5 3.5S13.93 13 12 13s-3.5-1.57-3.5-3.5S10.07 6 12 6zm0 14c-2.58 0-4.9-1.13-6.49-2.92.05-2.15 4.34-3.33 6.49-3.33s6.44 1.18 6.49 3.33C16.9 18.87 14.58 20 12 20z"/>
           </svg>
         </a>
