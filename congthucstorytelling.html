@@ -230,13 +230,25 @@
     }
 
     /* Launchpad Primary Action Card */
+    .tool-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-bottom: 32px;
+    }
+    @media (max-width: 768px) {
+      .tool-grid { grid-template-columns: 1fr; }
+    }
+    
     .launchpad-card {
       background: #ffffff;
       border: 1px solid var(--cl-line);
       border-radius: 18px;
       padding: clamp(20px, 3.5vw, 28px);
       box-shadow: 0 10px 32px rgba(9, 13, 22, 0.05);
-      margin-bottom: 20px;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
     }
 
     .btn-copy-hero {
@@ -658,17 +670,21 @@
     <!-- KHỐI 1: HERO & TRUNG TÂM VẬN HÀNH -->
     <section class="cl-zebra-section cl-zebra--light" id="sec-hero">
       <div class="cl-sec-container">
-        <div class="cl-badge">01 / VẬN HÀNH 1-CHẠM</div>
-        <h1 class="title-short">CÔNG THỨC STORYTELLING:<br>BIẾN ĐỜI THƯỜNG THÀNH CHUYỆN ĐẮT GIÁ</h1>
+        <div class="cl-badge">01 / TRUNG TÂM VẬN HÀNH</div>
+        <h1 class="title-short">BỘ CÔNG CỤ XÂY DỰNG NHÂN HIỆU:<br>TỪ ĐỜI THƯỜNG ĐẾN ĐẮT GIÁ</h1>
         <p class="sub-hook">
-          Biến một hành động vặt vãnh mỗi ngày thành một câu chuyện chạm đáy tâm lý và bộ kịch bản video hoàn chỉnh tự quay tại bàn chỉ trong 60 giây.
+          Tổ hợp Mega Prompt tự động hóa quy trình sáng tạo nội dung chuyên sâu. Biến chất liệu đời thường thành kịch bản video và điểm chạm tâm lý thấu cảm chỉ trong 60 giây.
         </p>
 
-        <div class="launchpad-card">
-          <button class="btn-copy-hero" id="btnCopyPrompt" onclick="copyMasterPrompt()">
-            <span class="btn-copy-hero__icon" id="copyIcon">📋</span>
-            <span class="btn-copy-hero__title" id="copyText">SAO CHÉP CÂU LỆNH STORYTELLING (MEGAPROMPT)</span>
-          </button>
+        <div class="tool-grid">
+          <!-- CARD 1: CÔNG THỨC STORYTELLING -->
+          <div class="launchpad-card">
+            <h3 style="font-family: var(--font-display-short); font-size: 16px; margin-bottom: 8px; color: var(--cl-text-base);">1. KỊCH BẢN STORYTELLING ĐỜI THƯỜNG</h3>
+            <p style="font-size: 14px; color: var(--cl-text-muted); margin-bottom: 16px; line-height: 1.5; flex-grow: 1;">Phân tích tâm lý sâu sắc từ một hành động nhỏ và xuất ra bộ kịch bản 7 nhịp hoàn chỉnh.</p>
+            <button class="btn-copy-hero" id="btnCopyPrompt" onclick="copyMasterPrompt()">
+              <span class="btn-copy-hero__icon" id="copyIcon">📋</span>
+              <span class="btn-copy-hero__title" id="copyText">COPY MEGAPROMPT STORYTELLING</span>
+            </button>
 
           <div class="launcher-row" style="display: none;">
             <a href="https://chatgpt.com" target="_blank" rel="noopener noreferrer" class="btn-ai-launch" title="Mở ChatGPT để dán câu lệnh">
@@ -831,6 +847,20 @@ Khi người dùng chọn xong, bạn xuất xưởng ngay lập tức đầy đ
 * **Thao tác 60 giây:** Bấm quay ➔ khẽ thở hắt ra một nhịp tự nhiên như người vừa xong việc ➔ đọc đúng 7 câu thoại mộc mạc ➔ bấm tắt máy. Không cần đèn chiếu cầu kỳ, không cần ai quay hộ.</pre>
           </div>
         </div>
+        <!-- END CARD 1 -->
+
+        <!-- CARD 2: HOOK DNA - ĐÀO MỎ INSIDER MOMENT -->
+        <div class="launchpad-card">
+          <h3 style="font-family: var(--font-display-short); font-size: 16px; margin-bottom: 8px; color: var(--cl-text-base);">2. HOOK DNA: KHOẢNH KHẮC NGƯỜI TRONG CUỘC</h3>
+          <p style="font-size: 14px; color: var(--cl-text-muted); margin-bottom: 16px; line-height: 1.5; flex-grow: 1;">Phân tích 3 lớp phòng vệ tâm lý, tìm ra khoảnh khắc đắt giá "chỉ insider mới biết" cho từng ngành nghề chuyên biệt.</p>
+          <button class="btn-copy-hero" style="background: var(--cl-accent);" onclick="window.location.href='./hookdna.html'">
+            <span class="btn-copy-hero__icon">🧬</span>
+            <span class="btn-copy-hero__title" style="color: #ffffff;">MỞ CÔNG CỤ HOOK DNA</span>
+          </button>
+        </div>
+        <!-- END CARD 2 -->
+
+        </div> <!-- END TOOL GRID -->
       </div>
     </section>
 
