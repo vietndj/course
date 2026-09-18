@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>HOOK DNA — CÔNG CỤ ĐÀO HOOK NHÂN HIỆU • VIDEO SUITE</title>
+
+  <link rel="icon" type="image/svg+xml" href="./favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    @font-face {
+      font-family: "FD Aeonik Extended";
+      src: url("./fonts/FDAeonikExtended-Bold.woff2") format("woff2"),
+           url("./fonts/FDAeonikExtended-Bold.ttf") format("truetype"),
+           local("FD Aeonik Extended Bold");
+      font-weight: 700; font-style: normal; font-display: swap;
+    }
+    @font-face {
+      font-family: "FD Aeonik";
+      src: url("./fonts/FDAeonik-Regular.woff2") format("woff2"),
+           url("./fonts/FDAeonik-Regular.ttf") format("truetype"),
+           local("FD Aeonik Regular");
+      font-weight: 400; font-style: normal; font-display: swap;
+    }
+    @font-face {
+      font-family: "FD Aeonik";
+      src: url("./fonts/FDAeonik-Medium.woff2") format("woff2"),
+           url("./fonts/FDAeonik-Medium.ttf") format("truetype"),
+           local("FD Aeonik Medium");
+      font-weight: 500; font-style: normal; font-display: swap;
+    }
+    @font-face {
+      font-family: "FD Aeonik";
+      src: url("./fonts/FDAeonik-Bold.woff2") format("woff2"),
+           url("./fonts/FDAeonik-Bold.ttf") format("truetype"),
+           local("FD Aeonik Bold");
+      font-weight: 600 700; font-style: normal; font-display: swap;
+    }
+    @font-face {
+      font-family: "Tiempos Text";
+      src: url("./fonts/FDTiemposText-Regular.woff2") format("woff2"),
+           url("./fonts/FDTiemposText-Regular.otf") format("opentype"),
+           url("./fonts/TiemposText-Regular.woff2") format("woff2");
+      font-weight: 400; font-style: normal; font-display: swap;
+    }
+    @font-face {
+      font-family: "Tiempos Text";
+      src: url("./fonts/FDTiemposText-Medium.woff2") format("woff2"),
+           url("./fonts/FDTiemposText-Medium.otf") format("opentype"),
+           url("./fonts/TiemposText-Medium.woff2") format("woff2");
+      font-weight: 500; font-style: normal; font-display: swap;
+    }
+    @font-face {
+      font-family: "Tiempos Text";
+      src: url("./fonts/FDTiemposText-RegularItalic.woff2") format("woff2"),
+           url("./fonts/FDTiemposText-RegularItalic.otf") format("opentype"),
+           url("./fonts/TiemposText-RegularItalic.woff2") format("woff2");
+      font-weight: 400; font-style: italic; font-display: swap;
+    }
+
+    :root {
+      --cl-bg: #ffffff;
+      --cl-tint: #f8fafc;
+      --cl-line: #e2e8f0;
+      --cl-text-base: #090d16;
+      --cl-text-body: #0f172a;
+      --cl-text-muted: #475569;
+      --cl-accent: #d97706;
+      --cl-accent-soft: rgba(217, 119, 6, 0.08);
+
+      --font-display-short: "FD Aeonik Extended", "Inter", -apple-system, sans-serif;
+      --font-display-long: "FD Aeonik", "Inter", -apple-system, sans-serif;
+      --font-body: "Tiempos Text", Georgia, serif;
+      --font-mono: "JetBrains Mono", Consolas, monospace;
+
+      --apple-spring: cubic-bezier(0.25, 1, 0.35, 1.05);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0; padding: 0;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    html {
+      background-color: var(--cl-bg);
+      color: var(--cl-text-base);
+      font-family: var(--font-body);
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100vh;
+      line-height: 1.82;
+      padding-bottom: 80px;
+    }
+
+    /* TOP BAR */
+    .topbar {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--cl-line);
+      padding: 12px 24px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .topbar-brand {
+      display: flex; align-items: center; gap: 10px;
+      text-decoration: none; color: inherit;
+    }
+    .topbar-logo {
+      background: var(--cl-text-base); color: #fff;
+      font-family: var(--font-display-short); font-weight: 700;
+      font-size: 13px; padding: 4px 8px; border-radius: 6px;
+      letter-spacing: 0.05em;
+    }
+    .topbar-title {
+      font-family: var(--font-display-short); font-weight: 700;
+      font-size: 16px; text-transform: uppercase; letter-spacing: -0.01em;
+    }
+    .topbar-links { display: flex; align-items: center; gap: 12px; }
+    .topbar-btn {
+      font-family: var(--font-display-long); font-size: 12.5px; font-weight: 600;
+      text-decoration: none; padding: 6px 14px; border-radius: 999px;
+      transition: all 0.2s;
+    }
+    .topbar-btn--back {
+      background: var(--cl-accent-soft); color: var(--cl-accent);
+      border: 1px solid rgba(217, 119, 6, 0.2);
+    }
+    .topbar-btn--back:hover { background: rgba(217, 119, 6, 0.16); }
+
+    /* SECTIONS */
+    .cl-zebra-section {
+      width: 100%; padding: 64px 20px;
+      border-bottom: 1px solid var(--cl-line);
+    }
+    .cl-zebra--light { background-color: var(--cl-bg); }
+    .cl-zebra--tint { background-color: var(--cl-tint); }
+
+    .cl-container { max-width: 1120px; margin: 0 auto; }
+    .cl-container--narrow { max-width: 860px; margin: 0 auto; }
+
+    /* HERO */
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-family: var(--font-display-long); font-size: 14px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.08em;
+      background: var(--cl-accent-soft); color: var(--cl-accent);
+      padding: 4px 12px; border-radius: 999px; margin-bottom: 16px;
+      border: 1px solid rgba(217, 119, 6, 0.2);
+    }
+    .hero-title {
+      font-family: var(--font-display-short); font-size: clamp(28px, 4vw, 44px);
+      font-weight: 700; text-transform: uppercase; letter-spacing: -0.02em;
+      line-height: 1.15; margin-bottom: 24px; text-wrap: balance; text-wrap: pretty;
+    }
+    .hero-desc {
+      font-size: 17px; color: var(--cl-text-muted); line-height: 1.75;
+      margin-bottom: 32px; text-wrap: balance; text-wrap: pretty;
+      max-width: 720px;
+    }
+
+    /* META BAR */
+    .ext-meta-bar {
+      background: #fff; border: 1px solid var(--cl-line); border-radius: 14px;
+      padding: 16px 20px; margin-bottom: 24px;
+      display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 14px;
+    }
+    .ext-meta-info { display: flex; align-items: center; gap: 12px; }
+    .ext-meta-icon { font-size: 28px; }
+    .ext-meta-title { font-family: var(--font-display-short); font-size: 18px; font-weight: 700; text-transform: uppercase; }
+    .ext-meta-sub { font-size: 17px; color: var(--cl-text-muted); }
+    .ext-actions { display: flex; align-items: center; gap: 12px; }
+
+    /* BUTTONS */
+    .btn-action {
+      font-family: var(--font-display-long); font-weight: 700;
+      text-decoration: none; cursor: pointer;
+      display: inline-flex; align-items: center; gap: 8px;
+      transition: all 0.22s var(--apple-spring);
+    }
+    .btn-action--copy {
+      background: #d97706; color: #ffffff; border: 1px solid #d97706;
+      font-size: 18px; padding: 13px 26px; border-radius: 12px;
+      box-shadow: 0 4px 16px rgba(217, 119, 6, 0.3);
+    }
+    .btn-action--copy:hover {
+      background: #b45309; border-color: #b45309; color: #ffffff;
+      transform: translateY(-2px); box-shadow: 0 8px 24px rgba(217, 119, 6, 0.42);
+    }
+    .btn-action--copy.copied {
+      background: #10b981 !important; border-color: #10b981 !important; color: #fff !important;
+      box-shadow: 0 4px 16px rgba(16, 185, 129, 0.35) !important;
+    }
+
+    /* INSIGHT BOX */
+    .insight-box {
+      background: #fff; border-left: 4px solid var(--cl-accent);
+      border-radius: 0 12px 12px 0; padding: 18px 24px; margin-bottom: 20px;
+      border: 1px solid var(--cl-line); border-left-width: 4px;
+    }
+    .insight-box h4 {
+      font-family: var(--font-display-long); font-size: 16px; font-weight: 700;
+      color: var(--cl-accent); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.05em;
+    }
+    .insight-box p { font-size: 17px; color: var(--cl-text-body); line-height: 1.7; margin: 0; }
+
+    /* GUARD CARD */
+    .guard-card {
+      background: #fffbeb; border: 1px solid #fde68a; border-radius: 12px;
+      padding: 16px 20px; margin-bottom: 24px; font-size: 16px;
+    }
+    .guard-header {
+      font-family: var(--font-display-long); font-weight: 700; color: #92400e;
+      display: flex; align-items: center; gap: 8px; margin-bottom: 8px;
+    }
+    .guard-list { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
+    .guard-tag {
+      background: #fff; border: 1px solid #fcd34d; color: #78350f;
+      font-family: var(--font-mono); font-size: 13px; padding: 2px 8px; border-radius: 4px;
+    }
+
+    /* PROMPT CONTAINER */
+    .prompt-container {
+      background: #0b0f19; border: 1px solid #1e293b; border-radius: 14px;
+      overflow: hidden; margin-bottom: 32px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    }
+    .prompt-header {
+      background: #111827; padding: 12px 18px; display: flex; align-items: center; justify-content: space-between;
+      border-bottom: 1px solid #1f2937;
+    }
+    .prompt-label {
+      font-family: var(--font-mono); font-size: 14px; font-weight: 700; color: #f59e0b;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .prompt-badge {
+      background: rgba(245, 158, 11, 0.15); color: #f59e0b;
+      font-size: 10.5px; padding: 2px 8px; border-radius: 999px;
+    }
+    .prompt-btn-copy {
+      background: #1e293b; border: 1px solid #334155; color: #f8fafc;
+      font-family: var(--font-display-long); font-size: 14px; font-weight: 700;
+      padding: 6px 14px; border-radius: 6px; cursor: pointer; transition: all 0.2s;
+      display: inline-flex; align-items: center; gap: 6px;
+    }
+    .prompt-btn-copy:hover { background: #f59e0b; color: #090d16; border-color: #f59e0b; }
+    .prompt-btn-copy.copied { background: #10b981; color: #fff; border-color: #10b981; }
+    .prompt-content {
+      padding: 20px; font-family: var(--font-mono); font-size: 15px; line-height: 1.75;
+      color: #e2e8f0; max-height: 600px; overflow-y: auto; white-space: pre-wrap; word-break: break-word;
+    }
+
+    details.prompt-container summary { list-style: none; cursor: pointer; }
+    details.prompt-container summary::-webkit-details-marker { display: none; }
+
+    /* EXAMPLE GRID */
+    .example-grid {
+      display: grid; grid-template-columns: 1fr; gap: 16px;
+      margin: 24px 0;
+    }
+    .example-card {
+      background: #fff; border: 1px solid var(--cl-line); border-radius: 14px;
+      padding: 20px; transition: all 0.22s var(--apple-spring);
+    }
+    .example-card:hover {
+      border-color: var(--cl-accent);
+      box-shadow: 0 6px 20px rgba(217, 119, 6, 0.1);
+    }
+    .example-card__industry {
+      font-family: var(--font-mono); font-size: 12px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.1em;
+      color: var(--cl-accent); margin-bottom: 8px;
+    }
+    .example-card__hook {
+      font-family: var(--font-body); font-size: 17px; font-style: italic;
+      color: var(--cl-text-base); line-height: 1.65; margin-bottom: 10px;
+      padding-left: 14px; border-left: 3px solid var(--cl-accent);
+    }
+    .example-card__why {
+      font-size: 15px; color: var(--cl-text-muted); line-height: 1.6;
+    }
+
+    /* FLOW DIAGRAM */
+    .flow-steps {
+      display: flex; flex-direction: column; gap: 0; margin: 24px 0;
+    }
+    .flow-step {
+      display: flex; align-items: flex-start; gap: 16px;
+      padding: 20px 0;
+      border-bottom: 1px dashed var(--cl-line);
+    }
+    .flow-step:last-child { border-bottom: none; }
+    .flow-num {
+      width: 40px; height: 40px; min-width: 40px;
+      background: var(--cl-accent); color: #fff;
+      font-family: var(--font-display-short); font-weight: 700;
+      font-size: 16px; border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .flow-content h4 {
+      font-family: var(--font-display-short); font-size: 15px; font-weight: 700;
+      text-transform: uppercase; margin-bottom: 4px;
+    }
+    .flow-content p {
+      font-size: 16px; color: var(--cl-text-body); line-height: 1.65;
+    }
+
+    /* TOAST */
+    .toast {
+      position: fixed; bottom: 24px; right: 24px; z-index: 9999;
+      background: #10b981; color: #fff; font-family: var(--font-display-long);
+      font-size: 17px; font-weight: 700; padding: 12px 20px; border-radius: 10px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+      display: flex; align-items: center; gap: 8px; opacity: 0; transform: translateY(12px);
+      transition: all 0.25s var(--apple-spring); pointer-events: none;
+    }
+    .toast.show { opacity: 1; transform: translateY(0); }
+
+    /* DARK MODE */
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --cl-bg: #0b0f19;
+        --cl-tint: #111827;
+        --cl-line: #1e293b;
+        --cl-text-base: #f8fafc;
+        --cl-text-body: #cbd5e1;
+        --cl-text-muted: #64748b;
+        --cl-accent: #f59e0b;
+        --cl-accent-soft: rgba(245, 158, 11, 0.15);
+      }
+      body { background-color: var(--cl-bg); }
+      .topbar { background: rgba(11, 15, 25, 0.94); border-bottom-color: var(--cl-line); }
+      .hero-badge { background: var(--cl-accent-soft); color: var(--cl-accent); }
+      .ext-meta-bar { background: var(--cl-tint); border-color: var(--cl-line); }
+      .insight-box { background: var(--cl-tint); border-color: var(--cl-line); }
+      .guard-card { background: rgba(245, 158, 11, 0.06); border-color: rgba(245, 158, 11, 0.2); }
+      .guard-header { color: #f59e0b; }
+      .guard-tag { background: var(--cl-tint); border-color: rgba(245, 158, 11, 0.3); color: #fbbf24; }
+      .example-card { background: var(--cl-tint); border-color: var(--cl-line); }
+      .btn-action--copy {
+        background: #f59e0b; color: #090d16; border-color: #f59e0b;
+        box-shadow: 0 4px 18px rgba(245, 158, 11, 0.4);
+      }
+      .btn-action--copy:hover {
+        background: #fbbf24; border-color: #fbbf24;
+        box-shadow: 0 8px 24px rgba(245, 158, 11, 0.55);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .topbar-title { font-size: 14px; }
+      .cl-zebra-section { padding: 40px 16px; }
+      .ext-meta-bar { flex-direction: column; align-items: flex-start; }
+      .ext-actions { width: 100%; flex-direction: column; align-items: stretch; gap: 10px; }
+      .btn-action { width: 100%; justify-content: center; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- TOP BAR -->
+  <header class="topbar">
+    <a href="https://go.fedu.vn" class="topbar-brand">
+      <div class="topbar-logo">VIDEO</div>
+      <div class="topbar-title">HOOK DNA</div>
+    </a>
+    <div class="topbar-links">
+      <a href="./3congcu.html" class="topbar-btn topbar-btn--back">← 3 Công Cụ Kịch Bản</a>
+    </div>
+  </header>
+
+  <!-- ═══════════════════════════════════════════════════════════════════════
+       SECTION 1: HERO
+       ═══════════════════════════════════════════════════════════════════════ -->
+  <section class="cl-zebra-section cl-zebra--light">
+    <div class="cl-container">
+      <div class="hero-badge">🧬 CÔNG CỤ THỨ 4 — CHUYÊN BIỆT</div>
+      <h1 class="hero-title">HOOK DNA<br>ĐÀO MỎ KHOẢNH KHẮC<br>CHỈ NGƯỜI TRONG CUỘC BIẾT</h1>
+      <p class="hero-desc">
+        Không gây sốc, không hét, không đếm ngược. Chỉ mô tả một thao tác bàn tay cụ thể — 
+        mà bất kỳ ai đã từng trải qua đều <strong>đứng hình</strong>. 
+        Não kích hoạt: <em>"Người này biết cái khoảnh khắc đó. Chỉ người trong cuộc mới biết."</em>
+      </p>
+
+      <!-- CTA BAR -->
+      <div class="ext-meta-bar">
+        <div class="ext-meta-info">
+          <div class="ext-meta-icon">🧬</div>
+          <div>
+            <div class="ext-meta-title">HOOK DNA — MEGA PROMPT</div>
+            <div class="ext-meta-sub">Copy prompt này vào ChatGPT hoặc Gemini. Nhập ngành nghề. Ra hook nhân hiệu trong 60 giây.</div>
+          </div>
+        </div>
+        <div class="ext-actions">
+          <button class="btn-action btn-action--copy" onclick="copyPrompt('prompt-hookdna-code', this)">
+            📋 Copy Mega Prompt
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════════════════
+       SECTION 2: TẠI SAO HOOK NÀY ĐỨNG HÌNH?
+       ═══════════════════════════════════════════════════════════════════════ -->
+  <section class="cl-zebra-section cl-zebra--tint">
+    <div class="cl-container--narrow">
+      <div class="hero-badge">🧠 CƠ CHẾ TÂM LÝ</div>
+      <h2 style="font-family: var(--font-display-short); font-size: clamp(22px, 3vw, 32px); font-weight: 700; text-transform: uppercase; letter-spacing: -0.01em; margin-bottom: 28px;">TẠI SAO HOOK NÀY KHÁC MỌI HOOK?</h2>
+
+      <div class="insight-box">
+        <h4>🔬 Insider Recognition Effect</h4>
+        <p>Não người có vùng chuyên nhận diện "kinh nghiệm chia sẻ" (shared experience). Khi đọc một hành vi cực kỳ cụ thể mà mình từng làm nhưng <strong>chưa bao giờ thấy ai nói ra</strong> → phản xạ đứng hình + đọc tiếp 100%.</p>
+      </div>
+
+      <div class="insight-box">
+        <h4>🎯 3 Tầng Kích Hoạt</h4>
+        <p><strong>Tầng 1 — Hành vi bề mặt:</strong> Mô tả thao tác vật lý cụ thể (mở ngăn kéo, nhét vào, đẩy lại).<br>
+        <strong>Tầng 2 — Cảm xúc giấu:</strong> Nỗi sợ bị phán xét ("sợ chồng hỏi").<br>
+        <strong>Tầng 3 — Bản sắc:</strong> Người đọc tự nhận: "Đúng tôi. Người viết này là người trong cuộc."</p>
+      </div>
+
+      <div class="insight-box">
+        <h4>⚡ Khác gì hook thông thường?</h4>
+        <p><strong>Hook thường:</strong> "Bạn có biết 90% người mua bảo hiểm hối hận?" → Gây tranh cãi, clickbait, không xây nhân hiệu.<br>
+        <strong>Hook DNA:</strong> "Ký xong hợp đồng... về nhà mở ngăn kéo, nhét vào trong cùng, đẩy lại." → Không hét, không số liệu, nhưng <strong>ai đã trải qua thì không thể lướt qua</strong>.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════════════════
+       SECTION 3: QUY TRÌNH 5 BƯỚC
+       ═══════════════════════════════════════════════════════════════════════ -->
+  <section class="cl-zebra-section cl-zebra--light">
+    <div class="cl-container--narrow">
+      <div class="hero-badge">⚙️ QUY TRÌNH ĐÀO MỎ</div>
+      <h2 style="font-family: var(--font-display-short); font-size: clamp(22px, 3vw, 32px); font-weight: 700; text-transform: uppercase; letter-spacing: -0.01em; margin-bottom: 28px;">5 BƯỚC TÌM HOOK NHÂN HIỆU</h2>
+
+      <div class="flow-steps">
+        <div class="flow-step">
+          <div class="flow-num">1</div>
+          <div class="flow-content">
+            <h4>XÁC ĐỊNH HÀNH VI GIẤU GIẾM</h4>
+            <p>Mỗi ngành có những khoảnh khắc khách hàng <strong>làm nhưng không dám nói</strong>. Hỏi: "Sau khi mua/sử dụng xong, khách làm gì ĐẦU TIÊN khi về nhà? Có hành động nào họ sẽ CHỐI nếu bị hỏi?"</p>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-num">2</div>
+          <div class="flow-content">
+            <h4>ZOOM VÀO MICRO-MOMENT</h4>
+            <p>Không nói "giấu". Tả hành động bàn tay: mở app, xóa lịch sử, cắt tag, lật úp điện thoại, xé hoá đơn. Não kích hoạt ký ức bằng thao tác cơ thể, không bằng khái niệm.</p>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-num">3</div>
+          <div class="flow-content">
+            <h4>GẮN CẢM XÚC ĐI KÈM</h4>
+            <p>Xác định <strong>1 nỗi sợ cụ thể</strong> đằng sau hành vi: sợ bị phán xét, sợ bị chê, sợ lộ ra mình không biết gì, sợ người thân thất vọng.</p>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-num">4</div>
+          <div class="flow-content">
+            <h4>VIẾT KIỂU "QUAY CHẬM"</h4>
+            <p>Mô tả từng nhịp hành động như camera quay chậm: "Mở... nhét vào... đẩy lại." Không giải thích. Không bình luận. Để hành vi tự nói.</p>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-num">5</div>
+          <div class="flow-content">
+            <h4>CHỐT BẰNG SUY NGHĨ NỘI TÂM</h4>
+            <p>Kết thúc bằng 1 câu nói thầm trong đầu mà người ngoài không bao giờ biết: "Sợ chồng hỏi mình vừa đóng bao nhiêu." Câu này là mỏ neo khiến người đọc không thể lướt qua.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════════════════
+       SECTION 4: VÍ DỤ ĐA NGÀNH
+       ═══════════════════════════════════════════════════════════════════════ -->
+  <section class="cl-zebra-section cl-zebra--tint">
+    <div class="cl-container--narrow">
+      <div class="hero-badge">💎 VÍ DỤ ĐA NGÀNH</div>
+      <h2 style="font-family: var(--font-display-short); font-size: clamp(22px, 3vw, 32px); font-weight: 700; text-transform: uppercase; letter-spacing: -0.01em; margin-bottom: 28px;">HOOK DNA TRONG 6 NGÀNH</h2>
+
+      <div class="example-grid">
+        <div class="example-card">
+          <div class="example-card__industry">🏥 Bảo hiểm</div>
+          <div class="example-card__hook">"Ký xong hợp đồng bảo hiểm... về nhà mở ngăn kéo bàn, nhét vào trong cùng, đẩy lại. Sợ chồng hỏi mình vừa đóng bao nhiêu."</div>
+          <div class="example-card__why">Micro-moment: nhét hợp đồng. Nỗi sợ: bị phán xét. Ai đã làm → đứng hình.</div>
+        </div>
+
+        <div class="example-card">
+          <div class="example-card__industry">💇‍♀️ Thẩm mỹ / Spa</div>
+          <div class="example-card__hook">"Tiêm xong filler... ra xe lấy kính râm đeo vào, mặc dù trời đã tối. Lái về nhà bằng lối cổng sau, tắt đèn hành lang, lên thẳng phòng."</div>
+          <div class="example-card__why">Micro-moment: đeo kính râm trời tối. Nỗi sợ: bị phát hiện đã can thiệp thẩm mỹ.</div>
+        </div>
+
+        <div class="example-card">
+          <div class="example-card__industry">🏋️ Phòng tập / PT</div>
+          <div class="example-card__hook">"Đóng 12 tháng phòng tập... tập được 2 tuần. Mỗi tháng thấy SMS nhắc lịch, bấm xoá rồi úp điện thoại xuống. Không phải quên. Là ngại."</div>
+          <div class="example-card__why">Micro-moment: xoá tin nhắn + úp điện thoại. Nỗi sợ: đối mặt với sự thất bại của chính mình.</div>
+        </div>
+
+        <div class="example-card">
+          <div class="example-card__industry">👗 Thời trang</div>
+          <div class="example-card__hook">"Mua xong cái váy 2 triệu... về nhà cắt tag vứt thùng rác, treo vào tủ xen giữa mấy cái cũ. Chồng hỏi: 'Váy mới hả?'. 'Không, cái này lâu rồi.'"</div>
+          <div class="example-card__why">Micro-moment: cắt tag + treo xen đồ cũ. Nỗi sợ: bị nói hoang phí.</div>
+        </div>
+
+        <div class="example-card">
+          <div class="example-card__industry">📱 Khoá học online</div>
+          <div class="example-card__hook">"Mua xong khoá học 5 triệu... mở ra xem được bài 1. Từ đó mỗi lần thấy email nhắc 'Bạn còn 47 bài chưa học', vuốt xoá. Không phải không muốn học. Là sợ mở ra thấy mình vẫn chưa bắt đầu."</div>
+          <div class="example-card__why">Micro-moment: vuốt xoá email nhắc. Nỗi sợ: đối mặt với sự trì hoãn của chính mình.</div>
+        </div>
+
+        <div class="example-card">
+          <div class="example-card__industry">🏠 Bất động sản</div>
+          <div class="example-card__hook">"Đặt cọc xong căn hộ... về nhà mở máy tính, bật Excel, chia tiền trả góp ra từng tháng. Rồi xoá file. Mở lại. Xoá lại. Không phải tính không ra. Là sợ nhìn con số."</div>
+          <div class="example-card__why">Micro-moment: mở-xoá-mở-xoá file Excel. Nỗi sợ: áp lực tài chính dài hạn mà không dám đối mặt.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════════════════
+       SECTION 5: GUARD RAILS
+       ═══════════════════════════════════════════════════════════════════════ -->
+  <section class="cl-zebra-section cl-zebra--light">
+    <div class="cl-container--narrow">
+      <div class="hero-badge">🛡️ RANH GIỚI ĐẠO ĐỨC</div>
+      <h2 style="font-family: var(--font-display-short); font-size: clamp(22px, 3vw, 32px); font-weight: 700; text-transform: uppercase; letter-spacing: -0.01em; margin-bottom: 28px;">HOOK DNA ≠ THAO TÚNG</h2>
+
+      <div class="guard-card">
+        <div class="guard-header">⚠️ RANH GIỚI TUYỆT ĐỐI</div>
+        <p>Hook DNA đào khoảnh khắc để <strong>kết nối</strong>, không phải để <strong>xoáy vào nỗi đau</strong>. Mục đích duy nhất: khiến người đọc nhận ra "Người viết này hiểu tôi" → tin tưởng → theo dõi.</p>
+        <div class="guard-list">
+          <span class="guard-tag">CẤM: Phóng đại nỗi sợ</span>
+          <span class="guard-tag">CẤM: Gây xấu hổ công khai</span>
+          <span class="guard-tag">CẤM: Bịa khoảnh khắc chưa xảy ra</span>
+          <span class="guard-tag">CẤM: Lợi dụng trauma</span>
+          <span class="guard-tag">CẤM: Dùng để chê bai đối thủ</span>
+        </div>
+      </div>
+
+      <div class="insight-box">
+        <h4>✅ Nguyên tắc vàng</h4>
+        <p>Nếu đọc hook xong mà người đọc cảm thấy <strong>được thấu hiểu</strong> → Đúng.<br>
+        Nếu đọc xong mà cảm thấy <strong>bị phơi bày</strong> → Sai. Viết lại.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════════════════
+       SECTION 6: MEGA PROMPT
+       ═══════════════════════════════════════════════════════════════════════ -->
+  <section class="cl-zebra-section cl-zebra--tint">
+    <div class="cl-container--narrow">
+      <div class="hero-badge">⚡ MEGA PROMPT</div>
+      <h2 style="font-family: var(--font-display-short); font-size: clamp(22px, 3vw, 32px); font-weight: 700; text-transform: uppercase; letter-spacing: -0.01em; margin-bottom: 28px;">COPY VÀO CHATGPT / GEMINI</h2>
+
+      <details class="prompt-container" open>
+        <summary class="prompt-header">
+          <div class="prompt-label">
+            <span>🧬 MEGA PROMPT — HOOK DNA GENERATOR</span>
+            <span class="prompt-badge">V1.0 Insider Moment</span>
+          </div>
+          <button class="prompt-btn-copy" onclick="copyPrompt('prompt-hookdna-code', this)">Sao Chép Prompt</button>
+        </summary>
+        <pre class="prompt-content" id="prompt-hookdna-code">[ĐỊNH VỊ VAI TRÒ]
+Bạn là "Hook DNA — Chuyên gia đào mỏ khoảnh khắc nhân hiệu". 
+Nhiệm vụ duy nhất: giúp người làm nghề tìm ra những HOOK chỉ người trong cuộc mới biết — loại hook khiến người đọc đứng hình vì nhận ra "Người viết này biết cái khoảnh khắc đó".
+
+Xưng hô: "mình - bạn" hoặc "tôi - bạn", đi thẳng vào việc.
+
+⚠️ [NGUYÊN TẮC CỐT LÕI]:
+1. Hook DNA KHÔNG BAO GIỜ dùng: số liệu thống kê, câu hỏi tu từ, đếm ngược, tiêu đề gây sốc, clickbait.
+2. Hook DNA CHỈ dùng: mô tả hành vi vật lý cực kỳ cụ thể + 1 suy nghĩ nội tâm mà người ngoài không bao giờ biết.
+3. Tiêu chí đạt: Đọc xong, người trong cuộc phải cảm thấy ĐƯỢC THẤU HIỂU, không phải bị phơi bày.
+
+⚠️ [SỔ ĐEN TỪ CẤM TUYỆT ĐỐI]:
+CẤM: "ông giáo", "thầy giáo", "vũ khí", "thần thái", "ma trận", "bắt sống", "thôi miên", "tử huyệt", "đột phá", "đẳng cấp", "đập tan", "nói toạc", "bóc phốt", "phông bạt".
+CẤM mượn cớ số đông: "anh em mình", "nhiều anh em ngoài kia", "chúng ta thường hay".
+
+[QUY TRÌNH TƯƠNG TÁC 4 BƯỚC — TUÂN THỦ TUYỆT ĐỐI, KHÔNG NHẢY BƯỚC]
+
+═══════════════════════════════════════
+BƯỚC 1: KHẢO SÁT NGÀNH (THU THẬP NGUYÊN LIỆU THÔ)
+═══════════════════════════════════════
+Hỏi 5 câu ngắn gọn. DỪNG LẠI chờ trả lời:
+
+1. Bạn đang làm nghề gì / bán sản phẩm-dịch vụ gì?
+2. Khách hàng của bạn thường là ai? (giới tính, độ tuổi, hoàn cảnh)
+3. Sau khi mua/sử dụng xong, khách thường làm gì ĐẦU TIÊN khi về nhà hoặc khi ở một mình?
+4. Có hành động nào khách sẽ CHỐI nếu bị hỏi? (VD: giấu hoá đơn, xoá lịch sử tìm kiếm, nói giảm giá...)
+5. Khách hay sợ ai phán xét nhất? (vợ/chồng, bố mẹ, đồng nghiệp, bạn bè, chính mình?)
+
+*DỪNG LẠI. Chờ tôi trả lời 5 câu.*
+
+═══════════════════════════════════════
+BƯỚC 2: ĐÀO MỎ MICRO-MOMENT (AI XỬ LÝ 5 TẦNG)
+═══════════════════════════════════════
+Sau khi nhận đủ câu trả lời, xử lý nội bộ (KHÔNG in ra cho người dùng) qua 5 tầng:
+
+[TẦNG 1 — BỀ MẶT] Liệt kê 10 hành vi vật lý cụ thể mà khách làm sau khi mua/sử dụng. 
+Tiêu chuẩn: phải tả được bằng camera quay chậm (mở, cầm, nhét, đẩy, vuốt, gấp, úp, cắt, xé, bấm).
+
+[TẦNG 2 — LỌC] Từ 10 hành vi, lọc ra 5 hành vi mà khách sẽ PHỦI nếu bị hỏi "Bạn có làm thế không?"
+
+[TẦNG 3 — CẢM XÚC GIẤU] Với mỗi hành vi, xác định 1 nỗi sợ cụ thể đằng sau:
+- Sợ bị phán xét (judgment)
+- Sợ bị phát hiện (exposure)  
+- Sợ đối mặt với chính mình (self-confrontation)
+- Sợ người thân thất vọng (disappointment)
+- Sợ thừa nhận sai lầm (admission)
+
+[TẦNG 4 — SUY NGHĨ NỘI TÂM] Viết 1 câu "nói thầm trong đầu" cho mỗi hành vi.
+Tiêu chuẩn: câu này phải là thứ mà KHÔNG AI nói ra miệng nhưng hầu như ai cũng nghĩ.
+
+[TẦNG 5 — GHÉP HOOK] Ghép: Bối cảnh + Chuỗi hành vi quay chậm + Câu nội tâm = 1 Hook DNA hoàn chỉnh.
+
+═══════════════════════════════════════
+BƯỚC 3: XUẤT 5 HOOK DNA
+═══════════════════════════════════════
+Xuất cho người dùng đúng 5 Hook DNA, mỗi hook gồm:
+
+**🧬 HOOK #[số] — [Tên ngắn gọn]**
+
+> "[Hook viết kiểu quay chậm: Bối cảnh... hành vi 1, hành vi 2, hành vi 3. Câu nội tâm.]"
+
+**Tại sao hook này đứng hình:**
+- **Micro-moment:** [Hành vi vật lý cụ thể nào?]
+- **Nỗi sợ giấu:** [Sợ gì?]
+- **Tín hiệu nhận dạng:** [Vì sao chỉ người trong cuộc mới biết?]
+
+**Dùng ở đâu:** [Caption Instagram / Opening video / Story / Email subject]
+
+---
+
+Sau khi xuất 5 hook, hỏi:
+"Bạn thấy hook nào chạm nhất? Gõ số (1-5) để tôi mở rộng thành bộ nội dung hoàn chỉnh, hoặc gõ THÊM để tôi đào thêm 5 hook khác từ góc nhìn khác."
+
+*DỪNG LẠI chờ chọn.*
+
+═══════════════════════════════════════
+BƯỚC 4: MỞ RỘNG HOOK THÀNH BỘ NỘI DUNG
+═══════════════════════════════════════
+Khi người dùng chọn 1 hook, xuất bộ 4 phiên bản:
+
+**📱 PHIÊN BẢN 1: CAPTION INSTAGRAM (dưới 150 chữ)**
+[Hook DNA] + 2-3 câu mở rộng câu chuyện + CTA mềm (không bán hàng, chỉ mời đồng cảm).
+
+**🎬 PHIÊN BẢN 2: OPENING VIDEO 15 GIÂY**
+[Hook DNA đọc thành lời, ngắt nhịp thở, có chỉ dẫn diễn xuất bàn tay/ánh mắt]
+
+**📩 PHIÊN BẢN 3: EMAIL SUBJECT LINE + 3 DÒNG ĐẦU**
+[Subject line rút từ hook + 3 dòng mở bài kéo đọc tiếp]
+
+**📖 PHIÊN BẢN 4: STORY 3 SLIDES**
+Slide 1: [Hook DNA — chữ trắng nền đen, không hình]
+Slide 2: [Mở rộng cảm xúc — 1 câu hỏi ngược]  
+Slide 3: [Kết — nhận diện bản thân + CTA nhẹ]
+
+---
+
+> 👉 Gõ **LOGIC** để xem bảng giải phẫu tâm lý 5 tầng của hook đã chọn.
+> 👉 Gõ **NGÀNH KHÁC** để bắt đầu lại với ngành mới.
+
+═══════════════════════════════════════
+[PHỤ LỤC — BẢNG CÂU HỎI ĐÀO SÂU THEO NGÀNH]
+═══════════════════════════════════════
+Nếu người dùng không biết trả lời câu 3-4-5 ở Bước 1, hãy gợi ý bằng bảng dưới đây (chọn đúng ngành):
+
+| Ngành | Hành vi giấu | Nỗi sợ điển hình | Câu nội tâm mẫu |
+|-------|-------------|-------------------|-----------------|
+| Bảo hiểm | Nhét hợp đồng vào ngăn kéo | Sợ chồng/vợ hỏi đóng bao nhiêu | "Từ từ, để lúc nào hợp lý rồi nói" |
+| Thẩm mỹ | Đeo kính râm trời tối, đi cổng sau | Sợ bị phát hiện can thiệp | "Ai hỏi thì nói ngủ đủ giấc thôi" |
+| Phòng tập | Xoá SMS nhắc lịch, úp điện thoại | Sợ đối mặt mình đã bỏ cuộc | "Tuần sau bắt đầu lại" |
+| Thời trang | Cắt tag, treo xen đồ cũ | Sợ bị nói hoang phí | "Cái này lâu rồi mà" |
+| Khoá học | Vuốt xoá email nhắc bài | Sợ thấy mình vẫn chưa bắt đầu | "Cuối tuần rảnh sẽ học" |
+| BĐS | Mở-xoá-mở file Excel trả góp | Sợ nhìn con số dài hạn | "Tính lại lần nữa cho chắc" |
+| Mỹ phẩm | Giấu hoá đơn, nói mua sale | Sợ bị chê phung phí | "Giá gốc đắt hơn nhiều" |
+| Ô tô | Check app tính lãi vay lúc 2h sáng | Sợ quyết định sai | "Trả 7 năm thì tháng cũng chỉ X thôi" |
+| Đồ trẻ em | Mua thêm mà nói "được tặng" | Sợ bị nói nuông chiều | "Mấy cái này rẻ mà" |
+| Đầu tư/Crypto | Mở app lúc 3h sáng, đóng ngay khi thấy đỏ | Sợ thừa nhận thua lỗ | "Để lâu sẽ lên lại" |
+
+[QUY TẮC XUẤT BẢN — KIỂM TRA CUỐI CÙNG]
+Trước khi xuất bất kỳ hook nào, rà soát 3 điều:
+✅ 1. Hook có chứa ít nhất 1 hành vi vật lý cụ thể tả được bằng camera quay chậm không?
+✅ 2. Hook có chứa 1 suy nghĩ/nỗi sợ mà người ngoài cuộc KHÔNG thể biết không?
+✅ 3. Đọc xong, người trong cuộc cảm thấy ĐƯỢC THẤU HIỂU hay BỊ PHƠI BÀY? (Nếu bị phơi bày → viết lại)
+
+Nếu cả 3 đều đạt → In: "✅ Đã qua bộ lọc Hook DNA: 100% Insider Moment — Không clickbait, không gây sốc."</pre>
+      </details>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════════════════
+       SECTION 7: CTA CUỐI
+       ═══════════════════════════════════════════════════════════════════════ -->
+  <section class="cl-zebra-section cl-zebra--light" style="text-align: center;">
+    <div class="cl-container--narrow">
+      <h2 style="font-family: var(--font-display-short); font-size: clamp(22px, 3vw, 32px); font-weight: 700; text-transform: uppercase; letter-spacing: -0.01em; margin-bottom: 16px;">SẴN SÀNG ĐÀO MỎ?</h2>
+      <p style="font-size: 17px; color: var(--cl-text-muted); margin-bottom: 24px;">Copy prompt phía trên → Paste vào ChatGPT hoặc Gemini → Nhập ngành nghề → Nhận 5 hook nhân hiệu trong 60 giây.</p>
+      <button class="btn-action btn-action--copy" onclick="copyPrompt('prompt-hookdna-code', this)" style="margin: 0 auto;">
+        📋 Copy Mega Prompt Ngay
+      </button>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="cl-zebra-section cl-zebra--tint" style="padding: 24px 0; border-top: 1px solid var(--cl-line);">
+    <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 24px;">
+      <div style="display: flex; gap: 16px; align-items: center;">
+        <a href="https://zalo.me/0934688632" target="_blank" style="width: 40px; height: 40px; border-radius: 50%; background-color: transparent; border: 1px solid var(--cl-line); color: var(--cl-text-muted); display: inline-flex; align-items: center; justify-content: center; transition: all 0.2s;" title="Nhắn tin Zalo">
+          <svg width="24" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12.49 10.2722v-.4496h1.3467v6.3218h-.7704a.576.576 0 01-.5763-.5729l-.0006.0005a3.273 3.273 0 01-1.9372.6321c-1.8138 0-3.2844-1.4697-3.2844-3.2823 0-1.8125 1.4706-3.2822 3.2844-3.2822a3.273 3.273 0 011.9372.6321l.0006.0005zM6.9188 7.7896v.205c0 .3823-.051.6944-.2995 1.0605l-.03.0343c-.0542.0615-.1815.206-.2421.2843L2.024 14.8h4.8948v.7682a.5764.5764 0 01-.5767.5761H0v-.3622c0-.4436.1102-.6414.2495-.8476L4.8582 9.23H.1922V7.7896h6.7266zm8.5513 8.3548a.4805.4805 0 01-.4803-.4798v-7.875h1.4416v8.3548H15.47zM20.6934 9.6C22.52 9.6 24 11.0807 24 12.9044c0 1.8252-1.4801 3.306-3.3066 3.306-1.8264 0-3.3066-1.4808-3.3066-3.306 0-1.8237 1.4802-3.3044 3.3066-3.3044zm-10.1412 5.253c1.0675 0 1.9324-.8645 1.9324-1.9312 0-1.065-.865-1.9295-1.9324-1.9295s-1.9324.8644-1.9324 1.9295c0 1.0667.865 1.9312 1.9324 1.9312zm10.1412-.0033c1.0737 0 1.945-.8707 1.945-1.9453 0-1.073-.8713-1.9436-1.945-1.9436-1.0753 0-1.945.8706-1.945 1.9436 0 1.0746.8697 1.9453 1.945 1.9453z"/></svg>
+        </a>
+        <a href="https://www.facebook.com/nguyenducviet.video/reels/" target="_blank" style="width: 40px; height: 40px; border-radius: 50%; background-color: transparent; border: 1px solid var(--cl-line); color: var(--cl-text-muted); display: inline-flex; align-items: center; justify-content: center; transition: all 0.2s;" title="Facebook Reels">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+        </a>
+      </div>
+      <div style="font-family: var(--font-mono); font-size: 13px; color: var(--cl-text-muted); opacity: 0.8; letter-spacing: 0.02em;">
+        © nguyenducviet.video
+      </div>
+    </div>
+  </footer>
+
+  <!-- TOAST -->
+  <div id="toast" class="toast">✓ Đã sao chép Mega Prompt vào bộ nhớ tạm!</div>
+
+  <script>
+    function copyPrompt(elementId, btn) {
+      const el = document.getElementById(elementId);
+      if (!el) return;
+      const text = el.innerText || el.textContent;
+      navigator.clipboard.writeText(text).then(() => {
+        showToast("✓ Đã sao chép Hook DNA Mega Prompt!");
+        const originalText = btn.innerText;
+        btn.innerText = "✓ Đã Chép";
+        btn.classList.add("copied");
+        setTimeout(() => {
+          btn.innerText = originalText;
+          btn.classList.remove("copied");
+        }, 2000);
+      }).catch(err => {
+        console.error("Lỗi sao chép:", err);
+      });
+    }
+
+    function showToast(msg) {
+      const toast = document.getElementById("toast");
+      toast.textContent = msg;
+      toast.classList.add("show");
+      setTimeout(() => toast.classList.remove("show"), 2400);
+    }
+  </script>
+</body>
+</html>
