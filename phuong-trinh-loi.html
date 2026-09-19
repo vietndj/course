@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PHƯƠNG TRÌNH LÕI</title>
+  
+  <!-- FAVICON SVG INLINE: CHUẨN "VIDEO" (REC MONOGRAM) -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230f172a'/%3E%3Ctext x='32' y='28' font-family='Arial, sans-serif' font-weight='900' font-size='16' fill='%23ffffff' text-anchor='middle' letter-spacing='1'%3EVI%3C/text%3E%3Ccircle cx='44' cy='22' r='4' fill='%23EF4444'/%3E%3Ctext x='32' y='46' font-family='Arial, sans-serif' font-weight='900' font-size='16' fill='%23ffffff' text-anchor='middle' letter-spacing='1'%3EDEO%3C/text%3E%3C/svg%3E">
+
+  <!-- FONTS: Fedu CDN -->
+  <style>
+    @font-face { font-family: 'FD Aeonik Extended'; src: url('https://fedu.vn/k/fonts/FDAeonikExtended-Bold.woff2') format('woff2'); font-weight: 700; font-display: swap; }
+    @font-face { font-family: 'FD Aeonik Extended'; src: url('https://fedu.vn/k/fonts/FDAeonikExtended-SemiBold.woff2') format('woff2'); font-weight: 600; font-display: swap; }
+    @font-face { font-family: 'FD Aeonik'; src: url('https://fedu.vn/k/fonts/FDAeonikMedium.ttf') format('truetype'); font-weight: 500; font-display: swap; }
+    @font-face { font-family: 'FD Aeonik'; src: url('https://fedu.vn/k/fonts/FDAeonikRegular.ttf') format('truetype'); font-weight: 400; font-display: swap; }
+    @font-face { font-family: 'Tiempos Text'; src: url('https://fedu.vn/k/fonts/FDTiemposText-Bold.woff2') format('woff2'); font-weight: 700; font-display: swap; }
+    @font-face { font-family: 'Tiempos Text'; src: url('https://fedu.vn/k/fonts/FDTiemposText-Medium.woff2') format('woff2'); font-weight: 500; font-display: swap; }
+    @font-face { font-family: 'Tiempos Text'; src: url('https://fedu.vn/k/fonts/FDTiemposText-Regular.woff2') format('woff2'); font-weight: 400; font-display: swap; }
+    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700&display=swap');
+  </style>
+
+  <style>
+    /* ==========================================================================
+       INKDOC CSS - ZERO ANIMATION, SLATE MONOCHROME
+       ========================================================================== */
+    :root {
+      /* Colors: Slate Grayscale */
+      --ink-bg: #ffffff;
+      --ink-sidebar: #f8fafc;
+      --ink-text: #0f172a;
+      --ink-muted: #64748b;
+      --ink-border: #e2e8f0;
+      --ink-hover: #f1f5f9;
+      --ink-accent: #0f172a; /* Neutral accent instead of colors */
+      --ink-dialogue-bg: #f8fafc;
+      
+      /* Typography */
+      --font-display: 'FD Aeonik Extended', -apple-system, sans-serif;
+      --font-heading: 'FD Aeonik', -apple-system, sans-serif;
+      --font-body: 'Tiempos Text', Georgia, serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      
+      /* Layout Config */
+      --sidebar-width: 260px;
+      --content-max-width: 720px; /* Default for Article */
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      background-color: var(--ink-bg);
+      color: var(--ink-text);
+      font-family: var(--font-body);
+      line-height: 1.82;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      display: flex;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* TYPOGRAPHY */
+    h1, h2, h3, h4, h5, h6 {
+      color: var(--ink-text);
+      font-weight: 600;
+      line-height: 1.35;
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+      font-family: var(--font-heading);
+    }
+    
+    /* Short Titles (<8 words) use Extended */
+    h1.is-short, .title-short {
+      font-family: var(--font-display);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: -0.01em;
+      font-size: clamp(28px, 4vw, 40px);
+      line-height: 1.15;
+    }
+    
+    h1:not(.is-short) { font-size: clamp(24px, 3.5vw, 34px); font-weight: 600; }
+    h2 { font-size: clamp(20px, 2.5vw, 24px); border-bottom: 1px solid var(--ink-border); padding-bottom: 0.5rem; margin-top: 3rem; }
+    h3 { font-size: 1.15rem; }
+    
+    p, ul, ol, blockquote, pre, table { margin-bottom: 1.5rem; font-size: 1.125rem; /* 18px */ }
+    ul, ol { padding-left: 1.5rem; }
+    li { margin-bottom: 0.5rem; }
+    
+    a { color: var(--ink-accent); text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--ink-muted); transition: text-decoration-color 0.2s; }
+    a:hover { text-decoration-color: var(--ink-accent); }
+    
+    blockquote {
+      border-left: 3px solid var(--ink-border);
+      padding-left: 1.25rem;
+      font-style: italic;
+      color: var(--ink-text);
+      font-weight: 500;
+    }
+
+    code {
+      font-family: var(--font-mono);
+      font-size: 0.85em;
+      background-color: var(--ink-hover);
+      padding: 0.2em 0.4em;
+      border-radius: 4px;
+    }
+    pre {
+      background-color: var(--ink-sidebar);
+      padding: 1.25rem;
+      border-radius: 8px;
+      border: 1px solid var(--ink-border);
+      overflow-x: auto;
+    }
+    pre code { background: none; padding: 0; font-size: 0.9em; }
+
+    hr { border: 0; border-top: 1px solid var(--ink-border); margin: 3rem 0; }
+
+    /* Bảng biểu */
+    table { width: 100%; border-collapse: collapse; margin-bottom: 2rem; font-family: var(--font-heading); font-size: 0.95rem; }
+    th, td { padding: 12px 16px; border-bottom: 1px solid var(--ink-border); text-align: left; }
+    th { font-weight: 600; color: var(--ink-muted); text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.05em; border-bottom: 2px solid var(--ink-border); }
+
+    /* LAYOUT: SIDEBAR */
+    .ink-sidebar {
+      width: var(--sidebar-width);
+      flex-shrink: 0;
+      background-color: var(--ink-sidebar);
+      border-right: 1px solid var(--ink-border);
+      height: 100vh;
+      position: sticky;
+      top: 0;
+      overflow-y: auto;
+      padding: 2rem 1.5rem;
+      font-family: var(--font-heading);
+    }
+    .ink-sidebar-header { margin-bottom: 2rem; }
+    .ink-brand { font-family: var(--font-display); font-weight: 700; font-size: 1rem; letter-spacing: 1px; color: var(--ink-text); text-decoration: none; text-transform: uppercase;}
+    
+    .ink-toc-title {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      font-weight: 600;
+      color: var(--ink-muted);
+      letter-spacing: 0.05em;
+      margin-bottom: 1rem;
+    }
+    
+    .ink-toc-list { list-style: none; padding: 0; margin: 0; }
+    .ink-toc-list li { margin-bottom: 0.25rem; }
+    .ink-toc-link {
+      display: block;
+      padding: 0.4rem 0.75rem;
+      color: var(--ink-muted);
+      text-decoration: none;
+      font-size: 0.875rem;
+      border-radius: 6px;
+      transition: background 0.15s, color 0.15s;
+    }
+    .ink-toc-link:hover { background-color: var(--ink-hover); color: var(--ink-text); }
+    .ink-toc-link.is-active {
+      background-color: var(--ink-hover);
+      color: var(--ink-text);
+      font-weight: 600;
+    }
+    .ink-toc-nested { padding-left: 1rem; margin-top: 0.25rem; display: none; }
+    .ink-toc-link.is-active + .ink-toc-nested, .ink-toc-nested:has(.is-active) { display: block; } /* Auto expand nested TOC */
+
+    /* LAYOUT: CONTENT */
+    .ink-main-wrapper {
+      flex-grow: 1;
+      padding: 4rem 3rem;
+      display: flex;
+      justify-content: center;
+    }
+    .ink-content {
+      width: 100%;
+      max-width: var(--content-max-width);
+    }
+    
+    .ink-meta {
+      display: flex;
+      gap: 1rem;
+      font-family: var(--font-heading);
+      font-size: 0.875rem;
+      color: var(--ink-muted);
+      margin-bottom: 2.5rem;
+      align-items: center;
+    }
+    .ink-badge {
+      font-family: var(--font-mono);
+      text-transform: uppercase;
+      font-size: 0.75rem;
+      padding: 4px 8px;
+      border: 1px solid var(--ink-border);
+      border-radius: 99px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      color: var(--ink-text);
+    }
+
+    /* ==========================================================================
+       MODE 1: ARTICLE (Default)
+       ========================================================================== */
+    .ink-mode-article {
+      --content-max-width: 720px;
+    }
+
+    /* ==========================================================================
+       MODE 2: DIALOGUE (Chat/Q&A)
+       ========================================================================== */
+    .ink-mode-dialogue {
+      --content-max-width: 760px;
+    }
+    .dialogue-turn { margin-bottom: 2.5rem; }
+    .dialogue-prompt {
+      background-color: var(--ink-dialogue-bg);
+      border: 1px solid var(--ink-border);
+      border-radius: 12px;
+      padding: 1.25rem 1.5rem;
+      margin-bottom: 1.5rem;
+      font-family: var(--font-heading);
+    }
+    .dialogue-prompt summary {
+      font-weight: 600;
+      cursor: pointer;
+      font-size: 1rem;
+      color: var(--ink-text);
+      list-style-position: inside;
+    }
+    .dialogue-prompt summary::-webkit-details-marker { display: none; } /* Hide default arrow */
+    .dialogue-prompt summary::before { content: 'Q: '; color: var(--ink-muted); font-family: var(--font-mono); font-size: 0.85em; }
+    .dialogue-prompt[open] summary { margin-bottom: 1rem; border-bottom: 1px solid var(--ink-border); padding-bottom: 0.5rem; }
+    .dialogue-response {
+      padding-left: 1rem;
+      border-left: 2px solid var(--ink-border);
+    }
+
+    /* ==========================================================================
+       MODE 3: REFERENCE (Wiki/Doc)
+       ========================================================================== */
+    .ink-mode-reference {
+      --content-max-width: 800px;
+    }
+    /* Right aligned InfoBox typical of Wikipedia */
+    .ink-infobox {
+      float: right;
+      width: 280px;
+      margin: 0 0 1.5rem 2rem;
+      border: 1px solid var(--ink-border);
+      background-color: var(--ink-sidebar);
+      padding: 1rem;
+      border-radius: 8px;
+      font-family: var(--font-heading);
+      font-size: 0.875rem;
+    }
+    .ink-infobox-title { font-weight: 700; text-align: center; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--ink-border); }
+    .ink-infobox dl { display: grid; grid-template-columns: 1fr 2fr; gap: 0.5rem; }
+    .ink-infobox dt { font-weight: 600; color: var(--ink-muted); }
+    .ink-infobox dd { margin: 0; color: var(--ink-text); }
+
+    /* MOBILE MENU TOGGLE */
+    .ink-mobile-nav {
+      display: none;
+      position: sticky;
+      top: 0;
+      background: var(--ink-bg);
+      border-bottom: 1px solid var(--ink-border);
+      padding: 1rem;
+      z-index: 100;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .ink-menu-btn {
+      background: none; border: 1px solid var(--ink-border); border-radius: 4px;
+      padding: 0.5rem; cursor: pointer; font-family: var(--font-heading);
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 992px) {
+      .ink-mobile-nav { display: flex; }
+      .ink-sidebar {
+        position: fixed;
+        left: -100%;
+        transition: left 0.3s ease;
+        z-index: 1000;
+        box-shadow: 4px 0 24px rgba(0,0,0,0.1);
+      }
+      .ink-sidebar.is-open { left: 0; }
+      .ink-main-wrapper { padding: 2rem 1.5rem; }
+      .ink-infobox { float: none; width: 100%; margin: 0 0 2rem 0; }
+    }
+    
+    /* PRINT MEDIA */
+    @media print {
+      .ink-sidebar, .ink-mobile-nav { display: none !important; }
+      .ink-main-wrapper { padding: 0; }
+      .ink-content { max-width: 100%; }
+      body { font-size: 12pt; color: #000; background: #fff; }
+      a { text-decoration: none; color: #000; }
+      h1, h2, h3 { page-break-after: avoid; }
+      img { page-break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- MOBILE NAV -->
+  <div class="ink-mobile-nav">
+    <a href="#" class="ink-brand">VIDEO DOCS</a>
+    <button class="ink-menu-btn" onclick="document.querySelector('.ink-sidebar').classList.toggle('is-open')">MỤC LỤC</button>
+  </div>
+
+  <!-- SIDEBAR TOC -->
+  <aside class="ink-sidebar">
+    <div class="ink-sidebar-header">
+      <a href="#" class="ink-brand">VIDEO DOCS</a>
+    </div>
+    
+    <div class="ink-toc-title">MỤC LỤC</div>
+    <ul class="ink-toc-list">
+      <!-- MẪU RÁP TOC:
+      <li>
+        <a href="#sec-1" class="ink-toc-link">1. Khái niệm cốt lõi</a>
+        <ul class="ink-toc-list ink-toc-nested">
+          <li><a href="#sec-1-1" class="ink-toc-link">1.1. Chi tiết A</a></li>
+        </ul>
+      </li>
+      -->
+      
+<li><a href="#sec-hero" class="ink-toc-link">Bản Chất Storytelling 2.5</a></li>
+<li><a href="#sec-matrix" class="ink-toc-link">1. Phân Loại Người Kể Chuyện</a></li>
+<li><a href="#sec-explain" class="ink-toc-link">2. Cách Diễn Đạt</a></li>
+<li><a href="#sec-wet-paint" class="ink-toc-link">3. Tính Tươi Mới</a></li>
+<li><a href="#sec-method" class="ink-toc-link">4. Phương Pháp Làm Video</a></li>
+<li><a href="#sec-huuviet" class="ink-toc-link">5. Case Study: Hữu Việt</a></li>
+
+    </ul>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main class="ink-main-wrapper">
+    <!-- CẦN THAY THẾ CLASS THEO MODE: ink-mode-article | ink-mode-dialogue | ink-mode-reference -->
+    <article class="ink-content ink-mode-article">
+      
+      <div class="ink-meta">
+        <span class="ink-badge">ARTICLE</span>
+        <span>Anh Việt</span>
+        <span>•</span>
+        <span>5 phút đọc</span>
+      </div>
+
+      <h1 class="is-short" id="top">PHƯƠNG TRÌNH LÕI</h1>
+      
+      <!-- NỘI DUNG CHÍNH -->
+      
+<h2 id="sec-hero">Bản Chất Storytelling 2.5</h2>
+<blockquote>"Chất lượng Storytelling 2.5 không phải là phép cộng. Nó là phép nhân giữa Mật độ trải nghiệm và Khả năng quan sát vi mô."</blockquote>
+<p>Hiểu rõ cơ chế này để giải thích cho học viên vì sao có người làm rất mượt, có người lại rất gồng. Bản chất không có gì bí ẩn, nó phụ thuộc vào độ sắc nét của ống kính nội tâm.</p>
+
+<h2 id="sec-matrix">1. Phân Loại Người Kể Chuyện (Ma trận 4 ô)</h2>
+<p>Để làm được Storytelling 2.5 chạm đến cảm xúc, người kể chuyện phải nằm ở Vùng Vàng (Ô số 2).</p>
+<table>
+  <thead>
+    <tr>
+      <th></th>
+      <th>Quan Sát Vi Mô YẾU</th>
+      <th>Quan Sát Vi Mô MẠNH</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><b>Trải Nghiệm NHIỀU</b></td>
+      <td><b>Biết nhiều nhưng kể chung chung.</b> Kiểu "Tôi cũng từng thất bại". Gặp mặt thì tin, nhưng lên video thì phẳng.</td>
+      <td><b>VÙNG VÀNG.</b> Biết VÀ tả được (như Tobias Wolff, Murakami). Câu chữ nén như dao cắt.</td>
+    </tr>
+    <tr>
+      <td><b>Trải Nghiệm ÍT</b></td>
+      <td><b>Sáo rỗng.</b> Đọc sách kể lại. Lurker nhận ra sự giả tạo trong 3 giây.</td>
+      <td><b>Gồng.</b> Quan sát tinh nhưng mượn chuyện người khác. Được vài video thì cạn.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="sec-explain">2. Cách Diễn Đạt</h2>
+<h3>Giải Thích Cho Người Mới</h3>
+<blockquote>"Video Storytelling giống như chụp ảnh macro. Trải nghiệm là bạn có mặt tại hiện trường. Quan sát vi mô là bạn có ống kính macro trong đầu."</blockquote>
+<ul>
+  <li><b>Thiếu hiện trường:</b> Không có gì để chụp.</li>
+  <li><b>Thiếu ống kính macro:</b> Có mặt mà chụp không ra gì, chỉ thấy bức tranh mờ nhạt toàn cảnh.</li>
+  <li><b>Sức mạnh của chi tiết:</b> Nén toàn bộ sự thật vào một cử chỉ tay, một ánh mắt, một nhịp thở. Đó chính là <b>Insider Moment</b>.</li>
+</ul>
+
+<h2 id="sec-wet-paint">3. Tính Tươi Mới (Nguyên Lý "Wet Paint")</h2>
+<p>Storytelling 2.5 hiệu quả nhất khi nội dung đang ở trạng thái "sơn còn ướt" — tức người nói đang thực sự vật lộn với vấn đề đó, chưa đóng gói xong thành bài học sáo rỗng.</p>
+<ul>
+  <li><b>Năng lượng cảm xúc:</b> Khi đang suy nghĩ về vấn đề, giọng nói, nhịp thở, nét mặt đều mang dấu ấn thật, camera sẽ bắt được.</li>
+  <li><b>Chi tiết sắc nét:</b> Vừa trải qua nên nhớ rõ từng cử chỉ. Để lâu sẽ bị "lọc" bởi ký ức, chỉ còn đại ý chung chung.</li>
+  <li><b>Cảm giác đồng hành:</b> Người xem cảm nhận được bạn đang chia sẻ quá trình tìm kiếm, không phải phán xét từ trên cao.</li>
+</ul>
+
+<h2 id="sec-method">4. Phương Pháp Làm Video</h2>
+<h3>Lừa Não Vượt Ma Sát Tĩnh & Cấy Ghép</h3>
+<blockquote>"Xem video có sẵn để lấy bức tranh hoàn chỉnh, sau đó gài trải nghiệm vi mô cá nhân vào. Đây là thủ thuật vượt qua rào cản 'cold start'."</blockquote>
+<ul>
+  <li><b>Hạ rào cản năng lượng:</b> Không cần sáng tạo từ số 0. Não "thấy" cấu trúc (nhịp, bố cục) từ video khác, cấp phát dopamine dự đoán, giúp bạn muốn làm ngay.</li>
+  <li><b>Giàn giáo (Scaffold):</b> Video gốc cung cấp pacing, bố cục, tone cảm xúc chuyên nghiệp.</li>
+  <li><b>Cấy ghép (Transplant):</b> Phần bạn gài vào là trải nghiệm vi mô cá nhân, insider moment, ngôn ngữ đặc trưng.</li>
+  <li><b>Cải tiến (Ghi chú ngay):</b> Ghi lại Micro-moment ngay khi nó xảy ra (hành vi vật lý + câu nói thật + nỗi sợ) để không bị quên lãng.</li>
+</ul>
+
+<h2 id="sec-huuviet">5. Case Study Thực Tế: Hữu Việt</h2>
+<p>Với 12 năm kinh nghiệm ngành tóc và tệp khách hàng B2B (chủ salon), Hữu Việt có đủ điều kiện tiến thẳng vào Storytelling 2.5.</p>
+<ul>
+  <li><b>Điểm Mạnh:</b> Kho nguyên liệu khổng lồ từ 12 năm cầm kéo. Đã có Costly Signaling mạnh (từ chối bán App, cắt đại lý). Bằng chứng vật lý rõ ràng.</li>
+  <li><b>Lộ Trình Đề Xuất:</b> Đào 20 Insider Moment -> Chạy Mega Prompt Pipeline Nhân Hiệu -> Xem IG gài trải nghiệm -> Quay 1 video/tuần (70% B-roll, 30% Walk & Talk).</li>
+  <li><b>Bỏ Qua Vòng Gửi Xe?:</b> Được. Nhờ có team dựng và phong cách "phóng viên điều tra" thô mộc, hợp với tính chân thật, không cần studio hay gimbal mượt.</li>
+</ul>
+
+
+    </article>
+  </main>
+
+  <!-- SCROLLSPY SCRIPT (ZERO ANIMATION) -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // 1. ScrollSpy functionality
+      const headings = document.querySelectorAll('h2[id], h3[id]');
+      const tocLinks = document.querySelectorAll('.ink-toc-link');
+      
+      if(headings.length > 0 && "IntersectionObserver" in window) {
+        const observerOptions = {
+          root: null,
+          rootMargin: '0px 0px -80% 0px', // Trigger when heading is in top 20% of viewport
+          threshold: 0
+        };
+        
+        // Track the currently active section to avoid unnecessary DOM updates
+        let activeId = null;
+
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              const id = entry.target.getAttribute('id');
+              if (id !== activeId) {
+                // Remove active from all
+                tocLinks.forEach(link => link.classList.remove('is-active'));
+                
+                // Add active to current
+                const activeLink = document.querySelector(`.ink-toc-link[href="#${id}"]`);
+                if (activeLink) {
+                  activeLink.classList.add('is-active');
+                }
+                activeId = id;
+              }
+            }
+          });
+        }, observerOptions);
+
+        headings.forEach(heading => observer.observe(heading));
+      }
+
+      // 2. Mobile Menu auto-close on click
+      tocLinks.forEach(link => {
+        link.addEventListener('click', () => {
+          document.querySelector('.ink-sidebar').classList.remove('is-open');
+        });
+      });
+    });
+  </script>
+</body>
+</html>
