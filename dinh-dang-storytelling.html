@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Định dạng Storytelling 2.5</title>
+  
+  <!-- Favicon System (Chuẩn Chữ VIDEO - Cinema REC Monogram) -->
+  <link rel="icon" type="image/svg+xml" href="./favicon.svg">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%230B0F19'/%3E%3Crect x='1.5' y='1.5' width='61' height='61' rx='14.5' fill='none' stroke='%23FFFFFF' stroke-opacity='0.14' stroke-width='1.5'/%3E%3Ctext x='25' y='25' text-anchor='middle' dominant-baseline='central' font-family='system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif' font-weight='900' font-size='21.5' letter-spacing='2px' fill='%23FFFFFF'%3EVI%3C/text%3E%3Ccircle cx='47' cy='25' r='7' fill='%23EF4444' fill-opacity='0.25'/%3E%3Ccircle cx='47' cy='25' r='4.2' fill='%23EF4444'/%3E%3Ccircle cx='47' cy='25' r='1.6' fill='%23FFFFFF' opacity='0.9'/%3E%3Ctext x='32' y='46' text-anchor='middle' dominant-baseline='central' font-family='system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif' font-weight='900' font-size='19' letter-spacing='1.2px' fill='%23F8FAFC'%3EDEO%3C/text%3E%3C/svg%3E">
+<!-- Font Definitions & System Fallbacks -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&family=Playfair+Display:ital,wght@1,400;1,600&display=swap" rel="stylesheet">
+  
+  <style>
+    /* ═══ 1. FONT DECLARATIONS (Local Repo, System & CDN Fallbacks) ═══ */
+    @font-face {
+      font-family: 'FD Aeonik Extended'; text-transform: uppercase;
+      src: url('./fonts/FDAeonikExtended-Bold.woff2?v=20260911b') format('woff2'),
+           url('https://font.fedu.vn/fonts/FDAeonikExtended-Bold.woff2?v=20260911b') format('woff2'),
+           url('./fonts/FDAeonikExtended-Bold.ttf?v=20260911b') format('truetype'),
+           url('/Users/vietmac/Library/Fonts/FDAeonikExtended-Bold.otf') format('opentype'),
+           local('FD Aeonik Extended Bold');
+      font-weight: 700;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'FD Aeonik';
+      src: url('./fonts/FDAeonikRegular.ttf') format('truetype'),
+           url('./assets/fonts/FDAeonikRegular.ttf') format('truetype'),
+           url('/Users/vietmac/Library/Fonts/FDAeonikRegular.ttf') format('truetype'),
+           local('FD Aeonik Regular'), local('FDAeonikRegular');
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'FD Aeonik';
+      src: url('./fonts/FDAeonikExtended-SemiBold.woff2?v=20260911b') format('woff2'),
+           url('https://font.fedu.vn/fonts/FDAeonikExtended-SemiBold.woff2?v=20260911b') format('woff2'),
+           url('./fonts/FDAeonikExtended-SemiBold.ttf?v=20260911b') format('truetype'),
+           url('/Users/vietmac/Library/Fonts/FDAeonikExtended-SemiBold.otf') format('opentype'),
+           local('FD Aeonik SemiBold');
+      font-weight: 600;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'FD Aeonik';
+      src: url('./fonts/FDAeonikBold.ttf') format('truetype'),
+           url('/Users/vietmac/Library/Fonts/FDAeonikBold.ttf') format('truetype'),
+           local('FD Aeonik Bold'), local('FDAeonikBold');
+      font-weight: 700;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Tiempos Text';
+      src: url('./fonts/FDTiemposText-Regular.otf') format('opentype'),
+           url('/Users/vietmac/Library/Fonts/FDTiemposText-Regular.otf') format('opentype'),
+           local('Tiempos Text Regular'), local('FDTiemposText-Regular');
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Tiempos Text';
+      src: url('./fonts/FDTiemposText-Medium.otf') format('opentype'),
+           url('/Users/vietmac/Library/Fonts/FDTiemposText-Medium.otf') format('opentype'),
+           local('Tiempos Text Medium'), local('FDTiemposText-Medium');
+      font-weight: 500;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Tiempos Text';
+      src: url('./fonts/FDTiemposText-RegularItalic.otf') format('opentype'),
+           url('/Users/vietmac/Library/Fonts/FDTiemposText-RegularItalic.otf') format('opentype'),
+           local('Tiempos Text Regular Italic'), local('FDTiemposText-RegularItalic');
+      font-weight: 400;
+      font-style: italic;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'SVN-Integral';
+      src: url('./fonts/SVN-IntegralCF-Regular.ttf') format('truetype'),
+           url('./assets/fonts/SVN-IntegralCF-Regular.ttf') format('truetype'),
+           local('SVN-Integral CF Regular');
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    /* ═══ 2. DESIGN TOKENS (30ngayviral.fedu.vn Light Theme) ═══ */
+    :root {
+      --cl-bg:          #ffffff;
+      --cl-tint:        #f8fafc;
+      --cl-card:        #ffffff;
+      --cl-card-muted:  #f1f5f9;
+      --cl-accent:      #1a73e8;
+      --cl-accent-tint: rgba(26, 115, 232, 0.08);
+      --cl-accent-text: #ffffff;
+      --cl-line:        rgba(0, 0, 0, 0.06);
+      --cl-line-strong: rgba(0, 0, 0, 0.12);
+      --cl-text-base:   #090d16; /* Slate 950 (Tương phản 18.8:1) */
+      --cl-text-body:   #0f172a; /* Slate 900 (Mực in WCAG AAA 16.5:1) */
+      --cl-text-muted:  #475569; /* Slate 600 */
+      --cl-danger:      #dc2626;
+      --cl-success:     #16a34a;
+
+      /* Radii */
+      --cl-radius-lg:   24px;
+      --cl-radius-md:   16px;
+      --cl-radius-sm:   10px;
+      --cl-radius-full: 9999px;
+
+      /* Typography Stacks */
+      --font-display-short: 'FD Aeonik Extended', 'SVN-Integral', 'Inter', -apple-system, sans-serif;
+      --font-display-long:  'FD Aeonik', 'FD Aeonick', 'Inter', -apple-system, sans-serif;
+      --font-body:          'Tiempos Text', 'FD Aeonik', 'Inter', Georgia, serif;
+      --font-editorial:     'Tiempos Text', Georgia, serif;
+      --font-mono:          'JetBrains Mono', 'SVN-Sonoma', monospace;
+
+      /* Apple Motion Physics Curves */
+      --apple-spring: cubic-bezier(0.25, 1, 0.35, 1.05);
+      --apple-ease:   cubic-bezier(0.16, 1, 0.3, 1);
+      --apple-hover:  cubic-bezier(0.2, 0.9, 0.3, 1.08);
+    }
+
+    /* ═══ 3. RESET & BASE ═══ */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background-color: var(--cl-bg);
+      color: var(--cl-text-base);
+      font-family: var(--font-body);
+    }
+
+    body {
+      overflow-x: clip;
+      min-height: 100vh;
+      line-height: 1.7;
+    }
+
+    /* ═══ 4. VIEWPORT-FRAMED ZEBRA SECTIONS ═══ */
+    /* 1 Khối = 1 Màn Hình = 1 Nội Dung */
+    .cl-zebra-section {
+      width: 100%;
+      min-height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      padding: 90px 24px;
+      box-sizing: border-box;
+      transition: background-color 0.3s ease;
+    }
+
+    /* Nền trắng tinh khiết */
+    .cl-zebra--light {
+      background-color: var(--cl-bg);
+    }
+
+    /* Nền xám Slate-50 ấm nhẹ */
+    .cl-zebra--tint {
+      background-color: var(--cl-tint);
+      border-top: 1px solid var(--cl-line);
+      border-bottom: 1px solid var(--cl-line);
+    }
+
+    /* Container bên trong section */
+    .cl-sec-container {
+      width: 100%;
+      max-width: 840px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .cl-sec-container--wide {
+      max-width: 980px;
+    }
+
+    .cl-sec-container--narrow {
+      max-width: 720px;
+    }
+
+    .cl-sec-container--left {
+      align-items: flex-start;
+      text-align: left;
+    }
+
+    /* ═══ 5. TYPOGRAPHY & HEADINGS ═══ */
+    /* Micro Badge */
+    .cl-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-mono);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--cl-accent);
+      background: var(--cl-accent-tint);
+      border: 1px solid rgba(26, 115, 232, 0.15);
+      padding: 7px 18px;
+      border-radius: var(--cl-radius-full);
+      margin-bottom: 24px;
+    }
+
+    /* Tiêu đề ngắn <= 8 từ: FD Aeonik Extended Bold 700 */
+    .title-short {
+      font-family: var(--font-display-short); text-transform: uppercase;
+      font-weight: 700;
+      font-size: clamp(28px, 4.5vw, 48px);
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+      text-transform: uppercase;
+      color: var(--cl-text-base);
+      margin-bottom: 24px;
+      text-wrap: balance;
+    }
+
+    /* Tiêu đề dài > 8 từ: FD Aeonick SemiBold */
+    .title-long {
+      font-family: var(--font-display-long);
+      font-weight: 600;
+      font-size: clamp(24px, 3.8vw, 40px);
+      line-height: 1.35;
+      letter-spacing: -0.015em;
+      color: var(--cl-text-base);
+      margin-bottom: 24px;
+      text-wrap: balance;
+    }
+
+    /* Trích dẫn / Hook / Thơ / Lời khuyên */
+    .editorial-hook {
+      font-family: var(--font-editorial);
+      font-style: italic;
+      font-size: clamp(18px, 2.4vw, 22px);
+      line-height: 1.6;
+      color: var(--cl-accent);
+      margin-bottom: 28px;
+      max-width: 680px;
+    }
+
+    /* Thân bài / Mô tả */
+    .cl-body {
+      font-size: clamp(16px, 1.7vw, 18px);
+      color: var(--cl-text-body);
+      line-height: 1.75;
+      margin-bottom: 32px;
+      max-width: 700px;
+    }
+
+    /* ═══ 6. APPLE MOTION & SPRING SYSTEM (GPU OPTIMIZED 60/120 FPS) ═══ */
+    .apple-reveal {
+      opacity: 0;
+      transform: translate3d(0, 26px, 0);
+      transition: 
+        opacity 0.5s var(--apple-ease),
+        transform 0.58s var(--apple-spring);
+      transition-delay: var(--delay, 0ms);
+      will-change: opacity, transform;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+    }
+
+    .apple-reveal.is-visible {
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
+      will-change: auto;
+    }
+
+    /* Card Stagger Waterfall */
+    .apple-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+      width: 100%;
+      margin-top: 16px;
+    }
+
+    .apple-card {
+      background: var(--cl-card);
+      border: 1px solid var(--cl-line);
+      border-radius: var(--cl-radius-lg);
+      padding: 32px 28px;
+      text-align: left;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+      position: relative;
+      opacity: 0;
+      transform: translate3d(0, 22px, 0) scale(0.985);
+      transition:
+        opacity 0.45s var(--apple-ease),
+        transform 0.52s var(--apple-spring),
+        box-shadow 0.35s ease,
+        border-color 0.25s ease;
+      transition-delay: var(--card-delay, 0ms);
+      will-change: opacity, transform;
+      backface-visibility: hidden;
+    }
+
+    .is-visible .apple-card,
+    .apple-card.is-visible {
+      opacity: 1;
+      transform: translate3d(0, 0, 0) scale(1);
+      will-change: auto;
+    }
+
+    .apple-card:hover {
+      transform: translate3d(0, -6px, 0) scale(1.01);
+      border-color: rgba(26, 115, 232, 0.35);
+      box-shadow: 0 16px 36px -10px rgba(0, 0, 0, 0.08), 0 0 24px rgba(26, 115, 232, 0.06);
+    }
+
+    .apple-card__icon {
+      font-size: 28px;
+      margin-bottom: 16px;
+      display: inline-block;
+    }
+
+    /* Tiêu đề thẻ mặc định: FD Aeonik regular width (Title Case / Sentence case tự nhiên) */
+    .apple-card__title {
+      font-family: var(--font-display-long);
+      font-weight: 600;
+      font-size: 20px;
+      color: var(--cl-text-base);
+      margin-bottom: 10px;
+    }
+
+    /* Tiêu đề thẻ dãn ngang đanh thép (BẮT BUỘC IN HOA, ngắn gọn <= 5 từ) */
+    .apple-card__title--extended {
+      font-family: var(--font-display-short); text-transform: uppercase;
+      font-weight: 700;
+      font-size: 18px;
+      letter-spacing: -0.01em;
+      text-transform: uppercase;
+      color: var(--cl-text-base);
+      margin-bottom: 10px;
+    }
+
+    .apple-card__desc {
+      font-size: 15.5px;
+      color: var(--cl-text-body);
+      line-height: 1.65;
+    }
+
+    /* ═══ 7. LIST & KEYPOINT ITEMS ═══ */
+    .apple-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      width: 100%;
+      max-width: 680px;
+      margin: 0 auto 32px;
+      text-align: left;
+    }
+
+    .apple-list-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      background: #ffffff;
+      padding: 18px 22px;
+      border-radius: var(--cl-radius-md);
+      border: 1px solid var(--cl-line);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+      transition: transform 0.25s ease, border-color 0.25s ease;
+    }
+
+    .cl-zebra--tint .apple-list-item {
+      background: #ffffff;
+    }
+
+    .cl-zebra--light .apple-list-item {
+      background: var(--cl-tint);
+    }
+
+    .apple-list-item:hover {
+      transform: translateX(4px);
+      border-color: var(--cl-accent);
+    }
+
+    .apple-list-item__bullet {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--cl-accent-tint);
+      color: var(--cl-accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .apple-list-item__content {
+      font-size: 16.5px;
+      color: var(--cl-text-body);
+      line-height: 1.6;
+    }
+
+    /* ═══ 8. CTA BUTTON (30ngayviral style) ═══ */
+    .cl-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background: var(--cl-accent);
+      color: var(--cl-accent-text);
+      font-family: var(--font-body);
+      font-weight: 700;
+      font-size: 16.5px;
+      letter-spacing: 0.02em;
+      padding: 18px 44px;
+      border-radius: var(--cl-radius-md);
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 8px 24px rgba(26, 115, 232, 0.25);
+      transition: transform 0.22s var(--apple-spring), box-shadow 0.22s ease, opacity 0.2s ease;
+    }
+
+    .cl-btn:hover {
+      transform: translateY(-3px) scale(1.015);
+      box-shadow: 0 14px 36px rgba(26, 115, 232, 0.35);
+      opacity: 0.96;
+    }
+
+    .cl-btn:active {
+      transform: translateY(0) scale(0.985);
+    }
+
+    /* ═══ 9. SCROLL DOWN HINT ═══ */
+    .cl-scroll-hint {
+      position: absolute;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--cl-text-muted);
+      opacity: 0.7;
+      animation: bounce 2s infinite ease-in-out;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translate(-50%, 0); }
+      50% { transform: translate(-50%, 8px); }
+    }
+
+    /* ═══ 10. MOBILE OPTIMIZATIONS ═══ */
+    @media (max-width: 768px) {
+      .cl-zebra-section {
+        min-height: 100dvh;
+        padding: 64px 20px;
+      }
+      .apple-cards-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+      .apple-card {
+        padding: 24px 20px;
+      }
+      .cl-btn {
+        width: 100%;
+        max-width: 100%;
+        padding: 16px 24px;
+      }
+      .cl-scroll-hint {
+        bottom: 16px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .apple-reveal, .apple-card, .cl-scroll-hint {
+        transition: none !important;
+        animation: none !important;
+        transform: none !important;
+        opacity: 1 !important;
+      }
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 24px;
+        background-color: var(--cl-card);
+        border: 1px solid var(--cl-line);
+        border-radius: var(--cl-radius-md);
+        overflow: hidden;
+    }
+    th, td {
+        padding: 16px 20px;
+        text-align: left;
+        border-bottom: 1px solid var(--cl-line);
+    }
+    th {
+        background-color: var(--cl-card-muted);
+        font-family: var(--font-display-short);
+        font-weight: 700;
+        font-size: 14px;
+        color: var(--cl-text-base);
+        text-transform: uppercase;
+    }
+    td {
+        font-family: var(--font-body);
+        font-size: 16px;
+        color: var(--cl-text-body);
+    }
+    tr:last-child td {
+        border-bottom: none;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ═══ KHỐI 1: HERO SECTION (LIGHT) ═══ -->
+  <section class="cl-zebra-section cl-zebra--light" id="sec-hero">
+    <div class="cl-sec-container apple-reveal">
+      <div class="cl-badge">STORYTELLING 2.5</div>
+      <h1 class="title-short">ĐỈNH CAO CỦA PHỄU NỘI DUNG</h1>
+      <p class="editorial-hook">"Lòng tin của con người không hình thành từ các kịch bản tô vẽ hay danh xưng tự phong. Nó vận hành chặt chẽ dựa trên những cơ chế tâm lý học cốt lõi."</p>
+      <p class="cl-body">Định dạng Storytelling 2.5 không dành cho giai đoạn bắt đầu. Nó là điểm chạm cuối cùng, nơi sự thật về niềm tin được định đoạt.</p>
+      <a href="#sec-logic" class="cl-btn">TÌM HIỂU LOGIC 5 BƯỚC →</a>
+    </div>
+    <div class="cl-scroll-hint">
+      <span>Cuộn khám phá</span>
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 13l5 5 5-5M7 6l5 5 5-5"/></svg>
+    </div>
+  </section>
+
+  <!-- ═══ KHỐI 2: LOGIC KÊNH (TINT) ═══ -->
+  <section class="cl-zebra-section cl-zebra--tint" id="sec-logic">
+    <div class="cl-sec-container cl-sec-container--wide apple-reveal">
+      <div class="cl-badge">01 / BẢN ĐỒ LOGIC</div>
+      <h2 class="title-short">VỊ TRÍ CỦA STORYTELLING</h2>
+      <p class="cl-body">Trong hệ thống 5 bước xây kênh chuyển đổi, Storytelling 2.5 nằm ở giai đoạn số 4 - độ khó cao nhất, tạo đột phá niềm tin.</p>
+      
+      <div class="apple-cards-grid">
+        <div class="apple-card" style="--card-delay: 0ms;">
+          <div class="apple-card__icon">🧠</div>
+          <h3 class="apple-card__title">GĐ 1: Tư Duy Nền Tảng</h3>
+          <p class="apple-card__desc">Hiểu quy luật 90-9-1 (Lurker) và cơ chế Dark Social. Thoát bẫy vanity metrics (like/view ảo).</p>
+        </div>
+        <div class="apple-card" style="--card-delay: 100ms;">
+          <div class="apple-card__icon">👁️</div>
+          <h3 class="apple-card__title">GĐ 2: Chốt Chặn Thị Giác</h3>
+          <p class="apple-card__desc">Đạt ngưỡng Minimum Viable Quality (MVQ) để vượt qua 3 giây sinh tử của người xem.</p>
+        </div>
+        <div class="apple-card" style="--card-delay: 200ms;">
+          <div class="apple-card__icon">⏱️</div>
+          <h3 class="apple-card__title">GĐ 3: Giờ Bay Tích Lũy</h3>
+          <p class="apple-card__desc">Luyện tập "trí nhớ cơ bắp" trước ống kính. Vượt qua rào cản lóng ngóng, gượng gạo.</p>
+        </div>
+        <div class="apple-card" style="--card-delay: 300ms; border-color: var(--cl-accent);">
+          <div class="apple-card__icon">🎯</div>
+          <h3 class="apple-card__title">GĐ 4: Storytelling 2.5</h3>
+          <p class="apple-card__desc">Bóc tách 4 tầng tâm lý (Goffman). Nhắm thẳng vào Insider Moment. Vũ khí cuối cùng.</p>
+        </div>
+        <div class="apple-card" style="--card-delay: 400ms;">
+          <div class="apple-card__icon">💎</div>
+          <h3 class="apple-card__title">GĐ 5: Chuyển Đổi Im Lặng</h3>
+          <p class="apple-card__desc">Lurker tích lũy đủ 7 giờ niềm tin, chủ động chốt hợp đồng giá trị cao qua inbox/Zalo.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ KHỐI 3: CHÂN LÝ & SỰ THẬT (LIGHT) ═══ -->
+  <section class="cl-zebra-section cl-zebra--light" id="sec-truth">
+    <div class="cl-sec-container apple-reveal">
+      <div class="cl-badge">02 / NÚT THẮT SỰ THẬT</div>
+      <h2 class="title-long">Trải Nghiệm Là Màng Lọc Không Thể Giả Mạo</h2>
+      <p class="editorial-hook">"Muốn có lòng tin, bạn phải THẬT. Mọi đạo lý đều có thể sao chép, nhưng trải nghiệm vi mô thì không."</p>
+      
+      <div class="apple-list">
+        <div class="apple-list-item">
+          <div class="apple-list-item__bullet">1</div>
+          <div class="apple-list-item__content"><b>Nguyên lý chẩn đoán vi mô:</b> Nếu bạn có thể mô tả vấn đề của khách hàng ở cấp độ vi mô chính xác hơn chính họ, họ mặc định tin bạn đang nắm thuốc giải.</div>
+        </div>
+        <div class="apple-list-item">
+          <div class="apple-list-item__bullet">2</div>
+          <div class="apple-list-item__content"><b>Bắt buộc tự trải qua:</b> Không thể liệt kê được 10 hành vi lóng ngóng, giấu giếm thể diện nếu chưa trực tiếp quan sát hàng trăm ca thực tế.</div>
+        </div>
+        <div class="apple-list-item">
+          <div class="apple-list-item__bullet">3</div>
+          <div class="apple-list-item__content"><b>Yếu tố độ tuổi:</b> Xác suất cao người nhiều tuổi trải qua nhiều biến cố hơn, từ đó sở hữu mật độ trải nghiệm (Insider Moments) sắc nét hơn.</div>
+        </div>
+        <div class="apple-list-item">
+          <div class="apple-list-item__bullet">4</div>
+          <div class="apple-list-item__content"><b>Sự nhạy bén của Lurker:</b> Tệp khách hàng giá trị cao (người im lặng) có "radar" cực nhạy. Họ dễ dàng nhận ra ai chỉ đọc lý thuyết và ai đã thực sự trải đời.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ KHỐI 4: PHÂN TÍCH ĐỐI THỦ (TINT) - CÓ BẢNG TABLE CHO FIGMA ═══ -->
+  <section class="cl-zebra-section cl-zebra--tint" id="sec-competitor">
+    <div class="cl-sec-container cl-sec-container--wide apple-reveal">
+      <div class="cl-badge">03 / CASE STUDY THỊ TRƯỜNG</div>
+      <h2 class="title-short">KHÁC BIỆT CỐT LÕI</h2>
+      <p class="cl-body">Bóc tách sự khác biệt giữa phương pháp xây nhân hiệu bề mặt (Vanity Metrics) và phương pháp chuyển đổi chiều sâu (Deep Storytelling).</p>
+
+      <div style="width: 100%; overflow-x: auto;">
+        <table>
+          <thead>
+            <tr>
+              <th>Tiêu chí</th>
+              <th>Khoá học thị trường (VD: Storiple)</th>
+              <th>Hệ thống Video Storytelling 2.5</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><b>Cơ sở niềm tin</b></td>
+              <td>Số lượng follower, view (Vanity Metrics)</td>
+              <td>Nguyên lý Chẩn đoán Vi Mô + Trải nghiệm thực chứng</td>
+            </tr>
+            <tr>
+              <td><b>Khách hàng mục tiêu</b></td>
+              <td>Creator trẻ, người mới xây kênh, muốn nổi tiếng</td>
+              <td>Chủ kinh doanh, chuyên gia, người làm nghề muốn chốt VIP</td>
+            </tr>
+            <tr>
+              <td><b>Chiều sâu & Công cụ</b></td>
+              <td>"10+ câu lệnh AI" (Surface level, thiếu cơ chế)</td>
+              <td>Mega Prompt 5 tầng xử lý + Khung tâm lý 7 câu nhịp thở</td>
+            </tr>
+            <tr>
+              <td><b>Phương pháp luận</b></td>
+              <td>"Nghệ thuật" chung chung, bọc bí ẩn</td>
+              <td>Khoa học: Carl Rogers, Goffman (T2.5 Thể diện), 5 Whys</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ KHỐI 5: TÍNH KHOA HỌC & MEGA PROMPT (LIGHT) ═══ -->
+  <section class="cl-zebra-section cl-zebra--light" id="sec-science">
+    <div class="cl-sec-container apple-reveal">
+      <div class="cl-badge">04 / MÔ HÌNH HÓA (REPRODUCIBLE)</div>
+      <h2 class="title-long">Bí Ẩn Đã Được Giải Mã Thành Thuật Toán</h2>
+      <p class="editorial-hook">"Bất cứ thứ gì có thể mô hình hóa thành Mega Prompt — tức nó không còn là một phép thuật huyền bí."</p>
+      
+      <p class="cl-body">Khung Pipeline Nhân Hiệu là bằng chứng đanh thép cho thấy Storytelling sâu hoàn toàn có tính khoa học:</p>
+      
+      <div class="apple-cards-grid">
+        <div class="apple-card" style="--card-delay: 0ms;">
+          <div class="apple-card__icon">🧬</div>
+          <h3 class="apple-card__title">Động Cơ 1: Hook DNA</h3>
+          <p class="apple-card__desc">Quét qua 5 tầng: Hành vi vật lý bề mặt → Hành vi lúng túng → Cớ giữ thể diện → Nỗi sợ gốc rễ → Câu nội tâm.</p>
+        </div>
+        <div class="apple-card" style="--card-delay: 100ms;">
+          <div class="apple-card__icon">⚙️</div>
+          <h3 class="apple-card__title">Động Cơ 2: Storytelling</h3>
+          <p class="apple-card__desc">Khung 7 câu/7 nhịp thở cố định: Tả hiện trường → Hạ cái tôi → Bắt bài T2.5 → Bóc vỏ → Gọi tên T3 → Giải tỏa.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 11. HARDWARE-ACCELERATED ZERO-JANK OBSERVER SCRIPT -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const observerOptions = {
+        root: null,
+        rootMargin: '0px 0px -40px 0px',
+        threshold: 0.1
+      };
+
+      const observer = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            obs.unobserve(entry.target);
+          }
+        });
+      }, observerOptions);
+
+      const animatedElements = document.querySelectorAll('.apple-reveal, .apple-card');
+      animatedElements.forEach(el => observer.observe(el));
+    });
+  </script>
+
+  <!-- FOOTER -->
+  <footer class="cl-zebra-section cl-zebra--tint" style="padding: 24px 0; border-top: 1px solid var(--cl-line);">
+    <div class="cl-sec-container" style="display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 24px;">
+      
+      <div style="display: flex; gap: 16px; align-items: center;">
+        
+        <!-- Zalo / Message -->
+        <a href="https://zalo.me/0934688632" target="_blank" style="width: 40px; height: 40px; border-radius: 50%; background-color: transparent; border: 1px solid var(--cl-line); color: var(--cl-text-muted); display: inline-flex; align-items: center; justify-content: center; transition: all 0.2s;" onmouseover="this.style.color='var(--cl-accent)'; this.style.borderColor='var(--cl-accent)'; this.style.transform='translateY(-2px)'" onmouseout="this.style.color='var(--cl-text-muted)'; this.style.borderColor='var(--cl-line)'; this.style.transform='translateY(0)'" title="Nhắn tin Zalo">
+          <svg width="24" height="12" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12.49 10.2722v-.4496h1.3467v6.3218h-.7704a.576.576 0 01-.5763-.5729l-.0006.0005a3.273 3.273 0 01-1.9372.6321c-1.8138 0-3.2844-1.4697-3.2844-3.2823 0-1.8125 1.4706-3.2822 3.2844-3.2822a3.273 3.273 0 011.9372.6321l.0006.0005zM6.9188 7.7896v.205c0 .3823-.051.6944-.2995 1.0605l-.03.0343c-.0542.0615-.1815.206-.2421.2843L2.024 14.8h4.8948v.7682a.5764.5764 0 01-.5767.5761H0v-.3622c0-.4436.1102-.6414.2495-.8476L4.8582 9.23H.1922V7.7896h6.7266zm8.5513 8.3548a.4805.4805 0 01-.4803-.4798v-7.875h1.4416v8.3548H15.47zM20.6934 9.6C22.52 9.6 24 11.0807 24 12.9044c0 1.8252-1.4801 3.306-3.3066 3.306-1.8264 0-3.3066-1.4808-3.3066-3.306 0-1.8237 1.4802-3.3044 3.3066-3.3044zm-10.1412 5.253c1.0675 0 1.9324-.8645 1.9324-1.9312 0-1.065-.865-1.9295-1.9324-1.9295s-1.9324.8644-1.9324 1.9295c0 1.0667.865 1.9312 1.9324 1.9312zm10.1412-.0033c1.0737 0 1.945-.8707 1.945-1.9453 0-1.073-.8713-1.9436-1.945-1.9436-1.0753 0-1.945.8706-1.945 1.9436 0 1.0746.8697 1.9453 1.945 1.9453z"/>
+          </svg>
+        </a>
+
+        <!-- Facebook Page -->
+        <a href="https://www.facebook.com/nguyenducviet.video/reels/" target="_blank" style="width: 40px; height: 40px; border-radius: 50%; background-color: transparent; border: 1px solid var(--cl-line); color: var(--cl-text-muted); display: inline-flex; align-items: center; justify-content: center; transition: all 0.2s;" onmouseover="this.style.color='var(--cl-accent)'; this.style.borderColor='var(--cl-accent)'; this.style.transform='translateY(-2px)'" onmouseout="this.style.color='var(--cl-text-muted)'; this.style.borderColor='var(--cl-line)'; this.style.transform='translateY(0)'" title="Facebook Reels">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+          </svg>
+        </a>
+        
+        <!-- TikTok -->
+        <a href="https://www.tiktok.com/nguyenducviet.viral" target="_blank" style="width: 40px; height: 40px; border-radius: 50%; background-color: transparent; border: 1px solid var(--cl-line); color: var(--cl-text-muted); display: inline-flex; align-items: center; justify-content: center; transition: all 0.2s;" onmouseover="this.style.color='var(--cl-text-base)'; this.style.borderColor='var(--cl-text-base)'; this.style.transform='translateY(-2px)'" onmouseout="this.style.color='var(--cl-text-muted)'; this.style.borderColor='var(--cl-line)'; this.style.transform='translateY(0)'" title="TikTok Viral">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.97-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/>
+          </svg>
+        </a>
+        
+        <!-- Personal Facebook -->
+        <a href="http://facebook.com/nddviet" target="_blank" style="width: 40px; height: 40px; border-radius: 50%; background-color: transparent; border: 1px solid var(--cl-line); color: var(--cl-text-muted); display: inline-flex; align-items: center; justify-content: center; transition: all 0.2s;" onmouseover="this.style.color='var(--cl-accent)'; this.style.borderColor='var(--cl-accent)'; this.style.transform='translateY(-2px)'" onmouseout="this.style.color='var(--cl-text-muted)'; this.style.borderColor='var(--cl-line)'; this.style.transform='translateY(0)'" title="Facebook Cá Nhân">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 4c1.93 0 3.5 1.57 3.5 3.5S13.93 13 12 13s-3.5-1.57-3.5-3.5S10.07 6 12 6zm0 14c-2.58 0-4.9-1.13-6.49-2.92.05-2.15 4.34-3.33 6.49-3.33s6.44 1.18 6.49 3.33C16.9 18.87 14.58 20 12 20z"/>
+          </svg>
+        </a>
+      </div>
+
+      <div style="font-family: var(--font-mono); font-size: 13px; color: var(--cl-text-muted); opacity: 0.8; letter-spacing: 0.02em;">
+        © nguyenducviet.video
+      </div>
+      
+    </div>
+  </footer>
+
+</body>
+</html>
