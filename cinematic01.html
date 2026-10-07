@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tư Duy Đạo Diễn Hình Ảnh: Vắt Kiệt Bối Cảnh (Cinematic)</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+        background-color: #ffffff;
+        color: #0f172a;
+        font-family: 'Inter', sans-serif;
+    }
+    .font-narrative {
+        font-family: 'Tiempos Text', Georgia, Cambria, "Times New Roman", Times, serif;
+        font-size: 19px;
+        line-height: 1.7;
+    }
+    .font-display {
+        font-family: 'FD Aeonik Extended', 'Helvetica Neue', Arial, sans-serif;
+        text-transform: uppercase;
+        font-weight: 700;
+    }
+    .font-heading {
+        font-family: 'FD Aeonik', 'Helvetica Neue', Arial, sans-serif;
+        font-weight: 600;
+    }
+    .apple-badge {
+        background-color: #f1f5f9; 
+        border: 1px solid #e2e8f0; 
+        box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+        font-size: 11px;
+        text-transform: uppercase;
+        padding: 2px 8px;
+        border-radius: 6px;
+        color: #475569; 
+        font-weight: 700;
+        font-family: 'Inter', sans-serif;
+        position: relative;
+        top: -1px;
+        vertical-align: baseline;
+        white-space: nowrap;
+    }
+    .spec-block {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        margin-bottom: 0.75rem;
+        padding: 0.5rem 0;
+        border-bottom: 1px dashed #e2e8f0;
+    }
+    .spec-block:last-child {
+        border-bottom: none;
+    }
+    @media (min-width: 640px) {
+        .spec-block {
+            flex-direction: row;
+            align-items: baseline;
+            gap: 1.5rem;
+        }
+        .spec-label {
+            flex: 0 0 140px;
+        }
+        .spec-value {
+            flex: 1;
+            font-size: 16px;
+            font-family: 'Inter', sans-serif;
+        }
+    }
+    /* TOC Styles */
+    .toc-link {
+        display: block;
+        padding: 6px 0;
+        color: #64748b;
+        text-decoration: none;
+        transition: color 0.1s;
+    }
+    .toc-link:hover, .toc-link.active {
+        color: #0f172a;
+        font-weight: 600;
+    }
+    html {
+        scroll-behavior: auto;
+    }
+    h1, h2, h3, h4 {
+        margin-top: 2.5rem;
+        margin-bottom: 1rem;
+        color: #0f172a;
+    }
+    h2 { font-size: 1.5rem; letter-spacing: -0.025em; }
+    h3 { font-size: 1.25rem; }
+    p, ul, li { margin-bottom: 1rem; }
+  </style>
+</head>
+<body class="antialiased">
+    <div class="max-w-[1100px] mx-auto flex flex-col md:flex-row gap-12 px-6 py-12">
+        <!-- Sidebar TOC -->
+        <aside class="w-full md:w-64 shrink-0 hidden md:block">
+            <div class="sticky top-12">
+                <h3 class="text-xs font-bold tracking-widest text-slate-400 uppercase mb-4">Nội Dung Tương Tác</h3>
+                <ul class="space-y-1 text-[14px] font-sans">
+                    <li><a href="#tong-quan" class="toc-link">Tổng quan: Vắt kiệt bối cảnh</a></li>
+                    <li><a href="#1-canh-rong" class="toc-link">1. Cảnh rộng toàn không gian</a></li>
+                    <li><a href="#2-yeu-to-con-nguoi" class="toc-link">2. Yếu tố con người</a></li>
+                    <li><a href="#3-canh-tinh-lang" class="toc-link">3. Cảnh tĩnh lặng (Phép màu)</a></li>
+                    <li><a href="#4-canh-can" class="toc-link">4. Cảnh cận & Đặc tả chi tiết</a></li>
+                    <li><a href="#bai-toan-dung-phim" class="toc-link">Bài toán dựng phim tổng kết</a></li>
+                    <li><a href="#3-cong-thuc" class="toc-link font-medium text-slate-700">3 Công thức "Vắt kiệt" (Sequence 12s)</a>
+                        <ul class="pl-4 mt-1 space-y-1 border-l-2 border-slate-100 ml-1">
+                            <li><a href="#ct1-vu-dieu-bong-do" class="toc-link text-sm">CT 1: Vũ điệu bóng đổ</a></li>
+                            <li><a href="#ct2-hoi-tho-ban-mai" class="toc-link text-sm">CT 2: Hơi thở ban mai</a></li>
+                            <li><a href="#ct3-nhip-song-luot-qua" class="toc-link text-sm">CT 3: Nhịp sống lướt qua</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#bi-kip-song-con" class="toc-link">💡 Bí kíp sống còn hiện trường</a></li>
+                </ul>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="flex-1 max-w-[680px]">
+            <header class="mb-12">
+                <div class="inline-flex items-center gap-2 mb-4">
+                    <span class="apple-badge bg-blue-50 text-blue-600 border-blue-200">Cinematic</span>
+                    <span class="apple-badge">Director of Photography</span>
+                </div>
+                <h1 class="font-display text-3xl md:text-4xl leading-tight mb-4">Tư Duy Đạo Diễn Hình Ảnh:<br/><span class="text-slate-500">Kỹ Thuật "Vắt Kiệt Bối Cảnh"</span></h1>
+                <p class="font-narrative text-slate-500 text-lg">Mọi khung hình điện ảnh đều phải có sự tính toán có chủ đích (Intentional) về mặt hình học, tâm lý học và động lực học.</p>
+            </header>
+
+            <article class="font-narrative">
+                <h2 id="tong-quan" class="font-heading">Khái niệm "Vắt kiệt bối cảnh" (Milking a location)</h2>
+                <p>Bạn có một tư duy phản biện và góc nhìn về hình ảnh cực kỳ sắc sảo! Những câu hỏi bạn đặt ra chạm đúng vào <strong>cốt lõi của tư duy đạo diễn hình ảnh</strong>.</p>
+                <p>Đúng như bạn nói, "cứ chĩa máy lên là quay" thì chỉ ra được những video lưu niệm nhàm chán (vlog). Thay vì xách máy chạy quanh công viên tìm 10 chỗ đẹp khác nhau để quay 10 cú máy rộng y hệt nhau, bạn <strong>"đóng đinh" tại một vị trí hẹp (bán kính 5-10 mét vuông)</strong>.</p>
+                <p>Tại đúng một gốc cây hoặc con đường đó, bạn dùng tư duy khai thác trọn vẹn không gian từ vĩ mô (toàn cảnh) đến vi mô (chi tiết nhỏ nhất), moi móc mọi góc độ ánh sáng. Việc này tạo ra một chuỗi các cảnh quay (sequence) có tính liên kết chặt chẽ để cắt ghép thành một câu chuyện.</p>
+                
+                <hr class="my-10 border-slate-200">
+
+                <h2 id="1-canh-rong" class="font-heading">1. Cảnh rộng toàn không gian (Wide / Establishing Shot)</h2>
+                <p>Cảnh rộng không có bố cục thì chỉ là một đống lộn xộn rác thị giác.</p>
+                
+                <div class="bg-slate-50 p-6 rounded-xl my-6">
+                    <div class="spec-block">
+                        <div class="spec-label"><span class="apple-badge">WHAT</span></div>
+                        <div class="spec-value">Cú máy lấy góc nhìn bao quát không gian, được "đóng khung" cẩn thận để loại bỏ tạp vật.</div>
+                    </div>
+                    <div class="spec-block">
+                        <div class="spec-label"><span class="apple-badge">WHY</span></div>
+                        <div class="spec-value">Để thiết lập định vị: "Nhân vật đang ở đâu?", "Bầu không khí ra sao?". Là nền tảng không gian cho toàn bộ video.</div>
+                    </div>
+                    <div class="spec-block">
+                        <div class="spec-label"><span class="apple-badge">HOW (Lưới 3x3)</span></div>
+                        <div class="spec-value"><strong>Đường chân trời</strong> tuyệt đối không chia đôi màn hình. Đặt ở vạch 1/3 dưới (khoe bầu trời) hoặc 1/3 trên (khoe con đường).</div>
+                    </div>
+                    <div class="spec-block">
+                        <div class="spec-label"><span class="apple-badge">HOW (Trọng tâm)</span></div>
+                        <div class="spec-value">Phải tìm một Trọng tâm (cái cây, vệt nắng) và đặt đúng vào 1 trong 4 <strong>Điểm Vàng</strong>.</div>
+                    </div>
+                    <div class="spec-block">
+                        <div class="spec-label"><span class="apple-badge">HOW (Đường dẫn)</span></div>
+                        <div class="spec-value">Mượn lề đường, hàng rào thành "mũi tên vô hình" dắt mắt hội tụ về Trọng tâm.</div>
+                    </div>
+                    <div class="spec-block">
+                        <div class="spec-label"><span class="apple-badge">HOW (Motion)</span></div>
+                        <div class="spec-value">Khóa tĩnh hoàn toàn (Lock-off) trên Tripod. Tôn lên sự chuyển động của tự nhiên.</div>
+                    </div>
+                </div>
+
+                <p class="font-bold text-sm text-slate-400 tracking-widest uppercase mb-2">3 Ví Dụ Chi Tiết</p>
+                <ul class="list-disc pl-5 space-y-2">
+                    <li><strong>Bố cục Đường dẫn:</strong> Đặt máy sát mặt đất. Lấy hai mép của con đường mòn tạo thành hình chữ V lật ngược, tụ lại đúng Điểm Vàng 1/3 góc trên bên phải, nơi có một gốc cây đón nắng.</li>
+                    <li><strong>Khung trong khung (Frame in frame):</strong> Đứng lùi lại, giấu ống kính sau một bụi cây. Để bụi cây mờ nhòe bọc lấy các rìa màn hình (làm tiền cảnh), ở giữa hở ra bối cảnh mặt hồ sáng rực. <em>Tạo chiều sâu 3D cực mạnh.</em></li>
+                    <li><strong>Không gian âm (Negative Space):</strong> Căn sao cho 2/3 khung hình bên trên là bầu trời trống rỗng hoặc bóng râm (không gian âm), 1/3 bên dưới là thảm cỏ. Điểm Vàng góc trái dưới là một cột đèn lẻ loi. <em>Tạo cảm giác rộng lớn, cô độc.</em></li>
+                </ul>
+
+                <hr class="my-10 border-slate-200">
+
+                <h2 id="2-yeu-to-con-nguoi" class="font-heading">2. Yếu tố con người (Human Element)</h2>
+                <p>Tại sao phải có người? Vì con người là thước đo tỷ lệ và là "Điểm neo cảm xúc" (khán giả bẩm sinh sẽ dõi theo đồng loại).</p>
+
+                <div class="bg-slate-50 p-6 rounded-xl my-6">
+                    <div class="spec-block">
+                        <div class="spec-label"><span class="apple-badge">WHAT</span></div>
+                        <div class="spec-value">Đưa chủ thể sống bước vào bối cảnh tĩnh lặng vừa set-up ở Bước 1.</div>
+                    </div>
+                    <div class="spec-block">
+                        <div class="spec-label"><span class="apple-badge">WHY</span></div>
+                        <div class="spec-value">Biến một bức ảnh phong cảnh vô tri thành một câu chuyện có tính hành trình.</div>
+                    </div>
+                    <div class="spec-block">
+                        <div class="spec-label"><span class="apple-badge">HOW (Hướng đi)</span></div>
+                        <div class="spec-value">Nhân vật không đi lung tung. Hướng đi phải bám theo <strong>Đường dẫn</strong> và kết thúc đúng <strong>Điểm Vàng</strong>.</div>
+                    </div>
+                    <div class="spec-block">
+                        <div class="spec-label"><span class="apple-badge">HOW (Action)</span></div>
+                        <div class="spec-value"><em>Đi luôn qua khung hình</em>: thời gian trôi. <em>Đi đến Điểm Vàng rồi Dừng lại</em>: sự chiêm nghiệm.</div>
+                    </div>
+                    <div class="spec-block">
+                        <div class="spec-label"><span class="apple-badge">Quy Tắc 3 Giây</span></div>
+                        <div class="spec-value">Quay take dài 15-20s. Nhưng dựng phim chỉ cắt lấy 3 giây "chín" nhất (Peak action) để khán giả không chán.</div>
+                    </div>
+                </div>
+
+                <p class="font-bold text-sm text-slate-400 tracking-widest uppercase mb-2">3 Ví Dụ Về Hành Động</p>
+                <ul class="list-disc pl-5 space-y-2">
+                    <li><strong>Lướt qua (Đi luôn):</strong> Đặt máy thấp. Bạn thong thả rảo bước từ mép phải sang mép trái màn hình dọc theo đường 1/3 dưới cùng. Đầu hơi cúi. <em>Ý nghĩa: Hành trình vô định.</em></li>
+                    <li><strong>Lên cầu thang (Dừng lại):</strong> Bạn quay lưng, bước lên các bậc thang. Khi đến bậc cao nhất (nằm ở Điểm Vàng trên), bạn <strong>khựng lại</strong>, ngước đón nắng. <em>Ý nghĩa: Vỡ òa, khai mở.</em></li>
+                    <li><strong>Ngồi xuống (Tạo nhịp sống):</strong> Bạn đi đến Điểm Vàng, ngồi xuống ghế và lật một trang sách. <em>Ý nghĩa: Làm "chậm" nhịp độ video, chuyển sang sự an yên.</em></li>
+                </ul>
+
+                <hr class="my-10 border-slate-200">
+
+                <h2 id="3-canh-tinh-lang" class="font-heading">3. Cảnh tĩnh lặng (Magic B-Roll)</h2>
+                <p>Chờ đợi mù quáng thì chỉ tốn pin. Phải có một "dung môi" hay "chất xúc tác" để xảy ra phép màu.</p>
+
+                <div class="bg-slate-50 p-6 rounded-xl my-6">
+                    <div class="spec-block">
+                        <div class="spec-label"><span class="apple-badge">WHAT</span></div>
+                        <div class="spec-value">Máy cố định, khóa nét, khóa sáng, không người, quay thiên nhiên vận động 1-2 phút.</div>
+                    </div>
+                    <div class="spec-block">
+                        <div class="spec-label"><span class="apple-badge">WHY</span></div>
+                        <div class="spec-value">Đây là khoảng thở (Breathing room). Chứng minh bối cảnh đang "sống", tự nhiên có nhịp đập riêng.</div>
+                    </div>
+                    <div class="spec-block">
+                        <div class="spec-label"><span class="apple-badge">HOW (Dự đoán)</span></div>
+                        <div class="spec-value">Nhắm máy vào nơi có <strong>động năng tiềm tàng</strong>. Cảm nhận hướng gió, đường mây, chim chóc.</div>
+                    </div>
+                </div>
+
+                <p class="font-bold text-sm text-slate-400 tracking-widest uppercase mb-2">3 Ví Dụ Chất Xúc Tác</p>
+                <ul class="list-disc pl-5 space-y-2">
+                    <li><strong>Gió (Wind Dynamics):</strong> Chĩa máy lên tán lá đang che khuất mặt trời. Chờ một cơn gió thổi dạt lá. <em>Phép màu: Sun-flare (tia nắng chớp tắt).</em></li>
+                    <li><strong>Ánh sáng (Shadow Play):</strong> Chĩa máy vào mặt sân gạch đang in bóng hàng rào. Chờ một đám mây bay ngang. <em>Phép màu: Bóng mờ đi rồi sắc nét lại.</em></li>
+                    <li><strong>Sinh vật (Serendipity):</strong> Góc máy sát vũng nước. <em>Phép màu: Chiếc lá rơi làm vỡ nát mặt nước, hoặc chú chim sà xuống.</em></li>
+                </ul>
+
+                <hr class="my-10 border-slate-200">
+
+                <h2 id="4-canh-can" class="font-heading">4. Cảnh cận & Đặc tả chi tiết (Macro / Close-up)</h2>
+                <p>Cảnh cận không chỉ là dẫm lên cỏ hay sờ hàng rào, nó là vũ khí tối thượng để đánh lừa các giác quan của bộ não.</p>
+
+                <div class="bg-slate-50 p-6 rounded-xl my-6">
+                    <div class="spec-block">
+                        <div class="spec-label"><span class="apple-badge">WHAT</span></div>
+                        <div class="spec-value">Tiến sát vật thể (hoặc zoom). Lấy nét cực gần làm mờ tịt bối cảnh phía sau.</div>
+                    </div>
+                    <div class="spec-block">
+                        <div class="spec-label"><span class="apple-badge">WHY</span></div>
+                        <div class="spec-value">Kích thích <strong>Xúc giác và Thính giác</strong>. Ép khán giả "cảm nhận" được bề mặt, nhiệt độ.</div>
+                    </div>
+                </div>
+
+                <p class="font-bold text-sm text-slate-400 tracking-widest uppercase mb-2">3 Nhóm Cảnh Cận</p>
+                <ul class="list-disc pl-5 space-y-2">
+                    <li><strong>Loại 1: Cận Chất liệu (Xúc giác)</strong><br>
+                        <em>Quay gì:</em> Gân lá khô úa, mảng rêu phong sần sùi.<br>
+                        <em>Vì sao:</em> Mắt thấy độ nhám, não tự tưởng tượng cảm giác chạm tay vào.
+                    </li>
+                    <li><strong>Loại 2: Cận Tương tác (Thính giác)</strong><br>
+                        <em>Quay gì:</em> Cận gót giày dẫm nát lá khô, ngón tay vặn nắp bình.<br>
+                        <em>Vì sao:</em> Phục vụ âm thanh. Lồng tiếng động to vào tạo hiệu ứng ASMR cực kỳ "đã tai".
+                    </li>
+                    <li><strong>Loại 3: Cận Khí quyển (Vibe Điện ảnh)</strong><br>
+                        <em>Quay gì:</em> Vệt nắng duy nhất trong bóng râm, lấy nét mờ (Manual focus) để quay hạt bụi bay cuộn xoáy (Dust motes).<br>
+                        <em>Vì sao:</em> Hạt bụi ngược sáng đại diện cho không khí, nhiệt độ, sương mù.
+                    </li>
+                </ul>
+
+                <hr class="my-10 border-slate-200">
+
+                <h2 id="bai-toan-dung-phim" class="font-heading">Bài toán dựng phim tổng kết</h2>
+                <p>Chỉ tại đúng một gốc cây đó, bạn quay được:</p>
+                <ol class="list-decimal pl-5 space-y-1 mb-4 font-bold text-slate-800">
+                    <li>Cảnh rộng con đường</li>
+                    <li>Cận cảnh mũi giày dẫm vỡ chiếc lá</li>
+                    <li>Toàn cảnh bạn bước tới điểm vàng ngồi xuống ghế</li>
+                    <li>Cảnh tĩnh lặng tán lá đung đưa chớp tắt nắng</li>
+                </ol>
+                <p>Chỉ cần nối 4 đoạn này lại (mỗi đoạn 3 giây), thêm tiếng chim hót và lá xào xạc. Xin chúc mừng, bạn đã "vắt kiệt" một bối cảnh và tạo ra <strong>12 giây phim cực kỳ có chiều sâu</strong>!</p>
+
+                <hr class="my-12 border-slate-300 border-2">
+
+                <h2 id="3-cong-thuc" class="font-display text-2xl text-blue-700">3 CÔNG THỨC "VẮT KIỆT" (SEQUENCE 12s)</h2>
+                <p>Với đề tài là <strong>Nắng buổi sáng</strong> (nắng đi xiên, màu vàng ươm) và bối cảnh <strong>Khu chung cư</strong>, đây là "mỏ vàng" điện ảnh nhờ sự tương phản giữa hình khối bê tông và ánh sáng mềm mại.</p>
+                
+                <!-- Công thức 1 -->
+                <h3 id="ct1-vu-dieu-bong-do" class="font-heading mt-10">CÔNG THỨC 1: "VŨ ĐIỆU BÓNG ĐỔ" (Shadow Dance)</h3>
+                <div class="mb-4 text-sm font-sans flex gap-4">
+                    <div class="flex items-center gap-1"><span class="apple-badge">BỐI CẢNH</span> Hành lang lộ thiên, hàng rào sắt</div>
+                    <div class="flex items-center gap-1"><span class="apple-badge">VŨ KHÍ</span> Hiệu ứng chớp tắt (Strobe)</div>
+                </div>
+                <div class="space-y-3 font-sans text-base">
+                    <div class="p-3 border border-slate-200 rounded-lg">
+                        <strong>1. Cảnh rộng (Không gian):</strong> Máy thấp. Dùng hàng lang làm đường dẫn. Đợi nắng chiếu qua hàng rào tạo vệt sáng tối xen kẽ. <em>(Cắt 3s)</em>
+                    </div>
+                    <div class="p-3 border border-slate-200 rounded-lg">
+                        <strong>2. Cận cảnh (Xúc giác):</strong> Ống kính sát cột xi măng/lan can. Bàn tay từ từ lướt qua ranh giới Sáng-Tối. <em>(Cắt 3s)</em>
+                    </div>
+                    <div class="p-3 border border-slate-200 rounded-lg">
+                        <strong>3. Yếu tố con người:</strong> Bạn bước dọc hành lang. Cơ thể đi qua các vệt Sáng-Tối. Đến Điểm Vàng, dừng lại, nhắm mắt ngửa mặt đón nắng. <em>(Cắt 3s)</em>
+                    </div>
+                    <div class="p-3 border border-slate-200 rounded-lg">
+                        <strong>4. Cảnh tĩnh lặng:</strong> Quay bóng (Shadow) chậu cây hắt lên tường. Chờ gió thổi làm cái bóng rung rinh. <em>(Cắt 3s)</em>
+                    </div>
+                    <p class="text-sm text-slate-500 mt-2">🎧 Âm thanh lồng thêm: Tiếng tay ma sát sột soạt + Bước chân giòn giã.</p>
+                </div>
+
+                <!-- Công thức 2 -->
+                <h3 id="ct2-hoi-tho-ban-mai" class="font-heading mt-10">CÔNG THỨC 2: "HƠI THỞ BAN MAI" (Morning Atmosphere)</h3>
+                <div class="mb-4 text-sm font-sans flex gap-4">
+                    <div class="flex items-center gap-1"><span class="apple-badge">BỐI CẢNH</span> Ghế đá công viên nội khu</div>
+                    <div class="flex items-center gap-1"><span class="apple-badge">VŨ KHÍ</span> Quay ngược sáng (Backlit)</div>
+                </div>
+                <div class="space-y-3 font-sans text-base">
+                    <div class="p-3 border border-slate-200 rounded-lg">
+                        <strong>1. Cảnh rộng (Khung trong Khung):</strong> Đặt máy sau bụi cây làm mờ 4 viền. Xuyên qua khoảng hở là chiếc ghế vắng ngập nắng. <em>(Cắt 3s)</em>
+                    </div>
+                    <div class="p-3 border border-slate-200 rounded-lg">
+                        <strong>2. Cận cảnh (Nhiệt độ):</strong> Ly cà phê nóng. Quay ngược sáng để làn khói cuộn xoáy phát sáng lơ lửng. <em>(Cắt 3s)</em>
+                    </div>
+                    <div class="p-3 border border-slate-200 rounded-lg">
+                        <strong>3. Yếu tố con người:</strong> Bạn ngồi vào ghế ở Điểm Vàng 1/3. Mở sách, gió lật tung trang giấy. <em>(Cắt 3s)</em>
+                    </div>
+                    <div class="p-3 border border-slate-200 rounded-lg">
+                        <strong>4. Cảnh tĩnh lặng (POV):</strong> Ngửa máy quay bệt đất lên tán cây. Gió thổi dạt lá, nắng chọc xuống tạo Sun-flare chớp tắt. <em>(Cắt 3s)</em>
+                    </div>
+                    <p class="text-sm text-slate-500 mt-2">🎧 Âm thanh lồng thêm: Đáy ly chạm đá "cạch" + Tiếng lật trang sách "phạch phạch".</p>
+                </div>
+
+                <!-- Công thức 3 -->
+                <h3 id="ct3-nhip-song-luot-qua" class="font-heading mt-10">CÔNG THỨC 3: "NHỊP SỐNG LƯỚT QUA" (Urban Rhythm)</h3>
+                <div class="mb-4 text-sm font-sans flex gap-4">
+                    <div class="flex items-center gap-1"><span class="apple-badge">BỐI CẢNH</span> Vạch kẻ đường / Khúc cua</div>
+                    <div class="flex items-center gap-1"><span class="apple-badge">VŨ KHÍ</span> Góc cực thấp & Phản chiếu</div>
+                </div>
+                <div class="space-y-3 font-sans text-base">
+                    <div class="p-3 border border-slate-200 rounded-lg">
+                        <strong>1. Cảnh rộng (Đối lập):</strong> Nằm sát mặt đường. 50/50 bóng tòa nhà và mặt đường hắt nắng. <em>(Cắt 3s)</em>
+                    </div>
+                    <div class="p-3 border border-slate-200 rounded-lg">
+                        <strong>2. Cận cảnh (Phá vỡ mặt phẳng):</strong> Góc sát đất, cận cảnh mũi giày bước khẽ qua vũng nước nhỏ làm gợn sóng hình ảnh bầu trời. <em>(Cắt 3s)</em>
+                    </div>
+                    <div class="p-3 border border-slate-200 rounded-lg">
+                        <strong>3. Yếu tố con người (Hối hả):</strong> Đeo balo, sải bước dài cắt ngang khung hình. Đi thẳng ra khỏi rìa trái (không dừng lại). <em>(Cắt 3s)</em>
+                    </div>
+                    <div class="p-3 border border-slate-200 rounded-lg">
+                        <strong>4. Cảnh tĩnh lặng (Góc nhìn 3):</strong> Zoom máy vào gương cầu lồi giao thông. Chờ đợi một người đạp xe lướt qua trong gương. <em>(Cắt 3s)</em>
+                    </div>
+                    <p class="text-sm text-slate-500 mt-2">🎧 Âm thanh lồng thêm: Đế giày miết mặt đường xoẹt xoẹt + Tiếng xe văng vẳng.</p>
+                </div>
+
+                <hr class="my-10 border-slate-200">
+                
+                <h2 id="bi-kip-song-con" class="font-display text-xl text-orange-600">💡 BÍ KÍP "SỐNG CÒN" TẠI HIỆN TRƯỜNG</h2>
+                <div class="bg-orange-50 border border-orange-100 p-6 rounded-xl mt-4">
+                    <ul class="space-y-4 font-sans text-base text-slate-700">
+                        <li>
+                            <strong class="text-orange-700">1. Khóa sáng (AE/AF Lock):</strong>
+                            Chạm giữ màn hình 2 giây cho đến khi hiện "Khóa AE/AF", vuốt giảm độ sáng xuống một chút. Các vùng bóng râm sẽ đen tuyền giấu rác, vệt nắng sẽ nổi bần bật.
+                        </li>
+                        <li>
+                            <strong class="text-orange-700">2. Quay 15 giây gọt lấy 3 giây:</strong>
+                            Bắt buộc bấm quay dài 10-15s để bắt được sự chuyển động của tự nhiên. Sau đó dùng CapCut để chắt lọc đúng 3 giây đỉnh cao nhất.
+                        </li>
+                        <li>
+                            <strong class="text-orange-700">3. Quy tắc J-Cut (Mẹo dựng phim):</strong>
+                            Để chuyển cảnh không bị giật, cho <strong>âm thanh đi trước hình ảnh 0.5 giây</strong>. Não người sẽ bị âm thanh dắt mũi, khiến mạch phim cực kỳ mượt mà.
+                        </li>
+                    </ul>
+                </div>
+
+            </article>
+        </main>
+    </div>
+
+    <script>
+        // Simple ScrollSpy cho TOC
+        const sections = document.querySelectorAll("h2, h3");
+        const navLinks = document.querySelectorAll(".toc-link");
+        
+        window.addEventListener("scroll", () => {
+            let current = "";
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (scrollY >= sectionTop - 100) {
+                    current = section.getAttribute("id");
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove("text-blue-600", "font-bold");
+                if (link.getAttribute("href").includes(current) && current !== "") {
+                    link.classList.add("text-blue-600", "font-bold");
+                }
+            });
+        });
+    </script>
+</body>
+</html>

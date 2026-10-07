@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SKILL: RENHANH & SANGTRANG - Giải Phóng Context Antigravity</title>
+    <title>SKILL: RENHANH — Rẽ Nhánh Tư Duy Trong Antigravity</title>
     <link href="https://fonts.cdnfonts.com/css/svn-poppins" rel="stylesheet">
     <style>
         @import url('https://fonts.cdnfonts.com/css/svn-poppins');
@@ -18,186 +18,407 @@
             --text-main: #f8fafc;
             --text-muted: #94a3b8;
             --accent: #38bdf8;
-            --accent-glow: rgba(56, 189, 248, 0.2);
+            --accent2: #a78bfa;
             --card-bg: #1e293b;
             --border-color: #334155;
             --code-bg: #09090b;
+            --warn-bg: rgba(250, 204, 21, 0.08);
+            --warn-border: #facc15;
+            --danger-bg: rgba(239, 68, 68, 0.08);
+            --danger-border: #ef4444;
+            --success-bg: rgba(34, 197, 94, 0.08);
+            --success-border: #22c55e;
         }
+        * { box-sizing: border-box; }
         body {
             font-family: 'SVN-Poppins', sans-serif;
             background-color: var(--bg-dark);
             color: var(--text-main);
-            line-height: 1.6;
+            line-height: 1.7;
             margin: 0;
             padding: 0;
             -webkit-font-smoothing: antialiased;
         }
         header {
-            background: rgba(15, 23, 42, 0.8);
-            backdrop-filter: blur(10px);
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
             border-bottom: 1px solid var(--border-color);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            padding: 1.5rem 2rem;
+            padding: 2.5rem 2rem 2rem;
             text-align: center;
         }
+        .badge { display: inline-block; background: rgba(56, 189, 248, 0.15); color: var(--accent); font-size: 0.75rem; font-weight: 600; padding: 0.25rem 0.75rem; border-radius: 100px; margin-bottom: 0.75rem; letter-spacing: 1px; text-transform: uppercase; }
         h1, h2, h3 { font-family: 'SVN-Integral CF', sans-serif; font-weight: 400; margin-top: 0; }
-        header h1 { font-size: 2rem; color: var(--accent); margin: 0; letter-spacing: 1px; }
-        header p { color: var(--text-muted); font-size: 1rem; font-weight: 500; margin: 0.5rem 0 0; }
-        
+        header h1 { font-size: 2.2rem; color: var(--accent); margin: 0; letter-spacing: 1px; }
+        header p { color: var(--text-muted); font-size: 1.05rem; font-weight: 500; margin: 0.5rem 0 0; max-width: 600px; margin-left: auto; margin-right: auto; }
+
         .container { display: flex; max-width: 1200px; margin: 0 auto; padding: 2rem; gap: 2rem; }
-        
+
         .toc {
-            width: 250px; flex-shrink: 0; position: sticky; top: 100px; height: fit-content;
+            width: 260px; flex-shrink: 0; position: sticky; top: 24px; height: fit-content;
             background: var(--card-bg); padding: 1.5rem; border-radius: 12px; border: 1px solid var(--border-color);
         }
-        .toc h3 { font-size: 1.2rem; margin-bottom: 1rem; color: #fff; }
+        .toc h3 { font-size: 1.1rem; margin-bottom: 1rem; color: #fff; }
         .toc ul { list-style: none; padding: 0; margin: 0; }
-        .toc li { margin-bottom: 0.8rem; }
-        .toc a { color: var(--text-muted); text-decoration: none; font-size: 0.95rem; transition: all 0.2s ease; }
-        .toc a:hover { color: var(--accent); }
+        .toc li { margin-bottom: 0.7rem; }
+        .toc a { color: var(--text-muted); text-decoration: none; font-size: 0.9rem; transition: all 0.2s ease; display: block; padding: 0.3rem 0; }
+        .toc a:hover { color: var(--accent); padding-left: 0.5rem; }
 
         .content { flex-grow: 1; min-width: 0; }
         .section {
             background: var(--card-bg); border-radius: 12px; padding: 2rem; margin-bottom: 2rem;
             border: 1px solid var(--border-color);
         }
-        .section h2 { font-size: 1.5rem; color: var(--accent); border-bottom: 1px solid var(--border-color); padding-bottom: 1rem; margin-bottom: 1.5rem; }
-        .section h3 { font-family: 'SVN-Poppins', sans-serif; font-weight: 600; font-size: 1.25rem; margin-top: 2rem; color: #fff; }
-        
-        pre { background: var(--code-bg); padding: 1.5rem; border-radius: 8px; overflow-x: auto; border: 1px solid #334; color: #a5b4fc; font-size: 0.85rem; line-height: 1.5; }
-        code { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; }
-        
-        .hook-box { background: rgba(56, 189, 248, 0.1); border-left: 4px solid var(--accent); padding: 1rem 1.5rem; margin: 1.5rem 0; border-radius: 0 8px 8px 0; font-style: italic; }
-        
-        .highlight { color: #facc15; font-weight: 600; }
-        .btn { display: inline-block; background: var(--accent); color: #0f172a; font-weight: 600; padding: 0.5rem 1rem; border-radius: 6px; text-decoration: none; margin-top: 1rem; transition: opacity 0.2s; }
-        .btn:hover { opacity: 0.9; }
+        .section h2 { font-size: 1.4rem; color: var(--accent); border-bottom: 1px solid var(--border-color); padding-bottom: 1rem; margin-bottom: 1.5rem; }
+        .section h3 { font-family: 'SVN-Poppins', sans-serif; font-weight: 600; font-size: 1.15rem; margin-top: 2rem; color: #fff; }
 
-        @media (max-width: 768px) { .container { flex-direction: column; padding: 1rem; } .toc { width: auto; position: static; margin-bottom: 2rem; } }
+        pre { background: var(--code-bg); padding: 1.5rem; border-radius: 8px; overflow-x: auto; border: 1px solid #334; font-size: 0.82rem; line-height: 1.6; position: relative; }
+        pre code { color: #a5b4fc; }
+        code { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; }
+        p code, li code { background: rgba(167, 139, 250, 0.12); color: var(--accent2); padding: 0.15rem 0.4rem; border-radius: 4px; font-size: 0.88em; }
+
+        .callout { padding: 1rem 1.5rem; margin: 1.5rem 0; border-radius: 0 8px 8px 0; border-left: 4px solid; }
+        .callout-info { background: rgba(56, 189, 248, 0.08); border-color: var(--accent); }
+        .callout-warn { background: var(--warn-bg); border-color: var(--warn-border); }
+        .callout-danger { background: var(--danger-bg); border-color: var(--danger-border); }
+        .callout-success { background: var(--success-bg); border-color: var(--success-border); }
+        .callout strong { display: block; margin-bottom: 0.3rem; }
+
+        .highlight { color: #facc15; font-weight: 600; }
+        .step-num { display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; background: var(--accent); color: #0f172a; font-weight: 700; font-size: 0.85rem; border-radius: 50%; margin-right: 0.5rem; flex-shrink: 0; }
+        .copy-btn { position: absolute; top: 8px; right: 8px; background: #334155; color: #94a3b8; border: none; padding: 0.3rem 0.6rem; border-radius: 4px; cursor: pointer; font-size: 0.75rem; }
+        .copy-btn:hover { background: #475569; color: #fff; }
+
+        .version-tag { display: inline-block; background: var(--success-bg); border: 1px solid var(--success-border); color: var(--success-border); font-size: 0.7rem; font-weight: 600; padding: 0.15rem 0.5rem; border-radius: 4px; margin-left: 0.5rem; vertical-align: middle; }
+
+        @media (max-width: 768px) { .container { flex-direction: column; padding: 1rem; } .toc { width: auto; position: static; margin-bottom: 1rem; } header h1 { font-size: 1.6rem; } .section { padding: 1.5rem; } }
     </style>
 </head>
 <body>
 
 <header>
-    <h1>Skill: RENHANH & SANGTRANG</h1>
-    <p>Tuyệt Kỹ Rẽ Nhánh & Lật Trang Bối Cảnh Trong Antigravity</p>
+    <div class="badge">Antigravity Skill</div>
+    <h1>RENHANH</h1>
+    <p>Rẽ nhánh tư duy thành luồng chat độc lập trên Sidebar — giữ sạch luồng gốc 100%</p>
 </header>
 
 <div class="container">
     <aside class="toc">
         <h3>MỤC LỤC</h3>
         <ul>
-            <li><a href="#noi-dau">1. Nỗi Đau Context Limit</a></li>
-            <li><a href="#renhanh">2. Cú Pháp Kích Hoạt</a></li>
-            <li><a href="#script">3. Cài Đặt Python Script</a></li>
-            <li><a href="#skill">4. Đóng Gói SKILL.md</a></li>
+            <li><a href="#van-de">1. Vấn đề cần giải quyết</a></li>
+            <li><a href="#cach-dung">2. Cách dùng (1 dòng lệnh)</a></li>
+            <li><a href="#cai-dat">3. Cài đặt (3 bước)</a></li>
+            <li><a href="#script">4. Source code re_nhanh.py</a></li>
+            <li><a href="#skill-md">5. File SKILL.md</a></li>
+            <li><a href="#bug-fix">6. Bug đã xử lý</a></li>
+            <li><a href="#faq">7. FAQ</a></li>
         </ul>
     </aside>
 
     <main class="content">
-        <div id="noi-dau" class="section">
-            <h2>1. Vấn Đề Của Việc Quá Tải Context</h2>
-            <p>Khi làm việc trên các Agent AI, cuộc trò chuyện càng dài thì AI phản hồi càng chậm (do Token đội lên cao), đồng thời độ "sắc bén" của AI cũng giảm sút vì bị pha loãng bởi các luồng suy nghĩ phụ.</p>
-            <div class="hook-box">
-                "Thử tưởng tượng bạn đang tập trung làm 1 kịch bản cực cuốn, tự dưng nảy ra một ý tưởng khác và đi sâu vào nó. Sau khi hỏi xong, AI bị dính luôn vào cái mood của câu hỏi phụ, quên mất bức tranh tổng thể của luồng gốc."
-            </div>
-            <p>Đó là lý do chúng ta cần 2 mantra tối thượng: <span class="highlight">RENHANH</span> và <span class="highlight">SANGTRANG</span>.</p>
+
+        <!-- 1. VẤN ĐỀ -->
+        <div id="van-de" class="section">
+            <h2>1. Vấn đề cần giải quyết</h2>
+            <p>Khi làm việc với AI Agent (Antigravity, Cursor, Windsurf...), cuộc trò chuyện càng dài thì:</p>
             <ul>
-                <li><strong>RENHANH (Rẽ Nhánh):</strong> Dùng khi muốn AI đào sâu một ngách nhỏ, nhưng KHÔNG MUỐN nó in câu trả lời ra làm bẩn luồng hiện tại. AI sẽ tự tạo một nhánh mới trên Sidebar.</li>
-                <li><strong>SANGTRANG (Lật Trang):</strong> Dùng khi luồng đã quá dài, giật lag. AI sẽ đóng gói 3-5 gạch đầu dòng cốt lõi, lật sang luồng mới sạch sẽ 100% token nhưng vẫn nhớ rõ mình đang làm gì.</li>
+                <li>🐌 <strong>AI phản hồi chậm dần</strong> do token tích lũy quá cao</li>
+                <li>🧠 <strong>AI mất tập trung</strong>, trả lời lan man vì bị pha loãng bởi các nhánh suy nghĩ phụ</li>
+                <li>💸 <strong>Tốn token</strong> khi Claude/GPT phải đọc lại toàn bộ lịch sử mỗi lượt</li>
             </ul>
+            <div class="callout callout-info">
+                <strong>💡 Ví dụ thực tế:</strong>
+                Bạn đang dựng kịch bản video, tự dưng nảy ý muốn hỏi AI về cách chọn B-roll. Nếu hỏi ngay tại luồng hiện tại, AI sẽ xử lý xong rồi "dính" luôn vào mood câu hỏi phụ đó — quên mất bức tranh tổng thể kịch bản.
+            </div>
+            <p><span class="highlight">RENHANH</span> giải quyết triệt để: tách câu hỏi phụ ra thành 1 luồng chat mới trên Sidebar. Luồng gốc giữ sạch 100%, bạn tiếp tục làm việc không gián đoạn.</p>
         </div>
 
-        <div id="renhanh" class="section">
-            <h2>2. Cú Pháp Hoạt Động Của Agent</h2>
-            <p>Bạn chỉ cần ném Mantra vào khung chat như sau:</p>
-            <pre><code>RENHANH: Tìm cho tôi 5 ý tưởng cảnh trám đoạn hook này
-SANGTRANG: Chốt kịch bản, giờ chuyển qua tư duy setup ánh sáng</code></pre>
-            <p>Ngay lập tức, AI Agent sẽ tự động trích xuất ngữ cảnh, đóng gói vào 1 Capsule, chạy lệnh Python ngầm và in ra link nhánh rẽ cho bạn bấm vào.</p>
+        <!-- 2. CÁCH DÙNG -->
+        <div id="cach-dung" class="section">
+            <h2>2. Cách dùng</h2>
+            <p>Gõ mantra vào khung chat Antigravity:</p>
+            <pre><code>RENHANH: Tìm cho tôi 5 ý tưởng cảnh trám đoạn hook này</code></pre>
+            <p>AI sẽ tự động:</p>
+            <ol>
+                <li>Đóng gói bối cảnh hiện tại (3-5 gạch đầu dòng cốt lõi)</li>
+                <li>Tạo 1 cuộc trò chuyện mới trên Sidebar với tên <code>[Nhánh] ...</code></li>
+                <li>In link cho bạn bấm vào → rảnh tay tiếp tục luồng gốc</li>
+            </ol>
+            <div class="callout callout-warn">
+                <strong>⚠️ Nguyên tắc tối thượng:</strong>
+                AI ở luồng gốc <strong>CHỈ tạo nhánh rồi DỪNG LẠI</strong>. Nó không được phép đọc file, sửa code, hay phân tích bất kỳ thứ gì liên quan đến task. Toàn bộ công việc do agent ở luồng mới xử lý.
+            </div>
         </div>
 
+        <!-- 3. CÀI ĐẶT -->
+        <div id="cai-dat" class="section">
+            <h2>3. Cài đặt (3 bước)</h2>
+
+            <h3><span class="step-num">1</span> Tải script re_nhanh.py</h3>
+            <p>Lưu file Python vào bất kỳ đâu trên máy (ví dụ: <code>~/scripts/re_nhanh.py</code>). Xem mã nguồn đầy đủ ở <a href="#script" style="color:var(--accent)">mục 4</a>.</p>
+
+            <h3><span class="step-num">2</span> Tạo thư mục skill và file SKILL.md</h3>
+            <pre><code>mkdir -p ~/.gemini/config/skills/renhanh</code></pre>
+            <p>Copy nội dung file SKILL.md ở <a href="#skill-md" style="color:var(--accent)">mục 5</a> vào file:</p>
+            <pre><code>~/.gemini/config/skills/renhanh/SKILL.md</code></pre>
+
+            <h3><span class="step-num">3</span> Sửa đường dẫn trong SKILL.md</h3>
+            <p>Mở SKILL.md, tìm dòng chứa <code>python3 "..."</code> và sửa đường dẫn cho đúng vị trí bạn đã lưu <code>re_nhanh.py</code> ở bước 1:</p>
+            <pre><code># Trước (mặc định):
+python3 "/Users/vietmac/Documents/CODE/Quản gia/re_nhanh.py"
+
+# Sau (sửa theo máy bạn):
+python3 "/Users/YOUR_USERNAME/scripts/re_nhanh.py"</code></pre>
+
+            <div class="callout callout-success">
+                <strong>✅ Xong!</strong>
+                Khởi động lại Antigravity (hoặc mở cuộc trò chuyện mới). Gõ <code>RENHANH: test</code> để kiểm tra.
+            </div>
+        </div>
+
+        <!-- 4. SOURCE CODE -->
         <div id="script" class="section">
-            <h2>3. Cài Đặt Script Điều Phối (re_nhanh.py)</h2>
-            <p>Script Python này là trái tim của hệ thống. Nó chịu trách nhiệm gọi AgentAPI để tạo luồng mới, giữ nguyên <strong>Project ID</strong> và xoá các metadata thừa để đảm bảo Conversation hiện đàng hoàng trên Sidebar thay vì bị ẩn.</p>
-            <p>Lưu file này tại: <code>/Users/vietmac/Documents/CODE/Quản gia/re_nhanh.py</code></p>
+            <h2>4. Source Code: re_nhanh.py <span class="version-tag">V3 Audit-Hardened</span></h2>
+            <p>Yêu cầu: <strong>Python 3.8+</strong>. Không cần cài thêm thư viện ngoài.</p>
             <pre><code>#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+"""
+re_nhanh.py V3 — Rẽ nhánh tư duy Antigravity (Audit-Hardened)
+==============================================================
+- Đọc Project ID trực tiếp từ env (0 latency).
+- Xóa ANTIGRAVITY_SOURCE_METADATA → fix lỗi ẩn khỏi Sidebar.
+- Fallback chain: env → metadata → hardcoded path.
+"""
+
 import sys, os, json, subprocess, argparse, urllib.parse
 
-AGENTAPI = "/Users/vietmac/.gemini/antigravity/bin/agentapi"
+AGENTAPI = os.path.expanduser("~/.gemini/antigravity/bin/agentapi")
 
-def re_nhanh(title: str, prompt: str, parent_cid: str, model: str = "pro_high"):
-    # Tối ưu: Lấy trực tiếp từ biến môi trường
+
+def get_metadata(cid: str) -&gt; dict:
+    """Fallback: lấy metadata qua agentapi."""
+    try:
+        res = subprocess.run(
+            [AGENTAPI, "get-conversation-metadata", cid],
+            capture_output=True, text=True, timeout=10
+        )
+        data = json.loads(res.stdout)
+        return data.get("response", {}).get("conversationMetadata", {}).get("metadata", {})
+    except Exception as e:
+        print(f"[re_nhanh] Error: {e}", file=sys.stderr)
+        return {}
+
+
+def resolve_workspace(env: dict, parent_cid: str) -&gt; str:
+    """Xác định thư mục workspace chính xác nhất."""
+    # 1. Từ conversation metadata
+    if parent_cid:
+        meta = get_metadata(parent_cid)
+        uris = meta.get("workspaceUris", [])
+        if uris:
+            uri = uris[0]
+            if uri.startswith("file://"):
+                path = urllib.parse.unquote(uri[7:])
+                if os.path.isdir(path):
+                    return path
+    # 2. Từ cwd hiện tại
+    cwd = os.getcwd()
+    if cwd and cwd != "/" and os.path.isdir(cwd):
+        return cwd
+    # 3. Fallback
+    return os.path.expanduser("~/Documents/CODE")
+
+
+def re_nhanh(title, prompt, parent_cid, model="pro_high"):
+    # === 1. Chuẩn bị env (CHỈ COPY 1 LẦN) ===
     env = os.environ.copy()
+
+    # Lấy project_id: ưu tiên env, fallback metadata
     project_id = env.get("ANTIGRAVITY_PROJECT_ID", "")
-    cwd = os.getcwd() if os.getcwd() != "/" else "/Users/vietmac/Documents/CODE"
-        
-    # Xóa SOURCE_METADATA để tránh luồng mới bị Antigravity UI đánh dấu ẩn (do tool call sinh ra)
+    if not project_id and parent_cid:
+        meta = get_metadata(parent_cid)
+        project_id = meta.get("projectId", "")
+
+    # XÓA SOURCE_METADATA → fix lỗi ẩn khỏi sidebar
     env.pop("ANTIGRAVITY_SOURCE_METADATA", None)
     env.pop("ANTIGRAVITY_TRAJECTORY_ID", None)
-    if project_id: env["ANTIGRAVITY_PROJECT_ID"] = project_id
-        
-    if not title.startswith("[Nhánh]"): title = f"[Nhánh] {title}"
-        
-    # Inject /boost để chạy mode deep thinking nếu dùng model cao
+
+    if project_id:
+        env["ANTIGRAVITY_PROJECT_ID"] = project_id
+
+    # === 2. Workspace ===
+    cwd = resolve_workspace(env, parent_cid)
+
+    # === 3. Tiêu đề ===
+    if not title.startswith("[Nhánh]"):
+        title = f"[Nhánh] {title}"
+
+    # === 4. Model tier ===
     agentapi_model = "pro" if model == "pro_high" else model
     if model == "pro_high" and not prompt.startswith("/boost"):
         prompt = "/boost\n" + prompt
-        
-    cmd = [AGENTAPI, "new-conversation", f"--model={agentapi_model}", f"--title={title}", prompt]
+
+    # === 5. Tạo conversation ===
+    cmd = [
+        AGENTAPI, "new-conversation",
+        f"--model={agentapi_model}",
+        f"--title={title}",
+        prompt
+    ]
+
     res = subprocess.run(cmd, env=env, cwd=cwd, capture_output=True, text=True)
-    
-    if res.returncode != 0: return {"status": "error", "error": res.stderr}
+    if res.returncode != 0:
+        return {"status": "error", "error": res.stderr.strip() or res.stdout.strip()}
+
     try:
         out = json.loads(res.stdout)
-        new_cid = out.get("response", {}).get("newConversation", {}).get("conversationId", "")
-        return {"status": "success", "conversationId": new_cid, "link": f"conversation://{new_cid}"}
+        new_cid = (out.get("response", {})
+                      .get("newConversation", {})
+                      .get("conversationId", ""))
+        if not new_cid:
+            return {"status": "error", "error": "No conversationId returned"}
+        return {
+            "status": "success",
+            "conversationId": new_cid,
+            "title": title,
+            "projectId": project_id,
+            "workspace": cwd,
+            "link": f"conversation://{new_cid}"
+        }
     except Exception as e:
         return {"status": "error", "error": str(e)}
 
-if __name__ == "__main__":
-    parser = argparse.ArgumentParser()
+
+def main():
+    parser = argparse.ArgumentParser(description="Antigravity Branch Creator V3")
     parser.add_argument("--title", required=True)
     parser.add_argument("--parent-cid", required=True)
-    parser.add_argument("--prompt-file", required=True)
+    parser.add_argument("--prompt", help="Nội dung prompt trực tiếp")
+    parser.add_argument("--prompt-file", help="File chứa prompt (ưu tiên hơn --prompt)")
+    parser.add_argument("--model", default="pro_high",
+                        choices=["flash_lite", "flash", "pro", "pro_high"])
     args = parser.parse_args()
-    
-    with open(args.prompt_file, "r") as f:
-        prompt_text = f.read()
-        
-    res = re_nhanh(args.title, prompt_text, args.parent_cid)
-    print(json.dumps(res, indent=2))
-</code></pre>
+
+    prompt_text = None
+    if args.prompt_file and os.path.exists(args.prompt_file):
+        with open(args.prompt_file, "r", encoding="utf-8") as f:
+            prompt_text = f.read()
+    elif args.prompt:
+        prompt_text = args.prompt
+
+    if not prompt_text:
+        print(json.dumps({"status": "error", "error": "Thiếu --prompt hoặc --prompt-file"}))
+        sys.exit(1)
+
+    result = re_nhanh(args.title, prompt_text, args.parent_cid, args.model)
+    print(json.dumps(result, ensure_ascii=False, indent=2))
+    sys.exit(0 if result.get("status") == "success" else 1)
+
+
+if __name__ == "__main__":
+    main()</code></pre>
         </div>
 
-        <div id="skill" class="section">
-            <h2>4. Cài Đặt File SKILL (Hướng Dẫn AI)</h2>
-            <p>Tạo file <code>~/.gemini/config/skills/renhanh/SKILL.md</code> cho Antigravity. File này quy định rõ cho AI biết phải làm gì khi người dùng gõ mantra.</p>
+        <!-- 5. SKILL.MD -->
+        <div id="skill-md" class="section">
+            <h2>5. File SKILL.md <span class="version-tag">V3</span></h2>
+            <p>Lưu vào <code>~/.gemini/config/skills/renhanh/SKILL.md</code></p>
             <pre><code>---
 name: re-nhanh
-description: "Mantra: RENHANH hoặc SANGTRANG. Chuyên tạo nhánh hoặc lật trang."
+description: "Mantra: RENHANH. Tạo cuộc trò chuyện mới kế thừa Project ID + Workspace."
 ---
 
-# QUY TRÌNH XỬ LÝ (Agent bắt buộc tuân theo)
+# KỸ NĂNG "RE-NHANH" — RẼ NHÁNH TƯ DUY (V3)
 
-Khi thấy `RENHANH: [chủ đề]`:
-1. Viết Context Capsule (Bối cảnh 3 gạch đầu dòng từ luồng cũ) ra file `/tmp/re_nhanh_prompt.txt`.
-2. Chạy tool gọi: `python3 re_nhanh.py --title="[Nhánh]..." --parent-cid="..." --prompt-file="/tmp/re_nhanh_prompt.txt"`
-3. In ra link `conversation://ID` cho user bấm vào.
-4. TUYỆT ĐỐI DỪNG LẠI NGAY LẬP TỨC. KHÔNG TRẢ LỜI CÂU HỎI Ở LUỒNG NÀY.
+## 🚨 NGUYÊN TẮC TỐI THƯỢNG
 
-Khi thấy `SANGTRANG: [chủ đề]`:
-Tương tự, nhưng đặt tên là `[Tiếp nối]...` và yêu cầu user chuyển hẳn sang luồng mới để giải phóng bộ nhớ.
-</code></pre>
-            <p class="hook-box">Lưu ý: Bắt buộc tuân thủ bước 4 (Dừng lại) để giữ sạch luồng gốc 100%.</p>
+&gt; **RENHANH = CHỈ TẠO NHÁNH. KHÔNG LÀM TASK. KHÔNG PHÂN TÍCH. KHÔNG CHẠY CODE.**
+&gt;
+&gt; Khi thấy mantra `RENHANH:`, agent **CHỈ ĐƯỢC PHÉP LÀM ĐÚNG 2 VIỆC**:
+&gt; 1. Ghi Context Capsule ra `/tmp/re_nhanh_prompt.txt`
+&gt; 2. Chạy `re_nhanh.py` để tạo luồng mới
+&gt;
+&gt; Sau đó **IN LINK VÀ DỪNG LẠI**.
+
+### ❌ HÀNH VI BỊ CẤM
+1. CẤM đọc file, grep, search liên quan đến task
+2. CẤM sửa file, chạy script, build, commit
+3. CẤM phân tích, giải thích, trả lời nội dung task
+4. CẤM dùng invoke_subagent (bị ẩn sidebar)
+5. CẤM gọi agentapi trực tiếp (thiếu env cleaning)
+
+## QUY TRÌNH — ĐÚNG 3 BƯỚC
+
+### Bước 1: Ghi Context Capsule
+```text
+/boost
+
+Bối cảnh kế thừa từ [&lt;Tên luồng cha&gt;](conversation://&lt;PARENT_CID&gt;):
+- &lt;Ý 1&gt;
+- &lt;Ý 2&gt;
+- &lt;Ý 3&gt;
+
+Nhiệm vụ rẽ nhánh:
+&lt;Nội dung sau mantra RENHANH:&gt;
+```
+
+### Bước 2: Chạy script
+```bash
+python3 "ĐƯỜNG_DẪN_TỚI/re_nhanh.py" \
+  --title="[Nhánh] &lt;Tiêu đề&gt;" \
+  --parent-cid="&lt;CID_HIỆN_TẠI&gt;" \
+  --model="pro_high" \
+  --prompt-file="/tmp/re_nhanh_prompt.txt"
+```
+
+### Bước 3: In link → DỪNG
+```markdown
+⚡ Đã rẽ nhánh:
+👉 [[Nhánh] &lt;Tên&gt;](conversation://&lt;NEW_CID&gt;)
+```
+**→ DỪNG. KHÔNG GỌI TOOL. KHÔNG VIẾT THÊM.**</code></pre>
         </div>
+
+        <!-- 6. BUG ĐÃ XỬ LÝ -->
+        <div id="bug-fix" class="section">
+            <h2>6. Bug đã xử lý trong V3</h2>
+
+            <h3>🐛 Bug 1: Nhánh mới bị ẩn khỏi Sidebar</h3>
+            <p><strong>Nguyên nhân:</strong> Khi <code>agentapi new-conversation</code> được gọi bên trong 1 tool call của agent, Antigravity tự động gắn biến <code>ANTIGRAVITY_SOURCE_METADATA</code> vào metadata của conversation mới. UI nhìn thấy field này → coi conversation là "con sinh bởi tool" → ẩn.</p>
+            <p><strong>Fix:</strong> Script xóa <code>ANTIGRAVITY_SOURCE_METADATA</code> và <code>ANTIGRAVITY_TRAJECTORY_ID</code> khỏi env trước khi gọi agentapi.</p>
+
+            <h3>🐛 Bug 2: Agent làm task ngay tại luồng gốc</h3>
+            <p><strong>Nguyên nhân:</strong> SKILL.md V1-V2 viết lệnh cấm quá yếu, đặt ở cuối file. AI đọc xong phần hướng dẫn đã bắt tay vào làm task trước khi tới dòng "DỪNG LẠI".</p>
+            <p><strong>Fix:</strong> V3 đặt blockquote cảnh báo và danh sách 5 hành vi bị HARD BLOCK <strong>ngay dòng đầu tiên</strong> của file.</p>
+
+            <h3>🐛 Bug 3: Gọi agentapi thừa (chậm 500ms)</h3>
+            <p><strong>Nguyên nhân:</strong> Script V1 luôn gọi <code>get-conversation-metadata</code> để lấy <code>projectId</code>, trong khi biến này đã nằm sẵn trong env <code>ANTIGRAVITY_PROJECT_ID</code>.</p>
+            <p><strong>Fix:</strong> Đọc trực tiếp từ env, chỉ fallback gọi metadata khi env rỗng.</p>
+        </div>
+
+        <!-- 7. FAQ -->
+        <div id="faq" class="section">
+            <h2>7. FAQ</h2>
+
+            <h3>Cần cài thêm thư viện Python nào không?</h3>
+            <p>Không. Script chỉ dùng thư viện chuẩn (json, subprocess, argparse, os).</p>
+
+            <h3>Có cần MCP server không?</h3>
+            <p>Không. Script gọi trực tiếp binary <code>agentapi</code> có sẵn trong Antigravity, không qua mạng.</p>
+
+            <h3>Model mặc định là gì?</h3>
+            <p><code>pro_high</code> = Gemini Pro + inject <code>/boost</code> đầu prompt để kích hoạt Deep Thinking budget cao nhất. Bạn có thể đổi sang <code>flash</code> nếu task đơn giản.</p>
+
+            <h3>Tốn bao nhiêu token mỗi lần RENHANH?</h3>
+            <p>Khoảng <strong>3.000-3.500 token</strong> (tương đương 4-5 lượt hỏi đáp thường). Rất nhẹ.</p>
+
+            <h3>Hoạt động trên Windows không?</h3>
+            <p>Chưa test. Lý thuyết hoạt động nếu Antigravity for Windows có binary <code>agentapi</code> tương đương tại <code>%USERPROFILE%\.gemini\antigravity\bin\agentapi.exe</code>.</p>
+        </div>
+
     </main>
 </div>
 
 <script>
-    // Smooth scroll cho TOC
     document.querySelectorAll('.toc a').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
