@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mridupawan Sharma - Phân tích</title>
+    <style>
+        :root {
+            --cl-bg: #f9fafb; --cl-surface: #ffffff;
+            --cl-text: #111827; --cl-text-muted: #6b7280;
+            --cl-primary: #2563eb; --cl-primary-hover: #1d4ed8;
+            --cl-border: #e5e7eb; --cl-tint: #eff6ff;
+            --font-sans: system-ui, -apple-system, sans-serif;
+            --font-mono: ui-monospace, SFMono-Regular, monospace;
+        }
+        body { margin: 0; font-family: var(--font-sans); background: var(--cl-bg); color: var(--cl-text); }
+        .app-container { display: flex; height: 100vh; overflow: hidden; }
+        
+        /* Sidebar Player */
+        .video-sidebar { width: 360px; background: #000; display: flex; flex-direction: column; border-right: 1px solid var(--cl-border); z-index: 10; box-shadow: 2px 0 8px rgba(0,0,0,0.05); }
+        .video-wrap { width: 100%; aspect-ratio: 9/16; background: #111; position: relative; }
+        .video-wrap iframe, .video-wrap video { width: 100%; height: 100%; border: none; object-fit: contain; }
+        .video-controls { padding: 16px; background: #1f2937; color: white; flex: 1; }
+        .speed-row, .action-row { display: flex; gap: 8px; margin-bottom: 12px; }
+        .ctrl-btn { flex: 1; padding: 8px; background: #374151; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 13px; }
+        .ctrl-btn:hover { background: #4b5563; }
+        .ctrl-btn.active { background: var(--cl-primary); }
+        #shotStatusTag { font-family: var(--font-mono); font-size: 12px; color: #9ca3af; text-align: center; margin-top: 16px; }
+
+        /* Main Content */
+        .content-column { flex: 1; overflow-y: auto; padding: 40px; }
+        .header-badges { margin-bottom: 16px; }
+        .header-badges span { display: inline-block; padding: 4px 12px; background: var(--cl-tint); color: var(--cl-primary); font-size: 12px; font-weight: 700; border-radius: 12px; text-transform: uppercase; }
+        .report-title { font-size: 32px; font-weight: 800; margin: 0 0 24px; letter-spacing: -0.02em; }
+        
+        .script-axis-card, .overview-card { background: var(--cl-surface); padding: 24px; border-radius: 12px; border: 1px solid var(--cl-border); margin-bottom: 24px; }
+        .script-axis-title { font-weight: 700; color: var(--cl-primary); margin-bottom: 8px; }
+        
+        /* Tabs */
+        .tabs-header { display: flex; gap: 12px; margin-bottom: 24px; border-bottom: 2px solid var(--cl-border); padding-bottom: 12px; }
+        .tab-btn { background: none; border: none; font-size: 16px; font-weight: 600; color: var(--cl-text-muted); cursor: pointer; padding: 8px 16px; border-radius: 8px; transition: all 0.2s; }
+        .tab-btn:hover { background: #f3f4f6; color: var(--cl-text); }
+        .tab-btn.active { background: var(--cl-primary); color: white; }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+
+        /* Shot Cards */
+        .shot-card { display: flex; gap: 20px; background: var(--cl-surface); padding: 20px; border-radius: 12px; border: 1px solid var(--cl-border); margin-bottom: 16px; cursor: pointer; transition: all 0.2s; }
+        .shot-card:hover { border-color: #93c5fd; box-shadow: 0 4px 12px rgba(37,99,235,0.05); transform: translateY(-2px); }
+        .shot-card.active-playing { border-color: var(--cl-primary); background: var(--cl-tint); box-shadow: 0 0 0 2px var(--cl-primary); }
+        .shot-thumb { width: 140px; height: 200px; border-radius: 8px; overflow: hidden; background: #e5e7eb; flex-shrink: 0; }
+        .shot-thumb img { width: 100%; height: 100%; object-fit: cover; }
+        .shot-body { flex: 1; }
+        .shot-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+        .shot-num { font-size: 12px; font-weight: 700; color: var(--cl-primary); background: var(--cl-surface); padding: 4px 8px; border-radius: 4px; border: 1px solid var(--cl-border); }
+        .shot-time-badge { font-family: var(--font-mono); font-size: 12px; font-weight: 600; }
+        .shot-headline { font-size: 18px; font-weight: 600; margin: 0 0 8px; }
+        .shot-insight { color: var(--cl-text-muted); margin-bottom: 12px; }
+        .shot-details { background: var(--cl-tint); padding: 12px; border-radius: 8px; }
+    </style>
+</head>
+<body>
+<div class="app-container">
+    <div class="video-sidebar">
+        <div id="playerContainer" class="video-wrap"><div id="ytPlayer"></div></div>
+        <div class="video-controls">
+            <div class="speed-row">
+                <button class="ctrl-btn" onclick="setSpeed(0.25)">0.25x</button>
+                <button class="ctrl-btn" onclick="setSpeed(0.5)">0.5x</button>
+                <button class="ctrl-btn active" onclick="setSpeed(1)">1x</button>
+                <button class="ctrl-btn" onclick="setSpeed(1.5)">1.5x</button>
+            </div>
+            <div class="action-row">
+                <button class="ctrl-btn" onclick="stepFrame(-1)">-1F</button>
+                <button class="ctrl-btn" onclick="stepFrame(1)">+1F</button>
+                <button class="ctrl-btn" onclick="toggleMute(this)">Âm thanh</button>
+                <button class="ctrl-btn" onclick="toggleLoop(this)">Tắt Lặp đoạn</button>
+            </div>
+            <div id="shotStatusTag">Sẵn sàng</div>
+        </div>
+    </div>
+
+    <div class="content-column">
+        <h1 class="report-title">Hồ Sơ Cắt Cảnh Mượt (@mridupawasharma)</h1>
+        
+        <div class="tabs-header">
+            <button class="tab-btn active" onclick="switchTab('tab1', this)">Kiểu 1: Quay Người</button>
+            <button class="tab-btn" onclick="switchTab('tab2', this)">Kiểu 2: Mask Lướt</button>
+        </div>
+
+        <div id="tab1" class="tab-content active">
+            <div class="script-axis-card">
+                <div class="script-axis-title">TRỤC: Chuẩn bị xoay → Điểm cắt giấu bằng vai/lưng → Match chuyển động</div>
+                <div>Chủ thể xoay thân/đầu ở cảnh A, lợi dụng blur hoặc che khung hình để cắt sang cảnh B và tiếp tục xoay khớp với hướng đó.</div>
+            </div>
+
+            <div class="shot-card" id="card-0" onclick="playTransition('0ik2l4FPA8A', 1.2271270000000003, 3.027127, 'card-0', 'C_ZzqHXS914')">
+                <div class="shot-thumb">
+                    <img src="mridu_transitions/frames/kieu1/C_ZzqHXS914/t1_cut.jpg" alt="Cut frame" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><rect width=\'100%\' height=\'100%\' fill=\'%23ccc\'/></svg>'">
+                </div>
+                <div class="shot-body">
+                    <div class="shot-head">
+                        <span class="shot-num">KIỂU 1 • K1a</span>
+                        <span class="shot-time-badge">1.23s – 3.03s (cut @2.13s)</span>
+                    </div>
+                    <h3 class="shot-headline">Người đang đứng, xoay lưng → Người tiếp tục xoay ở cảnh mới</h3>
+                    <p class="shot-insight">Giấu vết cắt: Lưng che ống kính</p>
+                </div>
+            </div>
+
+            <div class="shot-card" id="card-1" onclick="playTransition('cINojGWTo8k', 0.475, 2.275, 'card-1', 'DBDkvXPyeSN')">
+                <div class="shot-thumb">
+                    <img src="mridu_transitions/frames/kieu1/DBDkvXPyeSN/t1_cut.jpg" alt="Cut frame" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><rect width=\'100%\' height=\'100%\' fill=\'%23ccc\'/></svg>'">
+                </div>
+                <div class="shot-body">
+                    <div class="shot-head">
+                        <span class="shot-num">KIỂU 1 • K1a</span>
+                        <span class="shot-time-badge">0.47s – 2.27s (cut @1.38s)</span>
+                    </div>
+                    <h3 class="shot-headline">Người đang đứng, xoay lưng → Người tiếp tục xoay ở cảnh mới</h3>
+                    <p class="shot-insight">Giấu vết cắt: Lưng che ống kính</p>
+                </div>
+            </div>
+
+            <div class="shot-card" id="card-2" onclick="playTransition('f3UGUevHKHA', 0.18441800000000008, 1.9844180000000002, 'card-2', 'DBl0O1RSMtU')">
+                <div class="shot-thumb">
+                    <img src="mridu_transitions/frames/kieu1/DBl0O1RSMtU/t1_cut.jpg" alt="Cut frame" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><rect width=\'100%\' height=\'100%\' fill=\'%23ccc\'/></svg>'">
+                </div>
+                <div class="shot-body">
+                    <div class="shot-head">
+                        <span class="shot-num">KIỂU 1 • K1a</span>
+                        <span class="shot-time-badge">0.18s – 1.98s (cut @1.08s)</span>
+                    </div>
+                    <h3 class="shot-headline">Người đang đứng, xoay lưng → Người tiếp tục xoay ở cảnh mới</h3>
+                    <p class="shot-insight">Giấu vết cắt: Lưng che ống kính</p>
+                </div>
+            </div>
+
+            <div class="shot-card" id="card-3" onclick="playTransition('GxZq-bJxhJg', 2.061295, 3.8612949999999997, 'card-3', 'DEBzJUZyofd')">
+                <div class="shot-thumb">
+                    <img src="mridu_transitions/frames/kieu1/DEBzJUZyofd/t1_cut.jpg" alt="Cut frame" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><rect width=\'100%\' height=\'100%\' fill=\'%23ccc\'/></svg>'">
+                </div>
+                <div class="shot-body">
+                    <div class="shot-head">
+                        <span class="shot-num">KIỂU 1 • K1a</span>
+                        <span class="shot-time-badge">2.06s – 3.86s (cut @2.96s)</span>
+                    </div>
+                    <h3 class="shot-headline">Người đang đứng, xoay lưng → Người tiếp tục xoay ở cảnh mới</h3>
+                    <p class="shot-insight">Giấu vết cắt: Lưng che ống kính</p>
+                </div>
+            </div>
+
+            <div class="shot-card" id="card-4" onclick="playTransition('J0TjdyKrSlk', 1.2271270000000003, 3.027127, 'card-4', 'DEcQIYAyLRq')">
+                <div class="shot-thumb">
+                    <img src="mridu_transitions/frames/kieu1/DEcQIYAyLRq/t1_cut.jpg" alt="Cut frame" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><rect width=\'100%\' height=\'100%\' fill=\'%23ccc\'/></svg>'">
+                </div>
+                <div class="shot-body">
+                    <div class="shot-head">
+                        <span class="shot-num">KIỂU 1 • K1a</span>
+                        <span class="shot-time-badge">1.23s – 3.03s (cut @2.13s)</span>
+                    </div>
+                    <h3 class="shot-headline">Người đang đứng, xoay lưng → Người tiếp tục xoay ở cảnh mới</h3>
+                    <p class="shot-insight">Giấu vết cắt: Lưng che ống kính</p>
+                </div>
+            </div>
+
+            <div class="shot-card" id="card-5" onclick="playTransition('', 1.6859190000000002, 3.485919, 'card-5', 'DF2sOsNyNlY')">
+                <div class="shot-thumb">
+                    <img src="mridu_transitions/frames/kieu1/DF2sOsNyNlY/t1_cut.jpg" alt="Cut frame" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><rect width=\'100%\' height=\'100%\' fill=\'%23ccc\'/></svg>'">
+                </div>
+                <div class="shot-body">
+                    <div class="shot-head">
+                        <span class="shot-num">KIỂU 1 • K1a</span>
+                        <span class="shot-time-badge">1.69s – 3.49s (cut @2.59s)</span>
+                    </div>
+                    <h3 class="shot-headline">Người đang đứng, xoay lưng → Người tiếp tục xoay ở cảnh mới</h3>
+                    <p class="shot-insight">Giấu vết cắt: Lưng che ống kính</p>
+                </div>
+            </div>
+
+            <div class="shot-card" id="card-6" onclick="playTransition('bSoV6V2O-eU', 2.308333, 4.108333, 'card-6', 'DHnKt0nxr3E')">
+                <div class="shot-thumb">
+                    <img src="mridu_transitions/frames/kieu1/DHnKt0nxr3E/t1_cut.jpg" alt="Cut frame" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><rect width=\'100%\' height=\'100%\' fill=\'%23ccc\'/></svg>'">
+                </div>
+                <div class="shot-body">
+                    <div class="shot-head">
+                        <span class="shot-num">KIỂU 1 • K1a</span>
+                        <span class="shot-time-badge">2.31s – 4.11s (cut @3.21s)</span>
+                    </div>
+                    <h3 class="shot-headline">Người đang đứng, xoay lưng → Người tiếp tục xoay ở cảnh mới</h3>
+                    <p class="shot-insight">Giấu vết cắt: Lưng che ống kính</p>
+                </div>
+            </div>
+
+            <div class="shot-card" id="card-7" onclick="playTransition('WYoeJ4tKtBM', 1.8083330000000002, 3.608333, 'card-7', 'DJqXz8pxEh6')">
+                <div class="shot-thumb">
+                    <img src="mridu_transitions/frames/kieu1/DJqXz8pxEh6/t1_cut.jpg" alt="Cut frame" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><rect width=\'100%\' height=\'100%\' fill=\'%23ccc\'/></svg>'">
+                </div>
+                <div class="shot-body">
+                    <div class="shot-head">
+                        <span class="shot-num">KIỂU 1 • K1a</span>
+                        <span class="shot-time-badge">1.81s – 3.61s (cut @2.71s)</span>
+                    </div>
+                    <h3 class="shot-headline">Người đang đứng, xoay lưng → Người tiếp tục xoay ở cảnh mới</h3>
+                    <p class="shot-insight">Giấu vết cắt: Lưng che ống kính</p>
+                </div>
+            </div>
+
+            <div class="shot-card" id="card-8" onclick="playTransition('tV57uMzCTpc', 1.141667, 2.941667, 'card-8', 'DK_9B30RrSD')">
+                <div class="shot-thumb">
+                    <img src="mridu_transitions/frames/kieu1/DK_9B30RrSD/t1_cut.jpg" alt="Cut frame" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><rect width=\'100%\' height=\'100%\' fill=\'%23ccc\'/></svg>'">
+                </div>
+                <div class="shot-body">
+                    <div class="shot-head">
+                        <span class="shot-num">KIỂU 1 • K1a</span>
+                        <span class="shot-time-badge">1.14s – 2.94s (cut @2.04s)</span>
+                    </div>
+                    <h3 class="shot-headline">Người đang đứng, xoay lưng → Người tiếp tục xoay ở cảnh mới</h3>
+                    <p class="shot-insight">Giấu vết cắt: Lưng che ống kính</p>
+                </div>
+            </div>
+
+            <div class="shot-card" id="card-9" onclick="playTransition('', 0.10125200000000001, 1.901252, 'card-9', 'DLW8frrx2ch')">
+                <div class="shot-thumb">
+                    <img src="mridu_transitions/frames/kieu1/DLW8frrx2ch/t1_cut.jpg" alt="Cut frame" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><rect width=\'100%\' height=\'100%\' fill=\'%23ccc\'/></svg>'">
+                </div>
+                <div class="shot-body">
+                    <div class="shot-head">
+                        <span class="shot-num">KIỂU 1 • K1a</span>
+                        <span class="shot-time-badge">0.10s – 1.90s (cut @1.00s)</span>
+                    </div>
+                    <h3 class="shot-headline">Người đang đứng, xoay lưng → Người tiếp tục xoay ở cảnh mới</h3>
+                    <p class="shot-insight">Giấu vết cắt: Lưng che ống kính</p>
+                </div>
+            </div>
+
+            <div class="shot-card" id="card-10" onclick="playTransition('', 0.4762620000000001, 2.276262, 'card-10', 'DLW8tMHxff6')">
+                <div class="shot-thumb">
+                    <img src="mridu_transitions/frames/kieu1/DLW8tMHxff6/t1_cut.jpg" alt="Cut frame" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><rect width=\'100%\' height=\'100%\' fill=\'%23ccc\'/></svg>'">
+                </div>
+                <div class="shot-body">
+                    <div class="shot-head">
+                        <span class="shot-num">KIỂU 1 • K1a</span>
+                        <span class="shot-time-badge">0.48s – 2.28s (cut @1.38s)</span>
+                    </div>
+                    <h3 class="shot-headline">Người đang đứng, xoay lưng → Người tiếp tục xoay ở cảnh mới</h3>
+                    <p class="shot-insight">Giấu vết cắt: Lưng che ống kính</p>
+                </div>
+            </div>
+
+            <div class="shot-card" id="card-11" onclick="playTransition('jI-H8fqZcJk', 1.975, 3.775, 'card-11', 'DNQLGoAyuYM')">
+                <div class="shot-thumb">
+                    <img src="mridu_transitions/frames/kieu1/DNQLGoAyuYM/t1_cut.jpg" alt="Cut frame" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><rect width=\'100%\' height=\'100%\' fill=\'%23ccc\'/></svg>'">
+                </div>
+                <div class="shot-body">
+                    <div class="shot-head">
+                        <span class="shot-num">KIỂU 1 • K1a</span>
+                        <span class="shot-time-badge">1.98s – 3.77s (cut @2.88s)</span>
+                    </div>
+                    <h3 class="shot-headline">Người đang đứng, xoay lưng → Người tiếp tục xoay ở cảnh mới</h3>
+                    <p class="shot-insight">Giấu vết cắt: Lưng che ống kính</p>
+                </div>
+            </div>
+
+            <div class="shot-card" id="card-12" onclick="playTransition('', 2.353253, 4.153252999999999, 'card-12', 'DNVb3HGSlj5')">
+                <div class="shot-thumb">
+                    <img src="mridu_transitions/frames/kieu1/DNVb3HGSlj5/t1_cut.jpg" alt="Cut frame" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><rect width=\'100%\' height=\'100%\' fill=\'%23ccc\'/></svg>'">
+                </div>
+                <div class="shot-body">
+                    <div class="shot-head">
+                        <span class="shot-num">KIỂU 1 • K1a</span>
+                        <span class="shot-time-badge">2.35s – 4.15s (cut @3.25s)</span>
+                    </div>
+                    <h3 class="shot-headline">Người đang đứng, xoay lưng → Người tiếp tục xoay ở cảnh mới</h3>
+                    <p class="shot-insight">Giấu vết cắt: Lưng che ống kính</p>
+                </div>
+            </div>
+
+            <div class="shot-card" id="card-13" onclick="playTransition('IyA-FrkDmh8', 0.9351690000000001, 2.735169, 'card-13', 'DO-oBZ4kzBA')">
+                <div class="shot-thumb">
+                    <img src="mridu_transitions/frames/kieu1/DO-oBZ4kzBA/t1_cut.jpg" alt="Cut frame" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><rect width=\'100%\' height=\'100%\' fill=\'%23ccc\'/></svg>'">
+                </div>
+                <div class="shot-body">
+                    <div class="shot-head">
+                        <span class="shot-num">KIỂU 1 • K1a</span>
+                        <span class="shot-time-badge">0.94s – 2.74s (cut @1.84s)</span>
+                    </div>
+                    <h3 class="shot-headline">Người đang đứng, xoay lưng → Người tiếp tục xoay ở cảnh mới</h3>
+                    <p class="shot-insight">Giấu vết cắt: Lưng che ống kính</p>
+                </div>
+            </div>
+
+            <div class="shot-card" id="card-14" onclick="playTransition('', 0.18441800000000008, 1.9844180000000002, 'card-14', 'DOA-Lk7E-Sa')">
+                <div class="shot-thumb">
+                    <img src="mridu_transitions/frames/kieu1/DOA-Lk7E-Sa/t1_cut.jpg" alt="Cut frame" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><rect width=\'100%\' height=\'100%\' fill=\'%23ccc\'/></svg>'">
+                </div>
+                <div class="shot-body">
+                    <div class="shot-head">
+                        <span class="shot-num">KIỂU 1 • K1a</span>
+                        <span class="shot-time-badge">0.18s – 1.98s (cut @1.08s)</span>
+                    </div>
+                    <h3 class="shot-headline">Người đang đứng, xoay lưng → Người tiếp tục xoay ở cảnh mới</h3>
+                    <p class="shot-insight">Giấu vết cắt: Lưng che ống kính</p>
+                </div>
+            </div>
+
+            <div class="shot-card" id="card-15" onclick="playTransition('', 1.6859190000000002, 3.485919, 'card-15', 'DPN8cIYEy5x')">
+                <div class="shot-thumb">
+                    <img src="mridu_transitions/frames/kieu1/DPN8cIYEy5x/t1_cut.jpg" alt="Cut frame" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><rect width=\'100%\' height=\'100%\' fill=\'%23ccc\'/></svg>'">
+                </div>
+                <div class="shot-body">
+                    <div class="shot-head">
+                        <span class="shot-num">KIỂU 1 • K1a</span>
+                        <span class="shot-time-badge">1.69s – 3.49s (cut @2.59s)</span>
+                    </div>
+                    <h3 class="shot-headline">Người đang đứng, xoay lưng → Người tiếp tục xoay ở cảnh mới</h3>
+                    <p class="shot-insight">Giấu vết cắt: Lưng che ống kính</p>
+                </div>
+            </div>
+
+            <div class="shot-card" id="card-16" onclick="playTransition('-xtpDo9JTDM', 1.5583330000000002, 3.358333, 'card-16', 'DQ1DeeckxAZ')">
+                <div class="shot-thumb">
+                    <img src="mridu_transitions/frames/kieu1/DQ1DeeckxAZ/t1_cut.jpg" alt="Cut frame" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><rect width=\'100%\' height=\'100%\' fill=\'%23ccc\'/></svg>'">
+                </div>
+                <div class="shot-body">
+                    <div class="shot-head">
+                        <span class="shot-num">KIỂU 1 • K1a</span>
+                        <span class="shot-time-badge">1.56s – 3.36s (cut @2.46s)</span>
+                    </div>
+                    <h3 class="shot-headline">Người đang đứng, xoay lưng → Người tiếp tục xoay ở cảnh mới</h3>
+                    <p class="shot-insight">Giấu vết cắt: Lưng che ống kính</p>
+                </div>
+            </div>
+
+            <div class="shot-card" id="card-17" onclick="playTransition('b9U2IV9fDZo', 0.601502, 2.401502, 'card-17', 'DQbUum4E5Pu')">
+                <div class="shot-thumb">
+                    <img src="mridu_transitions/frames/kieu1/DQbUum4E5Pu/t1_cut.jpg" alt="Cut frame" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><rect width=\'100%\' height=\'100%\' fill=\'%23ccc\'/></svg>'">
+                </div>
+                <div class="shot-body">
+                    <div class="shot-head">
+                        <span class="shot-num">KIỂU 1 • K1a</span>
+                        <span class="shot-time-badge">0.60s – 2.40s (cut @1.50s)</span>
+                    </div>
+                    <h3 class="shot-headline">Người đang đứng, xoay lưng → Người tiếp tục xoay ở cảnh mới</h3>
+                    <p class="shot-insight">Giấu vết cắt: Lưng che ống kính</p>
+                </div>
+            </div>
+
+            <div class="shot-card" id="card-18" onclick="playTransition('', 0.976877, 2.776877, 'card-18', 'DQgaVXYk4S7')">
+                <div class="shot-thumb">
+                    <img src="mridu_transitions/frames/kieu1/DQgaVXYk4S7/t1_cut.jpg" alt="Cut frame" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><rect width=\'100%\' height=\'100%\' fill=\'%23ccc\'/></svg>'">
+                </div>
+                <div class="shot-body">
+                    <div class="shot-head">
+                        <span class="shot-num">KIỂU 1 • K1a</span>
+                        <span class="shot-time-badge">0.98s – 2.78s (cut @1.88s)</span>
+                    </div>
+                    <h3 class="shot-headline">Người đang đứng, xoay lưng → Người tiếp tục xoay ở cảnh mới</h3>
+                    <p class="shot-insight">Giấu vết cắt: Lưng che ống kính</p>
+                </div>
+            </div>
+
+            <div class="shot-card" id="card-19" onclick="playTransition('ed5Htxw4Ttc', 0.9333330000000002, 2.733333, 'card-19', 'DR3xJ1tE6mM')">
+                <div class="shot-thumb">
+                    <img src="mridu_transitions/frames/kieu1/DR3xJ1tE6mM/t1_cut.jpg" alt="Cut frame" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><rect width=\'100%\' height=\'100%\' fill=\'%23ccc\'/></svg>'">
+                </div>
+                <div class="shot-body">
+                    <div class="shot-head">
+                        <span class="shot-num">KIỂU 1 • K1a</span>
+                        <span class="shot-time-badge">0.93s – 2.73s (cut @1.83s)</span>
+                    </div>
+                    <h3 class="shot-headline">Người đang đứng, xoay lưng → Người tiếp tục xoay ở cảnh mới</h3>
+                    <p class="shot-insight">Giấu vết cắt: Lưng che ống kính</p>
+                </div>
+            </div>
+
+            <div class="shot-card" id="card-20" onclick="playTransition('6O5Qn39WEBw', 0.3083330000000001, 2.108333, 'card-20', 'DRKmvtRE2nb')">
+                <div class="shot-thumb">
+                    <img src="mridu_transitions/frames/kieu1/DRKmvtRE2nb/t1_cut.jpg" alt="Cut frame" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><rect width=\'100%\' height=\'100%\' fill=\'%23ccc\'/></svg>'">
+                </div>
+                <div class="shot-body">
+                    <div class="shot-head">
+                        <span class="shot-num">KIỂU 1 • K1a</span>
+                        <span class="shot-time-badge">0.31s – 2.11s (cut @1.21s)</span>
+                    </div>
+                    <h3 class="shot-headline">Người đang đứng, xoay lưng → Người tiếp tục xoay ở cảnh mới</h3>
+                    <p class="shot-insight">Giấu vết cắt: Lưng che ống kính</p>
+                </div>
+            </div>
+
+            <div class="shot-card" id="card-21" onclick="playTransition('Hi4RpQ1E2-g', 2.558333, 4.358333, 'card-21', 'DS17TKwE-Yg')">
+                <div class="shot-thumb">
+                    <img src="mridu_transitions/frames/kieu1/DS17TKwE-Yg/t1_cut.jpg" alt="Cut frame" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><rect width=\'100%\' height=\'100%\' fill=\'%23ccc\'/></svg>'">
+                </div>
+                <div class="shot-body">
+                    <div class="shot-head">
+                        <span class="shot-num">KIỂU 1 • K1a</span>
+                        <span class="shot-time-badge">2.56s – 4.36s (cut @3.46s)</span>
+                    </div>
+                    <h3 class="shot-headline">Người đang đứng, xoay lưng → Người tiếp tục xoay ở cảnh mới</h3>
+                    <p class="shot-insight">Giấu vết cắt: Lưng che ống kính</p>
+                </div>
+            </div>
+
+            <div class="shot-card" id="card-22" onclick="playTransition('QrzVsCxjb_M', 0.3929600000000001, 2.1929600000000002, 'card-22', 'DSe7DfDEz9L')">
+                <div class="shot-thumb">
+                    <img src="mridu_transitions/frames/kieu1/DSe7DfDEz9L/t1_cut.jpg" alt="Cut frame" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><rect width=\'100%\' height=\'100%\' fill=\'%23ccc\'/></svg>'">
+                </div>
+                <div class="shot-body">
+                    <div class="shot-head">
+                        <span class="shot-num">KIỂU 1 • K1a</span>
+                        <span class="shot-time-badge">0.39s – 2.19s (cut @1.29s)</span>
+                    </div>
+                    <h3 class="shot-headline">Người đang đứng, xoay lưng → Người tiếp tục xoay ở cảnh mới</h3>
+                    <p class="shot-insight">Giấu vết cắt: Lưng che ống kính</p>
+                </div>
+            </div>
+
+            <div class="shot-card" id="card-23" onclick="playTransition('', 0.309543, 2.109543, 'card-23', 'DTAbP3PD91w')">
+                <div class="shot-thumb">
+                    <img src="mridu_transitions/frames/kieu1/DTAbP3PD91w/t1_cut.jpg" alt="Cut frame" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><rect width=\'100%\' height=\'100%\' fill=\'%23ccc\'/></svg>'">
+                </div>
+                <div class="shot-body">
+                    <div class="shot-head">
+                        <span class="shot-num">KIỂU 1 • K1a</span>
+                        <span class="shot-time-badge">0.31s – 2.11s (cut @1.21s)</span>
+                    </div>
+                    <h3 class="shot-headline">Người đang đứng, xoay lưng → Người tiếp tục xoay ở cảnh mới</h3>
+                    <p class="shot-insight">Giấu vết cắt: Lưng che ống kính</p>
+                </div>
+            </div>
+
+            <div class="shot-card" id="card-24" onclick="playTransition('', 0.10100100000000001, 1.901001, 'card-24', 'DU7mCyVE4EJ')">
+                <div class="shot-thumb">
+                    <img src="mridu_transitions/frames/kieu1/DU7mCyVE4EJ/t1_cut.jpg" alt="Cut frame" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><rect width=\'100%\' height=\'100%\' fill=\'%23ccc\'/></svg>'">
+                </div>
+                <div class="shot-body">
+                    <div class="shot-head">
+                        <span class="shot-num">KIỂU 1 • K1a</span>
+                        <span class="shot-time-badge">0.10s – 1.90s (cut @1.00s)</span>
+                    </div>
+                    <h3 class="shot-headline">Người đang đứng, xoay lưng → Người tiếp tục xoay ở cảnh mới</h3>
+                    <p class="shot-insight">Giấu vết cắt: Lưng che ống kính</p>
+                </div>
+            </div>
+
+            <div class="shot-card" id="card-25" onclick="playTransition('ID3jhWUqm2U', 0.5583330000000002, 2.358333, 'card-25', 'DUaii-skyis')">
+                <div class="shot-thumb">
+                    <img src="mridu_transitions/frames/kieu1/DUaii-skyis/t1_cut.jpg" alt="Cut frame" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><rect width=\'100%\' height=\'100%\' fill=\'%23ccc\'/></svg>'">
+                </div>
+                <div class="shot-body">
+                    <div class="shot-head">
+                        <span class="shot-num">KIỂU 1 • K1a</span>
+                        <span class="shot-time-badge">0.56s – 2.36s (cut @1.46s)</span>
+                    </div>
+                    <h3 class="shot-headline">Người đang đứng, xoay lưng → Người tiếp tục xoay ở cảnh mới</h3>
+                    <p class="shot-insight">Giấu vết cắt: Lưng che ống kính</p>
+                </div>
+            </div>
+
+            <div class="shot-card" id="card-26" onclick="playTransition('-GVbbAHSGMA', 0.516667, 2.316667, 'card-26', 'DV73FCHk1Ej')">
+                <div class="shot-thumb">
+                    <img src="mridu_transitions/frames/kieu1/DV73FCHk1Ej/t1_cut.jpg" alt="Cut frame" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><rect width=\'100%\' height=\'100%\' fill=\'%23ccc\'/></svg>'">
+                </div>
+                <div class="shot-body">
+                    <div class="shot-head">
+                        <span class="shot-num">KIỂU 1 • K1a</span>
+                        <span class="shot-time-badge">0.52s – 2.32s (cut @1.42s)</span>
+                    </div>
+                    <h3 class="shot-headline">Người đang đứng, xoay lưng → Người tiếp tục xoay ở cảnh mới</h3>
+                    <p class="shot-insight">Giấu vết cắt: Lưng che ống kính</p>
+                </div>
+            </div>
+
+            <div class="shot-card" id="card-27" onclick="playTransition('IRrUSGTwPks', 2.02, 3.82, 'card-27', 'DVYdxPpE7Ji')">
+                <div class="shot-thumb">
+                    <img src="mridu_transitions/frames/kieu1/DVYdxPpE7Ji/t1_cut.jpg" alt="Cut frame" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><rect width=\'100%\' height=\'100%\' fill=\'%23ccc\'/></svg>'">
+                </div>
+                <div class="shot-body">
+                    <div class="shot-head">
+                        <span class="shot-num">KIỂU 1 • K1a</span>
+                        <span class="shot-time-badge">2.02s – 3.82s (cut @2.92s)</span>
+                    </div>
+                    <h3 class="shot-headline">Người đang đứng, xoay lưng → Người tiếp tục xoay ở cảnh mới</h3>
+                    <p class="shot-insight">Giấu vết cắt: Lưng che ống kính</p>
+                </div>
+            </div>
+
+            <div class="shot-card" id="card-28" onclick="playTransition('', 0.7266270000000001, 2.526627, 'card-28', 'DW8w1XNE-Ya')">
+                <div class="shot-thumb">
+                    <img src="mridu_transitions/frames/kieu1/DW8w1XNE-Ya/t1_cut.jpg" alt="Cut frame" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><rect width=\'100%\' height=\'100%\' fill=\'%23ccc\'/></svg>'">
+                </div>
+                <div class="shot-body">
+                    <div class="shot-head">
+                        <span class="shot-num">KIỂU 1 • K1a</span>
+                        <span class="shot-time-badge">0.73s – 2.53s (cut @1.63s)</span>
+                    </div>
+                    <h3 class="shot-headline">Người đang đứng, xoay lưng → Người tiếp tục xoay ở cảnh mới</h3>
+                    <p class="shot-insight">Giấu vết cắt: Lưng che ống kính</p>
+                </div>
+            </div>
+
+            <div class="shot-card" id="card-29" onclick="playTransition('', 2.391667, 4.191667, 'card-29', 'DWD7Lv4E8N8')">
+                <div class="shot-thumb">
+                    <img src="mridu_transitions/frames/kieu1/DWD7Lv4E8N8/t1_cut.jpg" alt="Cut frame" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><rect width=\'100%\' height=\'100%\' fill=\'%23ccc\'/></svg>'">
+                </div>
+                <div class="shot-body">
+                    <div class="shot-head">
+                        <span class="shot-num">KIỂU 1 • K1a</span>
+                        <span class="shot-time-badge">2.39s – 4.19s (cut @3.29s)</span>
+                    </div>
+                    <h3 class="shot-headline">Người đang đứng, xoay lưng → Người tiếp tục xoay ở cảnh mới</h3>
+                    <p class="shot-insight">Giấu vết cắt: Lưng che ống kính</p>
+                </div>
+            </div>
+
+            <div class="shot-card" id="card-30" onclick="playTransition('HCBFDPfizZU', 0.14166699999999988, 1.9416669999999998, 'card-30', 'DXJvcyqEyoF')">
+                <div class="shot-thumb">
+                    <img src="mridu_transitions/frames/kieu1/DXJvcyqEyoF/t1_cut.jpg" alt="Cut frame" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><rect width=\'100%\' height=\'100%\' fill=\'%23ccc\'/></svg>'">
+                </div>
+                <div class="shot-body">
+                    <div class="shot-head">
+                        <span class="shot-num">KIỂU 1 • K1a</span>
+                        <span class="shot-time-badge">0.14s – 1.94s (cut @1.04s)</span>
+                    </div>
+                    <h3 class="shot-headline">Người đang đứng, xoay lưng → Người tiếp tục xoay ở cảnh mới</h3>
+                    <p class="shot-insight">Giấu vết cắt: Lưng che ống kính</p>
+                </div>
+            </div>
+
+            <div class="shot-card" id="card-31" onclick="playTransition('', 0.43466799999999994, 2.234668, 'card-31', 'DXlicVRk18Y')">
+                <div class="shot-thumb">
+                    <img src="mridu_transitions/frames/kieu1/DXlicVRk18Y/t1_cut.jpg" alt="Cut frame" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><rect width=\'100%\' height=\'100%\' fill=\'%23ccc\'/></svg>'">
+                </div>
+                <div class="shot-body">
+                    <div class="shot-head">
+                        <span class="shot-num">KIỂU 1 • K1a</span>
+                        <span class="shot-time-badge">0.43s – 2.23s (cut @1.33s)</span>
+                    </div>
+                    <h3 class="shot-headline">Người đang đứng, xoay lưng → Người tiếp tục xoay ở cảnh mới</h3>
+                    <p class="shot-insight">Giấu vết cắt: Lưng che ống kính</p>
+                </div>
+            </div>
+
+            <div class="shot-card" id="card-32" onclick="playTransition('I4idKmF6FXY', 2.269837, 4.069837, 'card-32', 'DYEyL_OT1_s')">
+                <div class="shot-thumb">
+                    <img src="mridu_transitions/frames/kieu1/DYEyL_OT1_s/t1_cut.jpg" alt="Cut frame" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><rect width=\'100%\' height=\'100%\' fill=\'%23ccc\'/></svg>'">
+                </div>
+                <div class="shot-body">
+                    <div class="shot-head">
+                        <span class="shot-num">KIỂU 1 • K1a</span>
+                        <span class="shot-time-badge">2.27s – 4.07s (cut @3.17s)</span>
+                    </div>
+                    <h3 class="shot-headline">Người đang đứng, xoay lưng → Người tiếp tục xoay ở cảnh mới</h3>
+                    <p class="shot-insight">Giấu vết cắt: Lưng che ống kính</p>
+                </div>
+            </div>
+
+            <div class="shot-card" id="card-33" onclick="playTransition('8gI-a_g4sBc', 1.4333330000000002, 3.233333, 'card-33', 'DYpArQyzs3G')">
+                <div class="shot-thumb">
+                    <img src="mridu_transitions/frames/kieu1/DYpArQyzs3G/t1_cut.jpg" alt="Cut frame" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><rect width=\'100%\' height=\'100%\' fill=\'%23ccc\'/></svg>'">
+                </div>
+                <div class="shot-body">
+                    <div class="shot-head">
+                        <span class="shot-num">KIỂU 1 • K1a</span>
+                        <span class="shot-time-badge">1.43s – 3.23s (cut @2.33s)</span>
+                    </div>
+                    <h3 class="shot-headline">Người đang đứng, xoay lưng → Người tiếp tục xoay ở cảnh mới</h3>
+                    <p class="shot-insight">Giấu vết cắt: Lưng che ống kính</p>
+                </div>
+            </div>
+
+            <div class="shot-card" id="card-34" onclick="playTransition('', 2.394962, 4.194962, 'card-34', 'DZcSt_xzqBB')">
+                <div class="shot-thumb">
+                    <img src="mridu_transitions/frames/kieu1/DZcSt_xzqBB/t1_cut.jpg" alt="Cut frame" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><rect width=\'100%\' height=\'100%\' fill=\'%23ccc\'/></svg>'">
+                </div>
+                <div class="shot-body">
+                    <div class="shot-head">
+                        <span class="shot-num">KIỂU 1 • K1a</span>
+                        <span class="shot-time-badge">2.39s – 4.19s (cut @3.29s)</span>
+                    </div>
+                    <h3 class="shot-headline">Người đang đứng, xoay lưng → Người tiếp tục xoay ở cảnh mới</h3>
+                    <p class="shot-insight">Giấu vết cắt: Lưng che ống kính</p>
+                </div>
+            </div>
+
+            <div class="shot-card" id="card-35" onclick="playTransition('Ta2ir3OBhCI', 2.14, 3.94, 'card-35', 'DaH_rTUTe14')">
+                <div class="shot-thumb">
+                    <img src="mridu_transitions/frames/kieu1/DaH_rTUTe14/t1_cut.jpg" alt="Cut frame" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><rect width=\'100%\' height=\'100%\' fill=\'%23ccc\'/></svg>'">
+                </div>
+                <div class="shot-body">
+                    <div class="shot-head">
+                        <span class="shot-num">KIỂU 1 • K1a</span>
+                        <span class="shot-time-badge">2.14s – 3.94s (cut @3.04s)</span>
+                    </div>
+                    <h3 class="shot-headline">Người đang đứng, xoay lưng → Người tiếp tục xoay ở cảnh mới</h3>
+                    <p class="shot-insight">Giấu vết cắt: Lưng che ống kính</p>
+                </div>
+            </div>
+
+            <div class="shot-card" id="card-36" onclick="playTransition('', 0.5180850000000001, 2.318085, 'card-36', 'DaXdrAVzGcc')">
+                <div class="shot-thumb">
+                    <img src="mridu_transitions/frames/kieu1/DaXdrAVzGcc/t1_cut.jpg" alt="Cut frame" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><rect width=\'100%\' height=\'100%\' fill=\'%23ccc\'/></svg>'">
+                </div>
+                <div class="shot-body">
+                    <div class="shot-head">
+                        <span class="shot-num">KIỂU 1 • K1a</span>
+                        <span class="shot-time-badge">0.52s – 2.32s (cut @1.42s)</span>
+                    </div>
+                    <h3 class="shot-headline">Người đang đứng, xoay lưng → Người tiếp tục xoay ở cảnh mới</h3>
+                    <p class="shot-insight">Giấu vết cắt: Lưng che ống kính</p>
+                </div>
+            </div>
+
+            <div class="shot-card" id="card-37" onclick="playTransition('', 1.516667, 3.316667, 'card-37', 'DbnlAB5Twrw')">
+                <div class="shot-thumb">
+                    <img src="mridu_transitions/frames/kieu1/DbnlAB5Twrw/t1_cut.jpg" alt="Cut frame" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><rect width=\'100%\' height=\'100%\' fill=\'%23ccc\'/></svg>'">
+                </div>
+                <div class="shot-body">
+                    <div class="shot-head">
+                        <span class="shot-num">KIỂU 1 • K1a</span>
+                        <span class="shot-time-badge">1.52s – 3.32s (cut @2.42s)</span>
+                    </div>
+                    <h3 class="shot-headline">Người đang đứng, xoay lưng → Người tiếp tục xoay ở cảnh mới</h3>
+                    <p class="shot-insight">Giấu vết cắt: Lưng che ống kính</p>
+                </div>
+            </div>
+
+            <div class="shot-card" id="card-38" onclick="playTransition('KetLXEHPVZ8', 0.3929600000000001, 2.1929600000000002, 'card-38', 'Dc0tEcOIdwy')">
+                <div class="shot-thumb">
+                    <img src="mridu_transitions/frames/kieu1/Dc0tEcOIdwy/t1_cut.jpg" alt="Cut frame" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><rect width=\'100%\' height=\'100%\' fill=\'%23ccc\'/></svg>'">
+                </div>
+                <div class="shot-body">
+                    <div class="shot-head">
+                        <span class="shot-num">KIỂU 1 • K1a</span>
+                        <span class="shot-time-badge">0.39s – 2.19s (cut @1.29s)</span>
+                    </div>
+                    <h3 class="shot-headline">Người đang đứng, xoay lưng → Người tiếp tục xoay ở cảnh mới</h3>
+                    <p class="shot-insight">Giấu vết cắt: Lưng che ống kính</p>
+                </div>
+            </div>
+
+            <div class="shot-card" id="card-39" onclick="playTransition('OwXUkepRWyA', 1.1020020000000001, 2.902002, 'card-39', 'DcGbEVFznin')">
+                <div class="shot-thumb">
+                    <img src="mridu_transitions/frames/kieu1/DcGbEVFznin/t1_cut.jpg" alt="Cut frame" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><rect width=\'100%\' height=\'100%\' fill=\'%23ccc\'/></svg>'">
+                </div>
+                <div class="shot-body">
+                    <div class="shot-head">
+                        <span class="shot-num">KIỂU 1 • K1a</span>
+                        <span class="shot-time-badge">1.10s – 2.90s (cut @2.00s)</span>
+                    </div>
+                    <h3 class="shot-headline">Người đang đứng, xoay lưng → Người tiếp tục xoay ở cảnh mới</h3>
+                    <p class="shot-insight">Giấu vết cắt: Lưng che ống kính</p>
+                </div>
+            </div>
+
+            <div class="shot-card" id="card-40" onclick="playTransition('AYK45S4m7lo', 1.9333330000000002, 3.733333, 'card-40', 'Dd6G0lnI0zj')">
+                <div class="shot-thumb">
+                    <img src="mridu_transitions/frames/kieu1/Dd6G0lnI0zj/t1_cut.jpg" alt="Cut frame" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><rect width=\'100%\' height=\'100%\' fill=\'%23ccc\'/></svg>'">
+                </div>
+                <div class="shot-body">
+                    <div class="shot-head">
+                        <span class="shot-num">KIỂU 1 • K1a</span>
+                        <span class="shot-time-badge">1.93s – 3.73s (cut @2.83s)</span>
+                    </div>
+                    <h3 class="shot-headline">Người đang đứng, xoay lưng → Người tiếp tục xoay ở cảnh mới</h3>
+                    <p class="shot-insight">Giấu vết cắt: Lưng che ống kính</p>
+                </div>
+            </div>
+
+            <div class="shot-card" id="card-41" onclick="playTransition('', 0.475, 2.275, 'card-41', 'DdV7I2woiOv')">
+                <div class="shot-thumb">
+                    <img src="mridu_transitions/frames/kieu1/DdV7I2woiOv/t1_cut.jpg" alt="Cut frame" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><rect width=\'100%\' height=\'100%\' fill=\'%23ccc\'/></svg>'">
+                </div>
+                <div class="shot-body">
+                    <div class="shot-head">
+                        <span class="shot-num">KIỂU 1 • K1a</span>
+                        <span class="shot-time-badge">0.47s – 2.27s (cut @1.38s)</span>
+                    </div>
+                    <h3 class="shot-headline">Người đang đứng, xoay lưng → Người tiếp tục xoay ở cảnh mới</h3>
+                    <p class="shot-insight">Giấu vết cắt: Lưng che ống kính</p>
+                </div>
+            </div>
+
+        </div>
+        <div id="tab2" class="tab-content">
+            <div class="script-axis-card">
+                <div class="script-axis-title">TRỤC: Vật lướt qua ống kính → Cắt khi khuất 100% → Mở cảnh mới cùng vật cản</div>
+                <div>Dùng một người, phương tiện, hoặc cái cột nhà lướt qua che kín ống kính. Ở điểm tối nhất (hoặc blur nhất), cắt sang cảnh B.</div>
+            </div>
+
+            <div class="shot-card" id="card-42" onclick="playTransition('None', 0.5844180000000001, 1.584418, 'card-42', 'DOA-Lk7E-Sa')">
+                <div class="shot-thumb">
+                    <img src="mridu_transitions/frames/kieu2/DOA-Lk7E-Sa/t1_cut.jpg" alt="Cut frame" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><rect width=\'100%\' height=\'100%\' fill=\'%23ccc\'/></svg>'">
+                </div>
+                <div class="shot-body">
+                    <div class="shot-head">
+                        <span class="shot-num">KIỂU 2 • K2: Mask Lướt qua</span>
+                        <span class="shot-time-badge">0.58s – 1.58s (cut @1.08s)</span>
+                    </div>
+                    <h3 class="shot-headline">Cảnh trước → Cảnh sau</h3>
+                    <p class="shot-insight">Giấu vết cắt: Vật cản che cam</p>
+                </div>
+            </div>
+
+            <div class="shot-card" id="card-43" onclick="playTransition('None', 3.295462, 4.295462000000001, 'card-43', 'DW8w1XNE-Ya')">
+                <div class="shot-thumb">
+                    <img src="mridu_transitions/frames/kieu2/DW8w1XNE-Ya/t1_cut.jpg" alt="Cut frame" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><rect width=\'100%\' height=\'100%\' fill=\'%23ccc\'/></svg>'">
+                </div>
+                <div class="shot-body">
+                    <div class="shot-head">
+                        <span class="shot-num">KIỂU 2 • K2: Mask Lướt qua</span>
+                        <span class="shot-time-badge">3.30s – 4.30s (cut @3.80s)</span>
+                    </div>
+                    <h3 class="shot-headline">Cảnh trước → Cảnh sau</h3>
+                    <p class="shot-insight">Giấu vết cắt: Vật cản che cam</p>
+                </div>
+            </div>
+
+            <div class="shot-card" id="card-44" onclick="playTransition('KetLXEHPVZ8', 1.8356690000000002, 2.835669, 'card-44', 'Dc0tEcOIdwy')">
+                <div class="shot-thumb">
+                    <img src="mridu_transitions/frames/kieu2/Dc0tEcOIdwy/t1_cut.jpg" alt="Cut frame" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><rect width=\'100%\' height=\'100%\' fill=\'%23ccc\'/></svg>'">
+                </div>
+                <div class="shot-body">
+                    <div class="shot-head">
+                        <span class="shot-num">KIỂU 2 • K2: Mask</span>
+                        <span class="shot-time-badge">1.84s – 2.84s (cut @2.34s)</span>
+                    </div>
+                    <h3 class="shot-headline">Cảnh trước → Cảnh sau</h3>
+                    <p class="shot-insight">Giấu vết cắt: Vật cản che cam</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script src="https://www.youtube.com/iframe_api"></script>
+<script>
+    var ytPlayer;
+    var currentYtId = '';
+    var loopStart = 0;
+    var loopEnd = 0;
+    var isLooping = true;
+    var checkInterval = null;
+
+    function switchTab(tabId, btn) {
+        document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+        document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+        document.getElementById(tabId).classList.add('active');
+        btn.classList.add('active');
+    }
+
+    function toggleLoop(btn) {
+        isLooping = !isLooping;
+        btn.innerText = isLooping ? 'Tắt Lặp đoạn' : 'Bật Lặp đoạn';
+    }
+    
+    function setSpeed(speed) {
+        if(ytPlayer && ytPlayer.setPlaybackRate) {
+            ytPlayer.setPlaybackRate(speed);
+        }
+    }
+
+    function checkLoop() {
+        if(!isLooping || !ytPlayer || !ytPlayer.getCurrentTime) return;
+        var t = ytPlayer.getCurrentTime();
+        if(loopEnd > 0 && t >= loopEnd) {
+            ytPlayer.seekTo(loopStart, true);
+        }
+    }
+
+    function playTransition(ytId, start, end, cardId, igid) {
+        document.querySelectorAll('.shot-card').forEach(c => c.classList.remove('active-playing'));
+        var card = document.getElementById(cardId);
+        if(card) card.classList.add('active-playing');
+        
+        document.getElementById('shotStatusTag').innerText = cardId + ' • ' + igid + ' • ' + start.toFixed(2) + 's–' + end.toFixed(2) + 's';
+        
+        loopStart = start;
+        loopEnd = end;
+        
+        if (!document.getElementById('ytPlayer')) {
+            ytPlayer = null;
+        }
+
+        if (!ytId || ytId === 'None') {
+            ytPlayer = null;
+            var container = document.getElementById('playerContainer');
+            container.innerHTML = `<video id="htmlPlayer" src="mridu_transitions/lite/${igid}.mp4" autoplay playsinline muted></video>`;
+            var vid = document.getElementById('htmlPlayer');
+            vid.currentTime = start; vid.play();
+            if(checkInterval) clearInterval(checkInterval);
+            checkInterval = setInterval(() => {
+                if(!isLooping) return;
+                if(vid.currentTime >= end) {
+                    vid.currentTime = start; vid.play();
+                }
+            }, 100);
+            return;
+        }
+
+        if(!ytPlayer) {
+            var container = document.getElementById('playerContainer');
+            container.innerHTML = '<div id="ytPlayer"></div>';
+            ytPlayer = new YT.Player('ytPlayer', {
+                videoId: ytId,
+                playerVars: { 'autoplay': 1, 'mute': 1, 'start': Math.floor(start) },
+                events: {
+                    'onReady': function(e) {
+                        currentYtId = ytId;
+                        e.target.seekTo(start, true);
+                        e.target.playVideo();
+                        if(checkInterval) clearInterval(checkInterval);
+                        checkInterval = setInterval(checkLoop, 100);
+                    },
+                    'onError': function(e) {
+                        playTransition(null, start, end, label, igid);
+                    }
+                }
+            });
+        } else {
+            if (currentYtId !== ytId) {
+                currentYtId = ytId;
+                ytPlayer.loadVideoById({videoId: ytId, startSeconds: start});
+            } else {
+                ytPlayer.seekTo(start, true);
+                ytPlayer.playVideo();
+            }
+        }
+    }
+</script>
+</body>
+</html>
