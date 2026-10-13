@@ -1,0 +1,978 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Khóa Học Sản Xuất Video Ngắn & Truyền Thông Số Cho Học Sinh Cấp 3 | Thầy Việt</title>
+  
+  <!-- Tailwind CSS & FontAwesome -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            display: ['"Space Grotesk"', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+          },
+          colors: {
+            brand: {
+              50: '#eef2ff',
+              100: '#e0e7ff',
+              400: '#818cf8',
+              500: '#6366f1',
+              600: '#4f46e5',
+              900: '#1e1b4b',
+            },
+            dark: {
+              bg: '#07090E',
+              surface: '#0F1420',
+              card: '#151C2C',
+              border: '#1E293B',
+              hover: '#222F46',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      background-color: #07090E;
+      color: #E2E8F0;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      scroll-behavior: smooth;
+    }
+    
+    .gradient-text {
+      background: linear-gradient(135deg, #38BDF8 0%, #818CF8 50%, #C084FC 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .gradient-border {
+      position: relative;
+      background: #0F1420;
+      border-radius: 1rem;
+    }
+    .gradient-border::before {
+      content: '';
+      position: absolute;
+      inset: -1px;
+      border-radius: 1.05rem;
+      padding: 1px;
+      background: linear-gradient(135deg, rgba(56, 189, 248, 0.4), rgba(129, 140, 248, 0.1), rgba(192, 132, 252, 0.3));
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+    }
+
+    .tab-btn.active {
+      background: linear-gradient(135deg, #4F46E5, #6366F1);
+      color: #FFFFFF;
+      box-shadow: 0 8px 20px -4px rgba(79, 70, 229, 0.5);
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #07090E;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #1E293B;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #334155;
+    }
+  </style>
+</head>
+<body class="selection:bg-indigo-600 selection:text-white">
+
+  <!-- TOP HEADER / HERO -->
+  <header class="relative overflow-hidden border-b border-dark-border bg-gradient-to-b from-[#0D1220] via-dark-bg to-dark-bg pt-10 pb-12">
+    <!-- Glow effects -->
+    <div class="absolute -top-32 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-indigo-600/20 blur-[120px] rounded-full pointer-events-none"></div>
+    <div class="absolute top-10 right-10 w-72 h-72 bg-sky-500/10 blur-[100px] rounded-full pointer-events-none"></div>
+
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 relative z-10">
+      <div class="flex flex-wrap items-center justify-between gap-4 mb-6">
+        <div class="flex items-center gap-3">
+          <span class="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-indigo-600/30 text-indigo-400 border border-indigo-500/30">
+            <i class="fa-solid fa-clapperboard text-lg"></i>
+          </span>
+          <div>
+            <span class="text-xs font-mono uppercase tracking-widest text-indigo-400">FEDU CREATIVE ACADEMY</span>
+            <p class="text-sm text-slate-400 font-medium">Giáo Trình Đào Tạo Thế Hệ Creator Cấp 3</p>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-2">
+          <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/30">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+            100% Smartphone
+          </span>
+          <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-sky-500/10 text-sky-400 border border-sky-500/30">
+            <i class="fa-solid fa-robot text-[10px]"></i> AI Gemini Assisted
+          </span>
+        </div>
+      </div>
+
+      <div class="max-w-3xl">
+        <h1 class="font-display text-3xl sm:text-5xl font-bold tracking-tight text-white mb-4 leading-tight">
+          Sản Xuất Video Ngắn &amp; <br class="hidden sm:block">
+          <span class="gradient-text">Truyền Thông Số Thực Chiến</span>
+        </h1>
+        <p class="text-base sm:text-lg text-slate-300 font-normal leading-relaxed mb-6">
+          Lộ trình 5 buổi huấn luyện chuyên sâu dành riêng cho học sinh THPT: Từ làm chủ góc máy điện thoại, giải mã thuật toán 3 giây đầu, bóc tách kịch bản viral, quay sản phẩm cảnh trám (B-Roll) điện ảnh đến tự tay tạo Website dự án cùng Google Gemini AI.
+        </p>
+      </div>
+
+      <!-- Quick Metrics Bar -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-4 border-t border-dark-border/60">
+        <div class="bg-dark-surface/80 p-3.5 rounded-xl border border-dark-border">
+          <div class="text-slate-400 text-xs font-medium mb-1">Thời lượng</div>
+          <div class="text-white font-display text-lg font-bold flex items-center gap-1.5">
+            <i class="fa-regular fa-clock text-indigo-400 text-sm"></i> 5 Buổi (150p/b)
+          </div>
+        </div>
+        <div class="bg-dark-surface/80 p-3.5 rounded-xl border border-dark-border">
+          <div class="text-slate-400 text-xs font-medium mb-1">Thiết bị quay</div>
+          <div class="text-white font-display text-lg font-bold flex items-center gap-1.5">
+            <i class="fa-solid fa-mobile-screen-button text-sky-400 text-sm"></i> Điện thoại 0đ
+          </div>
+        </div>
+        <div class="bg-dark-surface/80 p-3.5 rounded-xl border border-dark-border">
+          <div class="text-slate-400 text-xs font-medium mb-1">Phần mềm &amp; AI</div>
+          <div class="text-white font-display text-lg font-bold flex items-center gap-1.5">
+            <i class="fa-solid fa-wand-magic-sparkles text-purple-400 text-sm"></i> CapCut + Gemini
+          </div>
+        </div>
+        <div class="bg-dark-surface/80 p-3.5 rounded-xl border border-dark-border">
+          <div class="text-slate-400 text-xs font-medium mb-1">Sản phẩm đầu ra</div>
+          <div class="text-white font-display text-lg font-bold flex items-center gap-1.5">
+            <i class="fa-solid fa-award text-amber-400 text-sm"></i> Video + Web Nhóm
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- NAVIGATION TABS -->
+  <nav class="sticky top-0 z-40 bg-dark-bg/90 backdrop-blur-md border-b border-dark-border py-3">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+      <div class="flex items-center gap-2 overflow-x-auto pb-1 sm:pb-0 no-scrollbar">
+        <button onclick="switchTab('buoi1')" id="btn-buoi1" class="tab-btn active shrink-0 px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all">
+          Buổi 1: Kỹ Thuật Quay & Tạo Video
+        </button>
+        <button onclick="switchTab('buoi2')" id="btn-buoi2" class="tab-btn shrink-0 px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold text-slate-300 hover:text-white hover:bg-dark-surface transition-all">
+          Buổi 2: Logic Nền Tảng & Thuật Toán
+        </button>
+        <button onclick="switchTab('buoi3')" id="btn-buoi3" class="tab-btn shrink-0 px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold text-slate-300 hover:text-white hover:bg-dark-surface transition-all">
+          Buổi 3: Kịch Bản Viral & Định Dạng
+        </button>
+        <button onclick="switchTab('buoi4')" id="btn-buoi4" class="tab-btn shrink-0 px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold text-slate-300 hover:text-white hover:bg-dark-surface transition-all">
+          Buổi 4: Quay Sản Phẩm & Cảnh Trám (B-Roll)
+        </button>
+        <button onclick="switchTab('buoi5')" id="btn-buoi5" class="tab-btn shrink-0 px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold text-slate-300 hover:text-white hover:bg-dark-surface transition-all">
+          Buổi 5: Thực Hành Nhóm & Làm Web Gemini
+        </button>
+        <button onclick="switchTab('rubric')" id="btn-rubric" class="tab-btn shrink-0 px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold text-amber-400 hover:bg-dark-surface transition-all">
+          <i class="fa-solid fa-star text-xs mr-1"></i> Rubric Chấm Điểm
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- MAIN CONTENT CONTAINER -->
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 py-8">
+
+    <!-- ================================================================= -->
+    <!-- TAB 1: BUỔI 1 -->
+    <!-- ================================================================= -->
+    <section id="content-buoi1" class="tab-content space-y-8">
+      <!-- Section Header -->
+      <div class="gradient-border p-6 sm:p-8">
+        <div class="flex items-center gap-2 text-indigo-400 text-xs font-mono tracking-widest uppercase mb-2">
+          <span>MODULE 01</span> • <span>THỜI LƯỢNG: 120-150 PHÚT</span>
+        </div>
+        <h2 class="text-2xl sm:text-3xl font-bold font-display text-white mb-3">
+          Kỹ Thuật Quay Căn Bản &amp; Cách Tạo Ra 1 Video Chuẩn Từ Smartphone
+        </h2>
+        <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
+          Đập tan quan niệm "phải có máy ảnh đắt tiền mới làm được video đẹp". Học sinh làm chủ hoàn toàn camera điện thoại, nắm bắt 5 cỡ cảnh nền tảng, thiết lập ánh sáng & thu âm 0 đồng, thực hành dựng cắt ghép cơ bản trên CapCut.
+        </p>
+      </div>
+
+      <!-- Core Modules Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- Module 1.1 -->
+        <div class="bg-dark-surface p-6 rounded-2xl border border-dark-border">
+          <div class="w-10 h-10 rounded-xl bg-sky-500/10 text-sky-400 flex items-center justify-center mb-4 text-lg">
+            <i class="fa-solid fa-sliders"></i>
+          </div>
+          <h3 class="text-lg font-bold text-white mb-2">1. Làm Chủ Cài Đặt Camera Smartphone</h3>
+          <ul class="space-y-2.5 text-sm text-slate-300">
+            <li class="flex items-start gap-2">
+              <i class="fa-solid fa-check text-emerald-400 text-xs mt-1"></i>
+              <span><strong>Quy tắc số 0:</strong> Luôn dùng vạt áo hoặc khăn mềm lau sạch camera trước khi bấm máy (90% video học sinh bị mờ do vân tay!).</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <i class="fa-solid fa-check text-emerald-400 text-xs mt-1"></i>
+              <span><strong>Khóa AE/AF Lock:</strong> Nhấn giữ màn hình 2 giây để cố định độ sáng và điểm lấy nét, tránh hiện tượng nhấp nháy sáng tối khi nhân vật cử động.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <i class="fa-solid fa-check text-emerald-400 text-xs mt-1"></i>
+              <span><strong>Tốc độ khung hình (Frame rate):</strong> Cài đặt <strong>1080p 60fps</strong> để khung hình mượt mà, dễ kéo slow-motion không bị giật.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <i class="fa-solid fa-check text-emerald-400 text-xs mt-1"></i>
+              <span><strong>Tỷ lệ 9:16 chuẩn dọc:</strong> Không để thừa viền đen, tối ưu 100% diện tích màn hình điện thoại người xem.</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Module 1.2 -->
+        <div class="bg-dark-surface p-6 rounded-2xl border border-dark-border">
+          <div class="w-10 h-10 rounded-xl bg-indigo-500/10 text-indigo-400 flex items-center justify-center mb-4 text-lg">
+            <i class="fa-solid fa-crop-simple"></i>
+          </div>
+          <h3 class="text-lg font-bold text-white mb-2">2. 5 Cỡ Cảnh &amp; 3 Bố Cục Vàng</h3>
+          <ul class="space-y-2.5 text-sm text-slate-300">
+            <li class="flex items-start gap-2">
+              <i class="fa-solid fa-circle-dot text-indigo-400 text-xs mt-1"></i>
+              <span><strong>Toàn cảnh (Wide Shot):</strong> Giới thiệu không gian lớp học, sân trường, bối cảnh tổng quan.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <i class="fa-solid fa-circle-dot text-indigo-400 text-xs mt-1"></i>
+              <span><strong>Trung cảnh (Medium Shot):</strong> Ngang ngực hoặc thắt lưng nhân vật, phù hợp nói chuyện và đối thoại.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <i class="fa-solid fa-circle-dot text-indigo-400 text-xs mt-1"></i>
+              <span><strong>Cận cảnh (Close-up):</strong> Bắt trọn biểu cảm ánh mắt, nụ cười, cảm xúc bất ngờ.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <i class="fa-solid fa-circle-dot text-indigo-400 text-xs mt-1"></i>
+              <span><strong>Đặc tả (Extreme Close-up):</strong> Chi tiết ngòi bút viết, giọt nước trên ly, màn hình điện thoại.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <i class="fa-solid fa-circle-dot text-indigo-400 text-xs mt-1"></i>
+              <span><strong>Góc nhìn thứ nhất (POV):</strong> Người xem như đang trực tiếp trải nghiệm qua đôi mắt tác giả.</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Module 1.3 -->
+        <div class="bg-dark-surface p-6 rounded-2xl border border-dark-border">
+          <div class="w-10 h-10 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center mb-4 text-lg">
+            <i class="fa-solid fa-lightbulb"></i>
+          </div>
+          <h3 class="text-lg font-bold text-white mb-2">3. Ánh Sáng &amp; Thu Âm Giá 0 Đồng</h3>
+          <ul class="space-y-2.5 text-sm text-slate-300">
+            <li class="flex items-start gap-2">
+              <i class="fa-solid fa-sun text-amber-400 text-xs mt-1"></i>
+              <span><strong>Ánh sáng tự nhiên (Window Light):</strong> Ngồi đối diện hoặc góc 45 độ với cửa sổ. <em>Tuyệt đối không quay ngược sáng</em> (lưng quay về cửa sổ làm mặt tối đen).</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <i class="fa-solid fa-bolt text-amber-400 text-xs mt-1"></i>
+              <span><strong>Đèn học tản sáng:</strong> Lấy 1 tờ giấy A4 trắng bọc trước đèn bàn học để biến nguồn sáng gắt thành ánh sáng mềm mịn (Soft Light) tôn da.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <i class="fa-solid fa-microphone text-sky-400 text-xs mt-1"></i>
+              <span><strong>Thu âm tai nghe:</strong> Cắm tai nghe có mic, luồn dây vào trong áo và ghim đầu mic ở cổ áo để loại bỏ tiếng ồn lớp học, bắt âm giọng rõ nét 100%.</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Module 1.4 -->
+        <div class="bg-dark-surface p-6 rounded-2xl border border-dark-border">
+          <div class="w-10 h-10 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center mb-4 text-lg">
+            <i class="fa-solid fa-scissors"></i>
+          </div>
+          <h3 class="text-lg font-bold text-white mb-2">4. Thực Hành Dựng Cơ Bản Trên CapCut</h3>
+          <ul class="space-y-2.5 text-sm text-slate-300">
+            <li class="flex items-start gap-2">
+              <i class="fa-solid fa-play text-emerald-400 text-xs mt-1"></i>
+              <span><strong>Kỹ thuật Jump-Cut:</strong> Cắt bỏ ngay những đoạn thở, khoảng lặng vô nghĩa và từ đệm ("à, ừm, thì là mà") để tạo nhịp điệu nhanh, dứt khoát.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <i class="fa-solid fa-play text-emerald-400 text-xs mt-1"></i>
+              <span><strong>Thêm nhạc nền (BGM):</strong> Hạ âm lượng nhạc nền xuống <strong>10% - 15%</strong> để giọng nói chính luôn nổi bật, không bị nhạc át.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <i class="fa-solid fa-play text-emerald-400 text-xs mt-1"></i>
+              <span><strong>Phụ đề tự động (Auto Captions):</strong> 80% người xem lướt video tắt tiếng. Bật phụ đề tiếng Việt, chọn font chữ trẻ trung, viền chữ tương phản.</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Workshop Exercise Box -->
+      <div class="bg-gradient-to-r from-indigo-950/60 to-purple-950/60 border border-indigo-500/30 p-6 rounded-2xl">
+        <div class="flex items-center gap-3 mb-3">
+          <span class="px-2.5 py-1 rounded-md bg-indigo-500 text-white text-xs font-bold uppercase">Thực Hành Tại Lớp</span>
+          <h4 class="text-lg font-bold text-white">Thử Thách 15 Phút: Video Giới Thiệu "Gen Z 15 Giây"</h4>
+        </div>
+        <p class="text-slate-300 text-sm mb-4">
+          Mỗi học sinh tự dùng điện thoại quay 3 phân cảnh ngắn (Toàn cảnh -> Trung cảnh -> Cận cảnh) tự giới thiệu bản thân hoặc đồ vật yêu thích trên bàn học. Sử dụng CapCut cắt bỏ khoảng lặng, chèn phụ đề tự động và xuất video nộp nhóm.
+        </p>
+        <div class="flex flex-wrap gap-2 text-xs font-mono text-slate-400">
+          <span class="bg-dark-bg/60 px-3 py-1.5 rounded-lg border border-dark-border"><i class="fa-solid fa-check text-emerald-400 mr-1"></i> Đúng tỷ lệ 9:16</span>
+          <span class="bg-dark-bg/60 px-3 py-1.5 rounded-lg border border-dark-border"><i class="fa-solid fa-check text-emerald-400 mr-1"></i> Khóa nét AE/AF</span>
+          <span class="bg-dark-bg/60 px-3 py-1.5 rounded-lg border border-dark-border"><i class="fa-solid fa-check text-emerald-400 mr-1"></i> Âm thanh rõ tiếng</span>
+          <span class="bg-dark-bg/60 px-3 py-1.5 rounded-lg border border-dark-border"><i class="fa-solid fa-check text-emerald-400 mr-1"></i> Xuất file 1080p 60fps</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================= -->
+    <!-- TAB 2: BUỔI 2 -->
+    <!-- ================================================================= -->
+    <section id="content-buoi2" class="tab-content hidden space-y-8">
+      <div class="gradient-border p-6 sm:p-8">
+        <div class="flex items-center gap-2 text-sky-400 text-xs font-mono tracking-widest uppercase mb-2">
+          <span>MODULE 02</span> • <span>THỜI LƯỢNG: 120-150 PHÚT</span>
+        </div>
+        <h2 class="text-2xl sm:text-3xl font-bold font-display text-white mb-3">
+          Tạo Video Theo Logic Phù Hợp Với Nền Tảng &amp; Thuật Toán Viral
+        </h2>
+        <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
+          Giải mã cơ chế phân phối nội dung của TikTok, Reels và YouTube Shorts. Hiểu rõ tâm lý người dùng mạng xã hội, làm chủ vũ khí "3 Giây Đầu Quyết Định" và cấu trúc giữ chân người xem đến giây cuối cùng.
+        </p>
+      </div>
+
+      <!-- Algorithmic Insights -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="bg-dark-surface p-6 rounded-2xl border border-dark-border">
+          <div class="text-3xl font-display font-bold text-sky-400 mb-2">3 Giây</div>
+          <h4 class="text-base font-bold text-white mb-2">Vũ Khí Giữ Chân (The Hook)</h4>
+          <p class="text-sm text-slate-300">
+            Nếu 3 giây đầu không đủ hấp dẫn, ngón tay người xem sẽ vuốt qua ngay. Cần kết hợp cùng lúc: <strong>Visual Hook</strong> (hành động lạ), <strong>Verbal Hook</strong> (câu thoại giật mình) và <strong>Text Hook</strong> (chữ nổi to trên màn hình).
+          </p>
+        </div>
+        <div class="bg-dark-surface p-6 rounded-2xl border border-dark-border">
+          <div class="text-3xl font-display font-bold text-purple-400 mb-2">&gt; 70%</div>
+          <h4 class="text-base font-bold text-white mb-2">Tỷ Lệ Giữ Chân (Retention Rate)</h4>
+          <p class="text-sm text-slate-300">
+            Thuật toán chỉ đẩy video lên triệu view nếu tỷ lệ người xem hết video vượt ngưỡng 60-70%. Cần thay đổi góc quay hoặc hiệu ứng mỗi <strong>2 - 3 giây</strong> (Micro-pacing) để mắt người xem không bị nhàm chán.
+          </p>
+        </div>
+        <div class="bg-dark-surface p-6 rounded-2xl border border-dark-border">
+          <div class="text-3xl font-display font-bold text-emerald-400 mb-2">2X View</div>
+          <h4 class="text-base font-bold text-white mb-2">Vòng Lặp Vô Tận (Seamless Loop)</h4>
+          <p class="text-sm text-slate-300">
+            Thiết kế câu nói và hành động ở giây cuối nối liền trơn tru vào câu mở đầu của video. Người xem xem hết mà không nhận ra video đã kết thúc, giúp chỉ số xem lại (Rewatch Rate) tăng vọt.
+          </p>
+        </div>
+      </div>
+
+      <!-- 4-Step Video Retention Architecture -->
+      <div class="bg-dark-surface p-6 sm:p-8 rounded-2xl border border-dark-border">
+        <h3 class="text-xl font-bold font-display text-white mb-6 flex items-center gap-2">
+          <i class="fa-solid fa-chart-line text-indigo-400"></i>
+          Cấu Trúc Video Giữ Chân Chuẩn Thuật Toán (30 - 45 Giây)
+        </h3>
+
+        <div class="grid grid-cols-1 sm:grid-cols-4 gap-4">
+          <div class="p-4 rounded-xl bg-dark-card border border-dark-border">
+            <span class="text-xs font-mono text-amber-400 font-bold block mb-1">00:00 - 00:03</span>
+            <h5 class="text-base font-bold text-white mb-2">1. THE HOOK (Kéo lại)</h5>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              Cú sốc thị giác, câu hỏi nghịch lý hoặc cảnh báo: <em>"Đừng bao giờ...", "Sự thật mà 99% học sinh chưa biết..."</em>.
+            </p>
+          </div>
+
+          <div class="p-4 rounded-xl bg-dark-card border border-dark-border">
+            <span class="text-xs font-mono text-sky-400 font-bold block mb-1">00:03 - 00:15</span>
+            <h5 class="text-base font-bold text-white mb-2">2. THE STORY (Đồng cảm)</h5>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              Kể ngắn gọn vấn đề/nỗi đau quen thuộc của học sinh: Buồn ngủ trong giờ, ôn thi quá tải, thiếu dụng cụ học tập.
+            </p>
+          </div>
+
+          <div class="p-4 rounded-xl bg-dark-card border border-dark-border">
+            <span class="text-xs font-mono text-purple-400 font-bold block mb-1">00:15 - 00:35</span>
+            <h5 class="text-base font-bold text-white mb-2">3. THE VALUE (Giải pháp)</h5>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              Cung cấp giải pháp cụ thể, hướng dẫn từng bước hoặc minh họa sản phẩm bằng chuỗi cảnh trám (B-Roll) bắt mắt.
+            </p>
+          </div>
+
+          <div class="p-4 rounded-xl bg-dark-card border border-dark-border">
+            <span class="text-xs font-mono text-emerald-400 font-bold block mb-1">00:35 - 00:45</span>
+            <h5 class="text-base font-bold text-white mb-2">4. THE LOOP / CTA</h5>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              Kêu gọi hành động tự nhiên (bình luận, lưu lại) hoặc tạo câu nối liền quay ngược lại Hook ban đầu (Seamless Loop).
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Trending & SEO Tips -->
+      <div class="bg-dark-surface p-6 rounded-2xl border border-dark-border">
+        <h4 class="text-base font-bold text-white mb-3 flex items-center gap-2">
+          <i class="fa-solid fa-magnifying-glass text-sky-400"></i> Mẹo Bắt Trend Âm Thanh &amp; Tối Ưu SEO Tìm Kiếm
+        </h4>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-slate-300">
+          <div class="p-3.5 rounded-xl bg-dark-bg/60 border border-dark-border/60">
+            <strong class="text-white block mb-1">🎵 Cách nhận biết nhạc sắp Trend:</strong>
+            Tìm các bài nhạc có biểu tượng mũi tên chéo hướng lên, số lượng video dùng còn dưới 10.000 video. Chèn bài nhạc này ở mức âm lượng 5-10% chạy ngầm dưới giọng nói để được thuật toán ưu tiên đẩy hiển thị.
+          </div>
+          <div class="p-3.5 rounded-xl bg-dark-bg/60 border border-dark-border/60">
+            <strong class="text-white block mb-1">🔍 Chuẩn SEO từ khóa tìm kiếm:</strong>
+            AI nền tảng hiện nay quét cả chữ viết trên màn hình và giọng nói trong video. Hãy nói và gõ rõ các từ khóa học sinh hay search (vd: <em>"mẹo học bài", "bút nhớ dòng", "review sách"</em>) kèm 3-4 hashtag ngách chuẩn xác.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================= -->
+    <!-- TAB 3: BUỔI 3 -->
+    <!-- ================================================================= -->
+    <section id="content-buoi3" class="tab-content hidden space-y-8">
+      <div class="gradient-border p-6 sm:p-8">
+        <div class="flex items-center gap-2 text-purple-400 text-xs font-mono tracking-widest uppercase mb-2">
+          <span>MODULE 03</span> • <span>THỜI LƯỢNG: 120-150 PHÚT</span>
+        </div>
+        <h2 class="text-2xl sm:text-3xl font-bold font-display text-white mb-3">
+          Phân Tích Nội Dung, Kịch Bản Viral &amp; Các Định Dạng Thực Tế
+        </h2>
+        <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
+          Biến những ý tưởng mơ hồ thành kịch bản 2 cột tiêu chuẩn truyền thông. Nắm vững 5 định dạng nội dung "ăn khách" nhất đối với lứa tuổi học sinh và học cách mổ xẻ bóc tách video triệu view frame-by-frame.
+        </p>
+      </div>
+
+      <!-- 5 Content Formats -->
+      <div class="space-y-4">
+        <h3 class="text-xl font-bold font-display text-white">5 Định Dạng Nội Dung Viral Cho Học Sinh Cấp 3</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div class="bg-dark-surface p-5 rounded-2xl border border-dark-border">
+            <span class="inline-block px-2.5 py-1 rounded bg-indigo-500/20 text-indigo-300 text-xs font-mono font-bold mb-3">01. STORYTELLING</span>
+            <h4 class="text-base font-bold text-white mb-2">Nhật Ký Học Đường (Vlog)</h4>
+            <p class="text-xs text-slate-300">
+              Kể chuyện chân thực: "1 ngày ôn thi học kỳ", "Góc khuất của thủ khoa lớp mình", "Trải nghiệm đi học muộn bất ổn". Chạm vào sự đồng cảm của bạn bè cùng trang lứa.
+            </p>
+          </div>
+
+          <div class="bg-dark-surface p-5 rounded-2xl border border-dark-border">
+            <span class="inline-block px-2.5 py-1 rounded bg-sky-500/20 text-sky-300 text-xs font-mono font-bold mb-3">02. POV &amp; COMEDY</span>
+            <h4 class="text-base font-bold text-white mb-2">Góc Nhìn Nhập Vai (POV)</h4>
+            <p class="text-xs text-slate-300">
+              "POV khi cô giáo bước vào kiểm tra bài cũ bất thình lình", "POV kiểu bạn cùng bàn hướng nội". Diễn xuất ngắn, cường điệu hóa tình huống tạo tiếng cười giải trí.
+            </p>
+          </div>
+
+          <div class="bg-dark-surface p-5 rounded-2xl border border-dark-border">
+            <span class="inline-block px-2.5 py-1 rounded bg-amber-500/20 text-amber-300 text-xs font-mono font-bold mb-3">03. TIPS &amp; HACKS</span>
+            <h4 class="text-base font-bold text-white mb-2">Mẹo Vặt Giá Trị Cao</h4>
+            <p class="text-xs text-slate-300">
+              "3 website giải toán không phải ai cũng biết", "Cách ghi chép bài bằng sơ đồ tư duy tiết kiệm 50% thời gian", "Mẹo phối đồng phục không bị nhàm chán". Kích thích nút Share &amp; Save.
+            </p>
+          </div>
+
+          <div class="bg-dark-surface p-5 rounded-2xl border border-dark-border">
+            <span class="inline-block px-2.5 py-1 rounded bg-rose-500/20 text-rose-300 text-xs font-mono font-bold mb-3">04. CONTRARIAN</span>
+            <h4 class="text-base font-bold text-white mb-2">Quan Điểm Phản Trực Giác</h4>
+            <p class="text-xs text-slate-300">
+              "Tại sao thức khuya học bài là sai lầm lớn nhất?", "Đừng học chăm chỉ, hãy học khôn ngoan". Đặt tiêu đề đi ngược lại số đông để kích thích tranh luận văn minh dưới phần bình luận.
+            </p>
+          </div>
+
+          <div class="bg-dark-surface p-5 rounded-2xl border border-dark-border">
+            <span class="inline-block px-2.5 py-1 rounded bg-emerald-500/20 text-emerald-300 text-xs font-mono font-bold mb-3">05. HONEST REVIEW</span>
+            <h4 class="text-base font-bold text-white mb-2">Review Trải Nghiệm Đồ Dùng</h4>
+            <p class="text-xs text-slate-300">
+              Đánh giá thực tế máy tính bỏ túi, bút dạ quang, bình nước giữ nhiệt, đồ ăn vặt cổng trường. Nói rõ ưu điểm và nhược điểm thật, xây dựng niềm tin uy tín với người xem.
+            </p>
+          </div>
+
+          <div class="bg-dark-card p-5 rounded-2xl border border-dashed border-dark-border flex flex-col justify-center items-center text-center">
+            <i class="fa-solid fa-lightbulb text-amber-400 text-2xl mb-2"></i>
+            <h5 class="text-sm font-bold text-white mb-1">Công Thức Độc Quyền</h5>
+            <p class="text-xs text-slate-400">Kết hợp 1 yếu tố Giáo Dục (Value) + 1 yếu tố Giải Trí (Fun) = Video Viral bền vững.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Kịch bản 2 cột mẫu -->
+      <div class="bg-dark-surface p-6 sm:p-8 rounded-2xl border border-dark-border">
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-6">
+          <div>
+            <h3 class="text-lg sm:text-xl font-bold font-display text-white">
+              Quy Chuẩn Kịch Bản 2 Cột Chuyên Nghiệp (Hình Ảnh &amp; Âm Thanh)
+            </h3>
+            <p class="text-xs sm:text-sm text-slate-400">Ví dụ kịch bản mẫu 35 giây cho sản phẩm: Bình Nước Giữ Nhiệt Học Đường</p>
+          </div>
+          <span class="px-3 py-1 rounded-full text-xs font-mono bg-indigo-500/10 text-indigo-400 border border-indigo-500/30">
+            Agency Standard Script
+          </span>
+        </div>
+
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-xs sm:text-sm border-collapse">
+            <thead>
+              <tr class="border-b border-dark-border text-slate-400 bg-dark-bg/60">
+                <th class="p-3 w-16">Shot</th>
+                <th class="p-3 w-28">Timeline</th>
+                <th class="p-3 w-40">Cỡ Cảnh &amp; Góc</th>
+                <th class="p-3">HÌNH ẢNH (Visual / B-Roll)</th>
+                <th class="p-3">ÂM THANH (Audio / SFX)</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-dark-border text-slate-300">
+              <tr>
+                <td class="p-3 font-bold text-white">#01</td>
+                <td class="p-3 font-mono text-amber-400">00:00 - 00:03</td>
+                <td class="p-3">Cận cảnh -> Crash Zoom</td>
+                <td class="p-3">Học sinh gục đầu mệt mỏi giữa đống sách vở ôn thi ngổn ngang.</td>
+                <td class="p-3"><strong class="text-white">Thoại:</strong> "Đố bạn biết thứ gì giúp mình tỉnh táo suốt 8 tiết học liên tục?"<br><span class="text-slate-400 text-xs">SFX: Chuông báo động Ring Ring</span></td>
+              </tr>
+              <tr>
+                <td class="p-3 font-bold text-white">#02</td>
+                <td class="p-3 font-mono text-sky-400">00:03 - 00:08</td>
+                <td class="p-3">Trung cảnh 45 độ</td>
+                <td class="p-3">Cầm cốc nước đá nhựa tan hết thành nước lã, mặt thở dài thất vọng.</td>
+                <td class="p-3"><strong class="text-white">Thoại:</strong> "Cứ mỗi lần cần tập trung thì nước đá lại tan hết... Vừa mất ngon vừa tốn tiền mua mới!"<br><span class="text-slate-400 text-xs">SFX: Đá tan lách cách rè rè</span></td>
+              </tr>
+              <tr>
+                <td class="p-3 font-bold text-white">#03</td>
+                <td class="p-3 font-mono text-purple-400">00:08 - 00:15</td>
+                <td class="p-3">Đặc tả Macro (B-Roll)</td>
+                <td class="p-3">Bàn tay rút bình giữ nhiệt màu pastel, mở nắp hơi lạnh phà ra nghi ngút.</td>
+                <td class="p-3"><strong class="text-white">Thoại:</strong> "Cho đến khi mình tìm thấy chiếc bình chân không 3 lớp này, giữ lạnh 24h bất chấp thời tiết!"<br><span class="text-slate-400 text-xs">SFX: Tiếng 'Keng' kim loại sang chảnh</span></td>
+              </tr>
+              <tr>
+                <td class="p-3 font-bold text-white">#04</td>
+                <td class="p-3 font-mono text-indigo-400">00:15 - 00:23</td>
+                <td class="p-3">Góc nhìn thứ nhất (POV)</td>
+                <td class="p-3">Rót ngụm trà mát lạnh, mắt sáng rực. Cận cảnh đáy silicon chống trượt không đổ nước ra sách.</td>
+                <td class="p-3"><strong class="text-white">Thoại:</strong> "Vỏ sơn tĩnh điện chống xước, đáy chống trượt an tâm để cạnh vở không lo ướt bài!"<br><span class="text-slate-400 text-xs">SFX: Tiếng nuốt ừng ực sảng khoái</span></td>
+              </tr>
+              <tr>
+                <td class="p-3 font-bold text-white">#05</td>
+                <td class="p-3 font-mono text-emerald-400">00:23 - 00:30</td>
+                <td class="p-3">Toàn cảnh ngoài trời</td>
+                <td class="p-3">Khoác balo sải bước tự tin cùng nhóm bạn dưới sân trường ngập nắng.</td>
+                <td class="p-3"><strong class="text-white">Thoại:</strong> "Vừa bảo vệ môi trường, vừa tiết kiệm mỗi tháng 300k tiền trà sữa, chuẩn phong cách học sinh mới!"<br><span class="text-slate-400 text-xs">BGM: Nhạc beat dồn dập cao trào</span></td>
+              </tr>
+              <tr>
+                <td class="p-3 font-bold text-white">#06</td>
+                <td class="p-3 font-mono text-rose-400">00:30 - 00:35</td>
+                <td class="p-3">Cận cảnh -> Đáy bình</td>
+                <td class="p-3">Cười tươi chỉ vào giỏ hàng, đưa đáy bình che ống kính nối mượt về Shot 01 (Seamless Loop).</td>
+                <td class="p-3"><strong class="text-white">Thoại:</strong> "Link bình ngay góc trái nhé! Đố bạn biết..."<br><span class="text-slate-400 text-xs">SFX: Tiếng 'Pop' nút giỏ hàng + Whoosh</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================= -->
+    <!-- TAB 4: BUỔI 4 -->
+    <!-- ================================================================= -->
+    <section id="content-buoi4" class="tab-content hidden space-y-8">
+      <div class="gradient-border p-6 sm:p-8">
+        <div class="flex items-center gap-2 text-amber-400 text-xs font-mono tracking-widest uppercase mb-2">
+          <span>MODULE 04</span> • <span>THỜI LƯỢNG: 120-150 PHÚT</span>
+        </div>
+        <h2 class="text-2xl sm:text-3xl font-bold font-display text-white mb-3">
+          Thực Hành Quay Sản Phẩm Có Kịch Bản &amp; Nghệ Thuật Cảnh Trám (B-Roll)
+        </h2>
+        <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
+          Bước vào trường quay thực tế ngay tại lớp học! Phân biệt sâu sắc giữa A-Roll (nói chính) và B-Roll (cảnh trám minh họa). Khám phá 5 loại cảnh trám điện ảnh của Thầy Việt, kỹ thuật chuyển cảnh in-camera và setup bàn quay quảng cáo sản phẩm.
+        </p>
+      </div>
+
+      <!-- A-Roll vs B-Roll Concept -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="bg-dark-surface p-6 rounded-2xl border border-dark-border">
+          <div class="flex items-center gap-2 text-indigo-400 font-bold mb-2">
+            <span class="w-7 h-7 rounded-lg bg-indigo-500/20 flex items-center justify-center text-xs">A</span>
+            A-ROLL: Khung Hình Cốt Lõi
+          </div>
+          <p class="text-sm text-slate-300 leading-relaxed mb-3">
+            Là những cảnh quay nhân vật chính nói trực diện trước ống kính, dẫn dắt câu chuyện hoặc giảng giải. Nếu 1 video 30 giây chỉ toàn A-Roll, video sẽ như một bài thuyết trình khô khan và người xem sẽ bấm lướt đi sau 5 giây.
+          </p>
+          <div class="text-xs text-slate-400 italic bg-dark-bg/60 p-3 rounded-xl border border-dark-border">
+            Ví dụ: Mặt học sinh nói: "Chiếc hộp bút này có ngăn chứa bí mật..."
+          </div>
+        </div>
+
+        <div class="bg-dark-surface p-6 rounded-2xl border border-dark-border">
+          <div class="flex items-center gap-2 text-sky-400 font-bold mb-2">
+            <span class="w-7 h-7 rounded-lg bg-sky-500/20 flex items-center justify-center text-xs">B</span>
+            B-ROLL: Nghệ Thuật Cảnh Trám Điện Ảnh
+          </div>
+          <p class="text-sm text-slate-300 leading-relaxed mb-3">
+            Là những thước phim bổ trợ chèn đè lên A-Roll để minh họa cho điều nhân vật đang nói. B-Roll tạo nên vẻ đẹp điện ảnh (Cinematic), che giấu các đoạn cắt nối của A-Roll và giữ cho mắt người xem liên tục bị cuốn hút.
+          </p>
+          <div class="text-xs text-slate-400 italic bg-dark-bg/60 p-3 rounded-xl border border-dark-border">
+            Ví dụ: Cận cảnh đôi tay kéo khóa zip, lật tung các ngăn bút bên trong.
+          </div>
+        </div>
+      </div>
+
+      <!-- 5 Kiểu B-Roll Thực Chiến Của Thầy Việt -->
+      <div class="space-y-4">
+        <h3 class="text-xl font-bold font-display text-white">5 Loại Cảnh Trám (B-Roll) Chuẩn Thực Chiến</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div class="bg-dark-surface p-5 rounded-2xl border border-dark-border">
+            <div class="text-sky-400 font-bold text-sm mb-1">1. Literal B-Roll (Trực Diện)</div>
+            <p class="text-xs text-slate-300 mb-2">Lời nói nhắc đến cái gì thì hình ảnh chiếu đúng cái đó.</p>
+            <span class="text-[11px] text-slate-400 bg-dark-card px-2.5 py-1 rounded inline-block">Nói "uống nước" -> Chiếu cảnh nâng bình uống</span>
+          </div>
+
+          <div class="bg-dark-surface p-5 rounded-2xl border border-dark-border">
+            <div class="text-purple-400 font-bold text-sm mb-1">2. Sequence B-Roll (Chuỗi Động Tác)</div>
+            <p class="text-xs text-slate-300 mb-2">Một chuỗi 3 hành động liên hoàn tạo cảm giác mượt mà.</p>
+            <span class="text-[11px] text-slate-400 bg-dark-card px-2.5 py-1 rounded inline-block">Rút bút -> Mở nắp -> Đặt ngòi kẻ 1 đường highlight</span>
+          </div>
+
+          <div class="bg-dark-surface p-5 rounded-2xl border border-dark-border">
+            <div class="text-rose-400 font-bold text-sm mb-1">3. In-situ B-Roll (Hậu Trường Thật)</div>
+            <p class="text-xs text-slate-300 mb-2">Cảnh lùi góc rộng thấy cả người quay, đèn chiếu, tạo sự gần gũi chân thật.</p>
+            <span class="text-[11px] text-slate-400 bg-dark-card px-2.5 py-1 rounded inline-block">Phá vỡ bức tường thứ 4, tăng độ tin cậy</span>
+          </div>
+
+          <div class="bg-dark-surface p-5 rounded-2xl border border-dark-border">
+            <div class="text-amber-400 font-bold text-sm mb-1">4. Prop &amp; Metaphor (Ẩn Dụ Đạo Cụ)</div>
+            <p class="text-xs text-slate-300 mb-2">Dùng đồ vật tượng trưng cho cảm xúc hoặc áp lực.</p>
+            <span class="text-[11px] text-slate-400 bg-dark-card px-2.5 py-1 rounded inline-block">Đồng hồ cát chảy cho sự vội vã trước giờ thi</span>
+          </div>
+
+          <div class="bg-dark-surface p-5 rounded-2xl border border-dark-border">
+            <div class="text-emerald-400 font-bold text-sm mb-1">5. Macro / Extreme Close-up (Chi Tiết)</div>
+            <p class="text-xs text-slate-300 mb-2">Dí sát camera 5cm đặc tả bề mặt chất liệu, giọt nước, đường may.</p>
+            <span class="text-[11px] text-slate-400 bg-dark-card px-2.5 py-1 rounded inline-block">Tạo cảm giác sản phẩm cao cấp, đắt giá</span>
+          </div>
+
+          <div class="bg-dark-surface p-5 rounded-2xl border border-dark-border">
+            <div class="text-indigo-400 font-bold text-sm mb-1">6. In-Camera Transitions</div>
+            <p class="text-xs text-slate-300 mb-2">Chuyển cảnh bằng cú lia tay không cần kỹ xảo.</p>
+            <span class="text-[11px] text-slate-400 bg-dark-card px-2.5 py-1 rounded inline-block">Whip Pan (lia nhanh), Object Block (che vật thể)</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Workshop Table Setup -->
+      <div class="bg-gradient-to-r from-emerald-950/40 via-dark-surface to-sky-950/40 p-6 sm:p-8 rounded-2xl border border-emerald-500/30">
+        <h4 class="text-lg font-bold text-white mb-3 flex items-center gap-2">
+          <i class="fa-solid fa-camera text-emerald-400"></i> Hướng Dẫn Tự Chế "Bàn Quay Sản Phẩm Studio Mini" Tại Lớp
+        </h4>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs sm:text-sm text-slate-300">
+          <div class="p-4 rounded-xl bg-dark-card/90 border border-dark-border">
+            <strong class="text-emerald-300 block mb-1.5"><i class="fa-solid fa-image mr-1"></i> Phông Nền Đơn Sắc</strong>
+            Sử dụng 1 tờ bìa cứng khổ A2 hoặc A3 màu đen/trắng uốn cong nhẹ từ mặt bàn lên tường làm phông nền vô cực (Infinity curve), xóa bỏ mọi đường viền góc bàn.
+          </div>
+          <div class="p-4 rounded-xl bg-dark-card/90 border border-dark-border">
+            <strong class="text-emerald-300 block mb-1.5"><i class="fa-solid fa-lightbulb mr-1"></i> Đèn Chiếu Góc Nghiêng 45°</strong>
+            Dùng đèn pin điện thoại thứ hai bọc giấy ăn ăn sáng để tạo nguồn sáng chính (Key light) chiếu góc 45 độ, làm nổi khối kim loại và độ bóng của sản phẩm.
+          </div>
+          <div class="p-4 rounded-xl bg-dark-card/90 border border-dark-border">
+            <strong class="text-emerald-300 block mb-1.5"><i class="fa-solid fa-arrows-spin mr-1"></i> Bàn Xoay Tự Chế</strong>
+            Đặt sản phẩm lên 1 chiếc đĩa sứ hoặc tờ giấy bìa tròn. Dùng ngón tay xoay nhẹ chiếc đĩa để tạo cú quay 360 độ mượt mà như dùng bàn xoay điện ảnh triệu đồng!
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================= -->
+    <!-- TAB 5: BUỔI 5 -->
+    <!-- ================================================================= -->
+    <section id="content-buoi5" class="tab-content hidden space-y-8">
+      <div class="gradient-border p-6 sm:p-8">
+        <div class="flex items-center gap-2 text-rose-400 text-xs font-mono tracking-widest uppercase mb-2">
+          <span>MODULE 05</span> • <span>THỜI LƯỢNG: 150-180 PHÚT</span>
+        </div>
+        <h2 class="text-2xl sm:text-3xl font-bold font-display text-white mb-3">
+          Thực Hành Nhóm Toàn Diện &amp; Sáng Tạo Web Trình Diễn Bằng Gemini AI
+        </h2>
+        <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
+          Đỉnh cao của khóa học: Từng nhóm hoàn thiện hậu kỳ video, sau đó ứng dụng công nghệ trí tuệ nhân tạo thế hệ mới Google Gemini để tự động lập trình một Website Landing Page tuyệt đẹp nhằm trưng bày sản phẩm nhóm, tham gia Lễ Công Chiếu &amp; Tranh Giải Sáng Tạo Số!
+        </p>
+      </div>
+
+      <!-- Hai Trụ Cột Buổi 5 -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- Trụ cột 1 -->
+        <div class="bg-dark-surface p-6 rounded-2xl border border-dark-border">
+          <div class="w-10 h-10 rounded-xl bg-purple-500/10 text-purple-400 flex items-center justify-center mb-4 text-lg">
+            <i class="fa-solid fa-film"></i>
+          </div>
+          <h3 class="text-lg font-bold text-white mb-2">Phần 1: Hoàn Thiện Hậu Kỳ Video Nhóm</h3>
+          <ul class="space-y-2.5 text-sm text-slate-300">
+            <li class="flex items-start gap-2">
+              <i class="fa-solid fa-check text-purple-400 text-xs mt-1"></i>
+              <span><strong>Đè B-Roll bằng Lớp Phủ (Overlay):</strong> Căn đúng giây cần minh họa để chèn B-Roll đè lên A-Roll, tạo nhịp điệu sinh động.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <i class="fa-solid fa-check text-purple-400 text-xs mt-1"></i>
+              <span><strong>Thêm Sound Effect (SFX):</strong> Tiếng "Whoosh" khi lia máy, tiếng "Pop" khi xuất hiện dòng chữ, tiếng "Ding" khi giải pháp xuất hiện.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <i class="fa-solid fa-check text-purple-400 text-xs mt-1"></i>
+              <span><strong>Cân bằng âm lượng (Audio Mixing):</strong> Giọng nói thoại: 100%, Nhạc nền BGM: 10-15%, Sound Effect: 60-80%.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <i class="fa-solid fa-check text-purple-400 text-xs mt-1"></i>
+              <span><strong>Xuất video chuẩn:</strong> Xóa màn hình đen kết thúc có logo CapCut, xuất video 1080p sắc nét.</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Trụ cột 2 -->
+        <div class="bg-dark-surface p-6 rounded-2xl border border-dark-border">
+          <div class="w-10 h-10 rounded-xl bg-sky-500/10 text-sky-400 flex items-center justify-center mb-4 text-lg">
+            <i class="fa-solid fa-brain"></i>
+          </div>
+          <h3 class="text-lg font-bold text-white mb-2">Phần 2: Sáng Tạo Web Bằng Google Gemini</h3>
+          <ul class="space-y-2.5 text-sm text-slate-300">
+            <li class="flex items-start gap-2">
+              <i class="fa-solid fa-check text-sky-400 text-xs mt-1"></i>
+              <span><strong>Gemini là gì?</strong> Trợ lý AI thế hệ mới của Google, có khả năng viết kịch bản, sửa lời thoại và viết mã code trang web chỉ trong vài giây.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <i class="fa-solid fa-check text-sky-400 text-xs mt-1"></i>
+              <span><strong>Không cần biết lập trình:</strong> Học sinh chỉ cần ra lệnh bằng ngôn ngữ tiếng Việt tự nhiên (Prompting) theo mẫu có sẵn.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <i class="fa-solid fa-check text-sky-400 text-xs mt-1"></i>
+              <span><strong>Sản phẩm Website:</strong> Một trang web Landing Page hiện đại gồm: Tên dự án, Video nhúng, Danh sách thành viên và Hậu trường làm phim.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <i class="fa-solid fa-check text-sky-400 text-xs mt-1"></i>
+              <span><strong>Mở trực tiếp trên máy:</strong> Copy mã từ Gemini dán vào file `index.html` và mở trên trình duyệt Safari/Chrome.</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- GEMINI PROMPT TEMPLATE BOX -->
+      <div class="bg-dark-surface p-6 sm:p-8 rounded-2xl border border-indigo-500/40 relative">
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+          <div class="flex items-center gap-2">
+            <span class="w-8 h-8 rounded-lg bg-indigo-600 text-white flex items-center justify-center text-sm font-bold">
+              <i class="fa-solid fa-terminal"></i>
+            </span>
+            <h4 class="text-base sm:text-lg font-bold text-white">Thần Chú Prompt Mẫu Để Học Sinh Gửi Cho Gemini AI</h4>
+          </div>
+          <button onclick="copyPrompt()" class="px-3 py-1.5 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold flex items-center gap-1.5 transition-all">
+            <i class="fa-regular fa-copy"></i> <span id="copy-text">Sao Chép Prompt</span>
+          </button>
+        </div>
+
+        <p class="text-xs text-slate-400 mb-3">Học sinh đăng nhập vào trang <a href="https://gemini.google.com" target="_blank" class="text-sky-400 underline">gemini.google.com</a>, dán toàn bộ đoạn câu lệnh sau và điền thông tin nhóm của mình:</p>
+
+        <div class="bg-dark-bg p-4 rounded-xl border border-dark-border font-mono text-xs sm:text-sm text-slate-300 leading-relaxed overflow-x-auto" id="gemini-prompt-content">
+Bạn là một chuyên gia thiết kế web UI/UX hàng đầu. Hãy viết giúp tôi một trang web đơn (Single Page HTML) tuyệt đẹp, hiện đại chuẩn phong cách Dark Mode và tương thích 100% trên điện thoại di động (Responsive).
+
+Thông tin dự án nhóm của tôi:
+- Tên nhóm: [Điền tên nhóm, ví dụ: Nhóm 1 - The Creators]
+- Tên sản phẩm video: [Điền tên, ví dụ: Video Quảng Cáo Bình Giữ Nhiệt Học Đường]
+- Khẩu hiệu (Slogan): [Ví dụ: Giữ lạnh 24h - Đồng hành cùng từng tiết học]
+- Danh sách thành viên và vai trò:
+  + Bạn A: Trưởng nhóm & Đạo diễn
+  + Bạn B: Biên kịch kịch bản
+  + Bạn C: Quay phim & DOP
+  + Bạn D: Hậu kỳ dựng phim CapCut
+  + Bạn E: Web Master & Điều khiển AI
+
+Yêu cầu thiết kế trang web:
+1. Sử dụng thư viện Tailwind CSS qua CDN và icon FontAwesome.
+2. Tone màu chủ đạo: Nền tối sang trọng (#0A0F1D), chữ sáng, các nút bấm gradient tím xanh nổi bật.
+3. Cấu trúc trang gồm các phần:
+   - Header Hero: Tên nhóm, tiêu đề video và câu khẩu hiệu ấn tượng.
+   - Video Section: Một khung phát video (Video Player hoặc khung nhúng video 9:16 dọc) có nút Play và thông tin phân cảnh.
+   - Kịch Bản Tóm Tắt: Trình bày kịch bản 2 cột trực quan (Hình ảnh & Âm thanh) cho mọi người cùng đọc.
+   - Đội Ngũ Sáng Tạo: Thẻ card giới thiệu từng thành viên trong nhóm kèm chức danh.
+   - Footer: Lời cảm ơn thầy cô và thông tin lớp học.
+4. Trả về cho tôi duy nhất một khối mã HTML hoàn chỉnh từ &lt;!DOCTYPE html&gt; đến &lt;/html&gt; để tôi có thể lưu thành file index.html và mở trực tiếp trên trình duyệt.
+        </div>
+      </div>
+
+      <!-- Showcase & Ceremony -->
+      <div class="bg-gradient-to-r from-amber-950/40 via-dark-surface to-rose-950/40 p-6 sm:p-8 rounded-2xl border border-amber-500/30">
+        <div class="flex items-center gap-3 mb-3">
+          <span class="w-8 h-8 rounded-full bg-amber-500 text-slate-950 flex items-center justify-center font-bold text-sm">
+            <i class="fa-solid fa-trophy"></i>
+          </span>
+          <h4 class="text-lg font-bold text-white">Lễ Công Chiếu, Tranh Biện &amp; Trao Giải Cuối Khóa</h4>
+        </div>
+        <p class="text-sm text-slate-300 mb-4 leading-relaxed">
+          Từng nhóm bước lên bục giảng trình diễn: Chiếu video 30s trên máy chiếu lớn, bật trang web giới thiệu dự án vừa được Gemini tạo ra, và thuyết trình 2 phút về hành trình từ ý tưởng đến thành phẩm. Ban giám khảo chấm điểm theo Rubric và trao 3 giải thưởng danh giá:
+        </p>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs sm:text-sm font-semibold">
+          <div class="p-3 bg-dark-bg/80 rounded-xl border border-amber-500/30 text-amber-300 flex items-center gap-2">
+            <i class="fa-solid fa-medal text-lg text-amber-400"></i> Video Sáng Tạo &amp; Viral Nhất
+          </div>
+          <div class="p-3 bg-dark-bg/80 rounded-xl border border-indigo-500/30 text-indigo-300 flex items-center gap-2">
+            <i class="fa-solid fa-medal text-lg text-indigo-400"></i> Kịch Bản 2 Cột Xuất Sắc Nhất
+          </div>
+          <div class="p-3 bg-dark-bg/80 rounded-xl border border-sky-500/30 text-sky-300 flex items-center gap-2">
+            <i class="fa-solid fa-medal text-lg text-sky-400"></i> Website Gemini Đỉnh Cao Nhất
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================= -->
+    <!-- TAB 6: RUBRIC CHẤM ĐIỂM -->
+    <!-- ================================================================= -->
+    <section id="content-rubric" class="tab-content hidden space-y-8">
+      <div class="gradient-border p-6 sm:p-8">
+        <div class="flex items-center gap-2 text-amber-400 text-xs font-mono tracking-widest uppercase mb-2">
+          <span>EVALUATION RUBRIC</span> • <span>THANG ĐIỂM 100</span>
+        </div>
+        <h2 class="text-2xl sm:text-3xl font-bold font-display text-white mb-3">
+          Tiêu Chí Đánh Giá Toàn Diện Dự Án Video &amp; Web Nhóm
+        </h2>
+        <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
+          Bảng tiêu chuẩn chấm điểm minh bạch, công bằng giúp học sinh hiểu rõ các yếu tố cấu thành một sản phẩm truyền thông số chất lượng cao trong thực tế.
+        </p>
+      </div>
+
+      <!-- Rubric Table -->
+      <div class="bg-dark-surface p-6 sm:p-8 rounded-2xl border border-dark-border overflow-x-auto">
+        <table class="w-full text-left text-xs sm:text-sm border-collapse min-w-[650px]">
+          <thead>
+            <tr class="border-b border-dark-border text-slate-400 bg-dark-bg/60">
+              <th class="p-3.5 w-1/4">Tiêu Chí Đánh Giá</th>
+              <th class="p-3.5 w-24 text-center">Trọng Số</th>
+              <th class="p-3.5 w-1/4">Mức Đạt (50 - 75%)</th>
+              <th class="p-3.5 w-1/3">Mức Xuất Sắc (75 - 100%)</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-dark-border text-slate-300">
+            <tr>
+              <td class="p-3.5 font-bold text-white">
+                1. Ý tưởng &amp; Kịch bản 2 Cột<br>
+                <span class="text-slate-400 text-xs font-normal">Hook 3s, cấu trúc giữ chân, thông điệp</span>
+              </td>
+              <td class="p-3.5 font-mono text-center font-bold text-indigo-400">25 Điểm</td>
+              <td class="p-3.5">Có câu Hook, kịch bản 2 cột đầy đủ, thông điệp dễ hiểu nhưng chưa nhiều bất ngờ.</td>
+              <td class="p-3.5 text-emerald-300">Hook bùng nổ, câu chuyện cuốn hút, kịch bản 2 cột chuẩn chỉ, gây ấn tượng mạnh mẽ cho Gen Z.</td>
+            </tr>
+            <tr>
+              <td class="p-3.5 font-bold text-white">
+                2. Kỹ Thuật Quay &amp; Cảnh Trám B-Roll<br>
+                <span class="text-slate-400 text-xs font-normal">Khóa nét, ánh sáng, 5 loại B-roll, lia máy</span>
+              </td>
+              <td class="p-3.5 font-mono text-center font-bold text-sky-400">25 Điểm</td>
+              <td class="p-3.5">Khung hình tương đối chắc chắn, có 3-4 cảnh B-roll minh họa đúng lúc.</td>
+              <td class="p-3.5 text-emerald-300">Hình ảnh nét căng, ánh sáng đẹp mắt, áp dụng đủ các kiểu B-roll đặc tả chi tiết, chuyển cảnh in-camera mượt.</td>
+            </tr>
+            <tr>
+              <td class="p-3.5 font-bold text-white">
+                3. Hậu Kỳ CapCut &amp; Xử Lý Âm Thanh<br>
+                <span class="text-slate-400 text-xs font-normal">Nhịp Jump-cut, Sound Effect (SFX), phụ đề</span>
+              </td>
+              <td class="p-3.5 font-mono text-center font-bold text-purple-400">25 Điểm</td>
+              <td class="p-3.5">Cắt gọt gọn gàng, nhạc nền vừa vặn, có phụ đề tự động dễ đọc.</td>
+              <td class="p-3.5 text-emerald-300">Nhịp dựng khớp đúng beat nhạc, hiệu ứng âm thanh SFX chân thực từng chuyển động, màu sắc tươi tắn.</td>
+            </tr>
+            <tr>
+              <td class="p-3.5 font-bold text-white">
+                4. Website Dự Án Bằng Gemini AI<br>
+                <span class="text-slate-400 text-xs font-normal">Giao diện, nhúng video, giới thiệu nhóm</span>
+              </td>
+              <td class="p-3.5 font-mono text-center font-bold text-amber-400">15 Điểm</td>
+              <td class="p-3.5">Tạo được web bằng Gemini nhưng giao diện đơn giản, chưa đầy đủ thông tin thành viên.</td>
+              <td class="p-3.5 text-emerald-300">Website hoàn thiện tuyệt đẹp, responsive chuẩn điện thoại, hiển thị video mượt mà, đầy đủ các mục.</td>
+            </tr>
+            <tr>
+              <td class="p-3.5 font-bold text-white">
+                5. Tinh Thần Đồng Đội &amp; Thuyết Trình<br>
+                <span class="text-slate-400 text-xs font-normal">Phân công vai trò, phong thái sân khấu</span>
+              </td>
+              <td class="p-3.5 font-mono text-center font-bold text-rose-400">10 Điểm</td>
+              <td class="p-3.5">Các thành viên đều có đóng góp, thuyết trình rõ ràng đúng thời gian.</td>
+              <td class="p-3.5 text-emerald-300">Phối hợp nhóm ăn ý, tự tin làm chủ sân khấu, trả lời phản biện xuất sắc, truyền cảm hứng.</td>
+            </tr>
+            <tr class="bg-indigo-950/30">
+              <td class="p-3.5 font-bold text-white text-base">TỔNG ĐIỂM TỐI ĐA</td>
+              <td class="p-3.5 font-mono text-center font-bold text-white text-base">100 Điểm</td>
+              <td colspan="2" class="p-3.5 text-indigo-300 font-medium italic">Sản phẩm đạt từ 85 điểm trở lên sẽ được trao chứng nhận Xuất Sắc và đề cử tham gia hội thi truyền thông học đường!</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="border-t border-dark-border bg-dark-surface py-8 mt-12">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 flex flex-wrap items-center justify-between gap-4">
+      <div class="text-xs text-slate-400">
+        <p class="font-semibold text-slate-300 mb-0.5">FEDU CREATIVE ACADEMY • HỆ THỐNG ĐÀO TẠO SỐ</p>
+        <p>© 2026 Bản quyền tài liệu thuộc về Thầy Nguyễn Việt. Thiết kế chuyên biệt cho học sinh THPT.</p>
+      </div>
+      <div class="flex items-center gap-3 text-xs">
+        <span class="px-3 py-1 rounded-lg bg-dark-bg border border-dark-border text-slate-300">
+          <i class="fa-solid fa-file-excel text-emerald-400 mr-1"></i> File Excel 5 Sheets Đã Sẵn Sàng
+        </span>
+        <span class="px-3 py-1 rounded-lg bg-dark-bg border border-dark-border text-slate-300">
+          <i class="fa-solid fa-globe text-sky-400 mr-1"></i> GitHub Pages Sync Ready
+        </span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- SCRIPT INTERACTIVE -->
+  <script>
+    function switchTab(tabId) {
+      // Ẩn tất cả tab contents
+      document.querySelectorAll('.tab-content').forEach(el => {
+        el.classList.add('hidden');
+      });
+      // Bỏ active tất cả buttons
+      document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.classList.remove('active');
+        btn.classList.remove('bg-indigo-600', 'text-white');
+        if (btn.id !== 'btn-rubric') {
+          btn.classList.add('text-slate-300');
+        }
+      });
+
+      // Hiện tab được chọn
+      const targetContent = document.getElementById('content-' + tabId);
+      if (targetContent) {
+        targetContent.classList.remove('hidden');
+      }
+
+      // Active button tương ứng
+      const targetBtn = document.getElementById('btn-' + tabId);
+      if (targetBtn) {
+        targetBtn.classList.add('active');
+      }
+
+      // Cuộn nhẹ lên đầu main nếu đang ở dưới
+      window.scrollTo({ top: 200, behavior: 'smooth' });
+    }
+
+    function copyPrompt() {
+      const promptText = document.getElementById('gemini-prompt-content').innerText;
+      navigator.clipboard.writeText(promptText).then(() => {
+        const copyText = document.getElementById('copy-text');
+        copyText.innerText = 'Đã Sao Chép!';
+        setTimeout(() => {
+          copyText.innerText = 'Sao Chép Prompt';
+        }, 2000);
+      });
+    }
+  </script>
+</body>
+</html>
