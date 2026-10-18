@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CẨM NANG CẤU TRÚC GIÁ &amp; KỊCH BẢN GỌI ĐIỆN OFFLINE K4 (07–08/11/2026)</title>
+  
+  <!-- FAVICON SVG INLINE: CHUẨN "VIDEO" (REC MONOGRAM) -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230f172a'/%3E%3Ctext x='32' y='28' font-family='Arial, sans-serif' font-weight='900' font-size='16' fill='%23ffffff' text-anchor='middle' letter-spacing='1'%3EVI%3C/text%3E%3Ccircle cx='44' cy='22' r='4' fill='%23EF4444'/%3E%3Ctext x='32' y='46' font-family='Arial, sans-serif' font-weight='900' font-size='16' fill='%23ffffff' text-anchor='middle' letter-spacing='1'%3EDEO%3C/text%3E%3C/svg%3E">
+
+  <!-- FONTS: Fedu CDN -->
+  <style>
+    @font-face { font-family: 'FD Aeonik Extended'; src: url('https://fedu.vn/k/fonts/FDAeonikExtended-Bold.woff2') format('woff2'); font-weight: 700; font-display: swap; }
+    @font-face { font-family: 'FD Aeonik Extended'; src: url('https://fedu.vn/k/fonts/FDAeonikExtended-SemiBold.woff2') format('woff2'); font-weight: 600; font-display: swap; }
+    @font-face { font-family: 'FD Aeonik'; src: url('https://fedu.vn/k/fonts/FDAeonikMedium.ttf') format('truetype'); font-weight: 500; font-display: swap; }
+    @font-face { font-family: 'FD Aeonik'; src: url('https://fedu.vn/k/fonts/FDAeonikRegular.ttf') format('truetype'); font-weight: 400; font-display: swap; }
+    @font-face { font-family: 'Tiempos Text'; src: url('https://fedu.vn/k/fonts/FDTiemposText-Bold.woff2') format('woff2'); font-weight: 700; font-display: swap; }
+    @font-face { font-family: 'Tiempos Text'; src: url('https://fedu.vn/k/fonts/FDTiemposText-Medium.woff2') format('woff2'); font-weight: 500; font-display: swap; }
+    @font-face { font-family: 'Tiempos Text'; src: url('https://fedu.vn/k/fonts/FDTiemposText-Regular.woff2') format('woff2'); font-weight: 400; font-display: swap; }
+    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700&display=swap');
+  </style>
+
+  <style>
+    /* ==========================================================================
+       INKDOC CSS - ZERO ANIMATION, SLATE MONOCHROME
+       ========================================================================== */
+    :root {
+      /* Colors: Slate Grayscale */
+      --ink-bg: #ffffff;
+      --ink-sidebar: #f8fafc;
+      --ink-text: #0f172a;
+      --ink-muted: #64748b;
+      --ink-border: #e2e8f0;
+      --ink-hover: #f1f5f9;
+      --ink-accent: #0f172a; /* Neutral accent instead of colors */
+      --ink-dialogue-bg: #f8fafc;
+      
+      /* Typography */
+      --font-display: 'FD Aeonik Extended', -apple-system, sans-serif;
+      --font-heading: 'FD Aeonik', -apple-system, sans-serif;
+      --font-body: 'Tiempos Text', Georgia, serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      
+      /* Layout Config */
+      --sidebar-width: 260px;
+      --content-max-width: 720px; /* Default for Article */
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: auto; font-size: 16px; }
+    body {
+      background-color: var(--ink-bg);
+      color: var(--ink-text);
+      font-family: var(--font-body);
+      line-height: 1.82;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      display: flex;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* TYPOGRAPHY */
+    h1, h2, h3, h4, h5, h6 {
+      color: var(--ink-text);
+      font-weight: 600;
+      line-height: 1.35;
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+      font-family: var(--font-heading);
+    }
+    
+    /* Short Titles (<8 words) use Extended */
+    h1.is-short, .title-short {
+      font-family: var(--font-display);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: -0.01em;
+      font-size: clamp(28px, 4vw, 40px);
+      line-height: 1.15;
+    }
+    
+    h1:not(.is-short) { font-size: clamp(24px, 3.5vw, 34px); font-weight: 600; }
+    h2 { font-size: clamp(20px, 2.5vw, 24px); border-bottom: 1px solid var(--ink-border); padding-bottom: 0.5rem; margin-top: 3rem; }
+    h3 { font-size: 1.15rem; }
+    
+    p, ul, ol, blockquote, pre, table { margin-bottom: 1.5rem; font-size: 1.125rem; /* 18px */ }
+    ul, ol { padding-left: 1.5rem; }
+    li { margin-bottom: 0.5rem; }
+    
+    a { color: var(--ink-accent); text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--ink-muted); transition: text-decoration-color 0.2s; }
+    a:hover { text-decoration-color: var(--ink-accent); }
+    
+    blockquote {
+      border-left: 3px solid var(--ink-border);
+      padding-left: 1.25rem;
+      font-style: italic;
+      color: var(--ink-text);
+      font-weight: 500;
+    }
+
+    code {
+      font-family: var(--font-mono);
+      font-size: 0.85em;
+      background-color: var(--ink-hover);
+      padding: 0.2em 0.4em;
+      border-radius: 4px;
+    }
+    pre {
+      background-color: var(--ink-sidebar);
+      padding: 1.25rem;
+      border-radius: 8px;
+      border: 1px solid var(--ink-border);
+      overflow-x: auto;
+    }
+    pre code { background: none; padding: 0; font-size: 0.9em; }
+
+    /* GIỮ LUỒNG ĐỌC (FOCUS MODE) TRÊN DESKTOP */
+    @media (hover: hover) and (pointer: fine) {
+      .ink-content p, .ink-content li {
+        transition: background-color 0.2s ease, opacity 0.2s ease;
+        padding: 4px 8px;
+        margin-left: -8px;
+        margin-right: -8px;
+        border-radius: 6px;
+      }
+      .ink-content:hover p:not(:hover), .ink-content:hover li:not(:hover) {
+        opacity: 0.45;
+      }
+      .ink-content p:hover, .ink-content li:hover {
+        background-color: var(--ink-hover);
+        opacity: 1 !important;
+      }
+    }
+
+    hr { border: 0; border-top: 1px solid var(--ink-border); margin: 3rem 0; }
+
+    /* Bảng biểu */
+    table { width: 100%; border-collapse: collapse; margin-bottom: 2rem; font-family: var(--font-heading); font-size: 0.95rem; }
+    th, td { padding: 12px 16px; border-bottom: 1px solid var(--ink-border); text-align: left; }
+    th { font-weight: 600; color: var(--ink-muted); text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.05em; border-bottom: 2px solid var(--ink-border); }
+
+    /* LAYOUT: SIDEBAR */
+    .ink-sidebar {
+      width: var(--sidebar-width);
+      flex-shrink: 0;
+      background-color: var(--ink-sidebar);
+      border-right: 1px solid var(--ink-border);
+      height: 100vh;
+      position: sticky;
+      top: 0;
+      overflow-y: auto;
+      padding: 2rem 1.5rem;
+      font-family: var(--font-heading);
+    }
+    .ink-sidebar-header { margin-bottom: 2rem; }
+    .ink-brand { font-family: var(--font-display); font-weight: 700; font-size: 1rem; letter-spacing: 1px; color: var(--ink-text); text-decoration: none; text-transform: uppercase;}
+    
+    .ink-toc-title {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      font-weight: 600;
+      color: var(--ink-muted);
+      letter-spacing: 0.05em;
+      margin-bottom: 1rem;
+    }
+    
+    .ink-toc-list { list-style: none; padding: 0; margin: 0; }
+    .ink-toc-list li { margin-bottom: 0.25rem; }
+    .ink-toc-link {
+      display: block;
+      padding: 0.4rem 0.75rem;
+      color: var(--ink-muted);
+      text-decoration: none;
+      font-size: 0.875rem;
+      border-radius: 6px;
+      transition: background 0.15s, color 0.15s;
+    }
+    .ink-toc-link:hover { background-color: var(--ink-hover); color: var(--ink-text); }
+    .ink-toc-link.is-active {
+      background-color: var(--ink-hover);
+      color: var(--ink-text);
+      font-weight: 600;
+    }
+    .ink-toc-nested { padding-left: 1rem; margin-top: 0.25rem; display: none; }
+    .ink-toc-link.is-active + .ink-toc-nested, .ink-toc-nested:has(.is-active) { display: block; } /* Auto expand nested TOC */
+
+    /* LAYOUT: CONTENT */
+    .ink-main-wrapper {
+      flex-grow: 1;
+      padding: 4rem 3rem;
+      display: flex;
+      justify-content: center;
+    }
+    .ink-content {
+      width: 100%;
+      max-width: var(--content-max-width);
+    }
+    
+    .ink-meta {
+      display: flex;
+      gap: 1rem;
+      font-family: var(--font-heading);
+      font-size: 0.875rem;
+      color: var(--ink-muted);
+      margin-bottom: 2.5rem;
+      align-items: center;
+    }
+    .ink-badge {
+      font-family: var(--font-mono);
+      text-transform: uppercase;
+      font-size: 0.75rem;
+      padding: 4px 8px;
+      border: 1px solid var(--ink-border);
+      border-radius: 99px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      color: var(--ink-text);
+    }
+
+    /* ==========================================================================
+       MODE 1: ARTICLE (Default)
+       ========================================================================== */
+    .ink-mode-article {
+      --content-max-width: 720px;
+    }
+
+    /* ==========================================================================
+       MODE 2: DIALOGUE (Chat/Q&A)
+       ========================================================================== */
+    .ink-mode-dialogue {
+      --content-max-width: 760px;
+    }
+    .dialogue-turn { margin-bottom: 2.5rem; }
+    .dialogue-prompt {
+      background-color: var(--ink-dialogue-bg);
+      border: 1px solid var(--ink-border);
+      border-radius: 12px;
+      padding: 1.25rem 1.5rem;
+      margin-bottom: 1.5rem;
+      font-family: var(--font-heading);
+    }
+    .dialogue-prompt summary {
+      font-weight: 600;
+      cursor: pointer;
+      font-size: 1rem;
+      color: var(--ink-text);
+      list-style-position: inside;
+    }
+    .dialogue-prompt summary::-webkit-details-marker { display: none; } /* Hide default arrow */
+    .dialogue-prompt summary::before { content: 'Q: '; color: var(--ink-muted); font-family: var(--font-mono); font-size: 0.85em; }
+    .dialogue-prompt[open] summary { margin-bottom: 1rem; border-bottom: 1px solid var(--ink-border); padding-bottom: 0.5rem; }
+    .dialogue-response {
+      padding-left: 1rem;
+      border-left: 2px solid var(--ink-border);
+    }
+
+    /* ==========================================================================
+       MODE 3: REFERENCE (Wiki/Doc)
+       ========================================================================== */
+    .ink-mode-reference {
+      --content-max-width: 800px;
+    }
+    /* Right aligned InfoBox typical of Wikipedia */
+    .ink-infobox {
+      float: right;
+      width: 280px;
+      margin: 0 0 1.5rem 2rem;
+      border: 1px solid var(--ink-border);
+      background-color: var(--ink-sidebar);
+      padding: 1rem;
+      border-radius: 8px;
+      font-family: var(--font-heading);
+      font-size: 0.875rem;
+    }
+    .ink-infobox-title { font-weight: 700; text-align: center; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--ink-border); }
+    .ink-infobox dl { display: grid; grid-template-columns: 1fr 2fr; gap: 0.5rem; }
+    .ink-infobox dt { font-weight: 600; color: var(--ink-muted); }
+    .ink-infobox dd { margin: 0; color: var(--ink-text); }
+
+    /* MOBILE MENU TOGGLE & OVERLAY */
+    .ink-mobile-nav {
+      display: none;
+      position: sticky;
+      top: 0;
+      background: var(--ink-bg);
+      border-bottom: 1px solid var(--ink-border);
+      padding: 1rem;
+      z-index: 100;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .ink-menu-btn {
+      background: none; border: 1px solid var(--ink-border); border-radius: 4px;
+      padding: 0.5rem; cursor: pointer; font-family: var(--font-heading);
+    }
+    .ink-overlay {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(15, 23, 42, 0.6);
+      z-index: 999;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      backdrop-filter: blur(2px);
+    }
+    .ink-overlay.is-open {
+      display: block;
+      opacity: 1;
+    }
+    .ink-close-btn {
+      display: none;
+      background: none; border: none; cursor: pointer;
+      font-size: 1.25rem; color: var(--ink-text);
+      padding: 0.25rem;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 992px) {
+      body { flex-direction: column; }
+      .ink-mobile-nav { display: flex; }
+      .ink-sidebar {
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: -100%;
+        transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        z-index: 1000;
+        box-shadow: 4px 0 24px rgba(0,0,0,0.15);
+        max-width: 320px;
+        width: 85vw;
+      }
+      .ink-sidebar.is-open { left: 0; }
+      .ink-close-btn { display: block; }
+      
+      .ink-main-wrapper { padding: 2rem 1.25rem; }
+      .ink-infobox { float: none; width: 100%; margin: 0 0 2rem 0; }
+    }
+    
+    @media (max-width: 768px) {
+      .ink-main-wrapper { padding: 1.5rem 1rem; }
+      
+      /* Typography adjustments for Mobile */
+      h1.is-short, .title-short { font-size: clamp(24px, 7vw, 32px); }
+      h1:not(.is-short) { font-size: clamp(22px, 6vw, 28px); }
+      h2 { font-size: clamp(18px, 5.5vw, 22px); margin-top: 2rem; }
+      h3 { font-size: 1.1rem; }
+      
+      p, ul, ol, blockquote, pre, table { font-size: 1rem; margin-bottom: 1.25rem; line-height: 1.6; }
+      
+      /* Avoid horizontal overflow */
+      .ink-content { width: 100%; max-width: 100vw; overflow-wrap: break-word; }
+      pre, table, .ink-content img { max-width: 100%; overflow-x: auto; }
+      .dialogue-prompt { padding: 1rem; }
+      .ink-meta { flex-wrap: wrap; gap: 0.5rem; }
+    }
+    
+    /* PRINT MEDIA */
+    @media print {
+      .ink-sidebar, .ink-mobile-nav { display: none !important; }
+      .ink-main-wrapper { padding: 0; }
+      .ink-content { max-width: 100%; }
+      body { font-size: 12pt; color: #000; background: #fff; }
+      a { text-decoration: none; color: #000; }
+      h1, h2, h3 { page-break-after: avoid; }
+      img { page-break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- MOBILE NAV -->
+  <div class="ink-mobile-nav">
+    <a href="#" class="ink-brand">VIDEO DOCS</a>
+    <button class="ink-menu-btn" onclick="document.querySelector('.ink-sidebar').classList.add('is-open'); document.querySelector('.ink-overlay').classList.add('is-open');">MỤC LỤC</button>
+  </div>
+
+  <!-- MOBILE OVERLAY -->
+  <div class="ink-overlay" onclick="document.querySelector('.ink-sidebar').classList.remove('is-open'); this.classList.remove('is-open');"></div>
+
+  <!-- SIDEBAR TOC -->
+  <aside class="ink-sidebar">
+    <div class="ink-sidebar-header" style="display: flex; justify-content: space-between; align-items: center;">
+      <a href="#" class="ink-brand">VIDEO DOCS</a>
+      <button class="ink-close-btn" onclick="document.querySelector('.ink-sidebar').classList.remove('is-open'); document.querySelector('.ink-overlay').classList.remove('is-open');">✕</button>
+    </div>
+    
+    <div class="ink-toc-title">MỤC LỤC</div>
+    <ul class="ink-toc-list">
+      <!-- MẪU RÁP TOC:
+      <li>
+        <a href="#sec-1" class="ink-toc-link">1. Khái niệm cốt lõi</a>
+        <ul class="ink-toc-list ink-toc-nested">
+          <li><a href="#sec-1-1" class="ink-toc-link">1.1. Chi tiết A</a></li>
+        </ul>
+      </li>
+      -->
+      <li><a href="#1-giai-phau-tam-ly-ca-thuc-te-vi-sao-khach-dang-hao-hung-lai-ngap-ngung-khi-nghe-gia" class="ink-toc-link">1. Giải phẫu tâm lý ca thực tế: Vì sao khách đang hào hứng lại ngập ngừng khi nghe giá?</a>
+<ul class="ink-toc-list ink-toc-nested">
+<li><a href="#ba-bai-hoc-cot-loi-rut-ra-cho-khoa-k4" class="ink-toc-link">Ba bài học cốt lõi rút ra cho Khóa K4</a></li>
+</ul></li>
+<li><a href="#2-thay-doi-tren-landing-page-offlinefeduvn-sua-the-nao-va-vi-sao" class="ink-toc-link">2. Thay đổi trên Landing Page (offline.fedu.vn): Sửa thế nào và vì sao?</a>
+<ul class="ink-toc-list ink-toc-nested">
+<li><a href="#21-ba-nguyen-tac-hoi-chan-tu-claude-opus-truoc-khi-sua-web" class="ink-toc-link">2.1. Ba nguyên tắc hội chẩn từ Claude Opus trước khi sửa Web</a></li>
+<li><a href="#22-bang-chi-tiet-4-vi-tri-cap-nhat-tren-offlinefeduvn" class="ink-toc-link">2.2. Bảng chi tiết 4 vị trí cập nhật trên offline.fedu.vn</a></li>
+</ul></li>
+<li><a href="#3-khi-web-da-hien-gia-45-trieu-cach-tu-van-phai-thay-doi-the-nao" class="ink-toc-link">3. Khi Web đã hiện giá 4–5 triệu, cách tư vấn phải thay đổi thế nào?</a>
+<ul class="ink-toc-list ink-toc-nested">
+<li><a href="#phan-loai-2-nhom-khach-hang-khi-goi-dien-va-cach-do-khoang-gia-price-gauging" class="ink-toc-link">Phân loại 2 nhóm khách hàng khi gọi điện và cách đo khoảng giá (Price Gauging)</a></li>
+</ul></li>
+<li><a href="#4-quy-chuan-thoi-gian-goi-phan-vai-giua-anh-viet-va-nhi" class="ink-toc-link">4. Quy chuẩn thời gian gọi &amp; Phân vai giữa Anh Việt và Nhi</a></li>
+<li><a href="#5-kich-ban-5-nhip-tam-ly-chi-tiet-song-song-ban-anh-viet-ban-nhi" class="ink-toc-link">5. Kịch bản 5 Nhịp Tâm Lý Chi Tiết (Song song Bản Anh Việt &amp; Bản Nhi)</a>
+<ul class="ink-toc-list ink-toc-nested">
+<li><a href="#bang-tong-quan-5-nhip-trong-3-phut" class="ink-toc-link">Bảng tổng quan 5 Nhịp trong 3 phút</a></li>
+<li><a href="#loi-thoai-chi-tiet-tung-nhip-2-phien-ban-song-song" class="ink-toc-link">Lời thoại chi tiết từng nhịp (2 Phiên bản Song Song)</a></li>
+</ul></li>
+<li><a href="#6-bo-mau-tin-nhan-zalo-hau-kiem-copy-nhanh-sau-cuoc-goi" class="ink-toc-link">6. Bộ mẫu tin nhắn Zalo hậu kiểm (Copy nhanh sau cuộc gọi)</a>
+<ul class="ink-toc-list ink-toc-nested">
+<li><a href="#mau-1-khi-khach-dong-y-giu-cho-chot-chuyen-khoan-toan-bo-4tr-hoac-coc-giu-suat-1tr" class="ink-toc-link">Mẫu 1: Khi khách đồng ý giữ chỗ (Chốt chuyển khoản toàn bộ 4tr hoặc Cọc giữ suất 1tr)</a></li>
+<li><a href="#mau-2-khi-khach-con-phan-van-hen-xem-lai-hoac-hoi-y-kien-gia-dinh" class="ink-toc-link">Mẫu 2: Khi khách còn phân vân / Hẹn xem lại hoặc hỏi ý kiến gia đình</a></li>
+</ul></li>
+    </ul>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main class="ink-main-wrapper">
+    <!-- CẦN THAY THẾ CLASS THEO MODE: ink-mode-article | ink-mode-dialogue | ink-mode-reference -->
+    <article class="ink-content ink-mode-reference">
+      
+      <div class="ink-meta">
+        <span class="ink-badge">TÀI LIỆU</span>
+        <span>Anh Việt</span>
+        <span>•</span>
+        <span>25 phút đọc</span>
+      </div>
+
+      <h1 class="is-short" id="top">CẨM NANG CẤU TRÚC GIÁ &amp; KỊCH BẢN GỌI ĐIỆN OFFLINE K4 (07–08/11/2026)</h1>
+      
+      <!-- NỘI DUNG CHÍNH -->
+      <blockquote><strong>Tài liệu vận hành nội bộ dành cho Anh Việt & Trợ lý Yến Nhi</strong> — Đúc kết từ ca thực tế học viên Lưu Thanh Nhàn và phiên hội chẩn cùng Claude Opus. Mục tiêu: Chuyển dịch toàn bộ "cú sốc giá" từ cuộc gọi sang bộ lọc mềm trên mặt trang web, rút ngắn thời gian lọc khách xuống đúng 90 giây và chuẩn hóa kịch bản chốt ở mức học phí mục tiêu <strong>4.000.000đ</strong>.</blockquote>
+<hr>
+<h2 id="1-giai-phau-tam-ly-ca-thuc-te-vi-sao-khach-dang-hao-hung-lai-ngap-ngung-khi-nghe-gia">1. Giải phẫu tâm lý ca thực tế: Vì sao khách đang hào hứng lại ngập ngừng khi nghe giá?</h2>
+<p>Trong cuộc gọi với chị <strong>Lưu Thanh Nhàn</strong> (ngành Chăm sóc sức khỏe), diễn biến tâm lý điển hình đã xảy ra theo đúng 3 giai đoạn:</p>
+<p>1. <strong>Giai đoạn trước cuộc gọi (Mù giá trên Landing Page):</strong> Khi trang <code>offline.fedu.vn</code> ẩn hoàn toàn các con số học phí (và ở cửa sổ Popup đăng ký trên điện thoại thậm chí không có dòng lưu ý nào), não bộ khách hàng tự động điền vào khoảng trống một <strong>mức giá kỳ vọng thấp nhất có lợi cho họ</strong> (thường dao động từ <code>500.000đ</code> đến <code>1.500.000đ</code>).</p>
+<p>2. <strong>Giai đoạn 5 phút đầu cuộc gọi (Hưng phấn giả tạo):</strong> Khi anh Việt tư vấn chuyên môn sâu về góc quay và kịch bản, khách hàng tỏ ra rất hào hứng. Lý do là họ đang tưởng tượng mình sắp nhận được toàn bộ sự kèm cặp 1-1 đó với mức chi phí chỉ khoảng một vài triệu đồng trong đầu họ.</p>
+<p>3. <strong>Giai đoạn báo giá cuối cuộc gọi (Tụt áp cảm xúc — Emotional Whiplash):</strong> Khi con số <code>5.000.000đ</code> được đưa ra ở cuối cuộc gọi (cao gấp 3 lần con số khách tự ngầm định), não khách lập tức bật cơ chế phòng vệ. Tuy nhiên, vì suốt 5 phút trước họ vừa khen ngợi và đồng tình rất nhiệt tình, nên <strong>để giữ thể diện</strong>, họ không bao giờ nói thẳng <em>"Đắt quá chị không đủ tiền"</em>, mà sẽ khựng lại vài giây rồi rút lui bằng câu xã giao: <em>"À... thế để có gì chị gọi lại sau nhé"</em>.</p>
+<h3 id="ba-bai-hoc-cot-loi-rut-ra-cho-khoa-k4">Ba bài học cốt lõi rút ra cho Khóa K4</h3>
+<ul>
+<li><strong>Bài học 1 — Không để khách bước vào cuộc gọi với cái đầu trống rỗng về giá:</strong> Cú sốc giá bắt buộc phải diễn ra <strong>khi khách đang đọc web một mình</strong>, không phải khi đang nghe điện thoại. Khi đọc giá một mình trên web, khách không bị áp lực thể diện; ai thấy phù hợp mới bấm đăng ký.</li>
+<li><strong>Bài học 2 — Mức <code>4.000.000đ</code> là mức dễ chấp nhận (Sweet Spot), nhưng phải có Mỏ Neo <code>5.000.000đ</code> đứng trước:</strong> Nếu báo khơi khơi 4 triệu, khách vẫn thấy là một khoản chi lớn. Nhưng nếu trên web neo rõ <strong>Giá tiêu chuẩn: 5.000.000đ</strong> và mở ra lối ưu đãi <strong>4.000.000đ</strong>, khách hàng không còn cảm giác "mất 4 triệu" mà chuyển sang cảm giác <strong>"vừa tiết kiệm được 1 triệu"</strong>.</li>
+<li><strong>Bài học 3 — Tuyệt đối không tư vấn chuyên môn quá 90 giây khi chưa ướm giá:</strong> Mọi phần phân tích sâu phải được giữ lại làm phần thưởng cho những khách hàng đã bước qua "cửa giá" ở giây thứ 90.</li>
+</ul>
+<hr>
+<h2 id="2-thay-doi-tren-landing-page-offlinefeduvn-sua-the-nao-va-vi-sao">2. Thay đổi trên Landing Page (<code>offline.fedu.vn</code>): Sửa thế nào và vì sao?</h2>
+<h3 id="21-ba-nguyen-tac-hoi-chan-tu-claude-opus-truoc-khi-sua-web">2.1. Ba nguyên tắc hội chẩn từ Claude Opus trước khi sửa Web</h3>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>Vấn đề trọng tâm</th>
+<th>Rủi ro nếu làm sai</th>
+<th>Giải pháp chuẩn hóa trên Web & Sale</th>
+</tr></thead>
+<tbody>
+<tr>
+<td><strong>Trùng mức giá giữa "Đăng ký sớm 4tr" và "Nhóm 2 người 4tr"</strong></td>
+<td>Nếu đi 1 mình cũng 4tr mà đi 2 người cũng 4tr/người, khách sẽ hỏi <em>"Vậy chị rủ thêm bạn thì được lợi gì?"</em> khiến Nhi bị động.</td>
+<td><strong>Cách A (Tách theo thời hạn):</strong> Đăng ký sớm 1 mình trước <strong>31/10</strong> được <code>4.000.000đ</code>; sau 31/10 về giá gốc <code>5.000.000đ</code> và chỉ ai đi nhóm 2 người mới giữ được mức <code>4.000.000đ/người</code> (Nếu đi nhóm 2 người trước 31/10 thì tặng thêm <strong>01 buổi Khám & Review Kênh 1-1 qua Zoom trước ngày học</strong>).<br/><strong>Cách B (Cơ chế ghép nhóm của Sale):</strong> Trên web ghi <em>Đăng ký sớm: 4.500.000đ · Nhóm 2 người: 4.000.000đ/người</em>. Khi gọi điện, Anh Việt / Nhi chủ động báo: <em>"Em ghép chị vào suất nhóm 2 người cùng 1 học viên vừa đăng ký sáng nay để chị được tính thẳng mức 4.000.000đ"</em>.</td>
+</tr>
+<tr>
+<td><strong>Mốc hạn chót ưu đãi (Deadline)</strong></td>
+<td>Nếu báo hạn ảo kiểu <em>"chỉ trong hôm nay"</em> nhưng tuần sau khách hỏi lại vẫn báo giá cũ, uy tín của giảng viên sẽ giảm.</td>
+<td>Dùng một mốc cố định rõ ràng: <strong>Trước 24h00 ngày 31/10/2026</strong> (cách ngày khai giảng 07–08/11 đúng 1 tuần để chốt danh sách hậu cần Buffet & Studio).</td>
+</tr>
+<tr>
+<td><strong>Giữ kỷ luật sàn giá <code>4.000.000đ</code></strong></td>
+<td>Nếu tự ý giảm giá miệng cho từng người trên điện thoại, học viên đến lớp nói chuyện với nhau sẽ mất niềm tin.</td>
+<td>Sàn giá cứng là <strong>4.000.000đ</strong>. Nhi tuyệt đối không dùng câu <em>"Để em xin anh Việt giảm thêm cho chị"</em>, chỉ dùng đúng 2 công cụ chính thống: <strong>Suất đăng ký sớm trước 31/10</strong> và <strong>Suất ghép nhóm 2 người</strong>.</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="22-bang-chi-tiet-4-vi-tri-cap-nhat-tren-offlinefeduvn">2.2. Bảng chi tiết 4 vị trí cập nhật trên <code>offline.fedu.vn</code></h3>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>Vị trí trên trang</th>
+<th>Hiện trạng cũ</th>
+<th>Nội dung cập nhật mới (Gọn – Sắc – Chuyên nghiệp)</th>
+<th>Lý do tâm lý (Vì sao sửa như vậy?)</th>
+</tr></thead>
+<tbody>
+<tr>
+<td><strong>1. Khối <code>BAO GỒM</code> cạnh Form cuối trang</strong><br/>(<code>src/content.ts</code>)</td>
+<td>• Tài liệu & template thực hành<br/>• Source video mẫu để edit tại lớp<br/>• Thực hành quay/edit video trực tiếp<br/>• Cộng đồng hỗ trợ sau khóa học</td>
+<td><strong>2 NGÀY THỰC CHIẾN, BẠN MANG VỀ:</strong><br/>• <strong>4 buổi thực hành tại Studio Hà Nội (≤ 35 học viên):</strong> Tự tay quay, dựng và cầm video thành phẩm về ngay tại lớp<br/>• <strong>Bộ 3 Trợ lý AI độc quyền + Kho 500+ SFX/B-roll:</strong> 5 phút ra kịch bản đúng giọng thật<br/>• <strong>30 ngày đồng hành sửa bài</strong> trực tiếp sau khóa học<br/>• <strong>Bao trọn gói Buffet trưa & Teabreak</strong> cả 2 ngày</td>
+<td>Khách phải đọc <strong>Tài sản mang về</strong> trước khi nhìn thấy giá. Bốn gạch đầu dòng cũ nghe giống khóa học online 500k; 4 dòng mới cho khách thấy rõ giá trị thực tế của lớp học kèm 1-1.</td>
+</tr>
+<tr>
+<td><strong>2. Ô <code>[Lưu ý]</code> ngay trên nút Đăng ký</strong><br/>(<code>RegisterSection.tsx</code>)</td>
+<td><em>"[Lưu ý] Đây không phải chương trình miễn phí. Bạn sẽ được tư vấn học phí trước khi xác nhận chỗ."</em></td>
+<td><strong>[Học phí đầu tư K4 · 07–08/11]:</strong> Tiêu chuẩn ~~5.000.000đ~~ → <strong>Ưu đãi đăng ký trước 31/10 hoặc đi nhóm 2 người: 4.000.000đ/học viên</strong> <em>(Trọn gói 2 ngày Studio, Buffet trưa & Bộ 3 Trợ lý AI).</em><br/><em>Chưa cần thanh toán ngay — Lớp sẽ gọi trực tiếp để xem vấn đề của bạn có phù hợp trước khi xác nhận chỗ.</em></td>
+<td><strong>Neo giá 5tr → 4tr ngay trước mắt khách:</strong> Giúp khách thấy ngay mức ưu đãi giảm 1 triệu. Ai chỉ tìm lớp vài trăm nghìn sẽ tự dừng lại; ai bấm nút gửi là đã chấp nhận khung 4 triệu.</td>
+</tr>
+<tr>
+<td><strong>3. Popup Đăng ký (<code>RegisterModal.tsx</code>)</strong></td>
+<td>Không có bất kỳ chữ nào nhắc đến học phí hay cam kết hoàn tiền.</td>
+<td><strong>Dòng neo ngay trên nút bấm:</strong><br/>💡 <em>Ưu đãi <strong>4.000.000đ</strong> (Giá gốc ~~5.000.000đ~~ · Trọn gói 2 ngày Studio, Ăn trưa & Bộ 3 AI · Hoàn 100% sau Ngày 1 nếu không áp dụng được).</em><br/><strong>Tùy chọn lọc mềm (Radio/Select):</strong> <em>Bạn dự định giữ mức ưu đãi 4.000.000đ theo hình thức nào?</em><br/>1. Đăng ký sớm trước 31/10 (Đi 1 mình)<br/>2. Đi nhóm 2 người (4.000.000đ/người)<br/>3. Mình cần tư vấn thêm trước khi quyết định</td>
+<td>Hơn 70% khách dùng điện thoại bấm nút <strong>"GIỮ CHỖ"</strong> ở thanh nổi dưới đáy màn hình (mở ra Popup này). Thêm dòng neo + câu hỏi chọn hình thức biến việc "chấp nhận giá 4tr" thành một thao tác chọn tự nhiên.</td>
+</tr>
+<tr>
+<td><strong>4. Câu hỏi số 08 trong phần FAQ</strong><br/>(<code>FaqSection.tsx</code>)</td>
+<td>Câu hỏi có chữ <em>"Học phí"</em>, nhưng câu trả lời chỉ nói về hoàn tiền, né hoàn toàn con số.</td>
+<td><strong>Hỏi: Học phí khóa học là bao nhiêu và chính sách hoàn tiền thế nào?</strong><br/><strong>Đáp:</strong> Học phí tiêu chuẩn là <strong>5.000.000đ</strong> cho trọn gói 2 ngày thực chiến tại Studio Hà Nội (đã bao gồm Buffet trưa & Teabreak 2 ngày, Bộ 3 Trợ lý AI độc quyền, kho tài nguyên và 30 ngày sửa bài sau khóa).<br/>• <strong>Đăng ký sớm trước 31/10:</strong> 4.000.000đ/học viên<br/>• <strong>Đăng ký nhóm 2 người:</strong> 4.000.000đ/người<br/><strong>Cam kết hoàn tiền:</strong> Kết thúc Ngày 1, nếu bạn thấy nội dung không thực tế hoặc không áp dụng được vào công việc, Việt hoàn lại <strong>100% học phí</strong> mà không hỏi lý do. Rủi ro nằm ở phía lớp học, không nằm ở phía bạn.</td>
+<td>Người bấm mở câu FAQ số 8 là người đang có nhu cầu thật và muốn kiểm tra chi phí. Trả lời thẳng thắn, rõ ràng kèm cam kết hoàn tiền 100% sẽ tạo niềm tin tức thì.</td>
+</tr>
+</tbody>
+</table></div>
+<hr>
+<h2 id="3-khi-web-da-hien-gia-45-trieu-cach-tu-van-phai-thay-doi-the-nao">3. Khi Web đã hiện giá 4–5 triệu, cách tư vấn phải thay đổi thế nào?</h2>
+<p>Khi chuyển từ <strong>"Web giấu giá"</strong> sang <strong>"Web neo 5tr → Ưu đãi 4tr"</strong>, bản chất cuộc gọi của anh Việt và Nhi thay đổi hoàn toàn ở 3 điểm:</p>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>Tiêu chí</th>
+<th>Cách cũ (Khi Web giấu giá)</th>
+<th>Cách mới (Khi Web đã hiện 5tr → 4tr)</th>
+<th>Ý nghĩa tâm lý</th>
+</tr></thead>
+<tbody>
+<tr>
+<td><strong>Vị thế cuộc gọi</strong></td>
+<td>Gọi để <strong>"Thuyết phục & Báo tin dữ (Giá tiền)"</strong></td>
+<td>Gọi để <strong>"Khám vấn đề & Xác nhận quyền giữ suất 4 triệu"</strong></td>
+<td>Khách không còn cảm giác bị "bán hàng", mà cảm thấy được kiểm tra mức độ phù hợp và hỗ trợ giữ ưu đãi.</td>
+</tr>
+<tr>
+<td><strong>Cách mở lời về giá</strong></td>
+<td>Đọc giá như đọc hóa đơn cuối cuộc gọi: <em>"Học phí là 5 triệu chị nhé"</em></td>
+<td><strong>Ướm kiểm tra nhẹ ở giây 90:</strong> <em>"Chị đã kịp nhìn phần ưu đãi 4 triệu trên trang chưa, hay để em nói nhanh ạ?"</em></td>
+<td>Biến việc báo giá thành việc <strong>nhắc lại quyền lợi giảm 1 triệu</strong> mà khách vừa thấy trên web.</td>
+</tr>
+<tr>
+<td><strong>Câu hỏi chốt sau khi nói giá</strong></td>
+<td>Câu hỏi đóng (Có/Không): <em>"Mức này chị thấy có phù hợp không?"</em></td>
+<td>Câu hỏi lựa chọn (A hoặc B): <em>"Chị dự định giữ mức 4 triệu theo diện đăng ký sớm 1 mình hay đi cùng bạn ạ?"</em></td>
+<td>Hỏi Có/Không rất dễ nhận câu trả lời "Để chị xem". Hỏi chọn Cách 1 hay Cách 2 hướng não khách vào việc làm sao để lấy được mức 4 triệu.</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="phan-loai-2-nhom-khach-hang-khi-goi-dien-va-cach-do-khoang-gia-price-gauging">Phân loại 2 nhóm khách hàng khi gọi điện và cách đo khoảng giá (Price Gauging)</h3>
+<p>1. <strong>Nhóm 1 — Khách đã đọc kỹ giá trên Web (Khoảng 60%):</strong></p>
+<ul>
+<li><strong>Dấu hiệu:</strong> Điền đầy đủ ngành nghề, vướng mắc cụ thể, hoặc chọn sẵn ô <em>"Đăng ký sớm / Đi nhóm 2 người"</em>.</li>
+<li><strong>Cách ướm giá:</strong> Không báo giá lại từ đầu. Ở giây 90 chỉ cần xác nhận nhẹ: <em>"Trên web lớp đang để giá tiêu chuẩn 5 triệu, đợt này chị đăng ký trước 31/10 nên được tính luôn mức ưu đãi 4 triệu tròn. Em xác nhận giữ suất 4 triệu này cho chị nhé?"</em></li>
+</ul>
+<p>2. <strong>Nhóm 2 — Khách lướt nhanh trên điện thoại, chưa để ý kỹ dòng giá (Khoảng 40%):</strong></p>
+<ul>
+<li><strong>Dấu hiệu:</strong> Chỉ điền Tên + SĐT, bỏ trống ngành nghề hoặc ghi rất ngắn (1–2 chữ).</li>
+<li><strong>Cách ướm giá (3 bước trong 20 giây):</strong></li>
+<li><em>Bước 1 (Hỏi thăm dò không làm khách quê):</em> <em>"Trước khi đi sâu vào cách chuẩn bị cho ngành của chị, chị kịp xem phần học phí ưu đãi ở cuối trang chưa, hay để em điểm nhanh qua ạ?"</em></li>
+<li><em>Bước 2 (Neo 5tr → Thả 4tr):</em> <em>"Lớp học thực hành 2 ngày tại Studio kèm 1-1, bao gồm cả ăn trưa 2 ngày, bộ 3 trợ lý AI và kèm 30 ngày sau khóa có mức chuẩn là 5 triệu. Đợt này đăng ký sớm trước 31/10 (hoặc ghép nhóm 2 người) thì giảm 1 triệu còn <strong>4 triệu tròn</strong>."</em></li>
+<li><em>Bước 3 (Câu hỏi đo nhiệt độ + Im lặng 3 giây):</em> <em>"Khoảng đầu tư 4 triệu để làm chủ luôn việc quay dựng này có nằm trong dự tính đợt này của chị không?"</em> → <strong>Sau câu này bắt buộc im lặng 3 giây để nghe phản xạ đầu tiên của khách.</strong></li>
+</ul>
+<hr>
+<h2 id="4-quy-chuan-thoi-gian-goi-phan-vai-giua-anh-viet-va-nhi">4. Quy chuẩn thời gian gọi & Phân vai giữa Anh Việt và Nhi</h2>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>Hạng mục vận hành</th>
+<th>Quy chuẩn bắt buộc</th>
+<th>Giải thích lý do thực chiến</th>
+</tr></thead>
+<tbody>
+<tr>
+<td><strong>Thời điểm vàng để gọi (Golden Window)</strong></td>
+<td>Gọi trong vòng <strong>5 – 15 phút đầu tiên</strong> kể từ khi tin nhắn Lead nổ về Telegram.</td>
+<td>Trong 5–15 phút đầu, khách vẫn đang cầm điện thoại trên tay, cảm xúc với video mẫu trên web đang ở mức cao nhất. Để quá 60 phút, khách đã quay lại guồng công việc bận rộn và quên mất cảm xúc lúc đăng ký.</td>
+</tr>
+<tr>
+<td><strong>Khung giờ gọi chuẩn trong ngày</strong></td>
+<td>• <strong>Sáng:</strong> <code>09h00 – 11h15</code><br/>• <strong>Chiều:</strong> <code>14h00 – 16h45</code><br/>• <strong>Tối:</strong> <code>19h30 – 21h00</code><br/><em>(Tránh gọi 11h30–13h30 và sau 21h15)</em></td>
+<td>Tệp học viên chủ đạo là chủ Spa, chăm sóc sức khỏe, kinh doanh, văn phòng. Nếu Lead đăng ký vào giờ nghỉ trưa (12h30) hoặc đêm muộn (22h30), gửi ngay 1 tin nhắn Zalo xác nhận trước rồi gọi vào đầu khung giờ chuẩn tiếp theo.</td>
+</tr>
+<tr>
+<td><strong>Thời lượng chuẩn 1 cuộc gọi</strong></td>
+<td><strong>Từ 2 phút 30 giây đến 4 phút.</strong><br/><em>(Mốc 90 giây đầu phải đi tới bước Ướm giá).</em></td>
+<td>Không bao giờ kéo dài cuộc gọi quá 5 phút nếu khách chưa gật đầu ở bước giá 4 triệu. Mọi hướng dẫn chi tiết dồn sang Zalo sau khi đã qua bước giá.</td>
+</tr>
+<tr>
+<td><strong>Quy tắc khi khách không nghe máy</strong></td>
+<td>• <strong>Lần 1 không nghe:</strong> Kết bạn Zalo ngay kèm lời nhắn giới thiệu rõ người gọi.<br/>• <strong>Lần 2:</strong> Gọi lại sau 2–3 tiếng.<br/>• <strong>Lần 3:</strong> Gọi vào ngày hôm sau ở khung giờ khác.<br/><em>(Quá 3 lần không nghe thì dừng gọi, chỉ chăm qua Zalo).</em></td>
+<td>Gọi dồn dập nhiều cuộc liên tiếp sẽ tạo tâm lý đề phòng như bị đòi nợ hoặc spam bảo hiểm.</td>
+</tr>
+<tr>
+<td><strong>Phân vai phối hợp Anh Việt & Nhi</strong></td>
+<td>• <strong>Nhi:</strong> Gọi phủ 100% lead mới trong 5–15 phút đầu để giữ tốc độ phản hồi và chốt các ca tiêu chuẩn.<br/>• <strong>Anh Việt:</strong> Trực tiếp gọi cho các ca chủ doanh nghiệp lớn, hoặc gọi nhịp 2 cho các ca khách rất thích nhưng còn <strong>sợ mình chậm công nghệ không làm được</strong>.</td>
+<td>Nhi giữ tốc độ đường truyền (Speed-to-Lead); Anh Việt dùng uy tín người đứng lớp để dứt điểm những ca cần sự tin tưởng về chuyên môn.</td>
+</tr>
+</tbody>
+</table></div>
+<hr>
+<h2 id="5-kich-ban-5-nhip-tam-ly-chi-tiet-song-song-ban-anh-viet-ban-nhi">5. Kịch bản 5 Nhịp Tâm Lý Chi Tiết (Song song Bản Anh Việt & Bản Nhi)</h2>
+<h3 id="bang-tong-quan-5-nhip-trong-3-phut">Bảng tổng quan 5 Nhịp trong 3 phút</h3>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>Nhịp</th>
+<th>Khung thời gian</th>
+<th>Mục tiêu tâm lý cốt lõi</th>
+<th>Nguyên tắc kiểm soát</th>
+</tr></thead>
+<tbody>
+<tr>
+<td><strong>Nhịp 1: Mở lời & Giới thiệu</strong></td>
+<td><code>00s – 15s</code></td>
+<td>Xóa rào cản phòng vệ với số lạ, xác lập vị thế lớp học của thầy Việt và xin phép đúng 2–3 phút.</td>
+<td>Giọng điềm tĩnh, rõ ràng, không kéo dài giọng kiểu nhân viên tổng đài.</td>
+</tr>
+<tr>
+<td><strong>Nhịp 2: Chẩn đoán 2 câu</strong></td>
+<td><code>15s – 55s</code></td>
+<td>Để khách tự nói ra <strong>Mô hình kinh doanh</strong> (đo túi tiền) và <strong>Nút thắt đang kẹt</strong> (đo độ khát).</td>
+<td>Chỉ hỏi đúng 2 câu ngắn, tuyệt đối không hỏi cung lan man.</td>
+</tr>
+<tr>
+<td><strong>Nhịp 3: Phản chiếu & Khớp thuốc</strong></td>
+<td><code>55s – 85s</code></td>
+<td>Lặp lại đúng từ khóa khách vừa nói và chỉ ra đúng 2 thứ trên lớp sẽ giải quyết dứt điểm cho họ.</td>
+<td>Nói gọn trong 2–3 câu để đẩy sự hào hứng lên mức cao nhất trước khi báo giá.</td>
+</tr>
+<tr>
+<td><strong>Nhịp 4: Ướm thử & Đo khoảng giá</strong></td>
+<td><code>85s – 115s</code></td>
+<td>Đưa khung <strong>5tr → Ưu đãi 4tr</strong> ra một cách tự nhiên rồi <strong>dừng lại lắng nghe tín hiệu</strong>.</td>
+<td>Nói xong câu hỏi giá phải <strong>im lặng 3 giây</strong>, không nói bồi thêm vì sốt ruột.</td>
+</tr>
+<tr>
+<td><strong>Nhịp 5: Rẽ nhánh & Chốt hành động</strong></td>
+<td><code>115s – 210s</code></td>
+<td>Tùy theo tín hiệu ở Nhịp 4 để chốt giữ chỗ ngay, gỡ sợ công nghệ, hoặc đặt lịch hẹn Zalo cụ thể.</td>
+<td>Mọi cuộc gọi đều phải khép lại bằng một mốc hành động có giờ giấc rõ ràng.</td>
+</tr>
+</tbody>
+</table></div>
+<hr>
+<h3 id="loi-thoai-chi-tiet-tung-nhip-2-phien-ban-song-song">Lời thoại chi tiết từng nhịp (2 Phiên bản Song Song)</h3>
+<h4 id="nhip-1-mo-loi-gioi-thieu-00s-15s">NHỊP 1: MỞ LỜI & GIỚI THIỆU (<code>00s – 15s</code>)</h4>
+<ul>
+<li><strong>Bản A — Anh Việt trực tiếp gọi:</strong></li>
+</ul>
+<blockquote><em>"Chào chị [Tên], em Việt đây — người trực tiếp đứng lớp làm video Offline chị vừa đăng ký trên web. Chị [Tên] đang tiện nghe máy khoảng 2–3 phút không?"</em></blockquote>
+<ul>
+<li><strong>Bản B — Trợ lý Nhi gọi:</strong></li>
+</ul>
+<blockquote><em>"Dạ em chào chị [Tên], em là Nhi — trợ lý của anh Nguyễn Đức Việt, giảng viên lớp làm video Offline chị vừa để lại thông tin đăng ký ạ. Anh Việt dặn em gọi qua nắm trước công việc của chị xem chương trình có thực sự phù hợp không. Chị [Tên] tiện nghe máy khoảng 2–3 phút chứ ạ?"</em></blockquote>
+<p><strong>Logic tâm lý:</strong> Khi Nhi nói <em>"Anh Việt dặn em gọi xem chương trình có thực sự phù hợp với chị không"</em>, vị thế cuộc gọi lập tức chuyển từ <em>"đi xin khách mua học"</em> sang <em>"kiểm tra mức độ phù hợp theo lời dặn của giảng viên"</em>.</p>
+<hr>
+<h4 id="nhip-2-chan-doan-2-cau-do-tui-tien-do-khat-15s-55s">NHỊP 2: CHẨN ĐOÁN 2 CÂU ĐO TÚI TIỀN & ĐỘ KHÁT (<code>15s – 55s</code>)</h4>
+<ul>
+<li><strong>Bản A — Anh Việt gọi:</strong></li>
+</ul>
+<blockquote><strong>Câu 1:</strong> <em>"Em thấy trong form chị ghi đang làm mảng [Ngành nghề] và đang vướng ở chỗ [Lý do khách ghi]. Cho em hỏi nhanh để dễ hình dung nhé: Hiện tại mảng của chị là mình đang có cơ sở/cửa hàng riêng, hay mình đang kinh doanh tư vấn cá nhân hả chị? Trước giờ chị tự bấm máy quay clip nào chưa?"</em></blockquote>
+<blockquote><strong>Câu 2:</strong> <em>"Đợt này chị muốn làm chủ phần video để kéo khách về bán hàng luôn, hay muốn xây kênh nhân hiệu lâu dài?"</em></blockquote>
+<ul>
+<li><strong>Bản B — Trợ lý Nhi gọi:</strong></li>
+</ul>
+<blockquote><strong>Câu 1:</strong> <em>"Dạ em thấy trên phiếu đăng ký chị [Tên] có ghi mình đang làm mảng [Ngành nghề] và đang kẹt ở phần [Lý do khách ghi]. Hiện tại mảng này là chị đang mở cơ sở riêng hay mình kinh doanh cá nhân thế ạ? Trước giờ chị đã thử tự quay video nào chưa chị?"</em></blockquote>
+<blockquote><strong>Câu 2:</strong> <em>"Mục tiêu lớn nhất đợt này khi chị đi học là muốn ra video có khách hỏi hàng ngay, hay muốn xây kênh chia sẻ chuyên môn lâu dài ạ?"</em></blockquote>
+<p><strong>Logic tâm lý:</strong></p>
+<ul>
+<li>Câu 1 giúp phân biệt ngay khách là <strong>Chủ cơ sở (sức mua tốt)</strong> hay <strong>Làm thêm nhỏ lẻ (nhạy cảm giá)</strong>.</li>
+<li>Khi khách tự miệng kể ra nỗi khổ của mình (<em>"Chị quay thử rồi mà nhìn chưa tự nhiên lắm, mất cả buổi chẳng được cái nào"</em>), não khách đang tự kích hoạt nhu cầu cần được giải cứu.</li>
+</ul>
+<hr>
+<h4 id="nhip-3-phan-chieu-khop-thuoc-55s-85s">NHỊP 3: PHẢN CHIẾU & KHỚP THUỐC (<code>55s – 85s</code>)</h4>
+<ul>
+<li><strong>Bản A — Anh Việt gọi:</strong></li>
+</ul>
+<blockquote><em>"À thế thì em hiểu ngay chỗ chị đang kẹt rồi. Làm [Ngành của khách] mà mình cứ ngồi im một góc nói lý thuyết khô khan thì khách người ta lướt qua ngay. Với mảng của chị, vào lớp em chỉ cần nắn đúng 2 việc: một là đổi sang quay cảnh thao tác tay thực tế (B-roll) kết hợp 2 góc máy cho có chiều sâu, hai là nạp vào bộ 3 trợ lý AI của em để 5 phút nó nhả ra kịch bản đúng giọng tâm sự của chị. Cả 2 cái này chị đều được cầm máy làm ra thành phẩm ngay tại phòng Studio luôn."</em></blockquote>
+<ul>
+<li><strong>Bản B — Trợ lý Nhi gọi:</strong></li>
+</ul>
+<blockquote><em>"Dạ vâng, lỗi ngồi trước máy chưa tự nhiên với bí kịch bản này là đúng bệnh của 90% anh chị làm [Ngành của khách] trước khi qua lớp anh Việt luôn ạ. Ở lớp 2 ngày này anh Việt không dạy lý thuyết xuông đâu chị, mà cho chị thực hành quay cảnh thao tác thật kết hợp 2 góc máy tại phòng Studio, rồi cài sẵn Bộ 3 Trợ lý AI vào máy để chị chỉ mất 5 phút là có kịch bản nói tự nhiên như nói chuyện ngoài đời, có video thành phẩm mang về ngay tại lớp."</em></blockquote>
+<p><strong>Logic tâm lý:</strong> Không giảng giải quá dài. Chỉ điểm đúng 2 giải pháp đắt giá nhất (<strong>Quay thực hành tại Studio ra sản phẩm ngay</strong> + <strong>Bộ 3 Trợ lý AI 5 phút ra kịch bản</strong>) để tạo bệ đỡ giá trị vững chắc trước khi bước sang giây thứ 90.</p>
+<hr>
+<h4 id="nhip-4-uom-thu-do-khoang-gia-o-giay-90-85s-115s">NHỊP 4: ƯỚM THỬ & ĐO KHOẢNG GIÁ Ở GIÂY 90 (<code>85s – 115s</code>)</h4>
+<p>Đây là bước quan trọng nhất để <strong>không bao giờ mất công tư vấn 10 phút vô ích</strong>.</p>
+<h4 id="truong-hop-41-neu-dung-cach-a-tren-web-dang-ky-som-truoc-3110-hoac-nhom-2-nguoi-deu-4000000d">Trường hợp 4.1: Nếu dùng Cách A trên Web (Đăng ký sớm trước 31/10 hoặc Nhóm 2 người đều 4.000.000đ)</h4>
+<ul>
+<li><strong>Bản A — Anh Việt gọi:</strong></li>
+</ul>
+<blockquote><em>"Chị [Tên] này, trước khi em hướng dẫn chi tiết cách chuẩn bị cho ngành của chị, em hỏi chút là lúc nãy trên web chị đã kịp nhìn phần học phí ưu đãi chưa? Lớp thực chiến 2 ngày kèm 1-1 dưới 35 người tại Studio (đã gồm trọn gói ăn trưa Buffet 2 ngày, cài Bộ 3 trợ lý AI và kèm sửa bài 30 ngày sau khóa) có mức tiêu chuẩn là 5 triệu. Đợt này đăng ký sớm trước ngày 31/10 hoặc đi nhóm 2 người thì được ưu đãi giảm 1 triệu còn <strong>4 triệu tròn</strong>.</em></blockquote>
+<blockquote><em>Mức đầu tư 4 triệu này có nằm trong dự tính đợt này của chị không?"</em></blockquote>
+<ul>
+<li><strong>Bản B — Trợ lý Nhi gọi:</strong></li>
+</ul>
+<blockquote><em>"Dạ chị [Tên] ơi, trước khi em gửi lịch trình chi tiết, không biết lúc đăng ký trên web chị đã kịp xem phần học phí ưu đãi ở cuối trang chưa ạ, hay để em báo nhanh chị nắm nhé? Khóa thực hành 2 ngày tại Studio kèm 1-1 (đã bao gồm trọn gói Buffet trưa 2 ngày, Bộ 3 Trợ lý AI độc quyền và 30 ngày anh Việt sửa bài sau khóa) có học phí gốc là 5 triệu ạ. Nhưng chị đăng ký trong đợt sớm trước 31/10 (hoặc đi cùng 1 người bạn) thì đang được giảm 1 triệu, chỉ còn <strong>4.000.000đ tròn</strong> thôi ạ.</em></blockquote>
+<blockquote><em>Chị [Tên] dự định giữ suất 4 triệu này theo diện đăng ký sớm 1 mình hay mình có rủ thêm bạn đi cùng không chị?"</em></blockquote>
+<h4 id="truong-hop-42-ky-thuat-ghep-nhom-ho-tro-khi-khach-di-1-minh-ma-muon-tao-cam-giac-duoc-uu-dai-rieng-4-trieu">Trường hợp 4.2: Kỹ thuật "Ghép nhóm hỗ trợ" (Khi khách đi 1 mình mà muốn tạo cảm giác được ưu đãi riêng 4 triệu)</h4>
+<p>Nếu anh Việt hoặc Nhi muốn cho khách cảm giác <strong>4.000.000đ là một mức hỗ trợ rất hời dành riêng cho họ</strong>, hãy nói:</p>
+<blockquote><em>"Học phí gốc của lớp là 5 triệu, đi lẻ ưu đãi sớm là 4,5 triệu, còn đi nhóm 2 người là <strong>4 triệu/người</strong>. Hiện tại trong danh sách hôm nay em đang có 1 chị học viên cũng làm mảng dịch vụ vừa đăng ký lẻ 1 mình — nếu chị [Tên] chốt tham gia đợt này thì em hỗ trợ <strong>ghép cặp chị với bạn ấy thành nhóm 2 người luôn</strong> để chị được áp dụng thẳng mức <strong>4 triệu tròn</strong> nhé. Chị thấy phương án này hợp lý không ạ?"</em></blockquote>
+<p><strong>Quy tắc vàng sau khi dứt câu hỏi ở Nhịp 4:</strong> <strong>IM LẶNG 3 GIÂY.</strong> Tuyệt đối không tự nói tiếp để lấp khoảng trống. Hãy để khách hàng lên tiếng trước — câu nói đầu tiên của khách sẽ chỉ rõ họ thuộc nhánh nào trong 4 nhánh dưới đây.</p>
+<hr>
+<h4 id="nhip-5-bang-re-nhanh-xu-ly-4-phan-ung-115s-210s">NHỊP 5: BẢNG RẼ NHÁNH XỬ LÝ 4 PHẢN ỨNG (<code>115s – 210s</code>)</h4>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>Nhánh phản ứng của khách</th>
+<th>Lời thoại xử lý của Anh Việt [Bản A]</th>
+<th>Lời thoại xử lý của Trợ lý Nhi [Bản B]</th>
+</tr></thead>
+<tbody>
+<tr>
+<td><strong>NHÁNH 1: Khách xuôi ("Ok em / Chị nắm được rồi / Được em")</strong></td>
+<td><em>"Ok chị, thế thì khớp hoàn toàn rồi. Lớp 07–08/11 tại Hà Nội em chỉ nhận đúng 35 máy để kèm sát từng người, và em cam kết học hết Ngày 1 mà chị thấy không áp dụng được là hoàn 100% học phí tại chỗ. Bây giờ em kết bạn Zalo gửi chị thông tin lớp với mã QR để chị hoàn tất giữ suất 4 triệu trong hôm nay nhé!"</em></td>
+<td><em>"Dạ tuyệt vời quá chị! Lớp ngày 07–08/11 anh Việt giới hạn tối đa 35 anh chị để kèm sát từng máy, kèm cam kết hết Ngày 1 không áp dụng được là hoàn 100% học phí luôn ạ. Em kết bạn Zalo số này gửi chị thông tin lớp và mã QR giữ suất ưu đãi 4 triệu ngay bây giờ nhé. Chị kiểm tra Zalo giúp em nha!"</em><br/><em>(Lưu ý: Khách đã chốt là dừng tư vấn, chuyển ngay sang Zalo).</em></td>
+</tr>
+<tr>
+<td><strong>NHÁNH 2: Khách ngập ngừng vì tiền ("À... 4 triệu cơ à / Để chị xem lại đã")</strong></td>
+<td><strong>Bước 1 (Tách bóc thật lòng):</strong> <em>"Dạ vâng chị cứ cân nhắc thoải mái. Mà chị [Tên] ơi, chỗ chị em mình hỏi thật lòng cho dễ: chị đang lăn tăn là vì <strong>sợ học 2 ngày về mình chưa chắc đã tự làm được</strong>, hay là <strong>mức 4 triệu đợt này đang hơi vượt ngân sách dự tính</strong> của chị?"</em><br/><strong>Bước 2 (Nếu vì ngân sách):</strong> <em>"Em hiểu hoàn toàn. Nếu muốn nhẹ nhàng hơn, chị có thể đặt cọc giữ suất ưu đãi trước <strong>1.000.000đ</strong> để nhận tài liệu và giữ mức 4 triệu, phần còn lại đến tuần học mới cần hoàn tất. Còn nếu đợt này chưa thu xếp được ngân sách lớp Offline, chị có thể bắt đầu trước bằng khóa Online quay sẵn của em chi phí nhẹ hơn rất nhiều, khi nào cần cầm tay chỉ việc thì lên lớp Offline sau."</em></td>
+<td><strong>Bước 1 (Tách bóc lịch sự):</strong> <em>"Dạ vâng ạ. Mà chị [Tên] ơi, cho em hỏi thật một chút để em hỗ trợ chị tốt nhất nhé: Mình đang băn khoăn là vì <strong>lo không biết đi học về có tự làm được thật không</strong>, hay là <strong>khoản học phí 4 triệu đợt này đang hơi cao hơn dự tính ban đầu</strong> của chị ạ?"</em><br/><strong>Bước 2 (Nếu vì ngân sách):</strong> <em>"Dạ em hiểu ạ. Bên em có hỗ trợ mình chỉ cần <strong>đặt cọc giữ chỗ trước 1.000.000đ</strong> để khóa lại mức ưu đãi 4 triệu (không bị về giá 5 triệu), phần còn lại đến sát ngày học mới cần đóng tiếp ạ. Hoặc nếu chị muốn học kiến thức nền trước với chi phí chỉ bằng 1/4 thì bên em có khóa Online của anh Việt, để em gửi thông tin cả 2 qua Zalo cho chị dễ cân nhắc nha!"</em></td>
+</tr>
+<tr>
+<td><strong>NHÁNH 3: Khách sợ dốt công nghệ / lớn tuổi không theo kịp</strong></td>
+<td><em>"Chỗ này thì chị yên tâm tuyệt đối. Lớp em nhiều anh chị U45, U55 chưa từng biết cắt CapCut vẫn ra video ầm ầm vì em và đội trợ giảng đứng ngay cạnh cầm tay chỉ từng nút bấm trên điện thoại của chị. Hơn nữa em có cam kết rõ: học hết Ngày 1 (tức là học xong cả kịch bản lẫn dựng phim) mà chị thấy mình không làm được, chị chỉ cần bảo em một câu là em hoàn lại 100% học phí ngay lập tức, chị không chịu bất kỳ rủi ro nào cả."</em></td>
+<td><em>"Dạ nỗi lo này giống hệt các anh chị khóa trước luôn ạ! Nhưng chị yên tâm 100% nhé, vì lớp giới hạn dưới 35 người, có anh Việt cùng đội trợ giảng đứng kèm trực tiếp từng điện thoại một, cầm tay chỉ từng nút bấm đến khi chị xuất được video về máy mới thôi. Đặc biệt lớp có cam kết 100%: học hết Ngày 1 mà chị thấy khó không áp dụng được, lớp hoàn lại 100% học phí ngay lập tức mà không hỏi lý do. Rủi ro lớp chịu hết cho chị ạ!"</em></td>
+</tr>
+<tr>
+<td><strong>NHÁNH 4: Khách hẹn "Để chị về hỏi chồng / Để tối chị xem rồi báo lại"</strong></td>
+<td><em>"Dạ rất nên trao đổi với anh nhà chị ạ. Để anh nhà dễ hình dung đây là chương trình thực hành làm nghề nghiêm túc chứ không phải đi nghe diễn thuyết, em gửi qua Zalo cho chị 2 video thành phẩm của học viên ngành [Ngành gần khách] tự quay tại lớp. Em tạm giữ suất ưu đãi 4 triệu trong danh sách cho chị đến <strong>21h tối mai</strong>, tầm <strong>20h tối mai</strong> em nhắn Zalo hỏi lại ý chị nhé?"</em></td>
+<td><em>"Dạ vâng chị cứ trao đổi thêm với anh nhà cho thoải mái ạ. Để anh chị dễ xem nhất, em kết bạn Zalo gửi chị tóm tắt lộ trình 2 ngày kèm video thực tế học viên tự quay tại lớp nhé. Vì suất ưu đãi 4 triệu đang giới hạn theo số ghế Studio, em xin phép ghi chú <strong>giữ tạm suất 4 triệu cho chị đến 21h tối mai</strong>, khoảng <strong>20h tối mai</strong> em nhắn Zalo hỏi lại chị nha!"</em></td>
+</tr>
+</tbody>
+</table></div>
+<hr>
+<h2 id="6-bo-mau-tin-nhan-zalo-hau-kiem-copy-nhanh-sau-cuoc-goi">6. Bộ mẫu tin nhắn Zalo hậu kiểm (Copy nhanh sau cuộc gọi)</h2>
+<h3 id="mau-1-khi-khach-dong-y-giu-cho-chot-chuyen-khoan-toan-bo-4tr-hoac-coc-giu-suat-1tr">Mẫu 1: Khi khách đồng ý giữ chỗ (Chốt chuyển khoản toàn bộ 4tr hoặc Cọc giữ suất 1tr)</h3>
+<pre><code>Dạ em chào chị [Tên], em gửi chị thông tin xác nhận giữ suất ưu đãi lớp Video Marketing Thực Chiến K4 (2 ngày tại Studio Hà Nội) của anh Nguyễn Đức Việt ạ:
+
+📅 Thời gian: Thứ 7 &amp; Chủ Nhật, ngày 07–08/11/2026 (09:00 – 17:00)
+📍 Địa điểm: Studio thực hành tại Hà Nội (Bao gồm trọn gói Buffet trưa &amp; Teabreak cả 2 ngày)
+🎁 Quyền lợi đi kèm: Cài đặt Bộ 3 Trợ lý AI độc quyền + Kho 500+ SFX/B-roll + 30 ngày kèm sửa bài sau khóa
+🛡️ Cam kết hoàn tiền: Hoàn 100% học phí ngay sau Ngày 1 nếu thấy không áp dụng được.
+
+💰 Học phí ưu đãi của chị: 4.000.000đ (Giá tiêu chuẩn: 5.000.000đ)
+(Chị có thể chuyển khoản hoàn tất 4.000.000đ hoặc đặt cọc giữ suất ưu đãi trước 1.000.000đ ạ)
+
+🏦 Thông tin chuyển khoản:
+• Ngân hàng: Techcombank
+• Số tài khoản: 4101986
+• Chủ tài khoản: NGUYEN DUC VIET
+• Nội dung: [Tên] + [SĐT] + K4
+
+Chị hoàn tất xong chụp màn hình gửi lại đây giúp em để em đưa chị vào danh sách lớp và gửi tài liệu chuẩn bị trước ngày học nhé ạ!</code></pre>
+<h3 id="mau-2-khi-khach-con-phan-van-hen-xem-lai-hoac-hoi-y-kien-gia-dinh">Mẫu 2: Khi khách còn phân vân / Hẹn xem lại hoặc hỏi ý kiến gia đình</h3>
+<pre><code>Chào chị [Tên], em vừa gọi điện trao đổi cùng chị về lớp Làm Video Thực Chiến 2 Ngày (07–08/11 tại Hà Nội) đây ạ. Em nhắn qua Zalo để chị em mình tiện giữ liên lạc nhé!
+
+Như lúc nãy chị em mình trao đổi, với mảng [Ngành nghề] của chị thì việc tự quay các cảnh thao tác thực tế kết hợp kịch bản ngắn từ Trợ lý AI sẽ giúp video tự nhiên và tạo niềm tin với khách hàng nhanh nhất.
+
+Em gửi chị xem trước 1 video thực tế của học viên khóa trước (cũng bắt đầu từ con số 0 chưa biết quay dựng) tự tay bấm máy và hoàn thiện ngay tại lớp:
+👉 https://youtu.be/6anTshfXvLs
+
+Hiện tại em đã ghi chú giữ tạm suất ưu đãi 4.000.000đ (giảm 1.000.000đ so với mức chuẩn 5.000.000đ, kèm cam kết hoàn tiền 100% sau Ngày 1 nếu không áp dụng được) cho chị đến 21h tối mai. Chị cứ xem qua video mẫu, tối mai em nhắn lại hỗ trợ chị nhé!</code></pre>
+
+    </article>
+  </main>
+
+  <!-- SCROLLSPY SCRIPT (ZERO ANIMATION) -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // 1. ScrollSpy functionality
+      const headings = document.querySelectorAll('h2[id], h3[id]');
+      const tocLinks = document.querySelectorAll('.ink-toc-link');
+      
+      if(headings.length > 0 && "IntersectionObserver" in window) {
+        const observerOptions = {
+          root: null,
+          rootMargin: '0px 0px -80% 0px', // Trigger when heading is in top 20% of viewport
+          threshold: 0
+        };
+        
+        // Track the currently active section to avoid unnecessary DOM updates
+        let activeId = null;
+
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              const id = entry.target.getAttribute('id');
+              if (id !== activeId) {
+                // Remove active from all
+                tocLinks.forEach(link => link.classList.remove('is-active'));
+                
+                // Add active to current
+                const activeLink = document.querySelector(`.ink-toc-link[href="#${id}"]`);
+                if (activeLink) {
+                  activeLink.classList.add('is-active');
+                }
+                activeId = id;
+              }
+            }
+          });
+        }, observerOptions);
+
+        headings.forEach(heading => observer.observe(heading));
+      }
+
+      // 2. Mobile Menu auto-close on click
+      tocLinks.forEach(link => {
+        link.addEventListener('click', () => {
+          document.querySelector('.ink-sidebar').classList.remove('is-open');
+          const overlay = document.querySelector('.ink-overlay');
+          if(overlay) overlay.classList.remove('is-open');
+        });
+      });
+    });
+  </script>
+</body>
+</html>
