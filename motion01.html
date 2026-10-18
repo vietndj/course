@@ -1,0 +1,1151 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Các Bước Làm Thiết Kế Đồ Họa Chuyển Động 60fps Bằng Remotion &amp; AI (Motion 01)</title>
+  
+  <!-- FAVICON SVG INLINE: CHUẨN "MO" (MOTION 60FPS MONOGRAM) -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%2307090E'/%3E%3Ctext x='32' y='41' font-family='Arial, sans-serif' font-weight='900' font-size='26' fill='%23FACC15' text-anchor='middle' letter-spacing='1'%3EMO%3C/text%3E%3C/svg%3E">
+
+  <!-- FONTS: Fedu CDN -->
+  <style>
+    @font-face { font-family: 'FD Aeonik Extended'; src: url('https://fedu.vn/k/fonts/FDAeonikExtended-Bold.woff2') format('woff2'); font-weight: 700; font-display: swap; }
+    @font-face { font-family: 'FD Aeonik Extended'; src: url('https://fedu.vn/k/fonts/FDAeonikExtended-SemiBold.woff2') format('woff2'); font-weight: 600; font-display: swap; }
+    @font-face { font-family: 'FD Aeonik'; src: url('https://fedu.vn/k/fonts/FDAeonikMedium.ttf') format('truetype'); font-weight: 500; font-display: swap; }
+    @font-face { font-family: 'FD Aeonik'; src: url('https://fedu.vn/k/fonts/FDAeonikRegular.ttf') format('truetype'); font-weight: 400; font-display: swap; }
+    @font-face { font-family: 'Tiempos Text'; src: url('https://fedu.vn/k/fonts/FDTiemposText-Bold.woff2') format('woff2'); font-weight: 700; font-display: swap; }
+    @font-face { font-family: 'Tiempos Text'; src: url('https://fedu.vn/k/fonts/FDTiemposText-Medium.woff2') format('woff2'); font-weight: 500; font-display: swap; }
+    @font-face { font-family: 'Tiempos Text'; src: url('https://fedu.vn/k/fonts/FDTiemposText-Regular.woff2') format('woff2'); font-weight: 400; font-display: swap; }
+    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700&display=swap');
+  </style>
+
+  <style>
+    /* ==========================================================================
+       INKDOC CSS - ZERO ANIMATION, SLATE MONOCHROME + HYBRID VIDEO STUDIO
+       ========================================================================== */
+    :root {
+      --ink-bg: #ffffff;
+      --ink-sidebar: #f8fafc;
+      --ink-text: #0f172a;
+      --ink-muted: #64748b;
+      --ink-border: #e2e8f0;
+      --ink-hover: #f1f5f9;
+      --ink-accent: #0f172a;
+      --ink-dialogue-bg: #f8fafc;
+      
+      --font-display: 'FD Aeonik Extended', -apple-system, sans-serif;
+      --font-heading: 'FD Aeonik', -apple-system, sans-serif;
+      --font-body: 'Tiempos Text', Georgia, serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      
+      --sidebar-width: 280px;
+      --content-max-width: 860px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: auto; font-size: 16px; }
+    body {
+      background-color: var(--ink-bg);
+      color: var(--ink-text);
+      font-family: var(--font-body);
+      line-height: 1.8;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      display: flex;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* TYPOGRAPHY */
+    h1, h2, h3, h4, h5, h6 {
+      color: var(--ink-text);
+      font-weight: 600;
+      line-height: 1.35;
+      margin-top: 2.2rem;
+      margin-bottom: 1rem;
+      font-family: var(--font-heading);
+    }
+    
+    h1.is-short, .title-short {
+      font-family: var(--font-display);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: -0.01em;
+      font-size: clamp(26px, 3.6vw, 38px);
+      line-height: 1.18;
+      margin-top: 0;
+    }
+    
+    h2 {
+      font-size: clamp(20px, 2.4vw, 25px);
+      border-bottom: 2px solid var(--ink-border);
+      padding-bottom: 0.6rem;
+      margin-top: 3.2rem;
+    }
+    h3 { font-size: 1.2rem; margin-top: 2rem; color: #1e293b; }
+    h4 { font-size: 1.05rem; margin-top: 1.5rem; color: #334155; }
+    
+    p, ul, ol, blockquote, pre, table { margin-bottom: 1.4rem; font-size: 1.125rem; }
+    ul, ol { padding-left: 1.5rem; }
+    li { margin-bottom: 0.5rem; }
+    
+    a { color: var(--ink-accent); text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--ink-muted); }
+    a:hover { text-decoration-color: var(--ink-accent); }
+    
+    blockquote {
+      border-left: 3px solid #0f172a;
+      background-color: #f8fafc;
+      padding: 1rem 1.25rem;
+      border-radius: 0 8px 8px 0;
+      font-style: italic;
+      color: var(--ink-text);
+      font-weight: 500;
+    }
+
+    code {
+      font-family: var(--font-mono);
+      font-size: 0.84em;
+      background-color: var(--ink-hover);
+      padding: 0.18em 0.42em;
+      border-radius: 4px;
+      border: 1px solid #e2e8f0;
+    }
+    pre {
+      background-color: #0f172a;
+      color: #f8fafc;
+      padding: 1.25rem;
+      border-radius: 10px;
+      border: 1px solid #1e293b;
+      overflow-x: auto;
+      line-height: 1.6;
+    }
+    pre code {
+      background: none;
+      border: none;
+      padding: 0;
+      font-size: 0.88rem;
+      color: #e2e8f0;
+    }
+
+    hr { border: 0; border-top: 1px solid var(--ink-border); margin: 3rem 0; }
+
+    /* Bảng biểu */
+    table { width: 100%; border-collapse: collapse; margin-bottom: 2rem; font-family: var(--font-heading); font-size: 0.95rem; }
+    th, td { padding: 12px 14px; border-bottom: 1px solid var(--ink-border); text-align: left; vertical-align: top; }
+    th { font-weight: 600; color: var(--ink-muted); text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.05em; border-bottom: 2px solid var(--ink-border); background-color: #f8fafc; }
+
+    /* APPLE HIG BADGE & SPEC-BLOCK */
+    .apple-badge {
+      background-color: #f1f5f9;
+      border: 1px solid #cbd5e1;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+      font-size: 11px;
+      text-transform: uppercase;
+      padding: 2px 8px;
+      border-radius: 6px;
+      color: #334155;
+      font-weight: 700;
+      font-family: var(--font-heading);
+      position: relative;
+      top: -1px;
+      vertical-align: baseline;
+      white-space: nowrap;
+      display: inline-block;
+      letter-spacing: 0.04em;
+    }
+    .apple-badge.gold {
+      background-color: #fef9c3;
+      border-color: #fde047;
+      color: #854d0e;
+    }
+    .apple-badge.dark {
+      background-color: #0f172a;
+      border-color: #0f172a;
+      color: #f8fafc;
+    }
+    .apple-badge.emerald {
+      background-color: #ecfdf5;
+      border-color: #a7f3d0;
+      color: #065f46;
+    }
+
+    .spec-container {
+      background-color: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 1.25rem 1.5rem;
+      margin-bottom: 1.75rem;
+    }
+    .spec-block {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      padding: 0.65rem 0;
+      border-bottom: 1px dashed #cbd5e1;
+    }
+    .spec-block:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+    .spec-block:first-child {
+      padding-top: 0;
+    }
+    @media (min-width: 640px) {
+      .spec-block {
+        flex-direction: row;
+        align-items: baseline;
+        gap: 1.25rem;
+      }
+      .spec-label {
+        flex: 0 0 175px;
+      }
+      .spec-value {
+        flex: 1;
+        font-size: 16px;
+        font-family: var(--font-heading);
+        color: #1e293b;
+        line-height: 1.6;
+      }
+    }
+
+    /* MEDIA & VIDEO STUDIO CARDS */
+    .media-card {
+      background: #0f172a;
+      border: 1px solid #1e293b;
+      border-radius: 14px;
+      padding: 1rem;
+      margin-bottom: 1.75rem;
+      color: #f8fafc;
+      font-family: var(--font-heading);
+    }
+    .media-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 0.75rem;
+      padding-bottom: 0.6rem;
+      border-bottom: 1px solid #1e293b;
+    }
+    .media-card-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #f8fafc;
+    }
+    .media-card-meta {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: #facc15;
+      background: rgba(250, 204, 21, 0.12);
+      border: 1px solid rgba(250, 204, 21, 0.3);
+      padding: 2px 8px;
+      border-radius: 6px;
+    }
+    .media-card video, .media-card img {
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+      display: block;
+      background: #000000;
+    }
+    .media-caption {
+      font-size: 0.85rem;
+      color: #94a3b8;
+      margin-top: 0.65rem;
+      margin-bottom: 0;
+      line-height: 1.5;
+    }
+
+    .grid-2col {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.25rem;
+      margin-bottom: 1.75rem;
+    }
+    @media (min-width: 768px) {
+      .grid-2col {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .grid-3col {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+      margin-bottom: 1.75rem;
+    }
+    @media (min-width: 768px) {
+      .grid-3col {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .checkerboard-bg {
+      background-color: #1e293b;
+      background-image: 
+        linear-gradient(45deg, #0f172a 25%, transparent 25%), 
+        linear-gradient(-45deg, #0f172a 25%, transparent 25%), 
+        linear-gradient(45deg, transparent 75%, #0f172a 75%), 
+        linear-gradient(-45deg, transparent 75%, #0f172a 75%);
+      background-size: 24px 24px;
+      background-position: 0 0, 0 12px, 12px -12px, -12px 0px;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .portrait-video-wrap {
+      max-width: 340px;
+      margin: 0 auto;
+    }
+
+    /* LAYOUT: SIDEBAR */
+    .ink-sidebar {
+      width: var(--sidebar-width);
+      flex-shrink: 0;
+      background-color: var(--ink-sidebar);
+      border-right: 1px solid var(--ink-border);
+      height: 100vh;
+      position: sticky;
+      top: 0;
+      overflow-y: auto;
+      padding: 2rem 1.25rem;
+      font-family: var(--font-heading);
+    }
+    .ink-sidebar-header { margin-bottom: 1.75rem; }
+    .ink-brand { font-family: var(--font-display); font-weight: 700; font-size: 0.95rem; letter-spacing: 0.8px; color: var(--ink-text); text-decoration: none; text-transform: uppercase; }
+    
+    .ink-toc-title {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: var(--ink-muted);
+      letter-spacing: 0.06em;
+      margin-bottom: 0.75rem;
+    }
+    
+    .ink-toc-list { list-style: none; padding: 0; margin: 0; }
+    .ink-toc-list li { margin-bottom: 0.2rem; }
+    .ink-toc-link {
+      display: block;
+      padding: 0.38rem 0.65rem;
+      color: var(--ink-muted);
+      text-decoration: none;
+      font-size: 0.84rem;
+      border-radius: 6px;
+      line-height: 1.4;
+    }
+    .ink-toc-link:hover { background-color: var(--ink-hover); color: var(--ink-text); }
+    .ink-toc-link.is-active {
+      background-color: #e2e8f0;
+      color: var(--ink-text);
+      font-weight: 600;
+    }
+    .ink-toc-nested { padding-left: 0.85rem; margin-top: 0.15rem; border-left: 1px solid #cbd5e1; margin-left: 0.6rem; }
+
+    /* LAYOUT: CONTENT */
+    .ink-main-wrapper {
+      flex-grow: 1;
+      padding: 3.5rem 2.5rem;
+      display: flex;
+      justify-content: center;
+    }
+    .ink-content {
+      width: 100%;
+      max-width: var(--content-max-width);
+    }
+    
+    .ink-meta {
+      display: flex;
+      gap: 0.75rem;
+      font-family: var(--font-heading);
+      font-size: 0.85rem;
+      color: var(--ink-muted);
+      margin-bottom: 1.75rem;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .ink-badge {
+      font-family: var(--font-mono);
+      text-transform: uppercase;
+      font-size: 0.72rem;
+      padding: 3px 10px;
+      border: 1px solid var(--ink-border);
+      border-radius: 99px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      color: var(--ink-text);
+      background: #f8fafc;
+    }
+
+    .ink-mode-reference {
+      --content-max-width: 860px;
+    }
+
+    /* MOBILE MENU TOGGLE & OVERLAY */
+    .ink-mobile-nav {
+      display: none;
+      position: sticky;
+      top: 0;
+      background: var(--ink-bg);
+      border-bottom: 1px solid var(--ink-border);
+      padding: 0.85rem 1rem;
+      z-index: 100;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .ink-menu-btn {
+      background: #f8fafc; border: 1px solid var(--ink-border); border-radius: 6px;
+      padding: 0.4rem 0.75rem; cursor: pointer; font-family: var(--font-heading); font-size: 0.8rem; font-weight: 600;
+    }
+    .ink-overlay {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(15, 23, 42, 0.6);
+      z-index: 999;
+    }
+    .ink-overlay.is-open { display: block; }
+    .ink-close-btn {
+      display: none;
+      background: none; border: none; cursor: pointer;
+      font-size: 1.25rem; color: var(--ink-text);
+      padding: 0.25rem;
+    }
+
+    @media (max-width: 992px) {
+      body { flex-direction: column; }
+      .ink-mobile-nav { display: flex; }
+      .ink-sidebar {
+        position: fixed;
+        top: 0; bottom: 0; left: -100%;
+        z-index: 1000;
+        box-shadow: 4px 0 24px rgba(0,0,0,0.15);
+        max-width: 320px;
+        width: 85vw;
+      }
+      .ink-sidebar.is-open { left: 0; }
+      .ink-close-btn { display: block; }
+      .ink-main-wrapper { padding: 2rem 1.25rem; }
+    }
+    
+    @media (max-width: 768px) {
+      .ink-main-wrapper { padding: 1.5rem 1rem; }
+      p, ul, ol, blockquote, pre, table { font-size: 1rem; margin-bottom: 1.2rem; line-height: 1.65; }
+      .ink-content { width: 100%; max-width: 100vw; overflow-wrap: break-word; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- MOBILE NAV -->
+  <div class="ink-mobile-nav">
+    <a href="#top" class="ink-brand">FEDU MOTION 01</a>
+    <button class="ink-menu-btn" onclick="document.querySelector('.ink-sidebar').classList.add('is-open'); document.querySelector('.ink-overlay').classList.add('is-open');">MỤC LỤC</button>
+  </div>
+
+  <!-- MOBILE OVERLAY -->
+  <div class="ink-overlay" onclick="document.querySelector('.ink-sidebar').classList.remove('is-open'); this.classList.remove('is-open');"></div>
+
+  <!-- SIDEBAR TOC -->
+  <aside class="ink-sidebar">
+    <div class="ink-sidebar-header" style="display: flex; justify-content: space-between; align-items: center;">
+      <a href="#top" class="ink-brand">FEDU • MOTION 01</a>
+      <button class="ink-close-btn" onclick="document.querySelector('.ink-sidebar').classList.remove('is-open'); document.querySelector('.ink-overlay').classList.remove('is-open');">✕</button>
+    </div>
+    
+    <div class="ink-toc-title">MỤC LỤC TRA CỨU</div>
+    <ul class="ink-toc-list">
+      <li>
+        <a href="#phan-1-kien-truc-60fps" class="ink-toc-link is-active">I. Nền Tảng Kỹ Thuật Remotion 60fps</a>
+        <ul class="ink-toc-list ink-toc-nested">
+          <li><a href="#vi-sao-can-chromium-gpu" class="ink-toc-link">1.1. Sub-pixel Float32 vs. Điểm ảnh</a></li>
+          <li><a href="#cau-hoi-lam-ro" class="ink-toc-link">1.2. Điểm mấu chốt câu lệnh hỏi ngược</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="#phan-2-quy-trinh-5-buoc" class="ink-toc-link">II. Các Bước Làm 5 Bước Gốc (Matt Loui)</a>
+        <ul class="ink-toc-list ink-toc-nested">
+          <li><a href="#buoc-0-khoi-tao" class="ink-toc-link">Bước 0: Cài đặt &amp; Khởi tạo dự án</a></li>
+          <li><a href="#buoc-1-record-it" class="ink-toc-link">Bước 1 (Way 1): Quay màn hình</a></li>
+          <li><a href="#buoc-2-screenshot-it" class="ink-toc-link">Bước 2 (Way 2): 3 Ảnh chụp &amp; Kịch bản</a></li>
+          <li><a href="#buoc-3-reference-it" class="ink-toc-link">Bước 3 (Way 3): Video mẫu Pinterest</a></li>
+          <li><a href="#buoc-4-5-hau-ky-capcut" class="ink-toc-link">Bước 4 &amp; 5: Xuất 4K &amp; Chỉnh sửa cuối CapCut</a></li>
+          <li><a href="#demo-3-cases-matt-loui" class="ink-toc-link">Video Demo 3 Phương Pháp (60fps)</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="#phan-3-tu-pinterest-den-viet-gold" class="ink-toc-link">III. Từ File Mẫu Pinterest .MP4 Đến Bản Thương Hiệu</a>
+        <ul class="ink-toc-list ink-toc-nested">
+          <li><a href="#giai-phau-file-pinterest" class="ink-toc-link">3.1. Giải phẫu file mẫu Pinterest .mp4</a></li>
+          <li><a href="#sau-buoc-thuc-thi" class="ink-toc-link">3.2. Sáu bước dựng lại &amp; Việt hóa</a></li>
+          <li><a href="#bang-doi-chieu-6-canh" class="ink-toc-link">3.3. Bảng đối chiếu 6 phân cảnh</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="#phan-4-phong-trinh-chieu-demo" class="ink-toc-link">IV. Trình Chiếu Trọn Bộ Video Demo Cuối Cùng</a>
+        <ul class="ink-toc-list ink-toc-nested">
+          <li><a href="#so-sanh-pinterest-1-1" class="ink-toc-link">4.1. Đối chiếu Pinterest Gốc vs. 60fps</a></li>
+          <li><a href="#demo-viet-gold-16x9" class="ink-toc-link">4.2. Bản Ngang 16:9 Vàng Gold (60fps)</a></li>
+          <li><a href="#demo-viet-gold-9x16" class="ink-toc-link">4.3. Bản Dọc 9:16 Reels/TikTok (60fps)</a></li>
+          <li><a href="#demo-prores-alpha" class="ink-toc-link">4.4. Bản Nền Trong Suốt ProRes 4444</a></li>
+        </ul>
+      </li>
+    </ul>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main class="ink-main-wrapper">
+    <article class="ink-content ink-mode-reference">
+      
+      <div class="ink-meta">
+        <span class="ink-badge">MOTION GRAPHICS • 60FPS</span>
+        <span>Nguyễn Việt • FEDU Course</span>
+        <span>•</span>
+        <span>Tài liệu Kỹ thuật &amp; Video Demo Thực Chiến</span>
+      </div>
+
+      <h1 class="is-short" id="top">Các Bước Làm Thiết Kế Đồ Họa Chuyển Động 60fps Bằng Remotion &amp; Thực Chiến Từ File Mẫu Pinterest</h1>
+      
+      <p>Tài liệu này hệ thống hóa toàn bộ các bước làm biến ý tưởng, ảnh chụp màn hình và video mẫu trên Pinterest thành đồ họa chuyển động sắc nét ở tốc độ <strong>60 khung hình/giây (60fps)</strong> bằng <strong>Remotion + Claude Code</strong>. Phần đầu giải mã chi tiết từng bước câu lệnh xuất hiện trên màn hình trong các bước làm của Matt Loui; phần tiếp theo trình bày trực tiếp các bước mổ xẻ từ file gốc <code>pinterest_ref.mp4</code> sang trọn bộ 3 định dạng video mang bảng màu thương hiệu cá nhân của anh Việt (<strong>Đen Obsidian – Trắng Kem – Vàng Gold</strong>).</p>
+
+      <!-- ====================================================================
+           PHẦN I: NỀN TẢNG KỸ THUẬT REMOTION 60FPS
+           ==================================================================== -->
+      <h2 id="phan-1-kien-truc-60fps">I. Nền Tảng Kỹ Thuật: Vì Sao Phải Render Bằng Remotion 60fps Trên Nhân Trình Duyệt?</h2>
+
+      <h3 id="vi-sao-can-chromium-gpu">1.1. Sự khác biệt giữa Vẽ Điểm Ảnh 30fps và Nội Suy Tọa Độ Thực Sub-Pixel 60fps</h3>
+      <p>Khi tạo đồ họa chuyển động có chứa chữ viết, con số và giao diện phần mềm, các mô hình sinh video bằng điểm ảnh (như Sora, Runway hay Veo) thường làm nhòe nét chữ hoặc sai lệch số liệu. Ngược lại, nếu dùng thư viện vẽ ảnh tĩnh thông thường trong Python (như <code>PIL/OpenCV</code> ở mức 30fps), mọi tọa độ vị trí bị ép về số nguyên (<code>int</code>). Khi khung hình dịch chuyển chậm hoặc phóng to nhẹ, hình ảnh sẽ bị giật từng nấc 1 pixel và thiếu độ mượt quang học.</p>
+
+      <div class="spec-container">
+        <div class="spec-block">
+          <div class="spec-label"><span class="apple-badge dark">NHÂN KẾT XUẤT</span></div>
+          <div class="spec-value"><strong>Remotion + Trình duyệt Chromium (Skia GPU Engine):</strong> Biến mã nguồn giao diện React/TypeScript và SVG thành khung hình vector sắc nét ở mọi mức phóng đại.</div>
+        </div>
+        <div class="spec-block">
+          <div class="spec-label"><span class="apple-badge gold">TỌA ĐỘ SUB-PIXEL</span></div>
+          <div class="spec-value"><strong>Nội suy số thực 32-bit (Float32):</strong> Mọi chuyển động trượt, xoay và thu phóng đều tính bằng <code>translate3d(x, y, z)</code>, <code>scale()</code> và hệ trục không gian 3 chiều <code>perspective(1200px)</code>, loại bỏ hoàn toàn hiện tượng khựng bậc thang.</div>
+        </div>
+        <div class="spec-block">
+          <div class="spec-label"><span class="apple-badge emerald">TỐC ĐỘ KHUNG HÌNH</span></div>
+          <div class="spec-value"><strong>60.0 fps (900 frames cho 15 giây):</strong> Tăng gấp đôi mật độ lấy mẫu thời gian so với 30fps, giúp các pha vung kiếm ánh sáng, sao chổi bay quanh quỹ đạo và lật thẻ 3D liền mạch theo chuẩn điện ảnh thương mại.</div>
+        </div>
+      </div>
+
+      <h3 id="cau-hoi-lam-ro">1.2. Điểm Mấu Chốt Cốt Lõi: Câu Lệnh Mở Khóa Chế Độ Hỏi Ngược Của AI</h3>
+      <p>Trong mọi câu lệnh của các bước làm này, câu cuối cùng luôn là:</p>
+      <pre><code>Ask me as many questions as you need to nail a really cool motion animation.</code></pre>
+      <p>Khi không có câu này, AI sẽ tự đoán màu sắc, tự đoán tốc độ nhanh/chậm và viết code ngay lập tức, dẫn đến kết quả chung chung. Khi đưa câu lệnh này vào, công cụ lập trình chuyển sang trạng thái <strong>Khảo sát yêu cầu thông qua bảng trắc nghiệm 4 mục</strong> (<code>Style</code>, <code>Pacing</code>, <code>Colors</code>, <code>Length</code>), giúp người dùng chốt chính xác chất liệu 3D phát sáng, thời lượng và bảng màu trước khi dòng code đầu tiên được viết ra.</p>
+
+      <hr>
+
+      <!-- ====================================================================
+           PHẦN II: QUY TRÌNH 5 BƯỚC GỐC TRÊN MÀN HÌNH CỦA MATT LOUI
+           ==================================================================== -->
+      <h2 id="phan-2-quy-trinh-5-buoc">II. Giải Mã Đầy Đủ Các Bước Có Prompt Trên Màn Hình Video Gốc (Input + Prompt &rarr; Output &amp; Vì Sao)</h2>
+
+      <div class="grid-2col">
+        <div class="media-card">
+          <div class="media-card-header">
+            <span class="media-card-title">Tổng hợp 4 màn hình gõ Prompt trong video gốc</span>
+            <span class="media-card-meta">Bước 0 &rarr; Bước 3</span>
+          </div>
+          <img src="./assets/motion01/frames/prompts_grid_2x2.jpg" alt="Tổng hợp 4 màn hình gõ Prompt trong video gốc" loading="lazy">
+          <p class="media-caption">Ảnh chụp trực tiếp từ màn hình thao tác Claude Code của Matt Loui qua các bước khởi tạo và nhập câu lệnh.</p>
+        </div>
+        <div class="media-card">
+          <div class="media-card-header">
+            <span class="media-card-title">Tổng hợp Input đính kèm, Bảng 4 Tab câu hỏi &amp; Output</span>
+            <span class="media-card-meta">Inputs &amp; UI Modal</span>
+          </div>
+          <img src="./assets/motion01/frames/inputs_and_questions_grid_2x2.jpg" alt="Tổng hợp Input đính kèm và Bảng câu hỏi 4 Tab" loading="lazy">
+          <p class="media-caption">Cách kết hợp file quay màn hình, ảnh chụp tĩnh, bảng câu hỏi 4 Tab và 3 bước chỉnh sửa cuối trong CapCut.</p>
+        </div>
+      </div>
+
+      <!-- BƯỚC 0 -->
+      <h3 id="buoc-0-khoi-tao">Bước 0: Cài Đặt &amp; Khởi Tạo Dự Án Remotion Trong Claude Code (Phút 02:17 – 03:19)</h3>
+      <div class="spec-container">
+        <div class="spec-block">
+          <div class="spec-label"><span class="apple-badge">CÁCH LÀM</span></div>
+          <div class="spec-value">1. Cài đặt <strong>Node.js</strong> từ <code>nodejs.org</code>.<br>2. Mở ứng dụng <strong>Claude Desktop</strong> &rarr; chuyển sang tab <strong>Claude Code</strong> (không dùng cửa sổ chat thông thường vì cửa sổ chat không có quyền tạo file và chạy trình kết xuất video trên máy).<br>3. Chọn thư mục làm việc trên máy tính và gõ lệnh khởi tạo. Khi được hỏi có cài đặt bộ kỹ năng <strong>Remotion AI Skills</strong> không, bấm chọn <strong>Yes</strong>.</div>
+        </div>
+        <div class="spec-block">
+          <div class="spec-label"><span class="apple-badge">HÌNH ẢNH THÊM VÀO</span></div>
+          <div class="spec-value">Không đính kèm file hình ảnh.</div>
+        </div>
+        <div class="spec-block">
+          <div class="spec-label"><span class="apple-badge gold">ĐẦU RA &amp; VÌ SAO</span></div>
+          <div class="spec-value"><strong>Đầu ra:</strong> Một thư mục dự án Remotion hoàn chỉnh trên máy tính, tích hợp sẵn bộ tài liệu hướng dẫn lập trình chuyển động (<code>remotion-dev/skills</code>).<br><strong>Vì sao?</strong> Bộ kỹ năng này cung cấp quy chuẩn viết hàm nội suy <code>interpolate()</code> và <code>spring()</code> chuẩn xác để AI tạo ra video 4K từ mã nguồn giao diện mà không gặp lỗi cú pháp.</div>
+        </div>
+      </div>
+
+      <p><strong>Lệnh gõ trên màn hình (Phút 02:51):</strong></p>
+      <pre><code>npx create-video@latest
+# Hoặc nếu đã có sẵn thư mục dự án, cài thêm bộ kỹ năng Remotion bằng lệnh:
+npx skills add remotion-dev/skills</code></pre>
+
+      <div class="media-card">
+        <div class="media-card-header">
+          <span class="media-card-title">Màn hình Bước 0: Khởi tạo dự án bằng lệnh npx create-video@latest</span>
+          <span class="media-card-meta">Phút 02:51</span>
+        </div>
+        <img src="./assets/motion01/frames/step0_npx_create_video.jpg" alt="Màn hình khởi tạo npx create-video@latest" loading="lazy">
+      </div>
+
+      <!-- BƯỚC 1 -->
+      <h3 id="buoc-1-record-it">Bước 1 (Phương Pháp 1 — "Record It"): Biến Đoạn Quay Màn Hình Thành Đồ Họa Chuyển Động (Phút 03:22 – 05:03)</h3>
+      <div class="spec-container">
+        <div class="spec-block">
+          <div class="spec-label"><span class="apple-badge">CÁCH LÀM</span></div>
+          <div class="spec-value">1. Mở phần mềm cần làm minh họa (tính năng <strong>Edit Pilot</strong> của CapCut), bấm quay màn hình (<code>Screen Recording</code>) khoảng 5–10 giây cảnh con trỏ chuột bấm vào nút <code>Edit Pilot</code> và gõ chữ vào thanh công cụ.<br>2. Kéo thả file video quay màn hình đó vào cửa sổ Claude Code kèm câu Prompt số 1.<br>3. Bấm chọn phong cách <code>Glossy 3D</code> trong bảng câu hỏi 4 mục hiện ra.</div>
+        </div>
+        <div class="spec-block">
+          <div class="spec-label"><span class="apple-badge emerald">INPUT ĐÍNH KÈM</span></div>
+          <div class="spec-value"><strong>1 file video quay màn hình (<code>Screen Recordi...mov</code>):</strong> Quay cận cảnh góc màn hình tối màu của CapCut, nơi con trỏ chuột bấm vào nút tròn có chữ <code>Edit Pilot</code> màu xanh ngọc &rarr; nút bung rộng ra thành thanh nhập liệu ngang &rarr; người dùng gõ câu lệnh rồi bấm nút mũi tên gửi đi.</div>
+        </div>
+        <div class="spec-block">
+          <div class="spec-label"><span class="apple-badge gold">ĐẦU RA &amp; VÌ SAO</span></div>
+          <div class="spec-value"><strong>Đầu ra:</strong> Đoạn video 4K có khung viền phát sáng màu xanh ngọc (Neon Teal) kèm bóng phản chiếu dưới mặt sàn. Nút <code>Edit Pilot</code> ở chính giữa được con trỏ chuột bấm vào, bung mượt ra thành thanh nhập liệu, chữ tự động gõ từng ký tự và phát sáng khi bấm nút gửi.<br><strong>Vì sao ra được như vậy?</strong><br>• <em>Nhờ file quay màn hình:</em> AI nhìn thấy chính xác hình dáng biểu tượng 4 cánh, mã màu xanh ngọc và thứ tự chuyển trạng thái từ nút nhỏ sang thanh ngang của phần mềm thật.<br>• <em>Nhờ cụm từ "Use the same design":</em> Giữ đúng giao diện gốc nhưng lược bỏ toàn bộ các chi tiết thừa xung quanh để đặt thanh công cụ nổi bật ở chính giữa.<br>• <em>Nhờ câu hỏi làm rõ:</em> Mở ra lựa chọn <code>Glossy 3D</code>, giúp AI thêm khung bo góc phát sáng neon và bóng gương phản chiếu bên dưới.</div>
+        </div>
+      </div>
+
+      <p><strong>Nguyên văn Prompt trên màn hình (Phút 03:54):</strong></p>
+      <pre><code>attached is a quick screen recording of CapCut's Edit Pilot. I want this turned into a cool motion graphic. Use the same design but animate it using remotion. Ask me as many questions as you need to nail a really cool motion animation.</code></pre>
+      <blockquote>Dịch nghĩa: "Đính kèm là đoạn quay màn hình nhanh tính năng Edit Pilot của CapCut. Tôi muốn biến nó thành một đồ họa chuyển động thật ngầu. Hãy giữ nguyên thiết kế giống như vậy nhưng làm hoạt hình bằng Remotion. Hãy hỏi tôi bao nhiêu câu hỏi tùy thích để làm ra một hoạt ảnh thật xuất sắc."</blockquote>
+
+      <div class="grid-2col">
+        <div class="media-card">
+          <div class="media-card-header">
+            <span class="media-card-title">Màn hình gõ Prompt 1 &amp; File đính kèm</span>
+            <span class="media-card-meta">Phút 03:54</span>
+          </div>
+          <img src="./assets/motion01/frames/step1_prompt_screen.jpg" alt="Màn hình Prompt 1" loading="lazy">
+        </div>
+        <div class="media-card">
+          <div class="media-card-header">
+            <span class="media-card-title">Bảng câu hỏi 4 Tab (Chọn Glossy 3D)</span>
+            <span class="media-card-meta">Phút 04:10</span>
+          </div>
+          <img src="./assets/motion01/frames/claude_questions.jpg" alt="Bảng câu hỏi 4 Tab của Claude Code" loading="lazy">
+        </div>
+      </div>
+
+      <div class="grid-2col">
+        <div class="media-card">
+          <div class="media-card-header">
+            <span class="media-card-title">Đối chiếu Video Quay Màn Hình Gốc vs. Đồ Họa Remotion</span>
+            <span class="media-card-meta">Before &amp; After</span>
+          </div>
+          <img src="./assets/motion01/frames/way1_comparison.jpg" alt="So sánh Input và Output Bước 1" loading="lazy">
+        </div>
+        <div class="media-card">
+          <div class="media-card-header">
+            <span class="media-card-title">Kết quả Đầu ra Bước 1: Thanh Prompt Bar 3D Neon Teal</span>
+            <span class="media-card-meta">Output 4K</span>
+          </div>
+          <img src="./assets/motion01/frames/case1_prompt_bar.jpg" alt="Kết quả Output Bước 1" loading="lazy">
+        </div>
+      </div>
+
+      <!-- BƯỚC 2 -->
+      <h3 id="buoc-2-screenshot-it">Bước 2 (Phương Pháp 2 — "Screenshot It"): Biến 3 Ảnh Chụp Màn Hình &amp; Kịch Bản Lời Nói Thành Sơ Đồ Các Bước Làm (Phút 05:04 – 05:54)</h3>
+      <div class="spec-container">
+        <div class="spec-block">
+          <div class="spec-label"><span class="apple-badge">CÁCH LÀM</span></div>
+          <div class="spec-value">1. <strong>Thực hiện ngay trong cùng cửa sổ chat của Bước 1</strong> (không mở luồng mới) để AI kế thừa phong cách khung viền 3D phát sáng vừa làm.<br>2. Chụp <strong>3 tấm ảnh màn hình tĩnh</strong> ứng với 3 công đoạn trong bài hướng dẫn.<br>3. Đính kèm 3 tấm ảnh vào khung chat + dán đoạn kịch bản lời thoại (<code>My script is this...</code>) + yêu cầu tạo sơ đồ các bước làm đánh số.</div>
+        </div>
+        <div class="spec-block">
+          <div class="spec-label"><span class="apple-badge emerald">3 ẢNH THÊM VÀO</span></div>
+          <div class="spec-value">• <strong>Ảnh 1:</strong> Giao diện nền trắng của CapCut Video Studio đang tạo 4 tấm ảnh sản phẩm chai nước màu vàng (<code>Product images</code>).<br>• <strong>Ảnh 2:</strong> Giao diện nền trắng của CapCut Video Studio đang tạo thêm hàng video dọc minh họa (<code>Creative b-roll</code>).<br>• <strong>Ảnh 3:</strong> Giao diện nền tối của Thanh Cắt Ghép phần mềm CapCut PC khi đã đưa toàn bộ ảnh và video vào cắt dựng (<code>AI ad maker</code>).</div>
+        </div>
+        <div class="spec-block">
+          <div class="spec-label"><span class="apple-badge gold">ĐẦU RA &amp; VÌ SAO</span></div>
+          <div class="spec-value"><strong>Đầu ra:</strong> Khung màn hình viền Vàng Cam ấm áp (đồng bộ với màu chai nước trong ảnh chụp). Hoạt ảnh lần lượt phóng vào <strong>Bước 01 Product images</strong> (các ảnh ngang trượt ra) &rarr; <strong>Bước 02 Creative b-roll</strong> (các video dọc trượt xuống) &rarr; cuối cùng thu phóng ra xa thành <strong>Sơ đồ 3 bước nằm ngang (01 &rarr; 02 &rarr; 03)</strong> có đường kẻ nối liền mạch.<br><strong>Vì sao ra được như vậy?</strong><br>• <em>Nhờ làm chung cửa sổ chat cũ + câu khen đầu câu lệnh:</em> AI giữ nguyên kiểu khung bo góc có viền phát sáng neon và bóng phản chiếu mặt sàn giống Bước 1.<br>• <em>Nhờ đưa kịch bản lời nói:</em> AI đọc lời thoại và tự động chia đúng 3 nhãn tiêu đề khớp 100% với những gì người nói đang đọc.<br>• <em>Nhờ 3 tấm ảnh chụp màn hình thật:</em> AI tái tạo lại đúng bố cục 4 tấm ảnh ngang, 7 tấm ảnh dọc và thanh thanh cắt ghép từ ảnh thật đưa vào chuyển động.</div>
+        </div>
+      </div>
+
+      <p><strong>Nguyên văn Prompt trên màn hình (Phút 05:40):</strong></p>
+      <pre><code>You nailed this. This is one of the best motion graphics I've seen you make. From movements, to replication of the real thing, to professional smoothness and more... well done.
+
+I want to create another motion animation for the same editing project. My script is this:
+In this capcut pc tutorial I'll show you how to generate product images and creative b-roll in the same spot, it's capcut's video studio. Then we're going to take all of this into capcut pc as ai ai ad maker. 
+
+I've attached some screen shots of video studio (the image gen and b-roll). I've also attached an image of our capcut time-line.
+
+Ideally, the animation shows the flow of the video. Perhaps a numbered list? Or a synopsis workflow?
+
+Ask me questions so we can get this animation looking solid.</code></pre>
+      <blockquote>Dịch nghĩa: "Bạn làm chuẩn lắm. Đây là một trong những đồ họa chuyển động đẹp nhất tôi từng thấy bạn tạo ra. Từ chuyển động, độ giống bản thật, cho đến độ mượt chuyên nghiệp... làm rất tốt. Tôi muốn tạo thêm một hoạt ảnh nữa cho cùng dự án dựng phim này. Kịch bản của tôi như sau: 'Trong hướng dẫn CapCut PC này, tôi sẽ chỉ bạn cách tạo ảnh sản phẩm và B-roll sáng tạo ở cùng một nơi là CapCut Video Studio. Sau đó chúng ta sẽ đưa tất cả vào CapCut PC với AI Ad Maker.' Tôi có đính kèm vài ảnh chụp màn hình của Video Studio (phần tạo ảnh và B-roll) cùng ảnh chụp thanh cắt ghép CapCut. Lý tưởng nhất là hoạt ảnh thể hiện được luồng đi của video. Có thể là danh sách đánh số? Hoặc sơ đồ tóm tắt các bước làm? Hãy hỏi tôi các câu hỏi để chúng ta làm cho hoạt ảnh này thật chất lượng."</blockquote>
+
+      <div class="grid-2col">
+        <div class="media-card">
+          <div class="media-card-header">
+            <span class="media-card-title">3 Ảnh Chụp Màn Hình Đính Kèm &amp; Sơ Đồ Đầu Ra</span>
+            <span class="media-card-meta">Phút 05:18</span>
+          </div>
+          <img src="./assets/motion01/frames/step2_screenshots_input.jpg" alt="3 ảnh chụp màn hình Input Bước 2" loading="lazy">
+        </div>
+        <div class="media-card">
+          <div class="media-card-header">
+            <span class="media-card-title">Kết quả Đầu ra Bước 2: Sơ đồ 3 Bước Các Bước Làm</span>
+            <span class="media-card-meta">Phút 05:40</span>
+          </div>
+          <img src="./assets/motion01/frames/case2_workflow.jpg" alt="Kết quả Output Bước 2" loading="lazy">
+        </div>
+      </div>
+
+      <!-- BƯỚC 3 -->
+      <h3 id="buoc-3-reference-it">Bước 3 (Phương Pháp 3 — "Reference It"): Kết Hợp Video Mẫu Pinterest + 5 Ảnh Chụp Giao Diện Thành Video Quảng Cáo 25 Giây (Phút 05:55 – 08:14)</h3>
+      <div class="spec-container">
+        <div class="spec-block">
+          <div class="spec-label"><span class="apple-badge">CÁCH LÀM</span></div>
+          <div class="spec-value">1. Lên <strong>Pinterest.com</strong> tìm từ khóa <code>"motion typography animation"</code>, tải mẫu video chuyển động ưng ý nhất về máy thành file <code>.mp4</code>.<br>2. Đăng nhập vào phần mềm/website riêng (<code>clickt.link</code>), chụp <strong>5 tấm ảnh màn hình</strong> từ trang chủ đến các bảng biểu đồ bên trong trang quản trị.<br>3. Mở cửa sổ Claude Code mới, đính kèm <strong>1 video mẫu Pinterest + 5 tấm ảnh chụp màn hình</strong> và gõ Prompt số 3.</div>
+        </div>
+        <div class="spec-block">
+          <div class="spec-label"><span class="apple-badge emerald">6 FILE THÊM VÀO</span></div>
+          <div class="spec-value">• <strong>File 1 (<code>From Klickpin...mp4</code>):</strong> Video mẫu Pinterest màu xanh lục chứa các chuyển động: vòng tròn quỹ đạo giao nhau (<code>Sketch</code>), tia kiếm cắt mở màn hình, chữ xếp tầng và bảng điều khiển Bento 3D.<br>• <strong>File 2 đến File 6 (5 tấm ảnh chụp <code>clickt.link</code>):</strong> Ảnh trang chủ nền xanh đen, ảnh bảng điều khiển chính (3 thẻ <code>Revenue US$5,543</code>, <code>Tracked Clicks 10.9k</code>, <code>Conversion Rate 4.4%</code>), ảnh danh sách video YouTube gắn link theo dõi, và 2 ảnh biểu đồ đường tăng trưởng doanh thu.</div>
+        </div>
+        <div class="spec-block">
+          <div class="spec-label"><span class="apple-badge gold">ĐẦU RA &amp; VÌ SAO</span></div>
+          <div class="spec-value"><strong>Đầu ra:</strong> Một video quảng cáo phần mềm dài đúng <strong>25 giây</strong> mang toàn bộ các kỹ xảo chuyển cảnh của video Pinterest (vòng tròn quỹ đạo mở màn, tia kiếm cắt mở cảnh, tô màu chữ), nhưng mang <strong>bảng màu Xanh Dương – Trắng – Xanh Đen và toàn bộ số liệu, biểu đồ thật của <code>clickt.link</code></strong>.<br><strong>Vì sao ra được như vậy?</strong><br>• <em>Video Pinterest làm "Khuôn chuyển động" (Motion Reference):</em> Thay vì phải mô tả bằng lời văn cách vẽ từng vòng tròn hay góc nghiêng camera, AI nhìn video mẫu để lấy cấu trúc nhịp điệu và kiểu chuyển cảnh.<br>• <em>5 tấm ảnh chụp màn hình làm "Ruột thương hiệu" (UI &amp; Brand Data):</em> AI trích xuất đúng logo chữ C, màu xanh dương chủ đạo, phông chữ và các thẻ số liệu thật từ 5 tấm ảnh chụp để lắp vào bên trong khuôn chuyển động của Pinterest.</div>
+        </div>
+      </div>
+
+      <p><strong>Nguyên văn Prompt trên màn hình (Phút 06:58):</strong></p>
+      <pre><code>this video contains amazing animation and motion design. I'd like a video like this for clickt.link
+
+Ask me as many questions as you need in order to get this right. The final output should be 25 seconds. I'm also attaching some screenshots of clickt's internal interface (you can't access these, so they should help).</code></pre>
+      <blockquote>Dịch nghĩa: "Video này chứa hoạt ảnh và thiết kế chuyển động rất đẹp. Tôi muốn một video giống như thế này cho clickt.link. Hãy hỏi tôi bao nhiêu câu hỏi tùy thích để làm chuẩn nhất. Đầu ra cuối cùng cần dài 25 giây. Tôi cũng đính kèm một số ảnh chụp màn hình giao diện nội bộ của Clickt (bạn không tự truy cập vào trong đó được, nên những ảnh này sẽ giúp ích)."</blockquote>
+
+      <div class="grid-3col">
+        <div class="media-card">
+          <div class="media-card-header">
+            <span class="media-card-title">5 Ảnh Chụp Nội Bộ Clickt.link</span>
+            <span class="media-card-meta">UI Inputs</span>
+          </div>
+          <img src="./assets/motion01/frames/step3_clickt_screenshots.jpg" alt="Giao diện Clickt.link" loading="lazy">
+        </div>
+        <div class="media-card">
+          <div class="media-card-header">
+            <span class="media-card-title">Màn Hình Đính Kèm 6 File &amp; Prompt 3</span>
+            <span class="media-card-meta">Phút 06:58</span>
+          </div>
+          <img src="./assets/motion01/frames/step3_prompt_screen.jpg" alt="Màn hình Prompt 3" loading="lazy">
+        </div>
+        <div class="media-card">
+          <div class="media-card-header">
+            <span class="media-card-title">Đầu Ra Promo 25 Giây Của Clickt</span>
+            <span class="media-card-meta">Output 25s</span>
+          </div>
+          <img src="./assets/motion01/frames/case3_promo.jpg" alt="Kết quả Output Bước 3" loading="lazy">
+        </div>
+      </div>
+
+      <!-- BƯỚC 4 & 5 -->
+      <h3 id="buoc-4-5-hau-ky-capcut">Bước 4 &amp; 5: Lệnh Xuất Bản 4K &amp; 3 Bước Chỉnh Sửa Cuối Quang Học Trong CapCut (Phút 08:20 – 14:36)</h3>
+      <p>Sau khi kiểm tra chuyển động trong trình xem trước, Matt Loui yêu cầu xuất file 4K về máy tính bằng câu lệnh:</p>
+      <pre><code>Please render a 4K copy onto my computer</code></pre>
+      <p>Tiếp theo, để xóa bỏ cảm giác "cứng" của đồ họa máy tính, file MP4 4K được đưa vào CapCut thực hiện <strong>3 bước hoàn thiện trong 5 phút</strong>:</p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Bước chỉnh sửa cuối CapCut</th>
+            <th>Thao tác &amp; Thông số kỹ thuật</th>
+            <th>Đầu ra đạt được &amp; Nguyên lý thị giác</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>5.1. Tán sắc rìa ống kính</strong><br><code>Chroma Quirk</code> + <code>Circle Mask Reverse</code></td>
+            <td>• Kéo hiệu ứng <code>Chroma Quirk</code> phủ lên video.<br>• Mở tab <code>Mask</code> &rarr; chọn <code>Circle</code>.<br>• Kéo rộng vòng tròn ra sát mép khung hình, chỉnh <code>Feather = 15</code>.<br>• Bấm nút <strong>Reverse (Đảo ngược mặt nạ)</strong>.</td>
+            <td><strong>Đầu ra:</strong> Chữ và số liệu ở tâm màn hình nét 100%, chỉ có 4 góc ngoài cùng tách nhẹ viền màu RGB.<br><strong>Vì sao?</strong> Mô phỏng hiện tượng quang sai rìa ống kính máy quay, hướng mắt người xem tập trung vào vùng trung tâm.</td>
+          </tr>
+          <tr>
+            <td><strong>5.2. Làm mờ hướng tâm 4 góc</strong><br><code>Radial Blur 2</code></td>
+            <td>• Kéo hiệu ứng <code>Radial Blur 2</code> đè lên thanh cắt ghép.<br>• Chỉnh <code>Glow = 0</code>, <code>Filter = 0</code>.<br>• Tăng nhẹ <code>Strength</code> và đẩy <code>Size</code> lên cao để dồn vùng mờ ra 4 góc.</td>
+            <td><strong>Đầu ra:</strong> Bốn góc ngoài cùng hơi nhòe hướng tâm nhẹ nhàng, không lấn vào vùng chữ ở giữa.<br><strong>Vì sao?</strong> Tạo độ sâu trường ảnh tự nhiên khi các thẻ giao diện trượt từ ngoài rìa vào giữa màn hình.</td>
+          </tr>
+          <tr>
+            <td><strong>5.3. Thiết kế âm thanh 3 lớp</strong><br><code>3-Layer SFX</code> + <code>Reverb 70%</code></td>
+            <td>• Tắt chế độ tự hút thanh cắt ghép, xếp 3 tầng âm thanh:<br>1. <code>whoosh</code>: Đặt ở điểm lướt chuyển cảnh.<br>2. <code>UI</code> (<code>pop</code>, <code>click</code>): Đặt ở điểm bấm chuột và thẻ nảy lên.<br>3. <code>line</code> / <code>draw</code>: Đặt ở điểm vẽ đường kẻ hoặc thanh kiếm cắt ngang.<br>• Quét chọn toàn bộ SFX &rarr; bật <code>Reverb = 70%</code> &rarr; kéo nhẹ <code>Fade out</code> ở đuôi mỗi file.</td>
+            <td><strong>Đầu ra:</strong> Mọi chuyển động nhỏ đều có âm thanh phản hồi êm ái, ngân vang trong cùng một không gian.<br><strong>Vì sao?</strong> Lớp vang <code>Reverb 70%</code> và <code>Fade out</code> giúp các tiếng động ngắn không bị ngắt cụt đột ngột và hòa quyện tự nhiên vào nhạc nền.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="grid-2col">
+        <div class="media-card">
+          <div class="media-card-header">
+            <span class="media-card-title">Thông số Chroma Quirk + Circle Mask Reverse</span>
+            <span class="media-card-meta">Feather: 15</span>
+          </div>
+          <img src="./assets/motion01/frames/step5_chroma_mask_settings.jpg" alt="Thông số Chroma Quirk và Circle Mask Reverse" loading="lazy">
+        </div>
+        <div class="media-card">
+          <div class="media-card-header">
+            <span class="media-card-title">Thông số Radial Blur 2 (Glow: 0, Filter: 0)</span>
+            <span class="media-card-meta">Optical Edge</span>
+          </div>
+          <img src="./assets/motion01/frames/step5_radial_blur_settings.jpg" alt="Thông số Radial Blur 2" loading="lazy">
+        </div>
+      </div>
+
+      <div class="grid-2col">
+        <div class="media-card">
+          <div class="media-card-header">
+            <span class="media-card-title">Phủ Reverb: 70 cho toàn bộ các lớp âm thanh SFX</span>
+            <span class="media-card-meta">Reverb: 70%</span>
+          </div>
+          <img src="./assets/motion01/frames/step5_reverb_70_settings.jpg" alt="Thông số Reverb 70" loading="lazy">
+        </div>
+        <div class="media-card">
+          <div class="media-card-header">
+            <span class="media-card-title">Cách xếp 3 tầng âm thanh (Whoosh, UI, Line) trên Thanh Cắt Ghép</span>
+            <span class="media-card-meta">3-Layer SFX</span>
+          </div>
+          <img src="./assets/motion01/frames/capcut_sfx_layers.jpg" alt="3 lớp âm thanh SFX trên Thanh Cắt Ghép CapCut" loading="lazy">
+        </div>
+      </div>
+
+      <!-- VIDEO DEMO 3 CASES MATT LOUI -->
+      <h3 id="demo-3-cases-matt-loui">Bản Video Demo Thực Tế: Tái Hiện Đủ 3 Phương Pháp Của Matt Loui Ở 60fps</h3>
+      <div class="media-card">
+        <div class="media-card-header">
+          <span class="media-card-title">Video Demo 60fps: Tổng Hợp 3 Phương Pháp (Record It • Screenshot It • Reference It)</span>
+          <span class="media-card-meta">1920×1080 • 60fps • 12s</span>
+        </div>
+        <video controls playsinline preload="metadata" poster="./assets/motion01/demo_scene1_record_it.jpg">
+          <source src="./assets/motion01/matt_loui_remotion_60fps_demo.mp4" type="video/mp4">
+          Trình duyệt của bạn không hỗ trợ phát video HTML5.
+        </video>
+        <p class="media-caption">Bản dựng bằng Remotion Chromium GPU 60fps tích hợp sẵn hiệu ứng quang học rìa ống kính và 3 lớp âm thanh tự động: Cảnh 1 (0s–4s: Thanh Prompt Bar 3D), Cảnh 2 (4s–8s: Sơ đồ các bước làm 3 bước), Cảnh 3 (8s–12s: Bảng điều khiển SaaS &amp; Tia kiếm cắt mở cảnh).</p>
+      </div>
+
+      <div class="grid-3col">
+        <div class="media-card">
+          <div class="media-card-header">
+            <span class="media-card-title">Cảnh 1 (0s–4s): Record It</span>
+            <span class="media-card-meta">Way 1</span>
+          </div>
+          <img src="./assets/motion01/demo_scene1_record_it.jpg" alt="Cảnh 1 Way 1 Record It" loading="lazy">
+        </div>
+        <div class="media-card">
+          <div class="media-card-header">
+            <span class="media-card-title">Cảnh 2 (4s–8s): Screenshot It</span>
+            <span class="media-card-meta">Way 2</span>
+          </div>
+          <img src="./assets/motion01/demo_scene2_screenshot_it.jpg" alt="Cảnh 2 Way 2 Screenshot It" loading="lazy">
+        </div>
+        <div class="media-card">
+          <div class="media-card-header">
+            <span class="media-card-title">Cảnh 3 (8s–12s): Reference It</span>
+            <span class="media-card-meta">Way 3</span>
+          </div>
+          <img src="./assets/motion01/demo_scene3_reference_it.jpg" alt="Cảnh 3 Way 3 Reference It" loading="lazy">
+        </div>
+      </div>
+
+      <hr>
+
+      <!-- ====================================================================
+           PHẦN III: TỪ FILE MẪU PINTEREST .MP4 ĐẾN BỘ VIDEO THƯƠNG HIỆU ANH VIỆT
+           ==================================================================== -->
+      <h2 id="phan-3-tu-pinterest-den-viet-gold">III. Các Bước Làm Thực Chiến: Từ File Mẫu Pinterest .MP4 Đến Bộ Video 60fps Thương Hiệu Anh Việt</h2>
+
+      <h3 id="giai-phau-file-pinterest">3.1. Giải Phẫu File Video Mẫu Gốc Tải Từ Pinterest (pinterest_ref.mp4)</h3>
+      <p>File mẫu gốc được Matt Loui sử dụng trong Bước 3 là một video Motion Typography tải từ Pinterest (<code>https://www.pinterest.com/pin/333759022406800725/</code>) với độ phân giải <code>736×414 @ 30fps</code>, thời lượng 15 giây, mang tông màu Xanh Lục Bảo (<code>#031F1A</code> / <code>#10B981</code> / <code>#BEF264</code>).</p>
+
+      <div class="grid-2col">
+        <div class="media-card">
+          <div class="media-card-header">
+            <span class="media-card-title">File Video Mẫu Gốc Từ Pinterest (Input)</span>
+            <span class="media-card-meta">736×414 • 30fps</span>
+          </div>
+          <video controls playsinline preload="metadata" poster="./assets/motion01/pinterest_storyboard_grid.jpg">
+            <source src="./assets/motion01/pinterest_ref.mp4" type="video/mp4">
+          </video>
+          <p class="media-caption">Video gốc tải trực tiếp từ Pinterest làm khuôn mẫu nhịp điệu và kỹ xảo chuyển cảnh.</p>
+        </div>
+        <div class="media-card">
+          <div class="media-card-header">
+            <span class="media-card-title">Bảng Bóc Tách 16 Khung Hình Của Video Pinterest Gốc</span>
+            <span class="media-card-meta">16 Keyframes Grid</span>
+          </div>
+          <img src="./assets/motion01/pinterest_storyboard_grid.jpg" alt="Bảng bóc tách 16 phân cảnh Pinterest gốc" loading="lazy">
+          <p class="media-caption">Trích xuất 16 mốc thời gian để đo đạc chính xác vị trí chữ, quỹ đạo vòng tròn và góc nghiêng 3D.</p>
+        </div>
+      </div>
+
+      <h3 id="sau-buoc-thuc-thi">3.2. Sáu Bước Kỹ Thuật Chuyển Hóa Từ File Mẫu .MP4 Sang Bộ Video 60fps Thương Hiệu Cá Nhân</h3>
+      <div class="spec-container">
+        <div class="spec-block">
+          <div class="spec-label"><span class="apple-badge dark">BƯỚC 1: BÓC TÁCH KHUNG</span></div>
+          <div class="spec-value"><strong>Trích xuất Storyboard 16 điểm mốc:</strong> Dùng FFmpeg tách 16 khung hình chuẩn từ <code>pinterest_ref.mp4</code>, chia tổng thời lượng 15.0 giây thành <strong>6 phân cảnh bằng nhau (mỗi phân cảnh 2.5 giây = 150 frames ở tốc độ 60fps, tổng cộng 900 frames)</strong>.</div>
+        </div>
+        <div class="spec-block">
+          <div class="spec-label"><span class="apple-badge dark">BƯỚC 2: TOÁN HỌC HÓA</span></div>
+          <div class="spec-value"><strong>Xây dựng hàm nội suy vật lý:</strong><br>• <em>Quỹ đạo con trỏ:</em> Dùng hàm đường cong Bézier bậc 3 <code>cubicBezierPoint(t, P0, P1, P2, P3)</code> để con trỏ lướt theo cung tròn mềm mại trước khi bấm.<br>• <em>Đàn hồi lò xo:</em> Kết hợp <code>spring({ mass: 1, damping: 15, stiffness: 120 })</code> cho pha xuất hiện và <code>Easing.bezier(0.83, 0, 0.17, 1)</code> (<code>IN_OUT_QUINT</code>) cho pha chuyển cảnh.<br>• <em>Hệ 4 vòng quỹ đạo (Orbit Rings):</em> Tính tọa độ hạt sao chổi chạy dọc chu vi bằng hàm lượng giác <code>Math.cos(angle)</code> và <code>Math.sin(angle)</code> kèm đuôi phát sáng 18 hạt giảm dần kích thước.</div>
+        </div>
+        <div class="spec-block">
+          <div class="spec-label"><span class="apple-badge emerald">BƯỚC 3: DỰNG BẢN 1:1</span></div>
+          <div class="spec-value"><strong>Kiểm chứng bằng bản Clone 60fps (<code>PinterestMotionClone.tsx</code>):</strong> Dựng lại nguyên mẫu 100% nội dung tiếng Anh và màu Xanh Lục Bảo của video Pinterest nhưng nâng cấp từ <code>736×414 @ 30fps</code> lên <strong>Full HD <code>1920×1080 @ 60fps</code></strong> để đối chiếu độ khớp chuyển động.</div>
+        </div>
+        <div class="spec-block">
+          <div class="spec-label"><span class="apple-badge gold">BƯỚC 4: VIỆT HÓA &amp; MÀU</span></div>
+          <div class="spec-value"><strong>Áp dụng 3 lựa chọn thương hiệu của anh Việt (<code>VietBrandPinterestGold.tsx</code>):</strong><br>1. <em>Bảng màu:</em> Chuyển sang <strong>Đen Obsidian (<code>#08090C</code>) – Trắng Kem (<code>#FAF8F5</code>) – Vàng Gold (<code>#F59E0B</code> / <code>#FACC15</code>)</strong>.<br>2. <em>Nội dung &amp; Điểm nhấn:</em> Chuyển 100% sang Tiếng Việt với phông chữ <code>SVN-Aeonik</code>, lấy đại cảnh <strong>4 Vòng Quỹ Đạo Vàng Gold + Sao chổi &amp; nổ chữ "Điểm neo cảm xúc"</strong> làm tâm điểm.<br>3. <em>Thích ứng đa khung hình (<code>isPortrait</code>):</em> Tự động tính toán lại bố cục cho cả bản ngang <code>16:9</code> (<code>1920×1080</code>) và bản dọc <code>9:16</code> (<code>1080×1920</code>).</div>
+        </div>
+        <div class="spec-block">
+          <div class="spec-label"><span class="apple-badge gold">BƯỚC 5: TÁCH NỀN ALPHA</span></div>
+          <div class="spec-value"><strong>Xuất lớp phủ trong suốt ProRes 4444 (<code>yuva444p12le</code>):</strong> Bật cờ <code>transparentBg: true</code> và <code>alphaOverlayMode: true</code> để kết xuất riêng hiệu ứng Vòng Quỹ Đạo Vàng Gold trên nền trong suốt 100%, phục vụ kéo thả đè trực tiếp lên video người nói trong CapCut.</div>
+        </div>
+        <div class="spec-block">
+          <div class="spec-label"><span class="apple-badge dark">BƯỚC 6: QUANG HỌC &amp; SFX</span></div>
+          <div class="spec-value"><strong>Hoàn thiện chỉnh sửa cuối tự động:</strong> Phủ lớp tán sắc RGB rìa ngoài + làm mờ hướng tâm 4 góc và tự động ghép 3 tầng âm thanh (<code>whoosh_deep</code>, <code>ui_click</code>, <code>laser_strike</code>, <code>glassy_ping</code>) có sẵn <code>Reverb</code> khớp chính xác đến từng khung hình.</div>
+        </div>
+      </div>
+
+      <h3 id="bang-doi-chieu-6-canh">3.3. Bảng Đối Chiếu Chi Tiết 6 Phân Cảnh: Từ Bản Mẫu Pinterest Sang Bản Thương Hiệu Tiếng Việt Vàng Gold</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Phân cảnh &amp; Khung hình (60fps)</th>
+            <th>Bản gốc Pinterest (Màu Xanh Lục • Tiếng Anh)</th>
+            <th>Bản Thương hiệu Anh Việt (Đen – Trắng – Vàng Gold • Tiếng Việt)</th>
+            <th>Kỹ thuật lập trình trong Remotion</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Cảnh 1</strong><br><code>0f – 150f</code><br><em>(0.0s – 2.5s)</em></td>
+            <td>Chữ <code>"Everything starts with a..."</code> + Khối elip màu vàng rơi xuống và con trỏ chuột bay vào bấm phát sóng.</td>
+            <td>Chữ <strong>"Mọi video triệu view đều bắt đầu từ..."</strong> + Khối Vàng Gold rơi nảy đàn hồi &amp; con trỏ chuột lướt đường cong vào bấm nổ sóng vàng.</td>
+            <td><code>spring()</code> lệch nhịp từng từ (<code>STAGGER = 5</code> frames) + <code>cubicBezierPoint()</code> điều khiển đường bay con trỏ chuột.</td>
+          </tr>
+          <tr>
+            <td><strong>Cảnh 2 (Tâm điểm)</strong><br><code>150f – 300f</code><br><em>(2.5s – 5.0s)</em></td>
+            <td>4 vòng tròn quỹ đạo giao nhau + Hạt sao chổi chạy dọc viền &amp; nổ chữ <code>"Sketch"</code> tại tâm giao điểm.</td>
+            <td><strong>4 Vòng Quỹ Đạo Vàng Gold (<code>Orbit Rings</code>)</strong> giao nhau + Sao chổi Vàng (<code>Comet Trail</code>) &amp; nổ chữ <strong>"Điểm neo cảm xúc"</strong> tại giao điểm.</td>
+            <td>4 vòng SVG xoay ngược chiều nhau + 18 hạt sao chổi tính theo <code>Math.cos/sin</code> + phát sáng <code>drop-shadow</code> Vàng Gold.</td>
+          </tr>
+          <tr>
+            <td><strong>Cảnh 3</strong><br><code>300f – 450f</code><br><em>(5.0s – 7.5s)</em></td>
+            <td>Chữ <code>"What if this could"</code> + Thẻ kính 3D nghiêng &amp; Tia kiếm ánh sáng (<code>Sword Slit</code>) chém ngang mở toang màn hình.</td>
+            <td>Chữ <strong>"Nếu biến lời nói thành hình ảnh..."</strong> + Thẻ kính 3D viền Vàng Gold &amp; <strong>Tia kiếm ánh sáng Vàng</strong> cắt đôi màn hình mở cảnh mới.</td>
+            <td>Hiệu ứng cắt hai nửa màn hình bằng <code>clipPath: polygon(...)</code> kết hợp tia sáng <code>linear-gradient</code> quét ngang trong 18 frames.</td>
+          </tr>
+          <tr>
+            <td><strong>Cảnh 4</strong><br><code>450f – 600f</code><br><em>(7.5s – 10.0s)</em></td>
+            <td>Chữ xếp tầng động học <code>"GROWTH"</code> (<code>Echo Stack</code>) + Vòng tròn mở rộng &amp; Dải lụa xoắn 3D.</td>
+            <td>Chữ xếp tầng động học <strong>"RA ĐƠN THẬT"</strong> + Vòng tròn Vàng Gold bung mở &amp; Dải lụa 3D Đen – Vàng uốn lượn.</td>
+            <td>Nhân bản 5 lớp chữ lệch pha theo trục Y (<code>Echo Stack</code>) + đường cong SVG <code>path</code> chuyển động uốn lượn theo hàm <code>Math.sin</code>.</td>
+          </tr>
+          <tr>
+            <td><strong>Cảnh 5</strong><br><code>600f – 750f</code><br><em>(10.0s – 12.5s)</em></td>
+            <td>Vòng tròn <code>"Design"</code> thu phóng thành <strong>Bảng điều khiển Bento 3D</strong> (<code>45%</code>, <code>60%</code>, <code>10°C</code>, biểu đồ sóng <code>Spline 100%</code>).</td>
+            <td>Vòng tròn <strong>"Thiết kế tự động"</strong> mở ra <strong>Bảng Điều Khiển 3D Đen – Vàng Gold (<code>Nguyễn Việt • Creator Engine 60fps</code>)</strong> với các thẻ <code>Giữ chân 68%</code>, <code>Tỷ lệ chốt 92%</code>, <code>Tăng trưởng 100%</code>.</td>
+            <td>Không gian 3D <code>perspective(1200px) rotateX(12deg) rotateY(-14deg)</code> + hiệu ứng vẽ đường biểu đồ bằng <code>strokeDashoffset</code>.</td>
+          </tr>
+          <tr>
+            <td><strong>Cảnh 6</strong><br><code>750f – 900f</code><br><em>(12.5s – 15.0s)</em></td>
+            <td>Chữ <code>"All crafted"</code> &rarr; Kết màn <code>"✳ Ready to grow?"</code> với bông hoa 8 cánh xoay phát sáng.</td>
+            <td>Chữ <strong>"Làm kỹ từng khung hình"</strong> &rarr; Kết màn <strong>"✳ Sẵn sàng làm chủ cuộc chơi?"</strong> kèm biểu tượng Sao Vàng 8 cánh xoay tâm.</td>
+            <td>Component vector <code>GoldStarFlower</code> 8 cánh xoay liên tục + thu phóng máy quay mượt về tâm kết thúc.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <hr>
+
+      <!-- ====================================================================
+           PHẦN IV: PHÒNG TRÌNH CHIẾU TRỌN BỘ VIDEO DEMO CUỐI CÙNG
+           ==================================================================== -->
+      <h2 id="phan-4-phong-trinh-chieu-demo">IV. Trình Chiếu Trực Tuyến Trọn Bộ Các Bản Video Demo Cuối Cùng</h2>
+
+      <!-- 4.1. ĐỐI CHIẾU PINTEREST GỐC VS BẢN DỰNG LẠI 60FPS -->
+      <h3 id="so-sanh-pinterest-1-1">4.1. Đối Chiếu Trực Diện: File Mẫu Pinterest Gốc (30fps) vs. Bản Dựng Lại Nguyên Mẫu Bằng Remotion (60fps)</h3>
+      <p>Trước khi thay đổi sang bảng màu thương hiệu, video mẫu Pinterest được lập trình lại 1:1 bằng mã nguồn React/Remotion (<code>PinterestMotionClone.tsx</code>) để kiểm chứng độ chính xác của toàn bộ 6 phân cảnh ở độ phân giải Full HD <code>1920×1080 @ 60fps</code>:</p>
+
+      <div class="grid-2col">
+        <div class="media-card">
+          <div class="media-card-header">
+            <span class="media-card-title">1. File Mẫu Pinterest Gốc (Input)</span>
+            <span class="media-card-meta">736×414 • 30fps</span>
+          </div>
+          <video controls loop playsinline preload="metadata">
+            <source src="./assets/motion01/pinterest_ref.mp4" type="video/mp4">
+          </video>
+          <p class="media-caption">Bản tải về từ Pinterest: độ phân giải thấp (736×414), tốc độ 30fps.</p>
+        </div>
+        <div class="media-card">
+          <div class="media-card-header">
+            <span class="media-card-title">2. Bản Dựng Lại 1:1 Bằng Remotion (Output Clone)</span>
+            <span class="media-card-meta">1920×1080 • 60fps</span>
+          </div>
+          <video controls loop playsinline preload="metadata" poster="./assets/motion01/pin_clone_1.jpg">
+            <source src="./assets/motion01/pinterest_recreated_60fps.mp4" type="video/mp4">
+          </video>
+          <p class="media-caption">Bản dựng lại bằng code Remotion: sắc nét từng đường vector ở 1080p, mượt 60fps kèm âm thanh 3 lớp.</p>
+        </div>
+      </div>
+
+      <div class="grid-2col">
+        <div class="media-card">
+          <div class="media-card-header">
+            <span class="media-card-title">Khung hình 60fps: Orbit Rings &amp; "Sketch"</span>
+            <span class="media-card-meta">Cảnh 2 Clone</span>
+          </div>
+          <img src="./assets/motion01/pin_clone_1.jpg" alt="Cảnh 2 Clone Orbit Rings Sketch" loading="lazy">
+        </div>
+        <div class="media-card">
+          <div class="media-card-header">
+            <span class="media-card-title">Khung hình 60fps: 3D Floating Bento UI Dashboard</span>
+            <span class="media-card-meta">Cảnh 5 Clone</span>
+          </div>
+          <img src="./assets/motion01/pin_clone_4.jpg" alt="Cảnh 5 Clone 3D Bento Dashboard" loading="lazy">
+        </div>
+      </div>
+
+      <!-- 4.2. BẢN NGANG 16:9 VÀNG GOLD TIẾNG VIỆT -->
+      <h3 id="demo-viet-gold-16x9">4.2. Bản Chính Thức Số 1 — Màn Hình Ngang 16:9 Thương Hiệu Anh Việt (Đen Obsidian – Trắng Kem – Vàng Gold • 100% Tiếng Việt @ 60fps)</h3>
+      <p>Bản hoàn thiện dành cho video ngang YouTube, bài giảng khóa học và màn hình trình chiếu lớn, sử dụng bảng màu <strong>Đen Obsidian (<code>#08090C</code>) – Trắng Kem (<code>#FAF8F5</code>) – Vàng Gold (<code>#FACC15</code> / <code>#F59E0B</code>)</strong>:</p>
+
+      <div class="media-card">
+        <div class="media-card-header">
+          <span class="media-card-title">Bản Ngang 16:9 Chính Thức: Đen Obsidian – Trắng Kem – Vàng Gold (100% Tiếng Việt)</span>
+          <span class="media-card-meta">1920×1080 • 60.0 fps • 15.0s</span>
+        </div>
+        <video controls loop playsinline preload="metadata" poster="./assets/motion01/viet_gold_16x9_orbit.jpg">
+          <source src="./assets/motion01/viet_gold_16x9_60fps.mp4" type="video/mp4">
+        </video>
+        <p class="media-caption">File: <code>viet_gold_16x9_60fps.mp4</code> — Điểm nhấn tại giây 02:50 với đại cảnh 4 Vòng Quỹ Đạo Vàng Gold + Sao chổi &amp; nổ chữ "Điểm neo cảm xúc", nối tiếp bằng Tia kiếm ánh sáng Vàng và Bảng điều khiển 3D Nguyễn Việt Creator Engine.</p>
+      </div>
+
+      <div class="grid-2col">
+        <div class="media-card">
+          <div class="media-card-header">
+            <span class="media-card-title">Cảnh 2 (16:9): Giao Điểm 4 Vòng Quỹ Đạo Vàng Gold</span>
+            <span class="media-card-meta">Điểm neo cảm xúc</span>
+          </div>
+          <img src="./assets/motion01/viet_gold_16x9_orbit.jpg" alt="Cảnh 2 Vàng Gold 16:9 Điểm neo cảm xúc" loading="lazy">
+        </div>
+        <div class="media-card">
+          <div class="media-card-header">
+            <span class="media-card-title">Cảnh 5 (16:9): Bảng Điều Khiển 3D Đen – Vàng Gold</span>
+            <span class="media-card-meta">Creator Engine 60fps</span>
+          </div>
+          <img src="./assets/motion01/viet_gold_16x9_bento.jpg" alt="Cảnh 5 Vàng Gold 16:9 Bento 3D" loading="lazy">
+        </div>
+      </div>
+
+      <!-- 4.3. BẢN DỌC 9:16 REELS / TIKTOK / SHORTS -->
+      <h3 id="demo-viet-gold-9x16">4.3. Bản Chính Thức Số 2 — Màn Hình Dọc 9:16 Dành Cho Reels, TikTok &amp; CapCut Shorts (1080×1920 @ 60fps)</h3>
+      <p>Không phải là bản cắt xén hai bên từ video ngang, bản dọc <code>9:16</code> được tính toán lại toàn bộ tọa độ khung hình theo chiều dọc: bán kính vòng quỹ đạo, cỡ chữ Tiếng Việt và khoảng cách các thẻ 3D đều nằm gọn trong vùng an toàn hiển thị của màn hình điện thoại.</p>
+
+      <div class="grid-2col" style="align-items: start;">
+        <div class="media-card">
+          <div class="media-card-header">
+            <span class="media-card-title">Bản Dọc 9:16 (Reels / TikTok / Shorts)</span>
+            <span class="media-card-meta">1080×1920 • 60.0 fps</span>
+          </div>
+          <div class="portrait-video-wrap">
+            <video controls loop playsinline preload="metadata" poster="./assets/motion01/viet_gold_9x16_orbit.jpg">
+              <source src="./assets/motion01/viet_gold_9x16_60fps.mp4" type="video/mp4">
+            </video>
+          </div>
+          <p class="media-caption">File: <code>viet_gold_9x16_60fps.mp4</code> — Sắp xếp gọn bố cục dọc 1080×1920 ở tốc độ 60fps.</p>
+        </div>
+        <div class="media-card">
+          <div class="media-card-header">
+            <span class="media-card-title">Ảnh Chụp Khung Hình Dọc 9:16 (Cảnh 2 Orbit Rings)</span>
+            <span class="media-card-meta">Safe-Zone 9:16</span>
+          </div>
+          <div class="portrait-video-wrap">
+            <img src="./assets/motion01/viet_gold_9x16_orbit.jpg" alt="Khung hình dọc 9:16 Orbit Rings" loading="lazy">
+          </div>
+          <p class="media-caption">Cụm 4 vòng quỹ đạo và tiêu đề "Điểm neo cảm xúc" được căn giữa vùng nhìn chuẩn của điện thoại.</p>
+        </div>
+      </div>
+
+      <!-- 4.4. BẢN NỀN TRONG SUỐT PRORES 4444 ALPHA -->
+      <h3 id="demo-prores-alpha">4.4. Bản Chính Thức Số 3 — Gói Lớp Phủ Nền Trong Suốt 100% (Apple ProRes 4444 Alpha Channel Cho CapCut)</h3>
+      <p>Để người dựng phim có thể thả trực tiếp hiệu ứng <strong>4 Vòng Quỹ Đạo Vàng Gold + Sao Chổi &amp; Chữ "Điểm neo cảm xúc"</strong> đè lên trên lớp video quay người thật trong CapCut mà không cần dùng công cụ tách nền hay chế độ hòa trộn làm nhạt màu vàng, hệ thống đã xuất riêng gói video có kênh Alpha trong suốt:</p>
+
+      <div class="media-card">
+        <div class="media-card-header">
+          <span class="media-card-title">Mô Phỏng Lớp Phủ Nền Trong Suốt (Alpha Channel Preview Trên Lưới Caro)</span>
+          <span class="media-card-meta">ProRes 4444 • yuva444p12le • 60fps</span>
+        </div>
+        <div class="checkerboard-bg">
+          <video controls autoplay loop muted playsinline preload="metadata" style="background: transparent;">
+            <source src="./assets/motion01/viet_gold_orbit_alpha_preview.webm" type="video/webm">
+          </video>
+        </div>
+        <p class="media-caption">Lưới ô vuông caro phía sau hiển thị xuyên qua video chứng minh nền đã được tách trong suốt 100% ngay từ nhân kết xuất Chromium GPU. Khi thả vào CapCut PC, chỉ có các vòng quỹ đạo vàng phát sáng và chữ hiển thị đè lên video gốc.</p>
+      </div>
+
+      <div class="spec-container">
+        <div class="spec-block">
+          <div class="spec-label"><span class="apple-badge gold">FILE GỐC CAPCUT</span></div>
+          <div class="spec-value"><code>viet_gold_orbit_alpha_prores4444.mov</code> (Định dạng <strong>Apple ProRes 4444</strong>, không gian màu <code>yuva444p12le</code> 12-bit kèm kênh Alpha trong suốt, tốc độ 60fps).</div>
+        </div>
+        <div class="spec-block">
+          <div class="spec-label"><span class="apple-badge dark">MÃ NGUỒN REMOTION</span></div>
+          <div class="spec-value">• Bản Thương hiệu Vàng Gold Tiếng Việt: <code>remotion-studio/src/compositions/VietBrandPinterestGold.tsx</code><br>• Bản Clone 1:1 Pinterest 60fps: <code>remotion-studio/src/compositions/PinterestMotionClone.tsx</code></div>
+        </div>
+        <div class="spec-block">
+          <div class="spec-label"><span class="apple-badge emerald">CÁCH DÙNG TRONG CAPCUT</span></div>
+          <div class="spec-value">Kéo file <code>.mov</code> đặt lên tầng <strong>Track 2 (lớp phủ trên video người nói ở Track 1)</strong> tại đúng câu thoại nhấn mạnh luận điểm. Không cần bật Chroma Key hay Blend Mode.</div>
+        </div>
+      </div>
+
+    </article>
+  </main>
+
+  <!-- SCROLLSPY SCRIPT (ZERO ANIMATION) -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const headings = document.querySelectorAll('h2[id], h3[id]');
+      const tocLinks = document.querySelectorAll('.ink-toc-link');
+      
+      if(headings.length > 0 && "IntersectionObserver" in window) {
+        const observerOptions = {
+          root: null,
+          rootMargin: '0px 0px -78% 0px',
+          threshold: 0
+        };
+        
+        let activeId = null;
+
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              const id = entry.target.getAttribute('id');
+              if (id !== activeId) {
+                tocLinks.forEach(link => link.classList.remove('is-active'));
+                const activeLink = document.querySelector(`.ink-toc-link[href="#${id}"]`);
+                if (activeLink) {
+                  activeLink.classList.add('is-active');
+                }
+                activeId = id;
+              }
+            }
+          });
+        }, observerOptions);
+
+        headings.forEach(heading => observer.observe(heading));
+      }
+
+      tocLinks.forEach(link => {
+        link.addEventListener('click', () => {
+          document.querySelector('.ink-sidebar').classList.remove('is-open');
+          const overlay = document.querySelector('.ink-overlay');
+          if(overlay) overlay.classList.remove('is-open');
+        });
+      });
+    });
+  </script>
+</body>
+</html>
