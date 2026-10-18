@@ -571,6 +571,7 @@
       <li class="ink-toc-item"><a class="ink-toc-link" href="#phan-4-ban-doi-chieu">III. Bàn Đối Chiếu Song Song: Mẫu ↔ Thành Phẩm</a></li>
       <li class="ink-toc-item"><a class="ink-toc-link" href="#phan-5-kho-tsx">IV. Kho 8 File Mã Nguồn .TSX (#TSX-01 → #TSX-08)</a></li>
       <li class="ink-toc-item"><a class="ink-toc-link" href="#phan-1-5-trang-va-8-luong">V. 5 Trang HTML (01–05) &amp; 8 Cuộc Trò Chuyện (#C01–#C08)</a></li>
+      <li class="ink-toc-item"><a class="ink-toc-link" href="#phan-6-kien-truc-skill-v2">VI. Kiến Trúc Chuẩn V2.0 &amp; Đóng Gói Skill</a></li>
     </ul>
 
     <div style="margin-top: 1.6rem; padding-top: 1rem; border-top: 1px solid var(--ink-border);">
@@ -1710,6 +1711,85 @@
       </div>
 
       
+
+      <!-- ====================================================================
+           PHẦN VI: KIẾN TRÚC TỔNG HỢP & LOGIC LUỒNG V2.0 (VIDEO NÓI -> MOTION 60FPS)
+           ==================================================================== -->
+      <h2 id="phan-6-kien-truc-skill-v2">Phần VI — Phân Tích Tổng Hợp &amp; Logic Luồng V2.0: Khi Nhận 1 Video Nói &rarr; Xuất Thành Phẩm Motion Graphic 60fps Tốt Nhất</h2>
+      <p>Đúc kết từ toàn bộ quá trình thử nghiệm, sửa lỗi và tiến hóa qua 5 thế hệ (<code>motion01</code> &rarr; <code>motion05</code>), dưới đây là <strong>bản thiết kế chuẩn mực nhất</strong> về Animation, Thư viện hiệu ứng, Chưng cất nội dung và Đóng gói vào Skill <code>talking-head-to-motion V2.0</code>:</p>
+
+      <h3>6.1. Bốn Trụ Cột Quyết Định Chất Lượng Đầu Ra Tốt Nhất</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th style="width: 190px;">Trụ Cột</th>
+              <th style="width: 260px;">Lỗi Thường Gặp Ở Bản Cũ (V0 / V1 / V2)</th>
+              <th>Phương Án Đầu Ra Tốt Nhất Đã Đúc Kết (Chuẩn V3 Ultra-Clean &amp; Optical Flow)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>1. Animation &amp; Độ Mượt 60fps</strong><br><span class="badge badge-blue">Optical Flow</span></td>
+              <td>• Chữ hiện ra đột ngột không có mồi dẫn mắt.<br>• Chuyển động dừng cục bộ, thiếu bóng mờ vận tốc.<br>• Cắt cảnh bụp làm đứt mạch thị giác.</td>
+              <td>
+                • <strong>Mồi Cảnh Sớm (Pre-Cue <code>-12 frames</code>):</strong> Hạt mồi (Con trỏ <code>|</code>, Khung 4 góc Figma, Chấm tròn <code>●</code>) luôn xuất hiện trước giọng đọc <code>10–14 frames</code>.<br>
+                • <strong>True Velocity SVG Motion Blur:</strong> Gắn <code>&lt;feGaussianBlur stdDeviation="vx, vy"/&gt;</code> tính theo đạo hàm vận tốc thực giữa frame <code>f</code> và <code>f-1</code>.<br>
+                • <strong>Bàn Giao Diễn Viên Chung (Shared Actor Relay):</strong> Dùng 1 phần tử của cảnh cũ phóng mở (<code>Iris Wipe</code>), trượt ngang (<code>Caret Slide</code>) hoặc kéo máy (<code>Whip-Pan</code>) sang cảnh mới.<br>
+                • <strong>3D Masked Word Reveal:</strong> Từng từ trượt từ mặt nạ <code>overflow:hidden</code> + <code>rotateX(-35deg &rarr; 0deg)</code> lệch pha <code>3–4 frames</code>.
+              </td>
+            </tr>
+            <tr>
+              <td><strong>2. Bố Cục UI/UX &amp; Quản Trị Chú Ý</strong><br><span class="badge badge-green">Attention Budgeting</span></td>
+              <td>• Tham nhồi Header cố định, thanh Subtitle ở đáy, Timecode giả, nhãn phụ.<br>• Giữ lại chữ cảnh cũ khi chữ mới đã bung ra gây ngộp mắt.</td>
+              <td>
+                • <strong>1 Tiêu Điểm Duy Nhất (Single Focal Point):</strong> Mỗi thời điểm chỉ có đúng 1 cụm từ khóa trung tâm khớp giọng đọc.<br>
+                • <strong>&ge;85% Không Gian Thở (Negative Space):</strong> Nền sạch tuyệt đối (Đen Obsidian <code>#07080A</code>, Kem Ivory <code>#F5F2EB</code> hoặc Giấy Risograph <code>#F3ECDD</code>).<br>
+                • <strong>0% HUD Rác:</strong> Xóa bỏ hoàn toàn Header, Subtitle bar lặp lại và Timecode thừa.<br>
+                • <strong>Pre-Cue Tự Thu Dọn:</strong> Ngay khi chữ chính nổ ra, hạt mồi Pre-Cue phải tự thu nhỏ/biến mất.
+              </td>
+            </tr>
+            <tr>
+              <td><strong>3. Chưng Cất Nội Dung Từ Video Nói</strong><br><span class="badge badge-orange">Semantic Distillation</span></td>
+              <td>• Bê nguyên cả câu thoại dài 12–15 từ lên màn hình như Karaoke.<br>• 100% đồ họa vô hồn hoặc 100% mặt nói đơn điệu.</td>
+              <td>
+                • <strong>Gọt Còn 2–5 Từ Khóa Chốt / Stage (1.2s–2.0s):</strong> Lược bỏ hư từ, chỉ giữ danh từ/động từ sắc nhất (bọc <code>Unicode NFC</code>, <code>lineHeight &ge; 1.25</code>).<br>
+                • <strong>Quy Tắc Đan Xen Người Thật (Human Trust Rubric):</strong><br>
+                  &nbsp;&nbsp;+ <em>Khi đặt câu hỏi / khẳng định uy tín / nhấn cảm xúc:</em> Cắt <strong>Cận Mặt 100%</strong> hoặc <strong>Khung Thẻ Risograph 66%</strong>.<br>
+                  &nbsp;&nbsp;+ <em>Khi giải thích cơ chế / số liệu / quy trình:</em> Cắt <strong>100% Full Motion Graphic Canvas</strong>.
+              </td>
+            </tr>
+            <tr>
+              <td><strong>4. Thư Viện Hiệu Ứng &amp; Khuôn .TSX</strong><br><span class="badge badge-dark">Master Tweaks</span></td>
+              <td>• Mỗi video lại code lại từ đầu hàng nghìn dòng dễ sai lỗi.<br>• Khó đổi câu chữ hoặc bảng màu nhanh.</td>
+              <td>
+                • <strong>10 Archetypes Tinh Tuyển (<code>pin_00</code> &rarr; <code>pin_08</code> + <code>riso_09</code>):</strong> Mỗi cơ chế gán đúng 1 ngữ cảnh ngữ nghĩa (Phủ định &rarr; Wheel Picker/Hard Invert; Cấu trúc &rarr; Radial Dial/Orbit; Chuyển hóa &rarr; Glass Pill/3D Bento).<br>
+                • <strong>3 Khuôn Thiết Kế Gốc Có Bảng Biến <code>Tweaks</code> Ở Đầu File:</strong> Chỉ cần đổi mảng từ Tiếng Việt và mã màu trong <code>default...Props</code> (dòng 20–100) là render ra video mới trong 3 giây.
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>6.2. Sơ Đồ Luồng Thực Thi 6 Bước Tự Động Hóa (Skill <code>talking-head-to-motion V2.0</code>)</h3>
+      <div class="module-grid">
+        <div class="module-card">
+          <div class="module-card-top"><span class="module-num">BƯỚC 1 &amp; 2</span><span class="badge badge-blue">scaffold_motion_project.py</span></div>
+          <div class="module-title">Giải Phẫu Sóng Âm 60fps, Bắt Hook Ngoài SRT &amp; Gọt Từ Khóa</div>
+          <div class="module-desc">Chạy <code>scaffold_motion_project.py</code> tự động cắt video, tạo proxy 60fps, tách <code>voice.wav</code>, dò câu Hook đầu video, gọt từ khóa Tiếng Việt chuẩn <code>Unicode NFC</code> và chia thành các Stages tách bạch có mốc <code>preCueFrame = startFrame - 12</code>.</div>
+        </div>
+        <div class="module-card">
+          <div class="module-card-top"><span class="module-num">BƯỚC 3 &amp; 4</span><span class="badge badge-green">3 Khuôn .TSX Có Tweaks</span></div>
+          <div class="module-title">Chọn 1 Trong 3 Khuôn Gốc &amp; Phối Âm 4 Lớp Voice-Safe</div>
+          <div class="module-desc">Chọn phong cách phù hợp nhất: (1) <strong><code>VietCleanV3_10s.tsx</code></strong> (Ultra-Clean Dark/Ivory), (2) <strong><code>VietClaudeMotionRiso10s.tsx</code></strong> (Editorial Risograph Hybrid), hoặc (3) <strong><code>PinterestViet9x16.tsx</code></strong> (3D Bento/Orbit). Chạy <code>compose_voicesafe_sfx.py</code> trộn 4 lớp SFX + Sidechain.</div>
+        </div>
+        <div class="module-card">
+          <div class="module-card-top"><span class="module-num">BƯỚC 5 &amp; 6</span><span class="badge badge-orange">verify_motion_deliverable.py</span></div>
+          <div class="module-title">Render 60fps, Kiểm Định Lưới Frame &amp; Đẩy Lên Repo Course</div>
+          <div class="module-desc">Kết xuất H.264 <code>yuv420p @ 60fps</code>, chạy Verifier xuất lưới Storyboard kiểm tra 0 lỗi cắt dấu Tiếng Việt, &ge;85% không gian thở, sau đó tự động cập nhật vào trung tâm <code>motion00.html</code>.</div>
+        </div>
+      </div>
+
     </div>
   </main>
 
