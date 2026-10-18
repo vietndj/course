@@ -1,0 +1,3013 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Giải Phẫu UI/UX Attention Budgeting &amp; Khuôn Thiết Kế Gốc VietCleanV3_10s.tsx Có Bảng Biến Tweaks (Motion 05)</title>
+  
+  <!-- FAVICON SVG INLINE: CHUẨN "M5" (MOTION 05 ULTRA-CLEAN & ATTENTION BUDGETING MONOGRAM) -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%2307080A'/%3E%3Ctext x='32' y='41' font-family='Arial, sans-serif' font-weight='900' font-size='26' fill='%23FACC15' text-anchor='middle' letter-spacing='1'%3EM5%3C/text%3E%3C/svg%3E">
+
+  <!-- FONTS: Fedu CDN -->
+  <style>
+    @font-face { font-family: 'FD Aeonik Extended'; src: url('https://fedu.vn/k/fonts/FDAeonikExtended-Bold.woff2') format('woff2'); font-weight: 700; font-display: swap; }
+    @font-face { font-family: 'FD Aeonik Extended'; src: url('https://fedu.vn/k/fonts/FDAeonikExtended-SemiBold.woff2') format('woff2'); font-weight: 600; font-display: swap; }
+    @font-face { font-family: 'FD Aeonik'; src: url('https://fedu.vn/k/fonts/FDAeonikMedium.ttf') format('truetype'); font-weight: 500; font-display: swap; }
+    @font-face { font-family: 'FD Aeonik'; src: url('https://fedu.vn/k/fonts/FDAeonikRegular.ttf') format('truetype'); font-weight: 400; font-display: swap; }
+    @font-face { font-family: 'Tiempos Text'; src: url('https://fedu.vn/k/fonts/FDTiemposText-Bold.woff2') format('woff2'); font-weight: 700; font-display: swap; }
+    @font-face { font-family: 'Tiempos Text'; src: url('https://fedu.vn/k/fonts/FDTiemposText-Medium.woff2') format('woff2'); font-weight: 500; font-display: swap; }
+    @font-face { font-family: 'Tiempos Text'; src: url('https://fedu.vn/k/fonts/FDTiemposText-Regular.woff2') format('woff2'); font-weight: 400; font-display: swap; }
+    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700&display=swap');
+  </style>
+
+  <style>
+    /* ==========================================================================
+       INKDOC CSS - ZERO ANIMATION, SLATE MONOCHROME + HYBRID VIDEO STUDIO
+       ========================================================================== */
+    :root {
+      --ink-bg: #ffffff;
+      --ink-sidebar: #f8fafc;
+      --ink-text: #0f172a;
+      --ink-muted: #64748b;
+      --ink-border: #e2e8f0;
+      --ink-hover: #f1f5f9;
+      --ink-accent: #0f172a;
+      --ink-dialogue-bg: #f8fafc;
+      
+      --font-display: 'FD Aeonik Extended', -apple-system, sans-serif;
+      --font-heading: 'FD Aeonik', -apple-system, sans-serif;
+      --font-body: 'Tiempos Text', Georgia, serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      
+      --sidebar-width: 295px;
+      --content-max-width: 880px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: auto; font-size: 16px; }
+    body {
+      background-color: var(--ink-bg);
+      color: var(--ink-text);
+      font-family: var(--font-body);
+      line-height: 1.8;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      display: flex;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* TYPOGRAPHY */
+    h1, h2, h3, h4, h5, h6 {
+      color: var(--ink-text);
+      font-weight: 600;
+      line-height: 1.35;
+      margin-top: 2.2rem;
+      margin-bottom: 1rem;
+      font-family: var(--font-heading);
+    }
+    
+    h1.is-short, .title-short {
+      font-family: var(--font-display);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: -0.01em;
+      font-size: clamp(25px, 3.2vw, 35px);
+      line-height: 1.2;
+      margin-top: 0;
+    }
+    
+    h2 {
+      font-size: clamp(20px, 2.4vw, 25px);
+      border-bottom: 2px solid var(--ink-border);
+      padding-bottom: 0.6rem;
+      margin-top: 3.2rem;
+    }
+    h3 { font-size: 1.2rem; margin-top: 2rem; color: #1e293b; }
+    h4 { font-size: 1.05rem; margin-top: 1.5rem; color: #334155; }
+    
+    p, ul, ol, blockquote, pre, table { margin-bottom: 1.4rem; font-size: 1.125rem; }
+    ul, ol { padding-left: 1.5rem; }
+    li { margin-bottom: 0.5rem; }
+    
+    a { color: var(--ink-accent); text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--ink-muted); }
+    a:hover { text-decoration-color: var(--ink-accent); }
+    
+    blockquote {
+      border-left: 3px solid #0f172a;
+      background-color: #f8fafc;
+      padding: 1rem 1.25rem;
+      border-radius: 0 8px 8px 0;
+      font-style: italic;
+      color: var(--ink-text);
+      font-weight: 500;
+    }
+
+    code {
+      font-family: var(--font-mono);
+      font-size: 0.84em;
+      background-color: var(--ink-hover);
+      padding: 0.18em 0.42em;
+      border-radius: 4px;
+      border: 1px solid #e2e8f0;
+    }
+    pre {
+      background-color: #0f172a;
+      color: #f8fafc;
+      padding: 1.25rem;
+      border-radius: 10px;
+      border: 1px solid #1e293b;
+      overflow-x: auto;
+      line-height: 1.6;
+    }
+    pre code {
+      background: none;
+      border: none;
+      padding: 0;
+      font-size: 0.86rem;
+      color: #e2e8f0;
+    }
+
+    hr { border: 0; border-top: 1px solid var(--ink-border); margin: 3rem 0; }
+
+    /* Bảng biểu */
+    .table-wrap { width: 100%; overflow-x: auto; margin-bottom: 2rem; }
+    table { width: 100%; border-collapse: collapse; margin-bottom: 0; font-family: var(--font-heading); font-size: 0.94rem; }
+    th, td { padding: 12px 14px; border-bottom: 1px solid var(--ink-border); text-align: left; vertical-align: top; }
+    th { font-weight: 600; color: var(--ink-muted); text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.05em; border-bottom: 2px solid var(--ink-border); background-color: #f8fafc; }
+
+    /* APPLE HIG BADGE & SPEC-BLOCK */
+    .apple-badge {
+      background-color: #f1f5f9;
+      border: 1px solid #cbd5e1;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+      font-size: 11px;
+      text-transform: uppercase;
+      padding: 2px 8px;
+      border-radius: 6px;
+      color: #334155;
+      font-weight: 700;
+      font-family: var(--font-heading);
+      position: relative;
+      top: -1px;
+      vertical-align: baseline;
+      white-space: nowrap;
+      display: inline-block;
+      letter-spacing: 0.04em;
+    }
+    .apple-badge.gold {
+      background-color: #fef9c3;
+      border-color: #fde047;
+      color: #854d0e;
+    }
+    .apple-badge.dark {
+      background-color: #0f172a;
+      border-color: #0f172a;
+      color: #f8fafc;
+    }
+    .apple-badge.emerald {
+      background-color: #ecfdf5;
+      border-color: #a7f3d0;
+      color: #065f46;
+    }
+    .apple-badge.crimson {
+      background-color: #fef2f2;
+      border-color: #fecaca;
+      color: #991b1b;
+    }
+    .apple-badge.amber {
+      background-color: #07080a;
+      border-color: #facc15;
+      color: #fde047;
+    }
+
+    .spec-container {
+      background-color: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 1.25rem 1.5rem;
+      margin-bottom: 1.75rem;
+    }
+    .spec-block {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      padding: 0.65rem 0;
+      border-bottom: 1px dashed #cbd5e1;
+    }
+    .spec-block:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+    .spec-block:first-child {
+      padding-top: 0;
+    }
+    @media (min-width: 640px) {
+      .spec-block {
+        flex-direction: row;
+        align-items: baseline;
+        gap: 1.25rem;
+      }
+      .spec-label {
+        flex: 0 0 210px;
+      }
+      .spec-value {
+        flex: 1;
+        font-size: 16px;
+        font-family: var(--font-heading);
+        color: #1e293b;
+        line-height: 1.6;
+      }
+    }
+
+    /* MEDIA & VIDEO STUDIO CARDS */
+    .media-card {
+      background: #0f172a;
+      border: 1px solid #1e293b;
+      border-radius: 14px;
+      padding: 1rem;
+      margin-bottom: 1.75rem;
+      color: #f8fafc;
+      font-family: var(--font-heading);
+    }
+    .media-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 0.75rem;
+      padding-bottom: 0.6rem;
+      border-bottom: 1px solid #1e293b;
+    }
+    .media-card-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #f8fafc;
+    }
+    .media-card-meta {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: #fde047;
+      background: rgba(250, 204, 21, 0.14);
+      border: 1px solid rgba(250, 204, 21, 0.35);
+      padding: 2px 8px;
+      border-radius: 6px;
+    }
+    .media-card video, .media-card img {
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+      display: block;
+      background: #000000;
+    }
+    .media-caption {
+      font-size: 0.85rem;
+      color: #94a3b8;
+      margin-top: 0.65rem;
+      margin-bottom: 0;
+      line-height: 1.5;
+    }
+
+    .grid-2col {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.25rem;
+      margin-bottom: 1.75rem;
+    }
+    @media (min-width: 768px) {
+      .grid-2col {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .grid-3col {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+      margin-bottom: 1.75rem;
+    }
+    @media (min-width: 768px) {
+      .grid-3col {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .portrait-video-wrap {
+      max-width: 340px;
+      margin: 0 auto;
+    }
+
+    /* CODE PANEL WITH 1-CLICK COPY */
+    .code-panel {
+      background: #0f172a;
+      border: 1px solid #1e293b;
+      border-radius: 12px;
+      margin-bottom: 1.75rem;
+      overflow: hidden;
+    }
+    .code-panel-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      padding: 0.75rem 1.1rem;
+      background: #1e293b;
+      border-bottom: 1px solid #334155;
+      font-family: var(--font-heading);
+    }
+    .code-panel-title {
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: #f8fafc;
+    }
+    .code-panel-actions {
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+    }
+    .copy-btn, .toggle-code-btn {
+      background: #07080a;
+      color: #facc15;
+      border: 1px solid #facc15;
+      border-radius: 6px;
+      padding: 5px 12px;
+      font-family: var(--font-heading);
+      font-size: 0.78rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .toggle-code-btn {
+      background: #334155;
+      color: #e2e8f0;
+      border-color: #475569;
+    }
+    .copy-btn:hover {
+      background: #1e293b;
+    }
+    .code-panel pre {
+      margin: 0;
+      border: none;
+      border-radius: 0;
+      max-height: 540px;
+      overflow-y: auto;
+    }
+    .code-panel.is-expanded pre {
+      max-height: none;
+    }
+
+    /* LAYOUT: SIDEBAR */
+    .ink-sidebar {
+      width: var(--sidebar-width);
+      flex-shrink: 0;
+      background-color: var(--ink-sidebar);
+      border-right: 1px solid var(--ink-border);
+      height: 100vh;
+      position: sticky;
+      top: 0;
+      overflow-y: auto;
+      padding: 2rem 1.25rem;
+      font-family: var(--font-heading);
+    }
+    .ink-sidebar-header { margin-bottom: 1.75rem; }
+    .ink-brand { font-family: var(--font-display); font-weight: 700; font-size: 0.95rem; letter-spacing: 0.8px; color: var(--ink-text); text-decoration: none; text-transform: uppercase; }
+    
+    .ink-toc-title {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: var(--ink-muted);
+      letter-spacing: 0.06em;
+      margin-bottom: 0.75rem;
+    }
+    
+    .ink-toc-list { list-style: none; padding: 0; margin: 0; }
+    .ink-toc-list li { margin-bottom: 0.2rem; }
+    .ink-toc-link {
+      display: block;
+      padding: 0.38rem 0.65rem;
+      color: var(--ink-muted);
+      text-decoration: none;
+      font-size: 0.84rem;
+      border-radius: 6px;
+      line-height: 1.4;
+    }
+    .ink-toc-link:hover { background-color: var(--ink-hover); color: var(--ink-text); }
+    .ink-toc-link.is-active {
+      background-color: #e2e8f0;
+      color: var(--ink-text);
+      font-weight: 600;
+    }
+    .ink-toc-nested { padding-left: 0.85rem; margin-top: 0.15rem; border-left: 1px solid #cbd5e1; margin-left: 0.6rem; }
+
+    /* LAYOUT: CONTENT */
+    .ink-main-wrapper {
+      flex-grow: 1;
+      padding: 3.5rem 2.5rem;
+      display: flex;
+      justify-content: center;
+    }
+    .ink-content {
+      width: 100%;
+      max-width: var(--content-max-width);
+    }
+    
+    .ink-meta {
+      display: flex;
+      gap: 0.75rem;
+      font-family: var(--font-heading);
+      font-size: 0.85rem;
+      color: var(--ink-muted);
+      margin-bottom: 1.75rem;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .ink-badge {
+      font-family: var(--font-mono);
+      text-transform: uppercase;
+      font-size: 0.72rem;
+      padding: 3px 10px;
+      border: 1px solid var(--ink-border);
+      border-radius: 99px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      color: var(--ink-text);
+      background: #f8fafc;
+    }
+
+    /* MOBILE MENU TOGGLE & OVERLAY */
+    .ink-mobile-nav {
+      display: none;
+      position: sticky;
+      top: 0;
+      background: var(--ink-bg);
+      border-bottom: 1px solid var(--ink-border);
+      padding: 0.85rem 1rem;
+      z-index: 100;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .ink-menu-btn {
+      background: #f8fafc; border: 1px solid var(--ink-border); border-radius: 6px;
+      padding: 0.4rem 0.75rem; cursor: pointer; font-family: var(--font-heading); font-size: 0.8rem; font-weight: 600;
+    }
+    .ink-overlay {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(15, 23, 42, 0.6);
+      z-index: 999;
+    }
+    .ink-overlay.is-open { display: block; }
+    .ink-close-btn {
+      display: none;
+      background: none; border: none; cursor: pointer;
+      font-size: 1.25rem; color: var(--ink-text);
+      padding: 0.25rem;
+    }
+
+    @media (max-width: 992px) {
+      body { flex-direction: column; }
+      .ink-mobile-nav { display: flex; }
+      .ink-sidebar {
+        position: fixed;
+        top: 0; bottom: 0; left: -100%;
+        z-index: 1000;
+        box-shadow: 4px 0 24px rgba(0,0,0,0.15);
+        max-width: 320px;
+        width: 85vw;
+      }
+      .ink-sidebar.is-open { left: 0; }
+      .ink-close-btn { display: block; }
+      .ink-main-wrapper { padding: 2rem 1.25rem; }
+    }
+    
+    @media (max-width: 768px) {
+      .ink-main-wrapper { padding: 1.5rem 1rem; }
+      p, ul, ol, blockquote, pre, table { font-size: 1rem; margin-bottom: 1.2rem; line-height: 1.65; }
+      .ink-content { width: 100%; max-width: 100vw; overflow-wrap: break-word; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- MOBILE NAV -->
+  <div class="ink-mobile-nav">
+    <a href="#top" class="ink-brand">FEDU MOTION 05</a>
+    <button class="ink-menu-btn" onclick="document.querySelector('.ink-sidebar').classList.add('is-open'); document.querySelector('.ink-overlay').classList.add('is-open');">MỤC LỤC</button>
+  </div>
+
+  <!-- MOBILE OVERLAY -->
+  <div class="ink-overlay" onclick="document.querySelector('.ink-sidebar').classList.remove('is-open'); this.classList.remove('is-open');"></div>
+
+  <!-- SIDEBAR TOC -->
+  <aside class="ink-sidebar">
+    <div class="ink-sidebar-header" style="display: flex; justify-content: space-between; align-items: center;">
+      <a href="#top" class="ink-brand">FEDU • MOTION 05</a>
+      <button class="ink-close-btn" onclick="document.querySelector('.ink-sidebar').classList.remove('is-open'); document.querySelector('.ink-overlay').classList.remove('is-open');">✕</button>
+    </div>
+    
+    <div class="ink-toc-title">MỤC LỤC TRA CỨU</div>
+    <ul class="ink-toc-list">
+      <li>
+        <a href="#phan-1-tien-hoa-va-5-quy-luat-uiux" class="ink-toc-link is-active">I. Tiến Hóa V1 &rarr; V2 &rarr; V3 &amp; 5 Quy Luật UI/UX</a>
+        <ul class="ink-toc-list ink-toc-nested">
+          <li><a href="#p1-bo-4-video-doi-chieu" class="ink-toc-link">1.1. Bộ 4 Video Đối Chiếu Trực Diện</a></li>
+          <li><a href="#p1-5-quy-luat-uiux" class="ink-toc-link">1.2. Giải Phẫu 5 Quy Luật Attention Budgeting</a></li>
+          <li><a href="#p1-luoi-micro-grid-doi-chieu" class="ink-toc-link">1.3. Lưới Micro-Grid: Pinterest Gốc vs. V1/V2</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="#phan-2-ket-qua-v3-va-20-sfx" class="ink-toc-link">II. Bản V3 Ultra-Clean (7 Cảnh) &amp; 20 Điểm Nổ SFX</a>
+        <ul class="ink-toc-list ink-toc-nested">
+          <li><a href="#p2-luoi-7-canh-va-40-frames" class="ink-toc-link">2.1. Lưới 7 Cảnh Sạch &amp; Lưới 40 Frames</a></li>
+          <li><a href="#p2-bang-7-nhip-ban-giao" class="ink-toc-link">2.2. Bảng 7 Nhịp Bàn Giao Sạch (f0 &rarr; f600)</a></li>
+          <li><a href="#p2-bang-20-su-kien-sfx" class="ink-toc-link">2.3. Bảng 20 Sự Kiện / 74 Lớp SFX Voice-Safe</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="#phan-3-khuon-thiet-ke-goc-v3-tsx" class="ink-toc-link">III. Khuôn Thiết Kế Gốc VietCleanV3_10s.tsx</a>
+        <ul class="ink-toc-list ink-toc-nested">
+          <li><a href="#p3-bang-bien-tweaks" class="ink-toc-link">3.1. Bảng Biến Tweaks (VietCleanV3Props)</a></li>
+          <li><a href="#p3-shared-actor-va-svg-blur" class="ink-toc-link">3.2. Shared Actor Relay &amp; SVG Motion Blur</a></li>
+          <li><a href="#p3-full-source-tsx" class="ink-toc-link">3.3. Toàn Bộ Mã Nguồn VietCleanV3_10s.tsx</a></li>
+          <li><a href="#p3-full-cues-json" class="ink-toc-link">3.4. Toàn Bộ File Cấu Hình cues_10s_v3.json</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="#phan-4-quy-trinh-4-subagents-prompts" class="ink-toc-link">IV. Quy Trình 4 Subagents &amp; Bộ 4 Prompt Mẫu</a>
+        <ul class="ink-toc-list ink-toc-nested">
+          <li><a href="#p4-so-do-4-subagents" class="ink-toc-link">4.1. Sơ Đồ Phối Hợp 4 Subagents Thực Chiến</a></li>
+          <li><a href="#p4-bo-4-prompts-copy" class="ink-toc-link">4.2. Bộ 4 Prompt Mẫu Copy-Paste Cho Người Mới</a></li>
+        </ul>
+      </li>
+    </ul>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main class="ink-main-wrapper">
+    <article class="ink-content">
+      
+      <div class="ink-meta">
+        <span class="ink-badge">MOTION 05 • ATTENTION BUDGETING &amp; TWEAKS STUDIO</span>
+        <span>Nguyễn Việt • FEDU Course</span>
+        <span>•</span>
+        <span>7 Clean Stages • 1 Focal Point • 85% Negative Space • 20 SFX Cues (74 Layers)</span>
+      </div>
+
+      <h1 class="is-short" id="top">Giải Phẫu 5 Quy Luật UI/UX Quản Trị Sự Chú Ý (Attention Budgeting) &amp; Khuôn Thiết Kế Gốc VietCleanV3_10s.tsx Có Bảng Biến Tweaks</h1>
+      
+      <p>Tài liệu chuyên sâu này đúc kết trọn vẹn cuộc lột xác từ <strong>Bản V1 (Hard-Cut rời rạc)</strong> &rarr; <strong>Bản V2 (Có Mồi cảnh liên hoàn nhưng mắc lỗi <em>Quá tải thông tin / HUD Overload</em>)</strong> &rarr; <strong>Bản V3 Ultra-Clean Thành Phẩm (<code>VietCleanV3_10s.tsx</code> — <code>1080×1920 @ 60fps</code>, <code>600 frames = 10.00s</code>)</strong>. Toàn bộ mã nguồn đã được chuẩn hóa thành <strong>Khuôn Thiết Kế Gốc có Bảng Biến <code>Tweaks</code> (<code>defaultVietCleanV3Props</code>)</strong> để bất kỳ ai cũng có thể tự thay chữ Tiếng Việt, đổi bảng màu thương hiệu và xuất video 60fps chỉ trong vài giây.</p>
+
+      <div class="spec-container">
+        <div class="spec-block">
+          <div class="spec-label"><span class="apple-badge amber">ATTENTION BUDGETING</span></div>
+          <div class="spec-value"><strong>Luật "1 Tiêu Điểm Duy Nhất" &amp; Tối Thiểu 85% Không Gian Âm (Negative Space):</strong> Tại bất kỳ mili-giây nào trong suốt 600 khung hình (10 giây), mắt người xem chỉ phải xử lý <strong>đúng 1 cụm chữ hoặc 1 hạt mồi cảnh duy nhất</strong>. Loại bỏ 100% thanh Timecode HUD, thanh Subtitle bar lặp chữ và các nhãn kỹ thuật tiếng Anh vô nghĩa (<code>SEMANTIC_CORE</code>, <code>AI_01</code>, <code>PRE-CUE</code>).</div>
+        </div>
+        <div class="spec-block">
+          <div class="spec-label"><span class="apple-badge emerald">TWEAKS SCHEMA V3</span></div>
+          <div class="spec-value"><strong>Khuôn Thiết Kế Gốc 24 Biến Độc Lập (<code>VietCleanV3Props</code>):</strong> Tách toàn bộ mảng từ Tiếng Việt của 7 phân cảnh (<code>stage1Line1Words</code> &rarr; <code>stage7bDrumItems</code>), 9 mã màu chủ đạo (<code>bgDark</code>, <code>bgIvory</code>, <code>accentGold</code>, <code>accentCrimson</code>...) và 3 tham số điều khiển nhịp thở / độ nhòe vận tốc (<code>breathAmp</code>, <code>motionBlurScale</code>, <code>audioSrc</code>) ngay đầu file <code>VietCleanV3_10s.tsx</code>.</div>
+        </div>
+      </div>
+
+      <!-- ====================================================================
+           PHẦN 1: BÀI TOÁN TIẾN HÓA V1 -> V2 -> V3 & 5 QUY LUẬT UI/UX
+           ==================================================================== -->
+      <h2 id="phan-1-tien-hoa-va-5-quy-luat-uiux">Phần 1 — Bài Toán Tiến Hóa V1 &rarr; V2 &rarr; V3 &amp; Giải Phẫu 5 Quy Luật UI/UX Quản Trị Sự Chú Ý (<code>Attention Budgeting</code>)</h2>
+
+      <p>Khi lập trình Motion Graphic bằng AI trên Remotion, hầu hết người làm đều trải qua 2 thái cực sai lầm: <strong>Bản V1 quá đơn điệu</strong> (các cảnh cắt bụp vào nhau bằng <code>frame &lt; 240</code>, chữ hiện ra đột ngột không có vật dẫn mắt) hoặc <strong>Bản V2 quá tham hiệu ứng</strong> (nhồi cùng lúc 6 con trỏ chuột có gắn nhãn <code>AI_01..AI_06</code>, giữ lại chữ cảnh cũ trên đầu khi cảnh mới đang nổ ở giữa, cộng thêm HUD Timecode và hộp viền lồng hộp viền khiến màn hình dọc 9:16 biến thành bảng điều khiển máy bay rối mắt).</p>
+
+      <h3 id="p1-bo-4-video-doi-chieu">1.1. Bàn Đối Chiếu Trực Diện 4 Video: Bản V3 Ultra-Clean vs. Bản V2 Quá Tải Thông Tin vs. 2 Mẫu Pinterest Gốc (<code>pin_07</code> &amp; <code>pin_08</code>)</h3>
+      <p>Hãy bấm Play đối chiếu trực tiếp 4 video dưới đây để thấy sự khác biệt một trời một vực khi áp dụng kỷ luật <strong>Quản trị sự chú ý (Attention Budgeting)</strong> của <code>pin_07</code> và <code>pin_08</code> vào Bản V3:</p>
+
+      <div class="grid-2col" style="align-items: start;">
+        <div class="media-card">
+          <div class="media-card-header">
+            <span class="media-card-title">1. Bản V3 Ultra-Clean Thành Phẩm (7 Cảnh • 85% Thoáng)</span>
+            <span class="media-card-meta">VietCleanV3_10s • 60fps • PASS 100%</span>
+          </div>
+          <div class="portrait-video-wrap">
+            <video controls playsinline preload="metadata" poster="assets/motion02/motion02_v3_clean_10s_9x16_poster.jpg">
+              <source src="assets/motion02/motion02_v3_clean_10s_9x16_60fps.mp4" type="video/mp4">
+            </video>
+          </div>
+          <p class="media-caption"><strong>Bản V3 Thành Phẩm (<code>motion02_v3_clean_10s_9x16_60fps.mp4</code>):</strong> 1 tiêu điểm duy nhất tại mọi thời điểm, 85% không gian thở, hạt mồi Pre-Cue tự tan biến ngay khi chữ chính xuất hiện.</p>
+        </div>
+
+        <div class="media-card">
+          <div class="media-card-header">
+            <span class="media-card-title">2. Bản V2 Trước Khi Tối Giản (Lỗi Quá Tải HUD &amp; Nhãn Rác)</span>
+            <span class="media-card-meta">VietContinuity10s • Quá Tải Thị Giác</span>
+          </div>
+          <div class="portrait-video-wrap">
+            <video controls playsinline preload="metadata" poster="assets/motion02/motion02_v2_precue_10s_9x16_poster.jpg">
+              <source src="assets/motion02/motion02_v2_precue_10s_9x16_60fps.mp4" type="video/mp4">
+            </video>
+          </div>
+          <p class="media-caption"><strong>Bản V2 (<code>motion02_v2_precue_10s_9x16_60fps.mp4</code>):</strong> Dù có Pre-Cue và Whip-Pan mượt nhưng giữ lại Header cũ + Subtitle bar + Timecode + nhãn <code>SEMANTIC_CORE</code> gây phân tán mắt nhìn.</p>
+        </div>
+
+        <div class="media-card">
+          <div class="media-card-header">
+            <span class="media-card-title">3. Mẫu Pinterest 07 (pin_07 • 967077720007189801)</span>
+            <span class="media-card-meta">Asterisk Seed • Free-Standing Text</span>
+          </div>
+          <div class="portrait-video-wrap">
+            <video controls playsinline preload="metadata" poster="assets/motion02/frames/pin_07_poster.jpg">
+              <source src="assets/motion02/pinterest_samples/pin_07_967077720007189801.mp4" type="video/mp4">
+            </video>
+          </div>
+          <p class="media-caption"><strong>Mẫu gốc <code>pin_07</code>:</strong> Chữ đứng hoàn toàn tự do trên nền phẳng, dùng 4 dấu hoa thị <code>✱✱✱✱</code> làm hạt mồi trước khi hóa thành chữ chính.</p>
+        </div>
+
+        <div class="media-card">
+          <div class="media-card-header">
+            <span class="media-card-title">4. Mẫu Pinterest 08 (pin_08 • 1027242996274400557)</span>
+            <span class="media-card-meta">1.5px Figma Frame • Pure Geometry</span>
+          </div>
+          <div class="portrait-video-wrap">
+            <video controls playsinline preload="metadata" poster="assets/motion02/frames/pin_08_poster.jpg">
+              <source src="assets/motion02/pinterest_samples/pin_08_1027242996274400557.mp4" type="video/mp4">
+            </video>
+          </div>
+          <p class="media-caption"><strong>Mẫu gốc <code>pin_08</code>:</strong> Khung chọn mảnh <code>1.5px</code> chỉ xuất hiện đúng <code>0.3s</code> để mở chữ rồi biến mất; các hạt hình học không hề có chữ nhãn đính kèm.</p>
+        </div>
+      </div>
+
+      <h3 id="p1-5-quy-luat-uiux">1.2. Giải Phẫu 5 Quy Luật UI/UX Sống Còn Khi Thiết Kế Motion Graphic Chữ (<code>Attention Budgeting</code>)</h3>
+      <p>Qua việc mổ xẻ từng khung hình của các video triệu lượt xem trên Pinterest (<code>pin_04</code>, <code>pin_05</code>, <code>pin_07</code>, <code>pin_08</code>) và đối chiếu với thất bại thị giác của Bản V2, dưới đây là <strong>5 Quy Luật UI/UX Bất Di Bất Dịch</strong> đã làm nên sự lột xác của Bản V3:</p>
+
+      <div class="spec-container">
+        <div class="spec-block">
+          <div class="spec-label"><span class="apple-badge crimson">QUY LUẬT #1: SINGLE FOCAL POINT</span></div>
+          <div class="spec-value"><strong>1 Tiêu Điểm Duy Nhất Tại Mọi Mili-Giây:</strong> Mắt người xem trên màn hình dọc <code>9:16</code> chỉ có thể đọc <strong>1 cụm thông điệp duy nhất (tối đa 2–5 từ)</strong> tại một thời điểm. Bản V2 thất bại vì bắt mắt người xem đọc cùng lúc 4 tầng: Thanh Timecode trên đỉnh + Cụm chữ cũ thu nhỏ (Header Recoil) + Cụm chữ mới ở giữa + Thanh phụ đề chạy dưới đáy. Bản V3 cắt bỏ toàn bộ 3 tầng phụ, chỉ giữ lại đúng 1 tâm điểm ở chính giữa màn hình.</div>
+        </div>
+        <div class="spec-block">
+          <div class="spec-label"><span class="apple-badge emerald">QUY LUẬT #2: 85% NEGATIVE SPACE</span></div>
+          <div class="spec-value"><strong>Tối Thiểu 85% Không Gian Âm &amp; Xóa Bỏ "Hộp Lồng Hộp":</strong> Trong các mẫu Pinterest gốc (<code>pin_04</code>, <code>pin_05</code>, <code>pin_07</code>), chữ luôn <strong>đứng tự do (Free-Standing Typography)</strong> trên nền Đen sâu (<code>#07080A</code>) hoặc Trắng Kem (<code>#F7F4ED</code>) mà không bị nhốt trong các thẻ Card viền sáng hay khung kính mờ rườm rà. Khoảng trống 85% xung quanh chính là thứ tôn vinh độ sắc nét của phông chữ <code>SVN-Aeonik</code>.</div>
+        </div>
+        <div class="spec-block">
+          <div class="spec-label"><span class="apple-badge dark">QUY LUẬT #3: ZERO REDUNDANT TEXT</span></div>
+          <div class="spec-value"><strong>Cấm Tuyệt Đối Chữ Rác Kỹ Thuật &amp; Nhãn Tự Bịa:</strong> Tuyệt đối không bao giờ gắn chữ vào các vật thể làm nhiệm vụ dẫn mắt! Trong Bản V2, việc gắn nhãn <code>AI_01..AI_06</code> vào 6 con trỏ chuột hay đặt dòng chữ <code>&lt; SEMANTIC_CORE &gt;</code>, <code>STAGE 01 // PRE-CUE</code> làm não bộ khán giả bị nhiễu vì tưởng đó là nội dung cần đọc. Sang Bản V3, mọi đạo cụ dẫn mắt đều là <strong>hình học thuần khiết 100% không chữ</strong> (1 con trỏ vàng sạch, 1 ngôi sao 4 cánh <code>✦</code>, cặp dấu ngoặc <code>&lt; ✦ &gt;</code>).</div>
+        </div>
+        <div class="spec-block">
+          <div class="spec-label"><span class="apple-badge gold">QUY LUẬT #4: MINIMALIST PRE-CUE</span></div>
+          <div class="spec-value"><strong>Mồi Cảnh Tối Giản Phải Tự Tan Biến Khi Chữ Chính Xuất Hiện:</strong> Bản chất của <em>Visual Pre-Cue</em> (Mồi cảnh <code>10–14 frames</code> trước giọng nói) là kéo đồng tử mắt người xem về đúng tọa độ <code>(x, y)</code> sắp nổ chữ. Ngay khi chữ chính bật lên, hạt mồi (như khung chọn Figma <code>1.5px</code> ở Cảnh 1, 4 hoa thị đỏ <code>✱✱✱✱</code> ở Cảnh 3, hay 4 khối hình học tụ tâm ở Cảnh 5) <strong>phải mờ đi hoặc biến hình hoàn toàn thành chữ</strong> — tuyệt đối không đứng lại tranh chấp với chữ chính.</div>
+        </div>
+        <div class="spec-block">
+          <div class="spec-label"><span class="apple-badge amber">QUY LUẬT #5: CLEAN STAGE SEPARATION</span></div>
+          <div class="spec-value"><strong>Chuyển Cảnh Tách Bạch Sân Khấu Bằng Vật Trung Gian (Shared Actor Relay):</strong> Để liền mạch mà không bị lộn xộn, cảnh cũ <strong>phải được dọn sạch 100%</strong> bởi một "diễn viên trung gian" (như thanh Caret <code>|</code> quét nuốt chữ Cảnh 1, dải Highlight Trắng Kem nở bung toàn màn hình mở Cảnh 3, hoặc cú Whip-Pan đẩy tấm giấy Trắng Kem sang trái lộ nền Đen của Cảnh 4) rồi mới mở cảnh mới.</div>
+        </div>
+      </div>
+
+      <h3 id="p1-luoi-micro-grid-doi-chieu">1.3. Bằng Chứng Thị Giác Qua Lưới Khung Hình: Mẫu Pinterest Gốc vs. Bản V1 &amp; V2 Cũ</h3>
+      <p>Bộ 6 ảnh lưới giải phẫu dưới đây chứng minh rõ ràng vì sao các mẫu Pinterest gốc nhìn cực kỳ sang trọng và thoáng mắt, trong khi Bản V1 (đầu tiên) và Bản V2 (quá tải HUD) lại gây mỏi mắt:</p>
+
+      <div class="grid-2col">
+        <div class="media-card">
+          <div class="media-card-header">
+            <span class="media-card-title">Lưới Giải Phẫu Micro-Grid Mẫu pin_07</span>
+            <span class="media-card-meta">pin_07_micro_grid.jpg</span>
+          </div>
+          <img src="assets/motion02/frames/pin_07_micro_grid.jpg" alt="Lưới giải phẫu micro-grid pin_07" loading="lazy">
+          <p class="media-caption"><code>pin_07</code>: 4 dấu hoa thị <code>✱✱✱✱</code> đứng tự do trên nền thoáng, biến hình trực tiếp thành chữ rồi dọn sạch sân khấu trước khi sang nhịp mới.</p>
+        </div>
+
+        <div class="media-card">
+          <div class="media-card-header">
+            <span class="media-card-title">Lưới Giải Phẫu Micro-Grid Mẫu pin_08</span>
+            <span class="media-card-meta">pin_08_micro_grid.jpg</span>
+          </div>
+          <img src="assets/motion02/frames/pin_08_micro_grid.jpg" alt="Lưới giải phẫu micro-grid pin_08" loading="lazy">
+          <p class="media-caption"><code>pin_08</code>: Khung Figma mảnh <code>1.5px</code> mở chữ, các khối tròn/thoi hội tụ thuần hình học (không nhãn chữ) và cú Whip-Pan dứt khoát.</p>
+        </div>
+
+        <div class="media-card">
+          <div class="media-card-header">
+            <span class="media-card-title">Lưới Giải Phẫu Mẫu pin_04 (Kinetic Strobe &amp; Hard Invert)</span>
+            <span class="media-card-meta">pin_04_grid.jpg</span>
+          </div>
+          <img src="assets/motion02/frames/pin_04_grid.jpg" alt="Lưới giải phẫu pin_04" loading="lazy">
+          <p class="media-caption"><code>pin_04</code>: Nguồn cảm hứng cho nhịp đảo nền Đen &rarr; Trắng Kem tại Cảnh 2–3 với thanh gạch ngang đỏ cắt qua từ khóa.</p>
+        </div>
+
+        <div class="media-card">
+          <div class="media-card-header">
+            <span class="media-card-title">Lưới Giải Phẫu Mẫu pin_05 (Frameless Oblique Drum Roll)</span>
+            <span class="media-card-meta">pin_05_grid.jpg</span>
+          </div>
+          <img src="assets/motion02/frames/pin_05_grid.jpg" alt="Lưới giải phẫu pin_05" loading="lazy">
+          <p class="media-caption"><code>pin_05</code>: Nguồn cảm hứng cho Cảnh 7b — trục chữ cuộn dọc nghiêng nhẹ không cần bất kỳ hộp khung viền nào bao quanh.</p>
+        </div>
+
+        <div class="media-card">
+          <div class="media-card-header">
+            <span class="media-card-title">Kiểm Toán Bản V1 Cũ: Rời Rạc &amp; Đóng Hộp Cứng Nhắc</span>
+            <span class="media-card-meta">current_10s_audit_grid.jpg</span>
+          </div>
+          <img src="assets/motion02/frames/current_10s_audit_grid.jpg" alt="Lưới kiểm toán bản V1 cũ" loading="lazy">
+          <p class="media-caption">Bản V1 ban đầu: Gắn cứng HUD Timecode trên đỉnh, thanh phụ đề dưới đáy và đóng khung hộp viền xung quanh mọi cụm chữ.</p>
+        </div>
+
+        <div class="media-card">
+          <div class="media-card-header">
+            <span class="media-card-title">Kiểm Toán Bản V2: Quá Tải Chi Tiết Khi Chuyển Cảnh</span>
+            <span class="media-card-meta">v2_precue_transitions_closeup.jpg</span>
+          </div>
+          <img src="assets/motion02/frames/v2_precue_transitions_closeup.jpg" alt="Lưới kiểm toán cận cảnh chuyển cảnh bản V2" loading="lazy">
+          <p class="media-caption">Bản V2: Dù chuyển cảnh rất mượt nhưng nhồi quá nhiều chữ phụ (<code>COMET_SEED</code>, <code>SEMANTIC_CORE</code>, 6 nhãn <code>AI_01..06</code>) và giữ lại chữ cảnh cũ trên đầu.</p>
+        </div>
+      </div>
+
+      <hr>
+
+      <!-- ====================================================================
+           PHẦN 2: KẾT QUẢ BẢN V3 ULTRA-CLEAN & 20 ĐIỂM NỔ SFX VOICE-SAFE
+           ==================================================================== -->
+      <h2 id="phan-2-ket-qua-v3-va-20-sfx">Phần 2 — Kết Quả Bản V3 Ultra-Clean (<code>7 Cảnh Tách Bạch • 1 Tiêu Điểm Duy Nhất • 85% Negative Space</code>) &amp; 20 Điểm Nổ SFX Voice-Safe</h2>
+
+      <h3 id="p2-luoi-7-canh-va-40-frames">2.1. Lưới Đối Chiếu 7 Cảnh Sạch (Hạt Mồi Pre-Cue vs. Chữ Chính) &amp; Lưới Kiểm Định 40 Khung Hình Toàn Cảnh</h3>
+      <p>Trong Bản V3 (<code>VietCleanV3_10s.tsx</code>), toàn bộ 10 giây đầu tiên (<code>600 frames @ 60fps</code>) được chia thành <strong>7 Cảnh Tách Bạch (Stages 1 &rarr; 7)</strong>. Ở mỗi cảnh, Hàng 1 là khoảnh khắc hạt mồi Pre-Cue xuất hiện trước giọng đọc <code>10–14 frames</code>; Hàng 2 là khoảnh khắc chữ chính bung ra khi hạt mồi đã tự thu dọn sạch sẽ:</p>
+
+      <div class="media-card">
+        <div class="media-card-header">
+          <span class="media-card-title">Lưới 14 Khung Hình Đối Chiếu 7 Cảnh Bản V3 (Hàng 1: Pre-Cue Seed | Hàng 2: Chữ Chính Đứng Tự Do)</span>
+          <span class="media-card-meta">v3_clean_7scenes_showcase.jpg • 7 Stages</span>
+        </div>
+        <img src="assets/motion02/frames/v3_clean_7scenes_showcase.jpg" alt="Lưới 7 cảnh sạch bản V3" loading="lazy">
+        <p class="media-caption">Từ Trái sang Phải (Stage 1 &rarr; Stage 7): Không còn bất kỳ chữ cảnh cũ nào lưu lại ở cảnh mới, 100% khung hình đạt tối thiểu 85% không gian âm.</p>
+      </div>
+
+      <div class="media-card">
+        <div class="media-card-header">
+          <span class="media-card-title">Lưới Kiểm Định 40 Khung Hình Liên Tục Của Bản V3 (Mỗi 0.25s = 15 Frames Từ f000 Đến f585)</span>
+          <span class="media-card-meta">v3_clean_10s_40frames_grid.jpg • 600 Frames Audit</span>
+        </div>
+        <img src="assets/motion02/frames/v3_clean_10s_40frames_grid.jpg" alt="Lưới 40 khung hình kiểm định bản V3" loading="lazy">
+        <p class="media-caption">Kiểm chứng 40 lát cắt thời gian liên tiếp của Bản V3: Từng bước chuyển giao (Caret Wipe, Iris Expansion, Whip-Pan, Star Convergence, Bracket Split, Oblique Drum Roll) đều sạch tuyệt đối.</p>
+      </div>
+
+      <h3 id="p2-bang-7-nhip-ban-giao">2.2. Bảng Phân Tích Chi Tiết 7 Nhịp Bàn Giao Sạch (<code>Clean Relay Transitions</code>) Từ Cảnh 1 Đến Cảnh 7 (<code>f0 &rarr; f600</code>)</h3>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Cảnh (Stage)</th>
+              <th>Khoảng Frame &amp; Giây (60fps)</th>
+              <th>Biến Chữ Trong Bảng <code>Tweaks</code></th>
+              <th>Pha 1: Hạt Mồi Tối Giản (Pre-Cue Seed)</th>
+              <th>Pha 2: Tâm Điểm Chữ Duy Nhất (Main Typography)</th>
+              <th>Pha 3: Bàn Giao Sạch Sang Cảnh Kế (Clean Relay Handoff)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Stage 1</strong></td>
+              <td><code>f0 &rarr; f88</code><br>(<code>0.00s – 1.47s</code>)</td>
+              <td><code>stage1Line1Words</code><br><code>stage1Line2Words</code></td>
+              <td>Khung chọn Figma mảnh <code>1.5px</code> màu <code>accentGold</code> + 4 chấm góc vuông phóng từ <code>18px &rarr; 760×280px</code> (<code>f2–f16</code>), tự mờ đi hoàn toàn ở <code>f30–f46</code>.</td>
+              <td>Chữ <strong>"Cái mạng / xã hội cũ"</strong> (<code>84px / 98px</code>) mở clip-path từ trái sang phải kèm lò xo <code>spring</code> từng từ.</td>
+              <td>Tại <code>f74–f86</code>, thanh <strong>Caret <code>|</code></strong> xuất hiện bên trái và quét ngang sang phải (<code>collapseLeftInset: 0% &rarr; 100%</code>) nuốt sạch chữ Cảnh 1.</td>
+            </tr>
+            <tr>
+              <td><strong>Stage 2</strong></td>
+              <td><code>f74 &rarr; f182</code><br>(<code>1.23s – 3.03s</code>)</td>
+              <td><code>stage2Words</code><br>(có cờ <code>isHighlight</code>)</td>
+              <td>Tại <code>f88–f98</code>, chính thanh Caret <code>|</code> vừa nuốt Cảnh 1 bật ngược từ phải (<code>+260px</code>) về trái (<code>-370px</code>) kèm nhòe ngang <code>v3CaretBlur</code> (<code>18px</code>).</td>
+              <td>Từ <code>f98–f130</code>, thanh Caret chạy sang phải gõ ra dòng chữ <strong>"mà mình từng biết"</strong> (2 từ cuối tô màu <code>accentYellow</code>).</td>
+              <td>Tại <code>f158–f169</code>, Caret quét ngược sang trái sơn ra dải hộp <code>bgIvory</code> (<code>#F7F4ED</code>) đổi màu chữ sang đen <code>textInk</code>; từ <code>f169–f180</code> hộp <code>bgIvory</code> phóng <code>scale(1 &rarr; 22)</code> lấp đầy màn hình thành nền Cảnh 3.</td>
+            </tr>
+            <tr>
+              <td><strong>Stage 3</strong></td>
+              <td><code>f175 &rarr; f238</code><br>(<code>2.92s – 3.97s</code>)</td>
+              <td><code>stage3Line1Words</code><br><code>stage3Line2Words</code></td>
+              <td>Trên nền giấy Trắng Kem <code>bgIvory</code> vừa mở, 4 hoa thị đỏ <code>✱ ✱ ✱ ✱</code> (<code>accentCrimson</code>) nảy lên tự do và xoay nhẹ ở <code>f175–f185</code> (học <code>pin_07</code>).</td>
+              <td>Đúng <code>f186</code>, 4 hoa thị biến thành đại tự <strong>"nó đã / chết rồi."</strong> (<code>78px / 118px</code>). Tại <code>f204–f220</code>, thanh gạch ngang đỏ cắt qua chữ <em>"chết rồi."</em> làm chữ xám đi.</td>
+              <td>Tại <code>f226–f238</code>, toàn bộ tấm nền giấy Trắng Kem thực hiện cú <strong>Spatial Whip-Pan</strong> văng sang trái (<code>whipOutX: 0 &rarr; -1260px</code>) kèm <code>v3WhipBlurX</code> (<code>28px</code>), để lộ nền Đen <code>bgDark</code> phía dưới.</td>
+            </tr>
+            <tr>
+              <td><strong>Stage 4</strong></td>
+              <td><code>f235 &rarr; f280</code><br>(<code>3.92s – 4.67s</code>)</td>
+              <td><code>stage4PillText</code></td>
+              <td>1 con trỏ mũi tên vàng <code>CleanCursorArrow</code> duy nhất (không nhãn chữ) bay từ góc phải vào tâm (<code>f235–f242</code>) và nhấp Click tạo vòng sóng mảnh <code>1.5px</code>.</td>
+              <td>Cú click làm bật lên viên thuốc tối giản <strong>"✦ Bây giờ"</strong> tại chính giữa màn hình.</td>
+              <td>Tại <code>f268–f276</code>, chữ <em>"Bây giờ"</em> và viền viên thuốc tự tan biến (<code>pillDissolveP: 1 &rarr; 0</code>), chỉ để lại <strong>ngôi sao 4 cánh <code>✦</code></strong> đứng lại ở tâm làm mồi cho Cảnh 5.</td>
+            </tr>
+            <tr>
+              <td><strong>Stage 5</strong></td>
+              <td><code>f272 &rarr; f326</code><br>(<code>4.53s – 5.43s</code>)</td>
+              <td><code>stage5Line1Words</code><br><code>stage5Line2Words</code></td>
+              <td>Từ <code>f272–f282</code>, ngôi sao <code>✦</code> hút 3 khối hình học thuần khiết (tròn vàng, thoi trắng, vòng nhẫn cam) lao từ 3 góc về tâm rồi <strong>biến mất 100% ở <code>f284</code></strong>.</td>
+              <td>Từ <code>f282–f314</code>, cụm chữ <strong>"nó là cái / kỷ nguyên của"</strong> (<code>60px / 90px</code>) nảy lò xo tự do giữa nền đen thoáng đãng.</td>
+              <td>Tại <code>f314–f325</code>, cả cụm chữ phóng vọt lên trên (<code>exitY: 0 &rarr; -480px</code>) kèm nhòe dọc <code>v3ExitBlurY</code> (<code>18px</code>), trả lại tâm màn hình trống cho Cảnh 6.</td>
+            </tr>
+            <tr>
+              <td><strong>Stage 6</strong></td>
+              <td><code>f318 &rarr; f438</code><br>(<code>5.30s – 7.30s</code>)</td>
+              <td><code>stage6HeroWords</code></td>
+              <td>Tại <code>f318–f329</code>, cặp dấu ngoặc mảnh <code>&lt; ✦ &gt;</code> tách rộng từ tâm ra hai mép (<code>38px &rarr; 445px</code>) rồi tự mờ dần ở <code>f336–f352</code>.</td>
+              <td>Đại tự Gradient Vàng Kim <strong>"NGỮ NGHĨA"</strong> (<code>116px</code>) nổ ra tại <code>f327</code>; tiếp đó tại <code>f356–f394</code>, nét cọ đôi vàng kim tự vẽ gạch chân kèm ngôi sao nhỏ dẫn đầu nét bút.</td>
+              <td>Tại <code>f422–f437</code>, cả cụm <em>"NGỮ NGHĨA"</em> trượt vọt lên trên (<code>slideUpY: 0 &rarr; -980px</code>) kèm nhòe dọc <code>22px</code>, kéo theo mũi tên vàng <code>&rarr;</code> từ đáy lên tâm.</td>
+            </tr>
+            <tr>
+              <td><strong>Stage 7 (7a &amp; 7b)</strong></td>
+              <td><code>f432 &rarr; f600</code><br>(<code>7.20s – 10.00s</code>)</td>
+              <td><code>stage7aLine1Words</code><br><code>stage7aLine2Words</code><br><code>stage7bDrumItems</code><br><code>stage7bTargetIndex</code></td>
+              <td><strong>Pha 7a (<code>f432–f492</code>):</strong> Mũi tên <code>&rarr;</code> dẫn dòng <em>"Bạn không cần / thiết phải làm"</em>.<br><strong>Pha 7b (<code>f494–f514</code>):</strong> Dòng 7a lùi nhẹ lên trên (<code>scale 0.54, opacity 0.42</code>), nhường tâm điểm cho trục chữ nghiêng <code>-6&deg; &rarr; 0&deg;</code> không viền cuộn dọc 5 cụm từ kèm <code>v3DrumBlurY</code>.</td>
+              <td>Đúng <code>f514</code>, trục cuộn khóa đanh vào mục tiêu số 3: <strong>"→ idol trên video"</strong> (<code>86px</code>). Tại <code>f534–f554</code>, mũi tên <code>&rarr;</code> hóa thành dấu <code>✕</code> đỏ và đường gạch ngang đỏ <code>accentRedStrike</code> cắt ngang chữ <em>"idol trên video"</em>.</td>
+              <td>Giữ nhịp thở <code>breathScale</code> đanh gọn đến đúng <code>f600</code> (<code>10.00s</code>), sẵn sàng nối sang giây thứ 11 của video dài.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 id="p2-bang-20-su-kien-sfx">2.3. Bảng 20 Sự Kiện / 74 Lớp Âm Thanh SFX Voice-Safe (<code>cues_10s_v3.json</code> Kết Hợp Kho <code>sfx.fedu.vn</code>)</h3>
+      <p>Mỗi chuyển động Pre-Cue, mỗi cú quét Caret và mỗi nhịp Whip-Pan trong Bản V3 đều được ánh xạ chính xác tới từng khung hình trong file <code>cues_10s_v3.json</code>. Động cơ <code>InstantVaultComposer</code> tự động gắp <strong>74 lớp âm thanh (micro-slices)</strong> từ kho <code>10.768 slices</code> của <code>sfx.fedu.vn</code> theo 4 vai trò (<code>L1_lead_in</code> mồi gió trước điểm nổ &rarr; <code>L2_transient</code> đanh gọn &rarr; <code>L3_body</code> trầm ấm &rarr; <code>L4_texture</code> cơ khí) và trộn với giọng đọc của anh Việt qua bộ lọc bảo vệ dải tần giọng nói (Voice-Safe Sidechain):</p>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Mã Sự Kiện (Cue ID)</th>
+              <th>Frame &amp; Giây</th>
+              <th>Loại Hành Động &amp; Lực</th>
+              <th>Mô Tả Điểm Nổ Thị Giác Tương Ứng</th>
+              <th>Cấu Trúc Lớp SFX Thực Tế (74 Layers)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>#01</strong></td>
+              <td><code>#V3_S1_FRAME_EXPAND</code></td>
+              <td><code>f2</code> (<code>0.03s</code>)</td>
+              <td><span class="apple-badge gold">TEXT_LOWER_THIRD_SLIDE</span><br><small>Intensity: <code>0.8</code></small></td>
+              <td><strong>Cảnh 1 Pre-Cue: Khung viền mảnh 1.5px mở ra</strong></td>
+              <td><strong>4 layers:</strong> <code>L1_lead_in</code> (-13.5dB), <code>L2_transient</code> (-11.0dB), <code>L3_body</code> (-14.0dB), <code>L4_texture</code> (-17.5dB)</td>
+            </tr>
+            <tr>
+              <td><strong>#02</strong></td>
+              <td><code>#V3_S1_TEXT_POP</code></td>
+              <td><code>f10</code> (<code>0.17s</code>)</td>
+              <td><span class="apple-badge gold">TEXT_KINETIC_POP</span><br><small>Intensity: <code>0.85</code></small></td>
+              <td><strong>Cảnh 1 Chữ: Cái mạng xã hội cũ</strong></td>
+              <td><strong>4 layers:</strong> <code>L1_lead_in</code> (-15.0dB), <code>L2_transient</code> (-9.5dB), <code>L3_body</code> (-13.5dB), <code>L4_texture</code> (-17.5dB)</td>
+            </tr>
+            <tr>
+              <td><strong>#03</strong></td>
+              <td><code>#V3_S1_CARET_WIPE</code></td>
+              <td><code>f74</code> (<code>1.23s</code>)</td>
+              <td><span class="apple-badge gold">TEXT_HIGHLIGHT_SWEEP</span><br><small>Intensity: <code>0.85</code></small></td>
+              <td><strong>Chuyển 1-&gt;2: Thanh Caret quét thu gọn Cảnh 1</strong></td>
+              <td><strong>3 layers:</strong> <code>L1_lead_in</code> (-14.5dB), <code>L2_transient</code> (-12.5dB), <code>L3_body</code> (-15.5dB)</td>
+            </tr>
+            <tr>
+              <td><strong>#04</strong></td>
+              <td><code>#V3_S2_CARET_TYPE</code></td>
+              <td><code>f98</code> (<code>1.63s</code>)</td>
+              <td><span class="apple-badge gold">TEXT_KINETIC_POP</span><br><small>Intensity: <code>0.88</code></small></td>
+              <td><strong>Cảnh 2 Chữ: mà mình từng biết</strong></td>
+              <td><strong>4 layers:</strong> <code>L1_lead_in</code> (-15.0dB), <code>L2_transient</code> (-9.5dB), <code>L3_body</code> (-13.5dB), <code>L4_texture</code> (-17.5dB)</td>
+            </tr>
+            <tr>
+              <td><strong>#05</strong></td>
+              <td><code>#V3_S2_IRIS_WIPE</code></td>
+              <td><code>f168</code> (<code>2.80s</code>)</td>
+              <td><span class="apple-badge gold">MG_MORPH_TRANSITION</span><br><small>Intensity: <code>0.98</code></small></td>
+              <td><strong>Chuyển 2-&gt;3: Hộp Highlight phóng mở nền Trắng Kem</strong></td>
+              <td><strong>4 layers:</strong> <code>L1_lead_in</code> (-11.5dB), <code>L2_transient</code> (-11.0dB), <code>L3_body</code> (-10.0dB), <code>L4_texture</code> (-16.5dB)</td>
+            </tr>
+            <tr>
+              <td><strong>#06</strong></td>
+              <td><code>#V3_S3_ASTERISK_SEED</code></td>
+              <td><code>f176</code> (<code>2.93s</code>)</td>
+              <td><span class="apple-badge gold">IMG_ICON_POPUP</span><br><small>Intensity: <code>0.85</code></small></td>
+              <td><strong>Cảnh 3 Pre-Cue: 4 hoa thị đỏ ✱ ✱ ✱ ✱</strong></td>
+              <td><strong>3 layers:</strong> <code>L1_lead_in</code> (-16.5dB), <code>L2_transient</code> (-10.0dB), <code>L3_body</code> (-13.5dB)</td>
+            </tr>
+            <tr>
+              <td><strong>#07</strong></td>
+              <td><code>#V3_S3_DEAD_SLAM</code></td>
+              <td><code>f186</code> (<code>3.10s</code>)</td>
+              <td><span class="apple-badge gold">TEXT_HEADLINE_SLAM</span><br><small>Intensity: <code>1.12</code></small></td>
+              <td><strong>Cảnh 3 Chữ: nó đã chết rồi.</strong></td>
+              <td><strong>4 layers:</strong> <code>L1_lead_in</code> (-11.5dB), <code>L2_transient</code> (-8.0dB), <code>L3_body</code> (-8.5dB), <code>L4_texture</code> (-15.5dB)</td>
+            </tr>
+            <tr>
+              <td><strong>#08</strong></td>
+              <td><code>#V3_S3_RED_STRIKE</code></td>
+              <td><code>f205</code> (<code>3.42s</code>)</td>
+              <td><span class="apple-badge gold">TEXT_HIGHLIGHT_SWEEP</span><br><small>Intensity: <code>0.9</code></small></td>
+              <td><strong>Cảnh 3: Nét gạch ngang đỏ cắt qua chết rồi.</strong></td>
+              <td><strong>3 layers:</strong> <code>L1_lead_in</code> (-14.5dB), <code>L2_transient</code> (-12.5dB), <code>L3_body</code> (-15.5dB)</td>
+            </tr>
+            <tr>
+              <td><strong>#09</strong></td>
+              <td><code>#V3_S3_WHIP_PAN</code></td>
+              <td><code>f226</code> (<code>3.77s</code>)</td>
+              <td><span class="apple-badge gold">MG_MORPH_TRANSITION</span><br><small>Intensity: <code>1.02</code></small></td>
+              <td><strong>Chuyển 3-&gt;4: Whip-Pan sạch sang nền Đen</strong></td>
+              <td><strong>4 layers:</strong> <code>L1_lead_in</code> (-11.5dB), <code>L2_transient</code> (-11.0dB), <code>L3_body</code> (-10.0dB), <code>L4_texture</code> (-16.5dB)</td>
+            </tr>
+            <tr>
+              <td><strong>#10</strong></td>
+              <td><code>#V3_S4_CURSOR_CLICK</code></td>
+              <td><code>f242</code> (<code>4.03s</code>)</td>
+              <td><span class="apple-badge gold">IMG_ICON_POPUP</span><br><small>Intensity: <code>0.92</code></small></td>
+              <td><strong>Cảnh 4: Con trỏ Click bật viên nang ✦ Bây giờ</strong></td>
+              <td><strong>3 layers:</strong> <code>L1_lead_in</code> (-16.5dB), <code>L2_transient</code> (-10.0dB), <code>L3_body</code> (-13.5dB)</td>
+            </tr>
+            <tr>
+              <td><strong>#11</strong></td>
+              <td><code>#V3_S4_STAR_EXTRACT</code></td>
+              <td><code>f268</code> (<code>4.47s</code>)</td>
+              <td><span class="apple-badge gold">TEXT_LOWER_THIRD_SLIDE</span><br><small>Intensity: <code>0.82</code></small></td>
+              <td><strong>Chuyển 4-&gt;5: Tách ngôi sao ✦ + 3 khối hình học</strong></td>
+              <td><strong>4 layers:</strong> <code>L1_lead_in</code> (-13.5dB), <code>L2_transient</code> (-11.0dB), <code>L3_body</code> (-14.0dB), <code>L4_texture</code> (-17.5dB)</td>
+            </tr>
+            <tr>
+              <td><strong>#12</strong></td>
+              <td><code>#V3_S5_ERA_TEXT</code></td>
+              <td><code>f282</code> (<code>4.70s</code>)</td>
+              <td><span class="apple-badge gold">TEXT_KINETIC_POP</span><br><small>Intensity: <code>0.9</code></small></td>
+              <td><strong>Cảnh 5 Chữ: nó là cái kỷ nguyên của</strong></td>
+              <td><strong>4 layers:</strong> <code>L1_lead_in</code> (-15.0dB), <code>L2_transient</code> (-9.5dB), <code>L3_body</code> (-13.5dB), <code>L4_texture</code> (-17.5dB)</td>
+            </tr>
+            <tr>
+              <td><strong>#13</strong></td>
+              <td><code>#V3_S5_UPWARD_EXIT</code></td>
+              <td><code>f315</code> (<code>5.25s</code>)</td>
+              <td><span class="apple-badge gold">MG_MORPH_TRANSITION</span><br><small>Intensity: <code>0.88</code></small></td>
+              <td><strong>Chuyển 5-&gt;6: Clean Upward Exit &amp; &lt; ✦ &gt; Bracket Split</strong></td>
+              <td><strong>4 layers:</strong> <code>L1_lead_in</code> (-11.5dB), <code>L2_transient</code> (-11.0dB), <code>L3_body</code> (-10.0dB), <code>L4_texture</code> (-16.5dB)</td>
+            </tr>
+            <tr>
+              <td><strong>#14</strong></td>
+              <td><code>#V3_S6_SEMANTIC_BOOM</code></td>
+              <td><code>f328</code> (<code>5.47s</code>)</td>
+              <td><span class="apple-badge gold">TEXT_HEADLINE_SLAM</span><br><small>Intensity: <code>1.15</code></small></td>
+              <td><strong>Cảnh 6 Đỉnh: Đại tự NGỮ NGHĨA</strong></td>
+              <td><strong>4 layers:</strong> <code>L1_lead_in</code> (-11.5dB), <code>L2_transient</code> (-8.0dB), <code>L3_body</code> (-8.5dB), <code>L4_texture</code> (-15.5dB)</td>
+            </tr>
+            <tr>
+              <td><strong>#15</strong></td>
+              <td><code>#V3_S6_BRUSH_UNDERLINE</code></td>
+              <td><code>f360</code> (<code>6.00s</code>)</td>
+              <td><span class="apple-badge gold">TEXT_HIGHLIGHT_SWEEP</span><br><small>Intensity: <code>0.82</code></small></td>
+              <td><strong>Cảnh 6: Nét cọ đôi vàng kim tự vẽ dưới NGỮ NGHĨA</strong></td>
+              <td><strong>3 layers:</strong> <code>L1_lead_in</code> (-14.5dB), <code>L2_transient</code> (-12.5dB), <code>L3_body</code> (-15.5dB)</td>
+            </tr>
+            <tr>
+              <td><strong>#16</strong></td>
+              <td><code>#V3_S6_SLIDE_TO_S7</code></td>
+              <td><code>f424</code> (<code>7.07s</code>)</td>
+              <td><span class="apple-badge gold">MG_MORPH_TRANSITION</span><br><small>Intensity: <code>0.95</code></small></td>
+              <td><strong>Chuyển 6-&gt;7: Vertical Whip-Slide kéo mũi tên →</strong></td>
+              <td><strong>4 layers:</strong> <code>L1_lead_in</code> (-11.5dB), <code>L2_transient</code> (-11.0dB), <code>L3_body</code> (-10.0dB), <code>L4_texture</code> (-16.5dB)</td>
+            </tr>
+            <tr>
+              <td><strong>#17</strong></td>
+              <td><code>#V3_S7A_ARROW_TEXT</code></td>
+              <td><code>f442</code> (<code>7.37s</code>)</td>
+              <td><span class="apple-badge gold">TEXT_KINETIC_POP</span><br><small>Intensity: <code>0.88</code></small></td>
+              <td><strong>Cảnh 7a: → Bạn không cần thiết phải làm</strong></td>
+              <td><strong>4 layers:</strong> <code>L1_lead_in</code> (-15.0dB), <code>L2_transient</code> (-9.5dB), <code>L3_body</code> (-13.5dB), <code>L4_texture</code> (-17.5dB)</td>
+            </tr>
+            <tr>
+              <td><strong>#18</strong></td>
+              <td><code>#V3_S7B_DRUM_ROLL</code></td>
+              <td><code>f496</code> (<code>8.27s</code>)</td>
+              <td><span class="apple-badge gold">IMG_3D_PARALLAX_PUSH</span><br><small>Intensity: <code>0.92</code></small></td>
+              <td><strong>Cảnh 7b Pre-Cue: Cuộn trục chữ không khung pin_05</strong></td>
+              <td><strong>4 layers:</strong> <code>L1_lead_in</code> (-13.5dB), <code>L2_transient</code> (-12.0dB), <code>L3_body</code> (-11.5dB), <code>L4_texture</code> (-17.0dB)</td>
+            </tr>
+            <tr>
+              <td><strong>#19</strong></td>
+              <td><code>#V3_S7B_IDOL_LOCK</code></td>
+              <td><code>f514</code> (<code>8.57s</code>)</td>
+              <td><span class="apple-badge gold">TEXT_HEADLINE_SLAM</span><br><small>Intensity: <code>1.08</code></small></td>
+              <td><strong>Cảnh 7b Khóa nét: → idol trên video</strong></td>
+              <td><strong>4 layers:</strong> <code>L1_lead_in</code> (-11.5dB), <code>L2_transient</code> (-8.0dB), <code>L3_body</code> (-8.5dB), <code>L4_texture</code> (-15.5dB)</td>
+            </tr>
+            <tr>
+              <td><strong>#20</strong></td>
+              <td><code>#V3_S7B_RED_STRIKE</code></td>
+              <td><code>f536</code> (<code>8.93s</code>)</td>
+              <td><span class="apple-badge gold">TEXT_HIGHLIGHT_SWEEP</span><br><small>Intensity: <code>0.9</code></small></td>
+              <td><strong>Cảnh 7b Cú chốt: Đường gạch ngang đỏ cắt chữ idol</strong></td>
+              <td><strong>3 layers:</strong> <code>L1_lead_in</code> (-14.5dB), <code>L2_transient</code> (-12.5dB), <code>L3_body</code> (-15.5dB)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <hr>
+
+      <!-- ====================================================================
+           PHẦN 3: KHUÔN THIẾT KẾ GỐC VIETCLEANV3_10S.TSX & GIẢI THÍCH CHI TIẾT
+           ==================================================================== -->
+      <h2 id="phan-3-khuon-thiet-ke-goc-v3-tsx">Phần 3 — Khuôn Thiết Kế Gốc (<code>VietCleanV3_10s.tsx</code> Có Bảng Biến <code>Tweaks</code>) &amp; Giải Thích Chi Tiết</h2>
+
+      <h3 id="p3-bang-bien-tweaks">3.1. Cấu Trúc Bảng Biến <code>Tweaks</code> (<code>VietCleanV3Props</code> &amp; <code>defaultVietCleanV3Props</code>)</h3>
+      <p>Để biến file <code>VietCleanV3_10s.tsx</code> thành một <strong>Khuôn Thiết Kế Gốc (Master Reusable Template)</strong> chuẩn mực, toàn bộ nội dung chữ Tiếng Việt của 7 cảnh, 9 mã màu thương hiệu và 3 thông số điều khiển chuyển động/âm thanh đã được tách hoàn toàn khỏi logic tính toán frame và đặt ngay ở đầu file (dòng <code>25 &rarr; 100</code>):</p>
+
+      <div class="spec-container">
+        <div class="spec-block">
+          <div class="spec-label"><span class="apple-badge amber">1. NHÓM BIẾN CHỮ 7 CẢNH</span></div>
+          <div class="spec-value">• <code>stage1Line1Words</code>, <code>stage1Line2Words</code>: Mảng từ của Cảnh 1 (tự động chia nhịp lò xo <code>spring</code> cách nhau <code>3 frames/từ</code>).<br>• <code>stage2Words</code>: Mảng đối tượng <code>{ text, isHighlight }</code> cho phép đánh dấu từ khóa phát sáng màu vàng <code>accentYellow</code> trước khi Caret bôi nền Trắng Kem.<br>• <code>stage3Line1Words</code>, <code>stage3Line2Words</code>, <code>stage4PillText</code>, <code>stage5Line1Words</code>, <code>stage5Line2Words</code>, <code>stage6HeroWords</code>, <code>stage7aLine1Words</code>, <code>stage7aLine2Words</code>.<br>• <code>stage7bDrumItems</code> &amp; <code>stage7bTargetIndex</code>: Danh sách các cụm từ cuộn trên trục Drum Roll ở Cảnh 7b và vị trí từ khóa sẽ khóa đanh kèm gạch đỏ.</div>
+        </div>
+        <div class="spec-block">
+          <div class="spec-label"><span class="apple-badge gold">2. NHÓM 9 BIẾN MÀU</span></div>
+          <div class="spec-value">• <code>bgDark</code> (<code>#07080A</code>), <code>bgIvory</code> (<code>#F7F4ED</code>), <code>accentGold</code> (<code>#FACC15</code>), <code>accentYellow</code> (<code>#FDE047</code>), <code>accentAmber</code> (<code>#F59E0B</code>), <code>accentCrimson</code> (<code>#E11D48</code>), <code>accentRedStrike</code> (<code>#EF4444</code>), <code>textIvory</code> (<code>#FAF8F5</code>), <code>textInk</code> (<code>#090A0F</code>). Chỉ cần thay đổi các mã Hex này, toàn bộ khung Figma, thanh Caret, dải Iris Wipe, hoa thị và nét cọ đôi sẽ tự động đồng bộ màu mới.</div>
+        </div>
+        <div class="spec-block">
+          <div class="spec-label"><span class="apple-badge emerald">3. NHÓM BIẾN CHUYỂN ĐỘNG</span></div>
+          <div class="spec-value">• <code>audioSrc</code>: Đường dẫn file âm thanh trong thư mục <code>public/</code>.<br>• <code>breathAmp</code> (mặc định <code>0.006</code>): Biên độ nhịp thở <code>scale</code> liên tục giúp 100% khung hình không bao giờ bị tĩnh cứng.<br>• <code>motionBlurScale</code> (mặc định <code>1.0</code>): Hệ số nhân cường độ nhòe chuyển động của cả 4 bộ lọc SVG <code>&lt;feGaussianBlur&gt;</code>.</div>
+        </div>
+      </div>
+
+      <!-- KHUNG CODE 1: TRÍCH ĐOẠN BẢNG BIẾN TWEAKS -->
+      <div class="code-panel">
+        <div class="code-panel-header">
+          <span class="code-panel-title">Bảng Biến Tweaks (Trích dòng 19–100 trong VietCleanV3_10s.tsx)</span>
+          <div class="code-panel-actions">
+            <button class="copy-btn" onclick="copyCodeBlock(this, 'code-v3-tweaks')">Sao chép Bảng Tweaks</button>
+          </div>
+        </div>
+        <pre><code id="code-v3-tweaks">// ============================================================================
+// TWEAKS SCHEMA (BẢNG BIẾN TÙY CHỈNH CHO KHUÔN THIẾT KẾ GỐC VIETCLEANV3_10S)
+// Cho phép đổi toàn bộ câu chữ Tiếng Việt của 7 Cảnh, 9 mã màu chủ đạo
+// và thông số nhịp chuyển động / âm thanh chỉ trong 3 giây mà không làm lệch
+// dù chỉ 1 frame của chuỗi bàn giao liên cảnh (Clean Relay Choreography).
+// ============================================================================
+export interface VietCleanV3Props {
+  // --- 1. Nội dung chữ Tiếng Việt của 7 Cảnh (Stages 1 -&gt; 7) ---
+  stage1Line1Words?: string[];
+  stage1Line2Words?: string[];
+  stage2Words?: Array&lt;{ text: string; isHighlight?: boolean }&gt;;
+  stage3Line1Words?: string[];
+  stage3Line2Words?: string[];
+  stage4PillText?: string;
+  stage5Line1Words?: string[];
+  stage5Line2Words?: string[];
+  stage6HeroWords?: string[];
+  stage7aLine1Words?: string[];
+  stage7aLine2Words?: string[];
+  stage7bDrumItems?: string[];
+  stage7bTargetIndex?: number;
+
+  // --- 2. Bảng màu chủ đạo (Brand Color Palette) ---
+  bgDark?: string;
+  bgIvory?: string;
+  accentGold?: string;
+  accentYellow?: string;
+  accentAmber?: string;
+  accentCrimson?: string;
+  accentRedStrike?: string;
+  textIvory?: string;
+  textInk?: string;
+
+  // --- 3. Thông số nhịp chuyển động &amp; Âm thanh (Motion &amp; Audio Controls) ---
+  audioSrc?: string;
+  breathAmp?: number;
+  motionBlurScale?: number;
+}
+
+export const defaultVietCleanV3Props: Required&lt;VietCleanV3Props&gt; = {
+  // --- 1. Nội dung chữ Tiếng Việt của 7 Cảnh ---
+  stage1Line1Words: [&#x27;Cái&#x27;, &#x27;mạng&#x27;],
+  stage1Line2Words: [&#x27;xã&#x27;, &#x27;hội&#x27;, &#x27;cũ&#x27;],
+  stage2Words: [
+    { text: &#x27;mà&#x27; },
+    { text: &#x27;mình&#x27; },
+    { text: &#x27;từng&#x27;, isHighlight: true },
+    { text: &#x27;biết&#x27;, isHighlight: true },
+  ],
+  stage3Line1Words: [&#x27;nó&#x27;, &#x27;đã&#x27;],
+  stage3Line2Words: [&#x27;chết&#x27;, &#x27;rồi.&#x27;],
+  stage4PillText: &#x27;Bây giờ&#x27;,
+  stage5Line1Words: [&#x27;nó&#x27;, &#x27;là&#x27;, &#x27;cái&#x27;],
+  stage5Line2Words: [&#x27;kỷ&#x27;, &#x27;nguyên&#x27;, &#x27;của&#x27;],
+  stage6HeroWords: [&#x27;NGỮ&#x27;, &#x27;NGHĨA&#x27;],
+  stage7aLine1Words: [&#x27;Bạn&#x27;, &#x27;không&#x27;, &#x27;cần&#x27;],
+  stage7aLine2Words: [&#x27;thiết&#x27;, &#x27;phải&#x27;, &#x27;làm&#x27;],
+  stage7bDrumItems: [
+    &#x27;kịch sĩ câu view&#x27;,
+    &#x27;nhảy trend bề nổi&#x27;,
+    &#x27;chiêu trò phông bạt&#x27;,
+    &#x27;idol trên video&#x27;,
+    &#x27;diễn kịch sáo rỗng&#x27;,
+  ],
+  stage7bTargetIndex: 3,
+
+  // --- 2. Bảng màu chủ đạo ---
+  bgDark: &#x27;#07080A&#x27;,
+  bgIvory: &#x27;#F7F4ED&#x27;,
+  accentGold: &#x27;#FACC15&#x27;,
+  accentYellow: &#x27;#FDE047&#x27;,
+  accentAmber: &#x27;#F59E0B&#x27;,
+  accentCrimson: &#x27;#E11D48&#x27;,
+  accentRedStrike: &#x27;#EF4444&#x27;,
+  textIvory: &#x27;#FAF8F5&#x27;,
+  textInk: &#x27;#090A0F&#x27;,
+
+  // --- 3. Thông số nhịp chuyển động &amp; Âm thanh ---
+  audioSrc: &#x27;motion02/master_audio_10s_v3.wav&#x27;,
+  breathAmp: 0.006,
+  motionBlurScale: 1.0,
+};</code></pre>
+      </div>
+
+      <h3 id="p3-shared-actor-va-svg-blur">3.2. Giải Phẫu Cơ Chế "Shared Actor Relay" &amp; Bộ Lọc "True Velocity-Driven SVG Motion Blur"</h3>
+      <p>Hai vũ khí kỹ thuật giúp Bản V3 vừa giữ được <strong>85% không gian trống</strong> vừa đạt <strong>độ mượt liên hoàn không vết cắt</strong> là:</p>
+      <ul>
+        <li><strong>Cơ chế Diễn Viên Trung Gian Bàn Giao Cảnh (Shared Actor Relay):</strong> Thay vì dùng hiệu ứng mờ dần (cross-dissolve) yếu ớt hay giữ lại chữ cũ làm bẩn khung hình, mỗi cặp cảnh được nối bằng một vật thể trung gian duy nhất:
+          <ol>
+            <li><strong>Thanh Caret <code>|</code> (nối Cảnh 1 &rarr; Cảnh 2 &rarr; Cảnh 3):</strong> Sinh ra ở <code>f74</code> để quét xóa chữ Cảnh 1, bật ngược về bên trái ở <code>f88–f98</code> để gõ chữ Cảnh 2, rồi lại quét ngược ở <code>f158–f169</code> sơn ra hộp Highlight Trắng Kem.</li>
+            <li><strong>Hộp Highlight Trắng Kem Phóng Mở Iris Wipe (nối Cảnh 2 &rarr; Cảnh 3):</strong> Chính hộp Highlight vừa bôi lên chữ Cảnh 2 phóng to gấp <code>22 lần</code> (<code>irisScale: 1 &rarr; 22</code> trong <code>f169–f180</code>) để biến thành mặt giấy Trắng Kem của Cảnh 3.</li>
+            <li><strong>Ngôi Sao 4 Cánh <code>✦</code> (nối Cảnh 4 &rarr; Cảnh 5):</strong> Nằm bên trong viên thuốc <em>"✦ Bây giờ"</em> của Cảnh 4; khi vỏ viên thuốc tan biến ở <code>f268–f276</code>, ngôi sao <code>✦</code> đứng lại giữa tâm và hút 3 khối hình học lao vào mở ra Cảnh 5.</li>
+          </ol>
+        </li>
+        <li><strong>Bộ Lọc Nhòe Chuyển Động Theo Vận Tốc Thực (True Velocity-Driven SVG Motion Blur):</strong> Định nghĩa 4 bộ lọc <code>&lt;feGaussianBlur&gt;</code> độc lập theo đúng phương chuyển động (ngang <code>stdDeviation="X 0"</code> cho <code>v3CaretBlur</code> &amp; <code>v3WhipBlurX</code>; dọc <code>stdDeviation="0 Y"</code> cho <code>v3ExitBlurY</code> &amp; <code>v3DrumBlurY</code>). Khi vật thể đứng yên đọc chữ, <code>stdDeviation = 0</code> nên chữ sắc nét tuyệt đối; khi vật thể phóng đi, độ nhòe tự động vọt lên <code>14px–28px</code> theo hàm hình sin của vận tốc.</li>
+      </ul>
+
+      <!-- KHUNG CODE 2: TRÍCH ĐOẠN VELOCITY MOTION BLUR -->
+      <div class="code-panel">
+        <div class="code-panel-header">
+          <span class="code-panel-title">Bộ Lọc True Velocity-Driven SVG Motion Blur (Trích dòng 150–233 trong VietCleanV3_10s.tsx)</span>
+          <div class="code-panel-actions">
+            <button class="copy-btn" onclick="copyCodeBlock(this, 'code-v3-blur')">Sao chép Khối SVG Motion Blur</button>
+          </div>
+        </div>
+        <pre><code id="code-v3-blur">
+// ============================================================================
+// MAIN COMPOSITION: VietCleanV3_10s (600 frames @ 60fps, 1080x1920)
+// 7 Distinct Clean Stages • Single Focal Point • 85% Negative Space • Zero HUD
+// ============================================================================
+export const VietCleanV3_10s: React.FC&lt;VietCleanV3Props&gt; = (props) =&gt; {
+  const t: Required&lt;VietCleanV3Props&gt; = {
+    ...defaultVietCleanV3Props,
+    ...props,
+  };
+  const frame = useCurrentFrame();
+  const { fps } = useVideoConfig();
+
+  // Continuous subtle breathing scale so no frame is ever dead-static
+  const breathScale = 1 + Math.sin(frame * 0.04) * t.breathAmp;
+
+  // Directional SVG Motion Blur values for transitions
+  // 1) Caret recoil blur (f88..f98)
+  const caretRecoilBlurX =
+    frame &gt;= 88 &amp;&amp; frame &lt;= 98
+      ? Math.sin(((frame - 88) / 10) * Math.PI) * 18 * t.motionBlurScale
+      : 0;
+
+  // 2) Whip-Pan blur from Scene 3 -&gt; Scene 4 (f226..f238)
+  const whip3to4BlurX =
+    frame &gt;= 226 &amp;&amp; frame &lt;= 238
+      ? Math.sin(((frame - 226) / 12) * Math.PI) * 28 * t.motionBlurScale
+      : 0;
+
+  // 3) Upward exit blur Scene 5 -&gt; Scene 6 (f314..f326) &amp; Scene 6 -&gt; Scene 7 (f422..f436)
+  const verticalExitBlurY =
+    frame &gt;= 314 &amp;&amp; frame &lt;= 326
+      ? Math.sin(((frame - 314) / 12) * Math.PI) * 18 * t.motionBlurScale
+      : frame &gt;= 422 &amp;&amp; frame &lt;= 436
+      ? Math.sin(((frame - 422) / 14) * Math.PI) * 22 * t.motionBlurScale
+      : 0;
+
+  // 4) Oblique Drum Roll vertical blur in Scene 7b (f494..f514)
+  const drumRollBlurY =
+    frame &gt;= 494 &amp;&amp; frame &lt; 514
+      ? interpolate(frame, [494, 504, 514], [3, 14, 0], {
+          extrapolateLeft: &#x27;clamp&#x27;,
+          extrapolateRight: &#x27;clamp&#x27;,
+        }) * t.motionBlurScale
+      : 0;
+
+  return (
+    &lt;AbsoluteFill
+      style={{
+        backgroundColor: t.bgDark,
+        overflow: &#x27;hidden&#x27;,
+        justifyContent: &#x27;center&#x27;,
+        alignItems: &#x27;center&#x27;,
+      }}
+    &gt;
+      {/* Master 10s Voice-Safe Audio Track (V3 Clean Cues) */}
+      &lt;Audio src={staticFile(t.audioSrc)} /&gt;
+
+      {/* True Velocity-Driven SVG Motion Blur Filters */}
+      &lt;svg width=&quot;0&quot; height=&quot;0&quot; style={{ position: &#x27;absolute&#x27; }}&gt;
+        &lt;defs&gt;
+          &lt;filter id=&quot;v3CaretBlur&quot; x=&quot;-40%&quot; y=&quot;-20%&quot; width=&quot;180%&quot; height=&quot;140%&quot;&gt;
+            &lt;feGaussianBlur
+              in=&quot;SourceGraphic&quot;
+              stdDeviation={`${caretRecoilBlurX.toFixed(1)} 0`}
+            /&gt;
+          &lt;/filter&gt;
+          &lt;filter id=&quot;v3WhipBlurX&quot; x=&quot;-40%&quot; y=&quot;-20%&quot; width=&quot;180%&quot; height=&quot;140%&quot;&gt;
+            &lt;feGaussianBlur
+              in=&quot;SourceGraphic&quot;
+              stdDeviation={`${whip3to4BlurX.toFixed(1)} 0`}
+            /&gt;
+          &lt;/filter&gt;
+          &lt;filter id=&quot;v3ExitBlurY&quot; x=&quot;-20%&quot; y=&quot;-40%&quot; width=&quot;140%&quot; height=&quot;180%&quot;&gt;
+            &lt;feGaussianBlur
+              in=&quot;SourceGraphic&quot;
+              stdDeviation={`0 ${verticalExitBlurY.toFixed(1)}`}
+            /&gt;
+          &lt;/filter&gt;
+          &lt;filter id=&quot;v3DrumBlurY&quot; x=&quot;-20%&quot; y=&quot;-40%&quot; width=&quot;140%&quot; height=&quot;180%&quot;&gt;
+            &lt;feGaussianBlur
+              in=&quot;SourceGraphic&quot;
+              stdDeviation={`0 ${drumRollBlurY.toFixed(1)}`}
+            /&gt;</code></pre>
+      </div>
+
+      <h3 id="p3-full-source-tsx">3.3. Toàn Bộ Mã Nguồn Khuôn Thiết Kế Gốc <code>VietCleanV3_10s.tsx</code> (100% Full Source — Copy 1-Chạm)</h3>
+      <p>Dưới đây là <strong>trọn vẹn 100% mã nguồn file <code>src/compositions/VietCleanV3_10s.tsx</code></strong> đã tích hợp sẵn bảng biến <code>Tweaks</code> (<code>VietCleanV3Props</code> &amp; <code>defaultVietCleanV3Props</code>). Bạn chỉ cần bấm nút <strong>"Sao chép toàn bộ Khuôn VietCleanV3_10s.tsx"</strong> để sử dụng ngay trong Remotion Studio:</p>
+
+      <!-- KHUNG CODE 3: FULL SOURCE VIETCLEANV3_10S.TSX -->
+      <div class="code-panel" id="panel-full-v3-tsx">
+        <div class="code-panel-header">
+          <span class="code-panel-title">src/compositions/VietCleanV3_10s.tsx (Trọn vẹn 1416 dòng • 7 Clean Stages + Bảng Tweaks)</span>
+          <div class="code-panel-actions">
+            <button class="toggle-code-btn" onclick="toggleExpandCode('panel-full-v3-tsx', this)">Mở rộng toàn bộ 1416 dòng</button>
+            <button class="copy-btn" onclick="copyCodeBlock(this, 'code-full-v3-tsx')">Sao chép toàn bộ Khuôn VietCleanV3_10s.tsx</button>
+          </div>
+        </div>
+        <pre><code id="code-full-v3-tsx">import React from &#x27;react&#x27;;
+import {
+  AbsoluteFill,
+  Audio,
+  Easing,
+  interpolate,
+  spring,
+  staticFile,
+  useCurrentFrame,
+  useVideoConfig,
+} from &#x27;remotion&#x27;;
+
+const EXPO_OUT = Easing.bezier(0.16, 1, 0.3, 1);
+const WHIP_IN_OUT = Easing.bezier(0.68, 0, 0.22, 1);
+
+const clamp01 = (v: number): number =&gt; Math.min(1, Math.max(0, v));
+const nfc = (s: string): string =&gt; s.normalize(&#x27;NFC&#x27;);
+
+// ============================================================================
+// TWEAKS SCHEMA (BẢNG BIẾN TÙY CHỈNH CHO KHUÔN THIẾT KẾ GỐC VIETCLEANV3_10S)
+// Cho phép đổi toàn bộ câu chữ Tiếng Việt của 7 Cảnh, 9 mã màu chủ đạo
+// và thông số nhịp chuyển động / âm thanh chỉ trong 3 giây mà không làm lệch
+// dù chỉ 1 frame của chuỗi bàn giao liên cảnh (Clean Relay Choreography).
+// ============================================================================
+export interface VietCleanV3Props {
+  // --- 1. Nội dung chữ Tiếng Việt của 7 Cảnh (Stages 1 -&gt; 7) ---
+  stage1Line1Words?: string[];
+  stage1Line2Words?: string[];
+  stage2Words?: Array&lt;{ text: string; isHighlight?: boolean }&gt;;
+  stage3Line1Words?: string[];
+  stage3Line2Words?: string[];
+  stage4PillText?: string;
+  stage5Line1Words?: string[];
+  stage5Line2Words?: string[];
+  stage6HeroWords?: string[];
+  stage7aLine1Words?: string[];
+  stage7aLine2Words?: string[];
+  stage7bDrumItems?: string[];
+  stage7bTargetIndex?: number;
+
+  // --- 2. Bảng màu chủ đạo (Brand Color Palette) ---
+  bgDark?: string;
+  bgIvory?: string;
+  accentGold?: string;
+  accentYellow?: string;
+  accentAmber?: string;
+  accentCrimson?: string;
+  accentRedStrike?: string;
+  textIvory?: string;
+  textInk?: string;
+
+  // --- 3. Thông số nhịp chuyển động &amp; Âm thanh (Motion &amp; Audio Controls) ---
+  audioSrc?: string;
+  breathAmp?: number;
+  motionBlurScale?: number;
+}
+
+export const defaultVietCleanV3Props: Required&lt;VietCleanV3Props&gt; = {
+  // --- 1. Nội dung chữ Tiếng Việt của 7 Cảnh ---
+  stage1Line1Words: [&#x27;Cái&#x27;, &#x27;mạng&#x27;],
+  stage1Line2Words: [&#x27;xã&#x27;, &#x27;hội&#x27;, &#x27;cũ&#x27;],
+  stage2Words: [
+    { text: &#x27;mà&#x27; },
+    { text: &#x27;mình&#x27; },
+    { text: &#x27;từng&#x27;, isHighlight: true },
+    { text: &#x27;biết&#x27;, isHighlight: true },
+  ],
+  stage3Line1Words: [&#x27;nó&#x27;, &#x27;đã&#x27;],
+  stage3Line2Words: [&#x27;chết&#x27;, &#x27;rồi.&#x27;],
+  stage4PillText: &#x27;Bây giờ&#x27;,
+  stage5Line1Words: [&#x27;nó&#x27;, &#x27;là&#x27;, &#x27;cái&#x27;],
+  stage5Line2Words: [&#x27;kỷ&#x27;, &#x27;nguyên&#x27;, &#x27;của&#x27;],
+  stage6HeroWords: [&#x27;NGỮ&#x27;, &#x27;NGHĨA&#x27;],
+  stage7aLine1Words: [&#x27;Bạn&#x27;, &#x27;không&#x27;, &#x27;cần&#x27;],
+  stage7aLine2Words: [&#x27;thiết&#x27;, &#x27;phải&#x27;, &#x27;làm&#x27;],
+  stage7bDrumItems: [
+    &#x27;kịch sĩ câu view&#x27;,
+    &#x27;nhảy trend bề nổi&#x27;,
+    &#x27;chiêu trò phông bạt&#x27;,
+    &#x27;idol trên video&#x27;,
+    &#x27;diễn kịch sáo rỗng&#x27;,
+  ],
+  stage7bTargetIndex: 3,
+
+  // --- 2. Bảng màu chủ đạo ---
+  bgDark: &#x27;#07080A&#x27;,
+  bgIvory: &#x27;#F7F4ED&#x27;,
+  accentGold: &#x27;#FACC15&#x27;,
+  accentYellow: &#x27;#FDE047&#x27;,
+  accentAmber: &#x27;#F59E0B&#x27;,
+  accentCrimson: &#x27;#E11D48&#x27;,
+  accentRedStrike: &#x27;#EF4444&#x27;,
+  textIvory: &#x27;#FAF8F5&#x27;,
+  textInk: &#x27;#090A0F&#x27;,
+
+  // --- 3. Thông số nhịp chuyển động &amp; Âm thanh ---
+  audioSrc: &#x27;motion02/master_audio_10s_v3.wav&#x27;,
+  breathAmp: 0.006,
+  motionBlurScale: 1.0,
+};
+
+// Minimalist 4-Point Star SVG (No text, pure geometry)
+const FourPointStar: React.FC&lt;{
+  size?: number;
+  color?: string;
+  rotate?: number;
+}&gt; = ({ size = 44, color = &#x27;#FACC15&#x27;, rotate = 0 }) =&gt; (
+  &lt;svg
+    width={size}
+    height={size}
+    viewBox=&quot;0 0 100 100&quot;
+    style={{
+      transform: `rotate(${rotate}deg)`,
+      flexShrink: 0,
+      filter: `drop-shadow(0 0 14px ${color})`,
+    }}
+  &gt;
+    &lt;path
+      d=&quot;M50 4 C54 34 66 46 96 50 C66 54 54 66 50 96 C46 66 34 54 4 50 C34 46 46 34 50 4 Z&quot;
+      fill={color}
+    /&gt;
+  &lt;/svg&gt;
+);
+
+// Minimalist Cursor Arrow (No text label, pure vector from pin_02/pin_08)
+const CleanCursorArrow: React.FC&lt;{
+  scale?: number;
+  fillColor?: string;
+  strokeColor?: string;
+}&gt; = ({ scale = 1, fillColor = &#x27;#FACC15&#x27;, strokeColor = &#x27;#07080A&#x27; }) =&gt; (
+  &lt;svg
+    width={44 * scale}
+    height={44 * scale}
+    viewBox=&quot;0 0 36 36&quot;
+    fill=&quot;none&quot;
+    style={{
+      filter:
+        &#x27;drop-shadow(0 8px 20px rgba(0,0,0,0.65)) drop-shadow(0 0 12px rgba(250,204,21,0.55))&#x27;,
+    }}
+  &gt;
+    &lt;path
+      d=&quot;M6 4L30 15L18.5 19.2L14.2 31L6 4Z&quot;
+      fill={fillColor}
+      stroke={strokeColor}
+      strokeWidth=&quot;2.2&quot;
+      strokeLinejoin=&quot;round&quot;
+    /&gt;
+  &lt;/svg&gt;
+);
+
+// ============================================================================
+// MAIN COMPOSITION: VietCleanV3_10s (600 frames @ 60fps, 1080x1920)
+// 7 Distinct Clean Stages • Single Focal Point • 85% Negative Space • Zero HUD
+// ============================================================================
+export const VietCleanV3_10s: React.FC&lt;VietCleanV3Props&gt; = (props) =&gt; {
+  const t: Required&lt;VietCleanV3Props&gt; = {
+    ...defaultVietCleanV3Props,
+    ...props,
+  };
+  const frame = useCurrentFrame();
+  const { fps } = useVideoConfig();
+
+  // Continuous subtle breathing scale so no frame is ever dead-static
+  const breathScale = 1 + Math.sin(frame * 0.04) * t.breathAmp;
+
+  // Directional SVG Motion Blur values for transitions
+  // 1) Caret recoil blur (f88..f98)
+  const caretRecoilBlurX =
+    frame &gt;= 88 &amp;&amp; frame &lt;= 98
+      ? Math.sin(((frame - 88) / 10) * Math.PI) * 18 * t.motionBlurScale
+      : 0;
+
+  // 2) Whip-Pan blur from Scene 3 -&gt; Scene 4 (f226..f238)
+  const whip3to4BlurX =
+    frame &gt;= 226 &amp;&amp; frame &lt;= 238
+      ? Math.sin(((frame - 226) / 12) * Math.PI) * 28 * t.motionBlurScale
+      : 0;
+
+  // 3) Upward exit blur Scene 5 -&gt; Scene 6 (f314..f326) &amp; Scene 6 -&gt; Scene 7 (f422..f436)
+  const verticalExitBlurY =
+    frame &gt;= 314 &amp;&amp; frame &lt;= 326
+      ? Math.sin(((frame - 314) / 12) * Math.PI) * 18 * t.motionBlurScale
+      : frame &gt;= 422 &amp;&amp; frame &lt;= 436
+      ? Math.sin(((frame - 422) / 14) * Math.PI) * 22 * t.motionBlurScale
+      : 0;
+
+  // 4) Oblique Drum Roll vertical blur in Scene 7b (f494..f514)
+  const drumRollBlurY =
+    frame &gt;= 494 &amp;&amp; frame &lt; 514
+      ? interpolate(frame, [494, 504, 514], [3, 14, 0], {
+          extrapolateLeft: &#x27;clamp&#x27;,
+          extrapolateRight: &#x27;clamp&#x27;,
+        }) * t.motionBlurScale
+      : 0;
+
+  return (
+    &lt;AbsoluteFill
+      style={{
+        backgroundColor: t.bgDark,
+        overflow: &#x27;hidden&#x27;,
+        justifyContent: &#x27;center&#x27;,
+        alignItems: &#x27;center&#x27;,
+      }}
+    &gt;
+      {/* Master 10s Voice-Safe Audio Track (V3 Clean Cues) */}
+      &lt;Audio src={staticFile(t.audioSrc)} /&gt;
+
+      {/* True Velocity-Driven SVG Motion Blur Filters */}
+      &lt;svg width=&quot;0&quot; height=&quot;0&quot; style={{ position: &#x27;absolute&#x27; }}&gt;
+        &lt;defs&gt;
+          &lt;filter id=&quot;v3CaretBlur&quot; x=&quot;-40%&quot; y=&quot;-20%&quot; width=&quot;180%&quot; height=&quot;140%&quot;&gt;
+            &lt;feGaussianBlur
+              in=&quot;SourceGraphic&quot;
+              stdDeviation={`${caretRecoilBlurX.toFixed(1)} 0`}
+            /&gt;
+          &lt;/filter&gt;
+          &lt;filter id=&quot;v3WhipBlurX&quot; x=&quot;-40%&quot; y=&quot;-20%&quot; width=&quot;180%&quot; height=&quot;140%&quot;&gt;
+            &lt;feGaussianBlur
+              in=&quot;SourceGraphic&quot;
+              stdDeviation={`${whip3to4BlurX.toFixed(1)} 0`}
+            /&gt;
+          &lt;/filter&gt;
+          &lt;filter id=&quot;v3ExitBlurY&quot; x=&quot;-20%&quot; y=&quot;-40%&quot; width=&quot;140%&quot; height=&quot;180%&quot;&gt;
+            &lt;feGaussianBlur
+              in=&quot;SourceGraphic&quot;
+              stdDeviation={`0 ${verticalExitBlurY.toFixed(1)}`}
+            /&gt;
+          &lt;/filter&gt;
+          &lt;filter id=&quot;v3DrumBlurY&quot; x=&quot;-20%&quot; y=&quot;-40%&quot; width=&quot;140%&quot; height=&quot;180%&quot;&gt;
+            &lt;feGaussianBlur
+              in=&quot;SourceGraphic&quot;
+              stdDeviation={`0 ${drumRollBlurY.toFixed(1)}`}
+            /&gt;
+          &lt;/filter&gt;
+        &lt;/defs&gt;
+      &lt;/svg&gt;
+
+      {/* ====================================================================
+          STAGE 1 (f0 -&gt; f88 | 0.00s - 1.47s): &quot;Cái mạng / xã hội cũ&quot;
+          Pre-Cue: Minimalist 1.5px Figma Frame (f0..f16) -&gt; fades out (f30..f46)
+          Handoff (f74..f87): Caret sweeps left-to-right collapsing Stage 1 text
+          ==================================================================== */}
+      {frame &lt; 88 &amp;&amp; (() =&gt; {
+        const boxExpandP = interpolate(frame, [2, 16], [0, 1], {
+          extrapolateLeft: &#x27;clamp&#x27;,
+          extrapolateRight: &#x27;clamp&#x27;,
+          easing: EXPO_OUT,
+        });
+        const boxW = interpolate(boxExpandP, [0, 1], [18, 760]);
+        const boxH = interpolate(boxExpandP, [0, 1], [18, 280]);
+        const frameFadeOut = interpolate(frame, [30, 46], [0.78, 0], {
+          extrapolateLeft: &#x27;clamp&#x27;,
+          extrapolateRight: &#x27;clamp&#x27;,
+        });
+
+        // Reveal clip from left-to-right (f5..f20) and collapse wipe left-to-right (f74..f86)
+        const revealRightInset = interpolate(frame, [5, 19], [100, 0], {
+          extrapolateLeft: &#x27;clamp&#x27;,
+          extrapolateRight: &#x27;clamp&#x27;,
+          easing: EXPO_OUT,
+        });
+        const collapseLeftInset = interpolate(frame, [74, 86], [0, 100], {
+          extrapolateLeft: &#x27;clamp&#x27;,
+          extrapolateRight: &#x27;clamp&#x27;,
+          easing: WHIP_IN_OUT,
+        });
+
+        const line1Words = t.stage1Line1Words.map((w) =&gt; nfc(w));
+        const line2Words = t.stage1Line2Words.map((w) =&gt; nfc(w));
+
+        return (
+          &lt;div
+            style={{
+              position: &#x27;relative&#x27;,
+              width: 1080,
+              height: 1920,
+              display: &#x27;flex&#x27;,
+              justifyContent: &#x27;center&#x27;,
+              alignItems: &#x27;center&#x27;,
+              transform: `scale(${breathScale})`,
+            }}
+          &gt;
+            {/* Minimalist 1.5px Gold Selection Frame Pre-Cue (f0..f46) */}
+            {frame &lt; 47 &amp;&amp; (
+              &lt;div
+                style={{
+                  position: &#x27;absolute&#x27;,
+                  left: 540 - 380,
+                  top: 960 - boxH / 2,
+                  width: boxW,
+                  height: boxH,
+                  border: `1.5px solid ${t.accentGold}`,
+                  opacity: frameFadeOut,
+                  pointerEvents: &#x27;none&#x27;,
+                }}
+              &gt;
+                {[
+                  { top: -5, left: -5 },
+                  { top: -5, right: -5 },
+                  { bottom: -5, left: -5 },
+                  { bottom: -5, right: -5 },
+                ].map((pos, idx) =&gt; (
+                  &lt;div
+                    key={idx}
+                    style={{
+                      position: &#x27;absolute&#x27;,
+                      ...pos,
+                      width: 9,
+                      height: 9,
+                      backgroundColor: t.textIvory,
+                      border: `1.5px solid ${t.accentGold}`,
+                    }}
+                  /&gt;
+                ))}
+              &lt;/div&gt;
+            )}
+
+            {/* Free-standing Typography (&quot;Cái mạng / xã hội cũ&quot;) */}
+            &lt;div
+              style={{
+                clipPath: `inset(-40px ${revealRightInset}% -40px ${collapseLeftInset}%)`,
+                display: &#x27;flex&#x27;,
+                flexDirection: &#x27;column&#x27;,
+                alignItems: &#x27;center&#x27;,
+                gap: 8,
+                padding: &#x27;24px 32px&#x27;,
+              }}
+            &gt;
+              &lt;div style={{ display: &#x27;flex&#x27;, gap: 22 }}&gt;
+                {line1Words.map((w, i) =&gt; {
+                  const s = spring({
+                    frame: Math.max(0, frame - (6 + i * 3)),
+                    fps,
+                    config: { mass: 0.7, damping: 13, stiffness: 185 },
+                  });
+                  return (
+                    &lt;span
+                      key={i}
+                      style={{
+                        fontFamily: &quot;&#x27;SVN-Aeonik&#x27;, sans-serif&quot;,
+                        fontSize: 84,
+                        fontWeight: 800,
+                        lineHeight: 1.24,
+                        color: &#x27;rgba(250, 248, 245, 0.88)&#x27;,
+                        letterSpacing: &#x27;-0.02em&#x27;,
+                        transform: `translateY(${22 * (1 - s)}px)`,
+                      }}
+                    &gt;
+                      {w}
+                    &lt;/span&gt;
+                  );
+                })}
+              &lt;/div&gt;
+              &lt;div style={{ display: &#x27;flex&#x27;, gap: 24 }}&gt;
+                {line2Words.map((w, i) =&gt; {
+                  const s = spring({
+                    frame: Math.max(0, frame - (11 + i * 3)),
+                    fps,
+                    config: { mass: 0.7, damping: 13, stiffness: 185 },
+                  });
+                  return (
+                    &lt;span
+                      key={i}
+                      style={{
+                        fontFamily: &quot;&#x27;SVN-Aeonik&#x27;, sans-serif&quot;,
+                        fontSize: 98,
+                        fontWeight: 900,
+                        lineHeight: 1.24,
+                        color: t.textIvory,
+                        letterSpacing: &#x27;-0.025em&#x27;,
+                        transform: `translateY(${24 * (1 - s)}px)`,
+                      }}
+                    &gt;
+                      {w}
+                    &lt;/span&gt;
+                  );
+                })}
+              &lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        );
+      })()}
+
+      {/* ====================================================================
+          SHARED CARET ACTOR + STAGE 2 (f74 -&gt; f182 | 1.23s - 3.03s):
+          - f74..f86: Caret sweeps left-&gt;right collapsing Stage 1
+          - f88..f98: Caret recoils right-&gt;left with motion blur to seed Stage 2
+          - f98..f132: Caret types out &quot;mà mình từng biết&quot;
+          - f158..f170: Caret sweeps left painting Ivory Highlight Block #F7F4ED
+          - f170..f182: Ivory Highlight Block expands full-screen into Stage 3 bg
+          ==================================================================== */}
+      {frame &gt;= 74 &amp;&amp; frame &lt; 182 &amp;&amp; (() =&gt; {
+        // Caret X position across f74..f168
+        const caretX =
+          frame &lt; 87
+            ? interpolate(frame, [74, 86], [-360, 260], {
+                extrapolateLeft: &#x27;clamp&#x27;,
+                extrapolateRight: &#x27;clamp&#x27;,
+                easing: WHIP_IN_OUT,
+              })
+            : frame &lt; 98
+            ? interpolate(frame, [88, 98], [260, -370], {
+                extrapolateLeft: &#x27;clamp&#x27;,
+                extrapolateRight: &#x27;clamp&#x27;,
+                easing: EXPO_OUT,
+              })
+            : frame &lt; 158
+            ? interpolate(frame, [98, 130], [-370, 375], {
+                extrapolateLeft: &#x27;clamp&#x27;,
+                extrapolateRight: &#x27;clamp&#x27;,
+                easing: EXPO_OUT,
+              })
+            : interpolate(frame, [158, 169], [375, -390], {
+                extrapolateLeft: &#x27;clamp&#x27;,
+                extrapolateRight: &#x27;clamp&#x27;,
+                easing: WHIP_IN_OUT,
+              });
+
+        const revealStage2Pct = interpolate(frame, [98, 130], [100, 0], {
+          extrapolateLeft: &#x27;clamp&#x27;,
+          extrapolateRight: &#x27;clamp&#x27;,
+          easing: EXPO_OUT,
+        });
+
+        // Ivory Highlight Block sweep (f158..f169) and full-screen iris expansion (f169..f180)
+        const highlightSweepW = interpolate(frame, [158, 169], [0, 820], {
+          extrapolateLeft: &#x27;clamp&#x27;,
+          extrapolateRight: &#x27;clamp&#x27;,
+          easing: WHIP_IN_OUT,
+        });
+        const irisExpandP = interpolate(frame, [169, 180], [0, 1], {
+          extrapolateLeft: &#x27;clamp&#x27;,
+          extrapolateRight: &#x27;clamp&#x27;,
+          easing: EXPO_OUT,
+        });
+        const irisScale = interpolate(irisExpandP, [0, 1], [1, 22]);
+        const textFadeOnIris = interpolate(frame, [168, 173], [1, 0], {
+          extrapolateLeft: &#x27;clamp&#x27;,
+          extrapolateRight: &#x27;clamp&#x27;,
+        });
+
+        const words2 = t.stage2Words.map((item) =&gt; ({
+          text: nfc(item.text),
+          color: item.isHighlight ? t.accentYellow : t.textIvory,
+        }));
+
+        return (
+          &lt;div
+            style={{
+              position: &#x27;absolute&#x27;,
+              inset: 0,
+              display: &#x27;flex&#x27;,
+              justifyContent: &#x27;center&#x27;,
+              alignItems: &#x27;center&#x27;,
+            }}
+          &gt;
+            {/* Expanding Ivory Highlight Block (#F7F4ED) -&gt; becomes Stage 3 Background */}
+            {frame &gt;= 158 &amp;&amp; (
+              &lt;div
+                style={{
+                  position: &#x27;absolute&#x27;,
+                  left: 540 + 390 - highlightSweepW,
+                  top: 960 - 72,
+                  width: highlightSweepW,
+                  height: 144,
+                  borderRadius: interpolate(irisExpandP, [0, 1], [20, 0]),
+                  backgroundColor: t.bgIvory,
+                  transform: `scale(${irisScale})`,
+                  transformOrigin: &#x27;center center&#x27;,
+                  zIndex: 5,
+                }}
+              /&gt;
+            )}
+
+            {/* Stage 2 Text: &quot;mà mình từng biết&quot; (f96..f173) */}
+            {frame &gt;= 96 &amp;&amp; frame &lt; 174 &amp;&amp; (
+              &lt;div
+                style={{
+                  position: &#x27;relative&#x27;,
+                  zIndex: 10,
+                  opacity: textFadeOnIris,
+                  clipPath: `inset(-40px ${revealStage2Pct}% -40px -20px)`,
+                  display: &#x27;flex&#x27;,
+                  gap: 22,
+                  alignItems: &#x27;center&#x27;,
+                  padding: &#x27;20px 24px&#x27;,
+                }}
+              &gt;
+                {words2.map((w, i) =&gt; {
+                  const s = spring({
+                    frame: Math.max(0, frame - (98 + i * 4.5)),
+                    fps,
+                    config: { mass: 0.65, damping: 13, stiffness: 195 },
+                  });
+                  const isCoveredByIvory =
+                    frame &gt;= 161 &amp;&amp; 390 - highlightSweepW &lt; (i - 1.5) * 180;
+                  return (
+                    &lt;span
+                      key={i}
+                      style={{
+                        fontFamily: &quot;&#x27;SVN-Aeonik&#x27;, sans-serif&quot;,
+                        fontSize: 82,
+                        fontWeight: 900,
+                        lineHeight: 1.25,
+                        color: isCoveredByIvory ? t.textInk : w.color,
+                        letterSpacing: &#x27;-0.02em&#x27;,
+                        transform: `translateY(${18 * (1 - s)}px)`,
+                      }}
+                    &gt;
+                      {w.text}
+                    &lt;/span&gt;
+                  );
+                })}
+              &lt;/div&gt;
+            )}
+
+            {/* Single Glowing Caret Bar Actor (f74..f170) */}
+            {frame &lt; 170 &amp;&amp; (
+              &lt;div
+                style={{
+                  position: &#x27;absolute&#x27;,
+                  left: 540 + caretX,
+                  top: 960 - 52,
+                  width: 9,
+                  height: 104,
+                  borderRadius: 99,
+                  backgroundColor: t.accentAmber,
+                  boxShadow: &#x27;0 0 24px rgba(245, 158, 11, 0.85)&#x27;,
+                  filter:
+                    caretRecoilBlurX &gt; 0.5 ? &#x27;url(#v3CaretBlur)&#x27; : undefined,
+                  zIndex: 15,
+                }}
+              /&gt;
+            )}
+          &lt;/div&gt;
+        );
+      })()}
+
+      {/* ====================================================================
+          STAGE 3 (f175 -&gt; f238 | 2.92s - 3.97s): &quot;nó đã / chết rồi.&quot;
+          Stage: Warm Ivory Paper (#F7F4ED), 85% negative space
+          Pre-Cue (f175..f186): 4 Crimson Asterisks ✱ ✱ ✱ ✱ standing free on Ivory
+          Climax (f186..f225): Morphs into &quot;nó đã / chết rồi.&quot; + Red Strike (f204)
+          Handoff (f226..f238): Clean Spatial Whip-Pan left exposing dark Stage 4
+          ==================================================================== */}
+      {frame &gt;= 175 &amp;&amp; frame &lt; 239 &amp;&amp; (() =&gt; {
+        const whipOutX = interpolate(frame, [226, 238], [0, -1260], {
+          extrapolateLeft: &#x27;clamp&#x27;,
+          extrapolateRight: &#x27;clamp&#x27;,
+          easing: WHIP_IN_OUT,
+        });
+        const strikeP = interpolate(frame, [204, 220], [0, 1], {
+          extrapolateLeft: &#x27;clamp&#x27;,
+          extrapolateRight: &#x27;clamp&#x27;,
+          easing: EXPO_OUT,
+        });
+
+        const s3Line1 = t.stage3Line1Words.map((w) =&gt; nfc(w));
+        const s3Line2 = t.stage3Line2Words.map((w) =&gt; nfc(w));
+
+        return (
+          &lt;div
+            style={{
+              position: &#x27;absolute&#x27;,
+              top: 0,
+              left: 0,
+              width: 1080,
+              height: 1920,
+              backgroundColor: t.bgIvory,
+              transform: `translate3d(${whipOutX}px, 0, 0)`,
+              filter: whip3to4BlurX &gt; 0.5 ? &#x27;url(#v3WhipBlurX)&#x27; : undefined,
+              display: &#x27;flex&#x27;,
+              justifyContent: &#x27;center&#x27;,
+              alignItems: &#x27;center&#x27;,
+              zIndex: 20,
+            }}
+          &gt;
+            {/* Pre-Cue 3 (f175..f186): 4 Free-Standing Crimson Asterisks ✱ ✱ ✱ ✱ */}
+            {frame &lt; 186 &amp;&amp; (
+              &lt;div style={{ display: &#x27;flex&#x27;, gap: 34, alignItems: &#x27;center&#x27; }}&gt;
+                {[0, 1, 2, 3].map((i) =&gt; {
+                  const astP = spring({
+                    frame: Math.max(0, frame - (175 + i * 1.5)),
+                    fps,
+                    config: { mass: 0.6, damping: 11, stiffness: 220 },
+                  });
+                  return (
+                    &lt;span
+                      key={i}
+                      style={{
+                        display: &#x27;inline-block&#x27;,
+                        fontFamily: &quot;&#x27;SVN-Aeonik&#x27;, sans-serif&quot;,
+                        fontSize: 96,
+                        fontWeight: 900,
+                        color: t.accentCrimson,
+                        transform: `scale(${astP}) rotate(${(frame - 175) * 12}deg)`,
+                      }}
+                    &gt;
+                      ✱
+                    &lt;/span&gt;
+                  );
+                })}
+              &lt;/div&gt;
+            )}
+
+            {/* Main Typography 3 (f186+): &quot;nó đã / chết rồi.&quot; */}
+            {frame &gt;= 186 &amp;&amp; (
+              &lt;div
+                style={{
+                  display: &#x27;flex&#x27;,
+                  flexDirection: &#x27;column&#x27;,
+                  alignItems: &#x27;center&#x27;,
+                  gap: 6,
+                  transform: `scale(${breathScale})`,
+                }}
+              &gt;
+                &lt;div style={{ display: &#x27;flex&#x27;, gap: 22 }}&gt;
+                  {s3Line1.map((w, i) =&gt; {
+                    const s = spring({
+                      frame: Math.max(0, frame - (186 + i * 2.5)),
+                      fps,
+                      config: { mass: 0.7, damping: 12, stiffness: 205 },
+                    });
+                    return (
+                      &lt;span
+                        key={i}
+                        style={{
+                          fontFamily: &quot;&#x27;SVN-Aeonik&#x27;, sans-serif&quot;,
+                          fontSize: 78,
+                          fontWeight: 800,
+                          lineHeight: 1.2,
+                          color: t.textInk,
+                          letterSpacing: &#x27;-0.02em&#x27;,
+                          transform: `translateY(${24 * (1 - s)}px) scale(${0.8 + 0.2 * s})`,
+                        }}
+                      &gt;
+                        {w}
+                      &lt;/span&gt;
+                    );
+                  })}
+                &lt;/div&gt;
+
+                &lt;div
+                  style={{
+                    position: &#x27;relative&#x27;,
+                    display: &#x27;flex&#x27;,
+                    gap: 24,
+                    padding: &#x27;4px 16px&#x27;,
+                  }}
+                &gt;
+                  {s3Line2.map((w, i) =&gt; {
+                    const s = spring({
+                      frame: Math.max(0, frame - (190 + i * 2.5)),
+                      fps,
+                      config: { mass: 0.75, damping: 11, stiffness: 210 },
+                    });
+                    return (
+                      &lt;span
+                        key={i}
+                        style={{
+                          fontFamily: &quot;&#x27;SVN-Aeonik&#x27;, sans-serif&quot;,
+                          fontSize: 118,
+                          fontWeight: 900,
+                          lineHeight: 1.2,
+                          color: strikeP &gt; 0.6 ? &#x27;#52525B&#x27; : t.textInk,
+                          letterSpacing: &#x27;-0.03em&#x27;,
+                          transform: `translateY(${28 * (1 - s)}px) scale(${0.78 + 0.22 * s})`,
+                        }}
+                      &gt;
+                        {w}
+                      &lt;/span&gt;
+                    );
+                  })}
+
+                  {/* Clean Crimson Strike-Through Bar (f204+) */}
+                  {frame &gt;= 204 &amp;&amp; (
+                    &lt;div
+                      style={{
+                        position: &#x27;absolute&#x27;,
+                        left: 8,
+                        top: &#x27;54%&#x27;,
+                        width: `${strikeP * 96}%`,
+                        height: 14,
+                        borderRadius: 999,
+                        backgroundColor: t.accentCrimson,
+                        transform: &#x27;translateY(-50%) rotate(-1.5deg)&#x27;,
+                      }}
+                    /&gt;
+                  )}
+                &lt;/div&gt;
+              &lt;/div&gt;
+            )}
+          &lt;/div&gt;
+        );
+      })()}
+
+      {/* ====================================================================
+          STAGE 4 (f235 -&gt; f280 | 3.92s - 4.67s): &quot;✦ Bây giờ&quot;
+          Pre-Cue (f235..f242): Single Gold Cursor flies in from right &amp; clicks
+          Main (f241..f268): Single Minimalist Pill &quot;✦ Bây giờ&quot;
+          Handoff (f268..f278): Pill dissolves leaving only the 4-Point Star ✦
+          ==================================================================== */}
+      {frame &gt;= 235 &amp;&amp; frame &lt; 280 &amp;&amp; (() =&gt; {
+        const cursorInP = interpolate(frame, [235, 242], [0, 1], {
+          extrapolateLeft: &#x27;clamp&#x27;,
+          extrapolateRight: &#x27;clamp&#x27;,
+          easing: EXPO_OUT,
+        });
+        const cursorX = interpolate(cursorInP, [0, 1], [520, 125]);
+        const cursorY = interpolate(cursorInP, [0, 1], [160, 48]);
+        const cursorFadeOut = interpolate(frame, [264, 272], [1, 0], {
+          extrapolateLeft: &#x27;clamp&#x27;,
+          extrapolateRight: &#x27;clamp&#x27;,
+        });
+
+        const pillPopP = spring({
+          frame: Math.max(0, frame - 241),
+          fps,
+          config: { mass: 0.75, damping: 12, stiffness: 195 },
+        });
+        const pillDissolveP = interpolate(frame, [268, 276], [1, 0], {
+          extrapolateLeft: &#x27;clamp&#x27;,
+          extrapolateRight: &#x27;clamp&#x27;,
+          easing: EXPO_OUT,
+        });
+
+        const rippleP = interpolate(frame, [241, 260], [0, 1], {
+          extrapolateLeft: &#x27;clamp&#x27;,
+          extrapolateRight: &#x27;clamp&#x27;,
+          easing: EXPO_OUT,
+        });
+
+        return (
+          &lt;div
+            style={{
+              position: &#x27;absolute&#x27;,
+              inset: 0,
+              display: &#x27;flex&#x27;,
+              justifyContent: &#x27;center&#x27;,
+              alignItems: &#x27;center&#x27;,
+            }}
+          &gt;
+            {/* Subtle 1.5px Click Ripple */}
+            {frame &gt;= 241 &amp;&amp; frame &lt; 262 &amp;&amp; (
+              &lt;div
+                style={{
+                  position: &#x27;absolute&#x27;,
+                  width: 80 + rippleP * 380,
+                  height: 80 + rippleP * 380,
+                  borderRadius: 9999,
+                  border: &#x27;1.5px solid rgba(250, 204, 21, 0.65)&#x27;,
+                  opacity: 1 - rippleP,
+                }}
+              /&gt;
+            )}
+
+            {/* Minimalist Pill: &quot;✦ Bây giờ&quot; */}
+            {frame &gt;= 241 &amp;&amp; (
+              &lt;div
+                style={{
+                  display: &#x27;inline-flex&#x27;,
+                  alignItems: &#x27;center&#x27;,
+                  gap: 20,
+                  padding: &#x27;22px 48px&#x27;,
+                  borderRadius: 999,
+                  backgroundColor: `rgba(18, 20, 28, ${0.92 * pillDissolveP})`,
+                  border: `2px solid rgba(250, 204, 21, ${0.78 * pillDissolveP})`,
+                  boxShadow: `0 24px 60px rgba(0,0,0,${0.65 * pillDissolveP})`,
+                  transform: `scale(${0.4 + 0.6 * pillPopP})`,
+                }}
+              &gt;
+                &lt;FourPointStar
+                  size={44}
+                  color={t.accentGold}
+                  rotate={(frame - 241) * 3}
+                /&gt;
+                &lt;span
+                  style={{
+                    fontFamily: &quot;&#x27;SVN-Aeonik&#x27;, sans-serif&quot;,
+                    fontSize: 70,
+                    fontWeight: 800,
+                    lineHeight: 1.2,
+                    color: t.textIvory,
+                    letterSpacing: &#x27;-0.02em&#x27;,
+                    opacity: pillDissolveP,
+                  }}
+                &gt;
+                  {nfc(t.stage4PillText)}
+                &lt;/span&gt;
+              &lt;/div&gt;
+            )}
+
+            {/* Single Clean Gold Cursor */}
+            {frame &lt; 273 &amp;&amp; (
+              &lt;div
+                style={{
+                  position: &#x27;absolute&#x27;,
+                  left: 540 + cursorX,
+                  top: 960 + cursorY,
+                  opacity: cursorFadeOut,
+                  transform: `scale(${frame &gt;= 241 &amp;&amp; frame &lt;= 245 ? 0.86 : 1})`,
+                }}
+              &gt;
+                &lt;CleanCursorArrow
+                  scale={1.15}
+                  fillColor={t.accentGold}
+                  strokeColor={t.bgDark}
+                /&gt;
+              &lt;/div&gt;
+            )}
+          &lt;/div&gt;
+        );
+      })()}
+
+      {/* ====================================================================
+          STAGE 5 (f272 -&gt; f326 | 4.53s - 5.43s): &quot;nó là cái / kỷ nguyên của&quot;
+          Pre-Cue (f272..f284): 4-Point Star + 3 Pure Geometric Shapes converge
+          and vanish cleanly at f284 (0% overlap with text!)
+          Main (f282..f314): Free-standing &quot;nó là cái / kỷ nguyên của&quot;
+          Handoff (f314..f326): Clean upward exit with vertical motion blur
+          ==================================================================== */}
+      {frame &gt;= 272 &amp;&amp; frame &lt; 326 &amp;&amp; (() =&gt; {
+        const geoConvergeP = interpolate(frame, [272, 282], [0, 1], {
+          extrapolateLeft: &#x27;clamp&#x27;,
+          extrapolateRight: &#x27;clamp&#x27;,
+          easing: EXPO_OUT,
+        });
+        const geoVanishP = interpolate(frame, [281, 285], [1, 0], {
+          extrapolateLeft: &#x27;clamp&#x27;,
+          extrapolateRight: &#x27;clamp&#x27;,
+        });
+
+        const exitUpP = interpolate(frame, [314, 325], [0, 1], {
+          extrapolateLeft: &#x27;clamp&#x27;,
+          extrapolateRight: &#x27;clamp&#x27;,
+          easing: WHIP_IN_OUT,
+        });
+        const exitY = interpolate(exitUpP, [0, 1], [0, -480]);
+        const exitOpacity = interpolate(frame, [316, 325], [1, 0], {
+          extrapolateLeft: &#x27;clamp&#x27;,
+          extrapolateRight: &#x27;clamp&#x27;,
+        });
+
+        const s5Line1 = t.stage5Line1Words.map((w) =&gt; nfc(w));
+        const s5Line2 = t.stage5Line2Words.map((w) =&gt; nfc(w));
+
+        return (
+          &lt;div
+            style={{
+              position: &#x27;absolute&#x27;,
+              inset: 0,
+              display: &#x27;flex&#x27;,
+              justifyContent: &#x27;center&#x27;,
+              alignItems: &#x27;center&#x27;,
+            }}
+          &gt;
+            {/* Pre-Cue 5 (f272..f285): Pure Geometric Shapes Converging (No labels!) */}
+            {frame &lt; 285 &amp;&amp; (
+              &lt;div
+                style={{
+                  position: &#x27;absolute&#x27;,
+                  inset: 0,
+                  display: &#x27;flex&#x27;,
+                  justifyContent: &#x27;center&#x27;,
+                  alignItems: &#x27;center&#x27;,
+                  opacity: geoVanishP,
+                  transform: `scale(${1 - 0.35 * (1 - geoVanishP)})`,
+                }}
+              &gt;
+                &lt;FourPointStar
+                  size={48}
+                  color={t.accentGold}
+                  rotate={(frame - 241) * 4}
+                /&gt;
+                {/* Gold Circle */}
+                &lt;div
+                  style={{
+                    position: &#x27;absolute&#x27;,
+                    transform: `translate(${interpolate(geoConvergeP, [0, 1], [-240, -48])}px, ${interpolate(geoConvergeP, [0, 1], [-180, -32])}px)`,
+                    width: 24,
+                    height: 24,
+                    borderRadius: 999,
+                    backgroundColor: t.accentGold,
+                  }}
+                /&gt;
+                {/* Ivory Diamond */}
+                &lt;div
+                  style={{
+                    position: &#x27;absolute&#x27;,
+                    transform: `translate(${interpolate(geoConvergeP, [0, 1], [240, 48])}px, ${interpolate(geoConvergeP, [0, 1], [-160, -32])}px) rotate(45deg)`,
+                    width: 22,
+                    height: 22,
+                    backgroundColor: t.textIvory,
+                  }}
+                /&gt;
+                {/* Warm Amber Ring */}
+                &lt;div
+                  style={{
+                    position: &#x27;absolute&#x27;,
+                    transform: `translate(${interpolate(geoConvergeP, [0, 1], [0, 0])}px, ${interpolate(geoConvergeP, [0, 1], [220, 46])}px)`,
+                    width: 26,
+                    height: 26,
+                    borderRadius: 999,
+                    border: `4px solid ${t.accentAmber}`,
+                  }}
+                /&gt;
+              &lt;/div&gt;
+            )}
+
+            {/* Main Typography 5 (f282..f325): &quot;nó là cái / kỷ nguyên của&quot; */}
+            {frame &gt;= 282 &amp;&amp; (
+              &lt;div
+                style={{
+                  display: &#x27;flex&#x27;,
+                  flexDirection: &#x27;column&#x27;,
+                  alignItems: &#x27;center&#x27;,
+                  gap: 14,
+                  transform: `translateY(${exitY}px) scale(${breathScale})`,
+                  opacity: exitOpacity,
+                  filter:
+                    verticalExitBlurY &gt; 0.5 ? &#x27;url(#v3ExitBlurY)&#x27; : undefined,
+                }}
+              &gt;
+                &lt;div style={{ display: &#x27;flex&#x27;, gap: 18 }}&gt;
+                  {s5Line1.map((w, i) =&gt; {
+                    const s = spring({
+                      frame: Math.max(0, frame - (282 + i * 2.5)),
+                      fps,
+                      config: { mass: 0.65, damping: 13, stiffness: 195 },
+                    });
+                    return (
+                      &lt;span
+                        key={i}
+                        style={{
+                          fontFamily: &quot;&#x27;SVN-Aeonik&#x27;, sans-serif&quot;,
+                          fontSize: 60,
+                          fontWeight: 700,
+                          lineHeight: 1.25,
+                          color: &#x27;rgba(250, 248, 245, 0.72)&#x27;,
+                          letterSpacing: &#x27;-0.015em&#x27;,
+                          transform: `translateY(${20 * (1 - s)}px)`,
+                          opacity: clamp01(s * 1.4),
+                        }}
+                      &gt;
+                        {w}
+                      &lt;/span&gt;
+                    );
+                  })}
+                &lt;/div&gt;
+
+                &lt;div style={{ display: &#x27;flex&#x27;, gap: 22 }}&gt;
+                  {s5Line2.map((w, i) =&gt; {
+                    const s = spring({
+                      frame: Math.max(0, frame - (290 + i * 3)),
+                      fps,
+                      config: { mass: 0.7, damping: 12, stiffness: 195 },
+                    });
+                    return (
+                      &lt;span
+                        key={i}
+                        style={{
+                          fontFamily: &quot;&#x27;SVN-Aeonik&#x27;, sans-serif&quot;,
+                          fontSize: 90,
+                          fontWeight: 900,
+                          lineHeight: 1.25,
+                          color: t.textIvory,
+                          letterSpacing: &#x27;-0.025em&#x27;,
+                          transform: `translateY(${24 * (1 - s)}px)`,
+                          opacity: clamp01(s * 1.4),
+                        }}
+                      &gt;
+                        {w}
+                      &lt;/span&gt;
+                    );
+                  })}
+                &lt;/div&gt;
+              &lt;/div&gt;
+            )}
+          &lt;/div&gt;
+        );
+      })()}
+
+      {/* ====================================================================
+          STAGE 6 (f318 -&gt; f438 | 5.30s - 7.30s): &quot;NGỮ NGHĨA&quot;
+          Pre-Cue (f318..f329): Minimalist Bracket Split &lt;  ✦  &gt;
+          Main (f327..f422): Hero Gold Typography &quot;NGỮ NGHĨA&quot; + Double Brush Underline
+          Handoff (f422..f438): Vertical Whip-Slide upward pulling in Arrow →
+          ==================================================================== */}
+      {frame &gt;= 318 &amp;&amp; frame &lt; 438 &amp;&amp; (() =&gt; {
+        const bracketSplitP = spring({
+          frame: Math.max(0, frame - 318),
+          fps,
+          config: { mass: 0.75, damping: 13, stiffness: 180 },
+        });
+        const bracketOffset = interpolate(bracketSplitP, [0, 1], [38, 445]);
+        const bracketFade = interpolate(frame, [336, 352], [0.85, 0], {
+          extrapolateLeft: &#x27;clamp&#x27;,
+          extrapolateRight: &#x27;clamp&#x27;,
+        });
+
+        const brushP = interpolate(frame, [356, 394], [0, 1], {
+          extrapolateLeft: &#x27;clamp&#x27;,
+          extrapolateRight: &#x27;clamp&#x27;,
+          easing: EXPO_OUT,
+        });
+
+        const slideUpP = interpolate(frame, [422, 437], [0, 1], {
+          extrapolateLeft: &#x27;clamp&#x27;,
+          extrapolateRight: &#x27;clamp&#x27;,
+          easing: WHIP_IN_OUT,
+        });
+        const slideUpY = interpolate(slideUpP, [0, 1], [0, -980]);
+        const slideOpacity = interpolate(frame, [426, 437], [1, 0], {
+          extrapolateLeft: &#x27;clamp&#x27;,
+          extrapolateRight: &#x27;clamp&#x27;,
+        });
+
+        const s6Words = t.stage6HeroWords.map((w) =&gt; nfc(w));
+
+        return (
+          &lt;div
+            style={{
+              position: &#x27;absolute&#x27;,
+              inset: 0,
+              display: &#x27;flex&#x27;,
+              justifyContent: &#x27;center&#x27;,
+              alignItems: &#x27;center&#x27;,
+              transform: `translateY(${slideUpY}px)`,
+              opacity: slideOpacity,
+              filter:
+                verticalExitBlurY &gt; 0.5 ? &#x27;url(#v3ExitBlurY)&#x27; : undefined,
+            }}
+          &gt;
+            {/* Subtle warm radial glow behind NGỮ NGHĨA */}
+            &lt;div
+              style={{
+                position: &#x27;absolute&#x27;,
+                width: 680,
+                height: 680,
+                borderRadius: 9999,
+                background:
+                  &#x27;radial-gradient(circle, rgba(250, 204, 21, 0.16) 0%, rgba(250, 204, 21, 0) 70%)&#x27;,
+                filter: &#x27;blur(30px)&#x27;,
+              }}
+            /&gt;
+
+            {/* Pre-Cue 6 (f318..f352): Minimalist Gold Brackets &lt;  ✦  &gt; */}
+            {frame &lt; 352 &amp;&amp; (
+              &lt;&gt;
+                &lt;span
+                  style={{
+                    position: &#x27;absolute&#x27;,
+                    fontFamily: &quot;&#x27;SVN-Aeonik&#x27;, sans-serif&quot;,
+                    fontSize: 92,
+                    fontWeight: 300,
+                    color: t.accentGold,
+                    transform: `translateX(${-bracketOffset}px)`,
+                    opacity: bracketFade,
+                  }}
+                &gt;
+                  {&#x27;&lt;&#x27;}
+                &lt;/span&gt;
+                &lt;span
+                  style={{
+                    position: &#x27;absolute&#x27;,
+                    fontFamily: &quot;&#x27;SVN-Aeonik&#x27;, sans-serif&quot;,
+                    fontSize: 92,
+                    fontWeight: 300,
+                    color: t.accentGold,
+                    transform: `translateX(${bracketOffset}px)`,
+                    opacity: bracketFade,
+                  }}
+                &gt;
+                  {&#x27;&gt;&#x27;}
+                &lt;/span&gt;
+                {frame &lt; 328 &amp;&amp; (
+                  &lt;FourPointStar
+                    size={46}
+                    color={t.accentYellow}
+                    rotate={(frame - 318) * 9}
+                  /&gt;
+                )}
+              &lt;/&gt;
+            )}
+
+            {/* Hero Typography 6 (f327+): &quot;NGỮ NGHĨA&quot; + Double Brush Underline */}
+            {frame &gt;= 327 &amp;&amp; (
+              &lt;div
+                style={{
+                  display: &#x27;flex&#x27;,
+                  flexDirection: &#x27;column&#x27;,
+                  alignItems: &#x27;center&#x27;,
+                  transform: `scale(${breathScale})`,
+                }}
+              &gt;
+                &lt;div style={{ display: &#x27;flex&#x27;, gap: 28 }}&gt;
+                  {s6Words.map((w, i) =&gt; {
+                    const s = spring({
+                      frame: Math.max(0, frame - (327 + i * 3)),
+                      fps,
+                      config: { mass: 0.8, damping: 11, stiffness: 195 },
+                    });
+                    return (
+                      &lt;span
+                        key={i}
+                        style={{
+                          fontFamily: &quot;&#x27;SVN-Aeonik&#x27;, sans-serif&quot;,
+                          fontSize: 116,
+                          fontWeight: 900,
+                          lineHeight: 1.22,
+                          background: `linear-gradient(180deg, #FFFBEB 0%, ${t.accentYellow} 52%, ${t.accentAmber} 100%)`,
+                          WebkitBackgroundClip: &#x27;text&#x27;,
+                          WebkitTextFillColor: &#x27;transparent&#x27;,
+                          letterSpacing: &#x27;-0.025em&#x27;,
+                          transform: `translateY(${28 * (1 - s)}px) scale(${0.82 + 0.18 * s})`,
+                          filter: &#x27;drop-shadow(0 16px 40px rgba(245, 158, 11, 0.28))&#x27;,
+                        }}
+                      &gt;
+                        {w}
+                      &lt;/span&gt;
+                    );
+                  })}
+                &lt;/div&gt;
+
+                {/* Hand-Drawn Double Gold Brush Underline (f356+) */}
+                {frame &gt;= 356 &amp;&amp; (
+                  &lt;div style={{ position: &#x27;relative&#x27;, marginTop: 10 }}&gt;
+                    &lt;svg width={700} height={42} viewBox=&quot;0 0 700 42&quot;&gt;
+                      &lt;path
+                        d=&quot;M 24 18 Q 350 4 676 16&quot;
+                        fill=&quot;none&quot;
+                        stroke={t.accentGold}
+                        strokeWidth=&quot;6.5&quot;
+                        strokeLinecap=&quot;round&quot;
+                        strokeDasharray=&quot;660&quot;
+                        strokeDashoffset={660 * (1 - brushP)}
+                      /&gt;
+                      &lt;path
+                        d=&quot;M 80 32 Q 360 22 620 30&quot;
+                        fill=&quot;none&quot;
+                        stroke=&quot;rgba(253, 224, 71, 0.65)&quot;
+                        strokeWidth=&quot;3.5&quot;
+                        strokeLinecap=&quot;round&quot;
+                        strokeDasharray=&quot;550&quot;
+                        strokeDashoffset={550 * (1 - brushP)}
+                      /&gt;
+                    &lt;/svg&gt;
+                    {brushP &gt; 0.02 &amp;&amp; brushP &lt; 0.98 &amp;&amp; (
+                      &lt;div
+                        style={{
+                          position: &#x27;absolute&#x27;,
+                          left: 24 + brushP * 652 - 16,
+                          top: -4,
+                        }}
+                      &gt;
+                        &lt;FourPointStar
+                          size={30}
+                          color=&quot;#FEF08A&quot;
+                          rotate={frame * 6}
+                        /&gt;
+                      &lt;/div&gt;
+                    )}
+                  &lt;/div&gt;
+                )}
+              &lt;/div&gt;
+            )}
+          &lt;/div&gt;
+        );
+      })()}
+
+      {/* ====================================================================
+          STAGE 7 (f432 -&gt; f600 | 7.20s - 10.00s):
+          - 7a (f432..f494): Arrow &quot;→&quot; slides in from bottom + &quot;Bạn không cần / thiết phải làm&quot;
+          - 7b (f492..f600): Header recedes softly + pin_05 Frameless Oblique Drum Roll
+            locks onto &quot;→ idol trên video&quot; at f514 + Red Strike-Through at f534
+          ==================================================================== */}
+      {frame &gt;= 432 &amp;&amp; (() =&gt; {
+        const arrowEnterP = interpolate(frame, [432, 442], [0, 1], {
+          extrapolateLeft: &#x27;clamp&#x27;,
+          extrapolateRight: &#x27;clamp&#x27;,
+          easing: EXPO_OUT,
+        });
+        const arrowY = interpolate(arrowEnterP, [0, 1], [420, 0]);
+
+        // At f492..f506, 7a text recedes upward into a subtle context line
+        const headerRecedeP = interpolate(frame, [492, 506], [0, 1], {
+          extrapolateLeft: &#x27;clamp&#x27;,
+          extrapolateRight: &#x27;clamp&#x27;,
+          easing: EXPO_OUT,
+        });
+
+        // Frameless Oblique Drum Roll (f494..f514, inspired directly by pin_05)
+        const drumSpinP = interpolate(frame, [494, 514], [0, 1], {
+          extrapolateLeft: &#x27;clamp&#x27;,
+          extrapolateRight: &#x27;clamp&#x27;,
+          easing: EXPO_OUT,
+        });
+        const lockSnapP = spring({
+          frame: Math.max(0, frame - 514),
+          fps,
+          config: { mass: 0.75, damping: 12, stiffness: 205 },
+        });
+        const redStrikeP = interpolate(frame, [534, 554], [0, 1], {
+          extrapolateLeft: &#x27;clamp&#x27;,
+          extrapolateRight: &#x27;clamp&#x27;,
+          easing: EXPO_OUT,
+        });
+
+        const s7aLine1 = t.stage7aLine1Words.map((w) =&gt; nfc(w));
+        const s7aLine2 = t.stage7aLine2Words.map((w) =&gt; nfc(w));
+        const drumItems = t.stage7bDrumItems.map((item) =&gt; nfc(item));
+        const targetIdx = t.stage7bTargetIndex;
+
+        return (
+          &lt;div
+            style={{
+              position: &#x27;absolute&#x27;,
+              inset: 0,
+              display: &#x27;flex&#x27;,
+              justifyContent: &#x27;center&#x27;,
+              alignItems: &#x27;center&#x27;,
+              transform: `scale(${breathScale})`,
+            }}
+          &gt;
+            {/* 7A Typography: Full Center at f440..f492 -&gt; Subtle Top Line at f492+ */}
+            {frame &gt;= 440 &amp;&amp; (
+              &lt;div
+                style={{
+                  position: &#x27;absolute&#x27;,
+                  left: 540,
+                  top: 960 + interpolate(headerRecedeP, [0, 1], [0, -260]),
+                  transform: `translate(-50%, -50%) scale(${interpolate(
+                    headerRecedeP,
+                    [0, 1],
+                    [1, 0.54]
+                  )})`,
+                  opacity: interpolate(headerRecedeP, [0, 1], [1, 0.42]),
+                  display: &#x27;flex&#x27;,
+                  flexDirection: &#x27;column&#x27;,
+                  alignItems: &#x27;flex-start&#x27;,
+                  gap: 8,
+                  paddingLeft: interpolate(headerRecedeP, [0, 1], [90, 0]),
+                }}
+              &gt;
+                &lt;div style={{ display: &#x27;flex&#x27;, gap: 20 }}&gt;
+                  {s7aLine1.map((w, i) =&gt; {
+                    const s = spring({
+                      frame: Math.max(0, frame - (440 + i * 2.5)),
+                      fps,
+                      config: { mass: 0.65, damping: 13, stiffness: 195 },
+                    });
+                    return (
+                      &lt;span
+                        key={i}
+                        style={{
+                          fontFamily: &quot;&#x27;SVN-Aeonik&#x27;, sans-serif&quot;,
+                          fontSize: 78,
+                          fontWeight: 800,
+                          lineHeight: 1.24,
+                          color: &#x27;rgba(250, 248, 245, 0.86)&#x27;,
+                          letterSpacing: &#x27;-0.02em&#x27;,
+                          transform: `translateY(${22 * (1 - s)}px)`,
+                          opacity: clamp01(s * 1.4),
+                        }}
+                      &gt;
+                        {w}
+                      &lt;/span&gt;
+                    );
+                  })}
+                &lt;/div&gt;
+                &lt;div style={{ display: &#x27;flex&#x27;, gap: 20 }}&gt;
+                  {s7aLine2.map((w, i) =&gt; {
+                    const s = spring({
+                      frame: Math.max(0, frame - (448 + i * 2.5)),
+                      fps,
+                      config: { mass: 0.65, damping: 13, stiffness: 195 },
+                    });
+                    return (
+                      &lt;span
+                        key={i}
+                        style={{
+                          fontFamily: &quot;&#x27;SVN-Aeonik&#x27;, sans-serif&quot;,
+                          fontSize: 84,
+                          fontWeight: 900,
+                          lineHeight: 1.24,
+                          color: t.textIvory,
+                          letterSpacing: &#x27;-0.02em&#x27;,
+                          transform: `translateY(${22 * (1 - s)}px)`,
+                          opacity: clamp01(s * 1.4),
+                        }}
+                      &gt;
+                        {w}
+                      &lt;/span&gt;
+                    );
+                  })}
+                &lt;/div&gt;
+              &lt;/div&gt;
+            )}
+
+            {/* Anchor Arrow &quot;→&quot; on the left (turns into Crimson &quot;✕&quot; at f536+) */}
+            &lt;div
+              style={{
+                position: &#x27;absolute&#x27;,
+                left: 118,
+                top: 960,
+                transform: `translateY(calc(-50% + ${arrowY}px))`,
+                fontFamily: &quot;&#x27;SVN-Aeonik&#x27;, sans-serif&quot;,
+                fontSize: 82,
+                fontWeight: 900,
+                color: redStrikeP &gt; 0.3 ? t.accentRedStrike : t.accentGold,
+              }}
+            &gt;
+              {redStrikeP &gt; 0.3 ? &#x27;✕&#x27; : &#x27;→&#x27;}
+            &lt;/div&gt;
+
+            {/* 7B (f494+): Pin_05 Frameless Oblique Drum Roll -&gt; Locks onto &quot;idol trên video&quot; */}
+            {frame &gt;= 494 &amp;&amp; (
+              &lt;div
+                style={{
+                  position: &#x27;absolute&#x27;,
+                  left: 230,
+                  top: 960,
+                  width: 760,
+                  height: 360,
+                  transform: `translateY(-50%) rotate(${interpolate(
+                    drumSpinP,
+                    [0, 1],
+                    [-6, 0]
+                  )}deg)`,
+                  overflow: &#x27;hidden&#x27;,
+                  display: &#x27;flex&#x27;,
+                  alignItems: &#x27;center&#x27;,
+                }}
+              &gt;
+                &lt;div
+                  style={{
+                    display: &#x27;flex&#x27;,
+                    flexDirection: &#x27;column&#x27;,
+                    gap: 26,
+                    filter:
+                      drumRollBlurY &gt; 0.4 ? &#x27;url(#v3DrumBlurY)&#x27; : undefined,
+                    transform: `translateY(${interpolate(
+                      drumSpinP,
+                      [0, 1],
+                      [236, -118]
+                    )}px)`,
+                  }}
+                &gt;
+                  {drumItems.map((item, idx) =&gt; {
+                    const isTarget = idx === targetIdx;
+                    const isLocked = frame &gt;= 514 &amp;&amp; isTarget;
+                    const dist = Math.abs(idx - targetIdx);
+                    const nonTargetOpacity =
+                      frame &gt;= 514 ? (dist === 1 ? 0.14 : 0.05) : 0.28;
+
+                    return (
+                      &lt;div
+                        key={idx}
+                        style={{
+                          position: &#x27;relative&#x27;,
+                          height: 92,
+                          display: &#x27;flex&#x27;,
+                          alignItems: &#x27;center&#x27;,
+                          transform: isLocked
+                            ? `scale(${0.92 + 0.08 * lockSnapP})`
+                            : undefined,
+                          transformOrigin: &#x27;left center&#x27;,
+                        }}
+                      &gt;
+                        &lt;span
+                          style={{
+                            fontFamily: &quot;&#x27;SVN-Aeonik&#x27;, sans-serif&quot;,
+                            fontSize: isTarget ? 86 : 56,
+                            fontWeight: isTarget ? 900 : 700,
+                            lineHeight: 1.2,
+                            color: isLocked
+                              ? redStrikeP &gt; 0.5
+                                ? &#x27;#71717A&#x27;
+                                : t.textIvory
+                              : t.textIvory,
+                            opacity: isTarget ? 1 : nonTargetOpacity,
+                            letterSpacing: &#x27;-0.025em&#x27;,
+                            whiteSpace: &#x27;nowrap&#x27;,
+                          }}
+                        &gt;
+                          {item}
+                        &lt;/span&gt;
+
+                        {/* Crimson Strike-Through Bar across &quot;idol trên video&quot; (f534+) */}
+                        {isLocked &amp;&amp; frame &gt;= 534 &amp;&amp; (
+                          &lt;div
+                            style={{
+                              position: &#x27;absolute&#x27;,
+                              left: -8,
+                              top: &#x27;54%&#x27;,
+                              width: `${redStrikeP * 103}%`,
+                              height: 12,
+                              borderRadius: 999,
+                              backgroundColor: t.accentRedStrike,
+                              boxShadow: &#x27;0 0 24px rgba(239, 68, 68, 0.55)&#x27;,
+                              transform: &#x27;translateY(-50%) rotate(-1.2deg)&#x27;,
+                            }}
+                          /&gt;
+                        )}
+                      &lt;/div&gt;
+                    );
+                  })}
+                &lt;/div&gt;
+              &lt;/div&gt;
+            )}
+          &lt;/div&gt;
+        );
+      })()}
+    &lt;/AbsoluteFill&gt;
+  );
+};
+</code></pre>
+      </div>
+
+      <h3 id="p3-full-cues-json">3.4. Toàn Bộ File Cấu Hình 20 Điểm Nổ Âm Thanh <code>cues_10s_v3.json</code> (Copy 1-Chạm)</h3>
+      <p>Đi kèm với Khuôn Thiết Kế Gốc <code>.tsx</code> là file kịch bản điểm nổ âm thanh <code>cues_10s_v3.json</code> dùng để cấp đầu vào cho bộ phối âm 4 tầng từ kho <code>sfx.fedu.vn</code>:</p>
+
+      <!-- KHUNG CODE 4: FULL SOURCE CUES_10S_V3.JSON -->
+      <div class="code-panel" id="panel-full-cues-json">
+        <div class="code-panel-header">
+          <span class="code-panel-title">assets/motion02/cues_10s_v3.json (20 Visual-Sync Audio Cues @ 60fps)</span>
+          <div class="code-panel-actions">
+            <button class="toggle-code-btn" onclick="toggleExpandCode('panel-full-cues-json', this)">Mở rộng toàn bộ</button>
+            <button class="copy-btn" onclick="copyCodeBlock(this, 'code-full-cues-json')">Sao chép cues_10s_v3.json</button>
+          </div>
+        </div>
+        <pre><code id="code-full-cues-json">[
+  {
+    &quot;id&quot;: &quot;#V3_S1_FRAME_EXPAND&quot;,
+    &quot;frame&quot;: 2,
+    &quot;action_type&quot;: &quot;TEXT_LOWER_THIRD_SLIDE&quot;,
+    &quot;intensity&quot;: 0.8,
+    &quot;label&quot;: &quot;Cảnh 1 Pre-Cue: Khung viền mảnh 1.5px mở ra&quot;
+  },
+  {
+    &quot;id&quot;: &quot;#V3_S1_TEXT_POP&quot;,
+    &quot;frame&quot;: 10,
+    &quot;action_type&quot;: &quot;TEXT_KINETIC_POP&quot;,
+    &quot;intensity&quot;: 0.85,
+    &quot;label&quot;: &quot;Cảnh 1 Chữ: Cái mạng xã hội cũ&quot;
+  },
+  {
+    &quot;id&quot;: &quot;#V3_S1_CARET_WIPE&quot;,
+    &quot;frame&quot;: 74,
+    &quot;action_type&quot;: &quot;TEXT_HIGHLIGHT_SWEEP&quot;,
+    &quot;intensity&quot;: 0.85,
+    &quot;label&quot;: &quot;Chuyển 1-&gt;2: Thanh Caret quét thu gọn Cảnh 1&quot;
+  },
+  {
+    &quot;id&quot;: &quot;#V3_S2_CARET_TYPE&quot;,
+    &quot;frame&quot;: 98,
+    &quot;action_type&quot;: &quot;TEXT_KINETIC_POP&quot;,
+    &quot;intensity&quot;: 0.88,
+    &quot;label&quot;: &quot;Cảnh 2 Chữ: mà mình từng biết&quot;
+  },
+  {
+    &quot;id&quot;: &quot;#V3_S2_IRIS_WIPE&quot;,
+    &quot;frame&quot;: 168,
+    &quot;action_type&quot;: &quot;MG_MORPH_TRANSITION&quot;,
+    &quot;intensity&quot;: 0.98,
+    &quot;label&quot;: &quot;Chuyển 2-&gt;3: Hộp Highlight phóng mở nền Trắng Kem&quot;
+  },
+  {
+    &quot;id&quot;: &quot;#V3_S3_ASTERISK_SEED&quot;,
+    &quot;frame&quot;: 176,
+    &quot;action_type&quot;: &quot;IMG_ICON_POPUP&quot;,
+    &quot;intensity&quot;: 0.85,
+    &quot;label&quot;: &quot;Cảnh 3 Pre-Cue: 4 hoa thị đỏ ✱ ✱ ✱ ✱&quot;
+  },
+  {
+    &quot;id&quot;: &quot;#V3_S3_DEAD_SLAM&quot;,
+    &quot;frame&quot;: 186,
+    &quot;action_type&quot;: &quot;TEXT_HEADLINE_SLAM&quot;,
+    &quot;intensity&quot;: 1.12,
+    &quot;label&quot;: &quot;Cảnh 3 Chữ: nó đã chết rồi.&quot;
+  },
+  {
+    &quot;id&quot;: &quot;#V3_S3_RED_STRIKE&quot;,
+    &quot;frame&quot;: 205,
+    &quot;action_type&quot;: &quot;TEXT_HIGHLIGHT_SWEEP&quot;,
+    &quot;intensity&quot;: 0.9,
+    &quot;label&quot;: &quot;Cảnh 3: Nét gạch ngang đỏ cắt qua chết rồi.&quot;
+  },
+  {
+    &quot;id&quot;: &quot;#V3_S3_WHIP_PAN&quot;,
+    &quot;frame&quot;: 226,
+    &quot;action_type&quot;: &quot;MG_MORPH_TRANSITION&quot;,
+    &quot;intensity&quot;: 1.02,
+    &quot;label&quot;: &quot;Chuyển 3-&gt;4: Whip-Pan sạch sang nền Đen&quot;
+  },
+  {
+    &quot;id&quot;: &quot;#V3_S4_CURSOR_CLICK&quot;,
+    &quot;frame&quot;: 242,
+    &quot;action_type&quot;: &quot;IMG_ICON_POPUP&quot;,
+    &quot;intensity&quot;: 0.92,
+    &quot;label&quot;: &quot;Cảnh 4: Con trỏ Click bật viên nang ✦ Bây giờ&quot;
+  },
+  {
+    &quot;id&quot;: &quot;#V3_S4_STAR_EXTRACT&quot;,
+    &quot;frame&quot;: 268,
+    &quot;action_type&quot;: &quot;TEXT_LOWER_THIRD_SLIDE&quot;,
+    &quot;intensity&quot;: 0.82,
+    &quot;label&quot;: &quot;Chuyển 4-&gt;5: Tách ngôi sao ✦ + 3 khối hình học&quot;
+  },
+  {
+    &quot;id&quot;: &quot;#V3_S5_ERA_TEXT&quot;,
+    &quot;frame&quot;: 282,
+    &quot;action_type&quot;: &quot;TEXT_KINETIC_POP&quot;,
+    &quot;intensity&quot;: 0.9,
+    &quot;label&quot;: &quot;Cảnh 5 Chữ: nó là cái kỷ nguyên của&quot;
+  },
+  {
+    &quot;id&quot;: &quot;#V3_S5_UPWARD_EXIT&quot;,
+    &quot;frame&quot;: 315,
+    &quot;action_type&quot;: &quot;MG_MORPH_TRANSITION&quot;,
+    &quot;intensity&quot;: 0.88,
+    &quot;label&quot;: &quot;Chuyển 5-&gt;6: Clean Upward Exit &amp; &lt; ✦ &gt; Bracket Split&quot;
+  },
+  {
+    &quot;id&quot;: &quot;#V3_S6_SEMANTIC_BOOM&quot;,
+    &quot;frame&quot;: 328,
+    &quot;action_type&quot;: &quot;TEXT_HEADLINE_SLAM&quot;,
+    &quot;intensity&quot;: 1.15,
+    &quot;label&quot;: &quot;Cảnh 6 Đỉnh: Đại tự NGỮ NGHĨA&quot;
+  },
+  {
+    &quot;id&quot;: &quot;#V3_S6_BRUSH_UNDERLINE&quot;,
+    &quot;frame&quot;: 360,
+    &quot;action_type&quot;: &quot;TEXT_HIGHLIGHT_SWEEP&quot;,
+    &quot;intensity&quot;: 0.82,
+    &quot;label&quot;: &quot;Cảnh 6: Nét cọ đôi vàng kim tự vẽ dưới NGỮ NGHĨA&quot;
+  },
+  {
+    &quot;id&quot;: &quot;#V3_S6_SLIDE_TO_S7&quot;,
+    &quot;frame&quot;: 424,
+    &quot;action_type&quot;: &quot;MG_MORPH_TRANSITION&quot;,
+    &quot;intensity&quot;: 0.95,
+    &quot;label&quot;: &quot;Chuyển 6-&gt;7: Vertical Whip-Slide kéo mũi tên →&quot;
+  },
+  {
+    &quot;id&quot;: &quot;#V3_S7A_ARROW_TEXT&quot;,
+    &quot;frame&quot;: 442,
+    &quot;action_type&quot;: &quot;TEXT_KINETIC_POP&quot;,
+    &quot;intensity&quot;: 0.88,
+    &quot;label&quot;: &quot;Cảnh 7a: → Bạn không cần thiết phải làm&quot;
+  },
+  {
+    &quot;id&quot;: &quot;#V3_S7B_DRUM_ROLL&quot;,
+    &quot;frame&quot;: 496,
+    &quot;action_type&quot;: &quot;IMG_3D_PARALLAX_PUSH&quot;,
+    &quot;intensity&quot;: 0.92,
+    &quot;label&quot;: &quot;Cảnh 7b Pre-Cue: Cuộn trục chữ không khung pin_05&quot;
+  },
+  {
+    &quot;id&quot;: &quot;#V3_S7B_IDOL_LOCK&quot;,
+    &quot;frame&quot;: 514,
+    &quot;action_type&quot;: &quot;TEXT_HEADLINE_SLAM&quot;,
+    &quot;intensity&quot;: 1.08,
+    &quot;label&quot;: &quot;Cảnh 7b Khóa nét: → idol trên video&quot;
+  },
+  {
+    &quot;id&quot;: &quot;#V3_S7B_RED_STRIKE&quot;,
+    &quot;frame&quot;: 536,
+    &quot;action_type&quot;: &quot;TEXT_HIGHLIGHT_SWEEP&quot;,
+    &quot;intensity&quot;: 0.9,
+    &quot;label&quot;: &quot;Cảnh 7b Cú chốt: Đường gạch ngang đỏ cắt chữ idol&quot;
+  }
+]</code></pre>
+      </div>
+
+      <hr>
+
+      <!-- ====================================================================
+           PHẦN 4: QUY TRÌNH THỰC CHIẾN CHIA 4 SUBAGENTS & BỘ 4 PROMPT MẪU
+           ==================================================================== -->
+      <h2 id="phan-4-quy-trinh-4-subagents-prompts">Phần 4 — Quy Trình Thực Chiến Chia 4 Subagents &amp; Bộ 4 Prompt Mẫu Copy-Paste Cho Người Mới</h2>
+
+      <p>Để tạo ra một video Kinetic Typography 60fps vừa có <strong>Mồi cảnh Pre-Cue liên hoàn</strong> vừa giữ được <strong>85% không gian thoáng sạch như Apple Keynote</strong> mà không bị AI làm rối mắt, quy trình chuẩn nhất là chia công việc cho <strong>4 Subagents chuyên biệt</strong> theo sơ đồ dưới đây:</p>
+
+      <h3 id="p4-so-do-4-subagents">4.1. Sơ Đồ Phối Hợp 4 Subagents Thực Chiến (Từ Mẫu Pinterest &amp; File Giọng Nói &rarr; Bản V3 Ultra-Clean Có Bảng Biến Tweaks)</h3>
+
+      <div class="spec-container">
+        <div class="spec-block">
+          <div class="spec-label"><span class="apple-badge dark">SUBAGENT 1: MICRO-GRID ANALYST</span></div>
+          <div class="spec-value"><strong>Giải Phẫu Lưới Micro-Grid Các Mẫu Pinterest &amp; Bóc Nhịp Sóng Âm:</strong> Trích xuất lưới khung hình <code>4×5</code> ở độ phân giải mili-giây (mỗi <code>0.15s–0.25s</code>) từ các video mẫu Pinterest (<code>pin_05</code>, <code>pin_07</code>, <code>pin_08</code>) để tìm ra quy luật tạo mồi cảnh (Asterisk Seed, Figma 1.5px Frame, Oblique Drum Roll). Đồng thời quét năng lượng sóng âm RMS/Peak của file <code>voice.wav</code> để xác định chính xác từng frame chữ cần nổ.</div>
+        </div>
+        <div class="spec-block">
+          <div class="spec-label"><span class="apple-badge crimson">SUBAGENT 2: UI/UX AUDITOR</span></div>
+          <div class="spec-value"><strong>Kiểm Toán Quản Trị Sự Chú Ý (Attention Budgeting &amp; Negative Space):</strong> Thiết lập kỷ luật 5 Quy Luật UI/UX trước khi viết code: (1) Chỉ 1 tiêu điểm chữ duy nhất tại mỗi thời điểm, (2) Tối thiểu 85% diện tích màn hình là nền phẳng sạch, (3) Cấm tuyệt đối thanh HUD Timecode, thanh Subtitle bar lặp chữ và các nhãn kỹ thuật tiếng Anh tự bịa, (4) Hạt mồi Pre-Cue phải tự biến mất khi chữ chính xuất hiện, (5) Cảnh cũ phải thu dọn sạch 100% qua Shared Actor trước khi mở cảnh mới.</div>
+        </div>
+        <div class="spec-block">
+          <div class="spec-label"><span class="apple-badge amber">SUBAGENT 3: TWEAKS ARCHITECT</span></div>
+          <div class="spec-value"><strong>Dựng Khuôn Thiết Kế Gốc <code>.tsx</code> Có Bảng Biến <code>Tweaks</code> &amp; SVG Motion Blur:</strong> Lập trình file Composition trên Remotion ở chuẩn <code>1080×1920 @ 60fps</code>. Đưa toàn bộ mảng từ Tiếng Việt (chuẩn hóa <code>Unicode NFC</code>), bảng màu và thông số nhịp thở vào <code>export interface ...Props</code> &amp; <code>export const default...Props</code> ngay đầu file; tích hợp 4 bộ lọc <code>&lt;feGaussianBlur&gt;</code> biến thiên theo vận tốc thực.</div>
+        </div>
+        <div class="spec-block">
+          <div class="spec-label"><span class="apple-badge emerald">SUBAGENT 4: SFX &amp; 40-FRAME VERIFIER</span></div>
+          <div class="spec-value"><strong>Phối Âm 4 Lớp Voice-Safe &amp; Kiểm Định Lưới 40 Khung Hình:</strong> Lập file <code>cues.json</code> khớp chính xác từng frame Pre-Cue và Whip-Pan, gọi kho <code>sfx.fedu.vn</code> trộn âm thanh Voice-Safe với giọng đọc, render video H.264 60fps và xuất <strong>Lưới 40 khung hình (mỗi 0.25s)</strong> để nghiệm thu bằng mắt: nếu có bất kỳ khung hình nào vi phạm luật 85% khoảng thở hoặc chồng đè chữ cũ/mới, Subagent tự động sửa ngay lập tức.</div>
+        </div>
+      </div>
+
+      <h3 id="p4-bo-4-prompts-copy">4.2. Bộ 4 Prompt Mẫu Copy-Paste Để Người Mới Tự Làm Trên AI Của Họ</h3>
+      <p>Người mới chỉ cần sao chép nguyên văn 4 câu lệnh (Prompt) dưới đây để điều khiển AI tạo mới hoặc tùy biến Khuôn Thiết Kế Gốc <code>VietCleanV3_10s.tsx</code> theo bất kỳ kịch bản nào:</p>
+
+      <!-- PROMPT 1 -->
+      <h4>Mẫu Prompt #1 — Câu Lệnh Tổng Điều Phối 4 Subagents Tạo Video Kinetic Typography Chuẩn Ultra-Clean V3 Từ File Thoại</h4>
+      <div class="code-panel">
+        <div class="code-panel-header">
+          <span class="code-panel-title">Prompt #1: Master Orchestrator — Chia 4 Subagents Dựng Video 60fps Chuẩn 85% Negative Space</span>
+          <div class="code-panel-actions">
+            <button class="copy-btn" onclick="copyCodeBlock(this, 'prompt-v3-1')">Sao chép Prompt #1</button>
+          </div>
+        </div>
+        <pre><code id="prompt-v3-1">Hãy đóng vai Đạo diễn Motion Graphic &amp; Kiến trúc sư Remotion, thực hiện chuyển đổi đoạn âm thanh giọng nói sau thành video Kinetic Typography dọc 9:16 (1080x1920 @ 60fps) theo đúng triết lý "Ultra-Clean Attention Budgeting" bằng cách chia làm 4 bước/Subagents:
+
+- File âm thanh giọng nói / Phụ đề: [DÁN_ĐƯỜNG_DẪN_FILE_WAV_HOẶC_LỜI_THOẠI_VÀO_ĐÂY]
+- Các video mẫu Pinterest tham khảo chuyển động: [DÁN_ĐƯỜNG_DẪN_VIDEO_MẪU_NẾU_CÓ]
+
+5 QUY LUẬT UI/UX BẮT BUỘC TUÂN THỦ (TUYỆT ĐỐI KHÔNG VI PHẠM):
+1. Single Focal Point (1 Tiêu điểm duy nhất): Tại bất kỳ frame nào, mắt người xem chỉ nhìn vào đúng 1 cụm chữ (2-5 từ) hoặc 1 hạt mồi cảnh duy nhất.
+2. 85% Negative Space (85% Không gian thở): Chữ đứng tự do (Free-standing typography) trên nền Đen sâu (#07080A) hoặc Trắng Kem (#F7F4ED). CẤM nhốt chữ trong nhiều lớp hộp lồng nhau.
+3. Zero Redundant Text (0% Chữ rác): CẤM vẽ thanh HUD Timecode trên đỉnh, CẤM vẽ thanh Subtitle bar lặp lại chữ ở đáy, CẤM gắn các nhãn tiếng Anh vô nghĩa (như PRE-CUE, AI_01, SEMANTIC_CORE) lên con trỏ hoặc hình khối.
+4. Minimalist Pre-Cue (Mồi cảnh tự tan biến): Mỗi câu thoại phải có hạt mồi hình học tối giản xuất hiện trước 10-14 frames (khung chọn mảnh 1.5px, 4 dấu hoa thị ✱, 1 con trỏ vàng sạch, cặp ngoặc &lt; ✦ &gt;), và hạt mồi PHẢI tự tan biến hoặc biến hình hoàn toàn khi chữ chính hiện ra.
+5. Clean Stage Separation (Bàn giao sạch liên cảnh): Cảnh cũ phải được dọn sạch 100% bằng Shared Actor (thanh Caret quét nuốt chữ, hộp Highlight nở bung Iris Wipe toàn màn hình, hoặc Spatial Whip-Pan kèm SVG &lt;feGaussianBlur&gt;) trước khi cảnh mới xuất hiện.
+
+YÊU CẦU ĐẦU RA CỦA 4 SUBAGENTS:
+- Subagent 1: Quét sóng âm file thoại xác định mốc frame chính xác của từng cụm từ @ 60fps.
+- Subagent 2: Lập bảng thiết kế Choreography chia từng câu thành các Stage độc lập (Pre-Cue Seed -&gt; Main Text -&gt; Clean Relay Handoff).
+- Subagent 3: Viết file Remotion Composition `.tsx` có Bảng Biến Tweaks (`export interface ...Props` và `export const default...Props`) ở ngay đầu file tách riêng toàn bộ từ Tiếng Việt (bọc qua `s.normalize('NFC')`), bảng màu và hệ số Motion Blur.
+- Subagent 4: Tạo file `cues.json`, phối âm SFX Voice-Safe, render ra MP4 60fps và xuất ảnh lưới 40 frames (mỗi 0.25s) + ảnh lưới Showcase đối chiếu Pre-Cue vs. Chữ chính để nghiệm thu.</code></pre>
+      </div>
+
+      <!-- PROMPT 2 -->
+      <h4>Mẫu Prompt #2 — Yêu Cầu AI Kiểm Toán &amp; Gọt Bỏ Rác Thị Giác Cho Một Video Remotion Đang Bị Rối Mắt</h4>
+      <div class="code-panel">
+        <div class="code-panel-header">
+          <span class="code-panel-title">Prompt #2: UI/UX Attention Budgeting Audit — Biến Bản Rối Mắt (V2) Thành Bản Ultra-Clean (V3)</span>
+          <div class="code-panel-actions">
+            <button class="copy-btn" onclick="copyCodeBlock(this, 'prompt-v3-2')">Sao chép Prompt #2</button>
+          </div>
+        </div>
+        <pre><code id="prompt-v3-2">Hãy kiểm toán file Remotion `.tsx` hiện tại của tôi theo bộ 5 Quy Luật UI/UX "Attention Budgeting":
+1. Hãy trích xuất lưới 40 khung hình (mỗi 0.25s) của video hiện tại và chỉ ra toàn bộ các frame đang có từ 2 tiêu điểm cạnh tranh nhau trở lên (ví dụ: chữ cảnh cũ chưa biến mất khi chữ cảnh mới đã hiện, HUD/Timecode/Subtitle thừa, hộp viền lồng hộp viền, hoặc nhãn chữ kỹ thuật vô nghĩa gắn trên icon).
+2. Hãy viết lại thành phiên bản V3 Ultra-Clean đảm bảo:
+   - Xóa sạch 100% HUD, Timecode, Subtitle bar và nhãn chữ phụ.
+   - Giải phóng toàn bộ chữ ra khỏi các thẻ hộp không cần thiết để đạt tối thiểu 85% Negative Space.
+   - Giữ nguyên tính liên kết mượt mà giữa các cảnh bằng cơ chế Shared Actor Relay (Caret Wipe, Highlight Iris Wipe, Spatial Whip-Pan, Star Convergence, Frameless Oblique Drum Roll) và bộ lọc SVG Directional Motion Blur.</code></pre>
+      </div>
+
+      <!-- PROMPT 3 -->
+      <h4>Mẫu Prompt #3 — Đổi Toàn Bộ Lời Thoại Tiếng Việt &amp; Bảng Màu Trong 3 Giây Trên Khuôn <code>VietCleanV3_10s.tsx</code></h4>
+      <div class="code-panel">
+        <div class="code-panel-header">
+          <span class="code-panel-title">Prompt #3: Tùy Biến Nhanh Bảng Biến Tweaks Trong Khuôn Thiết Kế Gốc VietCleanV3_10s.tsx</span>
+          <div class="code-panel-actions">
+            <button class="copy-btn" onclick="copyCodeBlock(this, 'prompt-v3-3')">Sao chép Prompt #3</button>
+          </div>
+        </div>
+        <pre><code id="prompt-v3-3">Tôi đã có sẵn Khuôn Thiết Kế Gốc `VietCleanV3_10s.tsx` có bảng biến Tweaks (`defaultVietCleanV3Props` ở đầu file).
+Hãy GIỮ NGUYÊN 100% cấu trúc 7 Stages, các hiệu ứng Pre-Cue, Shared Actor Relay và bộ lọc SVG Motion Blur bên dưới; chỉ cập nhật lại các giá trị trong `defaultVietCleanV3Props` cho kịch bản 10 giây mới của tôi:
+
+- Nội dung 7 nhịp chữ mới:
+  + Stage 1 (stage1Line1Words / stage1Line2Words): [NHẬP_CỤM_1, ví dụ: ['Cách', 'làm'] / ['quảng', 'cáo', 'cũ']]
+  + Stage 2 (stage2Words): [NHẬP_CỤM_2, đánh dấu isHighlight: true cho 2 từ cuối]
+  + Stage 3 (stage3Line1Words / stage3Line2Words): [NHẬP_CỤM_3_CẦN_GẠCH_BỎ, ví dụ: ['nó', 'đã'] / ['lỗi', 'thời.']]
+  + Stage 4 (stage4PillText): [NHẬP_TỪ_CHUYỂN_NHỊP, ví dụ: 'Ngày nay']
+  + Stage 5 (stage5Line1Words / stage5Line2Words): [NHẬP_CỤM_DẪN_ĐỈNH, ví dụ: ['đây', 'chính', 'là'] / ['thời', 'đại', 'của']]
+  + Stage 6 (stage6HeroWords): [NHẬP_ĐẠI_TỰ_2_TỪ, ví dụ: ['THƯƠNG', 'HIỆU']]
+  + Stage 7a (stage7aLine1Words / stage7aLine2Words): [NHẬP_CỤM_7A, ví dụ: ['Bạn', 'không', 'cần'] / ['đốt', 'tiền', 'vào']]
+  + Stage 7b (stage7bDrumItems &amp; stage7bTargetIndex): [NHẬP_5_CỤM_TỪ_CUỘN_VÀ_VỊ_TRÍ_KHÓA_GẠCH_ĐỎ]
+
+- Bảng màu thương hiệu mới (nếu muốn đổi):
+  + bgDark: '[MÃ_MÀU_NỀN_TỐI]' | bgIvory: '[MÃ_MÀU_NỀN_SÁNG]'
+  + accentGold: '[MÃ_MÀU_NHẤN_CHÍNH]' | accentCrimson: '[MÃ_MÀU_NHẤN_GẠCH_BỎ]'
+
+Sau khi cập nhật `defaultVietCleanV3Props`, hãy kiểm tra `npx tsc --noEmit` và render ra file MP4 60fps mới.</code></pre>
+      </div>
+
+      <!-- PROMPT 4 -->
+      <h4>Mẫu Prompt #4 — Yêu Cầu AI Phối Âm 20 Điểm Nổ SFX Voice-Safe &amp; Xuất Lưới Nghiệm Thu 40 Frames</h4>
+      <div class="code-panel">
+        <div class="code-panel-header">
+          <span class="code-panel-title">Prompt #4: Tự Động Hóa Phối Âm 4 Lớp SFX Voice-Safe &amp; Xuất Lưới Kiểm Định 40 Khung Hình</span>
+          <div class="code-panel-actions">
+            <button class="copy-btn" onclick="copyCodeBlock(this, 'prompt-v3-4')">Sao chép Prompt #4</button>
+          </div>
+        </div>
+        <pre><code id="prompt-v3-4">Dựa trên các mốc frame chuyển động của 7 Stages trong `VietCleanV3_10s.tsx`, hãy:
+1. Tạo file `cues_10s_v3.json` ghi lại chính xác frame của từng nhịp Pre-Cue, Text Pop, Caret Wipe, Iris Wipe, Whip-Pan, Brush Underline và Drum Roll Lock.
+2. Chạy bộ phối âm 4 tầng (`L1_lead_in`, `L2_transient`, `L3_body`, `L4_texture`) kết hợp trộn giọng đọc theo chuẩn Voice-Safe (cắt lọc tần số bảo vệ vùng 300Hz-2.2kHz của giọng nói) để xuất ra file `master_audio_10s_v3.wav`.
+3. Render video Remotion `VietCleanV3-10s-9x16` ở 60fps (H.264 CRF 18) và trích xuất 2 ảnh lưới kiểm định chất lượng:
+   - `v3_clean_7scenes_showcase.jpg`: Lưới 2 hàng x 7 cột đối chiếu khoảnh khắc Pre-Cue (Hàng 1) và Chữ chính (Hàng 2) của cả 7 Stages.
+   - `v3_clean_10s_40frames_grid.jpg`: Lưới 40 khung hình liên tiếp (mỗi 15 frames = 0.25s) để xác nhận 0% lỗi đè chữ và 100% khung hình đạt chuẩn 85% Negative Space.</code></pre>
+      </div>
+
+    </article>
+  </main>
+
+  <!-- SCRIPTS: 1-CLICK COPY, EXPAND/COLLAPSE CODE & SCROLLSPY -->
+  <script>
+    function copyCodeBlock(btn, elementId) {
+      const codeEl = document.getElementById(elementId);
+      if (!codeEl) return;
+      const text = codeEl.innerText || codeEl.textContent;
+      navigator.clipboard.writeText(text).then(() => {
+        const origText = btn.innerText;
+        btn.innerText = '✓ Đã sao chép!';
+        btn.style.background = '#facc15';
+        btn.style.color = '#07080a';
+        setTimeout(() => {
+          btn.innerText = origText;
+          btn.style.background = '#07080a';
+          btn.style.color = '#facc15';
+        }, 2200);
+      });
+    }
+
+    function toggleExpandCode(panelId, btn) {
+      const panel = document.getElementById(panelId);
+      if (!panel) return;
+      const isExpanded = panel.classList.toggle('is-expanded');
+      btn.innerText = isExpanded ? 'Thu gọn khung code' : 'Mở rộng toàn bộ';
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const headings = document.querySelectorAll('h2[id], h3[id]');
+      const tocLinks = document.querySelectorAll('.ink-toc-link');
+      
+      if(headings.length > 0 && "IntersectionObserver" in window) {
+        const observerOptions = {
+          root: null,
+          rootMargin: '0px 0px -78% 0px',
+          threshold: 0
+        };
+        
+        let activeId = null;
+
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              const id = entry.target.getAttribute('id');
+              if (id !== activeId) {
+                tocLinks.forEach(link => link.classList.remove('is-active'));
+                const activeLink = document.querySelector(`.ink-toc-link[href="#${id}"]`);
+                if (activeLink) {
+                  activeLink.classList.add('is-active');
+                }
+                activeId = id;
+              }
+            }
+          });
+        }, observerOptions);
+
+        headings.forEach(heading => observer.observe(heading));
+      }
+
+      tocLinks.forEach(link => {
+        link.addEventListener('click', () => {
+          document.querySelector('.ink-sidebar').classList.remove('is-open');
+          const overlay = document.querySelector('.ink-overlay');
+          if(overlay) overlay.classList.remove('is-open');
+        });
+      });
+    });
+  </script>
+</body>
+</html>
