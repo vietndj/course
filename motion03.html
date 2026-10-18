@@ -1,0 +1,2222 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dựng Video Bằng Mã Lệnh Theo Phong Cách Claude Motion Risograph &amp; Khuôn Thiết Kế Tweaks 60fps (Motion 03)</title>
+  
+  <!-- FAVICON SVG INLINE: CHUẨN "M3" (MOTION 03 60FPS MONOGRAM) -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%2307090E'/%3E%3Ctext x='32' y='41' font-family='Arial, sans-serif' font-weight='900' font-size='26' fill='%23E2683A' text-anchor='middle' letter-spacing='1'%3EM3%3C/text%3E%3C/svg%3E">
+
+  <!-- FONTS: Fedu CDN -->
+  <style>
+    @font-face { font-family: 'FD Aeonik Extended'; src: url('https://fedu.vn/k/fonts/FDAeonikExtended-Bold.woff2') format('woff2'); font-weight: 700; font-display: swap; }
+    @font-face { font-family: 'FD Aeonik Extended'; src: url('https://fedu.vn/k/fonts/FDAeonikExtended-SemiBold.woff2') format('woff2'); font-weight: 600; font-display: swap; }
+    @font-face { font-family: 'FD Aeonik'; src: url('https://fedu.vn/k/fonts/FDAeonikMedium.ttf') format('truetype'); font-weight: 500; font-display: swap; }
+    @font-face { font-family: 'FD Aeonik'; src: url('https://fedu.vn/k/fonts/FDAeonikRegular.ttf') format('truetype'); font-weight: 400; font-display: swap; }
+    @font-face { font-family: 'Tiempos Text'; src: url('https://fedu.vn/k/fonts/FDTiemposText-Bold.woff2') format('woff2'); font-weight: 700; font-display: swap; }
+    @font-face { font-family: 'Tiempos Text'; src: url('https://fedu.vn/k/fonts/FDTiemposText-Medium.woff2') format('woff2'); font-weight: 500; font-display: swap; }
+    @font-face { font-family: 'Tiempos Text'; src: url('https://fedu.vn/k/fonts/FDTiemposText-Regular.woff2') format('woff2'); font-weight: 400; font-display: swap; }
+    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700&display=swap');
+  </style>
+
+  <style>
+    /* ==========================================================================
+       INKDOC CSS - ZERO ANIMATION, SLATE MONOCHROME + RISOGRAPH STUDIO ACCENTS
+       ========================================================================== */
+    :root {
+      --ink-bg: #ffffff;
+      --ink-sidebar: #f8fafc;
+      --ink-text: #0f172a;
+      --ink-muted: #64748b;
+      --ink-border: #e2e8f0;
+      --ink-hover: #f1f5f9;
+      --ink-accent: #0f172a;
+      --ink-dialogue-bg: #f8fafc;
+      
+      --riso-stock: #F3ECDD;
+      --riso-orange: #E2683A;
+      --riso-teal: #1E5A64;
+      --riso-dark: #122026;
+
+      --font-display: 'FD Aeonik Extended', -apple-system, sans-serif;
+      --font-heading: 'FD Aeonik', -apple-system, sans-serif;
+      --font-body: 'Tiempos Text', Georgia, serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      
+      --sidebar-width: 290px;
+      --content-max-width: 860px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: auto; font-size: 16px; }
+    body {
+      background-color: var(--ink-bg);
+      color: var(--ink-text);
+      font-family: var(--font-body);
+      line-height: 1.8;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      display: flex;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* TYPOGRAPHY */
+    h1, h2, h3, h4, h5, h6 {
+      color: var(--ink-text);
+      font-weight: 600;
+      line-height: 1.35;
+      margin-top: 2.2rem;
+      margin-bottom: 1rem;
+      font-family: var(--font-heading);
+    }
+    
+    h1.is-short, .title-short {
+      font-family: var(--font-display);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: -0.01em;
+      font-size: clamp(25px, 3.4vw, 36px);
+      line-height: 1.18;
+      margin-top: 0;
+    }
+    
+    h2 {
+      font-size: clamp(20px, 2.4vw, 25px);
+      border-bottom: 2px solid var(--ink-border);
+      padding-bottom: 0.6rem;
+      margin-top: 3.2rem;
+    }
+    h3 { font-size: 1.2rem; margin-top: 2rem; color: #1e293b; }
+    h4 { font-size: 1.05rem; margin-top: 1.5rem; color: #334155; }
+    
+    p, ul, ol, blockquote, pre, table { margin-bottom: 1.4rem; font-size: 1.125rem; }
+    ul, ol { padding-left: 1.5rem; }
+    li { margin-bottom: 0.5rem; }
+    
+    a { color: var(--ink-accent); text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--ink-muted); }
+    a:hover { text-decoration-color: var(--ink-accent); }
+    
+    blockquote {
+      border-left: 3px solid #0f172a;
+      background-color: #f8fafc;
+      padding: 1rem 1.25rem;
+      border-radius: 0 8px 8px 0;
+      font-style: italic;
+      color: var(--ink-text);
+      font-weight: 500;
+    }
+
+    code {
+      font-family: var(--font-mono);
+      font-size: 0.84em;
+      background-color: var(--ink-hover);
+      padding: 0.18em 0.42em;
+      border-radius: 4px;
+      border: 1px solid #e2e8f0;
+    }
+    pre {
+      background-color: #0f172a;
+      color: #f8fafc;
+      padding: 1.25rem;
+      border-radius: 10px;
+      border: 1px solid #1e293b;
+      overflow-x: auto;
+      line-height: 1.6;
+      position: relative;
+    }
+    pre code {
+      background: none;
+      border: none;
+      padding: 0;
+      font-size: 0.86rem;
+      color: #e2e8f0;
+    }
+
+    .code-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #1e293b;
+      color: #f8fafc;
+      padding: 0.55rem 1rem;
+      border-radius: 10px 10px 0 0;
+      font-family: var(--font-heading);
+      font-size: 0.82rem;
+      font-weight: 600;
+      border: 1px solid #334155;
+      border-bottom: none;
+    }
+    .code-header + pre {
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
+      margin-top: 0;
+    }
+    .copy-code-btn {
+      background: #334155;
+      color: #f8fafc;
+      border: 1px solid #475569;
+      border-radius: 6px;
+      padding: 4px 10px;
+      font-family: var(--font-heading);
+      font-size: 0.75rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .copy-code-btn:hover {
+      background: #475569;
+    }
+
+    hr { border: 0; border-top: 1px solid var(--ink-border); margin: 3rem 0; }
+
+    /* Bảng biểu */
+    .table-wrap { width: 100%; overflow-x: auto; margin-bottom: 2rem; }
+    table { width: 100%; border-collapse: collapse; margin-bottom: 0; font-family: var(--font-heading); font-size: 0.94rem; }
+    th, td { padding: 12px 14px; border-bottom: 1px solid var(--ink-border); text-align: left; vertical-align: top; }
+    th { font-weight: 600; color: var(--ink-muted); text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.05em; border-bottom: 2px solid var(--ink-border); background-color: #f8fafc; }
+
+    /* APPLE HIG BADGE & SPEC-BLOCK */
+    .apple-badge {
+      background-color: #f1f5f9;
+      border: 1px solid #cbd5e1;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+      font-size: 11px;
+      text-transform: uppercase;
+      padding: 2px 8px;
+      border-radius: 6px;
+      color: #334155;
+      font-weight: 700;
+      font-family: var(--font-heading);
+      position: relative;
+      top: -1px;
+      vertical-align: baseline;
+      white-space: nowrap;
+      display: inline-block;
+      letter-spacing: 0.04em;
+    }
+    .apple-badge.gold {
+      background-color: #fef9c3;
+      border-color: #fde047;
+      color: #854d0e;
+    }
+    .apple-badge.dark {
+      background-color: #0f172a;
+      border-color: #0f172a;
+      color: #f8fafc;
+    }
+    .apple-badge.emerald {
+      background-color: #ecfdf5;
+      border-color: #a7f3d0;
+      color: #065f46;
+    }
+    .apple-badge.riso-orange {
+      background-color: #fff1eb;
+      border-color: #f7b8a1;
+      color: #b84318;
+    }
+    .apple-badge.riso-teal {
+      background-color: #eef7f8;
+      border-color: #a4d1d8;
+      color: #164850;
+    }
+
+    .spec-container {
+      background-color: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 1.25rem 1.5rem;
+      margin-bottom: 1.75rem;
+    }
+    .spec-block {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      padding: 0.65rem 0;
+      border-bottom: 1px dashed #cbd5e1;
+    }
+    .spec-block:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+    .spec-block:first-child {
+      padding-top: 0;
+    }
+    @media (min-width: 640px) {
+      .spec-block {
+        flex-direction: row;
+        align-items: baseline;
+        gap: 1.25rem;
+      }
+      .spec-label {
+        flex: 0 0 185px;
+      }
+      .spec-value {
+        flex: 1;
+        font-size: 16px;
+        font-family: var(--font-heading);
+        color: #1e293b;
+        line-height: 1.6;
+      }
+    }
+
+    /* COLOR SWATCH PILL */
+    .color-swatch {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 2px 8px;
+      border-radius: 6px;
+      border: 1px solid #cbd5e1;
+      background: #ffffff;
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      font-weight: 700;
+      vertical-align: baseline;
+      position: relative;
+      top: -1px;
+    }
+    .color-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 3px;
+      border: 1px solid rgba(0,0,0,0.18);
+      display: inline-block;
+    }
+
+    /* MEDIA & VIDEO STUDIO CARDS */
+    .media-card {
+      background: #0f172a;
+      border: 1px solid #1e293b;
+      border-radius: 14px;
+      padding: 1rem;
+      margin-bottom: 1.75rem;
+      color: #f8fafc;
+      font-family: var(--font-heading);
+    }
+    .media-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 0.75rem;
+      padding-bottom: 0.6rem;
+      border-bottom: 1px solid #1e293b;
+    }
+    .media-card-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #f8fafc;
+    }
+    .media-card-meta {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: #facc15;
+      background: rgba(250, 204, 21, 0.12);
+      border: 1px solid rgba(250, 204, 21, 0.3);
+      padding: 2px 8px;
+      border-radius: 6px;
+    }
+    .media-card video, .media-card img {
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+      display: block;
+      background: #000000;
+    }
+    .media-caption {
+      font-size: 0.85rem;
+      color: #94a3b8;
+      margin-top: 0.65rem;
+      margin-bottom: 0;
+      line-height: 1.5;
+    }
+
+    .grid-2col {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.25rem;
+      margin-bottom: 1.75rem;
+    }
+    @media (min-width: 768px) {
+      .grid-2col {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .grid-3col {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+      margin-bottom: 1.75rem;
+    }
+    @media (min-width: 768px) {
+      .grid-3col {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .portrait-video-wrap {
+      max-width: 340px;
+      margin: 0 auto;
+    }
+
+    .action-btn-bar {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      margin-bottom: 1.25rem;
+    }
+    .action-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.6rem 1.1rem;
+      border-radius: 8px;
+      font-family: var(--font-heading);
+      font-size: 0.88rem;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      border: 1px solid #0f172a;
+      background: #0f172a;
+      color: #ffffff;
+    }
+    .action-btn.secondary {
+      background: #f8fafc;
+      color: #0f172a;
+      border-color: #cbd5e1;
+    }
+
+    /* LAYOUT: SIDEBAR */
+    .ink-sidebar {
+      width: var(--sidebar-width);
+      flex-shrink: 0;
+      background-color: var(--ink-sidebar);
+      border-right: 1px solid var(--ink-border);
+      height: 100vh;
+      position: sticky;
+      top: 0;
+      overflow-y: auto;
+      padding: 2rem 1.25rem;
+      font-family: var(--font-heading);
+    }
+    .ink-sidebar-header { margin-bottom: 1.75rem; }
+    .ink-brand { font-family: var(--font-display); font-weight: 700; font-size: 0.95rem; letter-spacing: 0.8px; color: var(--ink-text); text-decoration: none; text-transform: uppercase; }
+    
+    .ink-toc-title {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: var(--ink-muted);
+      letter-spacing: 0.06em;
+      margin-bottom: 0.75rem;
+    }
+    
+    .ink-toc-list { list-style: none; padding: 0; margin: 0; }
+    .ink-toc-list li { margin-bottom: 0.2rem; }
+    .ink-toc-link {
+      display: block;
+      padding: 0.38rem 0.65rem;
+      color: var(--ink-muted);
+      text-decoration: none;
+      font-size: 0.84rem;
+      border-radius: 6px;
+      line-height: 1.4;
+    }
+    .ink-toc-link:hover { background-color: var(--ink-hover); color: var(--ink-text); }
+    .ink-toc-link.is-active {
+      background-color: #e2e8f0;
+      color: var(--ink-text);
+      font-weight: 600;
+    }
+    .ink-toc-nested { padding-left: 0.85rem; margin-top: 0.15rem; border-left: 1px solid #cbd5e1; margin-left: 0.6rem; }
+
+    /* LAYOUT: CONTENT */
+    .ink-main-wrapper {
+      flex-grow: 1;
+      padding: 3.5rem 2.5rem;
+      display: flex;
+      justify-content: center;
+    }
+    .ink-content {
+      width: 100%;
+      max-width: var(--content-max-width);
+    }
+    
+    .ink-meta {
+      display: flex;
+      gap: 0.75rem;
+      font-family: var(--font-heading);
+      font-size: 0.85rem;
+      color: var(--ink-muted);
+      margin-bottom: 1.75rem;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .ink-badge {
+      font-family: var(--font-mono);
+      text-transform: uppercase;
+      font-size: 0.72rem;
+      padding: 3px 10px;
+      border: 1px solid var(--ink-border);
+      border-radius: 99px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      color: var(--ink-text);
+      background: #f8fafc;
+    }
+
+    .ink-mode-reference {
+      --content-max-width: 860px;
+    }
+
+    /* MOBILE MENU TOGGLE & OVERLAY */
+    .ink-mobile-nav {
+      display: none;
+      position: sticky;
+      top: 0;
+      background: var(--ink-bg);
+      border-bottom: 1px solid var(--ink-border);
+      padding: 0.85rem 1rem;
+      z-index: 100;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .ink-menu-btn {
+      background: #f8fafc; border: 1px solid var(--ink-border); border-radius: 6px;
+      padding: 0.4rem 0.75rem; cursor: pointer; font-family: var(--font-heading); font-size: 0.8rem; font-weight: 600;
+    }
+    .ink-overlay {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(15, 23, 42, 0.6);
+      z-index: 999;
+    }
+    .ink-overlay.is-open { display: block; }
+    .ink-close-btn {
+      display: none;
+      background: none; border: none; cursor: pointer;
+      font-size: 1.25rem; color: var(--ink-text);
+      padding: 0.25rem;
+    }
+
+    @media (max-width: 992px) {
+      body { flex-direction: column; }
+      .ink-mobile-nav { display: flex; }
+      .ink-sidebar {
+        position: fixed;
+        top: 0; bottom: 0; left: -100%;
+        z-index: 1000;
+        box-shadow: 4px 0 24px rgba(0,0,0,0.15);
+        max-width: 320px;
+        width: 85vw;
+      }
+      .ink-sidebar.is-open { left: 0; }
+      .ink-close-btn { display: block; }
+      .ink-main-wrapper { padding: 2rem 1.25rem; }
+    }
+    
+    @media (max-width: 768px) {
+      .ink-main-wrapper { padding: 1.5rem 1rem; }
+      p, ul, ol, blockquote, pre, table { font-size: 1rem; margin-bottom: 1.2rem; line-height: 1.65; }
+      .ink-content { width: 100%; max-width: 100vw; overflow-wrap: break-word; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- MOBILE NAV -->
+  <div class="ink-mobile-nav">
+    <a href="#top" class="ink-brand">FEDU MOTION 03</a>
+    <button class="ink-menu-btn" onclick="document.querySelector('.ink-sidebar').classList.add('is-open'); document.querySelector('.ink-overlay').classList.add('is-open');">MỤC LỤC</button>
+  </div>
+
+  <!-- MOBILE OVERLAY -->
+  <div class="ink-overlay" onclick="document.querySelector('.ink-sidebar').classList.remove('is-open'); this.classList.remove('is-open');"></div>
+
+  <!-- SIDEBAR TOC -->
+  <aside class="ink-sidebar">
+    <div class="ink-sidebar-header" style="display: flex; justify-content: space-between; align-items: center;">
+      <a href="#top" class="ink-brand">FEDU • MOTION 03</a>
+      <button class="ink-close-btn" onclick="document.querySelector('.ink-sidebar').classList.remove('is-open'); document.querySelector('.ink-overlay').classList.remove('is-open');">✕</button>
+    </div>
+    
+    <div class="ink-toc-title">MỤC LỤC TRA CỨU</div>
+    <ul class="ink-toc-list">
+      <li>
+        <a href="#phan-1-reference" class="ink-toc-link is-active">Phần I. Reference: Giải Phẫu Claude Motion (Jay E)</a>
+        <ul class="ink-toc-list ink-toc-nested">
+          <li><a href="#logic-cot-loi" class="ink-toc-link">1.1. Công thức Mã lệnh vs. Bánh nướng Điểm ảnh</a></li>
+          <li><a href="#4-cap-do-thuc-hien" class="ink-toc-link">1.2. Bốn cấp độ làm video trong bản gốc</a></li>
+          <li><a href="#5-bo-prompt-goc" class="ink-toc-link">1.3. Nguyên văn 5 bộ Prompt trên màn hình</a></li>
+          <li><a href="#tinh-kha-thi" class="ink-toc-link">1.4. Tính khả thi &amp; đối chiếu hệ thống</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="#phan-2-ket-qua" class="ink-toc-link">Phần II. Kết Quả: Video 10s Risograph + Hybrid 60fps</a>
+        <ul class="ink-toc-list ink-toc-nested">
+          <li><a href="#doi-chieu-before-after" class="ink-toc-link">2.1. Đối chiếu Video Gốc vs. Bản Risograph 60fps</a></li>
+          <li><a href="#ban-plan-6-thanh-phan" class="ink-toc-link">2.2. Bản Plan &amp; Prompt 6 thành phần đã chạy</a></li>
+          <li><a href="#bang-7-phan-canh" class="ink-toc-link">2.3. Bảng 7 phân cảnh &amp; Lưới kiểm định</a></li>
+          <li><a href="#can-canh-7-scenes" class="ink-toc-link">2.4. Cận cảnh từng phân cảnh (Scene 1 &rarr; 7)</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="#phan-3-huong-dan-tsx" class="ink-toc-link">Phần III. Hướng Dẫn Người Mới &amp; Giải Thích File .TSX</a>
+        <ul class="ink-toc-list ink-toc-nested">
+          <li><a href="#file-tsx-va-tweaks-la-gi" class="ink-toc-link">3.1. File .TSX &amp; bảng biến Tweaks để làm gì?</a></li>
+          <li><a href="#5-buoc-cho-nguoi-moi" class="ink-toc-link">3.2. Năm bước tự làm trên AI của bạn</a></li>
+          <li><a href="#prompt-mau-copy-paste" class="ink-toc-link">3.3. Khung Prompt mẫu Copy-Paste cho người mới</a></li>
+          <li><a href="#giai-phau-5-khoi-code" class="ink-toc-link">3.4. Giải thích 5 khối lệnh trong file .TSX</a></li>
+          <li><a href="#full-source-tsx" class="ink-toc-link">3.5. Toàn bộ mã nguồn VietClaudeMotionRiso10s.tsx</a></li>
+        </ul>
+      </li>
+    </ul>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main class="ink-main-wrapper">
+    <article class="ink-content ink-mode-reference">
+      
+      <div class="ink-meta">
+        <span class="ink-badge">MOTION 03 • CLAUDE MOTION RISOGRAPH</span>
+        <span>Nguyễn Việt • FEDU Course</span>
+        <span>•</span>
+        <span>Reference • Kết Quả 60fps • Hướng Dẫn &amp; Khuôn .TSX</span>
+      </div>
+
+      <h1 class="is-short" id="top">Dựng Video Bằng Mã Lệnh Theo Chuẩn Claude Motion: Từ Phân Tích Reference (Jay E), Kết Quả Thực Chiến 60fps Đến Khuôn Thiết Kế .TSX Cho Người Mới</h1>
+      
+      <p>Tài liệu này được trình bày thành <strong>3 phần rõ ràng</strong> để bất kỳ học viên hay người mới nào cũng có thể tự thực hành ngay trên công cụ AI cá nhân của mình (Claude Code, Cursor, hoặc Antigravity):</p>
+      <ul>
+        <li><strong>Phần I (Reference — Nguồn tham chiếu):</strong> Bóc tách từng bước làm, nguyên văn 5 câu lệnh Prompt trên màn hình, logic kỹ thuật và tính khả thi từ video <em>"Claude MOTION is Unreal for Video. Master it in 12 minutes."</em> của Jay E (RoboNuggets).</li>
+        <li><strong>Phần II (Kết quả thực chiến):</strong> Trình chiếu trực tiếp kết quả biến 10 giây đầu của video quay thô (<code>Qc offline - ngữ nghĩa đăng fb9.mp4</code>) thành video <strong>Risograph 2-Ink Print + Hybrid Talking Head</strong> ở tốc độ <code>60fps</code> kèm âm thanh 4 lớp bảo vệ giọng nói.</li>
+        <li><strong>Phần III (Hướng dẫn cầm tay chỉ việc &amp; Giải phẫu file <code>.tsx</code>):</strong> Giải thích bình dân vì sao cần file mã nguồn <code>VietClaudeMotionRiso10s.tsx</code> và bảng biến <code>Tweaks</code>, kèm hướng dẫn 5 bước và toàn bộ mã nguồn mẫu để người mới sao chép sang AI của mình làm theo ngay.</li>
+      </ul>
+
+      <hr>
+
+      <!-- ====================================================================
+           PHẦN I: REFERENCE — GIẢI PHẪU VIDEO GỐC CỦA JAY E (CLAUDE MOTION)
+           ==================================================================== -->
+      <h2 id="phan-1-reference">Phần I. Reference: Giải Phẫu Từng Bước Làm, 5 Bộ Prompt &amp; Logic Từ Video Gốc Của Jay E (RoboNuggets)</h2>
+
+      <div class="spec-container">
+        <div class="spec-block">
+          <div class="spec-label"><span class="apple-badge dark">VIDEO NGUỒN</span></div>
+          <div class="spec-value"><strong>Claude MOTION is Unreal for Video. Master it in 12 minutes.</strong> — Kênh YouTube: <strong>Jay E | RoboNuggets</strong> (<a href="https://www.youtube.com/watch?v=Eg08Lr3zqdw" target="_blank" rel="noopener">youtube.com/watch?v=Eg08Lr3zqdw</a>, thời lượng <code>12:08</code>).</div>
+        </div>
+        <div class="spec-block">
+          <div class="spec-label"><span class="apple-badge riso-orange">PHONG CÁCH MẪU</span></div>
+          <div class="spec-value"><strong>Risograph 2-Ink Print (In Risograph 2 màu mực lệch bản):</strong> Nền giấy kem ấm <span class="color-swatch"><span class="color-dot" style="background:#F3ECDD;"></span>#F3ECDD</span>, mực Cam đất <span class="color-swatch"><span class="color-dot" style="background:#E2683A;"></span>#E2683A</span> và mực Xanh cổ vịt <span class="color-swatch"><span class="color-dot" style="background:#1E5A64;"></span>#1E5A64</span> in lệch nhau vài pixel tạo cảm giác thủ công có chiều sâu.</div>
+        </div>
+        <div class="spec-block">
+          <div class="spec-label"><span class="apple-badge emerald">BẢN ĐỌC TÓM TẮT</span></div>
+          <div class="spec-value">Xem thêm bản cẩm nang đúc kết 8 bài học tại kho <code>k</code>: <a href="https://fedu.vn/k/jay-e-claude-motion-video-code.html" target="_blank" rel="noopener">fedu.vn/k/jay-e-claude-motion-video-code.html</a>.</div>
+        </div>
+      </div>
+
+      <h3 id="logic-cot-loi">1.1. Logic Cốt Lõi: "Công Thức Mã Lệnh (Video-as-Code)" vs. "Chiếc Bánh Nướng Điểm Ảnh (AI Video Pixels)"</h3>
+      <p>Khi làm video bằng AI, hầu hết người mới thường gặp một chỗ vướng rất lớn: nếu đưa toàn bộ yêu cầu vào các công cụ sinh video điểm ảnh (như Sora, Kling, Runway hay Veo), kết quả trả về giống như <strong>một chiếc bánh đã nướng chín dính liền thành một khối</strong>. Chỉ cần sai chính tả một chữ, muốn đổi giá tiền từ <code>$19</code> sang <code>$22</code>, hay muốn đổi riêng chiếc cốc trên bàn là bạn buộc phải tạo lại cả video mới — vừa tốn tiền vừa làm hỏng bố cục cũ vốn đã đẹp.</p>
+
+      <div class="spec-container">
+        <div class="spec-block">
+          <div class="spec-label"><span class="apple-badge riso-teal">CÔNG THỨC MÃ LỆNH</span></div>
+          <div class="spec-value"><strong>Tách mọi thành phần thành biến số độc lập:</strong> Khi video được viết dưới dạng mã lệnh (HTML, Canvas, React/Remotion, SVG), mọi dòng chữ, mã màu, nhịp chuyển động và thời lượng từng cảnh đều tách rời nhau. Đổi tên thương hiệu hay sửa một từ trong bảng <code>Tweaks</code> diễn ra tức thời trong 1 giây và tốn <code>$0</code>.</div>
+        </div>
+        <div class="spec-block">
+          <div class="spec-label"><span class="apple-badge gold">KHOANH VÙNG VẬT THỂ</span></div>
+          <div class="spec-value"><strong>Sửa đúng 1 chi tiết mà không ảnh hưởng tới cảnh khác:</strong> Khi cần đổi cốc cà phê nóng ở Cảnh 3 thành cốc cà phê đá có viên đá lạnh bên trong, người làm chỉ cần chấm chọn đúng chiếc cốc đó để AI viết lại riêng hàm vẽ chiếc cốc, giữ nguyên 100% các cảnh còn lại.</div>
+        </div>
+        <div class="spec-block">
+          <div class="spec-label"><span class="apple-badge dark">KIẾN TRÚC LAI (HYBRID)</span></div>
+          <div class="spec-value"><strong>Ghép cảnh quay thật / ảnh AI với chữ mã lệnh:</strong> Vì mã lệnh chỉ vẽ được chữ, hình khối và biểu đồ (không tự vẽ được cảnh người thật hay hạt cà phê ngoài đời), cách làm chuẩn là đặt <strong>video người nói thật hoặc cảnh quay AI ở tầng dưới làm nền</strong>, rồi phủ <strong>lớp chữ và khung đồ họa mã lệnh lên tầng trên</strong>.</div>
+        </div>
+      </div>
+
+      <div class="grid-2col">
+        <div class="media-card">
+          <div class="media-card-header">
+            <span class="media-card-title">Lưới 48 Khung Hình Nửa Đầu Video Gốc Của Jay E</span>
+            <span class="media-card-meta">Frames 001 &rarr; 048</span>
+          </div>
+          <img src="./assets/motion03/frames/jaye_contact_sheet_1.jpg" alt="Lưới 48 khung hình nửa đầu video Jay E" loading="lazy">
+          <p class="media-caption">Từ bước thống nhất kế hoạch (Brief &rarr; Plan &rarr; Video), gọi lệnh <code>/motion</code>, chỉnh bảng <code>Tweaks</code> đến ghim bình luận sửa riêng chiếc cốc.</p>
+        </div>
+        <div class="media-card">
+          <div class="media-card-header">
+            <span class="media-card-title">Lưới 46 Khung Hình Nửa Sau Video Gốc Của Jay E</span>
+            <span class="media-card-meta">Frames 049 &rarr; 094</span>
+          </div>
+          <img src="./assets/motion03/frames/jaye_contact_sheet_2.jpg" alt="Lưới 46 khung hình nửa sau video Jay E" loading="lazy">
+          <p class="media-caption">Từ kết nối <code>kie-mcp</code> tạo cảnh thật làm nền, cài <code>HyperFrames</code> miễn phí trên máy đến trình biên tập cục bộ <code>Rubric Editor</code>.</p>
+        </div>
+      </div>
+
+      <h3 id="4-cap-do-thuc-hien">1.2. Từng Bước Làm Trong Video Gốc Của Jay E (4 Cấp Độ Từ Cơ Bản Đến Tự Chủ Hoàn Toàn)</h3>
+
+      <h4>Cấp độ 1: Dựng đồ họa chuyển động thuần bằng Claude Motion (Phút 00:50 – 06:19)</h4>
+      <ul>
+        <li><strong>Bước 1 (Chốt bản kế hoạch ở cửa sổ chat thường):</strong> Không gọi lệnh làm video ngay. Mở cửa sổ chat thường, gửi ý tưởng thô + ảnh mẫu phong cách (ví dụ phong cách in Risograph) để thảo luận tới khi AI xuất ra một <strong>Bản đề bài 6 thành phần (Motion Prompt)</strong> thật chặt chẽ.</li>
+        <li><strong>Bước 2 (Kích hoạt <code>/motion</code>):</strong> Chọn mô hình <strong>Opus 5.5 (Extra High)</strong>, gõ <code>/motion</code> (hoặc vào <code>Artifacts &rarr; Motion</code>) và dán bản đề bài đã chốt vào. Chờ 1–4 phút để AI viết mã lệnh cho toàn bộ 4 cảnh.</li>
+        <li><strong>Bước 3 (Chỉnh sửa 2 tầng — <code>Tweaks</code> &amp; <code>Comment</code>):</strong>
+          <ul>
+            <li>Bấm nút <strong>Tweaks</strong> ở góc dưới bên phải để mở bảng biến số: gõ đổi chữ <code>Ember Roast</code> thành <code>Dawn Roast</code>, đổi giá <code>$19 a bag</code> thành <code>$22 a bag</code>, hoặc kéo thanh trượt đổi thời lượng từng cảnh mà không cần chạy lại AI.</li>
+            <li>Bấm nút <strong>Comment</strong> ở góc trên: chỉ thẳng chuột vào chiếc cốc ở Cảnh 3 và gõ yêu cầu <em>"Make it an iced coffee with ice cubes"</em> để AI chỉ sửa đúng chiếc cốc đó.</li>
+          </ul>
+        </li>
+        <li><strong>Bước 4 (Xuất file MP4):</strong> Bấm <code>Export &rarr; MP4</code> để tải video về máy.</li>
+      </ul>
+
+      <div class="grid-2col">
+        <div class="media-card">
+          <div class="media-card-header">
+            <span class="media-card-title">Bước 1: Thống nhất kế hoạch (Brief &rarr; Plan &rarr; Video)</span>
+            <span class="media-card-meta">Phút 01:15</span>
+          </div>
+          <img src="./assets/motion03/frames/ref_align_plan.jpg" alt="Thống nhất kế hoạch trước khi dựng video" loading="lazy">
+          <p class="media-caption">Luôn chốt xong bản mô tả từng cảnh ở cửa sổ chat thường trước khi đưa vào trình dựng chuyển động.</p>
+        </div>
+        <div class="media-card">
+          <div class="media-card-header">
+            <span class="media-card-title">Bước 2: Gọi lệnh /motion và dán bản đề bài đã chốt</span>
+            <span class="media-card-meta">Phút 02:55</span>
+          </div>
+          <img src="./assets/motion03/frames/ref_slash_motion.jpg" alt="Gọi lệnh /motion trong Claude" loading="lazy">
+          <p class="media-caption">Kích hoạt công cụ Motion và dán toàn bộ bản kế hoạch 6 thành phần vào khung lệnh.</p>
+        </div>
+      </div>
+
+      <div class="grid-2col">
+        <div class="media-card">
+          <div class="media-card-header">
+            <span class="media-card-title">Bước 3A: Đổi chữ &amp; giá tiền tức thời bằng bảng Tweaks</span>
+            <span class="media-card-meta">Phút 04:25</span>
+          </div>
+          <img src="./assets/motion03/frames/ref_tweaks_panel.jpg" alt="Bảng biến số Tweaks đổi chữ tức thời" loading="lazy">
+          <p class="media-caption">Gõ chữ mới vào cột bên phải (<code>DAWN ROAST</code>, <code>$22 a bag</code>) là chữ trên video đổi ngay lập tức khi tay đang gõ.</p>
+        </div>
+        <div class="media-card">
+          <div class="media-card-header">
+            <span class="media-card-title">Bước 3B: Ghim bình luận chỉ sửa riêng chiếc cốc cà phê</span>
+            <span class="media-card-meta">Phút 05:10</span>
+          </div>
+          <img src="./assets/motion03/frames/ref_pin_comment_cup.jpg" alt="Ghim bình luận sửa riêng chiếc cốc" loading="lazy">
+          <p class="media-caption">Khoanh vùng chiếc cốc và yêu cầu đổi sang cà phê đá — toàn bộ các cảnh khác được giữ nguyên 100%.</p>
+        </div>
+      </div>
+
+      <h4>Cấp độ 2: Kết hợp Ảnh &amp; Video AI thực tế qua giao thức MCP (Phút 06:20 – 09:12)</h4>
+      <ul>
+        <li><strong>Cách làm thuận (Tạo cảnh thật làm nền trước &rarr; Phủ chữ Motion lên trên):</strong> Cài đặt gói mã nguồn mở <code>kie-mcp</code> kết nối vào tài khoản <code>Kie.ai</code> (tạo ảnh 2K bằng GPT Image 2 chỉ tốn <code>$0.05</code>/ảnh và tạo video 5 giây bằng Kling 3.0 mà không cần đóng gói thuê bao <code>$59/tháng</code>). Luôn yêu cầu AI chạy hàm <code>estimate_only</code> báo giá trước, khi đồng ý mới tạo tư liệu rồi bọc lớp chữ Risograph lên trên.</li>
+        <li><strong>Cách làm ngược (Dùng Motion làm bảng phân cảnh mồi cho mô hình sinh video):</strong> Dùng mã lệnh vẽ nhanh 3 khung hình phân cảnh thô có bố cục chuẩn, sau đó đưa sang mô hình <strong>Seedance</strong> để biến thành phim hoạt hình vẽ tay phong cách Studio Ghibli đúng góc máy.</li>
+      </ul>
+
+      <div class="grid-2col">
+        <div class="media-card">
+          <div class="media-card-header">
+            <span class="media-card-title">Kết hợp cảnh hạt cà phê thật (Kling 3.0) + Nhãn giá Risograph</span>
+            <span class="media-card-meta">Phút 08:30</span>
+          </div>
+          <img src="./assets/motion03/frames/ref_hybrid_beans_riso.jpg" alt="Cảnh hạt cà phê thật phủ chữ Risograph" loading="lazy">
+          <p class="media-caption">Cảnh quay hạt cà phê đổ vào túi giấy làm nền bên dưới, còn nhãn <code>$22 a bag</code> bằng mã lệnh phủ phía trên để sửa giá bất cứ lúc nào.</p>
+        </div>
+        <div class="media-card">
+          <div class="media-card-header">
+            <span class="media-card-title">Đảo ngược: Dùng Motion làm Storyboard mồi cho Seedance</span>
+            <span class="media-card-meta">Phút 09:00</span>
+          </div>
+          <img src="./assets/motion03/frames/ref_storyboard_seedance.jpg" alt="Dùng Motion làm Storyboard mồi cho Seedance" loading="lazy">
+          <p class="media-caption">Dựng 3 khung hình bố cục bằng mã lệnh trước để khóa vị trí vật thể rồi mới đưa vào mô hình vẽ hoạt hình.</p>
+        </div>
+      </div>
+
+      <h4>Cấp độ 3 &amp; 4: Giải pháp miễn phí trên máy cá nhân với HyperFrames &amp; Xưởng biên tập cục bộ (Phút 09:50 – 11:32)</h4>
+      <ul>
+        <li><strong>Cấp độ 3 — Cài đặt <code>HyperFrames</code> (HeyGen Open-Source) vào Claude Code:</strong> Dành cho người dùng tài khoản cá nhân không có nút <code>/motion</code> của gói Team/Enterprise. Chỉ cần cài tiện ích <code>heygen-com/hyperframes</code> vào Claude Code, máy sẽ tự viết mã video, kết xuất MP4 bằng FFmpeg và mở giao diện xem trước tại <code>localhost</code> (<code>npx hyperframes preview</code>).</li>
+        <li><strong>Cấp độ 4 — Tự dựng ứng dụng duyệt video cục bộ (<code>Rubric Editor</code>):</strong> Dùng AI viết một trang web nhỏ chạy trên máy tính cho phép đưa cả <strong>video người nói thật (Talking Head)</strong> vào tự động cắt bỏ khoảng nghỉ (<code>edits out the pauses</code>), bấm vào bất kỳ giây nào trên thanh thời gian để ghim nhận xét và bấm 1 nút gom toàn bộ nhận xét gửi lại cho AI sửa một lần.</li>
+      </ul>
+
+      <div class="grid-2col">
+        <div class="media-card">
+          <div class="media-card-header">
+            <span class="media-card-title">Cấp độ 3: Giao diện HyperFrames Studio chạy miễn phí trên máy</span>
+            <span class="media-card-meta">Phút 10:18</span>
+          </div>
+          <img src="./assets/motion03/frames/ref_hyperframes_studio.jpg" alt="Giao diện HyperFrames Studio trên máy tính" loading="lazy">
+          <p class="media-caption">Mở bằng lệnh <code>npx hyperframes preview</code> ngay trên trình duyệt máy cá nhân, có thanh kéo thời gian và cột sửa biến số.</p>
+        </div>
+        <div class="media-card">
+          <div class="media-card-header">
+            <span class="media-card-title">Cấp độ 4: Xưởng biên tập cục bộ tự cắt khoảng nghỉ người nói</span>
+            <span class="media-card-meta">Phút 11:12</span>
+          </div>
+          <img src="./assets/motion03/frames/ref_rubric_editor_cuts.jpg" alt="Giao diện Rubric Editor cắt khoảng nghỉ" loading="lazy">
+          <p class="media-caption">Đưa video quay người nói thật vào cắt gọn các khoảng ngập ngừng và ghim bình luận theo từng mốc giây.</p>
+        </div>
+      </div>
+
+      <h3 id="5-bo-prompt-goc">1.3. Nguyên Văn 5 Bộ Prompt Trên Màn Hình Của Jay E (Kèm Giải Nghĩa Tiếng Việt)</h3>
+      <p>Dưới đây là nguyên văn 100% 5 câu lệnh xuất hiện trên màn hình của Jay E tại các mốc giây <code>02:27</code>, <code>07:45</code>, <code>08:02</code>, <code>10:05</code> và <code>10:38</code>:</p>
+
+      <!-- PROMPT 1 -->
+      <h4>📋 Prompt 1: Bản Đề Bài 6 Thành Phần Gửi Vào <code>/motion</code> (Giây 02:27 — Frame 009)</h4>
+      <div class="media-card">
+        <div class="media-card-header">
+          <span class="media-card-title">Ảnh chụp màn hình Prompt 1: Bản Brief Risograph Ember Roast</span>
+          <span class="media-card-meta">Giây 02:27 • Frame 009</span>
+        </div>
+        <img src="./assets/motion03/frames/ref_prompt1_brief.jpg" alt="Màn hình Prompt 1 tại giây 02:27" loading="lazy">
+      </div>
+      <div class="code-header">
+        <span>PROMPT 1 — BẢN BRIEF 6 THÀNH PHẦN (RISOGRAPH AD)</span>
+        <button class="copy-code-btn" onclick="copyCodeBlock(this)">Sao chép Prompt</button>
+      </div>
+      <pre><code>Make a 20-second animated ad for a small-batch coffee roaster called Ember Roast. 1920 x 1080, 30 frames a second.
+
+The look: a risograph print. Two inks only, warm orange #E2683A and deep teal #1E5A64, on an off-white stock #F3ECDD. Visible grain, flat shapes, and each ink layer printed a few pixels off-register, so the colours never quite line up.
+
+Who watches and where: coffee lovers, as an Instagram feed post and on the shop's website.
+
+Scene 1, The beans (5 s): green coffee beans tumble in and settle into a pile.
+Scene 2, The roast (6 s): a roasting drum turns, the beans go from green to dark brown, steam curls up.
+Scene 3, The pour (5 s): coffee pours into a cup and the line "Roasted in small batches." prints on.
+Scene 4, The name (4 s): "Ember Roast" and "$19 a bag" print in and hold for the last 2 seconds.
+
+Avoid: more than 6 words on screen at once, text near the edges, any fact or logo I haven't given you.
+
+Done means: all 4 scenes play in order, every word is readable at phone size, and the name holds at the end.</code></pre>
+      <blockquote><strong>Dịch nghĩa &amp; Cấu trúc 6 phần:</strong> (1) Thời lượng 20 giây, kích thước 1920×1080, 30fps &rarr; (2) Chất liệu bản in Risograph 2 màu mực Cam <code>#E2683A</code> và Xanh cổ vịt <code>#1E5A64</code> trên nền giấy kem <code>#F3ECDD</code>, có hạt giấy và in lệch bản vài pixel &rarr; (3) Người xem &amp; nơi đăng &rarr; (4) Danh sách 4 cảnh kèm số giây cụ thể &rarr; (5) Điều cấm (<code>Avoid</code>): không quá 6 chữ trên một màn hình, không đặt chữ sát mép, không tự bịa thông tin &rarr; (6) Tiêu chí hoàn thành (<code>Done means</code>): chạy đủ 4 cảnh theo thứ tự, chữ đọc rõ trên điện thoại và giữ yên tên thương hiệu ở 2 giây cuối.</blockquote>
+
+      <!-- PROMPT 2 -->
+      <h4>📋 Prompt 2: Cài Đặt <code>kie-mcp</code> Có Chốt Chặn Bảo Mật API Key &amp; Báo Giá Trước (Giây 07:45 — Frame 049)</h4>
+      <div class="media-card">
+        <div class="media-card-header">
+          <span class="media-card-title">Ảnh chụp màn hình Prompt 2: Cài đặt kie-mcp an toàn</span>
+          <span class="media-card-meta">Giây 07:45 • Frame 049</span>
+        </div>
+        <img src="./assets/motion03/frames/ref_prompt2_kiemcp.jpg" alt="Màn hình Prompt 2 tại giây 07:45" loading="lazy">
+      </div>
+      <div class="code-header">
+        <span>PROMPT 2 — CÀI ĐẶT KIE-MCP &amp; KIỂM TRA CHI PHÍ (ESTIMATE_ONLY)</span>
+        <button class="copy-code-btn" onclick="copyCodeBlock(this)">Sao chép Prompt</button>
+      </div>
+      <pre><code>Set up the free community kie-mcp server so Claude can make images and videos with my Kie AI account. It is the npm package kie-mcp (MIT licence, github.com/elibarnell/kie-mcp).
+1. Check that Node.js 18 or newer is installed. If it isn't, tell me how to install it and stop there.
+2. Add it to Claude Code for my user, pinned to the version I checked:
+   claude mcp add kie -s user -e KIE_API_KEY=PASTE_YOUR_KIE_KEY_HERE -e KIE_MAX_CREDITS_PER_CALL=500 -- npx -y kie-mcp@0.8.0
+3. Add the same server to the Claude desktop app's config file (Settings, Developer, Edit Config opens it), under "mcpServers": command "npx", args "-y" and "kie-mcp@0.8.0", and the same two env values. Keep every server already in that file. On Windows, if plain npx doesn't start, use command "cmd" with args "/c", "npx", "-y", "kie-mcp@0.8.0".
+4. Never ask me to paste my API key into this chat. Show me the exact file and line where I replace PASTE_YOUR_KIE_KEY_HERE with my key from kie.ai/api-key, in each place you added it.
+5. Once I've pasted it and restarted Claude, run check_credits to prove it works, then estimate one GPT Image 2 picture at 2K with estimate_only before you make anything.</code></pre>
+
+      <!-- PROMPT 3 -->
+      <h4>📋 Prompt 3: Điều Phối Sinh Ảnh/Video Nền Trước Rồi Bọc Chữ Motion Lên Trên (Giây 08:02 — Frame 054)</h4>
+      <div class="media-card">
+        <div class="media-card-header">
+          <span class="media-card-title">Ảnh chụp màn hình Prompt 3: Tạo cảnh thật làm nền + Phủ chữ Risograph</span>
+          <span class="media-card-meta">Giây 08:02 • Frame 054</span>
+        </div>
+        <img src="./assets/motion03/frames/ref_prompt3_hybrid.jpg" alt="Màn hình Prompt 3 tại giây 08:02" loading="lazy">
+      </div>
+      <div class="code-header">
+        <span>PROMPT 3 — TẠO ẢNH/VIDEO NỀN TRƯỚC RỒI PHỦ MOTION LÊN TRÊN</span>
+        <button class="copy-code-btn" onclick="copyCodeBlock(this)">Sao chép Prompt</button>
+      </div>
+      <pre><code>Through my Kie connection (kie-mcp), make the shots for my Dawn Roast ad first, then build the Motion animation around them.
+1. One photoreal picture of the roastery at sunrise, with GPT Image 2 at 2K, 16:9, for the opening scene.
+2. One five-second clip of coffee beans pouring into a bag, with Kling 3.0, 16:9, no sound, for the price scene.
+3. Before you make anything, run estimate_only for both, show me the cost in US dollars and wait for my go.
+4. Then build the 20-second ad around them: the photo behind scene 1, the clip behind scene 4, and "Dawn Roast" and "$22 a bag" animated on top in the riso look, so I can still change every word in Tweaks.</code></pre>
+
+      <!-- PROMPT 4 & 5 -->
+      <h4>📋 Prompt 4 &amp; Prompt 5: Cài Đặt <code>HyperFrames</code> Miễn Phí (Giây 10:05) &amp; Tự Dựng "Local Rig" Duyệt Video Theo Giây (Giây 10:38)</h4>
+      <div class="grid-2col">
+        <div class="media-card">
+          <div class="media-card-header">
+            <span class="media-card-title">Màn hình Prompt 4: Cài đặt HyperFrames</span>
+            <span class="media-card-meta">Giây 10:05 • Frame 072</span>
+          </div>
+          <img src="./assets/motion03/frames/ref_prompt4_hyperframes.jpg" alt="Màn hình Prompt 4 cài đặt HyperFrames" loading="lazy">
+        </div>
+        <div class="media-card">
+          <div class="media-card-header">
+            <span class="media-card-title">Màn hình Prompt 5: Tự dựng Local Rig</span>
+            <span class="media-card-meta">Giây 10:38 • Frame 083</span>
+          </div>
+          <img src="./assets/motion03/frames/ref_prompt5_local_rig.jpg" alt="Màn hình Prompt 5 tự dựng Local Rig" loading="lazy">
+        </div>
+      </div>
+
+      <div class="code-header">
+        <span>PROMPT 4 — CÀI ĐẶT HYPERFRAMES (HEYGEN OPEN-SOURCE) VÀO CLAUDE CODE</span>
+        <button class="copy-code-btn" onclick="copyCodeBlock(this)">Sao chép Prompt</button>
+      </div>
+      <pre><code>Set up HyperFrames, HeyGen's free, open-source video tool, so you can make and edit videos for me in Claude Code.
+1. Check that Node.js 22 or newer and FFmpeg are installed. If either is missing, tell me how to install it and stop there.
+2. Run: claude plugin marketplace add heygen-com/hyperframes
+3. Run: claude plugin install hyperframes@hyperframes
+4. Run: claude plugin details hyperframes, and check it lists the hyperframes, general-video and media-use skills.
+5. Tell me to restart Claude Code so the skills load.
+6. From then on, whenever I ask for a video, use /hyperframes:hyperframes, render it to MP4, and open the preview with npx hyperframes preview, so I can scrub through it and change things in HyperFrames Studio.</code></pre>
+
+      <div class="code-header">
+        <span>PROMPT 5 — TỰ DỰNG ỨNG DỤNG DUYỆT VIDEO &amp; GHIM BÌNH LUẬN THEO GIÂY TRÊN MÁY</span>
+        <button class="copy-code-btn" onclick="copyCodeBlock(this)">Sao chép Prompt</button>
+      </div>
+      <pre><code>Build me a small app that runs on my computer, so I can review and edit my videos with Claude.
+- A homepage that lists my video projects, newest first.
+- Inside a project, each clip plays with a <span>time</span><span>line</span>. I click a moment to pin a comment there.
+- A "Copy comments" button that turns every comment into one prompt I can paste back to Claude.
+Keep it simple: plain HTML and a small Node server, one command to start it, and it never deletes my files.</code></pre>
+
+      <h3 id="tinh-kha-thi">1.4. Đánh Giá Tính Khả Thi &amp; Bảng Đối Chiếu Khi Triển Khai Thực Tế</h3>
+      <p>Toàn bộ kỹ thuật trong video của Jay E <strong>khả thi 100%</strong> ngay trên máy tính cá nhân thông qua <strong>Remotion Studio (60fps)</strong> hoặc <strong>HyperFrames</strong>. Khi đặt lên bàn cân đối chiếu, hệ thống kết hợp <strong>Remotion 60fps + Bảng biến <code>Tweaks</code> + Phối âm 4 lớp <code>sfx.fedu.vn</code></strong> mang lại những lợi thế thực tế rất rõ rệt:</p>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Hạng mục kỹ thuật</th>
+              <th>Cách làm trong video của Jay E (Claude Motion 30fps)</th>
+              <th>Cách làm thực chiến trong bài học này (Remotion 60fps + Tweaks)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Tốc độ khung hình &amp; Hiển thị Tiếng Việt</strong></td>
+              <td><code>30fps</code> trên đám mây (yêu cầu gói Team/Enterprise); dễ lỗi dấu khi gặp chữ Tiếng Việt có dấu chồng.</td>
+              <td><strong><code>60fps</code> mượt gấp đôi</strong> chạy trực tiếp trên máy tính cá nhân; tích hợp hàm <code>nfc()</code> và <code>lineHeight: 1.28</code> hiển thị 100% dấu Tiếng Việt sắc nét.</td>
+            </tr>
+            <tr>
+              <td><strong>Chất liệu Risograph 2-Ink Print</strong></td>
+              <td>Nền giấy kem <code>#F3ECDD</code>, mực Cam <code>#E2683A</code> và Xanh cổ vịt <code>#1E5A64</code> in lệch bản vài pixel.</td>
+              <td>Kế thừa nguyên bản bảng màu Risograph + hạt giấy <code>radial-gradient</code> + bóng chữ lệch bản <code>5px–8px</code> + rung vi mô liên tục chống khung hình chết.</td>
+            </tr>
+            <tr>
+              <td><strong>Kết hợp Video người nói thật (Hybrid Talking Head)</strong></td>
+              <td>Chỉ xuất hiện ở phần giới thiệu cuối video trên trình biên tập riêng.</td>
+              <td>Lồng trực tiếp <strong>khung chân dung người nói thật</strong> vào Cảnh 2 (khung chữ nhật bo góc Risograph) và Cảnh 6 (khung tròn xoay viền nét đứt).</td>
+            </tr>
+            <tr>
+              <td><strong>Âm thanh &amp; Tiếng động (SFX)</strong></td>
+              <td>Video xuất ra từ Claude Motion <strong>hoàn toàn câm (No sound)</strong>.</td>
+              <td>Ghép sẵn <strong>giọng nói thật + 4 lớp hiệu ứng âm thanh</strong> (<code>sfx.fedu.vn</code>) tự động nén nhẹ khi có tiếng người nói (<code>Voice-Safe</code>).</td>
+            </tr>
+            <tr>
+              <td><strong>Bảng biến số <code>Tweaks</code> sửa chữ &amp; màu</strong></td>
+              <td>Nút <code>Tweaks</code> ở góc dưới bên phải màn hình Claude Motion.</td>
+              <td>Khai báo trực tiếp đối tượng <code>defaultClaudeMotionRisoProps</code> ở đầu file <code>.tsx</code> — sửa chữ, đổi màu giấy/mực hoặc mở trên trình duyệt gõ trực tiếp y hệt Claude Motion.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <hr>
+
+      <!-- ====================================================================
+           PHẦN II: KẾT QUẢ THỰC CHIẾN — 10 GIÂY ĐẦU VIDEO "NGỮ NGHĨA" (60FPS)
+           ==================================================================== -->
+      <h2 id="phan-2-ket-qua">Phần II. Kết Quả Thực Chiến: 10 Giây Đầu Video "Ngữ Nghĩa" Theo Phong Cách Claude Motion Risograph + Hybrid Talking Head (60fps)</h2>
+
+      <p>Áp dụng chính xác cấu trúc <strong>Prompt 6 thành phần</strong> và chất liệu <strong>Risograph 2-Ink Print</strong> từ Phần I vào 10 giây đầu tiên của video gốc <code>Qc offline - ngữ nghĩa đăng fb9.mp4</code>, dưới đây là kết quả đối chiếu trực diện giữa video đầu vào và thành phẩm hoàn chỉnh:</p>
+
+      <h3 id="doi-chieu-before-after">2.1. Bàn Đối Chiếu Trực Diện (Before &amp; After): Video Gốc Quay Thô vs. Thành Phẩm Claude Motion Risograph 60fps</h3>
+
+      <div class="grid-2col" style="align-items: start;">
+        <div class="media-card">
+          <div class="media-card-header">
+            <span class="media-card-title">1. Video Gốc Đầu Vào (10s Đầu • Quay Thô)</span>
+            <span class="media-card-meta">Input • Qc offline fb9.mp4</span>
+          </div>
+          <div class="portrait-video-wrap">
+            <video controls playsinline preload="metadata" poster="./assets/motion03/qc_fb9_input_10s_poster.jpg">
+              <source src="./assets/motion03/qc_fb9_input_10s.mp4" type="video/mp4">
+            </video>
+          </div>
+          <p class="media-caption">File gốc trước khi xử lý: có sẵn chữ cũ đốt cứng ở mép trên/dưới và chưa có đồ họa chuyển động Risograph theo nhịp nói.</p>
+        </div>
+
+        <div class="media-card">
+          <div class="media-card-header">
+            <span class="media-card-title">2. Thành Phẩm Claude Motion Risograph + Hybrid (60fps)</span>
+            <span class="media-card-meta">Output • 1080×1920 @ 60fps</span>
+          </div>
+          <div class="portrait-video-wrap">
+            <video controls playsinline preload="metadata" poster="./assets/motion03/qc_fb9_claude_motion_10s_poster.jpg">
+              <source src="./assets/motion03/qc_fb9_claude_motion_10s.mp4" type="video/mp4">
+            </video>
+          </div>
+          <p class="media-caption">Thành phẩm <code>qc_fb9_claude_motion_10s.mp4</code>: 7 phân cảnh Risograph + 2 cảnh Hybrid Talking Head đã cắt sạch chữ rác cũ, chạy mượt 60fps kèm âm thanh 4 lớp.</p>
+        </div>
+      </div>
+
+      <h3 id="ban-plan-6-thanh-phan">2.2. Bản Kế Hoạch &amp; Prompt 6 Thành Phần Đã Thực Thi</h3>
+
+      <div class="spec-container">
+        <div class="spec-block">
+          <div class="spec-label"><span class="apple-badge dark">1. THÔNG SỐ KỸ THUẬT</span></div>
+          <div class="spec-value">Thời lượng <strong>10.0 giây</strong> (<code>600 frames</code> ở tốc độ <code>60fps</code>), khung hình dọc <code>1080×1920</code> (9:16), định dạng xuất <code>H.264 yuv420p</code> tương thích mọi thiết bị di động và Telegram.</div>
+        </div>
+        <div class="spec-block">
+          <div class="spec-label"><span class="apple-badge riso-orange">2. CHẤT LIỆU THỊ GIÁC</span></div>
+          <div class="spec-value"><strong>The Look — Risograph Print + Hybrid Talking Head:</strong><br>• Nền giấy in kem cổ điển <span class="color-swatch"><span class="color-dot" style="background:#F3ECDD;"></span>#F3ECDD</span> phủ hạt giấy mịn.<br>• Hai màu mực chủ đạo: <strong>Cam đất</strong> <span class="color-swatch"><span class="color-dot" style="background:#E2683A;"></span>#E2683A</span> và <strong>Xanh cổ vịt</strong> <span class="color-swatch"><span class="color-dot" style="background:#1E5A64;"></span>#1E5A64</span>, kết hợp <strong>Mực than đậm</strong> <span class="color-swatch"><span class="color-dot" style="background:#122026;"></span>#122026</span> cho lớp chữ chính.<br>• Mọi hình vẽ SVG và tiêu đề đều có lớp mực phụ in lệch trục (<code>5px–8px off-register</code>) tạo chiều sâu xưởng in thủ công.</div>
+        </div>
+        <div class="spec-block">
+          <div class="spec-label"><span class="apple-badge riso-teal">3. LUẬT CẤM (AVOID)</span></div>
+          <div class="spec-value">Không hiển thị quá 6 từ trên một màn hình cùng lúc; không đặt chữ sát mép ngoài khung căn lề in ấn (<code>inset: 54px</code>); không để lọt bất kỳ dòng chữ cũ nào đã đốt sẵn trong video gốc vào khung chân dung người nói.</div>
+        </div>
+        <div class="spec-block">
+          <div class="spec-label"><span class="apple-badge emerald">4. TIÊU CHÍ HOÀN THÀNH</span></div>
+          <div class="spec-value">Cả 7 phân cảnh chạy nối tiếp khớp chính xác từng câu thoại của anh Việt; không có bất kỳ khung hình nào đứng chết (duy trì rung nhẹ <code>microScale</code> và <code>jitterX/Y</code>); con dấu chốt <code>KỸ NĂNG THẬT &gt; DIỄN XUẤT</code> đóng xuống và giữ vững đến hết giây thứ 10.</div>
+        </div>
+      </div>
+
+      <h3 id="bang-7-phan-canh">2.3. Bảng Giải Phẫu 7 Phân Cảnh Khớp Từng Nhịp Thoại (0.00s – 10.00s) &amp; Lưới Kiểm Định</h3>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Phân cảnh</th>
+              <th>Mốc giây &amp; Frame (60fps)</th>
+              <th>Lời thoại gốc của anh Việt</th>
+              <th>Thiết kế Chuyển động (Risograph 2-Ink + Hybrid Talking Head)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Scene 1</strong></td>
+              <td><code>0.00s – 1.47s</code><br>(<code>f0 &rarr; f88</code>)</td>
+              <td><em>"Cái mạng xã hội cũ"</em></td>
+              <td>Bánh răng mạng lưới cũ gồm 2 bản mực Cam <code>#E2683A</code> và Xanh <code>#1E5A64</code> in lệch trục (<code>+6px, +5px</code>) quay ngược chiều nhau, đẩy tiêu đề <strong><code>CÁI MẠNG / XÃ HỘI CŨ</code></strong> trượt lên bằng lò xo vật lý.</td>
+            </tr>
+            <tr>
+              <td><strong>Scene 2</strong></td>
+              <td><code>1.47s – 3.03s</code><br>(<code>f88 &rarr; f182</code>)</td>
+              <td><em>"mà mình từng biết"</em></td>
+              <td><strong>Hybrid Talking Head #1:</strong> Khung chân dung anh Việt nói chuyện thật (đã căn <code>objectPosition: '50% 74%'</code> và phóng <code>scale(1.28)</code> cắt sạch dòng chữ cũ ở mép trên video gốc) đặt trong khung Risograph lệch trục Cam/Xanh kèm tiêu đề <strong><code>MÀ MÌNH / TỪNG BIẾT</code></strong>.</td>
+            </tr>
+            <tr>
+              <td><strong>Scene 3</strong></td>
+              <td><code>3.03s – 3.97s</code><br>(<code>f182 &rarr; f238</code>)</td>
+              <td><em>"nó đã chết rồi."</em></td>
+              <td><strong>Hard Plate Invert:</strong> Đảo toàn bộ nền giấy sang Cam đất <code>#E2683A</code> (từ <code>f182</code>) rồi sập sang Đen xanh <code>#122026</code> tại đúng chữ <em>"chết rồi"</em> (<code>f204</code>); đường nhịp tim đứt gãy bị thanh mực cam gạch chéo kèm chữ <strong><code>NÓ ĐÃ / CHẾT RỒI.</code></strong> đập mạnh.</td>
+            </tr>
+            <tr>
+              <td><strong>Scene 4</strong></td>
+              <td><code>3.97s – 5.43s</code><br>(<code>f238 &rarr; f326</code>)</td>
+              <td><em>"Bây giờ là kỷ nguyên của"</em></td>
+              <td>La bàn 2 vòng quỹ đạo elip Risograph (1 vòng Cam, 1 vòng Xanh cổ vịt lệch góc <code>45°</code>) xoay giao thoa, mở ra dòng chữ <strong><code>BÂY GIỜ / LÀ KỶ NGUYÊN CỦA</code></strong>.</td>
+            </tr>
+            <tr>
+              <td><strong>Scene 5</strong></td>
+              <td><code>5.43s – 7.30s</code><br>(<code>f326 &rarr; f438</code>)</td>
+              <td><em>"NGỮ NGHĨA"</em></td>
+              <td><strong>Hero Centerpiece:</strong> Hai khối cầu mực Cam và Xanh tách mở sang hai phía (<code>vennSpread = 64px</code>) tạo nhân giao thoa ở tâm, đẩy chữ đại <strong><code>NGỮ / NGHĨA</code></strong> cỡ lớn <code>148px</code> nổi bật giữa trang giấy.</td>
+            </tr>
+            <tr>
+              <td><strong>Scene 6</strong></td>
+              <td><code>7.30s – 8.23s</code><br>(<code>f438 &rarr; f494</code>)</td>
+              <td><em>"Bạn không cần thiết phải làm"</em></td>
+              <td><strong>Hybrid Talking Head #2:</strong> Khung tròn Risograph đường kính <code>520px</code> có viền nét đứt màu Cam xoay tròn quanh cảnh anh Việt đang nói chuyện trực diện (dùng <code>Sequence</code> + <code>objectPosition: '50% 24%'</code> sạch 100% chữ cũ) kèm dòng chữ <strong><code>BẠN KHÔNG CẦN / THIẾT PHẢI LÀM</code></strong>.</td>
+            </tr>
+            <tr>
+              <td><strong>Scene 7</strong></td>
+              <td><code>8.23s – 10.00s</code><br>(<code>f494 &rarr; f600</code>)</td>
+              <td><em>"idol trên video"</em></td>
+              <td>Nhãn mờ <code>× DIỄN VIÊN HÀO NHOÁNG</code> phía trên, thanh mực Cam gạch chéo ngang chữ <strong><code>IDOL / TRÊN VIDEO</code></strong> tại <code>f532</code>, sau đó đóng dấu chốt <strong><code>KỸ NĂNG THẬT &gt; DIỄN XUẤT</code></strong> tại <code>f542</code> và giữ vững đến hết giây thứ 10.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="media-card">
+        <div class="media-card-header">
+          <span class="media-card-title">Lưới Trình Chiếu Đầy Đủ 7 Phân Cảnh (Scene 1 &rarr; Scene 7)</span>
+          <span class="media-card-meta">7 Scenes Complete Showcase</span>
+        </div>
+        <img src="./assets/motion03/frames/viet_riso_7scenes_showcase.jpg" alt="Lưới 7 phân cảnh hoàn chỉnh của video Claude Motion Risograph 10s" loading="lazy">
+        <p class="media-caption">Hàng trên: Scene 1 (Bánh răng mạng cũ), Scene 2 (Hybrid Talking Head #1), Scene 3 (Đảo bản in Chết rồi), Scene 4 (La bàn kỷ nguyên mới). Hàng dưới: Scene 5 (Giao thoa Ngữ Nghĩa), Scene 6 (Hybrid Talking Head #2 khung tròn), Scene 7 (Gạch chéo Idol &amp; Đóng dấu Kỹ năng thật).</p>
+      </div>
+
+      <h3 id="can-canh-7-scenes">2.4. Cận Cảnh Từng Phân Cảnh (Scene 1 &rarr; Scene 7) &amp; Lưới Kiểm Định 9 Mốc Thời Gian</h3>
+
+      <div class="grid-3col">
+        <div class="media-card">
+          <div class="media-card-header">
+            <span class="media-card-title">Scene 1 (0.75s • f045)</span>
+            <span class="media-card-meta">Bánh răng 2 bản mực</span>
+          </div>
+          <img src="./assets/motion03/frames/scene1_f045.jpg" alt="Scene 1 Cái mạng xã hội cũ" loading="lazy">
+        </div>
+        <div class="media-card">
+          <div class="media-card-header">
+            <span class="media-card-title">Scene 2 (2.25s • f135)</span>
+            <span class="media-card-meta">Hybrid Talking Head #1</span>
+          </div>
+          <img src="./assets/motion03/frames/scene2_f135.jpg" alt="Scene 2 Mà mình từng biết" loading="lazy">
+        </div>
+        <div class="media-card">
+          <div class="media-card-header">
+            <span class="media-card-title">Scene 3 (3.58s • f215)</span>
+            <span class="media-card-meta">Hard Invert • Chết rồi</span>
+          </div>
+          <img src="./assets/motion03/frames/scene3_f215.jpg" alt="Scene 3 Nó đã chết rồi" loading="lazy">
+        </div>
+      </div>
+
+      <div class="grid-3col">
+        <div class="media-card">
+          <div class="media-card-header">
+            <span class="media-card-title">Scene 4 (4.65s • f279)</span>
+            <span class="media-card-meta">La bàn elip đôi</span>
+          </div>
+          <img src="./assets/motion03/frames/scene4_f279.jpg" alt="Scene 4 Bây giờ là kỷ nguyên của" loading="lazy">
+        </div>
+        <div class="media-card">
+          <div class="media-card-header">
+            <span class="media-card-title">Scene 5 (6.30s • f378)</span>
+            <span class="media-card-meta">Hero Venn • NGỮ NGHĨA</span>
+          </div>
+          <img src="./assets/motion03/frames/scene5_f378.jpg" alt="Scene 5 Ngữ Nghĩa" loading="lazy">
+        </div>
+        <div class="media-card">
+          <div class="media-card-header">
+            <span class="media-card-title">Scene 6 (7.75s • f465)</span>
+            <span class="media-card-meta">Hybrid Talking Head #2</span>
+          </div>
+          <img src="./assets/motion03/frames/scene6_f465.jpg" alt="Scene 6 Bạn không cần thiết phải làm" loading="lazy">
+        </div>
+      </div>
+
+      <div class="grid-2col" style="align-items: start;">
+        <div class="media-card">
+          <div class="media-card-header">
+            <span class="media-card-title">Scene 7 (9.40s • f564): Gạch Chéo Idol &amp; Đóng Dấu Chốt</span>
+            <span class="media-card-meta">Final Hold Stamp</span>
+          </div>
+          <div class="portrait-video-wrap">
+            <img src="./assets/motion03/frames/scene7_f564.jpg" alt="Scene 7 Idol trên video - Kỹ năng thật lớn hơn Diễn xuất" loading="lazy">
+          </div>
+          <p class="media-caption">Thanh mực cam gạch ngang chữ <code>IDOL</code> và đóng dấu <code>KỸ NĂNG THẬT &gt; DIỄN XUẤT</code> giữ đến hết giây thứ 10.</p>
+        </div>
+
+        <div class="media-card">
+          <div class="media-card-header">
+            <span class="media-card-title">Lưới 9 Khung Hình Kiểm Định Tự Động (Verifier Grid)</span>
+            <span class="media-card-meta">PASS 100% • 600 frames</span>
+          </div>
+          <div class="portrait-video-wrap">
+            <img src="./assets/motion03/frames/claude_motion_10s_grid.jpg" alt="Lưới 9 khung hình kiểm định tự động" loading="lazy">
+          </div>
+          <p class="media-caption">Kết quả xuất tự động từ công cụ kiểm định <code>verify_motion_deliverable.py</code> trước khi gửi qua Telegram.</p>
+        </div>
+      </div>
+
+      <hr>
+
+      <!-- ====================================================================
+           PHẦN III: HƯỚNG DẪN CHO NGƯỜI MỚI & GIẢI THÍCH CHI TIẾT FILE .TSX
+           ==================================================================== -->
+      <h2 id="phan-3-huong-dan-tsx">Phần III. Hướng Dẫn Cho Người Mới Tự Làm Trên AI Của Họ &amp; Giải Thích Chi Tiết File Mã Nguồn .TSX</h2>
+
+      <h3 id="file-tsx-va-tweaks-la-gi">3.1. File Mã Nguồn <code>VietClaudeMotionRiso10s.tsx</code> Và Bảng Biến <code>Tweaks</code> Dùng Để Làm Gì?</h3>
+      <p>Người mới bắt đầu thường thắc mắc: <em>"Tôi đã có file video <code>.mp4</code> để đăng lên mạng rồi, vậy file mã nguồn <code>.tsx</code> kèm bảng biến <code>Tweaks</code> dùng để làm gì?"</em></p>
+      <p>Bạn hãy hình dung đơn giản như thế này: Nếu file <code>.mp4</code> là <strong>chiếc bánh đã nướng chín</strong> để mang đi mời khách, thì file <code>VietClaudeMotionRiso10s.tsx</code> chính là <strong>Khuôn thiết kế gốc (giống như file thiết kế gốc trên Canva hoặc dự án gốc trên CapCut)</strong> được lưu trên máy tính của bạn. Đặc biệt, ở ngay đầu file <code>.tsx</code> này có <strong>bảng biến số <code>Tweaks</code> (<code>defaultClaudeMotionRisoProps</code>)</strong> phục vụ <strong>3 việc thực tế</strong>:</p>
+
+      <div class="spec-container">
+        <div class="spec-block">
+          <div class="spec-label"><span class="apple-badge riso-orange">1. SỬA CHỮ TỨC THỜI</span></div>
+          <div class="spec-value"><strong>Đổi bất kỳ dòng chữ nào mà không làm lệch cảnh (Y hệt nút <code>Tweaks</code> của Claude Motion):</strong><br>Toàn bộ 15 dòng chữ xuất hiện trong 7 phân cảnh đã được gom hết lên đầu file (<code>scene1Line1</code>, <code>scene1Line2</code>, ..., <code>scene7Stamp</code>). Khi bạn muốn đổi câu kết từ <code>"KỸ NĂNG THẬT &gt; DIỄN XUẤT"</code> thành <code>"ĐÓNG GÓI KỸ NĂNG THẬT"</code>, bạn (hoặc AI của bạn) chỉ cần sửa đúng 1 dòng chữ đó rồi xuất lại file — <strong>đảm bảo 100% khung hình mặt người nói, hiệu ứng gạch chéo và tiếng động không bị lệch đi dù chỉ 1 mili-giây</strong>.</div>
+        </div>
+        <div class="spec-block">
+          <div class="spec-label"><span class="apple-badge riso-teal">2. ĐỔI MÀU TRONG 3 GIÂY</span></div>
+          <div class="spec-value"><strong>Đổi toàn bộ tông màu thương hiệu của cả video chỉ bằng 4 mã màu:</strong><br>Ở cuối bảng biến có đúng 4 ô màu: <code>stockColor</code> (Màu nền giấy), <code>orangeInk</code> (Màu mực phụ 1), <code>tealInk</code> (Màu mực phụ 2) và <code>darkInk</code> (Màu chữ chính). Nếu bạn bảo AI: <em>"Tôi không thích màu giấy kem nữa, hãy đổi sang nền Đen Vàng Gold"</em>, chỉ cần thay 4 mã màu này là <strong>cả 7 phân cảnh tự động đổi màu đồng bộ</strong> mà không phải vẽ lại bất kỳ hình nào.</div>
+        </div>
+        <div class="spec-block">
+          <div class="spec-label"><span class="apple-badge gold">3. GÕ CHỮ TRỰC TIẾP</span></div>
+          <div class="spec-value"><strong>Mở trên trình duyệt máy tính để tự gõ chữ xem trực tiếp (Live Preview):</strong><br>Khi bạn chạy lệnh mở <code>Remotion Studio</code> trên trình duyệt, bảng biến <code>Tweaks</code> này sẽ tự động hiển thị thành <strong>các ô nhập chữ ở cột bên phải màn hình</strong>. Bạn gõ chữ mới vào ô nào thì chữ trên video đổi ngay lập tức theo tay bạn gõ — giống hệt lúc Jay E đổi chữ <code>Ember Roast</code> thành <code>Dawn Roast</code> và giá <code>$19</code> thành <code>$22</code> ở phút <code>04:25</code> trong video YouTube.</div>
+        </div>
+      </div>
+
+      <h3 id="5-buoc-cho-nguoi-moi">3.2. Năm Bước Cầm Tay Chỉ Việc Để Người Mới Tự Làm Theo Trên AI Của Mình</h3>
+      <p>Dù bạn đang dùng <strong>Claude Code</strong>, <strong>Cursor</strong>, <strong>Windsurf</strong> hay <strong>Antigravity</strong> trên máy tính cá nhân, bạn hoàn toàn không cần biết lập trình mà chỉ cần làm theo đúng 5 bước sau:</p>
+
+      <div class="spec-container">
+        <div class="spec-block">
+          <div class="spec-label"><span class="apple-badge dark">BƯỚC 1: KHỞI TẠO 1 LẦN</span></div>
+          <div class="spec-value"><strong>Tạo thư mục xưởng dựng video Remotion trên máy tính:</strong><br>Mở cửa sổ dòng lệnh (Terminal) hoặc bảo trợ lý AI trên máy của bạn chạy lệnh khởi tạo dự án:<br><code>npx create-video@latest my-motion-studio</code><br>Sau đó cài thêm bộ kỹ năng hướng dẫn AI viết chuyển động mượt:<br><code>npx skills add remotion-dev/skills</code></div>
+        </div>
+        <div class="spec-block">
+          <div class="spec-label"><span class="apple-badge dark">BƯỚC 2: BỎ VIDEO VÀO</span></div>
+          <div class="spec-value"><strong>Đặt file video người nói vào thư mục <code>public/</code>:</strong><br>Chép file video quay người nói của bạn (ví dụ <code>video_goc.mp4</code>) vào thư mục <code>my-motion-studio/public/</code>. Ghi ra các câu thoại chính theo từng khoảng giây (hoặc bảo AI chạy FFmpeg/Whisper tách lời thoại theo giây giúp bạn).</div>
+        </div>
+        <div class="spec-block">
+          <div class="spec-label"><span class="apple-badge riso-orange">BƯỚC 3: GỬI FILE MẪU .TSX</span></div>
+          <div class="spec-value"><strong>Sao chép file <code>VietClaudeMotionRiso10s.tsx</code> bên dưới làm khuôn mẫu cho AI:</strong><br>Tải hoặc sao chép toàn bộ nội dung file <code>VietClaudeMotionRiso10s.tsx</code> ở Mục 3.5 bên dưới, gửi vào khung chat của AI kèm theo <strong>Khung Prompt Mẫu ở Mục 3.3</strong>. Nhờ có sẵn file <code>.tsx</code> mẫu này, AI của bạn sẽ hiểu ngay cách tạo chữ in lệch bản Risograph, cách lồng khung video người nói và cách tách bảng biến <code>Tweaks</code> mà không bao giờ viết code lỗi.</div>
+        </div>
+        <div class="spec-block">
+          <div class="spec-label"><span class="apple-badge riso-teal">BƯỚC 4: XEM &amp; SỬA TWEAKS</span></div>
+          <div class="spec-value"><strong>Mở trình xem trước trên trình duyệt để kiểm tra và sửa chữ:</strong><br>Gõ lệnh <code>npx remotion studio</code> để mở bàn dựng trên trình duyệt. Bấm vào các ô biến số ở cột bên phải để sửa chữ, đổi mã màu mực hoặc căn lại vị trí khung hình mặt người nói (<code>objectPosition</code>) cho vừa mắt nhất.</div>
+        </div>
+        <div class="spec-block">
+          <div class="spec-label"><span class="apple-badge emerald">BƯỚC 5: XUẤT MP4 60FPS</span></div>
+          <div class="spec-value"><strong>Xuất file video MP4 chất lượng cao về máy:</strong><br>Bảo AI hoặc chạy trực tiếp câu lệnh kết xuất:<br><code>npx remotion render src/index.ts VietClaudeMotionRiso-10s out/video_thanh_pham.mp4 --codec=h264 --pixel-format=yuv420p</code></div>
+        </div>
+      </div>
+
+      <h3 id="prompt-mau-copy-paste">3.3. Khung Prompt Mẫu (Copy-Paste) Dành Cho Người Mới Gửi Vào AI Của Mình</h3>
+      <p>Khi làm một video mới, bạn chỉ cần sao chép khung câu lệnh dưới đây, thay lời thoại của bạn vào phần danh sách phân cảnh và đính kèm file <code>VietClaudeMotionRiso10s.tsx</code> (ở Mục 3.5) cho AI:</p>
+
+      <div class="code-header">
+        <span>KHUNG PROMPT MẪU 6 THÀNH PHẦN CHO NGƯỜI MỚI (DÁN VÀO CLAUDE CODE / CURSOR / ANTIGRAVITY)</span>
+        <button class="copy-code-btn" onclick="copyCodeBlock(this)">Sao chép Prompt Mẫu</button>
+      </div>
+      <pre><code>Tôi muốn tạo một video đồ họa chuyển động kết hợp người nói thật (Hybrid Talking Head) dài 10 giây, kích thước dọc 1080x1920, tốc độ 60fps bằng Remotion, dựa trên khuôn mẫu file VietClaudeMotionRiso10s.tsx đính kèm.
+
+1. File video gốc của tôi đặt tại: public/video_goc.mp4 (Hãy lấy âm thanh giọng nói từ video này).
+
+2. Chất liệu thị giác (The Look — Risograph 2-Ink Print):
+- Nền giấy in kem #F3ECDD có phủ hạt giấy mịn.
+- Hai màu mực chủ đạo: Cam đất #E2683A và Xanh cổ vịt #1E5A64, chữ chính màu than đậm #122026.
+- Các hình vẽ SVG và chữ tiêu đề đều in lệch bản vài pixel (off-register) và dùng hàm nfc() để giữ chuẩn dấu Tiếng Việt.
+
+3. Bảng phân cảnh theo đúng nhịp lời nói của tôi (0.00s - 10.00s @ 60fps):
+- Scene 1 (0.0s - 1.5s | f0 - f90): Lời thoại "[Điền câu 1]" -> Đồ họa SVG 2 lớp mực + chữ tiêu đề.
+- Scene 2 (1.5s - 3.0s | f90 - f180): Lời thoại "[Điền câu 2]" -> Khung chữ nhật Hybrid Talking Head chiếu cảnh tôi đang nói trong video_goc.mp4 + chữ tiêu đề bên dưới.
+- Scene 3 (3.0s - 4.0s | f180 - f240): Lời thoại "[Điền câu 3 nhấn mạnh]" -> Đảo màu nền (Hard Plate Invert) + hiệu ứng gạch chéo nhấn mạnh.
+- Scene 4 (4.0s - 5.5s | f240 - f330): Lời thoại "[Điền câu 4]" -> Đồ họa vòng quỹ đạo elip 2 màu mực xoay giao thoa + chữ tiêu đề.
+- Scene 5 (5.5s - 7.3s | f330 - f438): Lời thoại "[Điền từ khóa chính]" -> Hai khối cầu mực Cam &amp; Xanh tách mở ở tâm + chữ đại cỡ 148px.
+- Scene 6 (7.3s - 8.3s | f438 - f498): Lời thoại "[Điền câu 6]" -> Khung tròn Hybrid Talking Head viền nét đứt xoay quanh cảnh tôi đang nói + chữ tiêu đề.
+- Scene 7 (8.3s - 10.0s | f498 - f600): Lời thoại "[Điền câu chốt]" -> Gạch chéo từ khóa sai lầm và đóng dấu câu kết giữ yên đến hết giây thứ 10.
+
+4. Yêu cầu bắt buộc về bảng biến Tweaks:
+- Hãy tách toàn bộ các dòng chữ hiển thị và 4 mã màu ra interface Props và đối tượng defaultProps ở đầu file .tsx (giống hệt VietClaudeMotionRiso10s.tsx) để tôi có thể tự sửa chữ và màu sắc trong bảng Tweaks bất cứ lúc nào.
+- Sau khi viết xong file .tsx và đăng ký vào src/Root.tsx, hãy kết xuất ra file MP4 (yuv420p) và chụp lưới khung hình các cảnh để tôi kiểm tra.</code></pre>
+
+      <h3 id="giai-phau-5-khoi-code">3.4. Giải Thích Từng Khối Lệnh Trong File <code>VietClaudeMotionRiso10s.tsx</code> (Đọc Hiểu Trong 5 Phút)</h3>
+      <p>Để bạn tự tin chỉnh sửa file <code>.tsx</code> ngay cả khi chưa từng học lập trình React, dưới đây là giải thích chi tiết từng khối trong file <code>VietClaudeMotionRiso10s.tsx</code>:</p>
+
+      <!-- KHỐI 1 -->
+      <h4>Khối 1 (Dòng 1 – 60): Bảng Biến Số <code>Tweaks</code> (Nơi Bạn Tự Sửa Chữ Và Màu Sắc)</h4>
+      <p>Đây là khu vực duy nhất bạn cần mở ra sửa khi muốn đổi nội dung chữ hoặc đổi màu sắc. Bạn chỉ cần thay phần chữ nằm trong dấu nháy đơn <code>'...'</code>:</p>
+      <div class="code-header">
+        <span>KHỐI 1 — BẢNG BIẾN TWEAKS (DÒNG 40–60 TRONG VIETCLAUDEMOTIONRISO10S.TSX)</span>
+        <button class="copy-code-btn" onclick="copyCodeBlock(this)">Sao chép</button>
+      </div>
+      <pre><code>export const defaultClaudeMotionRisoProps: Required&lt;ClaudeMotionRisoProps&gt; = {
+  scene1Line1: 'CÁI MẠNG',                  // Chữ dòng 1 của Cảnh 1
+  scene1Line2: 'XÃ HỘI CŨ',                 // Chữ dòng 2 của Cảnh 1
+  scene2Line1: 'MÀ MÌNH',                   // Chữ dòng 1 của Cảnh 2 (Hybrid Talking Head #1)
+  scene2Line2: 'TỪNG BIẾT',                 // Chữ dòng 2 của Cảnh 2
+  scene3Line1: 'NÓ ĐÃ',                     // Chữ dòng 1 của Cảnh 3 (Đảo màu nền)
+  scene3Line2: 'CHẾT RỒI.',                 // Chữ dòng 2 của Cảnh 3
+  scene4Line1: 'BÂY GIỜ',                   // Chữ dòng 1 của Cảnh 4
+  scene4Line2: 'LÀ KỶ NGUYÊN CỦA',          // Chữ dòng 2 của Cảnh 4
+  scene5Hero1: 'NGỮ',                       // Chữ đại dòng 1 của Cảnh 5 (148px)
+  scene5Hero2: 'NGHĨA',                     // Chữ đại dòng 2 của Cảnh 5 (148px)
+  scene6Line1: 'BẠN KHÔNG CẦN',             // Chữ dòng 1 của Cảnh 6 (Hybrid Talking Head #2)
+  scene6Line2: 'THIẾT PHẢI LÀM',            // Chữ dòng 2 của Cảnh 6
+  scene7Target1: 'IDOL',                    // Chữ bị gạch chéo dòng 1 ở Cảnh 7
+  scene7Target2: 'TRÊN VIDEO',              // Chữ dòng 2 ở Cảnh 7
+  scene7Stamp: 'KỸ NĂNG THẬT &gt; DIỄN XUẤT',  // Con dấu đóng chốt ở cuối video
+  stockColor: '#F3ECDD',                    // Mã màu nền giấy kem
+  orangeInk: '#E2683A',                     // Mã màu mực Cam đất
+  tealInk: '#1E5A64',                       // Mã màu mực Xanh cổ vịt
+  darkInk: '#122026',                       // Mã màu mực Than đậm (chữ chính)
+};</code></pre>
+
+      <!-- KHỐI 2 -->
+      <h4>Khối 2 (Dòng 62 – 161): Bộ Khuôn Chữ In Lệch Bản <code>&lt;RisoHeadline /&gt;</code> &amp; Bảo Vệ Dấu Tiếng Việt</h4>
+      <p>Trong phong cách in Risograph, mỗi dòng chữ không bao giờ chỉ có một lớp màu đơn điệu mà gồm <strong>2 lớp mực chồng lên nhau nhưng lệch đi vài pixel</strong> (<code>offsetX = 5</code>, <code>offsetY = 4</code>). Bộ khuôn <code>&lt;RisoHeadline /&gt;</code> tự động nhân đôi mỗi dòng chữ thành:</p>
+      <ul>
+        <li><strong>Lớp mực lót phía dưới (<code>Off-register Underlayer Ink</code>):</strong> Đặt lệch sang phải <code>5px</code>, lệch xuống dưới <code>4px</code> với độ trong suốt <code>opacity: 0.55</code>.</li>
+        <li><strong>Lớp mực chính phía trên (<code>Primary Ink Layer</code>):</strong> Hiển thị sắc nét với chiều cao dòng <code>lineHeight: 1.28</code> và <code>paddingTop: '0.12em'</code> kết hợp hàm <code>nfc(rawLine)</code> để các chữ Tiếng Việt in hoa có dấu chồng (như <code>Ấ</code>, <code>Ể</code>, <code>Ữ</code>, <code>Ộ</code>) không bao giờ bị cắt mất dấu.</li>
+      </ul>
+
+      <!-- KHỐI 3 -->
+      <h4>Khối 3 (Dòng 163 – 218): Hiệu Ứng Hạt Giấy, Rung Vi Mô Chống Đứng Hình &amp; Đảo Màu Nền</h4>
+      <p>Để video nhìn giống một bản in sống động thay vì ảnh tĩnh trên máy tính, khối lệnh này tạo ra 3 hiệu ứng chạy xuyên suốt 600 khung hình:</p>
+      <div class="code-header">
+        <span>KHỐI 3 — RUNG VI MÔ &amp; ĐẢO BẢN IN TỨC THỜI (DÒNG 170–183)</span>
+        <button class="copy-code-btn" onclick="copyCodeBlock(this)">Sao chép</button>
+      </div>
+      <pre><code>// 1. Chuyển động thở vi mô liên tục (không có bất kỳ khung hình nào đứng chết)
+const microScale = 1 + Math.sin(frame * 0.045) * 0.007;
+const jitterX = Math.sin(frame * 0.35) * 0.8;
+const jitterY = Math.cos(frame * 0.28) * 0.8;
+
+// 2. Tự động đảo màu nền ở Cảnh 3 ("nó đã chết rồi")
+const isScene3 = frame &gt;= 182 &amp;&amp; frame &lt; 238;
+const isScene3Slam = frame &gt;= 204 &amp;&amp; frame &lt; 238;
+const bgColor = isScene3Slam ? darkInk : isScene3 ? orangeInk : stockColor;</code></pre>
+
+      <!-- KHỐI 4 -->
+      <h4>Khối 4 (Dòng 324 – 423 &amp; 657 – 740): Cách Lồng Video Người Nói Thật Và Cắt Bỏ Chữ Rác Cũ Ở Mép Video</h4>
+      <p>Khi bạn dùng lại một video cũ đã lỡ chèn sẵn chữ ở mép trên hoặc mép dưới (như video <code>Qc offline - ngữ nghĩa đăng fb9.mp4</code>), làm sao để đưa mặt người nói vào khung Risograph mà <strong>không bị dính dòng chữ cũ</strong>? Trong <code>VietClaudeMotionRiso10s.tsx</code>, kỹ thuật xử lý nằm ở thuộc tính <code>objectPosition</code> và <code>transform: scale(...)</code> của thẻ <code>&lt;OffthreadVideo /&gt;</code>:</p>
+      <div class="code-header">
+        <span>KHỐI 4 — MẸO CẮT SẠCH CHỮ CŨ TRÊN VIDEO GỐC BẰNG OBJECTPOSITION &amp; SCALE</span>
+        <button class="copy-code-btn" onclick="copyCodeBlock(this)">Sao chép</button>
+      </div>
+      <pre><code>&lt;OffthreadVideo
+  src={staticFile('motion02/qc_offline_27s_1080p60.mp4')}
+  muted
+  style={{
+    width: '100%',
+    height: '100%',
+    objectFit: 'cover',
+    objectPosition: '50% 74%',   // Dịch khung lấy nét xuống vùng gương mặt, đẩy chữ cũ ở mép trên ra ngoài
+    transform: 'scale(1.28)',    // Phóng nhẹ 1.28 lần để lấy cận cảnh chân dung sạch 100%
+    transformOrigin: '50% 68%',
+    filter: 'contrast(1.08) saturate(0.92)', // Chỉnh màu video người thật ăn nhập với màu mực Risograph
+  }}
+/&gt;</code></pre>
+
+      <!-- KHỐI 5 -->
+      <h4>Khối 5 (Dòng 219 – 846): Cách Chia Thời Gian 7 Phân Cảnh Theo Số Khung Hình (Frame)</h4>
+      <p>Ở tốc độ <strong>60 khung hình/giây (60fps)</strong>, mỗi 1 giây tương ứng với <code>60 frames</code> (10 giây = <code>600 frames</code>). Do đó, việc hẹn giờ cho từng cảnh xuất hiện và biến mất trong file <code>.tsx</code> chỉ đơn giản là phép nhân số giây với 60:</p>
+      <ul>
+        <li><strong>Scene 1 (<code>0.00s – 1.47s</code>):</strong> <code>frame &lt; 88</code></li>
+        <li><strong>Scene 2 (<code>1.47s – 3.03s</code>):</strong> <code>frame &gt;= 88 &amp;&amp; frame &lt; 182</code></li>
+        <li><strong>Scene 3 (<code>3.03s – 3.97s</code>):</strong> <code>frame &gt;= 182 &amp;&amp; frame &lt; 238</code></li>
+        <li><strong>Scene 4 (<code>3.97s – 5.43s</code>):</strong> <code>frame &gt;= 238 &amp;&amp; frame &lt; 326</code></li>
+        <li><strong>Scene 5 (<code>5.43s – 7.30s</code>):</strong> <code>frame &gt;= 326 &amp;&amp; frame &lt; 438</code></li>
+        <li><strong>Scene 6 (<code>7.30s – 8.23s</code>):</strong> <code>frame &gt;= 438 &amp;&amp; frame &lt; 494</code></li>
+        <li><strong>Scene 7 (<code>8.23s – 10.00s</code>):</strong> <code>frame &gt;= 494</code> (Giữ con dấu kết thúc đến <code>frame 600</code>).</li>
+      </ul>
+
+      <h3 id="full-source-tsx">3.5. Toàn Bộ Mã Nguồn Gốc File <code>VietClaudeMotionRiso10s.tsx</code> (Bản Đầy Đủ 100% Có Nút Sao Chép &amp; Tải File)</h3>
+      <p>Dưới đây là toàn bộ 100% mã nguồn của file <code>VietClaudeMotionRiso10s.tsx</code> đã tạo ra video ở Phần II. Người mới có thể bấm nút <strong>"Sao chép toàn bộ file .TSX"</strong> hoặc <strong>"Tải file VietClaudeMotionRiso10s.tsx"</strong> để đưa trực tiếp vào dự án AI của mình:</p>
+
+      <div class="action-btn-bar">
+        <button class="action-btn" type="button" onclick="copyFullTsx(this)">📋 Sao chép toàn bộ file .TSX (847 dòng)</button>
+        <a class="action-btn secondary" href="./assets/motion03/VietClaudeMotionRiso10s.tsx" download="VietClaudeMotionRiso10s.tsx">⬇️ Tải file VietClaudeMotionRiso10s.tsx về máy</a>
+        <a class="action-btn secondary" href="./assets/motion03/qc_fb9_claude_motion_10s.mp4" download="qc_fb9_claude_motion_10s.mp4">🎬 Tải video mẫu MP4 (60fps)</a>
+      </div>
+
+      <div class="code-header">
+        <span>src/compositions/VietClaudeMotionRiso10s.tsx — FULL SOURCE CODE (1080×1920 @ 60FPS)</span>
+        <button class="copy-code-btn" onclick="copyCodeBlock(this)">Sao chép toàn bộ Code</button>
+      </div>
+      <pre><code id="full-tsx-code">import React from &#x27;react&#x27;;
+import {
+  AbsoluteFill,
+  Audio,
+  Easing,
+  OffthreadVideo,
+  Sequence,
+  interpolate,
+  spring,
+  staticFile,
+  useCurrentFrame,
+  useVideoConfig,
+} from &#x27;remotion&#x27;;
+
+const EXPO_OUT = Easing.bezier(0.16, 1, 0.3, 1);
+const nfc = (s: string): string =&gt; s.normalize(&#x27;NFC&#x27;);
+
+export interface ClaudeMotionRisoProps {
+  // Tweaks Panel (Editable Variables just like Claude Motion Tweaks)
+  scene1Line1?: string;
+  scene1Line2?: string;
+  scene2Line1?: string;
+  scene2Line2?: string;
+  scene3Line1?: string;
+  scene3Line2?: string;
+  scene4Line1?: string;
+  scene4Line2?: string;
+  scene5Hero1?: string;
+  scene5Hero2?: string;
+  scene6Line1?: string;
+  scene6Line2?: string;
+  scene7Target1?: string;
+  scene7Target2?: string;
+  scene7Stamp?: string;
+  stockColor?: string;
+  orangeInk?: string;
+  tealInk?: string;
+  darkInk?: string;
+}
+
+export const defaultClaudeMotionRisoProps: Required&lt;ClaudeMotionRisoProps&gt; = {
+  scene1Line1: &#x27;CÁI MẠNG&#x27;,
+  scene1Line2: &#x27;XÃ HỘI CŨ&#x27;,
+  scene2Line1: &#x27;MÀ MÌNH&#x27;,
+  scene2Line2: &#x27;TỪNG BIẾT&#x27;,
+  scene3Line1: &#x27;NÓ ĐÃ&#x27;,
+  scene3Line2: &#x27;CHẾT RỒI.&#x27;,
+  scene4Line1: &#x27;BÂY GIỜ&#x27;,
+  scene4Line2: &#x27;LÀ KỶ NGUYÊN CỦA&#x27;,
+  scene5Hero1: &#x27;NGỮ&#x27;,
+  scene5Hero2: &#x27;NGHĨA&#x27;,
+  scene6Line1: &#x27;BẠN KHÔNG CẦN&#x27;,
+  scene6Line2: &#x27;THIẾT PHẢI LÀM&#x27;,
+  scene7Target1: &#x27;IDOL&#x27;,
+  scene7Target2: &#x27;TRÊN VIDEO&#x27;,
+  scene7Stamp: &#x27;KỸ NĂNG THẬT &gt; DIỄN XUẤT&#x27;,
+  stockColor: &#x27;#F3ECDD&#x27;,
+  orangeInk: &#x27;#E2683A&#x27;,
+  tealInk: &#x27;#1E5A64&#x27;,
+  darkInk: &#x27;#122026&#x27;,
+};
+
+// Off-register Risograph Headline Helper (6 words max rule, NFC Vietnamese safe)
+const RisoHeadline: React.FC&lt;{
+  lines: string[];
+  fontSize?: number;
+  mainColor: string;
+  offsetColor: string;
+  offsetX?: number;
+  offsetY?: number;
+  align?: &#x27;center&#x27; | &#x27;left&#x27;;
+  lineGap?: number;
+  frameOffset?: number;
+}&gt; = ({
+  lines,
+  fontSize = 92,
+  mainColor,
+  offsetColor,
+  offsetX = 5,
+  offsetY = 4,
+  align = &#x27;center&#x27;,
+  lineGap = 10,
+  frameOffset = 0,
+}) =&gt; {
+  const frame = useCurrentFrame();
+  const { fps } = useVideoConfig();
+
+  return (
+    &lt;div
+      style={{
+        display: &#x27;flex&#x27;,
+        flexDirection: &#x27;column&#x27;,
+        alignItems: align === &#x27;center&#x27; ? &#x27;center&#x27; : &#x27;flex-start&#x27;,
+        gap: lineGap,
+        overflow: &#x27;visible&#x27;,
+        padding: &#x27;12px 24px&#x27;,
+      }}
+    &gt;
+      {lines.map((rawLine, idx) =&gt; {
+        const line = nfc(rawLine);
+        const s = spring({
+          frame: Math.max(0, frame - frameOffset - idx * 4),
+          fps,
+          config: { mass: 0.72, damping: 14, stiffness: 190 },
+        });
+        const y = interpolate(s, [0, 1], [38, 0]);
+        const op = interpolate(s, [0, 0.4, 1], [0, 1, 1]);
+
+        return (
+          &lt;div
+            key={idx}
+            style={{
+              position: &#x27;relative&#x27;,
+              transform: `translateY(${y}px)`,
+              opacity: op,
+              overflow: &#x27;visible&#x27;,
+              paddingTop: &#x27;0.12em&#x27;,
+              paddingBottom: &#x27;0.12em&#x27;,
+            }}
+          &gt;
+            {/* Off-register Underlayer Ink */}
+            &lt;span
+              aria-hidden
+              style={{
+                position: &#x27;absolute&#x27;,
+                left: offsetX,
+                top: offsetY,
+                fontFamily: &quot;&#x27;SVN-Aeonik&#x27;, &#x27;Inter&#x27;, sans-serif&quot;,
+                fontSize,
+                fontWeight: 800,
+                lineHeight: 1.28,
+                letterSpacing: &#x27;-0.02em&#x27;,
+                color: offsetColor,
+                opacity: 0.55,
+                whiteSpace: &#x27;nowrap&#x27;,
+                userSelect: &#x27;none&#x27;,
+              }}
+            &gt;
+              {line}
+            &lt;/span&gt;
+            {/* Primary Ink Layer */}
+            &lt;span
+              style={{
+                position: &#x27;relative&#x27;,
+                fontFamily: &quot;&#x27;SVN-Aeonik&#x27;, &#x27;Inter&#x27;, sans-serif&quot;,
+                fontSize,
+                fontWeight: 800,
+                lineHeight: 1.28,
+                letterSpacing: &#x27;-0.02em&#x27;,
+                color: mainColor,
+                whiteSpace: &#x27;nowrap&#x27;,
+                display: &#x27;inline-block&#x27;,
+              }}
+            &gt;
+              {line}
+            &lt;/span&gt;
+          &lt;/div&gt;
+        );
+      })}
+    &lt;/div&gt;
+  );
+};
+
+export const VietClaudeMotionRiso10s: React.FC&lt;ClaudeMotionRisoProps&gt; = (rawProps) =&gt; {
+  const props = { ...defaultClaudeMotionRisoProps, ...rawProps };
+  const frame = useCurrentFrame();
+  const { fps } = useVideoConfig();
+
+  const { stockColor, orangeInk, tealInk, darkInk } = props;
+
+  // Continuous micro-motion (Hold rule: no dead static frame)
+  const microScale = 1 + Math.sin(frame * 0.045) * 0.007;
+  const jitterX = Math.sin(frame * 0.35) * 0.8;
+  const jitterY = Math.cos(frame * 0.28) * 0.8;
+
+  // Dynamic background color per scene (Scene 3 hard invert on &quot;nó đã chết rồi&quot;)
+  const isScene3 = frame &gt;= 182 &amp;&amp; frame &lt; 238;
+  const isScene3Slam = frame &gt;= 204 &amp;&amp; frame &lt; 238;
+  const bgColor = isScene3Slam
+    ? darkInk
+    : isScene3
+    ? orangeInk
+    : stockColor;
+
+  return (
+    &lt;AbsoluteFill
+      style={{
+        backgroundColor: bgColor,
+        overflow: &#x27;hidden&#x27;,
+        justifyContent: &#x27;center&#x27;,
+        alignItems: &#x27;center&#x27;,
+      }}
+    &gt;
+      {/* Master 10s Voice-Safe Audio (Vietnamese Speech + 4-Layer SFX) */}
+      &lt;Audio src={staticFile(&#x27;motion02/master_audio_10s_v3.wav&#x27;)} /&gt;
+
+      {/* Subtle Risograph Paper Grain &amp; Registration Border */}
+      &lt;AbsoluteFill
+        style={{
+          pointerEvents: &#x27;none&#x27;,
+          backgroundImage:
+            &#x27;radial-gradient(rgba(18, 32, 38, 0.07) 1.2px, transparent 1.2px), radial-gradient(rgba(226, 104, 58, 0.05) 1.2px, transparent 1.2px)&#x27;,
+          backgroundSize: &#x27;18px 18px&#x27;,
+          backgroundPosition: &#x27;0 0, 9px 9px&#x27;,
+          zIndex: 40,
+        }}
+      /&gt;
+
+      {/* Minimalist Print Registration Marks (Safe-Zone Framed) */}
+      &lt;div
+        style={{
+          position: &#x27;absolute&#x27;,
+          inset: 54,
+          border: `2px solid ${isScene3 ? &#x27;rgba(243,236,221,0.22)&#x27; : &#x27;rgba(30,90,100,0.16)&#x27;}`,
+          pointerEvents: &#x27;none&#x27;,
+          zIndex: 35,
+        }}
+      /&gt;
+
+      {/* ====================================================================
+          SCENE 1 (f0 -&gt; f88 | 0.00s - 1.47s): &quot;Cái mạng / xã hội cũ&quot;
+          Off-register Risograph Mechanical Gear + Bold Two-Tone Print
+          ==================================================================== */}
+      {frame &lt; 88 &amp;&amp; (() =&gt; {
+        const gearScale = spring({
+          frame,
+          fps,
+          config: { mass: 0.8, damping: 13, stiffness: 170 },
+        });
+        const gearRot = frame * 1.1;
+        const exitSlideY = interpolate(frame, [74, 88], [0, -140], {
+          extrapolateLeft: &#x27;clamp&#x27;,
+          extrapolateRight: &#x27;clamp&#x27;,
+          easing: EXPO_OUT,
+        });
+        const exitOp = interpolate(frame, [76, 87], [1, 0], {
+          extrapolateLeft: &#x27;clamp&#x27;,
+          extrapolateRight: &#x27;clamp&#x27;,
+        });
+
+        return (
+          &lt;div
+            style={{
+              display: &#x27;flex&#x27;,
+              flexDirection: &#x27;column&#x27;,
+              alignItems: &#x27;center&#x27;,
+              gap: 44,
+              transform: `scale(${microScale}) translateY(${exitSlideY}px)`,
+              opacity: exitOp,
+            }}
+          &gt;
+            {/* Off-Register Risograph Icon: Old Social Network Nodes */}
+            &lt;div
+              style={{
+                position: &#x27;relative&#x27;,
+                width: 240,
+                height: 240,
+                transform: `scale(${gearScale})`,
+              }}
+            &gt;
+              {/* Orange Ink Plate (Off-register +6px, +5px) */}
+              &lt;svg
+                width=&quot;240&quot;
+                height=&quot;240&quot;
+                viewBox=&quot;0 0 200 200&quot;
+                style={{
+                  position: &#x27;absolute&#x27;,
+                  left: 6 + jitterX,
+                  top: 5 + jitterY,
+                  transform: `rotate(${gearRot}deg)`,
+                  opacity: 0.85,
+                }}
+              &gt;
+                &lt;circle
+                  cx=&quot;100&quot;
+                  cy=&quot;100&quot;
+                  r=&quot;68&quot;
+                  fill=&quot;none&quot;
+                  stroke={orangeInk}
+                  strokeWidth=&quot;12&quot;
+                  strokeDasharray=&quot;24 14&quot;
+                /&gt;
+                &lt;circle cx=&quot;100&quot; cy=&quot;100&quot; r=&quot;24&quot; fill={orangeInk} /&gt;
+              &lt;/svg&gt;
+
+              {/* Deep Teal Ink Plate */}
+              &lt;svg
+                width=&quot;240&quot;
+                height=&quot;240&quot;
+                viewBox=&quot;0 0 200 200&quot;
+                style={{
+                  position: &#x27;absolute&#x27;,
+                  left: 0,
+                  top: 0,
+                  transform: `rotate(${-gearRot * 0.7}deg)`,
+                }}
+              &gt;
+                &lt;circle
+                  cx=&quot;100&quot;
+                  cy=&quot;100&quot;
+                  r=&quot;68&quot;
+                  fill=&quot;none&quot;
+                  stroke={tealInk}
+                  strokeWidth=&quot;10&quot;
+                /&gt;
+                &lt;line x1=&quot;32&quot; y1=&quot;100&quot; x2=&quot;168&quot; y2=&quot;100&quot; stroke={tealInk} strokeWidth=&quot;8&quot; /&gt;
+                &lt;line x1=&quot;100&quot; y1=&quot;32&quot; x2=&quot;100&quot; y2=&quot;168&quot; stroke={tealInk} strokeWidth=&quot;8&quot; /&gt;
+                &lt;circle cx=&quot;100&quot; cy=&quot;100&quot; r=&quot;18&quot; fill={stockColor} stroke={tealInk} strokeWidth=&quot;8&quot; /&gt;
+              &lt;/svg&gt;
+            &lt;/div&gt;
+
+            &lt;RisoHeadline
+              lines={[props.scene1Line1, props.scene1Line2]}
+              fontSize={104}
+              mainColor={darkInk}
+              offsetColor={orangeInk}
+              offsetX={6}
+              offsetY={5}
+              frameOffset={4}
+            /&gt;
+          &lt;/div&gt;
+        );
+      })()}
+
+      {/* ====================================================================
+          SCENE 2 (f88 -&gt; f182 | 1.47s - 3.03s): &quot;mà mình / từng biết&quot;
+          HYBRID TALKING HEAD CARD #1 + Off-Register Risograph Frame
+          ==================================================================== */}
+      {frame &gt;= 88 &amp;&amp; frame &lt; 182 &amp;&amp; (() =&gt; {
+        const localF = frame - 88;
+        const cardEnter = spring({
+          frame: localF,
+          fps,
+          config: { mass: 0.75, damping: 14, stiffness: 185 },
+        });
+        const cardScale = interpolate(cardEnter, [0, 1], [0.86, 1]);
+        const exitScale = interpolate(frame, [168, 181], [1, 1.12], {
+          extrapolateLeft: &#x27;clamp&#x27;,
+          extrapolateRight: &#x27;clamp&#x27;,
+          easing: EXPO_OUT,
+        });
+
+        return (
+          &lt;div
+            style={{
+              display: &#x27;flex&#x27;,
+              flexDirection: &#x27;column&#x27;,
+              alignItems: &#x27;center&#x27;,
+              gap: 36,
+              transform: `scale(${cardScale * exitScale * microScale})`,
+            }}
+          &gt;
+            {/* Off-Register Risograph Photo/Footage Frame */}
+            &lt;div style={{ position: &#x27;relative&#x27;, width: 660, height: 760 }}&gt;
+              {/* Offset Orange Ink Shadow Block */}
+              &lt;div
+                style={{
+                  position: &#x27;absolute&#x27;,
+                  inset: 0,
+                  transform: `translate(${16 + jitterX}px, ${16 + jitterY}px)`,
+                  backgroundColor: orangeInk,
+                  borderRadius: 28,
+                }}
+              /&gt;
+              {/* Offset Teal Ink Wireframe */}
+              &lt;div
+                style={{
+                  position: &#x27;absolute&#x27;,
+                  inset: 0,
+                  transform: &#x27;translate(-10px, -10px)&#x27;,
+                  border: `4px solid ${tealInk}`,
+                  borderRadius: 28,
+                }}
+              /&gt;
+              {/* Main Talking Head Video Container */}
+              &lt;div
+                style={{
+                  position: &#x27;relative&#x27;,
+                  width: &#x27;100%&#x27;,
+                  height: &#x27;100%&#x27;,
+                  borderRadius: 24,
+                  overflow: &#x27;hidden&#x27;,
+                  border: `6px solid ${darkInk}`,
+                  backgroundColor: darkInk,
+                }}
+              &gt;
+                &lt;OffthreadVideo
+                  src={staticFile(&#x27;motion02/qc_offline_27s_1080p60.mp4&#x27;)}
+                  muted
+                  style={{
+                    width: &#x27;100%&#x27;,
+                    height: &#x27;100%&#x27;,
+                    objectFit: &#x27;cover&#x27;,
+                    objectPosition: &#x27;50% 74%&#x27;,
+                    transform: &#x27;scale(1.28)&#x27;,
+                    transformOrigin: &#x27;50% 68%&#x27;,
+                    filter: &#x27;contrast(1.08) saturate(0.92)&#x27;,
+                  }}
+                /&gt;
+                {/* Halftone Duotone Tint Overlay */}
+                &lt;div
+                  style={{
+                    position: &#x27;absolute&#x27;,
+                    inset: 0,
+                    background:
+                      &#x27;linear-gradient(180deg, rgba(30,90,100,0.12) 0%, rgba(18,32,38,0.45) 100%)&#x27;,
+                  }}
+                /&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+
+            {/* Risograph Label Below Footage */}
+            &lt;RisoHeadline
+              lines={[props.scene2Line1, props.scene2Line2]}
+              fontSize={96}
+              mainColor={tealInk}
+              offsetColor={orangeInk}
+              offsetX={5}
+              offsetY={4}
+              frameOffset={90}
+            /&gt;
+          &lt;/div&gt;
+        );
+      })()}
+
+      {/* ====================================================================
+          SCENE 3 (f182 -&gt; f238 | 3.03s - 3.97s): &quot;nó đã / CHẾT RỒI.&quot;
+          Hard Risograph Plate Invert + Diagonal Stamp Slash
+          ==================================================================== */}
+      {frame &gt;= 182 &amp;&amp; frame &lt; 238 &amp;&amp; (() =&gt; {
+        const localF = frame - 182;
+        const slamS = spring({
+          frame: Math.max(0, frame - 204),
+          fps,
+          config: { mass: 0.65, damping: 11, stiffness: 240 },
+        });
+        const slashProgress = interpolate(frame, [196, 214], [0, 1], {
+          extrapolateLeft: &#x27;clamp&#x27;,
+          extrapolateRight: &#x27;clamp&#x27;,
+          easing: EXPO_OUT,
+        });
+
+        return (
+          &lt;div
+            style={{
+              display: &#x27;flex&#x27;,
+              flexDirection: &#x27;column&#x27;,
+              alignItems: &#x27;center&#x27;,
+              gap: 32,
+              transform: `scale(${microScale * interpolate(slamS, [0, 1], [1, 1.06])})`,
+            }}
+          &gt;
+            {/* Broken Flatline Pulse Graphic */}
+            &lt;svg width=&quot;520&quot; height=&quot;140&quot; viewBox=&quot;0 0 520 140&quot; style={{ overflow: &#x27;visible&#x27; }}&gt;
+              &lt;path
+                d=&quot;M 20 70 L 150 70 L 185 20 L 220 120 L 255 45 L 285 70 L 500 70&quot;
+                fill=&quot;none&quot;
+                stroke={stockColor}
+                strokeWidth=&quot;12&quot;
+                strokeLinecap=&quot;round&quot;
+                strokeLinejoin=&quot;round&quot;
+                opacity={0.9}
+              /&gt;
+              &lt;line
+                x1=&quot;80&quot;
+                y1=&quot;125&quot;
+                x2={80 + 360 * slashProgress}
+                y2={125 - 110 * slashProgress}
+                stroke={ isScene3Slam ? orangeInk : darkInk }
+                strokeWidth=&quot;16&quot;
+                strokeLinecap=&quot;round&quot;
+              /&gt;
+            &lt;/svg&gt;
+
+            &lt;RisoHeadline
+              lines={[props.scene3Line1, props.scene3Line2]}
+              fontSize={122}
+              mainColor={stockColor}
+              offsetColor={isScene3Slam ? orangeInk : darkInk}
+              offsetX={7}
+              offsetY={6}
+              frameOffset={183}
+            /&gt;
+          &lt;/div&gt;
+        );
+      })()}
+
+      {/* ====================================================================
+          SCENE 4 (f238 -&gt; f326 | 3.97s - 5.43s): &quot;Bây giờ / là kỷ nguyên của&quot;
+          Two-Ink Risograph Orbit Compass + Clean Transition
+          ==================================================================== */}
+      {frame &gt;= 238 &amp;&amp; frame &lt; 326 &amp;&amp; (() =&gt; {
+        const localF = frame - 238;
+        const enterS = spring({
+          frame: localF,
+          fps,
+          config: { mass: 0.75, damping: 14, stiffness: 180 },
+        });
+        const ringRot = localF * 1.4;
+
+        return (
+          &lt;div
+            style={{
+              display: &#x27;flex&#x27;,
+              flexDirection: &#x27;column&#x27;,
+              alignItems: &#x27;center&#x27;,
+              gap: 42,
+              transform: `scale(${interpolate(enterS, [0, 1], [0.88, 1]) * microScale})`,
+            }}
+          &gt;
+            {/* Two-Ink Risograph Compass Rings */}
+            &lt;div style={{ position: &#x27;relative&#x27;, width: 260, height: 260 }}&gt;
+              &lt;svg
+                width=&quot;260&quot;
+                height=&quot;260&quot;
+                viewBox=&quot;0 0 260 260&quot;
+                style={{
+                  position: &#x27;absolute&#x27;,
+                  left: 5 + jitterX,
+                  top: 4 + jitterY,
+                  transform: `rotate(${ringRot}deg)`,
+                }}
+              &gt;
+                &lt;ellipse
+                  cx=&quot;130&quot;
+                  cy=&quot;130&quot;
+                  rx=&quot;105&quot;
+                  ry=&quot;52&quot;
+                  fill=&quot;none&quot;
+                  stroke={orangeInk}
+                  strokeWidth=&quot;10&quot;
+                /&gt;
+                &lt;circle cx=&quot;235&quot; cy=&quot;130&quot; r=&quot;14&quot; fill={orangeInk} /&gt;
+              &lt;/svg&gt;
+
+              &lt;svg
+                width=&quot;260&quot;
+                height=&quot;260&quot;
+                viewBox=&quot;0 0 260 260&quot;
+                style={{
+                  position: &#x27;absolute&#x27;,
+                  left: 0,
+                  top: 0,
+                  transform: `rotate(${-ringRot * 0.8 + 45}deg)`,
+                }}
+              &gt;
+                &lt;ellipse
+                  cx=&quot;130&quot;
+                  cy=&quot;130&quot;
+                  rx=&quot;105&quot;
+                  ry=&quot;52&quot;
+                  fill=&quot;none&quot;
+                  stroke={tealInk}
+                  strokeWidth=&quot;10&quot;
+                /&gt;
+                &lt;circle cx=&quot;130&quot; cy=&quot;130&quot; r=&quot;26&quot; fill={tealInk} /&gt;
+              &lt;/svg&gt;
+            &lt;/div&gt;
+
+            &lt;RisoHeadline
+              lines={[props.scene4Line1, props.scene4Line2]}
+              fontSize={86}
+              mainColor={darkInk}
+              offsetColor={tealInk}
+              offsetX={5}
+              offsetY={4}
+              frameOffset={240}
+            /&gt;
+          &lt;/div&gt;
+        );
+      })()}
+
+      {/* ====================================================================
+          SCENE 5 (f326 -&gt; f438 | 5.43s - 7.30s): &quot;NGỮ / NGHĨA&quot;
+          Hero Risograph Venn Intersection + Monumental Typography
+          ==================================================================== */}
+      {frame &gt;= 326 &amp;&amp; frame &lt; 438 &amp;&amp; (() =&gt; {
+        const localF = frame - 326;
+        const popS = spring({
+          frame: localF,
+          fps,
+          config: { mass: 0.7, damping: 13, stiffness: 195 },
+        });
+        const vennSpread = interpolate(popS, [0, 1], [0, 64]);
+
+        return (
+          &lt;div
+            style={{
+              display: &#x27;flex&#x27;,
+              flexDirection: &#x27;column&#x27;,
+              alignItems: &#x27;center&#x27;,
+              gap: 36,
+              transform: `scale(${microScale})`,
+            }}
+          &gt;
+            {/* Risograph Multiply Blend Venn Spheres */}
+            &lt;div
+              style={{
+                position: &#x27;relative&#x27;,
+                width: 380,
+                height: 220,
+                display: &#x27;flex&#x27;,
+                justifyContent: &#x27;center&#x27;,
+                alignItems: &#x27;center&#x27;,
+              }}
+            &gt;
+              &lt;div
+                style={{
+                  position: &#x27;absolute&#x27;,
+                  width: 190,
+                  height: 190,
+                  borderRadius: &#x27;50%&#x27;,
+                  backgroundColor: orangeInk,
+                  opacity: 0.82,
+                  transform: `translateX(${-vennSpread + jitterX}px)`,
+                }}
+              /&gt;
+              &lt;div
+                style={{
+                  position: &#x27;absolute&#x27;,
+                  width: 190,
+                  height: 190,
+                  borderRadius: &#x27;50%&#x27;,
+                  backgroundColor: tealInk,
+                  opacity: 0.85,
+                  transform: `translateX(${vennSpread - jitterX}px)`,
+                }}
+              /&gt;
+              {/* Intersection Core */}
+              &lt;div
+                style={{
+                  position: &#x27;relative&#x27;,
+                  width: 68,
+                  height: 68,
+                  borderRadius: &#x27;50%&#x27;,
+                  backgroundColor: stockColor,
+                  border: `6px solid ${darkInk}`,
+                  transform: `scale(${popS})`,
+                }}
+              /&gt;
+            &lt;/div&gt;
+
+            {/* Monumental Hero Words: NGỮ NGHĨA */}
+            &lt;RisoHeadline
+              lines={[props.scene5Hero1, props.scene5Hero2]}
+              fontSize={148}
+              mainColor={darkInk}
+              offsetColor={orangeInk}
+              offsetX={8}
+              offsetY={6}
+              lineGap={4}
+              frameOffset={328}
+            /&gt;
+          &lt;/div&gt;
+        );
+      })()}
+
+      {/* ====================================================================
+          SCENE 6 (f438 -&gt; f494 | 7.30s - 8.23s): &quot;Bạn không cần / thiết phải làm&quot;
+          HYBRID TALKING HEAD CARD #2 + Risograph Teal Banner
+          ==================================================================== */}
+      {frame &gt;= 438 &amp;&amp; frame &lt; 494 &amp;&amp; (() =&gt; {
+        const localF = frame - 438;
+        const enterS = spring({
+          frame: localF,
+          fps,
+          config: { mass: 0.72, damping: 14, stiffness: 195 },
+        });
+
+        return (
+          &lt;div
+            style={{
+              display: &#x27;flex&#x27;,
+              flexDirection: &#x27;column&#x27;,
+              alignItems: &#x27;center&#x27;,
+              gap: 34,
+              transform: `scale(${interpolate(enterS, [0, 1], [0.9, 1]) * microScale})`,
+            }}
+          &gt;
+            {/* Circular/Octagonal Risograph Talking Head Portrait */}
+            &lt;div style={{ position: &#x27;relative&#x27;, width: 520, height: 520 }}&gt;
+              &lt;div
+                style={{
+                  position: &#x27;absolute&#x27;,
+                  inset: 0,
+                  borderRadius: &#x27;50%&#x27;,
+                  backgroundColor: tealInk,
+                  transform: `translate(${-14 + jitterX}px, ${14 + jitterY}px)`,
+                }}
+              /&gt;
+              &lt;div
+                style={{
+                  position: &#x27;absolute&#x27;,
+                  inset: 0,
+                  borderRadius: &#x27;50%&#x27;,
+                  border: `5px dashed ${orangeInk}`,
+                  transform: `translate(12px, -12px) rotate(${localF * 0.8}deg)`,
+                }}
+              /&gt;
+              &lt;div
+                style={{
+                  position: &#x27;relative&#x27;,
+                  width: &#x27;100%&#x27;,
+                  height: &#x27;100%&#x27;,
+                  borderRadius: &#x27;50%&#x27;,
+                  overflow: &#x27;hidden&#x27;,
+                  border: `7px solid ${darkInk}`,
+                  backgroundColor: darkInk,
+                }}
+              &gt;
+                &lt;Sequence from={438} durationInFrames={56} layout=&quot;none&quot;&gt;
+                  &lt;OffthreadVideo
+                    src={staticFile(&#x27;motion02/qc_offline_27s_1080p60.mp4&#x27;)}
+                    startFrom={540}
+                    muted
+                    style={{
+                      width: &#x27;100%&#x27;,
+                      height: &#x27;100%&#x27;,
+                      objectFit: &#x27;cover&#x27;,
+                      objectPosition: &#x27;50% 24%&#x27;,
+                      transform: &#x27;scale(1.36)&#x27;,
+                      transformOrigin: &#x27;50% 28%&#x27;,
+                      filter: &#x27;contrast(1.08) saturate(0.92)&#x27;,
+                    }}
+                  /&gt;
+                &lt;/Sequence&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+
+            &lt;RisoHeadline
+              lines={[props.scene6Line1, props.scene6Line2]}
+              fontSize={84}
+              mainColor={darkInk}
+              offsetColor={orangeInk}
+              offsetX={5}
+              offsetY={4}
+              frameOffset={439}
+            /&gt;
+          &lt;/div&gt;
+        );
+      })()}
+
+      {/* ====================================================================
+          SCENE 7 (f494 -&gt; f600 | 8.23s - 10.00s): &quot;IDOL / TRÊN VIDEO&quot;
+          Risograph Wheel Reject + Heavy Red-Orange Strike Stamp
+          ==================================================================== */}
+      {frame &gt;= 494 &amp;&amp; (() =&gt; {
+        const localF = frame - 494;
+        const lockS = spring({
+          frame: localF,
+          fps,
+          config: { mass: 0.75, damping: 13, stiffness: 190 },
+        });
+        const strikeP = interpolate(frame, [532, 550], [0, 1], {
+          extrapolateLeft: &#x27;clamp&#x27;,
+          extrapolateRight: &#x27;clamp&#x27;,
+          easing: EXPO_OUT,
+        });
+        const stampS = spring({
+          frame: Math.max(0, frame - 544),
+          fps,
+          config: { mass: 0.65, damping: 11, stiffness: 220 },
+        });
+
+        return (
+          &lt;div
+            style={{
+              display: &#x27;flex&#x27;,
+              flexDirection: &#x27;column&#x27;,
+              alignItems: &#x27;center&#x27;,
+              gap: 38,
+              transform: `scale(${interpolate(lockS, [0, 1], [0.88, 1]) * microScale})`,
+            }}
+          &gt;
+            {/* Faded Rejected Role Pill Above */}
+            &lt;div
+              style={{
+                padding: &#x27;10px 32px&#x27;,
+                borderRadius: 999,
+                border: `3px solid ${tealInk}`,
+                opacity: 0.42,
+                fontFamily: &quot;&#x27;SVN-Aeonik&#x27;, sans-serif&quot;,
+                fontSize: 42,
+                fontWeight: 700,
+                color: tealInk,
+                letterSpacing: &#x27;0.04em&#x27;,
+              }}
+            &gt;
+              {nfc(&#x27;× DIỄN VIÊN HÀO NHOÁNG&#x27;)}
+            &lt;/div&gt;
+
+            {/* Target Words with Risograph Strike-Through Bar */}
+            &lt;div style={{ position: &#x27;relative&#x27;, padding: &#x27;10px 30px&#x27; }}&gt;
+              &lt;RisoHeadline
+                lines={[props.scene7Target1, props.scene7Target2]}
+                fontSize={124}
+                mainColor={darkInk}
+                offsetColor={tealInk}
+                offsetX={6}
+                offsetY={5}
+                frameOffset={495}
+              /&gt;
+
+              {/* Heavy Off-Register Orange Strike Bar across &quot;IDOL&quot; */}
+              &lt;div
+                style={{
+                  position: &#x27;absolute&#x27;,
+                  left: &#x27;8%&#x27;,
+                  top: &#x27;28%&#x27;,
+                  width: `${84 * strikeP}%`,
+                  height: 22,
+                  backgroundColor: orangeInk,
+                  transform: &#x27;rotate(-5deg)&#x27;,
+                  boxShadow: `5px 5px 0px ${darkInk}`,
+                  borderRadius: 6,
+                }}
+              /&gt;
+            &lt;/div&gt;
+
+            {/* Final Holding Stamp (Holds cleanly till 10.0s as required by Claude Motion &quot;Done means&quot;) */}
+            {frame &gt;= 542 &amp;&amp; (
+              &lt;div
+                style={{
+                  transform: `scale(${interpolate(stampS, [0, 1], [1.35, 1])}) rotate(-2deg)`,
+                  opacity: interpolate(stampS, [0, 0.4, 1], [0, 1, 1]),
+                  backgroundColor: tealInk,
+                  color: stockColor,
+                  padding: &#x27;20px 44px&#x27;,
+                  borderRadius: 16,
+                  border: `4px solid ${darkInk}`,
+                  boxShadow: `10px 10px 0px ${orangeInk}`,
+                  fontFamily: &quot;&#x27;SVN-Aeonik&#x27;, sans-serif&quot;,
+                  fontSize: 46,
+                  fontWeight: 800,
+                  lineHeight: 1.28,
+                  letterSpacing: &#x27;0.02em&#x27;,
+                }}
+              &gt;
+                {nfc(props.scene7Stamp)}
+              &lt;/div&gt;
+            )}
+          &lt;/div&gt;
+        );
+      })()}
+    &lt;/AbsoluteFill&gt;
+  );
+};
+</code></pre>
+
+    </article>
+  </main>
+
+  <!-- SCROLLSPY & COPY SCRIPT (ZERO ANIMATION) -->
+  <script>
+    function copyCodeBlock(btn) {
+      const header = btn.parentElement;
+      const pre = header.nextElementSibling;
+      if (!pre) return;
+      const text = pre.innerText;
+      navigator.clipboard.writeText(text).then(() => {
+        const old = btn.innerText;
+        btn.innerText = '✓ Đã sao chép!';
+        setTimeout(() => { btn.innerText = old; }, 1800);
+      });
+    }
+
+    function copyFullTsx(btn) {
+      const el = document.getElementById('full-tsx-code');
+      if (!el) return;
+      navigator.clipboard.writeText(el.innerText).then(() => {
+        const old = btn.innerText;
+        btn.innerText = '✓ Đã sao chép toàn bộ 847 dòng mã nguồn .TSX!';
+        setTimeout(() => { btn.innerText = old; }, 2000);
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const headings = document.querySelectorAll('h2[id], h3[id]');
+      const tocLinks = document.querySelectorAll('.ink-toc-link');
+      
+      if(headings.length > 0 && "IntersectionObserver" in window) {
+        const observerOptions = {
+          root: null,
+          rootMargin: '0px 0px -78% 0px',
+          threshold: 0
+        };
+        
+        let activeId = null;
+
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              const id = entry.target.getAttribute('id');
+              if (id !== activeId) {
+                tocLinks.forEach(link => link.classList.remove('is-active'));
+                const activeLink = document.querySelector(`.ink-toc-link[href="#${id}"]`);
+                if (activeLink) {
+                  activeLink.classList.add('is-active');
+                }
+                activeId = id;
+              }
+            }
+          });
+        }, observerOptions);
+
+        headings.forEach(heading => observer.observe(heading));
+      }
+
+      tocLinks.forEach(link => {
+        link.addEventListener('click', () => {
+          document.querySelector('.ink-sidebar').classList.remove('is-open');
+          const overlay = document.querySelector('.ink-overlay');
+          if(overlay) overlay.classList.remove('is-open');
+        });
+      });
+    });
+  </script>
+</body>
+</html>
