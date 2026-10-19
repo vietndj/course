@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Voice-Over 1.0 (Bản Gốc) — Voice-Over &amp; Thao Tác Tay</title>
+  <style>
+
+/* =========================================================
+   TRUNG TÂM LOGIC XÂY KÊNH — Design system (INKDOC)
+   Monochrome slate · Tiempos (đọc) · Aeonik (tiêu đề) · Zero-animation
+   ========================================================= */
+@font-face{font-family:'FD Aeonik Extended';src:url('fonts/FDAeonikExtended-Bold.woff2') format('woff2');font-weight:700;font-display:swap}
+@font-face{font-family:'FD Aeonik Extended';src:url('fonts/FDAeonikExtended-SemiBold.woff2') format('woff2');font-weight:600;font-display:swap}
+@font-face{font-family:'FD Aeonik';src:url('fonts/FDAeonik-Regular.ttf') format('truetype');font-weight:400;font-display:swap}
+@font-face{font-family:'FD Aeonik';src:url('fonts/FDAeonik-Medium.ttf') format('truetype');font-weight:500 600;font-display:swap}
+@font-face{font-family:'FD Aeonik';src:url('fonts/FDAeonik-Bold.ttf') format('truetype');font-weight:700;font-display:swap}
+@font-face{font-family:'Tiempos Text';src:url('fonts/FDTiemposText-Regular.woff2') format('woff2');font-weight:400;font-display:swap}
+@font-face{font-family:'Tiempos Text';src:url('fonts/FDTiemposText-RegularItalic.woff2') format('woff2');font-weight:400;font-style:italic;font-display:swap}
+@font-face{font-family:'Tiempos Text';src:url('fonts/FDTiemposText-Semibold.woff2') format('woff2');font-weight:600;font-display:swap}
+@font-face{font-family:'Tiempos Text';src:url('fonts/FDTiemposText-Bold.woff2') format('woff2');font-weight:700;font-display:swap}
+
+:root{
+  --ink:#0f172a; --ink2:#1e293b; --ink3:#334155; --mute:#64748b; --mute2:#94a3b8;
+  --line:#e2e8f0; --line2:#cbd5e1; --bg:#ffffff; --bg2:#f8fafc; --bg3:#f1f5f9;
+  --acc:#0f172a;
+  /* màu theo chặng */
+  --c-tuduy:#7c3aed; --c-batdau:#0891b2; --c-logic:#2563eb; --c-niemtin:#db2777;
+  --c-dinhdang:#ea580c; --c-kynang:#16a34a; --c-thuchanh:#ca8a04; --c-tainguyen:#0f766e; --c-dulieu:#9333ea; --c-case:#0284c7;
+  --serif:'Tiempos Text',Georgia,'Times New Roman',serif;
+  --sans:'FD Aeonik',-apple-system,BlinkMacSystemFont,'Segoe UI',Inter,Roboto,sans-serif;
+  --display:'FD Aeonik Extended','FD Aeonik',-apple-system,sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
+  --side:290px; --top:56px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:auto;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+img{max-width:100%}
+::selection{background:#dbeafe}
+
+/* ---------- TOP BAR ---------- */
+.topbar{position:sticky;top:0;z-index:50;height:var(--top);display:flex;align-items:center;gap:14px;padding:0 18px;background:rgba(255,255,255,.96);border-bottom:1px solid var(--line);backdrop-filter:saturate(1.4) blur(6px)}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;flex-shrink:0}
+.brand .logo{width:30px;height:30px;border-radius:8px;background:#07090E;color:#FB923C;display:grid;place-items:center;font:700 12px var(--display);letter-spacing:.02em}
+.brand .t{font:700 13px var(--display);text-transform:uppercase;letter-spacing:.04em;line-height:1.1}
+.brand .t small{display:block;font:500 11px var(--sans);text-transform:none;letter-spacing:0;color:var(--mute)}
+.stepper{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none;flex:1;min-width:0;margin-left:10px}
+.stepper::-webkit-scrollbar{display:none}
+.stepper a{flex-shrink:0;text-decoration:none;font-size:12.5px;font-weight:500;color:var(--mute);padding:6px 9px;border-radius:7px;white-space:nowrap;display:flex;align-items:center;gap:6px}
+.stepper a .n{font:600 10px var(--mono);color:var(--mute2)}
+.stepper a:hover{background:var(--bg3);color:var(--ink)}
+.stepper a.on{background:var(--ink);color:#fff}
+.stepper a.on .n{color:#94a3b8}
+.searchbtn{flex-shrink:0;display:flex;align-items:center;gap:8px;border:1px solid var(--line);background:var(--bg2);border-radius:8px;padding:6px 10px;font:500 13px var(--sans);color:var(--mute);cursor:pointer}
+.searchbtn kbd{font:600 10px var(--mono);border:1px solid var(--line2);border-radius:4px;padding:1px 4px;background:#fff}
+.menubtn{display:none;border:1px solid var(--line);background:#fff;border-radius:8px;padding:6px 9px;cursor:pointer;font-size:15px}
+
+/* ---------- LAYOUT ---------- */
+.shell{display:grid;grid-template-columns:var(--side) minmax(0,1fr);min-height:calc(100vh - var(--top))}
+.side{position:sticky;top:var(--top);height:calc(100vh - var(--top));overflow-y:auto;border-right:1px solid var(--line);background:var(--bg2);padding:18px 14px 40px;font-size:13.5px}
+.side h6{margin:18px 8px 6px;font:700 10.5px var(--sans);letter-spacing:.09em;text-transform:uppercase;color:var(--mute2)}
+.side h6:first-child{margin-top:0}
+.side a.pg{display:flex;gap:8px;align-items:baseline;text-decoration:none;color:var(--ink3);padding:6px 8px;border-radius:7px;font-weight:500}
+.side a.pg .n{font:600 10.5px var(--mono);color:var(--mute2);min-width:20px}
+.side a.pg:hover{background:var(--bg3);color:var(--ink)}
+.side a.pg.on{background:#fff;color:var(--ink);box-shadow:0 0 0 1px var(--line),0 1px 2px rgba(15,23,42,.05);font-weight:600}
+.side a.pg.pg-sub, .side a.pg.sub{padding-left:24px;font-size:13px;opacity:0.9}
+.side a.pg.pg-sub .n, .side a.pg.sub .n{font-size:11px;min-width:18px}
+.side a.pg.pg-sub.on, .side a.pg.sub.on{opacity:1;font-weight:600}
+.side .toc{margin:4px 0 10px 18px;padding-left:10px;border-left:1px solid var(--line2)}
+.side .toc ul{list-style:none;margin:0;padding:0}
+.side .toc ul ul{padding-left:12px}
+.side .toc a{display:block;text-decoration:none;color:var(--mute);padding:3px 6px;font-size:12.8px;line-height:1.4;border-radius:5px}
+.side .toc a:hover{color:var(--ink)}
+.side .toc a.active{color:var(--ink);font-weight:600;background:#fff}
+.main{min-width:0;padding:40px 40px 120px;align-items:start;display:grid;grid-template-columns:minmax(0,760px) 260px;gap:48px;justify-content:center}
+.main.wide{grid-template-columns:minmax(0,820px)}
+.content{min-width:0}
+.rail{position:sticky;top:calc(var(--top) + 32px);align-self:start;max-height:calc(100vh - var(--top) - 50px);overflow:auto;font-size:13px}
+.rail h6{margin:0 0 10px;font:700 10.5px var(--sans);letter-spacing:.09em;text-transform:uppercase;color:var(--mute2)}
+.rail .rcard{display:block;text-decoration:none;border:1px solid var(--line);border-radius:10px;padding:10px 12px;margin-bottom:8px;background:#fff}
+.rail .rcard:hover{border-color:var(--ink3)}
+.rail .rcard b{display:block;font-size:13px;color:var(--ink)}
+.rail .rcard span{color:var(--mute);font-size:12px;line-height:1.4;display:block;margin-top:2px}
+
+/* ---------- TYPOGRAPHY ---------- */
+.kicker{font:700 11px var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--stage,var(--mute));display:flex;align-items:center;gap:8px;margin-bottom:12px}
+.kicker::before{content:"";width:18px;height:2px;background:currentColor;display:inline-block}
+h1.title{font:700 clamp(28px,4vw,40px)/1.12 var(--display);text-transform:uppercase;letter-spacing:-.01em;margin:0 0 16px}
+.lede{font:400 20px/1.6 var(--serif);color:var(--ink3);margin:0 0 28px}
+.content h2{font:600 26px/1.25 var(--sans);letter-spacing:-.015em;margin:56px 0 14px;padding-top:12px;border-top:1px solid var(--line);scroll-margin-top:80px}
+.content h2 .num{font:600 13px var(--mono);color:var(--stage,var(--mute2));display:block;margin-bottom:4px;letter-spacing:0}
+.content h3{font:600 20px/1.3 var(--sans);margin:36px 0 10px;scroll-margin-top:80px}
+.content h4{font:600 16.5px/1.35 var(--sans);margin:26px 0 8px;scroll-margin-top:80px;color:var(--ink2)}
+.content p,.content li{font-family:var(--serif);font-size:18px;line-height:1.72;color:var(--ink2)}
+.content p{margin:0 0 16px}
+.content ul,.content ol{padding-left:24px;margin:0 0 18px}
+.content li{margin:5px 0}
+.content li::marker{color:var(--mute2)}
+.content strong{font-weight:700;color:var(--ink)}
+.content em{font-style:italic}
+.content blockquote{margin:22px 0;padding:4px 0 4px 20px;border-left:3px solid var(--stage,var(--ink));font:italic 19px/1.65 var(--serif);color:var(--ink3)}
+.content blockquote p{font-size:19px}
+.content code{font:500 .86em var(--mono);background:var(--bg3);border:1px solid var(--line);padding:1px 5px;border-radius:5px}
+.content hr{border:0;border-top:1px solid var(--line);margin:40px 0}
+.content a{text-decoration:underline;text-decoration-color:var(--line2);text-underline-offset:3px}
+.content a:hover{text-decoration-color:var(--ink)}
+
+/* ---------- BADGES (Apple HIG) ---------- */
+.b{display:inline-block;font:700 10.5px/1 var(--sans);letter-spacing:.06em;text-transform:uppercase;background:var(--bg3);color:var(--ink3);border:1px solid var(--line);border-radius:5px;padding:4px 6px;box-shadow:0 1px 1px rgba(15,23,42,.04);position:relative;top:-2px;vertical-align:baseline;white-space:nowrap}
+.b.dark{background:var(--ink);color:#fff;border-color:var(--ink)}
+.b.s{background:color-mix(in srgb,var(--stage) 10%,#fff);color:var(--stage);border-color:color-mix(in srgb,var(--stage) 25%,#fff)}
+
+/* ---------- RESOURCE LINK (ấn vào ra luôn) ---------- */
+a.go{display:inline-flex;align-items:center;gap:5px;font:600 .82em var(--sans);text-decoration:none!important;background:#fff;color:var(--ink);border:1px solid var(--line2);border-radius:999px;padding:2px 9px 2px 7px;position:relative;top:-1px;vertical-align:baseline;white-space:nowrap}
+a.go::before{content:"↗";font-size:.95em;color:var(--stage,var(--mute))}
+a.go:hover{background:var(--ink);color:#fff;border-color:var(--ink)}
+a.go.int::before{content:"→"}
+
+/* ---------- BLOCKS ---------- */
+.spec{border:1px solid var(--line);border-radius:12px;overflow:hidden;margin:20px 0;background:#fff}
+.spec .row{display:grid;grid-template-columns:150px 1fr;gap:16px;padding:12px 16px;border-top:1px solid var(--line);align-items:baseline}
+.spec .row:first-child{border-top:0}
+.spec .row>.b{justify-self:start}
+.spec .row>div{font:400 15.5px/1.55 var(--sans);color:var(--ink2)}
+.spec .row>div p,.spec .row>div li{font-family:var(--sans);font-size:15.5px;line-height:1.55}
+
+.callout{border:1px solid var(--line);border-left:3px solid var(--stage,var(--ink));background:var(--bg2);border-radius:10px;padding:14px 18px;margin:22px 0}
+.callout>.h{font:700 11px var(--sans);letter-spacing:.09em;text-transform:uppercase;color:var(--stage,var(--ink3));margin-bottom:6px}
+.callout p,.callout li{font-size:16.5px!important}
+.callout p:last-child{margin-bottom:0}
+.callout.warn{--stage:#dc2626}
+.callout.tip{--stage:#16a34a}
+
+.qa{margin:14px 0;border:1px solid var(--line);border-radius:12px;background:#fff}
+.qa>summary{list-style:none;cursor:pointer;padding:14px 18px;font:600 16px/1.4 var(--sans);display:flex;gap:12px;align-items:flex-start}
+.qa>summary::-webkit-details-marker{display:none}
+.qa>summary::before{content:"Q";flex-shrink:0;font:700 11px var(--mono);background:var(--bg3);border:1px solid var(--line);border-radius:5px;padding:3px 6px;margin-top:1px}
+.qa[open]>summary{border-bottom:1px solid var(--line);background:var(--bg2);border-radius:12px 12px 0 0}
+.qa>.a{padding:14px 20px 4px}
+
+.grid{display:grid;gap:12px;margin:18px 0}
+.g2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.g3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.g4{grid-template-columns:repeat(4,minmax(0,1fr))}
+.card{border:1px solid var(--line);border-radius:12px;padding:16px;background:#fff;text-decoration:none;display:block;color:inherit}
+a.card:hover{border-color:var(--ink3);box-shadow:0 2px 10px rgba(15,23,42,.06)}
+.card .ct{font:600 16px/1.3 var(--sans);margin:6px 0 6px;color:var(--ink)}
+.card .cd{font:400 14px/1.5 var(--sans);color:var(--mute)}
+.card .cf{margin-top:10px;display:flex;flex-wrap:wrap;gap:5px}
+.card .ico{font-size:22px}
+
+table.t{width:100%;border-collapse:collapse;margin:18px 0;font:400 14.5px/1.5 var(--sans);border:1px solid var(--line);border-radius:12px;overflow:hidden;display:table}
+.tw{overflow-x:auto;margin:18px 0}
+.tw table.t{margin:0}
+table.t th{background:var(--bg3);text-align:left;font:700 11px var(--sans);letter-spacing:.07em;text-transform:uppercase;color:var(--ink3);padding:10px 12px;border-bottom:1px solid var(--line)}
+table.t td{padding:10px 12px;border-top:1px solid var(--line);vertical-align:top;color:var(--ink2)}
+table.t td:first-child{font-weight:600;color:var(--ink)}
+
+/* Flow map (index) */
+.flow{display:grid;gap:0;margin:24px 0;counter-reset:f}
+.fstep{display:grid;grid-template-columns:54px 1fr;gap:16px;text-decoration:none;color:inherit;padding:18px 0;border-top:1px solid var(--line)}
+.fstep:first-child{border-top:0}
+.fstep .dot{width:44px;height:44px;border-radius:12px;background:var(--stage);color:#fff;display:grid;place-items:center;font:700 14px var(--mono)}
+.fstep .q{font:700 11px var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--stage)}
+.fstep .h{font:600 20px/1.3 var(--sans);margin:3px 0 6px;color:var(--ink)}
+.fstep .d{font:400 16.5px/1.6 var(--serif);color:var(--ink3)}
+.fstep:hover .h{text-decoration:underline;text-underline-offset:4px}
+.fstep .links{margin-top:8px;display:flex;flex-wrap:wrap;gap:6px}
+
+.hero{border:1px solid var(--line);border-radius:16px;padding:28px;background:linear-gradient(180deg,#fff, var(--bg2));margin-bottom:30px}
+
+/* Sơ đồ chữ (diagram) */
+.diagram{font:500 13.5px/1.55 var(--mono);background:#0b1020;color:#e2e8f0;border-radius:12px;padding:18px 20px;overflow-x:auto;white-space:pre;margin:20px 0}
+.chain{display:flex;flex-wrap:wrap;align-items:stretch;gap:0;margin:20px 0}
+.chain>div{flex:1 1 120px;border:1px solid var(--line);background:#fff;padding:12px;font:500 13.5px/1.4 var(--sans);position:relative;margin-right:18px;border-radius:10px}
+.chain>div:not(:last-child)::after{content:"→";position:absolute;right:-15px;top:50%;transform:translateY(-50%);color:var(--mute2);font-weight:700}
+.chain>div b{display:block;font:700 10.5px var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--stage,var(--mute));margin-bottom:4px}
+
+/* Script (kịch bản) */
+.script{border:1px solid var(--line);border-radius:12px;overflow:hidden;margin:20px 0;background:#fff}
+.script .sh{background:var(--bg3);padding:10px 16px;font:700 12px var(--sans);letter-spacing:.06em;text-transform:uppercase;color:var(--ink3);border-bottom:1px solid var(--line);display:flex;justify-content:space-between;gap:10px}
+.script .ln{display:grid;grid-template-columns:110px 1fr;gap:14px;padding:10px 16px;border-top:1px solid var(--line)}
+.script .ln:first-of-type{border-top:0}
+.script .ln .lb{font:700 10.5px var(--sans);letter-spacing:.06em;text-transform:uppercase;color:var(--stage,var(--mute));padding-top:4px}
+.script .ln .tx{font:400 16.5px/1.6 var(--serif);color:var(--ink2)}
+.script .ln .tx i{color:var(--mute);font-size:14.5px}
+
+/* Dynamic blocks */
+.dyn-head{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:14px 0}
+.chip{font:600 12.5px var(--sans);border:1px solid var(--line2);background:#fff;border-radius:999px;padding:5px 11px;cursor:pointer;color:var(--ink3)}
+.chip.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.dyn-empty{font:400 14px var(--sans);color:var(--mute);padding:14px;border:1px dashed var(--line2);border-radius:10px}
+.ex{border:1px solid var(--line);border-radius:12px;background:#fff;margin:12px 0;overflow:hidden}
+.ex>summary{list-style:none;cursor:pointer;padding:14px 16px;display:flex;gap:12px;align-items:flex-start}
+.ex>summary::-webkit-details-marker{display:none}
+.ex .exn{flex-shrink:0;font:700 11px var(--mono);background:var(--ink);color:#fff;border-radius:6px;padding:4px 7px}
+.ex .ext{font:600 15.5px/1.4 var(--sans);color:var(--ink)}
+.ex .exm{display:flex;flex-wrap:wrap;gap:5px;margin-top:6px}
+.ex .exb{padding:4px 18px 16px 18px;border-top:1px solid var(--line)}
+.ex .exb p,.ex .exb li{font-size:16px}
+.ex .exb h5{font:700 11px var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--mute);margin:14px 0 6px}
+
+/* Search modal */
+.sm{position:fixed;inset:0;background:rgba(15,23,42,.45);z-index:100;display:none;align-items:flex-start;justify-content:center;padding-top:10vh}
+.sm.open{display:flex}
+.sm .box{width:min(680px,92vw);background:#fff;border-radius:14px;box-shadow:0 20px 60px rgba(0,0,0,.25);overflow:hidden}
+.sm input{width:100%;border:0;border-bottom:1px solid var(--line);padding:16px 18px;font:500 17px var(--sans);outline:none}
+.sm .res{max-height:60vh;overflow:auto;padding:6px}
+.sm .res a{display:block;text-decoration:none;padding:10px 12px;border-radius:8px}
+.sm .res a:hover,.sm .res a.sel{background:var(--bg3)}
+.sm .res a b{display:block;font:600 14.5px var(--sans);color:var(--ink)}
+.sm .res a span{font:400 12.5px var(--sans);color:var(--mute)}
+
+.pager{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:60px}
+.pager a{border:1px solid var(--line);border-radius:12px;padding:14px 16px;text-decoration:none!important;display:block}
+.pager a:hover{border-color:var(--ink3)}
+.pager a small{display:block;font:600 11px var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--mute2)}
+.pager a b{font:600 16px var(--sans);color:var(--ink)}
+.pager a.nx{text-align:right}
+.foot{margin-top:40px;padding-top:18px;border-top:1px solid var(--line);font:400 13px var(--sans);color:var(--mute)}
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width:1280px){.main{grid-template-columns:minmax(0,760px)}.rail{display:none}}
+@media (max-width:960px){
+  .shell{grid-template-columns:1fr}
+  .side{position:fixed;left:0;top:var(--top);width:min(320px,86vw);z-index:60;transform:translateX(-102%);box-shadow:0 10px 40px rgba(0,0,0,.15)}
+  body.navopen .side{transform:none}
+  .menubtn{display:block}
+  .stepper{display:flex;overflow-x:auto;white-space:nowrap;-webkit-overflow-scrolling:touch;scrollbar-width:none;gap:4px;margin-left:6px;margin-right:4px}
+  .stepper::-webkit-scrollbar{display:none}
+  .stepper a{display:inline-flex;flex-shrink:0;align-items:center;gap:4px;padding:5px 8px;font-size:12px}
+  .main{padding:28px 18px 90px}
+  .g3,.g4{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:600px){
+  .topbar{gap:8px;padding:0 10px}
+  .brand .t small{display:none}
+  .searchbtn span{display:none}
+  .searchbtn kbd{display:none}
+  .ecosystem-btn span:first-child{font-size:12px}
+  .g2,.g3,.g4{grid-template-columns:1fr}
+  .spec .row{grid-template-columns:1fr;gap:6px}
+  .script .ln{grid-template-columns:1fr;gap:2px}
+  .content p,.content li{font-size:17px}
+  .pager{grid-template-columns:1fr}
+}
+@media print{.topbar,.side,.rail,.pager{display:none}.shell{display:block}.main{display:block;padding:0}}
+
+/* ---------- FIX v3: shell + brand title ---------- */
+.side .mh{padding:2px 8px 14px;margin-bottom:6px;border-bottom:1px solid var(--line)}
+.side .mh b{display:block;font:700 15px/1.25 var(--display);text-transform:uppercase;letter-spacing:-.005em;text-wrap:balance}
+.side .mh p{margin:6px 0 0;font:400 12.5px/1.4 var(--sans);color:var(--mute)}
+.side a.pg .t{line-height:1.35}
+.content h1.title{font-family:'FD Aeonik Extended','FD Aeonik',sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:-.01em;font-size:clamp(26px,3.2vw,38px);line-height:1.1;text-wrap:balance;margin:0 0 22px;color:var(--ink)}
+.content .hero{padding:20px 24px;margin:0 0 28px}
+.content .hero>*:last-child{margin-bottom:0}
+.rail .otp a{display:block;text-decoration:none;color:var(--mute);padding:5px 0 5px 12px;border-left:2px solid var(--line);font:500 13px/1.4 var(--sans)}
+.rail .otp a:hover{color:var(--ink);border-left-color:var(--ink)}
+.pager{margin-top:56px}
+.pager a b{display:block;margin-top:4px;line-height:1.3}
+
+.content code{overflow-wrap:anywhere;word-break:break-word}
+.content pre{overflow-x:auto;max-width:100%}
+.content img,.content table{max-width:100%}
+
+.card.go{display:block;white-space:normal}
+a.card{overflow-wrap:break-word;word-break:break-word}
+
+/* ---------- ACTIONS & BUTTONS ---------- */
+.actions{display:flex;flex-wrap:wrap;gap:12px;margin:36px 0 24px;padding-top:20px;border-top:1px solid var(--line)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:11px 20px;font:600 14px var(--sans);color:#fff;background:var(--ink);border:1px solid var(--ink);border-radius:9px;text-decoration:none!important;cursor:pointer;transition:background .15s ease,border-color .15s ease,box-shadow .15s ease;box-shadow:0 1px 2px rgba(15,23,42,.08)}
+.btn:hover{background:var(--ink2);border-color:var(--ink2);color:#fff;box-shadow:0 3px 8px rgba(15,23,42,.12)}
+.btn:nth-child(2){background:#fff;color:var(--ink);border-color:var(--line2)}
+.btn:nth-child(2):hover{background:var(--bg3);border-color:var(--ink3);color:var(--ink)}
+
+/* ---------- PORTAL & SOCIAL PROOF ---------- */
+.proof-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:24px;padding-top:20px;border-top:1px solid var(--line)}
+.proof-item{display:flex;flex-direction:column;gap:4px}
+.proof-num{font:700 clamp(18px,2.2vw,24px)/1.15 var(--display);color:var(--ink);letter-spacing:-.015em}
+.proof-lbl{font:500 13px/1.4 var(--sans);color:var(--mute)}
+
+/* ---------- 3 CÁNH CỬA BẮT BỆNH ---------- */
+.door-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin:24px 0 36px}
+.door-card{display:flex;flex-direction:column;justify-content:space-between;border:1px solid var(--line);border-radius:14px;padding:22px 18px;background:#fff;box-shadow:0 1px 3px rgba(15,23,42,.03);transition:transform .15s ease,box-shadow .15s ease,border-color .15s ease}
+.door-card:hover{transform:translateY(-2px);border-color:var(--ink3);box-shadow:0 10px 24px rgba(15,23,42,.07)}
+.door-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.door-icon{font-size:26px}
+.door-badge{font:700 10.5px/1 var(--mono);padding:4px 7px;border-radius:5px;background:var(--bg3);color:var(--ink3);border:1px solid var(--line)}
+.door-title{font:700 17px/1.3 var(--sans);color:var(--ink);margin:0 0 12px}
+.door-body{font-size:14px;line-height:1.55;color:var(--ink2);margin-bottom:18px;flex-grow:1}
+.door-pain{background:#fef2f2;border-left:3px solid #ef4444;padding:9px 12px;border-radius:0 6px 6px 0;margin-bottom:10px;font-size:13.5px;color:#991b1b}
+.door-cure{background:#f0fdf4;border-left:3px solid #16a34a;padding:9px 12px;border-radius:0 6px 6px 0;font-size:13.5px;color:#166534}
+.door-btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;width:100%;padding:11px 14px;font:700 12.5px/1 var(--sans);letter-spacing:.04em;text-transform:uppercase;color:#fff!important;background:var(--ink);border-radius:8px;text-decoration:none!important;transition:background .15s ease}
+.door-btn:hover{background:var(--ink2)}
+
+/* ---------- ROADMAP 3 CHẶNG ---------- */
+.roadmap-section{margin:36px 0}
+.stage-card{border:1px solid var(--line);border-radius:14px;background:#fff;margin-bottom:20px;overflow:hidden}
+.stage-header{padding:16px 20px;background:var(--bg2);border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px}
+.stage-title{display:flex;align-items:center;gap:10px;font:700 16px/1.3 var(--sans);color:var(--ink)}
+.stage-badge{font:700 10.5px/1 var(--mono);padding:3px 8px;border-radius:5px;background:var(--ink);color:#fff}
+.stage-steps{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;background:var(--line)}
+.step-item{background:#fff;padding:14px 18px;text-decoration:none;display:flex;gap:12px;align-items:flex-start;transition:background .15s ease}
+.step-item:hover{background:var(--bg2)}
+.step-num{font:700 11px/1 var(--mono);color:var(--stage,var(--mute));padding:4px 7px;border-radius:5px;background:var(--bg3);flex-shrink:0;margin-top:2px}
+.step-content{min-width:0}
+.step-name{font:600 14.5px/1.35 var(--sans);color:var(--ink);margin-bottom:3px}
+.step-desc{font:400 13px/1.45 var(--sans);color:var(--mute)}
+
+/* ---------- SPOTLIGHT CASE STUDIES ---------- */
+.spotlight-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin:20px 0}
+.spotlight-card{border:1px solid var(--line);border-radius:12px;padding:18px;background:#fff;display:flex;flex-direction:column;justify-content:space-between;text-decoration:none;transition:transform .15s ease,box-shadow .15s ease,border-color .15s ease}
+.spotlight-card:hover{transform:translateY(-2px);border-color:var(--ink3);box-shadow:0 6px 20px rgba(15,23,42,.06)}
+.spotlight-tag{margin-bottom:8px}
+.spotlight-title{font:700 16px/1.3 var(--sans);color:var(--ink);margin-bottom:8px}
+.spotlight-signal{background:var(--bg2);border-left:3px solid var(--c-logic);padding:8px 12px;border-radius:0 6px 6px 0;font-size:13.5px;color:var(--ink2);margin-bottom:8px}
+.spotlight-lesson{font-size:13px;color:var(--mute);line-height:1.45}
+
+/* ---------- ECOSYSTEM 14 NỀN TẢNG ---------- */
+.eco-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:20px 0}
+.eco-card{border:1px solid var(--line);border-radius:11px;padding:14px;background:#fff;text-decoration:none!important;display:flex;flex-direction:column;justify-content:space-between;transition:transform .15s ease,border-color .15s ease,box-shadow .15s ease}
+.eco-card:hover{transform:translateY(-2px);border-color:var(--ink);box-shadow:0 4px 14px rgba(15,23,42,.06)}
+.eco-tag{font:700 9.5px/1 var(--mono);color:var(--mute2);text-transform:uppercase;margin-bottom:6px}
+.eco-name{font:700 14px/1.3 var(--sans);color:var(--ink);margin-bottom:4px}
+.eco-desc{font:400 12px/1.4 var(--sans);color:var(--mute);margin-bottom:8px}
+.eco-link{font:600 11px/1 var(--mono);color:var(--ink2);display:inline-flex;align-items:center;gap:3px}
+
+@media (max-width:960px){
+  .door-grid{grid-template-columns:1fr}
+  .stage-steps{grid-template-columns:1fr}
+  .spotlight-grid{grid-template-columns:1fr}
+  .eco-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:640px){
+  .proof-grid{grid-template-columns:1fr;gap:12px}
+  .eco-grid{grid-template-columns:1fr}
+}
+
+/* ---------- CASE STUDY DETAILED CARDS ---------- */
+.case-card{border:1px solid var(--line);border-radius:14px;background:#fff;padding:22px 24px;margin-bottom:24px;box-shadow:0 1px 3px rgba(15,23,42,.03);scroll-margin-top:80px}
+.case-card:hover{border-color:var(--line2);box-shadow:0 8px 24px rgba(15,23,42,.05)}
+.case-header{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:16px;border-bottom:1px solid var(--line);padding-bottom:16px}
+.case-title{font:700 19px/1.3 var(--sans);color:var(--ink);margin:0}
+.case-persona{font:500 13.5px var(--sans);color:var(--mute);margin-top:4px}
+.case-grid-content{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-bottom:16px}
+.case-block{padding:12px 14px;border-radius:8px;font-size:13.5px;line-height:1.55}
+.case-block.signal{background:#f8fafc;border-left:3px solid var(--c-logic)}
+.case-block.pain{background:#fef2f2;border-left:3px solid #ef4444}
+.case-block.result{background:#f0fdf4;border-left:3px solid #16a34a}
+.case-block h5{font:700 10.5px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;margin:0 0 6px}
+.case-block.signal h5{color:var(--c-logic)}
+.case-block.pain h5{color:#dc2626}
+.case-block.result h5{color:#15803d}
+.case-footer{display:flex;align-items:center;justify-content:space-between;padding-top:14px;border-top:1px solid var(--line);font-size:13px;flex-wrap:wrap;gap:10px}
+@media (max-width:960px){
+  .case-grid-content{grid-template-columns:1fr;gap:12px}
+}
+
+/* ---------- ECOSYSTEM DROPDOWN (TOPBAR) ---------- */
+.eco-backdrop{position:fixed;inset:0;z-index:85;background:rgba(15,23,42,0.12);backdrop-filter:blur(1px)}
+.ecosystem-wrap{position:relative}
+.ecosystem-btn{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);background:var(--bg2);border-radius:8px;padding:6px 11px;font:600 12.5px var(--sans);color:var(--ink2);cursor:pointer;user-select:none;transition:all .15s ease;white-space:nowrap}
+.ecosystem-btn:hover,.ecosystem-btn.active{background:#fff;border-color:var(--line2);color:var(--ink);box-shadow:0 1px 3px rgba(15,23,42,.06)}
+.ecosystem-btn .eco-caret{font-size:10px;color:var(--mute);transition:transform .2s ease;display:inline-block}
+.ecosystem-btn.active .eco-caret{transform:rotate(180deg)}
+
+.ecosystem-menu{position:absolute;top:calc(100% + 8px);right:0;width:min(660px,calc(100vw - 24px));background:#ffffff;border-radius:8px;border:1px solid rgba(0,0,0,0.08);box-shadow:0 10px 30px rgba(0,0,0,0.12);padding:16px 18px;z-index:90;font-family:var(--sans)}
+.ecosystem-menu .eco-header{display:flex;align-items:center;justify-content:space-between;padding-bottom:12px;margin-bottom:14px;border-bottom:1px solid var(--line)}
+.ecosystem-menu .eco-title{font:700 13px/1.2 var(--display);text-transform:uppercase;letter-spacing:.04em;color:var(--ink)}
+.ecosystem-menu .eco-sub{font:400 11.5px/1.3 var(--sans);color:var(--mute);margin-top:2px}
+.ecosystem-menu .eco-tag{font:700 9.5px var(--mono);background:var(--bg3);color:var(--ink3);padding:3px 8px;border-radius:999px;border:1px solid var(--line);letter-spacing:.05em}
+.ecosystem-menu .eco-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px 20px;margin:0}
+.ecosystem-menu .eco-group{display:flex;flex-direction:column;gap:4px}
+.ecosystem-menu .eco-gh{font:700 10px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--mute2);margin-bottom:4px;padding-bottom:3px;border-bottom:1px dashed var(--line)}
+.ecosystem-menu .eco-item{display:block;text-decoration:none!important;padding:6px 8px;border-radius:6px;transition:background .15s ease}
+.ecosystem-menu .eco-item:hover{background:var(--bg3)}
+.ecosystem-menu .eco-name{display:block;font:600 13px/1.3 var(--sans);color:var(--ink)}
+.ecosystem-menu .eco-name-row{display:flex;align-items:center;gap:6px}
+.ecosystem-menu .eco-badge{font:700 9px var(--mono);color:#ea580c;background:#fff7ed;border:1px solid #ffedd5;padding:1px 5px;border-radius:4px}
+.ecosystem-menu .eco-desc{display:block;font:400 11.5px/1.35 var(--sans);color:var(--mute);margin-top:1px}
+
+@media (max-width:640px){
+  .ecosystem-menu{position:fixed;top:calc(var(--top) + 6px);left:12px;right:12px;width:auto;max-height:calc(85vh - var(--top));overflow-y:auto;-webkit-overflow-scrolling:touch;padding:14px}
+  .ecosystem-menu .eco-grid{grid-template-columns:1fr;gap:14px}
+}
+/* mobile_fix */
+
+@media (max-width: 960px) {
+  .ecosystem-btn, .eco-btn, #eco-btn, .searchbtn {
+    white-space: nowrap !important;
+    padding: 6px 10px !important;
+    font-size: 12px !important;
+    max-height: 36px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+  .topbar {
+    padding: 8px 12px !important;
+    gap: 6px !important;
+  }
+}
+
+.eco-btn-text-short { display: none; }
+@media (max-width: 960px) {
+  .eco-btn-text-full { display: none !important; }
+  .eco-btn-text-short { display: inline !important; }
+  .ecosystem-btn {
+    white-space: nowrap !important;
+    padding: 6px 8px !important;
+    font-size: 11.5px !important;
+  }
+}
+
+/* ---------- TOPBAR MOBILE ELEGANT FIX ---------- */
+.ecosystem-wrap {
+  flex-shrink: 0 !important;
+}
+.searchbtn {
+  flex-shrink: 0 !important;
+}
+.menubtn {
+  flex-shrink: 0 !important;
+}
+
+@media (max-width: 820px) {
+  .stepper {
+    display: none !important;
+  }
+  .topbar {
+    justify-content: space-between !important;
+    padding: 0 14px !important;
+    height: 52px !important;
+  }
+  .ecosystem-btn {
+    white-space: nowrap !important;
+    padding: 6px 10px !important;
+    font-size: 12px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+  }
+  .searchbtn {
+    padding: 6px 10px !important;
+    font-size: 12px !important;
+  }
+}
+
+
+
+  </style>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      var heads = document.querySelectorAll(".content h2");
+      var tocNav = document.getElementById("auto-toc");
+      if (!tocNav) return;
+      heads.forEach(function(h, idx) {
+        if (!h.id) h.id = "sec-" + (idx + 1);
+        var a = document.createElement("a");
+        a.href = "#" + h.id;
+        a.textContent = h.textContent;
+        tocNav.appendChild(a);
+      });
+    });
+  </script>
+</head>
+<body data-page="voice-over">
+  <div class="shell" style="grid-template-columns: 1fr 250px; max-width: 1180px; margin: 0 auto;">
+    <main class="main">
+      <div class="content" style="max-width: 820px;">
+        <div class="hero">
+        <div style="color: #d93025; font-weight: 700; font-size: 12px; letter-spacing: 1px; margin-bottom: 8px;">— CHƯA DÁM LỘ MẶT?</div>
+        <h1 style="margin-top:0">Voice-Over & Thao Tác Tay</h1>
+      </div>
+
+      <p class="lede">Định dạng cứu rỗi 100% người mới bắt đầu: không cần lộ mặt, không áp lực ngoại hình, không sợ phán xét. Dựng hình trước, lồng tiếng sau — biến đôi bàn tay và quy trình làm nghề thực tế thành thỏi nam châm hút niềm tin tự nhiên nhất.</p>
+
+      <h2>Định nghĩa & Bản chất</h2>
+
+      <p>Voice-Over (lồng tiếng đè hình) kết hợp thao tác tay là định dạng mà ống kính chỉ tập trung vào góc nhìn thứ nhất (POV) hoặc góc nhìn thứ ba quay cận cảnh đôi bàn tay, màn hình thao tác hoặc chi tiết sản phẩm. Toàn bộ hình ảnh là một chuỗi 10 - 15 cảnh cắt ngắn (mỗi cảnh chỉ dài 1.5 - 2.5 giây), còn giọng nói của bạn được thu âm riêng và lồng đè lên timeline sau khi đã cắt dựng hình ảnh hoàn chỉnh.</p>
+
+      <p>Rất nhiều người lầm tưởng muốn làm kênh thì phải đẹp trai, xinh gái, ăn nói hoạt ngôn trước ống kính. Đây là tư duy sai lầm khiến 95% người mới bỏ cuộc ngay từ tuần đầu tiên. Bản chất của định dạng Voice-Over nằm ở 3 trụ cột tâm lý cốt lõi:</p>
+
+      <div class="spec">
+        <div class="row">
+          <span class="b s">Triệt tiêu nỗi sợ</span>
+          <div><strong>Xóa bỏ 100% rào cản tâm lý:</strong> Bạn không phải đối diện với camera, không lo mặt mụn, tóc tai chưa chải, hay nỗi ám ảnh bị người quen, đồng nghiệp xì xào phán xét. Bạn hoàn toàn ẩn mình sau sản phẩm và tay nghề.</div>
+        </div>
+        <div class="row">
+          <span class="b s">Bằng chứng thị giác</span>
+          <div><strong>Kích hoạt tế bào thần kinh gương (Mirror Neurons):</strong> Khi người xem nhìn thấy đôi bàn tay đang tỉ mẩn cắt tỉa tóc, gõ từng dòng lệnh, mổ xẻ linh kiện hay nhào bột, não bộ của họ tự động đồng cảm và tin rằng đây là người làm thật, nghề thật. Hành động thực tế luôn có sức nặng gấp mười lần lời nói suông.</div>
+        </div>
+        <div class="row">
+          <span class="b s">Dựng trước - Lồng sau</span>
+          <div><strong>Quy trình sản xuất giải phóng tư duy:</strong> Khi quay, bạn chỉ cần tập trung làm việc chuyên môn thật mượt mà mà không sợ nói vấp. Khi lồng tiếng, bạn có thể đọc đi đọc lại 10 lần trong phòng kín cho đến khi đạt ngữ điệu hoàn hảo nhất rồi mới ghép vào video.</div>
+        </div>
+      </div>
+
+      <div class="callout tip">
+        <div class="h">Chân lý thực chiến</div>
+        <p>Khách hàng không mua chiếc miệng khéo nói. Họ mua đôi bàn tay khéo nghề và kết quả thực tế. Voice-Over là cách ngắn nhất để chứng minh năng lực thực chiến mà không cần nói một lời khoe khoang.</p>
+      </div>
+
+      <h2>Khi nào dùng & Ngành phù hợp</h2>
+
+      <p>Định dạng Voice-Over là chiếc phao cứu sinh và là vũ khí thử nghiệm thị trường nhanh nhất trong các trường hợp:</p>
+
+      <ul>
+        <li><strong>Người mới bắt đầu xây kênh:</strong> Cần vượt qua cảm giác ngại ngùng, muốn tích lũy phản xạ sản xuất video mỗi ngày mà không bị kiệt sức.</li>
+        <li><strong>Thử nghiệm ý tưởng mới (Rapid Prototyping):</strong> Bạn có một góc nhìn mới hoặc mẹo nghề độc lạ, chỉ cần 15 phút quay tư liệu và 10 phút lồng tiếng là có ngay video kiểm tra phản ứng của tệp khán giả.</li>
+        <li><strong>Ngành nghề cần "Show, don't tell" (Cho thấy, đừng chỉ nói):</strong> Những công việc mà giá trị nằm ở độ tinh xảo của thao tác, quy trình từng bước, hoặc biến đổi trước - sau rõ rệt.</li>
+      </ul>
+
+      <div class="tw">
+        <table class="t">
+          <thead>
+            <tr>
+              <th>Nhóm ngành</th>
+              <th>Hành động thị giác chủ đạo</th>
+              <th>Cách lồng tiếng chuyển đổi cao</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Review, Affiliate & Unbox</strong></td>
+              <td>Mở hộp, test độ bền, bấm nút tính năng, zoom cận chất liệu.</td>
+              <td>Chỉ thẳng vào ưu điểm độc nhất và nhược điểm thực tế, nói đúng chỗ đau của người dùng.</td>
+            </tr>
+            <tr>
+              <td><strong>Công nghệ, AI & Phần mềm</strong></td>
+              <td>Quay màn hình (Screencast), chuột click từng phím tắt, giao diện làm việc.</td>
+              <td>Giải quyết một tác vụ cụ thể trong 3 bước, chỉ ra lỗi 90% người dùng mắc phải.</td>
+            </tr>
+            <tr>
+              <td><strong>Thủ công, Làm bánh & Ẩm thực</strong></td>
+              <td>Nhào bột, tỉa hoa, nặn gốm, đổ màu sơn, chiên giòn rụm.</td>
+              <td>Kể câu chuyện về sự tỉ mỉ, bí mật về nhiệt độ/thời gian mà thợ bình thường giấu nghề.</td>
+            </tr>
+            <tr>
+              <td><strong>Spa, Nail, Phục hồi tóc</strong></td>
+              <td>Lấy nhân mụn chuẩn y khoa, gội đầu dưỡng sinh, vẽ móng nghệ thuật, kéo sợi tóc bóng mượt.</td>
+              <td>Phân tích bệnh lý nang lông, cách chăm sóc sai lầm tại nhà khiến tình trạng nặng hơn.</td>
+            </tr>
+            <tr>
+              <td><strong>Y khoa, Nha khoa & Tiểu phẫu</strong></td>
+              <td>Cấy implant mô hình, sát khuẩn, thao tác dụng cụ vô trùng, pha dung dịch.</td>
+              <td>Giải thích nguyên lý khoa học bằng ngôn ngữ bình dân, trấn an nỗi sợ đau đớn của bệnh nhân.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2>Cấu trúc kịch bản thực chiến</h2>
+
+      <p>Một video Voice-Over chuẩn mực kéo dài từ <strong>30 đến 45 giây</strong>. Đừng tham lam nhồi nhét quá nhiều kiến thức. Mỗi video chỉ giải quyết đúng một nhát cắt vi mô.</p>
+
+      <div class="chain">
+        <div><b>0:00 - 0:05</b>Hook trực quan (Cảnh sốc / Nghịch lý)</div>
+        <div><b>0:05 - 0:25</b>B-roll dồn dập & Lồng tiếng (Giải phẫu vấn đề)</div>
+        <div><b>0:25 - 0:35</b>CTA chốt hạ (Hành động cụ thể)</div>
+      </div>
+
+      <div class="script">
+        <div class="sh">Cấu trúc phân tầng thời gian (30 - 35s)</div>
+        <div class="ln">
+          <div class="lb">0:00 - 0:05<br>Hook</div>
+          <div class="tx">
+            <strong>Hình ảnh:</strong> Cảnh cận cảnh lỗi sai tệ hại nhất hoặc một kết quả hoàn mỹ gây tò mò.<br>
+            <strong>Lời thoại:</strong> Đánh thẳng vào một quan niệm sai lầm phổ biến hoặc câu cảnh báo giật mình. <i>"Đừng bao giờ làm điều này nếu không muốn hỏng cả..."</i>
+          </div>
+        </div>
+        <div class="ln">
+          <div class="lb">0:05 - 0:25<br>Thân bài</div>
+          <div class="tx">
+            <strong>Hình ảnh:</strong> Chuỗi 8 - 12 cảnh B-roll cắt nhanh (1.5 - 2s/cảnh), thay đổi liên tục cỡ cảnh từ toàn &rarr; trung &rarr; cận &rarr; đặc tả.<br>
+            <strong>Lời thoại:</strong> Đi thẳng vào bản chất: Nguyên nhân vì sao cách cũ thất bại &rarr; Thao tác kỹ thuật chính xác &rarr; Tiêu chuẩn để nhận biết kết quả đạt chuẩn. Giọng nói dứt khoát, nhịp điệu ăn khớp với hành động trên màn hình.
+          </div>
+        </div>
+        <div class="ln">
+          <div class="lb">0:25 - 0:35<br>CTA</div>
+          <div class="tx">
+            <strong>Hình ảnh:</strong> Thao tác hoàn thiện cuối cùng, sản phẩm bóng bẩy hoặc bàn tay ra hiệu lưu lại.<br>
+            <strong>Lời thoại:</strong> Kêu gọi lưu video để đối chiếu khi tự làm, hoặc comment từ khóa để nhận bảng thông số/công thức chi tiết.
+          </div>
+        </div>
+      </div>
+
+      <h2>Kỹ thuật quay & Dựng CapCut</h2>
+
+      <p>Thành bại của một video Voice-Over nằm 80% ở nhịp dựng (Pacing) và chất lượng âm thanh lồng tiếng. Hãy làm chủ quy trình 3 bước thực chiến sau:</p>
+
+      <h3>1. Gom kho B-roll "10 phút dùng cả tuần"</h3>
+      <p>Bạn không cần phải dàn dựng trường quay giả tạo. Hãy đặt tripod cố định hoặc kẹp điện thoại vào ngực/bàn làm việc trong lúc bạn thực hiện công việc thật:</p>
+      <ul>
+        <li><strong>Nguyên tắc 4 cỡ cảnh:</strong> Trong 10 phút, đổi vị trí đặt điện thoại 4 lần: Toàn cảnh (thấy không gian bàn làm việc), Trung cảnh (thấy góc ngồi và hai cánh tay), Cận cảnh (thấy đôi bàn tay cầm nắm dụng cụ), và Đặc tả (thấy chi tiết mũi kim, nét vẽ, sợi tóc, phím gõ).</li>
+        <li><strong>Quy tắc 3 giây:</strong> Mỗi hành động chỉ cần quay giữ máy ổn định 3 - 5 giây. Không lia máy lia lịa làm chóng mặt người xem. Hãy để bàn tay bạn di chuyển trong khung hình tĩnh.</li>
+      </ul>
+
+      <h3>2. Quy trình dựng ngược trên CapCut (Reverse Workflow)</h3>
+      <div class="chain">
+        <div><b>Bước 1</b>Thả 10-15 clip B-roll lên timeline CapCut</div>
+        <div><b>Bước 2</b>Cắt gọt từng clip xuống còn đúng 1.5 - 2.5s (Movement Cut)</div>
+        <div><b>Bước 3</b>Bấm nút Record trên CapCut thu âm thoại trực tiếp</div>
+        <div><b>Bước 4</b>Chỉnh Audio Ducking & Xuất file</div>
+      </div>
+
+      <p>Kỹ thuật <em>Movement Cut (Cắt theo chuyển động)</em>: Cắt clip ngay khi bàn tay bắt đầu chạm vào vật thể, và chuyển sang clip tiếp theo ngay khi hành động vừa kết thúc. Không để lại bất kỳ giây thừa nào trên màn hình.</p>
+
+      <h3>3. Tiêu chuẩn âm thanh phòng thu bằng điện thoại</h3>
+      <div class="callout tip">
+        <div class="h">Công thức âm thanh vàng trên CapCut</div>
+        <p>- <strong>Lọc tạp âm (Noise Reduction):</strong> Chạm vào track Voice vừa thu &rarr; Bật "Giảm tiếng ồn" (Noise reduction) để xóa sạch tiếng quạt, tiếng rè nền.<br>
+        - <strong>Âm lượng Voice:</strong> Kéo âm lượng giọng nói lên mức <strong>-3dB đến 0dB</strong> (nghe to, rõ ràng, nội lực, không bị vỡ tiếng).<br>
+        - <strong>Audio Ducking (Nén nhạc nền):</strong> Chọn bản nhạc nền (BGM) lofi/hiphop nhịp dứt khoát, hạ âm lượng xuống <strong>-22dB đến -25dB</strong>. Nhạc chỉ làm chất xúc tác cảm xúc, tuyệt đối không được tranh chấp tần số với giọng nói.</p>
+      </div>
+
+      <h2>Lỗi thường gặp & Bài tập thực hành</h2>
+
+      <div class="callout warn">
+        <div class="h">4 Lỗi chết người khiến video Voice-Over trôi tuột</div>
+        <p>1. <strong>Vừa quay vừa nói:</strong> Vừa cặm cụi làm vừa nói vào mic điện thoại khiến giọng bị thở dốc, câu cú ngắc ngứ, âm thanh lẫn tiếng lách cách của dụng cụ.<br>
+        2. <strong>Giữ một góc quay quá dài (&gt;4 giây):</strong> Mắt người xem thời nay bão hòa rất nhanh. Quá 3 giây không đổi khung hình là họ vuốt đi ngay lập tức.<br>
+        3. <strong>Giọng đọc đều đều (Monotone):</strong> Đọc như trả bài ngữ văn lớp 5, thiếu điểm nhấn trọng âm, thiếu năng lượng khiến video trở thành liều thuốc ngủ.<br>
+        4. <strong>Thao tác giả trân:</strong> Diễn xuất làm bộ làm tịch thay vì làm nghề thật. Khán giả trên TikTok rất tinh tế, họ ngửi thấy mùi "diễn" sau 1 giây.</p>
+      </div>
+
+      <h3>Bài tập thực hành: Thử thách 24 giờ ra lò video đầu tiên</h3>
+      <ol>
+        <li><strong>Bước 1 (10 phút):</strong> Đặt máy quay lại 1 công đoạn làm việc quen thuộc nhất của bạn hôm nay. Quay 15 đoạn ngắn (mỗi đoạn 3 giây ở các góc khác nhau).</li>
+        <li><strong>Bước 2 (10 phút):</strong> Thả vào CapCut, cắt sạch mỗi đoạn còn 2 giây. Bạn sẽ có một thước phim 30 giây cực kỳ dồn dập.</li>
+        <li><strong>Bước 3 (10 phút):</strong> Viết 5 câu thoại (tổng cộng khoảng 75 từ) chia sẻ một mẹo nghề xương máu liên quan đến công đoạn đó.</li>
+        <li><strong>Bước 4 (5 phút):</strong> Trùm chăn hoặc ngồi góc kín, mở CapCut bấm Record đọc từng câu thoại khớp với hình ảnh. Giảm nhạc nền xuống -22dB và xuất video.</li>
+      </ol>
+
+      <h2>Ví dụ kịch bản nguyên văn</h2>
+
+      <div class="script">
+        <div class="sh">Kịch bản Voice-Over: Phục hồi tóc cháy tẩy (Thời lượng: 32s)</div>
+        <div class="ln">
+          <div class="lb">0:00 - 0:04<br>Shot 1 (Cận)</div>
+          <div class="tx">
+            <strong>B-roll:</strong> Ngón tay kéo một lọn tóc mủn nát, đứt ngang trong chậu nước.<br>
+            <strong>Voice:</strong> "Đừng vội cắt bỏ phần tóc cháy này nếu chị em chưa biết đến mẹo bù protein đa tầng sau đây."
+          </div>
+        </div>
+        <div class="ln">
+          <div class="lb">0:04 - 0:08<br>Shot 2 (Đặc tả)</div>
+          <div class="tx">
+            <strong>B-roll:</strong> Cây cọ quét hỗn hợp dưỡng chất màu vàng óng lên từng sợi tóc.<br>
+            <strong>Voice:</strong> "Sai lầm của 90% thợ là vội vàng đập dầu hấp đặc vào ngọn tóc đang mở biểu bì."
+          </div>
+        </div>
+        <div class="ln">
+          <div class="lb">0:08 - 0:13<br>Shot 3 (Trung)</div>
+          <div class="tx">
+            <strong>B-roll:</strong> Đôi bàn tay massage miết nhẹ từ thân xuống ngọn theo chiều dọc sợi tóc.<br>
+            <strong>Voice:</strong> "Cốt lõi là phải bù nước trước bằng xịt khoáng nano, sau đó mới khóa biểu bì bằng axit amin thủy phân."
+          </div>
+        </div>
+        <div class="ln">
+          <div class="lb">0:13 - 0:18<br>Shot 4 (Đặc tả)</div>
+          <div class="tx">
+            <strong>B-roll:</strong> Máy sấy lạnh thổi nhẹ, ngón tay luồn qua lọn tóc tơi xốp không còn rối.<br>
+            <strong>Voice:</strong> "Nhìn kỹ độ đàn hồi này: sợi tóc đã tự co lại mà không cần dùng đến silicon tạo ảo giác."
+          </div>
+        </div>
+        <div class="ln">
+          <div class="lb">0:18 - 0:24<br>Shot 5 (Cận)</div>
+          <div class="tx">
+            <strong>B-roll:</strong> Lược răng thưa chải một đường thẳng tắp từ chân đến ngọn tóc bóng loáng.<br>
+            <strong>Voice:</strong> "Làm đúng thứ tự này, tóc tẩy cấp độ 9 vẫn giữ được 85% độ dai tự nhiên."
+          </div>
+        </div>
+        <div class="ln">
+          <div class="lb">0:24 - 0:32<br>Shot 6 (Toàn)</div>
+          <div class="tx">
+            <strong>B-roll:</strong> Bàn tay vuốt nhẹ mái tóc hoàn thiện bồng bềnh dưới ánh đèn.<br>
+            <strong>Voice:</strong> "Lưu ngay video này lại để áp dụng khi pha thuốc, hoặc nhắn cho mình tình trạng tóc để nhận bảng công thức bù ẩm chuẩn salon."
+          </div>
+        </div>
+      </div>
+
+      <div class="actions">
+        <a class="btn" target="_blank" href="https://ytuong.fedu.vn/?kieu=voice-over">Xem kho ý tưởng định dạng này</a>
+        <a class="btn" target="_blank" href="https://k3.fedu.vn">Học chi tiết trên K3</a>
+      </div>
+      </div>
+    </main>
+    <aside class="rail">
+      <h6>Trên trang này (Bản 1.0 Gốc)</h6>
+      <nav class="otp" id="auto-toc"></nav>
+    </aside>
+  </div>
+</body>
+</html>
