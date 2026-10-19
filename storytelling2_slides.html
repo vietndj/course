@@ -1,0 +1,1718 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Slide Trình Chiếu Tại Lớp: Storytelling 2.0 (14 Slides Design System 2.0)</title>
+  <style>
+
+    @font-face{font-family:'FD Aeonik Extended';src:url('fonts/FDAeonikExtended-Bold.woff2') format('woff2');font-weight:700;font-display:swap}
+    @font-face{font-family:'FD Aeonik Extended';src:url('fonts/FDAeonikExtended-SemiBold.woff2') format('woff2');font-weight:600;font-display:swap}
+    @font-face{font-family:'FD Aeonik';src:url('fonts/FDAeonik-Regular.ttf') format('truetype');font-weight:400;font-display:swap}
+    @font-face{font-family:'FD Aeonik';src:url('fonts/FDAeonik-Medium.ttf') format('truetype');font-weight:500 600;font-display:swap}
+    @font-face{font-family:'FD Aeonik';src:url('fonts/FDAeonik-Bold.ttf') format('truetype');font-weight:700;font-display:swap}
+    @font-face{font-family:'Tiempos Text';src:url('fonts/FDTiemposText-Regular.woff2') format('woff2');font-weight:400;font-display:swap}
+    @font-face{font-family:'Tiempos Text';src:url('fonts/FDTiemposText-RegularItalic.woff2') format('woff2');font-weight:400;font-style:italic;font-display:swap}
+    @font-face{font-family:'Tiempos Text';src:url('fonts/FDTiemposText-Semibold.woff2') format('woff2');font-weight:600;font-display:swap}
+
+    :root {
+      --ink: #0f172a;
+      --ink2: #1e293b;
+      --ink3: #334155;
+      --mute: #64748b;
+      --line: #e2e8f0;
+      --line2: #cbd5e1;
+      --bg: #ffffff;
+      --card-bg: #f8fafc;
+      --red-border: #fca5a5;
+      --red-badge: #dc2626;
+      --red-bg: #fef2f2;
+      --green-border: #6ee7b7;
+      --green-badge: #059669;
+      --green-bg: #ecfdf5;
+      --cyan-badge: #0284c7;
+      --cyan-bg: #f0f9ff;
+      --sans: 'FD Aeonik', -apple-system, BlinkMacSystemFont, 'Segoe UI', Inter, sans-serif;
+      --display: 'FD Aeonik Extended', 'FD Aeonik', -apple-system, sans-serif;
+      --serif: 'Tiempos Text', Georgia, serif;
+      --mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: #0f172a;
+      color: var(--ink);
+      font-family: var(--sans);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* === DECK CONTROL BAR === */
+    .deck-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(15, 23, 42, 0.96);
+      border-bottom: 1px solid #334155;
+      padding: 10px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      flex-wrap: wrap;
+      color: #f8fafc;
+      backdrop-filter: blur(8px);
+    }
+    .deck-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .deck-logo {
+      background: #fb923c;
+      color: #0f172a;
+      font: 800 12px var(--display);
+      padding: 5px 8px;
+      border-radius: 6px;
+    }
+    .deck-title {
+      font: 700 14px var(--display);
+      letter-spacing: 0.02em;
+    }
+    .deck-sub {
+      font-size: 12px;
+      color: #94a3b8;
+      margin-left: 6px;
+    }
+    .deck-nav-dots {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      flex-wrap: wrap;
+    }
+    .nav-dot {
+      background: #1e293b;
+      color: #cbd5e1;
+      border: 1px solid #334155;
+      border-radius: 6px;
+      padding: 4px 8px;
+      font: 700 11px var(--mono);
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .nav-dot:hover {
+      background: #334155;
+      color: #fff;
+    }
+    .nav-dot.active {
+      background: #fb923c;
+      color: #0f172a;
+      border-color: #fb923c;
+    }
+    .deck-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .ctrl-btn {
+      background: #1e293b;
+      color: #f8fafc;
+      border: 1px solid #475569;
+      border-radius: 7px;
+      padding: 6px 12px;
+      font: 600 12.5px var(--sans);
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .ctrl-btn:hover {
+      background: #334155;
+    }
+    .ctrl-btn.primary {
+      background: #2563eb;
+      border-color: #3b82f6;
+    }
+
+    /* === STAGE CONTAINER === */
+    .deck-stage {
+      max-width: 1360px;
+      margin: 22px auto 60px;
+      padding: 0 20px;
+    }
+    .slide-wrapper {
+      display: none;
+      margin-bottom: 36px;
+    }
+    .slide-wrapper.active {
+      display: block;
+    }
+    body.view-all .slide-wrapper {
+      display: block !important;
+      margin-bottom: 48px;
+    }
+
+    /* === 16:9 DESIGN SYSTEM 2.0 SLIDE CANVAS === */
+    .slide-canvas {
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      border-radius: 16px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+      min-height: 680px;
+      padding: 28px 42px 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      overflow: hidden;
+    }
+    .slide-topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font: 700 11.5px var(--mono);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--mute);
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--line);
+    }
+    .slide-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 14px;
+      margin-top: 20px;
+      border-top: 1px solid var(--line);
+      font-size: 12.5px;
+      color: var(--mute);
+    }
+    .mentor-sig {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--ink2);
+    }
+    .mentor-dot {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: var(--ink);
+      color: #fff;
+      display: inline-grid;
+      place-items: center;
+      font: 700 10px var(--display);
+    }
+    .footer-right {
+      font: 600 11.5px var(--mono);
+      color: var(--mute);
+    }
+
+    /* === KIỂU 01: COVER GIANT ANCHOR NUMBER 0 === */
+    .cover-body {
+      display: grid;
+      grid-template-columns: 380px 1fr;
+      align-items: center;
+      gap: 32px;
+      padding: 30px 0;
+      min-height: 520px;
+      position: relative;
+    }
+    .giant-zero {
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: 460px;
+      line-height: 0.8;
+      color: #3c3c3c;
+      letter-spacing: -0.05em;
+      user-select: none;
+      margin-left: -30px;
+    }
+    .cover-right {
+      padding-right: 20px;
+    }
+    .cover-kicker {
+      display: inline-block;
+      font: 700 11px var(--mono);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      background: #f1f5f9;
+      color: #334155;
+      padding: 5px 10px;
+      border-radius: 6px;
+      margin-bottom: 16px;
+    }
+    .cover-t1 {
+      font: italic 400 clamp(44px, 4.5vw, 64px)/1.08 var(--serif);
+      color: var(--ink);
+      margin-bottom: 6px;
+    }
+    .cover-t2 {
+      font: 700 clamp(38px, 4vw, 56px)/1.12 var(--display);
+      color: var(--ink);
+      letter-spacing: -0.02em;
+      margin-bottom: 18px;
+    }
+    .cover-sub {
+      font: 400 20px/1.55 var(--sans);
+      color: var(--ink3);
+      max-width: 680px;
+      margin-bottom: 24px;
+    }
+    .cover-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .cpill {
+      font: 600 12.5px var(--sans);
+      background: #f8fafc;
+      border: 1px solid #cbd5e1;
+      color: #1e293b;
+      padding: 6px 12px;
+      border-radius: 999px;
+    }
+
+    /* === SLIDE HEAD BLOCK (SLIDES 2+) === */
+    .slide-head-block {
+      margin: 18px 0 18px;
+    }
+    .slide-title-row {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .slide-main-title {
+      font: 700 clamp(22px, 2.3vw, 30px)/1.2 var(--display);
+      color: var(--ink);
+      margin: 0;
+      letter-spacing: -0.01em;
+    }
+    .preset-tag {
+      font: 600 11px var(--mono);
+      background: #f1f5f9;
+      color: #475569;
+      border: 1px solid #e2e8f0;
+      padding: 4px 9px;
+      border-radius: 6px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .slide-subtitle {
+      font: 400 16px/1.45 var(--sans);
+      color: var(--mute);
+      margin: 6px 0 0;
+    }
+
+    /* === CARDS GRID (KIỂU 02, 03, 05) === */
+    .ds-cards {
+      display: grid;
+      gap: 18px;
+      flex: 1;
+      align-items: stretch;
+    }
+    .cards-grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .cards-grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .cards-grid-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+
+    .ds-card {
+      background: var(--card-bg);
+      border: 1.5px solid var(--line);
+      border-radius: 14px;
+      padding: 20px 22px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .ds-card.card-warn {
+      border-color: var(--red-border);
+      background: #fffafa;
+    }
+    .ds-card.card-good {
+      border-color: var(--green-border);
+      background: #f7fee7;
+      background: linear-gradient(180deg, #ffffff 0%, #f0fdf4 100%);
+    }
+    .ds-badge {
+      font: 700 11.5px/1.2 var(--sans);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--cyan-badge);
+      margin-bottom: 8px;
+    }
+    .card-warn .ds-badge { color: var(--red-badge); }
+    .card-good .ds-badge { color: var(--green-badge); }
+
+    .ds-card-title {
+      font: 700 20px/1.3 var(--display);
+      color: var(--ink);
+      margin: 0;
+    }
+    .cards-grid-3 .ds-card-title,
+    .cards-grid-4 .ds-card-title {
+      font-size: 17.5px;
+    }
+    .ds-hairline {
+      height: 1px;
+      background: var(--line);
+      margin: 14px 0;
+    }
+    .ds-card-body {
+      flex: 1;
+      font: 400 15.5px/1.6 var(--sans);
+      color: var(--ink2);
+    }
+    .cards-grid-4 .ds-card-body {
+      font-size: 14px;
+      line-height: 1.55;
+    }
+    .ds-card-body p {
+      margin: 0 0 10px;
+    }
+    .ds-card-body p:last-child {
+      margin-bottom: 0;
+    }
+    .ds-takeaway {
+      margin-top: 14px;
+      padding: 10px 12px;
+      border-radius: 9px;
+      background: var(--cyan-bg);
+      border: 1px solid #bae6fd;
+      font: 600 13.5px/1.4 var(--sans);
+      color: #0369a1;
+    }
+    .card-warn .ds-takeaway {
+      background: var(--red-bg);
+      border-color: #fecaca;
+      color: #991b1b;
+    }
+    .card-good .ds-takeaway {
+      background: var(--green-bg);
+      border-color: #a7f3d0;
+      color: #065f46;
+    }
+
+    /* === KIỂU 06: BIG QUOTE === */
+    .quote-center-box {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 28px 40px;
+      background: #f8fafc;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      margin: 10px 0 18px;
+    }
+    .quote-mark {
+      font: 700 64px/0.6 var(--serif);
+      color: #cbd5e1;
+      margin-bottom: 12px;
+    }
+    .big-quote-text {
+      font: italic 400 clamp(22px, 2.5vw, 32px)/1.5 var(--serif);
+      color: var(--ink);
+      max-width: 920px;
+      margin: 0;
+    }
+    .quote-action-bar {
+      background: #0f172a;
+      color: #f8fafc;
+      padding: 16px 22px;
+      border-radius: 12px;
+      font: 600 15px/1.55 var(--sans);
+    }
+
+    /* === INLINE VIDEO EVIDENCE TRAY === */
+    .slide-videos-tray {
+      display: grid;
+      gap: 14px;
+      margin-top: 16px;
+    }
+    .slide-videos-tray.cols-1 { grid-template-columns: 1fr; }
+    .slide-videos-tray.cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .slide-videos-tray.cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+
+    .slide-vcard {
+      border: 1px solid #cbd5e1;
+      border-radius: 10px;
+      background: #ffffff;
+      overflow: hidden;
+    }
+    .slide-vhead {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      background: #f1f5f9;
+      border-bottom: 1px solid #e2e8f0;
+      flex-wrap: wrap;
+    }
+    .slide-vtitle {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+      font-size: 13px;
+    }
+    .slide-vmeta {
+      font-size: 11.5px;
+      color: #64748b;
+    }
+    .v-badge {
+      font: 700 10px var(--mono);
+      padding: 3px 6px;
+      border-radius: 5px;
+    }
+    .v-badge-win {
+      background: #dcfce7;
+      color: #166534;
+      border: 1px solid #86efac;
+    }
+    .v-badge-err {
+      background: #fee2e2;
+      color: #991b1b;
+      border: 1px solid #fca5a5;
+    }
+    .slide-vbtns {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .btn-play-inline {
+      background: #dc2626;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      padding: 5px 10px;
+      font: 700 11.5px var(--sans);
+      cursor: pointer;
+    }
+    .btn-play-inline:hover { background: #b91c1c; }
+    .btn-src-link {
+      font: 600 11.5px var(--sans);
+      color: #334155;
+      text-decoration: none;
+      background: #fff;
+      border: 1px solid #cbd5e1;
+      padding: 4px 8px;
+      border-radius: 6px;
+    }
+    .slide-vstrip {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      align-items: center;
+      gap: 12px;
+      padding: 8px 12px;
+      background: #f8fafc;
+    }
+    .slide-videos-tray.cols-3 .slide-vstrip {
+      grid-template-columns: 1fr;
+    }
+    .slide-vstrip img {
+      width: 100%;
+      max-height: 95px;
+      object-fit: cover;
+      border-radius: 6px;
+      border: 1px solid #cbd5e1;
+    }
+    .slide-vnote {
+      font-size: 13px;
+      line-height: 1.45;
+      color: #334155;
+    }
+    .slide-vplayer {
+      background: #000;
+      padding: 10px;
+      text-align: center;
+    }
+    .slide-vplayer video {
+      max-width: 100%;
+      max-height: 360px;
+      border-radius: 8px;
+    }
+
+    /* === SPEAKER NOTES BOX === */
+    .speaker-notes-box {
+      margin-top: 14px;
+      background: #1e293b;
+      border: 1px solid #334155;
+      border-left: 4px solid #fb923c;
+      border-radius: 12px;
+      padding: 14px 20px;
+      color: #f1f5f9;
+    }
+    .sn-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 6px;
+      flex-wrap: wrap;
+    }
+    .sn-badge {
+      font: 700 11.5px var(--mono);
+      color: #fb923c;
+      letter-spacing: 0.05em;
+    }
+    .sn-part {
+      font: 500 12px var(--sans);
+      color: #94a3b8;
+    }
+    .sn-text {
+      margin: 0;
+      font: 400 15.5px/1.65 var(--serif);
+      color: #e2e8f0;
+    }
+
+    @media (max-width: 1024px) {
+      .cover-body { grid-template-columns: 1fr; }
+      .giant-zero { font-size: 220px; margin-left: 0; }
+      .cards-grid-2, .cards-grid-3, .cards-grid-4 { grid-template-columns: 1fr; }
+      .slide-videos-tray.cols-2, .slide-videos-tray.cols-3 { grid-template-columns: 1fr; }
+      .slide-vstrip { grid-template-columns: 1fr; }
+      .slide-canvas { padding: 20px; min-height: auto; }
+    }
+  
+
+    .khuon-box {
+      background: #0f172a;
+      color: #f8fafc;
+      border-radius: 12px;
+      padding: 16px 20px;
+      margin: 10px 0 14px;
+      border: 1px solid #334155;
+    }
+    .khuon-box .k-label {
+      font: 700 11px/1 var(--mono);
+      color: #fb923c;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 8px;
+      display: block;
+    }
+    .khuon-box .k-text {
+      font: italic 18px/1.6 var(--serif);
+      color: #ffffff;
+      margin: 0;
+    }
+    .khuon-box .k-text span.slash {
+      color: #fb923c;
+      font-weight: 700;
+      font-style: normal;
+      padding: 0 4px;
+    }
+    .khuon-box .k-text span.slot {
+      background: rgba(251, 146, 60, 0.22);
+      color: #fdba74;
+      border: 1px dashed #fb923c;
+      padding: 1px 6px;
+      border-radius: 4px;
+      font-style: normal;
+      font-weight: 700;
+    }
+    .mini-table {
+      width: 100%;
+      border-collapse: collapse;
+      font: 400 13.5px/1.45 var(--sans);
+      margin-top: 8px;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .mini-table th {
+      background: #f1f5f9;
+      color: #334155;
+      font: 700 10.5px/1.2 var(--mono);
+      text-transform: uppercase;
+      padding: 8px 10px;
+      text-align: left;
+      border-bottom: 1px solid var(--line);
+    }
+    .mini-table td {
+      padding: 8px 10px;
+      border-top: 1px solid var(--line);
+      color: #1e293b;
+      vertical-align: top;
+    }
+    .mini-table td:first-child {
+      font-weight: 700;
+      color: #0f172a;
+      white-space: nowrap;
+    }
+
+  </style>
+</head>
+<body>
+  <header class="deck-header">
+    <div class="deck-brand">
+      <span class="deck-logo">ST 2.0</span>
+      <span class="deck-title">STORYTELLING 2.0 — KỂ LÁT CẮT 5 GIÂY &amp; GIỮ THỂ DIỆN</span>
+      <span class="deck-sub">(14 Slides Thực Chiến Tại Lớp)</span>
+    </div>
+    <div class="deck-nav-dots">
+      <button type="button" class="nav-dot active" onclick="goToSlide(0)">01</button>
+      <button type="button" class="nav-dot" onclick="goToSlide(1)">02</button>
+      <button type="button" class="nav-dot" onclick="goToSlide(2)">03</button>
+      <button type="button" class="nav-dot" onclick="goToSlide(3)">04</button>
+      <button type="button" class="nav-dot" onclick="goToSlide(4)">05</button>
+      <button type="button" class="nav-dot" onclick="goToSlide(5)">06</button>
+      <button type="button" class="nav-dot" onclick="goToSlide(6)">07</button>
+      <button type="button" class="nav-dot" onclick="goToSlide(7)">08</button>
+      <button type="button" class="nav-dot" onclick="goToSlide(8)">09</button>
+      <button type="button" class="nav-dot" onclick="goToSlide(9)">10</button>
+      <button type="button" class="nav-dot" onclick="goToSlide(10)">11</button>
+      <button type="button" class="nav-dot" onclick="goToSlide(11)">12</button>
+      <button type="button" class="nav-dot" onclick="goToSlide(12)">13</button>
+      <button type="button" class="nav-dot" onclick="goToSlide(13)">14</button>
+    </div>
+    <div class="deck-actions">
+      <a href="storytelling2.0.html" class="ctrl-btn">📖 Mở Bản Giáo Án Đầy Đủ</a>
+      <a href="congthucstorytelling.html" class="ctrl-btn">🧰 3 Mega Prompt</a>
+      <button type="button" class="ctrl-btn" onclick="prevSlide()">← Trước</button>
+      <button type="button" class="ctrl-btn" onclick="nextSlide()">Tiếp →</button>
+      <button type="button" class="ctrl-btn primary" id="btn-toggle-view" onclick="toggleViewAll()">📑 Xem tất cả 14 slides</button>
+    </div>
+  </header>
+
+  <main class="deck-stage">
+        <section class="slide-wrapper active" data-index="0" id="slide-01">
+
+            <div class="slide-canvas layout-cover">
+              <div class="slide-topbar">
+                <span>2026  •  ĐỊNH DẠNG 02 • STORYTELLING 2.0 &amp; LÁT CẮT 5 GIÂY</span>
+                <span>VIDEO SYSTEM · KHOÁ THỰC CHIẾN</span>
+              </div>
+              <div class="cover-body">
+                <div class="giant-zero">02</div>
+                <div class="cover-right">
+                  <span class="cover-kicker">PHÁ BĂNG MỞ MÀN • CÂU HỎI 10 GIÂY</span>
+                  <div class="cover-t1">Video này bạn dừng lại vì sao?</div>
+                  <div class="cover-t2">STORYTELLING 2.0 — KỂ LÁT CẮT 5 GIÂY &amp; GIỮ THỂ DIỆN</div>
+                  <p class="cover-sub">Kể một khoảnh khắc tay chân có thật (Camera 5 giây), đi qua cái cớ giữ mặt mũi (T2.5) để người xem tự nhìn thấy chính mình mà không cần một lời lên gân.</p>
+                  <div class="cover-pills">
+                    <span class="cpill">🎯 25–30% A-Roll Lộ mặt</span>
+                    <span class="cpill">🎬 70–75% B-Roll Hành động</span>
+                    <span class="cpill">🪜 4 Nấc: T1 &rarr; T2 &rarr; T2.5 &rarr; T3</span>
+                    <span class="cpill">✍️ 3 Khuôn Điền Khuyết 4 Câu</span>
+                  </div>
+                </div>
+              </div>
+              <div class="slide-videos-tray cols-1">
+                <div class="slide-vcard">
+                  <div class="slide-vhead">
+                    <div class="slide-vtitle">
+                      <span class="v-badge v-badge-win">🎬 THỬ NGHIỆM 10 GIÂY ĐẦU</span>
+                      <strong>Bấm phát 10 giây đầu: Vì sao một video quay tại bàn làm việc không kỹ xảo lại giữ chân hàng chục nghìn người?</strong>
+                    </div>
+                    <div class="slide-vbtns">
+                      <button type="button" class="btn-play-inline" onclick="toggleSlideVideo(this, 'vid-s01-open', 'https://fedu.vn/videos/aroll_broll_viet.mp4')">▶️ Phát 10 giây mở màn</button>
+                    </div>
+                  </div>
+                  <div class="slide-vplayer" id="vid-s01-open" style="display:none;">
+                    <video controls playsinline preload="none" poster="https://fedu.vn/images/poster_aroll_broll_viet.jpg"></video>
+                  </div>
+                </div>
+              </div>
+              <div class="slide-footer">
+                <div class="mentor-sig">
+                  <span class="mentor-dot">NV</span>
+                  <span><strong>Mentor : Nguyễn Đức Việt</strong>  ·  Storytelling 2.0 Master</span>
+                </div>
+                <div class="footer-right">Slide 01 / 14  ·  storytelling2.0.html</div>
+              </div>
+            </div>
+        
+          <div class="speaker-notes-box">
+            <div class="sn-header">
+              <span class="sn-badge">🗣️ LỜI DẪN GIẢNG VIÊN CỦA ANH VIỆT (SLIDE 01)</span>
+              <span class="sn-part">Mở màn phá băng (Phút 0:00 – 1:00)</span>
+            </div>
+            <p class="sn-text">“Tôi mở cho các bạn xem đúng 10 giây một video quay bằng cam thường ngay trong phòng làm việc, không hiệu ứng màu mè. Ai dừng tay lại ở 10 giây này thì giơ tay lên giúp tôi... [Chờ cả lớp giơ tay] Không phải vì máy quay đắt tiền, mà vì ngay giây thứ 3 bạn thấy đúng cảnh mình từng ngồi đắn đo trước màn hình. Hôm nay chúng ta bước sang Định dạng 2: Storytelling 2.0.”</p>
+          </div>
+        </section>
+
+        <section class="slide-wrapper" data-index="1" id="slide-02">
+
+            <div class="slide-canvas layout-content">
+              <div class="slide-topbar">
+                <span>2026  •  MỤC 01 • BƯỚC CHUYỂN TỪ ĐỊNH DẠNG 1 SANG ĐỊNH DẠNG 2</span>
+                <span>VIDEO SYSTEM · STORYTELLING 2.0</span>
+              </div>
+              <div class="slide-head-block">
+                <div class="slide-title-row">
+                  <h2 class="slide-main-title">Voice-Over đã cho bạn giấu mặt. Giờ đến lượt lộ diện 25–30%.</h2>
+                  <span class="preset-tag">Kiểu 03 • Đối Chiếu 2 Định Dạng</span>
+                </div>
+                <p class="slide-subtitle">Định dạng 1 bạn mượn cảnh làm việc. Định dạng 2 bạn mượn chính trải nghiệm thật của mình và khách hàng.</p>
+              </div>
+              <div class="ds-cards cards-grid-2">
+                <div class="ds-card card-neutral">
+                  <div class="ds-card-head">
+                    <div class="ds-badge">ĐỊNH DẠNG 01 • VOICE-OVER &amp; THAO TÁC TAY</div>
+                    <h3 class="ds-card-title">100% B-Roll giấu mặt — Lấy đôi bàn tay làm bằng chứng</h3>
+                  </div>
+                  <div class="ds-hairline"></div>
+                  <div class="ds-card-body">
+                    <p>• <strong>Tỷ lệ hình ảnh:</strong> 0% lộ mặt, 100% quay cận cảnh thao tác tay, sản phẩm và các bước làm việc.</p>
+                    <p>• <strong>Điểm mạnh:</strong> Xóa bỏ hoàn toàn nỗi lo đứng trước ống kính ở tuần đầu tiên; cực mạnh cho sản phẩm dễ mua thử (dưới 500K).</p>
+                    <p>• <strong>Giới hạn:</strong> Khi bán dịch vụ tư vấn, làm đẹp, nội thất, đào tạo hay đơn hàng giá cao, khách cần nhìn thấy mặt người chịu trách nhiệm.</p>
+                  </div>
+                  <div class="ds-takeaway">🎯 Bước 1: Giúp khách tin "Tiệm này làm thật, tay nghề gọn".</div>
+                </div>
+
+                <div class="ds-card card-good">
+                  <div class="ds-card-head">
+                    <div class="ds-badge">✅ ĐỊNH DẠNG 02 • STORYTELLING 2.0 (LÁT CẮT VI MÔ)</div>
+                    <h3 class="ds-card-title">25–30% A-Roll lộ mặt + 70–75% B-Roll hành động thực tế</h3>
+                  </div>
+                  <div class="ds-hairline"></div>
+                  <div class="ds-card-body">
+                    <p>• <strong>Tỷ lệ vàng:</strong> Bạn không phải ngồi nói từ đầu đến cuối. 70–75% thời lượng vẫn là B-Roll tay làm việc; chỉ lộ mặt <strong>25–30%</strong> ở câu chuyển hoặc câu chốt.</p>
+                    <p>• <strong>Thứ đem ra kể:</strong> Không viết văn mẫu hay dựng kịch 3 phần dài dòng, mà mở bằng <strong>1 lát cắt hành vi 5 giây</strong> rồi gọi tên cái cớ giữ mặt mũi của khách.</p>
+                    <p>• <strong>Sức mạnh:</strong> Tạo dựng lòng tin sâu sắc với những khách hàng kỹ tính, có tiền và trọng thể diện.</p>
+                  </div>
+                  <div class="ds-takeaway">🎯 Bước 2: Giúp khách nhận ra "Người này hiểu đúng chỗ khó nói của mình".</div>
+                </div>
+              </div>
+              <div class="slide-footer">
+                <div class="mentor-sig">
+                  <span class="mentor-dot">NV</span>
+                  <span><strong>Mentor : Nguyễn Đức Việt</strong>  ·  Storytelling 2.0 Master</span>
+                </div>
+                <div class="footer-right">Slide 02 / 14  ·  storytelling2.0.html</div>
+              </div>
+            </div>
+        
+          <div class="speaker-notes-box">
+            <div class="sn-header">
+              <span class="sn-badge">🗣️ LỜI DẪN GIẢNG VIÊN CỦA ANH VIỆT (SLIDE 02)</span>
+              <span class="sn-part">Mục 01: Sự khác biệt giữa Định dạng 1 và Định dạng 2</span>
+            </div>
+            <p class="sn-text">“Ở Định dạng 1 (Voice-Over), bạn mượn cảnh tay làm việc để khách thấy mình làm thật. Sang Định dạng 2 (Storytelling 2.0), bạn bắt đầu lộ diện — nhưng tin vui là bạn chỉ cần lộ mặt 25 đến 30% thời lượng ở câu chuyển hoặc câu kết thôi, 70% còn lại vẫn là cảnh B-Roll tay làm việc. Định dạng 1 bạn mượn cảnh, còn Định dạng 2 bạn mượn chính trải nghiệm của mình.”</p>
+          </div>
+        </section>
+
+        <section class="slide-wrapper" data-index="2" id="slide-03">
+
+            <div class="slide-canvas layout-quote">
+              <div class="slide-topbar">
+                <span>2026  •  MỤC 01.2 • CHÂN LÝ CỐT LÕI &amp; CÂU CHUYỆN HAI NGƯỜI THỢ SỬA XE</span>
+                <span>VIDEO SYSTEM · STORYTELLING 2.0</span>
+              </div>
+              <div class="slide-head-block">
+                <div class="slide-title-row">
+                  <h2 class="slide-main-title">Khách không mua điều bạn nói. Khách mua điều họ thấy mình trong đó.</h2>
+                  <span class="preset-tag">Kiểu 06 • Chân Lý &amp; Ví Dụ Thợ Sửa Xe</span>
+                </div>
+                <p class="slide-subtitle">Đúng chuyên môn chưa đủ — phải đúng theo cách người nghe giữ được thể diện và đón nhận được.</p>
+              </div>
+              <div class="ds-cards cards-grid-2" style="margin-bottom:14px;">
+                <div class="ds-card card-warn">
+                  <div class="ds-card-head">
+                    <div class="ds-badge">❌ NGƯỜI THỢ SỬA XE A (ĐÂM THẲNG T3)</div>
+                    <h3 class="ds-card-title">"Anh lâu không thay nhớt chứ gì!"</h3>
+                  </div>
+                  <div class="ds-hairline"></div>
+                  <div class="ds-card-body">
+                    <p>Khách dắt xe vào bảo: <em>"Tự nhiên nó kêu rồi chết máy"</em>. Thợ A phán ngay: <em>"Làm gì có chuyện tự nhiên, anh tiếc tiền lâu không thay nhớt chứ gì!"</em></p>
+                    <p>&rarr; Thợ A nói đúng bệnh kỹ thuật, nhưng làm khách quê và tự ái. Khách im lặng rồi lần sau sang tiệm khác.</p>
+                  </div>
+                </div>
+                <div class="ds-card card-good">
+                  <div class="ds-card-head">
+                    <div class="ds-badge">✅ NGƯỜI THỢ SỬA XE B (ĐI QUA T2.5 + KHĂN LAU YÊN)</div>
+                    <h3 class="ds-card-title">"Xe chạy ngon thì ai cũng quên nhớt bác ạ..."</h3>
+                  </div>
+                  <div class="ds-hairline"></div>
+                  <div class="ds-card-body">
+                    <p>Thợ B bảo: <em>"Xe đang êm thì ai cũng quên lịch nhớt, xe nhà em đi suốt còn quên hoài. Tiếng gõ sáng sớm này chỉ do chùng sợi xích cam thôi, chỉnh 15 phút là êm."</em></p>
+                    <p>&rarr; Sửa xong, Thợ B lấy <strong>chiếc khăn sạch lau vết dầu trên tay phanh và yên xe</strong>. Khách giữ được thể diện, tin tuyệt đối và không mặc cả một đồng!</p>
+                  </div>
+                </div>
+              </div>
+              <div class="quote-action-bar">
+                💡 QUY LUẬT CHIẾC KHĂN LAU YÊN XE: (1) Bắt đúng bệnh qua hành vi 5 giây + (2) Giữ thể diện cho khách bằng một lý do hợp lý + (3) Kết thúc đĩnh đạc không chèo kéo.
+              </div>
+              <div class="slide-footer">
+                <div class="mentor-sig">
+                  <span class="mentor-dot">NV</span>
+                  <span><strong>Mentor : Nguyễn Đức Việt</strong>  ·  Storytelling 2.0 Master</span>
+                </div>
+                <div class="footer-right">Slide 03 / 14  ·  storytelling2.0.html</div>
+              </div>
+            </div>
+        
+          <div class="speaker-notes-box">
+            <div class="sn-header">
+              <span class="sn-badge">🗣️ LỜI DẪN GIẢNG VIÊN CỦA ANH VIỆT (SLIDE 03)</span>
+              <span class="sn-part">Mục 01.2: Câu chuyện Hai người thợ sửa xe máy</span>
+            </div>
+            <p class="sn-text">“Câu này tôi mất 2 năm mới thấm: Khách không mua điều bạn tự khen về mình, khách mua điều họ nhìn thấy chính họ trong đó. Hãy nhớ câu chuyện hai người thợ sửa xe trên bảng: Cùng bắt đúng bệnh xe, nhưng người thợ A nói thẳng làm khách mất mặt nên mất khách. Người thợ B bảo 'Xe chạy ngon thì ai cũng quên nhớt, xe nhà em còn quên hoài' — câu đó chính là T2.5 giữ thể diện cho khách.”</p>
+          </div>
+        </section>
+
+        <section class="slide-wrapper" data-index="3" id="slide-04">
+
+            <div class="slide-canvas layout-content">
+              <div class="slide-topbar">
+                <span>2026  •  MỤC 02.1 • GIẢI PHẪU NẤC 1 (T1 SAFE) &amp; NẤC 2 (T2 REAL)</span>
+                <span>VIDEO SYSTEM · STORYTELLING 2.0</span>
+              </div>
+              <div class="slide-head-block">
+                <div class="slide-title-row">
+                  <h2 class="slide-main-title">Nấc 1: Lời xã giao ngoài miệng vs. Nấc 2: Tay chân không biết nói dối</h2>
+                  <span class="preset-tag">Kiểu 03 • Đối Chiếu T1 &amp; T2</span>
+                </div>
+                <p class="slide-subtitle">Tại sao mở đầu bằng lời khuyên đạo lý luôn có 0% giữ chân, còn mở bằng Camera 5 giây lại khiến người xem khựng tay?</p>
+              </div>
+              <div class="ds-cards cards-grid-2">
+                <div class="ds-card card-warn">
+                  <div class="ds-card-head">
+                    <div class="ds-badge">💬 NẤC 1 • T1 SAFE (LỜI XÃ GIAO — 0% GIỮ CHÂN)</div>
+                    <h3 class="ds-card-title">Câu khách nói để cuộc trò chuyện kết thúc êm đẹp</h3>
+                  </div>
+                  <div class="ds-hairline"></div>
+                  <div class="ds-card-body">
+                    <p>• <strong>Dấu hiệu nhận ra:</strong> <em>"Để em suy nghĩ thêm"</em>, <em>"Để anh về hỏi lại bà xã"</em>, <em>"Dạo này công việc bận quá chưa sắp xếp được"</em>.</p>
+                    <p>• <strong>Bản chất:</strong> Nghe rất lịch sự, êm tai nhưng không chứa thông tin thật. Nếu bạn đem những câu xã giao hoặc lời khuyên đạo lý T1 lên mở đầu video, người xem sẽ vuốt qua ngay trong 1.5 giây.</p>
+                  </div>
+                  <div class="ds-takeaway">❌ T1 = Lời lịch sự ngoài miệng để khép lại câu chuyện.</div>
+                </div>
+
+                <div class="ds-card card-good">
+                  <div class="ds-card-head">
+                    <div class="ds-badge">🎥 NẤC 2 • T2 REAL (CAMERA 5 GIÂY — 50% GIỮ CHÂN)</div>
+                    <h3 class="ds-card-title">Lúc 11h đêm ở một mình, bàn tay bạn đang làm gì?</h3>
+                  </div>
+                  <div class="ds-hairline"></div>
+                  <div class="ds-card-body">
+                    <p>• <strong>Dấu hiệu nhận ra:</strong> Việc tay chân tự làm khi không ai bắt giải thích — <strong>Ngón cái vuốt tắt thông báo; Cắn môi nhìn bảng báo giá; Thở nhẹ gấp nắp laptop lúc 11h đêm</strong>.</p>
+                    <p>• <strong>Bằng chứng hiện diện:</strong> Khi bạn tả đúng một cử chỉ 5 giây mà người xem từng làm lúc ở một mình, họ giật mình: <em>"Sao người này biết rõ thế?"</em>.</p>
+                  </div>
+                  <div class="ds-takeaway">✅ T2 = Quay lại được ngay trong 5 giây bằng 1 cú máy.</div>
+                </div>
+              </div>
+              <div class="slide-footer">
+                <div class="mentor-sig">
+                  <span class="mentor-dot">NV</span>
+                  <span><strong>Mentor : Nguyễn Đức Việt</strong>  ·  Storytelling 2.0 Master</span>
+                </div>
+                <div class="footer-right">Slide 04 / 14  ·  storytelling2.0.html</div>
+              </div>
+            </div>
+        
+          <div class="speaker-notes-box">
+            <div class="sn-header">
+              <span class="sn-badge">🗣️ LỜI DẪN GIẢNG VIÊN CỦA ANH VIỆT (SLIDE 04)</span>
+              <span class="sn-part">Mục 02.1: Phân biệt T1 (Lời xã giao) và T2 (Camera 5 giây)</span>
+            </div>
+            <p class="sn-text">“Ai trong lớp mình từng nói với người bán hàng câu 'Để em suy nghĩ thêm nhé' thì ngồi yên, tôi không gọi hỏi đâu 😄. Đó là Tầng 1: câu xã giao lịch sự để kết thúc cuộc nói chuyện. Nhưng lúc 11h đêm về nhà ở một mình, tay bạn làm gì? Ngón cái vuốt tắt thông báo, miết góc tờ báo giá, hay gấp nắp laptop lại — đó là Tầng 2: tay chân không biết nói dối.”</p>
+          </div>
+        </section>
+
+        <section class="slide-wrapper" data-index="4" id="slide-05">
+
+            <div class="slide-canvas layout-content">
+              <div class="slide-topbar">
+                <span>2026  •  MỤC 02.2 • NẤC 3 (T3 RAW) &amp; CHÌA KHÓA NẤC 2.5 (KHE HỞ THỂ DIỆN)</span>
+                <span>VIDEO SYSTEM · STORYTELLING 2.0</span>
+              </div>
+              <div class="slide-head-block">
+                <div class="slide-title-row">
+                  <h2 class="slide-main-title">Đừng đâm thẳng vào nỗi sợ T3 — Hãy mở cửa qua Khe hở thể diện T2.5</h2>
+                  <span class="preset-tag">Kiểu 05 • Bậc Thang 4 Nấc Tâm Lý</span>
+                </div>
+                <p class="slide-subtitle">Khách hàng không nói dối bạn, họ chỉ đang bảo vệ lòng tự trọng của một người trưởng thành.</p>
+              </div>
+              <div class="ds-cards cards-grid-4">
+                <div class="ds-card card-neutral">
+                  <div class="ds-card-head">
+                    <div class="ds-badge">NẤC 1 • T1 SAFE</div>
+                    <h3 class="ds-card-title">Lời xã giao lịch sự</h3>
+                  </div>
+                  <div class="ds-hairline"></div>
+                  <div class="ds-card-body"><p>"Dạo này bận quá", "Để em nghiên cứu thêm".</p><p>Không chứa thông tin thật, chỉ dùng để chào nhau.</p></div>
+                  <div class="ds-takeaway">0% Giữ chân</div>
+                </div>
+
+                <div class="ds-card card-neutral">
+                  <div class="ds-card-head">
+                    <div class="ds-badge">NẤC 2 • T2 REAL</div>
+                    <h3 class="ds-card-title">Camera 5 giây</h3>
+                  </div>
+                  <div class="ds-hairline"></div>
+                  <div class="ds-card-body"><p>Mở khung đăng bài, gõ 3 dòng rồi xóa sạch, úp điện thoại xuống bàn.</p><p>Hành động vật lý nhìn thấy được.</p></div>
+                  <div class="ds-takeaway">50% Giữ chân (Mở video)</div>
+                </div>
+
+                <div class="ds-card card-good">
+                  <div class="ds-card-head">
+                    <div class="ds-badge">🔑 NẤC 2.5 • KHE HỞ THỂ DIỆN</div>
+                    <h3 class="ds-card-title">Cái cớ hợp lý giữ mặt mũi</h3>
+                  </div>
+                  <div class="ds-hairline"></div>
+                  <div class="ds-card-body"><p><em>"Đợi đủ vốn rồi làm"</em>, <em>"Tính mình kỹ, chưa thật chỉn chu chưa đăng"</em>, <em>"Hữu xạ tự nhiên hương"</em>.</p><p><strong>Cánh cửa duy nhất mở được lòng khách!</strong></p></div>
+                  <div class="ds-takeaway">85–95% Khách gật đầu</div>
+                </div>
+
+                <div class="ds-card card-warn">
+                  <div class="ds-card-head">
+                    <div class="ds-badge">🚪 NẤC 3 • T3 RAW</div>
+                    <h3 class="ds-card-title">Nỗi sợ lúc 2h sáng</h3>
+                  </div>
+                  <div class="ds-hairline"></div>
+                  <div class="ds-card-body"><p>Sợ bị người quen đánh giá; sợ làm sai mất uy tín; sợ mình đã lỗi thời.</p><p><strong>Cấm đâm thẳng!</strong> Để khách tự bước vào.</p></div>
+                  <div class="ds-takeaway">Đâm thẳng = Đóng cửa</div>
+                </div>
+              </div>
+              <div class="slide-footer">
+                <div class="mentor-sig">
+                  <span class="mentor-dot">NV</span>
+                  <span><strong>Mentor : Nguyễn Đức Việt</strong>  ·  Storytelling 2.0 Master</span>
+                </div>
+                <div class="footer-right">Slide 05 / 14  ·  storytelling2.0.html</div>
+              </div>
+            </div>
+        
+          <div class="speaker-notes-box">
+            <div class="sn-header">
+              <span class="sn-badge">🗣️ LỜI DẪN GIẢNG VIÊN CỦA ANH VIỆT (SLIDE 05)</span>
+              <span class="sn-part">Mục 02.2: Quy tắc vàng đi từ T2 sang T2.5 để khách tự bước vào T3</span>
+            </div>
+            <p class="sn-text">“Nhìn lên bậc thang 4 nấc này nhé: Nếu bạn lao thẳng vào T3 ('Anh sợ tốn tiền chứ gì? Bạn sợ lên hình quê chứ gì?'), người xem sẽ tự ái và đóng cửa ngay. Người trưởng thành luôn cần một bậc đệm hợp lý để giữ mặt mũi — đó là T2.5 ('Đợi đủ vốn rồi làm', 'Tính mình kỹ nên chưa đăng'). Bạn đi từ hành vi T2 sang thông cảm với cái cớ T2.5, khách sẽ tự mở lòng bước vào T3.”</p>
+          </div>
+        </section>
+
+        <section class="slide-wrapper" data-index="5" id="slide-06">
+
+            <div class="slide-canvas layout-content">
+              <div class="slide-topbar">
+                <span>2026  •  MỤC 02.3 • HAI PHÉP THỬ GỌT CHỮ SẮC BÉN TRƯỚC KHI QUAY</span>
+                <span>VIDEO SYSTEM · STORYTELLING 2.0</span>
+              </div>
+              <div class="slide-head-block">
+                <div class="slide-title-row">
+                  <h2 class="slide-main-title">Gương phẳng vs. Gương lõm &amp; Tính từ rỗng vs. Camera 5 giây</h2>
+                  <span class="preset-tag">Kiểu 03 • Hai Phép Thử Gọt Chữ</span>
+                </div>
+                <p class="slide-subtitle">Mỗi câu kịch bản trước khi bấm máy đều phải đi qua đủ hai phép thử này.</p>
+              </div>
+              <div class="ds-cards cards-grid-2">
+                <div class="ds-card card-good">
+                  <div class="ds-card-head">
+                    <div class="ds-badge">PHÉP THỬ 01 • GƯƠNG PHẲNG VS. GƯƠNG LÕM</div>
+                    <h3 class="ds-card-title">Đừng đứng trên nhìn xuống — Hãy đứng cùng chỗ và đi trước 1 đoạn</h3>
+                  </div>
+                  <div class="ds-hairline"></div>
+                  <div class="ds-card-body">
+                    <p>• ❌ <strong>Gương phẳng (Phán xét):</strong> <em>"Bạn đang sợ lên hình đúng không? Các bạn đang sai lầm..."</em> &rarr; Khách thấy mình bị soi nên phòng vệ.</p>
+                    <p>• ✅ <strong>Gương lõm (Hội tụ đồng cảm):</strong> <em>"Năm ngoái mình từng ngồi đúng chiếc ghế đó, tay đặt trên nút đăng rồi lại tắt máy..."</em> &rarr; Khách nhìn vào chuyện của bạn và tự thấy chính họ trong đó.</p>
+                  </div>
+                  <div class="ds-takeaway">🎯 Tuyệt đối không chỉ tay vào ai — dùng câu chuyện của mình làm gương lõm.</div>
+                </div>
+
+                <div class="ds-card card-good">
+                  <div class="ds-card-head">
+                    <div class="ds-badge">PHÉP THỬ 02 • TÍNH TỪ RỖNG VS. CAMERA 5 GIÂY</div>
+                    <h3 class="ds-card-title">Câu nào không quay được bằng camera trong 5 giây thì viết lại</h3>
+                  </div>
+                  <div class="ds-hairline"></div>
+                  <div class="ds-card-body">
+                    <p>• ❌ <strong>Tính từ rỗng (Không quay được):</strong> <em>"Mình rất áp lực, rất lo lắng, rất phân vân khi báo giá cho khách."</em> &rarr; Người nghe đọc xong không thấy hình ảnh gì.</p>
+                    <p>• ✅ <strong>Camera 5 giây (Quay được ngay):</strong> <em>"Mình mở khung tin nhắn, gõ ba dòng báo giá, xóa sạch, rồi đặt điện thoại úp xuống mặt bàn."</em></p>
+                  </div>
+                  <div class="ds-takeaway">🎯 Mỗi câu T2 bắt buộc phải có ít nhất 1 động từ của bàn tay, ánh mắt hoặc bước chân.</div>
+                </div>
+              </div>
+              <div class="slide-footer">
+                <div class="mentor-sig">
+                  <span class="mentor-dot">NV</span>
+                  <span><strong>Mentor : Nguyễn Đức Việt</strong>  ·  Storytelling 2.0 Master</span>
+                </div>
+                <div class="footer-right">Slide 06 / 14  ·  storytelling2.0.html</div>
+              </div>
+            </div>
+        
+          <div class="speaker-notes-box">
+            <div class="sn-header">
+              <span class="sn-badge">🗣️ LỜI DẪN GIẢNG VIÊN CỦA ANH VIỆT (SLIDE 06)</span>
+              <span class="sn-part">Mục 02.3: Hai phép thử gọt chữ (Gương lõm & Camera 5 giây)</span>
+            </div>
+            <p class="sn-text">“Chúng ta có đúng 2 phép thử để gọt sạch văn mẫu. Phép thử 1 là Gương lõm: bỏ hết những câu chỉ tay kiểu 'Các bạn đang sai lầm', thay bằng 'Hồi trước mình từng ngồi đúng chỗ đó...'. Phép thử 2 là Camera 5 giây: gạch bỏ toàn bộ tính từ chỉ cảm xúc như 'rất buồn, rất áp lực', đổi thành động tác tay nhìn thấy được như 'gõ ba dòng, xóa hết, úp điện thoại xuống bàn'.”</p>
+          </div>
+        </section>
+
+        <section class="slide-wrapper" data-index="6" id="slide-07">
+
+            <div class="slide-canvas layout-content">
+              <div class="slide-topbar">
+                <span>2026  •  MỤC 03.1 • GIẢI PHẪU VIDEO MẪU 01 CỦA ANH VIỆT (93.9K &amp; 29.7K VIEWS)</span>
+                <span>VIDEO SYSTEM · STORYTELLING 2.0</span>
+              </div>
+              <div class="slide-head-block">
+                <div class="slide-title-row">
+                  <h2 class="slide-main-title">Video 01: "Mới xây kênh đăng gì? Bạn chính là Niche (100°C) &amp; Con dân AoE 50 thịt"</h2>
+                  <span class="preset-tag">Kiểu 02 • Giải Phẫu 3 Nhịp + Video Thực Tế</span>
+                </div>
+                <p class="slide-subtitle">Cách dùng hình ảnh ẩn dụ đời thường để tháo gỡ nỗi sợ video đầu tiên còn ngô nghê.</p>
+              </div>
+              <div class="ds-cards cards-grid-3">
+                <div class="ds-card card-neutral">
+                  <div class="ds-card-head">
+                    <div class="ds-badge">01 • MỞ BẰNG HÀNH VI T2</div>
+                    <h3 class="ds-card-title">Tư vấn ngoài đời rất mượt, trước máy quay lại khựng</h3>
+                  </div>
+                  <div class="ds-hairline"></div>
+                  <div class="ds-card-body"><p>Mở khung đăng bài rồi đóng lại vì chưa biết chọn ngách. Ngồi một mình trước ống kính lạnh ngắt không có người gật đầu phản hồi nên thấy kỳ cục.</p></div>
+                  <div class="ds-takeaway">Khớp ngay cảnh thật của 90% người mới.</div>
+                </div>
+
+                <div class="ds-card card-good">
+                  <div class="ds-card-head">
+                    <div class="ds-badge">02 • CÁNH CỬA T2.5 (GIỮ THỂ DIỆN)</div>
+                    <h3 class="ds-card-title">"Đợi có thành tựu lớn mới đăng" (Taste vs. Skill Gap)</h3>
+                  </div>
+                  <div class="ds-hairline"></div>
+                  <div class="ds-card-body"><p>Giải oan cho người xem: Bạn ngại đăng bài không phải vì bạn kém, mà vì Internet cho bạn <strong>gu thẩm mỹ quá cao trước khi kịp có giờ thực hành</strong>.</p></div>
+                  <div class="ds-takeaway">Giữ trọn lòng tự trọng cho người nghe.</div>
+                </div>
+
+                <div class="ds-card card-good">
+                  <div class="ds-card-head">
+                    <div class="ds-badge">03 • LỐI RA BẰNG ẨN DỤ</div>
+                    <h3 class="ds-card-title">Nước sôi 100°C &amp; Con dân 50 thịt mở bản đồ AoE</h3>
+                  </div>
+                  <div class="ds-hairline"></div>
+                  <div class="ds-card-body"><p>Nước 99 độ chưa sôi nhưng đã nóng. Video đầu tay như con dân 50 thịt đi dò đường: chi phí bằng 0 nhưng <strong>bản đồ sáng lên vĩnh viễn</strong> để AI tìm khán giả.</p></div>
+                  <div class="ds-takeaway">Biến nỗi sợ thành nước cờ mở bản đồ.</div>
+                </div>
+              </div>
+              <div class="slide-videos-tray cols-1">
+                <div class="slide-vcard">
+                  <div class="slide-vhead">
+                    <div class="slide-vtitle">
+                      <span class="v-badge v-badge-win">✅ VIDEO MẪU 01 • 15.6% SHARE/REACTION</span>
+                      <strong>Nguyễn Đức Việt — Đồng tiền chảy về nơi có Sự chú ý &amp; Con dân 50 thịt mở bản đồ Đế Chế (AoE)</strong>
+                    </div>
+                    <div class="slide-vbtns">
+                      <button type="button" class="btn-play-inline" onclick="toggleSlideVideo(this, 'vid-s07-aoe', 'https://fedu.vn/videos/aroll_broll_viet.mp4')">▶️ Phát video thật</button>
+                      <a href="https://www.facebook.com/reel/826606130494265/" target="_blank" rel="noopener" class="btn-src-link">Reel 100°C (93.9K) ↗</a>
+                      <a href="https://www.facebook.com/reel/1498902625604603/" target="_blank" rel="noopener" class="btn-src-link">Reel AoE (29.7K) ↗</a>
+                    </div>
+                  </div>
+                  <div class="slide-vstrip">
+                    <img src="https://fedu.vn/images/poster_aroll_broll_viet.jpg" alt="Video AoE 50 thịt" loading="lazy"/>
+                    <div class="slide-vnote">Kết hợp 30% A-Roll ngồi tâm sự tại bàn + 70% B-Roll pha cafe, đun nước sôi 100°C, thao tác máy tính và ẩn dụ mở bản đồ Đế Chế.</div>
+                  </div>
+                  <div class="slide-vplayer" id="vid-s07-aoe" style="display:none;">
+                    <video controls playsinline preload="none" poster="https://fedu.vn/images/poster_aroll_broll_viet.jpg"></video>
+                  </div>
+                </div>
+              </div>
+              <div class="slide-footer">
+                <div class="mentor-sig">
+                  <span class="mentor-dot">NV</span>
+                  <span><strong>Mentor : Nguyễn Đức Việt</strong>  ·  Storytelling 2.0 Master</span>
+                </div>
+                <div class="footer-right">Slide 07 / 14  ·  storytelling2.0.html</div>
+              </div>
+            </div>
+        
+          <div class="speaker-notes-box">
+            <div class="sn-header">
+              <span class="sn-badge">🗣️ LỜI DẪN GIẢNG VIÊN CỦA ANH VIỆT (SLIDE 07)</span>
+              <span class="sn-part">Mục 03.1: Giải phẫu Video 01 (Bạn chính là Niche 100°C & Con dân AoE 50 thịt)</span>
+            </div>
+            <p class="sn-text">“Chúng ta mổ xẻ video đầu tiên của tôi: Tại sao bài này đạt gần 100.000 lượt xem và tỷ lệ chia sẻ rất cao? Vì tôi mở bằng cảnh ngồi trước camera lạnh ngắt không có ai gật đầu (T2), sau đó giải thích rằng bạn ngại đăng vì gu thẩm mỹ của bạn cao hơn giờ bay (T2.5), rồi dùng hình ảnh nước sôi 100 độ và con dân 50 thịt đi mở bản đồ AoE để người xem thấy đăng video đầu tiên chẳng mất gì cả.”</p>
+          </div>
+        </section>
+
+        <section class="slide-wrapper" data-index="7" id="slide-08">
+
+            <div class="slide-canvas layout-content">
+              <div class="slide-topbar">
+                <span>2026  •  MỤC 03.2 • GIẢI PHẪU VIDEO MẪU 02 CỦA ANH VIỆT (GIỎI MÀ TÀNG HÌNH)</span>
+                <span>VIDEO SYSTEM · STORYTELLING 2.0</span>
+              </div>
+              <div class="slide-head-block">
+                <div class="slide-title-row">
+                  <h2 class="slide-main-title">Video 02: "Giỏi mà TÀNG HÌNH trên mạng xã hội — Tắt chế độ tàng hình"</h2>
+                  <span class="preset-tag">Kiểu 02 • 13 Câu Thoại &amp; 5 Cảnh Bàn Làm Việc</span>
+                </div>
+                <p class="slide-subtitle">Bắt đầu từ tin nhắn chuyển khoản lúc 2h sáng và tháo gỡ cái bẫy "Hữu xạ tự nhiên hương".</p>
+              </div>
+              <div class="ds-cards cards-grid-3">
+                <div class="ds-card card-neutral">
+                  <div class="ds-card-head">
+                    <div class="ds-badge">01 • LÁT CẮT 2H SÁNG (T2)</div>
+                    <h3 class="ds-card-title">"Em giỏi nghề nhưng trên mạng em tàng hình"</h3>
+                  </div>
+                  <div class="ds-hairline"></div>
+                  <div class="ds-card-body"><p>Làm nghề lâu năm có 10 phần năng lực nhưng không để lại dấu vết dữ liệu nào trên mạng, trong khi người mới biết 3 phần lại nói thành 10.</p></div>
+                  <div class="ds-takeaway">Hook 3s đạt 20.4% • Hold đạt 30.6%.</div>
+                </div>
+
+                <div class="ds-card card-warn">
+                  <div class="ds-card-head">
+                    <div class="ds-badge">02 • BÓC MẶT NẠ T2.5</div>
+                    <h3 class="ds-card-title">"Mình giỏi thì khách tự tìm đến (Hữu xạ tự nhiên hương)"</h3>
+                  </div>
+                  <div class="ds-hairline"></div>
+                  <div class="ds-card-body"><p>Gọi đúng câu tự an ủi của người làm nghề lâu năm và chốt câu đinh: <strong>"Giỏi mà tàng hình thì coi như bằng không. Tay nghề giấu trong đầu là tay nghề chết."</strong></p></div>
+                  <div class="ds-takeaway">Nói trúng chỗ trăn trở nhất lúc đêm muộn.</div>
+                </div>
+
+                <div class="ds-card card-good">
+                  <div class="ds-card-head">
+                    <div class="ds-badge">03 • 5 CẢNH VẠN NĂNG TẠI BÀN</div>
+                    <h3 class="ds-card-title">Qua "vòng gửi xe" của AI bằng cách làm tại bàn</h3>
+                  </div>
+                  <div class="ds-hairline"></div>
+                  <div class="ds-card-body"><p>Không cần diễn: (1) Lật sách bên cửa sổ; (2) Cận tay viết sổ; (3) Bật công tắc đèn bàn; (4) Góc nghiêng 90° gõ phím; (5) Đặt tay xuống bàn dứt khoát.</p></div>
+                  <div class="ds-takeaway">Lối ra rõ ràng: Tắt chế độ tàng hình.</div>
+                </div>
+              </div>
+              <div class="slide-videos-tray cols-1">
+                <div class="slide-vcard">
+                  <div class="slide-vhead">
+                    <div class="slide-vtitle">
+                      <span class="v-badge v-badge-win">✅ VIDEO MẪU 02 • 13 CÂU CHUẨN NHỊP THỞ</span>
+                      <strong>Nguyễn Đức Việt — Giỏi mà tàng hình &amp; Cách làm video tại bàn làm việc</strong>
+                    </div>
+                    <div class="slide-vbtns">
+                      <button type="button" class="btn-play-inline" onclick="toggleSlideVideo(this, 'vid-s08-tanghinh', 'https://fedu.vn/videos/talkinghead_viet.mp4')">▶️ Phát video thật</button>
+                      <a href="https://www.facebook.com/reel/28776248355339244/" target="_blank" rel="noopener" class="btn-src-link">Reel Organic ↗</a>
+                      <a href="https://www.facebook.com/reel/1518169316738973/" target="_blank" rel="noopener" class="btn-src-link">Reel K4 ↗</a>
+                    </div>
+                  </div>
+                  <div class="slide-vstrip">
+                    <img src="https://fedu.vn/images/poster_talkinghead_viet.jpg" alt="Giỏi mà tàng hình" loading="lazy"/>
+                    <div class="slide-vnote">13 câu thoại gọn đanh, chia 30% A-Roll trực diện + 70% B-Roll 5 cảnh vạn năng ngay tại bàn làm việc và ban công nắng chiều.</div>
+                  </div>
+                  <div class="slide-vplayer" id="vid-s08-tanghinh" style="display:none;">
+                    <video controls playsinline preload="none" poster="https://fedu.vn/images/poster_talkinghead_viet.jpg"></video>
+                  </div>
+                </div>
+              </div>
+              <div class="slide-footer">
+                <div class="mentor-sig">
+                  <span class="mentor-dot">NV</span>
+                  <span><strong>Mentor : Nguyễn Đức Việt</strong>  ·  Storytelling 2.0 Master</span>
+                </div>
+                <div class="footer-right">Slide 08 / 14  ·  storytelling2.0.html</div>
+              </div>
+            </div>
+        
+          <div class="speaker-notes-box">
+            <div class="sn-header">
+              <span class="sn-badge">🗣️ LỜI DẪN GIẢNG VIÊN CỦA ANH VIỆT (SLIDE 08)</span>
+              <span class="sn-part">Mục 03.2: Giải phẫu Video 02 (Giỏi mà tàng hình — 13 câu thoại)</span>
+            </div>
+            <p class="sn-text">“Video thứ hai này ra đời từ một tin nhắn chuyển khoản lúc 2h sáng của một học viên làm nghề lâu năm: 'Em giỏi nghề nhưng trên mạng em tàng hình'. Bạn nhìn vào 3 cột trên bảng: Tôi bóc đúng cái cớ 'Hữu xạ tự nhiên hương' (T2.5), chỉ ra rằng không có dữ liệu trên mạng thì AI coi như bạn vô hình, và đưa ra lối thoát là 5 cảnh quay vạn năng ngay tại bàn làm việc mà không ai phải diễn.”</p>
+          </div>
+        </section>
+
+        <section class="slide-wrapper" data-index="8" id="slide-09">
+
+            <div class="slide-canvas layout-content">
+              <div class="slide-topbar">
+                <span>2026  •  MỤC 03.3 • GIẢI PHẪU VIDEO MẪU 03 CỦA ANH VIỆT (KỶ NGUYÊN NGỮ NGHĨA)</span>
+                <span>VIDEO SYSTEM · STORYTELLING 2.0</span>
+              </div>
+              <div class="slide-head-block">
+                <div class="slide-title-row">
+                  <h2 class="slide-main-title">Video 03: "Mạng xã hội cũ đã chết — Kỷ nguyên Ngữ nghĩa &amp; 4 Điểm kết nối cơ thể"</h2>
+                  <span class="preset-tag">Kiểu 05 • 4 Điểm Kết Nối Cơ Thể Khi Lộ Mặt</span>
+                </div>
+                <p class="slide-subtitle">AI không còn đếm lượt like đơn thuần mà đọc từng pixel và nhịp thở để nối bạn với người đang cần tháo gỡ công việc.</p>
+              </div>
+              <div class="ds-cards cards-grid-4">
+                <div class="ds-card card-good">
+                  <div class="ds-card-head">
+                    <div class="ds-badge">ĐIỂM 01 • SỰ TỪ TỐN</div>
+                    <h3 class="ds-card-title">Bình thản là dáng vẻ của người đáng tin</h3>
+                  </div>
+                  <div class="ds-hairline"></div>
+                  <div class="ds-card-body"><p>Người ta chỉ vội vàng khi bất an hoặc muốn chèo kéo. Khi lên hình, hãy hạ vai xuống và nói thong thả.</p></div>
+                  <div class="ds-takeaway">Mẫu @kawoon.lee</div>
+                </div>
+
+                <div class="ds-card card-good">
+                  <div class="ds-card-head">
+                    <div class="ds-badge">ĐIỂM 02 • ĐÔI TAY</div>
+                    <h3 class="ds-card-title">Đôi tay "bưng bê ngôn từ"</h3>
+                  </div>
+                  <div class="ds-hairline"></div>
+                  <div class="ds-card-body"><p>Tay hát cùng một loại nhạc với lời đang nói. Không múa may lệch pha mà nâng đỡ đúng từ khóa chính.</p></div>
+                  <div class="ds-takeaway">Nhớ lâu gấp 2 lần</div>
+                </div>
+
+                <div class="ds-card card-good">
+                  <div class="ds-card-head">
+                    <div class="ds-badge">ĐIỂM 03 • ÁNH MẮT</div>
+                    <h3 class="ds-card-title">Ánh mắt biết nghĩ ngoài đời</h3>
+                  </div>
+                  <div class="ds-hairline"></div>
+                  <div class="ds-card-body"><p>Không cần nhìn cứng vào ống kính 100%. Lúc nghĩ cứ ngước nhẹ, lúc nhấn mạnh cứ rướn mắt tự nhiên.</p></div>
+                  <div class="ds-takeaway">Xóa cảm giác đọc bài</div>
+                </div>
+
+                <div class="ds-card card-good">
+                  <div class="ds-card-head">
+                    <div class="ds-badge">ĐIỂM 04 • TRẢI NGHIỆM</div>
+                    <h3 class="ds-card-title">Sức nặng của việc đã đi qua</h3>
+                  </div>
+                  <div class="ds-hairline"></div>
+                  <div class="ds-card-body"><p>Khán giả dừng lại vì cảm nhận được sức nặng của thứ bạn thực sự quan tâm và đã làm qua suốt nhiều năm.</p></div>
+                  <div class="ds-takeaway">1 bài/tuần &rarr; 40K Follow</div>
+                </div>
+              </div>
+              <div class="slide-videos-tray cols-1">
+                <div class="slide-vcard">
+                  <div class="slide-vhead">
+                    <div class="slide-vtitle">
+                      <span class="v-badge v-badge-win">✅ VIDEO MẪU 03 • BẢN HYBRID 60FPS &amp; REEL 176S</span>
+                      <strong>Nguyễn Đức Việt — Mạng xã hội cũ đã chết rồi: Kỷ nguyên Ngữ nghĩa (Semantic AI)</strong>
+                    </div>
+                    <div class="slide-vbtns">
+                      <button type="button" class="btn-play-inline" onclick="toggleSlideVideo(this, 'vid-s09-semantic', 'assets/motion02/motion02_hybrid_9x16_60fps.mp4')">▶️ Phát bản Hybrid</button>
+                      <a href="https://www.facebook.com/reel/2120904432125196/" target="_blank" rel="noopener" class="btn-src-link">Reel Full 176s ↗</a>
+                      <a href="https://www.youtube.com/watch?v=_PvNmYKa1qM" target="_blank" rel="noopener" class="btn-src-link">YouTube ↗</a>
+                    </div>
+                  </div>
+                  <div class="slide-vstrip">
+                    <img src="assets/motion02/frames/motion02_hybrid_9scenes_grid.jpg" alt="Kỷ nguyên Ngữ nghĩa" loading="lazy"/>
+                    <div class="slide-vnote">Giải thích vì sao bạn không cần làm Idol câu tương tác trên video nữa — chỉ cần đóng gói chất xám qua 4 điểm kết nối cơ thể tự nhiên.</div>
+                  </div>
+                  <div class="slide-vplayer" id="vid-s09-semantic" style="display:none;">
+                    <video controls playsinline preload="none" poster="assets/motion02/frames/motion02_hybrid_9scenes_grid.jpg"></video>
+                  </div>
+                </div>
+              </div>
+              <div class="slide-footer">
+                <div class="mentor-sig">
+                  <span class="mentor-dot">NV</span>
+                  <span><strong>Mentor : Nguyễn Đức Việt</strong>  ·  Storytelling 2.0 Master</span>
+                </div>
+                <div class="footer-right">Slide 09 / 14  ·  storytelling2.0.html</div>
+              </div>
+            </div>
+        
+          <div class="speaker-notes-box">
+            <div class="sn-header">
+              <span class="sn-badge">🗣️ LỜI DẪN GIẢNG VIÊN CỦA ANH VIỆT (SLIDE 09)</span>
+              <span class="sn-part">Mục 03.3: Giải phẫu Video 03 (Kỷ nguyên Ngữ nghĩa & 4 Điểm kết nối cơ thể)</span>
+            </div>
+            <p class="sn-text">“Ở video thứ ba này, tôi giải thích vì sao mỗi tuần tôi chỉ đăng đúng 1 video mà kênh vẫn lên 40.000 người theo dõi. Vì mạng xã hội đếm lượt like cũ đã qua rồi, giờ là kỷ nguyên Ngữ nghĩa — AI đọc hiểu video của bạn tháo gỡ được việc gì cho khách. Khi bạn lộ mặt 25–30%, hãy nhớ 4 điểm trên bảng: Từ tốn, Đôi tay bưng bê ngôn từ, Ánh mắt biết nghĩ, và Nói thứ mình thực sự đã trải qua.”</p>
+          </div>
+        </section>
+
+        <section class="slide-wrapper" data-index="9" id="slide-10">
+
+            <div class="slide-canvas layout-content">
+              <div class="slide-topbar">
+                <span>2026  •  MỤC 04 • CHUYỂN HÓA MEGA PROMPT THÀNH KHUÔN ĐIỀN KHUYẾT TẠI LỚP</span>
+                <span>VIDEO SYSTEM · STORYTELLING 2.0</span>
+              </div>
+              <div class="slide-head-block">
+                <div class="slide-title-row">
+                  <h2 class="slide-main-title">Khuôn điền khuyết: 4 câu, 3 dấu / — Ba phút điền, không ai phải viết văn</h2>
+                  <span class="preset-tag">Kiểu 02 • 3 Cấp Độ Bài Tập Tại Bàn Học</span>
+                </div>
+                <p class="slide-subtitle">Tại lớp không chat AI dài dòng 20 phút — Chọn chữ cái từ Menu A/B/C/D và bấm máy ngay với đạo cụ trong túi bạn.</p>
+              </div>
+              <div class="ds-cards cards-grid-3">
+                <div class="ds-card card-neutral">
+                  <div class="ds-card-head">
+                    <div class="ds-badge">BÀI TẬP 01 • CẤP ĐỘ PHÁ BĂNG</div>
+                    <h3 class="ds-card-title">Khoảnh Khắc Giấu Mình (15–20 giây)</h3>
+                  </div>
+                  <div class="ds-hairline"></div>
+                  <div class="ds-card-body">
+                    <p>• <strong>Cấu trúc:</strong> 2 B-Roll tay ngập ngừng (T2) + 2 A-Roll nói cái cớ (T2.5) và mỉm cười giải oan.</p>
+                    <p>• <strong>Đạo cụ tại bàn:</strong> Bàn phím/điện thoại + cốc nước + góc ngồi tại bàn.</p>
+                    <p>• <strong>Thời gian:</strong> 3 phút chọn A-B-C-D &rarr; 7 phút quay 4 cú máy.</p>
+                  </div>
+                  <div class="ds-takeaway">🎯 Phá băng lần đầu lộ mặt 25–30%.</div>
+                </div>
+
+                <div class="ds-card card-good">
+                  <div class="ds-card-head">
+                    <div class="ds-badge">BÀI TẬP 02 • NGƯỜI LÀM NGHỀ</div>
+                    <h3 class="ds-card-title">Chiếc Khăn Lau Yên Xe (20–30 giây)</h3>
+                  </div>
+                  <div class="ds-hairline"></div>
+                  <div class="ds-card-body">
+                    <p>• <strong>Cấu trúc:</strong> 3 B-Roll (Thao tác sai T2 &rarr; Cái cớ T2.5 &rarr; Giữ mặt mũi cho khách) + 1 A-Roll chốt góc nhìn nghề.</p>
+                    <p>• <strong>Đạo cụ tại bàn:</strong> Khăn giấy/sổ bút + điện thoại + bước chân hành lang.</p>
+                    <p>• <strong>Thời gian:</strong> 3 phút chọn Menu &rarr; 7 phút quay.</p>
+                  </div>
+                  <div class="ds-takeaway">🎯 Tạo dựng lòng tin người làm nghề.</div>
+                </div>
+
+                <div class="ds-card card-good">
+                  <div class="ds-card-head">
+                    <div class="ds-badge">BÀI TẬP 03 • CHIỀU SÂU 4 NẤC</div>
+                    <h3 class="ds-card-title">Bức Thư Gửi Chính Mình 1 Năm Trước (30–45s)</h3>
+                  </div>
+                  <div class="ds-hairline"></div>
+                  <div class="ds-card-body">
+                    <p>• <strong>Cấu trúc:</strong> 4 nhịp chuẩn Gương lõm (Đêm muộn T2 &rarr; Cái cớ T2.5 &rarr; Nỗi lo T3 nói nhẹ &rarr; Viết 1 việc nhỏ vào sổ).</p>
+                    <p>• <strong>Đạo cụ tại bàn:</strong> Laptop gấp xuống + cốc nước + sổ tay &amp; bút.</p>
+                    <p>• <strong>Thời gian:</strong> 3 phút chọn Menu &rarr; 7 phút quay.</p>
+                  </div>
+                  <div class="ds-takeaway">🎯 Thuyết phục khách hàng kỹ tính.</div>
+                </div>
+              </div>
+              <div class="slide-footer">
+                <div class="mentor-sig">
+                  <span class="mentor-dot">NV</span>
+                  <span><strong>Mentor : Nguyễn Đức Việt</strong>  ·  Storytelling 2.0 Master</span>
+                </div>
+                <div class="footer-right">Slide 10 / 14  ·  storytelling2.0.html</div>
+              </div>
+            </div>
+        
+          <div class="speaker-notes-box">
+            <div class="sn-header">
+              <span class="sn-badge">🗣️ LỜI DẪN GIẢNG VIÊN CỦA ANH VIỆT (SLIDE 10)</span>
+              <span class="sn-part">Mục 04: Nguyên tắc thực hành 3 phút điền khuôn + 7 phút quay tại bàn</span>
+            </div>
+            <p class="sn-text">“Khi ở nhà một mình, các bạn dùng bộ 3 Mega Prompt để đào 50 kịch bản. Nhưng ngồi tại lớp đông người, nếu gõ chat với AI sẽ mất 20 phút và dễ ngại ngùng khi gõ nỗi sợ thật. Vì vậy tôi đã nén toàn bộ tinh thần của Mega Prompt thành 3 Khuôn Điền Khuyết 4 Câu. Các bạn chỉ cần mở trang storytelling2.0.html trên điện thoại, bấm chọn A1, B2, C1, D3 trong 3 phút là có kịch bản đi quay ngay!”</p>
+          </div>
+        </section>
+
+        <section class="slide-wrapper" data-index="10" id="slide-11">
+
+            <div class="slide-canvas layout-content">
+              <div class="slide-topbar">
+                <span>2026  •  MỤC 04.1 • BÀI TẬP 01: KHOẢNH KHẮC GIẤU MÌNH (CẤP ĐỘ PHÁ BĂNG)</span>
+                <span>VIDEO SYSTEM · STORYTELLING 2.0</span>
+              </div>
+              <div class="slide-head-block">
+                <div class="slide-title-row">
+                  <h2 class="slide-main-title">Bài Tập 01: Khoảnh Khắc Giấu Mình (T2 &rarr; T2.5 &rarr; Giải Oan • 15–20 giây)</h2>
+                  <span class="preset-tag">2 B-Roll + 2 A-Roll • Quay Ngay Tại Bàn</span>
+                </div>
+              </div>
+              <div class="khuon-box">
+                <span class="k-label">🎙️ KHUÔN ĐIỀN KHUYẾT 4 CÂU (CÓ SẴN TRÌNH BẤM CHỌN TƯƠNG TÁC TRÊN WEB)</span>
+                <p class="k-text">"Mỗi lần tới lúc <span class="slot">[A: hành động]</span> <span class="slash">/</span> tay mình lại <span class="slot">[B: động tác ngập ngừng]</span> <span class="slash">/</span> và mình tự nhủ '<span class="slot">[C: cái cớ giữ thể diện]</span>' <span class="slash">/</span> nhưng thật ra ai mới bắt đầu cũng <span class="slot">[D: câu giải oan]</span>."</p>
+              </div>
+              <div class="ds-cards cards-grid-2">
+                <div>
+                  <table class="mini-table">
+                    <thead>
+                      <tr><th>Ô chọn</th><th>Thực đơn chọn nhanh (Chỉ cần nhặt số 1, 2, 3, 4)</th></tr>
+                    </thead>
+                    <tbody>
+                      <tr><td>[A] Hành động</td><td>1. đăng bài &nbsp;|&nbsp; 2. bấm máy quay &nbsp;|&nbsp; 3. gửi báo giá &nbsp;|&nbsp; 4. nhắn khách cũ</td></tr>
+                      <tr><td>[B] Động tác</td><td>1. gõ rồi xóa &nbsp;|&nbsp; 2. đặt điện thoại úp xuống &nbsp;|&nbsp; 3. mở rồi đóng app &nbsp;|&nbsp; 4. xoay cây bút</td></tr>
+                      <tr><td>[C] Cái cớ</td><td>1. "để mai cho chắc" &nbsp;|&nbsp; 2. "chưa đủ đồ nghề" &nbsp;|&nbsp; 3. "đợi rảnh đã" &nbsp;|&nbsp; 4. "người ta giỏi hơn rồi"</td></tr>
+                      <tr><td>[D] Giải oan</td><td>1. đều hồi hộp ở lần đầu &nbsp;|&nbsp; 2. đều làm chưa tới như mình tưởng &nbsp;|&nbsp; 3. đều từng gõ rồi xóa &nbsp;|&nbsp; 4. đều chờ chữ "đủ"</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div>
+                  <table class="mini-table">
+                    <thead>
+                      <tr><th>Cú máy</th><th>Cảnh quay tại bàn học</th><th>Khớp câu</th></tr>
+                    </thead>
+                    <tbody>
+                      <tr><td>Cú 1 (B-Roll)</td><td>Cận ngón tay trên bàn phím/điện thoại, gõ rồi xóa.</td><td>Câu 1</td></tr>
+                      <tr><td>Cú 2 (B-Roll)</td><td>Đặt điện thoại úp xuống bàn, cốc nước bên cạnh.</td><td>Câu 2</td></tr>
+                      <tr><td>Cú 3 (A-Roll)</td><td>Lộ mặt ngồi tại bàn, nhìn ống kính nói điềm tĩnh.</td><td>Câu 3</td></tr>
+                      <tr><td>Cú 4 (A-Roll)</td><td>Vẫn A-Roll, mỉm cười nhẹ và gật đầu ở chữ cuối.</td><td>Câu 4</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <div class="slide-footer">
+                <div class="mentor-sig">
+                  <span class="mentor-dot">NV</span>
+                  <span><strong>Mentor : Nguyễn Đức Việt</strong>  ·  Khóa chống tắc: Chọn ngay A1 + B1 + C1 + D3</span>
+                </div>
+                <div class="footer-right">Slide 11 / 14  ·  storytelling2.0.html</div>
+              </div>
+            </div>
+        
+          <div class="speaker-notes-box">
+            <div class="sn-header">
+              <span class="sn-badge">🗣️ LỜI DẪN GIẢNG VIÊN CỦA ANH VIỆT (SLIDE 11)</span>
+              <span class="sn-part">Mục 04.1: Hướng dẫn Bài Tập 01 (Khoảnh khắc giấu mình)</span>
+            </div>
+            <p class="sn-text">“Bài số 1 là bài Phá băng dễ nhất: 2 cảnh đầu quay tay (B-Roll), 2 cảnh sau lộ mặt (A-Roll). Ví dụ bạn làm nghề tóc: 'Mỗi lần tới lúc đăng bài / tay mình lại gõ rồi xóa / và mình tự nhủ để mai cho chắc / nhưng thật ra ai mới bắt đầu cũng đều từng gõ rồi xóa'. Khóa chống tắc: ai nghĩ quá 60 giây chưa xong thì chọn luôn A1 - B1 - C1 - D3 và bấm máy quay ngay!”</p>
+          </div>
+        </section>
+
+        <section class="slide-wrapper" data-index="11" id="slide-12">
+
+            <div class="slide-canvas layout-content">
+              <div class="slide-topbar">
+                <span>2026  •  MỤC 04.2 • BÀI TẬP 02: CHIẾC KHĂN LAU YÊN XE (NGƯỜI LÀM NGHỀ)</span>
+                <span>VIDEO SYSTEM · STORYTELLING 2.0</span>
+              </div>
+              <div class="slide-head-block">
+                <div class="slide-title-row">
+                  <h2 class="slide-main-title">Bài Tập 02: Chiếc Khăn Lau Yên Xe — Lật Ngược Hiểu Lầm Nghề Nghiệp (20–30s)</h2>
+                  <span class="preset-tag">3 B-Roll + 1 A-Roll Chốt Nghề</span>
+                </div>
+              </div>
+              <div class="khuon-box">
+                <span class="k-label">🎙️ KHUÔN ĐIỀN KHUYẾT 4 CÂU (MỞ BẰNG HÀNH VI KHÁCH &rarr; GIỮ THỂ DIỆN &rarr; CHỐT NGHỀ)</span>
+                <p class="k-text">"Khách của mình hay <span class="slot">[A: hành vi sai/ngập ngừng]</span> <span class="slash">/</span> vì ngoài miệng ai cũng nghĩ '<span class="slot">[B: cái cớ hợp lý]</span>' <span class="slash">/</span> thật ra điều đó rất dễ hiểu, vì <span class="slot">[C: lý do giữ thể diện]</span> <span class="slash">/</span> nhưng làm nghề lâu năm mới biết, <span class="slot">[D: góc nhìn người làm nghề]</span>."</p>
+              </div>
+              <div class="ds-cards cards-grid-2">
+                <div>
+                  <table class="mini-table">
+                    <thead>
+                      <tr><th>Ô chọn</th><th>Thực đơn chọn nhanh (Hoặc bấm mẫu ngành trên Web)</th></tr>
+                    </thead>
+                    <tbody>
+                      <tr><td>[A] Hành vi khách</td><td>1. lau yên xe bằng khăn khô &nbsp;|&nbsp; 2. tự chọn size theo ảnh mạng &nbsp;|&nbsp; 3. đọc kỹ bảng giá rồi đặt xuống &nbsp;|&nbsp; 4. tự đọc lướt giấy tờ rồi ký</td></tr>
+                      <tr><td>[B] Cái cớ T2.5</td><td>1. "thế là sạch rồi" &nbsp;|&nbsp; 2. "cho nhanh đỡ tốn" &nbsp;|&nbsp; 3. "nhìn cũng giống nhau" &nbsp;|&nbsp; 4. "để về thu xếp rồi báo lại"</td></tr>
+                      <tr><td>[C] Giữ thể diện</td><td>1. chẳng ai chỉ từ đầu &nbsp;|&nbsp; 2. nhìn bề ngoài khó phân biệt &nbsp;|&nbsp; 3. ai đi làm cũng bận &nbsp;|&nbsp; 4. người làm trực tiếp mới để ý</td></tr>
+                      <tr><td>[D] Chốt nghề</td><td>1. cái hại nằm ở chỗ nhìn không thấy &nbsp;|&nbsp; 2. một chi tiết nhỏ đổi cả kết quả &nbsp;|&nbsp; 3. làm đúng lần đầu rẻ hơn sửa &nbsp;|&nbsp; 4. gạch bỏ mục thừa giúp khách nhẹ chi phí</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div>
+                  <table class="mini-table">
+                    <thead>
+                      <tr><th>Cú máy</th><th>Cảnh quay tại bàn học &amp; hành lang</th><th>Khớp câu</th></tr>
+                    </thead>
+                    <tbody>
+                      <tr><td>Cú 1 (B-Roll)</td><td>Cận tay lau mặt bàn bằng khăn giấy khô hoặc lật tài liệu.</td><td>Câu 1</td></tr>
+                      <tr><td>Cú 2 (B-Roll)</td><td>Tay cầm điện thoại chụp trang sổ rồi vuốt qua lại.</td><td>Câu 2</td></tr>
+                      <tr><td>Cú 3 (B-Roll)</td><td>Bước chân dọc hành lang (máy ngang gối) hoặc khoanh bút vào sổ.</td><td>Câu 3</td></tr>
+                      <tr><td>Cú 4 (A-Roll)</td><td>Lộ mặt ngồi thẳng tại bàn, nhìn ống kính chốt câu nghề.</td><td>Câu 4</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <div class="slide-footer">
+                <div class="mentor-sig">
+                  <span class="mentor-dot">NV</span>
+                  <span><strong>Mentor : Nguyễn Đức Việt</strong>  ·  3 B-Roll dẫn nhịp + 1 A-Roll khóa lòng tin</span>
+                </div>
+                <div class="footer-right">Slide 12 / 14  ·  storytelling2.0.html</div>
+              </div>
+            </div>
+        
+          <div class="speaker-notes-box">
+            <div class="sn-header">
+              <span class="sn-badge">🗣️ LỜI DẪN GIẢNG VIÊN CỦA ANH VIỆT (SLIDE 12)</span>
+              <span class="sn-part">Mục 04.2: Hướng dẫn Bài Tập 02 (Chiếc khăn lau yên xe)</span>
+            </div>
+            <p class="sn-text">“Bài số 2 dành cho những ai muốn thể hiện tay nghề sâu sắc mà không bị mang tiếng dạy bảo khách. 3 câu đầu hoàn toàn là B-Roll: nêu thói quen khách hay làm chưa đúng, rồi lập tức thông cảm 'thật ra điều đó rất dễ hiểu, vì nhìn bề ngoài khó phân biệt'. Chỉ đến câu thứ 4 bạn mới lộ mặt (A-Roll) để chốt góc nhìn nghề nghiệp.”</p>
+          </div>
+        </section>
+
+        <section class="slide-wrapper" data-index="12" id="slide-13">
+
+            <div class="slide-canvas layout-content">
+              <div class="slide-topbar">
+                <span>2026  •  MỤC 04.3 • BÀI TẬP 03: BỨC THƯ GỬI CHÍNH MÌNH 1 NĂM TRƯỚC (ĐỦ 4 NẤC)</span>
+                <span>VIDEO SYSTEM · STORYTELLING 2.0</span>
+              </div>
+              <div class="slide-head-block">
+                <div class="slide-title-row">
+                  <h2 class="slide-main-title">Bài Tập 03: Bức Thư Gửi Chính Mình 1 Năm Trước (T2 &rarr; T2.5 &rarr; T3 &rarr; Việc Nhỏ • 30–45s)</h2>
+                  <span class="preset-tag">2 B-Roll + 1 A-Roll + 1 Cú Viết Sổ Kết</span>
+                </div>
+              </div>
+              <div class="khuon-box">
+                <span class="k-label">🎙️ KHUÔN ĐIỀN KHUYẾT 4 CÂU (HIỆU ỨNG GƯƠNG LÕM MẠNH NHẤT)</span>
+                <p class="k-text">"Năm ngoái, lúc <span class="slot">[A: giờ đêm]</span>, mình <span class="slot">[B: hành vi T2]</span> <span class="slash">/</span> mình cứ tự nhủ là '<span class="slot">[C: cái cớ T2.5]</span>' <span class="slash">/</span> thật ra trong lòng mình đang <span class="slot">[D: nỗi lo T3 nói nhẹ]</span> <span class="slash">/</span> nếu gửi thư được cho mình hồi đó, mình sẽ viết: '<span class="slot">[E: 1 việc nhỏ làm được tuần này]</span>'."</p>
+              </div>
+              <div class="ds-cards cards-grid-2">
+                <div>
+                  <table class="mini-table">
+                    <thead>
+                      <tr><th>Ô chọn</th><th>Thực đơn chọn nhanh (Mẫu Nha sĩ, Tiệm bánh, Môi giới)</th></tr>
+                    </thead>
+                    <tbody>
+                      <tr><td>[A] Giờ &amp; [B] T2</td><td>A: 11h đêm / 12h đêm / 1h sáng / 2h sáng.<br>B: 1. gấp laptop lại &nbsp;|&nbsp; 2. xóa bản nháp &nbsp;|&nbsp; 3. cắn môi nhìn bảng giá &nbsp;|&nbsp; 4. vuốt tắt thông báo</td></tr>
+                      <tr><td>[C] Cái cớ T2.5</td><td>1. "đợi đủ vốn mới làm" &nbsp;|&nbsp; 2. "đợi rảnh mới học" &nbsp;|&nbsp; 3. "đợi giỏi hơn mới đăng" &nbsp;|&nbsp; 4. "đợi người ta làm trước"</td></tr>
+                      <tr><td>[D] Nỗi lo T3</td><td>1. ngại người quen đọc thấy &nbsp;|&nbsp; 2. sợ mình lơ ngơ trước ống kính &nbsp;|&nbsp; 3. sợ làm sai mất uy tín &nbsp;|&nbsp; 4. sợ mình đã tụt lại</td></tr>
+                      <tr><td>[E] Việc nhỏ</td><td>1. "Quay thử 15 giây thôi" &nbsp;|&nbsp; 2. "Đăng một bản nháp đi" &nbsp;|&nbsp; 3. "Nhắn một khách cũ đi" &nbsp;|&nbsp; 4. "Kể một việc mình làm hôm qua"</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div>
+                  <table class="mini-table">
+                    <thead>
+                      <tr><th>Cú máy</th><th>Cảnh quay tại bàn học</th><th>Khớp câu</th></tr>
+                    </thead>
+                    <tbody>
+                      <tr><td>Cú 1 (B-Roll)</td><td>Gập nắp màn hình laptop xuống, tay đặt yên trên nắp máy.</td><td>Câu 1 (T2)</td></tr>
+                      <tr><td>Cú 2 (B-Roll)</td><td>Cốc nước trên bàn, ngón tay gõ nhẹ vào vành cốc.</td><td>Câu 2 (T2.5)</td></tr>
+                      <tr><td>Cú 3 (A-Roll)</td><td>Lộ mặt, hạ nhẹ giọng, nhìn xuống sổ rồi ngước nhìn ống kính.</td><td>Câu 3 (T3)</td></tr>
+                      <tr><td>Cú 4 (Kết)</td><td>Tay viết 1 dòng ngắn vào sổ, đặt bút và đưa trang giấy về ống kính.</td><td>Câu 4 (E)</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <div class="slide-footer">
+                <div class="mentor-sig">
+                  <span class="mentor-dot">NV</span>
+                  <span><strong>Mentor : Nguyễn Đức Việt</strong>  ·  Khóa chống tắc: Chọn mẫu Nha sĩ + Chốt E1</span>
+                </div>
+                <div class="footer-right">Slide 13 / 14  ·  storytelling2.0.html</div>
+              </div>
+            </div>
+        
+          <div class="speaker-notes-box">
+            <div class="sn-header">
+              <span class="sn-badge">🗣️ LỜI DẪN GIẢNG VIÊN CỦA ANH VIỆT (SLIDE 13)</span>
+              <span class="sn-part">Mục 04.3: Hướng dẫn Bài Tập 03 (Bức thư gửi chính mình 1 năm trước)</span>
+            </div>
+            <p class="sn-text">“Bài số 3 là bài đi đủ 4 nấc sâu nhất của Storytelling 2.0: Bạn gửi một bức thư cho chính mình vào một đêm muộn năm ngoái. Cú 1 gập nắp laptop (T2), Cú 2 gõ nhẹ vành cốc nước nói cái cớ (T2.5), Cú 3 lộ mặt hạ giọng nói nỗi lo lúc đó (T3), và Cú 4 cầm bút viết đúng 1 dòng nhắn nhủ lên trang sổ. Ai xem cũng thấy bóng dáng của chính họ trong đó.”</p>
+          </div>
+        </section>
+
+        <section class="slide-wrapper" data-index="13" id="slide-14">
+
+            <div class="slide-canvas layout-content">
+              <div class="slide-topbar">
+                <span>2026  •  MỤC 05 • LÀM MẪU 10 PHÚT, THANG CHẤM 10 ĐIỂM &amp; CHUYỂN GIAO MEGA PROMPT</span>
+                <span>VIDEO SYSTEM · STORYTELLING 2.0</span>
+              </div>
+              <div class="slide-head-block">
+                <div class="slide-title-row">
+                  <h2 class="slide-main-title">Thang chấm 10 điểm tại lớp &amp; Bộ công cụ Mega Prompt mang về nhà</h2>
+                  <span class="preset-tag">Chấm Bằng Thang • Không Chấm Bằng Cảm Giác</span>
+                </div>
+                <p class="slide-subtitle">3 phút điền khuôn trên storytelling2.0.html &rarr; 7 phút quay 4 cú máy tại bàn &rarr; Đổi máy chấm chéo 5 tiêu chí.</p>
+              </div>
+              <div class="ds-cards cards-grid-2">
+                <div class="ds-card card-good">
+                  <div class="ds-card-head">
+                    <div class="ds-badge">✅ THANG CHẤM CHÉO 10 ĐIỂM (5 TIÊU CHÍ &times; 2 ĐIỂM)</div>
+                    <h3 class="ds-card-title">Đạt từ 7–8 điểm trở lên là hoàn thành tại lớp</h3>
+                  </div>
+                  <div class="ds-hairline"></div>
+                  <div class="ds-card-body">
+                    <p>1. <strong>Camera 5 giây (2đ):</strong> Câu T2 có động từ của bàn tay/mắt/chân (0đ nếu toàn tính từ).</p>
+                    <p>2. <strong>T2.5 Giữ thể diện (2đ):</strong> Cái cớ nghe hợp lý, người xem gật đầu (0đ nếu đâm thẳng T3).</p>
+                    <p>3. <strong>Gương lõm (2đ):</strong> Kể trải nghiệm thật cùng chỗ đứng (0đ nếu đứng trên dạy bảo).</p>
+                    <p>4. <strong>Tỷ lệ A-Roll / B-Roll (2đ):</strong> A-Roll 25–30% + B-Roll 70–75% (0đ nếu lộ mặt quá 50%).</p>
+                    <p>5. <strong>Lối ra cụ thể (2đ):</strong> 1 việc nhỏ làm được ngay tuần này (0đ nếu chung chung).</p>
+                  </div>
+                  <div class="ds-takeaway">🎯 9–10đ: Xuất sắc | 7–8đ: Đạt | 5–6đ: Quay lại Cú 2 &amp; 3.</div>
+                </div>
+
+                <div class="ds-card card-neutral">
+                  <div class="ds-card-head">
+                    <div class="ds-badge">🧰 LỘ TRÌNH 10 PHÚT TẠI LỚP &amp; MEGA PROMPT VỀ NHÀ</div>
+                    <h3 class="ds-card-title">Tại lớp dùng Khuôn 4 câu — Về nhà bật 3 Mega Prompt</h3>
+                  </div>
+                  <div class="ds-hairline"></div>
+                  <div class="ds-card-body">
+                    <p>• <strong>Ngay bây giờ tại lớp (10 phút):</strong> Mở <code>storytelling2.0.html</code> &rarr; Bấm chọn A-B-C-D ở Bài 1, 2 hoặc 3 (3 phút) &rarr; Quay 4 cú máy tại bàn (7 phút) &rarr; Chấm chéo trên phiếu 10 điểm.</p>
+                    <p>• <strong>Khi về nhà (30 phút yên tĩnh):</strong> Mở <code>congthucstorytelling.html</code> sử dụng <strong>3 Công cụ Mega Prompt</strong> (Cô Hoa hậu 1 dòng, Máy đào Hook DNA, Pipeline Trắc nghiệm A/B/C/D) để đào 30 kịch bản 7 câu cho ngành của bạn.</p>
+                  </div>
+                  <div class="ds-takeaway">🎯 Mở ngay: storytelling2.0.html &amp; congthucstorytelling.html</div>
+                </div>
+              </div>
+              <div class="slide-footer">
+                <div class="mentor-sig">
+                  <span class="mentor-dot">NV</span>
+                  <span><strong>Mentor : Nguyễn Đức Việt</strong>  ·  Bấm giờ 10 phút thực hành!</span>
+                </div>
+                <div class="footer-right">Slide 14 / 14  ·  storytelling2.0.html</div>
+              </div>
+            </div>
+        
+          <div class="speaker-notes-box">
+            <div class="sn-header">
+              <span class="sn-badge">🗣️ LỜI DẪN GIẢNG VIÊN CỦA ANH VIỆT (SLIDE 14)</span>
+              <span class="sn-part">Mục 05: Làm mẫu tại chỗ, bấm giờ 10 phút và hướng dẫn chấm chéo</span>
+            </div>
+            <p class="sn-text">“Bây giờ tôi sẽ bấm chọn A1, B1, C1, D3 của Bài 1 và cầm điện thoại quay 4 cú máy ngay tại bàn này trong 2 phút rưỡi cho cả lớp xem trước... [Sau khi quay xong] Các bạn thấy đấy, Cú 2 của tôi chỉ được 1 điểm vì cốc nước chưa vào khung, tổng tôi được 9/10 điểm. Bây giờ đến lượt cả lớp: Chúng ta có 3 phút bấm chọn kịch bản trên trang storytelling2.0.html và 7 phút quay 4 cú máy ngay tại bàn. Làm xong hai người ngồi cạnh nhau đổi điện thoại chấm bằng đúng 5 tiêu chí trên bảng nhé!”</p>
+          </div>
+        </section>
+  </main>
+
+  <script>
+    var currentSlide = 0;
+    var totalSlides = 14;
+
+    function goToSlide(idx) {
+      if (idx < 0) idx = 0;
+      if (idx >= totalSlides) idx = totalSlides - 1;
+      currentSlide = idx;
+      var wrappers = document.querySelectorAll('.slide-wrapper');
+      var dots = document.querySelectorAll('.nav-dot');
+      wrappers.forEach(function(w, i) {
+        if (i === currentSlide) w.classList.add('active');
+        else w.classList.remove('active');
+      });
+      dots.forEach(function(d, i) {
+        if (i === currentSlide) d.classList.add('active');
+        else d.classList.remove('active');
+      });
+      if (document.body.classList.contains('view-all')) {
+        wrappers[currentSlide].scrollIntoView({ behavior: 'smooth', block: 'start' });
+      } else {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    }
+
+    function nextSlide() {
+      if (currentSlide < totalSlides - 1) goToSlide(currentSlide + 1);
+    }
+
+    function prevSlide() {
+      if (currentSlide > 0) goToSlide(currentSlide - 1);
+    }
+
+    function toggleViewAll() {
+      var b = document.body;
+      var btn = document.getElementById('btn-toggle-view');
+      b.classList.toggle('view-all');
+      if (b.classList.contains('view-all')) {
+        btn.textContent = '🖥️ Xem từng slide 16:9';
+      } else {
+        btn.textContent = '📑 Xem tất cả 14 slides';
+        goToSlide(currentSlide);
+      }
+    }
+
+    function toggleSlideVideo(btn, playerId, mp4Url) {
+      var box = document.getElementById(playerId);
+      if (!box) return;
+      var vid = box.querySelector('video');
+      if (box.style.display === 'none' || !box.style.display) {
+        box.style.display = 'block';
+        if (vid) {
+          if (!vid.getAttribute('src') && mp4Url) vid.setAttribute('src', mp4Url);
+          vid.play().catch(function(){});
+        }
+        btn.innerHTML = '⏸️ Đóng video';
+      } else {
+        if (vid) vid.pause();
+        box.style.display = 'none';
+        btn.innerHTML = '▶️ Phát video thật';
+      }
+    }
+
+    document.addEventListener('keydown', function(e) {
+      if (document.body.classList.contains('view-all')) return;
+      if (e.key === 'ArrowRight' || e.key === 'PageDown') {
+        nextSlide();
+      } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+        prevSlide();
+      }
+    });
+  </script>
+</body>
+</html>

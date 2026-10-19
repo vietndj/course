@@ -1,0 +1,2850 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Storytelling 2.0 — Kể Lát Cắt 5 Giây &amp; Giữ Thể Diện Cho Người Xem (Giáo Án Thực Chiến)</title>
+  <style>
+
+/* =========================================================
+   TRUNG TÂM LOGIC XÂY KÊNH — Design system (INKDOC)
+   Monochrome slate · Tiempos (đọc) · Aeonik (tiêu đề) · Zero-animation
+   ========================================================= */
+@font-face{font-family:'FD Aeonik Extended';src:url('fonts/FDAeonikExtended-Bold.woff2') format('woff2');font-weight:700;font-display:swap}
+@font-face{font-family:'FD Aeonik Extended';src:url('fonts/FDAeonikExtended-SemiBold.woff2') format('woff2');font-weight:600;font-display:swap}
+@font-face{font-family:'FD Aeonik';src:url('fonts/FDAeonik-Regular.ttf') format('truetype');font-weight:400;font-display:swap}
+@font-face{font-family:'FD Aeonik';src:url('fonts/FDAeonik-Medium.ttf') format('truetype');font-weight:500 600;font-display:swap}
+@font-face{font-family:'FD Aeonik';src:url('fonts/FDAeonik-Bold.ttf') format('truetype');font-weight:700;font-display:swap}
+@font-face{font-family:'Tiempos Text';src:url('fonts/FDTiemposText-Regular.woff2') format('woff2');font-weight:400;font-display:swap}
+@font-face{font-family:'Tiempos Text';src:url('fonts/FDTiemposText-RegularItalic.woff2') format('woff2');font-weight:400;font-style:italic;font-display:swap}
+@font-face{font-family:'Tiempos Text';src:url('fonts/FDTiemposText-Semibold.woff2') format('woff2');font-weight:600;font-display:swap}
+@font-face{font-family:'Tiempos Text';src:url('fonts/FDTiemposText-Bold.woff2') format('woff2');font-weight:700;font-display:swap}
+
+:root{
+  --ink:#0f172a; --ink2:#1e293b; --ink3:#334155; --mute:#64748b; --mute2:#94a3b8;
+  --line:#e2e8f0; --line2:#cbd5e1; --bg:#ffffff; --bg2:#f8fafc; --bg3:#f1f5f9;
+  --acc:#0f172a;
+  /* màu theo chặng */
+  --c-tuduy:#7c3aed; --c-batdau:#0891b2; --c-logic:#2563eb; --c-niemtin:#db2777;
+  --c-dinhdang:#ea580c; --c-kynang:#16a34a; --c-thuchanh:#ca8a04; --c-tainguyen:#0f766e; --c-dulieu:#9333ea; --c-case:#0284c7;
+  --serif:'Tiempos Text',Georgia,'Times New Roman',serif;
+  --sans:'FD Aeonik',-apple-system,BlinkMacSystemFont,'Segoe UI',Inter,Roboto,sans-serif;
+  --display:'FD Aeonik Extended','FD Aeonik',-apple-system,sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
+  --side:290px; --top:56px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:auto;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+img{max-width:100%}
+::selection{background:#dbeafe}
+
+/* ---------- TOP BAR ---------- */
+.topbar{position:sticky;top:0;z-index:50;height:var(--top);display:flex;align-items:center;gap:14px;padding:0 18px;background:rgba(255,255,255,.96);border-bottom:1px solid var(--line);backdrop-filter:saturate(1.4) blur(6px)}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;flex-shrink:0}
+.brand .logo{width:30px;height:30px;border-radius:8px;background:#07090E;color:#FB923C;display:grid;place-items:center;font:700 12px var(--display);letter-spacing:.02em}
+.brand .t{font:700 13px var(--display);text-transform:uppercase;letter-spacing:.04em;line-height:1.1}
+.brand .t small{display:block;font:500 11px var(--sans);text-transform:none;letter-spacing:0;color:var(--mute)}
+.stepper{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none;flex:1;min-width:0;margin-left:10px}
+.stepper::-webkit-scrollbar{display:none}
+.stepper a{flex-shrink:0;text-decoration:none;font-size:12.5px;font-weight:500;color:var(--mute);padding:6px 9px;border-radius:7px;white-space:nowrap;display:flex;align-items:center;gap:6px}
+.stepper a .n{font:600 10px var(--mono);color:var(--mute2)}
+.stepper a:hover{background:var(--bg3);color:var(--ink)}
+.stepper a.on{background:var(--ink);color:#fff}
+.stepper a.on .n{color:#94a3b8}
+.searchbtn{flex-shrink:0;display:flex;align-items:center;gap:8px;border:1px solid var(--line);background:var(--bg2);border-radius:8px;padding:6px 10px;font:500 13px var(--sans);color:var(--mute);cursor:pointer}
+.searchbtn kbd{font:600 10px var(--mono);border:1px solid var(--line2);border-radius:4px;padding:1px 4px;background:#fff}
+.menubtn{display:none;border:1px solid var(--line);background:#fff;border-radius:8px;padding:6px 9px;cursor:pointer;font-size:15px}
+
+/* ---------- LAYOUT ---------- */
+.shell{display:grid;grid-template-columns:var(--side) minmax(0,1fr);min-height:calc(100vh - var(--top))}
+.side{position:sticky;top:var(--top);height:calc(100vh - var(--top));overflow-y:auto;border-right:1px solid var(--line);background:var(--bg2);padding:18px 14px 40px;font-size:13.5px}
+.side h6{margin:18px 8px 6px;font:700 10.5px var(--sans);letter-spacing:.09em;text-transform:uppercase;color:var(--mute2)}
+.side h6:first-child{margin-top:0}
+.side a.pg{display:flex;gap:8px;align-items:baseline;text-decoration:none;color:var(--ink3);padding:6px 8px;border-radius:7px;font-weight:500}
+.side a.pg .n{font:600 10.5px var(--mono);color:var(--mute2);min-width:20px}
+.side a.pg:hover{background:var(--bg3);color:var(--ink)}
+.side a.pg.on{background:#fff;color:var(--ink);box-shadow:0 0 0 1px var(--line),0 1px 2px rgba(15,23,42,.05);font-weight:600}
+.side a.pg.pg-sub, .side a.pg.sub{padding-left:24px;font-size:13px;opacity:0.9}
+.side a.pg.pg-sub .n, .side a.pg.sub .n{font-size:11px;min-width:18px}
+.side a.pg.pg-sub.on, .side a.pg.sub.on{opacity:1;font-weight:600}
+.side .toc{margin:4px 0 10px 18px;padding-left:10px;border-left:1px solid var(--line2)}
+.side .toc ul{list-style:none;margin:0;padding:0}
+.side .toc ul ul{padding-left:12px}
+.side .toc a{display:block;text-decoration:none;color:var(--mute);padding:3px 6px;font-size:12.8px;line-height:1.4;border-radius:5px}
+.side .toc a:hover{color:var(--ink)}
+.side .toc a.active{color:var(--ink);font-weight:600;background:#fff}
+.main{min-width:0;padding:40px 40px 120px;align-items:start;display:grid;grid-template-columns:minmax(0,760px) 260px;gap:48px;justify-content:center}
+.main.wide{grid-template-columns:minmax(0,820px)}
+.content{min-width:0}
+.rail{position:sticky;top:calc(var(--top) + 32px);align-self:start;max-height:calc(100vh - var(--top) - 50px);overflow:auto;font-size:13px}
+.rail h6{margin:0 0 10px;font:700 10.5px var(--sans);letter-spacing:.09em;text-transform:uppercase;color:var(--mute2)}
+.rail .rcard{display:block;text-decoration:none;border:1px solid var(--line);border-radius:10px;padding:10px 12px;margin-bottom:8px;background:#fff}
+.rail .rcard:hover{border-color:var(--ink3)}
+.rail .rcard b{display:block;font-size:13px;color:var(--ink)}
+.rail .rcard span{color:var(--mute);font-size:12px;line-height:1.4;display:block;margin-top:2px}
+
+/* ---------- TYPOGRAPHY ---------- */
+.kicker{font:700 11px var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--stage,var(--mute));display:flex;align-items:center;gap:8px;margin-bottom:12px}
+.kicker::before{content:"";width:18px;height:2px;background:currentColor;display:inline-block}
+h1.title{font:700 clamp(28px,4vw,40px)/1.12 var(--display);text-transform:uppercase;letter-spacing:-.01em;margin:0 0 16px}
+.lede{font:400 20px/1.6 var(--serif);color:var(--ink3);margin:0 0 28px}
+.content h2{font:600 26px/1.25 var(--sans);letter-spacing:-.015em;margin:56px 0 14px;padding-top:12px;border-top:1px solid var(--line);scroll-margin-top:80px}
+.content h2 .num{font:600 13px var(--mono);color:var(--stage,var(--mute2));display:block;margin-bottom:4px;letter-spacing:0}
+.content h3{font:600 20px/1.3 var(--sans);margin:36px 0 10px;scroll-margin-top:80px}
+.content h4{font:600 16.5px/1.35 var(--sans);margin:26px 0 8px;scroll-margin-top:80px;color:var(--ink2)}
+.content p,.content li{font-family:var(--serif);font-size:18px;line-height:1.72;color:var(--ink2)}
+.content p{margin:0 0 16px}
+.content ul,.content ol{padding-left:24px;margin:0 0 18px}
+.content li{margin:5px 0}
+.content li::marker{color:var(--mute2)}
+.content strong{font-weight:700;color:var(--ink)}
+.content em{font-style:italic}
+.content blockquote{margin:22px 0;padding:4px 0 4px 20px;border-left:3px solid var(--stage,var(--ink));font:italic 19px/1.65 var(--serif);color:var(--ink3)}
+.content blockquote p{font-size:19px}
+.content code{font:500 .86em var(--mono);background:var(--bg3);border:1px solid var(--line);padding:1px 5px;border-radius:5px}
+.content hr{border:0;border-top:1px solid var(--line);margin:40px 0}
+.content a{text-decoration:underline;text-decoration-color:var(--line2);text-underline-offset:3px}
+.content a:hover{text-decoration-color:var(--ink)}
+
+/* ---------- BADGES (Apple HIG) ---------- */
+.b{display:inline-block;font:700 10.5px/1 var(--sans);letter-spacing:.06em;text-transform:uppercase;background:var(--bg3);color:var(--ink3);border:1px solid var(--line);border-radius:5px;padding:4px 6px;box-shadow:0 1px 1px rgba(15,23,42,.04);position:relative;top:-2px;vertical-align:baseline;white-space:nowrap}
+.b.dark{background:var(--ink);color:#fff;border-color:var(--ink)}
+.b.s{background:color-mix(in srgb,var(--stage) 10%,#fff);color:var(--stage);border-color:color-mix(in srgb,var(--stage) 25%,#fff)}
+
+/* ---------- RESOURCE LINK (ấn vào ra luôn) ---------- */
+a.go{display:inline-flex;align-items:center;gap:5px;font:600 .82em var(--sans);text-decoration:none!important;background:#fff;color:var(--ink);border:1px solid var(--line2);border-radius:999px;padding:2px 9px 2px 7px;position:relative;top:-1px;vertical-align:baseline;white-space:nowrap}
+a.go::before{content:"↗";font-size:.95em;color:var(--stage,var(--mute))}
+a.go:hover{background:var(--ink);color:#fff;border-color:var(--ink)}
+a.go.int::before{content:"→"}
+
+/* ---------- BLOCKS ---------- */
+.spec{border:1px solid var(--line);border-radius:12px;overflow:hidden;margin:20px 0;background:#fff}
+.spec .row{display:grid;grid-template-columns:150px 1fr;gap:16px;padding:12px 16px;border-top:1px solid var(--line);align-items:baseline}
+.spec .row:first-child{border-top:0}
+.spec .row>.b{justify-self:start}
+.spec .row>div{font:400 15.5px/1.55 var(--sans);color:var(--ink2)}
+.spec .row>div p,.spec .row>div li{font-family:var(--sans);font-size:15.5px;line-height:1.55}
+
+.callout{border:1px solid var(--line);border-left:3px solid var(--stage,var(--ink));background:var(--bg2);border-radius:10px;padding:14px 18px;margin:22px 0}
+.callout>.h{font:700 11px var(--sans);letter-spacing:.09em;text-transform:uppercase;color:var(--stage,var(--ink3));margin-bottom:6px}
+.callout p,.callout li{font-size:16.5px!important}
+.callout p:last-child{margin-bottom:0}
+.callout.warn{--stage:#dc2626}
+.callout.tip{--stage:#16a34a}
+
+.qa{margin:14px 0;border:1px solid var(--line);border-radius:12px;background:#fff}
+.qa>summary{list-style:none;cursor:pointer;padding:14px 18px;font:600 16px/1.4 var(--sans);display:flex;gap:12px;align-items:flex-start}
+.qa>summary::-webkit-details-marker{display:none}
+.qa>summary::before{content:"Q";flex-shrink:0;font:700 11px var(--mono);background:var(--bg3);border:1px solid var(--line);border-radius:5px;padding:3px 6px;margin-top:1px}
+.qa[open]>summary{border-bottom:1px solid var(--line);background:var(--bg2);border-radius:12px 12px 0 0}
+.qa>.a{padding:14px 20px 4px}
+
+.grid{display:grid;gap:12px;margin:18px 0}
+.g2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.g3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.g4{grid-template-columns:repeat(4,minmax(0,1fr))}
+.card{border:1px solid var(--line);border-radius:12px;padding:16px;background:#fff;text-decoration:none;display:block;color:inherit}
+a.card:hover{border-color:var(--ink3);box-shadow:0 2px 10px rgba(15,23,42,.06)}
+.card .ct{font:600 16px/1.3 var(--sans);margin:6px 0 6px;color:var(--ink)}
+.card .cd{font:400 14px/1.5 var(--sans);color:var(--mute)}
+.card .cf{margin-top:10px;display:flex;flex-wrap:wrap;gap:5px}
+.card .ico{font-size:22px}
+
+table.t{width:100%;border-collapse:collapse;margin:18px 0;font:400 14.5px/1.5 var(--sans);border:1px solid var(--line);border-radius:12px;overflow:hidden;display:table}
+.tw{overflow-x:auto;margin:18px 0}
+.tw table.t{margin:0}
+table.t th{background:var(--bg3);text-align:left;font:700 11px var(--sans);letter-spacing:.07em;text-transform:uppercase;color:var(--ink3);padding:10px 12px;border-bottom:1px solid var(--line)}
+table.t td{padding:10px 12px;border-top:1px solid var(--line);vertical-align:top;color:var(--ink2)}
+table.t td:first-child{font-weight:600;color:var(--ink)}
+
+/* Flow map (index) */
+.flow{display:grid;gap:0;margin:24px 0;counter-reset:f}
+.fstep{display:grid;grid-template-columns:54px 1fr;gap:16px;text-decoration:none;color:inherit;padding:18px 0;border-top:1px solid var(--line)}
+.fstep:first-child{border-top:0}
+.fstep .dot{width:44px;height:44px;border-radius:12px;background:var(--stage);color:#fff;display:grid;place-items:center;font:700 14px var(--mono)}
+.fstep .q{font:700 11px var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--stage)}
+.fstep .h{font:600 20px/1.3 var(--sans);margin:3px 0 6px;color:var(--ink)}
+.fstep .d{font:400 16.5px/1.6 var(--serif);color:var(--ink3)}
+.fstep:hover .h{text-decoration:underline;text-underline-offset:4px}
+.fstep .links{margin-top:8px;display:flex;flex-wrap:wrap;gap:6px}
+
+.hero{border:1px solid var(--line);border-radius:16px;padding:28px;background:linear-gradient(180deg,#fff, var(--bg2));margin-bottom:30px}
+
+/* Sơ đồ chữ (diagram) */
+.diagram{font:500 13.5px/1.55 var(--mono);background:#0b1020;color:#e2e8f0;border-radius:12px;padding:18px 20px;overflow-x:auto;white-space:pre;margin:20px 0}
+.chain{display:flex;flex-wrap:wrap;align-items:stretch;gap:0;margin:20px 0}
+.chain>div{flex:1 1 120px;border:1px solid var(--line);background:#fff;padding:12px;font:500 13.5px/1.4 var(--sans);position:relative;margin-right:18px;border-radius:10px}
+.chain>div:not(:last-child)::after{content:"→";position:absolute;right:-15px;top:50%;transform:translateY(-50%);color:var(--mute2);font-weight:700}
+.chain>div b{display:block;font:700 10.5px var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--stage,var(--mute));margin-bottom:4px}
+
+/* Script (kịch bản) */
+.script{border:1px solid var(--line);border-radius:12px;overflow:hidden;margin:20px 0;background:#fff}
+.script .sh{background:var(--bg3);padding:10px 16px;font:700 12px var(--sans);letter-spacing:.06em;text-transform:uppercase;color:var(--ink3);border-bottom:1px solid var(--line);display:flex;justify-content:space-between;gap:10px}
+.script .ln{display:grid;grid-template-columns:110px 1fr;gap:14px;padding:10px 16px;border-top:1px solid var(--line)}
+.script .ln:first-of-type{border-top:0}
+.script .ln .lb{font:700 10.5px var(--sans);letter-spacing:.06em;text-transform:uppercase;color:var(--stage,var(--mute));padding-top:4px}
+.script .ln .tx{font:400 16.5px/1.6 var(--serif);color:var(--ink2)}
+.script .ln .tx i{color:var(--mute);font-size:14.5px}
+
+/* Dynamic blocks */
+.dyn-head{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:14px 0}
+.chip{font:600 12.5px var(--sans);border:1px solid var(--line2);background:#fff;border-radius:999px;padding:5px 11px;cursor:pointer;color:var(--ink3)}
+.chip.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.dyn-empty{font:400 14px var(--sans);color:var(--mute);padding:14px;border:1px dashed var(--line2);border-radius:10px}
+.ex{border:1px solid var(--line);border-radius:12px;background:#fff;margin:12px 0;overflow:hidden}
+.ex>summary{list-style:none;cursor:pointer;padding:14px 16px;display:flex;gap:12px;align-items:flex-start}
+.ex>summary::-webkit-details-marker{display:none}
+.ex .exn{flex-shrink:0;font:700 11px var(--mono);background:var(--ink);color:#fff;border-radius:6px;padding:4px 7px}
+.ex .ext{font:600 15.5px/1.4 var(--sans);color:var(--ink)}
+.ex .exm{display:flex;flex-wrap:wrap;gap:5px;margin-top:6px}
+.ex .exb{padding:4px 18px 16px 18px;border-top:1px solid var(--line)}
+.ex .exb p,.ex .exb li{font-size:16px}
+.ex .exb h5{font:700 11px var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--mute);margin:14px 0 6px}
+
+/* Search modal */
+.sm{position:fixed;inset:0;background:rgba(15,23,42,.45);z-index:100;display:none;align-items:flex-start;justify-content:center;padding-top:10vh}
+.sm.open{display:flex}
+.sm .box{width:min(680px,92vw);background:#fff;border-radius:14px;box-shadow:0 20px 60px rgba(0,0,0,.25);overflow:hidden}
+.sm input{width:100%;border:0;border-bottom:1px solid var(--line);padding:16px 18px;font:500 17px var(--sans);outline:none}
+.sm .res{max-height:60vh;overflow:auto;padding:6px}
+.sm .res a{display:block;text-decoration:none;padding:10px 12px;border-radius:8px}
+.sm .res a:hover,.sm .res a.sel{background:var(--bg3)}
+.sm .res a b{display:block;font:600 14.5px var(--sans);color:var(--ink)}
+.sm .res a span{font:400 12.5px var(--sans);color:var(--mute)}
+
+.pager{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:60px}
+.pager a{border:1px solid var(--line);border-radius:12px;padding:14px 16px;text-decoration:none!important;display:block}
+.pager a:hover{border-color:var(--ink3)}
+.pager a small{display:block;font:600 11px var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--mute2)}
+.pager a b{font:600 16px var(--sans);color:var(--ink)}
+.pager a.nx{text-align:right}
+.foot{margin-top:40px;padding-top:18px;border-top:1px solid var(--line);font:400 13px var(--sans);color:var(--mute)}
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width:1280px){.main{grid-template-columns:minmax(0,760px)}.rail{display:none}}
+@media (max-width:960px){
+  .shell{grid-template-columns:1fr}
+  .side{position:fixed;left:0;top:var(--top);width:min(320px,86vw);z-index:60;transform:translateX(-102%);box-shadow:0 10px 40px rgba(0,0,0,.15)}
+  body.navopen .side{transform:none}
+  .menubtn{display:block}
+  .stepper{display:flex;overflow-x:auto;white-space:nowrap;-webkit-overflow-scrolling:touch;scrollbar-width:none;gap:4px;margin-left:6px;margin-right:4px}
+  .stepper::-webkit-scrollbar{display:none}
+  .stepper a{display:inline-flex;flex-shrink:0;align-items:center;gap:4px;padding:5px 8px;font-size:12px}
+  .main{padding:28px 18px 90px}
+  .g3,.g4{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:600px){
+  .topbar{gap:8px;padding:0 10px}
+  .brand .t small{display:none}
+  .searchbtn span{display:none}
+  .searchbtn kbd{display:none}
+  .ecosystem-btn span:first-child{font-size:12px}
+  .g2,.g3,.g4{grid-template-columns:1fr}
+  .spec .row{grid-template-columns:1fr;gap:6px}
+  .script .ln{grid-template-columns:1fr;gap:2px}
+  .content p,.content li{font-size:17px}
+  .pager{grid-template-columns:1fr}
+}
+@media print{.topbar,.side,.rail,.pager{display:none}.shell{display:block}.main{display:block;padding:0}}
+
+/* ---------- FIX v3: shell + brand title ---------- */
+.side .mh{padding:2px 8px 14px;margin-bottom:6px;border-bottom:1px solid var(--line)}
+.side .mh b{display:block;font:700 15px/1.25 var(--display);text-transform:uppercase;letter-spacing:-.005em;text-wrap:balance}
+.side .mh p{margin:6px 0 0;font:400 12.5px/1.4 var(--sans);color:var(--mute)}
+.side a.pg .t{line-height:1.35}
+.content h1.title{font-family:'FD Aeonik Extended','FD Aeonik',sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:-.01em;font-size:clamp(26px,3.2vw,38px);line-height:1.1;text-wrap:balance;margin:0 0 22px;color:var(--ink)}
+.content .hero{padding:20px 24px;margin:0 0 28px}
+.content .hero>*:last-child{margin-bottom:0}
+.rail .otp a{display:block;text-decoration:none;color:var(--mute);padding:5px 0 5px 12px;border-left:2px solid var(--line);font:500 13px/1.4 var(--sans)}
+.rail .otp a:hover{color:var(--ink);border-left-color:var(--ink)}
+.pager{margin-top:56px}
+.pager a b{display:block;margin-top:4px;line-height:1.3}
+
+.content code{overflow-wrap:anywhere;word-break:break-word}
+.content pre{overflow-x:auto;max-width:100%}
+.content img,.content table{max-width:100%}
+
+.card.go{display:block;white-space:normal}
+a.card{overflow-wrap:break-word;word-break:break-word}
+
+/* ---------- ACTIONS & BUTTONS ---------- */
+.actions{display:flex;flex-wrap:wrap;gap:12px;margin:36px 0 24px;padding-top:20px;border-top:1px solid var(--line)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:11px 20px;font:600 14px var(--sans);color:#fff;background:var(--ink);border:1px solid var(--ink);border-radius:9px;text-decoration:none!important;cursor:pointer;transition:background .15s ease,border-color .15s ease,box-shadow .15s ease;box-shadow:0 1px 2px rgba(15,23,42,.08)}
+.btn:hover{background:var(--ink2);border-color:var(--ink2);color:#fff;box-shadow:0 3px 8px rgba(15,23,42,.12)}
+.btn:nth-child(2){background:#fff;color:var(--ink);border-color:var(--line2)}
+.btn:nth-child(2):hover{background:var(--bg3);border-color:var(--ink3);color:var(--ink)}
+
+/* ---------- PORTAL & SOCIAL PROOF ---------- */
+.proof-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:24px;padding-top:20px;border-top:1px solid var(--line)}
+.proof-item{display:flex;flex-direction:column;gap:4px}
+.proof-num{font:700 clamp(18px,2.2vw,24px)/1.15 var(--display);color:var(--ink);letter-spacing:-.015em}
+.proof-lbl{font:500 13px/1.4 var(--sans);color:var(--mute)}
+
+/* ---------- 3 CÁNH CỬA BẮT BỆNH ---------- */
+.door-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin:24px 0 36px}
+.door-card{display:flex;flex-direction:column;justify-content:space-between;border:1px solid var(--line);border-radius:14px;padding:22px 18px;background:#fff;box-shadow:0 1px 3px rgba(15,23,42,.03);transition:transform .15s ease,box-shadow .15s ease,border-color .15s ease}
+.door-card:hover{transform:translateY(-2px);border-color:var(--ink3);box-shadow:0 10px 24px rgba(15,23,42,.07)}
+.door-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.door-icon{font-size:26px}
+.door-badge{font:700 10.5px/1 var(--mono);padding:4px 7px;border-radius:5px;background:var(--bg3);color:var(--ink3);border:1px solid var(--line)}
+.door-title{font:700 17px/1.3 var(--sans);color:var(--ink);margin:0 0 12px}
+.door-body{font-size:14px;line-height:1.55;color:var(--ink2);margin-bottom:18px;flex-grow:1}
+.door-pain{background:#fef2f2;border-left:3px solid #ef4444;padding:9px 12px;border-radius:0 6px 6px 0;margin-bottom:10px;font-size:13.5px;color:#991b1b}
+.door-cure{background:#f0fdf4;border-left:3px solid #16a34a;padding:9px 12px;border-radius:0 6px 6px 0;font-size:13.5px;color:#166534}
+.door-btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;width:100%;padding:11px 14px;font:700 12.5px/1 var(--sans);letter-spacing:.04em;text-transform:uppercase;color:#fff!important;background:var(--ink);border-radius:8px;text-decoration:none!important;transition:background .15s ease}
+.door-btn:hover{background:var(--ink2)}
+
+/* ---------- ROADMAP 3 CHẶNG ---------- */
+.roadmap-section{margin:36px 0}
+.stage-card{border:1px solid var(--line);border-radius:14px;background:#fff;margin-bottom:20px;overflow:hidden}
+.stage-header{padding:16px 20px;background:var(--bg2);border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px}
+.stage-title{display:flex;align-items:center;gap:10px;font:700 16px/1.3 var(--sans);color:var(--ink)}
+.stage-badge{font:700 10.5px/1 var(--mono);padding:3px 8px;border-radius:5px;background:var(--ink);color:#fff}
+.stage-steps{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;background:var(--line)}
+.step-item{background:#fff;padding:14px 18px;text-decoration:none;display:flex;gap:12px;align-items:flex-start;transition:background .15s ease}
+.step-item:hover{background:var(--bg2)}
+.step-num{font:700 11px/1 var(--mono);color:var(--stage,var(--mute));padding:4px 7px;border-radius:5px;background:var(--bg3);flex-shrink:0;margin-top:2px}
+.step-content{min-width:0}
+.step-name{font:600 14.5px/1.35 var(--sans);color:var(--ink);margin-bottom:3px}
+.step-desc{font:400 13px/1.45 var(--sans);color:var(--mute)}
+
+/* ---------- SPOTLIGHT CASE STUDIES ---------- */
+.spotlight-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin:20px 0}
+.spotlight-card{border:1px solid var(--line);border-radius:12px;padding:18px;background:#fff;display:flex;flex-direction:column;justify-content:space-between;text-decoration:none;transition:transform .15s ease,box-shadow .15s ease,border-color .15s ease}
+.spotlight-card:hover{transform:translateY(-2px);border-color:var(--ink3);box-shadow:0 6px 20px rgba(15,23,42,.06)}
+.spotlight-tag{margin-bottom:8px}
+.spotlight-title{font:700 16px/1.3 var(--sans);color:var(--ink);margin-bottom:8px}
+.spotlight-signal{background:var(--bg2);border-left:3px solid var(--c-logic);padding:8px 12px;border-radius:0 6px 6px 0;font-size:13.5px;color:var(--ink2);margin-bottom:8px}
+.spotlight-lesson{font-size:13px;color:var(--mute);line-height:1.45}
+
+/* ---------- ECOSYSTEM 14 NỀN TẢNG ---------- */
+.eco-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:20px 0}
+.eco-card{border:1px solid var(--line);border-radius:11px;padding:14px;background:#fff;text-decoration:none!important;display:flex;flex-direction:column;justify-content:space-between;transition:transform .15s ease,border-color .15s ease,box-shadow .15s ease}
+.eco-card:hover{transform:translateY(-2px);border-color:var(--ink);box-shadow:0 4px 14px rgba(15,23,42,.06)}
+.eco-tag{font:700 9.5px/1 var(--mono);color:var(--mute2);text-transform:uppercase;margin-bottom:6px}
+.eco-name{font:700 14px/1.3 var(--sans);color:var(--ink);margin-bottom:4px}
+.eco-desc{font:400 12px/1.4 var(--sans);color:var(--mute);margin-bottom:8px}
+.eco-link{font:600 11px/1 var(--mono);color:var(--ink2);display:inline-flex;align-items:center;gap:3px}
+
+@media (max-width:960px){
+  .door-grid{grid-template-columns:1fr}
+  .stage-steps{grid-template-columns:1fr}
+  .spotlight-grid{grid-template-columns:1fr}
+  .eco-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:640px){
+  .proof-grid{grid-template-columns:1fr;gap:12px}
+  .eco-grid{grid-template-columns:1fr}
+}
+
+/* ---------- CASE STUDY DETAILED CARDS ---------- */
+.case-card{border:1px solid var(--line);border-radius:14px;background:#fff;padding:22px 24px;margin-bottom:24px;box-shadow:0 1px 3px rgba(15,23,42,.03);scroll-margin-top:80px}
+.case-card:hover{border-color:var(--line2);box-shadow:0 8px 24px rgba(15,23,42,.05)}
+.case-header{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:16px;border-bottom:1px solid var(--line);padding-bottom:16px}
+.case-title{font:700 19px/1.3 var(--sans);color:var(--ink);margin:0}
+.case-persona{font:500 13.5px var(--sans);color:var(--mute);margin-top:4px}
+.case-grid-content{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-bottom:16px}
+.case-block{padding:12px 14px;border-radius:8px;font-size:13.5px;line-height:1.55}
+.case-block.signal{background:#f8fafc;border-left:3px solid var(--c-logic)}
+.case-block.pain{background:#fef2f2;border-left:3px solid #ef4444}
+.case-block.result{background:#f0fdf4;border-left:3px solid #16a34a}
+.case-block h5{font:700 10.5px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;margin:0 0 6px}
+.case-block.signal h5{color:var(--c-logic)}
+.case-block.pain h5{color:#dc2626}
+.case-block.result h5{color:#15803d}
+.case-footer{display:flex;align-items:center;justify-content:space-between;padding-top:14px;border-top:1px solid var(--line);font-size:13px;flex-wrap:wrap;gap:10px}
+@media (max-width:960px){
+  .case-grid-content{grid-template-columns:1fr;gap:12px}
+}
+
+/* ---------- ECOSYSTEM DROPDOWN (TOPBAR) ---------- */
+.eco-backdrop{position:fixed;inset:0;z-index:85;background:rgba(15,23,42,0.12);backdrop-filter:blur(1px)}
+.ecosystem-wrap{position:relative}
+.ecosystem-btn{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);background:var(--bg2);border-radius:8px;padding:6px 11px;font:600 12.5px var(--sans);color:var(--ink2);cursor:pointer;user-select:none;transition:all .15s ease;white-space:nowrap}
+.ecosystem-btn:hover,.ecosystem-btn.active{background:#fff;border-color:var(--line2);color:var(--ink);box-shadow:0 1px 3px rgba(15,23,42,.06)}
+.ecosystem-btn .eco-caret{font-size:10px;color:var(--mute);transition:transform .2s ease;display:inline-block}
+.ecosystem-btn.active .eco-caret{transform:rotate(180deg)}
+
+.ecosystem-menu{position:absolute;top:calc(100% + 8px);right:0;width:min(660px,calc(100vw - 24px));background:#ffffff;border-radius:8px;border:1px solid rgba(0,0,0,0.08);box-shadow:0 10px 30px rgba(0,0,0,0.12);padding:16px 18px;z-index:90;font-family:var(--sans)}
+.ecosystem-menu .eco-header{display:flex;align-items:center;justify-content:space-between;padding-bottom:12px;margin-bottom:14px;border-bottom:1px solid var(--line)}
+.ecosystem-menu .eco-title{font:700 13px/1.2 var(--display);text-transform:uppercase;letter-spacing:.04em;color:var(--ink)}
+.ecosystem-menu .eco-sub{font:400 11.5px/1.3 var(--sans);color:var(--mute);margin-top:2px}
+.ecosystem-menu .eco-tag{font:700 9.5px var(--mono);background:var(--bg3);color:var(--ink3);padding:3px 8px;border-radius:999px;border:1px solid var(--line);letter-spacing:.05em}
+.ecosystem-menu .eco-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px 20px;margin:0}
+.ecosystem-menu .eco-group{display:flex;flex-direction:column;gap:4px}
+.ecosystem-menu .eco-gh{font:700 10px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--mute2);margin-bottom:4px;padding-bottom:3px;border-bottom:1px dashed var(--line)}
+.ecosystem-menu .eco-item{display:block;text-decoration:none!important;padding:6px 8px;border-radius:6px;transition:background .15s ease}
+.ecosystem-menu .eco-item:hover{background:var(--bg3)}
+.ecosystem-menu .eco-name{display:block;font:600 13px/1.3 var(--sans);color:var(--ink)}
+.ecosystem-menu .eco-name-row{display:flex;align-items:center;gap:6px}
+.ecosystem-menu .eco-badge{font:700 9px var(--mono);color:#ea580c;background:#fff7ed;border:1px solid #ffedd5;padding:1px 5px;border-radius:4px}
+.ecosystem-menu .eco-desc{display:block;font:400 11.5px/1.35 var(--sans);color:var(--mute);margin-top:1px}
+
+@media (max-width:640px){
+  .ecosystem-menu{position:fixed;top:calc(var(--top) + 6px);left:12px;right:12px;width:auto;max-height:calc(85vh - var(--top));overflow-y:auto;-webkit-overflow-scrolling:touch;padding:14px}
+  .ecosystem-menu .eco-grid{grid-template-columns:1fr;gap:14px}
+}
+/* mobile_fix */
+
+@media (max-width: 960px) {
+  .ecosystem-btn, .eco-btn, #eco-btn, .searchbtn {
+    white-space: nowrap !important;
+    padding: 6px 10px !important;
+    font-size: 12px !important;
+    max-height: 36px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+  .topbar {
+    padding: 8px 12px !important;
+    gap: 6px !important;
+  }
+}
+
+.eco-btn-text-short { display: none; }
+@media (max-width: 960px) {
+  .eco-btn-text-full { display: none !important; }
+  .eco-btn-text-short { display: inline !important; }
+  .ecosystem-btn {
+    white-space: nowrap !important;
+    padding: 6px 8px !important;
+    font-size: 11.5px !important;
+  }
+}
+
+/* ---------- TOPBAR MOBILE ELEGANT FIX ---------- */
+.ecosystem-wrap {
+  flex-shrink: 0 !important;
+}
+.searchbtn {
+  flex-shrink: 0 !important;
+}
+.menubtn {
+  flex-shrink: 0 !important;
+}
+
+@media (max-width: 820px) {
+  .stepper {
+    display: none !important;
+  }
+  .topbar {
+    justify-content: space-between !important;
+    padding: 0 14px !important;
+    height: 52px !important;
+  }
+  .ecosystem-btn {
+    white-space: nowrap !important;
+    padding: 6px 10px !important;
+    font-size: 12px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+  }
+  .searchbtn {
+    padding: 6px 10px !important;
+    font-size: 12px !important;
+  }
+}
+
+
+/* === CSS Tinh Gọn cho Voice-Over 3.0 (Claude Sharp Edition) === */
+.v3-group {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin: 18px 0 26px;
+}
+.v3-card {
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(15, 23, 42, 0.04);
+}
+.v3-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 10px 14px;
+  background: #f8fafc;
+  border-bottom: 1px solid #e2e8f0;
+  font-size: 14px;
+}
+.v3-title-group {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.v3-meta {
+  color: #64748b;
+  font-size: 12.5px;
+  font-weight: 500;
+}
+.v3-badge {
+  font-size: 10.5px;
+  font-weight: 800;
+  padding: 3px 8px;
+  border-radius: 6px;
+  letter-spacing: 0.03em;
+}
+.v3-badge-win {
+  background: #dcfce7;
+  color: #166534;
+  border: 1px solid #86efac;
+}
+.v3-badge-err {
+  background: #fee2e2;
+  color: #991b1b;
+  border: 1px solid #fca5a5;
+}
+.v3-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.v3-btn-play {
+  background: #d93025;
+  color: #ffffff;
+  border: none;
+  font-size: 12.5px;
+  font-weight: 700;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.v3-btn-play:hover {
+  background: #b91c1c;
+}
+.v3-btn-link {
+  font-size: 12px;
+  font-weight: 600;
+  color: #475569;
+  text-decoration: none;
+  padding: 5px 8px;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  background: #ffffff;
+}
+.v3-strip {
+  background: #0f172a;
+}
+.v3-strip img {
+  width: 100%;
+  max-height: 230px;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto;
+}
+.v3-strip-bar {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  text-align: center;
+  background: #1e293b;
+  color: #cbd5e1;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 4px 0;
+}
+.v3-player {
+  background: #000;
+  padding: 12px;
+  text-align: center;
+}
+.v3-player video {
+  max-width: 100%;
+  max-height: 440px;
+  border-radius: 8px;
+  margin: 0 auto;
+  display: block;
+}
+.v3-verdict {
+  padding: 12px 16px;
+  font-size: 14.5px;
+  line-height: 1.6;
+  color: #0f172a;
+  background: #ffffff;
+}
+.v3-verdict p {
+  margin: 0 0 8px 0;
+}
+.v3-transcript-toggle {
+  margin-top: 6px;
+  font-size: 12.5px;
+  color: #475569;
+}
+.v3-transcript-toggle summary {
+  cursor: pointer;
+  font-weight: 600;
+  color: #0284c7;
+  user-select: none;
+}
+.v3-transcript-body {
+  margin-top: 6px;
+  padding: 10px 12px;
+  background: #f8fafc;
+  border-left: 3px solid #94a3b8;
+  border-radius: 0 6px 6px 0;
+  white-space: pre-line;
+  color: #334155;
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+/* === CSS Bài Tập Thực Hành Cảnh Trám 3 Lớp (ytuong.fedu.vn Integration) === */
+.v3-shot-grid {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 6px;
+  padding: 10px 12px;
+  background: #0f172a;
+}
+.v3-shot-item {
+  position: relative;
+  border-radius: 6px;
+  overflow: hidden;
+  background: #1e293b;
+  border: 1px solid #334155;
+}
+.v3-shot-item img {
+  width: 100%;
+  aspect-ratio: 9 / 14;
+  object-fit: cover;
+  display: block;
+}
+.v3-shot-tag {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  background: rgba(15, 23, 42, 0.88);
+  color: #f8fafc;
+  font: 700 10px/1 var(--mono);
+  padding: 3px 5px;
+  border-radius: 4px;
+  border: 1px solid rgba(255,255,255,0.15);
+}
+.v3-shot-dur {
+  position: absolute;
+  bottom: 24px;
+  right: 5px;
+  background: #dc2626;
+  color: #ffffff;
+  font: 700 9.5px/1 var(--mono);
+  padding: 2px 5px;
+  border-radius: 4px;
+}
+.v3-shot-cap {
+  background: #1e293b;
+  color: #e2e8f0;
+  font: 600 10.5px/1.25 var(--sans);
+  padding: 5px 6px;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.v3-layer-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin: 12px 0;
+}
+.v3-layer-box {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-size: 13.5px;
+  line-height: 1.5;
+}
+.v3-layer-box b {
+  display: block;
+  font: 700 10.5px/1 var(--mono);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 5px;
+  color: #475569;
+}
+.v3-layer-box.fg { border-left: 3px solid #f59e0b; background: #fffbeb; }
+.v3-layer-box.fg b { color: #b45309; }
+.v3-layer-box.mg { border-left: 3px solid #16a34a; background: #f0fdf4; }
+.v3-layer-box.mg b { color: #15803d; }
+.v3-layer-box.bg { border-left: 3px solid #0284c7; background: #f0f9ff; }
+.v3-layer-box.bg b { color: #0369a1; }
+
+.v3-vo-box {
+  background: #0f172a;
+  color: #f8fafc;
+  border-radius: 10px;
+  padding: 14px 16px;
+  margin-top: 12px;
+}
+.v3-vo-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 8px;
+  font: 700 11px/1 var(--mono);
+  color: #94a3b8;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.v3-vo-copy {
+  background: #334155;
+  color: #fff;
+  border: 1px solid #475569;
+  border-radius: 5px;
+  padding: 4px 9px;
+  font: 600 11px/1 var(--sans);
+  cursor: pointer;
+}
+.v3-vo-copy:hover {
+  background: #475569;
+}
+.v3-vo-text {
+  font: italic 16.5px/1.65 var(--serif);
+  color: #ffffff;
+  margin: 0 0 8px 0;
+}
+.v3-vo-text span.slash {
+  color: #fb923c;
+  font-weight: 700;
+  font-style: normal;
+  padding: 0 3px;
+}
+.v3-vo-text span.slot {
+  background: rgba(251, 146, 60, 0.22);
+  color: #fdba74;
+  border: 1px dashed #fb923c;
+  padding: 1px 6px;
+  border-radius: 4px;
+  font-style: normal;
+  font-weight: 700;
+}
+.v3-vo-meta {
+  font: 400 12.5px/1.45 var(--sans);
+  color: #cbd5e1;
+}
+.v3-badge-ex {
+  background: #e0f2fe;
+  color: #0369a1;
+  border: 1px solid #7dd3fc;
+}
+.v3-nav-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 16px 0 20px;
+}
+.v3-nav-pills a {
+  text-decoration: none !important;
+  font: 600 13px/1.2 var(--sans);
+  padding: 8px 13px;
+  border-radius: 8px;
+  background: #f8fafc;
+  color: #0f172a;
+  border: 1px solid #cbd5e1;
+  transition: all .15s ease;
+}
+.v3-nav-pills a:hover {
+  background: #0f172a;
+  color: #ffffff;
+  border-color: #0f172a;
+}
+@media (max-width: 900px) {
+  .v3-shot-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .v3-layer-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 520px) {
+  .v3-shot-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+  
+
+/* === STORYTELLING 2.0 INTERACTIVE UPGRADES === */
+.st-top-banner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 18px;
+  background: #0f172a;
+  color: #f8fafc;
+  border-radius: 12px;
+  margin-bottom: 22px;
+  border: 1px solid #334155;
+}
+.st-top-banner .st-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font: 700 13px/1.2 var(--display);
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+.st-top-banner .st-brand span.badge-fmt {
+  background: #fb923c;
+  color: #0f172a;
+  padding: 4px 8px;
+  border-radius: 6px;
+  font: 800 11px/1 var(--mono);
+}
+.st-top-banner .st-quick-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.st-top-banner .st-qbtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 6px 12px;
+  border-radius: 7px;
+  font: 600 12.5px/1.2 var(--sans);
+  text-decoration: none !important;
+  background: #1e293b;
+  color: #f8fafc;
+  border: 1px solid #475569;
+  transition: all 0.15s ease;
+}
+.st-top-banner .st-qbtn:hover {
+  background: #334155;
+  border-color: #94a3b8;
+}
+.st-top-banner .st-qbtn.primary {
+  background: #ea580c;
+  border-color: #fb923c;
+  color: #ffffff;
+}
+.st-top-banner .st-qbtn.primary:hover {
+  background: #c2410c;
+}
+
+/* 4-Tier Ladder Interactive Cards */
+.tier-ladder {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  margin: 22px 0;
+}
+.tier-card {
+  border: 1.5px solid var(--line);
+  border-radius: 12px;
+  padding: 16px;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.tier-card.t-safe { border-top: 4px solid #94a3b8; background: #f8fafc; }
+.tier-card.t-real { border-top: 4px solid #0284c7; background: #f0f9ff; }
+.tier-card.t-face { border-top: 4px solid #ea580c; background: #fff7ed; box-shadow: 0 6px 20px rgba(234, 88, 12, 0.10); }
+.tier-card.t-raw  { border-top: 4px solid #dc2626; background: #fef2f2; }
+.tier-tag {
+  font: 700 10.5px/1 var(--mono);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 6px;
+  display: inline-block;
+}
+.tier-card.t-safe .tier-tag { color: #475569; }
+.tier-card.t-real .tier-tag { color: #0369a1; }
+.tier-card.t-face .tier-tag { color: #c2410c; }
+.tier-card.t-raw  .tier-tag { color: #991b1b; }
+.tier-title {
+  font: 700 16px/1.3 var(--display);
+  color: var(--ink);
+  margin: 0 0 8px;
+}
+.tier-desc {
+  font: 400 14px/1.55 var(--sans);
+  color: var(--ink2);
+  margin-bottom: 10px;
+}
+.tier-quote {
+  font: italic 13.5px/1.45 var(--serif);
+  padding: 8px 10px;
+  background: rgba(255,255,255,0.85);
+  border-left: 3px solid currentColor;
+  border-radius: 0 6px 6px 0;
+  color: var(--ink);
+}
+@media (max-width: 900px) {
+  .tier-ladder { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 540px) {
+  .tier-ladder { grid-template-columns: 1fr; }
+}
+
+/* Interactive Script Builder */
+.sb-panel {
+  border: 1.5px solid #cbd5e1;
+  border-radius: 12px;
+  background: #f8fafc;
+  padding: 16px;
+  margin: 16px 0;
+}
+.sb-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 12px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #e2e8f0;
+}
+.sb-title {
+  font: 700 13px/1.2 var(--mono);
+  text-transform: uppercase;
+  color: #0f172a;
+  letter-spacing: 0.04em;
+}
+.sb-presets {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.sb-preset-btn {
+  background: #ffffff;
+  color: #0f172a;
+  border: 1px solid #94a3b8;
+  border-radius: 6px;
+  padding: 5px 10px;
+  font: 600 12px/1.2 var(--sans);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+.sb-preset-btn:hover, .sb-preset-btn.active {
+  background: #ea580c;
+  color: #ffffff;
+  border-color: #ea580c;
+}
+.sb-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+.sb-group {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 10px 12px;
+}
+.sb-group-label {
+  font: 700 11.5px/1.3 var(--mono);
+  color: #c2410c;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  display: block;
+}
+.sb-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.sb-opt {
+  background: #f1f5f9;
+  color: #1e293b;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  padding: 5px 9px;
+  font: 500 12.5px/1.3 var(--sans);
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.12s ease;
+}
+.sb-opt:hover {
+  background: #e2e8f0;
+}
+.sb-opt.selected {
+  background: #0f172a;
+  color: #fdba74;
+  border-color: #0f172a;
+  font-weight: 600;
+}
+@media (max-width: 720px) {
+  .sb-grid { grid-template-columns: 1fr; }
+}
+
+/* Interactive 10-Point Rubric */
+.rubric-interactive {
+  border: 2px solid #0f172a;
+  border-radius: 14px;
+  overflow: hidden;
+  background: #ffffff;
+  margin: 22px 0;
+}
+.rubric-bar {
+  background: #0f172a;
+  color: #ffffff;
+  padding: 14px 18px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.rubric-score-pill {
+  background: #fb923c;
+  color: #0f172a;
+  font: 800 15px/1 var(--mono);
+  padding: 7px 14px;
+  border-radius: 999px;
+}
+.rubric-btn-group {
+  display: flex;
+  gap: 6px;
+}
+.r-score-btn {
+  border: 1px solid #cbd5e1;
+  background: #f8fafc;
+  color: #334155;
+  border-radius: 6px;
+  padding: 6px 10px;
+  font: 600 12px/1.2 var(--sans);
+  cursor: pointer;
+  transition: all 0.12s ease;
+}
+.r-score-btn:hover {
+  background: #e2e8f0;
+}
+.r-score-btn.active-0 { background: #fee2e2; color: #991b1b; border-color: #f87171; font-weight: 700; }
+.r-score-btn.active-1 { background: #fef3c7; color: #92400e; border-color: #fbbf24; font-weight: 700; }
+.r-score-btn.active-2 { background: #dcfce7; color: #166534; border-color: #4ade80; font-weight: 700; }
+
+/* Prompt Copy Box */
+.prompt-card {
+  border: 1px solid #cbd5e1;
+  border-radius: 12px;
+  background: #ffffff;
+  margin: 16px 0;
+  overflow: hidden;
+}
+.prompt-card-head {
+  background: #0f172a;
+  color: #f8fafc;
+  padding: 12px 16px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+.prompt-card-body {
+  padding: 14px 16px;
+}
+.prompt-pre {
+  background: #0b1020;
+  color: #e2e8f0;
+  font: 500 12.5px/1.55 var(--mono);
+  padding: 14px;
+  border-radius: 8px;
+  white-space: pre-wrap;
+  max-height: 280px;
+  overflow-y: auto;
+  margin: 10px 0 0;
+}
+
+  </style>
+
+  <script>
+    window.toggleV3Player = function(btn, playerId, mp4Url, isIframe) {
+      var box = document.getElementById(playerId);
+      if (!box) return;
+      if (box.style.display === "none" || !box.style.display) {
+        box.style.display = "block";
+        if (isIframe) {
+          var ifr = box.querySelector("iframe");
+          if (ifr && !ifr.getAttribute("src") && mp4Url) {
+            ifr.setAttribute("src", mp4Url);
+          }
+        } else {
+          var vid = box.querySelector("video");
+          if (vid) {
+            if (!vid.getAttribute("src") && mp4Url) {
+              vid.setAttribute("src", mp4Url);
+            }
+            vid.play().catch(function(){});
+          }
+        }
+        btn.innerHTML = "⏸️ Đóng video";
+      } else {
+        var vid2 = box.querySelector("video");
+        if (vid2) vid2.pause();
+        box.style.display = "none";
+        btn.innerHTML = "▶️ Xem video";
+      }
+    };
+
+    window.copyVoScript = function(btn, textIdOrRaw) {
+      var text = textIdOrRaw;
+      var el = document.getElementById(textIdOrRaw);
+      if (el) {
+        text = el.getAttribute("data-raw-script") || el.innerText;
+      }
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(text).then(function() {
+          var old = btn.innerHTML;
+          btn.innerHTML = "✅ Đã chép lời";
+          setTimeout(function(){ btn.innerHTML = old; }, 1800);
+        });
+      }
+    };
+
+    // Interactive Script Builder State
+    var sbState = {
+      ex1: {
+        A: "đăng bài",
+        B: "gõ rồi xóa",
+        C: "để mai cho chắc",
+        D: "đều từng gõ rồi xóa"
+      },
+      ex2: {
+        A: "lau yên xe bằng khăn khô",
+        B: "thế là sạch rồi",
+        C: "chẳng ai chỉ từ đầu",
+        D: "cái hại nằm ở chỗ nhìn không thấy"
+      },
+      ex3: {
+        A: "11h đêm",
+        B: "gấp laptop lại",
+        C: "đợi giỏi hơn mới đăng",
+        D: "sợ làm sai mất uy tín",
+        E: "Quay thử 15 giây thôi"
+      }
+    };
+
+    window.renderSbScript = function(exKey) {
+      var s = sbState[exKey];
+      var outEl = document.getElementById("vo-text-" + exKey);
+      if (!outEl) return;
+      var html = "";
+      var raw = "";
+      if (exKey === "ex1") {
+        html = '"Mỗi lần tới lúc <span class="slot">' + s.A + '</span> <span class="slash">/</span> tay mình lại <span class="slot">' + s.B + '</span> <span class="slash">/</span> và mình tự nhủ: '' + '<span class="slot">' + s.C + '</span>' <span class="slash">/</span> nhưng thật ra ai mới bắt đầu cũng <span class="slot">' + s.D + '</span>."';
+        raw = 'Mỗi lần tới lúc ' + s.A + ' / tay mình lại ' + s.B + ' / và mình tự nhủ "' + s.C + '" / nhưng thật ra ai mới bắt đầu cũng ' + s.D + '.';
+      } else if (exKey === "ex2") {
+        html = '"Khách của mình hay <span class="slot">' + s.A + '</span> <span class="slash">/</span> vì ngoài miệng ai cũng nghĩ '<span class="slot">' + s.B + '</span>' <span class="slash">/</span> thật ra điều đó rất dễ hiểu, vì <span class="slot">' + s.C + '</span> <span class="slash">/</span> nhưng làm nghề lâu năm mới biết, <span class="slot">' + s.D + '</span>."';
+        raw = 'Khách của mình hay ' + s.A + ' / vì ngoài miệng ai cũng nghĩ "' + s.B + '" / thật ra điều đó rất dễ hiểu, vì ' + s.C + ' / nhưng làm nghề lâu năm mới biết, ' + s.D + '.';
+      } else if (exKey === "ex3") {
+        html = '"Năm ngoái, lúc <span class="slot">' + s.A + '</span>, mình <span class="slot">' + s.B + '</span> <span class="slash">/</span> mình cứ tự nhủ là '<span class="slot">' + s.C + '</span>' <span class="slash">/</span> thật ra trong lòng mình đang <span class="slot">' + s.D + '</span> <span class="slash">/</span> nếu gửi thư được cho mình hồi đó, mình sẽ viết: '<span class="slot">' + s.E + '</span>'."';
+        raw = 'Năm ngoái, lúc ' + s.A + ', mình ' + s.B + ' / mình cứ tự nhủ là "' + s.C + '" / thật ra trong lòng mình đang ' + s.D + ' / nếu gửi thư được cho mình hồi đó, mình sẽ viết: "' + s.E + '".';
+      }
+      outEl.innerHTML = html;
+      outEl.setAttribute("data-raw-script", raw);
+    };
+
+    window.selectSbOption = function(btn, exKey, slotKey, val) {
+      sbState[exKey][slotKey] = val;
+      var group = btn.closest(".sb-options");
+      if (group) {
+        group.querySelectorAll(".sb-opt").forEach(function(b) { b.classList.remove("selected"); });
+      }
+      btn.classList.add("selected");
+      renderSbScript(exKey);
+    };
+
+    window.applySbPreset = function(btn, exKey, presetObj) {
+      for (var k in presetObj) {
+        if (Object.prototype.hasOwnProperty.call(presetObj, k)) {
+          sbState[exKey][k] = presetObj[k];
+        }
+      }
+      var panel = document.getElementById("sb-panel-" + exKey);
+      if (panel) {
+        panel.querySelectorAll(".sb-preset-btn").forEach(function(b) { b.classList.remove("active"); });
+        btn.classList.add("active");
+        panel.querySelectorAll(".sb-opt").forEach(function(opt) {
+          var sKey = opt.getAttribute("data-slot");
+          var sVal = opt.getAttribute("data-val");
+          if (sbState[exKey][sKey] === sVal) {
+            opt.classList.add("selected");
+          } else {
+            opt.classList.remove("selected");
+          }
+        });
+      }
+      renderSbScript(exKey);
+    };
+
+    // Interactive Rubric
+    var rubricScores = [2, 2, 2, 2, 2];
+    window.setRubricScore = function(critIdx, val, btn) {
+      rubricScores[critIdx] = val;
+      var row = btn.closest("tr");
+      if (row) {
+        row.querySelectorAll(".r-score-btn").forEach(function(b) {
+          b.classList.remove("active-0", "active-1", "active-2");
+        });
+      }
+      btn.classList.add("active-" + val);
+      updateRubricTotal();
+    };
+
+    window.updateRubricTotal = function() {
+      var sum = rubricScores.reduce(function(a, b) { return a + b; }, 0);
+      var totalEl = document.getElementById("rubric-total-score");
+      var rankEl = document.getElementById("rubric-rank-text");
+      if (totalEl) totalEl.textContent = sum + " / 10 ĐIỂM";
+      if (rankEl) {
+        if (sum >= 9) {
+          rankEl.textContent = "🏆 XUẤT SẮC (9–10đ): Lát cắt sắc nét, giữ thể diện tinh tế, sẵn sàng đăng kênh ngay!";
+        } else if (sum >= 7) {
+          rankEl.textContent = "✅ ĐẠT CHUẨN TẠI LỚP (7–8đ): Đã ra đúng chất Storytelling 2.0, gọt nhẹ nhịp thở là hoàn chỉnh.";
+        } else if (sum >= 5) {
+          rankEl.textContent = "⚠️ CẦN BẤM MÁY LẠI CÚ 2 & 3 (5–6đ): Chú ý thêm động từ tay chân ở câu đầu và hạ bớt thời lượng lộ mặt.";
+        } else {
+          rankEl.textContent = "🔄 QUAY LẠI KHUÔN ĐIỀN KHUYẾT (<5đ): Đừng tự viết văn, hãy bấm chọn lại 4 ô A-B-C-D trong Menu.";
+        }
+      }
+    };
+
+    document.addEventListener("DOMContentLoaded", function() {
+      var heads = document.querySelectorAll(".content h2");
+      var tocNav = document.getElementById("auto-toc");
+      if (tocNav) {
+        heads.forEach(function(h, idx) {
+          if (!h.id) h.id = "sec-" + (idx + 1);
+          var a = document.createElement("a");
+          a.href = "#" + h.id;
+          a.textContent = h.textContent;
+          tocNav.appendChild(a);
+        });
+      }
+      renderSbScript("ex1");
+      renderSbScript("ex2");
+      renderSbScript("ex3");
+      updateRubricTotal();
+    });
+  </script>
+
+</head>
+
+<body data-page="storytelling-2">
+  <div class="shell" style="grid-template-columns: 1fr 250px; max-width: 1180px; margin: 0 auto;">
+    <main class="main">
+      <div class="content" style="max-width: 820px;">
+
+        <!-- THANH ĐIỀU HƯỚNG NHANH ĐẦU TRANG -->
+        <div class="st-top-banner">
+          <div class="st-brand">
+            <span class="badge-fmt">ĐỊNH DẠNG 02</span>
+            <span>VIDEO SYSTEM · STORYTELLING 2.0 MASTER</span>
+          </div>
+          <div class="st-quick-links">
+            <a href="storytelling2_slides.html" class="st-qbtn primary">🖥️ Mở Slide Trình Chiếu Tại Lớp (14 Slides)</a>
+            <a href="congthucstorytelling.html" class="st-qbtn">🧰 Bộ 3 Công Cụ Mega Prompt</a>
+            <a href="#phan-3" class="st-qbtn">🎬 3 Cụm Video Anh Việt</a>
+            <a href="#phan-5" class="st-qbtn">✍️ 3 Bài Tập Điền Khuyết</a>
+            <a href="#rubric-box" class="st-qbtn">✅ Chấm Điểm 10đ</a>
+          </div>
+        </div>
+
+        <div class="hero">
+          <div style="color: #ea580c; font-weight: 700; font-size: 12px; letter-spacing: 1px; margin-bottom: 8px;">— ĐỊNH DẠNG 2 TRONG LỘ TRÌNH 4 ĐỊNH DẠNG VIDEO (BẢN 2.0 THỰC CHIẾN)</div>
+          <h1 style="margin-top:0">Storytelling 2.0 — Kể Lát Cắt 5 Giây &amp; Giữ Thể Diện Cho Người Xem</h1>
+          <p style="margin: 10px 0 0; font-size: 16.5px; color: var(--ink3);">Từ giấu mặt sang lộ diện có tính toán: Phối hợp <strong>25–30% A-Roll lộ mặt</strong> tạo dựng lòng tin với <strong>70–75% B-Roll hành động thực tế</strong>. Không cần viết văn hay, không đóng kịch dài dòng — chỉ dùng 1 khoảnh khắc tay chân có thật để gọi đúng cái cớ giữ mặt mũi của khách hàng.</p>
+        </div>
+
+        <p class="lede">Ở Định dạng 1 (Voice-Over), bạn đã biết lấy đôi bàn tay làm bằng chứng mà không cần xuất hiện trước ống kính. Sang Định dạng 2 (Storytelling 2.0), bạn bắt đầu lộ diện 25–30% thời lượng để khách hàng nhìn thấy người chịu trách nhiệm đằng sau sản phẩm — nhưng thay vì giảng lý thuyết khô khan, bạn mở lời bằng một lát cắt đời thực 5 giây khiến người xem thấy chính họ trong đó.</p>
+
+        <!-- =========================================================
+             PHẦN 1: ĐỊNH VỊ ĐỊNH DẠNG 2 & CÂU CHUYỆN THỢ SỬA XE
+             ========================================================= -->
+        <h2 id="phan-1"><span class="num">PHẦN 01 / 06</span>Định dạng 2 — Storytelling 2.0 là gì &amp; khác Voice-Over ở đâu?</h2>
+
+        <h3>1.1. Phá bỏ 3 nghĩ nhầm khiến người mới sợ chữ "Kể chuyện"</h3>
+        <p>Khi nghe tới chữ <strong>Storytelling (Kể chuyện)</strong>, 90% học viên lập tức chùn bước vì tưởng rằng mình phải làm ba việc vượt quá sức:</p>
+        <ul>
+          <li><strong>Nghĩ nhầm 1 — Phải giỏi văn chương, chữ nghĩa bay bổng:</strong> Tưởng rằng phải viết lời thoại giàu hình ảnh như nhà văn. Thực tế trên video ngắn, câu chữ càng trau chuốt kiểu văn mẫu thì người xem càng lướt nhanh trong 2 giây đầu.</li>
+          <li><strong>Nghĩ nhầm 2 — Phải dựng kịch dài dòng nhiều phần:</strong> Tưởng rằng phải mở đầu giới thiệu hoàn cảnh, tạo biến cố kịch tính rồi kết thúc đẫm nước mắt. Người xem trên điện thoại quyết định dừng tay hay vuốt qua trong <strong>1.5 đến 3 giây đầu tiên</strong> — không ai chờ bạn dạo đầu.</li>
+          <li><strong>Nghĩ nhầm 3 — Phải đóng kịch tình huống với nhân viên hoặc kể lể chuyện tay trắng lập nghiệp:</strong> Những cảnh dàn dựng lộ liễu hoặc than nghèo kể khổ chỉ kéo người xem hiếu kỳ vào bình luận, nhưng những khách hàng sẵn sàng trả tiền lại âm thầm rời đi.</li>
+        </ul>
+
+        <div class="callout tip">
+          <div class="h">Định nghĩa 1 câu chuẩn Storytelling 2.0</div>
+          <p><strong>Storytelling trên video ngắn không phải là làm văn hay bịa chuyện, mà là dùng một khoảnh khắc hành vi thật (5 giây) để gọi đúng cái cớ giữ thể diện và tháo gỡ nỗi lo thầm kín mà khách hàng đang giấu trong lòng.</strong></p>
+        </div>
+
+        <h3>1.2. Bước chuyển từ Định dạng 1 (Voice-Over) sang Định dạng 2 (Storytelling 2.0)</h3>
+        <p>Tại sao sau khi làm tốt Voice-Over giấu mặt, bạn cần bước sang Storytelling 2.0? Hãy nhìn bảng đối chiếu trực diện giữa hai định dạng:</p>
+
+        <div class="tw">
+          <table class="t">
+            <thead>
+              <tr>
+                <th>Tiêu chí đối chiếu</th>
+                <th>Định dạng 1: Voice-Over &amp; Thao Tác Tay</th>
+                <th>Định dạng 2: Storytelling 2.0 (Lát Cắt Vi Mô)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Tỷ lệ khung hình</strong></td>
+                <td><strong>100% B-Roll</strong> (Chỉ quay đôi bàn tay, sản phẩm, màn hình — 0% lộ mặt).</td>
+                <td><strong>25–30% A-Roll lộ mặt</strong> (ở câu chuyển hoặc câu kết) + <strong>70–75% B-Roll hành động thực tế</strong>.</td>
+              </tr>
+              <tr>
+                <td><strong>Thứ bạn mượn để giữ mắt</strong></td>
+                <td>Mượn <strong>cảnh làm việc và thao tác tay khéo léo</strong> để chứng minh tay nghề.</td>
+                <td>Mượn <strong>chính trải nghiệm của mình hoặc khoảnh khắc ngập ngừng của khách</strong> để tạo sự đồng cảm.</td>
+              </tr>
+              <tr>
+                <td><strong>Mục tiêu tâm lý</strong></td>
+                <td>Giúp người xem tin rằng: <em>"Tiệm này làm thật, nguyên liệu sạch, tay nghề gọn"</em>.</td>
+                <td>Giúp người xem giật mình nhận ra: <em>"Người này hiểu đúng nỗi lo giấu kín của mình mà không làm mình mất mặt"</em>.</td>
+              </tr>
+              <tr>
+                <td><strong>Phù hợp đơn hàng nào?</strong></td>
+                <td>Rất mạnh cho sản phẩm dễ mua thử (dưới 500.000đ) và phá băng tuần đầu tiên.</td>
+                <td>Bắt buộc phải có khi bán dịch vụ tư vấn, làm đẹp, nội thất, đào tạo, BĐS hoặc đơn hàng giá trị lớn.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>1.3. Câu chuyện Hai người thợ sửa xe máy &amp; Chiếc khăn lau yên xe (Hiểu trong 10 giây)</h3>
+        <p>Để thấy rõ sự khác biệt giữa người chỉ giỏi chuyên môn nhưng nói thẳng thừng và người biết kể chuyện giữ thể diện, hãy đặt mình vào tình huống chiếc xe máy tự nhiên kêu lách cách trong lốc máy:</p>
+
+        <div class="grid g2">
+          <div class="card" style="border-left: 4px solid #dc2626; background: #fffafa;">
+            <span class="b" style="background:#fee2e2; color:#991b1b; border-color:#fca5a5;">❌ NGƯỜI THỢ A (ĐÂM THẲNG NỖI SỢ T3)</span>
+            <div class="ct">Đúng chuyên môn nhưng làm khách tự ái bỏ đi</div>
+            <div class="cd" style="color:var(--ink2); font-size:14.5px; line-height:1.6;">
+              Khách dắt xe vào tiệm nói: <em>"Tự nhiên hôm nay nó kêu rồi chết máy"</em>.<br><br>
+              <strong>Thợ A phán ngay:</strong> <em>"Làm gì có chuyện tự nhiên! Anh đi xe cả năm tiếc tiền không chịu thay nhớt bảo dưỡng chứ gì. Đi thế này cháy hết biên, bổ máy mất mấy triệu đấy!"</em><br><br>
+              👉 <strong>Kết quả:</strong> Thợ A nói đúng kỹ thuật, nhưng biến khách thành người bất cẩn và keo kiệt. Khách im lặng trả tiền sửa vặt rồi lần sau sang tiệm khác.
+            </div>
+          </div>
+
+          <div class="card" style="border-left: 4px solid #16a34a; background: #f0fdf4;">
+            <span class="b" style="background:#dcfce7; color:#166534; border-color:#86efac;">✅ NGƯỜI THỢ B (ĐI QUA KHE HỞ THỂ DIỆN T2.5)</span>
+            <div class="ct">Giữ mặt mũi cho khách + Chiếc khăn lau yên xe</div>
+            <div class="cd" style="color:var(--ink2); font-size:14.5px; line-height:1.6;">
+              Thợ B cầm cờ-lê kéo nhẹ tay ga 1 nhịp nghe tiếng <em>"lách cách"</em> rồi điềm tĩnh nói:<br><br>
+              <strong>Lời giữ thể diện (T2.5):</strong> <em>"Xe đang chạy ngon thì ai cũng quên lịch nhớt bác ạ, xe nhà em đi suốt em còn quên hoài. Nhiều bác nghe tiếng gõ sáng sớm, ra tiệm sợ thợ vẽ chuyện bổ máy tốn mấy triệu nên cứ nghĩ xe cũ nó thế. Thực ra tiếng gõ ở vòng tua thấp này chỉ do chùng sợi xích cam thôi, chỉnh 15 phút hết vài chục nghìn là êm ru."</em><br><br>
+              👉 <strong>Chiếc khăn lau yên xe:</strong> Chỉnh xong, Thợ B rút chiếc khăn sạch tỉ mỉ lau hết vết dầu mỡ bám trên tay phanh và yên xe trước khi dắt ra giao. Khách tin tuyệt đối và không bao giờ mặc cả một đồng!
+            </div>
+          </div>
+        </div>
+
+        <div class="spec">
+          <div class="row">
+            <span class="b dark">Cột trụ 1: Tay nghề</span>
+            <div><strong>Ai bắt đúng bệnh, người đó có thuốc:</strong> Nếu bạn mô tả cái cảnh ngổn ngang và nỗi lo thầm kín của khách chính xác hơn cả chính họ tự nói, người xem sẽ tự động tin rằng bạn có cách xử lý.</div>
+          </div>
+          <div class="row">
+            <span class="b dark">Cột trụ 2: Tự trọng</span>
+            <div><strong>Ba "Chiếc khăn lau yên xe" trên video ngắn:</strong> (1) Nói câu giữ mặt mũi cho khách (<em>"Tâm lý ngại này ai mới làm cũng gặp, không phải lỗi của bạn đâu"</em>); (2) Chỉ mẹo kiểm tra thật không giấu nghề; (3) Kết thúc video điềm tĩnh, không gào thét vồ vập ép mua hàng.</div>
+          </div>
+        </div>
+
+        <!-- =========================================================
+             PHẦN 2: BẢN ĐỒ TÂM LÝ 3 TẦNG (4 NẤC) & 3 PHÉP THỬ GỌT CHỮ
+             ========================================================= -->
+        <h2 id="phan-2"><span class="num">PHẦN 02 / 06</span>Bản đồ tâm lý 3 tầng (4 nấc: T1 &rarr; T2 &rarr; T2.5 &rarr; T3) &amp; 3 phép thử gọt chữ</h2>
+
+        <p>Đa số video thất bại vì rơi vào hai thái cực: Hoặc chỉ lơ lửng ở <strong>T1 (Lời xã giao sáo rỗng)</strong> nên không ai buồn nghe, hoặc lao thẳng xuống <strong>T3 (Nỗi sợ trần trụi)</strong> làm người xem tự ái đóng cửa. Chìa khóa của Storytelling 2.0 nằm ở bậc cầu thang trung gian <strong>T2.5 (Khe hở thể diện)</strong>:</p>
+
+        <div class="tier-ladder">
+          <div class="tier-card t-safe">
+            <div>
+              <span class="tier-tag">NẤC 1 • T1 SAFE (0% GIỮ CHÂN)</span>
+              <h4 class="tier-title">Lời nói xã giao</h4>
+              <p class="tier-desc">Câu khách nói ngoài miệng để cuộc trò chuyện kết thúc êm đẹp. Nghe lịch sự nhưng không chứa thông tin thật.</p>
+            </div>
+            <div class="tier-quote">"Để em suy nghĩ thêm", "Dạo này công việc bận quá chưa làm kênh được".</div>
+          </div>
+
+          <div class="tier-card t-real">
+            <div>
+              <span class="tier-tag">NẤC 2 • T2 REAL (50% GIỮ CHÂN)</span>
+              <h4 class="tier-title">Hành vi Camera 5 giây</h4>
+              <p class="tier-desc">Việc đôi tay, ánh mắt thực hiện khi ở một mình không ai bắt giải thích. Quay lại được ngay bằng 1 cú máy.</p>
+            </div>
+            <div class="tier-quote">Ngón cái vuốt tắt thông báo; cắn môi nhìn bảng báo giá; thở dài gấp laptop lúc 11h đêm.</div>
+          </div>
+
+          <div class="tier-card t-face">
+            <div>
+              <span class="tier-tag">NẤC 3 • T2.5 KHE HỞ THỂ DIỆN (85–95%)</span>
+              <h4 class="tier-title">Cái cớ hợp lý giữ mặt mũi</h4>
+              <p class="tier-desc">Lý do nghe rất đàng hoàng mà người lớn dùng để che nỗi sợ ở T3. <strong>Đây là cánh cửa duy nhất mở được lòng khách.</strong></p>
+            </div>
+            <div class="tier-quote">"Đợi đủ vốn rồi làm", "Mình làm nghề có tâm, hữu xạ tự nhiên hương, không thích phô trương".</div>
+          </div>
+
+          <div class="tier-card t-raw">
+            <div>
+              <span class="tier-tag">NẤC 4 • T3 RAW (ĐỪNG ĐÂM THẲNG)</span>
+              <h4 class="tier-title">Nỗi sợ trần trụi lúc 2h sáng</h4>
+              <p class="tier-desc">Điều khách không dám thừa nhận với chính mình. Người kể không bao giờ chỉ tay đẩy khách vào T3.</p>
+            </div>
+            <div class="tier-quote">Sợ người quen cười chê; sợ làm sai mất uy tín; sợ mình đã tụt hậu so với lớp trẻ.</div>
+          </div>
+        </div>
+
+        <div class="callout warn">
+          <div class="h">Quy tắc vàng mở khóa tâm lý người lớn</div>
+          <p><strong>Đi từ T2 (Hành vi 5 giây) sang T2.5 (Cái cớ giữ thể diện), để khách tự bước vào T3.</strong><br>
+          - <em>Nếu đâm thẳng T3:</em> "Anh sợ tốn tiền đúng không? Anh sợ lên hình bị chê chứ gì?" &rarr; Khách tự ái, đóng sập cửa.<br>
+          - <em>Nếu đi qua T2.5:</em> "Hồi mới làm mình cũng y hệt, cứ nghĩ đợi chuẩn bị thật kỹ mới đăng vì làm nghề lâu năm không ai muốn xuất hiện lơ ngơ cả..." &rarr; Khách được giữ mặt mũi, gật đầu nghe tiếp.</p>
+        </div>
+
+        <h3>2.1. Phép thử 1: Cai nghiện tính từ rỗng vs. Camera an ninh 5 giây</h3>
+        <p>Để biết câu kịch bản T2 của bạn có sức nặng hay không, hãy áp dụng phép thử: <strong>"Câu này có quay được bằng một chiếc camera an ninh không thu tiếng lòng trong 5 giây hay không?"</strong>. Nếu câu văn toàn tính từ chỉ cảm xúc (<em>buồn, áp lực, lo lắng, phân vân, tự ti</em>) thì người xem không nhìn thấy hình ảnh gì trong đầu. Hãy đổi toàn bộ sang <strong>động từ của bàn tay, ánh mắt hoặc bước chân</strong>:</p>
+
+        <div class="tw">
+          <table class="t">
+            <thead>
+              <tr>
+                <th>Câu viết bằng Tính từ rỗng (Không quay được — 0% giữ chân)</th>
+                <th>Câu viết bằng Camera 5 giây (Quay được ngay bằng 1 cú máy — Giữ chân cao)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>"Mình rất áp lực, rất lo lắng và mệt mỏi mỗi khi định đăng bài."</td>
+                <td>"Mình mở khung đăng bài, <strong>gõ ba dòng, xóa sạch, rồi đặt úp mặt điện thoại xuống bàn</strong>."</td>
+              </tr>
+              <tr>
+                <td>"Khách hàng phân vân chê dịch vụ bên tôi đắt nên từ chối khéo."</td>
+                <td>"Anh khách cầm tờ báo giá, <strong>ngón cái miết đi miết lại góc giấy bị gấp mép</strong>, ngước mắt thở nhẹ: <em>'Để anh về bàn thêm với bà xã nhé'</em>."</td>
+              </tr>
+              <tr>
+                <td>"Tôi rất căng thẳng khi doanh thu tháng này giảm mà ngại nói với gia đình."</td>
+                <td>"Đánh xe vào hầm chung cư, <strong>tắt máy tối om rồi vẫn ngồi im trên ghế lái thêm 15 phút</strong>, vuốt qua vuốt lại màn hình điện thoại chưa muốn bước lên nhà."</td>
+              </tr>
+              <tr>
+                <td>"Nhiều chị em sau sinh rất tự ti vì tăng cân, mặc đồ cũ không vừa."</td>
+                <td>"8 giờ tối thứ Bảy đứng trước gương, <strong>kéo khóa chiếc váy ôm đến ngang sườn thì kẹt cứng</strong>, chị buông tay cởi ra rồi lại mở tủ lấy chiếc áo phông đen rộng ra mặc."</td>
+              </tr>
+              <tr>
+                <td>"Người mua bảo hiểm rất sợ bị người nhà phản đối."</td>
+                <td>"Ký xong cuốn hợp đồng, chị <strong>cuộn tròn lại đặt sâu vào ngăn kéo dưới cùng của bàn trang điểm</strong> vì ngại chồng nhìn thấy lại hỏi."</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>2.2. Phép thử 2: Gương phẳng vs. Gương lõm &amp; Phân biệt với Kể khổ bi lụy</h3>
+        <p>Câu chuyện của người kể phải hoạt động như một <strong>chiếc gương lõm</strong>: gom những mảnh vụn rời rạc của người xem về một điểm sáng rõ thông qua chính trải nghiệm của bạn, chứ không phải chiếc gương phẳng lạnh lùng chỉ tay bắt lỗi khách hàng.</p>
+
+        <div class="tw">
+          <table class="t">
+            <thead>
+              <tr>
+                <th>Tiêu chí</th>
+                <th>Gương phẳng / Kể khổ bi lụy (Tuyệt đối tránh)</th>
+                <th>Gương lõm / Storytelling 2.0 Chuẩn Thực Chiến</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Cách đặt đại từ</strong></td>
+                <td>Chỉ tay từ trên xuống: <em>"Các bạn đang sai lầm...", "Bạn đang sợ đúng không?"</em>.</td>
+                <td>Đứng cùng chỗ, đi trước một đoạn: <em>"Mình từng ngồi đúng ghế đó, tay đặt trên nút đăng rồi lại tắt máy..."</em>.</td>
+              </tr>
+              <tr>
+                <td><strong>Thứ đem ra kể</strong></td>
+                <td>Kể lể sự bi lụy, nợ nần, bế tắc chưa có lối ra để tìm sự thương cảm.</td>
+                <td>Kể về <strong>lần va vấp đã tìm ra cách tháo gỡ</strong> và gọi tên cái cớ giữ thể diện với sự bao dung.</td>
+              </tr>
+              <tr>
+                <td><strong>Phản ứng của khách</strong></td>
+                <td>Thấy mình bị soi mói (bật phản xạ tự vệ) hoặc chỉ thả tim thương cảm chứ không mua hàng.</td>
+                <td>Thấy mình được thấu hiểu (<em>"Đúng là chuyện của mình!"</em>), tin tưởng vào tay nghề và chủ động nhắn tin.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>2.3. Phép thử 3: Bảng 4 Nhóm Mặt Nạ Giữ Thể Diện (18 Phản xạ người lớn) &amp; 4 Case Study Ngành Nghề</h3>
+        <p>Khi cần tìm chất liệu T2.5 cho bất kỳ ngành nghề nào, hãy tra cứu nhanh <strong>4 nhóm phản xạ giữ mặt mũi phổ biến nhất của người trưởng thành</strong> dưới đây:</p>
+
+        <div class="grid g2">
+          <div class="card">
+            <span class="b s" style="--stage:#2563eb">NHÓM 1 • CHÊ NGƯỜI KHÁC ĐỂ THẤY MÌNH ĐÀNG HOÀNG</span>
+            <div class="ct">Phản xạ 01 &ndash; 04: Đứng ngoài nhận xét</div>
+            <div class="cd" style="color:var(--ink2); font-size:14px;">
+              <strong>1. Làm thật vs. Ăn xổi:</strong> Chê đối thủ trên mạng toàn hình thức hào nhoáng, tự nhận mình làm thật nên không lên mạng.<br>
+              <strong>2. Chuẩn trường lớp:</strong> Chê video ngắn nông cạn, đòi viết dài học thuật.<br>
+              <strong>3. Đổ lỗi thuật toán:</strong> <em>"Giờ AI bóp tương tác, toàn bài nhảm lên xu hướng"</em>.<br>
+              <strong>4. Bắt bẻ chi tiết nhỏ:</strong> Soi 1 lỗi phát âm hay góc quay của người khác để tự trấn an mình.
+            </div>
+          </div>
+
+          <div class="card">
+            <span class="b s" style="--stage:#ea580c">NHÓM 2 • MƯỢN ĐẠO ĐỨC &amp; SỰ CẦU TOÀN LÀM BÌNH PHONG</span>
+            <div class="ct">Phản xạ 05 &ndash; 08: Cái cớ "Chữ Tâm &amp; Kỹ tính"</div>
+            <div class="cd" style="color:var(--ink2); font-size:14px;">
+              <strong>5. Hữu xạ tự nhiên hương:</strong> <em>"Làm nghề giữ chữ Tâm khách tự truyền tai, cần gì nói nhiều"</em>.<br>
+              <strong>6. Tính mình cầu toàn:</strong> <em>"Chưa thật sự chỉn chu thì mình chưa đăng"</em> (che nỗi sợ ít người xem).<br>
+              <strong>7. Chọn lối sống chậm:</strong> <em>"Đủ ăn là được, không thích bon chen"</em>.<br>
+              <strong>8. Hàng kén khách:</strong> <em>"Sản phẩm của anh chỉ dành cho người có gu riêng"</em>.
+            </div>
+          </div>
+
+          <div class="card">
+            <span class="b s" style="--stage:#16a34a">NHÓM 3 • BẬN VIỆC NGOẠI VI ĐỂ TRÌ HOÃN VIỆC CHÍNH</span>
+            <div class="ct">Phản xạ 09 &ndash; 12: Bận rộn hợp pháp</div>
+            <div class="cd" style="color:var(--ink2); font-size:14px;">
+              <strong>9. Sắm đủ đồ nghề mới làm:</strong> Mua mic, đèn, máy ảnh xếp góc nhà nhưng chưa bấm quay.<br>
+              <strong>10. Khách VIP kín tiếng:</strong> <em>"Khách của chị toàn người kỹ tính, kỵ đưa lên mạng"</em>.<br>
+              <strong>11. Lao vào việc tay chân vụn vặt:</strong> Tự lau dọn, gói hàng cả ngày để quên việc tìm khách mới.<br>
+              <strong>12. Giao khoán bên ngoài:</strong> Thuê đội trẻ viết hộ rồi chê họ không hiểu nghề.
+            </div>
+          </div>
+
+          <div class="card">
+            <span class="b s" style="--stage:#9333ea">NHÓM 4 • TÌM LỐI THOÁT AN TOÀN CHO CẢM XÚC</span>
+            <div class="ct">Phản xạ 13 &ndash; 18: Ngày nói cứng, đêm trăn trở</div>
+            <div class="cd" style="color:var(--ink2); font-size:14px;">
+              <strong>13. Khác biệt Ngày &amp; Đêm:</strong> Ban ngày chê TikTok, 12h đêm đóng cửa quay thử 5 lần rồi xóa.<br>
+              <strong>14. Nhắc hào quang cũ:</strong> Kể chuyện năm 2019 chạy quảng cáo trăm đơn.<br>
+              <strong>15. Nhận mình mù công nghệ:</strong> Nhận lỗi nhỏ để che nỗi sợ tụt hậu.<br>
+              <strong>16–18. Chờ thời điểm:</strong> <em>"Đăng vui lưu kỷ niệm thôi"</em>, <em>"Khó khăn chung cả ngành"</em>, <em>"Để qua Tết làm một thể"</em>.
+            </div>
+          </div>
+        </div>
+
+        <h4>4 Case Study Ngành Nghề Bóc Tách Đủ 4 Nấc (Salon Tóc, Spa, Phân Bón, Bất Động Sản)</h4>
+
+        <div class="case-card">
+          <div class="case-header">
+            <div>
+              <span class="b s" style="--stage:#ea580c">CASE STUDY 01 • NGÀNH SALON TÓC</span>
+              <h4 class="case-title">Đoàn Hữu Việt — Từ chối gói uốn 4 triệu &amp; Lần đền tiền nhớ đời năm 2019</h4>
+              <div class="case-persona">Ứng dụng cho cả góc hút khách làm tóc (B2C) và góc chia sẻ với chủ tiệm tóc (B2B)</div>
+            </div>
+          </div>
+          <div class="case-grid-content">
+            <div class="case-block signal">
+              <h5>T2 • HIỆN TRƯỜNG 5 GIÂY</h5>
+              9h tối đóng cửa tiệm, nhìn góc thùng rác có 3 cái bát nhựa đựng thuốc nhuộm còn dính nguyên kem xám chưa quấy hết (mỗi bát bỏ đi là 50 nghìn tiền cốt thuốc). Với khách nữ: Kéo thử sợi tóc ướt sau gáy thấy giãn dài như sợi dây chun không đàn hồi lại.
+            </div>
+            <div class="case-block pain">
+              <h5>T2.5 &rarr; T3 • CÁI CỚ &amp; NỖI LO</h5>
+              <strong>T2.5:</strong> <em>"Mình là người thợ kỹ tính, coi mỗi mái tóc là một tác phẩm nên không yên tâm giao kéo cho thợ phụ"</em>.<br>
+              <strong>T3:</strong> Sợ dạy hết cách pha thuốc và cắt form cho thợ chính thì 3 tháng sau thợ nghỉ mở tiệm đối diện.
+            </div>
+            <div class="case-block result">
+              <h5>CHIẾC KHĂN LAU YÊN XE</h5>
+              Kể thật chuyện chiều nay từ chối gói uốn 4 triệu vì tóc khách đã đứt liên kết do lần tẩy trước, kèm kỷ niệm năm 2019 lúc 8h tối phải rút ví đền 3 triệu tiền mặt vì cố nhận ca tóc yếu. Khách nghe xong tin tuyệt đối vào đạo đức làm nghề.
+            </div>
+          </div>
+        </div>
+
+        <div class="case-card">
+          <div class="case-header">
+            <div>
+              <span class="b s" style="--stage:#db2777">CASE STUDY 02 • NGÀNH SPA &amp; THẨM MỸ VIỆN</span>
+              <h4 class="case-title">Chị Đặng Hường — Chủ Spa 10 năm nghề &amp; Lời khuyên đổi vỏ gối lụa</h4>
+              <div class="case-persona">Chủ cơ sở lâu năm giỏi tay nghề nhưng ngại xuất hiện trên mạng</div>
+            </div>
+          </div>
+          <div class="case-grid-content">
+            <div class="case-block signal">
+              <h5>T2 • HIỆN TRƯỜNG 5 GIÂY</h5>
+              Sáng thứ Tư mở cửa tiệm thơm mùi sả chanh, 4 giường spa trải khăn trắng phẳng phiu nhưng đến 2h chiều vắng khách. Ngồi quầy thu ngân lướt điện thoại nhìn sang tiệm học trò cũ mới ra nghề 1 năm đang livestream nhận lịch đặt ầm ầm.
+            </div>
+            <div class="case-block pain">
+              <h5>T2.5 &rarr; T3 • CÁI CỚ &amp; NỖI LO</h5>
+              <strong>T2.5:</strong> Nói với nhân viên: <em>"Chị làm nghề giữ chữ Tâm, chuẩn Y khoa, khách tinh tế tự tìm đến chứ không bán gói 49k thu hút khách vãng lai"</em>.<br>
+              <strong>T3:</strong> Muốn cầm máy quay video nhưng sợ khách quen nghĩ <em>"Chắc dạo này Spa vắng lắm bà chủ mới phải lên mạng bán hàng"</em>.
+            </div>
+            <div class="case-block result">
+              <h5>CHIẾC KHĂN LAU YÊN XE</h5>
+              Quay cảnh soi da cho khách xong, thay vì gạ mua thẻ 15 triệu thì chỉ rõ: <em>"Mụn vùng quai hàm này do em quen nằm nghiêng đè lên vỏ gối ẩm và chống cằm lúc làm việc. Về đổi vỏ gối lụa và sửa tư thế ngồi 2 tuần là hết, đừng mua liệu trình tốn tiền oan"</em>.
+            </div>
+          </div>
+        </div>
+
+        <div class="case-card">
+          <div class="case-header">
+            <div>
+              <span class="b s" style="--stage:#16a34a">CASE STUDY 03 • NGÀNH VẬT TƯ NÔNG NGHIỆP</span>
+              <h4 class="case-title">Anh Kiên Phân Bón — Tâm lý sợ xóm giềng chê lúa vàng &amp; Bao đạm Ure</h4>
+              <div class="case-persona">Kể chuyện hiện trường ngoài đồng ruộng nói trúng nỗi lo của bà con nông dân</div>
+            </div>
+          </div>
+          <div class="case-grid-content">
+            <div class="case-block signal">
+              <h5>T2 • HIỆN TRƯỜNG 5 GIÂY</h5>
+              Xắn quần lội ruộng bùn lúc nắng gắt, hai tay bốc tảng đất đen quánh bẻ đôi cứng như gạch, nhổ một khóm lúa lên vạch chùm rễ bị thối đen, ngửi mùi chua nồng của đất ngộ độc hữu cơ.
+            </div>
+            <div class="case-block pain">
+              <h5>T2.5 &rarr; T3 • CÁI CỚ &amp; NỖI LO</h5>
+              Đi thăm đồng thấy ruộng hàng xóm xanh mướt còn ruộng mình ngả vàng là đứng ngồi không yên. Sợ ra quán nước đầu làng bị nói bóng gió <em>"nhà này năm nay chăm lúa kém, chắc thiếu tiền mua phân"</em>.
+            </div>
+            <div class="case-block result">
+              <h5>CHIẾC KHĂN LAU YÊN XE</h5>
+              Giải thích rõ vì sao bà con hay vội vã vãi đạm Ure cho lá xanh đen lại sau 3 đêm để giữ tiếng với hàng xóm, nhưng dưới bùn bộ rễ đang bị đạm nồng độ cao làm cháy đen. Hướng dẫn cách xả phèn cứu rễ trước khi bón thúc.
+            </div>
+          </div>
+        </div>
+
+        <div class="case-card">
+          <div class="case-header">
+            <div>
+              <span class="b s" style="--stage:#0284c7">CASE STUDY 04 • NGÀNH BẤT ĐỘNG SẢN NHÀ PHỐ</span>
+              <h4 class="case-title">Chị Hằng BĐS — Bản đồ quy hoạch lúc 11h đêm &amp; Vệt ố vàng 30cm ngày mưa</h4>
+              <div class="case-persona">Tháo gỡ nỗi sợ kẹt thanh khoản của vợ chồng tích cóp 10 năm</div>
+            </div>
+          </div>
+          <div class="case-grid-content">
+            <div class="case-block signal">
+              <h5>T2 • HIỆN TRƯỜNG 5 GIÂY</h5>
+              Ban ngày đi xem đất nói rất cứng, nhưng 11h đêm vẫn nhắn tin xin ảnh tờ quy hoạch, hai mắt căng ra phóng to từng nét kẻ chỉ trên màn hình điện thoại trong phòng tối.
+            </div>
+            <div class="case-block pain">
+              <h5>T2.5 &rarr; T3 • CÁI CỚ &amp; NỖI LO</h5>
+              <strong>T2.5:</strong> <em>"Anh mua để đấy 5–10 năm cho con cái ấy mà, quan tâm gì biến động ngắn hạn"</em>.<br>
+              <strong>T3:</strong> 3 tỷ là mồ hôi tích cóp 10 năm của hai vợ chồng, sợ mua nhầm đất vướng quy hoạch hay kẹt thanh khoản thì mất ăn mất ngủ.
+            </div>
+            <div class="case-block result">
+              <h5>CHIẾC KHĂN LAU YÊN XE</h5>
+              Cầm đèn pin đi quay căn nhà giảm giá 300 triệu vào đúng 6h chiều ngày mưa lớn, soi thẳng vào vệt ố vàng cao 30cm ở chân tường đầu ngõ và dặn: <em>"Bác nào chấp nhận mỗi năm có 8–10 ngày mưa to nước dềnh lên vệt này để tiết kiệm 300 triệu thì hẵng mua, còn nhà có người già trẻ nhỏ thì nên bỏ qua"</em>.
+            </div>
+          </div>
+        </div>
+
+        <!-- =========================================================
+             PHẦN 3: GIẢI PHẪU 3 CỤM VIDEO STORYTELLING CỦA ANH VIỆT
+             ========================================================= -->
+        <h2 id="phan-3"><span class="num">PHẦN 03 / 06</span>Giải phẫu 3 cụm video Storytelling tiêu biểu của anh Việt (Bài mẫu trụ cột)</h2>
+
+        <p>Cả 3 cụm video dưới đây đều có chung một cấu trúc ngầm: <strong>Mở đầu bằng một hành vi nhìn thấy được (T2) &rarr; Gọi tên cái cớ giữ thể diện (T2.5) kèm một hình ảnh ẩn dụ đời thường để hạ áp lực &rarr; Không bao giờ chỉ trích nỗi sợ (T3) mà mở ra một bước hành động cực nhỏ.</strong> Hãy bấm xem trực tiếp từng video và đối chiếu bảng giải phẫu:</p>
+
+        <div class="v3-group">
+
+          <!-- VIDEO 1A & 1B -->
+          <div class="v3-card" id="viet-vid-1">
+            <div class="v3-head">
+              <div class="v3-title-group">
+                <span class="v3-badge v3-badge-win">BÀI MẪU 01 • 93.9K &amp; 29.7K VIEW (15.6% SHARE)</span>
+                <strong>"Mới xây kênh đăng gì? Bạn chính là Niche (Nước sôi 100°C)" &amp; "Con dân 50 thịt mở bản đồ Đế Chế (AoE)"</strong>
+                <span class="v3-meta">(30% A-Roll + 70% B-Roll ẩn dụ • 172s &amp; 260s)</span>
+              </div>
+              <div class="v3-actions">
+                <button type="button" class="v3-btn-play" onclick="window.toggleV3Player(this, 'p-viet-1', 'https://fedu.vn/videos/aroll_broll_viet.mp4')">▶️ Xem video MP4</button>
+                <a href="https://www.facebook.com/reel/826606130494265/" target="_blank" rel="noopener" class="v3-btn-link">Reel 100°C (93.9K) ↗</a>
+                <a href="https://www.facebook.com/reel/1498902625604603/" target="_blank" rel="noopener" class="v3-btn-link">Reel AoE (29.7K) ↗</a>
+              </div>
+            </div>
+            <div class="v3-strip">
+              <img src="https://fedu.vn/images/poster_aroll_broll_viet.jpg" alt="Video Bạn chính là Niche & Con dân AoE 50 thịt" loading="lazy"/>
+              <div class="v3-strip-bar">
+                <span>01. T2: Ngồi trước máy quay lạnh ngắt</span>
+                <span>02. T2.5: Đợi có thành tựu lớn mới đăng</span>
+                <span>03. Ẩn dụ: Nước sôi 100°C &amp; Dân AoE 50 thịt</span>
+              </div>
+            </div>
+            <div class="v3-player" id="p-viet-1" style="display:none;">
+              <video controls playsinline preload="none" poster="https://fedu.vn/images/poster_aroll_broll_viet.jpg"></video>
+            </div>
+            <div class="v3-verdict">
+              <p><strong>Giải phẫu cấu trúc 4 nấc &amp; 3 ẩn dụ tháo gỡ áp lực:</strong></p>
+              <div class="tw">
+                <table class="t" style="margin:8px 0;">
+                  <thead>
+                    <tr>
+                      <th>Tầng bóc tách</th>
+                      <th>Nội dung trong video của anh Việt</th>
+                      <th>Tác động tâm lý lên người xem</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><strong>T2 (Hành vi 5s)</strong></td>
+                      <td>Tư vấn cho khách trực tiếp thì nói trôi chảy vì có người gật đầu; nhưng ngồi một mình trước ống kính máy quay lạnh ngắt thì thấy kỳ cục, mở khung đăng bài rồi lại đóng.</td>
+                      <td>Gỡ bỏ cảm giác tự trách mình kém: Khó nói trước ống kính là phản xạ tự nhiên khi thiếu người đối diện tương tác.</td>
+                    </tr>
+                    <tr>
+                      <td><strong>T2.5 (Khe hở thể diện)</strong></td>
+                      <td><em>"Đợi tìm được ngách chuẩn, đợi có thành tựu lớn rồi mới đăng"</em>. Giải thích bằng <strong>Độ vênh giữa Gu thẩm mỹ và Giờ bay (Taste vs. Skill Gap)</strong>: Internet cho chúng ta cái gu xem quá cao trước khi kịp có giờ thực hành.</td>
+                      <td>Người xem thấy được thông cảm sâu sắc: Mình chần chừ vì mình có gu thẩm mỹ cao chứ không phải vì mình kém cỏi.</td>
+                    </tr>
+                    <tr>
+                      <td><strong>T3 (Nỗi sợ ngầm)</strong></td>
+                      <td>Sợ đăng những video đầu tiên còn ngô nghê lên mạng sẽ bị người quen nhìn thấy và đánh giá.</td>
+                      <td>Không xoáy thô bạo vào nỗi sợ, mà chuyển hóa ngay bằng 3 hình ảnh ẩn dụ bên dưới.</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Lối ra (3 Ẩn dụ)</strong></td>
+                      <td>1. <strong>Nước sôi 100°C &amp; Tập đi xe đạp:</strong> Tích đủ giờ bấm máy thì ngách tự lộ ra như nước đủ 100°C tự sôi.<br>2. <strong>Cảm biến dò đường:</strong> 20 video đầu chỉ là bản nháp để AI đi tìm khán giả hộ bạn.<br>3. <strong>Con dân 50 thịt trong Đế Chế (AoE):</strong> Video đầu tay chỉ tốn vài phút bấm máy (rủi ro bằng 0) nhưng làm <strong>bản đồ sáng lên vĩnh viễn</strong> để lên Đời 4.</td>
+                      <td>Biến việc đăng video đầu tiên từ <em>"nỗi lo mất mặt"</em> thành <em>"nước cờ mở bản đồ khôn ngoan"</em>.</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <details class="v3-transcript-toggle">
+                <summary>Xem nguyên văn lời thoại 2 bản (Bản Nước sôi 100°C &amp; Bản Con dân AoE 50 thịt)</summary>
+                <div class="v3-transcript-body"><strong>[BẢN 1A — BẠN CHÍNH LÀ NICHE &amp; NƯỚC SÔI 100°C (93.9K VIEWS)]</strong>
+Bạn muốn bắt đầu một kênh YouTube, trang Facebook nhưng bạn đang gặp khó ở cái đoạn không biết là đăng cái gì lên đây. Không biết thị trường của mình là gì, không biết sản phẩm của mình thế nào. Bạn đi tìm lời khuyên, đăng ký khóa học xây kênh, bơi trong rất nhiều công thức: đăng bài hằng ngày, phát triển đa kênh... Nhưng nghe theo công thức nào, nó có hoạt động hay không, và bạn bị tắc ở đó không tiến thêm được.
+Lý do vì sao? Lý do không phải là vì bạn không có động lực, để mình chỉ cho bạn thấy nhé: Lý do nằm ở chính bạn. Bởi vì BẠN chính là thị trường ngách, bạn chính là Niche. Nói một cách thực dụng: Bạn chính là sản phẩm, và bạn cần phải nuôi dưỡng khám phá sản phẩm này.
+Nếu tích lũy đủ số giờ bấm máy quay, số giờ dựng, thì ngách sẽ tự nhiên xuất hiện, cách làm sẽ tự sáng tỏ — giống như quy luật tự nhiên nước sôi ở 100°C. Nó giống như bạn học đi xe đạp, quan trọng là bạn dành đủ thời gian với cái xe đạp... Và tin vui đến từ các nền tảng mạng xã hội là các video đầu của bạn chỉ là video nháp để hệ thống học hỏi về bạn. Ban đầu nó làm gì có dữ liệu về bạn, nó bắt buộc phải lấy khoảng vài chục video đầu tiên của bạn ném ra thị trường làm "cảm biến dò đường" — nó đang tìm khán giả cho bạn!
+
+<strong>[BẢN 1B — ĐỒNG TIỀN CHẢY VỀ NƠI CÓ SỰ CHÚ Ý &amp; CON DÂN 50 THỊT AOE (29.7K VIEWS)]</strong>
+Đồng tiền trong kinh doanh luôn chảy về nơi có SỰ CHÚ Ý và NIỀM TIN. Làm video không phải trào lưu nhất thời. Nó là cách trực diện nhất để đóng gói giá trị, giữ việc và tìm kiếm khách hàng mới.
+Nhưng với người làm công sở hay kinh doanh truyền thống... Đứng trước máy quay là một chỗ vướng rất lớn. Tư vấn cho khách thì nói như rót mật vào tai. Vì có người đối diện gật đầu tương tác. Nhưng ngồi một mình trước camera lạnh ngắt: Không có ai phản hồi. Tự nhiên thấy mình kỳ cục, chưa quen. Sợ người quen nhìn thấy rồi đánh giá. Bởi vì Internet cho chúng ta gu thẩm mỹ trước khi có trải nghiệm. Xem người ta làm thì thấy dễ. Tự mình làm lại ngại vì sự ngô nghê ban đầu. Nhưng kỹ năng chỉ tăng theo thời gian thực hành. Không bao giờ tăng theo thời gian lướt xem.
+Trong game Đế Chế (AoE): Muốn lên Đời 4 để làm chủ cuộc chơi... Đời 1 bắt buộc phải cho dân cầm đuốc đi dò đường. Dân đi dò đường chỉ tốn 50 thịt — chi phí rẻ nhất game. Có thể bị sư tử vồ mất máu. Nhưng BẢN ĐỒ SẼ SÁNG LÊN VĨNH VIỄN. Nhờ đó bạn mới biết tài nguyên ở đâu.
+Video đầu tay chính là con dân 50 thịt đó: Tốn vài phút bấm máy. Chi phí bằng 0, rủi ro bằng 0. Không ai sửa được một trang giấy trắng. Cũng không ai làm đẹp được video chưa từng bấm quay. Cứ cho dân đi dò đường từ hôm nay. Hẹn bạn ở Đời 4!</div>
+              </details>
+            </div>
+          </div>
+
+          <!-- VIDEO 2 -->
+          <div class="v3-card" id="viet-vid-2">
+            <div class="v3-head">
+              <div class="v3-title-group">
+                <span class="v3-badge v3-badge-win">BÀI MẪU 02 • HOOK 3S ĐẠT 20.4% • HOLD 30.6%</span>
+                <strong>"Giỏi mà TÀNG HÌNH trên mạng xã hội — Tắt chế độ tàng hình" (13 câu thoại &amp; 5 cảnh vạn năng tại bàn)</strong>
+                <span class="v3-meta">(133s • Bóc tách mặt nạ "Hữu xạ tự nhiên hương")</span>
+              </div>
+              <div class="v3-actions">
+                <button type="button" class="v3-btn-play" onclick="window.toggleV3Player(this, 'p-viet-2', 'https://fedu.vn/videos/talkinghead_viet.mp4')">▶️ Xem video MP4</button>
+                <a href="https://www.facebook.com/reel/28776248355339244/" target="_blank" rel="noopener" class="v3-btn-link">Reel Organic ↗</a>
+                <a href="https://www.facebook.com/reel/1518169316738973/" target="_blank" rel="noopener" class="v3-btn-link">Reel K4 ↗</a>
+              </div>
+            </div>
+            <div class="v3-strip">
+              <img src="https://fedu.vn/images/poster_talkinghead_viet.jpg" alt="Giỏi mà tàng hình trên mạng xã hội" loading="lazy"/>
+              <div class="v3-strip-bar">
+                <span>01. T2: Tin nhắn 2h sáng &amp; không dấu vết số</span>
+                <span>02. T2.5: "Hữu xạ tự nhiên hương"</span>
+                <span>03. Lối ra: Cách làm tại bàn bài bản</span>
+              </div>
+            </div>
+            <div class="v3-player" id="p-viet-2" style="display:none;">
+              <video controls playsinline preload="none" poster="https://fedu.vn/images/poster_talkinghead_viet.jpg"></video>
+            </div>
+            <div class="v3-verdict">
+              <p><strong>Tại sao video này khiến những người làm nghề lâu năm quyết định hành động ngay lúc 2h sáng?</strong></p>
+              <ul>
+                <li><strong>Lát cắt khởi nguồn (T2):</strong> Học viên chuyển khoản học phí lúc 2h sáng kèm đúng một câu: <em>"Em giỏi nghề nhưng trên mạng em tàng hình"</em>. Người làm nghề có 10 phần năng lực nhưng trên mạng chỉ xuất hiện 0 phần, trong khi người mới biết 3 phần lại nói thành 10.</li>
+                <li><strong>Gọi đúng cái cớ giữ thể diện (T2.5):</strong> Chỉ thẳng vào câu tự ru ngủ kinh điển của người làm nghề giỏi: <em>"Mình giỏi thì khách tự tìm đến (hữu xạ tự nhiên hương)"</em> và kết luận sắc lẹm: <strong>"Giỏi mà tàng hình thì coi như bằng không. Tay nghề mà giấu trong đầu là tay nghề chết."</strong></li>
+                <li><strong>5 Cảnh B-Roll Vạn Năng tại bàn làm việc:</strong> (1) Đứng bên cửa sổ ban công lật trang sách; (2) Cận cảnh bàn tay viết sổ; (3) Ngón tay bật công tắc đèn bàn (biểu tượng bật sáng nhận thức); (4) Góc nghiêng 90 độ gõ bàn phím; (5) Đặt bàn tay xuống mặt bàn dứt khoát.</li>
+              </ul>
+              <details class="v3-transcript-toggle">
+                <summary>Xem trọn vẹn 13 câu thoại chuẩn từng nhịp thở &amp; bảng phân cảnh</summary>
+                <div class="v3-transcript-body">1. (Hook bối cảnh): Cái kỷ nguyên AI bây giờ nó khốc liệt như vậy. Vạn vật kết nối bằng dữ liệu.
+2. (Đặt điều kiện): Nếu mà bạn làm nghề lâu năm, mà bạn không để lại một dấu vết gì trên mạng...
+3. (Chẩn đoán trực diện): Thì AI nó coi như bạn vô hình! Hệ thống sẽ không trả cho bạn một khách hàng nào đâu.
+4. (Bóc vỏ T2.5): Nhiều người đi làm nghề thì cứ nghĩ rằng là mình giỏi thì khách sẽ tự tìm đến ("hữu xạ tự nhiên hương"). Nhưng nghĩ như vậy là tự nhận phần thiệt.
+5. (Chốt câu đinh): Tự dưng làm gì có ai đem tiền đến gõ cửa nhà mình đâu. Giỏi mà tàng hình thì coi như bằng không. Tay nghề mà giấu trong đầu ấy, là tay nghề chết.
+6. (Gỡ nỗi lo phải diễn): Vậy đóng góp dữ liệu bằng cách nào? Không phải là lên hình diễn hay tìm kiếm lượt xem nhanh. Cái thời đó qua rồi.
+7. (Bằng chứng sống): Mình chính là bằng chứng. Mình không hào nhoáng, không diễn.
+8. (Con số thực chứng): Mình mang nguyên những gì mình dạy trên lớp lên video mà vẫn có 40k Page, 15k TikTok trong vài tháng.
+9. (Truyền niềm tin ngang hàng): Nếu một người đi dạy như mình làm được bằng sự chân thành, thì những anh chị lăn lộn kinh doanh chắc chắn cũng sẽ làm được.
+10. (Nút thắt kỹ thuật - Vòng gửi xe của AI): Nhưng có một vấn đề, thả bừa dữ liệu là không được. Video chất đến mấy mà hình xấu, lộn xộn thì AI loại từ vòng gửi xe.
+11. (Cách làm tại bàn): Bạn phải có một cách làm tại bàn bài bản, dứt khoát, không tốn thời gian cho thứ râu ria.
+12. (Lời mời cam kết): Cuối tháng này, mình có lớp offline 2 ngày tại Hà Nội. Làm đúng các bước mà chưa ra việc, mình hỗ trợ 1-1 tới khi ra kết quả thì thôi.
+13. (Kết biểu tượng): Tắt chế độ tàng hình và đăng ký ở link bên dưới nhé!</div>
+              </details>
+            </div>
+          </div>
+
+          <!-- VIDEO 3 -->
+          <div class="v3-card" id="viet-vid-3">
+            <div class="v3-head">
+              <div class="v3-title-group">
+                <span class="v3-badge v3-badge-win">BÀI MẪU 03 • KỶ NGUYÊN NGỮ NGHĨA &amp; 4 ĐIỂM KẾT NỐI CƠ THỂ</span>
+                <strong>"Mạng xã hội cũ đã chết rồi — Kỷ nguyên của Ngữ nghĩa (Semantic AI) &amp; 4 Điểm kết nối lên hình tự nhiên"</strong>
+                <span class="v3-meta">(176.8s bản đầy đủ + Bản Hybrid 60fps)</span>
+              </div>
+              <div class="v3-actions">
+                <button type="button" class="v3-btn-play" onclick="window.toggleV3Player(this, 'p-viet-3', 'assets/motion02/motion02_hybrid_9x16_60fps.mp4')">▶️ Xem bản Hybrid MP4</button>
+                <a href="https://www.facebook.com/reel/2120904432125196/" target="_blank" rel="noopener" class="v3-btn-link">Reel Full 176s ↗</a>
+                <a href="https://www.youtube.com/watch?v=_PvNmYKa1qM" target="_blank" rel="noopener" class="v3-btn-link">YouTube ↗</a>
+              </div>
+            </div>
+            <div class="v3-strip">
+              <img src="assets/motion02/frames/motion02_hybrid_9scenes_grid.jpg" alt="Mạng xã hội cũ đã chết - Kỷ nguyên Ngữ nghĩa" loading="lazy"/>
+              <div class="v3-strip-bar">
+                <span>01. AI đọc ngữ nghĩa từng khung hình</span>
+                <span>02. Không cần làm Idol câu tương tác</span>
+                <span>03. 4 Điểm kết nối cơ thể tự nhiên</span>
+              </div>
+            </div>
+            <div class="v3-player" id="p-viet-3" style="display:none;">
+              <video controls playsinline preload="none" poster="assets/motion02/frames/motion02_hybrid_9scenes_grid.jpg"></video>
+            </div>
+            <div class="v3-verdict">
+              <p><strong>Định nghĩa lại Storytelling thời đại AI Ngữ Nghĩa &amp; 4 Điểm kết nối cơ thể khi lộ mặt 25–30%:</strong></p>
+              <div class="grid g2" style="margin:10px 0;">
+                <div class="card" style="padding:12px;">
+                  <span class="b dark">ĐIỂM 01 • SỰ TỪ TỐN</span>
+                  <div class="ct" style="font-size:15px;">Bình thản là dáng vẻ của người đáng tin</div>
+                  <div class="cd" style="color:var(--ink2);">Ngoài đời người ta chỉ vội vàng khi bất an hoặc muốn chèo kéo ai đó. Lên video hãy hạ vai xuống, thở chậm và nói thong thả.</div>
+                </div>
+                <div class="card" style="padding:12px;">
+                  <span class="b dark">ĐIỂM 02 • ĐÔI TAY BƯNG BÊ NGÔN TỪ</span>
+                  <div class="ct" style="font-size:15px;">Tay hát cùng một nhịp với lời nói</div>
+                  <div class="cd" style="color:var(--ink2);">Tay không phải để múa may diễn xuất, mà để minh họa và nâng đỡ đúng từ khóa đang nói, giúp mắt và tai người xem nhớ lâu gấp đôi.</div>
+                </div>
+                <div class="card" style="padding:12px;">
+                  <span class="b dark">ĐIỂM 03 • ÁNH MẮT BIẾT NGHĨ</span>
+                  <div class="ct" style="font-size:15px;">Không cần nhìn cứng vào ống kính 100%</div>
+                  <div class="cd" style="color:var(--ink2);">Lúc suy nghĩ cứ ngước nhẹ lên, lúc không đồng tình cứ lắc đầu tự nhiên như đang ngồi uống trà với bạn ngoài đời.</div>
+                </div>
+                <div class="card" style="padding:12px;">
+                  <span class="b dark">ĐIỂM 04 • SỨC NẶNG TRẢI NGHIỆM THẬT</span>
+                  <div class="ct" style="font-size:15px;">Chỉ nói thứ mình thực sự đã đi qua</div>
+                  <div class="cd" style="color:var(--ink2);">Người xem dừng lại không phải vì lời lẽ cao siêu, mà vì họ cảm nhận được sức nặng của việc bạn thực sự làm và thực sự quan tâm.</div>
+                </div>
+              </div>
+              <details class="v3-transcript-toggle">
+                <summary>Xem nguyên văn lời thoại "Kỷ nguyên Ngữ nghĩa &amp; 4 Điểm kết nối cơ thể"</summary>
+                <div class="v3-transcript-body">Làm video hiệu quả ấy là mình phải đếm lượt like. Cái cách làm đấy thì nó đã qua lâu rồi. Và mình chính là một bằng chứng: Mỗi tuần mình chỉ đăng đúng một video bởi vì mình còn phải đi làm, nhưng mà page nó vẫn kéo được lên đến 40.000 lượt theo dõi.
+Cái mạng xã hội cũ mà mình từng biết nó đã chết rồi. Bây giờ nó là cái kỷ nguyên của ngữ nghĩa. Bạn không cần thiết phải làm idol trên video, bởi vì AI nó không đếm tương tác đơn thuần nữa. Nó hiểu sâu sắc cái video của bạn xử lý được việc gì cho người xem. Cho nên cái việc làm video bây giờ, bản chất là bạn phải đóng gói được kỹ năng thật của mình để đưa ra thị trường.
+Vậy làm sao để mình có được sự tự nhiên ở trên video? Thì mình có thể chú ý đến bốn cái điểm ở trên cơ thể của mình:
+1. Thứ nhất là sự từ tốn: Ở ngoài đời thực thì mình thường vội vàng khi nào? Thường là khi mình nôn nóng này, mình bất an này, hoặc là khi mình muốn chèo kéo một ai đấy. Và sự vội vã không phải là dáng vẻ của người đáng tin cậy. Thế nên cứ bình thản, thong thả mà nói.
+2. Thứ hai là tay của mình cần phải bưng bê ngôn từ: Tức là phải hát cùng một loại nhạc với ngôn ngữ mà mình đang nói. Tay không phải là để diễn, mà nó là minh họa cho lời mình nói.
+3. Thứ ba là ánh mắt: Mắt phải biết cười, biết nói. Ngoài đời như thế nào, lên video cũng như vậy. Lúc mà mình đang suy nghĩ thì mình cứ ngước lên mình nghĩ, cần nhấn mạnh thì mình hơi rướn lên một chút... Không cần thiết phải luôn nhìn cứng vào camera.
+4. Thứ tư là làm sao để mình có được sự chân thật: Mình chỉ dừng lại nghe một người nào đấy không phải bởi vì người ta nói một thứ cao siêu, mà bởi vì người ta nói về một thứ mà họ đang thực sự quan tâm, thứ mà người ta thực sự trải qua và mình cảm nhận được sức nặng của nó.</div>
+              </details>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- =========================================================
+             PHẦN 4: MẪU KHO Ý TƯỞNG (YTUONG) & PHÒNG KHÁM HỌC VIÊN (STU)
+             ========================================================= -->
+        <h2 id="phan-4"><span class="num">PHẦN 04 / 06</span>Mẫu phân tích từ Kho Ý Tưởng (ytuong.fedu.vn) &amp; Phòng khám học viên (stu.fedu.vn)</h2>
+
+        <h3>4.1. Sáu mẫu Storytelling quốc tế chọn lọc từ Kho Ý Tưởng (ytuong.fedu.vn)</h3>
+        <p>Cách nhanh nhất để có khung hình có gu mà vẫn giữ nguyên chất thật của mình là <strong>"Mượn cách đặt máy đẹp của quốc tế — Gài câu chuyện nghề thật của mình vào lời thoại"</strong>. Dưới đây là 6 mẫu thực hành dễ áp dụng nhất tại bàn làm việc:</p>
+
+        <div class="v3-group">
+
+          <!-- YTUONG 1: JADE SHENG -->
+          <div class="v3-card" id="yt-jade">
+            <div class="v3-head">
+              <div class="v3-title-group">
+                <span class="v3-badge v3-badge-ex">MẪU QUỐC TẾ 01 • TASTE VS. SKILL GAP</span>
+                <strong>@jade.got.curious (Jade Sheng) — "Start Stupid" (Hãy cho phép mình bắt đầu một cách ngây ngô)</strong>
+                <span class="v3-meta">(A-Roll tâm sự bên đèn bàn + B-Roll vẽ sổ tay)</span>
+              </div>
+              <div class="v3-actions">
+                <button type="button" class="v3-btn-play" onclick="window.toggleV3Player(this, 'p-yt-jade', 'https://media.fedu.vn/videos/DZa9pzKRsAU.mp4')">▶️ Xem video</button>
+                <a href="https://ytuong.fedu.vn/reports/IG_@Jade_Sheng_DZa9pzKRsAU_Video_by_jade.got.curious.html" target="_blank" rel="noopener" class="v3-btn-link">Báo cáo Kho Ý Tưởng ↗</a>
+              </div>
+            </div>
+            <div class="v3-strip">
+              <img src="https://media.fedu.vn/images/IG_@Jade_Sheng_DZa9pzKRsAU_Video_by_jade.got.curious/shot_08_mid.webp" alt="Jade Sheng Start Stupid" loading="lazy"/>
+              <div class="v3-strip-bar">
+                <span>01. A-Roll: Ngồi tâm sự ấm áp bên đèn bàn</span>
+                <span>02. B-Roll: Tay vẽ sơ đồ trên giấy nháp</span>
+                <span>03. B-Roll: Đóng cuốn sổ &amp; lật trang</span>
+              </div>
+            </div>
+            <div class="v3-player" id="p-yt-jade" style="display:none;">
+              <video controls playsinline preload="none" poster="https://media.fedu.vn/images/IG_@Jade_Sheng_DZa9pzKRsAU_Video_by_jade.got.curious/shot_08_mid.webp"></video>
+            </div>
+            <div class="v3-verdict">
+              <p><strong>Điểm học được ngay:</strong> Đây chính là nguồn cảm hứng cho ý tưởng <em>"Độ vênh giữa Gu thẩm mỹ và Kỹ năng"</em> trong bài giảng của anh Việt. Chỉ cần ngồi tại góc bàn học có một chiếc đèn vàng ấm, vừa nói chuyện vừa xen kẽ cảnh tay vẽ nhanh một hình minh họa đơn giản lên giấy rồi giơ lên trước ống kính — gỡ bỏ hoàn toàn nỗi sợ video đầu tiên chưa hoàn hảo.</p>
+            </div>
+          </div>
+
+          <!-- YTUONG 2: JOSH DIAZ -->
+          <div class="v3-card" id="yt-josh">
+            <div class="v3-head">
+              <div class="v3-title-group">
+                <span class="v3-badge v3-badge-ex">MẪU QUỐC TẾ 02 • LÁT CẮT TÍNH CÁCH 5 GIÂY</span>
+                <strong>@joshdiazfilms (Josh Diaz) — "Worst Person To Text" (Biến nét tính cách ngại trả lời tin nhắn thành sự đồng cảm)</strong>
+                <span class="v3-meta">(3 cú máy mở màn trong 2.7 giây)</span>
+              </div>
+              <div class="v3-actions">
+                <button type="button" class="v3-btn-play" onclick="window.toggleV3Player(this, 'p-yt-josh', 'https://www.youtube.com/embed/8gbheJRqUFM', true)">▶️ Xem video</button>
+                <a href="https://ytuong.fedu.vn/reports/Worst%20Person%20to%20Text%20-%20@joshdiazfilms.html" target="_blank" rel="noopener" class="v3-btn-link">Báo cáo Kho Ý Tưởng ↗</a>
+              </div>
+            </div>
+            <div class="v3-strip">
+              <img src="https://media.fedu.vn/images/IG_@joshdiazfilms_DceDPc2yVm0_Worst_Person_To_Text/shot_01_mid.webp" alt="Josh Diaz Worst Person To Text" loading="lazy"/>
+              <div class="v3-strip-bar">
+                <span>Shot 1 (0–1.3s): Lời thú nhận trực diện</span>
+                <span>Shot 2 (1.3–2.0s): Cận màn hình tin nhắn</span>
+                <span>Shot 3 (2.0–2.7s): Úp mặt điện thoại xuống bàn</span>
+              </div>
+            </div>
+            <div class="v3-player" id="p-yt-josh" style="display:none;">
+              <iframe width="100%" height="420" frameborder="0" allowfullscreen style="border-radius:8px; max-width:560px;"></iframe>
+            </div>
+            <div class="v3-verdict">
+              <p><strong>Điểm học được ngay:</strong> Công thức 3 cú máy mở màn cực chuẩn cho Bài Tập 01 tại lớp: <strong>Cú 1:</strong> Nói 1 câu thú nhận thật (<em>"Mình là người trả lời tin nhắn rất chậm"</em>) &rarr; <strong>Cú 2:</strong> Cận cảnh bằng chứng trên màn hình điện thoại &rarr; <strong>Cú 3:</strong> Bàn tay úp chiếc điện thoại xuống mặt bàn gỗ cái "cạch" để tập trung làm chuyên môn.</p>
+            </div>
+          </div>
+
+          <!-- YTUONG 3: KAWOON LEE -->
+          <div class="v3-card" id="yt-kawoon">
+            <div class="v3-head">
+              <div class="v3-title-group">
+                <span class="v3-badge v3-badge-ex">MẪU QUỐC TẾ 03 • ĐIỂM KẾT NỐI 1: SỰ TỪ TỐN</span>
+                <strong>@kawoon.lee — "Teaching Nervous System It Is Not An Emergency" (Dạy cơ thể rằng không có gì phải vội vã)</strong>
+                <span class="v3-meta">(Kể chuyện bằng nhịp thở &amp; âm thanh thật tại bàn)</span>
+              </div>
+              <div class="v3-actions">
+                <button type="button" class="v3-btn-play" onclick="window.toggleV3Player(this, 'p-yt-kawoon', 'https://www.youtube.com/embed/-CqBPlOPgwo', true)">▶️ Xem video</button>
+                <a href="https://ytuong.fedu.vn/reports/IG_@kawoon.lee_DatbbgJviTV_Teaching_Nervous_System_Not_Emergency.html" target="_blank" rel="noopener" class="v3-btn-link">Báo cáo Kho Ý Tưởng ↗</a>
+              </div>
+            </div>
+            <div class="v3-strip">
+              <img src="https://media.fedu.vn/images/IG_%40kawoon.lee_DatbbgJviTV_Teaching_Nervous_System_Not_Emergency/shot_03_start.webp" alt="Kawoon Lee Slow Down" loading="lazy"/>
+              <div class="v3-strip-bar">
+                <span>01. Phát hiện tay chân đang hấp tấp vô thức</span>
+                <span>02. Chủ động hạ vai, thở chậm lại</span>
+                <span>03. Rót nước và làm việc trong tĩnh lặng</span>
+              </div>
+            </div>
+            <div class="v3-player" id="p-yt-kawoon" style="display:none;">
+              <iframe width="100%" height="420" frameborder="0" allowfullscreen style="border-radius:8px; max-width:560px;"></iframe>
+            </div>
+            <div class="v3-verdict">
+              <p><strong>Điểm học được ngay:</strong> Minh họa sống động cho <strong>Điểm kết nối số 1 (Sự từ tốn)</strong> trong Video 3 của anh Việt: Khi bạn tự nhận ra tay mình đang gõ phím hay lật giấy quá gấp gáp dù chẳng có ai đuổi, chỉ cần dừng lại 1 giây, hạ thấp hai vai và nói chậm lại — người xem ngay lập tức cảm nhận được sự đàng hoàng, tin cậy.</p>
+            </div>
+          </div>
+
+          <!-- YTUONG 4: SHOGENTLE -->
+          <div class="v3-card" id="yt-shogentle">
+            <div class="v3-head">
+              <div class="v3-title-group">
+                <span class="v3-badge v3-badge-ex">MẪU QUỐC TẾ 04 • ÁNH SÁNG 1 ĐÈN BÀN</span>
+                <strong>@shogentle (AL - The Creator) — "How to Cook a Video &amp; One Lamp Beats Five" (1 chiếc đèn bàn đẹp hơn 5 đèn)</strong>
+                <span class="v3-meta">(Cách tạo chiều sâu sáng tối cho góc A-Roll tại bàn)</span>
+              </div>
+              <div class="v3-actions">
+                <button type="button" class="v3-btn-play" onclick="window.toggleV3Player(this, 'p-yt-shogentle', 'https://www.youtube.com/embed/6P7zBTMRnEc', true)">▶️ Xem video</button>
+                <a href="https://ytuong.fedu.vn/reports/IG_@AL,_The_Creator_Videography_Reels_DcJDJjVJGy6_Video_by_shogentle.html" target="_blank" rel="noopener" class="v3-btn-link">Báo cáo Kho Ý Tưởng ↗</a>
+              </div>
+            </div>
+            <div class="v3-strip">
+              <img src="https://media.fedu.vn/images/IG_@AL,_The_Creator_Videography_Reels_DcJDJjVJGy6_Video_by_shogentle/shot_01_mid.webp" alt="Shogentle One Lamp Beats Five" loading="lazy"/>
+              <div class="v3-strip-bar">
+                <span>01. Tắt bớt đèn trần sáng phẳng</span>
+                <span>02. Bật 1 đèn bàn chiếu xiên 45 độ</span>
+                <span>03. Gương mặt có chiều sâu ấm áp</span>
+              </div>
+            </div>
+            <div class="v3-player" id="p-yt-shogentle" style="display:none;">
+              <iframe width="100%" height="420" frameborder="0" allowfullscreen style="border-radius:8px; max-width:560px;"></iframe>
+            </div>
+            <div class="v3-verdict">
+              <p><strong>Điểm học được ngay:</strong> Khi quay 25–30% câu A-Roll lộ mặt, đừng bật hết đèn huỳnh quang trên trần làm mặt bị bẹt trắng. Chỉ cần tắt bớt đèn trần, đặt <strong>1 chiếc đèn bàn học (hoặc ngồi cạnh 1 khung cửa sổ) chiếu xiên góc 45 độ</strong> vào một bên mặt — khung hình lập tức có chiều sâu tự nhiên.</p>
+            </div>
+          </div>
+
+          <!-- YTUONG 5: MRIDUPAWAN SHARMA -->
+          <div class="v3-card" id="yt-mridu">
+            <div class="v3-head">
+              <div class="v3-title-group">
+                <span class="v3-badge v3-badge-ex">MẪU QUỐC TẾ 05 • ÂM THANH 3 LỚP &amp; ĐỔI GÓC</span>
+                <strong>@mridupawasharma — "3 Sound Design Tricks &amp; Little Moments" (3 lớp âm thanh cứu video trầm lắng)</strong>
+                <span class="v3-meta">(Đổi cỡ cảnh Toàn – Trung – Cận theo từng vế câu)</span>
+              </div>
+              <div class="v3-actions">
+                <button type="button" class="v3-btn-play" onclick="window.toggleV3Player(this, 'p-yt-mridu', 'https://media.fedu.vn/videos/DBDkvXPyeSN.mp4')">▶️ Xem video</button>
+                <a href="https://ytuong.fedu.vn/reports/IG_@mridupawasharma_DBDkvXPyeSN_If_you_videos_are_boring,_try_these_3_sound_d.html" target="_blank" rel="noopener" class="v3-btn-link">Báo cáo Kho Ý Tưởng ↗</a>
+              </div>
+            </div>
+            <div class="v3-strip">
+              <img src="https://media.fedu.vn/images/IG_@Mridupawan_Sharma_DbnlAB5Twrw_Video_by_mridupawasharma/shot_04_mid.webp" alt="Mridupawan Sharma Sound Design" loading="lazy"/>
+              <div class="v3-strip-bar">
+                <span>Lớp 1: Giọng kể trầm rõ (100%)</span>
+                <span>Lớp 2: Tiếng đạo cụ thật (15–20%)</span>
+                <span>Lớp 3: Nhạc nền lót mỏng (5–8%)</span>
+              </div>
+            </div>
+            <div class="v3-player" id="p-yt-mridu" style="display:none;">
+              <video controls playsinline preload="none" poster="https://media.fedu.vn/images/IG_@Mridupawan_Sharma_DbnlAB5Twrw_Video_by_mridupawasharma/shot_04_mid.webp"></video>
+            </div>
+            <div class="v3-verdict">
+              <p><strong>Điểm học được ngay:</strong> Giữ lại 15–20% tiếng động vật lý tại bàn học (tiếng lật trang giấy sột soạt, tiếng đặt cốc nước, tiếng bấm ngòi bút, tiếng gập nắp máy tính) kết hợp với việc đổi góc máy sau mỗi dấu gạch chéo <code>/</code> giúp video Storytelling dài 30–45 giây không có một giây nào nhàm chán.</p>
+            </div>
+          </div>
+
+          <!-- YTUONG 6: JU SEOBANG -->
+          <div class="v3-card" id="yt-juseobang">
+            <div class="v3-head">
+              <div class="v3-title-group">
+                <span class="v3-badge v3-badge-ex">MẪU QUỐC TẾ 06 • QUAN SÁT ĐỜI THƯỜNG</span>
+                <strong>@ju_seobang — Kể chuyện tình huống gia đình Hàn Quốc bằng góc máy đặt tĩnh tự nhiên</strong>
+                <span class="v3-meta">(Observational Storytelling — Không cần gồng diễn)</span>
+              </div>
+              <div class="v3-actions">
+                <button type="button" class="v3-btn-play" onclick="window.toggleV3Player(this, 'p-yt-ju', 'https://media.fedu.vn/videos/DcvmVl2hbuY.mp4')">▶️ Xem video</button>
+                <a href="https://ytuong.fedu.vn/reports/IG_@주서방_DcvmVl2hbuY_Video_by_ju_seobang.html" target="_blank" rel="noopener" class="v3-btn-link">Báo cáo Kho Ý Tưởng ↗</a>
+              </div>
+            </div>
+            <div class="v3-strip">
+              <img src="https://media.fedu.vn/images/IG_@주서방_DcvmVl2hbuY_Video_by_ju_seobang/shot_01_mid.webp" alt="Ju Seobang Observational Storytelling" loading="lazy"/>
+              <div class="v3-strip-bar">
+                <span>01. Đặt máy cố định góc phòng</span>
+                <span>02. Ghi lại hành xử tự nhiên</span>
+                <span>03. Chốt bằng 1 câu nhận xét hóm hỉnh</span>
+              </div>
+            </div>
+            <div class="v3-player" id="p-yt-ju" style="display:none;">
+              <video controls playsinline preload="none" poster="https://media.fedu.vn/images/IG_@주서방_DcvmVl2hbuY_Video_by_ju_seobang/shot_01_mid.webp"></video>
+            </div>
+            <div class="v3-verdict">
+              <p><strong>Điểm học được ngay:</strong> Bạn không cần phải nhìn vào ống kính liên tục. Hãy đặt điện thoại ở một góc cố định ghi lại đúng cảnh bạn đang làm việc hoặc tương tác tự nhiên tại tiệm, sau đó lồng câu chuyện thật vào — người xem luôn bị thu hút bởi cảm giác đang được quan sát một khoảnh khắc đời thực không dàn dựng.</p>
+            </div>
+          </div>
+
+        </div>
+
+        <h3>4.2. Ba cặp đối chiếu thực tế từ Phòng Khám Học Viên (stu.fedu.vn)</h3>
+        <p>Nhìn vào số liệu thật trên kênh của các học viên đã triển khai để thấy rõ: <strong>Khi nào Storytelling nổ triệu lượt xem và ra đơn, khi nào rớt xuống vài trăm lượt xem vì đọc khẩu hiệu hoặc thiếu cầu nối về nghề:</strong></p>
+
+        <div class="v3-group">
+
+          <!-- STU 1: TỪ AN -->
+          <div class="v3-card" id="stu-tuan">
+            <div class="v3-head">
+              <div class="v3-title-group">
+                <span class="v3-badge v3-badge-win">CASE HỌC VIÊN 01 • 1.4 TRIỆU VIEW &amp; ĐƠN SỈ 24 HŨ</span>
+                <strong>Từ An (Men Mộc An) — Chuyện giã gừng cho người thân &amp; Bé khách mời bạn ăn thử chốt 24 hũ mè đen</strong>
+                <span class="v3-meta">(Đối chiếu: Sức mạnh chuyện thật vs. Giới hạn khi chưa lộ mặt 30%)</span>
+              </div>
+              <div class="v3-actions">
+                <button type="button" class="v3-btn-play" onclick="window.toggleV3Player(this, 'p-stu-tuan', 'https://pub-1e1be66737b446708af785e6cc8fe673.r2.dev/stu-audits/tu_an_men_moc_an/videos/video_13_1543764574022444.mp4')">▶️ Xem video 1.4M</button>
+                <a href="https://stu.fedu.vn/audits/tu_an_men_moc_an.html" target="_blank" rel="noopener" class="v3-btn-link">Hồ sơ Khám Kênh ↗</a>
+              </div>
+            </div>
+            <div class="v3-strip">
+              <img src="https://media.fedu.vn/stu-audits/tu_an_men_moc_an/videos/vid_1543764574022444/strip.jpg" alt="Từ An Men Mộc An giã gừng" loading="lazy"/>
+              <div class="v3-strip-bar">
+                <span>01. Ngồi sàn nhà giã tay từng củ gừng</span>
+                <span>02. Kể chuyện làm bình 4 lít cho bố mẹ</span>
+                <span>03. Bài học: Bổ sung 25–30% lộ mặt để tăng niềm tin</span>
+              </div>
+            </div>
+            <div class="v3-player" id="p-stu-tuan" style="display:none;">
+              <video controls playsinline preload="none" poster="https://media.fedu.vn/stu-audits/tu_an_men_moc_an/videos/vid_1543764574022444/strip.jpg"></video>
+            </div>
+            <div class="v3-verdict">
+              <p><strong>Phân tích thực chiến:</strong> Video đạt <strong>1.4 triệu lượt xem</strong> vì không có một từ quảng cáo nào — chỉ là cảnh ngồi giã gừng làm bình 4 lít biếu bố mẹ hai bên và câu chuyện tặng 1 hộp mè đen cho bé khách, bé mang mời bạn bè ăn thử mà phụ huynh đặt liền 24 hũ. <strong>Điểm cần nâng cấp lên Storytelling 2.0:</strong> Với sản phẩm uống trực tiếp vào người để chăm sóc sức khỏe, nếu giấu mặt 100% ở mọi bài thì khách lạ xem rất thích nhưng vẫn dè chừng khi mua lâu dài. Chỉ cần lồng thêm <strong>25–30% cảnh lộ mặt mộc mạc của người làm</strong> ở câu mở hoặc câu kết, lượng khách đặt hàng định kỳ sẽ tăng vọt.</p>
+            </div>
+          </div>
+
+          <!-- STU 2: NGUYỄN QUỐC KHOA -->
+          <div class="v3-card" id="stu-khoa">
+            <div class="v3-head">
+              <div class="v3-title-group">
+                <span class="v3-badge v3-badge-win">CASE HỌC VIÊN 02 • A/B TEST TRÊN CÙNG 1 KÊNH (20.6K VS 643 VIEW)</span>
+                <strong>Nguyễn Quốc Khoa (Nội thất) — Khiêng đá bếp 3m12 lên tầng 12 (Đúng) vs. Ngồi ghế xoay đọc khẩu hiệu (Sai)</strong>
+                <span class="v3-meta">(Chênh lệch gấp 32 lần lượt xem trên cùng một người nói)</span>
+              </div>
+              <div class="v3-actions">
+                <button type="button" class="v3-btn-play" onclick="window.toggleV3Player(this, 'p-stu-khoa-win', 'https://media.fedu.vn/stu-audits/khoanq/videos/vid_7623445767415500050/7623445767415500050.mp4')">▶️ Video Đúng (20.6K)</button>
+                <button type="button" class="v3-btn-play" style="background:#475569;" onclick="window.toggleV3Player(this, 'p-stu-khoa-err', 'https://media.fedu.vn/stu-audits/nguyen_quoc_khoa_fb/videos/vid_1525086322720669/1525086322720669.mp4')">▶️ Video Lỗi (643 view)</button>
+                <a href="https://stu.fedu.vn/audits/nguyen_quoc_khoa.html" target="_blank" rel="noopener" class="v3-btn-link">Hồ sơ Khám Kênh ↗</a>
+              </div>
+            </div>
+            <div class="v3-strip">
+              <img src="https://media.fedu.vn/stu-audits/nguyen_quoc_khoa_fb/videos/vid_1525086322720669/strip.jpg" alt="Đối chiếu Nguyễn Quốc Khoa" loading="lazy"/>
+              <div class="v3-strip-bar">
+                <span>Làm đúng: Kể chuyện khiêng đá 3m12 (20.6K)</span>
+                <span>Làm sai: Ngồi ghế xoay đọc thuộc lòng 3 lần</span>
+                <span>Bài học: Bỏ khẩu hiệu T1, mở bằng hiện trường T2</span>
+              </div>
+            </div>
+            <div class="v3-player" id="p-stu-khoa-win" style="display:none;">
+              <video controls playsinline preload="none" poster="https://media.fedu.vn/stu-audits/khoanq/videos/vid_7624480989682683143/strip.jpg"></video>
+            </div>
+            <div class="v3-player" id="p-stu-khoa-err" style="display:none;">
+              <video controls playsinline preload="none" poster="https://media.fedu.vn/stu-audits/nguyen_quoc_khoa_fb/videos/vid_1525086322720669/strip.jpg"></video>
+            </div>
+            <div class="v3-verdict">
+              <p><strong>Đối chiếu trực diện:</strong><br>
+              - <strong>Khi làm đúng Storytelling 2.0 (20.600 lượt xem, 78 bình luận hỏi giá):</strong> Mở bằng tình huống thật tại công trình — tấm đá bếp nguyên khối dài 3m12 thừa đúng 2 phân so với thang máy 3m10, 4 anh em thợ phải khiêng bộ lên tầng 12 để giữ mặt bàn không có vết nối và lắp chậu âm chống mốc keo silicon.<br>
+              - <strong>Khi mắc lỗi Phản-Storytelling (tụt xuống 643 lượt xem):</strong> Ngồi trên ghế xoay văn phòng, cầm 3 miếng gỗ mẫu đọc lặp đi lặp lại 3 lần câu khẩu hiệu T1: <em>"Thẩm mỹ - Chịu lực - Chống nước. Thẩm mỹ - Chịu lực - Chống nước"</em>. Khán giả lướt đi ngay ở giây thứ 2.</p>
+            </div>
+          </div>
+
+          <!-- STU 3: NHÀ 3 HỜ & BÙI THUỲ DUNG -->
+          <div class="v3-card" id="stu-nha3ho">
+            <div class="v3-head">
+              <div class="v3-title-group">
+                <span class="v3-badge v3-badge-ex">CASE HỌC VIÊN 03 • 350.1K VIEW &amp; CẦU NỐI NGỮ NGHĨA</span>
+                <strong>Nhà 3 Hờ (350.1K view) &amp; Bùi Thuỳ Dung (HaDu Boutique) — Cách nối từ chuyện gia đình sang công việc chuyên môn</strong>
+                <span class="v3-meta">(Tránh lỗi kể chuyện nhật ký tản mạn không ra khách)</span>
+              </div>
+              <div class="v3-actions">
+                <button type="button" class="v3-btn-play" onclick="window.toggleV3Player(this, 'p-stu-nha3ho', 'https://media.fedu.vn/stu-audits/nha3ho/videos/vid_7693035865878105364/7693035865878105364.mp4')">▶️ Video Nhà 3 Hờ</button>
+                <button type="button" class="v3-btn-play" style="background:#0284c7;" onclick="window.toggleV3Player(this, 'p-stu-buidung', 'https://media.fedu.vn/stu-audits/bui_dung_948/videos/vid_1714266539645959/1714266539645959.mp4')">▶️ Video Thuỳ Dung</button>
+                <a href="https://stu.fedu.vn/audits/bui_dung_948.html" target="_blank" rel="noopener" class="v3-btn-link">Hồ sơ Khám Kênh ↗</a>
+              </div>
+            </div>
+            <div class="v3-strip">
+              <img src="https://media.fedu.vn/stu-audits/nha3ho/videos/vid_7683393842615586069/strip.jpg" alt="Nhà 3 Hờ và Bùi Thuỳ Dung" loading="lazy"/>
+              <div class="v3-strip-bar">
+                <span>01. Mỏ neo tình huống gia đình ấm cúng</span>
+                <span>02. Lát cắt đời thật (6 bóng điện / con gái 14 tuổi)</span>
+                <span>03. Cầu nối Ngữ nghĩa dẫn về sản phẩm tại tiệm</span>
+              </div>
+            </div>
+            <div class="v3-player" id="p-stu-nha3ho" style="display:none;">
+              <video controls playsinline preload="none" poster="https://media.fedu.vn/stu-audits/nha3ho/videos/vid_7683393842615586069/strip.jpg"></video>
+            </div>
+            <div class="v3-player" id="p-stu-buidung" style="display:none;">
+              <video controls playsinline preload="none" poster="https://media.fedu.vn/stu-audits/bui_dung_948/videos/vid_845958644902629/strip.jpg"></video>
+            </div>
+            <div class="v3-verdict">
+              <p><strong>Bài học Cầu nối Ngữ nghĩa (Semantic Bridge):</strong> Kênh <strong>Nhà 3 Hờ</strong> nổ 350.100 lượt xem khi gắn chiếc bàn đảo bếp với tình huống sinh hoạt thật của gia đình. Còn chị <strong>Bùi Thuỳ Dung</strong> có những lát cắt đời thật rất xúc động (<em>"Bắt đầu lại với căn nhà thuê và 6 cái bóng điện"</em>, <em>"Dừng công việc 10 năm để đồng hành cùng con gái 14 tuổi"</em>), nhưng cần lắp thêm <strong>1 câu Cầu nối ở 5 giây cuối</strong> để dẫn từ sự tự chủ của người phụ nữ sang việc chăm chút diện mạo chỉn chu tại tiệm thời trang HaDu Boutique — giúp AI phân phối đúng tệp khách nữ mua đồ công sở.</p>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- =========================================================
+             PHẦN 5: TỪ MEGA PROMPT ĐẾN 3 BÀI TẬP KHUÔN ĐIỀN KHUYẾT TẠI LỚP
+             ========================================================= -->
+        <h2 id="phan-5"><span class="num">PHẦN 05 / 06</span>Từ Mega Prompt đến 3 bài tập "Khuôn điền khuyết quay ngay tại lớp"</h2>
+
+        <h3>5.1. Tại sao Mega Prompt hỏi–đáp rất mạnh khi ở nhà nhưng lại gây tắc ở lớp học offline?</h3>
+        <p>Hệ thống 3 công cụ Mega Prompt của chúng ta (<em>Cô Hoa hậu Storytelling, Máy đào Hook DNA, Pipeline Nhân hiệu</em>) cực kỳ sắc bén khi bạn ngồi yên tĩnh ở nhà có 30 phút trò chuyện với AI. Nhưng khi đưa nguyên xi các bước chat hỏi–đáp đó vào phòng học offline có 25–30 học viên thực hành cùng lúc, lớp học sẽ vấp ngay <strong>4 điểm nghẽn thực tế</strong>:</p>
+
+        <div class="spec">
+          <div class="row">
+            <span class="b" style="background:#fee2e2; color:#991b1b; border-color:#fca5a5;">Nghẽn 1: Đứt nhịp chat</span>
+            <div><strong>Mất 15–20 phút gõ qua lại đa vòng:</strong> Mỗi học viên dùng một điện thoại, tốc độ mạng và tài khoản AI khác nhau. Chuỗi 4 bước hỏi–đáp khiến người gõ nhanh phải ngồi chờ, người bấm nhầm bị AI trả lời lệch chủ đề, làm đứt mạch thực hành của cả lớp.</div>
+          </div>
+          <div class="row">
+            <span class="b" style="background:#fee2e2; color:#991b1b; border-color:#fca5a5;">Nghẽn 2: Ngại đám đông</span>
+            <div><strong>Tự dựng rào chắn khi ngồi cạnh người lạ:</strong> Ngồi sát vách học viên khác dưới ánh đèn lớp học, không ai muốn gõ thật những nỗi lo thiếu tiền hay sự chần chừ của mình vào màn hình. Khi bạn gõ câu trả lời xã giao (T1), AI sẽ trả ra kịch bản sáo rỗng.</div>
+          </div>
+          <div class="row">
+            <span class="b" style="background:#fee2e2; color:#991b1b; border-color:#fca5a5;">Nghẽn 3: Lệch đạo cụ</span>
+            <div><strong>Cảnh AI gợi ý nằm ở cửa hàng, không nằm trên bàn học:</strong> AI thường viết cảnh B-Roll kiểu <em>"Đứng trước gương salon lúc 9h tối"</em> hay <em>"Lội xuống ruộng lúa"</em> — trong khi tại lớp bạn chỉ có <strong>điện thoại, cuốn sổ, cây bút, cốc nước, laptop và hành lang</strong>.</div>
+          </div>
+          <div class="row">
+            <span class="b" style="background:#fee2e2; color:#991b1b; border-color:#fca5a5;">Nghẽn 4: Quá dài lần đầu</span>
+            <div><strong>Kịch bản 7 câu (~120 chữ, 40 giây) quá tải cho lần thu đầu tiên:</strong> Trong không gian lớp học đông người, đọc liền 7 câu dài khiến người mới dễ hụt hơi và ghép cảnh lâu.</div>
+          </div>
+        </div>
+
+        <div class="callout tip">
+          <div class="h">Giải pháp tại lớp: 3 Phép Nén thành "Khuôn Điền Khuyết 4 Câu" (3 phút điền — Không cần viết văn)</div>
+          <p>1. <strong>Nén 7 câu thành Khuôn 4 Câu có dấu ngắt nhịp <code>/</code> (15–30 giây):</strong> Mỗi câu tương ứng đúng 1 bậc tâm lý (<code>T2 &rarr; T2.5 &rarr; T3 &rarr; Lối ra</code>) và khớp 1–1 với <strong>4 cú bấm máy tại bàn học</strong>.<br>
+          2. <strong>Bày sẵn Menu A/B/C/D ngay trên mặt trang:</strong> Không cần gõ phím tâm sự nỗi sợ riêng tư, bạn chỉ cần <strong>bấm chọn chữ cái A1, B2, C1, D3</strong> trong bảng Menu bên dưới để ghép tự động thành lời thoại.<br>
+          3. <strong>100% đạo cụ có sẵn trong túi bạn:</strong> Điện thoại, sổ tay, cây bút, cốc nước, laptop và bước chân ngoài hành lang lớp học.</p>
+        </div>
+
+        <div class="v3-nav-pills">
+          <a href="#ex-1">1️⃣ Bài Tập 01: Khoảnh Khắc Giấu Mình (Phá băng 15–20s)</a>
+          <a href="#ex-2">2️⃣ Bài Tập 02: Chiếc Khăn Lau Yên Xe (Người làm nghề 20–30s)</a>
+          <a href="#ex-3">3️⃣ Bài Tập 03: Bức Thư Gửi Chính Mình 1 Năm Trước (Chiều sâu 30–45s)</a>
+        </div>
+
+        <div class="v3-group">
+
+          <!-- ================= BÀI TẬP 01 ================= -->
+          <div class="v3-card" id="ex-1">
+            <div class="v3-head">
+              <div class="v3-title-group">
+                <span class="v3-badge v3-badge-ex">BÀI TẬP 01 • CẤP ĐỘ PHÁ BĂNG (15–20 GIÂY)</span>
+                <strong>Khoảnh Khắc Giấu Mình &amp; Tự Sự Bàn Làm Việc (T2 &rarr; T2.5 &rarr; Giải Oan)</strong>
+                <span class="v3-meta">(4 câu thoại • 2 B-Roll + 2 A-Roll • Quay ngay tại bàn học)</span>
+              </div>
+              <div class="v3-actions">
+                <button type="button" class="v3-btn-play" onclick="window.toggleV3Player(this, 'p-ex-1', 'https://www.youtube.com/embed/8gbheJRqUFM', true)">▶️ Xem nhịp mẫu</button>
+              </div>
+            </div>
+
+            <div class="v3-shot-grid" style="grid-template-columns: repeat(4, minmax(0, 1fr));">
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Cú 1 • B-Roll T2</span>
+                <span class="v3-shot-dur">3.5s</span>
+                <img src="https://media.fedu.vn/images/IG_@joshdiazfilms_DceDPc2yVm0_Worst_Person_To_Text/shot_02_mid.webp" alt="Cú 1 Cận ngón tay gõ rồi xóa" loading="lazy"/>
+                <div class="v3-shot-cap">Cận tay ngập ngừng (Câu 1)</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Cú 2 • B-Roll T2</span>
+                <span class="v3-shot-dur">3.5s</span>
+                <img src="https://media.fedu.vn/images/IG_@kortafilms_DcdthwaTM3J_Camera_Angles_Mastery/shot_03_mid.webp" alt="Cú 2 Úp điện thoại xuống bàn" loading="lazy"/>
+                <div class="v3-shot-cap">Úp máy / Xoay bút (Câu 2)</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Cú 3 • A-Roll T2.5</span>
+                <span class="v3-shot-dur">4.0s</span>
+                <img src="https://media.fedu.vn/images/IG_@Jade_Sheng_DZa9pzKRsAU_Video_by_jade.got.curious/shot_08_mid.webp" alt="Cú 3 Lộ mặt nói cái cớ" loading="lazy"/>
+                <div class="v3-shot-cap">Lộ mặt nói cái cớ (Câu 3)</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Cú 4 • A-Roll Giải Oan</span>
+                <span class="v3-shot-dur">4.5s</span>
+                <img src="https://media.fedu.vn/images/IG_@Jade_Sheng_DZa9pzKRsAU_Video_by_jade.got.curious/shot_14_mid.webp" alt="Cú 4 Mỉm cười gật đầu giải oan" loading="lazy"/>
+                <div class="v3-shot-cap">Mỉm cười gỡ áp lực (Câu 4)</div>
+              </div>
+            </div>
+
+            <div class="v3-player" id="p-ex-1" style="display:none;">
+              <iframe width="100%" height="420" frameborder="0" allowfullscreen style="border-radius:8px; max-width:560px;"></iframe>
+            </div>
+
+            <div class="v3-verdict">
+              <p><strong>Mục tiêu Bài Tập 01:</strong> Bắt đúng 1 hành động chần chừ quen thuộc của chính bạn khi làm nghề hoặc xây kênh (T2), gọi tên cái cớ tự nhủ trong đầu (T2.5), rồi lộ mặt ở 2 câu cuối để thông cảm và gỡ áp lực cho người xem.</p>
+
+              <!-- TRÌNH LẮP RÁP KỊCH BẢN BÀI 1 -->
+              <div class="sb-panel" id="sb-panel-ex1">
+                <div class="sb-head">
+                  <span class="sb-title">🎛️ BẢNG CHỌN NHANH A/B/C/D — BÀI TẬP 01 (BẤM CHỌN ĐỂ GHÉP LỜI THOẠI)</span>
+                  <div class="sb-presets">
+                    <button type="button" class="sb-preset-btn active" onclick="window.applySbPreset(this, 'ex1', {A:'đăng bài', B:'gõ rồi xóa', C:'để mai cho chắc', D:'đều từng gõ rồi xóa'})">⚡ Mẫu Thợ làm tóc</button>
+                    <button type="button" class="sb-preset-btn" onclick="window.applySbPreset(this, 'ex1', {A:'gửi báo giá', B:'đặt điện thoại úp xuống bàn', C:'đợi rảnh đã', D:'đều chờ chữ đủ mà chẳng ai thấy đủ'})">⚡ Mẫu Kế toán / Tư vấn</button>
+                    <button type="button" class="sb-preset-btn" onclick="window.applySbPreset(this, 'ex1', {A:'bấm máy quay', B:'xoay tròn cây bút', C:'người ta giỏi hơn mình rồi', D:'đều hồi hộp ở lần đầu tiên'})">⚡ Mẫu Huấn luyện viên / Chủ tiệm</button>
+                  </div>
+                </div>
+
+                <div class="sb-grid">
+                  <div class="sb-group">
+                    <span class="sb-group-label">[Ô A] Hành động định làm (T2)</span>
+                    <div class="sb-options">
+                      <button type="button" class="sb-opt selected" data-slot="A" data-val="đăng bài" onclick="window.selectSbOption(this, 'ex1', 'A', 'đăng bài')">A1. đăng bài</button>
+                      <button type="button" class="sb-opt" data-slot="A" data-val="bấm máy quay" onclick="window.selectSbOption(this, 'ex1', 'A', 'bấm máy quay')">A2. bấm máy quay</button>
+                      <button type="button" class="sb-opt" data-slot="A" data-val="gửi báo giá" onclick="window.selectSbOption(this, 'ex1', 'A', 'gửi báo giá')">A3. gửi báo giá</button>
+                      <button type="button" class="sb-opt" data-slot="A" data-val="nhắn hỏi thăm khách cũ" onclick="window.selectSbOption(this, 'ex1', 'A', 'nhắn hỏi thăm khách cũ')">A4. nhắn hỏi thăm khách cũ</button>
+                    </div>
+                  </div>
+
+                  <div class="sb-group">
+                    <span class="sb-group-label">[Ô B] Động tác tay ngập ngừng (Camera 5s)</span>
+                    <div class="sb-options">
+                      <button type="button" class="sb-opt selected" data-slot="B" data-val="gõ rồi xóa" onclick="window.selectSbOption(this, 'ex1', 'B', 'gõ rồi xóa')">B1. gõ rồi xóa</button>
+                      <button type="button" class="sb-opt" data-slot="B" data-val="đặt điện thoại úp xuống bàn" onclick="window.selectSbOption(this, 'ex1', 'B', 'đặt điện thoại úp xuống bàn')">B2. đặt điện thoại úp xuống bàn</button>
+                      <button type="button" class="sb-opt" data-slot="B" data-val="mở rồi lại đóng ứng dụng" onclick="window.selectSbOption(this, 'ex1', 'B', 'mở rồi lại đóng ứng dụng')">B3. mở rồi lại đóng ứng dụng</button>
+                      <button type="button" class="sb-opt" data-slot="B" data-val="xoay tròn cây bút" onclick="window.selectSbOption(this, 'ex1', 'B', 'xoay tròn cây bút')">B4. xoay tròn cây bút</button>
+                    </div>
+                  </div>
+
+                  <div class="sb-group">
+                    <span class="sb-group-label">[Ô C] Cái cớ giữ thể diện (T2.5)</span>
+                    <div class="sb-options">
+                      <button type="button" class="sb-opt selected" data-slot="C" data-val="để mai cho chắc" onclick="window.selectSbOption(this, 'ex1', 'C', 'để mai cho chắc')">C1. "để mai cho chắc"</button>
+                      <button type="button" class="sb-opt" data-slot="C" data-val="chưa đủ đồ nghề" onclick="window.selectSbOption(this, 'ex1', 'C', 'chưa đủ đồ nghề')">C2. "chưa đủ đồ nghề"</button>
+                      <button type="button" class="sb-opt" data-slot="C" data-val="đợi rảnh đã" onclick="window.selectSbOption(this, 'ex1', 'C', 'đợi rảnh đã')">C3. "đợi rảnh đã"</button>
+                      <button type="button" class="sb-opt" data-slot="C" data-val="người ta giỏi hơn mình rồi" onclick="window.selectSbOption(this, 'ex1', 'C', 'người ta giỏi hơn mình rồi')">C4. "người ta giỏi hơn mình rồi"</button>
+                    </div>
+                  </div>
+
+                  <div class="sb-group">
+                    <span class="sb-group-label">[Ô D] Câu thông cảm gỡ áp lực (Lối ra)</span>
+                    <div class="sb-options">
+                      <button type="button" class="sb-opt" data-slot="D" data-val="đều hồi hộp ở lần đầu tiên" onclick="window.selectSbOption(this, 'ex1', 'D', 'đều hồi hộp ở lần đầu tiên')">D1. đều hồi hộp ở lần đầu tiên</button>
+                      <button type="button" class="sb-opt" data-slot="D" data-val="đều làm chưa tới như mình tưởng" onclick="window.selectSbOption(this, 'ex1', 'D', 'đều làm chưa tới như mình tưởng')">D2. đều làm chưa tới như mình tưởng</button>
+                      <button type="button" class="sb-opt selected" data-slot="D" data-val="đều từng gõ rồi xóa" onclick="window.selectSbOption(this, 'ex1', 'D', 'đều từng gõ rồi xóa')">D3. đều từng gõ rồi xóa</button>
+                      <button type="button" class="sb-opt" data-slot="D" data-val="đều chờ chữ đủ mà chẳng ai thấy đủ" onclick="window.selectSbOption(this, 'ex1', 'D', 'đều chờ chữ đủ mà chẳng ai thấy đủ')">D4. đều chờ chữ đủ mà chẳng ai thấy đủ</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="v3-vo-box">
+                <div class="v3-vo-head">
+                  <span>🎙️ Kịch bản hoàn chỉnh Bài 01 (Tự động ghép theo lựa chọn của bạn • 15–18 giây)</span>
+                  <button type="button" class="v3-vo-copy" onclick="window.copyVoScript(this, 'vo-text-ex1')">📋 Sao chép lời thoại</button>
+                </div>
+                <p class="v3-vo-text" id="vo-text-ex1"></p>
+                <div class="v3-vo-meta">🔒 <strong>Khóa chống tắc tại lớp:</strong> Nếu quá 60 giây chưa biết chọn gì, hãy bấm ngay <strong>A1 + B1 + C1 + D3</strong>. Quay đủ 4 cú máy trước, sửa chữ sau!</div>
+              </div>
+
+              <div class="tw">
+                <table class="t">
+                  <thead>
+                    <tr>
+                      <th>Cú máy</th>
+                      <th>Loại cảnh &amp; Góc đặt điện thoại tại bàn học</th>
+                      <th>Hành động vật lý</th>
+                      <th>Lời thoại khớp hình</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><strong>Cú 1 (0–4s)</strong></td>
+                      <td><strong>B-Roll Cận cảnh:</strong> Tựa máy vào cốc nước quay cận các ngón tay trên bàn phím hoặc màn hình điện thoại.</td>
+                      <td>Ngón tay gõ vài chữ rồi bấm nút xóa liên tục.</td>
+                      <td>Câu 1: <em>"Mỗi lần tới lúc [A]..."</em></td>
+                    </tr>
+                    <tr>
+                      <td><strong>Cú 2 (4–8s)</strong></td>
+                      <td><strong>B-Roll Trung cận:</strong> Có mép cốc nước mờ ở tiền cảnh, lấy nét vào mặt bàn gỗ.</td>
+                      <td>Bàn tay đặt úp chiếc điện thoại xuống mặt bàn hoặc xoay tròn cây bút.</td>
+                      <td>Câu 2: <em>"...tay mình lại [B]..."</em></td>
+                    </tr>
+                    <tr>
+                      <td><strong>Cú 3 (8–12s)</strong></td>
+                      <td><strong>A-Roll Lộ mặt (Góc 15–30 độ):</strong> Đặt máy ngang tầm mắt, người ngồi hơi nghiêng tự nhiên bên bàn học.</td>
+                      <td>Ngước mắt nhìn ống kính, nói với giọng điềm tĩnh như tâm sự.</td>
+                      <td>Câu 3: <em>"...và mình tự nhủ '[C]'..."</em></td>
+                    </tr>
+                    <tr>
+                      <td><strong>Cú 4 (12–16s)</strong></td>
+                      <td><strong>A-Roll Lộ mặt (Giữ nguyên hoặc tiến gần hơn):</strong> Giữ khung hình sạch, sáng mặt.</td>
+                      <td>Mỉm cười nhẹ, gật đầu ấm áp ở chữ cuối cùng rồi giữ nhịp 1 giây.</td>
+                      <td>Câu 4: <em>"...nhưng thật ra ai mới bắt đầu cũng [D]."</em></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- ================= BÀI TẬP 02 ================= -->
+          <div class="v3-card" id="ex-2">
+            <div class="v3-head">
+              <div class="v3-title-group">
+                <span class="v3-badge v3-badge-ex">BÀI TẬP 02 • CẤP ĐỘ NGƯỜI LÀM NGHỀ (20–30 GIÂY)</span>
+                <strong>Chiếc Khăn Lau Yên Xe — Lật Ngược Hiểu Lầm Nghề Nghiệp &amp; Bắt Mạch Khách Ngập Ngừng (Vai A)</strong>
+                <span class="v3-meta">(4 câu thoại • 3 B-Roll + 1 A-Roll • Giữ thể diện cho khách rồi mới nói chuyên môn)</span>
+              </div>
+              <div class="v3-actions">
+                <button type="button" class="v3-btn-play" onclick="window.toggleV3Player(this, 'p-ex-2', 'https://media.fedu.vn/videos/DcdthwaTM3J.mp4')">▶️ Xem nhịp mẫu</button>
+              </div>
+            </div>
+
+            <div class="v3-shot-grid" style="grid-template-columns: repeat(4, minmax(0, 1fr));">
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Cú 1 • B-Roll T2</span>
+                <span class="v3-shot-dur">4.5s</span>
+                <img src="https://media.fedu.vn/images/IG_@kortafilms_DcdthwaTM3J_Camera_Angles_Mastery/shot_02_mid.webp" alt="Cú 1 B-Roll thao tác sai thường gặp" loading="lazy"/>
+                <div class="v3-shot-cap">Thao tác khách hay làm (Câu 1)</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Cú 2 • B-Roll T2.5</span>
+                <span class="v3-shot-dur">4.5s</span>
+                <img src="https://media.fedu.vn/images/IG_@kortafilms_DcdthwaTM3J_Camera_Angles_Mastery/shot_04_mid.webp" alt="Cú 2 Chụp sổ vuốt màn hình" loading="lazy"/>
+                <div class="v3-shot-cap">Cận tay xem sổ/máy (Câu 2)</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Cú 3 • B-Roll Giữ Mặt Mũi</span>
+                <span class="v3-shot-dur">4.5s</span>
+                <img src="https://media.fedu.vn/images/IG_@kortafilms_DcdthwaTM3J_Camera_Angles_Mastery/shot_06_mid.webp" alt="Cú 3 Bước chân hành lang hoặc gạch sổ" loading="lazy"/>
+                <div class="v3-shot-cap">Bước chân / Gạch sổ (Câu 3)</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Cú 4 • A-Roll Chốt Nghề</span>
+                <span class="v3-shot-dur">6.0s</span>
+                <img src="https://media.fedu.vn/images/IG_@AL,_The_Creator_Videography_Reels_DcJDJjVJGy6_Video_by_shogentle/shot_01_mid.webp" alt="Cú 4 Lộ mặt chốt góc nhìn nghề" loading="lazy"/>
+                <div class="v3-shot-cap">Lộ mặt chốt nghề (Câu 4)</div>
+              </div>
+            </div>
+
+            <div class="v3-player" id="p-ex-2" style="display:none;">
+              <video controls playsinline preload="none" poster="https://media.fedu.vn/images/IG_@kortafilms_DcdthwaTM3J_Camera_Angles_Mastery/shot_04_mid.webp"></video>
+            </div>
+
+            <div class="v3-verdict">
+              <p><strong>Mục tiêu Bài Tập 02:</strong> Mở bằng một thói quen làm sai hoặc sự ngập ngừng rất phổ biến của khách hàng (T2), đi qua T2.5 để bảo vệ lòng tự trọng của khách (<em>"Ai cũng vậy, vì nhìn bề ngoài khó phân biệt"</em>), rồi mới lộ mặt ở Cú 4 để đưa ra góc nhìn sắc sảo của người làm nghề lâu năm.</p>
+
+              <!-- TRÌNH LẮP RÁP KỊCH BẢN BÀI 2 -->
+              <div class="sb-panel" id="sb-panel-ex2">
+                <div class="sb-head">
+                  <span class="sb-title">🎛️ BẢNG CHỌN NHANH A/B/C/D — BÀI TẬP 02 (BẤM CHỌN ĐỂ GHÉP LỜI THOẠI)</span>
+                  <div class="sb-presets">
+                    <button type="button" class="sb-preset-btn active" onclick="window.applySbPreset(this, 'ex2', {A:'lau yên xe bằng khăn khô', B:'thế là sạch rồi', C:'chẳng ai chỉ từ đầu', D:'cái hại nằm ở chỗ mắt thường nhìn không thấy'})">⚡ Mẫu Chăm sóc xe / Kỹ thuật</button>
+                    <button type="button" class="sb-preset-btn" onclick="window.applySbPreset(this, 'ex2', {A:'tự chọn size quần áo theo ảnh mạng', B:'nhìn phom dáng cũng giống nhau', C:'nhìn qua màn hình rất khó phân biệt chất vải', D:'một đường cắt lệch 1 phân là đổi cả dáng người'})">⚡ Mẫu Thời trang / Bán lẻ</button>
+                    <button type="button" class="sb-preset-btn" onclick="window.applySbPreset(this, 'ex2', {A:'tự đọc lướt hợp đồng rồi ký luôn', B:'làm nhanh cho đỡ tốn thời gian', C:'ai đi làm cũng bận trăm công nghìn việc', D:'làm đúng ngay từ trang đầu luôn rẻ hơn đi sửa lại'})">⚡ Mẫu Pháp lý / Tư vấn / Dịch vụ</button>
+                  </div>
+                </div>
+
+                <div class="sb-grid">
+                  <div class="sb-group">
+                    <span class="sb-group-label">[Ô A] Hành vi khách hay làm sai / ngập ngừng (T2)</span>
+                    <div class="sb-options">
+                      <button type="button" class="sb-opt selected" data-slot="A" data-val="lau yên xe bằng khăn khô" onclick="window.selectSbOption(this, 'ex2', 'A', 'lau yên xe bằng khăn khô')">A1. lau yên xe bằng khăn khô</button>
+                      <button type="button" class="sb-opt" data-slot="A" data-val="tự chọn size quần áo theo ảnh mạng" onclick="window.selectSbOption(this, 'ex2', 'A', 'tự chọn size quần áo theo ảnh mạng')">A2. tự chọn size theo ảnh mạng</button>
+                      <button type="button" class="sb-opt" data-slot="A" data-val="cầm bảng lộ trình đọc rất kỹ rồi đặt xuống" onclick="window.selectSbOption(this, 'ex2', 'A', 'cầm bảng lộ trình đọc rất kỹ rồi đặt xuống')">A3. cầm bảng lộ trình đọc kỹ rồi đặt xuống</button>
+                      <button type="button" class="sb-opt" data-slot="A" data-val="tự đọc lướt hợp đồng rồi ký luôn" onclick="window.selectSbOption(this, 'ex2', 'A', 'tự đọc lướt hợp đồng rồi ký luôn')">A4. tự đọc lướt giấy tờ rồi ký luôn</button>
+                    </div>
+                  </div>
+
+                  <div class="sb-group">
+                    <span class="sb-group-label">[Ô B] Cái cớ hợp lý trong đầu khách (T2.5)</span>
+                    <div class="sb-options">
+                      <button type="button" class="sb-opt selected" data-slot="B" data-val="thế là sạch rồi" onclick="window.selectSbOption(this, 'ex2', 'B', 'thế là sạch rồi')">B1. "thế là sạch rồi"</button>
+                      <button type="button" class="sb-opt" data-slot="B" data-val="làm nhanh cho đỡ tốn thời gian" onclick="window.selectSbOption(this, 'ex2', 'B', 'làm nhanh cho đỡ tốn thời gian')">B2. "cho nhanh đỡ tốn thời gian"</button>
+                      <button type="button" class="sb-opt" data-slot="B" data-val="nhìn phom dáng cũng giống nhau" onclick="window.selectSbOption(this, 'ex2', 'B', 'nhìn phom dáng cũng giống nhau')">B3. "nhìn cũng giống nhau"</button>
+                      <button type="button" class="sb-opt" data-slot="B" data-val="để về thu xếp công việc rồi báo lại" onclick="window.selectSbOption(this, 'ex2', 'B', 'để về thu xếp công việc rồi báo lại')">B4. "để về thu xếp rồi báo lại"</button>
+                    </div>
+                  </div>
+
+                  <div class="sb-group">
+                    <span class="sb-group-label">[Ô C] Câu giữ thể diện cho khách (Chiếc khăn lau)</span>
+                    <div class="sb-options">
+                      <button type="button" class="sb-opt selected" data-slot="C" data-val="chẳng ai chỉ từ đầu" onclick="window.selectSbOption(this, 'ex2', 'C', 'chẳng ai chỉ từ đầu')">C1. chẳng ai chỉ từ đầu</button>
+                      <button type="button" class="sb-opt" data-slot="C" data-val="nhìn qua màn hình rất khó phân biệt chất vải" onclick="window.selectSbOption(this, 'ex2', 'C', 'nhìn qua màn hình rất khó phân biệt chất vải')">C2. nhìn bề ngoài rất khó phân biệt</button>
+                      <button type="button" class="sb-opt" data-slot="C" data-val="ai đi làm cũng bận trăm công nghìn việc" onclick="window.selectSbOption(this, 'ex2', 'C', 'ai đi làm cũng bận trăm công nghìn việc')">C3. ai đi làm cũng bận rộn</button>
+                      <button type="button" class="sb-opt" data-slot="C" data-val="phải người làm trực tiếp mỗi ngày mới để ý" onclick="window.selectSbOption(this, 'ex2', 'C', 'phải người làm trực tiếp mỗi ngày mới để ý')">C4. người trong nghề mới để ý</button>
+                    </div>
+                  </div>
+
+                  <div class="sb-group">
+                    <span class="sb-group-label">[Ô D] Góc nhìn người làm nghề chốt lại (A-Roll)</span>
+                    <div class="sb-options">
+                      <button type="button" class="sb-opt selected" data-slot="D" data-val="cái hại nằm ở chỗ mắt thường nhìn không thấy" onclick="window.selectSbOption(this, 'ex2', 'D', 'cái hại nằm ở chỗ mắt thường nhìn không thấy')">D1. cái hại nằm ở chỗ nhìn không thấy</button>
+                      <button type="button" class="sb-opt" data-slot="D" data-val="một đường cắt lệch 1 phân là đổi cả dáng người" onclick="window.selectSbOption(this, 'ex2', 'D', 'một đường cắt lệch 1 phân là đổi cả dáng người')">D2. một chi tiết nhỏ đổi cả kết quả</button>
+                      <button type="button" class="sb-opt" data-slot="D" data-val="làm đúng ngay từ trang đầu luôn rẻ hơn đi sửa lại" onclick="window.selectSbOption(this, 'ex2', 'D', 'làm đúng ngay từ trang đầu luôn rẻ hơn đi sửa lại')">D3. làm đúng lần đầu rẻ hơn sửa</button>
+                      <button type="button" class="sb-opt" data-slot="D" data-val="mình luôn gạch bỏ hạng mục thừa để khách nhẹ chi phí trước" onclick="window.selectSbOption(this, 'ex2', 'D', 'mình luôn gạch bỏ hạng mục thừa để khách nhẹ chi phí trước')">D4. gạch bỏ mục thừa để bảo vệ ví của khách</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="v3-vo-box">
+                <div class="v3-vo-head">
+                  <span>🎙️ Kịch bản hoàn chỉnh Bài 02 (3 B-Roll + 1 A-Roll chốt nghề • 20–25 giây)</span>
+                  <button type="button" class="v3-vo-copy" onclick="window.copyVoScript(this, 'vo-text-ex2')">📋 Sao chép lời thoại</button>
+                </div>
+                <p class="v3-vo-text" id="vo-text-ex2"></p>
+                <div class="v3-vo-meta">🔒 <strong>Khóa chống tắc tại lớp:</strong> Nếu bạn chưa kinh doanh riêng, hãy lấy 1 thói quen hằng ngày ở văn phòng/nhà (rửa ly bằng nước lạnh, gập laptop khi đang chạy nặng) và chốt bằng <strong>D3</strong>.</div>
+              </div>
+
+              <div class="tw">
+                <table class="t">
+                  <thead>
+                    <tr>
+                      <th>Cú máy</th>
+                      <th>Loại cảnh &amp; Góc đặt điện thoại tại bàn học</th>
+                      <th>Hành động vật lý</th>
+                      <th>Lời thoại khớp hình</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><strong>Cú 1 (0–5s)</strong></td>
+                      <td><strong>B-Roll Cận tay:</strong> Đặt máy sát mặt bàn.</td>
+                      <td>Tay cầm khăn giấy khô lau mặt bàn hoặc lật nhanh xấp tài liệu/hợp đồng.</td>
+                      <td>Câu 1: <em>"Khách của mình hay [A]..."</em></td>
+                    </tr>
+                    <tr>
+                      <td><strong>Cú 2 (5–10s)</strong></td>
+                      <td><strong>B-Roll Qua vai / Góc POV:</strong> Nhìn vào màn hình điện thoại hoặc cuốn sổ.</td>
+                      <td>Tay cầm điện thoại chụp trang sổ hoặc vuốt qua vuốt lại xem ảnh.</td>
+                      <td>Câu 2: <em>"...vì ngoài miệng ai cũng nghĩ '[B]'..."</em></td>
+                    </tr>
+                    <tr>
+                      <td><strong>Cú 3 (10–15s)</strong></td>
+                      <td><strong>B-Roll Chuyển động:</strong> Đặt máy thấp ngang đầu gối ngoài hành lang hoặc góc bàn.</td>
+                      <td>Bước chân điềm tĩnh dọc hành lang lớp học (hoặc tay cầm bút khoanh tròn 1 mục trọng tâm trên giấy).</td>
+                      <td>Câu 3: <em>"...thật ra điều đó rất dễ hiểu, vì [C]..."</em></td>
+                    </tr>
+                    <tr>
+                      <td><strong>Cú 4 (15–22s)</strong></td>
+                      <td><strong>A-Roll Lộ mặt (Chốt 25% thời lượng):</strong> Ngồi thẳng tại bàn, ánh sáng chiếu xiên rõ nét mặt.</td>
+                      <td>Nhìn thẳng ống kính, tay đặt điềm tĩnh trên cuốn sổ mở sẵn, nói câu đúc kết nghề.</td>
+                      <td>Câu 4: <em>"...nhưng làm nghề lâu năm mới biết, [D]."</em></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- ================= BÀI TẬP 03 ================= -->
+          <div class="v3-card" id="ex-3">
+            <div class="v3-head">
+              <div class="v3-title-group">
+                <span class="v3-badge v3-badge-ex">BÀI TẬP 03 • CẤP ĐỘ CHIỀU SÂU STORYTELLING 2.0 (30–45 GIÂY)</span>
+                <strong>Bức Thư Gửi Chính Mình 1 Năm Trước — Lát Cắt Chuyển Hóa Đủ 4 Nấc (T2 &rarr; T2.5 &rarr; T3 &rarr; Việc Nhỏ)</strong>
+                <span class="v3-meta">(4 nhịp • 2 B-Roll + 1 A-Roll + 1 B-Roll kết • Chiều sâu nhân hiệu)</span>
+              </div>
+              <div class="v3-actions">
+                <button type="button" class="v3-btn-play" onclick="window.toggleV3Player(this, 'p-ex-3', 'https://media.fedu.vn/videos/DZa9pzKRsAU.mp4')">▶️ Xem nhịp mẫu</button>
+              </div>
+            </div>
+
+            <div class="v3-shot-grid" style="grid-template-columns: repeat(4, minmax(0, 1fr));">
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Cú 1 • B-Roll T2</span>
+                <span class="v3-shot-dur">5.0s</span>
+                <img src="https://media.fedu.vn/images/IG_@Bryan_Hynes_Dcxsw50zIR8_Video_by_bryanhynes/shot_12_mid.webp" alt="Cú 1 Gập laptop xuống" loading="lazy"/>
+                <div class="v3-shot-cap">Gập nắp laptop (Câu 1 - T2)</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Cú 2 • B-Roll T2.5</span>
+                <span class="v3-shot-dur">5.0s</span>
+                <img src="https://media.fedu.vn/images/IG_%40kawoon.lee_DatbbgJviTV_Teaching_Nervous_System_Not_Emergency/shot_03_start.webp" alt="Cú 2 Gõ nhẹ vành cốc nước" loading="lazy"/>
+                <div class="v3-shot-cap">Gõ nhẹ vành cốc (Câu 2 - T2.5)</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Cú 3 • A-Roll T3</span>
+                <span class="v3-shot-dur">6.0s</span>
+                <img src="https://media.fedu.vn/images/IG_@AL,_The_Creator_Videography_Reels_DcJDJjVJGy6_Video_by_shogentle/shot_13_mid.webp" alt="Cú 3 Lộ mặt hạ giọng kể T3" loading="lazy"/>
+                <div class="v3-shot-cap">Lộ mặt hạ giọng (Câu 3 - T3)</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Cú 4 • Viết Thư Lối Ra</span>
+                <span class="v3-shot-dur">6.5s</span>
+                <img src="https://media.fedu.vn/images/IG_@kortafilms_DcdthwaTM3J_Camera_Angles_Mastery/shot_05_mid.webp" alt="Cú 4 Viết 1 dòng vào sổ đưa lên" loading="lazy"/>
+                <div class="v3-shot-cap">Viết 1 dòng vào sổ (Câu 4)</div>
+              </div>
+            </div>
+
+            <div class="v3-player" id="p-ex-3" style="display:none;">
+              <video controls playsinline preload="none" poster="https://media.fedu.vn/images/IG_@Bryan_Hynes_Dcxsw50zIR8_Video_by_bryanhynes/shot_12_mid.webp"></video>
+            </div>
+
+            <div class="v3-verdict">
+              <p><strong>Mục tiêu Bài Tập 03:</strong> Đi trọn vẹn 4 nấc của một chiếc <strong>Gương lõm</strong>: Kể lại khoảnh khắc đêm muộn của chính mình 1 năm trước (T2) &rarr; Cái cớ mình từng dùng để trì hoãn (T2.5) &rarr; Lộ mặt nói nhẹ nhàng về nỗi lo thật sự lúc đó (T3) &rarr; Viết một lời nhắn gửi chính mình bằng <strong>1 việc nhỏ làm được ngay trong tuần này</strong>.</p>
+
+              <!-- TRÌNH LẮP RÁP KỊCH BẢN BÀI 3 -->
+              <div class="sb-panel" id="sb-panel-ex3">
+                <div class="sb-head">
+                  <span class="sb-title">🎛️ BẢNG CHỌN NHANH A/B/C/D/E — BÀI TẬP 03 (BẤM CHỌN ĐỂ GHÉP LỜI THOẠI)</span>
+                  <div class="sb-presets">
+                    <button type="button" class="sb-preset-btn active" onclick="window.applySbPreset(this, 'ex3', {A:'11h đêm', B:'gấp laptop lại', C:'đợi giỏi hơn mới đăng', D:'sợ làm sai mất uy tín', E:'Quay thử 15 giây thôi'})">⚡ Mẫu Bác sĩ / Nha sĩ / Y tế</button>
+                    <button type="button" class="sb-preset-btn" onclick="window.applySbPreset(this, 'ex3', {A:'1h sáng', B:'xóa bản nháp vừa quay', C:'đợi người ta làm trước để xem', D:'sợ mình lơ ngơ trước ống kính', E:'Kể một việc mình làm hôm qua'})">⚡ Mẫu Chủ tiệm bánh / F&amp;B</button>
+                    <button type="button" class="sb-preset-btn" onclick="window.applySbPreset(this, 'ex3', {A:'12h đêm', B:'cắn môi nhìn bảng giá', C:'đợi đủ vốn mới làm', D:'sợ mình đã tụt lại phía sau', E:'Nhắn hỏi thăm một khách cũ đi'})">⚡ Mẫu Môi giới / Đầu tư</button>
+                  </div>
+                </div>
+
+                <div class="sb-grid">
+                  <div class="sb-group">
+                    <span class="sb-group-label">[Ô A] Thời điểm đêm muộn &amp; [Ô B] Hành vi T2</span>
+                    <div class="sb-options" style="margin-bottom:6px;">
+                      <button type="button" class="sb-opt selected" data-slot="A" data-val="11h đêm" onclick="window.selectSbOption(this, 'ex3', 'A', '11h đêm')">A1. 11h đêm</button>
+                      <button type="button" class="sb-opt" data-slot="A" data-val="12h đêm" onclick="window.selectSbOption(this, 'ex3', 'A', '12h đêm')">A2. 12h đêm</button>
+                      <button type="button" class="sb-opt" data-slot="A" data-val="1h sáng" onclick="window.selectSbOption(this, 'ex3', 'A', '1h sáng')">A3. 1h sáng</button>
+                      <button type="button" class="sb-opt" data-slot="A" data-val="2h sáng" onclick="window.selectSbOption(this, 'ex3', 'A', '2h sáng')">A4. 2h sáng</button>
+                    </div>
+                    <div class="sb-options">
+                      <button type="button" class="sb-opt selected" data-slot="B" data-val="gấp laptop lại" onclick="window.selectSbOption(this, 'ex3', 'B', 'gấp laptop lại')">B1. gấp laptop lại</button>
+                      <button type="button" class="sb-opt" data-slot="B" data-val="xóa bản nháp vừa quay" onclick="window.selectSbOption(this, 'ex3', 'B', 'xóa bản nháp vừa quay')">B2. xóa bản nháp</button>
+                      <button type="button" class="sb-opt" data-slot="B" data-val="cắn môi nhìn bảng giá" onclick="window.selectSbOption(this, 'ex3', 'B', 'cắn môi nhìn bảng giá')">B3. cắn môi nhìn bảng giá</button>
+                      <button type="button" class="sb-opt" data-slot="B" data-val="vuốt tắt thông báo điện thoại" onclick="window.selectSbOption(this, 'ex3', 'B', 'vuốt tắt thông báo điện thoại')">B4. vuốt tắt thông báo</button>
+                    </div>
+                  </div>
+
+                  <div class="sb-group">
+                    <span class="sb-group-label">[Ô C] Cái cớ T2.5 mình từng tự nhủ</span>
+                    <div class="sb-options">
+                      <button type="button" class="sb-opt" data-slot="C" data-val="đợi đủ vốn mới làm" onclick="window.selectSbOption(this, 'ex3', 'C', 'đợi đủ vốn mới làm')">C1. "đợi đủ vốn mới làm"</button>
+                      <button type="button" class="sb-opt" data-slot="C" data-val="đợi rảnh hơn mới học" onclick="window.selectSbOption(this, 'ex3', 'C', 'đợi rảnh hơn mới học')">C2. "đợi rảnh hơn mới học"</button>
+                      <button type="button" class="sb-opt selected" data-slot="C" data-val="đợi giỏi hơn mới đăng" onclick="window.selectSbOption(this, 'ex3', 'C', 'đợi giỏi hơn mới đăng')">C3. "đợi giỏi hơn mới đăng"</button>
+                      <button type="button" class="sb-opt" data-slot="C" data-val="đợi người ta làm trước để xem" onclick="window.selectSbOption(this, 'ex3', 'C', 'đợi người ta làm trước để xem')">C4. "đợi người ta làm trước để xem"</button>
+                    </div>
+                  </div>
+
+                  <div class="sb-group">
+                    <span class="sb-group-label">[Ô D] Nỗi lo T3 (Nói nhẹ nhàng bằng giọng trầm)</span>
+                    <div class="sb-options">
+                      <button type="button" class="sb-opt" data-slot="D" data-val="ngại người quen đọc thấy" onclick="window.selectSbOption(this, 'ex3', 'D', 'ngại người quen đọc thấy')">D1. ngại người quen đọc thấy</button>
+                      <button type="button" class="sb-opt" data-slot="D" data-val="sợ mình lơ ngơ trước ống kính" onclick="window.selectSbOption(this, 'ex3', 'D', 'sợ mình lơ ngơ trước ống kính')">D2. sợ mình lơ ngơ trước ống kính</button>
+                      <button type="button" class="sb-opt selected" data-slot="D" data-val="sợ làm sai mất uy tín" onclick="window.selectSbOption(this, 'ex3', 'D', 'sợ làm sai mất uy tín')">D3. sợ làm sai mất uy tín</button>
+                      <button type="button" class="sb-opt" data-slot="D" data-val="sợ mình đã tụt lại phía sau" onclick="window.selectSbOption(this, 'ex3', 'D', 'sợ mình đã tụt lại phía sau')">D4. sợ mình đã tụt lại phía sau</button>
+                    </div>
+                  </div>
+
+                  <div class="sb-group">
+                    <span class="sb-group-label">[Ô E] Lời nhắn 1 việc nhỏ làm ngay tuần này</span>
+                    <div class="sb-options">
+                      <button type="button" class="sb-opt selected" data-slot="E" data-val="Quay thử 15 giây thôi" onclick="window.selectSbOption(this, 'ex3', 'E', 'Quay thử 15 giây thôi')">E1. "Quay thử 15 giây thôi"</button>
+                      <button type="button" class="sb-opt" data-slot="E" data-val="Đăng một bản nháp đầu tiên đi" onclick="window.selectSbOption(this, 'ex3', 'E', 'Đăng một bản nháp đầu tiên đi')">E2. "Đăng một bản nháp đầu tiên đi"</button>
+                      <button type="button" class="sb-opt" data-slot="E" data-val="Nhắn hỏi thăm một khách cũ đi" onclick="window.selectSbOption(this, 'ex3', 'E', 'Nhắn hỏi thăm một khách cũ đi')">E3. "Nhắn hỏi thăm một khách cũ đi"</button>
+                      <button type="button" class="sb-opt" data-slot="E" data-val="Kể một việc mình làm hôm qua" onclick="window.selectSbOption(this, 'ex3', 'E', 'Kể một việc mình làm hôm qua')">E4. "Kể một việc mình làm hôm qua"</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="v3-vo-box">
+                <div class="v3-vo-head">
+                  <span>🎙️ Kịch bản hoàn chỉnh Bài 03 (Đủ 4 nấc T2 &rarr; T2.5 &rarr; T3 &rarr; Việc nhỏ • 25–35 giây)</span>
+                  <button type="button" class="v3-vo-copy" onclick="window.copyVoScript(this, 'vo-text-ex3')">📋 Sao chép lời thoại</button>
+                </div>
+                <p class="v3-vo-text" id="vo-text-ex3"></p>
+                <div class="v3-vo-meta">🔒 <strong>Khóa chống tắc tại lớp:</strong> Nếu bạn ngại nói câu T3 về mình, hãy đổi thành câu đồng cảm: <em>"Hồi đó mình thấy nhiều anh em làm nghề cũng sợ..."</em> và chốt bằng <strong>E1</strong>.</div>
+              </div>
+
+              <div class="tw">
+                <table class="t">
+                  <thead>
+                    <tr>
+                      <th>Cú máy</th>
+                      <th>Loại cảnh &amp; Góc đặt điện thoại tại bàn học</th>
+                      <th>Hành động vật lý</th>
+                      <th>Lời thoại khớp hình</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><strong>Cú 1 (0–5s)</strong></td>
+                      <td><strong>B-Roll Cận cảnh:</strong> Đặt máy góc chéo sát mép bàn.</td>
+                      <td>Gập nắp màn hình laptop xuống, đèn màn hình tắt, bàn tay đặt yên trên nắp máy.</td>
+                      <td>Câu 1 (T2): <em>"Năm ngoái, lúc [A], mình [B]..."</em></td>
+                    </tr>
+                    <tr>
+                      <td><strong>Cú 2 (5–10s)</strong></td>
+                      <td><strong>B-Roll Đặc tả:</strong> Cốc nước trên bàn làm việc.</td>
+                      <td>Ngón tay trỏ gõ nhẹ chậm rãi vào vành cốc nước.</td>
+                      <td>Câu 2 (T2.5): <em>"...mình cứ tự nhủ là '[C]'..."</em></td>
+                    </tr>
+                    <tr>
+                      <td><strong>Cú 3 (10–16s)</strong></td>
+                      <td><strong>A-Roll Lộ mặt (Điểm lắng cảm xúc):</strong> Góc cận vừa ngang tầm mắt.</td>
+                      <td>Hạ nhẹ tông giọng, mắt nhìn xuống trang sổ 1 giây rồi ngước nhìn thẳng vào ống kính.</td>
+                      <td>Câu 3 (T3): <em>"...thật ra trong lòng mình đang [D]..."</em></td>
+                    </tr>
+                    <tr>
+                      <td><strong>Cú 4 (16–24s)</strong></td>
+                      <td><strong>B-Roll kết A-Roll:</strong> Nhìn từ qua vai xuống cuốn sổ tay.</td>
+                      <td>Tay cầm bút viết nhanh dòng chữ ngắn vào sổ, đặt bút xuống và đưa trang giấy về phía ống kính.</td>
+                      <td>Câu 4 (Lối ra): <em>"...nếu gửi thư được cho mình hồi đó, mình sẽ viết: '[E]'."</em></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+
+        <!-- =========================================================
+             PHẦN 6: VẬN HÀNH LỚP HỌC (DEMO 10 PHÚT, THANG CHẤM 10Đ) & MEGA PROMPT VỀ NHÀ
+             ========================================================= -->
+        <h2 id="phan-6"><span class="num">PHẦN 06 / 06</span>Vận hành lớp học (Làm mẫu 10 phút, Thang chấm 10 điểm) &amp; Bộ 3 Mega Prompt về nhà</h2>
+
+        <h3>6.1. Kịch bản Anh Việt làm mẫu trực tiếp 10 phút tại lớp</h3>
+        <p>Trước khi học viên bấm đồng hồ 10 phút tự quay tại bàn, giảng viên thực hiện trọn vẹn 1 vòng làm mẫu từ lúc chọn chữ cái trong Menu đến lúc tự chấm điểm bài quay của mình ngay trước mặt lớp:</p>
+
+        <div class="tw">
+          <table class="t">
+            <thead>
+              <tr>
+                <th>Mốc phút</th>
+                <th>Hành động thực tế của anh Việt tại lớp</th>
+                <th>Câu nói dẫn dắt nguyên văn</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Phút 0:00 – 1:00</strong></td>
+                <td>Mở Slide 1, bật 10 giây đầu video quay bằng cam thường trong phòng làm việc, không giải thích trước.</td>
+                <td><em>"Tôi mở cho các bạn xem đúng 10 giây. Ai dừng tay ở đoạn này thì giơ tay lên."</em></td>
+              </tr>
+              <tr>
+                <td><strong>Phút 1:00 – 3:00</strong></td>
+                <td>Kể lát cắt học viên nhắn tin lúc 2h sáng (Video 2: Giỏi mà tàng hình).</td>
+                <td><em>"2h sáng, tin nhắn báo về điện thoại. Bạn ấy chỉ viết đúng một dòng: Em làm nghề lâu năm nhưng trên mạng em tàng hình."</em></td>
+              </tr>
+              <tr>
+                <td><strong>Phút 3:00 – 5:00</strong></td>
+                <td>Chỉ rõ T2 &rarr; T2.5 &rarr; T3 trên Slide bậc thang tâm lý.</td>
+                <td><em>"Giây thứ 3 là cử chỉ bàn tay (T2). Giây thứ 8 là cái cớ giữ thể diện (T2.5). Còn nỗi sợ T3 người xem tự thấy, người kể không bao giờ chỉ tay bắt lỗi."</em></td>
+              </tr>
+              <tr>
+                <td><strong>Phút 5:00 – 6:00</strong></td>
+                <td>Bấm chọn trực tiếp Khuôn Bài Tập 01 ngay trên màn hình chiếu.</td>
+                <td><em>"Bây giờ tôi chọn A1 (đăng bài), B1 (gõ rồi xóa), C1 (để mai cho chắc), D3 (ai cũng từng gõ rồi xóa). Mất đúng 40 giây, không phải viết văn."</em></td>
+              </tr>
+              <tr>
+                <td><strong>Phút 6:00 – 8:30</strong></td>
+                <td>Cầm điện thoại quay luôn 4 cú máy Bài Tập 01 ngay tại bàn giảng viên cho cả lớp quan sát góc đặt máy.</td>
+                <td><em>"Cú 1 tôi tựa máy vào cốc nước quay ngón tay gõ rồi xóa. Cú 2 tôi úp điện thoại xuống bàn. Cú 3 và Cú 4 tôi nâng máy ngang mắt nói 2 câu cuối."</em></td>
+              </tr>
+              <tr>
+                <td><strong>Phút 8:30 – 10:00</strong></td>
+                <td>Tự chấm video vừa quay bằng Thang 10 điểm bên dưới và chỉ rõ 1 điểm trừ để học viên hết sợ sai.</td>
+                <td><em>"Cú 2 của tôi chỉ được 1 điểm vì chiếc cốc nước chưa tạo được lớp mờ tiền cảnh. Các bạn thấy đấy, chỉ cần 10 phút là ra hình hài, giờ đến lượt các bạn!"</em></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="callout warn">
+          <div class="h">5 Chốt chặn chống tắc lớp học (Bắt buộc tuân thủ trong 10 phút thực hành)</div>
+          <p>1. <strong>Không tự ngồi viết kịch bản từ giấy trắng:</strong> Bắt buộc bấm chọn từ Menu A/B/C/D trong 3 phút đầu.<br>
+          2. <strong>Không đi tìm bối cảnh xa bàn học:</strong> Mọi cảnh B-Roll đều lấy từ bàn tay, sổ bút, cốc nước, laptop và hành lang ngay cạnh lớp.<br>
+          3. <strong>Không quay A-Roll lộ mặt quá 30% thời lượng:</strong> Tối đa 1–2 cú lộ mặt ở câu chuyển hoặc câu kết.<br>
+          4. <strong>Không dùng tính từ chỉ cảm xúc ở Cú 1:</strong> Cú mở màn bắt buộc phải có động tác vật lý của bàn tay.<br>
+          5. <strong>Không chèn nhạc to át giọng nói:</strong> Giọng nói kéo lên 100% (-3dB đến 0dB), giữ 15% tiếng động thật, nhạc nền hạ xuống dưới 8% (-22dB).</p>
+        </div>
+
+        <h3 id="rubric-box">6.2. Bảng chấm điểm nghiệm thu tại lớp 10 điểm (5 tiêu chí &times; 2 điểm — Bấm chấm tương tác)</h3>
+        <p>Sau khi quay và ghép xong trên CapCut, hai học viên ngồi cạnh nhau đổi máy để <strong>chấm chéo bằng bảng tương tác dưới đây</strong> (Bấm vào từng ô 0đ / 1đ / 2đ để tính tổng tự động):</p>
+
+        <div class="rubric-interactive">
+          <div class="rubric-bar">
+            <div>
+              <strong style="font-size:15px; display:block;">📋 PHIẾU CHẤM CHÉO NGHIỆM THU STORYTELLING 2.0 TẠI LỚP</strong>
+              <span id="rubric-rank-text" style="font-size:13px; color:#fdba74;">🏆 XUẤT SẮC (9–10đ): Lát cắt sắc nét, giữ thể diện tinh tế, sẵn sàng đăng kênh ngay!</span>
+            </div>
+            <div class="rubric-score-pill" id="rubric-total-score">10 / 10 ĐIỂM</div>
+          </div>
+          <div class="tw" style="margin:0;">
+            <table class="t" style="border:0; border-radius:0; margin:0;">
+              <thead>
+                <tr>
+                  <th>Tiêu chí (5 &times; 2đ)</th>
+                  <th>0 điểm (Cần làm lại)</th>
+                  <th>1 điểm (Đạt một nửa)</th>
+                  <th>2 điểm (Chuẩn Storytelling 2.0)</th>
+                  <th>Chấm điểm</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>1. Camera 5 giây (Câu T2 quay được)</strong></td>
+                  <td>Toàn tính từ cảm xúc (<em>buồn, áp lực, lo lắng</em>).</td>
+                  <td>Có nói tới việc làm nhưng hình ảnh còn tĩnh.</td>
+                  <td>Mọi câu T2 đều có động từ của bàn tay, mắt hoặc bước chân.</td>
+                  <td>
+                    <div class="rubric-btn-group">
+                      <button type="button" class="r-score-btn" onclick="window.setRubricScore(0, 0, this)">0đ</button>
+                      <button type="button" class="r-score-btn" onclick="window.setRubricScore(0, 1, this)">1đ</button>
+                      <button type="button" class="r-score-btn active-2" onclick="window.setRubricScore(0, 2, this)">2đ</button>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td><strong>2. T2.5 Giữ thể diện cho người xem</strong></td>
+                  <td>Không có hoặc đâm thẳng vào nỗi sợ T3.</td>
+                  <td>Có nêu cái cớ nhưng giọng điệu còn như bắt lỗi.</td>
+                  <td>Cái cớ nghe hợp lý, bảo vệ lòng tự trọng, người xem gật đầu.</td>
+                  <td>
+                    <div class="rubric-btn-group">
+                      <button type="button" class="r-score-btn" onclick="window.setRubricScore(1, 0, this)">0đ</button>
+                      <button type="button" class="r-score-btn" onclick="window.setRubricScore(1, 1, this)">1đ</button>
+                      <button type="button" class="r-score-btn active-2" onclick="window.setRubricScore(1, 2, this)">2đ</button>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td><strong>3. Hiệu ứng Gương lõm (Cùng chỗ đứng)</strong></td>
+                  <td>Đứng ở vị thế bề trên dạy bảo: <em>"Các bạn phải..."</em>.</td>
+                  <td>Đứng cạnh khách nhưng chưa có chi tiết thật.</td>
+                  <td>Có chi tiết trải nghiệm thật của chính người kể hoặc khách thật.</td>
+                  <td>
+                    <div class="rubric-btn-group">
+                      <button type="button" class="r-score-btn" onclick="window.setRubricScore(2, 0, this)">0đ</button>
+                      <button type="button" class="r-score-btn" onclick="window.setRubricScore(2, 1, this)">1đ</button>
+                      <button type="button" class="r-score-btn active-2" onclick="window.setRubricScore(2, 2, this)">2đ</button>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td><strong>4. Tỷ lệ A-Roll / B-Roll chuẩn</strong></td>
+                  <td>Quay mặt nói từ đầu đến cuối quá 50% thời lượng.</td>
+                  <td>A-Roll chiếm 35–50%, thiếu góc cận đặc tả tay.</td>
+                  <td><strong>A-Roll 25–30% + B-Roll 70–75%</strong> đổi góc theo dấu <code>/</code>.</td>
+                  <td>
+                    <div class="rubric-btn-group">
+                      <button type="button" class="r-score-btn" onclick="window.setRubricScore(3, 0, this)">0đ</button>
+                      <button type="button" class="r-score-btn" onclick="window.setRubricScore(3, 1, this)">1đ</button>
+                      <button type="button" class="r-score-btn active-2" onclick="window.setRubricScore(3, 2, this)">2đ</button>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td><strong>5. Lối ra cụ thể &amp; Đĩnh đạc</strong></td>
+                  <td>Không có lối ra hoặc gào thét bán hàng vồ vập.</td>
+                  <td>Có lời khuyên nhưng còn chung chung (<em>"Hãy cố lên"</em>).</td>
+                  <td>Đưa ra <strong>1 việc nhỏ làm được ngay trong tuần này</strong> hoặc nguyên tắc nghề rõ ràng.</td>
+                  <td>
+                    <div class="rubric-btn-group">
+                      <button type="button" class="r-score-btn" onclick="window.setRubricScore(4, 0, this)">0đ</button>
+                      <button type="button" class="r-score-btn" onclick="window.setRubricScore(4, 1, this)">1đ</button>
+                      <button type="button" class="r-score-btn active-2" onclick="window.setRubricScore(4, 2, this)">2đ</button>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <h3 id="mega-prompt-home">6.3. Bộ 3 Công Cụ Mega Prompt Đào Sâu Khi Về Nhà (Chuyển giao sau buổi học)</h3>
+        <p>Tại lớp, bạn đã nắm vững <strong>Khuôn Điền Khuyết 4 Câu</strong> để bấm máy trong 10 phút. Khi về tới nhà hoặc cửa hàng, có không gian yên tĩnh 30 phút, hãy mở <strong>Bộ 3 Công Cụ Mega Prompt (`congthucstorytelling.html`)</strong> để AI đóng vai người biên tập đào ra 30–50 kịch bản 7 câu chuyên sâu cho riêng ngành nghề của bạn:</p>
+
+        <div class="grid g3">
+          <div class="card">
+            <span class="b s" style="--stage:#ea580c">CÔNG CỤ 01 • NHANH NHẤT</span>
+            <div class="ct">Cô Hoa Hậu Storytelling (1 Dòng &rarr; 7 Câu)</div>
+            <div class="cd" style="color:var(--ink2);">
+              <strong>Đầu vào:</strong> Chỉ cần gõ 1 dòng gồm <em>[1 hành động đời thường vừa làm] + [Nghề của bạn]</em>.<br>
+              <strong>Đầu ra:</strong> AI tự tra bảng 18 Phản xạ giữ thể diện để bóc đủ 4 nấc (T1, T2, T2.5, T3) + Viết kịch bản 7 câu (~120 chữ) + 4 cảnh B-Roll tại tiệm.
+            </div>
+            <div class="cf">
+              <a href="congthucstorytelling.html" class="go">Mở Công cụ 01</a>
+            </div>
+          </div>
+
+          <div class="card">
+            <span class="b s" style="--stage:#2563eb">CÔNG CỤ 02 • ĐÀO SÂU HOOK</span>
+            <div class="ct">Máy Đào Hook DNA (Vai A &amp; Vai B)</div>
+            <div class="cd" style="color:var(--ink2);">
+              <strong>Đầu vào:</strong> Chọn Vai A (Người làm nghề quan sát khách) hoặc Vai B (Tự sự người trong cuộc).<br>
+              <strong>Đầu ra:</strong> Đào 5 khoảnh khắc nhỏ (Micro-moments), đúc 5 câu mở đầu Hook DNA và xuất ra 4 định dạng (Reels, Bài viết FB, Thread, Carousel).
+            </div>
+            <div class="cf">
+              <a href="congthucstorytelling.html" class="go">Mở Công cụ 02</a>
+            </div>
+          </div>
+
+          <div class="card">
+            <span class="b s" style="--stage:#16a34a">CÔNG CỤ 03 • TRẮC NGHIỆM A/B/C/D</span>
+            <div class="ct">Pipeline Nhân Hiệu 1 Ngách 2 Đầu Ra</div>
+            <div class="cd" style="color:var(--ink2);">
+              <strong>Đầu vào:</strong> Chỉ cần nhập Sản phẩm + Giá bán. AI tự suy luận tâm lý ngành và bày sẵn thực đơn A/B/C/D cho bạn gõ <code>3A - 4C - 5B</code>.<br>
+              <strong>Đầu ra:</strong> Bộ 5 Hook DNA + Kịch bản 7 câu có nhịp thở + 4 cảnh B-Roll bảo mật mặt khách.
+            </div>
+            <div class="cf">
+              <a href="congthucstorytelling.html" class="go">Mở Công cụ 03</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="prompt-card">
+          <div class="prompt-card-head">
+            <span>⚡ HỘP SAO CHÉP NHANH: PROMPT "CÔ HOA HẬU STORYTELLING 1 DÒNG" (DÙNG KHI VỀ NHÀ)</span>
+            <button type="button" class="v3-vo-copy" onclick="window.copyVoScript(this, 'home-prompt-1')">📋 Sao chép Mega Prompt</button>
+          </div>
+          <div class="prompt-card-body">
+            <p style="font-size:14.5px; margin:0 0 8px;">Dán đoạn lệnh dưới đây vào ChatGPT / Claude / Gemini khi ở nhà, sau đó chỉ cần gõ 1 dòng ví dụ: <code>Vừa pha ấm trà nóng lúc 7h sáng - Nghề tư vấn bảo hiểm / tài chính</code>.</p>
+            <pre class="prompt-pre" id="home-prompt-1">Bạn là Biên kịch Storytelling 2.0 theo phương pháp Lát Cắt Vi Mô (Camera 5 giây) và Bản đồ tâm lý 4 nấc (T1 Lời xã giao -> T2 Hành vi tay chân 5 giây -> T2.5 Cái cớ giữ thể diện -> T3 Nỗi lo thầm kín lúc 2h sáng).
+Khi tôi nhập [1 hành động đời thường vừa làm] + [Nghề nghiệp của tôi], hãy thực hiện:
+1. Bóc tách 4 nấc tâm lý của khách hàng trong ngành này (Tuyệt đối không dùng tính từ sáo rỗng, mọi câu T2 phải quay được bằng camera trong 5 giây; câu T2.5 phải giữ thể diện cho khách như câu chuyện Chiếc khăn lau yên xe).
+2. Viết 1 kịch bản video ngắn 7 câu (~110-130 chữ, đọc trong 35-40 giây, có dấu / ngắt nhịp):
+- Câu 1-2: Mở bằng cảnh hành động đời thường (T2) kết nối tự nhiên sang khoảnh khắc ngập ngừng của khách.
+- Câu 3-4: Gọi tên cái cớ giữ thể diện (T2.5) với sự bao dung, cùng chỗ đứng (Hiệu ứng Gương lõm: "Hồi trước mình cũng...").
+- Câu 5-6: Chỉ ra nguyên nhân gốc trong nghề và nguyên tắc bảo vệ khách hàng của tôi.
+- Câu 7: Đúc kết điềm tĩnh hoặc gợi ý 1 việc nhỏ khách tự kiểm tra được ngay (Không kêu gọi mua hàng ồn ào).
+3. Gợi ý 4 cảnh quay (3 B-Roll thao tác tay + 1 A-Roll lộ mặt ở câu 6-7) khớp với từng câu thoại.
+Hãy bắt đầu bằng câu hỏi: "Bạn vừa làm hành động đời thường gì và bạn đang làm nghề gì?"</pre>
+          </div>
+        </div>
+
+        <div class="actions">
+          <a class="btn" href="storytelling2_slides.html">🖥️ Mở Slide Trình Chiếu Tại Lớp (14 Slides)</a>
+          <a class="btn" href="congthucstorytelling.html">🧰 Mở Bộ 3 Công Cụ Mega Prompt Đầy Đủ</a>
+          <a class="btn" href="voiceover3.0.html">⬅️ Xem lại Định dạng 1: Voice-Over 3.0</a>
+        </div>
+
+        <div class="foot">
+          © VIDEO SYSTEM — Giáo án Thực Chiến Định Dạng 2: Storytelling 2.0 (Kể lát cắt 5 giây &amp; Giữ thể diện cho người xem).
+        </div>
+
+      </div>
+    </main>
+    <aside class="toc">
+      <h6>Trên trang này (Storytelling 2.0)</h6>
+      <nav class="otp" id="auto-toc"></nav>
+    </aside>
+  </div>
+</body>
+</html>
+
