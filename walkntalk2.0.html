@@ -1,0 +1,2375 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Walk &amp; Talk + Talking Head 2.0 — Bản Sắc Bén, Giải Phẫu Video &amp; 3 Bài Tập Thực Hành (Claude Edition)</title>
+  <style>
+/* =========================================================
+   TRUNG TÂM LOGIC XÂY KÊNH — Design system (INKDOC)
+   Monochrome slate · Tiempos (đọc) · Aeonik (tiêu đề) · Zero-animation
+   ========================================================= */
+@font-face{font-family:'FD Aeonik Extended';src:url('fonts/FDAeonikExtended-Bold.woff2') format('woff2');font-weight:700;font-display:swap}
+@font-face{font-family:'FD Aeonik Extended';src:url('fonts/FDAeonikExtended-SemiBold.woff2') format('woff2');font-weight:600;font-display:swap}
+@font-face{font-family:'FD Aeonik';src:url('fonts/FDAeonik-Regular.ttf') format('truetype');font-weight:400;font-display:swap}
+@font-face{font-family:'FD Aeonik';src:url('fonts/FDAeonik-Medium.ttf') format('truetype');font-weight:500 600;font-display:swap}
+@font-face{font-family:'FD Aeonik';src:url('fonts/FDAeonik-Bold.ttf') format('truetype');font-weight:700;font-display:swap}
+@font-face{font-family:'Tiempos Text';src:url('fonts/FDTiemposText-Regular.woff2') format('woff2');font-weight:400;font-display:swap}
+@font-face{font-family:'Tiempos Text';src:url('fonts/FDTiemposText-RegularItalic.woff2') format('woff2');font-weight:400;font-style:italic;font-display:swap}
+@font-face{font-family:'Tiempos Text';src:url('fonts/FDTiemposText-Semibold.woff2') format('woff2');font-weight:600;font-display:swap}
+@font-face{font-family:'Tiempos Text';src:url('fonts/FDTiemposText-Bold.woff2') format('woff2');font-weight:700;font-display:swap}
+
+:root{
+  --ink:#0f172a; --ink2:#1e293b; --ink3:#334155; --mute:#64748b; --mute2:#94a3b8;
+  --line:#e2e8f0; --line2:#cbd5e1; --bg:#ffffff; --bg2:#f8fafc; --bg3:#f1f5f9;
+  --acc:#0f172a;
+  /* màu theo chặng */
+  --c-tuduy:#7c3aed; --c-batdau:#0891b2; --c-logic:#2563eb; --c-niemtin:#db2777;
+  --c-dinhdang:#ea580c; --c-kynang:#16a34a; --c-thuchanh:#ca8a04; --c-tainguyen:#0f766e; --c-dulieu:#9333ea; --c-case:#0284c7;
+  --serif:'Tiempos Text',Georgia,'Times New Roman',serif;
+  --sans:'FD Aeonik',-apple-system,BlinkMacSystemFont,'Segoe UI',Inter,Roboto,sans-serif;
+  --display:'FD Aeonik Extended','FD Aeonik',-apple-system,sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
+  --side:290px; --top:56px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:auto;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+img{max-width:100%}
+::selection{background:#dbeafe}
+
+/* ---------- TOP BAR ---------- */
+.topbar{position:sticky;top:0;z-index:50;height:var(--top);display:flex;align-items:center;gap:14px;padding:0 18px;background:rgba(255,255,255,.96);border-bottom:1px solid var(--line);backdrop-filter:saturate(1.4) blur(6px)}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;flex-shrink:0}
+.brand .logo{width:30px;height:30px;border-radius:8px;background:#07090E;color:#FB923C;display:grid;place-items:center;font:700 12px var(--display);letter-spacing:.02em}
+.brand .t{font:700 13px var(--display);text-transform:uppercase;letter-spacing:.04em;line-height:1.1}
+.brand .t small{display:block;font:500 11px var(--sans);text-transform:none;letter-spacing:0;color:var(--mute)}
+.stepper{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none;flex:1;min-width:0;margin-left:10px}
+.stepper::-webkit-scrollbar{display:none}
+.stepper a{flex-shrink:0;text-decoration:none;font-size:12.5px;font-weight:500;color:var(--mute);padding:6px 9px;border-radius:7px;white-space:nowrap;display:flex;align-items:center;gap:6px}
+.stepper a .n{font:600 10px var(--mono);color:var(--mute2)}
+.stepper a:hover{background:var(--bg3);color:var(--ink)}
+.stepper a.on{background:var(--ink);color:#fff}
+.stepper a.on .n{color:#94a3b8}
+.searchbtn{flex-shrink:0;display:flex;align-items:center;gap:8px;border:1px solid var(--line);background:var(--bg2);border-radius:8px;padding:6px 10px;font:500 13px var(--sans);color:var(--mute);cursor:pointer}
+.searchbtn kbd{font:600 10px var(--mono);border:1px solid var(--line2);border-radius:4px;padding:1px 4px;background:#fff}
+.menubtn{display:none;border:1px solid var(--line);background:#fff;border-radius:8px;padding:6px 9px;cursor:pointer;font-size:15px}
+
+/* ---------- LAYOUT ---------- */
+.shell{display:grid;grid-template-columns:var(--side) minmax(0,1fr);min-height:calc(100vh - var(--top))}
+.side{position:sticky;top:var(--top);height:calc(100vh - var(--top));overflow-y:auto;border-right:1px solid var(--line);background:var(--bg2);padding:18px 14px 40px;font-size:13.5px}
+.side h6{margin:18px 8px 6px;font:700 10.5px var(--sans);letter-spacing:.09em;text-transform:uppercase;color:var(--mute2)}
+.side h6:first-child{margin-top:0}
+.side a.pg{display:flex;gap:8px;align-items:baseline;text-decoration:none;color:var(--ink3);padding:6px 8px;border-radius:7px;font-weight:500}
+.side a.pg .n{font:600 10.5px var(--mono);color:var(--mute2);min-width:20px}
+.side a.pg:hover{background:var(--bg3);color:var(--ink)}
+.side a.pg.on{background:#fff;color:var(--ink);box-shadow:0 0 0 1px var(--line),0 1px 2px rgba(15,23,42,.05);font-weight:600}
+.side a.pg.pg-sub, .side a.pg.sub{padding-left:24px;font-size:13px;opacity:0.9}
+.side a.pg.pg-sub .n, .side a.pg.sub .n{font-size:11px;min-width:18px}
+.side a.pg.pg-sub.on, .side a.pg.sub.on{opacity:1;font-weight:600}
+.side .toc{margin:4px 0 10px 18px;padding-left:10px;border-left:1px solid var(--line2)}
+.side .toc ul{list-style:none;margin:0;padding:0}
+.side .toc ul ul{padding-left:12px}
+.side .toc a{display:block;text-decoration:none;color:var(--mute);padding:3px 6px;font-size:12.8px;line-height:1.4;border-radius:5px}
+.side .toc a:hover{color:var(--ink)}
+.side .toc a.active{color:var(--ink);font-weight:600;background:#fff}
+.main{min-width:0;padding:40px 40px 120px;align-items:start;display:grid;grid-template-columns:minmax(0,760px) 260px;gap:48px;justify-content:center}
+.main.wide{grid-template-columns:minmax(0,820px)}
+.content{min-width:0}
+.rail{position:sticky;top:calc(var(--top) + 32px);align-self:start;max-height:calc(100vh - var(--top) - 50px);overflow:auto;font-size:13px}
+.rail h6{margin:0 0 10px;font:700 10.5px var(--sans);letter-spacing:.09em;text-transform:uppercase;color:var(--mute2)}
+.rail .rcard{display:block;text-decoration:none;border:1px solid var(--line);border-radius:10px;padding:10px 12px;margin-bottom:8px;background:#fff}
+.rail .rcard:hover{border-color:var(--ink3)}
+.rail .rcard b{display:block;font-size:13px;color:var(--ink)}
+.rail .rcard span{color:var(--mute);font-size:12px;line-height:1.4;display:block;margin-top:2px}
+
+/* ---------- TYPOGRAPHY ---------- */
+.kicker{font:700 11px var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--stage,var(--mute));display:flex;align-items:center;gap:8px;margin-bottom:12px}
+.kicker::before{content:"";width:18px;height:2px;background:currentColor;display:inline-block}
+h1.title{font:700 clamp(28px,4vw,40px)/1.12 var(--display);text-transform:uppercase;letter-spacing:-.01em;margin:0 0 16px}
+.lede{font:400 20px/1.6 var(--serif);color:var(--ink3);margin:0 0 28px}
+.content h2{font:600 26px/1.25 var(--sans);letter-spacing:-.015em;margin:56px 0 14px;padding-top:12px;border-top:1px solid var(--line);scroll-margin-top:80px}
+.content h2 .num{font:600 13px var(--mono);color:var(--stage,var(--mute2));display:block;margin-bottom:4px;letter-spacing:0}
+.content h3{font:600 20px/1.3 var(--sans);margin:36px 0 10px;scroll-margin-top:80px}
+.content h4{font:600 16.5px/1.35 var(--sans);margin:26px 0 8px;scroll-margin-top:80px;color:var(--ink2)}
+.content p,.content li{font-family:var(--serif);font-size:18px;line-height:1.72;color:var(--ink2)}
+.content p{margin:0 0 16px}
+.content ul,.content ol{padding-left:24px;margin:0 0 18px}
+.content li{margin:5px 0}
+.content li::marker{color:var(--mute2)}
+.content strong{font-weight:700;color:var(--ink)}
+.content em{font-style:italic}
+.content blockquote{margin:22px 0;padding:4px 0 4px 20px;border-left:3px solid var(--stage,var(--ink));font:italic 19px/1.65 var(--serif);color:var(--ink3)}
+.content blockquote p{font-size:19px}
+.content code{font:500 .86em var(--mono);background:var(--bg3);border:1px solid var(--line);padding:1px 5px;border-radius:5px}
+.content hr{border:0;border-top:1px solid var(--line);margin:40px 0}
+.content a{text-decoration:underline;text-decoration-color:var(--line2);text-underline-offset:3px}
+.content a:hover{text-decoration-color:var(--ink)}
+
+/* ---------- BADGES (Apple HIG) ---------- */
+.b{display:inline-block;font:700 10.5px/1 var(--sans);letter-spacing:.06em;text-transform:uppercase;background:var(--bg3);color:var(--ink3);border:1px solid var(--line);border-radius:5px;padding:4px 6px;box-shadow:0 1px 1px rgba(15,23,42,.04);position:relative;top:-2px;vertical-align:baseline;white-space:nowrap}
+.b.dark{background:var(--ink);color:#fff;border-color:var(--ink)}
+.b.s{background:color-mix(in srgb,var(--stage) 10%,#fff);color:var(--stage);border-color:color-mix(in srgb,var(--stage) 25%,#fff)}
+
+/* ---------- RESOURCE LINK (ấn vào ra luôn) ---------- */
+a.go{display:inline-flex;align-items:center;gap:5px;font:600 .82em var(--sans);text-decoration:none!important;background:#fff;color:var(--ink);border:1px solid var(--line2);border-radius:999px;padding:2px 9px 2px 7px;position:relative;top:-1px;vertical-align:baseline;white-space:nowrap}
+a.go::before{content:"↗";font-size:.95em;color:var(--stage,var(--mute))}
+a.go:hover{background:var(--ink);color:#fff;border-color:var(--ink)}
+a.go.int::before{content:"→"}
+
+/* ---------- BLOCKS ---------- */
+.spec{border:1px solid var(--line);border-radius:12px;overflow:hidden;margin:20px 0;background:#fff}
+.spec .row{display:grid;grid-template-columns:150px 1fr;gap:16px;padding:12px 16px;border-top:1px solid var(--line);align-items:baseline}
+.spec .row:first-child{border-top:0}
+.spec .row>.b{justify-self:start}
+.spec .row>div{font:400 15.5px/1.55 var(--sans);color:var(--ink2)}
+.spec .row>div p,.spec .row>div li{font-family:var(--sans);font-size:15.5px;line-height:1.55}
+
+.callout{border:1px solid var(--line);border-left:3px solid var(--stage,var(--ink));background:var(--bg2);border-radius:10px;padding:14px 18px;margin:22px 0}
+.callout>.h{font:700 11px var(--sans);letter-spacing:.09em;text-transform:uppercase;color:var(--stage,var(--ink3));margin-bottom:6px}
+.callout p,.callout li{font-size:16.5px!important}
+.callout p:last-child{margin-bottom:0}
+.callout.warn{--stage:#dc2626}
+.callout.tip{--stage:#16a34a}
+
+.qa{margin:14px 0;border:1px solid var(--line);border-radius:12px;background:#fff}
+.qa>summary{list-style:none;cursor:pointer;padding:14px 18px;font:600 16px/1.4 var(--sans);display:flex;gap:12px;align-items:flex-start}
+.qa>summary::-webkit-details-marker{display:none}
+.qa>summary::before{content:"Q";flex-shrink:0;font:700 11px var(--mono);background:var(--bg3);border:1px solid var(--line);border-radius:5px;padding:3px 6px;margin-top:1px}
+.qa[open]>summary{border-bottom:1px solid var(--line);background:var(--bg2);border-radius:12px 12px 0 0}
+.qa>.a{padding:14px 20px 4px}
+
+.grid{display:grid;gap:12px;margin:18px 0}
+.g2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.g3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.g4{grid-template-columns:repeat(4,minmax(0,1fr))}
+.card{border:1px solid var(--line);border-radius:12px;padding:16px;background:#fff;text-decoration:none;display:block;color:inherit}
+a.card:hover{border-color:var(--ink3);box-shadow:0 2px 10px rgba(15,23,42,.06)}
+.card .ct{font:600 16px/1.3 var(--sans);margin:6px 0 6px;color:var(--ink)}
+.card .cd{font:400 14px/1.5 var(--sans);color:var(--mute)}
+.card .cf{margin-top:10px;display:flex;flex-wrap:wrap;gap:5px}
+.card .ico{font-size:22px}
+
+table.t{width:100%;border-collapse:collapse;margin:18px 0;font:400 14.5px/1.5 var(--sans);border:1px solid var(--line);border-radius:12px;overflow:hidden;display:table}
+.tw{overflow-x:auto;margin:18px 0}
+.tw table.t{margin:0}
+table.t th{background:var(--bg3);text-align:left;font:700 11px var(--sans);letter-spacing:.07em;text-transform:uppercase;color:var(--ink3);padding:10px 12px;border-bottom:1px solid var(--line)}
+table.t td{padding:10px 12px;border-top:1px solid var(--line);vertical-align:top;color:var(--ink2)}
+table.t td:first-child{font-weight:600;color:var(--ink)}
+
+/* Flow map (index) */
+.flow{display:grid;gap:0;margin:24px 0;counter-reset:f}
+.fstep{display:grid;grid-template-columns:54px 1fr;gap:16px;text-decoration:none;color:inherit;padding:18px 0;border-top:1px solid var(--line)}
+.fstep:first-child{border-top:0}
+.fstep .dot{width:44px;height:44px;border-radius:12px;background:var(--stage);color:#fff;display:grid;place-items:center;font:700 14px var(--mono)}
+.fstep .q{font:700 11px var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--stage)}
+.fstep .h{font:600 20px/1.3 var(--sans);margin:3px 0 6px;color:var(--ink)}
+.fstep .d{font:400 16.5px/1.6 var(--serif);color:var(--ink3)}
+.fstep:hover .h{text-decoration:underline;text-underline-offset:4px}
+.fstep .links{margin-top:8px;display:flex;flex-wrap:wrap;gap:6px}
+
+.hero{border:1px solid var(--line);border-radius:16px;padding:28px;background:linear-gradient(180deg,#fff, var(--bg2));margin-bottom:30px}
+
+/* Sơ đồ chữ (diagram) */
+.diagram{font:500 13.5px/1.55 var(--mono);background:#0b1020;color:#e2e8f0;border-radius:12px;padding:18px 20px;overflow-x:auto;white-space:pre;margin:20px 0}
+.chain{display:flex;flex-wrap:wrap;align-items:stretch;gap:0;margin:20px 0}
+.chain>div{flex:1 1 120px;border:1px solid var(--line);background:#fff;padding:12px;font:500 13.5px/1.4 var(--sans);position:relative;margin-right:18px;border-radius:10px}
+.chain>div:not(:last-child)::after{content:"→";position:absolute;right:-15px;top:50%;transform:translateY(-50%);color:var(--mute2);font-weight:700}
+.chain>div b{display:block;font:700 10.5px var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--stage,var(--mute));margin-bottom:4px}
+
+/* Script (kịch bản) */
+.script{border:1px solid var(--line);border-radius:12px;overflow:hidden;margin:20px 0;background:#fff}
+.script .sh{background:var(--bg3);padding:10px 16px;font:700 12px var(--sans);letter-spacing:.06em;text-transform:uppercase;color:var(--ink3);border-bottom:1px solid var(--line);display:flex;justify-content:space-between;gap:10px}
+.script .ln{display:grid;grid-template-columns:110px 1fr;gap:14px;padding:10px 16px;border-top:1px solid var(--line)}
+.script .ln:first-of-type{border-top:0}
+.script .ln .lb{font:700 10.5px var(--sans);letter-spacing:.06em;text-transform:uppercase;color:var(--stage,var(--mute));padding-top:4px}
+.script .ln .tx{font:400 16.5px/1.6 var(--serif);color:var(--ink2)}
+.script .ln .tx i{color:var(--mute);font-size:14.5px}
+
+/* Dynamic blocks */
+.dyn-head{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:14px 0}
+.chip{font:600 12.5px var(--sans);border:1px solid var(--line2);background:#fff;border-radius:999px;padding:5px 11px;cursor:pointer;color:var(--ink3)}
+.chip.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.dyn-empty{font:400 14px var(--sans);color:var(--mute);padding:14px;border:1px dashed var(--line2);border-radius:10px}
+.ex{border:1px solid var(--line);border-radius:12px;background:#fff;margin:12px 0;overflow:hidden}
+.ex>summary{list-style:none;cursor:pointer;padding:14px 16px;display:flex;gap:12px;align-items:flex-start}
+.ex>summary::-webkit-details-marker{display:none}
+.ex .exn{flex-shrink:0;font:700 11px var(--mono);background:var(--ink);color:#fff;border-radius:6px;padding:4px 7px}
+.ex .ext{font:600 15.5px/1.4 var(--sans);color:var(--ink)}
+.ex .exm{display:flex;flex-wrap:wrap;gap:5px;margin-top:6px}
+.ex .exb{padding:4px 18px 16px 18px;border-top:1px solid var(--line)}
+.ex .exb p,.ex .exb li{font-size:16px}
+.ex .exb h5{font:700 11px var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--mute);margin:14px 0 6px}
+
+/* Search modal */
+.sm{position:fixed;inset:0;background:rgba(15,23,42,.45);z-index:100;display:none;align-items:flex-start;justify-content:center;padding-top:10vh}
+.sm.open{display:flex}
+.sm .box{width:min(680px,92vw);background:#fff;border-radius:14px;box-shadow:0 20px 60px rgba(0,0,0,.25);overflow:hidden}
+.sm input{width:100%;border:0;border-bottom:1px solid var(--line);padding:16px 18px;font:500 17px var(--sans);outline:none}
+.sm .res{max-height:60vh;overflow:auto;padding:6px}
+.sm .res a{display:block;text-decoration:none;padding:10px 12px;border-radius:8px}
+.sm .res a:hover,.sm .res a.sel{background:var(--bg3)}
+.sm .res a b{display:block;font:600 14.5px var(--sans);color:var(--ink)}
+.sm .res a span{font:400 12.5px var(--sans);color:var(--mute)}
+
+.pager{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:60px}
+.pager a{border:1px solid var(--line);border-radius:12px;padding:14px 16px;text-decoration:none!important;display:block}
+.pager a:hover{border-color:var(--ink3)}
+.pager a small{display:block;font:600 11px var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--mute2)}
+.pager a b{font:600 16px var(--sans);color:var(--ink)}
+.pager a.nx{text-align:right}
+.foot{margin-top:40px;padding-top:18px;border-top:1px solid var(--line);font:400 13px var(--sans);color:var(--mute)}
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width:1280px){.main{grid-template-columns:minmax(0,760px)}.rail{display:none}}
+@media (max-width:960px){
+  .shell{grid-template-columns:1fr}
+  .side{position:fixed;left:0;top:var(--top);width:min(320px,86vw);z-index:60;transform:translateX(-102%);box-shadow:0 10px 40px rgba(0,0,0,.15)}
+  body.navopen .side{transform:none}
+  .menubtn{display:block}
+  .stepper{display:flex;overflow-x:auto;white-space:nowrap;-webkit-overflow-scrolling:touch;scrollbar-width:none;gap:4px;margin-left:6px;margin-right:4px}
+  .stepper::-webkit-scrollbar{display:none}
+  .stepper a{display:inline-flex;flex-shrink:0;align-items:center;gap:4px;padding:5px 8px;font-size:12px}
+  .main{padding:28px 18px 90px}
+  .g3,.g4{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:600px){
+  .topbar{gap:8px;padding:0 10px}
+  .brand .t small{display:none}
+  .searchbtn span{display:none}
+  .searchbtn kbd{display:none}
+  .ecosystem-btn span:first-child{font-size:12px}
+  .g2,.g3,.g4{grid-template-columns:1fr}
+  .spec .row{grid-template-columns:1fr;gap:6px}
+  .script .ln{grid-template-columns:1fr;gap:2px}
+  .content p,.content li{font-size:17px}
+  .pager{grid-template-columns:1fr}
+}
+@media print{.topbar,.side,.rail,.pager{display:none}.shell{display:block}.main{display:block;padding:0}}
+
+/* ---------- FIX v3: shell + brand title ---------- */
+.side .mh{padding:2px 8px 14px;margin-bottom:6px;border-bottom:1px solid var(--line)}
+.side .mh b{display:block;font:700 15px/1.25 var(--display);text-transform:uppercase;letter-spacing:-.005em;text-wrap:balance}
+.side .mh p{margin:6px 0 0;font:400 12.5px/1.4 var(--sans);color:var(--mute)}
+.side a.pg .t{line-height:1.35}
+.content h1.title{font-family:'FD Aeonik Extended','FD Aeonik',sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:-.01em;font-size:clamp(26px,3.2vw,38px);line-height:1.1;text-wrap:balance;margin:0 0 22px;color:var(--ink)}
+.content .hero{padding:20px 24px;margin:0 0 28px}
+.content .hero>*:last-child{margin-bottom:0}
+.rail .otp a{display:block;text-decoration:none;color:var(--mute);padding:5px 0 5px 12px;border-left:2px solid var(--line);font:500 13px/1.4 var(--sans)}
+.rail .otp a:hover{color:var(--ink);border-left-color:var(--ink)}
+.pager{margin-top:56px}
+.pager a b{display:block;margin-top:4px;line-height:1.3}
+
+.content code{overflow-wrap:anywhere;word-break:break-word}
+.content pre{overflow-x:auto;max-width:100%}
+.content img,.content table{max-width:100%}
+
+.card.go{display:block;white-space:normal}
+a.card{overflow-wrap:break-word;word-break:break-word}
+
+/* ---------- ACTIONS & BUTTONS ---------- */
+.actions{display:flex;flex-wrap:wrap;gap:12px;margin:36px 0 24px;padding-top:20px;border-top:1px solid var(--line)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:11px 20px;font:600 14px var(--sans);color:#fff;background:var(--ink);border:1px solid var(--ink);border-radius:9px;text-decoration:none!important;cursor:pointer;transition:background .15s ease,border-color .15s ease,box-shadow .15s ease;box-shadow:0 1px 2px rgba(15,23,42,.08)}
+.btn:hover{background:var(--ink2);border-color:var(--ink2);color:#fff;box-shadow:0 3px 8px rgba(15,23,42,.12)}
+.btn:nth-child(2){background:#fff;color:var(--ink);border-color:var(--line2)}
+.btn:nth-child(2):hover{background:var(--bg3);border-color:var(--ink3);color:var(--ink)}
+
+/* ---------- PORTAL & SOCIAL PROOF ---------- */
+.proof-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:24px;padding-top:20px;border-top:1px solid var(--line)}
+.proof-item{display:flex;flex-direction:column;gap:4px}
+.proof-num{font:700 clamp(18px,2.2vw,24px)/1.15 var(--display);color:var(--ink);letter-spacing:-.015em}
+.proof-lbl{font:500 13px/1.4 var(--sans);color:var(--mute)}
+
+/* ---------- 3 CÁNH CỬA BẮT BỆNH ---------- */
+.door-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin:24px 0 36px}
+.door-card{display:flex;flex-direction:column;justify-content:space-between;border:1px solid var(--line);border-radius:14px;padding:22px 18px;background:#fff;box-shadow:0 1px 3px rgba(15,23,42,.03);transition:transform .15s ease,box-shadow .15s ease,border-color .15s ease}
+.door-card:hover{transform:translateY(-2px);border-color:var(--ink3);box-shadow:0 10px 24px rgba(15,23,42,.07)}
+.door-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.door-icon{font-size:26px}
+.door-badge{font:700 10.5px/1 var(--mono);padding:4px 7px;border-radius:5px;background:var(--bg3);color:var(--ink3);border:1px solid var(--line)}
+.door-title{font:700 17px/1.3 var(--sans);color:var(--ink);margin:0 0 12px}
+.door-body{font-size:14px;line-height:1.55;color:var(--ink2);margin-bottom:18px;flex-grow:1}
+.door-pain{background:#fef2f2;border-left:3px solid #ef4444;padding:9px 12px;border-radius:0 6px 6px 0;margin-bottom:10px;font-size:13.5px;color:#991b1b}
+.door-cure{background:#f0fdf4;border-left:3px solid #16a34a;padding:9px 12px;border-radius:0 6px 6px 0;font-size:13.5px;color:#166534}
+.door-btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;width:100%;padding:11px 14px;font:700 12.5px/1 var(--sans);letter-spacing:.04em;text-transform:uppercase;color:#fff!important;background:var(--ink);border-radius:8px;text-decoration:none!important;transition:background .15s ease}
+.door-btn:hover{background:var(--ink2)}
+
+/* ---------- ROADMAP 3 CHẶNG ---------- */
+.roadmap-section{margin:36px 0}
+.stage-card{border:1px solid var(--line);border-radius:14px;background:#fff;margin-bottom:20px;overflow:hidden}
+.stage-header{padding:16px 20px;background:var(--bg2);border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px}
+.stage-title{display:flex;align-items:center;gap:10px;font:700 16px/1.3 var(--sans);color:var(--ink)}
+.stage-badge{font:700 10.5px/1 var(--mono);padding:3px 8px;border-radius:5px;background:var(--ink);color:#fff}
+.stage-steps{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;background:var(--line)}
+.step-item{background:#fff;padding:14px 18px;text-decoration:none;display:flex;gap:12px;align-items:flex-start;transition:background .15s ease}
+.step-item:hover{background:var(--bg2)}
+.step-num{font:700 11px/1 var(--mono);color:var(--stage,var(--mute));padding:4px 7px;border-radius:5px;background:var(--bg3);flex-shrink:0;margin-top:2px}
+.step-content{min-width:0}
+.step-name{font:600 14.5px/1.35 var(--sans);color:var(--ink);margin-bottom:3px}
+.step-desc{font:400 13px/1.45 var(--sans);color:var(--mute)}
+
+/* ---------- SPOTLIGHT CASE STUDIES ---------- */
+.spotlight-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin:20px 0}
+.spotlight-card{border:1px solid var(--line);border-radius:12px;padding:18px;background:#fff;display:flex;flex-direction:column;justify-content:space-between;text-decoration:none;transition:transform .15s ease,box-shadow .15s ease,border-color .15s ease}
+.spotlight-card:hover{transform:translateY(-2px);border-color:var(--ink3);box-shadow:0 6px 20px rgba(15,23,42,.06)}
+.spotlight-tag{margin-bottom:8px}
+.spotlight-title{font:700 16px/1.3 var(--sans);color:var(--ink);margin-bottom:8px}
+.spotlight-signal{background:var(--bg2);border-left:3px solid var(--c-logic);padding:8px 12px;border-radius:0 6px 6px 0;font-size:13.5px;color:var(--ink2);margin-bottom:8px}
+.spotlight-lesson{font-size:13px;color:var(--mute);line-height:1.45}
+
+/* ---------- ECOSYSTEM 14 NỀN TẢNG ---------- */
+.eco-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:20px 0}
+.eco-card{border:1px solid var(--line);border-radius:11px;padding:14px;background:#fff;text-decoration:none!important;display:flex;flex-direction:column;justify-content:space-between;transition:transform .15s ease,border-color .15s ease,box-shadow .15s ease}
+.eco-card:hover{transform:translateY(-2px);border-color:var(--ink);box-shadow:0 4px 14px rgba(15,23,42,.06)}
+.eco-tag{font:700 9.5px/1 var(--mono);color:var(--mute2);text-transform:uppercase;margin-bottom:6px}
+.eco-name{font:700 14px/1.3 var(--sans);color:var(--ink);margin-bottom:4px}
+.eco-desc{font:400 12px/1.4 var(--sans);color:var(--mute);margin-bottom:8px}
+.eco-link{font:600 11px/1 var(--mono);color:var(--ink2);display:inline-flex;align-items:center;gap:3px}
+
+@media (max-width:960px){
+  .door-grid{grid-template-columns:1fr}
+  .stage-steps{grid-template-columns:1fr}
+  .spotlight-grid{grid-template-columns:1fr}
+  .eco-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:640px){
+  .proof-grid{grid-template-columns:1fr;gap:12px}
+  .eco-grid{grid-template-columns:1fr}
+}
+
+/* ---------- CASE STUDY DETAILED CARDS ---------- */
+.case-card{border:1px solid var(--line);border-radius:14px;background:#fff;padding:22px 24px;margin-bottom:24px;box-shadow:0 1px 3px rgba(15,23,42,.03);scroll-margin-top:80px}
+.case-card:hover{border-color:var(--line2);box-shadow:0 8px 24px rgba(15,23,42,.05)}
+.case-header{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:16px;border-bottom:1px solid var(--line);padding-bottom:16px}
+.case-title{font:700 19px/1.3 var(--sans);color:var(--ink);margin:0}
+.case-persona{font:500 13.5px var(--sans);color:var(--mute);margin-top:4px}
+.case-grid-content{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-bottom:16px}
+.case-block{padding:12px 14px;border-radius:8px;font-size:13.5px;line-height:1.55}
+.case-block.signal{background:#f8fafc;border-left:3px solid var(--c-logic)}
+.case-block.pain{background:#fef2f2;border-left:3px solid #ef4444}
+.case-block.result{background:#f0fdf4;border-left:3px solid #16a34a}
+.case-block h5{font:700 10.5px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;margin:0 0 6px}
+.case-block.signal h5{color:var(--c-logic)}
+.case-block.pain h5{color:#dc2626}
+.case-block.result h5{color:#15803d}
+.case-footer{display:flex;align-items:center;justify-content:space-between;padding-top:14px;border-top:1px solid var(--line);font-size:13px;flex-wrap:wrap;gap:10px}
+@media (max-width:960px){
+  .case-grid-content{grid-template-columns:1fr;gap:12px}
+}
+
+/* ---------- ECOSYSTEM DROPDOWN (TOPBAR) ---------- */
+.eco-backdrop{position:fixed;inset:0;z-index:85;background:rgba(15,23,42,0.12);backdrop-filter:blur(1px)}
+.ecosystem-wrap{position:relative}
+.ecosystem-btn{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);background:var(--bg2);border-radius:8px;padding:6px 11px;font:600 12.5px var(--sans);color:var(--ink2);cursor:pointer;user-select:none;transition:all .15s ease;white-space:nowrap}
+.ecosystem-btn:hover,.ecosystem-btn.active{background:#fff;border-color:var(--line2);color:var(--ink);box-shadow:0 1px 3px rgba(15,23,42,.06)}
+.ecosystem-btn .eco-caret{font-size:10px;color:var(--mute);transition:transform .2s ease;display:inline-block}
+.ecosystem-btn.active .eco-caret{transform:rotate(180deg)}
+
+.ecosystem-menu{position:absolute;top:calc(100% + 8px);right:0;width:min(660px,calc(100vw - 24px));background:#ffffff;border-radius:8px;border:1px solid rgba(0,0,0,0.08);box-shadow:0 10px 30px rgba(0,0,0,0.12);padding:16px 18px;z-index:90;font-family:var(--sans)}
+.ecosystem-menu .eco-header{display:flex;align-items:center;justify-content:space-between;padding-bottom:12px;margin-bottom:14px;border-bottom:1px solid var(--line)}
+.ecosystem-menu .eco-title{font:700 13px/1.2 var(--display);text-transform:uppercase;letter-spacing:.04em;color:var(--ink)}
+.ecosystem-menu .eco-sub{font:400 11.5px/1.3 var(--sans);color:var(--mute);margin-top:2px}
+.ecosystem-menu .eco-tag{font:700 9.5px var(--mono);background:var(--bg3);color:var(--ink3);padding:3px 8px;border-radius:999px;border:1px solid var(--line);letter-spacing:.05em}
+.ecosystem-menu .eco-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px 20px;margin:0}
+.ecosystem-menu .eco-group{display:flex;flex-direction:column;gap:4px}
+.ecosystem-menu .eco-gh{font:700 10px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--mute2);margin-bottom:4px;padding-bottom:3px;border-bottom:1px dashed var(--line)}
+.ecosystem-menu .eco-item{display:block;text-decoration:none!important;padding:6px 8px;border-radius:6px;transition:background .15s ease}
+.ecosystem-menu .eco-item:hover{background:var(--bg3)}
+.ecosystem-menu .eco-name{display:block;font:600 13px/1.3 var(--sans);color:var(--ink)}
+.ecosystem-menu .eco-name-row{display:flex;align-items:center;gap:6px}
+.ecosystem-menu .eco-badge{font:700 9px var(--mono);color:#ea580c;background:#fff7ed;border:1px solid #ffedd5;padding:1px 5px;border-radius:4px}
+.ecosystem-menu .eco-desc{display:block;font:400 11.5px/1.35 var(--sans);color:var(--mute);margin-top:1px}
+
+@media (max-width:640px){
+  .ecosystem-menu{position:fixed;top:calc(var(--top) + 6px);left:12px;right:12px;width:auto;max-height:calc(85vh - var(--top));overflow-y:auto;-webkit-overflow-scrolling:touch;padding:14px}
+  .ecosystem-menu .eco-grid{grid-template-columns:1fr;gap:14px}
+}
+/* mobile_fix */
+
+@media (max-width: 960px) {
+  .ecosystem-btn, .eco-btn, #eco-btn, .searchbtn {
+    white-space: nowrap !important;
+    padding: 6px 10px !important;
+    font-size: 12px !important;
+    max-height: 36px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+  .topbar {
+    padding: 8px 12px !important;
+    gap: 6px !important;
+  }
+}
+
+.eco-btn-text-short { display: none; }
+@media (max-width: 960px) {
+  .eco-btn-text-full { display: none !important; }
+  .eco-btn-text-short { display: inline !important; }
+  .ecosystem-btn {
+    white-space: nowrap !important;
+    padding: 6px 8px !important;
+    font-size: 11.5px !important;
+  }
+}
+
+/* ---------- TOPBAR MOBILE ELEGANT FIX ---------- */
+.ecosystem-wrap {
+  flex-shrink: 0 !important;
+}
+.searchbtn {
+  flex-shrink: 0 !important;
+}
+.menubtn {
+  flex-shrink: 0 !important;
+}
+
+@media (max-width: 820px) {
+  .stepper {
+    display: none !important;
+  }
+  .topbar {
+    justify-content: space-between !important;
+    padding: 0 14px !important;
+    height: 52px !important;
+  }
+  .ecosystem-btn {
+    white-space: nowrap !important;
+    padding: 6px 10px !important;
+    font-size: 12px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+  }
+  .searchbtn {
+    padding: 6px 10px !important;
+    font-size: 12px !important;
+  }
+}
+
+
+/* === CSS Tinh Gọn cho Voice-Over 3.0 (Claude Sharp Edition) === */
+.v3-group {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin: 18px 0 26px;
+}
+.v3-card {
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(15, 23, 42, 0.04);
+}
+.v3-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 10px 14px;
+  background: #f8fafc;
+  border-bottom: 1px solid #e2e8f0;
+  font-size: 14px;
+}
+.v3-title-group {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.v3-meta {
+  color: #64748b;
+  font-size: 12.5px;
+  font-weight: 500;
+}
+.v3-badge {
+  font-size: 10.5px;
+  font-weight: 800;
+  padding: 3px 8px;
+  border-radius: 6px;
+  letter-spacing: 0.03em;
+}
+.v3-badge-win {
+  background: #dcfce7;
+  color: #166534;
+  border: 1px solid #86efac;
+}
+.v3-badge-err {
+  background: #fee2e2;
+  color: #991b1b;
+  border: 1px solid #fca5a5;
+}
+.v3-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.v3-btn-play {
+  background: #d93025;
+  color: #ffffff;
+  border: none;
+  font-size: 12.5px;
+  font-weight: 700;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.v3-btn-play:hover {
+  background: #b91c1c;
+}
+.v3-btn-link {
+  font-size: 12px;
+  font-weight: 600;
+  color: #475569;
+  text-decoration: none;
+  padding: 5px 8px;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  background: #ffffff;
+}
+.v3-strip {
+  background: #0f172a;
+}
+.v3-strip img {
+  width: 100%;
+  max-height: 230px;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto;
+}
+.v3-strip-bar {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  text-align: center;
+  background: #1e293b;
+  color: #cbd5e1;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 4px 0;
+}
+.v3-player {
+  background: #000;
+  padding: 12px;
+  text-align: center;
+}
+.v3-player video {
+  max-width: 100%;
+  max-height: 440px;
+  border-radius: 8px;
+  margin: 0 auto;
+  display: block;
+}
+.v3-verdict {
+  padding: 12px 16px;
+  font-size: 14.5px;
+  line-height: 1.6;
+  color: #0f172a;
+  background: #ffffff;
+}
+.v3-verdict p {
+  margin: 0 0 8px 0;
+}
+.v3-transcript-toggle {
+  margin-top: 6px;
+  font-size: 12.5px;
+  color: #475569;
+}
+.v3-transcript-toggle summary {
+  cursor: pointer;
+  font-weight: 600;
+  color: #0284c7;
+  user-select: none;
+}
+.v3-transcript-body {
+  margin-top: 6px;
+  padding: 10px 12px;
+  background: #f8fafc;
+  border-left: 3px solid #94a3b8;
+  border-radius: 0 6px 6px 0;
+  white-space: pre-line;
+  color: #334155;
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+/* === CSS Bài Tập Thực Hành Cảnh Trám 3 Lớp (ytuong.fedu.vn Integration) === */
+.v3-shot-grid {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 6px;
+  padding: 10px 12px;
+  background: #0f172a;
+}
+.v3-shot-item {
+  position: relative;
+  border-radius: 6px;
+  overflow: hidden;
+  background: #1e293b;
+  border: 1px solid #334155;
+}
+.v3-shot-item img {
+  width: 100%;
+  aspect-ratio: 9 / 14;
+  object-fit: cover;
+  display: block;
+}
+.v3-shot-tag {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  background: rgba(15, 23, 42, 0.88);
+  color: #f8fafc;
+  font: 700 10px/1 var(--mono);
+  padding: 3px 5px;
+  border-radius: 4px;
+  border: 1px solid rgba(255,255,255,0.15);
+}
+.v3-shot-dur {
+  position: absolute;
+  bottom: 24px;
+  right: 5px;
+  background: #dc2626;
+  color: #ffffff;
+  font: 700 9.5px/1 var(--mono);
+  padding: 2px 5px;
+  border-radius: 4px;
+}
+.v3-shot-cap {
+  background: #1e293b;
+  color: #e2e8f0;
+  font: 600 10.5px/1.25 var(--sans);
+  padding: 5px 6px;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.v3-layer-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin: 12px 0;
+}
+.v3-layer-box {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-size: 13.5px;
+  line-height: 1.5;
+}
+.v3-layer-box b {
+  display: block;
+  font: 700 10.5px/1 var(--mono);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 5px;
+  color: #475569;
+}
+.v3-layer-box.fg { border-left: 3px solid #f59e0b; background: #fffbeb; }
+.v3-layer-box.fg b { color: #b45309; }
+.v3-layer-box.mg { border-left: 3px solid #16a34a; background: #f0fdf4; }
+.v3-layer-box.mg b { color: #15803d; }
+.v3-layer-box.bg { border-left: 3px solid #0284c7; background: #f0f9ff; }
+.v3-layer-box.bg b { color: #0369a1; }
+
+.v3-vo-box {
+  background: #0f172a;
+  color: #f8fafc;
+  border-radius: 10px;
+  padding: 14px 16px;
+  margin-top: 12px;
+}
+.v3-vo-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 8px;
+  font: 700 11px/1 var(--mono);
+  color: #94a3b8;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.v3-vo-copy {
+  background: #334155;
+  color: #fff;
+  border: 1px solid #475569;
+  border-radius: 5px;
+  padding: 4px 9px;
+  font: 600 11px/1 var(--sans);
+  cursor: pointer;
+}
+.v3-vo-copy:hover {
+  background: #475569;
+}
+.v3-vo-text {
+  font: italic 16.5px/1.65 var(--serif);
+  color: #ffffff;
+  margin: 0 0 8px 0;
+}
+.v3-vo-text span.slash {
+  color: #fb923c;
+  font-weight: 700;
+  font-style: normal;
+  padding: 0 3px;
+}
+.v3-vo-text span.slot {
+  background: rgba(251, 146, 60, 0.22);
+  color: #fdba74;
+  border: 1px dashed #fb923c;
+  padding: 1px 6px;
+  border-radius: 4px;
+  font-style: normal;
+  font-weight: 700;
+}
+.v3-vo-meta {
+  font: 400 12.5px/1.45 var(--sans);
+  color: #cbd5e1;
+}
+.v3-badge-ex {
+  background: #e0f2fe;
+  color: #0369a1;
+  border: 1px solid #7dd3fc;
+}
+.v3-nav-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 16px 0 20px;
+}
+.v3-nav-pills a {
+  text-decoration: none !important;
+  font: 600 13px/1.2 var(--sans);
+  padding: 8px 13px;
+  border-radius: 8px;
+  background: #f8fafc;
+  color: #0f172a;
+  border: 1px solid #cbd5e1;
+  transition: all .15s ease;
+}
+.v3-nav-pills a:hover {
+  background: #0f172a;
+  color: #ffffff;
+  border-color: #0f172a;
+}
+@media (max-width: 900px) {
+  .v3-shot-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .v3-layer-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 520px) {
+  .v3-shot-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+  
+/* === CSS Bộ Slide Dẫn Nhập & Slide Logic 3 Bài Tập === */
+.slide-deck {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  margin: 20px 0 30px;
+}
+.slide-card {
+  border: 1px solid #cbd5e1;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #ffffff;
+  box-shadow: 0 2px 10px rgba(15, 23, 42, 0.04);
+}
+.slide-canvas {
+  background: linear-gradient(135deg, #090d16 0%, #111827 100%);
+  color: #f8fafc;
+  padding: 22px 24px;
+  border-bottom: 1px solid #1e293b;
+  position: relative;
+}
+.slide-num {
+  display: inline-block;
+  font: 700 10.5px/1 var(--mono);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #fb923c;
+  background: rgba(251, 146, 60, 0.14);
+  border: 1px solid rgba(251, 146, 60, 0.35);
+  padding: 4px 8px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+.slide-headline {
+  font: 700 clamp(19px, 2.5vw, 24px)/1.25 var(--display);
+  color: #ffffff;
+  margin: 0 0 10px 0;
+  letter-spacing: -0.01em;
+}
+.slide-visual {
+  font: 400 14.5px/1.6 var(--sans);
+  color: #cbd5e1;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 12px 14px;
+}
+.slide-visual ul {
+  margin: 6px 0 0 0;
+  padding-left: 18px;
+}
+.slide-visual li {
+  color: #e2e8f0 !important;
+  font-family: var(--sans) !important;
+  font-size: 14px !important;
+  line-height: 1.55 !important;
+  margin: 4px 0 !important;
+}
+.slide-speaker {
+  padding: 14px 18px;
+  background: #f8fafc;
+  font: 400 15.5px/1.65 var(--serif);
+  color: #1e293b;
+}
+.slide-speaker b.spk-lbl {
+  display: inline-block;
+  font: 700 10.5px/1 var(--mono);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #0284c7;
+  margin-bottom: 4px;
+}
+.v3-badge-ex {
+  background: #e0f2fe;
+  color: #0369a1;
+  border: 1px solid #7dd3fc;
+}
+.v3-nav-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 14px 0 18px;
+}
+.v3-nav-pills a {
+  text-decoration: none !important;
+  font: 600 13px/1.2 var(--sans);
+  color: #0f172a;
+  background: #f1f5f9;
+  border: 1px solid #cbd5e1;
+  padding: 8px 12px;
+  border-radius: 8px;
+  transition: all 0.15s ease;
+}
+.v3-nav-pills a:hover {
+  background: #0f172a;
+  color: #ffffff;
+  border-color: #0f172a;
+}
+@media (max-width: 768px) {
+  .v3-shot-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .v3-layer-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+  </style>
+  <script>
+    window.toggleV3Player = function(btn, playerId, mp4Url) {
+      var box = document.getElementById(playerId);
+      if (!box) return;
+      var vid = box.querySelector("video");
+      if (box.style.display === "none" || !box.style.display) {
+        box.style.display = "block";
+        if (vid) {
+          if (!vid.getAttribute("src") && mp4Url) {
+            vid.setAttribute("src", mp4Url);
+          }
+          vid.play().catch(function(){});
+        }
+        btn.innerHTML = "⏸️ Đóng video";
+      } else {
+        if (vid) vid.pause();
+        box.style.display = "none";
+        btn.innerHTML = "▶️ Xem video";
+      }
+    };
+    document.addEventListener("DOMContentLoaded", function() {
+      var heads = document.querySelectorAll(".content h2");
+      var tocNav = document.getElementById("auto-toc");
+      if (!tocNav) return;
+      heads.forEach(function(h, idx) {
+        if (!h.id) h.id = "sec-" + (idx + 1);
+        var a = document.createElement("a");
+        a.href = "#" + h.id;
+        a.textContent = h.textContent;
+        tocNav.appendChild(a);
+      });
+    });
+
+    window.copyVoScript = function(btn, text) {
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(text).then(function() {
+          var old = btn.innerHTML;
+          btn.innerHTML = "✅ Đã chép lời";
+          setTimeout(function(){ btn.innerHTML = old; }, 1800);
+        });
+      }
+    };
+
+  </script>
+</head>
+<body data-page="walk-and-talk">
+  <div class="shell" style="grid-template-columns: 1fr 250px; max-width: 1180px; margin: 0 auto;">
+    <main class="main">
+      <div class="content" style="max-width: 820px;">
+        <div class="hero">
+          <div style="color: #d93025; font-weight: 700; font-size: 12px; letter-spacing: 1px; margin-bottom: 8px;">— ĐỊNH DẠNG 02: LỘ MẶT KHÔNG CẦN HỌC THUỘC (BẢN NÂNG CẤP 2.0)</div>
+          <h1 style="margin-top:0">Walk &amp; Talk &amp; Talking Head</h1>
+        </div>
+
+        <p class="lede">Nếu Định dạng 01 (Voice-Over) dùng <strong>hình ảnh thao tác tay để che mặt</strong>, thì Định dạng 02 dùng <strong>chuyển động cơ thể và nhịp cắt từng câu để che sạch lỗi nói vấp</strong>. Đan xen giữa <em>Walk &amp; Talk</em> (vừa đi vừa nói ngoài hiện trường) và <em>Talking Head</em> (ngồi bàn đối thoại 1-1) giúp người làm nghề lộ diện tự nhiên, khoe khéo cơ sở thật và chốt niềm tin mà không bao giờ phải học thuộc lòng một mạch 60 giây.</p>
+
+        <!-- ==================== MỤC 1 ==================== -->
+        <h2 id="sec-1">1. Định nghĩa, Bản chất &amp; 4 Nút thắt khiến học viên ngại làm</h2>
+
+        <p>Định dạng 02 là bước chuyển mình từ <em>"người thợ giấu mặt"</em> sang <em>"người chủ đứng ra bảo chứng cho dịch vụ của mình"</em>. Thay vì tách rời Walk &amp; Talk và Talking Head thành hai bài học cô lập, thực tế sản xuất video cho thấy <strong>hai kỹ thuật này dùng chung một lõi: chia kịch bản thành các mảnh ngắn 3–6 giây, mỗi mảnh gắn với một động tác hoặc một điểm cắt</strong>:</p>
+
+        <div class="spec">
+          <div class="row">
+            <span class="b s">Walk &amp; Talk</span>
+            <div><strong>Vừa đi vừa nói (Chuyển động dẫn đường):</strong> Cầm điện thoại tự quay (hoặc nhờ trợ lý đi lùi góc rộng <code>0.5x</code> / <code>1x</code>), vừa bước đi trong cơ sở, hành lang, công trường vừa trò chuyện trực diện vào ống kính. Cảnh vật trôi theo bước chân (<em>Parallax Motion</em>) giữ mắt người xem cao gấp <strong>2.4 lần</strong> so với phông nền đứng im.</div>
+          </div>
+          <div class="row">
+            <span class="b s">Talking Head</span>
+            <div><strong>Ngồi bàn đối thoại 1-1 (Tĩnh tại chốt niềm tin):</strong> Đặt máy cố định cách <strong>1 sải tay</strong> tại bàn làm việc, nhìn thẳng ống kính phân tích chuyên môn hoặc chốt lời khuyên theo kỹ thuật <em>Single-Line</em> (đọc nhẩm 1 câu 5–7 chữ &rarr; ngước nhìn lens nói dứt khoát &rarr; cắt sạch khoảng thở).</div>
+          </div>
+          <div class="row">
+            <span class="b s">Dựng Intercut</span>
+            <div><strong>Luân phiên Nửa Tĩnh &harr; Nửa Động:</strong> Một video chuyên gia sắc bén hiếm khi chỉ đi bộ từ đầu đến cuối hoặc ngồi lì một chỗ suốt 60 giây. Mở màn tại bàn (Tĩnh) &rarr; bước ra hành lang dẫn chứng (Động) &rarr; vừa làm vừa nói (In-situ) &rarr; dừng chân nhìn thẳng ống kính chốt hạ.</div>
+          </div>
+        </div>
+
+        <h3>Vì sao học viên ít làm Walk &amp; Talk — và vì sao nỗi sợ đó đang đặt sai chỗ?</h3>
+        <p>Qua khảo sát thực tế tại lớp, 80% học viên ngại lộ mặt ở Định dạng 02 vì mắc kẹt trong <strong>4 ngộ nhận dưới đây</strong>. Gốc rễ chung của cả 4 nút thắt là <strong>coi một video 60 giây như một lần diễn liền mạch (One-take)</strong>:</p>
+
+        <div class="tw">
+          <table class="t">
+            <thead>
+              <tr>
+                <th>Nút thắt tâm lý</th>
+                <th>Học viên thường lầm tưởng</th>
+                <th>Sự thật thực chiến cần bẻ gãy ngay</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>1. Sợ nói một mạch 60s</strong></td>
+                <td>Phải vừa bước đi vừa nói trôi chảy 45–60 giây không vấp; vấp một chữ là phải đi lại từ đầu.</td>
+                <td><strong>Không ai quay một mạch.</strong> Video 65 giây của anh Việt gồm <strong>13 mảnh ghép (shots)</strong>, mỗi mảnh chỉ dài 3–6 giây. Vấp ở câu nào, đứng tại chỗ nói lại đúng câu đó.</td>
+              </tr>
+              <tr>
+                <td><strong>2. Sợ ánh nhìn đám đông</strong></td>
+                <td>Cầm điện thoại đi ngoài đường hoặc trước mặt nhân viên tự nói một mình trông rất kỳ cục ("thuế thể diện").</td>
+                <td>Quay ngay trong cơ sở của mình, hành lang lớp học, cầu thang hoặc góc vườn. Người xung quanh không bao giờ chú ý đến máy quay quá 3 giây.</td>
+              </tr>
+              <tr>
+                <td><strong>3. Tay trống không biết để đâu</strong></td>
+                <td>Hai tay buông thõng hoặc vung vẩy gượng gạo, bước đi cứng đờ như robot.</td>
+                <td><strong>Giao ngay cho tay một việc thật:</strong> cầm ly cà phê, mở cánh cửa, chỉ vào đồ nghề, đeo găng tay, lật hồ sơ. Khi tay bận làm việc, cơ mặt tự khắc hết gồng.</td>
+              </tr>
+              <tr>
+                <td><strong>4. Ngồi bàn nói bị đơ như đọc văn bia</strong></td>
+                <td>Talking Head là phải học thuộc cả đoạn văn dài rồi nhìn chằm chằm vào ống kính trả bài.</td>
+                <td><strong>Tuyệt đối không đọc cả đoạn.</strong> Chỉ nạp vào đầu đúng 1 câu ngắn 5–7 chữ &rarr; ngước nhìn lens &rarr; đếm thầm 1-2 &rarr; nói dứt câu &rarr; đếm thầm 1-2 &rarr; cắt sạch khoảng nghỉ trên CapCut.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="callout tip">
+          <div class="h">Chân lý thực chiến</div>
+          <p>Nếu ngồi một chỗ trước máy quay khiến bạn nói năng như đọc văn bia, hãy đứng dậy và bước đi. Chân bước thì não thông — còn nếu sợ bước đi dài bị hụt hơi, hãy nhớ: <strong>Mỗi câu nói là một lần đổi động tác, cắt ngay trên đà chuyển động thì không một ai nhận ra vết ghép</strong>.</p>
+        </div>
+
+        <!-- ==================== MỤC 2 ==================== -->
+        <h2 id="sec-2">2. Slide Dẫn Nhập Đầu Buổi Học Offline (5 Slides Mở Màn &amp; Lời Dẫn Bục Giảng)</h2>
+
+        <p>Khi bước vào buổi học Định dạng 02, mục tiêu của 5 phút đầu tiên không phải là giảng thông số kỹ thuật, mà là <strong>hạ khiên phòng thủ của phòng học</strong> — đưa học viên từ vùng an toàn <em>"giấu mặt"</em> (Định dạng 01) sang <em>"lộ diện tự nhiên"</em> mà không cảm thấy bị ép diễn. Dưới đây là cấu trúc <strong>5 Slide dẫn nhập</strong> cùng lời nói nguyên văn trên bục giảng:</p>
+
+        <div class="slide-deck">
+          <!-- Slide 1 -->
+          <div class="slide-card">
+            <div class="slide-canvas">
+              <span class="slide-num">Slide 01 • Phá băng áp lực</span>
+              <h3 class="slide-headline">"HÔM NAY BẠN KHÔNG PHẢI DIỄN — VÀ KHÔNG PHẢI THUỘC BÀI"</h3>
+              <div class="slide-visual">
+                <strong>Bố cục thị giác trên màn chiếu:</strong> Nền tối tối giản, một dòng tiêu đề lớn đặt chính giữa. Bên dưới là dòng chữ gạch ngang: <del>Học thuộc lòng kịch bản 60 giây</del> &rarr; Thay bằng: <strong>Ghép 6 mảnh 4 giây</strong>.
+              </div>
+            </div>
+            <div class="slide-speaker">
+              <b class="spk-lbl">🗣️ Lời dẫn trên bục giảng (0:00 – 1:00):</b><br>
+              "Buổi trước chúng ta làm Voice-Over, chỉ quay đôi bàn tay làm nghề và giấu mặt hoàn toàn — ai cũng đã ra được video đầu tiên. Hôm nay tôi mời anh chị đưa gương mặt mình lên hình. Nhưng tôi cam kết trước một điều: <strong>Trong phòng này hôm nay, không một ai phải nói liền một mạch 60 giây, và không một ai phải học thuộc lòng quá 7 chữ một lần</strong>."
+            </div>
+          </div>
+
+          <!-- Slide 2 -->
+          <div class="slide-card">
+            <div class="slide-canvas">
+              <span class="slide-num">Slide 02 • Bắt bệnh phòng học</span>
+              <h3 class="slide-headline">GIƠ TAY NẾU ANH CHỊ TỪNG TRẢI QUA 1 TRONG 3 CẢNH NÀY</h3>
+              <div class="slide-visual">
+                <ul>
+                  <li><strong>Cảnh 1:</strong> Quay xong xem lại thấy mặt mình cứng đờ, giọng lạ hoắc &rarr; Xóa luôn không dám đăng.</li>
+                  <li><strong>Cảnh 2:</strong> Quay 10 lần vẫn vấp ở câu thứ 3 &rarr; Càng quay lại càng quên sạch chữ.</li>
+                  <li><strong>Cảnh 3:</strong> Đứng trước ống kính tự nhiên thấy hai bàn tay thừa thãi, không biết giấu vào đâu.</li>
+                </ul>
+              </div>
+            </div>
+            <div class="slide-speaker">
+              <b class="spk-lbl">🗣️ Lời dẫn trên bục giảng (1:00 – 2:00):</b><br>
+              "Ai từng quay xong tự xem lại thấy ngượng quá xóa luôn, giơ tay giúp tôi! Ai từng quay 10 lần vẫn vấp đúng một chỗ, giơ tay! Anh chị nhìn quanh phòng xem: tất cả chúng ta đều bị y hệt nhau. Anh chị bị đơ không phải vì anh chị kém ăn nói — ngoài đời anh chị tư vấn khách hàng hay như rót mật vào tai. Anh chị bị đơ chỉ vì đang <strong>bắt não vừa đóng vai người nhớ chữ, vừa đóng vai người diễn trước một cục thủy tinh vô hồn</strong>."
+            </div>
+          </div>
+
+          <!-- Slide 3 -->
+          <div class="slide-card">
+            <div class="slide-canvas">
+              <span class="slide-num">Slide 03 • Bóc trần hậu trường</span>
+              <h3 class="slide-headline">VIDEO 65 GIÂY = 13 MẢNH GHÉP NGẮN (3 – 5 GIÂY/MẢNH)</h3>
+              <div class="slide-visual">
+                <strong>Bố cục thị giác trên màn chiếu:</strong> Dải 13 ô ảnh thumbnail từ video <em>"Bắt đầu với thứ vớ vẩn"</em> của anh Việt, tô 3 màu rõ rệt: <span style="color:#38bdf8;font-weight:700;">6 mảnh Ngồi bàn gỗ (Tĩnh)</span> + <span style="color:#34d399;font-weight:700;">3 mảnh Bước đi hành lang (Động)</span> + <span style="color:#fbbf24;font-weight:700;">4 mảnh Vừa làm tay vừa nói (In-situ)</span>.
+              </div>
+            </div>
+            <div class="slide-speaker">
+              <b class="spk-lbl">🗣️ Lời dẫn trên bục giảng (2:00 – 3:15):</b><br>
+              "Đây là video 65 giây trên trang Facebook của tôi. Người ngoài xem tưởng tôi vừa đi vừa nói trôi chảy một mạch từ đầu đến cuối. Thực tế nó được ghép từ <strong>13 mảnh rời rạc</strong>: có mảnh tôi ngồi bàn, có mảnh tôi bước đi dưới hàng cây, có mảnh tay tôi lắp chân máy rồi tự cười chính mình. Tôi chưa bao giờ nói một mạch 65 giây!"
+            </div>
+          </div>
+
+          <!-- Slide 4 -->
+          <div class="slide-card">
+            <div class="slide-canvas">
+              <span class="slide-num">Slide 04 • Kỹ thuật lõi</span>
+              <h3 class="slide-headline">NÓI CÂU NÀO — ĐỔI ĐỘNG TÁC CÂU ĐÓ</h3>
+              <div class="slide-visual">
+                <strong>Sơ đồ 3 cột ngang:</strong><br>
+                <strong>[Câu 1: Mở bài]</strong> Đang bước từ cửa vào &rarr; <strong>[Câu 2: Thân bài]</strong> Quay người / Tay chỉ thẳng vào đồ nghề &rarr; <strong>[Câu 3: Chốt hạ]</strong> Dừng bước chân hoặc hạ lưng ngồi xuống ghế.
+              </div>
+            </div>
+            <div class="slide-speaker">
+              <b class="spk-lbl">🗣️ Lời dẫn trên bục giảng (3:15 – 4:15):</b><br>
+              "Toàn bộ bí quyết nằm ở câu thần chú này: <strong>Nói câu nào, đổi động tác câu đó</strong>. Cứ hết một câu 5–7 chữ là anh chị đổi hướng bước, chỉ tay vào việc thật hoặc ngồi xuống ghế. Khi vào CapCut, cắt đúng vào nhịp cơ thể đang chuyển động thì hai câu nối vào nhau mượt như một cú máy liền, che sạch 100% chỗ nói vấp."
+            </div>
+          </div>
+
+          <!-- Slide 5 -->
+          <div class="slide-card">
+            <div class="slide-canvas">
+              <span class="slide-num">Slide 05 • Cầu nối Định dạng 01 &rarr; 02</span>
+              <h3 class="slide-headline">HAI ĐỊNH DẠNG — HAI CÁCH CHE LỖI ĐỂ RA VIDEO NGAY</h3>
+              <div class="slide-visual">
+                <ul>
+                  <li><strong>Định dạng 01 (Voice-Over):</strong> Dùng <strong>HÌNH ẢNH BÀN TAY</strong> để che mặt (Dựng hình trước, thu âm đè lên sau).</li>
+                  <li><strong>Định dạng 02 (Walk &amp; Talk / Talking Head):</strong> Dùng <strong>CHUYỂN ĐỘNG &amp; NHỊP CẮT CÂU</strong> để che lỗi vấp (Mỗi câu 1 động tác, kết hợp B-roll đè lên lời nói).</li>
+                </ul>
+              </div>
+            </div>
+            <div class="slide-speaker">
+              <b class="spk-lbl">🗣️ Lời dẫn &amp; Hành động điều phối (4:15 – 5:00):</b><br>
+              <em>(Anh Việt cầm điện thoại bước ra khỏi bục giảng, vừa đi dọc lối giữa lớp vừa nói câu kết):</em> "Định dạng 01 anh chị dùng hình che mặt. Định dạng 02 anh chị dùng chuyển động che lỗi. Ngay bây giờ chúng ta sẽ đi qua 3 bài tập theo đúng 3 nấc thang: từ ngồi tại bàn 1 sải tay, bước ra hành lang cắt từng câu, cho đến ghép Nửa Tĩnh – Nửa Động. Mỗi bài tôi làm mẫu 3 phút, anh chị bấm máy 7 phút là ra sản phẩm!"
+            </div>
+          </div>
+        </div>
+
+        <!-- ==================== MỤC 3 ==================== -->
+        <h2 id="sec-3">3. Giải phẫu Video Mẫu trên Page Facebook của Anh Việt (Intercut &amp; Single-Line)</h2>
+
+        <p>Để thấy rõ cách kết hợp giữa <strong>Talking Head (Ngồi bàn gỗ)</strong>, <strong>Walk &amp; Talk (Bước đi ngoài trời)</strong> và <strong>Thoại In-Situ (Tay làm miệng nói)</strong>, hãy giải phẫu trực tiếp 3 video thực chiến trên Page Facebook của anh Việt dưới đây:</p>
+
+        <div class="v3-group">
+
+          <!-- VIDEO ANH VIỆT 1: BẮT ĐẦU VỚI THỨ VỚ VẨN -->
+          <div class="v3-card" id="v3-viet-vo-van">
+            <div class="v3-head">
+              <div class="v3-title-group">
+                <span class="v3-badge v3-badge-win">MẪU CHUẨN INTERCUT • PAGE ANH VIỆT #01</span>
+                <strong>Nguyễn Việt — "Bắt đầu với thứ vớ vẩn &amp; Ẩn dụ mở bản đồ Đế Chế"</strong>
+                <span class="v3-meta">(65 giây • 13 Shots: 6 Tĩnh + 3 Đi bộ + 4 In-situ + 8 loại B-roll)</span>
+              </div>
+              <div class="v3-actions">
+                <button type="button" class="v3-btn-play" onclick="window.toggleV3Player(this, 'p3-viet-vo-van', 'https://media.fedu.vn/videos/aroll_broll_viet.mp4')">▶️ Xem video</button>
+                <a href="https://www.facebook.com/reel/1498902625604603/" target="_blank" rel="noopener" class="v3-btn-link">Facebook Reel ↗</a>
+              </div>
+            </div>
+
+            <div class="v3-shot-grid">
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Shot 1 • Tĩnh</span>
+                <span class="v3-shot-dur">Bàn gỗ</span>
+                <img src="https://media.fedu.vn/images/wnt2/aroll_broll_viet_s01.jpg" alt="Shot 1 Talking Head Bàn gỗ" loading="lazy"/>
+                <div class="v3-shot-cap">Hook: "Thuế thể diện"</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Shot 2 • Đi bộ</span>
+                <span class="v3-shot-dur">Walk &amp; Talk</span>
+                <img src="https://media.fedu.vn/images/wnt2/aroll_broll_viet_s02.jpg" alt="Shot 2 Walk and Talk cây xanh" loading="lazy"/>
+                <div class="v3-shot-cap">Bước dọc hàng cây</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Shot 4 • In-Situ</span>
+                <span class="v3-shot-dur">Thao tác</span>
+                <img src="https://media.fedu.vn/images/wnt2/aroll_broll_viet_s03.jpg" alt="Shot 4 Gá máy lên tripod" loading="lazy"/>
+                <div class="v3-shot-cap">Tay gá tripod bấm REC</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Shot 5 • In-Situ</span>
+                <span class="v3-shot-dur">Tự trào</span>
+                <img src="https://media.fedu.vn/images/wnt2/aroll_broll_viet_s04.jpg" alt="Shot 5 Nhìn ống kính cười tự trào" loading="lazy"/>
+                <div class="v3-shot-cap">Nhìn lens cười tự trào</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Shot 10 • Bằng chứng</span>
+                <span class="v3-shot-dur">Clip cũ</span>
+                <img src="https://media.fedu.vn/images/wnt2/aroll_broll_viet_s05.jpg" alt="Shot 10 Chỉ màn hình video cũ" loading="lazy"/>
+                <div class="v3-shot-cap">Chỉ màn hình clip đầu tay</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Shot 12 • Dừng chân</span>
+                <span class="v3-shot-dur">Chốt ý</span>
+                <img src="https://media.fedu.vn/images/wnt2/aroll_broll_viet_s06.jpg" alt="Shot 12 Dừng chân chốt ẩn dụ Đế Chế" loading="lazy"/>
+                <div class="v3-shot-cap">Dừng bước chốt Đế Chế</div>
+              </div>
+            </div>
+
+            <div class="v3-player" id="p3-viet-vo-van" style="display:none;">
+              <video controls playsinline preload="none" poster="https://media.fedu.vn/images/wnt2/aroll_broll_viet_s01.jpg"></video>
+            </div>
+
+            <div class="v3-verdict">
+              <p><strong>Đắt ở điểm gì:</strong> Video dài 65 giây nhưng không một giây nào bị tĩnh lặng nhàm chán nhờ công thức <strong>Dựng Intercut (Luân phiên Tĩnh &harr; Động &harr; In-Situ)</strong>:</p>
+              <ul>
+                <li><strong>Nhịp mở đĩnh đạc (Shot 01 – Talking Head bàn gỗ):</strong> Mở màn bằng luận điểm sắc lẹm về <em>"Đồng tiền Sự Chú Ý"</em> và <em>"Thuế thể diện"</em> (người càng giỏi càng sợ mất mặt).</li>
+                <li><strong>Bung không gian (Shot 02 &amp; Shot 08 – Walk &amp; Talk Times City):</strong> Đang ngồi trong phòng lập tức cắt ra cảnh bước đi thong dong dưới vòm cây xanh ngoài trời — mắt người xem được "thở" và cuốn theo bước chân.</li>
+                <li><strong>Thoại In-Situ "Tay làm miệng nói" (Shot 03, 04, 05, 10):</strong> Thay vì ngồi kể suông chuyện bị đơ trước máy quay, anh Việt cầm điện thoại lướt mẫu (Shot 3), gá máy lên tripod chạm nút đỏ (Shot 4), nhìn ống kính cười tự trào (Shot 5) và lấy ngón tay chỉ thẳng vào chiếc video đầu tay còn thô vụng trên màn hình máy tính (Shot 10).</li>
+                <li><strong>Cú dừng chân đắt giá (Shot 12 – Walk &amp; Talk Stop + Archival B-roll):</strong> Đang bước đi thì <strong>chủ động dừng chân đứng lại nhìn thẳng ống kính</strong>, tung ẩn dụ <em>"Xua nông dân đi dò bản đồ đen trong game Đế Chế"</em> kèm 3 giây hình ảnh game AoE có tiếng <em>"đù đù"</em> kinh điển, trước khi về lại bàn gỗ chốt Punchline (Shot 13).</li>
+              </ul>
+              <details class="v3-transcript-toggle">
+                <summary>Xem trọn bộ kịch bản phân tách 13 Shots của video này</summary>
+                <div class="v3-transcript-body">[Shot 01 - Talking Head Bàn Gỗ]: Đồng tiền lưu hành mạnh nhất bây giờ là SỰ CHÚ Ý. Ai làm kinh doanh cũng hiểu nếu không lên video thì khách hàng sẽ quên mình. Nhưng người càng nhiều tri thức, càng có vị thế thì cái "thuế thể diện" lại càng cao: sợ nói dở, sợ mất hình tượng, nghĩ mình giỏi rồi cần gì phải lên video. Để rồi cái giá phải trả là: hoặc phải đóng khoản thuế rất đắt bằng tiền quảng cáo, hoặc đứng nhìn đối thủ lấy sạch sự chú ý của thị trường.
+[Shot 02 - Walk &amp; Talk Cây Xanh]: Với những món đồ mua theo cảm xúc, người ta chỉ cần làm clip vui vẻ. Nhưng nếu bạn bán giải pháp chuyên môn hay dịch vụ giá trị cao, khách hàng chỉ chi tiền khi có NIỀM TIN.
+[Shot 03 - In-Situ Lướt ĐT]: Bước bắt buộc đầu tiên là phải NẠP DỮ LIỆU: xem đối thủ làm thế nào, phân tích những mẫu video thành công.
+[Shot 04 - In-Situ Gá Tripod]: Nạp xong cả đống dữ liệu xịn sò, cảm hứng bùng nổ, tưởng như mọi thứ đã rõ ràng... cho đến khi bấm nút REC.
+[Shot 05 - In-Situ Nhìn Lens Cười]: Mặt thì cứng đờ, giọng thì run... Bình thường ngồi tư vấn cho khách thì nói hay như rót mật vào tai, thế mà đứng trước ống kính thì sự tự nhiên biến đâu mất sạch.
+[Shot 06 &amp; 07 - Talking Head Bàn Gỗ]: Cảm giác lúc đó hụt hẫng vô cùng vì đã nạp quá nhiều thứ hoàn hảo đến mức xấu hổ vì sự non nớt của chính mình. Cái MẮT nhìn đâu cũng thấy phải xịn, cái ĐẦU nghĩ toàn thứ hoàn hảo, trong khi cái MIỆNG chưa quen nói trước ống kính.
+[Shot 08 - Walk &amp; Talk Hành Lang]: Nó giống như việc ăn ngon quen mồm: Cái lưỡi thì sành ăn, nhưng cái tay thì chưa biết nấu. Tự nấu thấy dở một cái... là bỏ luôn căn bếp.
+[Shot 09 - Talking Head Cận Cảnh]: Người ta mất 5 năm luyện tập để nói chuyện tự nhiên như thở, bạn xem có 60 giây rồi đòi bật máy lên hay ngay làm sao có được?
+[Shot 10 - In-Situ Chỉ Màn Hình Clip Cũ]: Cái video marketing đầu tiên của tôi: nói năng còn vụng, ánh sáng chưa chuẩn... Nhưng may là ngày đó tôi ĐÃ DÁM ĐĂNG LÊN, chứ không giấu nó trong máy.
+[Shot 11 - Talking Head Bàn Gỗ]: Bắt đầu bằng một video vớ vẩn thực ra là cách bạn "hack não" chính mình. Bởi vì não bộ chỉ có thể sửa chữa một thứ ĐANG HOẠT ĐỘNG, chứ không bao giờ tối ưu được một thứ CHƯA TỒN TẠI.
+[Shot 12 - Walk &amp; Talk Dừng Chân + B-Roll Đế Chế]: Giống như chơi Đế Chế: Ban đầu bản đồ đen xì, phải xua dân đi dò đường thì sương mù mới tan. Không mở bản đồ thì mãi mãi không bao giờ lên đời được.
+[Shot 13 - Talking Head Chốt Hạ]: Muốn lên đời Video Marketing... cứ bắt đầu thật vớ vẩn đi. Nhớ nhé, phải thật vớ vẩn trước đã!</div>
+              </details>
+            </div>
+          </div>
+
+          <!-- VIDEO ANH VIỆT 2: HẬU TRƯỜNG 5 PHÚT TALKING HEAD SINGLE-LINE -->
+          <div class="v3-card" id="v3-viet-talkinghead">
+            <div class="v3-head">
+              <div class="v3-title-group">
+                <span class="v3-badge v3-badge-win">HẬU TRƯỜNG THỰC CHIẾN • PAGE ANH VIỆT #02</span>
+                <strong>Nguyễn Việt — 5 Phút Hậu Trường Bấm Máy: Setup "1 Sải Tay" &amp; Kỹ Thuật Ngắt Câu Single-Line</strong>
+                <span class="v3-meta">(Thị phạm trực tiếp tại bàn làm việc • Không cần học thuộc kịch bản)</span>
+              </div>
+              <div class="v3-actions">
+                <button type="button" class="v3-btn-play" onclick="window.toggleV3Player(this, 'p3-viet-talkinghead', 'https://media.fedu.vn/videos/talkinghead_viet.mp4')">▶️ Xem video</button>
+                <a href="https://www.facebook.com/reel/1039457391880112" target="_blank" rel="noopener" class="v3-btn-link">Facebook Reel ↗</a>
+              </div>
+            </div>
+
+            <div class="v3-shot-grid">
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Bước 1 • Cự ly</span>
+                <span class="v3-shot-dur">1 Sải tay</span>
+                <img src="https://media.fedu.vn/images/wnt2/talkinghead_viet_s01.jpg" alt="Setup 1 sải tay" loading="lazy"/>
+                <div class="v3-shot-cap">Đo khoảng cách 1 sải tay</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Bước 2 • Ánh sáng</span>
+                <span class="v3-shot-dur">Đèn 45°</span>
+                <img src="https://media.fedu.vn/images/wnt2/talkinghead_viet_s02.jpg" alt="Đèn chính 45 độ và đèn ven" loading="lazy"/>
+                <div class="v3-shot-cap">Đèn chính 45° + đèn sau</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Bước 3 • Nạp câu</span>
+                <span class="v3-shot-dur">5–7 chữ</span>
+                <img src="https://media.fedu.vn/images/wnt2/talkinghead_viet_s03.jpg" alt="Cúi đọc nhẩm 1 câu ngắn" loading="lazy"/>
+                <div class="v3-shot-cap">Cúi nhìn nạp 1 câu ngắn</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Bước 4 • Đếm 1-2</span>
+                <span class="v3-shot-dur">Khóa mắt</span>
+                <img src="https://media.fedu.vn/images/wnt2/talkinghead_viet_s04.jpg" alt="Ngước nhìn thẳng ống kính" loading="lazy"/>
+                <div class="v3-shot-cap">Ngước nhìn lens đếm 1-2</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Bước 5 • Nhả chữ</span>
+                <span class="v3-shot-dur">Dứt khoát</span>
+                <img src="https://media.fedu.vn/images/wnt2/talkinghead_viet_s05.jpg" alt="Nói dứt khoát 1 câu" loading="lazy"/>
+                <div class="v3-shot-cap">Nói dứt câu, giữ mặt 2s</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Bước 6 • Cắt thở</span>
+                <span class="v3-shot-dur">CapCut</span>
+                <img src="https://media.fedu.vn/images/wnt2/talkinghead_viet_s06.jpg" alt="Cắt khoảng thở trên CapCut" loading="lazy"/>
+                <div class="v3-shot-cap">Xén sạch khoảng nghỉ</div>
+              </div>
+            </div>
+
+            <div class="v3-player" id="p3-viet-talkinghead" style="display:none;">
+              <video controls playsinline preload="none" poster="https://media.fedu.vn/images/wnt2/talkinghead_viet_s01.jpg"></video>
+            </div>
+
+            <div class="v3-verdict">
+              <p><strong>Đắt ở điểm gì:</strong> Phá tan ảo tưởng rằng chuyên gia lên hình là phải nói một lèo không vấp. Anh Việt để máy chạy liên tục và thị phạm trực tiếp <strong>Quy trình Single-Line 6 nhịp</strong> ngay tại bàn làm việc:</p>
+              <ol>
+                <li><strong>Thiết lập cố định "1 Sải Tay":</strong> Điện thoại, chân máy, mic và đèn luôn nằm sẵn trong tầm với một sải tay trên bàn. Có ý tưởng là bật công tắc quay trong 30 giây, không mất công tháo lắp.</li>
+                <li><strong>Bù sáng Dynamic Range cho điện thoại:</strong> Đèn chính đặt chếch 45° tạo khối mặt + bật sáng đèn phòng và 1 đèn nhỏ phía sau lưng (đèn ven tóc) để cảm biến điện thoại không bị bệt nhiễu.</li>
+                <li><strong>Chu trình nói từng câu (Single-Line Loop):</strong> <em>Cúi xuống nhìn dàn ý nạp đúng 1 câu 5–7 chữ &rarr; Ngước lên nhìn thẳng lỗ camera &rarr; Đếm thầm 1-2 cho mặt tĩnh lại &rarr; Nói dứt khoát câu đó &rarr; Giữ nguyên ánh mắt nhìn lens đếm thầm 1-2 rồi mới cúi xuống xem câu tiếp theo</em>. Nhờ 2 nhịp đếm thầm ở hai đầu, khi vào CapCut xén bỏ đoạn cúi đầu, các câu nối vào nhau sắc lẹm mà không hề bị dính chữ hay đảo mắt.</li>
+              </ol>
+            </div>
+          </div>
+
+          <!-- VIDEO ANH VIỆT 3: NHỊP CẮT BẾP & KHOẢNG NGHỈ THÍNH GIÁC -->
+          <div class="v3-card" id="v3-viet-kitchen">
+            <div class="v3-head">
+              <div class="v3-title-group">
+                <span class="v3-badge v3-badge-ex">MỒI CẢNH &amp; NHỊP CẮT ĐỜI THƯỜNG • PAGE ANH VIỆT #03</span>
+                <strong>Nguyễn Việt — Biến công việc thường ngày trong bếp thành chuỗi cắt chuyển động đa góc máy</strong>
+                <span class="v3-meta">(43 Shots • Kết hợp đổi trục &gt;30°, mồi cảnh mở tủ &amp; âm thanh hiện trường)</span>
+              </div>
+              <div class="v3-actions">
+                <button type="button" class="v3-btn-play" onclick="window.toggleV3Player(this, 'p3-viet-kitchen', 'https://media.fedu.vn/videos/2304710183702297.mp4')">▶️ Xem video</button>
+                <a href="https://www.facebook.com/reel/2304710183702297" target="_blank" rel="noopener" class="v3-btn-link">Facebook Reel ↗</a>
+              </div>
+            </div>
+
+            <div class="v3-shot-grid">
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Shot 1 • Mở tủ</span>
+                <span class="v3-shot-dur">Mồi cảnh</span>
+                <img src="https://media.fedu.vn/images/IG_@100033115395865_2304710183702297_Video/shot_01_mid.webp" alt="Shot 1 Mở tủ lạnh" loading="lazy"/>
+                <div class="v3-shot-cap">Mở cánh tủ lạnh lấy đồ</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Shot 2 • Đổi trục</span>
+                <span class="v3-shot-dur">Góc thấp</span>
+                <img src="https://media.fedu.vn/images/IG_@100033115395865_2304710183702297_Video/shot_02_mid.webp" alt="Shot 2 Góc thấp" loading="lazy"/>
+                <div class="v3-shot-cap">Nối động tác tay lấy đồ</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Shot 3 • Đặc tả</span>
+                <span class="v3-shot-dur">Cận tay</span>
+                <img src="https://media.fedu.vn/images/IG_@100033115395865_2304710183702297_Video/shot_03_mid.webp" alt="Shot 3 Cận thao tác" loading="lazy"/>
+                <div class="v3-shot-cap">Đặc tả sơ chế nguyên liệu</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Shot 4 • Trung cảnh</span>
+                <span class="v3-shot-dur">In-Situ</span>
+                <img src="https://media.fedu.vn/images/IG_@100033115395865_2304710183702297_Video/shot_04_mid.webp" alt="Shot 4 Trung cảnh bếp" loading="lazy"/>
+                <div class="v3-shot-cap">Thao tác thực tế tại bếp</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Shot 5 • Âm thanh</span>
+                <span class="v3-shot-dur">ASMR thật</span>
+                <img src="https://media.fedu.vn/images/IG_@100033115395865_2304710183702297_Video/shot_05_mid.webp" alt="Shot 5 Tiếng động thật" loading="lazy"/>
+                <div class="v3-shot-cap">Giữ tiếng dao thớt/xèo xèo</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Shot 6 • Chốt</span>
+                <span class="v3-shot-dur">Thành phẩm</span>
+                <img src="https://media.fedu.vn/images/IG_@100033115395865_2304710183702297_Video/shot_06_mid.webp" alt="Shot 6 Hoàn thiện" loading="lazy"/>
+                <div class="v3-shot-cap">Hoàn thiện món ăn đời thường</div>
+              </div>
+            </div>
+
+            <div class="v3-player" id="p3-viet-kitchen" style="display:none;">
+              <video controls playsinline preload="none" poster="https://media.fedu.vn/images/IG_@100033115395865_2304710183702297_Video/shot_01_mid.webp"></video>
+            </div>
+
+            <div class="v3-verdict">
+              <p><strong>Bài học áp dụng vào Walk &amp; Talk đời thường:</strong> Khi quay tại nhà hoặc tại cửa tiệm, đừng đứng khoanh tay nói lý thuyết. Hãy dùng <strong>cánh cửa tủ lạnh, cánh cửa phòng làm màn trập tự nhiên (Mask Cut)</strong>, nối các bước đi bằng thao tác tay thật, và chủ động chừa ra <strong>3–5 giây "Khoảng nghỉ thính giác"</strong> (ngừng nói hoàn toàn để khán giả nghe tiếng đồ nghề lách cách, tiếng nước chảy, tiếng bước chân thật).</p>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- ==================== MỤC 4 ==================== -->
+        <h2 id="sec-4">4. Giải phẫu Ví dụ Tina Nguyễn (`@tinanguyen2004`) &amp; Sản phẩm Học viên tại lớp</h2>
+
+        <p>Đối với các chủ cơ sở dịch vụ (Spa, Phòng khám, Salon tóc, Nha khoa, Thời trang, Nội thất), Walk &amp; Talk không chỉ giúp hết ngượng trước ống kính mà còn mang lại <strong>6 giá trị bán hàng trực tiếp</strong>:</p>
+
+        <div class="spec">
+          <div class="row">
+            <span class="b s">1. Khoe khéo cơ sở</span>
+            <div><strong>Quảng cáo không lời:</strong> Sải bước đến đâu, camera tự lướt qua máy móc hiện đại, quầy kệ ngăn nắp, sàn nhà sạch bóng đến đó mà không cần mở miệng tự khen.</div>
+          </div>
+          <div class="row">
+            <span class="b s">2. Tâm thế chủ nhà</span>
+            <div><strong>Lợi thế sân nhà:</strong> Đi trong tiệm của mình giống như đang đón khách quen vào nhà, cơ thể tự thả lỏng, giọng nói đàng hoàng và dứt khoát.</div>
+          </div>
+          <div class="row">
+            <span class="b s">3. Xóa so đo giá</span>
+            <div><strong>Chứng minh giá trị thật:</strong> Nhìn thấy khăn tiệt trùng gấp ngay ngắn, đồ nghề khử khuẩn, nhân viên chỉn chu, khách tự hiểu vì sao giá dịch vụ tương xứng.</div>
+          </div>
+          <div class="row">
+            <span class="b s">4. Bằng chứng sống</span>
+            <div><strong>Người thật việc thật:</strong> Cảnh kỹ thuật viên đang làm thật, khách hàng đang nằm điều trị thật có sức thuyết phục gấp trăm lần thuê diễn viên đóng giả.</div>
+          </div>
+          <div class="row">
+            <span class="b s">5. Lợi thế phái nữ</span>
+            <div><strong>Tôn trọn vóc dáng &amp; trang phục:</strong> Khi ngồi sau bàn, 70% trang phục bị che khuất và mặt dễ bị soi khuyết điểm. Đứng dậy sải bước trong bộ blouse hoặc blazer giúp toát lên năng lượng tự tin, thanh lịch.</div>
+          </div>
+          <div class="row">
+            <span class="b s">6. Dẫn tour từ xa</span>
+            <div><strong>Phá rào cản khách mới:</strong> Xem video dạo tiệm, khách đã quen mắt với quầy lễ tân, phòng dịch vụ và gương mặt chủ tiệm — khi đến ngoài đời không còn cảm giác bỡ ngỡ.</div>
+          </div>
+        </div>
+
+        <p>Hãy xem kỹ <strong>ca giải phẫu 6 Shots của Tina Nguyễn (`@tinanguyen2004`)</strong> và <strong>bài thực hành tại lớp của Học viên Nương</strong> dưới đây:</p>
+
+        <div class="v3-group">
+
+          <!-- VIDEO TINA NGUYỄN -->
+          <div class="v3-card" id="v3-tina-nguyen">
+            <div class="v3-head">
+              <div class="v3-title-group">
+                <span class="v3-badge v3-badge-win">MẪU DẪN TOUR PHÒNG KHÁM • 6 SHOTS CHUẨN MỰC</span>
+                <strong>Tina Nguyễn (@tinanguyen2004) — Đi từ cửa phòng khám &rarr; Giường khách thật &rarr; Ngồi bàn chốt lịch</strong>
+                <span class="v3-meta">(43.8 giây • 6 Shots • Spa &amp; Da liễu Y khoa)</span>
+              </div>
+              <div class="v3-actions">
+                <button type="button" class="v3-btn-play" onclick="window.toggleV3Player(this, 'p3-tina-nguyen', 'https://media.fedu.vn/videos/7673468312290037012.mp4')">▶️ Xem video</button>
+                <a href="https://www.tiktok.com/@tinanguyen2004/video/7673468312290037012" target="_blank" rel="noopener" class="v3-btn-link">TikTok gốc ↗</a>
+              </div>
+            </div>
+
+            <div class="v3-shot-grid">
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Shot 1 • 0–2.4s</span>
+                <span class="v3-shot-dur">Walk-In</span>
+                <img src="https://media.fedu.vn/images/IG_@tinanguyen2004_7673468312290037012_Double_Day_lu%C3%B4n_l%C3%A0_d%E1%BB%8Bp_%C4%91%E1%BB%83_kh%C3%A1ch_h%C3%A0ng_l%E1%BB%B1a_%C4%91%C6%B0%E1%BB%A3c/shot_01_mid.webp" alt="Shot 1 Tina bước vào từ cửa" loading="lazy"/>
+                <div class="v3-shot-cap">Sải bước từ cửa vào</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Shot 2 • 2.4–4.7s</span>
+                <span class="v3-shot-dur">Qua vai</span>
+                <img src="https://media.fedu.vn/images/IG_@tinanguyen2004_7673468312290037012_Double_Day_lu%C3%B4n_l%C3%A0_d%E1%BB%8Bp_%C4%91%E1%BB%83_kh%C3%A1ch_h%C3%A0ng_l%E1%BB%B1a_%C4%91%C6%B0%E1%BB%A3c/shot_02_mid.webp" alt="Shot 2 Góc qua vai dẫn vào phòng" loading="lazy"/>
+                <div class="v3-shot-cap">Góc qua vai vào phòng</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Shot 3 • 4.7–18.9s</span>
+                <span class="v3-shot-dur">In-Situ</span>
+                <img src="https://media.fedu.vn/images/IG_@tinanguyen2004_7673468312290037012_Double_Day_lu%C3%B4n_l%C3%A0_d%E1%BB%8Bp_%C4%91%E1%BB%83_kh%C3%A1ch_h%C3%A0ng_l%E1%BB%B1a_%C4%91%C6%B0%E1%BB%A3c/shot_03_mid.webp" alt="Shot 3 Tương tác tại giường khách" loading="lazy"/>
+                <div class="v3-shot-cap">Dừng cạnh giường khách</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Shot 4 • 18.9–20.8s</span>
+                <span class="v3-shot-dur">B-Roll Trước</span>
+                <img src="https://media.fedu.vn/images/IG_@tinanguyen2004_7673468312290037012_Double_Day_lu%C3%B4n_l%C3%A0_d%E1%BB%8Bp_%C4%91%E1%BB%83_kh%C3%A1ch_h%C3%A0ng_l%E1%BB%B1a_%C4%91%C6%B0%E1%BB%A3c/shot_04_mid.webp" alt="Shot 4 Cận cảnh nền da trước" loading="lazy"/>
+                <div class="v3-shot-cap">Macro da trước điều trị</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Shot 5 • 20.8–23.2s</span>
+                <span class="v3-shot-dur">B-Roll Sau</span>
+                <img src="https://media.fedu.vn/images/IG_@tinanguyen2004_7673468312290037012_Double_Day_lu%C3%B4n_l%C3%A0_d%E1%BB%8Bp_%C4%91%E1%BB%83_kh%C3%A1ch_h%C3%A0ng_l%E1%BB%B1a_%C4%91%C6%B0%E1%BB%A3c/shot_05_mid.webp" alt="Shot 5 Cận cảnh nền da sau" loading="lazy"/>
+                <div class="v3-shot-cap">Macro da căng bóng sau</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Shot 6 • 23.2–43.8s</span>
+                <span class="v3-shot-dur">Talking Head</span>
+                <img src="https://media.fedu.vn/images/IG_@tinanguyen2004_7673468312290037012_Double_Day_lu%C3%B4n_l%C3%A0_d%E1%BB%8Bp_%C4%91%E1%BB%83_kh%C3%A1ch_h%C3%A0ng_l%E1%BB%B1a_%C4%91%C6%B0%E1%BB%A3c/shot_06_mid.webp" alt="Shot 6 Ngồi bàn tư vấn chốt CTA" loading="lazy"/>
+                <div class="v3-shot-cap">Ngồi bàn chuyên gia chốt</div>
+              </div>
+            </div>
+
+            <div class="v3-player" id="p3-tina-nguyen" style="display:none;">
+              <video controls playsinline preload="none" poster="https://media.fedu.vn/images/IG_@tinanguyen2004_7673468312290037012_Double_Day_lu%C3%B4n_l%C3%A0_d%E1%BB%8Bp_%C4%91%E1%BB%83_kh%C3%A1ch_h%C3%A0ng_l%E1%BB%B1a_%C4%91%C6%B0%E1%BB%A3c/shot_01_mid.webp"></video>
+            </div>
+
+            <div class="v3-verdict">
+              <p><strong>Giải phẫu đường đi "Đi &rarr; Dừng &rarr; Chèn B-Roll &rarr; Ngồi bàn" của Tina Nguyễn:</strong></p>
+              <div class="tw">
+                <table class="t">
+                  <thead>
+                    <tr>
+                      <th>Shot &amp; Thời gian</th>
+                      <th>Cỡ cảnh &amp; Chuyển động</th>
+                      <th>Tác dụng tâm lý &amp; Kỹ thuật cắt nối</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><strong>Shot 1 (0.0s – 2.4s)</strong></td>
+                      <td><strong>Leading Walk-In (Trung toàn):</strong> Sải bước tự tin từ cửa phòng khám tiến về phía máy quay lùi dần.</td>
+                      <td>Tạo uy quyền chủ cơ sở và hiệu ứng thị sai (Parallax) giữ chân người xem ngay 2 giây đầu mà chưa cần chữ phức tạp.</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Shot 2 (2.4s – 4.7s)</strong></td>
+                      <td><strong>Over-the-Shoulder (Qua vai):</strong> Máy đi theo sau lưng Tina bước qua cửa kính rẽ vào phòng điều trị.</td>
+                      <td>Nối bước chân mượt mà (Match Cut), kích hoạt cảm giác khán giả đang được dẫn tour đi theo sau chủ tiệm.</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Shot 3 (4.7s – 18.9s)</strong></td>
+                      <td><strong>In-Situ Two-Shot:</strong> Dừng bước ngay cạnh giường điều trị, vừa tương tác với khách thật dưới đèn soi da vừa nói.</td>
+                      <td><strong>Bằng chứng sống (Social Proof):</strong> Tay có việc làm, có khách thật nằm trên giường nên lời nói hoàn toàn tự nhiên, không hề giống quảng cáo.</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Shot 4 &amp; 5 (18.9s – 23.2s)</strong></td>
+                      <td><strong>Macro B-Roll Insert (Before &amp; After):</strong> Cận cảnh nền da mụn viêm trước và nền da căng bóng sau điều trị.</td>
+                      <td><strong>Kỹ thuật L-Cut:</strong> Giọng Tina vẫn vang lên liên tục nhưng hình ảnh cắt sang bằng chứng cận cảnh đúng lúc người xem cần kiểm chứng kết quả.</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Shot 6 (23.2s – 43.8s)</strong></td>
+                      <td><strong>Talking Head tại bàn tư vấn:</strong> Hạ điểm dừng ngồi vào bàn làm việc (có màn hình, hồ sơ, gương soi) nhìn thẳng lens chốt ưu đãi.</td>
+                      <td>Đổi từ trạng thái năng động (Walk &amp; Talk) sang tĩnh tại đĩnh đạc (Talking Head) để chốt số liệu 90% phục hồi và kêu gọi đặt lịch.</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="callout tip" style="margin-top:12px;margin-bottom:4px;">
+                <div class="h">Công thức "30% Walk &amp; Talk Kiểu Tina" (Trích Kho Logic)</div>
+                <p>Nếu bạn là chủ Salon tóc, Spa hay Xưởng sản xuất quá bận rộn và ngại nhìn thẳng vào ống kính: Hãy đeo mic cài áo, <strong>vừa đi quanh tiệm vừa kiểm tra sản phẩm thợ đang làm và nói 2–3 câu nhận xét chuyên môn trực tiếp với khách/thợ</strong> (người quay đứng chếch góc 45°). Bạn không cần nhìn chằm chằm vào camera mà vẫn có thước phim chuyên gia thực chiến.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- VIDEO HỌC VIÊN NƯƠNG OFFLINE 2 -->
+          <div class="v3-card" id="v3-nuong-offline">
+            <div class="v3-head">
+              <div class="v3-title-group">
+                <span class="v3-badge v3-badge-ex">SẢN PHẨM HỌC VIÊN TẠI LỚP • OFFLINE 2</span>
+                <strong>Học viên Nương — Thực hành vừa đi vừa chia sẻ chủ đề Đào tạo Tiếng Anh ngay tại lớp học</strong>
+                <span class="v3-meta">(37 giây • Quay &amp; dựng hoàn thiện ngay trong buổi học Offline)</span>
+              </div>
+              <div class="v3-actions">
+                <button type="button" class="v3-btn-play" onclick="window.toggleV3Player(this, 'p3-nuong-offline', 'https://media.fedu.vn/videos/nuong_offline2_01.mp4')">▶️ Xem video</button>
+                <a href="https://www.youtube.com/shorts/GqLHBWSiWDI" target="_blank" rel="noopener" class="v3-btn-link">YouTube Shorts ↗</a>
+              </div>
+            </div>
+
+            <div class="v3-shot-grid">
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Nhịp 1 • 02s</span>
+                <span class="v3-shot-dur">Bước vào</span>
+                <img src="https://media.fedu.vn/images/wnt2/nuong_offline2_01_s01.jpg" alt="Học viên Nương nhịp 1" loading="lazy"/>
+                <div class="v3-shot-cap">Mở màn bước đi tự nhiên</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Nhịp 2 • 08s</span>
+                <span class="v3-shot-dur">Cử chỉ tay</span>
+                <img src="https://media.fedu.vn/images/wnt2/nuong_offline2_01_s02.jpg" alt="Học viên Nương nhịp 2" loading="lazy"/>
+                <div class="v3-shot-cap">Tay mở theo nhịp nói</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Nhịp 3 • 14s</span>
+                <span class="v3-shot-dur">Đổi góc</span>
+                <img src="https://media.fedu.vn/images/wnt2/nuong_offline2_01_s03.jpg" alt="Học viên Nương nhịp 3" loading="lazy"/>
+                <div class="v3-shot-cap">Rảo bước đổi hậu cảnh</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Nhịp 4 • 20s</span>
+                <span class="v3-shot-dur">Biểu cảm</span>
+                <img src="https://media.fedu.vn/images/wnt2/nuong_offline2_01_s04.jpg" alt="Học viên Nương nhịp 4" loading="lazy"/>
+                <div class="v3-shot-cap">Cơ mặt thả lỏng hết đơ</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Nhịp 5 • 27s</span>
+                <span class="v3-shot-dur">Nhấn ý</span>
+                <img src="https://media.fedu.vn/images/wnt2/nuong_offline2_01_s05.jpg" alt="Học viên Nương nhịp 5" loading="lazy"/>
+                <div class="v3-shot-cap">Nhịp bước giữ năng lượng</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Nhịp 6 • 33s</span>
+                <span class="v3-shot-dur">Chốt bài</span>
+                <img src="https://media.fedu.vn/images/wnt2/nuong_offline2_01_s06.jpg" alt="Học viên Nương nhịp 6" loading="lazy"/>
+                <div class="v3-shot-cap">Dừng bước mỉm cười kết</div>
+              </div>
+            </div>
+
+            <div class="v3-player" id="p3-nuong-offline" style="display:none;">
+              <video controls playsinline preload="none" poster="https://media.fedu.vn/images/wnt2/nuong_offline2_01_s01.jpg"></video>
+            </div>
+
+            <div class="v3-verdict">
+              <p><strong>Đắt ở điểm gì:</strong> Đây là minh chứng thực tế ngay tại lớp học Offline: Khi đứng yên một chỗ, học viên rất dễ gồng cứng để nhớ từng từ tiếng Anh; nhưng ngay khi được yêu cầu <strong>bước đi dọc không gian lớp học và chia nhỏ từng câu</strong>, cơ thể lập tức giải phóng năng lượng, ngữ điệu phát âm tuôn ra tự nhiên và hoàn thành trọn vẹn video 37 giây chỉ trong một buổi thực hành.</p>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- ==================== MỤC 5 ==================== -->
+        <h2 id="sec-5">5. Công thức viết thoại sắc bén 3 nhịp &amp; 4 Mẫu kỹ thuật từ Kho `ytuong.fedu.vn`</h2>
+
+        <p>Sai lầm lớn nhất khi chuyển từ Voice-Over sang Walk &amp; Talk / Talking Head là <strong>mang nguyên văn viết dài dòng của bài lồng tiếng ra để học thuộc và nói trước camera</strong>. Hãy nhìn rõ sự khác biệt cốt lõi giữa hai định dạng để viết câu thoại sắc bén ngay từ đầu:</p>
+
+        <div class="tw">
+          <table class="t">
+            <thead>
+              <tr>
+                <th>Tiêu chí đối chiếu</th>
+                <th>Định dạng 01: Voice-Over (Lồng tiếng)</th>
+                <th>Định dạng 02: Walk &amp; Talk / Talking Head</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Thứ gánh sức nặng giữ chân</strong></td>
+                <td>Chuỗi B-roll thao tác tay dồn dập + Giọng đọc phòng thu.</td>
+                <td><strong>Thần thái người nói + Bối cảnh thật + Chuyển động cơ thể.</strong></td>
+              </tr>
+              <tr>
+                <td><strong>Độ dài mỗi câu thoại</strong></td>
+                <td>Có thể viết câu 12–16 chữ vì nhìn giấy đọc trong phòng kín.</td>
+                <td><strong>Bắt buộc gọt xuống 5–7 chữ/mệnh đề</strong> — vừa khít 1 nhịp thở hoặc 2 bước chân.</td>
+              </tr>
+              <tr>
+                <td><strong>Lỗi chí mạng dễ gặp</strong></td>
+                <td>Đọc đều đều như máy, hình một đằng tiếng một nẻo.</td>
+                <td><strong>Mắt đảo nhớ chữ, nói vấp, tay thừa thãi, mở đầu rề rà.</strong></td>
+              </tr>
+              <tr>
+                <td><strong>Vũ khí che lỗi</strong></td>
+                <td>Đè cảnh cận cảnh sản phẩm lên trên.</td>
+                <td><strong>Đổi động tác theo câu, cắt sát khoảng thở, chèn B-roll L-Cut.</strong></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>Cấu trúc kịch bản 3 nhịp (45 giây) — "Mỗi câu nói gắn chặt với 1 động tác vật lý"</h3>
+
+        <div class="chain">
+          <div><b>Nhịp 1 (0:00 – 0:05)</b>Hook va chạm gắn vật thật trong khung hình</div>
+          <div><b>Nhịp 2 (0:05 – 0:35)</b>Bóc 1 nghịch lý nghề nghiệp (Đổi động tác mỗi câu)</div>
+          <div><b>Nhịp 3 (0:35 – 0:45)</b>Điểm dừng chân / Hạ ghế chốt hạ</div>
+        </div>
+
+        <div class="script">
+          <div class="sh"><span>Kịch bản mẫu 3 nhịp (Mỗi câu 5–7 chữ kèm chỉ dẫn động tác)</span><span>Ứng dụng: Chủ Spa / Phòng khám / Cửa tiệm</span></div>
+          <div class="ln">
+            <div class="lb">0:00 – 0:05<br>Nhịp 1: Hook</div>
+            <div class="tx">
+              <strong>Động tác:</strong> Đẩy cửa bước thẳng từ sảnh vào tiệm (Leading Walk-in), tay chạm nhẹ mép cửa.<br>
+              <strong>Lời thoại (6 chữ):</strong> <em>"Khách bước vào, sợ nhất điều này."</em> (Hoặc: <em>"Đừng mở tiệm nếu chưa biết..."</em>)
+            </div>
+          </div>
+          <div class="ln">
+            <div class="lb">0:05 – 0:25<br>Nhịp 2: Thân</div>
+            <div class="tx">
+              <strong>Động tác (Băm 3 mảnh theo 3 câu):</strong><br>
+              &bull; <em>Mảnh 2A (Quay người chỉ xuống sàn nhà sáng bóng):</em> "Họ không nhìn bảng giá trước đâu." / "Họ nhìn sàn nhà trước."<br>
+              &bull; <em>Mảnh 2B (Bước tới kệ, tay chạm chồng khăn trắng):</em> "Rồi họ nhìn chiếc khăn này." / "Sau đó mới nhìn đến giá."<br>
+              &bull; <em>Mảnh 2C (Chèn 2s B-roll cận cảnh khử khuẩn đồ nghề đè lên lời):</em> "Khách chê đắt, thực ra là chê sự luộm thuộm."
+            </div>
+          </div>
+          <div class="ln">
+            <div class="lb">0:25 – 0:35<br>Nhịp 3: Chốt</div>
+            <div class="tx">
+              <strong>Động tác:</strong> Chủ động <strong>dừng hẳn bước chân</strong> (hoặc hạ lưng ngồi xuống ghế tư vấn), nhìn thẳng lỗ camera.<br>
+              <strong>Lời thoại:</strong> <em>"Muốn khách hết mặc cả? Hãy cho họ thấy sự tươm tất ngay từ cửa. Nhắn tôi nếu bạn muốn xem quy trình chuẩn bị phòng mỗi sáng."</em>
+            </div>
+          </div>
+        </div>
+
+        <h3>Giải phẫu 4 Mẫu Kỹ Thuật Đắt Nhất từ Kho `ytuong.fedu.vn`</h3>
+        <p>Để làm chủ hoàn toàn kỹ thuật <strong>Mồi cảnh 3 giây đầu</strong>, <strong>Match-Cut bước chân</strong>, <strong>Dẫn tour chuyên gia</strong> và <strong>Đảo nhịp Tĩnh &harr; Động</strong>, hãy bấm xem trực tiếp 4 mẫu được lọc từ kho `ytuong.fedu.vn` dưới đây:</p>
+
+        <div class="v3-group">
+
+          <!-- MẪU QUỐC TẾ 1: ALEX BOISSET (DZXpNj_IveV) -->
+          <div class="v3-card" id="v3-alex-hooks">
+            <div class="v3-head">
+              <div class="v3-title-group">
+                <span class="v3-badge v3-badge-win">KHO Ý TƯỞNG #01 • 5 ĐỘNG TÁC MỒI CẢNH 3 GIÂY ĐẦU</span>
+                <strong>@alexboissetgrowth — 5 Công thức Visual Hook ("Mồi Cảnh") trước khi mở miệng nói câu đầu tiên</strong>
+                <span class="v3-meta">(Mã kho: DZXpNj_IveV • 7 Shots • Vũ khí trị bệnh đơ giây thứ 0)</span>
+              </div>
+              <div class="v3-actions">
+                <button type="button" class="v3-btn-play" onclick="window.toggleV3Player(this, 'p3-alex-hooks', 'https://media.fedu.vn/videos/DZXpNj_IveV.mp4')">▶️ Xem video</button>
+                <a href="https://www.instagram.com/reel/DZXpNj_IveV/" target="_blank" rel="noopener" class="v3-btn-link">Bài gốc ↗</a>
+              </div>
+            </div>
+
+            <div class="v3-shot-grid">
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Mồi 1 • 0–1.8s</span>
+                <span class="v3-shot-dur">Walk-In</span>
+                <img src="https://media.fedu.vn/images/IG_@alexboissetgrowth_DZXpNj_IveV_Masterclass_Crecer_En_Redes/shot_01_mid.webp" alt="Mồi 1 Bước vào khung hình" loading="lazy"/>
+                <div class="v3-shot-cap">Bước từ ngoài vào ghế</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Mồi 2 • 1.8–4.3s</span>
+                <span class="v3-shot-dur">Mic-Tap</span>
+                <img src="https://media.fedu.vn/images/IG_@alexboissetgrowth_DZXpNj_IveV_Masterclass_Crecer_En_Redes/shot_02_mid.webp" alt="Mồi 2 Gõ nhẹ mic ASMR" loading="lazy"/>
+                <div class="v3-shot-cap">Tay gõ mic "bụp" ASMR</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Mồi 3 • 4.3–6.0s</span>
+                <span class="v3-shot-dur">In-Situ</span>
+                <img src="https://media.fedu.vn/images/IG_@alexboissetgrowth_DZXpNj_IveV_Masterclass_Crecer_En_Redes/shot_03_mid.webp" alt="Mồi 3 Tay rót nước vào ly" loading="lazy"/>
+                <div class="v3-shot-cap">Tay rót nước vừa nói</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Mồi 4 • 6.0–8.6s</span>
+                <span class="v3-shot-dur">Đặt Cam</span>
+                <img src="https://media.fedu.vn/images/IG_@alexboissetgrowth_DZXpNj_IveV_Masterclass_Crecer_En_Redes/shot_04_mid.webp" alt="Mồi 4 Đặt máy xuống bàn" loading="lazy"/>
+                <div class="v3-shot-cap">Tay đặt điện thoại lùi ra</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Mồi 5 • 8.6–10.4s</span>
+                <span class="v3-shot-dur">Nhấc Cam</span>
+                <img src="https://media.fedu.vn/images/IG_@alexboissetgrowth_DZXpNj_IveV_Masterclass_Crecer_En_Redes/shot_05_mid.webp" alt="Mồi 5 Nhấc máy lại gần" loading="lazy"/>
+                <div class="v3-shot-cap">Nhấc máy cầm tay tâm tình</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Shot 6 • Giải thích</span>
+                <span class="v3-shot-dur">Talking Head</span>
+                <img src="https://media.fedu.vn/images/IG_@alexboissetgrowth_DZXpNj_IveV_Masterclass_Crecer_En_Redes/shot_06_mid.webp" alt="Shot 6 Phân tích tại bàn" loading="lazy"/>
+                <div class="v3-shot-cap">Ngồi bàn phân tích sâu</div>
+              </div>
+            </div>
+
+            <div class="v3-player" id="p3-alex-hooks" style="display:none;">
+              <video controls playsinline preload="none" poster="https://media.fedu.vn/images/IG_@alexboissetgrowth_DZXpNj_IveV_Masterclass_Crecer_En_Redes/shot_01_mid.webp"></video>
+            </div>
+
+            <div class="v3-verdict">
+              <p><strong>Đắt ở điểm gì (Ứng dụng trực tiếp cho Bài tập số 1 tại lớp):</strong> Đừng bao giờ mở đầu video Talking Head bằng cảnh ngồi im phăng phắc rồi mới há miệng nói. Hãy chọn <strong>1 trong 5 động tác Mồi Cảnh (Scene Bait) trong 2–3 giây đầu</strong>: (1) Máy đặt sẵn, bước từ ngoài vào ngồi xuống ghế; (2) Ngón tay chạm/gõ nhẹ vào micro cài áo; (3) Tay đang rót nước/đặt ly cà phê xuống bàn; (4) Tay đặt điện thoại lên chân máy rồi lùi lại; hoặc (5) Đang ngồi bàn thì nhấc điện thoại lên cầm tay bước đi. Mồi cảnh vừa giữ mắt người xem ở giây đầu tiên, vừa giúp cơ thể bạn có đà chuyển động để câu mở đầu thoát ra tự nhiên nhất.</p>
+            </div>
+          </div>
+
+          <!-- MẪU QUỐC TẾ 2: MRIDUPAWAN SHARMA (Dc0tEcOIdwy) -->
+          <div class="v3-card" id="v3-mridu-4cuts">
+            <div class="v3-head">
+              <div class="v3-title-group">
+                <span class="v3-badge v3-badge-win">KHO Ý TƯỞNG #02 • MATCH-CUT BƯỚC CHÂN &amp; 4 KỸ THUẬT CẮT</span>
+                <strong>@mridupawasharma — Nối bước chân nhảy xuyên không gian &amp; 4 kiểu cắt giữ nhịp khi vừa đi vừa nói</strong>
+                <span class="v3-meta">(Mã kho: Dc0tEcOIdwy • 37 Shots • 54.5 giây)</span>
+              </div>
+              <div class="v3-actions">
+                <button type="button" class="v3-btn-play" onclick="window.toggleV3Player(this, 'p3-mridu-4cuts', 'https://media.fedu.vn/videos/Dc0tEcOIdwy.mp4')">▶️ Xem video</button>
+                <a href="https://www.instagram.com/reel/Dc0tEcOIdwy/" target="_blank" rel="noopener" class="v3-btn-link">Bài gốc ↗</a>
+              </div>
+            </div>
+
+            <div class="v3-shot-grid">
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Shot 1 • Đồi cát</span>
+                <span class="v3-shot-dur">0.0–1.2s</span>
+                <img src="https://media.fedu.vn/images/IG_@mridupawasharma_Dc0tEcOIdwy_4_cuts_to_instantly_make_your_videos_%F0%9F%94%A5/shot_01_mid.webp" alt="Shot 1 Bước trên đồi cát" loading="lazy"/>
+                <div class="v3-shot-cap">"Stop using transitions..."</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Shot 2 • Phòng tối</span>
+                <span class="v3-shot-dur">Match Cut</span>
+                <img src="https://media.fedu.vn/images/IG_@mridupawasharma_Dc0tEcOIdwy_4_cuts_to_instantly_make_your_videos_%F0%9F%94%A5/shot_02_mid.webp" alt="Shot 2 Nối bước vào phòng" loading="lazy"/>
+                <div class="v3-shot-cap">"...that are boring"</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Shot 3 • Xe Jeep</span>
+                <span class="v3-shot-dur">Action Cut</span>
+                <img src="https://media.fedu.vn/images/IG_@mridupawasharma_Dc0tEcOIdwy_4_cuts_to_instantly_make_your_videos_%F0%9F%94%A5/shot_03_mid.webp" alt="Shot 3 Bước từ xe Jeep xuống" loading="lazy"/>
+                <div class="v3-shot-cap">"...use these 4 cuts"</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Shot 4 • Đường nhựa</span>
+                <span class="v3-shot-dur">Walk &amp; Talk</span>
+                <img src="https://media.fedu.vn/images/IG_@mridupawasharma_Dc0tEcOIdwy_4_cuts_to_instantly_make_your_videos_%F0%9F%94%A5/shot_04_mid.webp" alt="Shot 4 Bước đi trên đường" loading="lazy"/>
+                <div class="v3-shot-cap">Đi bộ giảng 4 kỹ thuật</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Shot 5 • Mask Cut</span>
+                <span class="v3-shot-dur">Vật cản</span>
+                <img src="https://media.fedu.vn/images/IG_@mridupawasharma_Dc0tEcOIdwy_4_cuts_to_instantly_make_your_videos_%F0%9F%94%A5/shot_05_mid.webp" alt="Shot 5 Mask Cut" loading="lazy"/>
+                <div class="v3-shot-cap">Lướt qua vật cản xóa cảnh</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Shot 6 • L/J-Cut</span>
+                <span class="v3-shot-dur">Nối âm</span>
+                <img src="https://media.fedu.vn/images/IG_@mridupawasharma_Dc0tEcOIdwy_4_cuts_to_instantly_make_your_videos_%F0%9F%94%A5/shot_06_mid.webp" alt="Shot 6 L-Cut J-Cut" loading="lazy"/>
+                <div class="v3-shot-cap">Tiếng đi trước/sau hình</div>
+              </div>
+            </div>
+
+            <div class="v3-player" id="p3-mridu-4cuts" style="display:none;">
+              <video controls playsinline preload="none" poster="https://media.fedu.vn/images/IG_@mridupawasharma_Dc0tEcOIdwy_4_cuts_to_instantly_make_your_videos_%F0%9F%94%A5/shot_01_mid.webp"></video>
+            </div>
+
+            <div class="v3-verdict">
+              <p><strong>Đắt ở điểm gì (Ứng dụng cho Bài tập số 2 &amp; 3):</strong> Một câu mở đầu duy nhất <em>("Stop using transitions / that are boring / instead use these 4 cuts")</em> được chia làm <strong>3 bước chân ở 3 bối cảnh hoàn toàn khác nhau</strong>. Khi cắt đúng vào khoảnh khắc bàn chân chạm đất hoặc cánh tay vung lên, người xem bị hút chặt vào màn hình mà người nói chỉ cần nhớ đúng 3–4 chữ cho mỗi lần bấm máy. Bốn kỹ thuật cắt cốt lõi trong bài: <strong>(1) Mask Cut</strong> (đi ngang qua cột nhà/khung cửa để xóa cảnh), <strong>(2) Match Cut</strong> (đồng bộ bước chân/động tác tay), <strong>(3) L-Cut</strong> (thoại vẫn chạy khi hình sang B-roll), và <strong>(4) J-Cut</strong> (tiếng của cảnh mới vang lên trước 0.5 giây rồi mới cắt hình).</p>
+            </div>
+          </div>
+
+          <!-- MẪU QUỐC TẾ 3: NEOLUMO URALSK (DcOUP2PsMsP) -->
+          <div class="v3-card" id="v3-neolumo">
+            <div class="v3-head">
+              <div class="v3-title-group">
+                <span class="v3-badge v3-badge-ex">KHO Ý TƯỞNG #03 • WALK-IN CHUYÊN GIA &amp; THAO TÁC NGHỀ</span>
+                <strong>@neolumo.uralsk — Bước dọc hành lang &rarr; Mở cửa đón tiếp 45° &rarr; Đeo găng tay &rarr; Ngồi ghế Talking Head</strong>
+                <span class="v3-meta">(Mã kho: DcOUP2PsMsP • 16 Shots • 44.9 giây • Chuẩn mực cho Y khoa, Spa, Kỹ thuật)</span>
+              </div>
+              <div class="v3-actions">
+                <button type="button" class="v3-btn-play" onclick="window.toggleV3Player(this, 'p3-neolumo', 'https://media.fedu.vn/videos/DcOUP2PsMsP.mp4')">▶️ Xem video</button>
+                <a href="https://www.instagram.com/reel/DcOUP2PsMsP/" target="_blank" rel="noopener" class="v3-btn-link">Bài gốc ↗</a>
+              </div>
+            </div>
+
+            <div class="v3-shot-grid">
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Shot 1 • Hành lang</span>
+                <span class="v3-shot-dur">Dolly-In</span>
+                <img src="https://media.fedu.vn/images/IG_@neolumo.uralsk_DcOUP2PsMsP_Medical_Commercial_Authority/shot_01_mid.webp" alt="Shot 1 Hành lang" loading="lazy"/>
+                <div class="v3-shot-cap">Bước dọc hành lang sáng</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Shot 2 • Mở cửa</span>
+                <span class="v3-shot-dur">Góc 45°</span>
+                <img src="https://media.fedu.vn/images/IG_@neolumo.uralsk_DcOUP2PsMsP_Medical_Commercial_Authority/shot_02_mid.webp" alt="Shot 2 Mở cửa phòng" loading="lazy"/>
+                <div class="v3-shot-cap">Tay mở cửa mời vào phòng</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Shot 3 • Đeo găng</span>
+                <span class="v3-shot-dur">In-Situ</span>
+                <img src="https://media.fedu.vn/images/IG_@neolumo.uralsk_DcOUP2PsMsP_Medical_Commercial_Authority/shot_03_mid.webp" alt="Shot 3 Đeo găng tay" loading="lazy"/>
+                <div class="v3-shot-cap">Vừa đeo găng tay vừa nói</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Shot 4 • B-Roll</span>
+                <span class="v3-shot-dur">Thiết bị</span>
+                <img src="https://media.fedu.vn/images/IG_@neolumo.uralsk_DcOUP2PsMsP_Medical_Commercial_Authority/shot_04_mid.webp" alt="Shot 4 Thiết bị y tế" loading="lazy"/>
+                <div class="v3-shot-cap">Cận cảnh thiết bị hoạt động</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Shot 5 • Thao tác</span>
+                <span class="v3-shot-dur">Bằng chứng</span>
+                <img src="https://media.fedu.vn/images/IG_@neolumo.uralsk_DcOUP2PsMsP_Medical_Commercial_Authority/shot_05_mid.webp" alt="Shot 5 Thao tác trên khách" loading="lazy"/>
+                <div class="v3-shot-cap">Đi đầu máy trên nền da</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Shot 6 • Ngồi ghế</span>
+                <span class="v3-shot-dur">Talking Head</span>
+                <img src="https://media.fedu.vn/images/IG_@neolumo.uralsk_DcOUP2PsMsP_Medical_Commercial_Authority/shot_06_mid.webp" alt="Shot 6 Ngồi ghế tư vấn" loading="lazy"/>
+                <div class="v3-shot-cap">Ngồi ghế bành giải thích</div>
+              </div>
+            </div>
+
+            <div class="v3-player" id="p3-neolumo" style="display:none;">
+              <video controls playsinline preload="none" poster="https://media.fedu.vn/images/IG_@neolumo.uralsk_DcOUP2PsMsP_Medical_Commercial_Authority/shot_01_mid.webp"></video>
+            </div>
+
+            <div class="v3-verdict">
+              <p><strong>Đắt ở điểm gì:</strong> Giải quyết triệt để câu hỏi <em>"Tay để ở đâu khi quay?"</em>. Trong suốt 6 giây đầu, nhân vật không hề đứng không: <strong>Shot 1 bước đi dọc hành lang &rarr; Shot 2 tay nắm tay nắm cửa mở ra &rarr; Shot 3 hai tay kéo găng tay y tế vừa đeo vừa nói &rarr; sau đó mới ngồi vào ghế chuyên gia</strong>. Mỗi động tác tay vừa là một lời giới thiệu nghề ngầm, vừa giúp gương mặt tự tin tuyệt đối.</p>
+            </div>
+          </div>
+
+          <!-- MẪU QUỐC TẾ 4: SHOGENTLE (DdCRQnBI4ny) -->
+          <div class="v3-card" id="v3-shogentle">
+            <div class="v3-head">
+              <div class="v3-title-group">
+                <span class="v3-badge v3-badge-ex">KHO Ý TƯỞNG #04 • CÚ BUNG TĨNH SANG ĐỘNG</span>
+                <strong>@shogentle — Đang ngồi Talking Head trong phòng bất ngờ cắt bung ra cảnh bước đi ngoài phố</strong>
+                <span class="v3-meta">(Mã kho: DdCRQnBI4ny • 16 Shots • Đổi nhịp thị giác giữa chừng)</span>
+              </div>
+              <div class="v3-actions">
+                <button type="button" class="v3-btn-play" onclick="window.toggleV3Player(this, 'p3-shogentle', 'https://media.fedu.vn/videos/DdCRQnBI4ny.mp4')">▶️ Xem video</button>
+                <a href="https://www.instagram.com/reel/DdCRQnBI4ny/" target="_blank" rel="noopener" class="v3-btn-link">Bài gốc ↗</a>
+              </div>
+            </div>
+
+            <div class="v3-shot-grid">
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Shot 1 • Cử chỉ</span>
+                <span class="v3-shot-dur">Mồi cảnh</span>
+                <img src="https://media.fedu.vn/images/IG_%40shogentle_DdCRQnBI4ny_Fast_Food_Outsells_Restaurant/shot_01_start.webp" alt="Shot 1 Cử chỉ ôm đầu" loading="lazy"/>
+                <div class="v3-shot-cap">Mồi cử chỉ tay tại bàn</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Shot 2 • Punch-In</span>
+                <span class="v3-shot-dur">Zoom 120%</span>
+                <img src="https://media.fedu.vn/images/IG_%40shogentle_DdCRQnBI4ny_Fast_Food_Outsells_Restaurant/shot_02_start.webp" alt="Shot 2 Zoom 120%" loading="lazy"/>
+                <div class="v3-shot-cap">Cắt thở + Zoom 120%</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Shot 3 • B-Roll</span>
+                <span class="v3-shot-dur">Ẩn dụ</span>
+                <img src="https://media.fedu.vn/images/IG_%40shogentle_DdCRQnBI4ny_Fast_Food_Outsells_Restaurant/shot_03_start.webp" alt="Shot 3 Ẩn dụ thị giác" loading="lazy"/>
+                <div class="v3-shot-cap">Chèn ẩn dụ Fast Food</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Shot 4 • Bung Động</span>
+                <span class="v3-shot-dur">Walk &amp; Talk</span>
+                <img src="https://media.fedu.vn/images/IG_%40shogentle_DdCRQnBI4ny_Fast_Food_Outsells_Restaurant/shot_04_start.webp" alt="Shot 4 Bước đi ngoài phố" loading="lazy"/>
+                <div class="v3-shot-cap">Cắt bung ra bước ngoài phố</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Shot 5 • Đối chứng</span>
+                <span class="v3-shot-dur">B-Roll</span>
+                <img src="https://media.fedu.vn/images/IG_%40shogentle_DdCRQnBI4ny_Fast_Food_Outsells_Restaurant/shot_05_start.webp" alt="Shot 5 B-roll nhà hàng" loading="lazy"/>
+                <div class="v3-shot-cap">B-roll đè lên lời đang đi</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Shot 6 • Về bàn</span>
+                <span class="v3-shot-dur">Chốt hạ</span>
+                <img src="https://media.fedu.vn/images/IG_%40shogentle_DdCRQnBI4ny_Fast_Food_Outsells_Restaurant/shot_06_start.webp" alt="Shot 6 Về lại phòng chốt" loading="lazy"/>
+                <div class="v3-shot-cap">Về lại góc tĩnh chốt bài</div>
+              </div>
+            </div>
+
+            <div class="v3-player" id="p3-shogentle" style="display:none;">
+              <video controls playsinline preload="none" poster="https://media.fedu.vn/images/IG_%40shogentle_DdCRQnBI4ny_Fast_Food_Outsells_Restaurant/shot_01_start.webp"></video>
+            </div>
+
+            <div class="v3-verdict">
+              <p><strong>Đắt ở điểm gì:</strong> Nếu bạn quay một bài Talking Head tại bàn nhưng sợ người xem chán ở giây thứ 15, chỉ cần <strong>mang điện thoại bước ra hành lang hoặc vỉa hè trước cửa quay đúng 2 câu giữa bài (Shot 4)</strong> rồi cắt ghép đan vào giữa đoạn ngồi bàn. Cú nhảy đột ngột từ phòng kín ra ánh sáng tự nhiên ngoài trời sẽ đánh thức sự chú ý của người xem ngay lập tức.</p>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- ==================== MỤC 6 ==================== -->
+        <h2 id="sec-6">6. Thực hành tại lớp Offline: Slide Logic &amp; Bộ 3 Bài Tập Bậc Thang (Quay &rarr; Dựng &rarr; Ra Video)</h2>
+
+        <p>Tại lớp học Offline, học viên không có sẵn cửa tiệm hay phòng khám riêng. Vì vậy, thay vì giao một đề bài chung chung, chúng ta biến chính <strong>bàn học, cửa lớp, hành lang và cầu thang tại lớp</strong> thành phim trường thực chiến qua <strong>Bậc thang 3 Bài Tập từ Dễ đến Khó</strong> (được thiết kế bởi <strong>CLAUDE2</strong> dựa trên kho dữ liệu thực tế):</p>
+
+        <!-- SLIDE TỔNG LOGIC 3 BÀI TẬP -->
+        <div class="slide-deck">
+          <div class="slide-card">
+            <div class="slide-canvas">
+              <span class="slide-num">Slide Logic Tổng Quan • Bậc Thang 3 Bài Tập Tại Lớp</span>
+              <h3 class="slide-headline">BA BÀI TẬP — MỘT THANG BẬC XÓA SẠCH NỖI SỢ LỘ MẶT</h3>
+              <div class="slide-visual">
+                <ul>
+                  <li><strong>BÀI 01 (Tại bàn / Cửa lớp • 15–20s):</strong> <em>Mồi cảnh 3 giây + Ngắt câu Single-Line</em> &rarr; Trị dứt điểm bệnh đơ mặt và học thuộc lòng.</li>
+                  <li><strong>BÀI 02 (Hành lang / Cầu thang • 20–30s):</strong> <em>Walk &amp; Talk "Nói câu nào đổi động tác câu đó" (Kiểu Tina Nguyễn)</em> &rarr; Trị bệnh sợ đi bộ nói dài, che sạch vết cắt.</li>
+                  <li><strong>BÀI 03 (Tổ hợp Nửa Tĩnh – Nửa Động • 40–50s):</strong> <em>Intercut Bàn làm việc &harr; Hành lang + Dừng chân chốt ý &amp; B-Roll (Kiểu Anh Việt)</em> &rarr; Đóng gói 1 video Chuyên gia hoàn chỉnh.</li>
+                </ul>
+              </div>
+            </div>
+            <div class="slide-speaker">
+              <b class="spk-lbl">⏱️ Nhịp điều phối thực hành tại lớp (15 phút/bài):</b><br>
+              Anh Việt làm mẫu trực tiếp (Demo quay &rarr; cắt khoảng thở trên CapCut &rarr; chiếu màn hình lớn) trong <strong>3 phút</strong> &rarr; Học viên chia nhóm 2 người bấm máy trong <strong>7 phút</strong> &rarr; Cắt ghép CapCut trong <strong>3 phút</strong> &rarr; Chiếu 2 bài ngẫu nhiên chấm điểm tại chỗ trong <strong>2 phút</strong>.
+            </div>
+          </div>
+        </div>
+
+        <div class="tw">
+          <table class="t">
+            <thead>
+              <tr>
+                <th>Tiêu chí bậc thang</th>
+                <th>Bài 01: Tại bàn / Cửa lớp (Cấp độ 1)</th>
+                <th>Bài 02: Hành lang / Cầu thang (Cấp độ 2)</th>
+                <th>Bài 03: Tổ hợp Nửa Tĩnh – Nửa Động (Cấp độ 3)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Mục tiêu cốt lõi</strong></td>
+                <td>Hết đơ mặt giây đầu, xóa bỏ hoàn toàn thói quen học thuộc lòng.</td>
+                <td>Hết sợ vừa đi vừa nói, dùng chuyển động cơ thể che sạch vết cắt.</td>
+                <td>Đóng gói 1 video Chuyên gia hoàn chỉnh giữ chân người xem đến giây cuối.</td>
+              </tr>
+              <tr>
+                <td><strong>Kỹ thuật trọng tâm</strong></td>
+                <td><strong>Mồi cảnh 3s (Scene Bait) + Single-Line</strong> (đếm thầm 1-2 ngắt câu).</td>
+                <td><strong>Nói câu nào đổi động tác câu đó</strong> (Đi &rarr; Chỉ tay &rarr; Dừng/Ngồi).</td>
+                <td><strong>Dựng Intercut (Tĩnh &harr; Động) + Cú dừng chân chốt ý + B-Roll L-Cut.</strong></td>
+              </tr>
+              <tr>
+                <td><strong>Số cú bấm máy</strong></td>
+                <td>1 góc máy cố định (1 sải tay) &bull; Nói 4 câu rời rạc.</td>
+                <td>3 cú bấm máy ở 3 vị trí liên tiếp dọc hành lang/lớp học.</td>
+                <td>5 cú bấm máy (3 cú ngồi bàn + 2 cú bước đi) + 2 cảnh B-roll tay.</td>
+              </tr>
+              <tr>
+                <td><strong>Đầu ra thành phẩm</strong></td>
+                <td>Video <strong>15 – 20 giây</strong> sắc gọn.</td>
+                <td>Video <strong>20 – 30 giây</strong> có chiều sâu không gian.</td>
+                <td>Video <strong>40 – 50 giây</strong> chuẩn cấu trúc lên kênh chính.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="v3-nav-pills">
+          <a href="#wnt-ex-1">🎯 Bài tập 01: Mồi cảnh 3s &amp; Ngắt câu Single-Line (Tại bàn)</a>
+          <a href="#wnt-ex-2">🚶 Bài tập 02: Walk &amp; Talk 3 Động tác kiểu Tina (Hành lang)</a>
+          <a href="#wnt-ex-3">🎬 Bài tập 03: Tổ hợp Nửa Tĩnh – Nửa Động kiểu Anh Việt</a>
+        </div>
+
+        <div class="v3-group">
+
+          <!-- ================= BÀI TẬP 01 ================= -->
+          <div class="v3-card" id="wnt-ex-1">
+            <div class="v3-head">
+              <div class="v3-title-group">
+                <span class="v3-badge v3-badge-win">BÀI TẬP 01 • CẤP ĐỘ 1: TẠI BÀN HỌC / CỬA LỚP (15 – 20 GIÂY)</span>
+                <strong>Mồi cảnh vật lý 3 giây đầu + Kỹ thuật ngắt từng câu Single-Line (Không học thuộc lòng)</strong>
+                <span class="v3-meta">(1 góc đặt máy cố định • 4 câu ngắn 5–7 chữ • Mẫu tham chiếu: Anh Việt #02 &amp; @alexboissetgrowth)</span>
+              </div>
+              <div class="v3-actions">
+                <button type="button" class="v3-btn-play" onclick="window.toggleV3Player(this, 'p3-wnt-ex-1', 'https://media.fedu.vn/videos/DZXpNj_IveV.mp4')">▶️ Xem mẫu Mồi cảnh</button>
+              </div>
+            </div>
+
+            <div class="v3-shot-grid">
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Nhịp 1 • 0–2.5s</span>
+                <span class="v3-shot-dur">Mồi cảnh</span>
+                <img src="https://media.fedu.vn/images/IG_@alexboissetgrowth_DZXpNj_IveV_Masterclass_Crecer_En_Redes/shot_03_mid.webp" alt="Mồi cảnh đặt ly hoặc rót nước" loading="lazy"/>
+                <div class="v3-shot-cap">Đặt ly / Mở sổ (Chưa nói)</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Nhịp 2 • Câu 1</span>
+                <span class="v3-shot-dur">3.5s</span>
+                <img src="https://media.fedu.vn/images/wnt2/talkinghead_viet_s03.jpg" alt="Cúi đọc nhẩm câu 1" loading="lazy"/>
+                <div class="v3-shot-cap">Nạp câu 1 &rarr; Nhìn lens nói</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Nhịp 3 • Cắt thở</span>
+                <span class="v3-shot-dur">Xén bỏ</span>
+                <img src="https://media.fedu.vn/images/wnt2/talkinghead_viet_s04.jpg" alt="Đếm thầm 1-2" loading="lazy"/>
+                <div class="v3-shot-cap">Đếm thầm 1-2 trước khi cúi</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Nhịp 4 • Câu 2</span>
+                <span class="v3-shot-dur">Zoom 1.2x</span>
+                <img src="https://media.fedu.vn/images/wnt2/talkinghead_viet_s05.jpg" alt="Nói câu 2 dứt khoát" loading="lazy"/>
+                <div class="v3-shot-cap">Nói câu 2 (Phóng nhẹ 1.2x)</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Nhịp 5 • Câu 3</span>
+                <span class="v3-shot-dur">Cầm vật</span>
+                <img src="https://media.fedu.vn/images/wnt2/aroll_broll_viet_s01.jpg" alt="Tay cầm bút hoặc sổ nói câu 3" loading="lazy"/>
+                <div class="v3-shot-cap">Tay cầm bút nhấn câu 3</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Nhịp 6 • Câu 4</span>
+                <span class="v3-shot-dur">Chốt hạ</span>
+                <img src="https://media.fedu.vn/images/wnt2/talkinghead_viet_s06.jpg" alt="Nhìn thẳng lens chốt câu 4" loading="lazy"/>
+                <div class="v3-shot-cap">Nhìn thẳng lens chốt câu 4</div>
+              </div>
+            </div>
+
+            <div class="v3-player" id="p3-wnt-ex-1" style="display:none;">
+              <video controls playsinline preload="none" poster="https://media.fedu.vn/images/IG_@alexboissetgrowth_DZXpNj_IveV_Masterclass_Crecer_En_Redes/shot_03_mid.webp"></video>
+            </div>
+
+            <div class="v3-verdict">
+              <p><strong>📋 Nội dung Slide Logic Bài Tập 01 (Chiếu trên lớp):</strong></p>
+              <div class="v3-layer-grid">
+                <div class="v3-layer-box fg">
+                  <b>1. Mục tiêu bài tập</b>
+                  Có ngay 1 clip Talking Head 18 giây tự nhiên, mắt nhìn thẳng ống kính 100%, không học thuộc lòng, không bị đơ ở giây mở màn.
+                </div>
+                <div class="v3-layer-box mg">
+                  <b>2. Thiết lập tại bàn học</b>
+                  Tựa điện thoại lên bình nước (cách mặt <strong>1 sải tay</strong>), hướng mặt ra phía ánh sáng cửa sổ 45°, đặt cuốn sổ ghi 4 dòng chữ to ngay dưới chân máy.
+                </div>
+                <div class="v3-layer-box bg">
+                  <b>3. Quy tắc CapCut &amp; Tiêu chuẩn Đạt</b>
+                  Giữ nguyên 2.5s Mồi cảnh đầu &bull; Cắt sạch toàn bộ đoạn cúi đầu đọc sổ và 2 nhịp đếm thầm &bull; Ở câu 2 và câu 4 phóng nhẹ khung hình lên <strong>115% (Punch-in)</strong> để che vết cắt.
+                </div>
+              </div>
+
+              <div class="tw">
+                <table class="t">
+                  <thead>
+                    <tr>
+                      <th>Thứ tự bấm máy</th>
+                      <th>Hành động trước ống kính (Máy chạy liên tục không tắt)</th>
+                      <th>Thời lượng giữ lại</th>
+                      <th>Điểm kiểm tra kỹ thuật</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><strong>Mảnh 1 (Mồi cảnh)</strong></td>
+                      <td>Chọn 1 động tác mồi: <strong>Bước từ ngoài ngồi vào ghế</strong>, hoặc <strong>tay đặt ly cà phê xuống bàn</strong>, hoặc <strong>gõ nhẹ ngón tay vào mic cài áo</strong>.</td>
+                      <td>Lấy <strong>2.0s – 2.5s</strong></td>
+                      <td>Chưa nói vội. Để chuyển động vật lý thu hút mắt người xem trước.</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Mảnh 2 (Câu 1 – Hook)</strong></td>
+                      <td>Cúi nhìn sổ nạp Câu 1 &rarr; Ngước nhìn thẳng lỗ camera &rarr; Đếm thầm <em>"1, 2"</em> &rarr; Nói dứt khoát Câu 1 &rarr; Đếm thầm <em>"1, 2"</em>.</td>
+                      <td>Lấy <strong>3.5s</strong> lời nói</td>
+                      <td>Cắt sát chữ đầu tiên và chữ cuối cùng; mặt hoàn toàn tĩnh khi bắt đầu mở miệng.</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Mảnh 3 (Câu 2 – Sai lầm)</strong></td>
+                      <td>Cúi nhìn sổ nạp Câu 2 &rarr; Ngước nhìn lens, <strong>tay cầm cây bút chỉ nhẹ</strong> &rarr; Đếm <em>"1, 2"</em> &rarr; Nói Câu 2 &rarr; Đếm <em>"1, 2"</em>.</td>
+                      <td>Lấy <strong>4.0s</strong> (Zoom 115%)</td>
+                      <td>Phóng nhẹ khung hình 115% trên CapCut để tạo nhịp nhảy thị giác tự nhiên.</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Mảnh 4 (Câu 3 &amp; 4 – Chốt)</strong></td>
+                      <td>Thực hiện tương tự cho Câu 3 (Nguyên lý thật) và Câu 4 (Lời khuyên chốt hạ).</td>
+                      <td>Lấy <strong>7.0s – 8.0s</strong></td>
+                      <td>Ở câu cuối cùng, giữ ánh mắt nhìn thẳng lens mỉm cười nhẹ 1.5s trước khi kết thúc.</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="v3-vo-box">
+                <div class="v3-vo-head">
+                  <span>🎙️ Khung kịch bản 4 câu Single-Line bấm máy tại lớp (42 chữ • 16 giây • Mỗi vế 1 lần cúi đọc)</span>
+                  <button type="button" class="v3-vo-copy" onclick="window.copyVoScript(this, '90% khách hàng đến chỗ tôi đều hỏi câu này đầu tiên. Họ tưởng chọn gói đắt nhất là xong. Nhưng thực ra, sai lầm nằm ở bước chuẩn bị ban đầu. Trước khi xuống tiền, bạn chỉ cần kiểm tra đúng một điểm này thôi.')">📋 Sao chép kịch bản</button>
+                </div>
+                <p class="v3-vo-text">"[Mồi cảnh 2.5s: Đặt ly nước / Mở sổ] <span class="slash">/</span> <strong>Câu 1:</strong> 90% khách làm <span class="slot">[NGHỀ]</span> đều hỏi tôi câu này đầu tiên. <span class="slash">/</span> <strong>Câu 2:</strong> Họ tưởng cứ chọn loại đắt tiền nhất là tốt. <span class="slash">/</span> <strong>Câu 3:</strong> Nhưng thực ra, hơn nhau nằm ở khâu xử lý nền ban đầu. <span class="slash">/</span> <strong>Câu 4:</strong> Trước khi làm, bạn chỉ cần kiểm tra đúng một chi tiết này thôi."</p>
+                <div class="v3-vo-meta">✅ <strong>Tiêu chuẩn chấm Đạt Bài 01:</strong> (1) Có 2 giây mồi cảnh mở đầu; (2) 4 câu nối liền không lộ vết cúi mắt đọc sổ; (3) Mắt nhìn thẳng vào cụm camera sau/trước chứ không nhìn màn hình.</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ================= BÀI TẬP 02 ================= -->
+          <div class="v3-card" id="wnt-ex-2">
+            <div class="v3-head">
+              <div class="v3-title-group">
+                <span class="v3-badge v3-badge-win">BÀI TẬP 02 • CẤP ĐỘ 2: HÀNH LANG / CẦU THANG LỚP HỌC (20 – 30 GIÂY)</span>
+                <strong>Walk &amp; Talk 3 Động tác kiểu Tina Nguyễn: "Nói câu nào, đổi động tác và góc đứng câu đó"</strong>
+                <span class="v3-meta">(3 Shots = 3 Động tác: Bước vào &rarr; Chỉ tay vào vật thật &rarr; Dừng chân/Ngồi ghế chốt • Mẫu: Tina Nguyễn &amp; @neolumo)</span>
+              </div>
+              <div class="v3-actions">
+                <button type="button" class="v3-btn-play" onclick="window.toggleV3Player(this, 'p3-wnt-ex-2', 'https://media.fedu.vn/videos/7673468312290037012.mp4')">▶️ Xem mẫu Tina Nguyễn</button>
+              </div>
+            </div>
+
+            <div class="v3-shot-grid">
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Shot 1 • 0–4s</span>
+                <span class="v3-shot-dur">Bước đi</span>
+                <img src="https://media.fedu.vn/images/IG_@tinanguyen2004_7673468312290037012_Double_Day_lu%C3%B4n_l%C3%A0_d%E1%BB%8Bp_%C4%91%E1%BB%83_kh%C3%A1ch_h%C3%A0ng_l%E1%BB%B1a_%C4%91%C6%B0%E1%BB%A3c/shot_01_mid.webp" alt="Shot 1 Bước từ cửa lớp ra hành lang" loading="lazy"/>
+                <div class="v3-shot-cap">Bước từ cửa nói Câu 1</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Điểm nối 1</span>
+                <span class="v3-shot-dur">Match Cut</span>
+                <img src="https://media.fedu.vn/images/IG_@tinanguyen2004_7673468312290037012_Double_Day_lu%C3%B4n_l%C3%A0_d%E1%BB%8Bp_%C4%91%E1%BB%83_kh%C3%A1ch_h%C3%A0ng_l%E1%BB%B1a_%C4%91%C6%B0%E1%BB%A3c/shot_02_mid.webp" alt="Nối bước chân qua cửa" loading="lazy"/>
+                <div class="v3-shot-cap">Cắt ngay trên đà bước</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Shot 2 • 4–12s</span>
+                <span class="v3-shot-dur">Chỉ tay</span>
+                <img src="https://media.fedu.vn/images/IG_@tinanguyen2004_7673468312290037012_Double_Day_lu%C3%B4n_l%C3%A0_d%E1%BB%8Bp_%C4%91%E1%BB%83_kh%C3%A1ch_h%C3%A0ng_l%E1%BB%B1a_%C4%91%C6%B0%E1%BB%A3c/shot_03_mid.webp" alt="Shot 2 Dừng lại chỉ tay vào vật thật" loading="lazy"/>
+                <div class="v3-shot-cap">Quay người chỉ vào vật thật</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">B-Roll Đè</span>
+                <span class="v3-shot-dur">L-Cut 3s</span>
+                <img src="https://media.fedu.vn/images/IG_@tinanguyen2004_7673468312290037012_Double_Day_lu%C3%B4n_l%C3%A0_d%E1%BB%8Bp_%C4%91%E1%BB%83_kh%C3%A1ch_h%C3%A0ng_l%E1%BB%B1a_%C4%91%C6%B0%E1%BB%A3c/shot_04_mid.webp" alt="Chèn B-roll cận cảnh vật vừa chỉ" loading="lazy"/>
+                <div class="v3-shot-cap">Chèn 3s cận cảnh vật đó</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Shot 3 • 15–24s</span>
+                <span class="v3-shot-dur">Hạ ghế</span>
+                <img src="https://media.fedu.vn/images/IG_@tinanguyen2004_7673468312290037012_Double_Day_lu%C3%B4n_l%C3%A0_d%E1%BB%8Bp_%C4%91%E1%BB%83_kh%C3%A1ch_h%C3%A0ng_l%E1%BB%B1a_%C4%91%C6%B0%E1%BB%A3c/shot_06_mid.webp" alt="Shot 3 Hạ lưng ngồi xuống ghế chốt" loading="lazy"/>
+                <div class="v3-shot-cap">Ngồi xuống ghế chốt Câu 3</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Kết quả</span>
+                <span class="v3-shot-dur">Học viên</span>
+                <img src="https://media.fedu.vn/images/wnt2/nuong_offline2_01_s02.jpg" alt="Mẫu học viên thực hành tại lớp" loading="lazy"/>
+                <div class="v3-shot-cap">Tự nhiên như chị Nương</div>
+              </div>
+            </div>
+
+            <div class="v3-player" id="p3-wnt-ex-2" style="display:none;">
+              <video controls playsinline preload="none" poster="https://media.fedu.vn/images/IG_@tinanguyen2004_7673468312290037012_Double_Day_lu%C3%B4n_l%C3%A0_d%E1%BB%8Bp_%C4%91%E1%BB%83_kh%C3%A1ch_h%C3%A0ng_l%E1%BB%B1a_%C4%91%C6%B0%E1%BB%A3c/shot_01_mid.webp"></video>
+            </div>
+
+            <div class="v3-verdict">
+              <p><strong>📋 Nội dung Slide Logic Bài Tập 02 (Chiếu trên lớp):</strong></p>
+              <div class="v3-layer-grid">
+                <div class="v3-layer-box fg">
+                  <b>1. Mục tiêu bài tập</b>
+                  Quay được video Walk &amp; Talk 20–25 giây đi qua 3 góc không gian lớp học/hành lang mà <strong>không cần nhớ quá 1 câu cho mỗi lần bấm máy</strong>.
+                </div>
+                <div class="v3-layer-box mg">
+                  <b>2. Kỹ thuật bước đi &amp; Cầm máy</b>
+                  Chùng nhẹ đầu gối (<em>Ninja Walk</em>), lăn từ gót sang mũi chân. Khuỷu tay gập 45–60° giữ máy cao hơn tầm mắt một chút (hoặc nhờ bạn cùng bàn cầm cam <code>1x</code> đi lùi).
+                </div>
+                <div class="v3-layer-box bg">
+                  <b>3. Kỹ thuật cắt trên đà (Action Cut)</b>
+                  Kết thúc Shot 1 khi chân vẫn đang bước hoặc tay đang vươn ra; mở đầu Shot 2 ở vị trí mới khi cơ thể đang tiếp tục đà chuyển động đó.
+                </div>
+              </div>
+
+              <div class="tw">
+                <table class="t">
+                  <thead>
+                    <tr>
+                      <th>Shot bấm máy</th>
+                      <th>Vị trí &amp; Động tác cơ thể bắt buộc</th>
+                      <th>Thời lượng</th>
+                      <th>Kỹ thuật nối trên CapCut</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><strong>Shot 1 (Hook bước đi)</strong></td>
+                      <td>Đẩy cửa lớp bước ra hành lang (hoặc bước dọc dãy bàn), mắt nhìn thẳng lens nói <strong>Câu 1</strong>.</td>
+                      <td><strong>3.5s – 4.5s</strong></td>
+                      <td>Cắt ra ngay khi bàn chân đang bước tới (không đợi dừng hẳn mới tắt máy).</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Shot 2 (Thân – Chỉ vào việc thật)</strong></td>
+                      <td>Đứng cạnh bàn đạo cụ / bảng trắng / kệ sách: <strong>Tay cầm 1 món đồ thật hoặc chỉ thẳng vào màn hình/tài liệu</strong> vừa nói <strong>Câu 2</strong>.</td>
+                      <td><strong>6.0s – 8.0s</strong></td>
+                      <td>Đè thêm <strong>1 cảnh B-roll cận cảnh món đồ vừa chỉ (2.5 giây)</strong> lên nửa cuối Câu 2 (kỹ thuật L-Cut giống Shot 4–5 của Tina Nguyễn).</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Shot 3 (Chốt – Hạ điểm dừng)</strong></td>
+                      <td>Đang bước nhẹ 2 bước thì <strong>dừng hẳn lại (hoặc kéo ghế ngồi xuống bàn)</strong>, nhìn thẳng ống kính nói <strong>Câu 3 chốt hạ</strong>.</td>
+                      <td><strong>5.0s – 7.0s</strong></td>
+                      <td>Sự chuyển đổi từ <em>Đang đi &rarr; Đứng im / Ngồi xuống</em> tạo trọng lực thị giác giúp câu chốt găm thẳng vào trí nhớ người xem.</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="v3-vo-box">
+                <div class="v3-vo-head">
+                  <span>🎙️ Khung kịch bản 3 Shots Walk &amp; Talk tại lớp (44 chữ • 22 giây • Mỗi Shot chỉ nhớ 1 câu)</span>
+                  <button type="button" class="v3-vo-copy" onclick="window.copyVoScript(this, 'Vừa bước ra khỏi buổi tư vấn sáng nay, tôi phải nhắc ngay anh chị điều này. Rất nhiều người chỉ nhìn vào mẫu mã bên ngoài mà bỏ qua phần kết cấu lõi bên trong đây. Muốn dùng bền 5 năm không hỏng vặt, hãy kiểm tra kỹ tiêu chuẩn này trước khi nhận bàn giao.')">📋 Sao chép kịch bản</button>
+                </div>
+                <p class="v3-vo-text">"<strong>[Shot 1 - Bước từ cửa ra hành lang]:</strong> Vừa bước ra khỏi ca tư vấn <span class="slot">[NGHỀ]</span> sáng nay, tôi phải nhắc ngay anh chị điều này. <span class="slash">/</span> <strong>[Shot 2 - Dừng cạnh bàn, tay chỉ thẳng vào vật mẫu + Đè 2.5s B-roll cận cảnh]:</strong> Rất nhiều người chỉ nhìn vào vẻ bóng bẩy bên ngoài, mà bỏ qua hoàn toàn phần chi tiết kỹ thuật bên trong đây. <span class="slash">/</span> <strong>[Shot 3 - Hạ lưng ngồi xuống ghế nhìn thẳng lens]:</strong> Muốn không mất tiền sửa đi sửa lại, hãy yêu cầu kiểm tra đúng điểm này trước khi chốt nhé."</p>
+                <div class="v3-vo-meta">✅ <strong>Tiêu chuẩn chấm Đạt Bài 02:</strong> (1) Đủ 3 động tác khác nhau ở 3 shots (Đi &rarr; Chỉ tay vào vật thật &rarr; Dừng/Ngồi); (2) Có 1 cảnh B-roll cận cảnh đè lên lời nói ở Shot 2; (3) Khung hình êm, không bị ngược sáng tối mặt.</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ================= BÀI TẬP 03 ================= -->
+          <div class="v3-card" id="wnt-ex-3">
+            <div class="v3-head">
+              <div class="v3-title-group">
+                <span class="v3-badge v3-badge-win">BÀI TẬP 03 • CẤP ĐỘ 3: TỔ HỢP NỬA TĨNH – NỬA ĐỘNG KIỂU ANH VIỆT (40 – 50 GIÂY)</span>
+                <strong>Đóng gói Video Chuyên Gia Hoàn Chỉnh: Đan xen Bàn làm việc (Tĩnh) &harr; Hành lang (Động) + Cú dừng chân chốt ý</strong>
+                <span class="v3-meta">(5 Shots A-roll + 2 B-roll chèn giữa • Cấu trúc chuẩn từ video "Bắt đầu với thứ vớ vẩn" &amp; @mridupawasharma)</span>
+              </div>
+              <div class="v3-actions">
+                <button type="button" class="v3-btn-play" onclick="window.toggleV3Player(this, 'p3-wnt-ex-3', 'https://media.fedu.vn/videos/aroll_broll_viet.mp4')">▶️ Xem mẫu Anh Việt</button>
+              </div>
+            </div>
+
+            <div class="v3-shot-grid">
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Shot 1 • Tĩnh</span>
+                <span class="v3-shot-dur">Bàn học</span>
+                <img src="https://media.fedu.vn/images/wnt2/aroll_broll_viet_s01.jpg" alt="Shot 1 Ngồi bàn mở màn" loading="lazy"/>
+                <div class="v3-shot-cap">Mồi cảnh + Hook tại bàn</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Shot 2 • Động</span>
+                <span class="v3-shot-dur">Hành lang</span>
+                <img src="https://media.fedu.vn/images/wnt2/aroll_broll_viet_s02.jpg" alt="Shot 2 Bước đi hành lang" loading="lazy"/>
+                <div class="v3-shot-cap">Cắt bung ra bước đi</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Shot 3 • In-Situ</span>
+                <span class="v3-shot-dur">Thao tác</span>
+                <img src="https://media.fedu.vn/images/wnt2/aroll_broll_viet_s03.jpg" alt="Shot 3 Tay làm miệng nói" loading="lazy"/>
+                <div class="v3-shot-cap">Vừa thao tác tay vừa nói</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Shot 4 • Tĩnh</span>
+                <span class="v3-shot-dur">Cận mặt</span>
+                <img src="https://media.fedu.vn/images/wnt2/talkinghead_viet_s05.jpg" alt="Shot 4 Về bàn bóc nghịch lý" loading="lazy"/>
+                <div class="v3-shot-cap">Về bàn giải phẫu lỗi sai</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Shot 5 • Dừng chân</span>
+                <span class="v3-shot-dur">Điểm nổ</span>
+                <img src="https://media.fedu.vn/images/wnt2/aroll_broll_viet_s06.jpg" alt="Shot 5 Đang đi dừng chân nhìn lens" loading="lazy"/>
+                <div class="v3-shot-cap">Đang đi dừng bước chốt ý</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Shot 6 • Tĩnh</span>
+                <span class="v3-shot-dur">CTA Kết</span>
+                <img src="https://media.fedu.vn/images/wnt2/talkinghead_viet_s06.jpg" alt="Shot 6 Chốt lời mời hành động" loading="lazy"/>
+                <div class="v3-shot-cap">Về bàn chốt CTA gọn</div>
+              </div>
+            </div>
+
+            <div class="v3-player" id="p3-wnt-ex-3" style="display:none;">
+              <video controls playsinline preload="none" poster="https://media.fedu.vn/images/wnt2/aroll_broll_viet_s01.jpg"></video>
+            </div>
+
+            <div class="v3-verdict">
+              <p><strong>📋 Nội dung Slide Logic Bài Tập 03 (Chiếu trên lớp):</strong></p>
+              <div class="v3-layer-grid">
+                <div class="v3-layer-box fg">
+                  <b>1. Mục tiêu bài tập</b>
+                  Ghép thành thạo <strong>2 bối cảnh (Ngồi bàn &harr; Bước đi hành lang)</strong> trên cùng một mạch nội dung để tạo ra video chuyên gia 40–50 giây vừa có chiều sâu uy tín vừa có năng lượng thực tế.
+                </div>
+                <div class="v3-layer-box mg">
+                  <b>2. Mẹo bấm máy tiết kiệm thời gian</b>
+                  <strong>Quay theo cụm vị trí (Batch Shooting):</strong> Ngồi tại bàn quay liền Shot 1, Shot 4 và Shot 6 trước (3 phút) &rarr; Sau đó mới cầm máy bước ra hành lang quay Shot 2, Shot 3 và Shot 5 (4 phút).
+                </div>
+                <div class="v3-layer-box bg">
+                  <b>3. Quy tắc dựng Intercut trên CapCut</b>
+                  Tuyệt đối không để 2 shot cùng loại đứng liền nhau mà không đổi cỡ cảnh &bull; Chèn 2 cảnh B-roll thao tác tay (hoặc ảnh chụp màn hình bằng chứng) đè lên điểm nối bằng J-Cut / L-Cut.
+                </div>
+              </div>
+
+              <div class="tw">
+                <table class="t">
+                  <thead>
+                    <tr>
+                      <th>Thứ tự trên Timeline</th>
+                      <th>Loại cảnh &amp; Bối cảnh tại lớp</th>
+                      <th>Hành động &amp; Nội dung lời thoại</th>
+                      <th>Kỹ thuật chuyển cảnh</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><strong>Shot 1 (0:00 – 0:06)</strong></td>
+                      <td><strong>Tĩnh (Ngồi bàn học)</strong></td>
+                      <td>Mồi cảnh đặt bút/mở laptop &rarr; Nói <strong>Câu Hook</strong> đập thẳng vào nỗi sợ hoặc sai lầm tốn tiền của khách.</td>
+                      <td>Cắt ngay sau từ khóa đắt nhất của câu Hook.</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Shot 2 (0:06 – 0:14)</strong></td>
+                      <td><strong>Động (Bước dọc hành lang)</strong></td>
+                      <td>Cắt bung ra cảnh đang sải bước ngoài hành lang/cầu thang &rarr; Giải thích vì sao cách làm cũ khiến khách mất tiền.</td>
+                      <td><strong>Cú bung Tĩnh &rarr; Động</strong> (giống Shot 2 của anh Việt và @shogentle).</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Shot 3 (0:14 – 0:22)</strong></td>
+                      <td><strong>In-Situ (Vừa làm vừa nói)</strong></td>
+                      <td>Tay cầm điện thoại/sổ tay chỉ vào một ví dụ thực tế hoặc phác thảo nhanh 3 bước trên giấy.</td>
+                      <td>Đè <strong>2.5 giây B-roll cận cảnh trang sổ/màn hình</strong> lên nửa cuối câu nói.</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Shot 4 (0:22 – 0:30)</strong></td>
+                      <td><strong>Tĩnh (Về lại bàn học – Cận)</strong></td>
+                      <td>Ngồi tại bàn (zoom 115%) bóc tách nguyên lý cốt lõi của người làm nghề lâu năm.</td>
+                      <td>Dùng <strong>J-Cut</strong>: tiếng của Shot 4 vang lên trước 0.4 giây khi hình B-roll Shot 3 vừa khép.</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Shot 5 (0:30 – 0:38)</strong></td>
+                      <td><strong>Động &rarr; Dừng chân (Hành lang)</strong></td>
+                      <td>Đang bước đi 3 bước thì <strong>chủ động dừng chân đứng lại nhìn thẳng ống kính</strong>, nói câu ẩn dụ sắc bén nhất bài.</td>
+                      <td><strong>Cú dừng chân khóa mắt</strong> (giống Shot 12 ẩn dụ Đế Chế của anh Việt).</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Shot 6 (0:38 – 0:45)</strong></td>
+                      <td><strong>Tĩnh (Bàn học – Chốt CTA)</strong></td>
+                      <td>Ngồi tại bàn, mỉm cười điềm tĩnh chốt 1 lời khuyên hành động gọn gàng.</td>
+                      <td>Giữ lại 15% âm thanh môi trường, nhạc nền hạ sâu <strong>-24dB</strong>.</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="v3-vo-box">
+                <div class="v3-vo-head">
+                  <span>🎙️ Khung kịch bản 6 Shots Intercut Nửa Tĩnh – Nửa Động (82 chữ • 42 giây)</span>
+                  <button type="button" class="v3-vo-copy" onclick="window.copyVoScript(this, 'Nhiều người làm nghề rất giỏi nhưng lại đang đóng một khoản thuế vô hình cực đắt: đó là sự im lặng. Khi bạn ngại xuất hiện, khách hàng buộc phải chọn những bên nói hay hơn dù tay nghề chưa chắc bằng bạn. Lúc mới tự quay, tôi cũng nhìn vào màn hình thấy mình gượng gạo rồi xóa đi hàng chục lần. Nhưng sự thật là: khách hàng không cần một diễn viên nói trôi chảy, họ cần nhìn thấy một người làm nghề thật dám đứng ra bảo chứng cho sản phẩm của mình. Giống như mở cửa tiệm mỗi sáng: bạn phải kéo cánh cửa lên thì khách mới bước vào được. Cứ bấm máy từ những câu ngắn nhất hôm nay đi!')">📋 Sao chép kịch bản</button>
+                </div>
+                <p class="v3-vo-text">"<strong>[Shot 1 - Ngồi bàn]:</strong> Nhiều người làm <span class="slot">[NGHỀ]</span> rất giỏi nhưng lại đang đóng một khoản thuế cực đắt: đó là sự im lặng. <span class="slash">/</span> <strong>[Shot 2 - Bước đi hành lang]:</strong> Khi bạn ngại lên hình, khách hàng buộc phải tin những bên quảng cáo rầm rộ hơn dù tay nghề chưa chắc bằng bạn. <span class="slash">/</span> <strong>[Shot 3 - In-Situ cầm ĐT/sổ + B-roll]:</strong> Lúc mới bấm máy, tôi cũng nhìn lại thấy mặt mình cứng đờ rồi xóa đi hàng chục lần. <span class="slash">/</span> <strong>[Shot 4 - Về bàn cận]:</strong> Nhưng khách hàng không tìm một diễn viên hoạt ngôn, họ cần thấy người làm nghề thật đứng ra chịu trách nhiệm. <span class="slash">/</span> <strong>[Shot 5 - Đang bước thì dừng chân nhìn thẳng lens]:</strong> Giống như mở cửa tiệm mỗi sáng: bạn phải kéo cánh cửa lên thì khách mới bước vào được. <span class="slash">/</span> <strong>[Shot 6 - Về bàn chốt]:</strong> Đừng đợi hoàn hảo, cứ bắt đầu từ 3 câu ngắn nhất hôm nay đi!"</p>
+                <div class="v3-vo-meta">✅ <strong>Tiêu chuẩn chấm Đạt Bài 03:</strong> (1) Có ít nhất 2 cảnh ngồi bàn và 2 cảnh bước đi đan xen; (2) Có đúng 1 cú đang đi dừng chân nhìn thẳng ống kính ở Shot 5; (3) Có ít nhất 1 cảnh B-roll đè lên lời nói không bị đứt mạch âm thanh.</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- ==================== MỤC 7 ==================== -->
+        <h2 id="sec-7">7. Bảng chấm đạt cuối buổi (Thang 10 điểm) &amp; Câu hỏi thường gặp</h2>
+
+        <p>Trước khi xuất file nộp bài lên nhóm lớp, học viên tự rà soát nhanh sản phẩm của mình qua <strong>5 tiêu chí nghiệm thu Định dạng 02</strong> dưới đây (mỗi tiêu chí <strong>2 điểm</strong> — đạt từ <strong>8/10 điểm</strong> là đủ chuẩn đăng kênh):</p>
+
+        <div class="tw">
+          <table class="t">
+            <thead>
+              <tr>
+                <th>Hạng mục chấm điểm</th>
+                <th>Mốc Đạt Chuẩn (2 điểm)</th>
+                <th>Lỗi phải cắt hoặc bấm máy lại ngay (0 điểm)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>1. Mồi cảnh &amp; Hook 3s đầu</strong></td>
+                <td>Giây 0:00 – 0:03 có chuyển động cơ thể/tay thật (bước vào, đặt ly, mở cửa) và câu mở đầu gắn trực tiếp với vật trong khung hình.</td>
+                <td>Đứng/ngồi đơ 2 giây đầu chờ máy chạy mới bắt đầu nói, hoặc dạo đầu chào hỏi dài dòng.</td>
+              </tr>
+              <tr>
+                <td><strong>2. Độ dài câu &amp; Ánh mắt</strong></td>
+                <td>Mỗi mệnh đề ngắn gọn 5–7 chữ, nói dứt khoát; ánh mắt nhìn thẳng vào lỗ camera 100%, không đảo mắt tìm chữ.</td>
+                <td>Mắt nhìn lệch vào màn hình tự soi mặt mình, hoặc đảo mắt lên trần nhà vì cố nhớ văn bản học thuộc lòng.</td>
+              </tr>
+              <tr>
+                <td><strong>3. Đổi động tác theo câu</strong></td>
+                <td>Mỗi câu nói tương ứng với 1 thay đổi về động tác, vị trí bước chân hoặc góc máy; tay luôn có việc cụ thể để làm.</td>
+                <td>Hai tay buông thõng hoặc giữ lì một góc đứng nói suốt 30 giây không đổi cỡ cảnh.</td>
+              </tr>
+              <tr>
+                <td><strong>4. Cắt sạch khoảng thở &amp; Nối đà</strong></td>
+                <td>Đã xén sạch 100% nhịp lấy hơi, tiếng <em>"ờ, à"</em> và đoạn cúi đọc kịch bản; cắt ngay trên đà bước chân/cử chỉ tay.</td>
+                <td>Để nguyên khoảng trống 1–2 giây chết giữa hai câu nói làm nhịp video bị tụt năng lượng.</td>
+              </tr>
+              <tr>
+                <td><strong>5. Điểm dừng chốt &amp; Âm thanh 80/20</strong></td>
+                <td>Có điểm dừng chân (hoặc hạ ghế) nhìn thẳng lens ở câu quan trọng nhất; giọng thu rõ (-3dB), giữ 15–20% tiếng hiện trường, nhạc nền -24dB.</td>
+                <td>Vừa đi vừa kết bài mờ nhạt, hoặc tiếng gió/tiếng ồn phòng lấn át mất giọng nói chính.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>Giải đáp 4 thắc mắc thường gặp nhất khi học viên về nhà tự quay</h3>
+
+        <details class="qa" open>
+          <summary>Tôi làm dịch vụ tư vấn hoặc chưa có cửa tiệm đẹp thì đi bộ ở đâu?</summary>
+          <div class="a">
+            <p>Bạn không cần một showroom trăm mét vuông mới quay được Walk &amp; Talk. Chính video <em>"Bắt đầu với thứ vớ vẩn"</em> của anh Việt chỉ quay ở <strong>một góc bàn gỗ trong phòng và lối đi bộ dưới hàng cây chung cư</strong>. Bạn có thể dùng hành lang tòa nhà, góc quán cà phê quen thuộc, cầu thang văn phòng, hoặc vỉa hè rợp cây buổi sáng — miễn là ánh sáng xiên 45° sáng mặt và đeo micro có bông lọc gió.</p>
+          </div>
+        </details>
+
+        <details class="qa">
+          <summary>Khi tự cầm điện thoại vừa đi vừa nói, làm sao để hình không bị rung lắc?</summary>
+          <div class="a">
+            <p>Áp dụng đồng thời 3 chốt kỹ thuật: (1) Chuyển ống kính về góc tiêu chuẩn <code>1x</code> hoặc góc rộng <code>0.5x</code> (tuyệt đối không bật <code>2x</code> khi đang bước đi cầm tay); (2) Khóa khuỷu tay gập 45–60° tỳ nhẹ vào sườn thay vì vươn thẳng cánh tay ra xa; (3) Chùng nhẹ đầu gối và tiếp đất từ gót lăn sang mũi chân (<em>Ninja Walk</em>).</p>
+          </div>
+        </details>
+
+        <details class="qa">
+          <summary>Đang quay câu số 2 ở hành lang mà nói vấp thì phải làm sao?</summary>
+          <div class="a">
+            <p><strong>Đứng nguyên tại vị trí câu số 2 đó, lùi lại đúng 1 bước chân và nói lại riêng câu số 2</strong> (chỉ mất 5 giây). Tuyệt đối không quay về cửa làm lại từ câu số 1! Khi vào CapCut, chỉ cần cắt bỏ cú vấp và giữ lại cú nói đúng.</p>
+          </div>
+        </details>
+
+        <details class="qa">
+          <summary>Mất bao lâu để hoàn thiện 1 video theo quy trình mới này?</summary>
+          <div class="a">
+            <p>Với <strong>Bài tập 01 (Single-Line tại bàn)</strong> hoặc <strong>Bài tập 02 (Walk &amp; Talk 3 shots)</strong>, bạn chỉ mất đúng <strong>10 phút</strong> (3 phút gạch 4 ý ngắn ra giấy, 4 phút bấm máy từng câu, 3 phút cắt khoảng thở trên CapCut). Với <strong>Bài tập 03 (Intercut Nửa Tĩnh – Nửa Động)</strong>, tổng thời gian quay theo cụm vị trí và dựng chèn B-roll chỉ gói gọn trong <strong>25 – 30 phút</strong>.</p>
+          </div>
+        </details>
+
+        <div class="actions">
+          <a class="btn" target="_blank" href="https://ytuong.fedu.vn/?kieu=walk-and-talk">Xem Kho Ý Tưởng Walk &amp; Talk</a>
+          <a class="btn" target="_blank" href="voiceover3.0.html">Xem lại Định dạng 01: Voice-Over 3.0</a>
+          <a class="btn" target="_blank" href="https://stu.fedu.vn">Xem Trung tâm Khám Kênh (STU)</a>
+        </div>
+      </div>
+    </main>
+    <aside class="toc">
+      <h6>Trên trang này (Bản 2.0)</h6>
+      <nav class="otp" id="auto-toc"></nav>
+    </aside>
+  </div>
+</body>
+</html>
