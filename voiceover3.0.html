@@ -593,6 +593,177 @@ a.card{overflow-wrap:break-word;word-break:break-word}
   font-size: 13px;
   line-height: 1.55;
 }
+
+/* === CSS Bài Tập Thực Hành Cảnh Trám 3 Lớp (ytuong.fedu.vn Integration) === */
+.v3-shot-grid {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 6px;
+  padding: 10px 12px;
+  background: #0f172a;
+}
+.v3-shot-item {
+  position: relative;
+  border-radius: 6px;
+  overflow: hidden;
+  background: #1e293b;
+  border: 1px solid #334155;
+}
+.v3-shot-item img {
+  width: 100%;
+  aspect-ratio: 9 / 14;
+  object-fit: cover;
+  display: block;
+}
+.v3-shot-tag {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  background: rgba(15, 23, 42, 0.88);
+  color: #f8fafc;
+  font: 700 10px/1 var(--mono);
+  padding: 3px 5px;
+  border-radius: 4px;
+  border: 1px solid rgba(255,255,255,0.15);
+}
+.v3-shot-dur {
+  position: absolute;
+  bottom: 24px;
+  right: 5px;
+  background: #dc2626;
+  color: #ffffff;
+  font: 700 9.5px/1 var(--mono);
+  padding: 2px 5px;
+  border-radius: 4px;
+}
+.v3-shot-cap {
+  background: #1e293b;
+  color: #e2e8f0;
+  font: 600 10.5px/1.25 var(--sans);
+  padding: 5px 6px;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.v3-layer-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin: 12px 0;
+}
+.v3-layer-box {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-size: 13.5px;
+  line-height: 1.5;
+}
+.v3-layer-box b {
+  display: block;
+  font: 700 10.5px/1 var(--mono);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 5px;
+  color: #475569;
+}
+.v3-layer-box.fg { border-left: 3px solid #f59e0b; background: #fffbeb; }
+.v3-layer-box.fg b { color: #b45309; }
+.v3-layer-box.mg { border-left: 3px solid #16a34a; background: #f0fdf4; }
+.v3-layer-box.mg b { color: #15803d; }
+.v3-layer-box.bg { border-left: 3px solid #0284c7; background: #f0f9ff; }
+.v3-layer-box.bg b { color: #0369a1; }
+
+.v3-vo-box {
+  background: #0f172a;
+  color: #f8fafc;
+  border-radius: 10px;
+  padding: 14px 16px;
+  margin-top: 12px;
+}
+.v3-vo-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 8px;
+  font: 700 11px/1 var(--mono);
+  color: #94a3b8;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.v3-vo-copy {
+  background: #334155;
+  color: #fff;
+  border: 1px solid #475569;
+  border-radius: 5px;
+  padding: 4px 9px;
+  font: 600 11px/1 var(--sans);
+  cursor: pointer;
+}
+.v3-vo-copy:hover {
+  background: #475569;
+}
+.v3-vo-text {
+  font: italic 16.5px/1.65 var(--serif);
+  color: #ffffff;
+  margin: 0 0 8px 0;
+}
+.v3-vo-text span.slash {
+  color: #fb923c;
+  font-weight: 700;
+  font-style: normal;
+  padding: 0 3px;
+}
+.v3-vo-text span.slot {
+  background: rgba(251, 146, 60, 0.22);
+  color: #fdba74;
+  border: 1px dashed #fb923c;
+  padding: 1px 6px;
+  border-radius: 4px;
+  font-style: normal;
+  font-weight: 700;
+}
+.v3-vo-meta {
+  font: 400 12.5px/1.45 var(--sans);
+  color: #cbd5e1;
+}
+.v3-badge-ex {
+  background: #e0f2fe;
+  color: #0369a1;
+  border: 1px solid #7dd3fc;
+}
+.v3-nav-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 16px 0 20px;
+}
+.v3-nav-pills a {
+  text-decoration: none !important;
+  font: 600 13px/1.2 var(--sans);
+  padding: 8px 13px;
+  border-radius: 8px;
+  background: #f8fafc;
+  color: #0f172a;
+  border: 1px solid #cbd5e1;
+  transition: all .15s ease;
+}
+.v3-nav-pills a:hover {
+  background: #0f172a;
+  color: #ffffff;
+  border-color: #0f172a;
+}
+@media (max-width: 900px) {
+  .v3-shot-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .v3-layer-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 520px) {
+  .v3-shot-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
   </style>
   <script>
     window.toggleV3Player = function(btn, playerId, mp4Url) {
@@ -626,6 +797,17 @@ a.card{overflow-wrap:break-word;word-break:break-word}
         tocNav.appendChild(a);
       });
     });
+
+    window.copyVoScript = function(btn, text) {
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(text).then(function() {
+          var old = btn.innerHTML;
+          btn.innerHTML = "✅ Đã chép lời";
+          setTimeout(function(){ btn.innerHTML = old; }, 1800);
+        });
+      }
+    };
+
   </script>
 </head>
 <body data-page="voice-over">
@@ -1186,6 +1368,865 @@ a.card{overflow-wrap:break-word;word-break:break-word}
               <strong>Voice:</strong> "Lưu ngay video này lại để áp dụng khi pha thuốc, hoặc nhắn tình trạng tóc để nhận bảng công thức bù ẩm chuẩn salon."
             </div>
           </div>
+        </div>
+
+<h2 id="sec-6">6. Thực hành tại lớp Offline: Quay cảnh trám 3 tầng lớp (Mồi cảnh – Băm cảnh – Chuyển cảnh nối)</h2>
+
+        <p>Khi bước vào làm kênh thực tế cho bất kỳ ngành nào, chỉ 30% thời lượng là cảnh quay trực tiếp vào sản phẩm; <strong>70% thời lượng còn lại dùng để dẫn dắt, chuyển ý, giải thích nguyên lý hoặc kể câu chuyện làm nghề đều cần đến Cảnh trám (B-roll nối nhịp)</strong>: cảnh ngồi ghi chú sổ tay, mở máy tính làm việc, đặt ly cà phê, lật tài liệu bên khung cửa sổ có ánh nắng và cây xanh.</p>
+
+        <p>Tại lớp học Offline, học viên không cần mang theo xưởng gỗ, giường spa hay bếp nấu. Chúng ta dùng chính <strong>bàn học, sổ bút, máy tính, ly cà phê và khung cửa sổ có sẵn tại lớp</strong> để rèn luyện kỹ năng nền tảng quan trọng nhất: <strong>Xếp đạo cụ có tầng lớp, tạo mồi cảnh, băm nhỏ cỡ cảnh và cắt nối theo chuyển động</strong> — sao cho chỉ riêng phần hình ảnh quay lên thôi nhìn đã đẹp, có chiều sâu và cuốn mắt người xem.</p>
+
+        <h3>1. Ba kỹ thuật biến một góc bàn bình thường thành khung hình có chiều sâu</h3>
+
+        <div class="spec">
+          <div class="row">
+            <span class="b s">1. Đạo cụ 3 tầng lớp</span>
+            <div>Không bao giờ đặt máy quay thẳng vào một mặt bàn trống trải. Luôn sắp đặt khung hình có 3 lớp: <strong>Tiền cảnh mờ (Foreground)</strong> đặt sát ống kính 1 vật duy nhất như nhành lá cây, mép ly cà phê hoặc bờ vai áo &rarr; <strong>Trung cảnh sắc nét (Midground)</strong> là bàn tay cầm bút, trang sổ, bàn phím &rarr; <strong>Hậu cảnh có chiều sâu (Background)</strong> là khung cửa sổ, vệt nắng hoặc tán cây phía xa.</div>
+          </div>
+          <div class="row">
+            <span class="b s">2. Mồi cảnh &amp; Băm cảnh</span>
+            <div><strong>Mồi cảnh (Visual Hook):</strong> Giây đầu tiên phải có một chuyển động vật lý dứt khoát đi vào khung hình (đặt ly cà phê xuống bàn phát tiếng <em>"cạch"</em>, kéo ghế bước vào, hoặc nhấc mở nắp máy tính).<br>
+            <strong>Băm cảnh (Shot Breakdown):</strong> Một hành động đơn giản (như ngồi viết 3 dòng ghi chú) không bao giờ quay liền 1 góc 10 giây, mà phải băm thành <strong>6 lát cắt ngắn (0.7s – 2.2s/lát)</strong> đan xen giữa góc trung và góc cận đặc tả ngòi bút, phím bấm, ánh mắt.</div>
+          </div>
+          <div class="row">
+            <span class="b s">3. Chuyển cảnh nối 70/30</span>
+            <div><strong>Luật cắt nối chuyển động (Match Cut on Action):</strong> Đừng đợi bàn tay dừng hẳn mới cắt. Hãy bấm quay dư 1 giây đầu và 1 giây cuối ở mỗi cú máy; khi vào CapCut, <strong>cắt ra ở cảnh trước lúc tay đang đi được 70% quãng đường, và cắt vào cảnh sau lúc tay mới đi được 30% quãng đường</strong>. Mắt người xem sẽ tự nối hai góc máy lại thành một chuyển động mượt mà.</div>
+          </div>
+        </div>
+
+        <div class="v3-group">
+          <div class="v3-card" id="v3-ytuong-compare">
+            <div class="v3-head">
+              <div class="v3-title-group">
+                <span class="v3-badge v3-badge-ex">MẪU ĐỐI CHIẾU MỞ MÀN TRÊN LỚP</span>
+                <strong>@yegor.sky — Đối chiếu góc quay ngang phẳng lỳ vs Góc quay 3 tầng lớp có tiền cảnh mờ</strong>
+                <span class="v3-meta">(Kho Ý Tưởng: DbBQzyqimbi • 6 góc đối chiếu)</span>
+              </div>
+              <div class="v3-actions">
+                <button type="button" class="v3-btn-play" onclick="window.toggleV3Player(this, 'p3-ytuong-compare', 'https://media.fedu.vn/videos/DbBQzyqimbi.mp4')">▶️ Xem video mẫu</button>
+                <a href="https://ytuong.fedu.vn/v/DbBQzyqimbi" target="_blank" rel="noopener" class="v3-btn-link">Kho Ý Tưởng ↗</a>
+              </div>
+            </div>
+            <div class="v3-strip">
+              <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:4px;background:#0f172a;padding:6px;">
+                <img src="https://media.fedu.vn/images/IG_@Yegor.Sky_DbBQzyqimbi_Video_by_yegor.sky/shot_01_mid.webp" alt="Góc ngang phẳng lỳ" style="width:100%;height:200px;object-fit:cover;border-radius:4px;" loading="lazy"/>
+                <img src="https://media.fedu.vn/images/IG_@Yegor.Sky_DbBQzyqimbi_Video_by_yegor.sky/shot_02_mid.webp" alt="Giấu máy sau tán lá tiền cảnh" style="width:100%;height:200px;object-fit:cover;border-radius:4px;" loading="lazy"/>
+                <img src="https://media.fedu.vn/images/IG_@Yegor.Sky_DbBQzyqimbi_Video_by_yegor.sky/shot_04_mid.webp" alt="Góc nhìn qua mép màn hình" style="width:100%;height:200px;object-fit:cover;border-radius:4px;" loading="lazy"/>
+              </div>
+              <div class="v3-strip-bar">
+                <span>❌ Góc ngang tầm mắt phẳng lỳ</span>
+                <span>✅ Giấu máy sau chậu cây (Tiền cảnh mờ)</span>
+                <span>✅ Nhìn qua mép màn hình (Over-Screen)</span>
+              </div>
+            </div>
+            <div class="v3-player" id="p3-ytuong-compare" style="display:none;">
+              <video controls playsinline preload="none" poster="https://media.fedu.vn/images/IG_@Yegor.Sky_DbBQzyqimbi_Video_by_yegor.sky/shot_02_mid.webp"></video>
+            </div>
+            <div class="v3-verdict">
+              <p><strong>Điểm chốt trước khi bấm máy:</strong> Cùng một chiếc bàn và một người ngồi, nếu đặt máy ngang tầm mắt nhìn thẳng vào thì khung hình phẳng lỳ và lộ hết đồ đạc lộn xộn. Chỉ cần bật ống kính <strong>2x</strong> và lùi máy ra sau một chậu cây nhỏ hoặc mép màn hình laptop, khung hình lập tức có chiều sâu 3 lớp rõ rệt.</p>
+            </div>
+          </div>
+        </div>
+
+        <h3>2. Lộ trình 15 phút giảng viên Demo trực tiếp tại lớp (Quay &rarr; Dựng &rarr; Ghép lời &rarr; Ra video tại chỗ)</h3>
+
+        <p>Thay vì giảng lý thuyết suông, giảng viên cầm điện thoại thực hiện trực tiếp <strong>Bài tập số 1</strong> ngay tại bàn cạnh cửa sổ lớp học, phản chiếu màn hình lên máy chiếu để học viên thấy toàn bộ các bước từ lúc đặt đạo cụ đến khi xuất ra video hoàn chỉnh trong 15 phút:</p>
+
+        <div class="script">
+          <div class="sh"><span>Kịch bản bấm giờ 15 phút Demo trực tiếp trên bục giảng</span><span>Mẫu sử dụng: Bài 01 (Cà phê – Sổ tay – Laptop)</span></div>
+          <div class="ln">
+            <div class="lb">Phút 00 – 02<br>Chiếu mẫu</div>
+            <div class="tx">
+              Mở video đối chiếu <code>DbBQzyqimbi</code> và video mẫu Bài 1 (<code>Dctj7NfNimM</code>) trên màn hình lớn.<br>
+              <em>Lời chốt trên lớp:</em> "Cùng một cái bàn và cuốn sổ. Người biết nghề chỉ hơn người thường ở 3 thứ: <strong>Đạo cụ xếp 3 lớp có tiền cảnh mờ – Mở màn có động tác mồi – Cắt nối ngay khi tay đang di chuyển</strong>."
+            </div>
+          </div>
+          <div class="ln">
+            <div class="lb">Phút 02 – 03<br>Dựng góc 60s</div>
+            <div class="tx">
+              Đặt chậu cây nhỏ ở góc phải bàn, ly cà phê ở góc trái, sổ tay ở giữa, laptop chếch bên phải. Bật camera điện thoại ở tiêu cự <strong>2x</strong>, ấn giữ màn hình 2 giây để khóa nét (AE/AF Lock).<br>
+              <em>Lời chốt trên lớp:</em> "Tiền cảnh chỉ đặt đúng 1 vật làm mờ phía trước ống kính. Đừng bày quá nhiều đồ lên bàn."
+            </div>
+          </div>
+          <div class="ln">
+            <div class="lb">Phút 03 – 07<br>Quay 6 cú</div>
+            <div class="tx">
+              Bấm quay liên tiếp 6 cú ngắn (mỗi cú 5 giây), vừa bấm vừa đọc to tên cú máy cho cả lớp quan sát: <strong>(1) Mồi đặt ly "cạch" &rarr; (2) Qua vai mở sổ bấm bút &rarr; (3) Sát mặt bàn viết 3 dòng &rarr; (4) Góc thấp mở nắp laptop &rarr; (5) Cận mắt liếc đọc &rarr; (6) Nhìn qua tán lá uống cà phê gập sổ</strong>.<br>
+              <em>Lời chốt trên lớp:</em> "Mỗi cú chỉ quay 5 giây. Nhớ giữ máy đứng yên 1 giây trước khi tay vào và 1 giây sau khi xong để vào CapCut có chỗ cắt."
+            </div>
+          </div>
+          <div class="ln">
+            <div class="lb">Phút 07 – 11<br>Băm &amp; Nối</div>
+            <div class="tx">
+              Mở CapCut trên điện thoại (chiếu AirPlay lên màn hình lớn), thả 6 đoạn vừa quay vào. Phóng to thanh cắt ghép làm mẫu kỹ <strong>3 điểm cắt nối chuyển động đầu tiên</strong>: cắt ra khi đáy ly vừa tiếp xúc mặt bàn &rarr; cắt vào đúng lúc tay đang lật bìa sổ bay lên &rarr; nối sang đầu ngòi bút đang chạy trên giấy.<br>
+              <em>Lời chốt trên lớp:</em> "Ra ở cảnh trước khi tay đi được 70%, vào cảnh sau khi tay mới đi được 30%."
+            </div>
+          </div>
+          <div class="ln">
+            <div class="lb">Phút 11 – 13<br>Ghép lời</div>
+            <div class="tx">
+              Hạ âm lượng tiếng gốc của 6 đoạn video xuống còn <strong>15%</strong> (để giữ tiếng <em>"cạch"</em> đặt ly, tiếng <em>"tạch"</em> bấm bút và tiếng gõ phím). Bấm nút <strong>Ghi âm (Record)</strong> trên CapCut, đọc trực tiếp 4 câu lời thoại mẫu (45 chữ = 13 giây), cứ mỗi câu lời khớp với 2 lát hình.
+            </div>
+          </div>
+          <div class="ln">
+            <div class="lb">Phút 13 – 15<br>Chiếu &amp; Giao đề</div>
+            <div class="tx">
+              Bấm phát toàn màn hình thành phẩm 13 giây vừa dựng xong ngay tại lớp. Sau đó chia lớp thành các trạm thực hành để mỗi học viên chọn 1 trong 5 bài mẫu dưới đây làm theo ngay trong 30 phút.
+            </div>
+          </div>
+        </div>
+
+        <div class="callout tip">
+          <div class="h">Cách khóa 5 điểm nghẽn thực tế trong phòng học Offline đông người</div>
+          <p>1. <strong>Chống tranh góc cửa sổ đẹp:</strong> Chia sẵn các bàn thành trạm 3 người xoay vai (1 người Quay – 1 người Diễn thao tác tay – 1 người Cầm đạo cụ kiêm bấm giờ). Hết 6 cú máy là đổi vai ngay.<br>
+          2. <strong>Chống rung tay khi quay ống kính 2x:</strong> Không cầm tay lơ lửng; dùng chính <strong>bình nước hoặc chồng sách trên bàn</strong> làm điểm tựa thành điện thoại và khóa nét AE/AF.<br>
+          3. <strong>Chống lệch thời lượng Hình và Tiếng:</strong> Cả 5 bài tập dưới đây đã được chuẩn hóa: <strong>6 cú bấm máy = 11 đến 13 giây hình</strong>, khớp khít với <strong>36–45 chữ lời thoại</strong> (chia sẵn làm 4 vế bằng dấu <code>/</code>).<br>
+          4. <strong>Chống ồn khi cả lớp cùng thu âm:</strong> 20 phút đầu cả lớp tự do quay và cắt hình; 5 phút cuối giảng viên hô hiệu lệnh cả lớp giữ im lặng đồng loạt để từng người cúi sát mic điện thoại thu âm 2 lượt.<br>
+          5. <strong>Biến bài tập tại lớp thành video đăng kênh thật:</strong> Trong mỗi khung lời thoại đều có ô <code>[NGHỀ]</code> — học viên làm nội thất, spa, nha khoa, thời trang hay ẩm thực chỉ cần thay đúng 2–3 danh từ ngành mình vào là có ngay đoạn cảnh trám chuẩn mực.</p>
+        </div>
+
+        <h3>3. Năm mẫu bài tập thực hành tại lớp (Có sẵn video mẫu &amp; Storyboard 6 cú máy từ Kho Ý Tưởng)</h3>
+
+        <p>Học viên mở trang này trên điện thoại, <strong>chọn 1 trong 5 bài mẫu dưới đây</strong> phù hợp với vị trí ngồi của mình, bấm xem video mẫu để cảm nhận nhịp cắt, xếp đạo cụ theo sơ đồ 3 lớp rồi bấm quay đúng 6 cú máy:</p>
+
+        <div class="v3-nav-pills">
+          <a href="#ex-1">🏆 Bài 01: Cà phê – Sổ tay – Laptop (Mẫu Demo)</a>
+          <a href="#ex-2">📘 Bài 02: 1 Hành động – Quay 3 góc (Dễ nhất)</a>
+          <a href="#ex-3">🌿 Bài 03: Băm nhịp Co – Giãn xuyên tán lá</a>
+          <a href="#ex-4">☀️ Bài 04: Nắng cửa sổ &amp; Phản chiếu màn hình</a>
+          <a href="#ex-5">📐 Bài 05: 6 Góc máy quanh bàn (Tựa bình nước)</a>
+        </div>
+
+        <div class="v3-group">
+
+          <!-- ================= BÀI TẬP 01 ================= -->
+          <div class="v3-card" id="ex-1">
+            <div class="v3-head">
+              <div class="v3-title-group">
+                <span class="v3-badge v3-badge-win">BÀI TẬP 01 • MẪU THẦY DEMO TRÊN LỚP</span>
+                <strong>Chuỗi liên hoàn Cà phê – Sổ tay – Laptop (Nối chuỗi nhân quả)</strong>
+                <span class="v3-meta">(6 cú bấm máy &rarr; 8 lát cắt • 13.2 giây • Mẫu @joshdiazfilms)</span>
+              </div>
+              <div class="v3-actions">
+                <button type="button" class="v3-btn-play" onclick="window.toggleV3Player(this, 'p3-ex-1', 'https://media.fedu.vn/videos/Dctj7NfNimM.mp4')">▶️ Xem video mẫu</button>
+                <a href="https://ytuong.fedu.vn/v/Dctj7NfNimM" target="_blank" rel="noopener" class="v3-btn-link">Kho Ý Tưởng ↗</a>
+              </div>
+            </div>
+
+            <div class="v3-shot-grid">
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Cú 1 • Mồi</span>
+                <span class="v3-shot-dur">1.5s</span>
+                <img src="https://media.fedu.vn/images/IG_@joshdiazfilms_Dctj7NfNimM_Life_Feel_Put_Together/shot_10_mid.webp" alt="Cú 1 Đặt ly cà phê" loading="lazy"/>
+                <div class="v3-shot-cap">Đặt ly "cạch" lên bàn</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Cú 2 • Nối</span>
+                <span class="v3-shot-dur">1.6s</span>
+                <img src="https://media.fedu.vn/images/IG_@joshdiazfilms_Dctj7NfNimM_Life_Feel_Put_Together/shot_12_mid.webp" alt="Cú 2 Mở bìa sổ da" loading="lazy"/>
+                <div class="v3-shot-cap">Qua vai mở bìa sổ</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Cú 3 • Băm</span>
+                <span class="v3-shot-dur">1.2s + 1.4s</span>
+                <img src="https://media.fedu.vn/images/IG_@joshdiazfilms_Dctj7NfNimM_Life_Feel_Put_Together/shot_13_mid.webp" alt="Cú 3 Viết 3 đầu việc" loading="lazy"/>
+                <div class="v3-shot-cap">Cận ngòi bút viết 3 mục</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Cú 4 • Nối</span>
+                <span class="v3-shot-dur">1.5s + 1.2s</span>
+                <img src="https://media.fedu.vn/images/IG_@joshdiazfilms_Dctj7NfNimM_Life_Feel_Put_Together/shot_14_mid.webp" alt="Cú 4 Mở nắp MacBook" loading="lazy"/>
+                <div class="v3-shot-cap">Mở nắp máy &amp; gõ phím</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Cú 5 • Băm</span>
+                <span class="v3-shot-dur">1.3s</span>
+                <img src="https://media.fedu.vn/images/IG_@joshdiazfilms_Dctj7NfNimM_Life_Feel_Put_Together/shot_16_mid.webp" alt="Cú 5 Cận ánh mắt" loading="lazy"/>
+                <div class="v3-shot-cap">Cận mắt liếc đọc</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Cú 6 • Thoát</span>
+                <span class="v3-shot-dur">3.5s</span>
+                <img src="https://media.fedu.vn/images/IG_@joshdiazfilms_Dctj7NfNimM_Life_Feel_Put_Together/shot_17_mid.webp" alt="Cú 6 Uống ngụm cà phê" loading="lazy"/>
+                <div class="v3-shot-cap">Nâng ly &amp; gập sổ</div>
+              </div>
+            </div>
+
+            <div class="v3-player" id="p3-ex-1" style="display:none;">
+              <video controls playsinline preload="none" poster="https://media.fedu.vn/images/IG_@joshdiazfilms_Dctj7NfNimM_Life_Feel_Put_Together/shot_10_mid.webp"></video>
+            </div>
+
+            <div class="v3-verdict">
+              <p><strong>Kỹ thuật cốt lõi học được:</strong> Tạo mồi cảnh bằng âm thanh vật lý (đặt ly cà phê xuống mặt bàn gỗ) và <strong>cắt nối chuỗi nhân quả</strong> — tay vừa đặt ly chưa kịp rút về đã cắt sang tay mở bìa sổ; bìa sổ vừa mở đã cắt sang ngòi bút đang chạy chữ.</p>
+
+              <div class="v3-layer-grid">
+                <div class="v3-layer-box fg">
+                  <b>1. Tiền cảnh mờ (Foreground)</b>
+                  Tán lá chậu cây nhỏ đặt ở góc phải ống kính + mép ly cà phê ở góc trái.
+                </div>
+                <div class="v3-layer-box mg">
+                  <b>2. Trung cảnh nét (Midground)</b>
+                  Cuốn sổ tay mở ở giữa bàn + Laptop đặt chếch bên phải theo trục đường chéo.
+                </div>
+                <div class="v3-layer-box bg">
+                  <b>3. Hậu cảnh &amp; Máy (Background)</b>
+                  Khung cửa sổ hoặc mảng tường sáng. Bật cam <strong>2x</strong>, đặt máy ngang bàn chếch 45°.
+                </div>
+              </div>
+
+              <div class="tw">
+                <table class="t">
+                  <thead>
+                    <tr>
+                      <th>Cú bấm máy</th>
+                      <th>Góc đặt máy &amp; Thao tác tay tại bàn</th>
+                      <th>Quay / Cắt lấy</th>
+                      <th>Điểm cắt nối chuyển động (70% – 30%)</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><strong>Cú 1 (Mồi)</strong></td>
+                      <td>Máy đặt chếch 45° sau nhành lá. Mặt bàn trống, tay <strong>đưa ly cà phê xuống đặt "cạch"</strong> lên bàn, tay kia kéo ghế.</td>
+                      <td>Quay 5s &rarr; Lấy <strong>1.5s</strong></td>
+                      <td>Cắt ra ngay khi đáy ly vừa tiếp xúc mặt bàn, các ngón tay chưa kịp rời thành ly.</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Cú 2 (Nối)</strong></td>
+                      <td>Góc <strong>Qua vai trái</strong> (vai áo mờ chiếm 1/3 khung). Tay phải <strong>lật mở bìa sổ và bấm ngòi bút "tạch"</strong>.</td>
+                      <td>Quay 5s &rarr; Lấy <strong>1.6s</strong></td>
+                      <td>Cắt vào đúng lúc bàn tay đang lật bìa sổ bay lên 45 độ; cắt ra ngay khi ngón cái vừa bấm bút.</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Cú 3 (Băm)</strong></td>
+                      <td>Góc <strong>Sát mặt bàn</strong> (nhìn qua mép ly cà phê mờ). Ngòi bút <strong>viết nhanh 3 gạch đầu dòng</strong> trên trang giấy.</td>
+                      <td>Quay 6s &rarr; Băm <strong>1.2s + 1.4s</strong></td>
+                      <td>Cắt vào đúng lúc ngòi bút đang kéo nét chữ đầu tiên (không lấy cảnh bút đứng yên).</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Cú 4 (Nối)</strong></td>
+                      <td>Góc <strong>Thấp sát mép bàn</strong>. Tay <strong>nhấc mở nắp màn hình laptop</strong> (1.5s), gõ phím và ngón trỏ <strong>ấn phím Enter</strong> (1.2s).</td>
+                      <td>Quay 6s &rarr; Băm <strong>1.5s + 1.2s</strong></td>
+                      <td>Nối từ nét bút chấm câu ở Cú 3 sang đúng khoảnh khắc ngón tay đang đẩy nắp màn hình mở lên.</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Cú 5 (Băm)</strong></td>
+                      <td>Góc <strong>Cận đôi mắt</strong> đón ánh sáng cửa sổ. Mắt <strong>liếc nhẹ từ trái sang phải</strong> đọc dòng chữ trên màn hình.</td>
+                      <td>Quay 4s &rarr; Lấy <strong>1.3s</strong></td>
+                      <td>Nhịp nghỉ thị giác 1.3s sau chuỗi tay chuyển động liên tục.</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Cú 6 (Thoát)</strong></td>
+                      <td>Lùi máy ra sau chậu cây. Tay <strong>nâng ly uống một ngụm, tay kia gập nhẹ cuốn sổ lại</strong>.</td>
+                      <td>Quay 6s &rarr; Lấy <strong>3.5s</strong></td>
+                      <td>Động tác gập bìa sổ đóng vai trò dấu chấm kết thúc cho toàn bộ chuỗi cảnh.</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="v3-vo-box">
+                <div class="v3-vo-head">
+                  <span>🎙️ Khung lời thoại ghép tại lớp (45 chữ • 13 giây • Chia 4 vế theo dấu /)</span>
+                  <button type="button" class="v3-vo-copy" onclick="window.copyVoScript(this, 'Mỗi sáng vào bàn tôi chỉ làm đúng ba việc. Một, viết ra ba đầu việc quan trọng nhất cho khách. Hai, mở máy xử lý dứt điểm việc khó nhất trước. Ba, xong xuôi mới cầm điện thoại. Làm nghề này mà giữ được nhịp đó, ngày nào cũng ra việc.')">📋 Sao chép lời thoại</button>
+                </div>
+                <p class="v3-vo-text">"Mỗi sáng vào bàn tôi chỉ làm đúng ba việc. <span class="slash">/</span> Một, viết ra ba đầu việc quan trọng nhất cho khách. <span class="slash">/</span> Hai, mở máy xử lý dứt điểm việc khó nhất trước. <span class="slash">/</span> Ba, xong xuôi mới cầm điện thoại. Làm <span class="slot">[NGHỀ]</span> mà giữ được nhịp này, ngày nào cũng ra việc."</p>
+                <div class="v3-vo-meta">💡 <strong>Cách thay từ theo ngành:</strong> Thay <code>[NGHỀ]</code> bằng <em>làm nội thất / làm spa / làm nha khoa / làm xưởng may / tư vấn tài chính</em>. Dùng làm cảnh trám khi nói về kỷ luật làm việc hoặc kế hoạch 3 bước.</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ================= BÀI TẬP 02 ================= -->
+          <div class="v3-card" id="ex-2">
+            <div class="v3-head">
+              <div class="v3-title-group">
+                <span class="v3-badge v3-badge-ex">BÀI TẬP 02 • AN TOÀN NHẤT CHO NGƯỜI MỚI</span>
+                <strong>Công thức "1 Hành động – Quay 3 góc" với Sổ tay, Ly trà &amp; Nhành lá</strong>
+                <span class="v3-meta">(6 cú bấm máy &rarr; 6 lát cắt • 11.2 giây • Mẫu @jigummmmm)</span>
+              </div>
+              <div class="v3-actions">
+                <button type="button" class="v3-btn-play" onclick="window.toggleV3Player(this, 'p3-ex-2', 'https://media.fedu.vn/videos/DbtuUwvzi5c.mp4')">▶️ Xem video mẫu</button>
+                <a href="https://ytuong.fedu.vn/v/DbtuUwvzi5c" target="_blank" rel="noopener" class="v3-btn-link">Kho Ý Tưởng ↗</a>
+              </div>
+            </div>
+
+            <div class="v3-shot-grid">
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Cú 1 • Góc A</span>
+                <span class="v3-shot-dur">2.2s</span>
+                <img src="https://media.fedu.vn/images/IG_%40jigummmmm_DbtuUwvzi5c_%E2%80%9C%EA%B7%B8%EB%9E%98%EC%84%9C_%EA%B0%90%EC%84%B1%EB%A6%B4%EC%8A%A4_%EC%96%B4%EB%96%BB%EA%B2%8C_%EC%B0%8D%EB%8A%94_%EA%B1%B4%EB%8D%B0%E2%81%89%EF%B8%8F%E2%80%9D/shot_03_mid.webp" alt="Cú 1 Bước vào khung đã khóa nét" loading="lazy"/>
+                <div class="v3-shot-cap">Bước vào ngồi mở sổ</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Cú 2 • Góc B</span>
+                <span class="v3-shot-dur">1.6s</span>
+                <img src="https://media.fedu.vn/images/IG_%40jigummmmm_DbtuUwvzi5c_%E2%80%9C%EA%B7%B8%EB%9E%98%EC%84%9C_%EA%B0%90%EC%84%B1%EB%A6%B4%EC%8A%A4_%EC%96%B4%EB%96%BB%EA%B2%8C_%EC%B0%8D%EB%8A%94_%EA%B1%B4%EB%8D%B0%E2%81%89%EF%B8%8F%E2%80%9D/shot_14_mid.webp" alt="Cú 2 Góc cao chúc 45 độ lật trang" loading="lazy"/>
+                <div class="v3-shot-cap">Góc chúc 45° lật trang</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Cú 3 • Góc C</span>
+                <span class="v3-shot-dur">1.6s</span>
+                <img src="https://media.fedu.vn/images/IG_%40jigummmmm_DbtuUwvzi5c_%E2%80%9C%EA%B7%B8%EB%9E%98%EC%84%9C_%EA%B0%90%EC%84%B1%EB%A6%B4%EC%8A%A4_%EC%96%B4%EB%96%BB%EA%B2%8C_%EC%B0%8D%EB%8A%94_%EA%B1%B4%EB%8D%B0%E2%81%89%EF%B8%8F%E2%80%9D/shot_19_mid.webp" alt="Cú 3 Qua vai ngón tay dò chữ" loading="lazy"/>
+                <div class="v3-shot-cap">Qua vai dò từng dòng</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Cú 4 • Góc A</span>
+                <span class="v3-shot-dur">1.8s</span>
+                <img src="https://media.fedu.vn/images/IG_%40jigummmmm_DbtuUwvzi5c_%E2%80%9C%EA%B7%B8%EB%9E%98%EC%84%9C_%EA%B0%90%EC%84%B1%EB%A6%B4%EC%8A%A4_%EC%96%B4%EB%96%BB%EA%B2%8C_%EC%B0%8D%EB%8A%94_%EA%B1%B4%EB%8D%B0%E2%81%89%EF%B8%8F%E2%80%9D/shot_05_mid.webp" alt="Cú 4 Khung qua ly trà và nhành lá" loading="lazy"/>
+                <div class="v3-shot-cap">Qua khe ly trà &amp; lá</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Cú 5 • Góc B</span>
+                <span class="v3-shot-dur">1.6s</span>
+                <img src="https://media.fedu.vn/images/IG_%40jigummmmm_DbtuUwvzi5c_%E2%80%9C%EA%B7%B8%EB%9E%98%EC%84%9C_%EA%B0%90%EC%84%B1%EB%A6%B4%EC%8A%A4_%EC%96%B4%EB%96%BB%EA%B2%8C_%EC%B0%8D%EB%8A%94_%EA%B1%B4%EB%8D%B0%E2%81%89%EF%B8%8F%E2%80%9D/shot_09_mid.webp" alt="Cú 5 Cận ngón tay và ngòi bút" loading="lazy"/>
+                <div class="v3-shot-cap">Cận ngòi bút khoanh chữ</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Cú 6 • Góc C</span>
+                <span class="v3-shot-dur">2.4s</span>
+                <img src="https://media.fedu.vn/images/IG_%40jigummmmm_DbtuUwvzi5c_%E2%80%9C%EA%B7%B8%EB%9E%98%EC%84%9C_%EA%B0%90%EC%84%B1%EB%A6%B4%EC%8A%A4_%EC%96%B4%EB%96%BB%EA%B2%8C_%EC%B0%8D%EB%8A%94_%EA%B1%B4%EB%8D%B0%E2%81%89%EF%B8%8F%E2%80%9D/shot_18_mid.webp" alt="Cú 6 Gập sổ qua vai" loading="lazy"/>
+                <div class="v3-shot-cap">Gập sổ &amp; rời ghế</div>
+              </div>
+            </div>
+
+            <div class="v3-player" id="p3-ex-2" style="display:none;">
+              <video controls playsinline preload="none" poster="https://media.fedu.vn/images/IG_%40jigummmmm_DbtuUwvzi5c_%E2%80%9C%EA%B7%B8%EB%9E%98%EC%84%9C_%EA%B0%90%EC%84%B1%EB%A6%B4%EC%8A%A4_%EC%96%B4%EB%96%BB%EA%B2%8C_%EC%B0%8D%EB%8A%94_%EA%B1%B4%EB%8D%B0%E2%81%89%EF%B8%8F%E2%80%9D/shot_05_mid.webp"></video>
+            </div>
+
+            <div class="v3-verdict">
+              <p><strong>Kỹ thuật cốt lõi học được:</strong> Chỉ cần <strong>1 hành động duy nhất</strong> (mở sổ &rarr; lật trang &rarr; dò chữ &rarr; ghi chú) nhưng đổi <strong>3 tọa độ đặt máy (A – B – C)</strong> để xóa sạch đồ đạc lộn xộn xung quanh và tạo cảm giác như được quay bằng 3 máy cùng lúc.</p>
+
+              <div class="v3-layer-grid">
+                <div class="v3-layer-box fg">
+                  <b>1. Tiền cảnh đóng khung 2 bên</b>
+                  Bên trái đặt ly trà màu hổ phách mờ nhẹ; bên phải đặt nhành lá xanh; ở góc C đẩy nhẹ bờ vai phải nhô vào 1/3 khung.
+                </div>
+                <div class="v3-layer-box mg">
+                  <b>2. Trung cảnh nét (Midground)</b>
+                  Cuốn sổ hoặc sách đặt đúng đường mạnh 1/3 dưới của lưới camera 9 ô.
+                </div>
+                <div class="v3-layer-box bg">
+                  <b>3. Ba tọa độ máy (A – B – C)</b>
+                  <strong>Góc A:</strong> Ngang bàn chính diện qua ly trà &amp; lá · <strong>Góc B:</strong> Nâng máy cao chúc 45° xuống mặt bàn · <strong>Góc C:</strong> Sau lưng qua vai phải.
+                </div>
+              </div>
+
+              <div class="tw">
+                <table class="t">
+                  <thead>
+                    <tr>
+                      <th>Cú bấm máy</th>
+                      <th>Góc đặt máy &amp; Thao tác tay tại bàn</th>
+                      <th>Quay / Cắt lấy</th>
+                      <th>Điểm cắt nối chuyển động (70% – 30%)</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><strong>Cú 1 (Mồi – Góc A)</strong></td>
+                      <td>Khóa nét 2x sẵn vào cuốn sổ khi ghế còn trống. Học viên <strong>bước từ trái vào khung hình, ngồi xuống mở sổ</strong>.</td>
+                      <td>Quay 6s &rarr; Lấy <strong>2.2s</strong></td>
+                      <td>Cuối Cú 1, ngón tay vừa nhấc trang giấy bên phải lên một góc 45 độ thì cắt ra.</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Cú 2 (Nối – Góc B)</strong></td>
+                      <td>Dời máy sang cạnh bàn, nâng cao chúc 45° xuống mặt giấy (cắt bỏ hết nền lộn xộn). Tay <strong>lật trang giấy bay sang trái</strong>.</td>
+                      <td>Quay 5s &rarr; Lấy <strong>1.6s</strong></td>
+                      <td>Cắt vào đúng khoảnh khắc trang giấy đang bay giữa không trung (nối trực tiếp từ Cú 1).</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Cú 3 (Nối – Góc C)</strong></td>
+                      <td>Đặt máy sau lưng, cố tình nhô nhẹ bờ vai phải vào khung làm tiền cảnh mờ. Ngón trỏ <strong>dò ngang theo dòng chữ</strong>.</td>
+                      <td>Quay 5s &rarr; Lấy <strong>1.6s</strong></td>
+                      <td>Cuối Cú 2 tay vừa nhấc lên &rarr; Đầu Cú 3 đầu ngón trỏ vừa tiếp xúc mặt giấy.</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Cú 4 (Băm – Góc A)</strong></td>
+                      <td>Quay lại Góc A (nhìn qua khe giữa ly trà và nhành lá). Tay <strong>nhấc bút lên, bấm ngòi và hạ xuống trang sổ</strong>.</td>
+                      <td>Quay 5s &rarr; Lấy <strong>1.8s</strong></td>
+                      <td>Cắt ra ngay khi đầu ngòi bút vừa hạ xuống sát mặt giấy.</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Cú 5 (Băm – Góc B)</strong></td>
+                      <td>Quay lại Góc B (cận sát mặt giấy). Ngòi bút <strong>viết rõ 1 từ khóa và khoanh tròn dứt khoát</strong>.</td>
+                      <td>Quay 5s &rarr; Lấy <strong>1.6s</strong></td>
+                      <td>Nối đúng nét bút đang chạy từ Cú 4 sang góc cận Cú 5.</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Cú 6 (Thoát – Góc C)</strong></td>
+                      <td>Quay lại Góc C (Qua vai). Đặt bút xuống, <strong>gập cuốn sổ lại</strong> và đứng dậy rời khỏi ghế.</td>
+                      <td>Quay 5s &rarr; Lấy <strong>2.4s</strong></td>
+                      <td>Cắt vào lúc tay đang khép bìa sổ từ góc 45 độ xuống mặt bàn.</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="v3-vo-box">
+                <div class="v3-vo-head">
+                  <span>🎙️ Khung lời thoại ghép tại lớp (36 chữ • 11.2 giây • Chia 4 vế theo dấu /)</span>
+                  <button type="button" class="v3-vo-copy" onclick="window.copyVoScript(this, 'Trước mỗi buổi tư vấn, tôi luôn mở lại ghi chú từ những ca thực tế đã làm. Vì mỗi khách hàng đều có một nút thắt riêng. Nhìn ra đúng nút thắt đó trước, tôi mới đưa ra giải pháp.')">📋 Sao chép lời thoại</button>
+                </div>
+                <p class="v3-vo-text">"Trước mỗi buổi tư vấn, <span class="slash">/</span> tôi luôn mở lại ghi chú từ những ca thực tế đã làm. <span class="slash">/</span> Vì mỗi <span class="slot">[khách hàng / công trình / ca điều trị]</span> đều có một nút thắt riêng. <span class="slash">/</span> Nhìn ra đúng nút thắt đó trước, tôi mới đưa ra giải pháp."</p>
+                <div class="v3-vo-meta">💡 <strong>Cách thay từ theo ngành:</strong> Thay <code>[khách hàng / công trình / ca điều trị]</code> tùy theo ngành dịch vụ, xây dựng hay làm đẹp. Dùng làm cảnh trám mở đầu khi chia sẻ kinh nghiệm thực tế.</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ================= BÀI TẬP 03 ================= -->
+          <div class="v3-card" id="ex-3">
+            <div class="v3-head">
+              <div class="v3-title-group">
+                <span class="v3-badge v3-badge-ex">BÀI TẬP 03 • NHỊP THỞ CO – GIÃN XUYÊN TÁN LÁ</span>
+                <strong>Băm cảnh cực cận (Macro) đan xen góc nhìn xuyên tán lá cây trên bàn</strong>
+                <span class="v3-meta">(6 cú bấm máy &rarr; 9 lát cắt • 12.4 giây • Mẫu @georgepabaker)</span>
+              </div>
+              <div class="v3-actions">
+                <button type="button" class="v3-btn-play" onclick="window.toggleV3Player(this, 'p3-ex-3', 'https://media.fedu.vn/videos/DeHtnziInQn.mp4')">▶️ Xem video mẫu</button>
+                <a href="https://ytuong.fedu.vn/v/DeHtnziInQn" target="_blank" rel="noopener" class="v3-btn-link">Kho Ý Tưởng ↗</a>
+              </div>
+            </div>
+
+            <div class="v3-shot-grid">
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Cú 1 • Mồi</span>
+                <span class="v3-shot-dur">1.8s</span>
+                <img src="https://media.fedu.vn/images/IG_@georgepabaker_DeHtnziInQn_Simple_as_that/shot_02_mid.webp" alt="Cú 1 Góc qua vai bàn phím" loading="lazy"/>
+                <div class="v3-shot-cap">Qua vai tay đặt lên phím</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Cú 2 • Nhịp Co</span>
+                <span class="v3-shot-dur">0.9s + 1.0s</span>
+                <img src="https://media.fedu.vn/images/IG_@georgepabaker_DeHtnziInQn_Simple_as_that/shot_03_mid.webp" alt="Cú 2 Cực cận đôi mắt" loading="lazy"/>
+                <div class="v3-shot-cap">Cực cận mắt &amp; đỡ cằm</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Cú 3 • Nhịp Co</span>
+                <span class="v3-shot-dur">0.7s + 0.7s</span>
+                <img src="https://media.fedu.vn/images/IG_@georgepabaker_DeHtnziInQn_Simple_as_that/shot_04_mid.webp" alt="Cú 3 Xoay ngòi bút ấn phím" loading="lazy"/>
+                <div class="v3-shot-cap">Bật bút &rarr; Ấn phím</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Cú 4 • Nhịp Giãn</span>
+                <span class="v3-shot-dur">2.2s</span>
+                <img src="https://media.fedu.vn/images/IG_@georgepabaker_DeHtnziInQn_Simple_as_that/shot_08_mid.webp" alt="Cú 4 Góc trung 2 lớp tay viết mờ laptop nét" loading="lazy"/>
+                <div class="v3-shot-cap">Tay viết mờ – Máy nét</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Cú 5 • Nhịp Co</span>
+                <span class="v3-shot-dur">0.9s + 1.0s</span>
+                <img src="https://media.fedu.vn/images/IG_@georgepabaker_DeHtnziInQn_Simple_as_that/shot_10_mid.webp" alt="Cú 5 Ngòi bút vạch đường chéo" loading="lazy"/>
+                <div class="v3-shot-cap">Bút vạch chéo trang giấy</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Cú 6 • Thoát</span>
+                <span class="v3-shot-dur">3.2s</span>
+                <img src="https://media.fedu.vn/images/IG_@georgepabaker_DeHtnziInQn_Simple_as_that/shot_13_mid.webp" alt="Cú 6 Nhìn xuyên tán lá cây viết sổ" loading="lazy"/>
+                <div class="v3-shot-cap">Xuyên tán lá viết sổ</div>
+              </div>
+            </div>
+
+            <div class="v3-player" id="p3-ex-3" style="display:none;">
+              <video controls playsinline preload="none" poster="https://media.fedu.vn/images/IG_@georgepabaker_DeHtnziInQn_Simple_as_that/shot_13_mid.webp"></video>
+            </div>
+
+            <div class="v3-verdict">
+              <p><strong>Kỹ thuật cốt lõi học được:</strong> Làm chủ <strong>Nhịp thở Co – Giãn</strong> trong dựng cảnh trám: xen kẽ các lát cắt cực cận (Macro <code>0.7s – 0.9s</code> quay ngòi bút bật lên, ngón trỏ đập xuống phím, đường bút gạch chéo) với các lát trung cảnh dài hơn (<code>2.2s – 3.2s</code> nhìn xuyên qua tán lá cây) để tạo sự sắc sảo mà không làm người xem mỏi mắt.</p>
+
+              <div class="v3-layer-grid">
+                <div class="v3-layer-box fg">
+                  <b>1. Tiền cảnh lá cây &amp; Tay mờ</b>
+                  Ở Cú 4 dùng chính đôi tay viết sổ làm tiền cảnh mờ; ở Cú 6 giấu máy lùi sau chậu cây lá dày che mờ 1/3 khung hình.
+                </div>
+                <div class="v3-layer-box mg">
+                  <b>2. Trung cảnh nét (Midground)</b>
+                  Ngòi bút bi bấm, các phím bấm trên laptop, con chuột và trang sổ ghi chép.
+                </div>
+                <div class="v3-layer-box bg">
+                  <b>3. Hậu cảnh tương phản</b>
+                  Ánh sáng màn hình laptop nổi bật trên nền góc phòng trầm, tạo độ tách khối rõ ràng.
+                </div>
+              </div>
+
+              <div class="tw">
+                <table class="t">
+                  <thead>
+                    <tr>
+                      <th>Cú bấm máy</th>
+                      <th>Góc đặt máy &amp; Thao tác tay tại bàn</th>
+                      <th>Quay / Cắt lấy</th>
+                      <th>Điểm cắt nối chuyển động (70% – 30%)</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><strong>Cú 1 (Mồi)</strong></td>
+                      <td>Góc <strong>Qua vai</strong>: Đưa máy trượt nhanh qua vạt áo vào khung cảnh hai tay đặt lên bàn phím trước cuốn sổ mở sẵn.</td>
+                      <td>Quay 4s &rarr; Lấy <strong>1.8s</strong></td>
+                      <td>Vạt áo trượt qua ống kính mở ra toàn bộ góc bàn làm việc.</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Cú 2 (Nhịp Co)</strong></td>
+                      <td><strong>Cực cận đôi mắt</strong> phản chiếu ánh sáng màn hình (0.9s) &rarr; Cắt nối sang cảnh <strong>bàn tay đưa lên đỡ cằm suy ngẫm</strong> (1.0s).</td>
+                      <td>Quay 5s &rarr; Băm <strong>0.9s + 1.0s</strong></td>
+                      <td>Ánh mắt vừa dừng lại thì bàn tay nâng lên tựa vào cằm.</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Cú 3 (Nhịp Co)</strong></td>
+                      <td><strong>Đặc tả Macro:</strong> Ngón cái <strong>xoay/bấm bật ngòi bút</strong> (0.7s) &rarr; Ngón trỏ <strong>ấn dứt khoát xuống phím máy tính</strong> (0.7s).</td>
+                      <td>Quay 5s &rarr; Băm <strong>0.7s + 0.7s</strong></td>
+                      <td>Nối bằng đà vung của ngón tay: ngón cái vừa bật ngòi bút hướng lên thì cắt sang ngón trỏ lao xuống phím.</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Cú 4 (Nhịp Giãn)</strong></td>
+                      <td><strong>Góc Trung 2 lớp:</strong> Đặt máy thấp ngang mặt bàn — <strong>hai tay viết sổ mờ ở tiền cảnh</strong>, lấy nét căng vào <strong>màn hình laptop phía sau</strong>.</td>
+                      <td>Quay 5s &rarr; Lấy <strong>2.2s</strong></td>
+                      <td>Giãn nhịp ra 2.2s để mắt người xem cảm nhận chiều sâu không gian 2 lớp.</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Cú 5 (Nhịp Co)</strong></td>
+                      <td><strong>Đặc tả Macro:</strong> Ngòi bút <strong>vạch một đường chéo sắc lẹm trên trang giấy trắng</strong> (0.9s) &rarr; Cận ngón tay nhấp chuột (1.0s).</td>
+                      <td>Quay 5s &rarr; Băm <strong>0.9s + 1.0s</strong></td>
+                      <td>Đường bút vạch chéo tạo lực hút thị giác mạnh trước khi sang cú kết.</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Cú 6 (Thoát)</strong></td>
+                      <td><strong>Góc nhìn xuyên tán lá:</strong> Giấu máy sau chậu cây xanh, nhìn qua khe lá mờ vào đôi bàn tay đang viết dòng chốt trong sổ.</td>
+                      <td>Quay 6s &rarr; Lấy <strong>3.2s</strong></td>
+                      <td>Khung lá cây mờ bao quanh tạo chiều sâu kín đáo, giữ 3.2s cuối để đọc trọn câu kết.</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="v3-vo-box">
+                <div class="v3-vo-head">
+                  <span>🎙️ Khung lời thoại ghép tại lớp (40 chữ • 12.4 giây • Chia 4 vế theo dấu /)</span>
+                  <button type="button" class="v3-vo-copy" onclick="window.copyVoScript(this, 'Nhiều khách hỏi sao việc nhỏ vậy mà tôi làm kỹ thế. Thực ra trong nghề này, hơn nhau không nằm ở lời giới thiệu hay. Nó nằm ở lúc mình ngồi rà lại từng thông số, gạch từng dòng kiểm tra như thế này trước khi bàn giao.')">📋 Sao chép lời thoại</button>
+                </div>
+                <p class="v3-vo-text">"Nhiều khách hỏi sao việc nhỏ vậy mà tôi làm kỹ thế. <span class="slash">/</span> Thực ra trong nghề <span class="slot">[NGHỀ]</span>, hơn nhau không nằm ở lời giới thiệu hay. <span class="slash">/</span> Nó nằm ở lúc mình ngồi rà lại từng thông số, <span class="slash">/</span> gạch từng dòng kiểm tra như thế này trước khi bàn giao."</p>
+                <div class="v3-vo-meta">💡 <strong>Cách thay từ theo ngành:</strong> Thay <code>[NGHỀ]</code> bằng ngành của học viên. Đặc biệt hợp để trám vào đoạn nói về sự tỉ mỉ, kiểm tra hồ sơ, bản vẽ, công thức hoặc phác đồ cho khách.</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ================= BÀI TẬP 04 ================= -->
+          <div class="v3-card" id="ex-4">
+            <div class="v3-head">
+              <div class="v3-title-group">
+                <span class="v3-badge v3-badge-ex">BÀI TẬP 04 • NẮNG CỬA SỔ &amp; PHẢN CHIẾU THIÊN NHIÊN</span>
+                <strong>Biến góc bàn cạnh cửa sổ thành khung hình điện ảnh bằng phản chiếu màn hình &amp; ngược sáng</strong>
+                <span class="v3-meta">(6 cú bấm máy &rarr; 8 lát cắt • 11.5 giây • Mẫu @bryanhynes)</span>
+              </div>
+              <div class="v3-actions">
+                <button type="button" class="v3-btn-play" onclick="window.toggleV3Player(this, 'p3-ex-4', 'https://media.fedu.vn/videos/Dcxsw50zIR8.mp4')">▶️ Xem video mẫu</button>
+                <a href="https://ytuong.fedu.vn/v/Dcxsw50zIR8" target="_blank" rel="noopener" class="v3-btn-link">Kho Ý Tưởng ↗</a>
+              </div>
+            </div>
+
+            <div class="v3-shot-grid">
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Cú 1 • Mồi</span>
+                <span class="v3-shot-dur">1.0s + 1.0s</span>
+                <img src="https://media.fedu.vn/images/IG_@Bryan_Hynes_Dcxsw50zIR8_Video_by_bryanhynes/shot_02_mid.webp" alt="Cú 1 Kéo ghế tiền cảnh" loading="lazy"/>
+                <div class="v3-shot-cap">Kéo ghế mở màn</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Cú 2 • Nối</span>
+                <span class="v3-shot-dur">1.0s</span>
+                <img src="https://media.fedu.vn/images/IG_@Bryan_Hynes_Dcxsw50zIR8_Video_by_bryanhynes/shot_05_mid.webp" alt="Cú 2 Macro mở nắp MacBook" loading="lazy"/>
+                <div class="v3-shot-cap">Macro mở nắp máy</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Cú 3 • Băm</span>
+                <span class="v3-shot-dur">1.5s</span>
+                <img src="https://media.fedu.vn/images/IG_@Bryan_Hynes_Dcxsw50zIR8_Video_by_bryanhynes/shot_06_mid.webp" alt="Cú 3 Phản chiếu cây xanh trên màn hình" loading="lazy"/>
+                <div class="v3-shot-cap">Màn hình in bóng cây</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Cú 4 • Băm</span>
+                <span class="v3-shot-dur">1.2s</span>
+                <img src="https://media.fedu.vn/images/IG_@Bryan_Hynes_Dcxsw50zIR8_Video_by_bryanhynes/shot_07_mid.webp" alt="Cú 4 Gõ phím ngược sáng" loading="lazy"/>
+                <div class="v3-shot-cap">Gõ phím ngược nắng</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Cú 5 • Giãn</span>
+                <span class="v3-shot-dur">2.0s</span>
+                <img src="https://media.fedu.vn/images/IG_@Bryan_Hynes_Dcxsw50zIR8_Video_by_bryanhynes/shot_09_mid.webp" alt="Cú 5 Nhìn ra cây xanh ngoài cửa sổ" loading="lazy"/>
+                <div class="v3-shot-cap">Ngước nhìn ra cây xanh</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Cú 6 • Thoát</span>
+                <span class="v3-shot-dur">1.8s + 2.0s</span>
+                <img src="https://media.fedu.vn/images/IG_@Bryan_Hynes_Dcxsw50zIR8_Video_by_bryanhynes/shot_12_mid.webp" alt="Cú 6 Đảo ngược gập nắp máy" loading="lazy"/>
+                <div class="v3-shot-cap">Gập nắp máy khép vòng</div>
+              </div>
+            </div>
+
+            <div class="v3-player" id="p3-ex-4" style="display:none;">
+              <video controls playsinline preload="none" poster="https://media.fedu.vn/images/IG_@Bryan_Hynes_Dcxsw50zIR8_Video_by_bryanhynes/shot_06_mid.webp"></video>
+            </div>
+
+            <div class="v3-verdict">
+              <p><strong>Kỹ thuật cốt lõi học được:</strong> Tận dụng tối đa <strong>ánh sáng cửa sổ và thiên nhiên bên ngoài phòng học</strong>: dùng lưng ghế làm tiền cảnh kéo mở màn, đặt góc máy thấp bắt bóng tán cây phản chiếu vào mặt gương màn hình laptop, và dùng cặp chuyển cảnh đối xứng <strong>Mở nắp máy (Cú 2) &harr; Gập nắp máy (Cú 6)</strong>.</p>
+
+              <div class="v3-layer-grid">
+                <div class="v3-layer-box fg">
+                  <b>1. Tiền cảnh (Foreground)</b>
+                  Lưng ghế được kéo trượt ngang ở Cú 1 + mép bàn phím ở Cú 3.
+                </div>
+                <div class="v3-layer-box mg">
+                  <b>2. Trung cảnh &amp; Phản chiếu</b>
+                  Đôi bàn tay gõ phím có viền nắng + Mặt gương màn hình laptop in bóng tán cây xanh ngoài trời.
+                </div>
+                <div class="v3-layer-box bg">
+                  <b>3. Hậu cảnh thiên nhiên</b>
+                  Khung cửa kính, vệt nắng xiên và cây xanh ngoài ban công (nếu trời râm có thể bật đèn bàn chiếu xiên từ bên trái).
+                </div>
+              </div>
+
+              <div class="tw">
+                <table class="t">
+                  <thead>
+                    <tr>
+                      <th>Cú bấm máy</th>
+                      <th>Góc đặt máy &amp; Thao tác tay tại bàn</th>
+                      <th>Quay / Cắt lấy</th>
+                      <th>Điểm cắt nối chuyển động (70% – 30%)</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><strong>Cú 1 (Mồi)</strong></td>
+                      <td>Quay vệt nắng trên mặt bàn (1.0s) &rarr; Đặt máy thấp sau lưng ghế: <strong>tay kéo chiếc ghế ở tiền cảnh sang một bên</strong> mở lộ ra người ngồi vào bàn (1.0s).</td>
+                      <td>Quay 5s &rarr; Băm <strong>1.0s + 1.0s</strong></td>
+                      <td>Chiếc ghế trượt ngang khỏi ống kính đóng vai trò như bức màn mở ra bối cảnh.</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Cú 2 (Nối)</strong></td>
+                      <td>Góc <strong>Macro sát mép bàn:</strong> Ngón cái <strong>đặt vào rãnh laptop và nhấc mở nắp màn hình lên</strong>.</td>
+                      <td>Quay 4s &rarr; Lấy <strong>1.0s</strong></td>
+                      <td>Cắt ra ngay khi nắp máy vừa mở lên một góc 60 độ.</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Cú 3 (Băm)</strong></td>
+                      <td>Đặt máy thấp, chếch chéo vào mặt màn hình sao cho <strong>bắt được bóng cây xanh ngoài cửa sổ in trên màn hình</strong> khi tay đang gõ phím.</td>
+                      <td>Quay 5s &rarr; Lấy <strong>1.5s</strong></td>
+                      <td>Đưa cả khung cảnh thiên nhiên ngoài cửa sổ vào trong chiếc màn hình trên bàn.</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Cú 4 (Băm)</strong></td>
+                      <td>Đặt máy đối diện hướng ánh sáng cửa sổ: Quay cận <strong>các ngón tay gõ phím có viền sáng rực lên quanh ngón tay</strong>.</td>
+                      <td>Quay 4s &rarr; Lấy <strong>1.2s</strong></td>
+                      <td>Nối nhịp gõ phím liên hoàn từ Cú 3 sang góc ngược sáng Cú 4.</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Cú 5 (Giãn)</strong></td>
+                      <td>Góc <strong>Cận nghiêng bên cửa sổ:</strong> Tạm dừng tay, <strong>ngước mắt nhìn ra tán cây xanh ngoài khung kính</strong>.</td>
+                      <td>Quay 5s &rarr; Lấy <strong>2.0s</strong></td>
+                      <td>Tạo khoảng lặng có chiều sâu trước khi khép lại video.</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Cú 6 (Thoát)</strong></td>
+                      <td>Quay lại đúng góc Macro Cú 2 nhưng <strong>kéo gập nắp màn hình laptop đóng xuống</strong> (1.8s) &rarr; Cầm sổ bước ra khỏi bàn (2.0s).</td>
+                      <td>Quay 6s &rarr; Băm <strong>1.8s + 2.0s</strong></td>
+                      <td>Nắp máy gập xuống khép lại trọn vẹn vòng lặp đối xứng với Cú 2.</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="v3-vo-box">
+                <div class="v3-vo-head">
+                  <span>🎙️ Khung lời thoại ghép tại lớp (39 chữ • 11.5 giây • Chia 4 vế theo dấu /)</span>
+                  <button type="button" class="v3-vo-copy" onclick="window.copyVoScript(this, 'Những quyết định đúng nhất trong công việc của tôi chưa bao giờ đến vào lúc mình đang vội vã. Nó đến khi tôi ngồi lại bên cửa sổ, đóng bớt ồn ào, và nhìn thật rõ: bước tiếp theo khách cần ở mình là gì?')">📋 Sao chép lời thoại</button>
+                </div>
+                <p class="v3-vo-text">"Những quyết định đúng nhất trong công việc của tôi <span class="slash">/</span> chưa bao giờ đến vào lúc mình đang vội vã. <span class="slash">/</span> Nó đến khi tôi ngồi lại bên cửa sổ, đóng bớt ồn ào, <span class="slash">/</span> và nhìn thật rõ: làm <span class="slot">[NGHỀ]</span>, bước tiếp theo khách cần ở mình là gì?"</p>
+                <div class="v3-vo-meta">💡 <strong>Cách thay từ theo ngành:</strong> Thay <code>[NGHỀ]</code> bằng lĩnh vực của học viên. Phù hợp nhất để trám vào các đoạn chiêm nghiệm nghề nghiệp, bước ngoặt kinh doanh hoặc định hướng làm sản phẩm.</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ================= BÀI TẬP 05 ================= -->
+          <div class="v3-card" id="ex-5">
+            <div class="v3-head">
+              <div class="v3-title-group">
+                <span class="v3-badge v3-badge-ex">BÀI TẬP 05 • BẢN ĐỒ 6 GÓC QUANH BÀN (BỘ TRÁM VẠN NĂNG)</span>
+                <strong>Sáu độ cao đặt máy quanh một chiếc bàn (Tựa máy bằng bình nước) &amp; Cú đóng sổ thoát cảnh</strong>
+                <span class="v3-meta">(6 cú bấm máy &rarr; 8 lát cắt • 13.1 giây • Mẫu @kortafilms)</span>
+              </div>
+              <div class="v3-actions">
+                <button type="button" class="v3-btn-play" onclick="window.toggleV3Player(this, 'p3-ex-5', 'https://media.fedu.vn/videos/DcdthwaTM3J.mp4')">▶️ Xem video mẫu</button>
+                <a href="https://ytuong.fedu.vn/v/DcdthwaTM3J" target="_blank" rel="noopener" class="v3-btn-link">Kho Ý Tưởng ↗</a>
+              </div>
+            </div>
+
+            <div class="v3-shot-grid">
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Cú 1 • Góc Thấp</span>
+                <span class="v3-shot-dur">1.8s</span>
+                <img src="https://media.fedu.vn/images/IG_@kortafilms_DcdthwaTM3J_Camera_Angles_Mastery/shot_01_mid.webp" alt="Cú 1 Góc thấp hất lên mở laptop" loading="lazy"/>
+                <div class="v3-shot-cap">Thấp hất lên mở máy</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Cú 2 • Góc POV</span>
+                <span class="v3-shot-dur">1.8s</span>
+                <img src="https://media.fedu.vn/images/IG_@kortafilms_DcdthwaTM3J_Camera_Angles_Mastery/shot_02_mid.webp" alt="Cú 2 Góc nhìn thứ nhất cầm sổ" loading="lazy"/>
+                <div class="v3-shot-cap">POV cầm sổ chỉ sơ đồ</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Cú 3 • Macro Phím</span>
+                <span class="v3-shot-dur">1.2s + 1.0s</span>
+                <img src="https://media.fedu.vn/images/IG_@kortafilms_DcdthwaTM3J_Camera_Angles_Mastery/shot_03_mid.webp" alt="Cú 3 Macro chéo bàn phím" loading="lazy"/>
+                <div class="v3-shot-cap">Cận chéo phím mờ</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Cú 4 • Qua Vai</span>
+                <span class="v3-shot-dur">2.0s</span>
+                <img src="https://media.fedu.vn/images/IG_@kortafilms_DcdthwaTM3J_Camera_Angles_Mastery/shot_04_mid.webp" alt="Cú 4 Qua vai viết sổ" loading="lazy"/>
+                <div class="v3-shot-cap">Qua vai phác thảo</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Cú 5 • Sát Bàn</span>
+                <span class="v3-shot-dur">1.5s</span>
+                <img src="https://media.fedu.vn/images/IG_@kortafilms_DcdthwaTM3J_Camera_Angles_Mastery/shot_06_mid.webp" alt="Cú 5 Sát mặt bàn ngang ngòi bút" loading="lazy"/>
+                <div class="v3-shot-cap">Sát mặt bàn chạy bút</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Cú 6 • Top-Down</span>
+                <span class="v3-shot-dur">1.8s + 2.0s</span>
+                <img src="https://media.fedu.vn/images/IG_@kortafilms_DcdthwaTM3J_Camera_Angles_Mastery/shot_05_mid.webp" alt="Cú 6 Nhìn thẳng 90 độ từ trên xuống" loading="lazy"/>
+                <div class="v3-shot-cap">90° từ trên xuống</div>
+              </div>
+            </div>
+
+            <div class="v3-player" id="p3-ex-5" style="display:none;">
+              <video controls playsinline preload="none" poster="https://media.fedu.vn/images/IG_@kortafilms_DcdthwaTM3J_Camera_Angles_Mastery/shot_04_mid.webp"></video>
+            </div>
+
+            <div class="v3-verdict">
+              <p><strong>Kỹ thuật cốt lõi học được:</strong> Nắm trọn <strong>"Bản đồ 6 tọa độ đặt điện thoại"</strong> quanh một chiếc bàn mà không cần chân máy (dùng bình nước trên bàn để tựa máy): nối cùng một nét bút chạy xuyên qua 3 góc (Góc nhìn mắt người ngồi POV &rarr; Góc Qua vai &rarr; Góc Sát mặt bàn) và thoát cảnh bằng cú nhìn thẳng 90 độ từ trên xuống đóng sập cuốn sổ.</p>
+
+              <div class="v3-layer-grid">
+                <div class="v3-layer-box fg">
+                  <b>1. Tiền cảnh đa dạng</b>
+                  Hàng phím mờ ở Cú 3; bờ vai áo mờ bên trái ở Cú 4; mặt gỗ bàn sát ống kính ở Cú 5.
+                </div>
+                <div class="v3-layer-box mg">
+                  <b>2. Trung cảnh nét (Midground)</b>
+                  Cuốn sổ lò xo vẽ sơ đồ phác thảo + ngòi bút + bàn phím máy tính.
+                </div>
+                <div class="v3-layer-box bg">
+                  <b>3. Mẹo cố định máy không cần Tripod</b>
+                  Dùng 1 bình nước hoặc cốc nặng đặt trên bàn để tựa lưng điện thoại ở các góc thấp và góc sát mặt bàn (<a href="https://ytuong.fedu.vn/v/DbQtoVPRMWk" target="_blank">Xem thêm mẹo tựa máy DbQtoVPRMWk ↗</a>).
+                </div>
+              </div>
+
+              <div class="tw">
+                <table class="t">
+                  <thead>
+                    <tr>
+                      <th>Cú bấm máy</th>
+                      <th>Góc đặt máy &amp; Thao tác tay tại bàn</th>
+                      <th>Quay / Cắt lấy</th>
+                      <th>Điểm cắt nối chuyển động (70% – 30%)</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><strong>Cú 1 (Mồi – Góc Thấp)</strong></td>
+                      <td>Đặt máy thấp sát mép bàn hất nhẹ lên. Tay đưa từ trái vào <strong>nhấc mở nắp laptop</strong>, ánh sáng màn hình bừng lên.</td>
+                      <td>Quay 4s &rarr; Lấy <strong>1.8s</strong></td>
+                      <td>Ánh sáng màn hình hắt lên mặt bàn làm tín hiệu mở màn.</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Cú 2 (Nối – Góc POV)</strong></td>
+                      <td>Góc nhìn mắt người ngồi: Tay trái cầm cuốn sổ mở sẵn, tay phải <strong>cầm bút chỉ vào sơ đồ trên trang giấy</strong>.</td>
+                      <td>Quay 5s &rarr; Lấy <strong>1.8s</strong></td>
+                      <td>Cuối Cú 2 đầu bút bắt đầu hạ xuống mặt giấy để vẽ nét đầu tiên.</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Cú 3 (Băm – Cận Phím)</strong></td>
+                      <td>Tựa điện thoại sát bàn quay chéo bàn phím (phím gần mờ bokeh, ngón tay nét). <strong>Gõ 2 nhịp số liệu</strong>.</td>
+                      <td>Quay 4s &rarr; Băm <strong>1.2s + 1.0s</strong></td>
+                      <td>Băm 2 nhịp gõ phím ngắn tạo cảm giác đang tính toán thực tế.</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Cú 4 (Nối – Qua Vai)</strong></td>
+                      <td>Đặt máy sau lưng (vai trái mờ chiếm 1/3 khung). Tay phải <strong>cầm bút phác nhanh sơ đồ 3 ô trên sổ</strong>.</td>
+                      <td>Quay 5s &rarr; Lấy <strong>2.0s</strong></td>
+                      <td>Cắt ra ngay khi ngòi bút đang kéo đường kẻ ngang trên trang giấy.</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Cú 5 (Nối – Sát Bàn)</strong></td>
+                      <td>Tỳ cạnh điện thoại sát mặt bàn gỗ, nhìn ngang vào đúng <strong>đầu ngòi bút đang chạy nốt đường kẻ</strong> từ Cú 4.</td>
+                      <td>Quay 5s &rarr; Lấy <strong>1.5s</strong></td>
+                      <td>Cùng một nét bút nhưng nhảy từ góc Qua vai (Cú 4) xuống góc Sát mặt bàn (Cú 5).</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Cú 6 (Thoát – Top-Down)</strong></td>
+                      <td>Cầm điện thoại nhìn thẳng 90° từ trên xuống mặt bàn: Tay gõ nhịp cuối rồi <strong>đóng sập bìa cuốn sổ lại</strong>.</td>
+                      <td>Quay 5s &rarr; Băm <strong>1.8s + 2.0s</strong></td>
+                      <td>Cú đóng sập bìa sổ ở góc 90 độ tạo dấu chấm hết dứt khoát.</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="v3-vo-box">
+                <div class="v3-vo-head">
+                  <span>🎙️ Khung lời thoại ghép tại lớp (45 chữ • 13.1 giây • Chia 4 vế theo dấu /)</span>
+                  <button type="button" class="v3-vo-copy" onclick="window.copyVoScript(this, 'Một phương án gửi cho khách chỉ mất năm phút để đọc. Nhưng đằng sau đó là hàng giờ ngồi phác thảo trên giấy, tính lại từng con số trên máy và rà soát từng mục nhỏ. Làm nghề này, tôi không cho phép mình làm ẩu ở những chỗ khách không nhìn thấy.')">📋 Sao chép lời thoại</button>
+                </div>
+                <p class="v3-vo-text">"Một phương án gửi cho khách chỉ mất năm phút để đọc. <span class="slash">/</span> Nhưng đằng sau đó là hàng giờ ngồi phác thảo trên giấy, <span class="slash">/</span> tính lại từng con số trên máy và rà soát từng mục nhỏ. <span class="slash">/</span> Làm <span class="slot">[NGHỀ]</span>, tôi không cho phép mình làm ẩu ở những chỗ khách không nhìn thấy."</p>
+                <div class="v3-vo-meta">💡 <strong>Cách thay từ theo ngành:</strong> Thay <code>[NGHỀ]</code> bằng lĩnh vực của học viên. Đây là bộ cảnh trám đa năng nhất để đắp vào mọi đoạn báo giá, phân tích số liệu hoặc trình bày phương án cho khách.</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <h3>4. Bảng chấm điểm nghiệm thu bài tập ngay tại lớp (Thang 10 điểm)</h3>
+
+        <p>Sau 30 phút thực hành, học viên xuất video từ CapCut và tự đối chiếu nhanh theo 5 tiêu chí dưới đây (mỗi tiêu chí <strong>2 điểm</strong> — đạt từ <strong>8/10 điểm</strong> trở lên là hoàn thành bài tập tại lớp):</p>
+
+        <div class="tw">
+          <table class="t">
+            <thead>
+              <tr>
+                <th>Tiêu chí nghiệm thu</th>
+                <th>Mốc Đạt (2 điểm)</th>
+                <th>Lỗi cần quay/cắt lại ngay (0 điểm)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>1. Đạo cụ 3 tầng lớp</strong></td>
+                <td>Có ít nhất 2 lát cắt xuất hiện <strong>tiền cảnh mờ</strong> (nhành lá, mép ly, bờ vai áo, mép màn hình) tách biệt khỏi chủ thể nét.</td>
+                <td>Đặt máy quay thẳng vào mặt bàn trống trải, phẳng lỳ từ đầu đến cuối.</td>
+              </tr>
+              <tr>
+                <td><strong>2. Mồi cảnh giây đầu</strong></td>
+                <td>Giây 0:00 – 0:02 có chuyển động vật lý mở màn dứt khoát (đặt ly, bước vào mở sổ, kéo ghế, nhấc nắp máy).</td>
+                <td>Mở đầu bằng cảnh tĩnh đứng yên chờ 1–2 giây mới bắt đầu cử động tay.</td>
+              </tr>
+              <tr>
+                <td><strong>3. Mật độ băm cảnh</strong></td>
+                <td>Video 11–13 giây có từ <strong>6 đến 9 lát cắt</strong> (mỗi lát 0.7s – 2.5s), đan xen góc trung và góc cận đặc tả.</td>
+                <td>Giữ lì một góc máy quá 3.5 giây hoặc không có góc cận đặc tả ngòi bút/bàn phím.</td>
+              </tr>
+              <tr>
+                <td><strong>4. Chuyển cảnh nối (70/30)</strong></td>
+                <td>Có ít nhất <strong>3 điểm cắt nối ngay giữa chuyển động</strong> (lật trang, mở nắp máy, hạ bút) khiến mắt trượt mượt qua điểm cắt.</td>
+                <td>Đợi bàn tay dừng hẳn ở cảnh trước rồi mới cắt sang cảnh sau gây cảm giác giật cục.</td>
+              </tr>
+              <tr>
+                <td><strong>5. Khớp lời &amp; Tiếng động thật</strong></td>
+                <td>Lời đọc 4 vế khớp với 11–13 giây hình, đã thay đúng danh từ <code>[NGHỀ]</code> của mình và giữ lại 15% tiếng động thật (tiếng đặt ly, bấm bút).</td>
+                <td>Hình kết thúc trước khi đọc xong lời, hoặc tắt sạch tiếng động gốc làm video bị khô.</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
 
         <div class="actions">
