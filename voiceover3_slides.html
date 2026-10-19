@@ -1,0 +1,2078 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Slide Thuyết Trình Offline: Voice-Over 3.0 (17 Slides Design System 2.0)</title>
+  <style>
+    @font-face{font-family:'FD Aeonik Extended';src:url('fonts/FDAeonikExtended-Bold.woff2') format('woff2');font-weight:700;font-display:swap}
+    @font-face{font-family:'FD Aeonik Extended';src:url('fonts/FDAeonikExtended-SemiBold.woff2') format('woff2');font-weight:600;font-display:swap}
+    @font-face{font-family:'FD Aeonik';src:url('fonts/FDAeonik-Regular.ttf') format('truetype');font-weight:400;font-display:swap}
+    @font-face{font-family:'FD Aeonik';src:url('fonts/FDAeonik-Medium.ttf') format('truetype');font-weight:500 600;font-display:swap}
+    @font-face{font-family:'FD Aeonik';src:url('fonts/FDAeonik-Bold.ttf') format('truetype');font-weight:700;font-display:swap}
+    @font-face{font-family:'Tiempos Text';src:url('fonts/FDTiemposText-Regular.woff2') format('woff2');font-weight:400;font-display:swap}
+    @font-face{font-family:'Tiempos Text';src:url('fonts/FDTiemposText-RegularItalic.woff2') format('woff2');font-weight:400;font-style:italic;font-display:swap}
+    @font-face{font-family:'Tiempos Text';src:url('fonts/FDTiemposText-Semibold.woff2') format('woff2');font-weight:600;font-display:swap}
+
+    :root {
+      --ink: #0f172a;
+      --ink2: #1e293b;
+      --ink3: #334155;
+      --mute: #64748b;
+      --line: #e2e8f0;
+      --line2: #cbd5e1;
+      --bg: #ffffff;
+      --card-bg: #f8fafc;
+      --red-border: #fca5a5;
+      --red-badge: #dc2626;
+      --red-bg: #fef2f2;
+      --green-border: #6ee7b7;
+      --green-badge: #059669;
+      --green-bg: #ecfdf5;
+      --cyan-badge: #0284c7;
+      --cyan-bg: #f0f9ff;
+      --sans: 'FD Aeonik', -apple-system, BlinkMacSystemFont, 'Segoe UI', Inter, sans-serif;
+      --display: 'FD Aeonik Extended', 'FD Aeonik', -apple-system, sans-serif;
+      --serif: 'Tiempos Text', Georgia, serif;
+      --mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: #0f172a;
+      color: var(--ink);
+      font-family: var(--sans);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* === DECK CONTROL BAR === */
+    .deck-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(15, 23, 42, 0.96);
+      border-bottom: 1px solid #334155;
+      padding: 10px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      flex-wrap: wrap;
+      color: #f8fafc;
+      backdrop-filter: blur(8px);
+    }
+    .deck-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .deck-logo {
+      background: #fb923c;
+      color: #0f172a;
+      font: 800 12px var(--display);
+      padding: 5px 8px;
+      border-radius: 6px;
+    }
+    .deck-title {
+      font: 700 14px var(--display);
+      letter-spacing: 0.02em;
+    }
+    .deck-sub {
+      font-size: 12px;
+      color: #94a3b8;
+      margin-left: 6px;
+    }
+    .deck-nav-dots {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      flex-wrap: wrap;
+    }
+    .nav-dot {
+      background: #1e293b;
+      color: #cbd5e1;
+      border: 1px solid #334155;
+      border-radius: 6px;
+      padding: 4px 8px;
+      font: 700 11px var(--mono);
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .nav-dot:hover {
+      background: #334155;
+      color: #fff;
+    }
+    .nav-dot.active {
+      background: #fb923c;
+      color: #0f172a;
+      border-color: #fb923c;
+    }
+    .deck-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .ctrl-btn {
+      background: #1e293b;
+      color: #f8fafc;
+      border: 1px solid #475569;
+      border-radius: 7px;
+      padding: 6px 12px;
+      font: 600 12.5px var(--sans);
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .ctrl-btn:hover {
+      background: #334155;
+    }
+    .ctrl-btn.primary {
+      background: #2563eb;
+      border-color: #3b82f6;
+    }
+
+    /* === STAGE CONTAINER === */
+    .deck-stage {
+      max-width: 1360px;
+      margin: 22px auto 60px;
+      padding: 0 20px;
+    }
+    .slide-wrapper {
+      display: none;
+      margin-bottom: 36px;
+    }
+    .slide-wrapper.active {
+      display: block;
+    }
+    body.view-all .slide-wrapper {
+      display: block !important;
+      margin-bottom: 48px;
+    }
+
+    /* === 16:9 DESIGN SYSTEM 2.0 SLIDE CANVAS === */
+    .slide-canvas {
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      border-radius: 16px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+      min-height: 680px;
+      padding: 28px 42px 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      overflow: hidden;
+    }
+    .slide-topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font: 700 11.5px var(--mono);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--mute);
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--line);
+    }
+    .slide-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 14px;
+      margin-top: 20px;
+      border-top: 1px solid var(--line);
+      font-size: 12.5px;
+      color: var(--mute);
+    }
+    .mentor-sig {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--ink2);
+    }
+    .mentor-dot {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: var(--ink);
+      color: #fff;
+      display: inline-grid;
+      place-items: center;
+      font: 700 10px var(--display);
+    }
+    .footer-right {
+      font: 600 11.5px var(--mono);
+      color: var(--mute);
+    }
+
+    /* === KIỂU 01: COVER GIANT ANCHOR NUMBER 0 === */
+    .cover-body {
+      display: grid;
+      grid-template-columns: 380px 1fr;
+      align-items: center;
+      gap: 32px;
+      padding: 30px 0;
+      min-height: 520px;
+      position: relative;
+    }
+    .giant-zero {
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: 460px;
+      line-height: 0.8;
+      color: #3c3c3c;
+      letter-spacing: -0.05em;
+      user-select: none;
+      margin-left: -30px;
+    }
+    .cover-right {
+      padding-right: 20px;
+    }
+    .cover-kicker {
+      display: inline-block;
+      font: 700 11px var(--mono);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      background: #f1f5f9;
+      color: #334155;
+      padding: 5px 10px;
+      border-radius: 6px;
+      margin-bottom: 16px;
+    }
+    .cover-t1 {
+      font: italic 400 clamp(44px, 4.5vw, 64px)/1.08 var(--serif);
+      color: var(--ink);
+      margin-bottom: 6px;
+    }
+    .cover-t2 {
+      font: 700 clamp(38px, 4vw, 56px)/1.12 var(--display);
+      color: var(--ink);
+      letter-spacing: -0.02em;
+      margin-bottom: 18px;
+    }
+    .cover-sub {
+      font: 400 20px/1.55 var(--sans);
+      color: var(--ink3);
+      max-width: 680px;
+      margin-bottom: 24px;
+    }
+    .cover-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .cpill {
+      font: 600 12.5px var(--sans);
+      background: #f8fafc;
+      border: 1px solid #cbd5e1;
+      color: #1e293b;
+      padding: 6px 12px;
+      border-radius: 999px;
+    }
+
+    /* === SLIDE HEAD BLOCK (SLIDES 2+) === */
+    .slide-head-block {
+      margin: 18px 0 18px;
+    }
+    .slide-title-row {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .slide-main-title {
+      font: 700 clamp(22px, 2.3vw, 30px)/1.2 var(--display);
+      color: var(--ink);
+      margin: 0;
+      letter-spacing: -0.01em;
+    }
+    .preset-tag {
+      font: 600 11px var(--mono);
+      background: #f1f5f9;
+      color: #475569;
+      border: 1px solid #e2e8f0;
+      padding: 4px 9px;
+      border-radius: 6px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .slide-subtitle {
+      font: 400 16px/1.45 var(--sans);
+      color: var(--mute);
+      margin: 6px 0 0;
+    }
+
+    /* === CARDS GRID (KIỂU 02, 03, 05) === */
+    .ds-cards {
+      display: grid;
+      gap: 18px;
+      flex: 1;
+      align-items: stretch;
+    }
+    .cards-grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .cards-grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .cards-grid-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+
+    .ds-card {
+      background: var(--card-bg);
+      border: 1.5px solid var(--line);
+      border-radius: 14px;
+      padding: 20px 22px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .ds-card.card-warn {
+      border-color: var(--red-border);
+      background: #fffafa;
+    }
+    .ds-card.card-good {
+      border-color: var(--green-border);
+      background: #f7fee7;
+      background: linear-gradient(180deg, #ffffff 0%, #f0fdf4 100%);
+    }
+    .ds-badge {
+      font: 700 11.5px/1.2 var(--sans);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--cyan-badge);
+      margin-bottom: 8px;
+    }
+    .card-warn .ds-badge { color: var(--red-badge); }
+    .card-good .ds-badge { color: var(--green-badge); }
+
+    .ds-card-title {
+      font: 700 20px/1.3 var(--display);
+      color: var(--ink);
+      margin: 0;
+    }
+    .cards-grid-3 .ds-card-title,
+    .cards-grid-4 .ds-card-title {
+      font-size: 17.5px;
+    }
+    .ds-hairline {
+      height: 1px;
+      background: var(--line);
+      margin: 14px 0;
+    }
+    .ds-card-body {
+      flex: 1;
+      font: 400 15.5px/1.6 var(--sans);
+      color: var(--ink2);
+    }
+    .cards-grid-4 .ds-card-body {
+      font-size: 14px;
+      line-height: 1.55;
+    }
+    .ds-card-body p {
+      margin: 0 0 10px;
+    }
+    .ds-card-body p:last-child {
+      margin-bottom: 0;
+    }
+    .ds-takeaway {
+      margin-top: 14px;
+      padding: 10px 12px;
+      border-radius: 9px;
+      background: var(--cyan-bg);
+      border: 1px solid #bae6fd;
+      font: 600 13.5px/1.4 var(--sans);
+      color: #0369a1;
+    }
+    .card-warn .ds-takeaway {
+      background: var(--red-bg);
+      border-color: #fecaca;
+      color: #991b1b;
+    }
+    .card-good .ds-takeaway {
+      background: var(--green-bg);
+      border-color: #a7f3d0;
+      color: #065f46;
+    }
+
+    /* === KIỂU 06: BIG QUOTE === */
+    .quote-center-box {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 28px 40px;
+      background: #f8fafc;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      margin: 10px 0 18px;
+    }
+    .quote-mark {
+      font: 700 64px/0.6 var(--serif);
+      color: #cbd5e1;
+      margin-bottom: 12px;
+    }
+    .big-quote-text {
+      font: italic 400 clamp(22px, 2.5vw, 32px)/1.5 var(--serif);
+      color: var(--ink);
+      max-width: 920px;
+      margin: 0;
+    }
+    .quote-action-bar {
+      background: #0f172a;
+      color: #f8fafc;
+      padding: 16px 22px;
+      border-radius: 12px;
+      font: 600 15px/1.55 var(--sans);
+    }
+
+    /* === INLINE VIDEO EVIDENCE TRAY === */
+    .slide-videos-tray {
+      display: grid;
+      gap: 14px;
+      margin-top: 16px;
+    }
+    .slide-videos-tray.cols-1 { grid-template-columns: 1fr; }
+    .slide-videos-tray.cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .slide-videos-tray.cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+
+    .slide-vcard {
+      border: 1px solid #cbd5e1;
+      border-radius: 10px;
+      background: #ffffff;
+      overflow: hidden;
+    }
+    .slide-vhead {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      background: #f1f5f9;
+      border-bottom: 1px solid #e2e8f0;
+      flex-wrap: wrap;
+    }
+    .slide-vtitle {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+      font-size: 13px;
+    }
+    .slide-vmeta {
+      font-size: 11.5px;
+      color: #64748b;
+    }
+    .v-badge {
+      font: 700 10px var(--mono);
+      padding: 3px 6px;
+      border-radius: 5px;
+    }
+    .v-badge-win {
+      background: #dcfce7;
+      color: #166534;
+      border: 1px solid #86efac;
+    }
+    .v-badge-err {
+      background: #fee2e2;
+      color: #991b1b;
+      border: 1px solid #fca5a5;
+    }
+    .slide-vbtns {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .btn-play-inline {
+      background: #dc2626;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      padding: 5px 10px;
+      font: 700 11.5px var(--sans);
+      cursor: pointer;
+    }
+    .btn-play-inline:hover { background: #b91c1c; }
+    .btn-src-link {
+      font: 600 11.5px var(--sans);
+      color: #334155;
+      text-decoration: none;
+      background: #fff;
+      border: 1px solid #cbd5e1;
+      padding: 4px 8px;
+      border-radius: 6px;
+    }
+    .slide-vstrip {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      align-items: center;
+      gap: 12px;
+      padding: 8px 12px;
+      background: #f8fafc;
+    }
+    .slide-videos-tray.cols-3 .slide-vstrip {
+      grid-template-columns: 1fr;
+    }
+    .slide-vstrip img {
+      width: 100%;
+      max-height: 95px;
+      object-fit: cover;
+      border-radius: 6px;
+      border: 1px solid #cbd5e1;
+    }
+    .slide-vnote {
+      font-size: 13px;
+      line-height: 1.45;
+      color: #334155;
+    }
+    .slide-vplayer {
+      background: #000;
+      padding: 10px;
+      text-align: center;
+    }
+    .slide-vplayer video {
+      max-width: 100%;
+      max-height: 360px;
+      border-radius: 8px;
+    }
+
+    /* === SPEAKER NOTES BOX === */
+    .speaker-notes-box {
+      margin-top: 14px;
+      background: #1e293b;
+      border: 1px solid #334155;
+      border-left: 4px solid #fb923c;
+      border-radius: 12px;
+      padding: 14px 20px;
+      color: #f1f5f9;
+    }
+    .sn-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 6px;
+      flex-wrap: wrap;
+    }
+    .sn-badge {
+      font: 700 11.5px var(--mono);
+      color: #fb923c;
+      letter-spacing: 0.05em;
+    }
+    .sn-part {
+      font: 500 12px var(--sans);
+      color: #94a3b8;
+    }
+    .sn-text {
+      margin: 0;
+      font: 400 15.5px/1.65 var(--serif);
+      color: #e2e8f0;
+    }
+
+    @media (max-width: 1024px) {
+      .cover-body { grid-template-columns: 1fr; }
+      .giant-zero { font-size: 220px; margin-left: 0; }
+      .cards-grid-2, .cards-grid-3, .cards-grid-4 { grid-template-columns: 1fr; }
+      .slide-videos-tray.cols-2, .slide-videos-tray.cols-3 { grid-template-columns: 1fr; }
+      .slide-vstrip { grid-template-columns: 1fr; }
+      .slide-canvas { padding: 20px; min-height: auto; }
+    }
+  </style>
+</head>
+<body>
+  <header class="deck-header">
+    <div class="deck-brand">
+      <span class="deck-logo">FEDU 3.0</span>
+      <div>
+        <span class="deck-title">SLIDE THUYẾT TRÌNH OFFLINE: VOICE-OVER 3.0</span>
+        <span class="deck-sub">(17 Slides Design System 2.0 • Dùng phím ← / → để chuyển slide)</span>
+      </div>
+    </div>
+    <div class="deck-nav-dots" id="nav-dots">
+      <button type="button" class="nav-dot active" onclick="goToSlide(0)" title="Slide 01">01</button><button type="button" class="nav-dot" onclick="goToSlide(1)" title="Slide 02">02</button><button type="button" class="nav-dot" onclick="goToSlide(2)" title="Slide 03">03</button><button type="button" class="nav-dot" onclick="goToSlide(3)" title="Slide 04">04</button><button type="button" class="nav-dot" onclick="goToSlide(4)" title="Slide 05">05</button><button type="button" class="nav-dot" onclick="goToSlide(5)" title="Slide 06">06</button><button type="button" class="nav-dot" onclick="goToSlide(6)" title="Slide 07">07</button><button type="button" class="nav-dot" onclick="goToSlide(7)" title="Slide 08">08</button><button type="button" class="nav-dot" onclick="goToSlide(8)" title="Slide 09">09</button><button type="button" class="nav-dot" onclick="goToSlide(9)" title="Slide 10">10</button><button type="button" class="nav-dot" onclick="goToSlide(10)" title="Slide 11">11</button><button type="button" class="nav-dot" onclick="goToSlide(11)" title="Slide 12">12</button><button type="button" class="nav-dot" onclick="goToSlide(12)" title="Slide 13">13</button><button type="button" class="nav-dot" onclick="goToSlide(13)" title="Slide 14">14</button><button type="button" class="nav-dot" onclick="goToSlide(14)" title="Slide 15">15</button><button type="button" class="nav-dot" onclick="goToSlide(15)" title="Slide 16">16</button><button type="button" class="nav-dot" onclick="goToSlide(16)" title="Slide 17">17</button>
+    </div>
+    <div class="deck-actions">
+      <button type="button" class="ctrl-btn" onclick="prevSlide()">← Trước</button>
+      <button type="button" class="ctrl-btn primary" onclick="nextSlide()">Tiếp theo →</button>
+      <button type="button" class="ctrl-btn" id="btn-toggle-view" onclick="toggleViewAll()">📑 Xem tất cả 17 slides</button>
+      <a href="voiceover3.0.html" class="ctrl-btn">📖 Bản đọc 3.0</a>
+      <a href="voiceover3_slides_figma.json" download class="ctrl-btn">⬇️ JSON Figma</a>
+    </div>
+  </header>
+
+  <main class="deck-stage">
+    
+        <section class="slide-wrapper active" data-index="0" id="slide-01">
+          
+            <div class="slide-canvas layout-cover">
+              <div class="slide-topbar">
+                <span>2026  •  ĐÀO TẠO OFFLINE XÂY KÊNH THỰC CHIẾN</span>
+                <span>imess/zalo : 0934688632</span>
+              </div>
+              <div class="cover-body">
+                <div class="giant-zero" aria-hidden="true">0</div>
+                <div class="cover-right">
+                  <div class="cover-kicker">Kiểu 01 • Cover Giant Anchor Number 0</div>
+                  <div class="cover-t1">Định dạng 01</div>
+                  <div class="cover-t2">Voice-Over &amp; thao tác tay</div>
+                  <div class="cover-sub">Quay cảnh tay làm việc trước, thu âm giọng nói sau — Mở đầu nhẹ nhàng ngay tại bàn làm việc</div>
+                  <div class="cover-pills">
+                    <span class="cpill">17 Slides chuẩn Design System 2.0</span>
+                    <span class="cpill">10+ Video thực chứng R2 CDN</span>
+                    <span class="cpill">Kèm lời dẫn bục giảng Offline</span>
+                  </div>
+                </div>
+              </div>
+              <div class="slide-footer">
+                <div class="mentor-sig">
+                  <span class="mentor-dot">NV</span>
+                  <span><strong>Mentor : Nguyễn Đức Việt</strong>  ·  0934.688.632</span>
+                </div>
+                <div class="footer-right">Slide 01 / 17  ·  vietndj@gmail.com</div>
+              </div>
+            </div>
+            
+          
+        <div class="speaker-notes-box">
+          <div class="sn-header">
+            <span class="sn-badge">🗣️ LỜI DẪN BỤC GIẢNG OFFLINE CỦA ANH VIỆT (SLIDE 01)</span>
+            <span class="sn-part">Phần mở đề (Dẫn nhập đầu buổi học Offline)</span>
+          </div>
+          <p class="sn-text">“Chào cả nhà, mình kéo chiếc ghế ngồi gần lại đây cho ấm cúng nhé... [Chắp tay] Hôm nay là buổi đầu tiên mình gặp nhau trực tiếp ở lớp. Mình biết trong phòng hôm nay có nhiều anh chị làm nghề rất giỏi, tay nghề mười năm, mười lăm năm rồi... nhưng cứ hễ bật chiếc điện thoại lên nhìn vào đầu ống kính máy quay là tự nhiên tay chân lúng túng, nói câu trước quên câu sau. Nên đầu buổi hôm nay mình chưa bàn chuyện đứng nói trước máy quay vội. Mình đi thẳng vào công cụ đầu tiên, nhẹ đầu nhất mà ra việc ngay: Định dạng số 01 — Quay cảnh bàn tay làm việc trước, rồi thu âm giọng nói đè lên sau.”</p>
+        </div>
+        
+        </section>
+        
+        <section class="slide-wrapper" data-index="1" id="slide-02">
+          
+            <div class="slide-canvas layout-content">
+              <div class="slide-topbar">
+                <span>2026  •  MỞ ĐỀ OFFLINE • GỠ CHỖ VƯỚNG TUẦN ĐẦU TIÊN</span>
+                <span>imess/zalo : 0934688632</span>
+              </div>
+              <div class="slide-head-block">
+                <div class="slide-title-row">
+                  <h2 class="slide-main-title">Tại sao 90% người mới bỏ cuộc ngay ở tuần đầu tiên?</h2>
+                  <span class="preset-tag">Kiểu 03 • Luxury Comparison 2 Columns</span>
+                </div>
+                <p class="slide-subtitle">sự khác biệt giữa việc ôm đồm vừa làm vừa nói và việc tách đôi hai việc khó</p>
+              </div>
+              <div class="ds-cards cards-grid-2">
+                <div class="ds-card card-warn">
+                  <div class="ds-card-head">
+                    <div class="ds-badge">❌ 01 • CÁCH CŨ: ÔM ĐỒM HAI VIỆC KHÓ CÙNG LÚC</div>
+                    <h3 class="ds-card-title">Đứng trước máy quay nói trực diện khi chưa quen</h3>
+                  </div>
+                  <div class="ds-hairline"></div>
+                  <div class="ds-card-body"><p>• Gánh nặng dồn lên đầu óc: Vừa phải nhớ lời kịch bản, vừa phải giữ nét mặt tự nhiên, vừa phải lo áo quần, đầu tóc và ánh sáng chỉn chu.</p><p>• Hệ quả thực tế: Mắt đảo tìm chữ, tay thừa không biết để đâu, nói vấp liên tục. Bấm máy quay 20 lần xóa cả 20 lần rồi nản lòng cất máy sang một bên.</p></div>
+                  <div class="ds-takeaway">🎯 Ép người mới vừa làm vừa nói trực diện ngay tuần đầu là lý do lớn nhất khiến kênh bỏ dở.</div>
+                </div>
+                
+                <div class="ds-card card-good">
+                  <div class="ds-card-head">
+                    <div class="ds-badge">✅ 02 • CÁCH MỚI: TÁCH ĐÔI VIỆC QUAY &amp; VIỆC NÓI</div>
+                    <h3 class="ds-card-title">Mắt nhìn vào tay làm nghề, miệng thu âm trong chăn lúc nửa đêm</h3>
+                  </div>
+                  <div class="ds-hairline"></div>
+                  <div class="ds-card-body"><p>• Lúc ngồi tại bàn làm việc: Chỉ đặt điện thoại quay cận đôi bàn tay đang thao tác quen thuộc hàng ngày. Không cần nhìn vào ống kính, không sợ quên lời.</p><p>• Lúc thu âm buổi tối: Vào phòng yên tĩnh (hoặc trùm chăn lúc nửa đêm), nhìn hình chạy trên điện thoại rồi đọc từng câu ngắn đến khi thật ưng ý.</p></div>
+                  <div class="ds-takeaway">🎯 Tách đôi hai việc khó giúp bạn hoàn thành video đầu tiên ngay trong 30 phút.</div>
+                </div>
+                </div>
+              
+              <div class="slide-footer">
+                <div class="mentor-sig">
+                  <span class="mentor-dot">NV</span>
+                  <span><strong>Mentor : Nguyễn Đức Việt</strong>  ·  0934.688.632</span>
+                </div>
+                <div class="footer-right">Slide 02 / 17  ·  vietndj@gmail.com</div>
+              </div>
+            </div>
+            
+          
+        <div class="speaker-notes-box">
+          <div class="sn-header">
+            <span class="sn-badge">🗣️ LỜI DẪN BỤC GIẢNG OFFLINE CỦA ANH VIỆT (SLIDE 02)</span>
+            <span class="sn-part">Phần mở đề (Dẫn nhập đầu buổi học Offline)</span>
+          </div>
+          <p class="sn-text">“Mọi người nhìn lên màn hình ở góc này nhé [Chỉ tay]... Lý do hầu hết người mới bỏ cuộc ở tuần đầu tiên không phải vì không hiểu nghề của mình đâu, mà vì mình bắt đầu óc làm hai việc khó cùng một lúc: vừa phải nhớ chữ để nói, vừa phải canh nét mặt trước ống kính. Quay 20 lần xóa cả 20 là nản ngay... Bây giờ mình tách hẳn làm đôi: ban ngày ở tiệm, mắt bạn cứ nhìn vào tay làm nghề như bình thường, điện thoại chỉ quay đôi bàn tay thôi. Tối về nhà đóng cửa phòng lại, trùm chăn thu âm từng câu một... Nhẹ đầu hơn hẳn đúng không cả nhà?”</p>
+        </div>
+        
+        </section>
+        
+        <section class="slide-wrapper" data-index="2" id="slide-03">
+          
+            <div class="slide-canvas layout-content">
+              <div class="slide-topbar">
+                <span>2026  •  MỤC 01 • BẢN CHẤT VOICE-OVER &amp; HAI CÁCH ĐỊNH NGHĨA</span>
+                <span>imess/zalo : 0934688632</span>
+              </div>
+              <div class="slide-head-block">
+                <div class="slide-title-row">
+                  <h2 class="slide-main-title">Bằng chứng thị giác &amp; kỷ luật đánh đổi 15 giây lấy 3 giây</h2>
+                  <span class="preset-tag">Kiểu 03 • Luxury Comparison 2 Columns</span>
+                </div>
+                <p class="slide-subtitle">hiểu rõ sức mạnh của đôi bàn tay làm thật và cái giá phải trả khi vắng bóng gương mặt</p>
+              </div>
+              <div class="ds-cards cards-grid-2">
+                <div class="ds-card card-good">
+                  <div class="ds-card-head">
+                    <div class="ds-badge">✅ 01 • ĐỊNH NGHĨA 1: BẰNG CHỨNG THỊ GIÁC ĐI TRƯỚC</div>
+                    <h3 class="ds-card-title">Đôi bàn tay làm thật đáng tin hơn mười câu tự khen</h3>
+                  </div>
+                  <div class="ds-hairline"></div>
+                  <div class="ds-card-body"><p>• Cho khách nhìn thấy tận mắt: Người xem thấy rõ ngón tay pha thuốc, mũi dao tỉa bánh, đường keo khít chặt hay con trỏ chuột chạy trên màn hình.</p><p>• Tách bạch để làm kỹ từng khâu: Lúc cầm đồ nghề thì tập trung làm cho mượt; lúc vào phòng kín thì đọc lại 10 lần cho giọng đầm và rõ ý nhất.</p></div>
+                  <div class="ds-takeaway">🎯 Khách hàng không mua chiếc miệng khéo nói — họ mua đôi bàn tay thạo việc và kết quả thật.</div>
+                </div>
+                
+                <div class="ds-card card-warn">
+                  <div class="ds-card-head">
+                    <div class="ds-badge">❌ 02 • ĐỊNH NGHĨA 2: KỶ LUẬT ĐÁNH ĐỔI (15S QUAY = 3S NÓI)</div>
+                    <h3 class="ds-card-title">Tiết kiệm dũng khí lên hình thì phải trả bằng mật độ cảnh cắt</h3>
+                  </div>
+                  <div class="ds-hairline"></div>
+                  <div class="ds-card-body"><p>• Trách nhiệm dồn hết lên khung hình: Khi không có gương mặt và ánh mắt giữ nhịp, áp lực giữ chân người xem dồn gấp đôi lên độ gọn của từng nhát cắt.</p><p>• Quy luật 15 giây đổi 3 giây: Quay 15 giây thao tác thực tế nhưng phải gọt bỏ toàn bộ khoảng chờ, chỉ giữ lại 1.5 – 2.5 giây đắt nhất cho mỗi cảnh.</p></div>
+                  <div class="ds-takeaway">🎯 Giấu mặt không phải là làm nhàn hơn, mà là đổi từ áp lực lên hình sang kỷ luật gọt cảnh.</div>
+                </div>
+                </div>
+              
+              <div class="slide-footer">
+                <div class="mentor-sig">
+                  <span class="mentor-dot">NV</span>
+                  <span><strong>Mentor : Nguyễn Đức Việt</strong>  ·  0934.688.632</span>
+                </div>
+                <div class="footer-right">Slide 03 / 17  ·  vietndj@gmail.com</div>
+              </div>
+            </div>
+            
+          
+        <div class="speaker-notes-box">
+          <div class="sn-header">
+            <span class="sn-badge">🗣️ LỜI DẪN BỤC GIẢNG OFFLINE CỦA ANH VIỆT (SLIDE 03)</span>
+            <span class="sn-part">Mục 01: Bản chất Voice-Over &amp; Hai cách định nghĩa</span>
+          </div>
+          <p class="sn-text">“Ở mục số 01 này, mình muốn đưa ra hai cách định nghĩa rất thực tế để cả lớp không ai nghĩ nhầm [Chỉ tay]... Cách định nghĩa thứ nhất: đây là việc lấy bằng chứng trên bàn làm việc đi trước lời nói. Người xem thấy tận mắt mũi kim, nét cắt của bạn nên họ tin ngay mà không cần mình tự khen. Nhưng cách định nghĩa thứ hai mới là thứ quyết định thắng thua: đó là sự đánh đổi. Bạn tiết kiệm được dũng khí xuất hiện trước máy quay, thì bạn phải trả giá bằng mật độ khung hình: cứ 15 giây bấm máy quay thao tác tay, bạn phải gọt bỏ hết râu ria để lấy đúng 3 giây nói đắt nhất thôi.”</p>
+        </div>
+        
+        </section>
+        
+        <section class="slide-wrapper" data-index="3" id="slide-04">
+          
+            <div class="slide-canvas layout-content">
+              <div class="slide-topbar">
+                <span>2026  •  MỤC 02.1 • KHI NÀO BẮT BUỘC DÙNG VOICE-OVER?</span>
+                <span>imess/zalo : 0934688632</span>
+              </div>
+              <div class="slide-head-block">
+                <div class="slide-title-row">
+                  <h2 class="slide-main-title">4 trường hợp bắt buộc dùng định dạng Voice-Over</h2>
+                  <span class="preset-tag">Kiểu 05 • 4-Grid Matrix</span>
+                </div>
+                <p class="slide-subtitle">những thời điểm và bài toán thực tế mà quay thao tác tay mang lại kết quả nhanh nhất</p>
+              </div>
+              <div class="ds-cards cards-grid-4">
+                <div class="ds-card card-neutral">
+                  <div class="ds-card-head">
+                    <div class="ds-badge">01 • TUẦN ĐẦU PHÁ BĂNG</div>
+                    <h3 class="ds-card-title">Chưa quen nhìn thẳng vào đầu ống kính</h3>
+                  </div>
+                  <div class="ds-hairline"></div>
+                  <div class="ds-card-body"><p>Khi bạn cần rèn thói quen bấm máy mỗi ngày ngay tại bàn làm việc mà chưa muốn bận tâm chuyện áo quần, đầu tóc hay cảm giác lo lắng trước máy quay.</p></div>
+                  <div class="ds-takeaway">🎯 Ra bài đều đặn không bị đứt quãng.</div>
+                </div>
+                
+                <div class="ds-card card-neutral">
+                  <div class="ds-card-head">
+                    <div class="ds-badge">02 • THỬ NHANH TRONG 25 PHÚT</div>
+                    <h3 class="ds-card-title">Kiểm tra xem khách quan tâm chủ đề nào</h3>
+                  </div>
+                  <div class="ds-hairline"></div>
+                  <div class="ds-card-body"><p>Chỉ mất 15 phút ghi lại cảnh làm việc có sẵn trong ngày và 10 phút thu âm lồng tiếng để đo phản ứng thực tế của khách trước khi đầu tư quay lớn.</p></div>
+                  <div class="ds-takeaway">🎯 Đỡ tốn công dàn dựng phức tạp.</div>
+                </div>
+                
+                <div class="ds-card card-neutral">
+                  <div class="ds-card-head">
+                    <div class="ds-badge">03 • NGHỀ CẦN THẤY TẬN MẮT</div>
+                    <h3 class="ds-card-title">Giá trị nằm ở độ khéo của đôi bàn tay</h3>
+                  </div>
+                  <div class="ds-hairline"></div>
+                  <div class="ds-card-body"><p>Các ngành bếp, dược liệu, nội thất, spa, phần mềm... nơi trình tự xử lý từng bước và kết quả trước–sau quyết định việc khách nhắn tin đặt lịch.</p></div>
+                  <div class="ds-takeaway">🎯 Từ An #12: 2,2 triệu view không lộ mặt.</div>
+                </div>
+                
+                <div class="ds-card card-neutral">
+                  <div class="ds-card-head">
+                    <div class="ds-badge">04 • ĐA DẠNG HÓA NHỊP KÊNH</div>
+                    <h3 class="ds-card-title">Xen kẽ để người xem không bị ngán mặt</h3>
+                  </div>
+                  <div class="ds-hairline"></div>
+                  <div class="ds-card-body"><p>Ngay cả khi đã nói chuyện trực diện tốt, bạn vẫn cần 30–50% bài Voice-Over quay cận cảnh làm nghề tại xưởng để chứng minh năng lực thực tế.</p></div>
+                  <div class="ds-takeaway">🎯 Từ An #03: 1,3 triệu view lòng đỏ trứng.</div>
+                </div>
+                </div>
+              <div class="slide-videos-tray cols-2">
+                <div class="slide-vcard">
+                  <div class="slide-vhead">
+                    <div class="slide-vtitle">
+                      <span class="v-badge v-badge-win">✅ MẪU CHUẨN • 2,2 TRIỆU VIEW</span>
+                      <strong>Từ An — Men Mộc An #12 — Giã gừng, thái sả chanh làm hũ kháng sinh tự nhiên</strong>
+                      <span class="slide-vmeta">(2,2 triệu lượt xem • 29.3s)</span>
+                    </div>
+                    <div class="slide-vbtns">
+                      <button type="button" class="btn-play-inline" onclick="toggleSlideVideo(this, 'vid-player-04-tu_an_12', 'https://media.fedu.vn/stu-audits/tu_an_men_moc_an/videos/video_12_1702346840807907.mp4')">▶️ Phát video thật</button>
+                      <a href="https://www.facebook.com/reel/1702346840807907/" target="_blank" rel="noopener" class="btn-src-link">Bài gốc ↗</a>
+                    </div>
+                  </div>
+                  <div class="slide-vstrip">
+                    <img src="https://media.fedu.vn/stu-audits/tu_an_men_moc_an/videos/vid_1702346840807907/strip.jpg" alt="Giã gừng, thái sả chanh làm hũ kháng sinh tự nhiên" loading="lazy"/>
+                    <div class="slide-vnote">Không lộ mặt 1 giây nào. Đầu ống kính chỉ bám sát đôi bàn tay giã gừng, thái sả; giọng đọc đi thẳng vào công thức từng bước.</div>
+                  </div>
+                  <div class="slide-vplayer" id="vid-player-04-tu_an_12" style="display:none;">
+                    <video controls playsinline preload="none" poster="https://media.fedu.vn/stu-audits/tu_an_men_moc_an/videos/vid_1702346840807907/strip.jpg"></video>
+                  </div>
+                </div>
+                
+                <div class="slide-vcard">
+                  <div class="slide-vhead">
+                    <div class="slide-vtitle">
+                      <span class="v-badge v-badge-win">✅ NHẤT QUÁN • 1,3 TRIỆU VIEW</span>
+                      <strong>Từ An — Men Mộc An #03 — Vớt lòng đỏ trứng gà ngâm mật ong lên men nghệ dẻo quánh</strong>
+                      <span class="slide-vmeta">(1,3 triệu lượt xem • 25.5s)</span>
+                    </div>
+                    <div class="slide-vbtns">
+                      <button type="button" class="btn-play-inline" onclick="toggleSlideVideo(this, 'vid-player-04-tu_an_03', 'https://media.fedu.vn/stu-audits/tu_an_men_moc_an/videos/video_03_25888757837490769.mp4')">▶️ Phát video thật</button>
+                      <a href="https://www.facebook.com/reel/25888757837490769/" target="_blank" rel="noopener" class="btn-src-link">Bài gốc ↗</a>
+                    </div>
+                  </div>
+                  <div class="slide-vstrip">
+                    <img src="https://media.fedu.vn/stu-audits/tu_an_men_moc_an/videos/vid_25888757837490769/strip.jpg" alt="Vớt lòng đỏ trứng gà ngâm mật ong lên men nghệ dẻo quánh" loading="lazy"/>
+                    <div class="slide-vnote">Mở màn ngay giây thứ nhất bằng cảnh tay bóp vỡ lòng đỏ trứng chín dẻo bởi mật ong lên men nghệ. Giữ đúng một cách làm xuyên suốt.</div>
+                  </div>
+                  <div class="slide-vplayer" id="vid-player-04-tu_an_03" style="display:none;">
+                    <video controls playsinline preload="none" poster="https://media.fedu.vn/stu-audits/tu_an_men_moc_an/videos/vid_25888757837490769/strip.jpg"></video>
+                  </div>
+                </div>
+                </div>
+              <div class="slide-footer">
+                <div class="mentor-sig">
+                  <span class="mentor-dot">NV</span>
+                  <span><strong>Mentor : Nguyễn Đức Việt</strong>  ·  0934.688.632</span>
+                </div>
+                <div class="footer-right">Slide 04 / 17  ·  vietndj@gmail.com</div>
+              </div>
+            </div>
+            
+          
+        <div class="speaker-notes-box">
+          <div class="sn-header">
+            <span class="sn-badge">🗣️ LỜI DẪN BỤC GIẢNG OFFLINE CỦA ANH VIỆT (SLIDE 04)</span>
+            <span class="sn-part">Mục 02: Khi nào dùng &amp; Trần giới hạn 70/30</span>
+          </div>
+          <p class="sn-text">“Khi nào thì mình bắt buộc phải dùng định dạng số 01 này? Có đúng 4 trường hợp trên bảng [Chỉ tay]... Thứ nhất là tuần đầu tiên làm quen máy. Thứ hai là khi bạn nảy ra một ý tưởng mới, muốn làm gọn trong 25 phút để thử phản ứng khách hàng. Thứ ba là những nghề mà khách phải nhìn thấy tay bạn làm họ mới tin. Và thứ tư là làm lớp bài chứng minh tay nghề xen kẽ trên kênh. Mọi người bấm xem thử 2 bài của bạn Từ An ngay bên dưới slide này nhé: bài giã gừng thái sả đạt 2,2 triệu lượt xem, bài vớt lòng đỏ trứng gà ngâm mật ong nghệ đạt 1,3 triệu lượt xem — hoàn toàn chỉ có đôi bàn tay và giọng kể rõ ràng.”</p>
+        </div>
+        
+        </section>
+        
+        <section class="slide-wrapper" data-index="4" id="slide-05">
+          
+            <div class="slide-canvas layout-content">
+              <div class="slide-topbar">
+                <span>2026  •  MỤC 02.2 • TRẦN GIỚI HẠN 70/30 THEO GIÁ TRỊ ĐƠN HÀNG</span>
+                <span>imess/zalo : 0934688632</span>
+              </div>
+              <div class="slide-head-block">
+                <div class="slide-title-row">
+                  <h2 class="slide-main-title">Giấu mặt mãi được không? Bán hàng giá thấp vs dịch vụ giá cao</h2>
+                  <span class="preset-tag">Kiểu 03 • Luxury Comparison 2 Columns</span>
+                </div>
+                <p class="slide-subtitle">tại sao giấu mặt 100% chỉ hợp đơn hàng nhỏ và cách phối hợp 70/30 khi bán dịch vụ giá trị lớn</p>
+              </div>
+              <div class="ds-cards cards-grid-2">
+                <div class="ds-card card-warn">
+                  <div class="ds-card-head">
+                    <div class="ds-badge">❌ 01 • GIẤU MẶT 100%: ĐỤNG TRẦN Ở DỊCH VỤ GIÁ CAO</div>
+                    <h3 class="ds-card-title">Bán tốt đơn hàng dưới 500K nhưng đụng trần sau 30–60 bài</h3>
+                  </div>
+                  <div class="ds-hairline"></div>
+                  <div class="ds-card-body"><p>• Phù hợp món hàng nhỏ dễ mua thử: Với hũ mật ong, lọ gia vị hay món đồ bếp vài trăm nghìn (như kênh Từ An), khách thấy tay làm sạch sẽ, nguyên liệu ngon mắt là đặt mua ngay.</p><p>• Đụng trần lòng tin ở đơn hàng lớn: Kênh giấu mặt 100% rất dễ bị người khác tải video về đăng lại. Người xem nhớ mẹo hay nhưng quên mặt chủ tiệm, khó chốt các gói dịch vụ tiền triệu hay trăm triệu.</p></div>
+                  <div class="ds-takeaway">🎯 Cuối cùng, ở những đơn hàng lớn, người ta mua con người đằng sau đôi bàn tay đó.</div>
+                </div>
+                
+                <div class="ds-card card-good">
+                  <div class="ds-card-head">
+                    <div class="ds-badge">✅ 02 • CÔNG THỨC 70/30 CHO DỊCH VỤ &amp; ĐƠN HÀNG LỚN</div>
+                    <h3 class="ds-card-title">70% cận cảnh thao tác tay nghề + 30% lộ diện gương mặt thật</h3>
+                  </div>
+                  <div class="ds-hairline"></div>
+                  <div class="ds-card-body"><p>• Khi làm nội thất, xây dựng, spa trị liệu hay đào tạo (như Quốc Khoa, Hoàng Nga, chị Yến): Khách hàng bắt buộc phải thấy gương mặt đàng hoàng của người chịu trách nhiệm.</p><p>• Cách phối hợp thông minh: Dùng 70% thời lượng (hoặc 7/10 bài đầu) quay Voice-Over thao tác tay để hút người xem bằng việc thật; 30% còn lại xuất hiện trực diện ở 3 giây mở đầu hoặc các bài tâm sự nghề.</p></div>
+                  <div class="ds-takeaway">🎯 70% tay làm thật chứng minh năng lực + 30% mặt thật khóa chặt lòng tin dài hạn.</div>
+                </div>
+                </div>
+              <div class="slide-videos-tray cols-2">
+                <div class="slide-vcard">
+                  <div class="slide-vhead">
+                    <div class="slide-vtitle">
+                      <span class="v-badge v-badge-win">✅ MẪU CHUẨN • 2,2 TRIỆU VIEW</span>
+                      <strong>Từ An — Men Mộc An #12 — Giã gừng, thái sả chanh làm hũ kháng sinh tự nhiên</strong>
+                      <span class="slide-vmeta">(2,2 triệu lượt xem • 29.3s)</span>
+                    </div>
+                    <div class="slide-vbtns">
+                      <button type="button" class="btn-play-inline" onclick="toggleSlideVideo(this, 'vid-player-05-tu_an_12', 'https://media.fedu.vn/stu-audits/tu_an_men_moc_an/videos/video_12_1702346840807907.mp4')">▶️ Phát video thật</button>
+                      <a href="https://www.facebook.com/reel/1702346840807907/" target="_blank" rel="noopener" class="btn-src-link">Bài gốc ↗</a>
+                    </div>
+                  </div>
+                  <div class="slide-vstrip">
+                    <img src="https://media.fedu.vn/stu-audits/tu_an_men_moc_an/videos/vid_1702346840807907/strip.jpg" alt="Giã gừng, thái sả chanh làm hũ kháng sinh tự nhiên" loading="lazy"/>
+                    <div class="slide-vnote">Không lộ mặt 1 giây nào. Đầu ống kính chỉ bám sát đôi bàn tay giã gừng, thái sả; giọng đọc đi thẳng vào công thức từng bước.</div>
+                  </div>
+                  <div class="slide-vplayer" id="vid-player-05-tu_an_12" style="display:none;">
+                    <video controls playsinline preload="none" poster="https://media.fedu.vn/stu-audits/tu_an_men_moc_an/videos/vid_1702346840807907/strip.jpg"></video>
+                  </div>
+                </div>
+                
+                <div class="slide-vcard">
+                  <div class="slide-vhead">
+                    <div class="slide-vtitle">
+                      <span class="v-badge v-badge-win">✅ BẰNG CHỨNG THẬT • 20.6K VIEW</span>
+                      <strong>Nguyễn Quốc Khoa (@khoanq) #01 — 4 thợ khiêng bộ tấm đá bếp 3m12 lên tầng 12 &amp; lắp chậu âm toàn phần</strong>
+                      <span class="slide-vmeta">(20.6K lượt xem (237 thích • 78 bình luận) • 68s)</span>
+                    </div>
+                    <div class="slide-vbtns">
+                      <button type="button" class="btn-play-inline" onclick="toggleSlideVideo(this, 'vid-player-05-quoc_khoa_01', 'https://media.fedu.vn/stu-audits/khoanq/videos/vid_7623445767415500050/7623445767415500050.mp4')">▶️ Phát video thật</button>
+                      <a href="https://www.tiktok.com/@khoanq/video/7623445767415500050" target="_blank" rel="noopener" class="btn-src-link">Bài gốc ↗</a>
+                    </div>
+                  </div>
+                  <div class="slide-vstrip">
+                    <img src="https://media.fedu.vn/stu-audits/khoanq/videos/vid_7623445767415500050/strip.jpg" alt="4 thợ khiêng bộ tấm đá bếp 3m12 lên tầng 12 &amp; lắp chậu âm toàn phần" loading="lazy"/>
+                    <div class="slide-vnote">Tấm đá dài 3m12 thừa 2 phân so với cửa thang máy 3m10. Cảnh khiêng bộ lên tầng 12 kèm lời giải thích chống mốc keo silicon rất thuyết phục.</div>
+                  </div>
+                  <div class="slide-vplayer" id="vid-player-05-quoc_khoa_01" style="display:none;">
+                    <video controls playsinline preload="none" poster="https://media.fedu.vn/stu-audits/khoanq/videos/vid_7623445767415500050/strip.jpg"></video>
+                  </div>
+                </div>
+                </div>
+              <div class="slide-footer">
+                <div class="mentor-sig">
+                  <span class="mentor-dot">NV</span>
+                  <span><strong>Mentor : Nguyễn Đức Việt</strong>  ·  0934.688.632</span>
+                </div>
+                <div class="footer-right">Slide 05 / 17  ·  vietndj@gmail.com</div>
+              </div>
+            </div>
+            
+          
+        <div class="speaker-notes-box">
+          <div class="sn-header">
+            <span class="sn-badge">🗣️ LỜI DẪN BỤC GIẢNG OFFLINE CỦA ANH VIỆT (SLIDE 05)</span>
+            <span class="sn-part">Mục 02: Khi nào dùng &amp; Trần giới hạn 70/30</span>
+          </div>
+          <p class="sn-text">“Mình đặt câu hỏi thẳng trên lớp nhé: &#x27;Thế em cứ giấu mặt làm Voice-Over cả năm có được không anh Việt?&#x27;. [Lắc đầu] Câu trả lời là Không, nếu anh chị bán dịch vụ giá cao. Mọi người nhìn đối chiếu 2 cột này: nếu bán hũ chanh đào mật ong vài trăm nghìn như Từ An, khách nhìn cái tay sạch sẽ là mua luôn. Nhưng nếu làm nội thất căn hộ vài trăm triệu như anh Quốc Khoa, hay làm dịch vụ lớn như chị Yến, mà giấu mặt 100% thì khách xem xong chỉ thả tim rồi đi. Vì vậy hãy nhớ trần 70/30: 70% là cảnh tay làm nghề thật để giữ mắt người xem, kết hợp 30% lộ diện gương mặt thật để khách biết mình là ai mà gửi gắm tiền bạc.”</p>
+        </div>
+        
+        </section>
+        
+        <section class="slide-wrapper" data-index="5" id="slide-06">
+          
+            <div class="slide-canvas layout-content">
+              <div class="slide-topbar">
+                <span>2026  •  MỤC 02.3 • BẢN ĐỒ THAO TÁC &amp; LỜI DẪN THEO NGÀNH</span>
+                <span>imess/zalo : 0934688632</span>
+              </div>
+              <div class="slide-head-block">
+                <div class="slide-title-row">
+                  <h2 class="slide-main-title">4 nhóm ngành chủ lực: Quay gì và nói gì để khách nhắn tin?</h2>
+                  <span class="preset-tag">Kiểu 05 • 4-Grid Matrix</span>
+                </div>
+                <p class="slide-subtitle">chọn đúng cảnh quay thao tác chủ đạo và góc độ giải thích trong phòng thu cho từng nghề</p>
+              </div>
+              <div class="ds-cards cards-grid-4">
+                <div class="ds-card card-neutral">
+                  <div class="ds-card-head">
+                    <div class="ds-badge">01 • GIA DỤNG &amp; MỞ HỘP</div>
+                    <h3 class="ds-card-title">Mở hộp, thử độ bền, soi chất liệu</h3>
+                  </div>
+                  <div class="ds-hairline"></div>
+                  <div class="ds-card-body"><p>• Quay gì: Lắc thử đĩa hút chân không, kéo khay tủ bếp, bấm nút chạy thử thực tế.</p><p>• Nói gì: Chỉ thẳng điểm làm tốt kèm điểm hạn chế khi dùng thật, nói đúng chỗ người mua đang phân vân.</p></div>
+                  <div class="ds-takeaway">🎯 Mẫu chuẩn: Hoàng Nga #02 (268.5K view)</div>
+                </div>
+                
+                <div class="ds-card card-neutral">
+                  <div class="ds-card-head">
+                    <div class="ds-badge">02 • THỦ CÔNG, BẾP &amp; DƯỢC LIỆU</div>
+                    <h3 class="ds-card-title">Nhào bột, ủ men, thái thảo dược</h3>
+                  </div>
+                  <div class="ds-hairline"></div>
+                  <div class="ds-card-body"><p>• Quay gì: Cận cảnh rửa nguyên liệu, xếp lớp vào bình, múc thành phẩm sánh đặc dưới nắng.</p><p>• Nói gì: Kể rõ lý do phải canh đúng nhiệt độ và thời gian chờ mà người ngoài nhìn vào ít để ý.</p></div>
+                  <div class="ds-takeaway">🎯 Mẫu chuẩn: Từ An #12 &amp; #03 (1,3M – 2,2M view)</div>
+                </div>
+                
+                <div class="ds-card card-neutral">
+                  <div class="ds-card-head">
+                    <div class="ds-badge">03 • SPA, MÓNG &amp; PHỤC HỒI TÓC</div>
+                    <h3 class="ds-card-title">Chấm đốt sống, lấy nhân mụn, kéo sợi tóc</h3>
+                  </div>
+                  <div class="ds-hairline"></div>
+                  <div class="ds-card-body"><p>• Quay gì: Đặc tả mũi kim, cây cọ quét dưỡng chất, ngón tay kiểm tra độ đàn hồi của lọn tóc.</p><p>• Nói gì: Giải thích nguyên nhân gốc khiến tự chăm sóc ở nhà hay hỏng và các bước xử lý tại tiệm.</p></div>
+                  <div class="ds-takeaway">🎯 Mẫu chuẩn: Đặng Hường #07 (2,4K view)</div>
+                </div>
+                
+                <div class="ds-card card-neutral">
+                  <div class="ds-card-head">
+                    <div class="ds-badge">04 • THI CÔNG, KỸ THUẬT &amp; AI</div>
+                    <h3 class="ds-card-title">Khiêng đá nguyên khối, đo khe tủ, quay màn hình</h3>
+                  </div>
+                  <div class="ds-hairline"></div>
+                  <div class="ds-card-body"><p>• Quay gì: Cảnh thợ khiêng đá bếp, soi cốt gỗ chống ẩm, hoặc con trỏ chuột bấm từng bước trên máy.</p><p>• Nói gì: Chỉ ra tiêu chuẩn kỹ thuật ẩn quyết định độ bền 10 năm hoặc gỡ 1 lỗi trong 3 bước.</p></div>
+                  <div class="ds-takeaway">🎯 Mẫu chuẩn: Quốc Khoa #01 (20.6K view)</div>
+                </div>
+                </div>
+              
+              <div class="slide-footer">
+                <div class="mentor-sig">
+                  <span class="mentor-dot">NV</span>
+                  <span><strong>Mentor : Nguyễn Đức Việt</strong>  ·  0934.688.632</span>
+                </div>
+                <div class="footer-right">Slide 06 / 17  ·  vietndj@gmail.com</div>
+              </div>
+            </div>
+            
+          
+        <div class="speaker-notes-box">
+          <div class="sn-header">
+            <span class="sn-badge">🗣️ LỜI DẪN BỤC GIẢNG OFFLINE CỦA ANH VIỆT (SLIDE 06)</span>
+            <span class="sn-part">Mục 02: Khi nào dùng &amp; Trần giới hạn 70/30</span>
+          </div>
+          <p class="sn-text">“Trước khi sang phần kỹ thuật cắt cảnh, mọi người nhìn vào 4 ô này để tự gạch đầu dòng cho ngành của mình [Chỉ tay]... Nguyên tắc rất rõ: đừng bao giờ quay cảnh tay làm việc rồi thu âm những lời khen chung chung kiểu &#x27;Sản phẩm bên em tốt lắm, uy tín lắm&#x27;. Làm bếp và dược liệu thì nói về nhiệt độ và thời gian chờ; làm nội thất thì nói về khe hở 2 phân hay đường keo chống mốc sau 2 năm; làm spa thì nói về lý do khách tự bôi ở nhà bị hỏng. Nói đúng chi tiết kỹ thuật đó là khách tự khắc tin tay nghề của bạn.”</p>
+        </div>
+        
+        </section>
+        
+        <section class="slide-wrapper" data-index="6" id="slide-07">
+          
+            <div class="slide-canvas layout-content">
+              <div class="slide-topbar">
+                <span>2026  •  MỤC 03.1 • QUY TẮC CẮT CẢNH 2 GIÂY &amp; 3 CỠ CẢNH</span>
+                <span>imess/zalo : 0934688632</span>
+              </div>
+              <div class="slide-head-block">
+                <div class="slide-title-row">
+                  <h2 class="slide-main-title">4–5 cảnh trong 10 giây: Luân phiên Trung – Cận – Đặc tả</h2>
+                  <span class="preset-tag">Kiểu 02 • 3-Column Breakdown</span>
+                </div>
+                <p class="slide-subtitle">cách đổi vị trí chân máy trong 10 phút làm việc để có chuỗi hình dồn dập không một giây thừa</p>
+              </div>
+              <div class="ds-cards cards-grid-3">
+                <div class="ds-card card-neutral">
+                  <div class="ds-card-head">
+                    <div class="ds-badge">CỠ CẢNH 01 • TRUNG CẢNH</div>
+                    <h3 class="ds-card-title">Thấy dáng ngồi và hai cánh tay làm việc</h3>
+                  </div>
+                  <div class="ds-hairline"></div>
+                  <div class="ds-card-body"><p>Cho người xem thấy không gian làm việc tươm tất, sạch sẽ và phong thái tập trung của người làm nghề. Có thể điểm thêm 1 cảnh Toàn ở đầu hoặc cuối bài để khách thấy rõ cơ sở làm việc thật.</p></div>
+                  <div class="ds-takeaway">🎯 Xác lập bối cảnh nghề nghiệp đàng hoàng</div>
+                </div>
+                
+                <div class="ds-card card-neutral">
+                  <div class="ds-card-head">
+                    <div class="ds-badge">CỠ CẢNH 02 • CẬN CẢNH</div>
+                    <h3 class="ds-card-title">Thấy rõ đôi bàn tay cầm nắm dụng cụ</h3>
+                  </div>
+                  <div class="ds-hairline"></div>
+                  <div class="ds-card-body"><p>Giúp người xem theo dõi rõ trình tự thao tác từ bước chuẩn bị đến bước xử lý chính. Áp dụng cắt theo cử động: cắt ngay lúc bàn tay bắt đầu đặt vào vật thể và chuyển cảnh ngay khi động tác vừa dứt.</p></div>
+                  <div class="ds-takeaway">🎯 Gọt gọn mỗi cảnh đúng 1.5 – 2.5 giây</div>
+                </div>
+                
+                <div class="ds-card card-neutral">
+                  <div class="ds-card-head">
+                    <div class="ds-badge">CỠ CẢNH 03 • ĐẶC TẢ</div>
+                    <h3 class="ds-card-title">Đưa máy sát mũi kim, đầu cọ, thớ gỗ</h3>
+                  </div>
+                  <div class="ds-hairline"></div>
+                  <div class="ds-card-body"><p>Đây là cỡ cảnh giữ mắt người xem mạnh nhất trong định dạng Voice-Over, cho thấy độ tỉ mỉ của chất liệu mà mắt thường nhìn thoáng qua khó thấy hết. Cứ 10 giây phải có 4–5 cảnh đổi góc liên tục.</p></div>
+                  <div class="ds-takeaway">🎯 Giữ mắt người xem đi tới giây cuối cùng</div>
+                </div>
+                </div>
+              
+              <div class="slide-footer">
+                <div class="mentor-sig">
+                  <span class="mentor-dot">NV</span>
+                  <span><strong>Mentor : Nguyễn Đức Việt</strong>  ·  0934.688.632</span>
+                </div>
+                <div class="footer-right">Slide 07 / 17  ·  vietndj@gmail.com</div>
+              </div>
+            </div>
+            
+          
+        <div class="speaker-notes-box">
+          <div class="sn-header">
+            <span class="sn-badge">🗣️ LỜI DẪN BỤC GIẢNG OFFLINE CỦA ANH VIỆT (SLIDE 07)</span>
+            <span class="sn-part">Mục 03: Giải phẫu 3 nhịp &amp; Quy tắc cắt cảnh 2 giây</span>
+          </div>
+          <p class="sn-text">“Sang Mục 03, đây là quy tắc sống còn về mặt hình ảnh: Quy tắc 2 giây một cảnh [Chỉ tay]... Khi không có gương mặt biểu cảm trên màn hình, nếu bạn để một góc máy đứng yên quá 4 giây là người xem ngáp ngủ lướt đi ngay. Trong 10 giây bắt buộc phải có 4 đến 5 cảnh cắt luân phiên qua 3 cỡ cảnh: Trung cảnh thấy người ngồi ở bàn, Cận cảnh thấy hai bàn tay thao tác, và Đặc tả dí sát vào mũi kim, giọt mật ong hay khe gỗ. Lúc quay ở bàn chỉ cần nhấc chân máy đổi góc 3 lần trong 10 phút là bạn có dư tư liệu để cắt nhịp 2 giây cực kỳ cuốn mắt.”</p>
+        </div>
+        
+        </section>
+        
+        <section class="slide-wrapper" data-index="7" id="slide-08">
+          
+            <div class="slide-canvas layout-content">
+              <div class="slide-topbar">
+                <span>2026  •  MỤC 03.2 • GIẢI PHẪU 3 NHỊP THỜI GIAN (30 – 35 GIÂY)</span>
+                <span>imess/zalo : 0934688632</span>
+              </div>
+              <div class="slide-head-block">
+                <div class="slide-title-row">
+                  <h2 class="slide-main-title">3 nhịp kịch bản Voice-Over: Mở đầu – Giữ chân – Kết nối</h2>
+                  <span class="preset-tag">Kiểu 02 • 3-Column Breakdown</span>
+                </div>
+                <p class="slide-subtitle">mỗi video chỉ tháo gỡ đúng một việc nhỏ tại bàn làm việc theo mạch nhân quả rõ ràng</p>
+              </div>
+              <div class="ds-cards cards-grid-3">
+                <div class="ds-card card-neutral">
+                  <div class="ds-card-head">
+                    <div class="ds-badge">NHỊP 1 • MỞ ĐẦU (0 – 3 GIÂY)</div>
+                    <h3 class="ds-card-title">Đưa chi tiết đắt nhất hoặc lỗi hỏng lên giây 0</h3>
+                  </div>
+                  <div class="ds-hairline"></div>
+                  <div class="ds-card-body"><p>• Hình ảnh: Cảnh đặc tả một lỗi sai thường gặp hoặc thao tác nghịch lý gây tò mò ngay lập tức (Hoàng Nga #02: lắc mạnh đĩa sứ hút chân không không rớt — 268.5K view).</p><p>• Lời dẫn: Nói thẳng vào hậu quả thực tế nếu làm sai hoặc chỉ ra sự thật bất ngờ. Tuyệt đối không chào hỏi dạo đầu.</p></div>
+                  <div class="ds-takeaway">🎯 Giữ khách dừng ngón tay ngay 3 giây đầu</div>
+                </div>
+                
+                <div class="ds-card card-neutral">
+                  <div class="ds-card-head">
+                    <div class="ds-badge">NHỊP 2 • GIỮ CHÂN (3 – 20 GIÂY)</div>
+                    <h3 class="ds-card-title">8–12 cảnh cắt nhanh + Mạch nhân quả</h3>
+                  </div>
+                  <div class="ds-hairline"></div>
+                  <div class="ds-card-body"><p>• Hình ảnh: Đổi góc Trung – Cận – Đặc tả liên tục 1.5–2.5s/cảnh (Nhà 3 Hờ #01: kéo khay trượt đảo bếp 2m25, chỉ ổ điện âm — 350.1K TikTok / 1,1M đa kênh).</p><p>• Lời dẫn: Vì sao cách làm cũ hay hỏng → Thao tác tay đúng cần chú ý điểm nào → Dấu hiệu nhận biết khi đạt chuẩn.</p></div>
+                  <div class="ds-takeaway">🎯 Hình chiếu tới đâu, miệng giải thích khớp tới đó</div>
+                </div>
+                
+                <div class="ds-card card-neutral">
+                  <div class="ds-card-head">
+                    <div class="ds-badge">NHỊP 3 • KẾT NỐI (20 – 35 GIÂY)</div>
+                    <h3 class="ds-card-title">Thành phẩm sạch sẽ + Mở lối hỏi đáp 1–1</h3>
+                  </div>
+                  <div class="ds-hairline"></div>
+                  <div class="ds-card-body"><p>• Hình ảnh: Cảnh hoàn thiện sản phẩm dưới ánh sáng ấm hoặc kiểm tra lần cuối (Đặng Hường #07: chấm bút chỉ rõ từng đốt sống — 2,4K view).</p><p>• Lời dẫn: Nhắc người xem lưu lại video để đối chiếu lúc cần làm, hoặc ghim sẵn Zalo cá nhân để ai đang vướng gửi ảnh hỏi thẳng.</p></div>
+                  <div class="ds-takeaway">🎯 Tạo lối kết nối tự nhiên, không ép bình luận</div>
+                </div>
+                </div>
+              <div class="slide-videos-tray cols-3">
+                <div class="slide-vcard">
+                  <div class="slide-vhead">
+                    <div class="slide-vtitle">
+                      <span class="v-badge v-badge-win">✅ MỞ ĐẦU ĐẮT • 268.5K VIEW</span>
+                      <strong>Hoàng Nga Home (Momi Trendii) #02 — Úp ngược đĩa sứ hút chân không lắc mạnh không rớt</strong>
+                      <span class="slide-vmeta">(268.5K lượt xem • 95.2s)</span>
+                    </div>
+                    <div class="slide-vbtns">
+                      <button type="button" class="btn-play-inline" onclick="toggleSlideVideo(this, 'vid-player-08-hoangnga_02', 'https://media.fedu.vn/stu-audits/hoangnga_home/videos/vid_2274719319605581/2274719319605581.mp4')">▶️ Phát video thật</button>
+                      <a href="https://www.facebook.com/reel/2274719319605581/" target="_blank" rel="noopener" class="btn-src-link">Bài gốc ↗</a>
+                    </div>
+                  </div>
+                  <div class="slide-vstrip">
+                    <img src="https://media.fedu.vn/stu-audits/hoangnga_home/videos/vid_2274719319605581/strip.jpg" alt="Úp ngược đĩa sứ hút chân không lắc mạnh không rớt" loading="lazy"/>
+                    <div class="slide-vnote">3 giây đầu mở bằng cảnh nghịch lý: lắc mạnh chiếc đĩa trên mặt bàn kính nhưng không rớt, xả van một cái mở ra ngay.</div>
+                  </div>
+                  <div class="slide-vplayer" id="vid-player-08-hoangnga_02" style="display:none;">
+                    <video controls playsinline preload="none" poster="https://media.fedu.vn/stu-audits/hoangnga_home/videos/vid_2274719319605581/strip.jpg"></video>
+                  </div>
+                </div>
+                
+                <div class="slide-vcard">
+                  <div class="slide-vhead">
+                    <div class="slide-vtitle">
+                      <span class="v-badge v-badge-win">✅ GIỮ NHỊP TỐT • 350.1K / 1,1M VIEW</span>
+                      <strong>Nhà 3 Hờ (@nha3ho) #01 — Quay chi tiết bàn đảo bếp 2m25 nối liền bàn ăn &amp; kéo khay trượt</strong>
+                      <span class="slide-vmeta">(350.1K TikTok (1,1M đa kênh) • 60s)</span>
+                    </div>
+                    <div class="slide-vbtns">
+                      <button type="button" class="btn-play-inline" onclick="toggleSlideVideo(this, 'vid-player-08-nha3ho_01', 'https://media.fedu.vn/stu-audits/nha3ho/videos/vid_7589253282984447252/7589253282984447252.mp4')">▶️ Phát video thật</button>
+                      <a href="https://www.tiktok.com/@nha3ho/video/7589253282984447252" target="_blank" rel="noopener" class="btn-src-link">Bài gốc ↗</a>
+                    </div>
+                  </div>
+                  <div class="slide-vstrip">
+                    <img src="https://media.fedu.vn/stu-audits/nha3ho/videos/vid_7589253282984447252/strip.jpg" alt="Quay chi tiết bàn đảo bếp 2m25 nối liền bàn ăn &amp; kéo khay trượt" loading="lazy"/>
+                    <div class="slide-vnote">Lời nói tới khay trượt là tay kéo khay trượt, nói tới ổ điện âm là tay chỉ ổ điện. Cắt cảnh liên tục theo cử động tay.</div>
+                  </div>
+                  <div class="slide-vplayer" id="vid-player-08-nha3ho_01" style="display:none;">
+                    <video controls playsinline preload="none" poster="https://media.fedu.vn/stu-audits/nha3ho/videos/vid_7589253282984447252/strip.jpg"></video>
+                  </div>
+                </div>
+                
+                <div class="slide-vcard">
+                  <div class="slide-vhead">
+                    <div class="slide-vtitle">
+                      <span class="v-badge v-badge-win">✅ CÓ TIẾNG CHỈ DẪN • 2,4K VIEW</span>
+                      <strong>Đặng Hường Spa Đông Y #07 — Cầm bút chấm từng đốt sống lưng chỉ rõ vị trí tắc nghẽn</strong>
+                      <span class="slide-vmeta">(2,4K lượt xem • 22.1s)</span>
+                    </div>
+                    <div class="slide-vbtns">
+                      <button type="button" class="btn-play-inline" onclick="toggleSlideVideo(this, 'vid-player-08-ang_huong_07', 'https://media.fedu.vn/stu-audits/ang_huong/videos/vid_1098168172583236/1098168172583236.mp4')">▶️ Phát video thật</button>
+                      <a href="https://www.facebook.com/reel/1098168172583236/" target="_blank" rel="noopener" class="btn-src-link">Bài gốc ↗</a>
+                    </div>
+                  </div>
+                  <div class="slide-vstrip">
+                    <img src="https://media.fedu.vn/stu-audits/ang_huong/videos/vid_1098168172583236/strip.jpg" alt="Cầm bút chấm từng đốt sống lưng chỉ rõ vị trí tắc nghẽn" loading="lazy"/>
+                    <div class="slide-vnote">Cận cảnh tay cầm bút chấm lên từng đốt sống lưng kèm giọng giải thích trực tiếp giúp lượt xem tăng gấp 2,4 lần.</div>
+                  </div>
+                  <div class="slide-vplayer" id="vid-player-08-ang_huong_07" style="display:none;">
+                    <video controls playsinline preload="none" poster="https://media.fedu.vn/stu-audits/ang_huong/videos/vid_1098168172583236/strip.jpg"></video>
+                  </div>
+                </div>
+                </div>
+              <div class="slide-footer">
+                <div class="mentor-sig">
+                  <span class="mentor-dot">NV</span>
+                  <span><strong>Mentor : Nguyễn Đức Việt</strong>  ·  0934.688.632</span>
+                </div>
+                <div class="footer-right">Slide 08 / 17  ·  vietndj@gmail.com</div>
+              </div>
+            </div>
+            
+          
+        <div class="speaker-notes-box">
+          <div class="sn-header">
+            <span class="sn-badge">🗣️ LỜI DẪN BỤC GIẢNG OFFLINE CỦA ANH VIỆT (SLIDE 08)</span>
+            <span class="sn-part">Mục 03: Giải phẫu 3 nhịp &amp; Quy tắc cắt cảnh 2 giây</span>
+          </div>
+          <p class="sn-text">“Một kịch bản Voice-Over chuẩn mực chỉ kéo dài khoảng 30 đến 35 giây và chia làm 3 nhịp rõ rệt như trên màn hình [Chỉ tay]... Nhịp 1 (0 đến 3 giây): đưa ngay cảnh đắt nhất lên đầu như bạn Hoàng Nga lắc chiếc đĩa sứ hút chân không ở bài #02 đạt 268.5K lượt xem. Nhịp 2 (3 đến 20 giây): giữ chân bằng chuỗi 8 đến 12 cảnh cắt gọn kết hợp giải thích nguyên nhân - kết quả như bài đảo bếp của Nhà 3 Hờ. Và Nhịp 3 (cuối bài): đừng bắt khách gõ từ khóa rườm rà, cứ bảo khách lưu video lại đối chiếu hoặc nhắn thẳng tình trạng đang vướng qua Zalo cá nhân cho mình.”</p>
+        </div>
+        
+        </section>
+        
+        <section class="slide-wrapper" data-index="8" id="slide-09">
+          
+            <div class="slide-canvas layout-content">
+              <div class="slide-topbar">
+                <span>2026  •  MỤC 04.1 • BẢN ĐỒ 5 LỖI LÀM GÃY LƯỢT XEM VOICE-OVER</span>
+                <span>imess/zalo : 0934688632</span>
+              </div>
+              <div class="slide-head-block">
+                <div class="slide-title-row">
+                  <h2 class="slide-main-title">5 lỗi thực tế khiến video Voice-Over rớt xuống dưới 1.000 view</h2>
+                  <span class="preset-tag">Kiểu 02 • 3-Column Breakdown</span>
+                </div>
+                <p class="slide-subtitle">tổng hợp từ dữ liệu khám kênh thực tế của học viên trước khi đi vào giải phẫu từng cặp video</p>
+              </div>
+              <div class="ds-cards cards-grid-3">
+                <div class="ds-card card-neutral">
+                  <div class="ds-card-head">
+                    <div class="ds-badge">LỖI 01 &amp; 02 • BỎ VOICE &amp; LỆCH LỜI</div>
+                    <h3 class="ds-card-title">Tắt giọng nói &amp; Đọc văn mẫu sáo rỗng</h3>
+                  </div>
+                  <div class="ds-hairline"></div>
+                  <div class="ds-card-body"><p>• Lỗi 01 (Bỏ trống giọng nói): Quay tay nghề thật nhưng chỉ ghép nhạc nền kèm chữ khuyến mãi đỏ rực (Đặng Hường #11: 1K view).</p><p>• Lỗi 02 (Hình một đằng, tiếng một nẻo / Văn mẫu): Tay pha cacao, dọn đồ nhưng miệng đọc triết lý sách vở tách rời công việc (Bùi Thuỳ Dung #01: 291 view).</p></div>
+                  <div class="ds-takeaway">🎯 Thiếu giọng nói thật hoặc nói sáo rỗng = Mất khách</div>
+                </div>
+                
+                <div class="ds-card card-neutral">
+                  <div class="ds-card-head">
+                    <div class="ds-badge">LỖI 03 &amp; 04 • CHẬM VÀO ĐỀ &amp; ĐỨNG HÌNH</div>
+                    <h3 class="ds-card-title">Dạo đầu 12–16s &amp; Giữ 1 góc máy quá lâu</h3>
+                  </div>
+                  <div class="ds-hairline"></div>
+                  <div class="ds-card-body"><p>• Lỗi 03 (Lãng phí 12–16s đầu): Mở đầu bằng cảnh pha trà, rửa mặt ở bồn lavabo hoặc rẽ sang chuyện tiền nong ở giây 12 (Chị Yến #11, #15: 128 – 1,9K view).</p><p>• Lỗi 04 (Đứng hình / Đứt mạch): Đi bộ hành lang 26s cho 1 câu chữ (236 view) hoặc đang giảng bảng trắng lại cắt sang đĩa mực xào (Chị Yến #14: 919 view).</p></div>
+                  <div class="ds-takeaway">🎯 70% người lạ vuốt bỏ nếu 3 giây đầu lệch nhịp</div>
+                </div>
+                
+                <div class="ds-card card-neutral">
+                  <div class="ds-card-head">
+                    <div class="ds-badge">LỖI 05 • ĐẶT CÂU HỎI ĐÓNG</div>
+                    <h3 class="ds-card-title">Làm đứt mạch xem bằng câu hỏi đóng</h3>
+                  </div>
+                  <div class="ds-hairline"></div>
+                  <div class="ds-card-body"><p>• Lỗi 05 (Câu hỏi đóng thiếu chi tiết): Ghép cảnh công trình đang xây thô 18 giây và đặt câu hỏi đóng khiến người xem tự trả lời &#x27;Không&#x27; trong đầu rồi lướt qua ngay (Hoàng Nga #08: 3,9K view so với bài #01 đạt 2,4M view).</p><p>• Cách chữa: Thay câu hỏi đóng bằng con số bóc tách thực tế.</p></div>
+                  <div class="ds-takeaway">🎯 Mở bài bằng con số và chi tiết thật thay vì hỏi chung chung</div>
+                </div>
+                </div>
+              
+              <div class="slide-footer">
+                <div class="mentor-sig">
+                  <span class="mentor-dot">NV</span>
+                  <span><strong>Mentor : Nguyễn Đức Việt</strong>  ·  0934.688.632</span>
+                </div>
+                <div class="footer-right">Slide 09 / 17  ·  vietndj@gmail.com</div>
+              </div>
+            </div>
+            
+          
+        <div class="speaker-notes-box">
+          <div class="sn-header">
+            <span class="sn-badge">🗣️ LỜI DẪN BỤC GIẢNG OFFLINE CỦA ANH VIỆT (SLIDE 09)</span>
+            <span class="sn-part">Mục 04: 5 lỗi làm gãy lượt xem (Bắt bệnh bằng video thật)</span>
+          </div>
+          <p class="sn-text">“Bây giờ mình bước vào Mục 04 — phần mà cả lớp sẽ nhớ lâu nhất vì toàn bộ ví dụ đều lấy từ kênh thật của anh chị em học viên [Chỉ tay]... Có đúng 5 lỗi làm gãy lượt xem: một là bỏ trống giọng nói chỉ ghép nhạc; hai là hình một đằng tiếng một nẻo hoặc đọc văn mẫu; ba là mất 12 đến 16 giây đầu dạo đầu hoặc rửa mặt chưa vào việc; bốn là giữ lì một cảnh đi bộ hành lang 26 giây hoặc đang giảng bài cắt sang bàn ăn; và năm là đặt câu hỏi đóng làm đứt mạch xem. Chúng ta sẽ mổ xẻ lần lượt 4 cặp video Thắng – Thua ngay ở 4 slide tiếp theo!”</p>
+        </div>
+        
+        </section>
+        
+        <section class="slide-wrapper" data-index="9" id="slide-10">
+          
+            <div class="slide-canvas layout-content">
+              <div class="slide-topbar">
+                <span>2026  •  MỤC 04.2 • CA GIẢI PHẪU #1: ĐẶNG HƯỜNG SPA (LỖI SỐ 01)</span>
+                <span>imess/zalo : 0934688632</span>
+              </div>
+              <div class="slide-head-block">
+                <div class="slide-title-row">
+                  <h2 class="slide-main-title">Bỏ trống giọng nói chỉ ghép nhạc vs có giọng chỉ dẫn kỹ thuật</h2>
+                  <span class="preset-tag">Kiểu 03 • Luxury Comparison 2 Columns</span>
+                </div>
+                <p class="slide-subtitle">đối chiếu trực tiếp bài Đặng Hường #11 (1K view • ghép nhạc chữ đỏ) và bài #07 (2,4K view • chấm đốt sống)</p>
+              </div>
+              <div class="ds-cards cards-grid-2">
+                <div class="ds-card card-warn">
+                  <div class="ds-card-head">
+                    <div class="ds-badge">❌ BÀI THUA • ĐẶNG HƯỜNG #11 (1K VIEW • 7.6 GIÂY)</div>
+                    <h3 class="ds-card-title">Quay làm da thật nhưng tắt tiếng, chỉ ghép nhạc &amp; chữ khuyến mãi</h3>
+                  </div>
+                  <div class="ds-hairline"></div>
+                  <div class="ds-card-body"><p>• Hiện trạng video: Quay cảnh kỹ thuật viên chăm sóc da tại Spa rất sạch sẽ, nhưng bỏ trống hoàn toàn giọng nói. Giữa màn hình dán chữ đỏ cố định: &#x27;Tặng 10 suất Peel mờ nám 4999K ưu đãi còn 999K&#x27;.</p><p>• Điểm làm gãy lượt xem: Thiếu lớp giọng nói giải thích đang xử lý bệnh lý da gì, người xem nhìn như một tấm biển quảng cáo giảm giá nên lướt qua ngay.</p></div>
+                  <div class="ds-takeaway">🎯 Tay nghề giỏi mà tắt tiếng ghép nhạc khuyến mãi thì không giữ được khách lạ.</div>
+                </div>
+                
+                <div class="ds-card card-good">
+                  <div class="ds-card-head">
+                    <div class="ds-badge">✅ BÀI THẮNG &amp; CÁCH SỬA • ĐẶNG HƯỜNG #07 (2,4K VIEW • 22.1 GIÂY)</div>
+                    <h3 class="ds-card-title">Cầm bút chấm từng đốt sống lưng &amp; Giọng giải thích rõ ràng</h3>
+                  </div>
+                  <div class="ds-hairline"></div>
+                  <div class="ds-card-body"><p>• Điểm làm tốt ở bài #07: Ống kính quay cận tay cầm bút chấm trực tiếp lên từng đốt sống lưng của mẫu, kèm giọng nói thật chỉ rõ từng điểm tắc nghẽn cho kỹ thuật viên.</p><p>• Cách sửa 1 nhát cho bài #11: Xóa dòng chữ đỏ giảm giá, hạ nhạc nền xuống -22dB, thu âm 4 câu giải thích rõ da khách đang gặp tình trạng gì và dung dịch trên tay giải quyết ra sao.</p></div>
+                  <div class="ds-takeaway">🎯 Chỉ cần thêm 4 câu giọng thật giải thích chuyên môn, lượt xem tăng gấp 2,4 lần.</div>
+                </div>
+                </div>
+              <div class="slide-videos-tray cols-2">
+                <div class="slide-vcard">
+                  <div class="slide-vhead">
+                    <div class="slide-vtitle">
+                      <span class="v-badge v-badge-err">❌ LỖI BỎ TRỐNG VOICE • 1K VIEW</span>
+                      <strong>Đặng Hường Spa Đông Y #11 — Quay kỹ thuật viên làm da 7.6s chỉ ghép nhạc &amp; chữ đỏ khuyến mãi</strong>
+                      <span class="slide-vmeta">(1K lượt xem • 7.6s)</span>
+                    </div>
+                    <div class="slide-vbtns">
+                      <button type="button" class="btn-play-inline" onclick="toggleSlideVideo(this, 'vid-player-10-ang_huong_11', 'https://media.fedu.vn/stu-audits/ang_huong/videos/vid_1111766797888731/1111766797888731.mp4')">▶️ Phát video thật</button>
+                      <a href="https://www.facebook.com/reel/1111766797888731/" target="_blank" rel="noopener" class="btn-src-link">Bài gốc ↗</a>
+                    </div>
+                  </div>
+                  <div class="slide-vstrip">
+                    <img src="https://media.fedu.vn/stu-audits/ang_huong/videos/vid_1111766797888731/strip.jpg" alt="Quay kỹ thuật viên làm da 7.6s chỉ ghép nhạc &amp; chữ đỏ khuyến mãi" loading="lazy"/>
+                    <div class="slide-vnote">Tay nghề thật nhưng tắt tiếng, chỉ ghép nhạc nền và dán chữ đỏ &#x27;Tặng 10 suất Peel mờ nám 4999K còn 999K&#x27;.</div>
+                  </div>
+                  <div class="slide-vplayer" id="vid-player-10-ang_huong_11" style="display:none;">
+                    <video controls playsinline preload="none" poster="https://media.fedu.vn/stu-audits/ang_huong/videos/vid_1111766797888731/strip.jpg"></video>
+                  </div>
+                </div>
+                
+                <div class="slide-vcard">
+                  <div class="slide-vhead">
+                    <div class="slide-vtitle">
+                      <span class="v-badge v-badge-win">✅ CÓ TIẾNG CHỈ DẪN • 2,4K VIEW</span>
+                      <strong>Đặng Hường Spa Đông Y #07 — Cầm bút chấm từng đốt sống lưng chỉ rõ vị trí tắc nghẽn</strong>
+                      <span class="slide-vmeta">(2,4K lượt xem • 22.1s)</span>
+                    </div>
+                    <div class="slide-vbtns">
+                      <button type="button" class="btn-play-inline" onclick="toggleSlideVideo(this, 'vid-player-10-ang_huong_07', 'https://media.fedu.vn/stu-audits/ang_huong/videos/vid_1098168172583236/1098168172583236.mp4')">▶️ Phát video thật</button>
+                      <a href="https://www.facebook.com/reel/1098168172583236/" target="_blank" rel="noopener" class="btn-src-link">Bài gốc ↗</a>
+                    </div>
+                  </div>
+                  <div class="slide-vstrip">
+                    <img src="https://media.fedu.vn/stu-audits/ang_huong/videos/vid_1098168172583236/strip.jpg" alt="Cầm bút chấm từng đốt sống lưng chỉ rõ vị trí tắc nghẽn" loading="lazy"/>
+                    <div class="slide-vnote">Cận cảnh tay cầm bút chấm lên từng đốt sống lưng kèm giọng giải thích trực tiếp giúp lượt xem tăng gấp 2,4 lần.</div>
+                  </div>
+                  <div class="slide-vplayer" id="vid-player-10-ang_huong_07" style="display:none;">
+                    <video controls playsinline preload="none" poster="https://media.fedu.vn/stu-audits/ang_huong/videos/vid_1098168172583236/strip.jpg"></video>
+                  </div>
+                </div>
+                </div>
+              <div class="slide-footer">
+                <div class="mentor-sig">
+                  <span class="mentor-dot">NV</span>
+                  <span><strong>Mentor : Nguyễn Đức Việt</strong>  ·  0934.688.632</span>
+                </div>
+                <div class="footer-right">Slide 10 / 17  ·  vietndj@gmail.com</div>
+              </div>
+            </div>
+            
+          
+        <div class="speaker-notes-box">
+          <div class="sn-header">
+            <span class="sn-badge">🗣️ LỜI DẪN BỤC GIẢNG OFFLINE CỦA ANH VIỆT (SLIDE 10)</span>
+            <span class="sn-part">Mục 04: 5 lỗi làm gãy lượt xem (Bắt bệnh bằng video thật)</span>
+          </div>
+          <p class="sn-text">“Mọi người xem cặp video đầu tiên của bạn Đặng Hường chủ Spa Đông Y nhé [Bấm mở 2 video]... Ở cột bên trái là bài số 11: dài 7,6 giây, quay cảnh nhân viên đang làm mặt cho khách, nhưng không có một chữ thuyết minh nào mà chỉ bật nhạc kèm dòng chữ đỏ chót &#x27;Tặng 10 suất Peel nám 4999K còn 999K&#x27;. Người lạ lướt qua thấy chữ giảm giá là họ né ngay. Nhưng nhìn sang cột bên phải — bài số 07 trên cùng kênh đó: Hường chỉ cần cầm cây bút chấm lên lưng và nói rõ từng đốt sống thôi là lên 2.400 lượt xem ngay. Sửa bài #11 cực dễ: hạ nhạc xuống, thu âm đúng 4 câu giải thích tình trạng da đang làm trên hình!”</p>
+        </div>
+        
+        </section>
+        
+        <section class="slide-wrapper" data-index="10" id="slide-11">
+          
+            <div class="slide-canvas layout-content">
+              <div class="slide-topbar">
+                <span>2026  •  MỤC 04.3 • CA GIẢI PHẪU #2: BÙI THUỲ DUNG (LỖI SỐ 02)</span>
+                <span>imess/zalo : 0934688632</span>
+              </div>
+              <div class="slide-head-block">
+                <div class="slide-title-row">
+                  <h2 class="slide-main-title">Hình một đằng tiếng một nẻo (291 view) vs chuyện thật (1.653 – 8,2K view)</h2>
+                  <span class="preset-tag">Kiểu 03 • Luxury Comparison 2 Columns</span>
+                </div>
+                <p class="slide-subtitle">tại sao cùng quay cảnh pha cacao và dọn tiệm thời trang nhưng một bản tụt đáy, một bản hút khách?</p>
+              </div>
+              <div class="ds-cards cards-grid-2">
+                <div class="ds-card card-warn">
+                  <div class="ds-card-head">
+                    <div class="ds-badge">❌ BẢN THUA • HÌNH MỘT ĐẰNG TIẾNG MỘT NẺO (291 VIEW)</div>
+                    <h3 class="ds-card-title">Tay pha cacao, dọn đồ tại tiệm nhưng miệng đọc văn mẫu triết lý</h3>
+                  </div>
+                  <div class="ds-hairline"></div>
+                  <div class="ds-card-body"><p>• Hiện trạng video: Hình ảnh quay cảnh sinh hoạt đời thường, pha cacao và treo quần áo tại tiệm HaDu Boutique, nhưng lời thu âm lại đọc những câu triết lý sách vở (&#x27;Phụ nữ thông minh không đánh ghen...&#x27;) tách rời hẳn khỏi hình ảnh.</p><p>• Điểm làm gãy lượt xem: Mắt người xem thấy một việc nhưng tai lại nghe một chuyện không liên quan, khiến bài đăng bản lệch pha chỉ dừng ở 291 lượt xem và không ai hỏi mua áo quần.</p></div>
+                  <div class="ds-takeaway">🎯 Hình ảnh thật mà ghép lời văn mẫu đi mượn sẽ làm đứt sợi dây tin cậy.</div>
+                </div>
+                
+                <div class="ds-card card-good">
+                  <div class="ds-card-head">
+                    <div class="ds-badge">✅ BẢN THẮNG • KỂ CHUYỆN THẬT KHỚP HÌNH (1.653 – 8,2K VIEW)</div>
+                    <h3 class="ds-card-title">Tay làm gì miệng kể thật chuyện đó, gắn chặt với tiệm thời trang</h3>
+                  </div>
+                  <div class="ds-hairline"></div>
+                  <div class="ds-card-body"><p>• Điểm làm tốt (Bài #01 &amp; #02 bản kể chuyện thật): Kể đúng câu chuyện quay lại đi làm công sở 8 tiếng sau 2 tháng nghỉ việc, sáng dậy lúc 5h30 chuẩn bị trang phục chỉn chu tại HaDu Boutique và chiều về chăm con gái.</p><p>• Cách sửa 1 nhát: Tay đang cầm chiếc sơ mi hay pha ly nước buổi sáng thì miệng kể đúng chuyện chọn chất liệu vải không nhăn cho chị em công sở bận rộn.</p></div>
+                  <div class="ds-takeaway">🎯 Kể đúng việc thật mình đang làm giúp lượt xem tăng từ 291 lên 1.653 – 8.200 view.</div>
+                </div>
+                </div>
+              <div class="slide-videos-tray cols-2">
+                <div class="slide-vcard">
+                  <div class="slide-vhead">
+                    <div class="slide-vtitle">
+                      <span class="v-badge v-badge-err">❌ LỖI VĂN MẪU / LỆCH PHA • 291 VIEW</span>
+                      <strong>Bùi Thuỳ Dung (HaDu Boutique) #01 — Quay cảnh pha cacao &amp; đi làm nhưng đọc văn mẫu / lệch hình-tiếng</strong>
+                      <span class="slide-vmeta">(291 view (Bản lệch pha) / 8,2K view • 90s)</span>
+                    </div>
+                    <div class="slide-vbtns">
+                      <button type="button" class="btn-play-inline" onclick="toggleSlideVideo(this, 'vid-player-11-bui_dung_01', 'https://media.fedu.vn/stu-audits/bui_dung_948/videos/vid_1976562779726684/1976562779726684.mp4')">▶️ Phát video thật</button>
+                      <a href="https://www.facebook.com/reel/1976562779726684/" target="_blank" rel="noopener" class="btn-src-link">Bài gốc ↗</a>
+                    </div>
+                  </div>
+                  <div class="slide-vstrip">
+                    <img src="https://media.fedu.vn/stu-audits/bui_dung_948/videos/vid_1976562779726684/strip.jpg?v=1" alt="Quay cảnh pha cacao &amp; đi làm nhưng đọc văn mẫu / lệch hình-tiếng" loading="lazy"/>
+                    <div class="slide-vnote">Khi lấy cảnh pha cacao, dọn đồ nhưng ghép lời đọc triết lý chung chung tách rời tiệm thời trang, người xem trôi tuột.</div>
+                  </div>
+                  <div class="slide-vplayer" id="vid-player-11-bui_dung_01" style="display:none;">
+                    <video controls playsinline preload="none" poster="https://media.fedu.vn/stu-audits/bui_dung_948/videos/vid_1976562779726684/strip.jpg?v=1"></video>
+                  </div>
+                </div>
+                
+                <div class="slide-vcard">
+                  <div class="slide-vhead">
+                    <div class="slide-vtitle">
+                      <span class="v-badge v-badge-win">✅ KỂ CHUYỆN THẬT • 1.653 – 7,9K VIEW</span>
+                      <strong>Bùi Thuỳ Dung (HaDu Boutique) #02 — Tròn 1 tháng nghỉ việc &amp; nhịp sinh hoạt thật tại tiệm HaDu Boutique</strong>
+                      <span class="slide-vmeta">(1.653 view (TikTok) / 7,9K view (FB) • 143.4s)</span>
+                    </div>
+                    <div class="slide-vbtns">
+                      <button type="button" class="btn-play-inline" onclick="toggleSlideVideo(this, 'vid-player-11-bui_dung_02', 'https://media.fedu.vn/stu-audits/bui_dung_948/videos/vid_1395502562437496/1395502562437496.mp4')">▶️ Phát video thật</button>
+                      <a href="https://www.facebook.com/reel/1395502562437496/" target="_blank" rel="noopener" class="btn-src-link">Bài gốc ↗</a>
+                    </div>
+                  </div>
+                  <div class="slide-vstrip">
+                    <img src="https://media.fedu.vn/stu-audits/bui_dung_948/videos/vid_1395502562437496/strip.jpg" alt="Tròn 1 tháng nghỉ việc &amp; nhịp sinh hoạt thật tại tiệm HaDu Boutique" loading="lazy"/>
+                    <div class="slide-vnote">Tay làm gì miệng kể thật chuyện đó: xoay quanh nhịp sống thật, phối đồ tại tiệm và đồng hành cùng con gái.</div>
+                  </div>
+                  <div class="slide-vplayer" id="vid-player-11-bui_dung_02" style="display:none;">
+                    <video controls playsinline preload="none" poster="https://media.fedu.vn/stu-audits/bui_dung_948/videos/vid_1395502562437496/strip.jpg"></video>
+                  </div>
+                </div>
+                </div>
+              <div class="slide-footer">
+                <div class="mentor-sig">
+                  <span class="mentor-dot">NV</span>
+                  <span><strong>Mentor : Nguyễn Đức Việt</strong>  ·  0934.688.632</span>
+                </div>
+                <div class="footer-right">Slide 11 / 17  ·  vietndj@gmail.com</div>
+              </div>
+            </div>
+            
+          
+        <div class="speaker-notes-box">
+          <div class="sn-header">
+            <span class="sn-badge">🗣️ LỜI DẪN BỤC GIẢNG OFFLINE CỦA ANH VIỆT (SLIDE 11)</span>
+            <span class="sn-part">Mục 04: 5 lỗi làm gãy lượt xem (Bắt bệnh bằng video thật)</span>
+          </div>
+          <p class="sn-text">“Cặp giải phẫu thứ hai là kênh của bạn Bùi Thuỳ Dung — chủ tiệm thời trang HaDu Boutique [Chỉ tay]... Khi Dung quay cảnh tay pha cacao, dọn tủ đồ nhưng lại ghép giọng đọc những câu triết lý chung chung kiểu &#x27;Phụ nữ thông minh không đánh ghen...&#x27; — tức là hình một đằng, tiếng một nẻo — thì video chỉ lẹt đẹt 291 lượt xem và không ra một đơn hàng nào. Nhưng khi Dung đổi sang kể đúng câu chuyện thật của chính mình: đi làm lại sau 2 tháng nghỉ việc, cách giữ nhịp sinh hoạt sáng dậy sớm chọn đồ công sở chỉn chu, lượt xem tăng vọt lên 1.653 view rồi 7.900 – 8.200 view trên Reels. Nhớ kỹ nhé: tay làm gì, miệng kể thật chuyện đó!”</p>
+        </div>
+        
+        </section>
+        
+        <section class="slide-wrapper" data-index="11" id="slide-12">
+          
+            <div class="slide-canvas layout-content">
+              <div class="slide-topbar">
+                <span>2026  •  MỤC 04.4 • CA GIẢI PHẪU #3: CHỊ YẾN TÂNG XINH (LỖI SỐ 03 &amp; 04)</span>
+                <span>imess/zalo : 0934688632</span>
+              </div>
+              <div class="slide-head-block">
+                <div class="slide-title-row">
+                  <h2 class="slide-main-title">Giữ 1 cảnh quá lâu / đứt mạch bàn ăn vs sập nhịp ở giây thứ 12</h2>
+                  <span class="preset-tag">Kiểu 03 • Luxury Comparison 2 Columns</span>
+                </div>
+                <p class="slide-subtitle">mổ xẻ chi tiết các ca lỗi thực tế trên kênh Chị Yến Tâng Xinh: từ 128 – 236 view đến 919 – 1.946 view</p>
+              </div>
+              <div class="ds-cards cards-grid-2">
+                <div class="ds-card card-warn">
+                  <div class="ds-card-head">
+                    <div class="ds-badge">❌ CA LỖI A • ĐI BỘ 26S (236 VIEW) &amp; ĐỨNG BẢNG CẮT SANG MỰC XÀO (#14 • 919 VIEW)</div>
+                    <h3 class="ds-card-title">Giữ lì 1 cảnh hành lang hoặc cắt lệch hình–tiếng ở 23 giây cuối</h3>
+                  </div>
+                  <div class="ds-hairline"></div>
+                  <div class="ds-card-body"><p>• Lỗi giữ lì 1 cảnh (236 view): Quay cảnh đi bộ dọc hành lang suốt 26 giây chỉ để hiện đúng 1 câu chữ trên màn hình khiến người xem mỏi mắt lướt bỏ.</p><p>• Lỗi đứt mạch ở bài #14 (919 view): 35 giây đầu đứng bảng trắng viết &#x27;4 định dạng: 1. Quay lồng tiếng...&#x27; rất khớp; nhưng 23 giây cuối khi miệng đang giảng về cách nhân bản thương hiệu cho đội nhóm thì hình lại cắt sang cảnh gắp đĩa mực xào dứa trên bàn ăn.</p></div>
+                  <div class="ds-takeaway">🎯 Bỏ cảnh bàn ăn mực xào — Giữ ống kính cận bảng trắng và chỉ rõ 1 bước làm cụ thể.</div>
+                </div>
+                
+                <div class="ds-card card-warn">
+                  <div class="ds-card-head">
+                    <div class="ds-badge">❌ CA LỖI B • SẬP Ở GIÂY 12 (128 VIEW) &amp; MỞ ĐẦU PHÒNG TẮM (#15 • 1,9K VIEW)</div>
+                    <h3 class="ds-card-title">Thao tác phòng lab rẽ sang chuyện tiền nong &amp; 12s rửa mặt đầu bài</h3>
+                  </div>
+                  <div class="ds-hairline"></div>
+                  <div class="ds-card-body"><p>• Lỗi sập nhịp ở giây 12 (128 view): Mở đầu bằng cảnh thao tác phòng lab rất chuyên nghiệp, nhưng vừa tới giây 12 đã rẽ ngang sang nói chuyện tiền nong, kết nạp đội nhóm làm khách bật tâm lý dè chừng (Tương tự bài #11 mất 16s đầu ngồi pha trà mới chiếu màn hình AI ở giây 32).</p><p>• Lỗi mở đầu bài #15 (1,9K view): Câu chuyện năm 2017 rời FPT Tokyo về Việt Nam báo hiếu bố mẹ rất hay, nhưng 12 giây đầu lại lấy cảnh mặc đồ bộ cúi đầu rửa mặt ở bồn lavabo và dặm phấn.</p></div>
+                  <div class="ds-takeaway">🎯 Xóa 12s phòng tắm &amp; 16s pha trà — Đưa ngay cảnh phòng sách hoặc màn hình AI lên giây 0.</div>
+                </div>
+                </div>
+              <div class="slide-videos-tray cols-3">
+                <div class="slide-vcard">
+                  <div class="slide-vhead">
+                    <div class="slide-vtitle">
+                      <span class="v-badge v-badge-err">❌ LỖI LỆCH HÌNH-TIẾNG • 236 / 919 VIEW</span>
+                      <strong>Chị Yến — Tâng Xinh #14 — Đứng bảng trắng giảng 4 định dạng nhưng cuối bài cắt sang đĩa mực xào</strong>
+                      <span class="slide-vmeta">(919 lượt xem (bài đi bộ hành lang: 236 view) • 63.2s)</span>
+                    </div>
+                    <div class="slide-vbtns">
+                      <button type="button" class="btn-play-inline" onclick="toggleSlideVideo(this, 'vid-player-12-tang_xinh_14', 'https://media.fedu.vn/stu-audits/tang_xinh_chi_yen/videos/vid_1426087108850377/video.mp4')">▶️ Phát video thật</button>
+                      <a href="https://www.facebook.com/reel/1426087108850377" target="_blank" rel="noopener" class="btn-src-link">Bài gốc ↗</a>
+                    </div>
+                  </div>
+                  <div class="slide-vstrip">
+                    <img src="https://media.fedu.vn/stu-audits/tang_xinh_chi_yen/videos/vid_1426087108850377/strip.jpg" alt="Đứng bảng trắng giảng 4 định dạng nhưng cuối bài cắt sang đĩa mực xào" loading="lazy"/>
+                    <div class="slide-vnote">35s đầu đứng bảng trắng viết &#x27;4 định dạng&#x27; rất khớp; nhưng 23s cuối đang giảng công thức nhân bản lại cắt sang đĩa mực xào dứa.</div>
+                  </div>
+                  <div class="slide-vplayer" id="vid-player-12-tang_xinh_14" style="display:none;">
+                    <video controls playsinline preload="none" poster="https://media.fedu.vn/stu-audits/tang_xinh_chi_yen/videos/vid_1426087108850377/strip.jpg"></video>
+                  </div>
+                </div>
+                
+                <div class="slide-vcard">
+                  <div class="slide-vhead">
+                    <div class="slide-vtitle">
+                      <span class="v-badge v-badge-err">❌ LỖI CẢNH MỞ ĐẦU • 128 / 1,9K VIEW</span>
+                      <strong>Chị Yến — Tâng Xinh #15 — Kể chuyện năm 2017 rời FPT Tokyo về Việt Nam nhưng mở đầu ở bồn rửa mặt</strong>
+                      <span class="slide-vmeta">(1,9K lượt xem (bài phòng lab: 128 view) • 85.8s)</span>
+                    </div>
+                    <div class="slide-vbtns">
+                      <button type="button" class="btn-play-inline" onclick="toggleSlideVideo(this, 'vid-player-12-tang_xinh_15', 'https://media.fedu.vn/stu-audits/tang_xinh_chi_yen/videos/vid_3036601806692552/video.mp4')">▶️ Phát video thật</button>
+                      <a href="https://www.facebook.com/reel/3036601806692552" target="_blank" rel="noopener" class="btn-src-link">Bài gốc ↗</a>
+                    </div>
+                  </div>
+                  <div class="slide-vstrip">
+                    <img src="https://media.fedu.vn/stu-audits/tang_xinh_chi_yen/videos/vid_3036601806692552/strip.jpg" alt="Kể chuyện năm 2017 rời FPT Tokyo về Việt Nam nhưng mở đầu ở bồn rửa mặt" loading="lazy"/>
+                    <div class="slide-vnote">Câu chuyện bỏ vị trí tốt ở Tokyo về báo hiếu bố mẹ rất xúc động, nhưng 12 giây đầu lại lấy cảnh mặc đồ bộ rửa mặt ở lavabo.</div>
+                  </div>
+                  <div class="slide-vplayer" id="vid-player-12-tang_xinh_15" style="display:none;">
+                    <video controls playsinline preload="none" poster="https://media.fedu.vn/stu-audits/tang_xinh_chi_yen/videos/vid_3036601806692552/strip.jpg"></video>
+                  </div>
+                </div>
+                
+                <div class="slide-vcard">
+                  <div class="slide-vhead">
+                    <div class="slide-vtitle">
+                      <span class="v-badge v-badge-err">❌ LỖI DẠO ĐẦU 16 GIÂY • 2K VIEW</span>
+                      <strong>Chị Yến — Tâng Xinh #11 — Mất 16 giây đầu pha trà trước khi chiếu màn hình AI Global Max</strong>
+                      <span class="slide-vmeta">(2K lượt xem • 59.4s)</span>
+                    </div>
+                    <div class="slide-vbtns">
+                      <button type="button" class="btn-play-inline" onclick="toggleSlideVideo(this, 'vid-player-12-tang_xinh_11', 'https://media.fedu.vn/stu-audits/tang_xinh_chi_yen/videos/vid_2149437462314909/2149437462314909.mp4')">▶️ Phát video thật</button>
+                      <a href="https://www.facebook.com/reel/2149437462314909/" target="_blank" rel="noopener" class="btn-src-link">Bài gốc ↗</a>
+                    </div>
+                  </div>
+                  <div class="slide-vstrip">
+                    <img src="https://media.fedu.vn/stu-audits/tang_xinh_chi_yen/videos/vid_2149437462314909/strip.jpg" alt="Mất 16 giây đầu pha trà trước khi chiếu màn hình AI Global Max" loading="lazy"/>
+                    <div class="slide-vnote">16 giây đầu ngồi pha trà nói chuyện giấc mơ trong đêm; mãi đến giây 32 màn hình phần mềm AI mới xuất hiện.</div>
+                  </div>
+                  <div class="slide-vplayer" id="vid-player-12-tang_xinh_11" style="display:none;">
+                    <video controls playsinline preload="none" poster="https://media.fedu.vn/stu-audits/tang_xinh_chi_yen/videos/vid_2149437462314909/strip.jpg"></video>
+                  </div>
+                </div>
+                </div>
+              <div class="slide-footer">
+                <div class="mentor-sig">
+                  <span class="mentor-dot">NV</span>
+                  <span><strong>Mentor : Nguyễn Đức Việt</strong>  ·  0934.688.632</span>
+                </div>
+                <div class="footer-right">Slide 12 / 17  ·  vietndj@gmail.com</div>
+              </div>
+            </div>
+            
+          
+        <div class="speaker-notes-box">
+          <div class="sn-header">
+            <span class="sn-badge">🗣️ LỜI DẪN BỤC GIẢNG OFFLINE CỦA ANH VIỆT (SLIDE 12)</span>
+            <span class="sn-part">Mục 04: 5 lỗi làm gãy lượt xem (Bắt bệnh bằng video thật)</span>
+          </div>
+          <p class="sn-text">“Ở slide số 12 này, mình mổ xẻ kỹ chuỗi bài tập của chị Yến Tâng Xinh để cả lớp rút kinh nghiệm sâu sắc [Bấm mở video #14 và #15]... Nhìn bên trái: trước đó khi chị Yến quay cảnh đi bộ hành lang suốt 26 giây cho đúng 1 câu chữ, bài chỉ đạt 236 view. Khi chị áp dụng bài học đứng bảng trắng viết &#x27;4 định dạng video&#x27; ở bài #14, lượt xem nhích lên 919 view ngay, nhưng lại tiếc ở chỗ 23 giây cuối đang giảng bài lại cắt sang đĩa mực xào dứa trên bàn ăn! Còn nhìn bên phải: ở bài quay thao tác phòng lab, 10 giây đầu rất đẹp nhưng tới giây 12 rẽ sang nói chuyện tiền nong làm view sập còn 128 view. Tương tự ở bài #15 kể chuyện rời FPT Tokyo về báo hiếu bố mẹ: câu chuyện cực kỳ hay giúp lên 1.946 view, nhưng giá như cắt bỏ 12 giây đầu mặc đồ bộ rửa mặt ở bồn lavabo đi và đẩy cảnh phòng sách lên giây 0 thì bài này còn bùng nổ gấp nhiều lần!”</p>
+        </div>
+        
+        </section>
+        
+        <section class="slide-wrapper" data-index="12" id="slide-13">
+          
+            <div class="slide-canvas layout-content">
+              <div class="slide-topbar">
+                <span>2026  •  MỤC 04.5 • CA GIẢI PHẪU #4: HOÀNG NGA HOME (LỖI SỐ 05)</span>
+                <span>imess/zalo : 0934688632</span>
+              </div>
+              <div class="slide-head-block">
+                <div class="slide-title-row">
+                  <h2 class="slide-main-title">Đặt câu hỏi đóng làm đứt mạch xem (3,9K view) vs bóc tách cụ thể (2,4M view)</h2>
+                  <span class="preset-tag">Kiểu 03 • Luxury Comparison 2 Columns</span>
+                </div>
+                <p class="slide-subtitle">cùng quay chủ đề xây dựng nhà cửa trên kênh Hoàng Nga Home nhưng cách đặt vấn đề quyết định gấp 600 lần lượt xem</p>
+              </div>
+              <div class="ds-cards cards-grid-2">
+                <div class="ds-card card-warn">
+                  <div class="ds-card-head">
+                    <div class="ds-badge">❌ BÀI THUA • HOÀNG NGA #08 (3,9K VIEW • 18 GIÂY)</div>
+                    <h3 class="ds-card-title">Ghép cảnh xây thô gạch đỏ kèm câu hỏi đóng thiếu thông tin</h3>
+                  </div>
+                  <div class="ds-hairline"></div>
+                  <div class="ds-card-body"><p>• Hiện trạng video: Quay cảnh công trình K Villa lúc đang xây thô gạch đỏ 18 giây nhưng mở đầu và dẫn dắt bằng câu hỏi đóng chung chung, không đưa ra ngay thông số hay giải pháp kỹ thuật cụ thể.</p><p>• Điểm làm gãy lượt xem: Khi gặp một câu hỏi đóng dạng &#x27;Có nên... không?&#x27; hoặc &#x27;Bạn có biết...?&#x27;, người xem dễ trả lời nhanh &#x27;Không&#x27; trong đầu rồi vuốt qua luôn vì chưa thấy lợi ích thực tế.</p></div>
+                  <div class="ds-takeaway">🎯 Câu hỏi đóng ở 3 giây đầu là dấu chấm hết cho sự tò mò của người lạ.</div>
+                </div>
+                
+                <div class="ds-card card-good">
+                  <div class="ds-card-head">
+                    <div class="ds-badge">✅ BÀI THẮNG • HOÀNG NGA #01 (2,4 TRIỆU VIEW) &amp; #02 (268.5K VIEW)</div>
+                    <h3 class="ds-card-title">Mở thẳng bằng con số 2,4 tỷ hoặc hành động nghịch lý ngay giây 0</h3>
+                  </div>
+                  <div class="ds-hairline"></div>
+                  <div class="ds-card-body"><p>• Điểm làm tốt ở bài #01 (2,4 triệu view): Đưa ngay cảnh căn nhà mái ngói đỏ hoàn thiện dưới nắng kèm lời dẫn bóc tách thẳng con số 2,4 tỷ gồm những hạng mục gì, gỗ gì, ngói gì.</p><p>• Điểm làm tốt ở bài #02 (268.5K view): Mở bằng hành động úp ngược đĩa sứ lắc mạnh không rơi rồi cắt đôi quả táo đối chiếu độ tươi sau 1 tuần.</p></div>
+                  <div class="ds-takeaway">🎯 Thay câu hỏi đóng bằng con số thật hoặc cảnh kiểm chứng thật ngay giây đầu tiên.</div>
+                </div>
+                </div>
+              <div class="slide-videos-tray cols-2">
+                <div class="slide-vcard">
+                  <div class="slide-vhead">
+                    <div class="slide-vtitle">
+                      <span class="v-badge v-badge-err">❌ LỖI CÂU HỎI ĐÓNG • 3,9K VIEW</span>
+                      <strong>Hoàng Nga Home (Momi Trendii) #08 — Ghép cảnh K Villa đang xây thô gạch đỏ kèm câu hỏi đóng</strong>
+                      <span class="slide-vmeta">(3,9K lượt xem • 18s)</span>
+                    </div>
+                    <div class="slide-vbtns">
+                      <button type="button" class="btn-play-inline" onclick="toggleSlideVideo(this, 'vid-player-13-hoangnga_08', 'https://media.fedu.vn/stu-audits/hoangnga_home/videos/vid_7697980647628967175/7697980647628967175.mp4')">▶️ Phát video thật</button>
+                      <a href="https://www.tiktok.com/@hoangnga_home/video/7697980647628967175" target="_blank" rel="noopener" class="btn-src-link">Bài gốc ↗</a>
+                    </div>
+                  </div>
+                  <div class="slide-vstrip">
+                    <img src="https://media.fedu.vn/stu-audits/hoangnga_home/videos/vid_7697980647628967175/strip.jpg" alt="Ghép cảnh K Villa đang xây thô gạch đỏ kèm câu hỏi đóng" loading="lazy"/>
+                    <div class="slide-vnote">Đặt câu hỏi đóng thiếu thông tin cụ thể khiến người xem tự trả lời &#x27;Không&#x27; trong đầu rồi lướt qua ngay.</div>
+                  </div>
+                  <div class="slide-vplayer" id="vid-player-13-hoangnga_08" style="display:none;">
+                    <video controls playsinline preload="none" poster="https://media.fedu.vn/stu-audits/hoangnga_home/videos/vid_7697980647628967175/strip.jpg"></video>
+                  </div>
+                </div>
+                
+                <div class="slide-vcard">
+                  <div class="slide-vhead">
+                    <div class="slide-vtitle">
+                      <span class="v-badge v-badge-win">✅ MẪU THẮNG • 2,4 TRIỆU VIEW</span>
+                      <strong>Hoàng Nga Home (Momi Trendii) #01 — Bóc tách chi phí 2,4 tỷ xây và hoàn thiện nhà mái ngói đỏ</strong>
+                      <span class="slide-vmeta">(2,4 triệu lượt xem • 86s)</span>
+                    </div>
+                    <div class="slide-vbtns">
+                      <button type="button" class="btn-play-inline" onclick="toggleSlideVideo(this, 'vid-player-13-hoangnga_01', 'https://media.fedu.vn/stu-audits/hoangnga_home/videos/vid_7670412004594683143/7670412004594683143.mp4')">▶️ Phát video thật</button>
+                      <a href="https://www.tiktok.com/@hoangnga_home/video/7670412004594683143" target="_blank" rel="noopener" class="btn-src-link">Bài gốc ↗</a>
+                    </div>
+                  </div>
+                  <div class="slide-vstrip">
+                    <img src="https://media.fedu.vn/stu-audits/hoangnga_home/videos/vid_7670412004594683143/strip.jpg" alt="Bóc tách chi phí 2,4 tỷ xây và hoàn thiện nhà mái ngói đỏ" loading="lazy"/>
+                    <div class="slide-vnote">Mở đầu bằng khung hình toàn cảnh mái ngói đỏ rực rỡ dưới nắng kèm con số chi phí 2,4 tỷ rõ ràng từng hạng mục.</div>
+                  </div>
+                  <div class="slide-vplayer" id="vid-player-13-hoangnga_01" style="display:none;">
+                    <video controls playsinline preload="none" poster="https://media.fedu.vn/stu-audits/hoangnga_home/videos/vid_7670412004594683143/strip.jpg"></video>
+                  </div>
+                </div>
+                </div>
+              <div class="slide-footer">
+                <div class="mentor-sig">
+                  <span class="mentor-dot">NV</span>
+                  <span><strong>Mentor : Nguyễn Đức Việt</strong>  ·  0934.688.632</span>
+                </div>
+                <div class="footer-right">Slide 13 / 17  ·  vietndj@gmail.com</div>
+              </div>
+            </div>
+            
+          
+        <div class="speaker-notes-box">
+          <div class="sn-header">
+            <span class="sn-badge">🗣️ LỜI DẪN BỤC GIẢNG OFFLINE CỦA ANH VIỆT (SLIDE 13)</span>
+            <span class="sn-part">Mục 04: 5 lỗi làm gãy lượt xem (Bắt bệnh bằng video thật)</span>
+          </div>
+          <p class="sn-text">“Cặp giải phẫu thứ tư là trên kênh Hoàng Nga Home [Bấm mở video #08 và #01]... Cả nhà nhìn sự chênh lệch này: một bên là 3.900 lượt xem (bài số 08), một bên là 2,4 triệu lượt xem (bài số 01) — chênh nhau hơn 600 lần trên cùng một kênh! Ở bài số 08, Nga quay cảnh gạch xây thô và đặt câu hỏi đóng làm đứt mạch xem. Ngược lại, ở bài số 01, Nga mở màn bằng khung hình mái ngói đỏ cực đẹp và đi thẳng vào việc bóc tách chi phí 2,4 tỷ từng hạng mục. Người xem nhận được thông tin thật ngay từ giây đầu nên họ xem một mạch tới cuối.”</p>
+        </div>
+        
+        </section>
+        
+        <section class="slide-wrapper" data-index="13" id="slide-14">
+          
+            <div class="slide-canvas layout-content">
+              <div class="slide-topbar">
+                <span>2026  •  MỤC 05.1 • 5 BƯỚC DỰNG NGƯỢC TRÊN CAPCUT</span>
+                <span>imess/zalo : 0934688632</span>
+              </div>
+              <div class="slide-head-block">
+                <div class="slide-title-row">
+                  <h2 class="slide-main-title">5 bước dựng ngược: Thu âm &amp; chốt nhịp trước – cắt cảnh đè lên sau</h2>
+                  <span class="preset-tag">Kiểu 02 • 3-Column Breakdown</span>
+                </div>
+                <p class="slide-subtitle">cách làm thực tế trên điện thoại giúp giọng đọc tự nhiên và khung hình khớp khít từng giây</p>
+              </div>
+              <div class="ds-cards cards-grid-3">
+                <div class="ds-card card-neutral">
+                  <div class="ds-card-head">
+                    <div class="ds-badge">BƯỚC 01 &amp; 02 • KỊCH BẢN &amp; THU ÂM</div>
+                    <h3 class="ds-card-title">Viết 6 câu ngắn &amp; Bấm Record trong phòng kín</h3>
+                  </div>
+                  <div class="ds-hairline"></div>
+                  <div class="ds-card-body"><p>• Bước 1 (Gạch 6 câu thoại ~ 80 chữ): Viết theo đúng mạch 3 nhịp (Mở đầu lỗi sai → Nguyên nhân &amp; thao tác đúng → Kết quả &amp; lời nhắc lưu bài).</p><p>• Bước 2 (Thu âm trước trong phòng kín): Mở CapCut bấm nút Thu âm (Record) đọc từng câu. Đọc vấp câu nào dừng lại thu đè ngay câu đó, sau đó cắt bỏ các khoảng lấy hơi thừa.</p></div>
+                  <div class="ds-takeaway">🎯 Chốt xong trục giọng đọc 30 giây thật chắc chắn</div>
+                </div>
+                
+                <div class="ds-card card-neutral">
+                  <div class="ds-card-head">
+                    <div class="ds-badge">BƯỚC 03 &amp; 04 • ĐÈ CẢNH 2 GIÂY</div>
+                    <h3 class="ds-card-title">Nhặt 12–15 cảnh quay tay &amp; Gọt 1.5–2.5s đè lên</h3>
+                  </div>
+                  <div class="ds-hairline"></div>
+                  <div class="ds-card-body"><p>• Bước 3 (Đưa cảnh quay tay vào lớp phủ/chèn hình): Nghe giọng đọc đang nói tới công đoạn nào thì nhặt đúng cảnh bàn tay làm công đoạn đó đặt đè lên.</p><p>• Bước 4 (Gọt gọn 1.5 – 2.5s theo cử động): Cắt ngay khi bàn tay bắt đầu đặt vào vật thể và chuyển sang cỡ cảnh khác (Trung → Cận → Đặc tả) ngay khi động tác vừa dứt.</p></div>
+                  <div class="ds-takeaway">🎯 Miệng nói chữ gì, mắt thấy ngay tay làm việc đó</div>
+                </div>
+                
+                <div class="ds-card card-neutral">
+                  <div class="ds-card-head">
+                    <div class="ds-badge">BƯỚC 05 • PHỐI ÂM 3 LỚP &amp; PHỤ ĐỀ</div>
+                    <h3 class="ds-card-title">Khử tiếng ồn, cân bằng 3 lớp tiếng &amp; Xuất file</h3>
+                  </div>
+                  <div class="ds-hairline"></div>
+                  <div class="ds-card-body"><p>• Bước 5 (Hoàn thiện âm thanh &amp; chữ): Bật &#x27;Giảm tiếng ồn&#x27; cho giọng đọc, chỉnh tỷ lệ âm lượng 3 lớp (Lời nói 100% / Tiếng động thật 30% / Nhạc nền 8%). Tạo phụ đề tự động cỡ nhỏ gọn gàng để người xem lướt nơi công cộng chưa bật loa vẫn đọc theo được.</p></div>
+                  <div class="ds-takeaway">🎯 Hoàn chỉnh 1 video sắc nét chỉ trong 15–20 phút</div>
+                </div>
+                </div>
+              
+              <div class="slide-footer">
+                <div class="mentor-sig">
+                  <span class="mentor-dot">NV</span>
+                  <span><strong>Mentor : Nguyễn Đức Việt</strong>  ·  0934.688.632</span>
+                </div>
+                <div class="footer-right">Slide 14 / 17  ·  vietndj@gmail.com</div>
+              </div>
+            </div>
+            
+          
+        <div class="speaker-notes-box">
+          <div class="sn-header">
+            <span class="sn-badge">🗣️ LỜI DẪN BỤC GIẢNG OFFLINE CỦA ANH VIỆT (SLIDE 14)</span>
+            <span class="sn-part">Mục 05: Cách dựng ngược 5 bước trên CapCut &amp; 4 khung kịch bản</span>
+          </div>
+          <p class="sn-text">“Sang Mục 05: Vậy khi ngồi vào bàn dựng trên CapCut, chúng ta làm theo thứ tự nào là nhanh nhất? [Chỉ tay] Có đúng 5 bước dựng ngược trên bảng: Bước 1 là gạch ra 6 câu thoại ngắn khoảng 80 chữ. Bước 2 là vào phòng kín bấm nút Record trên CapCut thu âm xong 6 câu đó trước, cắt sạch những đoạn ậm ừ lấy hơi đi để có một trục âm thanh 30 giây thật gọn. Bước 3 và Bước 4: nghe giọng mình nói tới câu nào thì nhặt cảnh quay bàn tay (Trung, Cận, Đặc tả) thả đè lên đúng câu đó, gọt gọn mỗi cảnh 2 giây. Và Bước 5 là chỉnh âm thanh 3 lớp rồi xuất file!”</p>
+        </div>
+        
+        </section>
+        
+        <section class="slide-wrapper" data-index="14" id="slide-15">
+          
+            <div class="slide-canvas layout-content">
+              <div class="slide-topbar">
+                <span>2026  •  MỤC 05.2 • CÔNG THỨC ÂM THANH 3 LỚP TRÊN CAPCUT</span>
+                <span>imess/zalo : 0934688632</span>
+              </div>
+              <div class="slide-head-block">
+                <div class="slide-title-row">
+                  <h2 class="slide-main-title">Tỷ lệ vàng trong phòng thu: Lời nói 100% – Tiếng động 30% – Nhạc nền 8%</h2>
+                  <span class="preset-tag">Kiểu 02 • 3-Column Breakdown</span>
+                </div>
+                <p class="slide-subtitle">thông số âm lượng cụ thể trên thanh trượt CapCut để người xem nghe rõ từng chữ mà vẫn sống động</p>
+              </div>
+              <div class="ds-cards cards-grid-3">
+                <div class="ds-card card-neutral">
+                  <div class="ds-card-head">
+                    <div class="ds-badge">LỚP 01 • LỜI NÓI CHỦ ĐẠO (100%)</div>
+                    <h3 class="ds-card-title">Âm lượng 100% (-3dB đến 0dB) + Bật Giảm tiếng ồn</h3>
+                  </div>
+                  <div class="ds-hairline"></div>
+                  <div class="ds-card-body"><p>Giọng đọc của người làm nghề là trục chính dẫn dắt toàn bộ video. Bắt buộc bấm chọn thanh giọng thu trên CapCut, bật nút &#x27;Giảm tiếng ồn&#x27; (Noise Reduction) để lọc sạch tiếng quạt gió, giữ giọng nói tròn trịa và nghe rõ ngay cả khi mở loa nhỏ.</p></div>
+                  <div class="ds-takeaway">🎯 Lời nói luôn phải đứng ở vị trí ưu tiên số 1</div>
+                </div>
+                
+                <div class="ds-card card-neutral">
+                  <div class="ds-card-head">
+                    <div class="ds-badge">LỚP 02 • TIẾNG ĐỘNG THẬT (30%)</div>
+                    <h3 class="ds-card-title">Âm lượng 25–30% (-12dB đến -15dB) từ bàn làm việc</h3>
+                  </div>
+                  <div class="ds-hairline"></div>
+                  <div class="ds-card-body"><p>Đừng tắt sạch 100% tiếng gốc của video quay tay. Hãy giữ lại ở mức 30% tiếng dao thái sả trên thớt, tiếng kéo khay gỗ đảo bếp, tiếng lật cuốn mẫu gỗ hay tiếng bút dạ viết lên bảng trắng. Tuyệt đối tránh chèn tiếng cười hay tiếng chuông hoạt hình.</p></div>
+                  <div class="ds-takeaway">🎯 Tiếng động nghề thật giúp khung hình sống động</div>
+                </div>
+                
+                <div class="ds-card card-neutral">
+                  <div class="ds-card-head">
+                    <div class="ds-badge">LỚP 03 • NHẠC NỀN KHÔNG LỜI (8%)</div>
+                    <h3 class="ds-card-title">Âm lượng 5–8% (-22dB đến -25dB) lót mỏng bên dưới</h3>
+                  </div>
+                  <div class="ds-hairline"></div>
+                  <div class="ds-card-body"><p>Chọn một bản nhạc không lời (Acoustic hoặc Piano nhẹ nhàng), kéo thanh âm lượng trên CapCut xuống mức 8% (-22dB đến -25dB). Nhạc nền chỉ làm nhiệm vụ nối mượt các khoảng nghỉ giữa hai câu thoại, tuyệt đối không được tranh lời của người nói.</p></div>
+                  <div class="ds-takeaway">🎯 Hạ nhạc nền xuống 8% để người nghe không bị mệt tai</div>
+                </div>
+                </div>
+              
+              <div class="slide-footer">
+                <div class="mentor-sig">
+                  <span class="mentor-dot">NV</span>
+                  <span><strong>Mentor : Nguyễn Đức Việt</strong>  ·  0934.688.632</span>
+                </div>
+                <div class="footer-right">Slide 15 / 17  ·  vietndj@gmail.com</div>
+              </div>
+            </div>
+            
+          
+        <div class="speaker-notes-box">
+          <div class="sn-header">
+            <span class="sn-badge">🗣️ LỜI DẪN BỤC GIẢNG OFFLINE CỦA ANH VIỆT (SLIDE 15)</span>
+            <span class="sn-part">Mục 05: Cách dựng ngược 5 bước trên CapCut &amp; 4 khung kịch bản</span>
+          </div>
+          <p class="sn-text">“Mọi người ghi lại ngay 3 con số phần trăm trên màn hình vào sổ tay nhé: 100% — 30% — và 8% [Chỉ tay]... Khi kéo thanh âm lượng trên CapCut: Lời nói của mình phải để 100% kèm bật nút Giảm tiếng ồn. Tiếng động thật của công việc trên bàn — như tiếng giã gừng, tiếng kéo ngăn kéo gỗ, tiếng viết bảng — mình để khoảng 30% để người xem cảm nhận được không khí làm việc thật. Còn riêng nhạc nền, anh chị kéo tụt xuống mức 8% thôi! Nhạc chỉ thoang thoảng làm nền, đừng bao giờ để nhạc đánh át mất lời giải thích tâm huyết của mình.”</p>
+        </div>
+        
+        </section>
+        
+        <section class="slide-wrapper" data-index="15" id="slide-16">
+          
+            <div class="slide-canvas layout-content">
+              <div class="slide-topbar">
+                <span>2026  •  MỤC 05.3 • 4 KHUNG KỊCH BẢN ĐA NGÀNH ÁP DỤNG NGAY</span>
+                <span>imess/zalo : 0934688632</span>
+              </div>
+              <div class="slide-head-block">
+                <div class="slide-title-row">
+                  <h2 class="slide-main-title">4 khung kịch bản 30 giây lắp ghép cho mọi ngành nghề</h2>
+                  <span class="preset-tag">Kiểu 05 • 4-Grid Matrix</span>
+                </div>
+                <p class="slide-subtitle">chọn đúng 1 trong 4 khung dưới đây để viết 6 câu thoại đầu tiên ngay tại lớp học</p>
+              </div>
+              <div class="ds-cards cards-grid-4">
+                <div class="ds-card card-neutral">
+                  <div class="ds-card-head">
+                    <div class="ds-badge">KHUNG 01 • BẮT LỖI THƯỜNG GẶP</div>
+                    <h3 class="ds-card-title">Chỉ ra sai lầm 90% người tự làm hay vấp</h3>
+                  </div>
+                  <div class="ds-hairline"></div>
+                  <div class="ds-card-body"><p>• 0–3s: &#x27;Đừng vội [hành động sai] nếu chưa biết điều này...&#x27;
+• 3–20s: Chỉ rõ nguyên nhân cách làm cũ gây hỏng (như tự gội phục hồi tóc tại nhà hay lắp chậu bếp bán phần bị mốc keo) + Quay cận 3 bước làm chuẩn.
+• 20–30s: &#x27;Lưu lại để đối chiếu khi làm nhé!&#x27;</p></div>
+                  <div class="ds-takeaway">🎯 Hợp: Spa, Phục hồi tóc, Nội thất, Sửa chữa</div>
+                </div>
+                
+                <div class="ds-card card-neutral">
+                  <div class="ds-card-head">
+                    <div class="ds-badge">KHUNG 02 • HẬU TRƯỜNG LÀM THẬT</div>
+                    <h3 class="ds-card-title">Cho thấy công sức và tiêu chuẩn ẩn</h3>
+                  </div>
+                  <div class="ds-hairline"></div>
+                  <div class="ds-card-body"><p>• 0–3s: Mở bằng cảnh nặng ký nhất (như 4 thợ khiêng bộ tấm đá bếp 3m12 lên tầng 12 vì thừa 2 phân so với cửa thang máy).
+• 3–20s: Giải thích tiêu chuẩn kỹ thuật đằng sau giúp sản phẩm bền 10 năm.
+• 20–30s: Chiếu thành phẩm hoàn thiện sạch sẽ.</p></div>
+                  <div class="ds-takeaway">🎯 Thực chứng: Quốc Khoa #01 (20.6K view)</div>
+                </div>
+                
+                <div class="ds-card card-neutral">
+                  <div class="ds-card-head">
+                    <div class="ds-badge">KHUNG 03 • KIỂM CHỨNG ĐỐI CHIẾU</div>
+                    <h3 class="ds-card-title">Thử nghiệm trực tiếp trước ống kính</h3>
+                  </div>
+                  <div class="ds-hairline"></div>
+                  <div class="ds-card-body"><p>• 0–3s: Hành động nghịch lý (úp ngược đĩa sứ hút chân không lắc mạnh không rớt).
+• 3–20s: Đặt 2 mẫu cạnh nhau (nửa quả táo bảo quản thường vs nửa quả táo hút chân không sau 7 ngày).
+• 20–30s: Đúc kết lợi ích tiết kiệm thời gian đi chợ.</p></div>
+                  <div class="ds-takeaway">🎯 Thực chứng: Hoàng Nga #02 (268.5K view)</div>
+                </div>
+                
+                <div class="ds-card card-neutral">
+                  <div class="ds-card-head">
+                    <div class="ds-badge">KHUNG 04 • NHẬT KÝ CÔNG THỨC NGHỀ</div>
+                    <h3 class="ds-card-title">Bóc tách tỷ lệ pha chế kèm câu chuyện khách</h3>
+                  </div>
+                  <div class="ds-hairline"></div>
+                  <div class="ds-card-body"><p>• 0–3s: Nhắc lại câu chuyện thật của một khách hàng cụ thể + Đưa cận cảnh thành phẩm.
+• 3–20s: Quay tay sơ chế từng nguyên liệu (chanh, gừng, sả, mật ong lên men) kèm lưu ý về nhiệt độ/thời gian ủ.
+• 20–30s: &#x27;Công thức chi tiết mình ghim ở bình luận nhé!&#x27;</p></div>
+                  <div class="ds-takeaway">🎯 Thực chứng: Từ An #12 (2,2 triệu view)</div>
+                </div>
+                </div>
+              <div class="slide-videos-tray cols-1">
+                <div class="slide-vcard">
+                  <div class="slide-vhead">
+                    <div class="slide-vtitle">
+                      <span class="v-badge v-badge-win">✅ BẰNG CHỨNG THẬT • 20.6K VIEW</span>
+                      <strong>Nguyễn Quốc Khoa (@khoanq) #01 — 4 thợ khiêng bộ tấm đá bếp 3m12 lên tầng 12 &amp; lắp chậu âm toàn phần</strong>
+                      <span class="slide-vmeta">(20.6K lượt xem (237 thích • 78 bình luận) • 68s)</span>
+                    </div>
+                    <div class="slide-vbtns">
+                      <button type="button" class="btn-play-inline" onclick="toggleSlideVideo(this, 'vid-player-16-quoc_khoa_01', 'https://media.fedu.vn/stu-audits/khoanq/videos/vid_7623445767415500050/7623445767415500050.mp4')">▶️ Phát video thật</button>
+                      <a href="https://www.tiktok.com/@khoanq/video/7623445767415500050" target="_blank" rel="noopener" class="btn-src-link">Bài gốc ↗</a>
+                    </div>
+                  </div>
+                  <div class="slide-vstrip">
+                    <img src="https://media.fedu.vn/stu-audits/khoanq/videos/vid_7623445767415500050/strip.jpg" alt="4 thợ khiêng bộ tấm đá bếp 3m12 lên tầng 12 &amp; lắp chậu âm toàn phần" loading="lazy"/>
+                    <div class="slide-vnote">Tấm đá dài 3m12 thừa 2 phân so với cửa thang máy 3m10. Cảnh khiêng bộ lên tầng 12 kèm lời giải thích chống mốc keo silicon rất thuyết phục.</div>
+                  </div>
+                  <div class="slide-vplayer" id="vid-player-16-quoc_khoa_01" style="display:none;">
+                    <video controls playsinline preload="none" poster="https://media.fedu.vn/stu-audits/khoanq/videos/vid_7623445767415500050/strip.jpg"></video>
+                  </div>
+                </div>
+                </div>
+              <div class="slide-footer">
+                <div class="mentor-sig">
+                  <span class="mentor-dot">NV</span>
+                  <span><strong>Mentor : Nguyễn Đức Việt</strong>  ·  0934.688.632</span>
+                </div>
+                <div class="footer-right">Slide 16 / 17  ·  vietndj@gmail.com</div>
+              </div>
+            </div>
+            
+          
+        <div class="speaker-notes-box">
+          <div class="sn-header">
+            <span class="sn-badge">🗣️ LỜI DẪN BỤC GIẢNG OFFLINE CỦA ANH VIỆT (SLIDE 16)</span>
+            <span class="sn-part">Mục 05: Cách dựng ngược 5 bước trên CapCut &amp; 4 khung kịch bản</span>
+          </div>
+          <p class="sn-text">“Để cả lớp không ai phải ngồi cắn bút nghĩ xem hôm nay viết gì, mình đã đóng sẵn 4 khung kịch bản đa ngành trên bảng [Chỉ tay]... Khung số 1 là Bắt lỗi thường gặp: chỉ ra cái sai mà khách tự làm ở nhà hay mắc. Khung số 2 là Hậu trường làm thật: giống hệt video anh Quốc Khoa khiêng tấm đá bếp 3m12 lên tầng 12 ở bên dưới. Khung số 3 là Kiểm chứng đối chiếu: làm phép thử trực tiếp như Hoàng Nga lắc chiếc đĩa sứ. Và Khung số 4 là Nhật ký công thức nghề như bạn Từ An làm hũ kháng sinh tự nhiên. Anh chị chỉ cần chọn đúng 1 khung hợp nhất với đồ nghề mình đang có trên bàn hôm nay!”</p>
+        </div>
+        
+        </section>
+        
+        <section class="slide-wrapper" data-index="16" id="slide-17">
+          
+            <div class="slide-canvas layout-quote">
+              <div class="slide-topbar">
+                <span>2026  •  ĐÚC KẾT BUỔI HỌC &amp; THỰC HÀNH TẠI LỚP (15 PHÚT)</span>
+                <span>imess/zalo : 0934688632</span>
+              </div>
+              <div class="slide-head-block">
+                <div class="slide-title-row">
+                  <h2 class="slide-main-title">Đừng đợi nói hay mới bấm máy — hãy để đôi bàn tay lên tiếng trước</h2>
+                  <span class="preset-tag">Kiểu 06 • Big Quote / Takeaway</span>
+                </div>
+                <p class="slide-subtitle">bài tập thực hành bấm máy, cắt nhịp 2 giây và thu âm ngay tại bàn học trong 15 phút</p>
+              </div>
+              <div class="quote-center-box">
+                <div class="quote-mark">“</div>
+                <blockquote class="big-quote-text">Khách hàng không mua một chiếc miệng khéo nói. Họ mua đôi bàn tay thạo việc và sự chỉn chu có thật trên bàn làm việc của bạn. Hãy tách đôi việc khó: quay 10 cảnh tay làm việc ngay bây giờ, gọt gọn 2 giây một cảnh, rồi đọc đè 6 câu thật lòng nhất lên đó.</blockquote>
+              </div>
+              <div class="quote-action-bar">
+                🎯 THỰC HÀNH NGAY TẠI LỚP (15 PHÚT): 5 phút bấm máy quay 10 cảnh thao tác tay (đủ Trung – Cận – Đặc tả)  •  5 phút viết 6 câu theo 1 trong 4 khung kịch bản &amp; thu âm trên CapCut  •  5 phút cắt đè cảnh 2 giây, chỉnh âm lượng 100% / 30% / 8% và gửi lên nhóm lớp!
+              </div>
+              <div class="slide-footer">
+                <div class="mentor-sig">
+                  <span class="mentor-dot">NV</span>
+                  <span><strong>Mentor : Nguyễn Đức Việt</strong>  ·  0934.688.632</span>
+                </div>
+                <div class="footer-right">Slide 17 / 17  ·  vietndj@gmail.com</div>
+              </div>
+            </div>
+            
+          
+        <div class="speaker-notes-box">
+          <div class="sn-header">
+            <span class="sn-badge">🗣️ LỜI DẪN BỤC GIẢNG OFFLINE CỦA ANH VIỆT (SLIDE 17)</span>
+            <span class="sn-part">Phần chốt bài &amp; Giao bài tập thực hành tại lớp</span>
+          </div>
+          <p class="sn-text">“Rồi, toàn bộ bản chất, trần 70/30, quy tắc cắt 2 giây, 5 lỗi thực tế và 5 bước dựng ngược mình đã trình bày trọn vẹn trên bảng rồi... [Chắp tay] Đi học offline với mình là phải ra sản phẩm ngay tại bàn, không để mang về nhà rồi lại quên mất. Bây giờ tất cả anh chị lấy điện thoại ra giúp mình nhé! Chúng ta có đúng 15 phút thực hành tại chỗ: 5 phút đầu, bạn bấm máy quay 10 đoạn ngắn đôi bàn tay mình đang viết sổ, lật tài liệu, bấm máy tính hoặc cầm sản phẩm mang theo qua 3 cỡ cảnh Trung – Cận – Đặc tả. 5 phút tiếp theo, chọn 1 trong 4 khung kịch bản vừa rồi, viết 6 câu ngắn và bấm Record thu âm. 5 phút cuối, ghép hình đè lên tiếng và gửi thẳng vào nhóm lớp để mình chiếu lên màn hình sửa trực tiếp từng bài một. Mình bắt đầu bấm giờ nhé cả nhà... Ngại gì vết bẩn! 😄”</p>
+        </div>
+        
+        </section>
+        
+  </main>
+
+  <script>
+    var currentSlide = 0;
+    var totalSlides = 17;
+
+    function goToSlide(idx) {
+      if (idx < 0) idx = 0;
+      if (idx >= totalSlides) idx = totalSlides - 1;
+      currentSlide = idx;
+      var wrappers = document.querySelectorAll('.slide-wrapper');
+      var dots = document.querySelectorAll('.nav-dot');
+      wrappers.forEach(function(w, i) {
+        if (i === currentSlide) w.classList.add('active');
+        else w.classList.remove('active');
+      });
+      dots.forEach(function(d, i) {
+        if (i === currentSlide) d.classList.add('active');
+        else d.classList.remove('active');
+      });
+      if (document.body.classList.contains('view-all')) {
+        wrappers[currentSlide].scrollIntoView({ behavior: 'smooth', block: 'start' });
+      } else {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    }
+
+    function nextSlide() {
+      if (currentSlide < totalSlides - 1) goToSlide(currentSlide + 1);
+    }
+
+    function prevSlide() {
+      if (currentSlide > 0) goToSlide(currentSlide - 1);
+    }
+
+    function toggleViewAll() {
+      var b = document.body;
+      var btn = document.getElementById('btn-toggle-view');
+      b.classList.toggle('view-all');
+      if (b.classList.contains('view-all')) {
+        btn.textContent = '🖥️ Xem từng slide 16:9';
+      } else {
+        btn.textContent = '📑 Xem tất cả 17 slides';
+        goToSlide(currentSlide);
+      }
+    }
+
+    function toggleSlideVideo(btn, playerId, mp4Url) {
+      var box = document.getElementById(playerId);
+      if (!box) return;
+      var vid = box.querySelector('video');
+      if (box.style.display === 'none' || !box.style.display) {
+        box.style.display = 'block';
+        if (vid) {
+          if (!vid.getAttribute('src') && mp4Url) vid.setAttribute('src', mp4Url);
+          vid.play().catch(function(){});
+        }
+        btn.innerHTML = '⏸️ Đóng video';
+      } else {
+        if (vid) vid.pause();
+        box.style.display = 'none';
+        btn.innerHTML = '▶️ Phát video thật';
+      }
+    }
+
+    document.addEventListener('keydown', function(e) {
+      if (document.body.classList.contains('view-all')) return;
+      if (e.key === 'ArrowRight' || e.key === 'PageDown') {
+        nextSlide();
+      } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+        prevSlide();
+      }
+    });
+  </script>
+</body>
+</html>
