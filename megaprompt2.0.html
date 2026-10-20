@@ -1,0 +1,1701 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MegaPrompt 2.0 — Hệ Thống Câu Lệnh AI Viết Kịch Bản Theo 4 Định Dạng Chủ Lực</title>
+  <style>
+/* =========================================================
+   VIDEO SYSTEM — Design system (INKDOC)
+   Monochrome slate · Tiempos (đọc) · Aeonik (tiêu đề) · Zero-animation
+   ========================================================= */
+@font-face{font-family:'FD Aeonik Extended';src:url('fonts/FDAeonikExtended-Bold.woff2') format('woff2');font-weight:700;font-display:swap}
+@font-face{font-family:'FD Aeonik Extended';src:url('fonts/FDAeonikExtended-SemiBold.woff2') format('woff2');font-weight:600;font-display:swap}
+@font-face{font-family:'FD Aeonik';src:url('fonts/FDAeonik-Regular.ttf') format('truetype');font-weight:400;font-display:swap}
+@font-face{font-family:'FD Aeonik';src:url('fonts/FDAeonik-Medium.ttf') format('truetype');font-weight:500 600;font-display:swap}
+@font-face{font-family:'FD Aeonik';src:url('fonts/FDAeonik-Bold.ttf') format('truetype');font-weight:700;font-display:swap}
+@font-face{font-family:'Tiempos Text';src:url('fonts/FDTiemposText-Regular.woff2') format('woff2');font-weight:400;font-display:swap}
+@font-face{font-family:'Tiempos Text';src:url('fonts/FDTiemposText-RegularItalic.woff2') format('woff2');font-weight:400;font-style:italic;font-display:swap}
+@font-face{font-family:'Tiempos Text';src:url('fonts/FDTiemposText-Semibold.woff2') format('woff2');font-weight:600;font-display:swap}
+@font-face{font-family:'Tiempos Text';src:url('fonts/FDTiemposText-Bold.woff2') format('woff2');font-weight:700;font-display:swap}
+
+:root{
+  --ink:#0f172a; --ink2:#1e293b; --ink3:#334155; --mute:#64748b; --mute2:#94a3b8;
+  --line:#e2e8f0; --line2:#cbd5e1; --bg:#ffffff; --bg2:#f8fafc; --bg3:#f1f5f9;
+  --acc:#0f172a;
+  --c-tuduy:#7c3aed; --c-batdau:#0891b2; --c-logic:#2563eb; --c-niemtin:#db2777;
+  --c-dinhdang:#ea580c; --c-kynang:#16a34a; --c-thuchanh:#ca8a04; --c-tainguyen:#0f766e; --c-dulieu:#9333ea; --c-case:#0284c7;
+  --serif:'Tiempos Text',Georgia,'Times New Roman',serif;
+  --sans:'FD Aeonik',-apple-system,BlinkMacSystemFont,'Segoe UI',Inter,Roboto,sans-serif;
+  --display:'FD Aeonik Extended','FD Aeonik',-apple-system,sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
+  --side:260px; --top:56px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+img{max-width:100%}
+::selection{background:#dbeafe}
+
+/* ---------- LAYOUT ---------- */
+.shell{display:grid;grid-template-columns:1fr 250px;max-width:1180px;margin:0 auto;min-height:100vh}
+.main{min-width:0;padding:34px 36px 110px;align-items:start}
+.content{min-width:0;max-width:840px}
+aside.toc{position:sticky;top:28px;align-self:start;max-height:calc(100vh - 50px);overflow:auto;padding:28px 16px 28px 0;font-size:13px}
+aside.toc h6{margin:0 0 10px;font:700 10.5px var(--sans);letter-spacing:.09em;text-transform:uppercase;color:var(--mute2)}
+aside.toc .otp a{display:block;text-decoration:none;color:var(--mute);padding:5px 0 5px 12px;border-left:2px solid var(--line);font:500 13px/1.4 var(--sans);margin-bottom:2px}
+aside.toc .otp a:hover{color:var(--ink);border-left-color:var(--ink)}
+
+/* ---------- TYPOGRAPHY ---------- */
+.kicker{font:700 11px var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--stage,var(--mute));display:flex;align-items:center;gap:8px;margin-bottom:12px}
+.kicker::before{content:"";width:18px;height:2px;background:currentColor;display:inline-block}
+.content h1{font:700 clamp(26px,3.2vw,38px)/1.12 var(--display);text-transform:uppercase;letter-spacing:-.01em;margin:0 0 14px;color:var(--ink);text-wrap:balance}
+.lede{font:400 19.5px/1.62 var(--serif);color:var(--ink3);margin:0 0 28px}
+.content h2{font:600 25px/1.25 var(--sans);letter-spacing:-.015em;margin:52px 0 14px;padding-top:14px;border-top:1px solid var(--line);scroll-margin-top:32px}
+.content h2 .num{font:600 12.5px var(--mono);color:#ea580c;display:block;margin-bottom:4px;letter-spacing:.04em}
+.content h3{font:600 19.5px/1.3 var(--sans);margin:32px 0 10px;scroll-margin-top:32px}
+.content h4{font:600 16px/1.35 var(--sans);margin:22px 0 8px;color:var(--ink2)}
+.content p,.content li{font-family:var(--serif);font-size:17.5px;line-height:1.7;color:var(--ink2)}
+.content p{margin:0 0 15px}
+.content ul,.content ol{padding-left:22px;margin:0 0 16px}
+.content li{margin:5px 0}
+.content li::marker{color:var(--mute2)}
+.content strong{font-weight:700;color:var(--ink)}
+.content code{font:500 .86em var(--mono);background:var(--bg3);border:1px solid var(--line);padding:1px 5px;border-radius:5px;overflow-wrap:anywhere}
+
+/* ---------- BADGES & LINKS ---------- */
+.b{display:inline-block;font:700 10.5px/1 var(--sans);letter-spacing:.06em;text-transform:uppercase;background:var(--bg3);color:var(--ink3);border:1px solid var(--line);border-radius:5px;padding:4px 7px;position:relative;top:-1px;white-space:nowrap}
+.b.dark{background:var(--ink);color:#fff;border-color:var(--ink)}
+.b.s{background:color-mix(in srgb,var(--stage,#ea580c) 12%,#fff);color:var(--stage,#ea580c);border-color:color-mix(in srgb,var(--stage,#ea580c) 28%,#fff)}
+
+a.go{display:inline-flex;align-items:center;gap:5px;font:600 13px var(--sans);text-decoration:none!important;background:#fff;color:var(--ink);border:1px solid var(--line2);border-radius:999px;padding:4px 11px 4px 9px;white-space:nowrap;transition:all .15s ease}
+a.go::before{content:"↗";font-size:.95em;color:#ea580c}
+a.go:hover{background:var(--ink);color:#fff;border-color:var(--ink)}
+
+/* ---------- BLOCKS & TABLES ---------- */
+.hero{border:1px solid var(--line);border-radius:16px;padding:24px 26px;background:linear-gradient(180deg,#fff,var(--bg2));margin-bottom:26px}
+.spec{border:1px solid var(--line);border-radius:12px;overflow:hidden;margin:18px 0;background:#fff}
+.spec .row{display:grid;grid-template-columns:165px 1fr;gap:16px;padding:12px 16px;border-top:1px solid var(--line);align-items:baseline}
+.spec .row:first-child{border-top:0}
+.spec .row>.b{justify-self:start}
+.spec .row>div{font:400 15.5px/1.55 var(--sans);color:var(--ink2)}
+
+.callout{border:1px solid var(--line);border-left:3.5px solid var(--stage,var(--ink));background:var(--bg2);border-radius:10px;padding:14px 18px;margin:20px 0}
+.callout>.h{font:700 11px var(--sans);letter-spacing:.09em;text-transform:uppercase;color:var(--stage,var(--ink3));margin-bottom:6px}
+.callout p,.callout li{font-size:16px!important;font-family:var(--sans)!important;line-height:1.58!important}
+.callout p:last-child{margin-bottom:0}
+.callout.warn{--stage:#dc2626;background:#fffafa}
+.callout.tip{--stage:#16a34a;background:#f0fdf4}
+
+.grid{display:grid;gap:14px;margin:18px 0}
+.g2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.g3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.g4{grid-template-columns:repeat(4,minmax(0,1fr))}
+.card{border:1px solid var(--line);border-radius:12px;padding:16px;background:#fff;text-decoration:none;display:flex;flex-direction:column;justify-content:space-between;color:inherit;transition:all .15s ease}
+a.card:hover{border-color:var(--ink3);box-shadow:0 4px 14px rgba(15,23,42,.06)}
+.card .ct{font:700 16px/1.3 var(--sans);margin:8px 0 6px;color:var(--ink)}
+.card .cd{font:400 14px/1.55 var(--sans);color:var(--ink2)}
+.card .cf{margin-top:12px;display:flex;flex-wrap:wrap;gap:6px}
+
+table.t{width:100%;border-collapse:collapse;margin:16px 0;font:400 14.5px/1.52 var(--sans);border:1px solid var(--line);border-radius:12px;overflow:hidden;display:table}
+.tw{overflow-x:auto;margin:16px 0}
+.tw table.t{margin:0}
+table.t th{background:var(--bg3);text-align:left;font:700 11px var(--sans);letter-spacing:.07em;text-transform:uppercase;color:var(--ink3);padding:10px 12px;border-bottom:1px solid var(--line)}
+table.t td{padding:10px 12px;border-top:1px solid var(--line);vertical-align:top;color:var(--ink2)}
+table.t td:first-child{font-weight:600;color:var(--ink)}
+
+/* ---------- TOP BANNER ---------- */
+.st-top-banner{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;padding:13px 18px;background:#0f172a;color:#f8fafc;border-radius:12px;margin-bottom:22px;border:1px solid #334155}
+.st-top-banner .st-brand{display:flex;align-items:center;gap:10px;font:700 13px/1.2 var(--display);letter-spacing:.03em;text-transform:uppercase}
+.st-top-banner .st-brand span.badge-fmt{background:#fb923c;color:#0f172a;padding:4px 8px;border-radius:6px;font:800 11px/1 var(--mono)}
+.st-top-banner .st-quick-links{display:flex;flex-wrap:wrap;gap:7px}
+.st-top-banner .st-qbtn{display:inline-flex;align-items:center;gap:5px;padding:6px 11px;border-radius:7px;font:600 12px/1.2 var(--sans);text-decoration:none!important;background:#1e293b;color:#f8fafc;border:1px solid #475569;transition:all .15s ease}
+.st-top-banner .st-qbtn:hover{background:#334155;border-color:#94a3b8}
+.st-top-banner .st-qbtn.primary{background:#ea580c;border-color:#fb923c;color:#fff}
+.st-top-banner .st-qbtn.primary:hover{background:#c2410c}
+
+/* ---------- 5 FRICTION BOTTLENECK CARDS ---------- */
+.friction-list{display:flex;flex-direction:column;gap:14px;margin:20px 0}
+.friction-card{border:1px solid var(--line2);border-radius:12px;background:#fff;overflow:hidden;box-shadow:0 1px 3px rgba(15,23,42,.03)}
+.friction-head{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;padding:11px 16px;background:var(--bg2);border-bottom:1px solid var(--line)}
+.friction-title{font:700 15.5px/1.3 var(--sans);color:var(--ink);display:flex;align-items:center;gap:8px}
+.friction-num{background:#0f172a;color:#fb923c;font:700 11px/1 var(--mono);padding:4px 7px;border-radius:5px}
+.friction-body{display:grid;grid-template-columns:1fr 1fr;gap:0}
+.friction-col{padding:13px 16px;font:400 14.5px/1.58 var(--sans)}
+.friction-col.old{background:#fffafa;border-right:1px solid var(--line);color:#7f1d1d}
+.friction-col.new{background:#f0fdf4;color:#14532d}
+.friction-col b.lbl{display:block;font:700 10.5px/1 var(--mono);letter-spacing:.06em;text-transform:uppercase;margin-bottom:6px}
+.friction-col.old b.lbl{color:#dc2626}
+.friction-col.new b.lbl{color:#16a34a}
+
+/* ---------- PRE-FLIGHT CONFIGURATOR ---------- */
+.pf-box{border:2px solid #0f172a;border-radius:14px;background:#f8fafc;overflow:hidden;margin:22px 0;box-shadow:0 8px 26px rgba(15,23,42,.06)}
+.pf-header{background:#0f172a;color:#fff;padding:14px 18px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px}
+.pf-header-title{font:700 14px/1.2 var(--display);letter-spacing:.03em;text-transform:uppercase;display:flex;align-items:center;gap:8px}
+.pf-header-sub{font:500 12px/1.3 var(--mono);color:#fdba74}
+.pf-body{padding:18px;display:flex;flex-direction:column;gap:16px}
+.pf-step{background:#fff;border:1px solid var(--line2);border-radius:10px;padding:14px 16px}
+.pf-step-lbl{font:700 11.5px/1.2 var(--mono);color:#c2410c;text-transform:uppercase;letter-spacing:.05em;margin-bottom:10px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:6px}
+.pf-chips{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:10px}
+.pf-chip{background:#f1f5f9;color:#1e293b;border:1px solid #cbd5e1;border-radius:7px;padding:6px 11px;font:600 12.5px/1.2 var(--sans);cursor:pointer;transition:all .12s ease}
+.pf-chip:hover{background:#e2e8f0}
+.pf-chip.active{background:#0f172a;color:#fdba74;border-color:#0f172a}
+.pf-input-row{display:flex;gap:8px;flex-wrap:wrap}
+.pf-input{flex:1;min-width:220px;border:1px solid #cbd5e1;border-radius:7px;padding:9px 12px;font:500 14px/1.3 var(--sans);color:var(--ink);background:#fff;outline:none}
+.pf-input:focus{border-color:#ea580c;box-shadow:0 0 0 3px rgba(234,88,12,.12)}
+.pf-btn-dice{background:#fff7ed;color:#c2410c;border:1px solid #fdba74;border-radius:7px;padding:8px 12px;font:600 12.5px/1.2 var(--sans);cursor:pointer;white-space:nowrap;transition:all .12s ease}
+.pf-btn-dice:hover{background:#ffedd5}
+.pf-modes{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.pf-mode-btn{border:1.5px solid #cbd5e1;background:#f8fafc;border-radius:9px;padding:12px 14px;text-align:left;cursor:pointer;transition:all .15s ease;display:flex;flex-direction:column;gap:4px}
+.pf-mode-btn:hover{border-color:#64748b;background:#fff}
+.pf-mode-btn.active{border-color:#ea580c;background:#fff7ed;box-shadow:0 2px 10px rgba(234,88,12,.1)}
+.pf-mode-btn b{font:700 13.5px/1.3 var(--sans);color:var(--ink)}
+.pf-mode-btn span{font:400 12.5px/1.45 var(--sans);color:var(--ink3)}
+.pf-status{background:#0f172a;color:#e2e8f0;padding:10px 14px;border-radius:8px;font:500 12.5px/1.4 var(--mono);display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px}
+.pf-status strong{color:#fdba74}
+
+/* ---------- 5 TABS MEGAPROMPT 2.0 ---------- */
+.mp-tabs-bar{display:flex;flex-wrap:wrap;gap:6px;margin:20px 0 14px;border-bottom:2px solid var(--line);padding-bottom:10px;align-items:center;justify-content:space-between}
+.mp-tabs-group{display:flex;flex-wrap:wrap;gap:6px}
+.mp-tab-btn{border:1px solid var(--line2);background:var(--bg2);color:var(--ink2);border-radius:8px;padding:9px 13px;font:700 13px/1.2 var(--sans);cursor:pointer;transition:all .15s ease;display:inline-flex;align-items:center;gap:6px}
+.mp-tab-btn:hover{background:var(--bg3);color:var(--ink)}
+.mp-tab-btn.active{background:#0f172a;color:#fff;border-color:#0f172a}
+.mp-tab-btn .t-num{font:700 10.5px/1 var(--mono);background:rgba(255,255,255,.15);padding:3px 5px;border-radius:4px}
+.mp-tab-btn:not(.active) .t-num{background:#e2e8f0;color:#334155}
+.mp-show-all-btn{border:1px solid #ea580c;background:#fff7ed;color:#c2410c;border-radius:8px;padding:8px 12px;font:700 12px/1.2 var(--sans);cursor:pointer}
+.mp-show-all-btn:hover{background:#ffedd5}
+
+.mp-panel{display:none;border:1.5px solid #cbd5e1;border-radius:14px;background:#fff;overflow:hidden;margin-bottom:28px;box-shadow:0 4px 16px rgba(15,23,42,.04);scroll-margin-top:24px}
+.mp-panel.active{display:block}
+.mp-panel-head{background:#0f172a;color:#fff;padding:16px 20px;display:flex;flex-wrap:wrap;align-items:flex-start;justify-content:space-between;gap:12px}
+.mp-panel-badge{display:inline-block;background:#fb923c;color:#0f172a;font:800 10.5px/1 var(--mono);padding:4px 8px;border-radius:5px;text-transform:uppercase;margin-bottom:6px}
+.mp-panel-title{font:700 19px/1.25 var(--display);margin:0;color:#fff}
+.mp-panel-sub{font:400 13.5px/1.45 var(--sans);color:#cbd5e1;margin:4px 0 0}
+.mp-panel-links{display:flex;flex-wrap:wrap;gap:7px}
+.mp-link-pill{text-decoration:none!important;font:600 12px/1.2 var(--sans);padding:7px 11px;border-radius:7px;background:#1e293b;color:#f8fafc;border:1px solid #475569;transition:all .15s ease}
+.mp-link-pill:hover{background:#334155;border-color:#fdba74;color:#fdba74}
+
+.mp-panel-body{padding:18px 20px}
+.mp-spec-strip{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-bottom:16px}
+.mp-spec-item{background:var(--bg2);border:1px solid var(--line);border-radius:8px;padding:10px 12px;font:400 13.5px/1.45 var(--sans);color:var(--ink2)}
+.mp-spec-item b{display:block;font:700 10.5px/1 var(--mono);color:#ea580c;text-transform:uppercase;margin-bottom:4px}
+
+.prompt-card{border:1.5px solid #0f172a;border-radius:12px;background:#0b1020;overflow:hidden;margin:14px 0 20px}
+.prompt-card-head{background:#1e293b;color:#f8fafc;padding:11px 16px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px;border-bottom:1px solid #334155}
+.prompt-card-head span{font:700 11.5px/1.2 var(--mono);color:#fdba74;letter-spacing:.04em;text-transform:uppercase}
+.prompt-actions{display:flex;flex-wrap:wrap;gap:7px;align-items:center}
+.btn-copy-mp{background:#ea580c;color:#fff;border:1px solid #fb923c;border-radius:7px;padding:8px 14px;font:700 12.5px/1.2 var(--sans);cursor:pointer;transition:all .15s ease}
+.btn-copy-mp:hover{background:#c2410c}
+.btn-ai-ext{text-decoration:none!important;background:#0f172a;color:#e2e8f0;border:1px solid #475569;border-radius:7px;padding:7px 11px;font:600 12px/1.2 var(--sans);display:inline-flex;align-items:center;gap:4px}
+.btn-ai-ext:hover{background:#334155;color:#fff;border-color:#94a3b8}
+.prompt-pre{color:#f1f5f9;font:500 13px/1.62 var(--mono);padding:16px 18px;white-space:pre-wrap;max-height:420px;overflow-y:auto;margin:0}
+
+.sample-box{border:1px solid #cbd5e1;border-left:4px solid #0284c7;border-radius:10px;background:#f8fafc;padding:15px 18px;margin-top:16px}
+.sample-head{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:10px}
+.sample-badge{background:#e0f2fe;color:#0369a1;border:1px solid #7dd3fc;font:700 10.5px/1 var(--mono);padding:4px 8px;border-radius:5px;text-transform:uppercase}
+.sample-title{font:700 15.5px/1.3 var(--sans);color:var(--ink);margin:0}
+.sample-body p,.sample-body li{font-family:var(--sans)!important;font-size:14.5px!important;line-height:1.58!important}
+.sample-bridge{background:#fff7ed;border:1px solid #fed7aa;border-radius:8px;padding:10px 12px;margin-top:10px;font:600 14px/1.5 var(--sans);color:#9a3412}
+
+.actions{display:flex;flex-wrap:wrap;gap:12px;margin:34px 0 22px;padding-top:20px;border-top:1px solid var(--line)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:11px 18px;font:600 14px var(--sans);color:#fff;background:var(--ink);border:1px solid var(--ink);border-radius:9px;text-decoration:none!important;cursor:pointer;transition:all .15s ease}
+.btn:hover{background:var(--ink2)}
+.btn.sec{background:#fff;color:var(--ink);border-color:var(--line2)}
+.btn.sec:hover{background:var(--bg3);border-color:var(--ink3)}
+
+.foot{margin-top:40px;padding-top:18px;border-top:1px solid var(--line);font:400 13px var(--sans);color:var(--mute)}
+
+@media (max-width:1024px){
+  .shell{grid-template-columns:1fr}
+  aside.toc{display:none}
+  .main{padding:22px 16px 80px}
+}
+@media (max-width:760px){
+  .friction-body,.pf-modes,.mp-spec-strip,.g2,.g3,.g4{grid-template-columns:1fr}
+  .friction-col.old{border-right:0;border-bottom:1px solid var(--line)}
+  .spec .row{grid-template-columns:1fr;gap:6px}
+}
+  </style>
+</head>
+<body data-page="megaprompt-2">
+  <div class="shell">
+    <main class="main">
+      <div class="content">
+
+        <!-- THANH ĐIỀU HƯỚNG NHANH ĐẦU TRANG -->
+        <div class="st-top-banner">
+          <div class="st-brand">
+            <span class="badge-fmt">MEGAPROMPT 2.0</span>
+            <span>TRUNG TÂM CÂU LỆNH AI · 4 ĐỊNH DẠNG VIDEO</span>
+          </div>
+          <div class="st-quick-links">
+            <a href="voiceover3.0.html" class="st-qbtn">🎙️ 01: Voice-Over 3.0</a>
+            <a href="voiceover3_slides.html" class="st-qbtn">🖥️ Slide 01</a>
+            <a href="storytelling2.0.html" class="st-qbtn">📖 02: Storytelling 2.0</a>
+            <a href="storytelling2_slides.html" class="st-qbtn">🖥️ Slide 02</a>
+            <a href="walkntalk2.0.html" class="st-qbtn">🚶 03 &amp; 04: Walk &amp; Talk + Talking Head</a>
+            <a href="congthucstorytelling.html" class="st-qbtn">📂 Bản 1.0 Cũ</a>
+          </div>
+        </div>
+
+        <div class="hero">
+          <div style="color:#ea580c;font-weight:700;font-size:12px;letter-spacing:1px;margin-bottom:8px;">— BẢN NÂNG CẤP ĐỒNG BỘ 4 ĐỊNH DẠNG CHỦ LỰC &amp; DỮ LIỆU HỌC VIÊN THẬT</div>
+          <h1>MegaPrompt 2.0 — Đóng Khít Từng Khuôn Quay &amp; Hạ Ma Sát Đầu Vào Về 0</h1>
+          <p style="margin:10px 0 0;font-size:16.5px;color:var(--ink3);font-family:var(--sans);">Thay thế cách hỏi tự luận mở và một khuôn văn xuôi chung chung của bản 1.0 bằng <strong>Thanh Bơm Ngữ Cảnh 10 Giây</strong> + <strong>4 MegaPrompt riêng cho từng định dạng quay</strong> + <strong>1 Master Pipeline (1 Lõi Chuyện Nghề &rarr; 4 Video Đăng Cả Tuần)</strong>.</p>
+        </div>
+
+        <p class="lede">Khi quan sát học viên thực hành trên lớp và kiểm tra kênh thực tế, chỗ khiến người làm nghề 30–50 tuổi bỏ cuộc không phải vì thiếu chuyện để kể, mà vì AI trả về một đoạn văn xuôi không khớp với cách đặt máy quay. <strong>MegaPrompt 2.0</strong> tách bạch rạch ròi đầu ra cho từng định dạng: bảng 2 cột khớp giây cho Voice-Over, lát cắt 5 giây cho Storytelling 2.0, nhịp bước chân cho Walk &amp; Talk, và kịch bản tách dòng ngắn đếm nhịp 1-2 cho Talking Head 2 góc máy.</p>
+
+        <!-- =========================================================
+             PHẦN 01: CHẨN ĐOÁN 5 ĐIỂM NGHẼN MA SÁT CỦA BẢN 1.0 & BẢNG ĐỐI CHIẾU
+             ========================================================= -->
+        <h2 id="phan-1"><span class="num">PHẦN 01 / 04</span>Chẩn đoán 5 Điểm Nghẽn Ma Sát của Bản 1.0 &amp; Bảng Đối Chiếu Nâng Cấp 2.0</h2>
+
+        <p>Bộ công cụ <code>congthucstorytelling.html</code> (Bản 1.0) đào tâm lý rất kỹ, nhưng khi đối chiếu với dữ liệu thực hành của học viên (Từ An Men Mộc An, Nguyễn Quốc Khoa Đá Bếp, Bùi Thuỳ Dung HaDu Boutique, Chị Liên Bảo Hiểm, Đặng Hường Spa Đông Y, Đoàn Hữu Việt Salon Tóc), có <strong>5 điểm nghẽn ma sát</strong> khiến học viên bị khựng lại:</p>
+
+        <div class="friction-list">
+          <!-- Điểm nghẽn 1 -->
+          <div class="friction-card">
+            <div class="friction-head">
+              <div class="friction-title"><span class="friction-num">NGHẼN 01</span>Ma sát đầu vào: Hỏi 5 câu tự luận mở khiến học viên bí chữ</div>
+              <span class="b s" style="--stage:#dc2626">Ca Từ An &amp; Thuỳ Dung</span>
+            </div>
+            <div class="friction-body">
+              <div class="friction-col old">
+                <b class="lbl">❌ Bản 1.0 (congthucstorytelling.html)</b>
+                Card 2 và Card 3 bắt học viên tự gõ câu trả lời cho 5 câu hỏi tự luận mở (<em>"Khoảnh khắc người trong cuộc là gì?"</em>). Người làm nghề 30–50 tuổi khi chưa có gợi ý sẽ gõ 1 dòng xã giao chung chung (Tầng 1) &rarr; AI trả về kịch bản nhạt.
+              </div>
+              <div class="friction-col new">
+                <b class="lbl">✅ Giải pháp MegaPrompt 2.0</b>
+                Bổ sung <strong>Thanh Bơm Ngữ Cảnh 1-Lượt</strong> (bấm chọn ngành + tình huống tại lớp là AI tự chọn T2 &amp; T2.5 sát nghề và xuất kịch bản ngay) và <strong>Chế độ Trắc nghiệm A/B/C/D</strong> (AI mớm sẵn 4 phương án sát ngành, học viên chỉ gõ <code>1A - 2C</code> khi ở nhà).
+              </div>
+            </div>
+          </div>
+
+          <!-- Điểm nghẽn 2 -->
+          <div class="friction-card">
+            <div class="friction-head">
+              <div class="friction-title"><span class="friction-num">NGHẼN 02</span>Ma sát lệch định dạng: 1 khuôn 7 câu văn xuôi ép cho cả 4 cách quay</div>
+              <span class="b s" style="--stage:#ea580c">Ca Nguyễn Quốc Khoa (84 views vs 20.6K views)</span>
+            </div>
+            <div class="friction-body">
+              <div class="friction-col old">
+                <b class="lbl">❌ Bản 1.0 (congthucstorytelling.html)</b>
+                Chỉ xuất duy nhất 1 đoạn văn xuôi 7 câu. Khi học viên cầm đoạn văn đó ngồi ghế xoay học thuộc lòng đọc khẩu hiệu (<em>"Thẩm mỹ - Chịu lực - Chống nước"</em>) thì bài chỉ lẹt đẹt <strong>84 lượt xem</strong>; còn khi tự dịch sang Voice-Over hay Walk &amp; Talk thì lúng túng bỏ cuộc.
+              </div>
+              <div class="friction-col new">
+                <b class="lbl">✅ Giải pháp MegaPrompt 2.0</b>
+                Tách riêng <strong>4 MegaPrompt cho 4 Định dạng</strong>: Voice-Over ra bảng 2 cột khớp giây; Walk &amp; Talk ra lộ trình bước chân &amp; chỉ tay hiện trường (như ca Quốc Khoa khiêng đá bếp 3m12 lên tầng 12 đạt <strong>20.6K views</strong>); Talking Head ra từng dòng ngắn 5–8 chữ đếm nhịp 1-2.
+              </div>
+            </div>
+          </div>
+
+          <!-- Điểm nghẽn 3 -->
+          <div class="friction-card">
+            <div class="friction-head">
+              <div class="friction-title"><span class="friction-num">NGHẼN 03</span>Ma sát B-Roll cảm tính: Gợi ý trừu tượng không thể quay bằng điện thoại</div>
+              <span class="b s" style="--stage:#2563eb">Lỗi đứng hình khi cầm máy</span>
+            </div>
+            <div class="friction-body">
+              <div class="friction-col old">
+                <b class="lbl">❌ Bản 1.0 (congthucstorytelling.html)</b>
+                Gợi ý B-Roll bằng chữ nghĩa văn chương: <em>"Cảnh 2: Khựng lại trầm ngâm &rarr; Cảnh 3: Ánh mắt chân thành &rarr; Cảnh 4: Thở phào bình thản"</em>. Học viên cầm điện thoại trên tay không biết phải chĩa ống kính vào đâu.
+              </div>
+              <div class="friction-col new">
+                <b class="lbl">✅ Giải pháp MegaPrompt 2.0</b>
+                Cấm 100% tính từ cảm xúc ở cột hình ảnh. Mọi cảnh B-Roll bắt buộc ghi theo công thức vật lý: <code>Vật cụ thể + Động tác tay + Cỡ cảnh (Toàn / Trung / Cận) + Số giây</code>.
+              </div>
+            </div>
+          </div>
+
+          <!-- Điểm nghẽn 4 -->
+          <div class="friction-card">
+            <div class="friction-head">
+              <div class="friction-title"><span class="friction-num">NGHẼN 04</span>Ma sát lệch nền tảng phân phối: Xuất Email Subject Line thay vì TikTok / Zalo</div>
+              <span class="b s" style="--stage:#16a34a">90% Khách Âm Thầm (Dark Social)</span>
+            </div>
+            <div class="friction-body">
+              <div class="friction-col old">
+                <b class="lbl">❌ Bản 1.0 (congthucstorytelling.html)</b>
+                Xuất <em>"Email Subject Line + 3 dòng đầu"</em> và <em>"Story 3 Slides"</em> — trong khi chủ tiệm Spa, Nội thất, Salon Tóc, Thực phẩm không gửi Email Marketing mà đón khách qua TikTok, Reels và chốt đơn thầm lặng qua Zalo cá nhân.
+              </div>
+              <div class="friction-col new">
+                <b class="lbl">✅ Giải pháp MegaPrompt 2.0</b>
+                Loại bỏ hoàn toàn phần Email. Mỗi kịch bản xuất kèm <strong>Caption TikTok / Reels 1 dòng</strong> và <strong>Tin nhắn Zalo 2 câu gửi riêng cho khách cũ</strong> (nhắc lại chi tiết hành vi T2 tự nhiên, không gửi tin quảng cáo đại trà).
+              </div>
+            </div>
+          </div>
+
+          <!-- Điểm nghẽn 5 -->
+          <div class="friction-card">
+            <div class="friction-head">
+              <div class="friction-title"><span class="friction-num">NGHẼN 05</span>Ma sát đứt Cầu nối Ngữ nghĩa: Chuyện đời rời khỏi chuyện nghề</div>
+              <span class="b s" style="--stage:#9333ea">Ca Bùi Thuỳ Dung (HaDu Boutique)</span>
+            </div>
+            <div class="friction-body">
+              <div class="friction-col old">
+                <b class="lbl">❌ Bản 1.0 (congthucstorytelling.html)</b>
+                Học viên kể chuyện biến cố cá nhân (bắt đầu lại trong căn nhà thuê có 6 bóng điện) rất cảm xúc nhưng kết bài lơ lửng, người xem không hiểu câu chuyện đó liên quan gì đến tiệm quần áo HaDu Boutique.
+              </div>
+              <div class="friction-col new">
+                <b class="lbl">✅ Giải pháp MegaPrompt 2.0</b>
+                Bắt buộc khóa <strong>1 câu Cầu nối Ngữ nghĩa</strong> trước câu kết theo khuôn: <em>"Chuyện này cho em một quy luật trong nghề: ..."</em> để neo chặt lát cắt đời thường vào tiêu chuẩn làm nghề.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <h3>Bảng đối chiếu trực diện: MegaPrompt 1.0 vs. MegaPrompt 2.0</h3>
+        <div class="tw">
+          <table class="t">
+            <thead>
+              <tr>
+                <th>Tiêu chí đối chiếu</th>
+                <th>MegaPrompt 1.0 (<code>congthucstorytelling.html</code>)</th>
+                <th>MegaPrompt 2.0 (<code>megaprompt2.0.html</code>)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>1. Đầu vào của học viên</strong></td>
+                <td>Trả lời 5 câu tự luận mở; mất 3 lượt hỏi đáp mới thấy kịch bản.</td>
+                <td><strong>Chế độ 1-Lượt:</strong> Ra kịch bản ngay lập tức.<br><strong>Chế độ Trắc nghiệm:</strong> Chỉ gõ <code>1A - 2C</code>.</td>
+              </tr>
+              <tr>
+                <td><strong>2. Cấu trúc đầu ra</strong></td>
+                <td>1 khuôn 7 câu văn xuôi dùng chung cho mọi bài quay.</td>
+                <td><strong>4 khuôn riêng biệt</strong> khớp 4 định dạng quay + <strong>1 Master Pipeline</strong> (1 lõi &rarr; 4 bài tuần).</td>
+              </tr>
+              <tr>
+                <td><strong>3. Chỉ dẫn cảnh quay B-Roll</strong></td>
+                <td>4 nhịp cảm tính (<em>ánh mắt chân thành, trầm ngâm, thở phào</em>).</td>
+                <td><code>Vật cụ thể + Động tác tay + Cỡ cảnh (Toàn/Trung/Cận) + Số giây</code> (0 tính từ rỗng).</td>
+              </tr>
+              <tr>
+                <td><strong>4. Đầu ra kênh phân phối</strong></td>
+                <td>Email Subject Line, Opening 15s, Story 3 Slides.</td>
+                <td><strong>Caption TikTok/Reels 1 dòng</strong> + <strong>Tin nhắn Zalo 2 câu</strong> gửi riêng cho khách cũ.</td>
+              </tr>
+              <tr>
+                <td><strong>5. Cầu nối về tay nghề</strong></td>
+                <td>Không bắt buộc (dễ bị kể chuyện đời tư lan man).</td>
+                <td>Bắt buộc <strong>1 câu Cầu nối Ngữ nghĩa</strong> sang quy luật nghề trước câu kết.</td>
+              </tr>
+              <tr>
+                <td><strong>6. Cách kết thúc video</strong></td>
+                <td>Thường gắn lời kêu gọi mua hàng ồn ào ở cuối.</td>
+                <td><strong>Kết để ngỏ (Zero CTA)</strong> hoặc gợi ý 1 việc nhỏ khách tự kiểm tra được ngay.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- =========================================================
+             PHẦN 02: TRUNG TÂM BƠM NGỮ CẢNH TRƯỚC KHI COPY (PRE-FLIGHT 10 GIÂY)
+             ========================================================= -->
+        <h2 id="phan-2"><span class="num">PHẦN 02 / 04</span>Trung Tâm Bơm Ngữ Cảnh Trước Khi Copy (Pre-Flight Configurator 10 Giây)</h2>
+
+        <p>Thay vì copy một câu lệnh trống rồi phải tự nghĩ cách giải thích nghề của mình cho AI, bạn chỉ cần <strong>bấm chọn Ngành nghề + Tình huống + Chế độ</strong> ở bảng dưới đây trong 10 giây. Hệ thống sẽ tự động gắn thông tin của bạn vào cả 5 MegaPrompts bên dưới:</p>
+
+        <div class="pf-box" id="preflight-box">
+          <div class="pf-header">
+            <div class="pf-header-title">🎛️ BÀN ĐIỀU KHIỂN PRE-FLIGHT — CHỌN 1 LẦN, TỰ ĐỘNG NẠP VÀO CẢ 5 MEGAPROMPTS</div>
+            <div class="pf-header-sub">Tự động lưu trên trình duyệt của bạn</div>
+          </div>
+          <div class="pf-body">
+            <!-- Bước 1: Chọn ngành -->
+            <div class="pf-step">
+              <div class="pf-step-lbl">
+                <span>BƯỚC 1: CHỌN NHANH NHÓM NGÀNH NGHỀ CỦA BẠN (HOẶC TỰ GÕ VÀO Ô)</span>
+                <span>Tự động nạp biến <code>{NGHỀ}</code></span>
+              </div>
+              <div class="pf-chips" id="pf-industry-chips">
+                <button type="button" class="pf-chip active" onclick="window.selectPfIndustry(this, 'Spa / Dưỡng sinh Đông y & Chăm sóc da', 0)">💆‍♀️ Spa / Chăm sóc da</button>
+                <button type="button" class="pf-chip" onclick="window.selectPfIndustry(this, 'Thi công Nội thất / Đá bếp & Bất động sản', 1)">🏠 Nội thất / Bất động sản</button>
+                <button type="button" class="pf-chip" onclick="window.selectPfIndustry(this, 'Thực phẩm lên men / Sức khỏe tự nhiên (Men Mộc An)', 2)">🍯 Thực phẩm / Sức khỏe (Men Mộc An)</button>
+                <button type="button" class="pf-chip" onclick="window.selectPfIndustry(this, 'Thời trang thiết kế / Bán lẻ (Boutique)', 3)">👗 Thời trang / Bán lẻ</button>
+                <button type="button" class="pf-chip" onclick="window.selectPfIndustry(this, 'Salon Tóc / Phục hồi & Tạo kiểu tóc', 4)">💇‍♀️ Salon Tóc / Làm đẹp</button>
+                <button type="button" class="pf-chip" onclick="window.selectPfIndustry(this, 'Bảo hiểm nhân thọ / Tư vấn tài chính gia đình', 5)">🛡️ Bảo hiểm / Tư vấn tài chính</button>
+                <button type="button" class="pf-chip" onclick="window.selectPfIndustry(this, 'Vật tư nông nghiệp / Phân bón & Xưởng sản xuất', 6)">🌱 Vật tư nông nghiệp / Xưởng</button>
+                <button type="button" class="pf-chip" onclick="window.selectPfIndustry(this, 'Đào tạo nghề / Dịch vụ tư vấn chuyên môn', 7)">🎓 Đào tạo / Dịch vụ chuyên môn</button>
+              </div>
+              <div class="pf-input-row">
+                <input type="text" id="pf-industry-input" class="pf-input" value="Spa / Dưỡng sinh Đông y & Chăm sóc da" oninput="window.onPfInputChange()" placeholder="Nhập tên nghề cụ thể của bạn (VD: Nha khoa trẻ em, Xưởng gỗ óc chó...)"/>
+              </div>
+            </div>
+
+            <!-- Bước 2: Tình huống -->
+            <div class="pf-step">
+              <div class="pf-step-lbl">
+                <span>BƯỚC 2: TÌNH HUỐNG KHÁCH HÀNG VỪA GẶP HÔM NAY (1 DÒNG NGẮN)</span>
+                <span>Tự động nạp biến <code>{TÌNH HUỐNG}</code></span>
+              </div>
+              <div class="pf-input-row">
+                <input type="text" id="pf-situation-input" class="pf-input" value="Khách nằm giường gội dưỡng sinh, hỏi giá gói 10 buổi rồi ngước nhìn đồng hồ treo tường 2 lần và bảo để chị về thu xếp lịch đón cháu." oninput="window.onPfInputChange()" placeholder="VD: Khách hỏi giá xong bảo để chị về hỏi chồng rồi tính tiếp..."/>
+                <button type="button" class="pf-btn-dice" onclick="window.cyclePfSituation()">🎲 Đổi tình huống mẫu khác</button>
+              </div>
+            </div>
+
+            <!-- Bước 3: Chế độ -->
+            <div class="pf-step">
+              <div class="pf-step-lbl">
+                <span>BƯỚC 3: CHỌN CHẾ ĐỘ TƯƠNG TÁC VỚI AI</span>
+                <span>Tự động nạp biến <code>{CHẾ_ĐỘ}</code></span>
+              </div>
+              <div class="pf-modes">
+                <button type="button" class="pf-mode-btn active" id="mode-btn-1" onclick="window.selectPfMode('1-LƯỢT (TỐC CHIẾN TẠI LỚP)')">
+                  <b>⚡ Chế độ 1-Lượt (Tốc chiến tại lớp)</b>
+                  <span>AI tự chọn hành vi T2 &amp; cái cớ T2.5 sát ngành nhất và xuất thẳng kịch bản hoàn chỉnh ngay ở câu trả lời đầu tiên.</span>
+                </button>
+                <button type="button" class="pf-mode-btn" id="mode-btn-2" onclick="window.selectPfMode('TRẮC NGHIỆM A/B/C/D (ĐÀO SÂU Ở NHÀ)')">
+                  <b>🧭 Chế độ Khai vấn Trắc nghiệm A/B/C/D (Đào sâu ở nhà)</b>
+                  <span>AI đưa ra 2 câu hỏi kèm 4 phương án A/B/C/D sát nghề để bạn chỉ cần gõ <code>1A - 2C</code> trước khi xuất kịch bản.</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="pf-status" id="pf-status-bar">
+              <span>✅ Đang nạp vào cả 5 MegaPrompts: <strong id="pf-status-text">Spa / Dưỡng sinh Đông y &amp; Chăm sóc da • Chế độ 1-LƯỢT</strong></span>
+              <span>Bấm chọn Tab định dạng ở Phần 03 bên dưới để Copy!</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- =========================================================
+             PHẦN 03: BỘ 4+1 MEGAPROMPT 2.0 CHUYÊN BIỆT CHO TỪNG ĐỊNH DẠNG
+             ========================================================= -->
+        <h2 id="phan-3"><span class="num">PHẦN 03 / 04</span>Bộ 4+1 MegaPrompt 2.0 Chuyên Biệt Cho Từng Định Dạng</h2>
+
+        <p>Chọn đúng định dạng video bạn đang chuẩn bị bấm máy hôm nay. Mỗi câu lệnh bên dưới đã được gắn sẵn ngành nghề, tình huống và chế độ bạn vừa chọn ở Phần 02:</p>
+
+        <div class="mp-tabs-bar">
+          <div class="mp-tabs-group">
+            <button type="button" class="mp-tab-btn active" data-tab="tab-01" onclick="window.switchMpTab('tab-01')">
+              <span class="t-num">01</span>Voice-Over 2.0
+            </button>
+            <button type="button" class="mp-tab-btn" data-tab="tab-02" onclick="window.switchMpTab('tab-02')">
+              <span class="t-num">02</span>Storytelling 2.0
+            </button>
+            <button type="button" class="mp-tab-btn" data-tab="tab-03" onclick="window.switchMpTab('tab-03')">
+              <span class="t-num">03</span>Walk &amp; Talk 2.0
+            </button>
+            <button type="button" class="mp-tab-btn" data-tab="tab-04" onclick="window.switchMpTab('tab-04')">
+              <span class="t-num">04</span>Talking Head 2 Cam
+            </button>
+            <button type="button" class="mp-tab-btn" data-tab="tab-05" onclick="window.switchMpTab('tab-05')">
+              <span class="t-num">05</span>Master 1 Lõi &rarr; 4 Bài Tuần
+            </button>
+          </div>
+          <button type="button" class="mp-show-all-btn" id="btn-show-all-mp" onclick="window.toggleAllMpTabs()">📑 Mở tất cả 5 định dạng</button>
+        </div>
+
+        <!-- ==================== TAB 01: VOICE-OVER 2.0 ==================== -->
+        <section class="mp-panel active" id="tab-01">
+          <div class="mp-panel-head">
+            <div>
+              <span class="mp-panel-badge">ĐỊNH DẠNG 01 • GIẤU MẶT 100% • TÁCH HÌNH KHỎI TIẾNG</span>
+              <h3 class="mp-panel-title">MegaPrompt #01 — Voice-Over &amp; Thao Tác Tay 2.0 (Bảng 2 Cột Khớp Giây)</h3>
+              <p class="mp-panel-sub">Thu âm trước với dấu ngắt hơi <code>/</code> (8–10 chữ/hàng) &rarr; Băm 10–12 cảnh thao tác tay (2–2.5s/cảnh) &rarr; Giữ 25–30% tiếng động hiện trường.</p>
+            </div>
+            <div class="mp-panel-links">
+              <a href="voiceover3.0.html" class="mp-link-pill">📖 Giáo án Voice-Over 3.0</a>
+              <a href="voiceover3_slides.html" class="mp-link-pill">🖥️ Mở 17 Slides Bục Giảng</a>
+            </div>
+          </div>
+          <div class="mp-panel-body">
+            <div class="mp-spec-strip">
+              <div class="mp-spec-item">
+                <b>Khuôn đầu ra</b>
+                Bảng 2 cột khớp giây (10–12 hàng &times; 2.5 giây) + Mồi cảnh &rarr; Băm cảnh Toàn/Trung/Cận &rarr; Chuyển cảnh nối.
+              </div>
+              <div class="mp-spec-item">
+                <b>Bản phối âm thanh 3 lớp</b>
+                100% Giọng đọc thu riêng + 25–30% Tiếng động thật tại tiệm + 8% Nhạc nền không lời.
+              </div>
+              <div class="mp-spec-item">
+                <b>Khắc phục lỗi thực tế</b>
+                Tránh lỗi quay 1 góc máy dài ngoằng rồi đọc văn xuôi đè lên khiến người xem vuốt qua ở giây thứ 3.
+              </div>
+            </div>
+
+            <div class="prompt-card">
+              <div class="prompt-card-head">
+                <span>⚡ CÂU LỆNH MEGAPROMPT #01 (ĐÃ GẮN NGỮ CẢNH CỦA BẠN)</span>
+                <div class="prompt-actions">
+                  <button type="button" class="btn-copy-mp" onclick="window.copyMpPrompt(this, 'mp-pre-01')">📋 Sao chép MegaPrompt #01</button>
+                  <a href="https://chatgpt.com" target="_blank" rel="noopener" class="btn-ai-ext">ChatGPT ↗</a>
+                  <a href="https://claude.ai" target="_blank" rel="noopener" class="btn-ai-ext">Claude ↗</a>
+                  <a href="https://gemini.google.com" target="_blank" rel="noopener" class="btn-ai-ext">Gemini ↗</a>
+                </div>
+              </div>
+              <pre class="prompt-pre" id="mp-pre-01">Bạn là biên kịch video ngắn Định dạng 01: VOICE-OVER &amp; THAO TÁC TAY 2.0 (Tách hình khỏi tiếng, người làm nghề giấu mặt 100%, chỉ quay đôi bàn tay làm việc và sản phẩm thật).
+
+=== THÔNG TIN ĐẦU VÀO ĐÃ BƠM SẴN ===
+• Ngành nghề của tôi: Spa / Dưỡng sinh Đông y &amp; Chăm sóc da
+• Tình huống thực tế vừa gặp: Khách nằm giường gội dưỡng sinh, hỏi giá gói 10 buổi rồi ngước nhìn đồng hồ treo tường 2 lần và bảo để chị về thu xếp lịch đón cháu.
+• Chế độ vận hành: 1-LƯỢT (TỐC CHIẾN TẠI LỚP)
+
+=== QUY TẮC VẬN HÀNH THEO CHẾ ĐỘ ===
+• NẾU Chế độ = 1-LƯỢT (TỐC CHIẾN TẠI LỚP): Hãy tự suy luận hành vi T2 (nhìn thấy bằng camera trong 5 giây) và cái cớ giữ thể diện T2.5 sát với ngành nghề trên nhất, sau đó XUẤT NGAY trọn bộ kịch bản ở lượt đầu tiên. Cuối bài ghi 2 dòng &#x27;Giả định thực tế em đã chọn giúp anh/chị&#x27;.
+• NẾU Chế độ = TRẮC NGHIỆM A/B/C/D (ĐÀO SÂU Ở NHÀ): Ở lượt đầu tiên, chỉ hỏi đúng 2 câu trắc nghiệm sát ngành nghề trên (Câu 1: 4 phương án A/B/C/D về cử chỉ tay chân T2 của khách; Câu 2: 4 phương án A/B/C/D về câu nói ngoài miệng/cái cớ giữ thể diện T2.5 của khách). Dừng lại chờ tôi gõ &#x27;1A - 2C&#x27; rồi mới xuất kịch bản.
+
+=== QUY TẮC VĂN PHONG BẮT BUỘC (CHUẨN MỘC MẠC CỦA NGƯỜI LÀM NGHỀ) ===
+1. Xưng &#x27;em&#x27; (hoặc &#x27;mình&#x27;), nói như hai người làm nghề trò chuyện tại bàn làm việc. Không giảng đạo lý, không đứng bề trên dạy bảo khách.
+2. Tuyệt đối KHÔNG dùng từ ngữ khoa trương, đao to búa lớn, không dùng tính từ cảm xúc trừu tượng ở phần hình ảnh (như &#x27;ánh mắt chân thành&#x27;, &#x27;khựng lại trầm ngâm&#x27;, &#x27;thở phào bình thản&#x27;).
+3. Mọi chi tiết hình ảnh bắt buộc phải quay được ngay bằng điện thoại thông thường theo công thức: [Vật cụ thể] + [Động tác bàn tay] + [Cỡ cảnh: Toàn / Trung / Cận] + [Số giây].
+
+=== ĐẦU RA BẮT BUỘC (ĐÚNG 5 KHỐI) ===
+KHỐI 1 — BẢNG GIẢI PHẪU 4 NẤC TÂM LÝ (Mỗi nấc 1 dòng sắc gọn):
+• Nấc 1 (T1 - Lời xã giao ngoài miệng):
+• Nấc 2 (T2 - Cử chỉ nhìn thấy trong 5 giây qua camera):
+• Nấc 3 (T2.5 - Cái cớ khách tự nói để giữ thể diện):
+• Nấc 4 (T3 - Nỗi lo thật sự bên trong của khách, diễn tả bằng 1 việc nhỏ):
+
+KHỐI 2 — BẢNG KỊCH BẢN 2 CỘT KHỚP GIÂY (10–12 hàng, mỗi hàng 2–2.5 giây, tổng 25–30 giây):
+• Cột 1 (Thứ tự &amp; Giây): Hàng 01 đến Hàng 10–12.
+• Cột 2 (GIỌNG ĐỌC THU ÂM TRƯỚC): Mỗi hàng 8–10 chữ, đặt dấu &#x27;/&#x27; ở cuối mỗi nhịp nghỉ hơi để người đọc không bị hụt hơi.
+• Cột 3 (CẢNH QUAY THAO TÁC TAY): Đi theo đúng cấu trúc 3 tầng lớp: Hàng 1–2 là MỒI CẢNH (cận cảnh thao tác tay bắt mắt nhất) -&gt; Hàng 3–9 là BĂM CẢNH (luân phiên Toàn / Trung / Cận đôi bàn tay làm nghề) -&gt; Hàng 10–12 là CHUYỂN CẢNH NỐI &amp; KẾT.
+
+KHỐI 3 — BẢN PHỐI ÂM THANH 3 LỚP (VOICE-SAFE):
+• Lớp 1 (Giọng đọc thu riêng trong phòng kín): 100% âm lượng.
+• Lớp 2 (Tiếng động hiện trường thu thật lúc làm): Liệt kê rõ 3–4 tiếng động thật của ngành này (tiếng dao thớt, tiếng kéo, tiếng lật giấy, tiếng rót nước...) giữ ở mức 25–30%.
+• Lớp 3 (Nhạc nền không lời): Giữ dưới 8% để làm ấm khoảng nghỉ.
+
+KHỐI 4 — CÂU CẦU NỐI NGỮ NGHĨA VỀ QUY LUẬT NGHỀ (Đặt ở Hàng 9–10 trước khi kết):
+• Viết 1 câu theo đúng khuôn: &#x27;Chuyện này cho em một quy luật trong nghề: ...&#x27; nối từ hành vi của khách về tiêu chuẩn làm nghề đàng hoàng của tiệm. Câu cuối kết để ngỏ, không hô hào mua hàng.
+
+KHỐI 5 — ĐẦU RA TIKTOK / REELS &amp; TIN NHẮN ZALO KHÁCH CŨ:
+• Caption TikTok / Facebook Reels (1 dòng ngắn gợi tò mò):
+• Tin nhắn Zalo 2 câu gửi riêng cho khách cũ (nhắc lại tự nhiên chi tiết ở Nấc T2 để hỏi thăm, không gửi tin quảng cáo đại trà).
+\n</pre>
+            </div>
+
+            <div class="sample-box">
+              <div class="sample-head">
+                <span class="sample-badge">📌 VÍ DỤ ĐẦU RA THỰC TẾ • HỒ SƠ TỪ AN (MEN MỘC AN)</span>
+                <h4 class="sample-title">So sánh lỗi cũ (1 góc dài đọc văn xuôi) vs. Bảng 2 Cột Voice-Over 2.0</h4>
+              </div>
+              <div class="sample-body">
+                <p><strong>Tình huống thực tế:</strong> Khách nhắn hỏi men này uống có <em>"mạnh quá không"</em> rồi chỉ dám đặt mua gói nhỏ nhất để uống thử.</p>
+                <div class="tw">
+                  <table class="t">
+                    <thead>
+                      <tr>
+                        <th>Hàng / Giây</th>
+                        <th>Cột trái: GIỌNG ĐỌC (8–10 chữ, ngắt hơi <code>/</code>)</th>
+                        <th>Cột phải: CẢNH QUAY THAO TÁC TAY (Vật + Tay + Cỡ cảnh)</th>
+                        <th>Âm thanh thật (25–30%)</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><strong>01 (0–2s)</strong></td>
+                        <td><em>"Sáng nay có chị nhắn hỏi em /"</em></td>
+                        <td><strong>Mồi cảnh (Cận):</strong> Hai bàn tay đặt củ gừng tươi còn ướt nước lên mặt thớt gỗ.</td>
+                        <td>Tiếng củ gừng đặt lên mặt thớt</td>
+                      </tr>
+                      <tr>
+                        <td><strong>02 (2–4.5s)</strong></td>
+                        <td><em>"Men này uống vào có gắt quá không /"</em></td>
+                        <td><strong>Băm cảnh (Trung):</strong> Tay cầm chày giã dứt khoát từng nhịp xuống lát gừng tươi.</td>
+                        <td>Tiếng giã gừng thình thịch</td>
+                      </tr>
+                      <tr>
+                        <td><strong>03 (4.5–7s)</strong></td>
+                        <td><em>"Rồi chị đặt đúng một gói nhỏ nhất /"</em></td>
+                        <td><strong>Băm cảnh (Cận):</strong> Ngón tay vuốt phẳng mép túi men cỡ nhỏ trên bàn cân.</td>
+                        <td>Tiếng sột soạt của túi giấy</td>
+                      </tr>
+                      <tr>
+                        <td><strong>04 (7–9.5s)</strong></td>
+                        <td><em>"Chị bảo để chị uống thử vài hôm /"</em></td>
+                        <td><strong>Băm cảnh (Toàn):</strong> Dãy hũ thủy tinh ngâm chanh gừng sả xếp ngay ngắn trên kệ gỗ.</td>
+                        <td>Tiếng quạt gió nhẹ trong phòng</td>
+                      </tr>
+                      <tr>
+                        <td><strong>05 (9.5–12s)</strong></td>
+                        <td><em>"Em hiểu chị sợ dạ dày đang yếu /"</em></td>
+                        <td><strong>Băm cảnh (Cận):</strong> Tay mở nắp hũ thủy tinh, hơi men ấm bốc nhẹ lên miệng hũ.</td>
+                        <td>Tiếng bật nắp hũ thủy tinh</td>
+                      </tr>
+                      <tr>
+                        <td><strong>06 (12–15s)</strong></td>
+                        <td><em>"Nên em kèm thêm muỗng gỗ định lượng /"</em></td>
+                        <td><strong>Chuyển cảnh nối (Cận):</strong> Tay múc 1 muỗng mật ong lên men sánh vàng rót vào chén nhỏ.</td>
+                        <td>Tiếng mật ong rót đặc sánh</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="sample-bridge">
+                  🔗 <strong>Câu Cầu nối Ngữ nghĩa về nghề:</strong> <em>"Chuyện này cho em một quy luật trong nghề: khách mua gói nhỏ nhất là khách còn lo cho cái bụng của mình, chưa phải khách chê đắt. Nên hũ nào gửi đi em cũng ghi rõ vạch pha nước ấm ở mặt ngoài."</em>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==================== TAB 02: STORYTELLING 2.0 ==================== -->
+        <section class="mp-panel" id="tab-02">
+          <div class="mp-panel-head">
+            <div>
+              <span class="mp-panel-badge">ĐỊNH DẠNG 02 • 25–30% A-ROLL + 70–75% B-ROLL • GIỮ THỂ DIỆN T2.5</span>
+              <h3 class="mp-panel-title">MegaPrompt #02 — Storytelling 2.0 (Lát Cắt 5 Giây &amp; Chiếc Khăn Lau Yên Xe)</h3>
+              <p class="mp-panel-sub">Giải phẫu 4 nấc (T1 &rarr; T2 Camera 5s &rarr; T2.5 Khe hở thể diện &rarr; T3 RAW) + Xuất song song Phiên bản A (4 câu quay tại bàn) &amp; Phiên bản B (7 câu có Cầu nối nghề).</p>
+            </div>
+            <div class="mp-panel-links">
+              <a href="storytelling2.0.html" class="mp-link-pill">📖 Giáo án Storytelling 2.0</a>
+              <a href="storytelling2_slides.html" class="mp-link-pill">🖥️ Mở 14 Slides Bục Giảng</a>
+            </div>
+          </div>
+          <div class="mp-panel-body">
+            <div class="mp-spec-strip">
+              <div class="mp-spec-item">
+                <b>Khuôn đầu ra kép</b>
+                Phiên bản A (4 câu / 15–20s quay ngay tại bàn) + Phiên bản B (7 câu / 40s có Cầu nối Ngữ nghĩa + Kết để ngỏ Zero CTA).
+              </div>
+              <div class="mp-spec-item">
+                <b>Tỷ lệ khung hình chuẩn</b>
+                25–30% A-Roll lộ mặt ở câu chuyển/chốt + 70–75% B-Roll quay vật nhỏ làm bằng chứng.
+              </div>
+              <div class="mp-spec-item">
+                <b>Khắc phục lỗi thực tế</b>
+                Tránh lỗi kể chuyện đời tư tản mạn không nối về chuyên môn, hoặc phán xét làm khách tự ái.
+              </div>
+            </div>
+
+            <div class="prompt-card">
+              <div class="prompt-card-head">
+                <span>⚡ CÂU LỆNH MEGAPROMPT #02 (ĐÃ GẮN NGỮ CẢNH CỦA BẠN)</span>
+                <div class="prompt-actions">
+                  <button type="button" class="btn-copy-mp" onclick="window.copyMpPrompt(this, 'mp-pre-02')">📋 Sao chép MegaPrompt #02</button>
+                  <a href="https://chatgpt.com" target="_blank" rel="noopener" class="btn-ai-ext">ChatGPT ↗</a>
+                  <a href="https://claude.ai" target="_blank" rel="noopener" class="btn-ai-ext">Claude ↗</a>
+                  <a href="https://gemini.google.com" target="_blank" rel="noopener" class="btn-ai-ext">Gemini ↗</a>
+                </div>
+              </div>
+              <pre class="prompt-pre" id="mp-pre-02">Bạn là biên kịch video ngắn Định dạng 02: STORYTELLING 2.0 (Kể lát cắt 5 giây &amp; Giữ thể diện cho người xem qua Nấc T2.5 - Chiếc khăn lau yên xe).
+
+=== THÔNG TIN ĐẦU VÀO ĐÃ BƠM SẴN ===
+• Ngành nghề của tôi: Spa / Dưỡng sinh Đông y &amp; Chăm sóc da
+• Tình huống thực tế vừa gặp: Khách nằm giường gội dưỡng sinh, hỏi giá gói 10 buổi rồi ngước nhìn đồng hồ treo tường 2 lần và bảo để chị về thu xếp lịch đón cháu.
+• Chế độ vận hành: 1-LƯỢT (TỐC CHIẾN TẠI LỚP)
+
+=== QUY TẮC VẬN HÀNH THEO CHẾ ĐỘ ===
+• NẾU Chế độ = 1-LƯỢT (TỐC CHIẾN TẠI LỚP): Tự chọn hành vi T2 (5 giây) và cái cớ giữ thể diện T2.5 sát nghề nhất, XUẤT NGAY trọn bộ đầu ra bên dưới. Cuối bài ghi 2 dòng &#x27;Giả định thực tế em đã chọn&#x27;.
+• NẾU Chế độ = TRẮC NGHIỆM A/B/C/D (ĐÀO SÂU Ở NHÀ): Hỏi đúng 2 câu trắc nghiệm A/B/C/D sát ngành (Câu 1: cử chỉ 5 giây của khách ở Nấc T2; Câu 2: cái cớ giữ mặt mũi của khách ở Nấc T2.5). Chờ tôi gõ &#x27;1A - 2C&#x27; rồi mới xuất kịch bản.
+
+=== QUY TẮC CỐT LÕI CỦA STORYTELLING 2.0 ===
+1. Chỉ kể một lát cắt diễn ra trong đúng 5 giây ngoài đời thực (một động tác tay, một câu nói ngập ngừng), không kể lê thê cả buổi.
+2. Giữ thể diện cho khách (Chiếc khăn lau yên xe) + Cùng chỗ đứng (Gương lõm: &#x27;Hồi trước em cũng từng...&#x27;): Tuyệt đối không phán xét, không chỉ tay bắt lỗi làm khách tự ái.
+3. Tỷ lệ hình ảnh: 25–30% A-Roll lộ mặt (chỉ xuất hiện ở câu chuyển T2.5 hoặc câu chốt nghề) + 70–75% B-Roll quay vật thật và thao tác tay.
+
+=== ĐẦU RA BẮT BUỘC (ĐÚNG 5 KHỐI) ===
+KHỐI 1 — BẢNG GIẢI PHẪU 4 NẤC &amp; VẬT NHỎ LÀM BẰNG CHỨNG:
+• T1 (Lời xã giao ngoài miệng):
+• T2 (Camera 5 giây - Cử chỉ nhìn thấy được):
+• T2.5 (Khe hở thể diện - Cái cớ hợp lý giúp khách giữ mặt mũi):
+• T3 (Nỗi lo thật sự giấu bên trong):
+• Vật nhỏ làm bằng chứng (1 đồ vật cụ thể đặt trên bàn/trong tiệm dùng làm mỏ neo hình ảnh):
+
+KHỐI 2 — PHIÊN BẢN A: KHUÔN 4 CÂU NGẮN (15–20 GIÂY, QUAY NGAY TẠI BÀN HỌC):
+• Câu 1 (B-Roll - Nấc T2): Mở bằng động tác 5 giây của khách hoặc của mình.
+• Câu 2 (B-Roll - Nấc T2.5): Nêu cái cớ giữ thể diện một cách bao dung.
+• Câu 3 (A-Roll Lộ mặt - Gương lõm &amp; Nấc T3): Nhìn ống kính nói nhẹ nhàng về nỗi lo thật sự đằng sau.
+• Câu 4 (B-Roll kết A-Roll - Chiếc khăn lau yên xe): Một hành động nhỏ tinh tế của người làm nghề để tháo gỡ cho khách.
+
+KHỐI 3 — PHIÊN BẢN B: KỊCH BẢN 7 CÂU ĐẦY ĐỦ (35–40 GIÂY, CÓ DẤU &#x27;/&#x27; NGẮT HƠI):
+• Viết 7 câu hoàn chỉnh (~110–130 chữ). Trong đó Câu 5–6 BẮT BUỘC là CÂU CẦU NỐI NGỮ NGHĨA theo khuôn: &#x27;Chuyện này cho em một quy luật trong nghề: ...&#x27; để nối chặt câu chuyện đời thường về tiêu chuẩn sản phẩm/dịch vụ.
+• Câu 7 kết để ngỏ (Zero CTA), để người xem tự suy ngẫm, không kêu gọi mua hàng.
+
+KHỐI 4 — BẢNG PHÂN CẢNH VẬT LÝ (25–30% A-ROLL + 70–75% B-ROLL):
+• Liệt kê từng cảnh khớp với Phiên bản B theo đúng công thức: [Vật cụ thể + Động tác tay + Cỡ cảnh Toàn/Trung/Cận + Số giây]. Cấm dùng tính từ cảm xúc.
+
+KHỐI 5 — ĐẦU RA TIKTOK / REELS &amp; TIN NHẮN ZALO KHÁCH CŨ:
+• Caption TikTok / Reels 1 dòng:
+• Tin nhắn Zalo 2 câu gửi riêng cho khách cũ (nhắc lại chi tiết Vật nhỏ làm bằng chứng để mở lời tự nhiên).
+\n</pre>
+            </div>
+
+            <div class="sample-box">
+              <div class="sample-head">
+                <span class="sample-badge">📌 VÍ DỤ ĐẦU RA THỰC TẾ • BÙI THUỲ DUNG (HADU BOUTIQUE) &amp; ĐOÀN HỮU VIỆT (SALON TÓC)</span>
+                <h4 class="sample-title">Phiên bản A (4 câu quay tại bàn) + Câu Cầu nối Ngữ nghĩa nối chuyện đời về chuyện nghề</h4>
+              </div>
+              <div class="sample-body">
+                <div class="grid g2" style="margin:10px 0;">
+                  <div class="card" style="background:#fff;">
+                    <span class="b s" style="--stage:#ea580c">CA 01 • BÙI THUỲ DUNG (HADU BOUTIQUE)</span>
+                    <div class="ct">Từ căn nhà thuê 6 bóng điện nối về chiếc tag giá trong túi áo</div>
+                    <div class="cd">
+                      <strong>Phiên bản A (4 câu / 18s):</strong><br>
+                      1. <em>"Chiều qua có chị mặc thử chiếc sơ mi lụa xong cứ đứng kéo nhẹ gấu áo xuống."</em> [B-Roll: Tay vuốt gấu áo trên kệ - 4s]<br>
+                      2. <em>"Chị mỉm cười bảo: Để chị về hỏi ý kiến chồng rồi mai chị nhắn lại."</em> [B-Roll: Chiếc túi xách mở hé trên ghế - 4s]<br>
+                      3. <em>"Em nhìn bàn tay chị khẽ lật tìm chiếc mác giá giấu sau cổ áo là em hiểu."</em> [A-Roll: Lộ mặt nói nhẹ nhàng - 5s]<br>
+                      4. <em>"Nên ở tiệm em, mác giá luôn in chữ to kẹp ngay cổ tay áo để chị em tự xem trước khi vào phòng thử."</em> [B-Roll: Tay gắn tag giá rõ nét - 5s]
+                    </div>
+                  </div>
+                  <div class="card" style="background:#fff;">
+                    <span class="b s" style="--stage:#0284c7">CA 02 • ĐOÀN HỮU VIỆT (SALON TÓC)</span>
+                    <div class="ct">Chiếc khăn lau yên xe trong tiệm phục hồi tóc</div>
+                    <div class="cd">
+                      <strong>Phiên bản A (4 câu / 18s):</strong><br>
+                      1. <em>"Nhiều chị ngồi xuống ghế làm tóc là lấy tay che phần đuôi tóc khô xơ."</em> [B-Roll: Tay cầm lược chải nhẹ đuôi tóc - 4s]<br>
+                      2. <em>"Các chị hay bảo: Đợt này chị bận quá nên gội đại dầu gội ở nhà cho nhanh."</em> [B-Roll: Chai tinh chất đặt trên xe đẩy - 4s]<br>
+                      3. <em>"Thật ra đi làm cả ngày về mệt rã rời, chẳng ai còn sức đứng ủ tóc ba mươi phút cả."</em> [A-Roll: Lộ mặt qua gương tiệm tóc - 5s]<br>
+                      4. <em>"Nên trước khi cắt, em luôn thử độ đàn hồi trên đúng ba sợi tóc ướt để chị tự nhìn thấy."</em> [B-Roll: Cận ngón tay kéo nhẹ sợi tóc - 5s]
+                    </div>
+                  </div>
+                </div>
+                <div class="sample-bridge">
+                  🔗 <strong>Câu Cầu nối Ngữ nghĩa (Dùng cho Phiên bản B của Bùi Thuỳ Dung):</strong> <em>"Chuyện này em rất hiểu, vì hồi mới bắt đầu lại trong căn nhà thuê chỉ có 6 bóng điện, tháng nào cầm đồng tiền đi mua chiếc áo mới em cũng phải cân nhắc từng chút. Chuyện đó cho em một quy luật trong nghề: đừng bao giờ để khách phải ngại miệng khi hỏi giá."</em>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==================== TAB 03: WALK & TALK 2.0 ==================== -->
+        <section class="mp-panel" id="tab-03">
+          <div class="mp-panel-head">
+            <div>
+              <span class="mp-panel-badge">ĐỊNH DẠNG 03 • LỘ MẶT TẠI HIỆN TRƯỜNG • CUT ON ACTION</span>
+              <h3 class="mp-panel-title">MegaPrompt #03 — Walk &amp; Talk 2.0 (Lộ Trình Bước Chân &amp; Chỉ Tay Vật Thật)</h3>
+              <p class="mp-panel-sub">Mỗi câu thoại (6–10 chữ) = 1 điểm dừng hoặc 1 lần đổi dáng &rarr; Tay luôn cầm đồ nghề thật &rarr; Cắt ngay trên đà chuyển động.</p>
+            </div>
+            <div class="mp-panel-links">
+              <a href="walkntalk2.0.html" class="mp-link-pill">📖 Giáo án Walk &amp; Talk 2.0</a>
+              <a href="walkntalk2.0.html#sec-2" class="mp-link-pill">🖥️ Mở 5 Slides Dẫn Nhập</a>
+            </div>
+          </div>
+          <div class="mp-panel-body">
+            <div class="mp-spec-strip">
+              <div class="mp-spec-item">
+                <b>Khuôn đầu ra</b>
+                Bảng 5–6 Nhịp Bước Chân (4 cột: Lời thoại 6–10 chữ | Bước chân &amp; Đổi dáng | Đạo cụ trên tay | Điểm cắt trên chuyển động).
+              </div>
+              <div class="mp-spec-item">
+                <b>Lộ trình 3 điểm dừng</b>
+                Đi từ điểm A sang điểm B trong tiệm/xưởng/công trình; vấp ở câu nào đứng tại chỗ nói lại đúng câu đó.
+              </div>
+              <div class="mp-spec-item">
+                <b>Khắc phục lỗi thực tế</b>
+                Tránh lỗi ngồi ghế xoay đọc thuộc lòng khẩu hiệu khô khan (84 views) hoặc vừa đi vừa buông thõng hai tay.
+              </div>
+            </div>
+
+            <div class="prompt-card">
+              <div class="prompt-card-head">
+                <span>⚡ CÂU LỆNH MEGAPROMPT #03 (ĐÃ GẮN NGỮ CẢNH CỦA BẠN)</span>
+                <div class="prompt-actions">
+                  <button type="button" class="btn-copy-mp" onclick="window.copyMpPrompt(this, 'mp-pre-03')">📋 Sao chép MegaPrompt #03</button>
+                  <a href="https://chatgpt.com" target="_blank" rel="noopener" class="btn-ai-ext">ChatGPT ↗</a>
+                  <a href="https://claude.ai" target="_blank" rel="noopener" class="btn-ai-ext">Claude ↗</a>
+                  <a href="https://gemini.google.com" target="_blank" rel="noopener" class="btn-ai-ext">Gemini ↗</a>
+                </div>
+              </div>
+              <pre class="prompt-pre" id="mp-pre-03">Bạn là biên kịch video ngắn Định dạng 03: WALK &amp; TALK 2.0 (Vừa đi vừa nói tại hiện trường làm nghề thật, đổi dáng theo nhịp cắt Cut-on-Action).
+
+=== THÔNG TIN ĐẦU VÀO ĐÃ BƠM SẴN ===
+• Ngành nghề của tôi: Spa / Dưỡng sinh Đông y &amp; Chăm sóc da
+• Tình huống thực tế vừa gặp: Khách nằm giường gội dưỡng sinh, hỏi giá gói 10 buổi rồi ngước nhìn đồng hồ treo tường 2 lần và bảo để chị về thu xếp lịch đón cháu.
+• Chế độ vận hành: 1-LƯỢT (TỐC CHIẾN TẠI LỚP)
+
+=== QUY TẮC VẬN HÀNH THEO CHẾ ĐỘ ===
+• NẾU Chế độ = 1-LƯỢT (TỐC CHIẾN TẠI LỚP): Tự chọn địa điểm hiện trường hợp với nghề nhất (tiệm, xưởng, công trình, phòng làm việc, vườn...) cùng T2 &amp; T2.5, XUẤT NGAY kịch bản. Cuối bài ghi 2 dòng &#x27;Giả định thực tế em đã chọn&#x27;.
+• NẾU Chế độ = TRẮC NGHIỆM A/B/C/D (ĐÀO SÂU Ở NHÀ): Hỏi 2 câu trắc nghiệm A/B/C/D (Câu 1: bối cảnh hiện trường &amp; hành vi T2; Câu 2: cái cớ T2.5 &amp; chi tiết đắt giá cần chỉ tay). Chờ tôi gõ &#x27;1A - 2C&#x27; rồi mới xuất kịch bản.
+
+=== QUY TẮC CỐT LÕI CỦA WALK &amp; TALK 2.0 ===
+1. Không ai quay liền một mạch 60 giây: Kịch bản chia thành 5–6 nhịp ngắn. Mỗi nhịp chỉ dài 6–10 chữ (nói gọn trong 3–5 giây). Vấp ở nhịp nào, đứng tại chỗ nói lại đúng nhịp đó.
+2. Mỗi câu thoại = 1 điểm dừng hoặc 1 lần đổi hướng cơ thể (Cut on Action). Hai bàn tay luôn bận cầm đồ nghề thật hoặc chỉ thẳng vào chi tiết thật tại hiện trường.
+
+=== ĐẦU RA BẮT BUỘC (ĐÚNG 4 KHỐI) ===
+KHỐI 1 — SƠ ĐỒ LỘ TRÌNH 3 ĐIỂM DỪNG TẠI HIỆN TRƯỜNG:
+• Điểm A (Mở màn mồi mắt): Đứng ở đâu, tay đang cầm dụng cụ gì?
+• Điểm B (Di chuyển &amp; Nêu tình huống T2 / T2.5): Đi bộ mấy bước về phía nào?
+• Điểm C (Dừng chân chỉ tay vào Bằng chứng đắt giá &amp; Chốt nghề): Chỉ tay vào chi tiết kỹ thuật/vật thật nào mà người ngoài nhìn qua không biết?
+
+KHỐI 2 — BẢNG KỊCH BẢN 5–6 NHỊP BƯỚC CHÂN (Trình bày dạng bảng 5 cột rõ ràng):
+• Cột 1: Nhịp (Nhịp 01 đến Nhịp 06).
+• Cột 2: LỜI THOẠI (6–10 chữ mỗi nhịp, có dấu &#x27;/&#x27; ngắt hơi, câu chữ mộc mạc như đang dẫn khách đi xem tiệm).
+• Cột 3: BƯỚC CHÂN &amp; ĐỔI DÁNG (Bước vào / Đi dọc hành lang / Dừng lại xoay người 45 độ / Ngồi xuống cạnh sản phẩm...).
+• Cột 4: ĐẠO CỤ &amp; VẬT THẬT TRÊN TAY (Cầm thước dây, mở cánh cửa, lật khay nguyên liệu, chỉ tay vào mối ghép...).
+• Cột 5: ĐIỂM CẮT TRÊN CHUYỂN ĐỘNG (Chỉ rõ khoảnh khắc cắt trên CapCut ngay khi tay vừa nắm vào vật hoặc chân vừa dừng để giấu vết ghép).
+
+KHỐI 3 — CÂU CẦU NỐI NGỮ NGHĨA VỀ QUY LUẬT NGHỀ:
+• Đặt ở Nhịp 05–06 theo khuôn: &#x27;Chuyện này cho em một quy luật trong nghề: ...&#x27; gắn liền với chi tiết vật thật vừa chỉ tay. Kết để ngỏ.
+
+KHỐI 4 — ĐẦU RA TIKTOK / REELS &amp; TIN NHẮN ZALO KHÁCH CŨ:
+• Caption TikTok / Reels 1 dòng:
+• Tin nhắn Zalo 2 câu gửi riêng cho khách cũ.
+\n</pre>
+            </div>
+
+            <div class="sample-box">
+              <div class="sample-head">
+                <span class="sample-badge">📌 VÍ DỤ ĐẦU RA THỰC TẾ • HỒ SƠ NGUYỄN QUỐC KHOA (ĐÁ BẾP — 20.6K VIEWS)</span>
+                <h4 class="sample-title">Từ 84 views ngồi ghế xoay đọc khẩu hiệu &rarr; 20.6K views ra hiện trường khiêng tấm đá 3m12</h4>
+              </div>
+              <div class="sample-body">
+                <p><strong>Lộ trình 3 điểm dừng tại công trình:</strong> Cửa thang máy tầng hầm (Điểm A) &rarr; Chiếu nghỉ cầu thang bộ tầng 6 (Điểm B) &rarr; Bàn bếp căn hộ tầng 12 (Điểm C).</p>
+                <div class="tw">
+                  <table class="t">
+                    <thead>
+                      <tr>
+                        <th>Nhịp</th>
+                        <th>Lời thoại (6–10 chữ, 1 hơi thở)</th>
+                        <th>Bước chân &amp; Đổi dáng</th>
+                        <th>Đạo cụ / Vật thật trên tay</th>
+                        <th>Điểm cắt trên chuyển động</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><strong>Nhịp 01</strong></td>
+                        <td><em>"Tấm đá bếp này dài ba mét mười hai /"</em></td>
+                        <td>Bước từ cửa thang máy ra sảnh hầm.</td>
+                        <td>Tay phải kéo thước dây đặt dọc mép đá.</td>
+                        <td>Cắt ngay khi thước dây thu lại kêu "tách".</td>
+                      </tr>
+                      <tr>
+                        <td><strong>Nhịp 02</strong></td>
+                        <td><em>"Cửa thang máy chỉ cao đúng ba mét mười /"</em></td>
+                        <td>Đi bộ 3 bước về phía cửa cầu thang thoát hiểm.</td>
+                        <td>Tay trái mở chốt cửa sắt cầu thang bộ.</td>
+                        <td>Cắt ngay trên đà cánh cửa mở ra.</td>
+                      </tr>
+                      <tr>
+                        <td><strong>Nhịp 03</strong></td>
+                        <td><em>"Chủ nhà bảo hay cắt đôi ghép cho khỏe /"</em></td>
+                        <td>Dừng lại ở chiếu nghỉ, xoay người 45 độ về ống kính.</td>
+                        <td>Ngón tay chỉ thẳng vào mặt đá nguyên khối không vết nối.</td>
+                        <td>Cắt khi bàn tay vỗ nhẹ lên mặt đá.</td>
+                      </tr>
+                      <tr>
+                        <td><strong>Nhịp 04</strong></td>
+                        <td><em>"Nhưng ghép nối sau hai năm rất dễ thấm nước /"</em></td>
+                        <td>Bước lên bậc thang tiếp theo cùng 3 anh em thợ.</td>
+                        <td>Hai tay nâng đai vải chịu lực dưới cạnh đá.</td>
+                        <td>Cắt ngay nhịp nhấc tấm đá lên bậc.</td>
+                      </tr>
+                      <tr>
+                        <td><strong>Nhịp 05</strong></td>
+                        <td><em>"Nên bốn anh em khiêng bộ lên tầng mười hai /"</em></td>
+                        <td>Đứng cạnh bàn bếp đã đặt khít tấm đá, thở nhẹ.</td>
+                        <td>Tay miết dọc mép chậu rửa lắp âm toàn phần.</td>
+                        <td>Giữ máy 2 giây nhìn thẳng ống kính rồi kết.</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="sample-bridge">
+                  🔗 <strong>Câu Cầu nối Ngữ nghĩa về nghề:</strong> <em>"Chuyện này cho em một quy luật trong nghề: đo sải tay ở cầu thang trước khi đo mặt bếp, chịu cực một buổi khiêng bộ để chủ nhà dùng mười năm không phải cạo từng đường keo mốc."</em>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==================== TAB 04: TALKING HEAD 2 CAM 2.0 ==================== -->
+        <section class="mp-panel" id="tab-04">
+          <div class="mp-panel-head">
+            <div>
+              <span class="mp-panel-badge">ĐỊNH DẠNG 04 • MỖI CÂU MỘT DÒNG • ĐẾM NHỊP 1-2 &amp; PHỦ 70% B-ROLL</span>
+              <h3 class="mp-panel-title">MegaPrompt #04 — Talking Head 2 Góc Máy 2.0 (Bản Đọc Từng Dòng Không Học Thuộc)</h3>
+              <p class="mp-panel-sub">Chia kịch bản thành 12–16 dòng ngắn (5–8 chữ/dòng = 1 hơi thở) &rarr; Gắn nhãn <code>[CAM 1]</code>, <code>[CAM 2]</code>, <code>[Đếm thầm 1-2]</code> và <code>[ĐÈ B-ROLL BẰNG CHỨNG]</code>.</p>
+            </div>
+            <div class="mp-panel-links">
+              <a href="walkntalk2.0.html#sec-3" class="mp-link-pill">📖 Kỹ thuật Đếm nhịp 1-2</a>
+              <a href="talkinghead.html" class="mp-link-pill">🖥️ Giáo án Talking Head</a>
+            </div>
+          </div>
+          <div class="mp-panel-body">
+            <div class="mp-spec-strip">
+              <div class="mp-spec-item">
+                <b>Khuôn đầu ra</b>
+                12–16 dòng tách rời (mỗi dòng 5–8 chữ), gắn sẵn vị trí đổi Cam 1 (0°), Cam 2 (45°) và nhịp đếm thầm 1-2.
+              </div>
+              <div class="mp-spec-item">
+                <b>Tỷ lệ che vết cắt</b>
+                20–30% A-Roll ngồi bàn (cách máy 1 sải tay) + 70–80% B-Roll quay cận tài liệu/vật thật trên bàn.
+              </div>
+              <div class="mp-spec-item">
+                <b>Khắc phục lỗi thực tế</b>
+                Xóa bỏ hoàn toàn cảnh phải học thuộc lòng cả đoạn dài khiến mắt đảo tìm chữ hoặc bị cụt câu khi dựng.
+              </div>
+            </div>
+
+            <div class="prompt-card">
+              <div class="prompt-card-head">
+                <span>⚡ CÂU LỆNH MEGAPROMPT #04 (ĐÃ GẮN NGỮ CẢNH CỦA BẠN)</span>
+                <div class="prompt-actions">
+                  <button type="button" class="btn-copy-mp" onclick="window.copyMpPrompt(this, 'mp-pre-04')">📋 Sao chép MegaPrompt #04</button>
+                  <a href="https://chatgpt.com" target="_blank" rel="noopener" class="btn-ai-ext">ChatGPT ↗</a>
+                  <a href="https://claude.ai" target="_blank" rel="noopener" class="btn-ai-ext">Claude ↗</a>
+                  <a href="https://gemini.google.com" target="_blank" rel="noopener" class="btn-ai-ext">Gemini ↗</a>
+                </div>
+              </div>
+              <pre class="prompt-pre" id="mp-pre-04">Bạn là biên kịch video ngắn Định dạng 04: TALKING HEAD 2 GÓC MÁY 2.0 (Ngồi tại bàn làm việc cách máy 1 sải tay, đọc theo bản tách từng dòng ngắn 5–8 chữ kết hợp Đếm nhịp 1-2 và phủ 70% B-Roll bằng chứng).
+
+=== THÔNG TIN ĐẦU VÀO ĐÃ BƠM SẴN ===
+• Ngành nghề của tôi: Spa / Dưỡng sinh Đông y &amp; Chăm sóc da
+• Tình huống thực tế vừa gặp: Khách nằm giường gội dưỡng sinh, hỏi giá gói 10 buổi rồi ngước nhìn đồng hồ treo tường 2 lần và bảo để chị về thu xếp lịch đón cháu.
+• Chế độ vận hành: 1-LƯỢT (TỐC CHIẾN TẠI LỚP)
+
+=== QUY TẮC VẬN HÀNH THEO CHẾ ĐỘ ===
+• NẾU Chế độ = 1-LƯỢT (TỐC CHIẾN TẠI LỚP): Tự chọn góc nhìn đắt nhất (Người làm nghề thú nhận hoặc Đọc vị điều khách đang giấu) sát với tình huống trên và XUẤT NGAY kịch bản tách dòng. Cuối bài ghi 2 dòng &#x27;Giả định thực tế em đã chọn&#x27;.
+• NẾU Chế độ = TRẮC NGHIỆM A/B/C/D (ĐÀO SÂU Ở NHÀ): Đưa ra 4 góc nhìn A/B/C/D (Góc A &amp; B: 2 điều người làm nghề thật lòng thú nhận để bảo vệ khách; Góc C &amp; D: 2 suy nghĩ thầm kín khách đang cân nhắc khi cầm bảng giá/sản phẩm). Chờ tôi chọn 1 chữ cái A/B/C/D rồi mới xuất kịch bản.
+
+=== QUY TẮC CỐT LÕI CỦA TALKING HEAD 2 GÓC MÁY 2.0 ===
+1. Bản đọc từng dòng ngắn (Mỗi câu một dòng): Tuyệt đối KHÔNG viết thành đoạn văn dài. Chia kịch bản thành 12–16 dòng riêng biệt. Mỗi dòng chỉ dài 5–8 chữ (vừa khít 1 hơi thở) để người quay nhìn lướt 1 giây là nạp được vào đầu, không bao giờ phải học thuộc lòng.
+2. Quy tắc Đếm nhịp 1-2 an toàn: Trước khi nói và sau khi dứt chữ cuối của mỗi dòng, người nói ngậm miệng nhìn thẳng ống kính đếm thầm &#x27;1 - 2&#x27; rồi mới cúi xuống xem dòng tiếp theo (giúp lúc cắt trên CapCut không bao giờ bị cụt chữ).
+3. Phủ 70–80% B-Roll bằng chứng trên bàn: Đan xen giữa [CAM 1 - 0° Trung cảnh], [CAM 2 - 45° Cận cảnh] và [ĐÈ B-ROLL BẰNG CHỨNG] quay cận tay cầm sổ, bút, mẫu vật ngay trên bàn làm việc.
+
+=== ĐẦU RA BẮT BUỘC (ĐÚNG 4 KHỐI) ===
+KHỐI 1 — GIẢI PHẪU NHANH 4 NẤC &amp; ĐẠO CỤ ĐẶT TRÊN BÀN:
+• T1, T2 (5 giây), T2.5 (Cái cớ giữ thể diện), T3 (Nỗi lo thật):
+• 2 đạo cụ thật cần bày sẵn trên mặt bàn làm việc trước khi bấm máy:
+
+KHỐI 2 — BẢNG KỊCH BẢN TÁCH DÒNG 12–16 DÒNG (4 cột rõ ràng):
+• Cột 1: Số dòng (Dòng 01 đến Dòng 14–16).
+• Cột 2: LỜI THOẠI TÁCH DÒNG (Mỗi dòng đúng 5–8 chữ, ngôn từ mộc mạc, đĩnh đạc).
+• Cột 3: NHÃN GÓC MÁY &amp; NHỊP ĐẾM (Ghi rõ [CAM 1 - 0° Trung cảnh] + [Đếm thầm 1-2] cho câu mở/chốt; [CAM 2 - 45° Cận cảnh] + [Đếm thầm 1-2] cho câu T2.5 và T3).
+• Cột 4: CẢNH B-ROLL ĐÈ LÊN (Chiếm 70% số dòng: ghi rõ Vật cụ thể trên bàn + Động tác tay + Cỡ cảnh + Số giây; 0 tính từ cảm xúc).
+
+KHỐI 3 — CÂU CẦU NỐI NGỮ NGHĨA &amp; 3 DÒNG NHẮC ĐẶT MÁY TẠI BÀN:
+• Câu Cầu nối Ngữ nghĩa ở Dòng áp chót (&#x27;Chuyện này cho em một quy luật trong nghề: ...&#x27;).
+• 3 dòng nhắc trước khi bấm máy: (1) Khoảng cách máy 1 sải tay ngang tầm mắt; (2) Ánh sáng chếch 45 độ; (3) Đếm thầm 1-2 trước và sau mỗi dòng.
+
+KHỐI 4 — ĐẦU RA TIKTOK / REELS &amp; TIN NHẮN ZALO KHÁCH CŨ:
+• Caption TikTok / Reels 1 dòng:
+• Tin nhắn Zalo 2 câu gửi riêng cho khách cũ.
+\n</pre>
+            </div>
+
+            <div class="sample-box">
+              <div class="sample-head">
+                <span class="sample-badge">📌 VÍ DỤ ĐẦU RA THỰC TẾ • HỒ SƠ CHỊ LIÊN (BẢO HIỂM NHÂN THỌ)</span>
+                <h4 class="sample-title">Bản đọc từng dòng 5–8 chữ kèm nhãn [CAM 1], [CAM 2], [Đếm thầm 1-2] &amp; [ĐÈ B-ROLL]</h4>
+              </div>
+              <div class="sample-body">
+                <p><strong>Tình huống thực tế:</strong> Khách mở tập hồ sơ bảo hiểm ra xem bảng minh họa dòng tiền, rồi gập sổ lại bảo <em>"Để chị về bàn thêm với anh ở nhà"</em> nhưng tay vẫn cầm cây bút.</p>
+                <div class="tw">
+                  <table class="t">
+                    <thead>
+                      <tr>
+                        <th>Dòng</th>
+                        <th>Lời thoại tách dòng (5–8 chữ = 1 hơi thở)</th>
+                        <th>Nhãn Góc Máy &amp; Nhịp Đếm 1-2</th>
+                        <th>Cảnh B-Roll Đè Lên (70% thời lượng)</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><strong>01</strong></td>
+                        <td><em>"Sáng nay có chị hỏi em một câu."</em></td>
+                        <td><code>[CAM 1 - 0° Trung cảnh]</code> &rarr; <code>[Đếm thầm 1-2]</code></td>
+                        <td>Giữ A-Roll lộ mặt nhìn thẳng ống kính (2s).</td>
+                      </tr>
+                      <tr>
+                        <td><strong>02</strong></td>
+                        <td><em>"Đóng gói này mười năm có lời không?"</em></td>
+                        <td><code>[CAM 1 - 0° Trung cảnh]</code> &rarr; <code>[Đếm thầm 1-2]</code></td>
+                        <td><code>[ĐÈ B-ROLL]</code> Tay khách lật trang bảng minh họa, Cận, 2.5s.</td>
+                      </tr>
+                      <tr>
+                        <td><strong>03</strong></td>
+                        <td><em>"Xem tới trang thứ tư chị gập sổ lại."</em></td>
+                        <td><code>[ĐÈ B-ROLL BẰNG CHỨNG]</code></td>
+                        <td><code>[ĐÈ B-ROLL]</code> Bìa hồ sơ khép lại trên mặt bàn gỗ, Cận, 2s.</td>
+                      </tr>
+                      <tr>
+                        <td><strong>04</strong></td>
+                        <td><em>"Chị bảo để chị về bàn với nhà."</em></td>
+                        <td><code>[CAM 2 - 45° Cận cảnh]</code> &rarr; <code>[Đếm thầm 1-2]</code></td>
+                        <td>Giữ A-Roll góc nghiêng 45 độ, giọng trầm ấm (2.5s).</td>
+                      </tr>
+                      <tr>
+                        <td><strong>05</strong></td>
+                        <td><em>"Nhưng cây bút vẫn xoay trong tay chị."</em></td>
+                        <td><code>[ĐÈ B-ROLL BẰNG CHỨNG]</code></td>
+                        <td><code>[ĐÈ B-ROLL]</code> Ngón tay xoay nhẹ cây bút bi bên cạnh tách trà, Cận, 2.5s.</td>
+                      </tr>
+                      <tr>
+                        <td><strong>06</strong></td>
+                        <td><em>"Em hiểu chị không ngại số tiền đóng."</em></td>
+                        <td><code>[ĐÈ B-ROLL BẰNG CHỨNG]</code></td>
+                        <td><code>[ĐÈ B-ROLL]</code> Tay người tư vấn rút tờ giấy trắng ra khỏi tập bìa, Trung, 2s.</td>
+                      </tr>
+                      <tr>
+                        <td><strong>07</strong></td>
+                        <td><em>"Chị chỉ sợ lúc ốm vướng điều khoản loại trừ."</em></td>
+                        <td><code>[CAM 2 - 45° Cận cảnh]</code> &rarr; <code>[Đếm thầm 1-2]</code></td>
+                        <td>Giữ A-Roll cận cảnh nhìn ống kính (2.5s).</td>
+                      </tr>
+                      <tr>
+                        <td><strong>08</strong></td>
+                        <td><em>"Nên em cất bảng tính lãi sang một bên."</em></td>
+                        <td><code>[ĐÈ B-ROLL BẰNG CHỨNG]</code></td>
+                        <td><code>[ĐÈ B-ROLL]</code> Tay đẩy xấp bảng số sang mép bàn, Cận, 2s.</td>
+                      </tr>
+                      <tr>
+                        <td><strong>09</strong></td>
+                        <td><em>"Và khoanh đỏ đúng ba mục không chi trả."</em></td>
+                        <td><code>[ĐÈ B-ROLL BẰNG CHỨNG]</code></td>
+                        <td><code>[ĐÈ B-ROLL]</code> Ngòi bút đỏ khoanh tròn 3 dòng chữ trong hợp đồng, Cận, 2.5s.</td>
+                      </tr>
+                      <tr>
+                        <td><strong>10</strong></td>
+                        <td><em>"Khách cầm bút là khách còn muốn hiểu rõ."</em></td>
+                        <td><code>[CAM 1 - 0° Trung cảnh]</code> &rarr; <code>[Đếm thầm 1-2]</code></td>
+                        <td>A-Roll chính diện chốt quy luật nghề, giữ 2 giây rồi cắt.</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==================== TAB 05: MASTER PIPELINE 2.0 ==================== -->
+        <section class="mp-panel" id="tab-05">
+          <div class="mp-panel-head">
+            <div>
+              <span class="mp-panel-badge">MASTER PIPELINE 2.0 • 1 LÕI CHUYỆN NGHỀ &rarr; 4 VIDEO ĐĂNG CẢ TUẦN (NHỊP 7–11–4)</span>
+              <h3 class="mp-panel-title">MegaPrompt #05 — Từ 1 Tình Huống Khách Thật Xuất Trọn Bộ 4 Kịch Bản Tuần</h3>
+              <p class="mp-panel-sub">Bóc 1 Bảng Lõi Tâm Lý 4 Nấc duy nhất &rarr; Chuyển thành 4 kịch bản (Thứ 2 Voice-Over, Thứ 4 Walk &amp; Talk, Thứ 6 Talking Head, Chủ nhật Storytelling 2.0) + Danh sách 10 cảnh B-Roll quay gộp 1 lần trong 20 phút.</p>
+            </div>
+            <div class="mp-panel-links">
+              <a href="voiceover3.0.html" class="mp-link-pill">01: Voice-Over</a>
+              <a href="storytelling2.0.html" class="mp-link-pill">02: Storytelling</a>
+              <a href="walkntalk2.0.html" class="mp-link-pill">03 &amp; 04: Walk &amp; Talk + TH</a>
+            </div>
+          </div>
+          <div class="mp-panel-body">
+            <div class="mp-spec-strip">
+              <div class="mp-spec-item">
+                <b>Nhịp sản xuất 7–11–4</b>
+                7 ngày trong tuần · Tối đa 11 cảnh/dòng mỗi bài · Đi qua đủ 4 định dạng để người xem không bao giờ nhàm mắt.
+              </div>
+              <div class="mp-spec-item">
+                <b>Quay gộp 1 lần 20 phút</b>
+                Cuối câu lệnh AI tự động gom danh sách 10 cảnh thao tác tay cần quay trong 1 buổi để xài chung cho cả 4 bài.
+              </div>
+              <div class="mp-spec-item">
+                <b>Khắc phục lỗi thực tế</b>
+                Không còn cảnh mỗi ngày phải vắt óc nghĩ một chủ đề mới: 1 ca khách thật ngoài tiệm nuôi sống cả tuần nội dung.
+              </div>
+            </div>
+
+            <div class="prompt-card">
+              <div class="prompt-card-head">
+                <span>⚡ CÂU LỆNH MEGAPROMPT #05 — MASTER PIPELINE (ĐÃ GẮN NGỮ CẢNH CỦA BẠN)</span>
+                <div class="prompt-actions">
+                  <button type="button" class="btn-copy-mp" onclick="window.copyMpPrompt(this, 'mp-pre-05')">📋 Sao chép MegaPrompt #05</button>
+                  <a href="https://chatgpt.com" target="_blank" rel="noopener" class="btn-ai-ext">ChatGPT ↗</a>
+                  <a href="https://claude.ai" target="_blank" rel="noopener" class="btn-ai-ext">Claude ↗</a>
+                  <a href="https://gemini.google.com" target="_blank" rel="noopener" class="btn-ai-ext">Gemini ↗</a>
+                </div>
+              </div>
+              <pre class="prompt-pre" id="mp-pre-05">Bạn là Biên kịch Trưởng vận hành MASTER PIPELINE 2.0: Từ MỘT tình huống khách hàng thật vừa gặp hôm nay, bóc tách 1 Lõi Tâm Lý duy nhất và nhân bản thành 4 Kịch Bản Video cho 4 Định Dạng đăng suốt 1 tuần (theo nhịp 7–11–4).
+
+=== THÔNG TIN ĐẦU VÀO ĐÃ BƠM SẴN ===
+• Ngành nghề của tôi: Spa / Dưỡng sinh Đông y &amp; Chăm sóc da
+• Ca khách hàng vừa gặp hôm nay: Khách nằm giường gội dưỡng sinh, hỏi giá gói 10 buổi rồi ngước nhìn đồng hồ treo tường 2 lần và bảo để chị về thu xếp lịch đón cháu.
+• Chế độ vận hành: 1-LƯỢT (TỐC CHIẾN TẠI LỚP)
+
+=== QUY TẮC VẬN HÀNH THEO CHẾ ĐỘ ===
+• NẾU Chế độ = 1-LƯỢT (TỐC CHIẾN TẠI LỚP): Tự khóa Bảng Lõi Tâm Lý 4 Nấc sát ngành nhất và XUẤT TRỌN BỘ 4 kịch bản tuần + Danh sách 10 cảnh B-Roll quay gộp ngay ở lượt đầu tiên.
+• NẾU Chế độ = TRẮC NGHIỆM A/B/C/D (ĐÀO SÂU Ở NHÀ): Hỏi 2 câu trắc nghiệm A/B/C/D (Câu 1: hành vi 5 giây T2 của ca khách này; Câu 2: cái cớ giữ thể diện T2.5 của khách). Chờ tôi gõ &#x27;1A - 2C&#x27; rồi mới xuất trọn bộ 4 kịch bản tuần.
+
+=== ĐẦU RA BẮT BUỘC (ĐÚNG 3 BƯỚC LỚN) ===
+BƯỚC 1 — BẢNG LÕI TÂM LÝ DUY NHẤT (Dùng chung cho cả 4 bài, không đổi sự kiện):
+• T1 (Lời xã giao ngoài miệng) | T2 (Hành vi Camera 5 giây) | T2.5 (Khe hở thể diện) | T3 (Nỗi lo thật sự) | Vật nhỏ làm bằng chứng | Câu Cầu nối Ngữ nghĩa về quy luật nghề.
+
+BƯỚC 2 — 4 KỊCH BẢN ĐĂNG TUẦN THEO CÔNG THỨC 7–11–4 (7 ngày · tối đa 11 cảnh/dòng mỗi bài · 4 định dạng):
+1. THỨ 2 — ĐỊNH DẠNG 01 (VOICE-OVER &amp; THAO TÁC TAY): Xuất Bảng 2 cột (8–10 hàng khớp giây: Giọng đọc có dấu &#x27;/&#x27; | Cảnh thao tác tay Toàn/Trung/Cận) + Âm thanh hiện trường 25–30%.
+2. THỨ 4 — ĐỊNH DẠNG 03 (WALK &amp; TALK HIỆN TRƯỜNG): Xuất Bảng 5 nhịp bước chân tại tiệm/xưởng (Lời thoại 6–10 chữ | Bước chân &amp; Đổi dáng | Đạo cụ trên tay | Điểm cắt trên chuyển động).
+3. THỨ 6 — ĐỊNH DẠNG 04 (TALKING HEAD 2 GÓC MÁY): Xuất 12 dòng ngắn (5–8 chữ/dòng), gắn nhãn [CAM 1], [CAM 2], [Đếm thầm 1-2] và [ĐÈ B-ROLL BẰNG CHỨNG].
+4. CHỦ NHẬT — ĐỊNH DẠNG 02 (STORYTELLING 2.0): Xuất Kịch bản 7 câu có dấu &#x27;/&#x27; ngắt nhịp, đi qua Chiếc khăn lau yên xe, Câu Cầu nối Ngữ nghĩa và Kết để ngỏ (Zero CTA).
+(Mỗi bài kèm 1 dòng Caption TikTok/Reels và 1 tin nhắn Zalo 2 câu gửi khách cũ).
+
+BƯỚC 3 — DANH SÁCH 10 CẢNH B-ROLL QUAY GỘP 1 LẦN TRONG 20 PHÚT:
+• Liệt kê đúng 10 cảnh quay vật thật &amp; thao tác tay tại tiệm (ghi rõ Cỡ cảnh + Động tác tay + Số giây) để tôi cầm điện thoại quay 1 lần duy nhất trong 20 phút là đủ hình dựng cho cả 4 video trong tuần!
+\n</pre>
+            </div>
+
+            <div class="sample-box">
+              <div class="sample-head">
+                <span class="sample-badge">📌 VÍ DỤ ĐẦU RA THỰC TẾ • HỒ SƠ ĐẶNG HƯỜNG (SPA DƯỠNG SINH ĐÔNG Y)</span>
+                <h4 class="sample-title">1 Lõi "Khách nhìn đồng hồ treo tường 2 lần" &rarr; 4 Kịch bản đăng tuần</h4>
+              </div>
+              <div class="sample-body">
+                <p><strong>Bảng Lõi Tâm Lý 4 Nấc:</strong> <code>T1:</code> "Giá liệu trình bên em chị thấy cũng hợp lý" &rarr; <code>T2 (Camera 5s):</code> Khách nằm trên giường ngước nhìn đồng hồ treo tường 2 lần &rarr; <code>T2.5 (Khe hở thể diện):</code> "Chiều chị còn phải về đón cháu sớm" &rarr; <code>T3 (RAW):</code> Lo mua gói 10 buổi rồi bận việc nhà không đi đều được sẽ phí tiền &rarr; <code>Vật bằng chứng:</code> Chiếc khăn thảo dược nóng đang bốc khói trên khay gỗ.</p>
+                <div class="tw">
+                  <table class="t">
+                    <thead>
+                      <tr>
+                        <th>Ngày đăng</th>
+                        <th>Định dạng</th>
+                        <th>Mở đầu &amp; Cấu trúc quay từ cùng 1 lõi</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><strong>Thứ 2</strong></td>
+                        <td><strong>01. Voice-Over &amp; Thao Tác Tay</strong></td>
+                        <td>Quay cận đôi bàn tay vắt khăn thảo dược nóng bốc khói, ấn huyệt vai gáy (10 cảnh &times; 2.5s). Giọng đọc kể chuyện chị khách nhìn đồng hồ 2 lần vì sợ tốn thời gian.</td>
+                      </tr>
+                      <tr>
+                        <td><strong>Thứ 4</strong></td>
+                        <td><strong>03. Walk &amp; Talk Hiện Trường</strong></td>
+                        <td>Bước từ quầy trà thảo mộc vào phòng giường gội (3 điểm dừng). Dừng lại chỉ tay vào chiếc đồng hồ treo tường và thẻ liệu trình không giới hạn hạn sử dụng.</td>
+                      </tr>
+                      <tr>
+                        <td><strong>Thứ 6</strong></td>
+                        <td><strong>04. Talking Head 2 Góc Máy</strong></td>
+                        <td>Ngồi tại bàn tư vấn (14 dòng ngắn 5–8 chữ, đếm nhịp 1-2), bóc tách lý do tiệm chia nhỏ gói 3 buổi lẻ cho các chị bận con cái, đè 70% cảnh gấp khăn &amp; pha trà.</td>
+                      </tr>
+                      <tr>
+                        <td><strong>Chủ Nhật</strong></td>
+                        <td><strong>02. Storytelling 2.0 (Chiều sâu)</strong></td>
+                        <td>Kể lát cắt 40 giây (Phiên bản B) nối từ chuyện bản thân mình ngày xưa đi làm về muộn không dám đi Spa sang quy luật nghề: giữ lịch linh hoạt cho khách.</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- =========================================================
+             PHẦN 04: SƠ ĐỒ PHỐI HỢP TẠI LỚP VS. VỀ NHÀ & BẢNG ĐIỀU HƯỚNG TOÀN HỆ THỐNG
+             ========================================================= -->
+        <h2 id="phan-4"><span class="num">PHẦN 04 / 04</span>Sơ đồ Phối Hợp Tại Lớp (2 Phút) vs. Về Nhà (15 Phút) &amp; Điều Hướng 4 Định Dạng</h2>
+
+        <p>Để học viên không bị ngợp giữa <strong>Khuôn Điền Khuyết 4 Câu</strong> (trên trang giáo án) và <strong>MegaPrompt 2.0</strong> (trên trang này), quy tắc vận hành được phân chia rõ theo hai thời điểm:</p>
+
+        <div class="grid g2">
+          <div class="card" style="border-top:4px solid #ea580c;">
+            <div>
+              <span class="b s" style="--stage:#ea580c">THỜI ĐIỂM 01 • NGAY TẠI LỚP HỌC (2–10 PHÚT)</span>
+              <div class="ct">Ưu tiên Khuôn Điền Khuyết A/B/C/D hoặc MegaPrompt Chế độ 1-Lượt</div>
+              <div class="cd">
+                • <strong>Mục tiêu:</strong> Có ngay 4–6 câu thoại trong 2 phút để cầm điện thoại bấm máy quay tại bàn học.<br>
+                • <strong>Cách làm:</strong> Mở trực tiếp trình bấm chọn A/B/C/D trên trang Giáo án từng định dạng, hoặc chọn <strong>⚡ Chế độ 1-Lượt</strong> ở Thanh Pre-Flight phía trên để lấy kịch bản ngay lập tức.
+              </div>
+            </div>
+          </div>
+
+          <div class="card" style="border-top:4px solid #16a34a;">
+            <div>
+              <span class="b s" style="--stage:#16a34a">THỜI ĐIỂM 02 • KHI VỀ NHÀ / TẠI TIỆM (15–20 PHÚT)</span>
+              <div class="ct">Bật Chế độ Khai vấn Trắc nghiệm A/B/C/D &amp; Master Pipeline #05</div>
+              <div class="cd">
+                • <strong>Mục tiêu:</strong> Từ 1 ca khách hàng vừa gặp trong ngày, đào sâu thành 4 kịch bản đăng suốt cả tuần.<br>
+                • <strong>Cách làm:</strong> Chọn <strong>🧭 Chế độ Trắc nghiệm A/B/C/D</strong> ở Phần 02, copy MegaPrompt #05 dán vào ChatGPT/Claude/Gemini, gõ <code>1A - 2C</code> và quay gộp 10 cảnh B-Roll trong 20 phút.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <h3>Bảng điều hướng toàn hệ thống Giáo án &amp; Slide 4 Định dạng chủ lực</h3>
+        <div class="grid g2">
+          <div class="card">
+            <div>
+              <span class="b dark">ĐỊNH DẠNG 01</span>
+              <div class="ct">Voice-Over &amp; Thao Tác Tay 3.0</div>
+              <div class="cd">Giấu mặt 100%, thu âm trước, băm 10–12 cảnh thao tác tay Toàn – Trung – Cận (Mồi cảnh – Băm cảnh – Chuyển cảnh nối).</div>
+            </div>
+            <div class="cf">
+              <a href="voiceover3.0.html" class="go">Giáo án Voice-Over 3.0</a>
+              <a href="voiceover3_slides.html" class="go">Bộ 17 Slides Bục Giảng</a>
+              <a href="#tab-01" onclick="window.switchMpTab('tab-01')" class="go">MegaPrompt #01</a>
+            </div>
+          </div>
+
+          <div class="card">
+            <div>
+              <span class="b dark">ĐỊNH DẠNG 02</span>
+              <div class="ct">Storytelling 2.0 — Lát Cắt 5 Giây &amp; T2.5</div>
+              <div class="cd">Lộ mặt 25–30% + 70–75% B-Roll hành động thực tế. Đi qua Khe hở thể diện T2.5 (Chiếc khăn lau yên xe &amp; Gương lõm).</div>
+            </div>
+            <div class="cf">
+              <a href="storytelling2.0.html" class="go">Giáo án Storytelling 2.0</a>
+              <a href="storytelling2_slides.html" class="go">Bộ 14 Slides Bục Giảng</a>
+              <a href="#tab-02" onclick="window.switchMpTab('tab-02')" class="go">MegaPrompt #02</a>
+            </div>
+          </div>
+
+          <div class="card">
+            <div>
+              <span class="b dark">ĐỊNH DẠNG 03</span>
+              <div class="ct">Walk &amp; Talk 2.0 — Hiện Trường &amp; Đổi Dáng</div>
+              <div class="cd">Vừa đi vừa nói tại cơ sở làm nghề thật, mỗi câu thoại = 1 điểm dừng hoặc 1 lần đổi dáng (Cut on Action) + chỉ tay vật thật.</div>
+            </div>
+            <div class="cf">
+              <a href="walkntalk2.0.html" class="go">Giáo án Walk &amp; Talk 2.0</a>
+              <a href="walkntalk2.0.html#sec-2" class="go">5 Slides Dẫn Nhập</a>
+              <a href="#tab-03" onclick="window.switchMpTab('tab-03')" class="go">MegaPrompt #03</a>
+            </div>
+          </div>
+
+          <div class="card">
+            <div>
+              <span class="b dark">ĐỊNH DẠNG 04</span>
+              <div class="ct">Talking Head 2 Góc Máy — Đếm Nhịp 1-2</div>
+              <div class="cd">Ngồi bàn cách máy 1 sải tay, đọc từng dòng ngắn 5–8 chữ kết hợp đếm thầm 1-2 và phủ 70–80% B-Roll bằng chứng.</div>
+            </div>
+            <div class="cf">
+              <a href="walkntalk2.0.html#sec-3" class="go">Kỹ thuật Đếm nhịp 1-2</a>
+              <a href="talkinghead.html" class="go">Giáo án Talking Head</a>
+              <a href="#tab-04" onclick="window.switchMpTab('tab-04')" class="go">MegaPrompt #04</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="actions">
+          <a class="btn" href="storytelling2_slides.html">🖥️ Mở Slide Storytelling 2.0 (14 Slides)</a>
+          <a class="btn sec" href="voiceover3_slides.html">🖥️ Mở Slide Voice-Over 3.0 (17 Slides)</a>
+          <a class="btn sec" href="walkntalk2.0.html">🚶 Mở Giáo Án Walk &amp; Talk + Talking Head 2.0</a>
+          <a class="btn sec" href="congthucstorytelling.html">📂 Xem lại Bản 1.0 Cũ</a>
+        </div>
+
+        <div class="foot">
+          © VIDEO SYSTEM — Trung Tâm MegaPrompt 2.0 (Đồng bộ 4 Định dạng chủ lực: Voice-Over · Storytelling 2.0 · Walk &amp; Talk · Talking Head 2 Góc Máy).
+        </div>
+
+      </div>
+    </main>
+
+    <aside class="toc">
+      <h6>Trên trang này (MegaPrompt 2.0)</h6>
+      <nav class="otp" id="auto-toc">
+        <a href="#phan-1">01. Chẩn đoán 5 điểm nghẽn 1.0</a>
+        <a href="#phan-2">02. Thanh Bơm Ngữ Cảnh 10s</a>
+        <a href="#phan-3">03. Bộ 4+1 MegaPrompt 2.0</a>
+        <a href="#tab-01" onclick="window.switchMpTab('tab-01')" style="padding-left:22px;font-size:12px;">• #01: Voice-Over 2.0</a>
+        <a href="#tab-02" onclick="window.switchMpTab('tab-02')" style="padding-left:22px;font-size:12px;">• #02: Storytelling 2.0</a>
+        <a href="#tab-03" onclick="window.switchMpTab('tab-03')" style="padding-left:22px;font-size:12px;">• #03: Walk &amp; Talk 2.0</a>
+        <a href="#tab-04" onclick="window.switchMpTab('tab-04')" style="padding-left:22px;font-size:12px;">• #04: Talking Head 2 Cam</a>
+        <a href="#tab-05" onclick="window.switchMpTab('tab-05')" style="padding-left:22px;font-size:12px;">• #05: Master 1 Lõi &rarr; 4 Bài</a>
+        <a href="#phan-4">04. Phối hợp Tại Lớp vs. Về Nhà</a>
+      </nav>
+    </aside>
+  </div>
+
+  <script>
+    var pfSamplesByIndustry = [
+      // 0: Spa
+      [
+        "Khách nằm giường gội dưỡng sinh, hỏi giá gói 10 buổi rồi ngước nhìn đồng hồ treo tường 2 lần và bảo để chị về thu xếp lịch đón cháu.",
+        "Khách soi da xong cứ lấy tay che vết nám hai bên gò má, bảo đợt này chị bận quá nên chỉ bôi kem chống nắng qua loa.",
+        "Khách nhắn tin hỏi trị mụn có bị bong tróc đỏ mặt không vì tuần sau chị phải đi dự đám cưới đứa cháu."
+      ],
+      // 1: Nội thất / Đá bếp
+      [
+        "Khách kéo thước dây kiểm tra tấm đá bếp dài 3m12, thấy cửa thang máy chỉ cao 3m10 liền hỏi thợ hay là cắt đôi tấm đá ra ghép lại cho dễ vận chuyển.",
+        "Chủ nhà đứng trong căn bếp thô, gõ tay vào vách gỗ công nghiệp rồi bảo anh sợ dùng hai năm nước ngấm chỗ chậu rửa bị phồng rộp.",
+        "Khách cầm bảng báo giá tủ bếp, nhìn kỹ cột phụ kiện bản lề rồi bảo để anh về bàn lại với bà xã xem có bớt được hạng mục nào không."
+      ],
+      // 2: Thực phẩm / Men Mộc An
+      [
+        "Khách nhắn hỏi hũ mật ong lên men chanh gừng uống vào có bị nóng bụng không rồi chỉ dám đặt đúng 1 gói nhỏ nhất để thử trước.",
+        "Khách chụp ảnh hũ men đang ngâm ở nhà có lớp bọt trắng mỏng trên mặt, lo lắng nhắn hỏi em ơi có phải bị hỏng rồi không.",
+        "Khách mua hũ kháng sinh tự nhiên cho mẹ lớn tuổi nhưng dặn đi dặn lại là đừng ghi giá tiền lên vỏ hộp kẻo bà tiếc tiền không chịu uống."
+      ],
+      // 3: Thời trang
+      [
+        "Khách mặc thử chiếc đầm lụa trong phòng thử đồ bước ra, cứ lấy tay kéo nhẹ phần eo rồi mỉm cười bảo để chị về hỏi ý kiến chồng.",
+        "Khách cầm chiếc áo sơ mi lên ướm trước gương 3 lần, tay khẽ lật tìm chiếc mác giá giấu sau cổ áo rồi đặt xuống kệ.",
+        "Khách nhắn tin hỏi mẫu quần tây này giặt máy có bị nhăn đầu gối không vì sáng nào chị cũng vội đưa con đi học không kịp ủi đồ."
+      ],
+      // 4: Salon Tóc
+      [
+        "Khách ngồi xuống ghế làm tóc là lấy tay che phần đuôi tóc khô xơ, bảo đợt này chị bận quá nên gội đại dầu gội ở nhà cho nhanh.",
+        "Khách đưa tấm ảnh mẫu tóc uốn sóng lơi trên mạng nhưng dặn thợ là đừng cắt ngắn của chị phân nào vì sợ mặt tròn.",
+        "Khách hỏi giá gói phục hồi tóc xong ngập ngừng bảo hôm nay chị cắt tỉa chân tóc trước đã, cuối tháng lĩnh lương chị qua làm sau."
+      ],
+      // 5: Bảo hiểm
+      [
+        "Khách mở tập hồ sơ xem bảng minh họa dòng tiền tới trang thứ tư thì gập sổ lại bảo để chị về bàn thêm với anh ở nhà nhưng tay vẫn xoay cây bút.",
+        "Khách hỏi đóng gói bảo hiểm này mười năm rút ra có lãi bằng gửi ngân hàng không, nhưng mắt lại dừng rất lâu ở trang quyền lợi nằm viện.",
+        "Khách kể bạn chị năm ngoái đi viện không được thanh toán nên giờ nhìn thấy hợp đồng dày nhiều chữ là chị ngại đọc."
+      ],
+      // 6: Vật tư nông nghiệp / Xưởng
+      [
+        "Bác nông dân cầm bao phân bón lên đọc thành phần, thở dài bảo đợt trước phun đủ thứ thuốc mà lá sầu riêng vẫn bị cháy rìa.",
+        "Khách ghé cửa hàng vật tư hỏi mua loại thuốc nào rẻ nhất để xịt cầm chừng vì sợ năm nay giá nông sản xuống thấp không thu hồi nổi vốn.",
+        "Khách đặt gia công tại xưởng cứ hỏi đi hỏi lại xem nếu làm lô nhỏ 50 chiếc thì xưởng có dùng đúng loại vật liệu dày như mẫu không."
+      ],
+      // 7: Đào tạo / Dịch vụ chuyên môn
+      [
+        "Học viên nhắn tin lúc 11 giờ đêm bảo em làm nghề 10 năm rất vững tay nghề nhưng mỗi lần bật camera điện thoại lên là xóa bản nháp không dám đăng.",
+        "Khách hàng hỏi lộ trình tư vấn xong bảo để em đợi qua đợt bận cuối quý này rồi em mới bắt đầu sắp xếp thời gian học.",
+        "Học viên quay xong video đầu tiên gửi vào nhóm nhưng nhắn kèm một câu là thầy xem riêng giúp em thôi chứ em ngại người quen đọc thấy."
+      ]
+    ];
+
+    var currentIndustryIdx = 0;
+    var currentSituationIdx = 0;
+    var currentMode = "1-LƯỢT (TỐC CHIẾN TẠI LỚP)";
+    var showAllTabs = false;
+
+    function buildPrompt01(ind, sit, mode) {
+      return [
+        "Bạn là biên kịch video ngắn Định dạng 01: VOICE-OVER & THAO TÁC TAY 2.0 (Tách hình khỏi tiếng, người làm nghề giấu mặt 100%, chỉ quay đôi bàn tay làm việc và sản phẩm thật).",
+        "",
+        "=== THÔNG TIN ĐẦU VÀO ĐÃ BƠM SẴN ===",
+        "• Ngành nghề của tôi: " + ind,
+        "• Tình huống thực tế vừa gặp: " + sit,
+        "• Chế độ vận hành: " + mode,
+        "",
+        "=== QUY TẮC VẬN HÀNH THEO CHẾ ĐỘ ===",
+        "• NẾU Chế độ = 1-LƯỢT (TỐC CHIẾN TẠI LỚP): Hãy tự suy luận hành vi T2 (nhìn thấy bằng camera trong 5 giây) và cái cớ giữ thể diện T2.5 sát với ngành nghề trên nhất, sau đó XUẤT NGAY trọn bộ kịch bản ở lượt đầu tiên. Cuối bài ghi 2 dòng 'Giả định thực tế em đã chọn giúp anh/chị'.",
+        "• NẾU Chế độ = TRẮC NGHIỆM A/B/C/D (ĐÀO SÂU Ở NHÀ): Ở lượt đầu tiên, chỉ hỏi đúng 2 câu trắc nghiệm sát ngành nghề trên (Câu 1: 4 phương án A/B/C/D về cử chỉ tay chân T2 của khách; Câu 2: 4 phương án A/B/C/D về câu nói ngoài miệng/cái cớ giữ thể diện T2.5 của khách). Dừng lại chờ tôi gõ '1A - 2C' rồi mới xuất kịch bản.",
+        "",
+        "=== QUY TẮC VĂN PHONG BẮT BUỘC (CHUẨN MỘC MẠC CỦA NGƯỜI LÀM NGHỀ) ===",
+        "1. Xưng 'em' (hoặc 'mình'), nói như hai người làm nghề trò chuyện tại bàn làm việc. Không giảng đạo lý, không đứng bề trên dạy bảo khách.",
+        "2. Tuyệt đối KHÔNG dùng từ ngữ khoa trương, đao to búa lớn, không dùng tính từ cảm xúc trừu tượng ở phần hình ảnh (như 'ánh mắt chân thành', 'khựng lại trầm ngâm', 'thở phào bình thản').",
+        "3. Mọi chi tiết hình ảnh bắt buộc phải quay được ngay bằng điện thoại thông thường theo công thức: [Vật cụ thể] + [Động tác bàn tay] + [Cỡ cảnh: Toàn / Trung / Cận] + [Số giây].",
+        "",
+        "=== ĐẦU RA BẮT BUỘC (ĐÚNG 5 KHỐI) ===",
+        "KHỐI 1 — BẢNG GIẢI PHẪU 4 NẤC TÂM LÝ (Mỗi nấc 1 dòng sắc gọn):",
+        "• Nấc 1 (T1 - Lời xã giao ngoài miệng):",
+        "• Nấc 2 (T2 - Cử chỉ nhìn thấy trong 5 giây qua camera):",
+        "• Nấc 3 (T2.5 - Cái cớ khách tự nói để giữ thể diện):",
+        "• Nấc 4 (T3 - Nỗi lo thật sự bên trong của khách, diễn tả bằng 1 việc nhỏ):",
+        "",
+        "KHỐI 2 — BẢNG KỊCH BẢN 2 CỘT KHỚP GIÂY (10–12 hàng, mỗi hàng 2–2.5 giây, tổng 25–30 giây):",
+        "• Cột 1 (Thứ tự & Giây): Hàng 01 đến Hàng 10–12.",
+        "• Cột 2 (GIỌNG ĐỌC THU ÂM TRƯỚC): Mỗi hàng 8–10 chữ, đặt dấu '/' ở cuối mỗi nhịp nghỉ hơi để người đọc không bị hụt hơi.",
+        "• Cột 3 (CẢNH QUAY THAO TÁC TAY): Đi theo đúng cấu trúc 3 tầng lớp: Hàng 1–2 là MỒI CẢNH (cận cảnh thao tác tay bắt mắt nhất) -> Hàng 3–9 là BĂM CẢNH (luân phiên Toàn / Trung / Cận đôi bàn tay làm nghề) -> Hàng 10–12 là CHUYỂN CẢNH NỐI & KẾT.",
+        "",
+        "KHỐI 3 — BẢN PHỐI ÂM THANH 3 LỚP (VOICE-SAFE):",
+        "• Lớp 1 (Giọng đọc thu riêng trong phòng kín): 100% âm lượng.",
+        "• Lớp 2 (Tiếng động hiện trường thu thật lúc làm): Liệt kê rõ 3–4 tiếng động thật của ngành này (tiếng dao thớt, tiếng kéo, tiếng lật giấy, tiếng rót nước...) giữ ở mức 25–30%.",
+        "• Lớp 3 (Nhạc nền không lời): Giữ dưới 8% để làm ấm khoảng nghỉ.",
+        "",
+        "KHỐI 4 — CÂU CẦU NỐI NGỮ NGHĨA VỀ QUY LUẬT NGHỀ (Đặt ở Hàng 9–10 trước khi kết):",
+        "• Viết 1 câu theo đúng khuôn: 'Chuyện này cho em một quy luật trong nghề: ...' nối từ hành vi của khách về tiêu chuẩn làm nghề đàng hoàng của tiệm. Câu cuối kết để ngỏ, không hô hào mua hàng.",
+        "",
+        "KHỐI 5 — ĐẦU RA TIKTOK / REELS & TIN NHẮN ZALO KHÁCH CŨ:",
+        "• Caption TikTok / Facebook Reels (1 dòng ngắn gợi tò mò):",
+        "• Tin nhắn Zalo 2 câu gửi riêng cho khách cũ (nhắc lại tự nhiên chi tiết ở Nấc T2 để hỏi thăm, không gửi tin quảng cáo đại trà)."
+      ].join("\n");
+    }
+
+    function buildPrompt02(ind, sit, mode) {
+      return [
+        "Bạn là biên kịch video ngắn Định dạng 02: STORYTELLING 2.0 (Kể lát cắt 5 giây & Giữ thể diện cho người xem qua Nấc T2.5 - Chiếc khăn lau yên xe).",
+        "",
+        "=== THÔNG TIN ĐẦU VÀO ĐÃ BƠM SẴN ===",
+        "• Ngành nghề của tôi: " + ind,
+        "• Tình huống thực tế vừa gặp: " + sit,
+        "• Chế độ vận hành: " + mode,
+        "",
+        "=== QUY TẮC VẬN HÀNH THEO CHẾ ĐỘ ===",
+        "• NẾU Chế độ = 1-LƯỢT (TỐC CHIẾN TẠI LỚP): Tự chọn hành vi T2 (5 giây) và cái cớ giữ thể diện T2.5 sát nghề nhất, XUẤT NGAY trọn bộ đầu ra bên dưới. Cuối bài ghi 2 dòng 'Giả định thực tế em đã chọn'.",
+        "• NẾU Chế độ = TRẮC NGHIỆM A/B/C/D (ĐÀO SÂU Ở NHÀ): Hỏi đúng 2 câu trắc nghiệm A/B/C/D sát ngành (Câu 1: cử chỉ 5 giây của khách ở Nấc T2; Câu 2: cái cớ giữ mặt mũi của khách ở Nấc T2.5). Chờ tôi gõ '1A - 2C' rồi mới xuất kịch bản.",
+        "",
+        "=== QUY TẮC CỐT LÕI CỦA STORYTELLING 2.0 ===",
+        "1. Chỉ kể một lát cắt diễn ra trong đúng 5 giây ngoài đời thực (một động tác tay, một câu nói ngập ngừng), không kể lê thê cả buổi.",
+        "2. Giữ thể diện cho khách (Chiếc khăn lau yên xe) + Cùng chỗ đứng (Gương lõm: 'Hồi trước em cũng từng...'): Tuyệt đối không phán xét, không chỉ tay bắt lỗi làm khách tự ái.",
+        "3. Tỷ lệ hình ảnh: 25–30% A-Roll lộ mặt (chỉ xuất hiện ở câu chuyển T2.5 hoặc câu chốt nghề) + 70–75% B-Roll quay vật thật và thao tác tay.",
+        "",
+        "=== ĐẦU RA BẮT BUỘC (ĐÚNG 5 KHỐI) ===",
+        "KHỐI 1 — BẢNG GIẢI PHẪU 4 NẤC & VẬT NHỎ LÀM BẰNG CHỨNG:",
+        "• T1 (Lời xã giao ngoài miệng):",
+        "• T2 (Camera 5 giây - Cử chỉ nhìn thấy được):",
+        "• T2.5 (Khe hở thể diện - Cái cớ hợp lý giúp khách giữ mặt mũi):",
+        "• T3 (Nỗi lo thật sự giấu bên trong):",
+        "• Vật nhỏ làm bằng chứng (1 đồ vật cụ thể đặt trên bàn/trong tiệm dùng làm mỏ neo hình ảnh):",
+        "",
+        "KHỐI 2 — PHIÊN BẢN A: KHUÔN 4 CÂU NGẮN (15–20 GIÂY, QUAY NGAY TẠI BÀN HỌC):",
+        "• Câu 1 (B-Roll - Nấc T2): Mở bằng động tác 5 giây của khách hoặc của mình.",
+        "• Câu 2 (B-Roll - Nấc T2.5): Nêu cái cớ giữ thể diện một cách bao dung.",
+        "• Câu 3 (A-Roll Lộ mặt - Gương lõm & Nấc T3): Nhìn ống kính nói nhẹ nhàng về nỗi lo thật sự đằng sau.",
+        "• Câu 4 (B-Roll kết A-Roll - Chiếc khăn lau yên xe): Một hành động nhỏ tinh tế của người làm nghề để tháo gỡ cho khách.",
+        "",
+        "KHỐI 3 — PHIÊN BẢN B: KỊCH BẢN 7 CÂU ĐẦY ĐỦ (35–40 GIÂY, CÓ DẤU '/' NGẮT HƠI):",
+        "• Viết 7 câu hoàn chỉnh (~110–130 chữ). Trong đó Câu 5–6 BẮT BUỘC là CÂU CẦU NỐI NGỮ NGHĨA theo khuôn: 'Chuyện này cho em một quy luật trong nghề: ...' để nối chặt câu chuyện đời thường về tiêu chuẩn sản phẩm/dịch vụ.",
+        "• Câu 7 kết để ngỏ (Zero CTA), để người xem tự suy ngẫm, không kêu gọi mua hàng.",
+        "",
+        "KHỐI 4 — BẢNG PHÂN CẢNH VẬT LÝ (25–30% A-ROLL + 70–75% B-ROLL):",
+        "• Liệt kê từng cảnh khớp với Phiên bản B theo đúng công thức: [Vật cụ thể + Động tác tay + Cỡ cảnh Toàn/Trung/Cận + Số giây]. Cấm dùng tính từ cảm xúc.",
+        "",
+        "KHỐI 5 — ĐẦU RA TIKTOK / REELS & TIN NHẮN ZALO KHÁCH CŨ:",
+        "• Caption TikTok / Reels 1 dòng:",
+        "• Tin nhắn Zalo 2 câu gửi riêng cho khách cũ (nhắc lại chi tiết Vật nhỏ làm bằng chứng để mở lời tự nhiên)."
+      ].join("\n");
+    }
+
+    function buildPrompt03(ind, sit, mode) {
+      return [
+        "Bạn là biên kịch video ngắn Định dạng 03: WALK & TALK 2.0 (Vừa đi vừa nói tại hiện trường làm nghề thật, đổi dáng theo nhịp cắt Cut-on-Action).",
+        "",
+        "=== THÔNG TIN ĐẦU VÀO ĐÃ BƠM SẴN ===",
+        "• Ngành nghề của tôi: " + ind,
+        "• Tình huống thực tế vừa gặp: " + sit,
+        "• Chế độ vận hành: " + mode,
+        "",
+        "=== QUY TẮC VẬN HÀNH THEO CHẾ ĐỘ ===",
+        "• NẾU Chế độ = 1-LƯỢT (TỐC CHIẾN TẠI LỚP): Tự chọn địa điểm hiện trường hợp với nghề nhất (tiệm, xưởng, công trình, phòng làm việc, vườn...) cùng T2 & T2.5, XUẤT NGAY kịch bản. Cuối bài ghi 2 dòng 'Giả định thực tế em đã chọn'.",
+        "• NẾU Chế độ = TRẮC NGHIỆM A/B/C/D (ĐÀO SÂU Ở NHÀ): Hỏi 2 câu trắc nghiệm A/B/C/D (Câu 1: bối cảnh hiện trường & hành vi T2; Câu 2: cái cớ T2.5 & chi tiết đắt giá cần chỉ tay). Chờ tôi gõ '1A - 2C' rồi mới xuất kịch bản.",
+        "",
+        "=== QUY TẮC CỐT LÕI CỦA WALK & TALK 2.0 ===",
+        "1. Không ai quay liền một mạch 60 giây: Kịch bản chia thành 5–6 nhịp ngắn. Mỗi nhịp chỉ dài 6–10 chữ (nói gọn trong 3–5 giây). Vấp ở nhịp nào, đứng tại chỗ nói lại đúng nhịp đó.",
+        "2. Mỗi câu thoại = 1 điểm dừng hoặc 1 lần đổi hướng cơ thể (Cut on Action). Hai bàn tay luôn bận cầm đồ nghề thật hoặc chỉ thẳng vào chi tiết thật tại hiện trường.",
+        "",
+        "=== ĐẦU RA BẮT BUỘC (ĐÚNG 4 KHỐI) ===",
+        "KHỐI 1 — SƠ ĐỒ LỘ TRÌNH 3 ĐIỂM DỪNG TẠI HIỆN TRƯỜNG:",
+        "• Điểm A (Mở màn mồi mắt): Đứng ở đâu, tay đang cầm dụng cụ gì?",
+        "• Điểm B (Di chuyển & Nêu tình huống T2 / T2.5): Đi bộ mấy bước về phía nào?",
+        "• Điểm C (Dừng chân chỉ tay vào Bằng chứng đắt giá & Chốt nghề): Chỉ tay vào chi tiết kỹ thuật/vật thật nào mà người ngoài nhìn qua không biết?",
+        "",
+        "KHỐI 2 — BẢNG KỊCH BẢN 5–6 NHỊP BƯỚC CHÂN (Trình bày dạng bảng 5 cột rõ ràng):",
+        "• Cột 1: Nhịp (Nhịp 01 đến Nhịp 06).",
+        "• Cột 2: LỜI THOẠI (6–10 chữ mỗi nhịp, có dấu '/' ngắt hơi, câu chữ mộc mạc như đang dẫn khách đi xem tiệm).",
+        "• Cột 3: BƯỚC CHÂN & ĐỔI DÁNG (Bước vào / Đi dọc hành lang / Dừng lại xoay người 45 độ / Ngồi xuống cạnh sản phẩm...).",
+        "• Cột 4: ĐẠO CỤ & VẬT THẬT TRÊN TAY (Cầm thước dây, mở cánh cửa, lật khay nguyên liệu, chỉ tay vào mối ghép...).",
+        "• Cột 5: ĐIỂM CẮT TRÊN CHUYỂN ĐỘNG (Chỉ rõ khoảnh khắc cắt trên CapCut ngay khi tay vừa nắm vào vật hoặc chân vừa dừng để giấu vết ghép).",
+        "",
+        "KHỐI 3 — CÂU CẦU NỐI NGỮ NGHĨA VỀ QUY LUẬT NGHỀ:",
+        "• Đặt ở Nhịp 05–06 theo khuôn: 'Chuyện này cho em một quy luật trong nghề: ...' gắn liền với chi tiết vật thật vừa chỉ tay. Kết để ngỏ.",
+        "",
+        "KHỐI 4 — ĐẦU RA TIKTOK / REELS & TIN NHẮN ZALO KHÁCH CŨ:",
+        "• Caption TikTok / Reels 1 dòng:",
+        "• Tin nhắn Zalo 2 câu gửi riêng cho khách cũ."
+      ].join("\n");
+    }
+
+    function buildPrompt04(ind, sit, mode) {
+      return [
+        "Bạn là biên kịch video ngắn Định dạng 04: TALKING HEAD 2 GÓC MÁY 2.0 (Ngồi tại bàn làm việc cách máy 1 sải tay, đọc theo bản tách từng dòng ngắn 5–8 chữ kết hợp Đếm nhịp 1-2 và phủ 70% B-Roll bằng chứng).",
+        "",
+        "=== THÔNG TIN ĐẦU VÀO ĐÃ BƠM SẴN ===",
+        "• Ngành nghề của tôi: " + ind,
+        "• Tình huống thực tế vừa gặp: " + sit,
+        "• Chế độ vận hành: " + mode,
+        "",
+        "=== QUY TẮC VẬN HÀNH THEO CHẾ ĐỘ ===",
+        "• NẾU Chế độ = 1-LƯỢT (TỐC CHIẾN TẠI LỚP): Tự chọn góc nhìn đắt nhất (Người làm nghề thú nhận hoặc Đọc vị điều khách đang giấu) sát với tình huống trên và XUẤT NGAY kịch bản tách dòng. Cuối bài ghi 2 dòng 'Giả định thực tế em đã chọn'.",
+        "• NẾU Chế độ = TRẮC NGHIỆM A/B/C/D (ĐÀO SÂU Ở NHÀ): Đưa ra 4 góc nhìn A/B/C/D (Góc A & B: 2 điều người làm nghề thật lòng thú nhận để bảo vệ khách; Góc C & D: 2 suy nghĩ thầm kín khách đang cân nhắc khi cầm bảng giá/sản phẩm). Chờ tôi chọn 1 chữ cái A/B/C/D rồi mới xuất kịch bản.",
+        "",
+        "=== QUY TẮC CỐT LÕI CỦA TALKING HEAD 2 GÓC MÁY 2.0 ===",
+        "1. Bản đọc từng dòng ngắn (Mỗi câu một dòng): Tuyệt đối KHÔNG viết thành đoạn văn dài. Chia kịch bản thành 12–16 dòng riêng biệt. Mỗi dòng chỉ dài 5–8 chữ (vừa khít 1 hơi thở) để người quay nhìn lướt 1 giây là nạp được vào đầu, không bao giờ phải học thuộc lòng.",
+        "2. Quy tắc Đếm nhịp 1-2 an toàn: Trước khi nói và sau khi dứt chữ cuối của mỗi dòng, người nói ngậm miệng nhìn thẳng ống kính đếm thầm '1 - 2' rồi mới cúi xuống xem dòng tiếp theo (giúp lúc cắt trên CapCut không bao giờ bị cụt chữ).",
+        "3. Phủ 70–80% B-Roll bằng chứng trên bàn: Đan xen giữa [CAM 1 - 0° Trung cảnh], [CAM 2 - 45° Cận cảnh] và [ĐÈ B-ROLL BẰNG CHỨNG] quay cận tay cầm sổ, bút, mẫu vật ngay trên bàn làm việc.",
+        "",
+        "=== ĐẦU RA BẮT BUỘC (ĐÚNG 4 KHỐI) ===",
+        "KHỐI 1 — GIẢI PHẪU NHANH 4 NẤC & ĐẠO CỤ ĐẶT TRÊN BÀN:",
+        "• T1, T2 (5 giây), T2.5 (Cái cớ giữ thể diện), T3 (Nỗi lo thật):",
+        "• 2 đạo cụ thật cần bày sẵn trên mặt bàn làm việc trước khi bấm máy:",
+        "",
+        "KHỐI 2 — BẢNG KỊCH BẢN TÁCH DÒNG 12–16 DÒNG (4 cột rõ ràng):",
+        "• Cột 1: Số dòng (Dòng 01 đến Dòng 14–16).",
+        "• Cột 2: LỜI THOẠI TÁCH DÒNG (Mỗi dòng đúng 5–8 chữ, ngôn từ mộc mạc, đĩnh đạc).",
+        "• Cột 3: NHÃN GÓC MÁY & NHỊP ĐẾM (Ghi rõ [CAM 1 - 0° Trung cảnh] + [Đếm thầm 1-2] cho câu mở/chốt; [CAM 2 - 45° Cận cảnh] + [Đếm thầm 1-2] cho câu T2.5 và T3).",
+        "• Cột 4: CẢNH B-ROLL ĐÈ LÊN (Chiếm 70% số dòng: ghi rõ Vật cụ thể trên bàn + Động tác tay + Cỡ cảnh + Số giây; 0 tính từ cảm xúc).",
+        "",
+        "KHỐI 3 — CÂU CẦU NỐI NGỮ NGHĨA & 3 DÒNG NHẮC ĐẶT MÁY TẠI BÀN:",
+        "• Câu Cầu nối Ngữ nghĩa ở Dòng áp chót ('Chuyện này cho em một quy luật trong nghề: ...').",
+        "• 3 dòng nhắc trước khi bấm máy: (1) Khoảng cách máy 1 sải tay ngang tầm mắt; (2) Ánh sáng chếch 45 độ; (3) Đếm thầm 1-2 trước và sau mỗi dòng.",
+        "",
+        "KHỐI 4 — ĐẦU RA TIKTOK / REELS & TIN NHẮN ZALO KHÁCH CŨ:",
+        "• Caption TikTok / Reels 1 dòng:",
+        "• Tin nhắn Zalo 2 câu gửi riêng cho khách cũ."
+      ].join("\n");
+    }
+
+    function buildPrompt05(ind, sit, mode) {
+      return [
+        "Bạn là Biên kịch Trưởng vận hành MASTER PIPELINE 2.0: Từ MỘT tình huống khách hàng thật vừa gặp hôm nay, bóc tách 1 Lõi Tâm Lý duy nhất và nhân bản thành 4 Kịch Bản Video cho 4 Định Dạng đăng suốt 1 tuần (theo nhịp 7–11–4).",
+        "",
+        "=== THÔNG TIN ĐẦU VÀO ĐÃ BƠM SẴN ===",
+        "• Ngành nghề của tôi: " + ind,
+        "• Ca khách hàng vừa gặp hôm nay: " + sit,
+        "• Chế độ vận hành: " + mode,
+        "",
+        "=== QUY TẮC VẬN HÀNH THEO CHẾ ĐỘ ===",
+        "• NẾU Chế độ = 1-LƯỢT (TỐC CHIẾN TẠI LỚP): Tự khóa Bảng Lõi Tâm Lý 4 Nấc sát ngành nhất và XUẤT TRỌN BỘ 4 kịch bản tuần + Danh sách 10 cảnh B-Roll quay gộp ngay ở lượt đầu tiên.",
+        "• NẾU Chế độ = TRẮC NGHIỆM A/B/C/D (ĐÀO SÂU Ở NHÀ): Hỏi 2 câu trắc nghiệm A/B/C/D (Câu 1: hành vi 5 giây T2 của ca khách này; Câu 2: cái cớ giữ thể diện T2.5 của khách). Chờ tôi gõ '1A - 2C' rồi mới xuất trọn bộ 4 kịch bản tuần.",
+        "",
+        "=== ĐẦU RA BẮT BUỘC (ĐÚNG 3 BƯỚC LỚN) ===",
+        "BƯỚC 1 — BẢNG LÕI TÂM LÝ DUY NHẤT (Dùng chung cho cả 4 bài, không đổi sự kiện):",
+        "• T1 (Lời xã giao ngoài miệng) | T2 (Hành vi Camera 5 giây) | T2.5 (Khe hở thể diện) | T3 (Nỗi lo thật sự) | Vật nhỏ làm bằng chứng | Câu Cầu nối Ngữ nghĩa về quy luật nghề.",
+        "",
+        "BƯỚC 2 — 4 KỊCH BẢN ĐĂNG TUẦN THEO CÔNG THỨC 7–11–4 (7 ngày · tối đa 11 cảnh/dòng mỗi bài · 4 định dạng):",
+        "1. THỨ 2 — ĐỊNH DẠNG 01 (VOICE-OVER & THAO TÁC TAY): Xuất Bảng 2 cột (8–10 hàng khớp giây: Giọng đọc có dấu '/' | Cảnh thao tác tay Toàn/Trung/Cận) + Âm thanh hiện trường 25–30%.",
+        "2. THỨ 4 — ĐỊNH DẠNG 03 (WALK & TALK HIỆN TRƯỜNG): Xuất Bảng 5 nhịp bước chân tại tiệm/xưởng (Lời thoại 6–10 chữ | Bước chân & Đổi dáng | Đạo cụ trên tay | Điểm cắt trên chuyển động).",
+        "3. THỨ 6 — ĐỊNH DẠNG 04 (TALKING HEAD 2 GÓC MÁY): Xuất 12 dòng ngắn (5–8 chữ/dòng), gắn nhãn [CAM 1], [CAM 2], [Đếm thầm 1-2] và [ĐÈ B-ROLL BẰNG CHỨNG].",
+        "4. CHỦ NHẬT — ĐỊNH DẠNG 02 (STORYTELLING 2.0): Xuất Kịch bản 7 câu có dấu '/' ngắt nhịp, đi qua Chiếc khăn lau yên xe, Câu Cầu nối Ngữ nghĩa và Kết để ngỏ (Zero CTA).",
+        "(Mỗi bài kèm 1 dòng Caption TikTok/Reels và 1 tin nhắn Zalo 2 câu gửi khách cũ).",
+        "",
+        "BƯỚC 3 — DANH SÁCH 10 CẢNH B-ROLL QUAY GỘP 1 LẦN TRONG 20 PHÚT:",
+        "• Liệt kê đúng 10 cảnh quay vật thật & thao tác tay tại tiệm (ghi rõ Cỡ cảnh + Động tác tay + Số giây) để tôi cầm điện thoại quay 1 lần duy nhất trong 20 phút là đủ hình dựng cho cả 4 video trong tuần!"
+      ].join("\n");
+    }
+
+    window.updateAllPrompts = function() {
+      var indEl = document.getElementById("pf-industry-input");
+      var sitEl = document.getElementById("pf-situation-input");
+      var ind = (indEl && indEl.value.trim()) ? indEl.value.trim() : "Chủ tiệm / Người làm nghề thực tế";
+      var sit = (sitEl && sitEl.value.trim()) ? sitEl.value.trim() : "Khách hỏi giá xong bảo để chị về hỏi ý kiến gia đình rồi nhắn lại";
+
+      var p1 = document.getElementById("mp-pre-01");
+      var p2 = document.getElementById("mp-pre-02");
+      var p3 = document.getElementById("mp-pre-03");
+      var p4 = document.getElementById("mp-pre-04");
+      var p5 = document.getElementById("mp-pre-05");
+
+      if (p1) p1.textContent = buildPrompt01(ind, sit, currentMode);
+      if (p2) p2.textContent = buildPrompt02(ind, sit, currentMode);
+      if (p3) p3.textContent = buildPrompt03(ind, sit, currentMode);
+      if (p4) p4.textContent = buildPrompt04(ind, sit, currentMode);
+      if (p5) p5.textContent = buildPrompt05(ind, sit, currentMode);
+
+      var stText = document.getElementById("pf-status-text");
+      if (stText) {
+        stText.textContent = ind + " • Chế độ " + currentMode;
+      }
+
+      try {
+        localStorage.setItem("mp2_industry", ind);
+        localStorage.setItem("mp2_situation", sit);
+        localStorage.setItem("mp2_mode", currentMode);
+        localStorage.setItem("mp2_ind_idx", String(currentIndustryIdx));
+      } catch (e) {}
+    };
+
+    window.selectPfIndustry = function(btn, indName, idx) {
+      currentIndustryIdx = idx;
+      currentSituationIdx = 0;
+      var chips = document.querySelectorAll("#pf-industry-chips .pf-chip");
+      chips.forEach(function(c) { c.classList.remove("active"); });
+      if (btn) btn.classList.add("active");
+
+      var indEl = document.getElementById("pf-industry-input");
+      var sitEl = document.getElementById("pf-situation-input");
+      if (indEl) indEl.value = indName;
+      if (sitEl && pfSamplesByIndustry[idx]) {
+        sitEl.value = pfSamplesByIndustry[idx][0];
+      }
+      window.updateAllPrompts();
+    };
+
+    window.cyclePfSituation = function() {
+      var list = pfSamplesByIndustry[currentIndustryIdx] || pfSamplesByIndustry[0];
+      currentSituationIdx = (currentSituationIdx + 1) % list.length;
+      var sitEl = document.getElementById("pf-situation-input");
+      if (sitEl) {
+        sitEl.value = list[currentSituationIdx];
+      }
+      window.updateAllPrompts();
+    };
+
+    window.selectPfMode = function(modeStr) {
+      currentMode = modeStr;
+      var b1 = document.getElementById("mode-btn-1");
+      var b2 = document.getElementById("mode-btn-2");
+      if (modeStr.indexOf("1-LƯỢT") !== -1) {
+        if (b1) b1.classList.add("active");
+        if (b2) b2.classList.remove("active");
+      } else {
+        if (b1) b1.classList.remove("active");
+        if (b2) b2.classList.add("active");
+      }
+      window.updateAllPrompts();
+    };
+
+    window.onPfInputChange = function() {
+      window.updateAllPrompts();
+    };
+
+    window.switchMpTab = function(tabId) {
+      showAllTabs = false;
+      var showAllBtn = document.getElementById("btn-show-all-mp");
+      if (showAllBtn) showAllBtn.textContent = "📑 Mở tất cả 5 định dạng";
+
+      var btns = document.querySelectorAll(".mp-tab-btn");
+      btns.forEach(function(b) {
+        if (b.getAttribute("data-tab") === tabId) b.classList.add("active");
+        else b.classList.remove("active");
+      });
+
+      var panels = document.querySelectorAll(".mp-panel");
+      panels.forEach(function(p) {
+        if (p.id === tabId) p.classList.add("active");
+        else p.classList.remove("active");
+      });
+    };
+
+    window.toggleAllMpTabs = function() {
+      showAllTabs = !showAllTabs;
+      var showAllBtn = document.getElementById("btn-show-all-mp");
+      var panels = document.querySelectorAll(".mp-panel");
+      if (showAllTabs) {
+        panels.forEach(function(p) { p.classList.add("active"); });
+        if (showAllBtn) showAllBtn.textContent = "📁 Thu gọn về chế độ 1 Tab";
+      } else {
+        var activeBtn = document.querySelector(".mp-tab-btn.active");
+        var activeId = activeBtn ? activeBtn.getAttribute("data-tab") : "tab-01";
+        window.switchMpTab(activeId);
+      }
+    };
+
+    window.copyMpPrompt = function(btn, preId) {
+      var pre = document.getElementById(preId);
+      if (!pre) return;
+      var text = pre.textContent || pre.innerText;
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(text).then(function() {
+          var old = btn.innerHTML;
+          btn.innerHTML = "✅ Đã chép MegaPrompt (Dán vào AI ngay!)";
+          setTimeout(function() { btn.innerHTML = old; }, 2200);
+        });
+      }
+    };
+
+    function handleHashTab() {
+      var h = window.location.hash ? window.location.hash.replace("#", "") : "";
+      if (h === "tab-01" || h === "tab-02" || h === "tab-03" || h === "tab-04" || h === "tab-05") {
+        window.switchMpTab(h);
+        var target = document.getElementById(h);
+        if (target) {
+          setTimeout(function() {
+            target.scrollIntoView({ behavior: "smooth", block: "start" });
+          }, 80);
+        }
+      }
+    }
+
+    document.addEventListener("DOMContentLoaded", function() {
+      try {
+        var savedInd = localStorage.getItem("mp2_industry");
+        var savedSit = localStorage.getItem("mp2_situation");
+        var savedMode = localStorage.getItem("mp2_mode");
+        var savedIdx = localStorage.getItem("mp2_ind_idx");
+        if (savedIdx !== null) {
+          currentIndustryIdx = parseInt(savedIdx, 10) || 0;
+          var chips = document.querySelectorAll("#pf-industry-chips .pf-chip");
+          chips.forEach(function(c, i) {
+            if (i === currentIndustryIdx) c.classList.add("active");
+            else c.classList.remove("active");
+          });
+        }
+        if (savedInd) document.getElementById("pf-industry-input").value = savedInd;
+        if (savedSit) document.getElementById("pf-situation-input").value = savedSit;
+        if (savedMode) window.selectPfMode(savedMode);
+      } catch (e) {}
+
+      window.updateAllPrompts();
+      handleHashTab();
+      window.addEventListener("hashchange", handleHashTab);
+    });
+  </script>
+</body>
+</html>
