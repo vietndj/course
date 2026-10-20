@@ -1,0 +1,1004 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Bộ 15 Slide Giảng Dạy Offline: Walk & Talk + Talking Head 2.0 (Lớp K3) — FEDU</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=JetBrains+Mono:wght@500;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --sans: "Be Vietnam Pro", -apple-system, BlinkMacSystemFont, sans-serif;
+      --serif: "Newsreader", Georgia, serif;
+      --mono: "JetBrains Mono", monospace;
+      --bg: #f8fafc;
+      --ink: #0f172a;
+      --muted: #475569;
+      --border: #cbd5e1;
+      --accent: #ea580c;
+      --blue: #0284c7;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--sans);
+      line-height: 1.6;
+    }
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(15, 23, 42, 0.96);
+      backdrop-filter: blur(10px);
+      color: #fff;
+      border-bottom: 1px solid #1e293b;
+      padding: 10px 20px;
+    }
+    .topbar-inner {
+      max-width: 1240px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+    }
+    .nav-links a {
+      text-decoration: none;
+      font: 600 12.5px/1.2 var(--sans);
+      padding: 8px 13px;
+      border-radius: 8px;
+      color: #e2e8f0;
+      background: #1e293b;
+      border: 1px solid #334155;
+      transition: all .15s ease;
+    }
+    .nav-links a:hover {
+      background: #334155;
+      color: #fff;
+    }
+    .nav-links a.active {
+      background: var(--blue);
+      color: #fff;
+      border-color: #38bdf8;
+      font-weight: 700;
+    }
+    .nav-links a.cta-thuchanh {
+      background: #dc2626;
+      color: #fff;
+      border-color: #f87171;
+      font-weight: 700;
+    }
+    .deck-controls {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .ctrl-btn {
+      background: #1e293b;
+      color: #f8fafc;
+      border: 1px solid #475569;
+      padding: 7px 12px;
+      border-radius: 7px;
+      font: 600 12.5px/1 var(--sans);
+      cursor: pointer;
+    }
+    .ctrl-btn:hover { background: #334155; }
+    .ctrl-btn.primary {
+      background: #ea580c;
+      border-color: #fb923c;
+      color: #fff;
+    }
+    .ctrl-counter {
+      font: 700 12px/1 var(--mono);
+      color: #38bdf8;
+      padding: 0 6px;
+    }
+    .wrap {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 28px 20px 64px;
+    }
+    .hero-box {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 24px 28px;
+      margin-bottom: 24px;
+      box-shadow: 0 2px 12px rgba(15, 23, 42, 0.04);
+    }
+    .hero-eyebrow {
+      font: 700 11.5px/1 var(--mono);
+      color: var(--blue);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 8px;
+    }
+    .hero-box h1 {
+      font: 800 clamp(24px, 3vw, 34px)/1.2 var(--sans);
+      margin: 0 0 10px 0;
+      color: #0f172a;
+    }
+    .hero-box p {
+      margin: 0 0 14px 0;
+      color: #334155;
+      font-size: 15.5px;
+    }
+    .quick-jump {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 12px;
+    }
+    .quick-jump button {
+      background: #f1f5f9;
+      color: #0f172a;
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+      padding: 5px 10px;
+      font: 600 11.5px/1 var(--mono);
+      cursor: pointer;
+    }
+    .quick-jump button:hover, .quick-jump button.active-pill {
+      background: #0284c7;
+      color: #fff;
+      border-color: #0284c7;
+    }
+
+    /* Slide Card */
+    .sl-card {
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      border-radius: 16px;
+      overflow: hidden;
+      margin-bottom: 28px;
+      box-shadow: 0 8px 28px rgba(15, 23, 42, 0.07);
+    }
+    .sl-screen {
+      background: linear-gradient(140deg, #090d16 0%, #111827 60%, #1e293b 100%);
+      color: #f8fafc;
+      padding: 32px 36px;
+      border-bottom: 2px solid #334155;
+    }
+    .sl-top-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      margin-bottom: 14px;
+    }
+    .sl-badge-num {
+      font: 700 11.5px/1 var(--mono);
+      color: #fb923c;
+      background: rgba(251, 146, 60, 0.16);
+      border: 1px solid rgba(251, 146, 60, 0.4);
+      padding: 5px 10px;
+      border-radius: 6px;
+    }
+    .sl-badge-grp {
+      font: 700 11px/1 var(--mono);
+      color: #38bdf8;
+      background: rgba(56, 189, 248, 0.12);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      padding: 5px 10px;
+      border-radius: 6px;
+      letter-spacing: 0.05em;
+    }
+    .sl-title {
+      font: 800 clamp(22px, 2.7vw, 31px)/1.25 var(--sans);
+      color: #ffffff;
+      margin: 0 0 10px 0;
+      letter-spacing: -0.015em;
+    }
+    .sl-sub {
+      font: 400 16px/1.55 var(--sans);
+      color: #94a3b8;
+      margin: 0 0 20px 0;
+    }
+    .sl-bullets {
+      margin: 0 0 22px 0;
+      padding-left: 22px;
+    }
+    .sl-bullets li {
+      font-size: 16px;
+      line-height: 1.65;
+      color: #f1f5f9;
+      margin-bottom: 10px;
+    }
+    .sl-bullets li strong {
+      color: #fde047;
+    }
+    .sl-visual-box {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 12px;
+      padding: 16px 18px;
+      font-size: 14.5px;
+      color: #e2e8f0;
+    }
+    .sl-vis-lbl {
+      display: block;
+      font: 700 11px/1 var(--mono);
+      color: #38bdf8;
+      letter-spacing: 0.06em;
+      margin-bottom: 6px;
+    }
+    .sl-shot-grid {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 14px;
+    }
+    .sl-shot {
+      background: #0f172a;
+      border: 1px solid #334155;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .sl-shot-img {
+      position: relative;
+      aspect-ratio: 9 / 16;
+      background: #020617;
+    }
+    .sl-shot-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .sl-shot-badge {
+      position: absolute;
+      top: 6px;
+      left: 6px;
+      background: rgba(15, 23, 42, 0.88);
+      color: #fde047;
+      border: 1px solid rgba(253, 224, 71, 0.4);
+      font: 700 10px/1 var(--mono);
+      padding: 4px 6px;
+      border-radius: 4px;
+    }
+    .sl-shot-cap {
+      padding: 7px 8px;
+      font: 600 11.5px/1.35 var(--sans);
+      color: #e2e8f0;
+      text-align: center;
+    }
+    .sl-speaker {
+      background: #f8fafc;
+      padding: 18px 36px;
+    }
+    .sl-spk-head {
+      font: 700 11px/1 var(--mono);
+      color: #0284c7;
+      letter-spacing: 0.06em;
+      margin-bottom: 6px;
+    }
+    .sl-speaker p {
+      margin: 0;
+      font: italic 17px/1.65 var(--serif);
+      color: #1e293b;
+    }
+
+    /* Presentation Single-Slide Mode */
+    body.single-mode .sl-card {
+      display: none;
+    }
+    body.single-mode .sl-card.active-slide {
+      display: block;
+    }
+
+    @media (max-width: 860px) {
+      .sl-shot-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      .sl-screen, .sl-speaker {
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <nav class="nav-links">
+        <a href="walkntalk2.0.html">📘 1. Nền Tảng Lý Thuyết &amp; 7 Video Mẫu</a>
+        <a href="walkntalkslide.html" class="active">🖥️ 2. Bộ 15 Slide Giảng Dạy Offline K3</a>
+        <a href="walkntalkthuchanh.html" class="cta-thuchanh">🎬 3. Thực Hành: 25 Ảnh Phân Cảnh &amp; 25 Kịch Bản K3 &rarr;</a>
+      </nav>
+      <div class="deck-controls">
+        <button type="button" class="ctrl-btn primary" id="btnToggleMode" onclick="window.toggleDeckMode()">🖥️ Chế độ chiếu từng Slide</button>
+        <button type="button" class="ctrl-btn" onclick="window.prevSlide()">&larr; Trước</button>
+        <span class="ctrl-counter" id="slideCounter">15 / 15 SLIDES</span>
+        <button type="button" class="ctrl-btn" onclick="window.nextSlide()">Tiếp &rarr;</button>
+        <button type="button" class="ctrl-btn" onclick="window.toggleFullScreen()">⛶ Fullscreen (F)</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="hero-box" id="heroBox">
+      <div class="hero-eyebrow">ĐỊNH DẠNG 02 • BỘ SLIDE GIẢNG DẠY OFFLINE TÁCH RIÊNG (LỚP K3)</div>
+      <h1>15 Slide Điều Phối Lớp Học: Phá Băng Thể Diện &bull; Quy Tắc 3 Trục 30° &bull; 5 Bài Tập Nhóm 2 Người</h1>
+      <p>Trang này tách riêng toàn bộ hệ thống Slide trình chiếu trên lớp K3 khỏi trang lý thuyết để anh Việt chiếu trực tiếp lên màn hình lớn. Bấm <strong>"Chế độ chiếu từng Slide"</strong> (hoặc dùng phím mũi tên <code>&larr;</code> / <code>&rarr;</code> và phím <code>F</code>) khi giảng bài, hoặc cuộn dọc để xem trọn bộ 15 Slides kèm lời dẫn bục giảng.</p>
+      <div class="quick-jump" id="quickJump">
+        <button type="button" onclick="window.goToSlide(0)" id="pill-0">S01</button><button type="button" onclick="window.goToSlide(1)" id="pill-1">S02</button><button type="button" onclick="window.goToSlide(2)" id="pill-2">S03</button><button type="button" onclick="window.goToSlide(3)" id="pill-3">S04</button><button type="button" onclick="window.goToSlide(4)" id="pill-4">S05</button><button type="button" onclick="window.goToSlide(5)" id="pill-5">S06</button><button type="button" onclick="window.goToSlide(6)" id="pill-6">S07</button><button type="button" onclick="window.goToSlide(7)" id="pill-7">S08</button><button type="button" onclick="window.goToSlide(8)" id="pill-8">S09</button><button type="button" onclick="window.goToSlide(9)" id="pill-9">S10</button><button type="button" onclick="window.goToSlide(10)" id="pill-10">S11</button><button type="button" onclick="window.goToSlide(11)" id="pill-11">S12</button><button type="button" onclick="window.goToSlide(12)" id="pill-12">S13</button><button type="button" onclick="window.goToSlide(13)" id="pill-13">S14</button><button type="button" onclick="window.goToSlide(14)" id="pill-14">S15</button>
+      </div>
+    </section>
+
+    <div id="slidesContainer">
+      
+      <article class="sl-card" id="slide-1" data-index="0">
+        <div class="sl-screen">
+          <div class="sl-top-meta">
+            <span class="sl-badge-num">SLIDE 01 / 15</span>
+            <span class="sl-badge-grp">PHẦN I • PHÁ BĂNG THỂ DIỆN ĐẦU GIỜ</span>
+          </div>
+          <h2 class="sl-title">Hôm nay mình vừa đi bộ vừa nói chuyện — không phải diễn, không phải thuộc bài</h2>
+          <p class="sl-sub">Chuyển từ 'người thợ giấu mặt' (Voice-Over) sang 'người làm nghề xuất hiện trực diện' mà không cần học thuộc kịch bản 60 giây.</p>
+          <ul class="sl-bullets">
+            <li><strong>Walk &amp; Talk là vừa đi vừa trò chuyện với máy:</strong> Người xem nhìn thấy không gian làm việc và nhịp sống thật, chứ không thấy một bài thuyết trình cứng nhắc.</li>
+<li><strong>Không ai quay liền một mạch 60 giây:</strong> Một video 40 giây thực chất là <strong>5 cú máy ngắn (5–8 giây/cú)</strong> ghép lại. Mỗi cú chỉ nói đúng một câu.</li>
+<li><strong>Mục tiêu cuối buổi hôm nay:</strong> Mỗi cặp 2 người bấm máy đủ 5 cú theo bảng phân cảnh để dựng thành 1 video hoàn chỉnh ngay tại lớp.</li>
+          </ul>
+          <div class="sl-visual-box">
+            <span class="sl-vis-lbl">📐 TRỌNG TÂM THỊ GIÁC TRÊN MÀN CHIẾU:</span>
+            <div>Sơ đồ đối조 trên màn chiếu: <del>Học thuộc lòng kịch bản 60 giây</del> &rarr; <strong>Ghép 5 cú máy ngắn 6 giây (Mỗi câu 1 góc máy + 1 động tác thật)</strong>.</div>
+            
+          </div>
+        </div>
+        <div class="sl-speaker">
+          <div class="sl-spk-head">🗣️ LỜI DẪN BỤC GIẢNG (GIỌNG VĂN NÓI TRÀ ĐÁ ĐĨNH ĐẠC — ANH VIỆT)</div>
+          <p>"Buổi trước mình làm Voice-Over, chỉ quay đôi bàn tay làm việc nên ai cũng ra được bài đầu tiên. Hôm nay mình đưa gương mặt lên hình, nhưng anh chị yên tâm một điều: trong lớp này không ai phải nói liền một mạch 60 giây cả. Mình băm nhỏ thành 5 câu ngắn, nói xong câu nào cắt câu đó."</p>
+        </div>
+      </article>
+
+      <article class="sl-card" id="slide-2" data-index="1">
+        <div class="sl-screen">
+          <div class="sl-top-meta">
+            <span class="sl-badge-num">SLIDE 02 / 15</span>
+            <span class="sl-badge-grp">PHẦN I • PHÁ BĂNG THỂ DIỆN ĐẦU GIỜ</span>
+          </div>
+          <h2 class="sl-title">Nỗi sợ số 1: Sợ lên hình thấy mặt mình lạ và cứng</h2>
+          <p class="sl-sub">Vì sao ngoài đời mình tư vấn cho khách rất tự nhiên, nhưng cứ bật camera lên là mặt lại nghiêm nghị?</p>
+          <ul class="sl-bullets">
+            <li><strong>Ai lên hình lần đầu cũng thấy mình lạ:</strong> Bình thường mình chỉ nhìn mình trong gương (đứng yên), nên khi thấy mình cử động và nói chuyện trên video sẽ thấy chưa quen.</li>
+<li><strong>Khán giả nhớ điều mình nói hơn nhớ khuôn mặt:</strong> Khách hàng xem video để tìm lời giải cho vấn đề của họ, không ai soi từng nếp nhăn của người làm nghề.</li>
+<li><strong>Chân bước thì cơ mặt tự khắc thả lỏng:</strong> Khi cơ thể đi bộ hoặc tay bận cầm món đồ nghề, não không còn rảnh để căng thẳng trước ống kính nữa.</li>
+          </ul>
+          <div class="sl-visual-box">
+            <span class="sl-vis-lbl">📐 TRỌNG TÂM THỊ GIÁC TRÊN MÀN CHIẾU:</span>
+            <div>Quy tắc giải tỏa cơ mặt: <strong>Đừng đứng yên nhìn trân trân vào ống kính</strong> &rarr; Hãy giao cho đôi tay một việc thật (mở sổ, đặt kéo, rót trà) trước khi mở lời.</div>
+            
+          </div>
+        </div>
+        <div class="sl-speaker">
+          <div class="sl-spk-head">🗣️ LỜI DẪN BỤC GIẢNG (GIỌNG VĂN NÓI TRÀ ĐÁ ĐĨNH ĐẠC — ANH VIỆT)</div>
+          <p>"Ngoài đời anh chị ngồi uống trà tư vấn cho khách hàng cả tiếng đồng hồ rất duyên. Mình chỉ bị cứng khi bắt cơ thể đứng yên một chỗ nhìn vào cục kính điện thoại. Chỉ cần cho chân bước đi hoặc cho tay cầm đúng món đồ nghề quen thuộc là gương mặt tự nhiên trở lại ngay."</p>
+        </div>
+      </article>
+
+      <article class="sl-card" id="slide-3" data-index="2">
+        <div class="sl-screen">
+          <div class="sl-top-meta">
+            <span class="sl-badge-num">SLIDE 03 / 15</span>
+            <span class="sl-badge-grp">PHẦN I • PHÁ BĂNG THỂ DIỆN ĐẦU GIỜ</span>
+          </div>
+          <h2 class="sl-title">Nỗi sợ số 2: Sợ nói vấp phải quay lại từ đầu</h2>
+          <p class="sl-sub">Vấp là chuyện bình thường của văn nói — nặng nề là do mình cố quay nguyên đoạn dài.</p>
+          <ul class="sl-bullets">
+            <li><strong>Băm câu thành từng cú 5–8 giây:</strong> Mỗi cú máy chỉ chứa đúng một câu 14–22 chữ. Vấp ở câu thứ 3 thì đứng tại chỗ nói lại đúng câu thứ 3, không quay lại câu 1.</li>
+<li><strong>Đọc nhẩm từng câu ngay tại bàn:</strong> Đặt cuốn sổ dưới chân máy, cúi xuống đọc nhẩm 1 câu &rarr; ngước lên đếm thầm 1-2 &rarr; nói dứt câu &rarr; vào CapCut cắt bỏ đoạn cúi đầu.</li>
+<li><strong>Giọng người thật được phép có nhịp lấy hơi:</strong> Nói hơi ngập ngừng một nhịp ở chỗ chuyển ý lại tạo cảm giác chân thật hơn người đọc thuộc lòng trơn tuột.</li>
+          </ul>
+          <div class="sl-visual-box">
+            <span class="sl-vis-lbl">📐 TRỌNG TÂM THỊ GIÁC TRÊN MÀN CHIẾU:</span>
+            <div>Công thức bấm máy không cần thuộc bài: <strong>Cúi nhìn sổ nạp 1 câu &rarr; Ngước nhìn lens (Đếm 1, 2) &rarr; Nói câu đó &rarr; Đếm 1, 2 &rarr; Cắt bỏ khoảng nghỉ</strong>.</div>
+            
+          </div>
+        </div>
+        <div class="sl-speaker">
+          <div class="sl-spk-head">🗣️ LỜI DẪN BỤC GIẢNG (GIỌNG VĂN NÓI TRÀ ĐÁ ĐĨNH ĐẠC — ANH VIỆT)</div>
+          <p>"Anh chị đừng cố thuộc cả bài. Ngay cả video 65 giây trên kênh của tôi cũng được ghép từ 13 mảnh ngắn 4–5 giây. Mình cứ nhìn sổ nạp đúng một câu, ngước lên nói xong câu đó rồi mới nạp câu tiếp theo. Vấp lúc nào nói lại ngay lúc đó, mất đúng 5 giây."</p>
+        </div>
+      </article>
+
+      <article class="sl-card" id="slide-4" data-index="3">
+        <div class="sl-screen">
+          <div class="sl-top-meta">
+            <span class="sl-badge-num">SLIDE 04 / 15</span>
+            <span class="sl-badge-grp">PHẦN I • PHÁ BĂNG THỂ DIỆN ĐẦU GIỜ</span>
+          </div>
+          <h2 class="sl-title">Nỗi sợ số 3: Sợ người qua đường nhìn khi quay ngoài trời</h2>
+          <p class="sl-sub">Hiệu ứng đèn sân khấu (Spotlight Effect) và cách đi theo cặp 2 người để xóa cảm giác ngại ngùng.</p>
+          <ul class="sl-bullets">
+            <li><strong>Người qua đường chỉ nhìn đúng 2 giây rồi quên:</strong> Ai đi ngoài đường cũng bận việc của họ; họ nhìn lướt qua 2 giây rồi đi tiếp, chỉ có mình tự tưởng tượng ra họ đang đánh giá mình.</li>
+<li><strong>Đi theo cặp 2 người sẽ che chắn cho nhau:</strong> Thay vì tự cầm gậy selfie nói một mình, hôm nay mình đi theo cặp — Người A nói chuyện với Người B như hai người bạn đang bàn công việc.</li>
+<li><strong>Quay ngay trong không gian thật của lớp K3:</strong> Bàn gỗ, khung cửa kính, cầu thang, ban công cây xanh và vỉa hè trước lớp đều là bối cảnh rất đẹp và gần gũi.</li>
+          </ul>
+          <div class="sl-visual-box">
+            <span class="sl-vis-lbl">📐 TRỌNG TÂM THỊ GIÁC TRÊN MÀN CHIẾU:</span>
+            <div>Cơ chế Nhóm 2 Người: <strong>Người A (Nói chuyện &amp; Thao tác đồ nghề) &harr; Người B (Cầm điện thoại 2 tay &amp; Đặt câu hỏi mồi)</strong> &rarr; Trông giống hệt hai đồng nghiệp đang trao đổi.</div>
+            
+          </div>
+        </div>
+        <div class="sl-speaker">
+          <div class="sl-spk-head">🗣️ LỜI DẪN BỤC GIẢNG (GIỌNG VĂN NÓI TRÀ ĐÁ ĐĨNH ĐẠC — ANH VIỆT)</div>
+          <p>"Tự cầm máy đi một mình ngoài đường thì ai mới làm cũng ngại. Nhưng khi đi hai người, bạn mình cầm máy còn mình nhìn về phía bạn để giải thích một chuyện làm nghề, cảm giác giống hệt đang ngồi cà phê nói chuyện với khách. Người ngoài nhìn vào còn thấy rất chuyên nghiệp."</p>
+        </div>
+      </article>
+
+      <article class="sl-card" id="slide-5" data-index="4">
+        <div class="sl-screen">
+          <div class="sl-top-meta">
+            <span class="sl-badge-num">SLIDE 05 / 15</span>
+            <span class="sl-badge-grp">PHẦN I • PHÁ BĂNG THỂ DIỆN ĐẦU GIỜ</span>
+          </div>
+          <h2 class="sl-title">Nỗi sợ số 4: Sợ câu chuyện của mình chưa đủ 'cao siêu'</h2>
+          <p class="sl-sub">Khách hàng không cần lý thuyết sách vở — họ cần nghe một sự thật trong nghề mà người ngoài chưa biết.</p>
+          <ul class="sl-bullets">
+            <li><strong>Cái bẫy của người làm nghề lâu năm:</strong> Mình làm mỗi ngày nên tưởng chuyện đó ai cũng biết, nhưng với khách hàng thì đó lại là thông tin giúp họ đỡ mất tiền oan.</li>
+<li><strong>Mỗi video chỉ giải quyết đúng 1 chi tiết:</strong> Không kể lể toàn bộ lịch sử công ty; chỉ cần bóc tách 1 hiểu lầm, 1 thông số kỹ thuật hoặc 1 lần khuyên khách đừng làm.</li>
+<li><strong>Uy tín nằm ở 'Điều kiện đánh đổi':</strong> Khi mình dám nói rõ trường hợp nào chưa nên mua hoặc làm đúng thì mất thêm bao nhiêu thời gian, khách sẽ tin ngay lập tức.</li>
+          </ul>
+          <div class="sl-visual-box">
+            <span class="sl-vis-lbl">📐 TRỌNG TÂM THỊ GIÁC TRÊN MÀN CHIẾU:</span>
+            <div>Trục uy tín thực chiến: <strong>Đừng khen dịch vụ của mình hoàn hảo</strong> &rarr; Hãy nói rõ <em>cơ chế thật + điều kiện đánh đổi thật</em> của người làm nghề.</div>
+            
+          </div>
+        </div>
+        <div class="sl-speaker">
+          <div class="sl-spk-head">🗣️ LỜI DẪN BỤC GIẢNG (GIỌNG VĂN NÓI TRÀ ĐÁ ĐĨNH ĐẠC — ANH VIỆT)</div>
+          <p>"Người xem bây giờ rất dị ứng với kiểu video tự khen mình tốt nhất. Ngược lại, khi một người thợ tóc nói thẳng vì sao không cắt y hệt ảnh mẫu, hay một dược sĩ giải thích vì sao chưa bán ngay loại thuốc mạnh nhất, người nghe tin ngay vì họ biết đây là người làm nghề tử tế."</p>
+        </div>
+      </article>
+
+      <article class="sl-card" id="slide-6" data-index="5">
+        <div class="sl-screen">
+          <div class="sl-top-meta">
+            <span class="sl-badge-num">SLIDE 06 / 15</span>
+            <span class="sl-badge-grp">PHẦN II • CÔNG THỨC KỸ THUẬT LÕI (3 TRỤC & 3 PHA)</span>
+          </div>
+          <h2 class="sl-title">Quy tắc 30° (Thực chiến lệch ≥ 45°) — Vì sao máy quay phải xê dịch giữa các câu?</h2>
+          <p class="sl-sub">Nếu giữ nguyên một cỡ cảnh và một góc máy từ câu 1 đến câu 5, mỗi vết cắt sẽ làm hình bị giật cục.</p>
+          <ul class="sl-bullets">
+            <li><strong>Lệch dưới 30° = Mắt thấy bị giật (Jump-cut lỗi):</strong> Hai cú máy liền nhau mà đứng cùng một góc, cùng một khoảng cách thì khi cắt bỏ đoạn nghỉ, đầu nhân vật bị giật ngang rất khó chịu.</li>
+<li><strong>Lệch từ 45° – 135° = Chuyển cảnh có chủ đích:</strong> Khi người cầm máy bước lệch sang chéo 45°, ngang vai 90° hoặc qua vai 135°, mắt người xem hiểu ngay đây là một góc nhìn mới.</li>
+<li><strong>Hai người quay nhưng nhìn như có đạo diễn:</strong> Chỉ bằng cách bước lệch góc sau mỗi câu nói, 5 cú máy rời rạc sẽ ráp lại thành một thước phim đa góc máy sống động.</li>
+          </ul>
+          <div class="sl-visual-box">
+            <span class="sl-vis-lbl">📐 TRỌNG TÂM THỊ GIÁC TRÊN MÀN CHIẾU:</span>
+            <div>Nguyên tắc vàng cho Người B (cầm máy): <strong>Người A nói xong 1 câu &rarr; Người B bắt buộc phải đổi vị trí chân đứng lệch tối thiểu 45° và đổi khoảng cách trước khi bấm câu tiếp theo</strong>.</div>
+            
+          </div>
+        </div>
+        <div class="sl-speaker">
+          <div class="sl-spk-head">🗣️ LỜI DẪN BỤC GIẢNG (GIỌNG VĂN NÓI TRÀ ĐÁ ĐĨNH ĐẠC — ANH VIỆT)</div>
+          <p>"Lỗi lớn nhất của bản quay nghiệp dư là cả 5 cảnh đều đứng thẳng trước mặt ngang ngực giống hệt nhau. Để sửa rất dễ: cứ mỗi lần bạn mình nói xong một câu, người cầm máy bước sang ngang hai bước để lệch góc 45 đến 90 độ, đồng thời bước gần lại hoặc lùi ra xa một bậc."</p>
+        </div>
+      </article>
+
+      <article class="sl-card" id="slide-7" data-index="6">
+        <div class="sl-screen">
+          <div class="sl-top-meta">
+            <span class="sl-badge-num">SLIDE 07 / 15</span>
+            <span class="sl-badge-grp">PHẦN II • CÔNG THỨC KỸ THUẬT LÕI (3 TRỤC & 3 PHA)</span>
+          </div>
+          <h2 class="sl-title">Đổi đồng thời 3 Trục: Cỡ cảnh — Góc máy — Hướng máy</h2>
+          <p class="sl-sub">Mỗi lần chuyển từ Cú 1 sang Cú 5, hãy biến thiên cả 3 trục để giữ mắt người xem không rời màn hình.</p>
+          <ul class="sl-bullets">
+            <li><strong>Trục 1 — Nhảy bậc Cỡ cảnh (Shot Size):</strong> Đặc tả cực cận bàn tay (<em>Macro ECU</em>) &rarr; Trung cận qua vai (<em>OTS</em>) &rarr; Toàn cảnh bước đi (<em>Wide</em>) &rarr; Cận cảnh gương mặt (<em>Tight CU</em>).</li>
+<li><strong>Trục 2 — Đổi độ cao Góc máy (Camera Angle):</strong> Góc cao 65°–80° nhìn xuống mặt bàn &rarr; Góc thấp 20° từ thắt lưng hất lên khi bước đi &rarr; Góc ngang mắt 0° khi dừng lại chốt câu cuối.</li>
+<li><strong>Trục 3 — Đổi Hướng máy &amp; Không gian (Direction):</strong> Đổi từ trong bàn gỗ &rarr; xuyên qua khung cửa &rarr; ra hành lang/ban công cây xanh để hậu cảnh trôi liên tục.</li>
+          </ul>
+          <div class="sl-visual-box">
+            <span class="sl-vis-lbl">📐 TRỌNG TÂM THỊ GIÁC TRÊN MÀN CHIẾU:</span>
+            <div>Đối chiếu trực quan 5 cỡ cảnh &amp; góc máy biến thiên từ 65° &rarr; 135° &rarr; 25° &rarr; 90° &rarr; 0° trong Bài tập 1:</div>
+            <div class="sl-shot-grid">
+              <div class="sl-shot">
+                <div class="sl-shot-img">
+                  <span class="sl-shot-badge">C1 • Macro 65°</span>
+                  <img src="assets/wnt_thuchanh/bt1_v2_shot1.jpg?v=20261020v2" alt="Đặc tả tay mở sổ & đặt kéo" loading="lazy"/>
+                </div>
+                <div class="sl-shot-cap">Đặc tả tay mở sổ & đặt kéo</div>
+              </div>
+              <div class="sl-shot">
+                <div class="sl-shot-img">
+                  <span class="sl-shot-badge">C2 • OTS 135° (Δ 70°)</span>
+                  <img src="assets/wnt_thuchanh/bt1_v2_shot2.jpg?v=20261020v2" alt="Trung cận qua vai bạn học" loading="lazy"/>
+                </div>
+                <div class="sl-shot-cap">Trung cận qua vai bạn học</div>
+              </div>
+              <div class="sl-shot">
+                <div class="sl-shot-img">
+                  <span class="sl-shot-badge">C3 • Wide 25° (Δ 110°)</span>
+                  <img src="assets/wnt_thuchanh/bt1_v2_shot3.jpg?v=20261020v2" alt="Toàn cảnh góc thấp bước ra cửa" loading="lazy"/>
+                </div>
+                <div class="sl-shot-cap">Toàn cảnh góc thấp bước ra cửa</div>
+              </div>
+              <div class="sl-shot">
+                <div class="sl-shot-img">
+                  <span class="sl-shot-badge">C4 • Profile 90° (Δ 65°)</span>
+                  <img src="assets/wnt_thuchanh/bt1_v2_shot4.jpg?v=20261020v2" alt="Góc nghiêng 90° dọc ban công" loading="lazy"/>
+                </div>
+                <div class="sl-shot-cap">Góc nghiêng 90° dọc ban công</div>
+              </div>
+              <div class="sl-shot">
+                <div class="sl-shot-img">
+                  <span class="sl-shot-badge">C5 • Tight CU 0° (Δ 90°)</span>
+                  <img src="assets/wnt_thuchanh/bt1_v2_shot5.jpg?v=20261020v2" alt="Cận chặt trực diện xóa phông" loading="lazy"/>
+                </div>
+                <div class="sl-shot-cap">Cận chặt trực diện xóa phông</div>
+              </div></div>
+          </div>
+        </div>
+        <div class="sl-speaker">
+          <div class="sl-spk-head">🗣️ LỜI DẪN BỤC GIẢNG (GIỌNG VĂN NÓI TRÀ ĐÁ ĐĨNH ĐẠC — ANH VIỆT)</div>
+          <p>"Anh chị nhìn thử 5 khung hình trên màn chiếu này: Cảnh 1 đặc tả sát đôi tay góc cao 65 độ; Cảnh 2 lùi ra sau vai bạn học góc 135 độ; Cảnh 3 hạ máy thấp 25 độ bắt bước chân đứng dậy; Cảnh 4 quay ngang 90 độ ngoài ban công; và Cảnh 5 thu cận mặt trực diện. Không có hai cảnh nào lặp lại góc nhau cả!"</p>
+        </div>
+      </article>
+
+      <article class="sl-card" id="slide-8" data-index="7">
+        <div class="sl-screen">
+          <div class="sl-top-meta">
+            <span class="sl-badge-num">SLIDE 08 / 15</span>
+            <span class="sl-badge-grp">PHẦN II • CÔNG THỨC KỸ THUẬT LÕI (3 TRỤC & 3 PHA)</span>
+          </div>
+          <h2 class="sl-title">Băm nhỏ mỗi cú máy thành 3 Pha: 🔰 Mồi cảnh → 🔥 Hành động → 🔄 Nối cảnh</h2>
+          <p class="sl-sub">Công thức giúp người diễn không bị ngượng ở giây đầu và người dựng luôn có điểm cắt ngọt như dao cạo.</p>
+          <ul class="sl-bullets">
+            <li><strong>Pha 1 — 🔰 Mồi cảnh (In-point • 0.0s – 1.5s đầu):</strong> Chưa nói vội. Bắt đầu bằng một cử động tay hoặc bước chân (đặt thước lên gỗ, cài mic, bước qua cửa) để khớp với cuối cú trước.</li>
+<li><strong>Pha 2 — 🔥 Hành động &amp; Thoại chính (Main Action • 1.5s – 5.5s):</strong> Nói trọn vẹn 1 câu 14–22 chữ, tay chỉ vào chi tiết thật trên đạo cụ hoặc vừa đi vừa trao đổi với bạn.</li>
+<li><strong>Pha 3 — 🔄 Nối cảnh (Out-point Match-Cut • 1.0s cuối):</strong> Kết thúc câu bằng một động tác chuyển giao (đẩy ghế đứng dậy, nhấc vật mẫu lên, xoay vai, dừng bước) và cắt ngay ở giữa động tác đó.</li>
+          </ul>
+          <div class="sl-visual-box">
+            <span class="sl-vis-lbl">📐 TRỌNG TÂM THỊ GIÁC TRÊN MÀN CHIẾU:</span>
+            <div>Quy tắc nối Match-Cut: <strong>Out(Cú trước) = Động tác X đang diễn ra 50%</strong> &rarr; <strong>In(Cú sau, lệch góc ≥ 45°) = Tiếp tục 50% còn lại của đúng động tác X đó</strong>.</div>
+            
+          </div>
+        </div>
+        <div class="sl-speaker">
+          <div class="sl-spk-head">🗣️ LỜI DẪN BỤC GIẢNG (GIỌNG VĂN NÓI TRÀ ĐÁ ĐĨNH ĐẠC — ANH VIỆT)</div>
+          <p>"Để hai cảnh khác góc nối vào nhau mà người xem không thấy vết cắt, bí mật nằm ở chỗ Mồi cảnh và Nối cảnh. Ví dụ cuối Cảnh 2 anh chị bắt đầu đẩy ghế đứng dậy, thì đầu Cảnh 3 ở góc máy thấp đã bắt ngay nhịp chân anh chị đang bước rời khỏi bàn. Cắt ngay giữa chuyển động thì mắt người xem bị cuốn theo hành động rất mượt."</p>
+        </div>
+      </article>
+
+      <article class="sl-card" id="slide-9" data-index="8">
+        <div class="sl-screen">
+          <div class="sl-top-meta">
+            <span class="sl-badge-num">SLIDE 09 / 15</span>
+            <span class="sl-badge-grp">PHẦN II • CÔNG THỨC KỸ THUẬT LÕI (3 TRỤC & 3 PHA)</span>
+          </div>
+          <h2 class="sl-title">Công thức viết lời thoại 5 Cú Máy: Giọng 'Văn nói trà đá đĩnh đạc'</h2>
+          <p class="sl-sub">Bỏ lối viết câu cụt 4–5 chữ kiểu điện tín và bỏ câu chào hàng sáo rỗng — hãy nói như người làm nghề kể chuyện thật.</p>
+          <ul class="sl-bullets">
+            <li><strong>Cú 1 (Nhận thức ngược chiều):</strong> Nêu một điều khách hàng hay hiểu lầm so với góc nhìn thực tế của người làm nghề (dùng từ nối <em>nhưng thực ra, trong khi</em>).</li>
+<li><strong>Cú 2 (Cơ chế thật &amp; Con số thật):</strong> Giải thích ngắn gọn vì sao lại như vậy bằng một chi tiết kỹ thuật hoặc hình ảnh đời thường dễ hình dung.</li>
+<li><strong>Cú 3 &amp; 4 (Điều kiện đánh đổi &amp; Nhân quả):</strong> Thừa nhận thẳng thắn một cái giá phải trả (mất thêm 10 phút đo, tốn thêm chi phí ban đầu, hoặc từ chối bán nhanh) vì lợi ích dài hạn của khách.</li>
+<li><strong>Cú 5 (Kết đĩnh đạc / Tự trào nhẹ):</strong> Khép lại bằng một đúc kết nghề nghiệp điềm tĩnh — tuyệt đối không chèo kéo <em>'inbox ngay', 'ghé mình nhé'</em>.</li>
+          </ul>
+          <div class="sl-visual-box">
+            <span class="sl-vis-lbl">📐 TRỌNG TÂM THỊ GIÁC TRÊN MÀN CHIẾU:</span>
+            <div>Mẫu chuẩn (Quốc Toàn KTS): <em>'Gia chủ hay hỏi căn nhà bao nhiêu phòng, nhưng ít ai hỏi nắng chiếu vào đâu lúc ba giờ chiều... Đặt đúng hướng cửa tốn thêm khoản nhỏ ban đầu, nhưng tiền điện mười năm sau còn lớn hơn nhiều lần. Làm kiến trúc lâu mới biết, thứ đắt nhất là cái mình quên tính từ đầu.'</em></div>
+            
+          </div>
+        </div>
+        <div class="sl-speaker">
+          <div class="sl-spk-head">🗣️ LỜI DẪN BỤC GIẢNG (GIỌNG VĂN NÓI TRÀ ĐÁ ĐĨNH ĐẠC — ANH VIỆT)</div>
+          <p>"Anh chị để ý văn phong nhé: mình không viết câu cụt ngủn kiểu 'Tóc rụng nhiều. Đừng vội cắt.' nghe rất giống máy nói. Mình nói đầy đủ câu có chữ 'vì', chữ 'nên', chữ 'nhưng thực ra' giống hệt lúc ngồi uống trà giải thích cho khách. Đặc biệt, ở cú thứ 3 mình dám nói ra điều kiện đánh đổi của nghề, khách nghe xong sẽ nể mình ngay."</p>
+        </div>
+      </article>
+
+      <article class="sl-card" id="slide-10" data-index="9">
+        <div class="sl-screen">
+          <div class="sl-top-meta">
+            <span class="sl-badge-num">SLIDE 10 / 15</span>
+            <span class="sl-badge-grp">PHẦN II • CÔNG THỨC KỸ THUẬT LÕI (3 TRỤC & 3 PHA)</span>
+          </div>
+          <h2 class="sl-title">Các Bước Phối Hợp 25 Phút cho 1 Bài Tập Nhóm 2 Người (A Diễn ↔ B Quay)</h2>
+          <p class="sl-sub">Phối hợp nhịp nhàng giữa Người A và Người B để cả hai cùng có video hoàn chỉnh ngay tại buổi học.</p>
+          <ul class="sl-bullets">
+            <li><strong>Phút 01 – 05 (Chọn kịch bản &amp; Đạo cụ thật):</strong> Mở trang <code>walkntalkthuchanh.html</code>, bấm chọn đúng tên/ngành của mình và cầm sẵn 1 đạo cụ thật trên tay (sổ da, thước, bản vẽ, lọ sản phẩm).</li>
+<li><strong>Phút 05 – 15 (Bấm máy 5 cú theo đúng 5 ảnh mẫu):</strong> Người B nhìn 5 ảnh hướng dẫn trên điện thoại để đứng đúng góc lệch (&ge; 45°), nhắc Người A làm đúng <em>Mồi cảnh &rarr; Thoại &rarr; Nối cảnh</em> cho từng cú C1..C5.</li>
+<li><strong>Phút 15 – 25 (Đổi vai B sang A &amp; Ráp nhanh trên CapCut):</strong> Đổi máy cho bạn quay 5 cú của bạn, sau đó cắt đúng điểm Nối cảnh để xuất video 30–35 giây.</li>
+          </ul>
+          <div class="sl-visual-box">
+            <span class="sl-vis-lbl">📐 TRỌNG TÂM THỊ GIÁC TRÊN MÀN CHIẾU:</span>
+            <div>Mỗi bài tập dưới đây sử dụng <strong>1 bộ trang phục và 1 chuỗi góc máy riêng biệt</strong> để khi quay đủ 5 bài, học viên có ngay 5 video với màu sắc và không gian khác hẳn nhau.</div>
+            
+          </div>
+        </div>
+        <div class="sl-speaker">
+          <div class="sl-spk-head">🗣️ LỜI DẪN BỤC GIẢNG (GIỌNG VĂN NÓI TRÀ ĐÁ ĐĨNH ĐẠC — ANH VIỆT)</div>
+          <p>"Bây giờ chúng ta bước vào Phần III: Điều phối trực tiếp 5 Bài tập thực hành nhóm 2 người ngay tại không gian lớp K3. Anh chị nhìn lên màn hình để nắm rõ chuỗi 5 góc máy của từng bài trước khi đứng dậy bấm máy."</p>
+        </div>
+      </article>
+
+      <article class="sl-card" id="slide-11" data-index="10">
+        <div class="sl-screen">
+          <div class="sl-top-meta">
+            <span class="sl-badge-num">SLIDE 11 / 15</span>
+            <span class="sl-badge-grp">PHẦN III • ĐIỀU PHỐI 5 BÀI TẬP NHÓM 2 NGƯỜI TẠI LỚP K3</span>
+          </div>
+          <h2 class="sl-title">Bài Tập 01: Giới thiệu bản thân & Góc nhìn làm nghề (Bàn gỗ K3 → Ban công xanh)</h2>
+          <p class="sl-sub">Trang phục mẫu: Sơ mi đũi màu Kem Sáng / Trắng Ngà xắn tay + Quần âu xám đậm • Đạo cụ nối: Sổ da & Dụng cụ nghề.</p>
+          <ul class="sl-bullets">
+            <li><strong>C1 (Macro 65° mặt bàn gỗ):</strong> <em>Mồi:</em> Tay mở sổ da, đặt kéo/thước thép xuống bàn &rarr; <em>Thoại C1</em> &rarr; <em>Nối:</em> Ngón tay gõ nhẹ vào dòng ghi chú.</li>
+<li><strong>C2 (OTS 135° qua vai bạn học • Δ 70°):</strong> <em>Mồi:</em> Đang chỉ bút vào trang sổ &rarr; <em>Thoại C2</em> &rarr; <em>Nối:</em> Gập nhẹ sổ, đẩy ghế gỗ chuẩn bị đứng lên.</li>
+<li><strong>C3 (Toàn cảnh góc thấp 25° • Δ 110°):</strong> <em>Mồi:</em> Đang đà đứng dậy bước rời bàn &rarr; <em>Thoại C3</em> &rarr; <em>Nối:</em> Tay phải vươn ra đặt lên tay nắm cửa kính ban công.</li>
+<li><strong>C4 (Góc nghiêng 90° ban công • Δ 65°) &rarr; C5 (Cận chặt 0° • Δ 90°):</strong> Bước dọc lan can cây xanh nói C4 &rarr; Dừng bước xoay mặt nhìn thẳng ống kính chốt C5.</li>
+          </ul>
+          <div class="sl-visual-box">
+            <span class="sl-vis-lbl">📐 TRỌNG TÂM THỊ GIÁC TRÊN MÀN CHIẾU:</span>
+            <div>5 Cú máy chuẩn của Bài Tập 01 (Biến thiên đủ 5 cỡ cảnh từ Macro 65° &rarr; OTS 135° &rarr; Wide 25° &rarr; Profile 90° &rarr; Tight CU 0°):</div>
+            <div class="sl-shot-grid">
+              <div class="sl-shot">
+                <div class="sl-shot-img">
+                  <span class="sl-shot-badge">C1 • Macro 65°</span>
+                  <img src="assets/wnt_thuchanh/bt1_v2_shot1.jpg?v=20261020v2" alt="Mồi: Mở sổ đặt kéo • Nối: Chỉ dòng chữ" loading="lazy"/>
+                </div>
+                <div class="sl-shot-cap">Mồi: Mở sổ đặt kéo • Nối: Chỉ dòng chữ</div>
+              </div>
+              <div class="sl-shot">
+                <div class="sl-shot-img">
+                  <span class="sl-shot-badge">C2 • OTS 135°</span>
+                  <img src="assets/wnt_thuchanh/bt1_v2_shot2.jpg?v=20261020v2" alt="Mồi: Chỉ bút • Nối: Gập sổ đẩy ghế" loading="lazy"/>
+                </div>
+                <div class="sl-shot-cap">Mồi: Chỉ bút • Nối: Gập sổ đẩy ghế</div>
+              </div>
+              <div class="sl-shot">
+                <div class="sl-shot-img">
+                  <span class="sl-shot-badge">C3 • Wide 25°</span>
+                  <img src="assets/wnt_thuchanh/bt1_v2_shot3.jpg?v=20261020v2" alt="Mồi: Đứng dậy bước • Nối: Mở cửa kính" loading="lazy"/>
+                </div>
+                <div class="sl-shot-cap">Mồi: Đứng dậy bước • Nối: Mở cửa kính</div>
+              </div>
+              <div class="sl-shot">
+                <div class="sl-shot-img">
+                  <span class="sl-shot-badge">C4 • Profile 90°</span>
+                  <img src="assets/wnt_thuchanh/bt1_v2_shot4.jpg?v=20261020v2" alt="Mồi: Bước ra nắng • Nối: Dừng cạnh lan can" loading="lazy"/>
+                </div>
+                <div class="sl-shot-cap">Mồi: Bước ra nắng • Nối: Dừng cạnh lan can</div>
+              </div>
+              <div class="sl-shot">
+                <div class="sl-shot-img">
+                  <span class="sl-shot-badge">C5 • Tight CU 0°</span>
+                  <img src="assets/wnt_thuchanh/bt1_v2_shot5.jpg?v=20261020v2" alt="Mồi: Xoay mặt nhìn lens • Chốt điềm tĩnh" loading="lazy"/>
+                </div>
+                <div class="sl-shot-cap">Mồi: Xoay mặt nhìn lens • Chốt điềm tĩnh</div>
+              </div></div>
+          </div>
+        </div>
+        <div class="sl-speaker">
+          <div class="sl-spk-head">🗣️ LỜI DẪN BỤC GIẢNG (GIỌNG VĂN NÓI TRÀ ĐÁ ĐĨNH ĐẠC — ANH VIỆT)</div>
+          <p>"Ở Bài tập 1, anh chị bắt đầu ngay tại bàn gỗ mình đang ngồi. Cú 1 chỉ quay sát đôi tay đặt đồ nghề xuống bàn. Cú 2 bạn cùng bàn lùi ra góc chéo 135 độ quay qua vai. Đến cuối Cú 2 anh chị đẩy ghế đứng dậy, nối thẳng sang Cú 3 góc thấp bước ra cửa kính ban công, rồi kết ở ngoài ban công cây xanh."</p>
+        </div>
+      </article>
+
+      <article class="sl-card" id="slide-12" data-index="11">
+        <div class="sl-screen">
+          <div class="sl-top-meta">
+            <span class="sl-badge-num">SLIDE 12 / 15</span>
+            <span class="sl-badge-grp">PHẦN III • ĐIỀU PHỐI 5 BÀI TẬP NHÓM 2 NGƯỜI TẠI LỚP K3</span>
+          </div>
+          <h2 class="sl-title">Bài Tập 02: Chứng minh dịch vụ bằng việc thật & vật thật trên tay</h2>
+          <p class="sl-sub">Trang phục mẫu: Áo Polo dệt kim màu Xanh Rêu Đậm + Quần Chinos màu Be • Đạo cụ nối: Thước kẹp, Bản vẽ & Mẫu vật thật.</p>
+          <ul class="sl-bullets">
+            <li><strong>C1 (Macro 15° sát mặt bàn):</strong> <em>Mồi:</em> Đưa thước kẹp kim loại đo vào rãnh mẫu gỗ &rarr; <em>Thoại C1</em> &rarr; <em>Nối:</em> Đặt thước xuống, tay đặt lên bản vẽ.</li>
+<li><strong>C2 (Góc cao 55° Overhead • Δ 40°):</strong> <em>Mồi:</em> Cúi người dùng bút chì đỏ khoanh vùng chi tiết trên bản vẽ &rarr; <em>Thoại C2</em> &rarr; <em>Nối:</em> Nhấc khối mẫu gỗ lên khỏi mặt bàn.</li>
+<li><strong>C3 (Two-shot chéo 120° qua màn hình ĐT • Δ 65°):</strong> <em>Mồi:</em> Đang đà nhấc mẫu gỗ lên ngang ngực &rarr; <em>Thoại C3</em> chỉ ngón trỏ vào lõi &rarr; <em>Nối:</em> Xoay người bước ra sảnh.</li>
+<li><strong>C4 (Toàn cảnh góc thấp 20° sảnh nắng • Δ 100°) &rarr; C5 (Cận chặt Split-Focus 0° • Δ 45°):</strong> Vừa đi vừa giơ mẫu soi nắng nói C4 &rarr; Dừng lại đặt mẫu sát vai đối chiếu nét căng với gương mặt ở C5.</li>
+          </ul>
+          <div class="sl-visual-box">
+            <span class="sl-vis-lbl">📐 TRỌNG TÂM THỊ GIÁC TRÊN MÀN CHIẾU:</span>
+            <div>5 Cú máy chuẩn của Bài Tập 02 (Lấy vật thật trên tay làm trục nối xuyên suốt từ bàn làm việc ra hành lang nắng):</div>
+            <div class="sl-shot-grid">
+              <div class="sl-shot">
+                <div class="sl-shot-img">
+                  <span class="sl-shot-badge">C1 • Macro 15°</span>
+                  <img src="assets/wnt_thuchanh/bt2_v2_shot1.jpg?v=20261020v2" alt="Mồi: Đo bằng thước kẹp • Nối: Đặt tay lên bản vẽ" loading="lazy"/>
+                </div>
+                <div class="sl-shot-cap">Mồi: Đo bằng thước kẹp • Nối: Đặt tay lên bản vẽ</div>
+              </div>
+              <div class="sl-shot">
+                <div class="sl-shot-img">
+                  <span class="sl-shot-badge">C2 • High 55°</span>
+                  <img src="assets/wnt_thuchanh/bt2_v2_shot2.jpg?v=20261020v2" alt="Mồi: Khoanh bút đỏ • Nối: Nhấc mẫu gỗ" loading="lazy"/>
+                </div>
+                <div class="sl-shot-cap">Mồi: Khoanh bút đỏ • Nối: Nhấc mẫu gỗ</div>
+              </div>
+              <div class="sl-shot">
+                <div class="sl-shot-img">
+                  <span class="sl-shot-badge">C3 • Two-Shot 120°</span>
+                  <img src="assets/wnt_thuchanh/bt2_v2_shot3.jpg?v=20261020v2" alt="Mồi: Giơ mẫu lên • Nối: Bước ra sảnh" loading="lazy"/>
+                </div>
+                <div class="sl-shot-cap">Mồi: Giơ mẫu lên • Nối: Bước ra sảnh</div>
+              </div>
+              <div class="sl-shot">
+                <div class="sl-shot-img">
+                  <span class="sl-shot-badge">C4 • Low Wide 20°</span>
+                  <img src="assets/wnt_thuchanh/bt2_v2_shot4.jpg?v=20261020v2" alt="Mồi: Sải bước soi nắng • Nối: Hạ mẫu ngang vai" loading="lazy"/>
+                </div>
+                <div class="sl-shot-cap">Mồi: Sải bước soi nắng • Nối: Hạ mẫu ngang vai</div>
+              </div>
+              <div class="sl-shot">
+                <div class="sl-shot-img">
+                  <span class="sl-shot-badge">C5 • Split CU 0°</span>
+                  <img src="assets/wnt_thuchanh/bt2_v2_shot5.jpg?v=20261020v2" alt="Mồi: Đặt mẫu sát vai • Chốt nhìn thẳng lens" loading="lazy"/>
+                </div>
+                <div class="sl-shot-cap">Mồi: Đặt mẫu sát vai • Chốt nhìn thẳng lens</div>
+              </div></div>
+          </div>
+        </div>
+        <div class="sl-speaker">
+          <div class="sl-spk-head">🗣️ LỜI DẪN BỤC GIẢNG (GIỌNG VĂN NÓI TRÀ ĐÁ ĐĨNH ĐẠC — ANH VIỆT)</div>
+          <p>"Sang Bài tập 2, mình chứng minh tay nghề bằng vật thật. Anh chị mang đúng sản phẩm, bản vẽ hoặc dụng cụ của mình ra. Cú 1 quay ngang mặt bàn đo đạc thật; Cú 2 bạn mình đứng lên ghế hoặc giơ cao máy 55 độ chụp xuống; Cú 3 quay chéo qua màn hình điện thoại; Cú 4 bước ra hành lang soi dưới nắng và Cú 5 đặt vật mẫu sát cạnh khuôn mặt."</p>
+        </div>
+      </article>
+
+      <article class="sl-card" id="slide-13" data-index="12">
+        <div class="sl-screen">
+          <div class="sl-top-meta">
+            <span class="sl-badge-num">SLIDE 13 / 15</span>
+            <span class="sl-badge-grp">PHẦN III • ĐIỀU PHỐI 5 BÀI TẬP NHÓM 2 NGƯỜI TẠI LỚP K3</span>
+          </div>
+          <h2 class="sl-title">Bài Tập 03: Phỏng vấn dạo / Hỏi đáp Nhóm 2 Người ngoài trời</h2>
+          <p class="sl-sub">Trang phục mẫu: Áo khoác Blazer màu Nâu Camel khoác ngoài áo thun Đen • Đạo cụ nối: Mic cài áo không dây & Sổ câu hỏi.</p>
+          <ul class="sl-bullets">
+            <li><strong>C1 (Đặc tả cận ngực nghiêng 40°):</strong> <em>Mồi:</em> Bàn tay bạn học cài mic không dây lên ve áo blazer nâu Camel &rarr; <em>Bạn hỏi câu mồi</em> &rarr; <em>Nối:</em> Hai người bắt đầu nhấc chân bước.</li>
+<li><strong>C2 (Toàn cảnh góc thấp 20° hai người bước song song • Δ 60°):</strong> <em>Mồi:</em> Bắt nhịp chân sải bước trên vỉa hè lát gạch &rarr; <em>Thoại C2</em> &rarr; <em>Nối:</em> Người A xoay nhẹ vai sang phía bạn đồng hành.</li>
+<li><strong>C3 (Trung cận qua vai người hỏi OTS 140° • Δ 120°):</strong> <em>Mồi:</em> Đang đà xoay vai, hai tay mở ngang ngực &rarr; <em>Thoại C3</em> &rarr; <em>Nối:</em> Bước chậm lại dưới tán cây.</li>
+<li><strong>C4 (Cận nghiêng 85° ngược nắng Rim-light • Δ 55°) &rarr; C5 (Cận trực diện 0° tựa lan can gỗ • Δ 85°):</strong> Nói C4 ở góc nghiêng sâu lắng &rarr; Dừng bước đặt tay lên lan can gỗ nhìn thẳng máy chốt C5.</li>
+          </ul>
+          <div class="sl-visual-box">
+            <span class="sl-vis-lbl">📐 TRỌNG TÂM THỊ GIÁC TRÊN MÀN CHIẾU:</span>
+            <div>5 Cú máy chuẩn của Bài Tập 03 (Khắc phục hoàn toàn lỗi đứng thẳng một góc — biến cuộc đi dạo ngoài vỉa hè thành 5 góc điện ảnh):</div>
+            <div class="sl-shot-grid">
+              <div class="sl-shot">
+                <div class="sl-shot-img">
+                  <span class="sl-shot-badge">C1 • Macro Mic 40°</span>
+                  <img src="assets/wnt_thuchanh/bt3_v2_shot1.jpg?v=20261020v2" alt="Mồi: Tay bạn cài mic • Nối: Bắt đầu bước" loading="lazy"/>
+                </div>
+                <div class="sl-shot-cap">Mồi: Tay bạn cài mic • Nối: Bắt đầu bước</div>
+              </div>
+              <div class="sl-shot">
+                <div class="sl-shot-img">
+                  <span class="sl-shot-badge">C2 • Wide Walk 20°</span>
+                  <img src="assets/wnt_thuchanh/bt3_v2_shot2.jpg?v=20261020v2" alt="Mồi: Sải bước đôi • Nối: Xoay vai sang bạn" loading="lazy"/>
+                </div>
+                <div class="sl-shot-cap">Mồi: Sải bước đôi • Nối: Xoay vai sang bạn</div>
+              </div>
+              <div class="sl-shot">
+                <div class="sl-shot-img">
+                  <span class="sl-shot-badge">C3 • OTS 140°</span>
+                  <img src="assets/wnt_thuchanh/bt3_v2_shot3.jpg?v=20261020v2" alt="Mồi: Mở hai tay giải thích • Nối: Chậm bước" loading="lazy"/>
+                </div>
+                <div class="sl-shot-cap">Mồi: Mở hai tay giải thích • Nối: Chậm bước</div>
+              </div>
+              <div class="sl-shot">
+                <div class="sl-shot-img">
+                  <span class="sl-shot-badge">C4 • Profile 85°</span>
+                  <img src="assets/wnt_thuchanh/bt3_v2_shot4.jpg?v=20261020v2" alt="Mồi: Nghiêng mặt dưới nắng • Nối: Tới lan can" loading="lazy"/>
+                </div>
+                <div class="sl-shot-cap">Mồi: Nghiêng mặt dưới nắng • Nối: Tới lan can</div>
+              </div>
+              <div class="sl-shot">
+                <div class="sl-shot-img">
+                  <span class="sl-shot-badge">C5 • Frontal 0°</span>
+                  <img src="assets/wnt_thuchanh/bt3_v2_shot5.jpg?v=20261020v2" alt="Mồi: Tựa tay lan can gỗ • Chốt trực diện" loading="lazy"/>
+                </div>
+                <div class="sl-shot-cap">Mồi: Tựa tay lan can gỗ • Chốt trực diện</div>
+              </div></div>
+          </div>
+        </div>
+        <div class="sl-speaker">
+          <div class="sl-spk-head">🗣️ LỜI DẪN BỤC GIẢNG (GIỌNG VĂN NÓI TRÀ ĐÁ ĐĨNH ĐẠC — ANH VIỆT)</div>
+          <p>"Bài tập 3 là bài đi dạo ngoài vỉa hè rợp bóng cây dưới tòa nhà. Thay vì cứ lùi trước mặt nhau quay một góc duy nhất, Cú 1 mình lấy cận cảnh tay bạn cài mic lên ve áo; Cú 2 hạ máy thấp lấy toàn cảnh bước chân hai anh em đi song song; Cú 3 vòng ra sau vai người hỏi góc 140 độ; Cú 4 lấy góc nghiêng 85 độ ngược nắng nhẹ và Cú 5 dừng lại tựa tay lên lan can gỗ."</p>
+        </div>
+      </article>
+
+      <article class="sl-card" id="slide-14" data-index="13">
+        <div class="sl-screen">
+          <div class="sl-top-meta">
+            <span class="sl-badge-num">SLIDE 14 / 15</span>
+            <span class="sl-badge-grp">PHẦN III • ĐIỀU PHỐI 5 BÀI TẬP NHÓM 2 NGƯỜI TẠI LỚP K3</span>
+          </div>
+          <h2 class="sl-title">Bài Tập 04: Bóc tách 1 hiểu lầm trong ngành (Bàn gỗ → Khung cửa → Cầu thang)</h2>
+          <p class="sl-sub">Trang phục mẫu: Áo khoác Denim xanh Indigo khoác ngoài áo thun trắng • Đạo cụ nối: Bút dạ đỏ, Tờ báo giá & Ly cà phê.</p>
+          <ul class="sl-bullets">
+            <li><strong>C1 (Top-down 80° thẳng đứng từ trên xuống):</strong> <em>Mồi:</em> Dùng bút dạ đỏ gạch một đường dứt khoát lên dòng sai lầm trên tờ giấy cạnh ly cà phê &rarr; <em>Thoại C1</em> &rarr; <em>Nối:</em> Đặt bút xuống bàn.</li>
+<li><strong>C2 (Trung cận góc thấp 35° qua ly cà phê tiền cảnh • Δ 45°):</strong> <em>Mồi:</em> Chống khuỷu tay lên bàn gỗ, ngước nhìn bạn học &rarr; <em>Thoại C2</em> &rarr; <em>Nối:</em> Cầm tờ giấy đứng dậy bước về phía cửa.</li>
+<li><strong>C3 (Toàn cảnh xuyên khung cửa gỗ lớp học • Δ 55°):</strong> <em>Mồi:</em> Bước cắt ngang qua mép khung cửa gỗ ra hành lang sáng &rarr; <em>Thoại C3</em> &rarr; <em>Nối:</em> Rẽ bước lên cầu thang.</li>
+<li><strong>C4 (Góc cao 45° từ trên cầu thang nhìn xuống • Δ 75°) &rarr; C5 (Cận chặt bên cửa sổ nắng xiên 45° • Δ 45°):</strong> Bước lên bậc thang giơ 2 ngón tay đối chiếu ở C4 &rarr; Dừng lại bên khung cửa sổ kính chốt C5.</li>
+          </ul>
+          <div class="sl-visual-box">
+            <span class="sl-vis-lbl">📐 TRỌNG TÂM THỊ GIÁC TRÊN MÀN CHIẾU:</span>
+            <div>5 Cú máy chuẩn của Bài Tập 04 (Tận dụng chiều sâu kiến trúc: Mặt bàn 80° &rarr; Tiền cảnh ly cà phê 35° &rarr; Khung cửa gỗ &rarr; Cầu thang kính 45° &rarr; Cửa sổ):</div>
+            <div class="sl-shot-grid">
+              <div class="sl-shot">
+                <div class="sl-shot-img">
+                  <span class="sl-shot-badge">C1 • Top-Down 80°</span>
+                  <img src="assets/wnt_thuchanh/bt4_v2_shot1.jpg?v=20261020v2" alt="Mồi: Gạch bút đỏ lên giấy • Nối: Hạ bút" loading="lazy"/>
+                </div>
+                <div class="sl-shot-cap">Mồi: Gạch bút đỏ lên giấy • Nối: Hạ bút</div>
+              </div>
+              <div class="sl-shot">
+                <div class="sl-shot-img">
+                  <span class="sl-shot-badge">C2 • Foreground 35°</span>
+                  <img src="assets/wnt_thuchanh/bt4_v2_shot2.jpg?v=20261020v2" alt="Mồi: Tựa khuỷu tay • Nối: Cầm giấy đứng lên" loading="lazy"/>
+                </div>
+                <div class="sl-shot-cap">Mồi: Tựa khuỷu tay • Nối: Cầm giấy đứng lên</div>
+              </div>
+              <div class="sl-shot">
+                <div class="sl-shot-img">
+                  <span class="sl-shot-badge">C3 • Door Mask 90°</span>
+                  <img src="assets/wnt_thuchanh/bt4_v2_shot3.jpg?v=20261020v2" alt="Mồi: Bước qua khung cửa gỗ • Nối: Rẽ cầu thang" loading="lazy"/>
+                </div>
+                <div class="sl-shot-cap">Mồi: Bước qua khung cửa gỗ • Nối: Rẽ cầu thang</div>
+              </div>
+              <div class="sl-shot">
+                <div class="sl-shot-img">
+                  <span class="sl-shot-badge">C4 • Stair High 45°</span>
+                  <img src="assets/wnt_thuchanh/bt4_v2_shot4.jpg?v=20261020v2" alt="Mồi: Bước lên giơ 2 ngón tay • Nối: Tới chiếu nghỉ" loading="lazy"/>
+                </div>
+                <div class="sl-shot-cap">Mồi: Bước lên giơ 2 ngón tay • Nối: Tới chiếu nghỉ</div>
+              </div>
+              <div class="sl-shot">
+                <div class="sl-shot-img">
+                  <span class="sl-shot-badge">C5 • Window CU 0°</span>
+                  <img src="assets/wnt_thuchanh/bt4_v2_shot5.jpg?v=20261020v2" alt="Mồi: Dừng bên cửa sổ nắng xiên • Chốt uy tín" loading="lazy"/>
+                </div>
+                <div class="sl-shot-cap">Mồi: Dừng bên cửa sổ nắng xiên • Chốt uy tín</div>
+              </div></div>
+          </div>
+        </div>
+        <div class="sl-speaker">
+          <div class="sl-spk-head">🗣️ LỜI DẪN BỤC GIẢNG (GIỌNG VĂN NÓI TRÀ ĐÁ ĐĨNH ĐẠC — ANH VIỆT)</div>
+          <p>"Ở Bài tập 4, mình bóc tách một hiểu lầm khiến khách hàng hay tốn tiền oan. Cảnh 1 quay thẳng từ trên đỉnh đầu xuống bàn tay cầm bút đỏ gạch bỏ dòng dự toán sai; Cảnh 2 hạ máy xuống mép bàn lấy ly cà phê làm tiền cảnh mờ; Cảnh 3 người cầm máy đứng ngoài hành lang quay xuyên qua khung cửa gỗ lúc bạn bước ra; Cảnh 4 đứng trên cầu thang chụp xuống góc 45 độ; và Cảnh 5 chốt bên cửa sổ."</p>
+        </div>
+      </article>
+
+      <article class="sl-card" id="slide-15" data-index="14">
+        <div class="sl-screen">
+          <div class="sl-top-meta">
+            <span class="sl-badge-num">SLIDE 15 / 15</span>
+            <span class="sl-badge-grp">PHẦN III • ĐIỀU PHỐI 5 BÀI TẬP NHÓM 2 NGƯỜI TẠI LỚP K3</span>
+          </div>
+          <h2 class="sl-title">Bài Tập 05: Chuyện người làm nghề đi học tại lớp K3 & Bảng kiểm trước khi nộp</h2>
+          <p class="sl-sub">Trang phục mẫu: Áo len Cardigan màu Đỏ Đô (Burgundy) khoác ngoài sơ mi trắng • Đạo cụ nối: Điện thoại mở màn hình cắt ghép, Bảng trắng & Ấm trà.</p>
+          <ul class="sl-bullets">
+            <li><strong>C1 (Macro 30° qua vai cắt đoạn video trên CapCut):</strong> <em>Mồi:</em> Hai tay cầm ngang điện thoại kéo cắt thanh video trên bàn gỗ cạnh chén trà nóng &rarr; <em>Thoại C1</em> &rarr; <em>Nối:</em> Đặt điện thoại xuống sổ.</li>
+<li><strong>C2 (Toàn cảnh OTS 130° qua vai 2 bạn học • Δ 100°):</strong> <em>Mồi:</em> Mở hai bàn tay trao đổi cùng bạn cùng bàn trước bảng trắng K3 &rarr; <em>Thoại C2</em> &rarr; <em>Nối:</em> Cầm bút đứng lên bước về phía bảng.</li>
+<li><strong>C3 (Trung cảnh góc nghiêng 60° bên bảng trắng • Δ 70°):</strong> <em>Mồi:</em> Chỉ đầu bút vào sơ đồ 3 khung phân cảnh trên bảng cùng bạn cầm tripod &rarr; <em>Thoại C3</em> &rarr; <em>Nối:</em> Bước ra cửa ban công.</li>
+<li><strong>C4 (Góc thấp 25° ngoài ban công rót trà • Δ 85°) &rarr; C5 (Cận chặt 0° tại cửa ban công • Δ 45°):</strong> Cầm ấm rót trà nóng mời bạn đồng hành ở C4 &rarr; Nâng tay cảm ơn / đập tay cùng bạn và nhìn thẳng ống kính mỉm cười ở C5.</li>
+          </ul>
+          <div class="sl-visual-box">
+            <span class="sl-vis-lbl">📐 TRỌNG TÂM THỊ GIÁC TRÊN MÀN CHIẾU:</span>
+            <div>Kiểm tra 3 điểm trước khi nộp file: <strong>(1) Đủ 5 cú lệch góc &ge; 45°; (2) Có động tác Mồi &amp; Nối ở đầu/cuối mỗi cú; (3) Âm thanh rõ, không dùng câu chào hàng sáo rỗng.</strong></div>
+            <div class="sl-shot-grid">
+              <div class="sl-shot">
+                <div class="sl-shot-img">
+                  <span class="sl-shot-badge">C1 • Macro Edit 30°</span>
+                  <img src="assets/wnt_thuchanh/bt5_v2_shot1.jpg?v=20261020v2" alt="Mồi: Cắt đoạn video trên ĐT • Nối: Đặt máy xuống" loading="lazy"/>
+                </div>
+                <div class="sl-shot-cap">Mồi: Cắt đoạn video trên ĐT • Nối: Đặt máy xuống</div>
+              </div>
+              <div class="sl-shot">
+                <div class="sl-shot-img">
+                  <span class="sl-shot-badge">C2 • Class OTS 130°</span>
+                  <img src="assets/wnt_thuchanh/bt5_v2_shot2.jpg?v=20261020v2" alt="Mồi: Trao đổi bàn gỗ K3 • Nối: Bước lên bảng" loading="lazy"/>
+                </div>
+                <div class="sl-shot-cap">Mồi: Trao đổi bàn gỗ K3 • Nối: Bước lên bảng</div>
+              </div>
+              <div class="sl-shot">
+                <div class="sl-shot-img">
+                  <span class="sl-shot-badge">C3 • Board 60°</span>
+                  <img src="assets/wnt_thuchanh/bt5_v2_shot3.jpg?v=20261020v2" alt="Mồi: Chỉ sơ đồ 3 bước • Nối: Mở cửa ban công" loading="lazy"/>
+                </div>
+                <div class="sl-shot-cap">Mồi: Chỉ sơ đồ 3 bước • Nối: Mở cửa ban công</div>
+              </div>
+              <div class="sl-shot">
+                <div class="sl-shot-img">
+                  <span class="sl-shot-badge">C4 • Balcony Tea 25°</span>
+                  <img src="assets/wnt_thuchanh/bt5_v2_shot4.jpg?v=20261020v2" alt="Mồi: Rót trà nóng mời bạn • Nối: Đặt ấm trà" loading="lazy"/>
+                </div>
+                <div class="sl-shot-cap">Mồi: Rót trà nóng mời bạn • Nối: Đặt ấm trà</div>
+              </div>
+              <div class="sl-shot">
+                <div class="sl-shot-img">
+                  <span class="sl-shot-badge">C5 • Tight Smile 0°</span>
+                  <img src="assets/wnt_thuchanh/bt5_v2_shot5.jpg?v=20261020v2" alt="Mồi: Chắp/Đập tay đồng đội • Cười rạng rỡ" loading="lazy"/>
+                </div>
+                <div class="sl-shot-cap">Mồi: Chắp/Đập tay đồng đội • Cười rạng rỡ</div>
+              </div></div>
+          </div>
+        </div>
+        <div class="sl-speaker">
+          <div class="sl-spk-head">🗣️ LỜI DẪN BỤC GIẢNG (GIỌNG VĂN NÓI TRÀ ĐÁ ĐĨNH ĐẠC — ANH VIỆT)</div>
+          <p>"Bài tập 5 là bài kỷ niệm rất đẹp ngay tại lớp học K3 của mình: kể thật vì sao mình làm nghề lâu năm rồi mà cuối tuần vẫn cắp sổ đi học cùng anh em. Quay xong đủ 5 cú từ bàn học, bảng trắng ra tới bàn trà ban công, anh chị kiểm tra lại âm thanh rồi mở sang trang Thực hành để lấy đúng lời thoại của mình!"</p>
+        </div>
+      </article>
+    </div>
+  </main>
+
+  <script>
+    var currentSlide = 0;
+    var totalSlides = 15;
+    var singleMode = false;
+
+    function updateSlideView() {
+      var cards = document.querySelectorAll('.sl-card');
+      var pills = document.querySelectorAll('.quick-jump button');
+      cards.forEach(function(c, i) {
+        if (i === currentSlide) c.classList.add('active-slide');
+        else c.classList.remove('active-slide');
+      });
+      pills.forEach(function(p, i) {
+        if (i === currentSlide) p.classList.add('active-pill');
+        else p.classList.remove('active-pill');
+      });
+      var counter = document.getElementById('slideCounter');
+      if (singleMode) {
+        counter.textContent = 'SLIDE ' + (currentSlide + 1) + ' / ' + totalSlides;
+      } else {
+        counter.textContent = 'XEM TẤT CẢ ' + totalSlides + ' SLIDES';
+      }
+    }
+
+    window.toggleDeckMode = function() {
+      singleMode = !singleMode;
+      document.body.classList.toggle('single-mode', singleMode);
+      var btn = document.getElementById('btnToggleMode');
+      btn.textContent = singleMode ? '📋 Xem tất cả 15 Slides' : '🖥️ Chế độ chiếu từng Slide';
+      updateSlideView();
+      if (singleMode) {
+        var active = document.getElementById('slide-' + (currentSlide + 1));
+        if (active) active.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    };
+
+    window.goToSlide = function(idx) {
+      currentSlide = Math.max(0, Math.min(totalSlides - 1, idx));
+      updateSlideView();
+      var el = document.getElementById('slide-' + (currentSlide + 1));
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    };
+
+    window.nextSlide = function() {
+      if (!singleMode) window.toggleDeckMode();
+      else window.goToSlide((currentSlide + 1) % totalSlides);
+    };
+
+    window.prevSlide = function() {
+      if (!singleMode) window.toggleDeckMode();
+      else window.goToSlide((currentSlide - 1 + totalSlides) % totalSlides);
+    };
+
+    window.toggleFullScreen = function() {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch(function(){});
+      } else {
+        document.exitFullscreen().catch(function(){});
+      }
+    };
+
+    document.addEventListener('keydown', function(e) {
+      if (e.target && (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA')) return;
+      if (e.key === 'ArrowRight') window.nextSlide();
+      else if (e.key === 'ArrowLeft') window.prevSlide();
+      else if (e.key === 'f' || e.key === 'F') window.toggleFullScreen();
+    });
+
+    updateSlideView();
+  </script>
+</body>
+</html>
