@@ -1,0 +1,2364 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Slide Thuyết Trình Offline: Logic Bố Cục Cảnh Quay 3.0 (19 Slides Design System 2.0)</title>
+  <style>
+    @font-face{font-family:'FD Aeonik Extended';src:url('fonts/FDAeonikExtended-Bold.woff2') format('woff2');font-weight:700;font-display:swap}
+    @font-face{font-family:'FD Aeonik Extended';src:url('fonts/FDAeonikExtended-SemiBold.woff2') format('woff2');font-weight:600;font-display:swap}
+    @font-face{font-family:'FD Aeonik';src:url('fonts/FDAeonik-Regular.ttf') format('truetype');font-weight:400;font-display:swap}
+    @font-face{font-family:'FD Aeonik';src:url('fonts/FDAeonik-Medium.ttf') format('truetype');font-weight:500 600;font-display:swap}
+    @font-face{font-family:'FD Aeonik';src:url('fonts/FDAeonik-Bold.ttf') format('truetype');font-weight:700;font-display:swap}
+    @font-face{font-family:'Tiempos Text';src:url('fonts/FDTiemposText-Regular.woff2') format('woff2');font-weight:400;font-display:swap}
+    @font-face{font-family:'Tiempos Text';src:url('fonts/FDTiemposText-RegularItalic.woff2') format('woff2');font-weight:400;font-style:italic;font-display:swap}
+    @font-face{font-family:'Tiempos Text';src:url('fonts/FDTiemposText-Semibold.woff2') format('woff2');font-weight:600;font-display:swap}
+
+    :root {
+      --ink: #0f172a;
+      --ink2: #1e293b;
+      --ink3: #334155;
+      --mute: #64748b;
+      --line: #e2e8f0;
+      --line2: #cbd5e1;
+      --bg: #ffffff;
+      --card-bg: #f8fafc;
+      --red-border: #fca5a5;
+      --red-badge: #dc2626;
+      --red-bg: #fef2f2;
+      --green-border: #6ee7b7;
+      --green-badge: #059669;
+      --green-bg: #ecfdf5;
+      --cyan-badge: #0284c7;
+      --cyan-bg: #f0f9ff;
+      --sans: 'FD Aeonik', -apple-system, BlinkMacSystemFont, 'Segoe UI', Inter, sans-serif;
+      --display: 'FD Aeonik Extended', 'FD Aeonik', -apple-system, sans-serif;
+      --serif: 'Tiempos Text', Georgia, serif;
+      --mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: #0f172a;
+      color: var(--ink);
+      font-family: var(--sans);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* === DECK CONTROL BAR === */
+    .deck-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(15, 23, 42, 0.96);
+      border-bottom: 1px solid #334155;
+      padding: 10px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      flex-wrap: wrap;
+      color: #f8fafc;
+      backdrop-filter: blur(8px);
+    }
+    .deck-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .deck-logo {
+      background: #fb923c;
+      color: #0f172a;
+      font: 800 12px var(--display);
+      padding: 5px 8px;
+      border-radius: 6px;
+    }
+    .deck-title {
+      font: 700 14px var(--display);
+      letter-spacing: 0.02em;
+    }
+    .deck-sub {
+      font-size: 12px;
+      color: #94a3b8;
+      margin-left: 6px;
+    }
+    .deck-nav-dots {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      flex-wrap: wrap;
+    }
+    .nav-dot {
+      background: #1e293b;
+      color: #cbd5e1;
+      border: 1px solid #334155;
+      border-radius: 6px;
+      padding: 4px 8px;
+      font: 700 11px var(--mono);
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .nav-dot:hover {
+      background: #334155;
+      color: #fff;
+    }
+    .nav-dot.active {
+      background: #fb923c;
+      color: #0f172a;
+      border-color: #fb923c;
+    }
+    .deck-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .ctrl-btn {
+      background: #1e293b;
+      color: #f8fafc;
+      border: 1px solid #475569;
+      border-radius: 7px;
+      padding: 6px 12px;
+      font: 600 12.5px var(--sans);
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .ctrl-btn:hover {
+      background: #334155;
+    }
+    .ctrl-btn.primary {
+      background: #2563eb;
+      border-color: #3b82f6;
+    }
+
+    /* === STAGE CONTAINER === */
+    .deck-stage {
+      max-width: 1360px;
+      margin: 22px auto 60px;
+      padding: 0 20px;
+    }
+    .slide-wrapper {
+      display: none;
+      margin-bottom: 36px;
+    }
+    .slide-wrapper.active {
+      display: block;
+    }
+    body.view-all .slide-wrapper {
+      display: block !important;
+      margin-bottom: 48px;
+    }
+
+    /* === 16:9 DESIGN SYSTEM 2.0 SLIDE CANVAS === */
+    .slide-canvas {
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      border-radius: 16px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+      min-height: 680px;
+      padding: 28px 42px 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      overflow: hidden;
+    }
+    .slide-topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font: 700 11.5px var(--mono);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--mute);
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--line);
+    }
+    .slide-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 14px;
+      margin-top: 20px;
+      border-top: 1px solid var(--line);
+      font-size: 12.5px;
+      color: var(--mute);
+    }
+    .mentor-sig {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--ink2);
+    }
+    .mentor-dot {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: var(--ink);
+      color: #fff;
+      display: inline-grid;
+      place-items: center;
+      font: 700 10px var(--display);
+    }
+    .footer-right {
+      font: 600 11.5px var(--mono);
+      color: var(--mute);
+    }
+
+    /* === KIỂU 01: COVER GIANT ANCHOR NUMBER 0 === */
+    .cover-body {
+      display: grid;
+      grid-template-columns: 380px 1fr;
+      align-items: center;
+      gap: 32px;
+      padding: 30px 0;
+      min-height: 520px;
+      position: relative;
+    }
+    .giant-zero {
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: 460px;
+      line-height: 0.8;
+      color: #3c3c3c;
+      letter-spacing: -0.05em;
+      user-select: none;
+      margin-left: -30px;
+    }
+    .cover-right {
+      padding-right: 20px;
+    }
+    .cover-kicker {
+      display: inline-block;
+      font: 700 11px var(--mono);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      background: #f1f5f9;
+      color: #334155;
+      padding: 5px 10px;
+      border-radius: 6px;
+      margin-bottom: 16px;
+    }
+    .cover-t1 {
+      font: italic 400 clamp(44px, 4.5vw, 64px)/1.08 var(--serif);
+      color: var(--ink);
+      margin-bottom: 6px;
+    }
+    .cover-t2 {
+      font: 700 clamp(38px, 4vw, 56px)/1.12 var(--display);
+      color: var(--ink);
+      letter-spacing: -0.02em;
+      margin-bottom: 18px;
+    }
+    .cover-sub {
+      font: 400 20px/1.55 var(--sans);
+      color: var(--ink3);
+      max-width: 680px;
+      margin-bottom: 24px;
+    }
+    .cover-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .cpill {
+      font: 600 12.5px var(--sans);
+      background: #f8fafc;
+      border: 1px solid #cbd5e1;
+      color: #1e293b;
+      padding: 6px 12px;
+      border-radius: 999px;
+    }
+
+    /* === SLIDE HEAD BLOCK (SLIDES 2+) === */
+    .slide-head-block {
+      margin: 18px 0 18px;
+    }
+    .slide-title-row {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .slide-main-title {
+      font: 700 clamp(22px, 2.3vw, 30px)/1.2 var(--display);
+      color: var(--ink);
+      margin: 0;
+      letter-spacing: -0.01em;
+    }
+    .preset-tag {
+      font: 600 11px var(--mono);
+      background: #f1f5f9;
+      color: #475569;
+      border: 1px solid #e2e8f0;
+      padding: 4px 9px;
+      border-radius: 6px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .slide-subtitle {
+      font: 400 16px/1.45 var(--sans);
+      color: var(--mute);
+      margin: 6px 0 0;
+    }
+
+    /* === CARDS GRID (KIỂU 02, 03, 05) === */
+    .ds-cards {
+      display: grid;
+      gap: 18px;
+      flex: 1;
+      align-items: stretch;
+    }
+    .cards-grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .cards-grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .cards-grid-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+
+    .ds-card {
+      background: var(--card-bg);
+      border: 1.5px solid var(--line);
+      border-radius: 14px;
+      padding: 20px 22px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .ds-card.card-warn {
+      border-color: var(--red-border);
+      background: #fffafa;
+    }
+    .ds-card.card-good {
+      border-color: var(--green-border);
+      background: #f7fee7;
+      background: linear-gradient(180deg, #ffffff 0%, #f0fdf4 100%);
+    }
+    .ds-badge {
+      font: 700 11.5px/1.2 var(--sans);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--cyan-badge);
+      margin-bottom: 8px;
+    }
+    .card-warn .ds-badge { color: var(--red-badge); }
+    .card-good .ds-badge { color: var(--green-badge); }
+
+    .ds-card-title {
+      font: 700 20px/1.3 var(--display);
+      color: var(--ink);
+      margin: 0;
+    }
+    .cards-grid-3 .ds-card-title,
+    .cards-grid-4 .ds-card-title {
+      font-size: 17.5px;
+    }
+    .ds-hairline {
+      height: 1px;
+      background: var(--line);
+      margin: 14px 0;
+    }
+    .ds-card-body {
+      flex: 1;
+      font: 400 15.5px/1.6 var(--sans);
+      color: var(--ink2);
+    }
+    .cards-grid-4 .ds-card-body {
+      font-size: 14px;
+      line-height: 1.55;
+    }
+    .ds-card-body p {
+      margin: 0 0 10px;
+    }
+    .ds-card-body p:last-child {
+      margin-bottom: 0;
+    }
+    .ds-takeaway {
+      margin-top: 14px;
+      padding: 10px 12px;
+      border-radius: 9px;
+      background: var(--cyan-bg);
+      border: 1px solid #bae6fd;
+      font: 600 13.5px/1.4 var(--sans);
+      color: #0369a1;
+    }
+    .card-warn .ds-takeaway {
+      background: var(--red-bg);
+      border-color: #fecaca;
+      color: #991b1b;
+    }
+    .card-good .ds-takeaway {
+      background: var(--green-bg);
+      border-color: #a7f3d0;
+      color: #065f46;
+    }
+
+    /* === KIỂU 06: BIG QUOTE === */
+    .quote-center-box {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 28px 40px;
+      background: #f8fafc;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      margin: 10px 0 18px;
+    }
+    .quote-mark {
+      font: 700 64px/0.6 var(--serif);
+      color: #cbd5e1;
+      margin-bottom: 12px;
+    }
+    .big-quote-text {
+      font: italic 400 clamp(22px, 2.5vw, 32px)/1.5 var(--serif);
+      color: var(--ink);
+      max-width: 920px;
+      margin: 0;
+    }
+    .quote-action-bar {
+      background: #0f172a;
+      color: #f8fafc;
+      padding: 16px 22px;
+      border-radius: 12px;
+      font: 600 15px/1.55 var(--sans);
+    }
+
+    /* === INLINE VIDEO EVIDENCE TRAY === */
+    .slide-videos-tray {
+      display: grid;
+      gap: 14px;
+      margin-top: 16px;
+    }
+    .slide-videos-tray.cols-1 { grid-template-columns: 1fr; }
+    .slide-videos-tray.cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .slide-videos-tray.cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+
+    .slide-vcard {
+      border: 1px solid #cbd5e1;
+      border-radius: 10px;
+      background: #ffffff;
+      overflow: hidden;
+    }
+    .slide-vhead {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      background: #f1f5f9;
+      border-bottom: 1px solid #e2e8f0;
+      flex-wrap: wrap;
+    }
+    .slide-vtitle {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+      font-size: 13px;
+    }
+    .slide-vmeta {
+      font-size: 11.5px;
+      color: #64748b;
+    }
+    .v-badge {
+      font: 700 10px var(--mono);
+      padding: 3px 6px;
+      border-radius: 5px;
+    }
+    .v-badge-win {
+      background: #dcfce7;
+      color: #166534;
+      border: 1px solid #86efac;
+    }
+    .v-badge-err {
+      background: #fee2e2;
+      color: #991b1b;
+      border: 1px solid #fca5a5;
+    }
+    .slide-vbtns {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .btn-play-inline {
+      background: #dc2626;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      padding: 5px 10px;
+      font: 700 11.5px var(--sans);
+      cursor: pointer;
+    }
+    .btn-play-inline:hover { background: #b91c1c; }
+    .btn-src-link {
+      font: 600 11.5px var(--sans);
+      color: #334155;
+      text-decoration: none;
+      background: #fff;
+      border: 1px solid #cbd5e1;
+      padding: 4px 8px;
+      border-radius: 6px;
+    }
+    .slide-vstrip {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      align-items: center;
+      gap: 12px;
+      padding: 8px 12px;
+      background: #f8fafc;
+    }
+    .slide-videos-tray.cols-3 .slide-vstrip {
+      grid-template-columns: 1fr;
+    }
+    .slide-vstrip img {
+      width: 100%;
+      max-height: 95px;
+      object-fit: cover;
+      border-radius: 6px;
+      border: 1px solid #cbd5e1;
+    }
+    .slide-vnote {
+      font-size: 13px;
+      line-height: 1.45;
+      color: #334155;
+    }
+    .slide-vplayer {
+      background: #000;
+      padding: 10px;
+      text-align: center;
+    }
+    .slide-vplayer video {
+      max-width: 100%;
+      max-height: 360px;
+      border-radius: 8px;
+    }
+
+    /* === SPEAKER NOTES BOX === */
+    .speaker-notes-box {
+      margin-top: 14px;
+      background: #1e293b;
+      border: 1px solid #334155;
+      border-left: 4px solid #fb923c;
+      border-radius: 12px;
+      padding: 14px 20px;
+      color: #f1f5f9;
+    }
+    .sn-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 6px;
+      flex-wrap: wrap;
+    }
+    .sn-badge {
+      font: 700 11.5px var(--mono);
+      color: #fb923c;
+      letter-spacing: 0.05em;
+    }
+    .sn-part {
+      font: 500 12px var(--sans);
+      color: #94a3b8;
+    }
+    .sn-text {
+      margin: 0;
+      font: 400 15.5px/1.65 var(--serif);
+      color: #e2e8f0;
+    }
+
+    @media (max-width: 1024px) {
+      .cover-body { grid-template-columns: 1fr; }
+      .giant-zero { font-size: 220px; margin-left: 0; }
+      .cards-grid-2, .cards-grid-3, .cards-grid-4 { grid-template-columns: 1fr; }
+      .slide-videos-tray.cols-2, .slide-videos-tray.cols-3 { grid-template-columns: 1fr; }
+      .slide-vstrip { grid-template-columns: 1fr; }
+      .slide-canvas { padding: 20px; min-height: auto; }
+    }
+  
+    .cards-grid-6 {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+    .cards-grid-6 .ds-card {
+      padding: 14px 16px;
+    }
+    .cards-grid-6 .ds-card-title {
+      font-size: 16.5px;
+    }
+    .cards-grid-6 .ds-card-body {
+      font-size: 13.5px;
+      line-height: 1.5;
+    }
+    .cards-grid-6 .ds-hairline {
+      margin: 8px 0;
+    }
+    .cards-grid-6 .ds-takeaway {
+      margin-top: 8px;
+      padding: 7px 10px;
+      font-size: 12.5px;
+    }
+    @media (max-width: 1024px) {
+      .cards-grid-6 { grid-template-columns: 1fr; }
+    }
+
+  </style>
+</head>
+<body>
+  <header class="deck-header">
+    <div class="deck-brand">
+      <span class="deck-logo">FEDU 3.0</span>
+      <div>
+        <span class="deck-title">SLIDE THUYẾT TRÌNH OFFLINE: LOGIC BỐ CỤC CẢNH QUAY 3.0</span>
+        <span class="deck-sub">(19 Slides Design System 2.0 • Dùng phím ← / → để chuyển slide)</span>
+      </div>
+    </div>
+    <div class="deck-nav-dots" id="nav-dots">
+      <button type="button" class="nav-dot active" onclick="goToSlide(0)" title="Slide 01">01</button><button type="button" class="nav-dot" onclick="goToSlide(1)" title="Slide 02">02</button><button type="button" class="nav-dot" onclick="goToSlide(2)" title="Slide 03">03</button><button type="button" class="nav-dot" onclick="goToSlide(3)" title="Slide 04">04</button><button type="button" class="nav-dot" onclick="goToSlide(4)" title="Slide 05">05</button><button type="button" class="nav-dot" onclick="goToSlide(5)" title="Slide 06">06</button><button type="button" class="nav-dot" onclick="goToSlide(6)" title="Slide 07">07</button><button type="button" class="nav-dot" onclick="goToSlide(7)" title="Slide 08">08</button><button type="button" class="nav-dot" onclick="goToSlide(8)" title="Slide 09">09</button><button type="button" class="nav-dot" onclick="goToSlide(9)" title="Slide 10">10</button><button type="button" class="nav-dot" onclick="goToSlide(10)" title="Slide 11">11</button><button type="button" class="nav-dot" onclick="goToSlide(11)" title="Slide 12">12</button><button type="button" class="nav-dot" onclick="goToSlide(12)" title="Slide 13">13</button><button type="button" class="nav-dot" onclick="goToSlide(13)" title="Slide 14">14</button><button type="button" class="nav-dot" onclick="goToSlide(14)" title="Slide 15">15</button><button type="button" class="nav-dot" onclick="goToSlide(15)" title="Slide 16">16</button><button type="button" class="nav-dot" onclick="goToSlide(16)" title="Slide 17">17</button><button type="button" class="nav-dot" onclick="goToSlide(17)" title="Slide 18">18</button><button type="button" class="nav-dot" onclick="goToSlide(18)" title="Slide 19">19</button>
+    </div>
+    <div class="deck-actions">
+      <button type="button" class="ctrl-btn" onclick="prevSlide()">← Trước</button>
+      <button type="button" class="ctrl-btn primary" onclick="nextSlide()">Tiếp theo →</button>
+      <button type="button" class="ctrl-btn" id="btn-toggle-view" onclick="toggleViewAll()">📑 Xem tất cả 19 slides</button>
+      <a href="bocucquay.html" class="ctrl-btn">📘 Nền tảng Lý thuyết</a>
+      <a href="bocucquaybaitap.html" class="ctrl-btn">✍️ Bài tập 3 Cấp độ</a>
+    </div>
+  </header>
+
+  <main class="deck-stage">
+
+        <section class="slide-wrapper active" data-index="0" id="slide-01">
+          <div class="slide-canvas layout-cover">
+            <div class="slide-topbar">
+              <span>2026  •  ĐÀO TẠO OFFLINE XÂY KÊNH THỰC CHIẾN</span>
+              <span>imess/zalo : 0934688632</span>
+            </div>
+            
+              <div class="cover-body">
+                <div class="giant-zero" aria-hidden="true">6</div>
+                <div class="cover-right">
+                  <div class="cover-kicker">Kiểu 01 • Cover Giant Anchor Number 6</div>
+                  <div class="cover-t1">Logic Bố Cục Cảnh Quay Chỉn Chu</div>
+                  <div class="cover-t2">Đường – Động – Sáng – Giờ – Tĩnh – Vào</div>
+                  <div class="cover-sub">Biến góc bàn làm việc, quán cà phê và không gian dịch vụ hằng ngày tại thành phố thành thước phim có chiều sâu chỉ bằng điện thoại</div>
+                  <div class="cover-pills">
+                    <span class="cpill">19 Slides chuẩn Design System 2.0</span>
+                    <span class="cpill">23 Video thực chứng R2 CDN</span>
+                    <span class="cpill">3 Cấp độ bài tập tại thành phố</span>
+                  </div>
+                </div>
+              </div>
+
+            <div class="slide-footer">
+              <div class="mentor-sig">
+                <span class="mentor-dot">NV</span>
+                <span><strong>Mentor : Nguyễn Đức Việt</strong>  ·  0934.688.632</span>
+              </div>
+              <div class="footer-right">Slide 01 / 19  ·  vietndj@gmail.com</div>
+            </div>
+          </div>
+          <div class="speaker-notes-box">
+            <div class="sn-header">
+              <span class="sn-badge">🗣️ LỜI DẪN BỤC GIẢNG OFFLINE CỦA ANH VIỆT (SLIDE 01)</span>
+              <span class="sn-part">Phần mở đề: Giữ mắt người xem ở lại thêm 3 giây bằng một khung hình sạch sẽ</span>
+            </div>
+            <p class="sn-text">“Chào cả nhà, mình kéo ghế ngồi xích lại gần đây cho ấm nhé... [Chắp tay] Hôm nay mình không bàn những lý thuyết nhiếp ảnh xa xôi đâu. Mình giải quyết một việc rất thật: làm sao để khi bạn giơ chiếc điện thoại lên quay góc bàn làm việc, quay ly trà hay quay cảnh tay mình làm dịch vụ cho khách... người xem họ dừng lại nhìn thêm 3 giây vì thấy khung hình sạch sẽ, bình tĩnh và có chiều sâu. Toàn bộ buổi học hôm nay gói gọn trong đúng 6 chữ trên bảng: Đường – Động – Sáng – Giờ – Tĩnh – Vào.”</p>
+          </div>
+        </section>
+
+        <section class="slide-wrapper" data-index="1" id="slide-02">
+          <div class="slide-canvas layout-content">
+            <div class="slide-topbar">
+              <span>2026  •  MỞ ĐỀ OFFLINE • BẮT ĐÚNG BỆNH KHUNG HÌNH KÉM SANG</span>
+              <span>imess/zalo : 0934688632</span>
+            </div>
+            
+              <div class="slide-head-block">
+                <div class="slide-title-row">
+                  <h2 class="slide-main-title">Vì sao quay cùng một chiếc điện thoại nhưng hình mình tối và rối?</h2>
+                  <span class="preset-tag">Kiểu 03 • Luxury Comparison 2 Columns</span>
+                </div>
+                <p class="slide-subtitle">đối chiếu 3 thói quen vô thức làm khung hình giống camera giám sát và cách sửa ngay tại bàn</p>
+              </div>
+              <div class="ds-cards cards-grid-2">
+                <div class="ds-card card-warn">
+                  <div class="ds-card-head">
+                    <div class="ds-badge">❌ 01 • THÓI QUEN CŨ: ĐÈN TRẦN + LIA TAY + ĐỨNG CHỜ</div>
+                    <h3 class="ds-card-title">3 thủ phạm làm góc phòng trông phẳng lì và lộn xộn</h3>
+                  </div>
+                  <div class="ds-hairline"></div>
+                  <div class="ds-card-body">
+                    <p>• <strong>Bật đèn huỳnh quang trần nhà trắng bệch:</strong> Ánh sáng dội từ đỉnh đầu xuống xóa sạch bóng đổ, làm mặt bàn phẳng lì và màu sắc nhợt nhạt.</p>
+                    <p>• <strong>Để góc rộng 1x rồi cầm tay lia máy qua lại:</strong> Gom cả ổ điện, dây sạc, tường trống vào khung hình; cổ tay rung nhẹ làm cảnh quay giống camera an ninh.</p>
+                    <p>• <strong>Giữ nguyên 2 giây đứng chờ đầu cảnh:</strong> Bấm nút quay xong nhìn màn hình kiểm tra rồi mới bắt đầu cử động tay.</p>
+                  </div>
+                  <div class="ds-takeaway">🎯 Khung hình kém sang không phải do thiếu máy xịn, mà do 3 thói quen này.</div>
+                </div>
+
+                <div class="ds-card card-good">
+                  <div class="ds-card-head">
+                    <div class="ds-badge">✅ 02 • KỶ LUẬT MỚI: TẮT ĐÈN TRẦN + KHÓA TĨNH + CẮT GỌN</div>
+                    <h3 class="ds-card-title">Độ sang đến từ việc khóa chân máy đón nắng xiên</h3>
+                  </div>
+                  <div class="ds-hairline"></div>
+                  <div class="ds-card-body">
+                    <p>• <strong>Tắt đèn trần, đón nắng xiên hoặc bật đèn bàn ấm:</strong> Đặt máy xoay 90°–135° so với cửa sổ để lấy đường viền sáng tách chủ thể khỏi nền tối.</p>
+                    <p>• <strong>Bật tiêu cự 2x và tựa cố định điện thoại:</strong> Dùng phép trừ ống kính 2x cắt bỏ 70% đồ đạc thừa, khóa tĩnh máy để cảnh tự kể chuyện.</p>
+                    <p>• <strong>Vào thẳng lúc tay đang làm việc:</strong> Gọt bỏ 1.5 giây chuẩn bị đầu clip, chỉ lấy phần thân của chuyển động.</p>
+                  </div>
+                  <div class="ds-takeaway">🎯 Chỉ cần đổi 3 thao tác này, góc bàn làm việc bình thường sẽ nổi khối sâu ngay lập tức.</div>
+                </div>
+              </div>
+
+            <div class="slide-footer">
+              <div class="mentor-sig">
+                <span class="mentor-dot">NV</span>
+                <span><strong>Mentor : Nguyễn Đức Việt</strong>  ·  0934.688.632</span>
+              </div>
+              <div class="footer-right">Slide 02 / 19  ·  vietndj@gmail.com</div>
+            </div>
+          </div>
+          <div class="speaker-notes-box">
+            <div class="sn-header">
+              <span class="sn-badge">🗣️ LỜI DẪN BỤC GIẢNG OFFLINE CỦA ANH VIỆT (SLIDE 02)</span>
+              <span class="sn-part">Bóc tách 3 thủ phạm làm khung hình phẳng lì tại bàn làm việc</span>
+            </div>
+            <p class="sn-text">“Cả nhà nhìn lên cột bên trái nhé [Chỉ tay]... Nhiều anh chị nhắn cho mình bảo: Việt ơi sao chị mua iPhone mới nhất rồi mà quay lên nhìn cái phòng nó cứ tối sầm, rối tinh rối mù? Thật ra thủ phạm không nằm ở chiếc điện thoại, mà nằm ở 3 thói quen vô thức: một là bật đèn tuýp trần nhà trắng bệch chiếu từ đỉnh đầu xuống; hai là để ống kính 1x góc rộng rồi cầm tay lia qua lia lại; ba là giữ nguyên 2 giây đứng chờ ở đầu clip. Hôm nay mình tắt đèn trần đi, khóa tĩnh máy lại và gọt bỏ 2 giây đầu đó là khác hẳn ngay!”</p>
+          </div>
+        </section>
+
+        <section class="slide-wrapper" data-index="2" id="slide-03">
+          <div class="slide-canvas layout-content">
+            <div class="slide-topbar">
+              <span>2026  •  MỞ ĐỀ OFFLINE • GỠ BỎ NỖI LO THIẾT BỊ</span>
+              <span>imess/zalo : 0934688632</span>
+            </div>
+            
+              <div class="slide-head-block">
+                <div class="slide-title-row">
+                  <h2 class="slide-main-title">Bố cục là Phép Trừ và Góc Đặt Máy — không phải mua thiết bị đắt tiền</h2>
+                  <span class="preset-tag">Kiểu 02 • 3-Column Breakdown</span>
+                </div>
+                <p class="slide-subtitle">3 quyết định miễn phí trước khi bấm nút quay quyết định 90% độ chỉn chu của thước phim</p>
+              </div>
+              <div class="ds-cards cards-grid-3">
+                <div class="ds-card card-neutral">
+                  <div class="ds-card-head">
+                    <div class="ds-badge">QUYẾT ĐỊNH 01 • PHÉP TRỪ 70%</div>
+                    <h3 class="ds-card-title">Bỏ bớt đồ khỏi bàn thay vì mua thêm đồ trang trí</h3>
+                  </div>
+                  <div class="ds-hairline"></div>
+                  <div class="ds-card-body">
+                    <p>Bố cục đẹp là bố cục bỏ bớt. Trước khi bấm quay, hãy cất dây sạc, bình nước nhựa, giấy tờ lẻ ra khỏi khung hình.</p>
+                    <p>Bấm sang ống kính <strong>2x hoặc 3x</strong> trên điện thoại và lùi lại 2 bước để chỉ giữ lại đúng 1 chủ thể chính và 1 đạo cụ phụ.</p>
+                  </div>
+                  <div class="ds-takeaway">🎯 Ít chi tiết đi thì chủ thể tự khắc nổi bật lên.</div>
+                </div>
+
+                <div class="ds-card card-neutral">
+                  <div class="ds-card-head">
+                    <div class="ds-badge">QUYẾT ĐỊNH 02 • ĐIỂM TỰA TĨNH</div>
+                    <h3 class="ds-card-title">Tựa máy vào bình nước, chồng sách thay cho gimbal</h3>
+                  </div>
+                  <div class="ds-hairline"></div>
+                  <div class="ds-card-body">
+                    <p>Bạn không cần sắm tay cầm chống rung đắt tiền để quay cảnh làm nghề. Một chiếc bình giữ nhiệt, một chồng sách dày hoặc thành cửa sổ đã là chiếc chân máy vững chắc nhất.</p>
+                    <p>Khi máy đứng im tuyệt đối, mắt người xem mới cảm nhận được sự bình tĩnh và đàng hoàng của tiệm.</p>
+                  </div>
+                  <div class="ds-takeaway">🎯 Không tốn một đồng mua thiết bị chống rung.</div>
+                </div>
+
+                <div class="ds-card card-neutral">
+                  <div class="ds-card-head">
+                    <div class="ds-badge">QUYẾT ĐỊNH 03 • CHỌN HƯỚNG SÁNG</div>
+                    <h3 class="ds-card-title">Xoay bàn làm việc đón cửa sổ thay vì mua đèn lớn</h3>
+                  </div>
+                  <div class="ds-hairline"></div>
+                  <div class="ds-card-body">
+                    <p>Ánh nắng tự nhiên đi qua ô cửa sổ lúc sáng sớm hoặc chiều muộn hoàn toàn miễn phí nhưng cho độ tách khối đẹp hơn bất kỳ bộ đèn phòng thu nào.</p>
+                    <p>Nếu quay buổi tối, chỉ cần chiếc đèn bàn học ánh vàng ấm đặt chéo góc 45 độ là đủ.</p>
+                  </div>
+                  <div class="ds-takeaway">🎯 Chiếc điện thoại đang cầm trong tay bạn đã dư sức làm tốt.</div>
+                </div>
+              </div>
+
+            <div class="slide-footer">
+              <div class="mentor-sig">
+                <span class="mentor-dot">NV</span>
+                <span><strong>Mentor : Nguyễn Đức Việt</strong>  ·  0934.688.632</span>
+              </div>
+              <div class="footer-right">Slide 03 / 19  ·  vietndj@gmail.com</div>
+            </div>
+          </div>
+          <div class="speaker-notes-box">
+            <div class="sn-header">
+              <span class="sn-badge">🗣️ LỜI DẪN BỤC GIẢNG OFFLINE CỦA ANH VIỆT (SLIDE 03)</span>
+              <span class="sn-part">Tháo gỡ tâm lý chờ mua máy xịn mới bắt đầu quay</span>
+            </div>
+            <p class="sn-text">“Mình nói điều này để cả lớp yên tâm cất ví tiền đi nhé [Cười]... Bạn không thiếu máy quay đẹp, bạn chỉ thiếu một quyết định trước khi bấm nút quay thôi. Bố cục thực chất là phép trừ: cất bớt đồ thừa trên bàn đi, bấm ống kính 2x, lấy bình nước tựa chiếc điện thoại cho đứng im và xoay ngang hướng cửa sổ. Ba việc đó tốn đúng 0 đồng nhưng giải quyết được 90% độ sạch của hình ảnh.”</p>
+          </div>
+        </section>
+
+        <section class="slide-wrapper" data-index="3" id="slide-04">
+          <div class="slide-canvas layout-content">
+            <div class="slide-topbar">
+              <span>2026  •  BẢN ĐỒ TỔNG QUAN • 6 TRỤ CỘT BỐ CỤC CẢNH QUAY</span>
+              <span>imess/zalo : 0934688632</span>
+            </div>
+            
+              <div class="slide-head-block">
+                <div class="slide-title-row">
+                  <h2 class="slide-main-title">Bản đồ 6 Trụ Cột Bố Cục: Đường – Động – Sáng – Giờ – Tĩnh – Vào</h2>
+                  <span class="preset-tag">Kiểu 05 • 6-Pillar Architecture</span>
+                </div>
+                <p class="slide-subtitle">sáu nguyên lý cốt lõi biến cảnh sinh hoạt và làm nghề hằng ngày thành thước phim cuốn hút</p>
+              </div>
+              <div class="ds-cards cards-grid-6">
+                <div class="ds-card card-neutral">
+                  <div class="ds-card-head">
+                    <div class="ds-badge">TRỤ CỘT 01 • ĐƯỜNG</div>
+                    <h3 class="ds-card-title">Đường giao nhau &amp; Phép trừ 2x</h3>
+                  </div>
+                  <div class="ds-hairline"></div>
+                  <div class="ds-card-body"><p>Mắt đi theo đường dẫn (mép bàn, gờ tường, bóng nắng) tới giao điểm 1/3 qua 3 lớp Tiền – Trung – Hậu cảnh.</p></div>
+                  <div class="ds-takeaway">🎯 1 chủ thể + 1 đường dẫn + 1 điểm dừng</div>
+                </div>
+
+                <div class="ds-card card-neutral">
+                  <div class="ds-card-head">
+                    <div class="ds-badge">TRỤ CỘT 02 • ĐỘNG</div>
+                    <h3 class="ds-card-title">Chuyển động bên trong khung</h3>
+                  </div>
+                  <div class="ds-hairline"></div>
+                  <div class="ds-card-body"><p>Khung đứng im là tấm ảnh; có 1 chi tiết nhỏ cử động (khói trà, rèm bay, bóng lá, dòng nước, tay làm việc) mới thành video.</p></div>
+                  <div class="ds-takeaway">🎯 1 chuyển động chính + 1 chuyển động phụ nhẹ</div>
+                </div>
+
+                <div class="ds-card card-neutral">
+                  <div class="ds-card-head">
+                    <div class="ds-badge">TRỤ CỘT 03 • SÁNG</div>
+                    <h3 class="ds-card-title">Ánh nắng ven &amp; Ngược sáng</h3>
+                  </div>
+                  <div class="ds-hairline"></div>
+                  <div class="ds-card-body"><p>Đặt nguồn sáng sau chéo 90°–135°, kéo giảm sáng -0.7 EV để vẽ đường viền sáng tách chủ thể và làm hiện rõ khói, nước.</p></div>
+                  <div class="ds-takeaway">🎯 Nổi khối 3D không cần xóa phông giả</div>
+                </div>
+
+                <div class="ds-card card-neutral">
+                  <div class="ds-card-head">
+                    <div class="ds-badge">TRỤ CỘT 04 • GIỜ</div>
+                    <h3 class="ds-card-title">Sáng sớm, Hoàng hôn &amp; Đèn điểm</h3>
+                  </div>
+                  <div class="ds-hairline"></div>
+                  <div class="ds-card-body"><p>Đón bóng đổ dài lúc 6h30–8h30 hoặc 16h00–17h30; buổi tối tắt đèn trần, chỉ bật 2–3 đèn bàn vàng ấm (Little Lights).</p></div>
+                  <div class="ds-takeaway">🎯 Bóng đổ dài là chữ viết của mặt trời</div>
+                </div>
+
+                <div class="ds-card card-neutral">
+                  <div class="ds-card-head">
+                    <div class="ds-badge">TRỤ CỘT 05 • TĨNH</div>
+                    <h3 class="ds-card-title">Cảnh bình tĩnh — Chân máy tĩnh</h3>
+                  </div>
+                  <div class="ds-hairline"></div>
+                  <div class="ds-card-body"><p>Khóa cố định điện thoại, canh thẳng đường ngang trên lưới 9 ô, giữ yên 4–6 giây để nhân vật tự bước vào và bước ra.</p></div>
+                  <div class="ds-takeaway">🎯 Máy đứng im buộc cảnh phải tự có chuyện</div>
+                </div>
+
+                <div class="ds-card card-neutral">
+                  <div class="ds-card-head">
+                    <div class="ds-badge">TRỤ CỘT 06 • VÀO</div>
+                    <h3 class="ds-card-title">Vào ngay lúc đang chuyển động</h3>
+                  </div>
+                  <div class="ds-hairline"></div>
+                  <div class="ds-card-body"><p>Cắt bỏ 1.5s đứng chờ đầu cảnh; lấy từ 30% đầu hành động và cắt nối ở 70% cuối hành động kèm khoe khéo nghề dưới 1/3 khung.</p></div>
+                  <div class="ds-takeaway">🎯 Vào thẳng việc đang diễn ra (70%–30%)</div>
+                </div>
+              </div>
+
+            <div class="slide-footer">
+              <div class="mentor-sig">
+                <span class="mentor-dot">NV</span>
+                <span><strong>Mentor : Nguyễn Đức Việt</strong>  ·  0934.688.632</span>
+              </div>
+              <div class="footer-right">Slide 04 / 19  ·  vietndj@gmail.com</div>
+            </div>
+          </div>
+          <div class="speaker-notes-box">
+            <div class="sn-header">
+              <span class="sn-badge">🗣️ LỜI DẪN BỤC GIẢNG OFFLINE CỦA ANH VIỆT (SLIDE 04)</span>
+              <span class="sn-part">Khẩu quyết 6 chữ xuyên suốt buổi học: Đường – Động – Sáng – Giờ – Tĩnh – Vào</span>
+            </div>
+            <p class="sn-text">“Cả lớp đọc nhẩm theo mình 6 chữ cái đầu trên màn hình nhé: Đường – Động – Sáng – Giờ – Tĩnh – Vào [Chỉ tay]... Sáu chữ này là toàn bộ tấm bản đồ của buổi học hôm nay. Khi chuẩn bị bấm máy quay bất kỳ cảnh nào ở tiệm hay ở nhà, bạn chỉ cần nhẩm đúng 6 chữ này trong đầu. Bây giờ mình đi sâu vào từng chữ một kèm video mẫu thực tế để thấy tận mắt cách làm nhé.”</p>
+          </div>
+        </section>
+
+        <section class="slide-wrapper" data-index="4" id="slide-05">
+          <div class="slide-canvas layout-content">
+            <div class="slide-topbar">
+              <span>2026  •  TRỤ CỘT 01 (ĐƯỜNG) • ĐƯỜNG DẪN THỊ GIÁC & KHUNG 3 LỚP</span>
+              <span>imess/zalo : 0934688632</span>
+            </div>
+            
+              <div class="slide-head-block">
+                <div class="slide-title-row">
+                  <h2 class="slide-main-title">Trụ cột 1 (ĐƯỜNG): Đường giao nhau của thị giác &amp; Khung lồng khung 3 lớp</h2>
+                  <span class="preset-tag">Kiểu 02 • 3-Column Breakdown</span>
+                </div>
+                <p class="slide-subtitle">mắt người không nhìn khung hình chung chung — mắt đi theo đường dẫn tới điểm dừng</p>
+              </div>
+              <div class="ds-cards cards-grid-3">
+                <div class="ds-card card-neutral">
+                  <div class="ds-card-head">
+                    <div class="ds-badge">CƠ CHẾ 01 • ĐƯỜNG DẪN MẮT</div>
+                    <h3 class="ds-card-title">Mép bàn, gờ tường, lan can, vệt nắng chéo</h3>
+                  </div>
+                  <div class="ds-hairline"></div>
+                  <div class="ds-card-body">
+                    <p>• Mắt người tự động trượt dọc theo các cạnh có tương phản rõ và các đường hội tụ.</p>
+                    <p>• <strong>Nguyên tắc bắt buộc:</strong> Đường dẫn phải chạy thẳng vào chủ thể (chiếc cốc, cuốn sổ, đôi bàn tay), tuyệt đối không để đường dẫn chạy tuột ra góc ngoài khung hình.</p>
+                  </div>
+                  <div class="ds-takeaway">🎯 Chọn đường đi cho mắt trước khi bấm máy.</div>
+                </div>
+
+                <div class="ds-card card-neutral">
+                  <div class="ds-card-head">
+                    <div class="ds-badge">CƠ CHẾ 02 • GIAO ĐIỂM 1/3</div>
+                    <h3 class="ds-card-title">Đặt lệch tâm để tạo quãng đường cho mắt đi</h3>
+                  </div>
+                  <div class="ds-hairline"></div>
+                  <div class="ds-card-body">
+                    <p>• Đặt vật thể chình ình ngay giữa khung làm mắt người xem tới đích ngay lập tức và chán ngay sau 0.5 giây.</p>
+                    <p>• Bật <strong>Lưới 9 ô (Grid)</strong>, đặt chủ thể hoặc bàn tay thao tác vào 1 trong 4 giao điểm 1/3 để tạo khoảng thở cho không gian.</p>
+                  </div>
+                  <div class="ds-takeaway">🎯 Chủ thể lệch tâm giúp khung hình có nhịp thở.</div>
+                </div>
+
+                <div class="ds-card card-neutral">
+                  <div class="ds-card-head">
+                    <div class="ds-badge">CƠ CHẾ 03 • KHUNG LỒNG KHUNG 3 LỚP</div>
+                    <h3 class="ds-card-title">Tiền cảnh mờ – Trung cảnh nét – Hậu cảnh gọn</h3>
+                  </div>
+                  <div class="ds-hairline"></div>
+                  <div class="ds-card-body">
+                    <p>• Dùng khung cửa, ô cửa sổ, tán lá cây hoặc bờ vai áo che mờ <code>1/4 đến 1/3</code> mép khung hình làm <strong>Tiền cảnh</strong>.</p>
+                    <p>• Đẩy chủ thể vào lớp <strong>Trung cảnh nét</strong> ở giữa, phía sau là <strong>Hậu cảnh</strong> tối giản. Ba lớp tạo chiều sâu tự nhiên không cần ống kính đắt tiền.</p>
+                  </div>
+                  <div class="ds-takeaway">🎯 3 lớp không gian xóa bỏ cảm giác màn hình phẳng 2D.</div>
+                </div>
+              </div>
+
+            <div class="slide-footer">
+              <div class="mentor-sig">
+                <span class="mentor-dot">NV</span>
+                <span><strong>Mentor : Nguyễn Đức Việt</strong>  ·  0934.688.632</span>
+              </div>
+              <div class="footer-right">Slide 05 / 19  ·  vietndj@gmail.com</div>
+            </div>
+          </div>
+          <div class="speaker-notes-box">
+            <div class="sn-header">
+              <span class="sn-badge">🗣️ LỜI DẪN BỤC GIẢNG OFFLINE CỦA ANH VIỆT (SLIDE 05)</span>
+              <span class="sn-part">Trụ cột 1: Cách tạo đường dẫn mắt và chiều sâu 3 lớp bằng điện thoại</span>
+            </div>
+            <p class="sn-text">“Chúng ta vào chữ đầu tiên: ĐƯỜNG [Chỉ tay]... Mắt người xem không nhìn cả khung hình một lúc đâu, mắt luôn tìm một con đường để trượt theo. Đó có thể là mép bàn gỗ, hàng phím máy tính, hay vệt bóng nắng chéo trên tường. Bạn đặt chủ thể lệch sang giao điểm 1/3 ở cuối đường dẫn đó, và nhớ thêm một vật chắn mờ ở tiền cảnh — như nhành cây hay bờ vai áo — để tạo đủ 3 lớp Tiền, Trung, Hậu. Làm đúng 3 cơ chế này là khung hình sâu hun hút ngay.”</p>
+          </div>
+        </section>
+
+        <section class="slide-wrapper" data-index="5" id="slide-06">
+          <div class="slide-canvas layout-content">
+            <div class="slide-topbar">
+              <span>2026  •  TRỤ CỘT 01 (ĐƯỜNG) • GIẢI PHẪU VIDEO THỰC CHỨNG</span>
+              <span>imess/zalo : 0934688632</span>
+            </div>
+            
+              <div class="slide-head-block">
+                <div class="slide-title-row">
+                  <h2 class="slide-main-title">Giải phẫu Trụ cột 1: Phép trừ đóng khung bằng ống kính 2x – 3x</h2>
+                  <span class="preset-tag">Kiểu 03 • Video Evidence Comparison</span>
+                </div>
+                <p class="slide-subtitle">bấm sang 2x/3x và lùi lại 2 bước để loại bỏ 70% rác thị giác xung quanh chủ thể</p>
+              </div>
+              <div class="ds-cards cards-grid-2">
+                <div class="ds-card card-warn">
+                  <div class="ds-card-head">
+                    <div class="ds-badge">❌ LỖI PHỔ BIẾN • ĐỂ MẶC ĐỊNH 1X (24MM)</div>
+                    <h3 class="ds-card-title">Góc quá rộng gom hết đồ đạc thừa vào khung</h3>
+                  </div>
+                  <div class="ds-hairline"></div>
+                  <div class="ds-card-body"><p>Ống kính 1x có góc nhìn quá rộng và làm méo nhẹ rìa ảnh. Khi đặt trên bàn làm việc hoặc trong quán cà phê, nó thu cả thùng rác, ổ cắm điện, bàn ghế xung quanh khiến chủ thể bị lọt thỏm và mất điểm tập trung.</p></div>
+                  <div class="ds-takeaway">🎯 Nheo mắt nhìn màn hình mà thấy quá 3 vật thể là đang bị rối.</div>
+                </div>
+                <div class="ds-card card-good">
+                  <div class="ds-card-head">
+                    <div class="ds-badge">✅ THAO TÁC CHUẨN • BẬT 2X/3X + KHÓA AE/AF</div>
+                    <h3 class="ds-card-title">Lùi máy 2 bước, cắt gọn khung và đặt vào trục 1/3</h3>
+                  </div>
+                  <div class="ds-hairline"></div>
+                  <div class="ds-card-body"><p>Chuyển sang <code>2x</code> (50mm) hoặc <code>3x</code> (77mm): trường nhìn thu hẹp lại giúp hậu cảnh sạch sẽ ngay lập tức. Ấn giữ màn hình 2 giây để hiện thông báo <strong>Khóa AE/AF</strong> trước khi đưa tay vào thao tác.</p></div>
+                  <div class="ds-takeaway">🎯 Giữ đúng công thức: 1 chủ thể + 1 đường dẫn + 1 điểm dừng.</div>
+                </div>
+              </div>
+              <div class="slide-videos-tray cols-2">
+                <div class="slide-vcard">
+                  <div class="slide-vhead">
+                    <div class="slide-vtitle">
+                      <span class="v-badge v-badge-win">✅ MẪU PHÉP TRỪ 2X/3X • DepzH7jxO0z</span>
+                      <strong>@jade.got.curious — Biến sân hiên lộn xộn thành tranh vẽ nhờ đóng khung 3x</strong>
+                      <span class="slide-vmeta">(14 shots)</span>
+                    </div>
+                    <div class="slide-vbtns">
+                      <button type="button" class="btn-play-inline" onclick="toggleSlideVideo(this, 'vid-s06-1', 'https://media.fedu.vn/videos/DepzH7jxO0z.mp4')">▶️ Phát video thật</button>
+                      <a href="https://ytuong.fedu.vn/v/DepzH7jxO0z" target="_blank" rel="noopener" class="btn-src-link">Kho Ý Tưởng ↗</a>
+                    </div>
+                  </div>
+                  <div class="slide-vstrip">
+                    <img src="https://media.fedu.vn/images/IG_@jade.got.curious_DepzH7jxO0z_Nothing_in_these_shots_was_special._A_shadow/shot_06_mid.webp" alt="@jade.got.curious — Biến sân hiên lộn xộn thành tranh vẽ nhờ đóng khung 3x" loading="lazy"/>
+                    <div class="slide-vnote">Đối chiếu trực tiếp góc rộng 1x (thấy cả bàn ghế lộn xộn) và khi bấm 3x đóng khung lấy đúng nhành cây cùng bóng nắng trên tường.</div>
+                  </div>
+                  <div class="slide-vplayer" id="vid-s06-1" style="display:none;">
+                    <video controls playsinline preload="none" poster="https://media.fedu.vn/images/IG_@jade.got.curious_DepzH7jxO0z_Nothing_in_these_shots_was_special._A_shadow/shot_06_mid.webp"></video>
+                  </div>
+                </div>
+                <div class="slide-vcard">
+                  <div class="slide-vhead">
+                    <div class="slide-vtitle">
+                      <span class="v-badge v-badge-win">✅ MẪU LƯỚI 9 Ô 2X • DbtuUwvzi5c</span>
+                      <strong>@jigummmmm — Tự quay đọc sách bằng iPhone 2x khóa nét AE/AF tại trục 1/3</strong>
+                      <span class="slide-vmeta">(22 shots)</span>
+                    </div>
+                    <div class="slide-vbtns">
+                      <button type="button" class="btn-play-inline" onclick="toggleSlideVideo(this, 'vid-s06-2', 'https://media.fedu.vn/videos/DbtuUwvzi5c.mp4')">▶️ Phát video thật</button>
+                      <a href="https://ytuong.fedu.vn/v/DbtuUwvzi5c" target="_blank" rel="noopener" class="btn-src-link">Kho Ý Tưởng ↗</a>
+                    </div>
+                  </div>
+                  <div class="slide-vstrip">
+                    <img src="https://media.fedu.vn/images/IG_@jigummmmm_DbtuUwvzi5c_“그래서_감성릴스_어떻게_찍는_건데⁉️”/shot_04_mid.webp" alt="@jigummmmm — Tự quay đọc sách bằng iPhone 2x khóa nét AE/AF tại trục 1/3" loading="lazy"/>
+                    <div class="slide-vnote">Bật ống kính 2x trên iPhone, khóa nét vào vị trí cuốn sách và canh đôi bàn tay lật trang giấy nằm đúng đường ngang 1/3 dưới.</div>
+                  </div>
+                  <div class="slide-vplayer" id="vid-s06-2" style="display:none;">
+                    <video controls playsinline preload="none" poster="https://media.fedu.vn/images/IG_@jigummmmm_DbtuUwvzi5c_“그래서_감성릴스_어떻게_찍는_건데⁉️”/shot_04_mid.webp"></video>
+                  </div>
+                </div></div>
+
+            <div class="slide-footer">
+              <div class="mentor-sig">
+                <span class="mentor-dot">NV</span>
+                <span><strong>Mentor : Nguyễn Đức Việt</strong>  ·  0934.688.632</span>
+              </div>
+              <div class="footer-right">Slide 06 / 19  ·  vietndj@gmail.com</div>
+            </div>
+          </div>
+          <div class="speaker-notes-box">
+            <div class="sn-header">
+              <span class="sn-badge">🗣️ LỜI DẪN BỤC GIẢNG OFFLINE CỦA ANH VIỆT (SLIDE 06)</span>
+              <span class="sn-part">Xem thực tế sự khác biệt khi bật ống kính 2x – 3x trên điện thoại</span>
+            </div>
+            <p class="sn-text">“Mình bấm mở 2 video mẫu ở dưới để cả lớp nhìn tận mắt sức mạnh của phép trừ 2x nhé [Bấm phát video DepzH7jxO0z và DbtuUwvzi5c]... Ở video bên trái, lúc để góc 1x thì cái sân nhìn rất bình thường, bàn ghế ngổn ngang. Nhưng vừa bấm sang 3x đóng khung đúng mảng tường có bóng nắng đổ qua cành cây, nhìn đẹp như tranh vẽ! Còn ở video bên phải, bạn nữ tự quay một mình trong góc phòng nhỏ bằng iPhone: bạn ấy bật 2x, ấn giữ khóa nét AE/AF rồi canh bàn tay lật sách nằm đúng vạch 1/3 dưới. Rất gọn và sạch!”</p>
+          </div>
+        </section>
+
+        <section class="slide-wrapper" data-index="6" id="slide-07">
+          <div class="slide-canvas layout-content">
+            <div class="slide-topbar">
+              <span>2026  •  TRỤ CỘT 02 (ĐỘNG) • CHUYỂN ĐỘNG BÊN TRONG KHUNG HÌNH</span>
+              <span>imess/zalo : 0934688632</span>
+            </div>
+            
+              <div class="slide-head-block">
+                <div class="slide-title-row">
+                  <h2 class="slide-main-title">Trụ cột 2 (ĐỘNG): Chuyển động bên trong khung hình tĩnh</h2>
+                  <span class="preset-tag">Kiểu 02 • 3-Column + Video Evidence</span>
+                </div>
+                <p class="slide-subtitle">khung hình đứng im là một tấm ảnh — chỉ cần một chi tiết nhỏ cử động bên trong là thành video</p>
+              </div>
+              <div class="ds-cards cards-grid-3">
+                <div class="ds-card card-neutral">
+                  <div class="ds-card-head">
+                    <div class="ds-badge">NGUỒN ĐỘNG 01 • CHẤT LỎNG &amp; HƠI</div>
+                    <h3 class="ds-card-title">Làn khói trà, hơi cà phê, dòng nước rót, bọt sủi</h3>
+                  </div>
+                  <div class="ds-hairline"></div>
+                  <div class="ds-card-body"><p>Khi quay đồ vật tĩnh trên bàn (ly trà, tách cà phê, bát súp, lọ tinh dầu), hãy luôn tạo ra dòng chảy hoặc làn hơi nóng bốc lên để đánh thức thị giác người xem.</p></div>
+                  <div class="ds-takeaway">🎯 Chất lỏng đang chảy luôn giữ mắt người xem lâu gấp 3 lần.</div>
+                </div>
+                <div class="ds-card card-neutral">
+                  <div class="ds-card-head">
+                    <div class="ds-badge">NGUỒN ĐỘNG 02 • GIÓ &amp; BÓNG LÁ</div>
+                    <h3 class="ds-card-title">Rèm voan đung đưa, bóng nắng lá cây rung trên bàn</h3>
+                  </div>
+                  <div class="ds-hairline"></div>
+                  <div class="ds-card-body"><p>Mở hé cửa sổ cho gió thổi nhẹ làm rèm voan bay hoặc để bóng tán cây ngoài sân rung rinh trên mặt bàn gỗ. Không gian tĩnh lập tức có nhịp thở tự nhiên.</p></div>
+                  <div class="ds-takeaway">🎯 Chuyển động nhỏ và chậm tạo cảm giác bình yên, thư thái.</div>
+                </div>
+                <div class="ds-card card-neutral">
+                  <div class="ds-card-head">
+                    <div class="ds-badge">NGUỒN ĐỘNG 03 • ĐÔI BÀN TAY</div>
+                    <h3 class="ds-card-title">Tay lật trang sách, ngòi bút chạy, tay mở cửa</h3>
+                  </div>
+                  <div class="ds-hairline"></div>
+                  <div class="ds-card-body"><p>Đưa bàn tay con người vào tương tác thật với đồ vật. Quy tắc: chỉ giữ <strong>1 chuyển động chính + 1 chuyển động phụ nhẹ</strong>, tránh nhiều thứ cùng động gây rối.</p></div>
+                  <div class="ds-takeaway">🎯 Máy đứng yên để chuyển động bên trong tự lên tiếng.</div>
+                </div>
+              </div>
+              <div class="slide-videos-tray cols-2">
+                <div class="slide-vcard">
+                  <div class="slide-vhead">
+                    <div class="slide-vtitle">
+                      <span class="v-badge v-badge-win">✅ MẪU CHUYỂN ĐỘNG TỰ NHIÊN • Ddv7PoCo2AA</span>
+                      <strong>@iman.lizi — Khói cà phê, dòng chảy và trang tạp chí lật bên cửa sổ</strong>
+                      <span class="slide-vmeta">(10 shots)</span>
+                    </div>
+                    <div class="slide-vbtns">
+                      <button type="button" class="btn-play-inline" onclick="toggleSlideVideo(this, 'vid-s07-1', 'https://media.fedu.vn/videos/Ddv7PoCo2AA.mp4')">▶️ Phát video thật</button>
+                      <a href="https://ytuong.fedu.vn/v/Ddv7PoCo2AA" target="_blank" rel="noopener" class="btn-src-link">Kho Ý Tưởng ↗</a>
+                    </div>
+                  </div>
+                  <div class="slide-vstrip">
+                    <img src="https://media.fedu.vn/images/IG_@iman.lizi_Ddv7PoCo2AA_weekend_plans_coffee_by_the_window,_crisp_aut/shot_03_mid.webp" alt="@iman.lizi — Khói cà phê, dòng chảy và trang tạp chí lật bên cửa sổ" loading="lazy"/>
+                    <div class="slide-vnote">Máy đứng im tuyệt đối trong cả 10 cảnh, nhưng mỗi cảnh đều có 1 chuyển động vật lý: cánh cửa mở, dòng cà phê rót bốc khói, tay lật sách.</div>
+                  </div>
+                  <div class="slide-vplayer" id="vid-s07-1" style="display:none;">
+                    <video controls playsinline preload="none" poster="https://media.fedu.vn/images/IG_@iman.lizi_Ddv7PoCo2AA_weekend_plans_coffee_by_the_window,_crisp_aut/shot_03_mid.webp"></video>
+                  </div>
+                </div>
+                <div class="slide-vcard">
+                  <div class="slide-vhead">
+                    <div class="slide-vtitle">
+                      <span class="v-badge v-badge-win">✅ MẪU CHUYỂN ĐỘNG CỬA & BỌT GAS • DeaMdF4RjPv</span>
+                      <strong>@yula_andrieieva — Đặt máy trong tủ lạnh bắt cảnh mở cửa & bọt nước sủi tăm</strong>
+                      <span class="slide-vmeta">(13 shots)</span>
+                    </div>
+                    <div class="slide-vbtns">
+                      <button type="button" class="btn-play-inline" onclick="toggleSlideVideo(this, 'vid-s07-2', 'https://media.fedu.vn/videos/DeaMdF4RjPv.mp4')">▶️ Phát video thật</button>
+                      <a href="https://ytuong.fedu.vn/v/DeaMdF4RjPv" target="_blank" rel="noopener" class="btn-src-link">Kho Ý Tưởng ↗</a>
+                    </div>
+                  </div>
+                  <div class="slide-vstrip">
+                    <img src="https://media.fedu.vn/images/IG_@yula_andrieieva_DeaMdF4RjPv_day_5_of_learning_cinematography…/shot_03_mid.webp" alt="@yula_andrieieva — Đặt máy trong tủ lạnh bắt cảnh mở cửa & bọt nước sủi tăm" loading="lazy"/>
+                    <div class="slide-vnote">Cánh cửa tủ lạnh bật mở làm tiền cảnh chuyển động, nối tiếp bằng cảnh dòng nước ngọt rót vào ly sủi bọt gas sống động.</div>
+                  </div>
+                  <div class="slide-vplayer" id="vid-s07-2" style="display:none;">
+                    <video controls playsinline preload="none" poster="https://media.fedu.vn/images/IG_@yula_andrieieva_DeaMdF4RjPv_day_5_of_learning_cinematography…/shot_03_mid.webp"></video>
+                  </div>
+                </div></div>
+
+            <div class="slide-footer">
+              <div class="mentor-sig">
+                <span class="mentor-dot">NV</span>
+                <span><strong>Mentor : Nguyễn Đức Việt</strong>  ·  0934.688.632</span>
+              </div>
+              <div class="footer-right">Slide 07 / 19  ·  vietndj@gmail.com</div>
+            </div>
+          </div>
+          <div class="speaker-notes-box">
+            <div class="sn-header">
+              <span class="sn-badge">🗣️ LỜI DẪN BỤC GIẢNG OFFLINE CỦA ANH VIỆT (SLIDE 07)</span>
+              <span class="sn-part">Trụ cột 2: Giữ máy đứng yên nhưng đặt chuyển động vật lý vào trong khung</span>
+            </div>
+            <p class="sn-text">“Sang chữ thứ hai: ĐỘNG [Chỉ tay]... Nhiều bạn sợ cảnh quay bị nhàm nên cứ cầm điện thoại lắc qua lắc lại. Làm vậy người xem chỉ thấy chóng mặt thôi. Nguyên lý đúng là máy phải đứng im, nhưng bên trong khung hình phải có một thứ đang cử động nhẹ: làn khói cà phê bốc lên, tấm rèm voan bay trong gió, bóng lá cây rung trên mặt bàn, hoặc bàn tay bạn đang rót nước, lật trang sách. Một thứ chuyển động thôi là đủ biến tấm ảnh tĩnh thành thước phim có hồn.”</p>
+          </div>
+        </section>
+
+        <section class="slide-wrapper" data-index="7" id="slide-08">
+          <div class="slide-canvas layout-content">
+            <div class="slide-topbar">
+              <span>2026  •  TRỤ CỘT 03 (SÁNG) • ÁNH NẮNG VEN & NGƯỢC SÁNG</span>
+              <span>imess/zalo : 0934688632</span>
+            </div>
+            
+              <div class="slide-head-block">
+                <div class="slide-title-row">
+                  <h2 class="slide-main-title">Trụ cột 3 (SÁNG): Ánh nắng ven (Rim Light) &amp; Ngược sáng cửa sổ</h2>
+                  <span class="preset-tag">Kiểu 02 • 3-Column + Video Evidence</span>
+                </div>
+                <p class="slide-subtitle">ánh sáng đặt sau lưng chủ thể vẽ một đường viền sáng tách chủ thể khỏi nền tối mà không cần xóa phông</p>
+              </div>
+              <div class="ds-cards cards-grid-3">
+                <div class="ds-card card-neutral">
+                  <div class="ds-card-head">
+                    <div class="ds-badge">GÓC ĐẶT MÁY • XOAY 90° – 135°</div>
+                    <h3 class="ds-card-title">Không quay lưng vào cửa sổ làm bẹt hình</h3>
+                  </div>
+                  <div class="ds-hairline"></div>
+                  <div class="ds-card-body"><p>Xoay góc đặt máy 90° đến 135° so với cửa sổ (nguồn sáng nằm ở phía sau chéo của chủ thể). Ánh sáng sẽ vẽ đường viền quanh tóc, bờ vai, miệng cốc và sớ vải.</p></div>
+                  <div class="ds-takeaway">🎯 Đường viền sáng tạo độ nổi khối 3D tự nhiên.</div>
+                </div>
+                <div class="ds-card card-neutral">
+                  <div class="ds-card-head">
+                    <div class="ds-badge">HIỆU ỨNG VẬT LÝ • HIỆN HÌNH KHÓI &amp; NƯỚC</div>
+                    <h3 class="ds-card-title">Hơi nóng và bọt nước chỉ hiện rõ dưới ngược sáng</h3>
+                  </div>
+                  <div class="ds-hairline"></div>
+                  <div class="ds-card-body"><p>Làn hơi trà nóng, khói nhang, bụi nắng hay giọt nước bắn lên sẽ biến mất nếu chiếu đèn từ phía trước. Đặt chúng ngược sáng trước một nền tối, mọi hạt sương đều phát sáng.</p></div>
+                  <div class="ds-takeaway">🎯 Ngược sáng + Nền tối = Thấy rõ từng làn hơi mỏng.</div>
+                </div>
+                <div class="ds-card card-neutral">
+                  <div class="ds-card-head">
+                    <div class="ds-badge">THAO TÁC TAY • KÉO MẶT TRỜI -0.7 EV</div>
+                    <h3 class="ds-card-title">Khóa nét chủ thể và hạ thanh phơi sáng</h3>
+                  </div>
+                  <div class="ds-hairline"></div>
+                  <div class="ds-card-body"><p>Ấn giữ vào chủ thể trên màn hình 2 giây để khóa nét, sau đó trượt ngón tay <strong>kéo biểu tượng mặt trời xuống khoảng -0.7 đến -1.0 EV</strong> để nền không bị cháy trắng.</p></div>
+                  <div class="ds-takeaway">🎯 Thà hơi trầm một chút mà giữ được chi tiết viền sáng.</div>
+                </div>
+              </div>
+              <div class="slide-videos-tray cols-2">
+                <div class="slide-vcard">
+                  <div class="slide-vhead">
+                    <div class="slide-vtitle">
+                      <span class="v-badge v-badge-win">✅ MẪU NGƯỢC SÁNG RÈM VOAN • DebgMp_SYGv</span>
+                      <strong>@junko_livlog — Rót cà phê đá & tán cây ngược nắng qua rèm cửa sổ</strong>
+                      <span class="slide-vmeta">(13 shots)</span>
+                    </div>
+                    <div class="slide-vbtns">
+                      <button type="button" class="btn-play-inline" onclick="toggleSlideVideo(this, 'vid-s08-1', 'https://media.fedu.vn/videos/DebgMp_SYGv.mp4')">▶️ Phát video thật</button>
+                      <a href="https://ytuong.fedu.vn/v/DebgMp_SYGv" target="_blank" rel="noopener" class="btn-src-link">Kho Ý Tưởng ↗</a>
+                    </div>
+                  </div>
+                  <div class="slide-vstrip">
+                    <img src="https://media.fedu.vn/images/IG_@junko_livlog_DebgMp_SYGv_⁡/shot_02_mid.webp" alt="@junko_livlog — Rót cà phê đá & tán cây ngược nắng qua rèm cửa sổ" loading="lazy"/>
+                    <div class="slide-vnote">Nhờ đặt máy đối diện cửa sổ có rèm voan và hạ sáng nhẹ, từng viên đá lạnh và dòng cà phê phát sáng trong trẻo trên nền bếp trầm.</div>
+                  </div>
+                  <div class="slide-vplayer" id="vid-s08-1" style="display:none;">
+                    <video controls playsinline preload="none" poster="https://media.fedu.vn/images/IG_@junko_livlog_DebgMp_SYGv_⁡/shot_02_mid.webp"></video>
+                  </div>
+                </div>
+                <div class="slide-vcard">
+                  <div class="slide-vhead">
+                    <div class="slide-vtitle">
+                      <span class="v-badge v-badge-win">✅ MẪU NẮNG VEN CHẤT LIỆU • DbYrq6gIPtC</span>
+                      <strong>@iman.lizi — Nắng ven tôn chất liệu tia nước, khói trầm và cánh hoa</strong>
+                      <span class="slide-vmeta">(11 shots)</span>
+                    </div>
+                    <div class="slide-vbtns">
+                      <button type="button" class="btn-play-inline" onclick="toggleSlideVideo(this, 'vid-s08-2', 'https://media.fedu.vn/videos/DbYrq6gIPtC.mp4')">▶️ Phát video thật</button>
+                      <a href="https://ytuong.fedu.vn/v/DbYrq6gIPtC" target="_blank" rel="noopener" class="btn-src-link">Kho Ý Tưởng ↗</a>
+                    </div>
+                  </div>
+                  <div class="slide-vstrip">
+                    <img src="https://media.fedu.vn/images/IG_@iman.lizi_DbYrq6gIPtC_Summer_at_home_🌞/shot_02_mid.webp" alt="@iman.lizi — Nắng ven tôn chất liệu tia nước, khói trầm và cánh hoa" loading="lazy"/>
+                    <div class="slide-vnote">Ánh sáng xiên từ phía sau làm từng giọt nước bắn lên trên rau củ và làn khói trầm hiện rõ sắc nét trên nền tối.</div>
+                  </div>
+                  <div class="slide-vplayer" id="vid-s08-2" style="display:none;">
+                    <video controls playsinline preload="none" poster="https://media.fedu.vn/images/IG_@iman.lizi_DbYrq6gIPtC_Summer_at_home_🌞/shot_02_mid.webp"></video>
+                  </div>
+                </div></div>
+
+            <div class="slide-footer">
+              <div class="mentor-sig">
+                <span class="mentor-dot">NV</span>
+                <span><strong>Mentor : Nguyễn Đức Việt</strong>  ·  0934.688.632</span>
+              </div>
+              <div class="footer-right">Slide 08 / 19  ·  vietndj@gmail.com</div>
+            </div>
+          </div>
+          <div class="speaker-notes-box">
+            <div class="sn-header">
+              <span class="sn-badge">🗣️ LỜI DẪN BỤC GIẢNG OFFLINE CỦA ANH VIỆT (SLIDE 08)</span>
+              <span class="sn-part">Trụ cột 3: Cách xoay máy 90–135 độ đón nắng ngược và kéo giảm thanh mặt trời</span>
+            </div>
+            <p class="sn-text">“Chữ thứ ba là SÁNG [Chỉ tay]... Nhiều bạn quay ở nhà cứ đứng quay lưng vào cửa sổ cho sáng mặt, nhưng ánh sáng chiếu thẳng từ trước tới làm mặt bàn và đồ vật bị bẹt dí. Bí mật của những khung hình có chiều sâu là đặt nguồn sáng ở phía sau chéo — góc 90 đến 135 độ so với cửa sổ. Lúc đó ánh nắng sẽ vẽ một đường viền sáng quanh mép cốc, quanh bờ vai và làm hơi nước bốc lên rõ mồn một. Nhớ ấn giữ màn hình khóa nét rồi kéo nhẹ biểu tượng mặt trời xuống một chút để giữ đường viền đó không bị cháy trắng nhé!”</p>
+          </div>
+        </section>
+
+        <section class="slide-wrapper" data-index="8" id="slide-09">
+          <div class="slide-canvas layout-content">
+            <div class="slide-topbar">
+              <span>2026  •  TRỤ CỘT 04 (GIỜ BAN NGÀY) • SÁNG SỚM & HOÀNG HÔN</span>
+              <span>imess/zalo : 0934688632</span>
+            </div>
+            
+              <div class="slide-head-block">
+                <div class="slide-title-row">
+                  <h2 class="slide-main-title">Trụ cột 4 (GIỜ): Buổi sáng sớm &amp; Hoàng hôn bóng đổ dài</h2>
+                  <span class="preset-tag">Kiểu 03 • Luxury Comparison + Video Evidence</span>
+                </div>
+                <p class="slide-subtitle">bóng đổ dài là chữ viết của mặt trời — cho người xem biết thời gian và làm nổi vân bề mặt</p>
+              </div>
+              <div class="ds-cards cards-grid-2">
+                <div class="ds-card card-good">
+                  <div class="ds-card-head">
+                    <div class="ds-badge">☀️ KHUNG GIỜ 01 • SÁNG SỚM (6H30 – 8H30)</div>
+                    <h3 class="ds-card-title">Tia nắng xiên góc thấp, không khí trong &amp; phố vắng</h3>
+                  </div>
+                  <div class="ds-hairline"></div>
+                  <div class="ds-card-body"><p>• Mặt trời nằm thấp chiếu xiên qua cửa sổ tạo ra những vệt bóng dài cắt ngang mặt bàn gỗ.</p><p>• Độ chênh sáng tối tự nhiên giúp bạn đặt ly trà hoặc cuốn sổ vào đúng vệt nắng là phần nền tối xung quanh tự động ẩn đi.</p></div>
+                  <div class="ds-takeaway">🎯 Khung giờ đẹp nhất để quay cảnh chuẩn bị mở tiệm, pha trà, đọc sách.</div>
+                </div>
+                <div class="ds-card card-good">
+                  <div class="ds-card-head">
+                    <div class="ds-badge">🌇 KHUNG GIỜ 02 • HOÀNG HÔN (16H00 – 17H30)</div>
+                    <h3 class="ds-card-title">90 phút trước khi mặt trời lặn: Nắng mật ong &amp; bóng dài</h3>
+                  </div>
+                  <div class="ds-hairline"></div>
+                  <div class="ds-card-body"><p>• Tránh quay lúc 11h–14h trưa vì nắng đỉnh đầu làm bóng ngắn cụt và hốc mắt bị tối sâu.</p><p>• Lúc 16h00–17h30 nắng mềm và ấm. <strong>Lưu ý:</strong> Khóa cân bằng trắng (WB) để điện thoại không tự làm nguội màu vàng của nắng chiều.</p></div>
+                  <div class="ds-takeaway">🎯 Đặt chủ thể dọc theo hướng bóng đổ để kéo dài chiều sâu khung hình.</div>
+                </div>
+              </div>
+              <div class="slide-videos-tray cols-2">
+                <div class="slide-vcard">
+                  <div class="slide-vhead">
+                    <div class="slide-vtitle">
+                      <span class="v-badge v-badge-win">✅ MẪU NẮNG SỚM BAN MAI • DdhHCL6OOfK</span>
+                      <strong>@framebygeorge — Nắng sớm 7h00 chiếu xiên qua gian bếp & hoa hướng dương</strong>
+                      <span class="slide-vmeta">(9 shots)</span>
+                    </div>
+                    <div class="slide-vbtns">
+                      <button type="button" class="btn-play-inline" onclick="toggleSlideVideo(this, 'vid-s09-1', 'https://media.fedu.vn/videos/DdhHCL6OOfK.mp4')">▶️ Phát video thật</button>
+                      <a href="https://ytuong.fedu.vn/v/DdhHCL6OOfK" target="_blank" rel="noopener" class="btn-src-link">Kho Ý Tưởng ↗</a>
+                    </div>
+                  </div>
+                  <div class="slide-vstrip">
+                    <img src="https://media.fedu.vn/images/IG_@framebygeorge_DdhHCL6OOfK_Day_23_learning_cinematography/shot_01_mid.webp" alt="@framebygeorge — Nắng sớm 7h00 chiếu xiên qua gian bếp & hoa hướng dương" loading="lazy"/>
+                    <div class="slide-vnote">Quay lúc mặt trời mới mọc: tia nắng góc thấp cắt ngang phòng bếp tối, biến cảnh đập trứng và đĩa bánh mì bốc khói thành thước phim điện ảnh.</div>
+                  </div>
+                  <div class="slide-vplayer" id="vid-s09-1" style="display:none;">
+                    <video controls playsinline preload="none" poster="https://media.fedu.vn/images/IG_@framebygeorge_DdhHCL6OOfK_Day_23_learning_cinematography/shot_01_mid.webp"></video>
+                  </div>
+                </div>
+                <div class="slide-vcard">
+                  <div class="slide-vhead">
+                    <div class="slide-vtitle">
+                      <span class="v-badge v-badge-win">✅ MẪU BÓNG ĐỔ HOÀNG HÔN • DdW1eYoO7Nb</span>
+                      <strong>@framebygeorge — Vệt nắng hình học & bóng đổ dài lúc 16h30 chiều</strong>
+                      <span class="slide-vmeta">(8 shots)</span>
+                    </div>
+                    <div class="slide-vbtns">
+                      <button type="button" class="btn-play-inline" onclick="toggleSlideVideo(this, 'vid-s09-2', 'https://media.fedu.vn/videos/DdW1eYoO7Nb.mp4')">▶️ Phát video thật</button>
+                      <a href="https://ytuong.fedu.vn/v/DdW1eYoO7Nb" target="_blank" rel="noopener" class="btn-src-link">Kho Ý Tưởng ↗</a>
+                    </div>
+                  </div>
+                  <div class="slide-vstrip">
+                    <img src="https://media.fedu.vn/images/IG_@framebygeorge_DdW1eYoO7Nb_Day_19_learning_cinematography/shot_04_mid.webp" alt="@framebygeorge — Vệt nắng hình học & bóng đổ dài lúc 16h30 chiều" loading="lazy"/>
+                    <div class="slide-vnote">Tận dụng vệt bóng đổ dài của khung cửa sổ lúc chiều muộn để chia cắt bức tường phẳng thành bố cục sáng tối ấm áp.</div>
+                  </div>
+                  <div class="slide-vplayer" id="vid-s09-2" style="display:none;">
+                    <video controls playsinline preload="none" poster="https://media.fedu.vn/images/IG_@framebygeorge_DdW1eYoO7Nb_Day_19_learning_cinematography/shot_04_mid.webp"></video>
+                  </div>
+                </div></div>
+
+            <div class="slide-footer">
+              <div class="mentor-sig">
+                <span class="mentor-dot">NV</span>
+                <span><strong>Mentor : Nguyễn Đức Việt</strong>  ·  0934.688.632</span>
+              </div>
+              <div class="footer-right">Slide 09 / 19  ·  vietndj@gmail.com</div>
+            </div>
+          </div>
+          <div class="speaker-notes-box">
+            <div class="sn-header">
+              <span class="sn-badge">🗣️ LỜI DẪN BỤC GIẢNG OFFLINE CỦA ANH VIỆT (SLIDE 09)</span>
+              <span class="sn-part">Trụ cột 4 (Ban ngày): Vì sao phải đợi khung giờ 6h30–8h30 sáng hoặc 16h00–17h30 chiều</span>
+            </div>
+            <p class="sn-text">“Chữ thứ tư là GIỜ [Chỉ tay]... Bóng đổ dài chính là chữ viết của mặt trời. Khi bạn quay lúc 12 giờ trưa, nắng dội thẳng từ đỉnh đầu xuống làm mặt ai nhìn cũng mệt mỏi, mặt bàn phẳng lì. Nhưng chỉ cần bạn bấm máy lúc 7 giờ sáng hoặc 4 rưỡi chiều — khi mặt trời nằm thấp — bóng của chiếc cốc và khung cửa sổ sẽ đổ dài ra trên bàn. Chính vệt bóng dài đó biến một bức tường trắng bình thường thành không gian nghệ thuật.”</p>
+          </div>
+        </section>
+
+        <section class="slide-wrapper" data-index="9" id="slide-10">
+          <div class="slide-canvas layout-content">
+            <div class="slide-topbar">
+              <span>2026  •  TRỤ CỘT 04 (BUỔI TỐI) • QUY TẮC ĐÈN ĐIỂM LITTLE LIGHTS</span>
+              <span>imess/zalo : 0934688632</span>
+            </div>
+            
+              <div class="slide-head-block">
+                <div class="slide-title-row">
+                  <h2 class="slide-main-title">Trụ cột 4 (Buổi tối): Quy tắc Đèn điểm (Little Lights Only)</h2>
+                  <span class="preset-tag">Kiểu 02 • 3-Column + Video Evidence</span>
+                </div>
+                <p class="slide-subtitle">giải pháp cho học viên đi làm cả ngày chỉ rảnh lúc 19h00 – 22h00 tối để quay tại nhà</p>
+              </div>
+              <div class="ds-cards cards-grid-3">
+                <div class="ds-card card-warn">
+                  <div class="ds-card-head">
+                    <div class="ds-badge">BƯỚC 01 • TẮT ĐÈN TRẦN TRẮNG</div>
+                    <h3 class="ds-card-title">Tắt ngay công tắc đèn huỳnh quang / âm trần</h3>
+                  </div>
+                  <div class="ds-hairline"></div>
+                  <div class="ds-card-body"><p>Đèn trần 6500K tỏa sáng đều khắp phòng làm mất sạch vùng tối và tạo cảm giác lạnh lẽo. Bước đầu tiên khi quay buổi tối là tắt công tắc đèn trần.</p></div>
+                  <div class="ds-takeaway">🎯 Có vùng tối thì vùng sáng mới nổi lên được.</div>
+                </div>
+                <div class="ds-card card-good">
+                  <div class="ds-card-head">
+                    <div class="ds-badge">BƯỚC 02 • BẬT 2–3 ĐÈN ĐIỂM ẤM</div>
+                    <h3 class="ds-card-title">Chỉ bật đèn bàn, đèn cây góc phòng (2700K–3200K)</h3>
+                  </div>
+                  <div class="ds-hairline"></div>
+                  <div class="ds-card-body"><p>Bật 1 đèn bàn ở khu vực thao tác chính, 1 đèn cây ở góc xa làm hậu cảnh và thêm 1 điểm sáng nhỏ (đèn hắt kệ hoặc nến thơm) để tạo 3 lớp ánh sáng có chiều sâu.</p></div>
+                  <div class="ds-takeaway">🎯 Nhiều nguồn sáng nhỏ tầm thấp đẹp hơn 1 đèn lớn trên trần.</div>
+                </div>
+                <div class="ds-card card-good">
+                  <div class="ds-card-head">
+                    <div class="ds-badge">BƯỚC 03 • GIẢ LẬP NGƯỢC SÁNG</div>
+                    <h3 class="ds-card-title">Đặt bình trà / sổ tay chắn trước bóng đèn bàn</h3>
+                  </div>
+                  <div class="ds-hairline"></div>
+                  <div class="ds-card-body"><p>Khi quay cận cảnh rót nước hoặc viết sổ lúc tối, hãy đặt chiếc cốc nằm giữa điện thoại và chiếc đèn bàn để tạo đường viền sáng y hệt nắng hoàng hôn.</p></div>
+                  <div class="ds-takeaway">🎯 Quay lúc 9 giờ tối vẫn ấm áp và sâu lắng.</div>
+                </div>
+              </div>
+              <div class="slide-videos-tray cols-1">
+                <div class="slide-vcard">
+                  <div class="slide-vhead">
+                    <div class="slide-vtitle">
+                      <span class="v-badge v-badge-win">✅ MẪU QUY TẮC 6 GIỜ TỐI (LITTLE LIGHTS ONLY) • DeZJOgZoRew</span>
+                      <strong>@iman.lizi — Tắt đèn trần, phối 4 điểm đèn bàn vàng ấm & nến thơm lúc 18h00 tối</strong>
+                      <span class="slide-vmeta">(9 shots)</span>
+                    </div>
+                    <div class="slide-vbtns">
+                      <button type="button" class="btn-play-inline" onclick="toggleSlideVideo(this, 'vid-s10-1', 'https://media.fedu.vn/videos/DeZJOgZoRew.mp4')">▶️ Phát video thật</button>
+                      <a href="https://ytuong.fedu.vn/v/DeZJOgZoRew" target="_blank" rel="noopener" class="btn-src-link">Kho Ý Tưởng ↗</a>
+                    </div>
+                  </div>
+                  <div class="slide-vstrip">
+                    <img src="https://media.fedu.vn/images/IG_@iman.lizi_DeZJOgZoRew_the_evening_rule_little_lights_only_🕯️/shot_08_mid.webp" alt="@iman.lizi — Tắt đèn trần, phối 4 điểm đèn bàn vàng ấm & nến thơm lúc 18h00 tối" loading="lazy"/>
+                    <div class="slide-vnote">Giải pháp hoàn hảo cho người đi làm bận rộn chỉ quay được buổi tối: tắt đèn tuýp trần nhà, chỉ bật đèn bàn chao vải và đèn góc sofa tạo 4 tầng ánh sáng ấm.</div>
+                  </div>
+                  <div class="slide-vplayer" id="vid-s10-1" style="display:none;">
+                    <video controls playsinline preload="none" poster="https://media.fedu.vn/images/IG_@iman.lizi_DeZJOgZoRew_the_evening_rule_little_lights_only_🕯️/shot_08_mid.webp"></video>
+                  </div>
+                </div></div>
+
+            <div class="slide-footer">
+              <div class="mentor-sig">
+                <span class="mentor-dot">NV</span>
+                <span><strong>Mentor : Nguyễn Đức Việt</strong>  ·  0934.688.632</span>
+              </div>
+              <div class="footer-right">Slide 10 / 19  ·  vietndj@gmail.com</div>
+            </div>
+          </div>
+          <div class="speaker-notes-box">
+            <div class="sn-header">
+              <span class="sn-badge">🗣️ LỜI DẪN BỤC GIẢNG OFFLINE CỦA ANH VIỆT (SLIDE 10)</span>
+              <span class="sn-part">Giải pháp thực tế cho học viên bận đi làm ban ngày, chỉ quay được buổi tối</span>
+            </div>
+            <p class="sn-text">“Nhiều anh chị ở lớp hỏi mình: Việt ơi anh đi làm từ 8 giờ sáng đến 7 giờ tối mới về tới nhà, lấy đâu ra nắng sớm với hoàng hôn mà quay? Câu trả lời nằm ngay trên Slide số 10 này: Quy tắc Đèn điểm — Little Lights Only [Bấm mở video DeZJOgZoRew]... Tối về nhà muốn quay góc bàn làm việc, việc đầu tiên là bạn tắt phụt cái đèn tuýp trắng trên trần nhà đi! Sau đó bạn chỉ bật 2 hoặc 3 chiếc đèn nhỏ tầm thấp: một chiếc đèn bàn vàng ấm cạnh sổ tay, một chiếc đèn cây ở góc sofa phía sau. Nhìn khung hình lúc 8 giờ tối ấm cúng và sang không kém gì ban ngày!”</p>
+          </div>
+        </section>
+
+        <section class="slide-wrapper" data-index="10" id="slide-11">
+          <div class="slide-canvas layout-content">
+            <div class="slide-topbar">
+              <span>2026  •  TRỤ CỘT 05 (TĨNH) • CẢNH BÌNH TĨNH & CHÂN MÁY TĨNH</span>
+              <span>imess/zalo : 0934688632</span>
+            </div>
+            
+              <div class="slide-head-block">
+                <div class="slide-title-row">
+                  <h2 class="slide-main-title">Trụ cột 5 (TĨNH): Cảnh bình tĩnh — Chân máy tĩnh (Static Shot)</h2>
+                  <span class="preset-tag">Kiểu 02 • 3-Column + Video Evidence</span>
+                </div>
+                <p class="slide-subtitle">máy đứng im buộc cảnh phải tự có chuyện — lia máy bằng tay thường là cách che việc chưa chọn được góc đẹp</p>
+              </div>
+              <div class="ds-cards cards-grid-3">
+                <div class="ds-card card-neutral">
+                  <div class="ds-card-head">
+                    <div class="ds-badge">KỶ LUẬT 01 • KHÔNG LIA ĐUỔI THEO</div>
+                    <h3 class="ds-card-title">Để nhân vật tự bước vào và bước ra khỏi khung tĩnh</h3>
+                  </div>
+                  <div class="ds-hairline"></div>
+                  <div class="ds-card-body"><p>Sự điềm tĩnh của người làm nghề nằm ở chỗ không vội vã lia máy đuổi theo người. Cố định máy trước, để nhân vật tự bước vào vùng nét rồi bước ra.</p></div>
+                  <div class="ds-takeaway">🎯 Tự quay một mình vẫn đẹp như có người quay riêng.</div>
+                </div>
+                <div class="ds-card card-neutral">
+                  <div class="ds-card-head">
+                    <div class="ds-badge">KỶ LUẬT 02 • THẲNG ĐƯỜNG NGANG</div>
+                    <h3 class="ds-card-title">Bật lưới 9 ô canh mép bàn và cột tường thẳng 100%</h3>
+                  </div>
+                  <div class="ds-hairline"></div>
+                  <div class="ds-card-body"><p>Khi máy đã đứng yên, nếu đường chân trời hoặc cạnh bàn bị nghiêng 2 độ, người xem sẽ nhận ra ngay. Luôn gióng thẳng đường kẻ lưới với cạnh tường hoặc mép bàn.</p></div>
+                  <div class="ds-takeaway">🎯 Khung hình ngay ngắn tạo cảm giác làm ăn chỉn chu.</div>
+                </div>
+                <div class="ds-card card-neutral">
+                  <div class="ds-card-head">
+                    <div class="ds-badge">KỶ LUẬT 03 • GIỮ 5 GIÂY LẤY 2 GIÂY</div>
+                    <h3 class="ds-card-title">Bấm quay giữ yên 4–6 giây, khi dựng cắt lấy 2 giây</h3>
+                  </div>
+                  <div class="ds-hairline"></div>
+                  <div class="ds-card-body"><p>Sau khi bấm nút quay, bỏ tay ra khỏi điện thoại và giữ yên 4–6 giây cho hết rung động đầu cuối. Lúc dựng chỉ cắt lấy 1.5–2.5 giây tĩnh nhất ở giữa.</p></div>
+                  <div class="ds-takeaway">🎯 Nền đứng yên làm mọi chuyển động nhỏ nổi bật gấp đôi.</div>
+                </div>
+              </div>
+              <div class="slide-videos-tray cols-2">
+                <div class="slide-vcard">
+                  <div class="slide-vhead">
+                    <div class="slide-vtitle">
+                      <span class="v-badge v-badge-win">✅ MẪU TỰ ĐẶT MÁY BƯỚC VÀO KHUNG • DemoZWsuTjr</span>
+                      <strong>@framebygeorge — Đặt máy tĩnh dưới vòm cây công viên & tự bước vào vùng nét</strong>
+                      <span class="slide-vmeta">(10 shots)</span>
+                    </div>
+                    <div class="slide-vbtns">
+                      <button type="button" class="btn-play-inline" onclick="toggleSlideVideo(this, 'vid-s11-1', 'https://media.fedu.vn/videos/DemoZWsuTjr.mp4')">▶️ Phát video thật</button>
+                      <a href="https://ytuong.fedu.vn/v/DemoZWsuTjr" target="_blank" rel="noopener" class="btn-src-link">Kho Ý Tưởng ↗</a>
+                    </div>
+                  </div>
+                  <div class="slide-vstrip">
+                    <img src="https://media.fedu.vn/images/IG_@framebygeorge_DemoZWsuTjr_October_but_cinematic🍂/shot_02_mid.webp" alt="@framebygeorge — Đặt máy tĩnh dưới vòm cây công viên & tự bước vào vùng nét" loading="lazy"/>
+                    <div class="slide-vnote">Đi quay một mình không cần người cầm máy: khóa tĩnh điện thoại trên chân máy hoặc sát thảm cỏ, tự bước từ tiền cảnh vào giao điểm 1/3.</div>
+                  </div>
+                  <div class="slide-vplayer" id="vid-s11-1" style="display:none;">
+                    <video controls playsinline preload="none" poster="https://media.fedu.vn/images/IG_@framebygeorge_DemoZWsuTjr_October_but_cinematic🍂/shot_02_mid.webp"></video>
+                  </div>
+                </div>
+                <div class="slide-vcard">
+                  <div class="slide-vhead">
+                    <div class="slide-vtitle">
+                      <span class="v-badge v-badge-win">✅ MẪU KHUNG TĨNH KIẾN TRÚC & PHỐ • DaH7X34NTNX</span>
+                      <strong>@mako__go — Khóa tĩnh khung hình cổng vòm & mặt tiền tiệm đón xe chạy ngang</strong>
+                      <span class="slide-vmeta">(7 shots)</span>
+                    </div>
+                    <div class="slide-vbtns">
+                      <button type="button" class="btn-play-inline" onclick="toggleSlideVideo(this, 'vid-s11-2', 'https://media.fedu.vn/videos/DaH7X34NTNX.mp4')">▶️ Phát video thật</button>
+                      <a href="https://ytuong.fedu.vn/v/DaH7X34NTNX" target="_blank" rel="noopener" class="btn-src-link">Kho Ý Tưởng ↗</a>
+                    </div>
+                  </div>
+                  <div class="slide-vstrip">
+                    <img src="https://media.fedu.vn/images/IG_%40mako__go_DaH7X34NTNX_Palermo_Sicily/shot_01_start.webp" alt="@mako__go — Khóa tĩnh khung hình cổng vòm & mặt tiền tiệm đón xe chạy ngang" loading="lazy"/>
+                    <div class="slide-vnote">Canh thẳng tuyệt đối các đường dọc kiến trúc, giữ tĩnh máy 5 giây đợi chiếc xe hoặc người đạp xe đi ngang qua điểm tụ.</div>
+                  </div>
+                  <div class="slide-vplayer" id="vid-s11-2" style="display:none;">
+                    <video controls playsinline preload="none" poster="https://media.fedu.vn/images/IG_%40mako__go_DaH7X34NTNX_Palermo_Sicily/shot_01_start.webp"></video>
+                  </div>
+                </div></div>
+
+            <div class="slide-footer">
+              <div class="mentor-sig">
+                <span class="mentor-dot">NV</span>
+                <span><strong>Mentor : Nguyễn Đức Việt</strong>  ·  0934.688.632</span>
+              </div>
+              <div class="footer-right">Slide 11 / 19  ·  vietndj@gmail.com</div>
+            </div>
+          </div>
+          <div class="speaker-notes-box">
+            <div class="sn-header">
+              <span class="sn-badge">🗣️ LỜI DẪN BỤC GIẢNG OFFLINE CỦA ANH VIỆT (SLIDE 11)</span>
+              <span class="sn-part">Trụ cột 5: Tại sao khóa tĩnh chân máy lại sang hơn cầm tay lia máy</span>
+            </div>
+            <p class="sn-text">“Chữ thứ năm là TĨNH [Chỉ tay]... Tại sao các bộ phim điện ảnh hay các video thương hiệu lớn họ rất ít khi lia máy loạn xạ? Vì khi máy đứng im, người xem có cảm giác người chủ kênh rất điềm tĩnh và làm chủ hoàn toàn không gian. Hơn nữa, khi bạn tự đi quay một mình ở công viên hay ở tiệm như 2 video bên dưới, bạn chỉ cần đặt cố định máy lên chân máy hoặc tựa vào bình nước, canh đường ngang thẳng tắp rồi tự bước vào khung hình. Không cần nhờ ai cầm máy hộ cả!”</p>
+          </div>
+        </section>
+
+        <section class="slide-wrapper" data-index="11" id="slide-12">
+          <div class="slide-canvas layout-content">
+            <div class="slide-topbar">
+              <span>2026  •  TRỤ CỘT 06 (VÀO) • QUY TẮC CẮT VÀO CHUYỂN ĐỘNG 70%–30%</span>
+              <span>imess/zalo : 0934688632</span>
+            </div>
+            
+              <div class="slide-head-block">
+                <div class="slide-title-row">
+                  <h2 class="slide-main-title">Trụ cột 6 (VÀO): Vào ngay cảnh lúc đang chuyển động (Quy tắc 70%–30%)</h2>
+                  <span class="preset-tag">Kiểu 03 • Luxury Comparison + Video Evidence</span>
+                </div>
+                <p class="slide-subtitle">người xem không cần xem lúc bạn chuẩn bị — họ cần thấy công việc đang diễn ra ngay từ giây đầu tiên</p>
+              </div>
+              <div class="ds-cards cards-grid-2">
+                <div class="ds-card card-good">
+                  <div class="ds-card-head">
+                    <div class="ds-badge">✂️ ĐIỂM VÀO CẢNH (30% ĐẦU CHUYỂN ĐỘNG)</div>
+                    <h3 class="ds-card-title">Gọt bỏ 1.5 giây đứng chờ đầu cảnh khi đưa lên CapCut</h3>
+                  </div>
+                  <div class="ds-hairline"></div>
+                  <div class="ds-card-body"><p>• Khi bấm máy tự quay, bao giờ cũng có 1.5 – 2 giây bạn bước về ghế hoặc đặt tay chuẩn bị làm.</p><p>• <strong>Kỷ luật khi dựng:</strong> Kéo thanh cắt tới đúng khoảnh khắc bàn tay <strong>đã bắt đầu chuyển động được 30%</strong> (rèm đang trượt, bút đang chạy, nước đang rót) rồi mới lấy hình.</p></div>
+                  <div class="ds-takeaway">🎯 Không bao giờ để người xem thấy nhân vật đứng yên chờ lệnh.</div>
+                </div>
+                <div class="ds-card card-good">
+                  <div class="ds-card-head">
+                    <div class="ds-badge">🔗 ĐIỂM RA CẢNH (70% CUỐI CHUYỂN ĐỘNG)</div>
+                    <h3 class="ds-card-title">Cắt sang cảnh mới trước khi bàn tay dừng hẳn</h3>
+                  </div>
+                  <div class="ds-hairline"></div>
+                  <div class="ds-card-body"><p>• Nếu đợi bàn tay làm xong rồi thu về nghỉ mới cắt, mạch video sẽ bị khựng lại ở mỗi vết cắt.</p><p>• Hãy cắt ra khi <strong>hành động đi tới mốc 70%</strong> (đang còn đà cử động) để nối thẳng sang 30% đầu của cảnh tiếp theo.</p></div>
+                  <div class="ds-takeaway">🎯 Đà chuyển động giúp mắt người xem trượt mượt qua 15 cảnh cắt.</div>
+                </div>
+              </div>
+              <div class="slide-videos-tray cols-2">
+                <div class="slide-vcard">
+                  <div class="slide-vhead">
+                    <div class="slide-vtitle">
+                      <span class="v-badge v-badge-win">✅ MẪU VÀO THẲNG HÀNH ĐỘNG (0.5S–0.8S) • Dctj7NfNimM</span>
+                      <strong>@joshdiazfilms — Cắt bỏ 100% đoạn đứng chờ, vào thẳng lúc tay đang tung chăn & nén cà phê</strong>
+                      <span class="slide-vmeta">(18 shots)</span>
+                    </div>
+                    <div class="slide-vbtns">
+                      <button type="button" class="btn-play-inline" onclick="toggleSlideVideo(this, 'vid-s12-1', 'https://media.fedu.vn/videos/Dctj7NfNimM.mp4')">▶️ Phát video thật</button>
+                      <a href="https://ytuong.fedu.vn/v/Dctj7NfNimM" target="_blank" rel="noopener" class="btn-src-link">Kho Ý Tưởng ↗</a>
+                    </div>
+                  </div>
+                  <div class="slide-vstrip">
+                    <img src="https://media.fedu.vn/images/IG_@joshdiazfilms_Dctj7NfNimM_Life_Feel_Put_Together/shot_04_mid.webp" alt="@joshdiazfilms — Cắt bỏ 100% đoạn đứng chờ, vào thẳng lúc tay đang tung chăn & nén cà phê" loading="lazy"/>
+                    <div class="slide-vnote">Mỗi lát cắt chỉ dài 0.5s – 0.8s: vừa chuyển cảnh là tấm rèm đã đang trượt mở nắng, dòng cà phê đã đang chảy xuống cốc.</div>
+                  </div>
+                  <div class="slide-vplayer" id="vid-s12-1" style="display:none;">
+                    <video controls playsinline preload="none" poster="https://media.fedu.vn/images/IG_@joshdiazfilms_Dctj7NfNimM_Life_Feel_Put_Together/shot_04_mid.webp"></video>
+                  </div>
+                </div>
+                <div class="slide-vcard">
+                  <div class="slide-vhead">
+                    <div class="slide-vtitle">
+                      <span class="v-badge v-badge-win">✅ MẪU NỐI ĐÀ CỬ ĐỘNG 70%–30% • DeHtnziInQn</span>
+                      <strong>@georgepabaker — 13 cú cắt cận bàn làm việc nối đà bật bút sang ấn phím</strong>
+                      <span class="slide-vmeta">(13 shots)</span>
+                    </div>
+                    <div class="slide-vbtns">
+                      <button type="button" class="btn-play-inline" onclick="toggleSlideVideo(this, 'vid-s12-2', 'https://media.fedu.vn/videos/DeHtnziInQn.mp4')">▶️ Phát video thật</button>
+                      <a href="https://ytuong.fedu.vn/v/DeHtnziInQn" target="_blank" rel="noopener" class="btn-src-link">Kho Ý Tưởng ↗</a>
+                    </div>
+                  </div>
+                  <div class="slide-vstrip">
+                    <img src="https://media.fedu.vn/images/IG_@georgepabaker_DeHtnziInQn_Simple_as_that/shot_04_mid.webp" alt="@georgepabaker — 13 cú cắt cận bàn làm việc nối đà bật bút sang ấn phím" loading="lazy"/>
+                    <div class="slide-vnote">Ngón cái vừa bật ngòi bút hướng lên (70% cuối cảnh trước) thì cắt nối sang ngón trỏ đang lao xuống phím (30% đầu cảnh sau).</div>
+                  </div>
+                  <div class="slide-vplayer" id="vid-s12-2" style="display:none;">
+                    <video controls playsinline preload="none" poster="https://media.fedu.vn/images/IG_@georgepabaker_DeHtnziInQn_Simple_as_that/shot_04_mid.webp"></video>
+                  </div>
+                </div></div>
+
+            <div class="slide-footer">
+              <div class="mentor-sig">
+                <span class="mentor-dot">NV</span>
+                <span><strong>Mentor : Nguyễn Đức Việt</strong>  ·  0934.688.632</span>
+              </div>
+              <div class="footer-right">Slide 12 / 19  ·  vietndj@gmail.com</div>
+            </div>
+          </div>
+          <div class="speaker-notes-box">
+            <div class="sn-header">
+              <span class="sn-badge">🗣️ LỜI DẪN BỤC GIẢNG OFFLINE CỦA ANH VIỆT (SLIDE 12)</span>
+              <span class="sn-part">Trụ cột 6: Cắt bỏ 1.5 giây đứng chờ đầu cảnh và nối đà 70%–30%</span>
+            </div>
+            <p class="sn-text">“Chữ thứ sáu — chữ quyết định độ mượt khi dựng bài: VÀO [Chỉ tay]... Người xem trên mạng họ không kiên nhẫn chờ mình chuẩn bị đâu. Nếu mở clip ra thấy bạn đứng yên 2 giây rồi mới vươn tay cầm cái cốc là họ vuốt qua mất rồi. Nên khi quay thì mình bấm máy trước rồi mới làm, nhưng khi đưa vào CapCut, bạn bắt buộc phải gọt bỏ 1,5 giây đầu đó đi! Hãy lấy từ lúc bàn tay đã đi được 30% quãng đường, và cắt ra ở mốc 70% trước khi tay dừng hẳn. Cả nhà xem 2 video mẫu bên dưới để thấy nhịp cắt 70–30 mượt như thế nào nhé!”</p>
+          </div>
+        </section>
+
+        <section class="slide-wrapper" data-index="12" id="slide-13">
+          <div class="slide-canvas layout-content">
+            <div class="slide-topbar">
+              <span>2026  •  ỨNG DỤNG LÀM NGHỀ • NGHỆ THUẬT KHOE KHÉO SẢN PHẨM & DỊCH VỤ</span>
+              <span>imess/zalo : 0934688632</span>
+            </div>
+            
+              <div class="slide-head-block">
+                <div class="slide-title-row">
+                  <h2 class="slide-main-title">Nghệ thuật Khoe Khéo Sản Phẩm &amp; Dịch Vụ Hằng Ngày</h2>
+                  <span class="preset-tag">Kiểu 02 • 3-Column + Video Evidence</span>
+                </div>
+                <p class="slide-subtitle">dịch vụ là công việc đang được làm thật trước ống kính — không phải món đồ bày ra như ảnh chào hàng</p>
+              </div>
+              <div class="ds-cards cards-grid-3">
+                <div class="ds-card card-neutral">
+                  <div class="ds-card-head">
+                    <div class="ds-badge">QUY TẮC 01 • TỐI ĐA 1/3 KHUNG HÌNH</div>
+                    <h3 class="ds-card-title">Không dí sát sản phẩm chiếm trọn màn hình</h3>
+                  </div>
+                  <div class="ds-hairline"></div>
+                  <div class="ds-card-body"><p>Sản phẩm chỉ nên chiếm tối đa <code>1/3 diện tích khung hình</code>, đặt tại giao điểm 1/3 hoặc tiền cảnh mờ. Phần còn lại dành cho ánh nắng, không gian tiệm và con người.</p></div>
+                  <div class="ds-takeaway">🎯 Giữ khoảng thở để khách cảm nhận gu thẩm mỹ của tiệm.</div>
+                </div>
+                <div class="ds-card card-neutral">
+                  <div class="ds-card-head">
+                    <div class="ds-badge">QUY TẮC 02 • ĐẶT VÀO THAO TÁC THẬT</div>
+                    <h3 class="ds-card-title">Khoe công năng qua bàn tay đang sử dụng</h3>
+                  </div>
+                  <div class="ds-hairline"></div>
+                  <div class="ds-card-body"><p>• <strong>Spa / F&amp;B:</strong> Tay nhỏ tinh dầu ngược sáng, dòng cà phê rót vào đá.</p><p>• <strong>Thời trang / Nội thất:</strong> Tay thả chìa khóa vào túi, tay vuốt mặt vải sofa dưới nắng chiều.</p></div>
+                  <div class="ds-takeaway">🎯 Để khách tự hỏi "Đồ gì mà đẹp thế?" thay vì tự khen.</div>
+                </div>
+                <div class="ds-card card-neutral">
+                  <div class="ds-card-head">
+                    <div class="ds-badge">QUY TẮC 03 • QUY TẮC 3 GIÂY ĐẦU</div>
+                    <h3 class="ds-card-title">Không đưa biểu tượng thương hiệu ra trước giây thứ 3</h3>
+                  </div>
+                  <div class="ds-hairline"></div>
+                  <div class="ds-card-body"><p>Trong 3 giây đầu tiên, hãy giữ chân người xem bằng một chuyển động đẹp và ánh sáng có chiều sâu. Khi họ đã dừng lại xem, sản phẩm xuất hiện ở giây thứ 4 sẽ rất tự nhiên.</p></div>
+                  <div class="ds-takeaway">🎯 Xóa sạch cảm giác bị chào mời mua hàng.</div>
+                </div>
+              </div>
+              <div class="slide-videos-tray cols-1">
+                <div class="slide-vcard">
+                  <div class="slide-vhead">
+                    <div class="slide-vtitle">
+                      <span class="v-badge v-badge-win">✅ MẪU KHOE KHÉO SẢN PHẨM ẨN DANH • DdGx-fkPeeU</span>
+                      <strong>@pausehereii — Đưa chiếc túi đeo vai vào 37 cảnh đi dạo qua thao tác thả chìa khóa & đóng cúc bấm</strong>
+                      <span class="slide-vmeta">(37 shots)</span>
+                    </div>
+                    <div class="slide-vbtns">
+                      <button type="button" class="btn-play-inline" onclick="toggleSlideVideo(this, 'vid-s13-1', 'https://media.fedu.vn/videos/DdGx-fkPeeU.mp4')">▶️ Phát video thật</button>
+                      <a href="https://ytuong.fedu.vn/v/DdGx-fkPeeU" target="_blank" rel="noopener" class="btn-src-link">Kho Ý Tưởng ↗</a>
+                    </div>
+                  </div>
+                  <div class="slide-vstrip">
+                    <img src="https://media.fedu.vn/images/IG_@pausehereii_DdGx-fkPeeU_A_DAY_IN_CHIANG_MAI/shot_05_mid.webp" alt="@pausehereii — Đưa chiếc túi đeo vai vào 37 cảnh đi dạo qua thao tác thả chìa khóa & đóng cúc bấm" loading="lazy"/>
+                    <div class="slide-vnote">Không một lời quảng cáo: chiếc túi chỉ chiếm dưới 1/3 khung hình, xuất hiện tự nhiên khi đặt lên ghế xe, bước qua cổng cổ và cất chìa khóa.</div>
+                  </div>
+                  <div class="slide-vplayer" id="vid-s13-1" style="display:none;">
+                    <video controls playsinline preload="none" poster="https://media.fedu.vn/images/IG_@pausehereii_DdGx-fkPeeU_A_DAY_IN_CHIANG_MAI/shot_05_mid.webp"></video>
+                  </div>
+                </div></div>
+
+            <div class="slide-footer">
+              <div class="mentor-sig">
+                <span class="mentor-dot">NV</span>
+                <span><strong>Mentor : Nguyễn Đức Việt</strong>  ·  0934.688.632</span>
+              </div>
+              <div class="footer-right">Slide 13 / 19  ·  vietndj@gmail.com</div>
+            </div>
+          </div>
+          <div class="speaker-notes-box">
+            <div class="sn-header">
+              <span class="sn-badge">🗣️ LỜI DẪN BỤC GIẢNG OFFLINE CỦA ANH VIỆT (SLIDE 13)</span>
+              <span class="sn-part">Cách đưa sản phẩm và dịch vụ hằng ngày vào khung hình nhẹ nhàng, tinh tế</span>
+            </div>
+            <p class="sn-text">“Khi đã nắm được 6 chữ Đường – Động – Sáng – Giờ – Tĩnh – Vào rồi, câu hỏi quan trọng nhất là: Mình áp dụng vào việc bán hàng và làm dịch vụ hằng ngày như thế nào để nhìn không bị phô? [Chỉ tay]... Có 3 quy tắc vàng trên bảng: Một là sản phẩm chỉ chiếm tối đa 1/3 khung hình thôi, đừng dí sát vào giữa màn hình. Hai là luôn đặt sản phẩm vào một thao tác tay đang sử dụng thật — như bạn ở video dưới khoe chiếc túi bằng cảnh thả chìa khóa xe vào cúc bấm. Và ba là không bao giờ đẩy biển hiệu hay logo ra trước giây thứ 3.”</p>
+          </div>
+        </section>
+
+        <section class="slide-wrapper" data-index="13" id="slide-14">
+          <div class="slide-canvas layout-content">
+            <div class="slide-topbar">
+              <span>2026  •  THAO TÁC BẤM MÁY • BẢNG KIỂM 10 GIÂY TẠI BÀN</span>
+              <span>imess/zalo : 0934688632</span>
+            </div>
+            
+              <div class="slide-head-block">
+                <div class="slide-title-row">
+                  <h2 class="slide-main-title">Công thức 10 giây kiểm tra tại bàn trước khi bấm nút Quay</h2>
+                  <span class="preset-tag">Kiểu 05 • 6-Second Pre-Flight Checklist</span>
+                </div>
+                <p class="slide-subtitle">dừng lại đúng 10 giây trước khi bấm Record để rà nhanh 6 câu hỏi tương ứng với 6 trụ cột</p>
+              </div>
+              <div class="ds-cards cards-grid-6">
+                <div class="ds-card card-good">
+                  <div class="ds-card-head">
+                    <div class="ds-badge">GIÂY 01–02 • HỎI VỀ ĐƯỜNG</div>
+                    <h3 class="ds-card-title">Đã bật 2x và cất đồ thừa chưa?</h3>
+                  </div>
+                  <div class="ds-hairline"></div>
+                  <div class="ds-card-body"><p>Nheo mắt nhìn màn hình: Đã thấy đường dẫn (mép bàn/bóng nắng) đi vào giao điểm 1/3 và có 1 vật mờ làm tiền cảnh chưa?</p></div>
+                  <div class="ds-takeaway">✅ Bật 2x + 3 lớp Tiền – Trung – Hậu</div>
+                </div>
+
+                <div class="ds-card card-good">
+                  <div class="ds-card-head">
+                    <div class="ds-badge">GIÂY 03–04 • HỎI VỀ ĐỘNG</div>
+                    <h3 class="ds-card-title">Thứ gì sẽ cử động trong cảnh này?</h3>
+                  </div>
+                  <div class="ds-hairline"></div>
+                  <div class="ds-card-body"><p>Xác định rõ 1 chuyển động vật lý duy nhất sẽ diễn ra: khói trà bay, rèm đung đưa, nước rót hay bàn tay viết sổ?</p></div>
+                  <div class="ds-takeaway">✅ Có đúng 1 chuyển động chính rõ ràng</div>
+                </div>
+
+                <div class="ds-card card-good">
+                  <div class="ds-card-head">
+                    <div class="ds-badge">GIÂY 05–06 • HỎI VỀ SÁNG</div>
+                    <h3 class="ds-card-title">Đã xoay ngược/xiên sáng &amp; hạ -0.7 EV?</h3>
+                  </div>
+                  <div class="ds-hairline"></div>
+                  <div class="ds-card-body"><p>Xoay máy 90°–135° so với cửa sổ (hoặc đèn bàn), ấn giữ khóa nét AE/AF và kéo nhẹ thanh mặt trời xuống một nấc.</p></div>
+                  <div class="ds-takeaway">✅ Thấy rõ đường viền sáng quanh chủ thể</div>
+                </div>
+
+                <div class="ds-card card-good">
+                  <div class="ds-card-head">
+                    <div class="ds-badge">GIÂY 07–08 • HỎI VỀ GIỜ</div>
+                    <h3 class="ds-card-title">Đã tắt đèn trần trắng chưa?</h3>
+                  </div>
+                  <div class="ds-hairline"></div>
+                  <div class="ds-card-body"><p>Nếu ban ngày: tận dụng bóng nắng dài. Nếu buổi tối: tắt sạch đèn huỳnh quang trần nhà, chỉ để đèn bàn vàng ấm.</p></div>
+                  <div class="ds-takeaway">✅ Ánh sáng có vùng sáng – vùng tối</div>
+                </div>
+
+                <div class="ds-card card-good">
+                  <div class="ds-card-head">
+                    <div class="ds-badge">GIÂY 09 • HỎI VỀ TĨNH</div>
+                    <h3 class="ds-card-title">Máy đã tựa chắc &amp; thẳng lưới 9 ô?</h3>
+                  </div>
+                  <div class="ds-hairline"></div>
+                  <div class="ds-card-body"><p>Đặt điện thoại lên chân máy hoặc tựa vào bình nước nặng; gióng đường kẻ ngang trên màn hình trùng khít với mép bàn.</p></div>
+                  <div class="ds-takeaway">✅ Không cầm tay rung lắc, không lệch 2°</div>
+                </div>
+
+                <div class="ds-card card-good">
+                  <div class="ds-card-head">
+                    <div class="ds-badge">GIÂY 10 • HỎI VỀ VÀO</div>
+                    <h3 class="ds-card-title">Bấm quay rồi làm ngay trong 5 giây?</h3>
+                  </div>
+                  <div class="ds-hairline"></div>
+                  <div class="ds-card-body"><p>Bấm nút quay, bỏ tay ra cho máy hết rung rồi thực hiện thao tác dứt khoát để lúc dựng cắt lấy đúng đoạn 30%–70%.</p></div>
+                  <div class="ds-takeaway">✅ Sẵn sàng cắt bỏ 1.5s đứng chờ đầu cảnh</div>
+                </div>
+              </div>
+
+            <div class="slide-footer">
+              <div class="mentor-sig">
+                <span class="mentor-dot">NV</span>
+                <span><strong>Mentor : Nguyễn Đức Việt</strong>  ·  0934.688.632</span>
+              </div>
+              <div class="footer-right">Slide 14 / 19  ·  vietndj@gmail.com</div>
+            </div>
+          </div>
+          <div class="speaker-notes-box">
+            <div class="sn-header">
+              <span class="sn-badge">🗣️ LỜI DẪN BỤC GIẢNG OFFLINE CỦA ANH VIỆT (SLIDE 14)</span>
+              <span class="sn-part">10 giây tự hỏi 6 câu trước khi ấn nút Record</span>
+            </div>
+            <p class="sn-text">“Trước khi bấm nút đỏ trên màn hình điện thoại, bạn đừng bấm vội. Hãy dừng lại đúng 10 giây và nhẩm 6 câu hỏi trên bảng [Chỉ tay]: Một, đã bật 2x và bỏ đồ thừa chưa? Hai, cái gì sẽ cử động trong cảnh này? Ba, đã xoay chéo cửa sổ và kéo giảm biểu tượng mặt trời chưa? Bốn, đã tắt cái đèn tuýp trần nhà đi chưa? Năm, máy đã tựa chắc vào bình nước và thẳng vạch lưới chưa? Sáu, bấm máy xong làm luôn để tý nữa cắt bỏ đoạn đầu nhé! Mười giây này sẽ thay đổi toàn bộ chất lượng video của bạn.”</p>
+          </div>
+        </section>
+
+        <section class="slide-wrapper" data-index="14" id="slide-15">
+          <div class="slide-canvas layout-content">
+            <div class="slide-topbar">
+              <span>2026  •  LỘ TRÌNH THỰC HÀNH • 3 BỐI CẢNH QUEN THUỘC TẠI THÀNH PHỐ</span>
+              <span>imess/zalo : 0934688632</span>
+            </div>
+            
+              <div class="slide-head-block">
+                <div class="slide-title-row">
+                  <h2 class="slide-main-title">Logic Phân Loại Bài Tập Thành Phố: 3 Bối cảnh từ Dễ đến Khó</h2>
+                  <span class="preset-tag">Kiểu 02 • 3-Column Progression</span>
+                </div>
+                <p class="slide-subtitle">thiết kế riêng cho học viên sống và làm việc tại đô thị — làm chủ từng bối cảnh quen thuộc ngay quanh mình</p>
+              </div>
+              <div class="ds-cards cards-grid-3">
+                <div class="ds-card card-good">
+                  <div class="ds-card-head">
+                    <div class="ds-badge">CẤP ĐỘ 01 (DỄ) • TRONG NHÀ &amp; QUÁN CAFE</div>
+                    <h3 class="ds-card-title">Bàn làm việc, góc phòng, bàn cà phê cạnh cửa sổ</h3>
+                  </div>
+                  <div class="ds-hairline"></div>
+                  <div class="ds-card-body">
+                    <p>• <strong>Bối cảnh:</strong> Không gian hẹp, chủ động hoàn toàn thời gian, không ngại người lạ nhìn.</p>
+                    <p>• <strong>Kỹ năng rèn luyện:</strong> Tựa tĩnh máy bằng bình nước, bật ống kính 2x, lấy chuyển động khói/nước/tay viết sổ và gọt bỏ 1.5s chờ đầu cảnh.</p>
+                    <p>• <strong>Trụ cột:</strong> <code>Tĩnh (5)</code> + <code>Động (2)</code> + <code>Vào (6)</code>.</p>
+                  </div>
+                  <div class="ds-takeaway">🎯 Bài 1: Làm ngay tại bàn học trong 15 phút.</div>
+                </div>
+
+                <div class="ds-card card-neutral">
+                  <div class="ds-card-head">
+                    <div class="ds-badge">CẤP ĐỘ 02 (VỪA) • CÂY CỐI &amp; BAN CÔNG</div>
+                    <h3 class="ds-card-title">Công viên thành phố, hàng cây vỉa hè, ban công nắng lá</h3>
+                  </div>
+                  <div class="ds-hairline"></div>
+                  <div class="ds-card-body">
+                    <p>• <strong>Bối cảnh:</strong> Có ánh nắng tự nhiên xuyên qua tán lá, có gió thổi và khoảng không rộng hơn.</p>
+                    <p>• <strong>Kỹ năng rèn luyện:</strong> Chọn khung giờ sáng sớm hoặc hoàng hôn, bắt nắng ven (Rim Light), hạ phơi sáng -0.7 EV và đặt chân máy tĩnh tự bước vào khung.</p>
+                    <p>• <strong>Trụ cột:</strong> <code>Sáng (3)</code> + <code>Giờ (4)</code> + <code>Tĩnh (5)</code>.</p>
+                  </div>
+                  <div class="ds-takeaway">🎯 Bài 2: Làm chủ ánh nắng và bóng đổ tự nhiên.</div>
+                </div>
+
+                <div class="ds-card card-neutral">
+                  <div class="ds-card-head">
+                    <div class="ds-badge">CẤP ĐỘ 03 (NÂNG CAO) • PHỐ THỊ &amp; DỊCH VỤ</div>
+                    <h3 class="ds-card-title">Mặt tiền tiệm, hành lang kiến trúc &amp; thao tác dịch vụ</h3>
+                  </div>
+                  <div class="ds-hairline"></div>
+                  <div class="ds-card-body">
+                    <p>• <strong>Bối cảnh:</strong> Cửa tiệm, văn phòng, showroom hoặc đường phố có nhiều đường dẫn và người qua lại.</p>
+                    <p>• <strong>Kỹ năng rèn luyện:</strong> Dùng khung cửa vòm làm khung lồng khung 3 lớp, nối chuyển động 70%–30% và khoe khéo sản phẩm dưới 1/3 khung hình.</p>
+                    <p>• <strong>Trụ cột:</strong> <code>Đường (1)</code> + <code>Vào (6)</code> + <code>Khoe nghề</code>.</p>
+                  </div>
+                  <div class="ds-takeaway">🎯 Bài 3: Phục vụ trực tiếp việc giới thiệu nghề.</div>
+                </div>
+              </div>
+
+            <div class="slide-footer">
+              <div class="mentor-sig">
+                <span class="mentor-dot">NV</span>
+                <span><strong>Mentor : Nguyễn Đức Việt</strong>  ·  0934.688.632</span>
+              </div>
+              <div class="footer-right">Slide 15 / 19  ·  vietndj@gmail.com</div>
+            </div>
+          </div>
+          <div class="speaker-notes-box">
+            <div class="sn-header">
+              <span class="sn-badge">🗣️ LỜI DẪN BỤC GIẢNG OFFLINE CỦA ANH VIỆT (SLIDE 15)</span>
+              <span class="sn-part">Tại sao chia bài tập thành 3 bối cảnh: Trong nhà -> Công viên nắng lá -> Phố thị & Dịch vụ</span>
+            </div>
+            <p class="sn-text">“Để cả lớp về nhà làm bài tập không bị bỡ ngỡ, mình đã sắp xếp toàn bộ kho bài tập theo đúng 3 không gian quen thuộc nhất của người sống ở thành phố, đi từ Dễ đến Khó [Chỉ tay]... Cấp độ 1 là ngay tại bàn làm việc hoặc bàn quán cà phê — nơi bạn không ngại ai nhìn, chỉ tập giữ máy yên và cắt gọn tay. Cấp độ 2 là bước ra ban công có chậu cây hoặc công viên gần nhà lúc sáng sớm để tập bắt nắng ngược và bóng lá. Và Cấp độ 3 là mang ra đúng cửa tiệm, văn phòng của bạn để khoe khéo dịch vụ hằng ngày.”</p>
+          </div>
+        </section>
+
+        <section class="slide-wrapper" data-index="15" id="slide-16">
+          <div class="slide-canvas layout-content">
+            <div class="slide-topbar">
+              <span>2026  •  BÀI TẬP CẤP ĐỘ 01 • TRONG NHÀ, BÀN LÀM VIỆC & QUÁN CÀ PHÊ</span>
+              <span>imess/zalo : 0934688632</span>
+            </div>
+            
+              <div class="slide-head-block">
+                <div class="slide-title-row">
+                  <h2 class="slide-main-title">Bài Tập 1 (Cấp độ Dễ — Trong nhà / Bàn làm việc / Quán cà phê)</h2>
+                  <span class="preset-tag">Kiểu 02 • 3-Shot Assignment + Video Evidence</span>
+                </div>
+                <p class="slide-subtitle">đề bài: quay 6 cú bấm máy quanh bàn làm việc (mỗi cú 4–5s, cắt lấy 1.5s) tạo thành video 10 giây</p>
+              </div>
+              <div class="ds-cards cards-grid-3">
+                <div class="ds-card card-neutral">
+                  <div class="ds-card-head">
+                    <div class="ds-badge">CÚ 01 &amp; 02 • MỞ MÀN &amp; ĐỒ UỐNG</div>
+                    <h3 class="ds-card-title">Kéo rèm đón sáng &amp; Rót nước/cà phê ngược sáng</h3>
+                  </div>
+                  <div class="ds-hairline"></div>
+                  <div class="ds-card-body"><p>• <strong>Cú 1 (1.5s):</strong> Tay kéo rèm cửa sổ hoặc bật chiếc đèn bàn vàng ấm.</p><p>• <strong>Cú 2 (1.8s):</strong> Bật ống kính 2x, tựa máy vào bình nước quay cận cảnh rót trà/cà phê bốc khói hoặc đá viên rơi vào ly ở giao điểm 1/3.</p></div>
+                  <div class="ds-takeaway">🎯 Rèn trụ cột: Sáng (3) + Động (2).</div>
+                </div>
+                <div class="ds-card card-neutral">
+                  <div class="ds-card-head">
+                    <div class="ds-badge">CÚ 03 &amp; 04 • THAO TÁC TAY 3 LỚP</div>
+                    <h3 class="ds-card-title">Mở nắp laptop góc thấp &amp; Qua vai viết sổ</h3>
+                  </div>
+                  <div class="ds-hairline"></div>
+                  <div class="ds-card-body"><p>• <strong>Cú 3 (1.2s):</strong> Đặt máy sát mặt bàn, tay nhấc mở nắp laptop hoặc mở bìa sổ.</p><p>• <strong>Cú 4 (2.0s):</strong> Đặt máy sau lưng (bờ vai áo mờ chiếm 1/3 khung), tay cầm bút vạch sơ đồ hoặc gõ bàn phím.</p></div>
+                  <div class="ds-takeaway">🎯 Rèn trụ cột: Đường (1) + Tĩnh (5).</div>
+                </div>
+                <div class="ds-card card-neutral">
+                  <div class="ds-card-head">
+                    <div class="ds-badge">CÚ 05 &amp; 06 • NỐI 70/30 &amp; THOÁT CẢNH</div>
+                    <h3 class="ds-card-title">Cận ngòi bút sát bàn &amp; Đóng sổ dứt khoát</h3>
+                  </div>
+                  <div class="ds-hairline"></div>
+                  <div class="ds-card-body"><p>• <strong>Cú 5 (1.2s):</strong> Nối đúng nét bút đang chạy từ Cú 4 sang góc sát mặt bàn.</p><p>• <strong>Cú 6 (2.0s):</strong> Góc nhìn qua nhành cây hoặc cốc nước mờ ở tiền cảnh, tay đóng cuốn sổ lại và nhấc ly nước lên.</p></div>
+                  <div class="ds-takeaway">🎯 Rèn trụ cột: Vào (6) — cắt bỏ 100% đoạn chờ.</div>
+                </div>
+              </div>
+              <div class="slide-videos-tray cols-2">
+                <div class="slide-vcard">
+                  <div class="slide-vhead">
+                    <div class="slide-vtitle">
+                      <span class="v-badge v-badge-win">✅ MẪU BÀI TẬP 1A • TỰA MÁY BÌNH NƯỚC • DbQtoVPRMWk</span>
+                      <strong>@mercantegi — 5 góc tự quay bàn làm việc bằng điện thoại tựa vào bình nước & kẹp màn hình</strong>
+                      <span class="slide-vmeta">(11 shots)</span>
+                    </div>
+                    <div class="slide-vbtns">
+                      <button type="button" class="btn-play-inline" onclick="toggleSlideVideo(this, 'vid-s16-1', 'https://media.fedu.vn/videos/DbQtoVPRMWk.mp4')">▶️ Phát video thật</button>
+                      <a href="https://ytuong.fedu.vn/v/DbQtoVPRMWk" target="_blank" rel="noopener" class="btn-src-link">Kho Ý Tưởng ↗</a>
+                    </div>
+                  </div>
+                  <div class="slide-vstrip">
+                    <img src="https://media.fedu.vn/images/IG_@mercantegi_DbQtoVPRMWk_5_Cenas_Criativas_Trabalho/extracted_shots/shot_01_start.webp" alt="@mercantegi — 5 góc tự quay bàn làm việc bằng điện thoại tựa vào bình nước & kẹp màn hình" loading="lazy"/>
+                    <div class="slide-vnote">Mẹo thực chiến ngay tại bàn: dùng bình nước làm điểm tựa cho góc siêu thấp sát bàn phím và góc ngang tầm mắt cạnh cửa sổ.</div>
+                  </div>
+                  <div class="slide-vplayer" id="vid-s16-1" style="display:none;">
+                    <video controls playsinline preload="none" poster="https://media.fedu.vn/images/IG_@mercantegi_DbQtoVPRMWk_5_Cenas_Criativas_Trabalho/extracted_shots/shot_01_start.webp"></video>
+                  </div>
+                </div>
+                <div class="slide-vcard">
+                  <div class="slide-vhead">
+                    <div class="slide-vtitle">
+                      <span class="v-badge v-badge-win">✅ MẪU BÀI TẬP 1B • NHỊP CẮT BÀN LÀM VIỆC • Dctj7NfNimM</span>
+                      <strong>@joshdiazfilms — Chuỗi cắt 0.6s kéo rèm, dọn bàn và pha cà phê buổi sáng</strong>
+                      <span class="slide-vmeta">(18 shots)</span>
+                    </div>
+                    <div class="slide-vbtns">
+                      <button type="button" class="btn-play-inline" onclick="toggleSlideVideo(this, 'vid-s16-2', 'https://media.fedu.vn/videos/Dctj7NfNimM.mp4')">▶️ Phát video thật</button>
+                      <a href="https://ytuong.fedu.vn/v/Dctj7NfNimM" target="_blank" rel="noopener" class="btn-src-link">Kho Ý Tưởng ↗</a>
+                    </div>
+                  </div>
+                  <div class="slide-vstrip">
+                    <img src="https://media.fedu.vn/images/IG_@joshdiazfilms_Dctj7NfNimM_Life_Feel_Put_Together/shot_07_mid.webp" alt="@joshdiazfilms — Chuỗi cắt 0.6s kéo rèm, dọn bàn và pha cà phê buổi sáng" loading="lazy"/>
+                    <div class="slide-vnote">Vào cảnh ngay lúc tay đang kéo rèm, đang nén cà phê và dòng Espresso đang chảy xuống tách sứ.</div>
+                  </div>
+                  <div class="slide-vplayer" id="vid-s16-2" style="display:none;">
+                    <video controls playsinline preload="none" poster="https://media.fedu.vn/images/IG_@joshdiazfilms_Dctj7NfNimM_Life_Feel_Put_Together/shot_07_mid.webp"></video>
+                  </div>
+                </div></div>
+
+            <div class="slide-footer">
+              <div class="mentor-sig">
+                <span class="mentor-dot">NV</span>
+                <span><strong>Mentor : Nguyễn Đức Việt</strong>  ·  0934.688.632</span>
+              </div>
+              <div class="footer-right">Slide 16 / 19  ·  vietndj@gmail.com</div>
+            </div>
+          </div>
+          <div class="speaker-notes-box">
+            <div class="sn-header">
+              <span class="sn-badge">🗣️ LỜI DẪN BỤC GIẢNG OFFLINE CỦA ANH VIỆT (SLIDE 16)</span>
+              <span class="sn-part">Hướng dẫn chi tiết 6 cú bấm máy của Bài Tập 1 ngay tại bàn</span>
+            </div>
+            <p class="sn-text">“Đây là đề bài Cấp độ 1 mà lát nữa cả lớp sẽ bấm máy ngay tại bàn học của mình [Chỉ tay]... Bạn chỉ cần quay đúng 6 cú bấm máy ngắn: Cú 1 bật đèn hoặc mở rèm; Cú 2 bật 2x quay rót nước hoặc đặt ly xuống bàn; Cú 3 đặt máy sát bàn mở nắp máy tính hoặc cuốn sổ; Cú 4 đặt qua vai lấy bờ vai mờ viết sổ; Cú 5 cận sát ngòi bút đang chạy; và Cú 6 đóng cuốn sổ lại. Xem video mẫu DbQtoVPRMWk bên trái nhé: bạn ấy dùng chính cái bình nước trên bàn để tựa chiếc điện thoại, ai cũng làm được ngay!”</p>
+          </div>
+        </section>
+
+        <section class="slide-wrapper" data-index="16" id="slide-17">
+          <div class="slide-canvas layout-content">
+            <div class="slide-topbar">
+              <span>2026  •  BÀI TẬP CẤP ĐỘ 02 • CÔNG VIÊN, CÂY CỐI & BAN CÔNG NẮNG LÁ</span>
+              <span>imess/zalo : 0934688632</span>
+            </div>
+            
+              <div class="slide-head-block">
+                <div class="slide-title-row">
+                  <h2 class="slide-main-title">Bài Tập 2 (Cấp độ Vừa — Cây cối / Công viên / Ban công nắng xuyên lá)</h2>
+                  <span class="preset-tag">Kiểu 02 • 3-Shot Assignment + Video Evidence</span>
+                </div>
+                <p class="slide-subtitle">đề bài: dậy sớm 1 buổi (6h30–8h30) hoặc chiều hoàng hôn (16h00–17h30) quay 3 cặp cảnh nắng &amp; bóng đổ</p>
+              </div>
+              <div class="ds-cards cards-grid-3">
+                <div class="ds-card card-neutral">
+                  <div class="ds-card-head">
+                    <div class="ds-badge">CẶP CẢNH 01 • NẮNG XUYÊN LÁ (RIM LIGHT)</div>
+                    <h3 class="ds-card-title">Bật 2x/3x quay ngược nắng tán lá &amp; bóng lá rung</h3>
+                  </div>
+                  <div class="ds-hairline"></div>
+                  <div class="ds-card-body"><p>Đặt máy hướng lên tán cây có nắng chiếu xuyên qua từ phía sau, kéo thanh mặt trời xuống <code>-0.7 EV</code> để gân lá phát sáng trên nền bóng râm, nối sang cảnh bóng lá in rung rinh trên tường hoặc mặt bàn.</p></div>
+                  <div class="ds-takeaway">🎯 Rèn kỹ năng: Kiểm soát phơi sáng ngược nắng.</div>
+                </div>
+                <div class="ds-card card-neutral">
+                  <div class="ds-card-head">
+                    <div class="ds-badge">CẶP CẢNH 02 • CHÂN MÁY TĨNH BƯỚC VÀO</div>
+                    <h3 class="ds-card-title">Đặt máy sát thảm cỏ / ghế đá &amp; tự bước vào trục 1/3</h3>
+                  </div>
+                  <div class="ds-hairline"></div>
+                  <div class="ds-card-body"><p>Đặt điện thoại cố định ở độ cao thấp (ngang mặt ghế đá hoặc sát thảm cỏ), dùng hàng cây làm đường dẫn hội tụ, bấm quay rồi tự bước thong thả từ ngoài khung vào vùng nét.</p></div>
+                  <div class="ds-takeaway">🎯 Rèn kỹ năng: Tự quay toàn thân không cần người phụ.</div>
+                </div>
+                <div class="ds-card card-neutral">
+                  <div class="ds-card-head">
+                    <div class="ds-badge">CẶP CẢNH 03 • ĐỐI CHIẾU 2 KHUNG GIỜ</div>
+                    <h3 class="ds-card-title">Cùng một góc ban công quay lúc trưa và lúc hoàng hôn</h3>
+                  </div>
+                  <div class="ds-hairline"></div>
+                  <div class="ds-card-body"><p>Đặt một tách trà hoặc cuốn sách ở đúng góc ban công đó, bấm 1 cảnh lúc nắng trưa và 1 cảnh lúc 16h30 chiều có bóng đổ dài để tự mắt thấy sự khác biệt của Trụ cột Giờ.</p></div>
+                  <div class="ds-takeaway">🎯 Thấy tận mắt sức mạnh của bóng đổ dài.</div>
+                </div>
+              </div>
+              <div class="slide-videos-tray cols-2">
+                <div class="slide-vcard">
+                  <div class="slide-vhead">
+                    <div class="slide-vtitle">
+                      <span class="v-badge v-badge-win">✅ MẪU BÀI TẬP 2A • BƯỚC VÀO KHUNG TĨNH & NẮNG LÁ • DemoZWsuTjr</span>
+                      <strong>@framebygeorge — Đặt máy tĩnh dưới vòm cây công viên & bắt tia nắng xuyên lá</strong>
+                      <span class="slide-vmeta">(10 shots)</span>
+                    </div>
+                    <div class="slide-vbtns">
+                      <button type="button" class="btn-play-inline" onclick="toggleSlideVideo(this, 'vid-s17-1', 'https://media.fedu.vn/videos/DemoZWsuTjr.mp4')">▶️ Phát video thật</button>
+                      <a href="https://ytuong.fedu.vn/v/DemoZWsuTjr" target="_blank" rel="noopener" class="btn-src-link">Kho Ý Tưởng ↗</a>
+                    </div>
+                  </div>
+                  <div class="slide-vstrip">
+                    <img src="https://media.fedu.vn/images/IG_@framebygeorge_DemoZWsuTjr_October_but_cinematic🍂/shot_06_mid.webp" alt="@framebygeorge — Đặt máy tĩnh dưới vòm cây công viên & bắt tia nắng xuyên lá" loading="lazy"/>
+                    <div class="slide-vnote">Kết hợp góc toàn tĩnh bước vào khung (Shot 02) với góc cận 2x bắt chiếc lá phát sáng trong vệt nắng hẹp (Shot 06).</div>
+                  </div>
+                  <div class="slide-vplayer" id="vid-s17-1" style="display:none;">
+                    <video controls playsinline preload="none" poster="https://media.fedu.vn/images/IG_@framebygeorge_DemoZWsuTjr_October_but_cinematic🍂/shot_06_mid.webp"></video>
+                  </div>
+                </div>
+                <div class="slide-vcard">
+                  <div class="slide-vhead">
+                    <div class="slide-vtitle">
+                      <span class="v-badge v-badge-win">✅ MẪU BÀI TẬP 2B • BÓNG LÁ TRÊN TƯỜNG BAN MAI • DdhHCL6OOfK</span>
+                      <strong>@framebygeorge — Khai thác bóng nắng khung cửa và cánh hoa rực sáng lúc 7h00 sáng</strong>
+                      <span class="slide-vmeta">(9 shots)</span>
+                    </div>
+                    <div class="slide-vbtns">
+                      <button type="button" class="btn-play-inline" onclick="toggleSlideVideo(this, 'vid-s17-2', 'https://media.fedu.vn/videos/DdhHCL6OOfK.mp4')">▶️ Phát video thật</button>
+                      <a href="https://ytuong.fedu.vn/v/DdhHCL6OOfK" target="_blank" rel="noopener" class="btn-src-link">Kho Ý Tưởng ↗</a>
+                    </div>
+                  </div>
+                  <div class="slide-vstrip">
+                    <img src="https://media.fedu.vn/images/IG_@framebygeorge_DdhHCL6OOfK_Day_23_learning_cinematography/shot_08_mid.webp" alt="@framebygeorge — Khai thác bóng nắng khung cửa và cánh hoa rực sáng lúc 7h00 sáng" loading="lazy"/>
+                    <div class="slide-vnote">Không cần đi xa: chỉ cần góc ban công hoặc bức tường có bóng lá cây in lên lúc sáng sớm là đủ tạo thước phim sâu lắng.</div>
+                  </div>
+                  <div class="slide-vplayer" id="vid-s17-2" style="display:none;">
+                    <video controls playsinline preload="none" poster="https://media.fedu.vn/images/IG_@framebygeorge_DdhHCL6OOfK_Day_23_learning_cinematography/shot_08_mid.webp"></video>
+                  </div>
+                </div></div>
+
+            <div class="slide-footer">
+              <div class="mentor-sig">
+                <span class="mentor-dot">NV</span>
+                <span><strong>Mentor : Nguyễn Đức Việt</strong>  ·  0934.688.632</span>
+              </div>
+              <div class="footer-right">Slide 17 / 19  ·  vietndj@gmail.com</div>
+            </div>
+          </div>
+          <div class="speaker-notes-box">
+            <div class="sn-header">
+              <span class="sn-badge">🗣️ LỜI DẪN BỤC GIẢNG OFFLINE CỦA ANH VIỆT (SLIDE 17)</span>
+              <span class="sn-part">Hướng dẫn Bài Tập 2: Bắt nắng xuyên tán lá và đặt máy tĩnh bước vào khung</span>
+            </div>
+            <p class="sn-text">“Khi đã quen tay ở Bài số 1, cuối tuần này bạn dành ra đúng 30 phút buổi sáng từ 7 giờ đến 7 rưỡi, mang điện thoại ra ban công có chậu cây hoặc công viên gần nhà để làm Bài Tập 2 [Chỉ tay]... Bài này luyện cho mắt bạn nhạy với ánh nắng: bạn bật ống kính 2x hoặc 3x ngắm vào một chiếc lá có nắng chiếu từ sau lưng tới, kéo giảm sáng xuống một chút sẽ thấy chiếc lá rực lên như đèn lồng. Sau đó đặt máy cố định dưới hàng cây rồi tự bước vào khung hình như video mẫu bên trái nhé.”</p>
+          </div>
+        </section>
+
+        <section class="slide-wrapper" data-index="17" id="slide-18">
+          <div class="slide-canvas layout-content">
+            <div class="slide-topbar">
+              <span>2026  •  BÀI TẬP CẤP ĐỘ 03 • PHỐ THỊ, KIẾN TRÚC & KHOE KHÉO DỊCH VỤ</span>
+              <span>imess/zalo : 0934688632</span>
+            </div>
+            
+              <div class="slide-head-block">
+                <div class="slide-title-row">
+                  <h2 class="slide-main-title">Bài Tập 3 (Cấp độ Nâng cao — Phố thị &amp; Khoe khéo dịch vụ hằng ngày)</h2>
+                  <span class="preset-tag">Kiểu 02 • 3-Shot Assignment + Video Evidence</span>
+                </div>
+                <p class="slide-subtitle">đề bài: ghép chuỗi 6–8 cảnh (12–15 giây) giới thiệu một công đoạn làm nghề thật của bạn mà không cần chữ quảng cáo</p>
+              </div>
+              <div class="ds-cards cards-grid-3">
+                <div class="ds-card card-neutral">
+                  <div class="ds-card-head">
+                    <div class="ds-badge">PHẦN MỞ (2 CẢNH) • ĐƯỜNG DẪN &amp; KHUNG CỬA</div>
+                    <h3 class="ds-card-title">Nhìn xuyên khung cửa tiệm &amp; Bước chân vào không gian</h3>
+                  </div>
+                  <div class="ds-hairline"></div>
+                  <div class="ds-card-body"><p>• <strong>Cảnh 1 (1.5s):</strong> Đặt máy ngoài cửa nhìn xuyên qua khung cửa kính/cửa vòm vào bên trong tiệm có ánh đèn ấm.</p><p>• <strong>Cảnh 2 (1.2s):</strong> Góc thấp bước chân hoặc bàn tay đẩy cánh cửa mở ra (cắt ở 30% đầu hành động).</p></div>
+                  <div class="ds-takeaway">🎯 Tạo chiều sâu 3 lớp dẫn khách bước vào tiệm.</div>
+                </div>
+                <div class="ds-card card-neutral">
+                  <div class="ds-card-head">
+                    <div class="ds-badge">PHẦN THÂN (4 CẢNH) • ĐÔI BÀN TAY LÀM NGHỀ</div>
+                    <h3 class="ds-card-title">Băm nhịp 0.8s – 1.5s thao tác chuẩn bị cho khách</h3>
+                  </div>
+                  <div class="ds-hairline"></div>
+                  <div class="ds-card-body"><p>• Quay 4 góc cận (<code>2x</code>) đôi bàn tay đang chuẩn bị đồ nghề, pha chế, kiểm tra sản phẩm hoặc ghi phiếu cho khách.</p><p>• <strong>Ràng buộc:</strong> Sản phẩm chiếm tối đa <code>1/3 khung hình</code>, nối đà cử động <code>70%–30%</code>.</p></div>
+                  <div class="ds-takeaway">🎯 Nhìn vào thao tác tay là hiểu nghề và thấy sự chỉn chu.</div>
+                </div>
+                <div class="ds-card card-neutral">
+                  <div class="ds-card-head">
+                    <div class="ds-badge">PHẦN KẾT (2 CẢNH) • ĐIỂM DỪNG TĨNH LẶNG</div>
+                    <h3 class="ds-card-title">Đặt thành phẩm vào vệt nắng &amp; Khép vòng thị giác</h3>
+                  </div>
+                  <div class="ds-hairline"></div>
+                  <div class="ds-card-body"><p>• <strong>Cảnh 7 (1.8s):</strong> Đặt thành phẩm hoàn thiện vào giao điểm 1/3 dưới ánh nắng ven hoặc đèn bàn ấm.</p><p>• <strong>Cảnh 8 (2.5s):</strong> Góc trung tĩnh lặng để khách ngắm trọn không gian và nghe câu kết Voice-Over.</p></div>
+                  <div class="ds-takeaway">🎯 Khách tự nhắn tin hỏi dịch vụ không cần chèo kéo.</div>
+                </div>
+              </div>
+              <div class="slide-videos-tray cols-2">
+                <div class="slide-vcard">
+                  <div class="slide-vhead">
+                    <div class="slide-vtitle">
+                      <span class="v-badge v-badge-win">✅ MẪU BÀI TẬP 3A • KHUNG CỬA VÒM & DỊCH VỤ • Ddqo7-eTI2A</span>
+                      <strong>@lisha_ho — Đóng khung qua cửa vòm, sải bước và tương tác chi tiết tại cửa tiệm</strong>
+                      <span class="slide-vmeta">(26 shots)</span>
+                    </div>
+                    <div class="slide-vbtns">
+                      <button type="button" class="btn-play-inline" onclick="toggleSlideVideo(this, 'vid-s18-1', 'https://media.fedu.vn/videos/Ddqo7-eTI2A.mp4')">▶️ Phát video thật</button>
+                      <a href="https://ytuong.fedu.vn/v/Ddqo7-eTI2A" target="_blank" rel="noopener" class="btn-src-link">Kho Ý Tưởng ↗</a>
+                    </div>
+                  </div>
+                  <div class="slide-vstrip">
+                    <img src="https://media.fedu.vn/images/IG_@lisha_ho_Ddqo7-eTI2A_Wait…_@ralphlauren_+_coffee_at_KLCC_👀/shot_01_mid.webp" alt="@lisha_ho — Đóng khung qua cửa vòm, sải bước và tương tác chi tiết tại cửa tiệm" loading="lazy"/>
+                    <div class="slide-vnote">Mở đầu bằng khung lồng khung qua cửa vòm, nối các lát cắt 0.9s bước chân, đặt tay lên giá treo đồ và đặt thiệp mời cạnh ly cà phê.</div>
+                  </div>
+                  <div class="slide-vplayer" id="vid-s18-1" style="display:none;">
+                    <video controls playsinline preload="none" poster="https://media.fedu.vn/images/IG_@lisha_ho_Ddqo7-eTI2A_Wait…_@ralphlauren_+_coffee_at_KLCC_👀/shot_01_mid.webp"></video>
+                  </div>
+                </div>
+                <div class="slide-vcard">
+                  <div class="slide-vhead">
+                    <div class="slide-vtitle">
+                      <span class="v-badge v-badge-win">✅ MẪU BÀI TẬP 3B • KHOE KHÉO SẢN PHẨM 1/3 • DdGx-fkPeeU</span>
+                      <strong>@pausehereii — Kể chuyện một ngày đi làm/đi dạo gài sản phẩm tự nhiên vào thao tác tay</strong>
+                      <span class="slide-vmeta">(37 shots)</span>
+                    </div>
+                    <div class="slide-vbtns">
+                      <button type="button" class="btn-play-inline" onclick="toggleSlideVideo(this, 'vid-s18-2', 'https://media.fedu.vn/videos/DdGx-fkPeeU.mp4')">▶️ Phát video thật</button>
+                      <a href="https://ytuong.fedu.vn/v/DdGx-fkPeeU" target="_blank" rel="noopener" class="btn-src-link">Kho Ý Tưởng ↗</a>
+                    </div>
+                  </div>
+                  <div class="slide-vstrip">
+                    <img src="https://media.fedu.vn/images/IG_@pausehereii_DdGx-fkPeeU_A_DAY_IN_CHIANG_MAI/shot_02_mid.webp" alt="@pausehereii — Kể chuyện một ngày đi làm/đi dạo gài sản phẩm tự nhiên vào thao tác tay" loading="lazy"/>
+                    <div class="slide-vnote">Sản phẩm luôn chiếm dưới 1/3 khung hình, đi kèm chuyển động đặt lên ghế, bước qua cổng kiến trúc và thao tác đóng mở khóa.</div>
+                  </div>
+                  <div class="slide-vplayer" id="vid-s18-2" style="display:none;">
+                    <video controls playsinline preload="none" poster="https://media.fedu.vn/images/IG_@pausehereii_DdGx-fkPeeU_A_DAY_IN_CHIANG_MAI/shot_02_mid.webp"></video>
+                  </div>
+                </div></div>
+
+            <div class="slide-footer">
+              <div class="mentor-sig">
+                <span class="mentor-dot">NV</span>
+                <span><strong>Mentor : Nguyễn Đức Việt</strong>  ·  0934.688.632</span>
+              </div>
+              <div class="footer-right">Slide 18 / 19  ·  vietndj@gmail.com</div>
+            </div>
+          </div>
+          <div class="speaker-notes-box">
+            <div class="sn-header">
+              <span class="sn-badge">🗣️ LỜI DẪN BỤC GIẢNG OFFLINE CỦA ANH VIỆT (SLIDE 18)</span>
+              <span class="sn-part">Hướng dẫn Bài Tập 3: Quay cảnh làm nghề thật tại cửa tiệm/văn phòng</span>
+            </div>
+            <p class="sn-text">“Và bài tập đích đến của chúng ta — Bài Tập số 3: Khoe khéo dịch vụ hằng ngày [Chỉ tay]... Ở bài này, bạn áp dụng vào chính công việc kiếm sống của mình: mở đầu bằng một góc nhìn xuyên qua khung cửa phòng làm việc hoặc cửa tiệm; tiếp theo là 4 lát cắt cận cảnh đôi bàn tay bạn đang làm nghề — pha đồ uống, soạn hồ sơ, kiểm tra hàng, chăm sóc khách — với điều kiện sản phẩm chỉ chiếm tối đa 1/3 khung hình; và kết lại bằng cảnh đặt thành phẩm dưới ánh đèn ấm. Người xem nhìn vào thấy ngay sự đàng hoàng của tiệm mà không cần một câu tự khen!”</p>
+          </div>
+        </section>
+
+        <section class="slide-wrapper" data-index="18" id="slide-19">
+          <div class="slide-canvas layout-content">
+            <div class="slide-topbar">
+              <span>2026  •  NGHIỆM THU TẠI LỚP • BẢNG CHẤM ĐIỂM 6 TIÊU CHÍ & BẤM MÁY 15 PHÚT</span>
+              <span>imess/zalo : 0934688632</span>
+            </div>
+            
+              <div class="slide-head-block">
+                <div class="slide-title-row">
+                  <h2 class="slide-main-title">Bảng chấm điểm nghiệm thu 6 tiêu chí &amp; Bấm máy thực hành 15 phút</h2>
+                  <span class="preset-tag">Kiểu 06 • Rubric &amp; Classroom Action</span>
+                </div>
+                <p class="slide-subtitle">tự chấm mỗi clip theo 6 chữ (mỗi tiêu chí 1 điểm — đạt từ 5/6 điểm trở lên là hoàn thành xuất sắc)</p>
+              </div>
+              <div class="ds-cards cards-grid-6">
+                <div class="ds-card card-neutral">
+                  <div class="ds-card-head">
+                    <div class="ds-badge">TIÊU CHÍ 01 • ĐƯỜNG (1 ĐIỂM)</div>
+                    <h3 class="ds-card-title">Có đường dẫn &amp; Phép trừ 2x</h3>
+                  </div>
+                  <div class="ds-hairline"></div>
+                  <div class="ds-card-body"><p>Đã bật tiêu cự 2x bỏ rác thị giác; nheo mắt vẫn thấy 1 đường dẫn chạy vào chủ thể tại giao điểm 1/3 và có tiền cảnh mờ.</p></div>
+                  <div class="ds-takeaway">❌ Trừ điểm: Để 1x dính ổ điện, đồ thừa</div>
+                </div>
+
+                <div class="ds-card card-neutral">
+                  <div class="ds-card-head">
+                    <div class="ds-badge">TIÊU CHÍ 02 • ĐỘNG (1 ĐIỂM)</div>
+                    <h3 class="ds-card-title">Có 1 chuyển động trong khung</h3>
+                  </div>
+                  <div class="ds-hairline"></div>
+                  <div class="ds-card-body"><p>Khung hình có đúng 1 chuyển động vật lý rõ ràng (khói bay, nước rót, rèm đung đưa, bóng lá rung hoặc bàn tay thao tác).</p></div>
+                  <div class="ds-takeaway">❌ Trừ điểm: Cả khung đứng im như ảnh chụp</div>
+                </div>
+
+                <div class="ds-card card-neutral">
+                  <div class="ds-card-head">
+                    <div class="ds-badge">TIÊU CHÍ 03 • SÁNG (1 ĐIỂM)</div>
+                    <h3 class="ds-card-title">Có viền sáng &amp; Không cháy nền</h3>
+                  </div>
+                  <div class="ds-hairline"></div>
+                  <div class="ds-card-body"><p>Đặt máy xiên/ngược sáng 90°–135°, đã khóa AE/AF và kéo giảm sáng để nổi đường viền sáng mà nền cửa sổ không cháy trắng.</p></div>
+                  <div class="ds-takeaway">❌ Trừ điểm: Thuận sáng bẹt hoặc cháy trắng</div>
+                </div>
+
+                <div class="ds-card card-neutral">
+                  <div class="ds-card-head">
+                    <div class="ds-badge">TIÊU CHÍ 04 • GIỜ (1 ĐIỂM)</div>
+                    <h3 class="ds-card-title">Bóng đổ dài hoặc Đèn điểm ấm</h3>
+                  </div>
+                  <div class="ds-hairline"></div>
+                  <div class="ds-card-body"><p>Quay ban ngày có bóng nắng xiên; nếu quay trong phòng học/buổi tối đã tắt đèn trần trắng, chỉ dùng ánh sáng đèn bàn ấm.</p></div>
+                  <div class="ds-takeaway">❌ Trừ điểm: Bật đèn huỳnh quang trần nhà</div>
+                </div>
+
+                <div class="ds-card card-neutral">
+                  <div class="ds-card-head">
+                    <div class="ds-badge">TIÊU CHÍ 05 • TĨNH (1 ĐIỂM)</div>
+                    <h3 class="ds-card-title">Máy khóa tĩnh &amp; Đường ngang thẳng</h3>
+                  </div>
+                  <div class="ds-hairline"></div>
+                  <div class="ds-card-body"><p>Điện thoại được cố định trên chân máy hoặc tựa vào bình nước, không rung lắc cổ tay, cạnh bàn thẳng tắp với lưới 9 ô.</p></div>
+                  <div class="ds-takeaway">❌ Trừ điểm: Cầm tay lia máy rung, nghiêng 2°</div>
+                </div>
+
+                <div class="ds-card card-neutral">
+                  <div class="ds-card-head">
+                    <div class="ds-badge">TIÊU CHÍ 06 • VÀO (1 ĐIỂM)</div>
+                    <h3 class="ds-card-title">Cắt 70%–30% &amp; Sản phẩm &le; 1/3</h3>
+                  </div>
+                  <div class="ds-hairline"></div>
+                  <div class="ds-card-body"><p>Đã cắt bỏ 1.5s đứng chờ đầu cảnh, vào thẳng lúc tay đang chuyển động; sản phẩm chỉ chiếm tối đa 1/3 diện tích khung hình.</p></div>
+                  <div class="ds-takeaway">❌ Trừ điểm: Đứng chờ đầu clip, dí sát đồ</div>
+                </div>
+              </div>
+              <div class="quote-action-bar" style="margin-top:14px;">
+                🎯 BẤM GIỜ THỰC HÀNH NGAY TẠI LỚP (15 PHÚT): Lấy bình nước trên bàn làm điểm tựa máy • Bật ống kính 2x &amp; Lưới 9 ô • Quay 6 cú bấm máy Bài Tập 1 (tắt đèn trần, đón sáng xiên cửa sổ) • Đưa vào CapCut gọt bỏ 1.5s đầu mỗi cảnh theo quy tắc 70%–30% và gửi lên nhóm lớp để chấm điểm trực tiếp!
+              </div>
+
+            <div class="slide-footer">
+              <div class="mentor-sig">
+                <span class="mentor-dot">NV</span>
+                <span><strong>Mentor : Nguyễn Đức Việt</strong>  ·  0934.688.632</span>
+              </div>
+              <div class="footer-right">Slide 19 / 19  ·  vietndj@gmail.com</div>
+            </div>
+          </div>
+          <div class="speaker-notes-box">
+            <div class="sn-header">
+              <span class="sn-badge">🗣️ LỜI DẪN BỤC GIẢNG OFFLINE CỦA ANH VIỆT (SLIDE 19)</span>
+              <span class="sn-part">Phần chốt bài: Tự chấm theo 6 tiêu chí và bấm máy thực hành 15 phút tại bàn</span>
+            </div>
+            <p class="sn-text">“Rồi, sáu chữ Đường – Động – Sáng – Giờ – Tĩnh – Vào đã nằm trọn trên bảng chấm điểm nghiệm thu này rồi [Chắp tay]... Mỗi chữ tương ứng với 1 điểm: có đường dẫn 2x được 1 điểm, có chuyển động nhỏ được 1 điểm, có viền sáng được 1 điểm, tắt đèn trần chọn đúng ánh sáng ấm được 1 điểm, máy đứng im thẳng vạch lưới được 1 điểm, và cắt bỏ đoạn chờ đầu cảnh được 1 điểm. Bây giờ mình tắt bớt dãy đèn trần giữa lớp đi, mở hết rèm cửa sổ ra. Cả nhà lấy điện thoại và bình nước trên bàn ra, chúng ta có đúng 15 phút bấm máy Bài Tập số 1 ngay tại chỗ để mình chiếu lên màn hình chấm điểm từng bài nhé... Bắt đầu bấm giờ thôi cả nhà!”</p>
+          </div>
+        </section>
+
+  </main>
+
+  <script>
+    var currentSlide = 0;
+    var totalSlides = 19;
+
+    function goToSlide(idx) {
+      if (idx < 0) idx = 0;
+      if (idx >= totalSlides) idx = totalSlides - 1;
+      currentSlide = idx;
+      var wrappers = document.querySelectorAll('.slide-wrapper');
+      var dots = document.querySelectorAll('.nav-dot');
+      wrappers.forEach(function(w, i) {
+        if (i === currentSlide) w.classList.add('active');
+        else w.classList.remove('active');
+      });
+      dots.forEach(function(d, i) {
+        if (i === currentSlide) d.classList.add('active');
+        else d.classList.remove('active');
+      });
+      if (document.body.classList.contains('view-all')) {
+        wrappers[currentSlide].scrollIntoView({ behavior: 'smooth', block: 'start' });
+      } else {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    }
+
+    function nextSlide() {
+      if (currentSlide < totalSlides - 1) goToSlide(currentSlide + 1);
+    }
+
+    function prevSlide() {
+      if (currentSlide > 0) goToSlide(currentSlide - 1);
+    }
+
+    function toggleViewAll() {
+      var b = document.body;
+      var btn = document.getElementById('btn-toggle-view');
+      b.classList.toggle('view-all');
+      if (b.classList.contains('view-all')) {
+        btn.textContent = '🖥️ Xem từng slide 16:9';
+      } else {
+        btn.textContent = '📑 Xem tất cả 19 slides';
+        goToSlide(currentSlide);
+      }
+    }
+
+    function toggleSlideVideo(btn, playerId, mp4Url) {
+      var box = document.getElementById(playerId);
+      if (!box) return;
+      var vid = box.querySelector('video');
+      if (box.style.display === 'none' || !box.style.display) {
+        box.style.display = 'block';
+        if (vid) {
+          if (!vid.getAttribute('src') && mp4Url) vid.setAttribute('src', mp4Url);
+          vid.play().catch(function(){});
+        }
+        btn.innerHTML = '⏸️ Đóng video';
+      } else {
+        if (vid) vid.pause();
+        box.style.display = 'none';
+        btn.innerHTML = '▶️ Phát video thật';
+      }
+    }
+
+    document.addEventListener('keydown', function(e) {
+      if (document.body.classList.contains('view-all')) return;
+      if (e.key === 'ArrowRight' || e.key === 'PageDown') {
+        nextSlide();
+      } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+        prevSlide();
+      }
+    });
+  </script>
+</body>
+</html>

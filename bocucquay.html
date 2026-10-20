@@ -1,0 +1,2722 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Logic Bố Cục Cảnh Quay — 6 Trụ Cột Chỉn Chu &amp; Nghệ Thuật Khoe Khéo Dịch Vụ (Bản 3.0)</title>
+  <style>
+/* =========================================================
+   TRUNG TÂM LOGIC XÂY KÊNH — Design system (INKDOC)
+   Monochrome slate · Tiempos (đọc) · Aeonik (tiêu đề) · Zero-animation
+   ========================================================= */
+@font-face{font-family:'FD Aeonik Extended';src:url('fonts/FDAeonikExtended-Bold.woff2') format('woff2');font-weight:700;font-display:swap}
+@font-face{font-family:'FD Aeonik Extended';src:url('fonts/FDAeonikExtended-SemiBold.woff2') format('woff2');font-weight:600;font-display:swap}
+@font-face{font-family:'FD Aeonik';src:url('fonts/FDAeonik-Regular.ttf') format('truetype');font-weight:400;font-display:swap}
+@font-face{font-family:'FD Aeonik';src:url('fonts/FDAeonik-Medium.ttf') format('truetype');font-weight:500 600;font-display:swap}
+@font-face{font-family:'FD Aeonik';src:url('fonts/FDAeonik-Bold.ttf') format('truetype');font-weight:700;font-display:swap}
+@font-face{font-family:'Tiempos Text';src:url('fonts/FDTiemposText-Regular.woff2') format('woff2');font-weight:400;font-display:swap}
+@font-face{font-family:'Tiempos Text';src:url('fonts/FDTiemposText-RegularItalic.woff2') format('woff2');font-weight:400;font-style:italic;font-display:swap}
+@font-face{font-family:'Tiempos Text';src:url('fonts/FDTiemposText-Semibold.woff2') format('woff2');font-weight:600;font-display:swap}
+@font-face{font-family:'Tiempos Text';src:url('fonts/FDTiemposText-Bold.woff2') format('woff2');font-weight:700;font-display:swap}
+
+:root{
+  --ink:#0f172a; --ink2:#1e293b; --ink3:#334155; --mute:#64748b; --mute2:#94a3b8;
+  --line:#e2e8f0; --line2:#cbd5e1; --bg:#ffffff; --bg2:#f8fafc; --bg3:#f1f5f9;
+  --acc:#0f172a;
+  /* màu theo chặng */
+  --c-tuduy:#7c3aed; --c-batdau:#0891b2; --c-logic:#2563eb; --c-niemtin:#db2777;
+  --c-dinhdang:#ea580c; --c-kynang:#16a34a; --c-thuchanh:#ca8a04; --c-tainguyen:#0f766e; --c-dulieu:#9333ea; --c-case:#0284c7;
+  --serif:'Tiempos Text',Georgia,'Times New Roman',serif;
+  --sans:'FD Aeonik',-apple-system,BlinkMacSystemFont,'Segoe UI',Inter,Roboto,sans-serif;
+  --display:'FD Aeonik Extended','FD Aeonik',-apple-system,sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
+  --side:290px; --top:56px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:auto;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+img{max-width:100%}
+::selection{background:#dbeafe}
+
+/* ---------- TOP BAR ---------- */
+.topbar{position:sticky;top:0;z-index:50;height:var(--top);display:flex;align-items:center;gap:14px;padding:0 18px;background:rgba(255,255,255,.96);border-bottom:1px solid var(--line);backdrop-filter:saturate(1.4) blur(6px)}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;flex-shrink:0}
+.brand .logo{width:30px;height:30px;border-radius:8px;background:#07090E;color:#FB923C;display:grid;place-items:center;font:700 12px var(--display);letter-spacing:.02em}
+.brand .t{font:700 13px var(--display);text-transform:uppercase;letter-spacing:.04em;line-height:1.1}
+.brand .t small{display:block;font:500 11px var(--sans);text-transform:none;letter-spacing:0;color:var(--mute)}
+.stepper{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none;flex:1;min-width:0;margin-left:10px}
+.stepper::-webkit-scrollbar{display:none}
+.stepper a{flex-shrink:0;text-decoration:none;font-size:12.5px;font-weight:500;color:var(--mute);padding:6px 9px;border-radius:7px;white-space:nowrap;display:flex;align-items:center;gap:6px}
+.stepper a .n{font:600 10px var(--mono);color:var(--mute2)}
+.stepper a:hover{background:var(--bg3);color:var(--ink)}
+.stepper a.on{background:var(--ink);color:#fff}
+.stepper a.on .n{color:#94a3b8}
+.searchbtn{flex-shrink:0;display:flex;align-items:center;gap:8px;border:1px solid var(--line);background:var(--bg2);border-radius:8px;padding:6px 10px;font:500 13px var(--sans);color:var(--mute);cursor:pointer}
+.searchbtn kbd{font:600 10px var(--mono);border:1px solid var(--line2);border-radius:4px;padding:1px 4px;background:#fff}
+.menubtn{display:none;border:1px solid var(--line);background:#fff;border-radius:8px;padding:6px 9px;cursor:pointer;font-size:15px}
+
+/* ---------- LAYOUT ---------- */
+.shell{display:grid;grid-template-columns:var(--side) minmax(0,1fr);min-height:calc(100vh - var(--top))}
+.side{position:sticky;top:var(--top);height:calc(100vh - var(--top));overflow-y:auto;border-right:1px solid var(--line);background:var(--bg2);padding:18px 14px 40px;font-size:13.5px}
+.side h6{margin:18px 8px 6px;font:700 10.5px var(--sans);letter-spacing:.09em;text-transform:uppercase;color:var(--mute2)}
+.side h6:first-child{margin-top:0}
+.side a.pg{display:flex;gap:8px;align-items:baseline;text-decoration:none;color:var(--ink3);padding:6px 8px;border-radius:7px;font-weight:500}
+.side a.pg .n{font:600 10.5px var(--mono);color:var(--mute2);min-width:20px}
+.side a.pg:hover{background:var(--bg3);color:var(--ink)}
+.side a.pg.on{background:#fff;color:var(--ink);box-shadow:0 0 0 1px var(--line),0 1px 2px rgba(15,23,42,.05);font-weight:600}
+.side a.pg.pg-sub, .side a.pg.sub{padding-left:24px;font-size:13px;opacity:0.9}
+.side a.pg.pg-sub .n, .side a.pg.sub .n{font-size:11px;min-width:18px}
+.side a.pg.pg-sub.on, .side a.pg.sub.on{opacity:1;font-weight:600}
+.side .toc{margin:4px 0 10px 18px;padding-left:10px;border-left:1px solid var(--line2)}
+.side .toc ul{list-style:none;margin:0;padding:0}
+.side .toc ul ul{padding-left:12px}
+.side .toc a{display:block;text-decoration:none;color:var(--mute);padding:3px 6px;font-size:12.8px;line-height:1.4;border-radius:5px}
+.side .toc a:hover{color:var(--ink)}
+.side .toc a.active{color:var(--ink);font-weight:600;background:#fff}
+.main{min-width:0;padding:40px 40px 120px;align-items:start;display:grid;grid-template-columns:minmax(0,760px) 260px;gap:48px;justify-content:center}
+.main.wide{grid-template-columns:minmax(0,820px)}
+.content{min-width:0}
+.rail{position:sticky;top:calc(var(--top) + 32px);align-self:start;max-height:calc(100vh - var(--top) - 50px);overflow:auto;font-size:13px}
+.rail h6{margin:0 0 10px;font:700 10.5px var(--sans);letter-spacing:.09em;text-transform:uppercase;color:var(--mute2)}
+.rail .rcard{display:block;text-decoration:none;border:1px solid var(--line);border-radius:10px;padding:10px 12px;margin-bottom:8px;background:#fff}
+.rail .rcard:hover{border-color:var(--ink3)}
+.rail .rcard b{display:block;font-size:13px;color:var(--ink)}
+.rail .rcard span{color:var(--mute);font-size:12px;line-height:1.4;display:block;margin-top:2px}
+
+/* ---------- TYPOGRAPHY ---------- */
+.kicker{font:700 11px var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--stage,var(--mute));display:flex;align-items:center;gap:8px;margin-bottom:12px}
+.kicker::before{content:"";width:18px;height:2px;background:currentColor;display:inline-block}
+h1.title{font:700 clamp(28px,4vw,40px)/1.12 var(--display);text-transform:uppercase;letter-spacing:-.01em;margin:0 0 16px}
+.lede{font:400 20px/1.6 var(--serif);color:var(--ink3);margin:0 0 28px}
+.content h2{font:600 26px/1.25 var(--sans);letter-spacing:-.015em;margin:56px 0 14px;padding-top:12px;border-top:1px solid var(--line);scroll-margin-top:80px}
+.content h2 .num{font:600 13px var(--mono);color:var(--stage,var(--mute2));display:block;margin-bottom:4px;letter-spacing:0}
+.content h3{font:600 20px/1.3 var(--sans);margin:36px 0 10px;scroll-margin-top:80px}
+.content h4{font:600 16.5px/1.35 var(--sans);margin:26px 0 8px;scroll-margin-top:80px;color:var(--ink2)}
+.content p,.content li{font-family:var(--serif);font-size:18px;line-height:1.72;color:var(--ink2)}
+.content p{margin:0 0 16px}
+.content ul,.content ol{padding-left:24px;margin:0 0 18px}
+.content li{margin:5px 0}
+.content li::marker{color:var(--mute2)}
+.content strong{font-weight:700;color:var(--ink)}
+.content em{font-style:italic}
+.content blockquote{margin:22px 0;padding:4px 0 4px 20px;border-left:3px solid var(--stage,var(--ink));font:italic 19px/1.65 var(--serif);color:var(--ink3)}
+.content blockquote p{font-size:19px}
+.content code{font:500 .86em var(--mono);background:var(--bg3);border:1px solid var(--line);padding:1px 5px;border-radius:5px}
+.content hr{border:0;border-top:1px solid var(--line);margin:40px 0}
+.content a{text-decoration:underline;text-decoration-color:var(--line2);text-underline-offset:3px}
+.content a:hover{text-decoration-color:var(--ink)}
+
+/* ---------- BADGES (Apple HIG) ---------- */
+.b{display:inline-block;font:700 10.5px/1 var(--sans);letter-spacing:.06em;text-transform:uppercase;background:var(--bg3);color:var(--ink3);border:1px solid var(--line);border-radius:5px;padding:4px 6px;box-shadow:0 1px 1px rgba(15,23,42,.04);position:relative;top:-2px;vertical-align:baseline;white-space:nowrap}
+.b.dark{background:var(--ink);color:#fff;border-color:var(--ink)}
+.b.s{background:color-mix(in srgb,var(--stage) 10%,#fff);color:var(--stage);border-color:color-mix(in srgb,var(--stage) 25%,#fff)}
+
+/* ---------- RESOURCE LINK (ấn vào ra luôn) ---------- */
+a.go{display:inline-flex;align-items:center;gap:5px;font:600 .82em var(--sans);text-decoration:none!important;background:#fff;color:var(--ink);border:1px solid var(--line2);border-radius:999px;padding:2px 9px 2px 7px;position:relative;top:-1px;vertical-align:baseline;white-space:nowrap}
+a.go::before{content:"↗";font-size:.95em;color:var(--stage,var(--mute))}
+a.go:hover{background:var(--ink);color:#fff;border-color:var(--ink)}
+a.go.int::before{content:"→"}
+
+/* ---------- BLOCKS ---------- */
+.spec{border:1px solid var(--line);border-radius:12px;overflow:hidden;margin:20px 0;background:#fff}
+.spec .row{display:grid;grid-template-columns:150px 1fr;gap:16px;padding:12px 16px;border-top:1px solid var(--line);align-items:baseline}
+.spec .row:first-child{border-top:0}
+.spec .row>.b{justify-self:start}
+.spec .row>div{font:400 15.5px/1.55 var(--sans);color:var(--ink2)}
+.spec .row>div p,.spec .row>div li{font-family:var(--sans);font-size:15.5px;line-height:1.55}
+
+.callout{border:1px solid var(--line);border-left:3px solid var(--stage,var(--ink));background:var(--bg2);border-radius:10px;padding:14px 18px;margin:22px 0}
+.callout>.h{font:700 11px var(--sans);letter-spacing:.09em;text-transform:uppercase;color:var(--stage,var(--ink3));margin-bottom:6px}
+.callout p,.callout li{font-size:16.5px!important}
+.callout p:last-child{margin-bottom:0}
+.callout.warn{--stage:#dc2626}
+.callout.tip{--stage:#16a34a}
+
+.qa{margin:14px 0;border:1px solid var(--line);border-radius:12px;background:#fff}
+.qa>summary{list-style:none;cursor:pointer;padding:14px 18px;font:600 16px/1.4 var(--sans);display:flex;gap:12px;align-items:flex-start}
+.qa>summary::-webkit-details-marker{display:none}
+.qa>summary::before{content:"Q";flex-shrink:0;font:700 11px var(--mono);background:var(--bg3);border:1px solid var(--line);border-radius:5px;padding:3px 6px;margin-top:1px}
+.qa[open]>summary{border-bottom:1px solid var(--line);background:var(--bg2);border-radius:12px 12px 0 0}
+.qa>.a{padding:14px 20px 4px}
+
+.grid{display:grid;gap:12px;margin:18px 0}
+.g2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.g3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.g4{grid-template-columns:repeat(4,minmax(0,1fr))}
+.card{border:1px solid var(--line);border-radius:12px;padding:16px;background:#fff;text-decoration:none;display:block;color:inherit}
+a.card:hover{border-color:var(--ink3);box-shadow:0 2px 10px rgba(15,23,42,.06)}
+.card .ct{font:600 16px/1.3 var(--sans);margin:6px 0 6px;color:var(--ink)}
+.card .cd{font:400 14px/1.5 var(--sans);color:var(--mute)}
+.card .cf{margin-top:10px;display:flex;flex-wrap:wrap;gap:5px}
+.card .ico{font-size:22px}
+
+table.t{width:100%;border-collapse:collapse;margin:18px 0;font:400 14.5px/1.5 var(--sans);border:1px solid var(--line);border-radius:12px;overflow:hidden;display:table}
+.tw{overflow-x:auto;margin:18px 0}
+.tw table.t{margin:0}
+table.t th{background:var(--bg3);text-align:left;font:700 11px var(--sans);letter-spacing:.07em;text-transform:uppercase;color:var(--ink3);padding:10px 12px;border-bottom:1px solid var(--line)}
+table.t td{padding:10px 12px;border-top:1px solid var(--line);vertical-align:top;color:var(--ink2)}
+table.t td:first-child{font-weight:600;color:var(--ink)}
+
+/* Flow map (index) */
+.flow{display:grid;gap:0;margin:24px 0;counter-reset:f}
+.fstep{display:grid;grid-template-columns:54px 1fr;gap:16px;text-decoration:none;color:inherit;padding:18px 0;border-top:1px solid var(--line)}
+.fstep:first-child{border-top:0}
+.fstep .dot{width:44px;height:44px;border-radius:12px;background:var(--stage);color:#fff;display:grid;place-items:center;font:700 14px var(--mono)}
+.fstep .q{font:700 11px var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--stage)}
+.fstep .h{font:600 20px/1.3 var(--sans);margin:3px 0 6px;color:var(--ink)}
+.fstep .d{font:400 16.5px/1.6 var(--serif);color:var(--ink3)}
+.fstep:hover .h{text-decoration:underline;text-underline-offset:4px}
+.fstep .links{margin-top:8px;display:flex;flex-wrap:wrap;gap:6px}
+
+.hero{border:1px solid var(--line);border-radius:16px;padding:28px;background:linear-gradient(180deg,#fff, var(--bg2));margin-bottom:30px}
+
+/* Sơ đồ chữ (diagram) */
+.diagram{font:500 13.5px/1.55 var(--mono);background:#0b1020;color:#e2e8f0;border-radius:12px;padding:18px 20px;overflow-x:auto;white-space:pre;margin:20px 0}
+.chain{display:flex;flex-wrap:wrap;align-items:stretch;gap:0;margin:20px 0}
+.chain>div{flex:1 1 120px;border:1px solid var(--line);background:#fff;padding:12px;font:500 13.5px/1.4 var(--sans);position:relative;margin-right:18px;border-radius:10px}
+.chain>div:not(:last-child)::after{content:"→";position:absolute;right:-15px;top:50%;transform:translateY(-50%);color:var(--mute2);font-weight:700}
+.chain>div b{display:block;font:700 10.5px var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--stage,var(--mute));margin-bottom:4px}
+
+/* Script (kịch bản) */
+.script{border:1px solid var(--line);border-radius:12px;overflow:hidden;margin:20px 0;background:#fff}
+.script .sh{background:var(--bg3);padding:10px 16px;font:700 12px var(--sans);letter-spacing:.06em;text-transform:uppercase;color:var(--ink3);border-bottom:1px solid var(--line);display:flex;justify-content:space-between;gap:10px}
+.script .ln{display:grid;grid-template-columns:110px 1fr;gap:14px;padding:10px 16px;border-top:1px solid var(--line)}
+.script .ln:first-of-type{border-top:0}
+.script .ln .lb{font:700 10.5px var(--sans);letter-spacing:.06em;text-transform:uppercase;color:var(--stage,var(--mute));padding-top:4px}
+.script .ln .tx{font:400 16.5px/1.6 var(--serif);color:var(--ink2)}
+.script .ln .tx i{color:var(--mute);font-size:14.5px}
+
+/* Dynamic blocks */
+.dyn-head{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:14px 0}
+.chip{font:600 12.5px var(--sans);border:1px solid var(--line2);background:#fff;border-radius:999px;padding:5px 11px;cursor:pointer;color:var(--ink3)}
+.chip.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.dyn-empty{font:400 14px var(--sans);color:var(--mute);padding:14px;border:1px dashed var(--line2);border-radius:10px}
+.ex{border:1px solid var(--line);border-radius:12px;background:#fff;margin:12px 0;overflow:hidden}
+.ex>summary{list-style:none;cursor:pointer;padding:14px 16px;display:flex;gap:12px;align-items:flex-start}
+.ex>summary::-webkit-details-marker{display:none}
+.ex .exn{flex-shrink:0;font:700 11px var(--mono);background:var(--ink);color:#fff;border-radius:6px;padding:4px 7px}
+.ex .ext{font:600 15.5px/1.4 var(--sans);color:var(--ink)}
+.ex .exm{display:flex;flex-wrap:wrap;gap:5px;margin-top:6px}
+.ex .exb{padding:4px 18px 16px 18px;border-top:1px solid var(--line)}
+.ex .exb p,.ex .exb li{font-size:16px}
+.ex .exb h5{font:700 11px var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--mute);margin:14px 0 6px}
+
+/* Search modal */
+.sm{position:fixed;inset:0;background:rgba(15,23,42,.45);z-index:100;display:none;align-items:flex-start;justify-content:center;padding-top:10vh}
+.sm.open{display:flex}
+.sm .box{width:min(680px,92vw);background:#fff;border-radius:14px;box-shadow:0 20px 60px rgba(0,0,0,.25);overflow:hidden}
+.sm input{width:100%;border:0;border-bottom:1px solid var(--line);padding:16px 18px;font:500 17px var(--sans);outline:none}
+.sm .res{max-height:60vh;overflow:auto;padding:6px}
+.sm .res a{display:block;text-decoration:none;padding:10px 12px;border-radius:8px}
+.sm .res a:hover,.sm .res a.sel{background:var(--bg3)}
+.sm .res a b{display:block;font:600 14.5px var(--sans);color:var(--ink)}
+.sm .res a span{font:400 12.5px var(--sans);color:var(--mute)}
+
+.pager{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:60px}
+.pager a{border:1px solid var(--line);border-radius:12px;padding:14px 16px;text-decoration:none!important;display:block}
+.pager a:hover{border-color:var(--ink3)}
+.pager a small{display:block;font:600 11px var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--mute2)}
+.pager a b{font:600 16px var(--sans);color:var(--ink)}
+.pager a.nx{text-align:right}
+.foot{margin-top:40px;padding-top:18px;border-top:1px solid var(--line);font:400 13px var(--sans);color:var(--mute)}
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width:1280px){.main{grid-template-columns:minmax(0,760px)}.rail{display:none}}
+@media (max-width:960px){
+  .shell{grid-template-columns:1fr}
+  .side{position:fixed;left:0;top:var(--top);width:min(320px,86vw);z-index:60;transform:translateX(-102%);box-shadow:0 10px 40px rgba(0,0,0,.15)}
+  body.navopen .side{transform:none}
+  .menubtn{display:block}
+  .stepper{display:flex;overflow-x:auto;white-space:nowrap;-webkit-overflow-scrolling:touch;scrollbar-width:none;gap:4px;margin-left:6px;margin-right:4px}
+  .stepper::-webkit-scrollbar{display:none}
+  .stepper a{display:inline-flex;flex-shrink:0;align-items:center;gap:4px;padding:5px 8px;font-size:12px}
+  .main{padding:28px 18px 90px}
+  .g3,.g4{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:600px){
+  .topbar{gap:8px;padding:0 10px}
+  .brand .t small{display:none}
+  .searchbtn span{display:none}
+  .searchbtn kbd{display:none}
+  .ecosystem-btn span:first-child{font-size:12px}
+  .g2,.g3,.g4{grid-template-columns:1fr}
+  .spec .row{grid-template-columns:1fr;gap:6px}
+  .script .ln{grid-template-columns:1fr;gap:2px}
+  .content p,.content li{font-size:17px}
+  .pager{grid-template-columns:1fr}
+}
+@media print{.topbar,.side,.rail,.pager{display:none}.shell{display:block}.main{display:block;padding:0}}
+
+/* ---------- FIX v3: shell + brand title ---------- */
+.side .mh{padding:2px 8px 14px;margin-bottom:6px;border-bottom:1px solid var(--line)}
+.side .mh b{display:block;font:700 15px/1.25 var(--display);text-transform:uppercase;letter-spacing:-.005em;text-wrap:balance}
+.side .mh p{margin:6px 0 0;font:400 12.5px/1.4 var(--sans);color:var(--mute)}
+.side a.pg .t{line-height:1.35}
+.content h1.title{font-family:'FD Aeonik Extended','FD Aeonik',sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:-.01em;font-size:clamp(26px,3.2vw,38px);line-height:1.1;text-wrap:balance;margin:0 0 22px;color:var(--ink)}
+.content .hero{padding:20px 24px;margin:0 0 28px}
+.content .hero>*:last-child{margin-bottom:0}
+.rail .otp a{display:block;text-decoration:none;color:var(--mute);padding:5px 0 5px 12px;border-left:2px solid var(--line);font:500 13px/1.4 var(--sans)}
+.rail .otp a:hover{color:var(--ink);border-left-color:var(--ink)}
+.pager{margin-top:56px}
+.pager a b{display:block;margin-top:4px;line-height:1.3}
+
+.content code{overflow-wrap:anywhere;word-break:break-word}
+.content pre{overflow-x:auto;max-width:100%}
+.content img,.content table{max-width:100%}
+
+.card.go{display:block;white-space:normal}
+a.card{overflow-wrap:break-word;word-break:break-word}
+
+/* ---------- ACTIONS & BUTTONS ---------- */
+.actions{display:flex;flex-wrap:wrap;gap:12px;margin:36px 0 24px;padding-top:20px;border-top:1px solid var(--line)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:11px 20px;font:600 14px var(--sans);color:#fff;background:var(--ink);border:1px solid var(--ink);border-radius:9px;text-decoration:none!important;cursor:pointer;transition:background .15s ease,border-color .15s ease,box-shadow .15s ease;box-shadow:0 1px 2px rgba(15,23,42,.08)}
+.btn:hover{background:var(--ink2);border-color:var(--ink2);color:#fff;box-shadow:0 3px 8px rgba(15,23,42,.12)}
+.btn:nth-child(2){background:#fff;color:var(--ink);border-color:var(--line2)}
+.btn:nth-child(2):hover{background:var(--bg3);border-color:var(--ink3);color:var(--ink)}
+
+/* ---------- PORTAL & SOCIAL PROOF ---------- */
+.proof-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:24px;padding-top:20px;border-top:1px solid var(--line)}
+.proof-item{display:flex;flex-direction:column;gap:4px}
+.proof-num{font:700 clamp(18px,2.2vw,24px)/1.15 var(--display);color:var(--ink);letter-spacing:-.015em}
+.proof-lbl{font:500 13px/1.4 var(--sans);color:var(--mute)}
+
+/* ---------- 3 CÁNH CỬA BẮT BỆNH ---------- */
+.door-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin:24px 0 36px}
+.door-card{display:flex;flex-direction:column;justify-content:space-between;border:1px solid var(--line);border-radius:14px;padding:22px 18px;background:#fff;box-shadow:0 1px 3px rgba(15,23,42,.03);transition:transform .15s ease,box-shadow .15s ease,border-color .15s ease}
+.door-card:hover{transform:translateY(-2px);border-color:var(--ink3);box-shadow:0 10px 24px rgba(15,23,42,.07)}
+.door-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.door-icon{font-size:26px}
+.door-badge{font:700 10.5px/1 var(--mono);padding:4px 7px;border-radius:5px;background:var(--bg3);color:var(--ink3);border:1px solid var(--line)}
+.door-title{font:700 17px/1.3 var(--sans);color:var(--ink);margin:0 0 12px}
+.door-body{font-size:14px;line-height:1.55;color:var(--ink2);margin-bottom:18px;flex-grow:1}
+.door-pain{background:#fef2f2;border-left:3px solid #ef4444;padding:9px 12px;border-radius:0 6px 6px 0;margin-bottom:10px;font-size:13.5px;color:#991b1b}
+.door-cure{background:#f0fdf4;border-left:3px solid #16a34a;padding:9px 12px;border-radius:0 6px 6px 0;font-size:13.5px;color:#166534}
+.door-btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;width:100%;padding:11px 14px;font:700 12.5px/1 var(--sans);letter-spacing:.04em;text-transform:uppercase;color:#fff!important;background:var(--ink);border-radius:8px;text-decoration:none!important;transition:background .15s ease}
+.door-btn:hover{background:var(--ink2)}
+
+/* ---------- ROADMAP 3 CHẶNG ---------- */
+.roadmap-section{margin:36px 0}
+.stage-card{border:1px solid var(--line);border-radius:14px;background:#fff;margin-bottom:20px;overflow:hidden}
+.stage-header{padding:16px 20px;background:var(--bg2);border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px}
+.stage-title{display:flex;align-items:center;gap:10px;font:700 16px/1.3 var(--sans);color:var(--ink)}
+.stage-badge{font:700 10.5px/1 var(--mono);padding:3px 8px;border-radius:5px;background:var(--ink);color:#fff}
+.stage-steps{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;background:var(--line)}
+.step-item{background:#fff;padding:14px 18px;text-decoration:none;display:flex;gap:12px;align-items:flex-start;transition:background .15s ease}
+.step-item:hover{background:var(--bg2)}
+.step-num{font:700 11px/1 var(--mono);color:var(--stage,var(--mute));padding:4px 7px;border-radius:5px;background:var(--bg3);flex-shrink:0;margin-top:2px}
+.step-content{min-width:0}
+.step-name{font:600 14.5px/1.35 var(--sans);color:var(--ink);margin-bottom:3px}
+.step-desc{font:400 13px/1.45 var(--sans);color:var(--mute)}
+
+/* ---------- SPOTLIGHT CASE STUDIES ---------- */
+.spotlight-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin:20px 0}
+.spotlight-card{border:1px solid var(--line);border-radius:12px;padding:18px;background:#fff;display:flex;flex-direction:column;justify-content:space-between;text-decoration:none;transition:transform .15s ease,box-shadow .15s ease,border-color .15s ease}
+.spotlight-card:hover{transform:translateY(-2px);border-color:var(--ink3);box-shadow:0 6px 20px rgba(15,23,42,.06)}
+.spotlight-tag{margin-bottom:8px}
+.spotlight-title{font:700 16px/1.3 var(--sans);color:var(--ink);margin-bottom:8px}
+.spotlight-signal{background:var(--bg2);border-left:3px solid var(--c-logic);padding:8px 12px;border-radius:0 6px 6px 0;font-size:13.5px;color:var(--ink2);margin-bottom:8px}
+.spotlight-lesson{font-size:13px;color:var(--mute);line-height:1.45}
+
+/* ---------- ECOSYSTEM 14 NỀN TẢNG ---------- */
+.eco-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:20px 0}
+.eco-card{border:1px solid var(--line);border-radius:11px;padding:14px;background:#fff;text-decoration:none!important;display:flex;flex-direction:column;justify-content:space-between;transition:transform .15s ease,border-color .15s ease,box-shadow .15s ease}
+.eco-card:hover{transform:translateY(-2px);border-color:var(--ink);box-shadow:0 4px 14px rgba(15,23,42,.06)}
+.eco-tag{font:700 9.5px/1 var(--mono);color:var(--mute2);text-transform:uppercase;margin-bottom:6px}
+.eco-name{font:700 14px/1.3 var(--sans);color:var(--ink);margin-bottom:4px}
+.eco-desc{font:400 12px/1.4 var(--sans);color:var(--mute);margin-bottom:8px}
+.eco-link{font:600 11px/1 var(--mono);color:var(--ink2);display:inline-flex;align-items:center;gap:3px}
+
+@media (max-width:960px){
+  .door-grid{grid-template-columns:1fr}
+  .stage-steps{grid-template-columns:1fr}
+  .spotlight-grid{grid-template-columns:1fr}
+  .eco-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:640px){
+  .proof-grid{grid-template-columns:1fr;gap:12px}
+  .eco-grid{grid-template-columns:1fr}
+}
+
+/* ---------- CASE STUDY DETAILED CARDS ---------- */
+.case-card{border:1px solid var(--line);border-radius:14px;background:#fff;padding:22px 24px;margin-bottom:24px;box-shadow:0 1px 3px rgba(15,23,42,.03);scroll-margin-top:80px}
+.case-card:hover{border-color:var(--line2);box-shadow:0 8px 24px rgba(15,23,42,.05)}
+.case-header{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:16px;border-bottom:1px solid var(--line);padding-bottom:16px}
+.case-title{font:700 19px/1.3 var(--sans);color:var(--ink);margin:0}
+.case-persona{font:500 13.5px var(--sans);color:var(--mute);margin-top:4px}
+.case-grid-content{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-bottom:16px}
+.case-block{padding:12px 14px;border-radius:8px;font-size:13.5px;line-height:1.55}
+.case-block.signal{background:#f8fafc;border-left:3px solid var(--c-logic)}
+.case-block.pain{background:#fef2f2;border-left:3px solid #ef4444}
+.case-block.result{background:#f0fdf4;border-left:3px solid #16a34a}
+.case-block h5{font:700 10.5px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;margin:0 0 6px}
+.case-block.signal h5{color:var(--c-logic)}
+.case-block.pain h5{color:#dc2626}
+.case-block.result h5{color:#15803d}
+.case-footer{display:flex;align-items:center;justify-content:space-between;padding-top:14px;border-top:1px solid var(--line);font-size:13px;flex-wrap:wrap;gap:10px}
+@media (max-width:960px){
+  .case-grid-content{grid-template-columns:1fr;gap:12px}
+}
+
+/* ---------- ECOSYSTEM DROPDOWN (TOPBAR) ---------- */
+.eco-backdrop{position:fixed;inset:0;z-index:85;background:rgba(15,23,42,0.12);backdrop-filter:blur(1px)}
+.ecosystem-wrap{position:relative}
+.ecosystem-btn{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);background:var(--bg2);border-radius:8px;padding:6px 11px;font:600 12.5px var(--sans);color:var(--ink2);cursor:pointer;user-select:none;transition:all .15s ease;white-space:nowrap}
+.ecosystem-btn:hover,.ecosystem-btn.active{background:#fff;border-color:var(--line2);color:var(--ink);box-shadow:0 1px 3px rgba(15,23,42,.06)}
+.ecosystem-btn .eco-caret{font-size:10px;color:var(--mute);transition:transform .2s ease;display:inline-block}
+.ecosystem-btn.active .eco-caret{transform:rotate(180deg)}
+
+.ecosystem-menu{position:absolute;top:calc(100% + 8px);right:0;width:min(660px,calc(100vw - 24px));background:#ffffff;border-radius:8px;border:1px solid rgba(0,0,0,0.08);box-shadow:0 10px 30px rgba(0,0,0,0.12);padding:16px 18px;z-index:90;font-family:var(--sans)}
+.ecosystem-menu .eco-header{display:flex;align-items:center;justify-content:space-between;padding-bottom:12px;margin-bottom:14px;border-bottom:1px solid var(--line)}
+.ecosystem-menu .eco-title{font:700 13px/1.2 var(--display);text-transform:uppercase;letter-spacing:.04em;color:var(--ink)}
+.ecosystem-menu .eco-sub{font:400 11.5px/1.3 var(--sans);color:var(--mute);margin-top:2px}
+.ecosystem-menu .eco-tag{font:700 9.5px var(--mono);background:var(--bg3);color:var(--ink3);padding:3px 8px;border-radius:999px;border:1px solid var(--line);letter-spacing:.05em}
+.ecosystem-menu .eco-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px 20px;margin:0}
+.ecosystem-menu .eco-group{display:flex;flex-direction:column;gap:4px}
+.ecosystem-menu .eco-gh{font:700 10px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--mute2);margin-bottom:4px;padding-bottom:3px;border-bottom:1px dashed var(--line)}
+.ecosystem-menu .eco-item{display:block;text-decoration:none!important;padding:6px 8px;border-radius:6px;transition:background .15s ease}
+.ecosystem-menu .eco-item:hover{background:var(--bg3)}
+.ecosystem-menu .eco-name{display:block;font:600 13px/1.3 var(--sans);color:var(--ink)}
+.ecosystem-menu .eco-name-row{display:flex;align-items:center;gap:6px}
+.ecosystem-menu .eco-badge{font:700 9px var(--mono);color:#ea580c;background:#fff7ed;border:1px solid #ffedd5;padding:1px 5px;border-radius:4px}
+.ecosystem-menu .eco-desc{display:block;font:400 11.5px/1.35 var(--sans);color:var(--mute);margin-top:1px}
+
+@media (max-width:640px){
+  .ecosystem-menu{position:fixed;top:calc(var(--top) + 6px);left:12px;right:12px;width:auto;max-height:calc(85vh - var(--top));overflow-y:auto;-webkit-overflow-scrolling:touch;padding:14px}
+  .ecosystem-menu .eco-grid{grid-template-columns:1fr;gap:14px}
+}
+/* mobile_fix */
+
+@media (max-width: 960px) {
+  .ecosystem-btn, .eco-btn, #eco-btn, .searchbtn {
+    white-space: nowrap !important;
+    padding: 6px 10px !important;
+    font-size: 12px !important;
+    max-height: 36px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+  .topbar {
+    padding: 8px 12px !important;
+    gap: 6px !important;
+  }
+}
+
+.eco-btn-text-short { display: none; }
+@media (max-width: 960px) {
+  .eco-btn-text-full { display: none !important; }
+  .eco-btn-text-short { display: inline !important; }
+  .ecosystem-btn {
+    white-space: nowrap !important;
+    padding: 6px 8px !important;
+    font-size: 11.5px !important;
+  }
+}
+
+/* ---------- TOPBAR MOBILE ELEGANT FIX ---------- */
+.ecosystem-wrap {
+  flex-shrink: 0 !important;
+}
+.searchbtn {
+  flex-shrink: 0 !important;
+}
+.menubtn {
+  flex-shrink: 0 !important;
+}
+
+@media (max-width: 820px) {
+  .stepper {
+    display: none !important;
+  }
+  .topbar {
+    justify-content: space-between !important;
+    padding: 0 14px !important;
+    height: 52px !important;
+  }
+  .ecosystem-btn {
+    white-space: nowrap !important;
+    padding: 6px 10px !important;
+    font-size: 12px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+  }
+  .searchbtn {
+    padding: 6px 10px !important;
+    font-size: 12px !important;
+  }
+}
+
+
+/* === CSS Tinh Gọn cho Voice-Over 3.0 (Claude Sharp Edition) === */
+.v3-group {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin: 18px 0 26px;
+}
+.v3-card {
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(15, 23, 42, 0.04);
+}
+.v3-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 10px 14px;
+  background: #f8fafc;
+  border-bottom: 1px solid #e2e8f0;
+  font-size: 14px;
+}
+.v3-title-group {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.v3-meta {
+  color: #64748b;
+  font-size: 12.5px;
+  font-weight: 500;
+}
+.v3-badge {
+  font-size: 10.5px;
+  font-weight: 800;
+  padding: 3px 8px;
+  border-radius: 6px;
+  letter-spacing: 0.03em;
+}
+.v3-badge-win {
+  background: #dcfce7;
+  color: #166534;
+  border: 1px solid #86efac;
+}
+.v3-badge-err {
+  background: #fee2e2;
+  color: #991b1b;
+  border: 1px solid #fca5a5;
+}
+.v3-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.v3-btn-play {
+  background: #d93025;
+  color: #ffffff;
+  border: none;
+  font-size: 12.5px;
+  font-weight: 700;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.v3-btn-play:hover {
+  background: #b91c1c;
+}
+.v3-btn-link {
+  font-size: 12px;
+  font-weight: 600;
+  color: #475569;
+  text-decoration: none;
+  padding: 5px 8px;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  background: #ffffff;
+}
+.v3-strip {
+  background: #0f172a;
+}
+.v3-strip img {
+  width: 100%;
+  max-height: 230px;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto;
+}
+.v3-strip-bar {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  text-align: center;
+  background: #1e293b;
+  color: #cbd5e1;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 4px 0;
+}
+.v3-player {
+  background: #000;
+  padding: 12px;
+  text-align: center;
+}
+.v3-player video {
+  max-width: 100%;
+  max-height: 440px;
+  border-radius: 8px;
+  margin: 0 auto;
+  display: block;
+}
+.v3-verdict {
+  padding: 12px 16px;
+  font-size: 14.5px;
+  line-height: 1.6;
+  color: #0f172a;
+  background: #ffffff;
+}
+.v3-verdict p {
+  margin: 0 0 8px 0;
+}
+.v3-transcript-toggle {
+  margin-top: 6px;
+  font-size: 12.5px;
+  color: #475569;
+}
+.v3-transcript-toggle summary {
+  cursor: pointer;
+  font-weight: 600;
+  color: #0284c7;
+  user-select: none;
+}
+.v3-transcript-body {
+  margin-top: 6px;
+  padding: 10px 12px;
+  background: #f8fafc;
+  border-left: 3px solid #94a3b8;
+  border-radius: 0 6px 6px 0;
+  white-space: pre-line;
+  color: #334155;
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+/* === CSS Bài Tập Thực Hành Cảnh Trám 3 Lớp (ytuong.fedu.vn Integration) === */
+.v3-shot-grid {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 6px;
+  padding: 10px 12px;
+  background: #0f172a;
+}
+.v3-shot-item {
+  position: relative;
+  border-radius: 6px;
+  overflow: hidden;
+  background: #1e293b;
+  border: 1px solid #334155;
+}
+.v3-shot-item img {
+  width: 100%;
+  aspect-ratio: 9 / 14;
+  object-fit: cover;
+  display: block;
+}
+.v3-shot-tag {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  background: rgba(15, 23, 42, 0.88);
+  color: #f8fafc;
+  font: 700 10px/1 var(--mono);
+  padding: 3px 5px;
+  border-radius: 4px;
+  border: 1px solid rgba(255,255,255,0.15);
+}
+.v3-shot-dur {
+  position: absolute;
+  bottom: 24px;
+  right: 5px;
+  background: #dc2626;
+  color: #ffffff;
+  font: 700 9.5px/1 var(--mono);
+  padding: 2px 5px;
+  border-radius: 4px;
+}
+.v3-shot-cap {
+  background: #1e293b;
+  color: #e2e8f0;
+  font: 600 10.5px/1.25 var(--sans);
+  padding: 5px 6px;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.v3-layer-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin: 12px 0;
+}
+.v3-layer-box {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-size: 13.5px;
+  line-height: 1.5;
+}
+.v3-layer-box b {
+  display: block;
+  font: 700 10.5px/1 var(--mono);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 5px;
+  color: #475569;
+}
+.v3-layer-box.fg { border-left: 3px solid #f59e0b; background: #fffbeb; }
+.v3-layer-box.fg b { color: #b45309; }
+.v3-layer-box.mg { border-left: 3px solid #16a34a; background: #f0fdf4; }
+.v3-layer-box.mg b { color: #15803d; }
+.v3-layer-box.bg { border-left: 3px solid #0284c7; background: #f0f9ff; }
+.v3-layer-box.bg b { color: #0369a1; }
+
+.v3-vo-box {
+  background: #0f172a;
+  color: #f8fafc;
+  border-radius: 10px;
+  padding: 14px 16px;
+  margin-top: 12px;
+}
+.v3-vo-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 8px;
+  font: 700 11px/1 var(--mono);
+  color: #94a3b8;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.v3-vo-copy {
+  background: #334155;
+  color: #fff;
+  border: 1px solid #475569;
+  border-radius: 5px;
+  padding: 4px 9px;
+  font: 600 11px/1 var(--sans);
+  cursor: pointer;
+}
+.v3-vo-copy:hover {
+  background: #475569;
+}
+.v3-vo-text {
+  font: italic 16.5px/1.65 var(--serif);
+  color: #ffffff;
+  margin: 0 0 8px 0;
+}
+.v3-vo-text span.slash {
+  color: #fb923c;
+  font-weight: 700;
+  font-style: normal;
+  padding: 0 3px;
+}
+.v3-vo-text span.slot {
+  background: rgba(251, 146, 60, 0.22);
+  color: #fdba74;
+  border: 1px dashed #fb923c;
+  padding: 1px 6px;
+  border-radius: 4px;
+  font-style: normal;
+  font-weight: 700;
+}
+.v3-vo-meta {
+  font: 400 12.5px/1.45 var(--sans);
+  color: #cbd5e1;
+}
+.v3-badge-ex {
+  background: #e0f2fe;
+  color: #0369a1;
+  border: 1px solid #7dd3fc;
+}
+.v3-nav-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 16px 0 20px;
+}
+.v3-nav-pills a {
+  text-decoration: none !important;
+  font: 600 13px/1.2 var(--sans);
+  padding: 8px 13px;
+  border-radius: 8px;
+  background: #f8fafc;
+  color: #0f172a;
+  border: 1px solid #cbd5e1;
+  transition: all .15s ease;
+}
+.v3-nav-pills a:hover {
+  background: #0f172a;
+  color: #ffffff;
+  border-color: #0f172a;
+}
+@media (max-width: 900px) {
+  .v3-shot-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .v3-layer-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 520px) {
+  .v3-shot-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+  
+    .pillar-strip {
+      display: grid;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      gap: 8px;
+      margin: 22px 0 28px;
+    }
+    .pillar-pill {
+      border: 1px solid #cbd5e1;
+      border-radius: 10px;
+      padding: 12px 10px;
+      background: #f8fafc;
+      text-align: center;
+      text-decoration: none !important;
+      transition: all .15s ease;
+    }
+    .pillar-pill:hover {
+      background: #0f172a;
+      color: #ffffff !important;
+      border-color: #0f172a;
+    }
+    .pillar-pill .p-num {
+      display: block;
+      font: 700 10px/1 var(--mono);
+      color: #64748b;
+      margin-bottom: 6px;
+    }
+    .pillar-pill:hover .p-num { color: #94a3b8; }
+    .pillar-pill .p-word {
+      display: block;
+      font: 700 18px/1.2 var(--display);
+      color: #0f172a;
+      margin-bottom: 4px;
+    }
+    .pillar-pill:hover .p-word { color: #fb923c; }
+    .pillar-pill .p-sub {
+      display: block;
+      font: 500 11.5px/1.3 var(--sans);
+      color: #475569;
+    }
+    .pillar-pill:hover .p-sub { color: #e2e8f0; }
+    @media (max-width: 760px) {
+      .pillar-strip { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    }
+    @media (max-width: 480px) {
+      .pillar-strip { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+
+  </style>
+  <script>
+    window.toggleV3Player = function(btn, playerId, mp4Url) {
+      var box = document.getElementById(playerId);
+      if (!box) return;
+      var vid = box.querySelector("video");
+      if (box.style.display === "none" || !box.style.display) {
+        box.style.display = "block";
+        if (vid) {
+          if (!vid.getAttribute("src") && mp4Url) {
+            vid.setAttribute("src", mp4Url);
+          }
+          vid.play().catch(function(){});
+        }
+        btn.innerHTML = "⏸️ Đóng video";
+      } else {
+        if (vid) vid.pause();
+        box.style.display = "none";
+        btn.innerHTML = "▶️ Xem video";
+      }
+    };
+    document.addEventListener("DOMContentLoaded", function() {
+      var heads = document.querySelectorAll(".content h2");
+      var tocNav = document.getElementById("auto-toc");
+      if (!tocNav) return;
+      heads.forEach(function(h, idx) {
+        if (!h.id) h.id = "sec-" + (idx + 1);
+        var a = document.createElement("a");
+        a.href = "#" + h.id;
+        a.textContent = h.textContent;
+        tocNav.appendChild(a);
+      });
+    });
+
+    window.copyVoScript = function(btn, text) {
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(text).then(function() {
+          var old = btn.innerHTML;
+          btn.innerHTML = "✅ Đã chép lời";
+          setTimeout(function(){ btn.innerHTML = old; }, 1800);
+        });
+      }
+    };
+
+  </script>
+</head>
+<body data-page="bo-cuc-quay">
+  <div class="shell" style="grid-template-columns: 1fr 250px; max-width: 1180px; margin: 0 auto;">
+    <main class="main">
+      <div class="content" style="max-width: 820px;">
+        <div class="hero">
+          <div style="color: #d93025; font-weight: 700; font-size: 12px; letter-spacing: 1px; margin-bottom: 8px;">— TƯ DUY HÌNH ẢNH THỰC CHIẾN • ĐƯỜNG – ĐỘNG – SÁNG – GIỜ – TĨNH – VÀO</div>
+          <h1 style="margin-top:0">Logic Bố Cục Cảnh Quay — 6 Trụ Cột Chỉn Chu &amp; Nghệ Thuật Khoe Khéo Dịch Vụ (Bản 3.0)</h1>
+          <div class="v3-nav-pills" style="margin:14px 0 0;">
+            <a href="bocucquay.html" style="background:#0f172a;color:#fff;border-color:#0f172a;">📘 Nền tảng Lý thuyết &amp; Ví dụ</a>
+            <a href="bocucquaybaitap.html" style="background:#fff7ed;color:#c2410c;border-color:#fdba74;">✍️ Hệ thống Bài tập 3 Cấp độ &amp; Kho Ý Tưởng</a>
+            <a href="bocucquayslide.html" style="background:#f0fdf4;color:#15803d;border-color:#86efac;">🖥️ Bộ Slide Thuyết Trình 19 Trang</a>
+          </div>
+        </div>
+
+        <p class="lede">Khung hình quay tại bàn làm việc trông phẳng lì và rối mắt thường do người quay bật đèn trần trắng bệch từ đỉnh đầu, cầm điện thoại lia tay qua lại rồi giữ nguyên 2 giây đứng chờ ở đầu cảnh. Khi bạn khóa tĩnh chân máy đón nắng xiên và cắt thẳng vào lúc bàn tay đang làm việc, góc phòng bình thường sẽ tự nổi khối sâu mà không cần mua máy ảnh đắt tiền.</p>
+
+        <div class="pillar-strip">
+          <a class="pillar-pill" href="#sec-2">
+            <span class="p-num">TRỤ CỘT 01</span>
+            <span class="p-word">ĐƯỜNG</span>
+            <span class="p-sub">Đường dẫn &amp; Phép trừ 2x</span>
+          </a>
+          <a class="pillar-pill" href="#sec-3">
+            <span class="p-num">TRỤ CỘT 02</span>
+            <span class="p-word">ĐỘNG</span>
+            <span class="p-sub">Chuyển động trong khung</span>
+          </a>
+          <a class="pillar-pill" href="#sec-4">
+            <span class="p-num">TRỤ CỘT 03</span>
+            <span class="p-word">SÁNG</span>
+            <span class="p-sub">Nắng ven &amp; Ngược sáng</span>
+          </a>
+          <a class="pillar-pill" href="#sec-5">
+            <span class="p-num">TRỤ CỘT 04</span>
+            <span class="p-word">GIỜ</span>
+            <span class="p-sub">Bóng dài &amp; Đèn điểm</span>
+          </a>
+          <a class="pillar-pill" href="#sec-6">
+            <span class="p-num">TRỤ CỘT 05</span>
+            <span class="p-word">TĨNH</span>
+            <span class="p-sub">Chân máy khóa tĩnh</span>
+          </a>
+          <a class="pillar-pill" href="#sec-7">
+            <span class="p-num">TRỤ CỘT 06</span>
+            <span class="p-word">VÀO</span>
+            <span class="p-sub">Vào cảnh 70%–30%</span>
+          </a>
+        </div>
+
+        <!-- ==================== PHẦN 1 ==================== -->
+        <h2>1. Bản chất của một cảnh quay chỉn chu &amp; Lỗi làm khung hình kém sang</h2>
+
+        <p>Khi nhìn một video có cảm giác yên bình, sạch sẽ và có chiều sâu, người mới thường nghĩ ngay đến việc người quay dùng máy ảnh xịn, ống kính đắt tiền hoặc ngồi trong một quán cà phê sang trọng. Nhưng khi đối chiếu trực tiếp tại lớp, cùng một chiếc điện thoại và cùng một góc bàn làm việc, khác biệt nằm ở <strong>3 thói quen vô thức làm hỏng khung hình</strong>:</p>
+
+        <div class="spec">
+          <div class="row">
+            <span class="b warn" style="background:#fef2f2;color:#991b1b;border-color:#fca5a5;">Thủ phạm 01</span>
+            <div><strong>Bật đèn huỳnh quang trần nhà trắng bệch:</strong> Ánh sáng từ đỉnh đầu dội thẳng xuống làm mọi bề mặt phẳng lì, xóa mất bóng đổ tự nhiên, khiến da mặt bóng dầu và màu gỗ, màu vải bị nhợt nhạt như phòng chờ bệnh viện.</div>
+          </div>
+          <div class="row">
+            <span class="b warn" style="background:#fef2f2;color:#991b1b;border-color:#fca5a5;">Thủ phạm 02</span>
+            <div><strong>Cầm điện thoại lia tay vô định:</strong> Khi góc đặt máy chưa có bố cục rõ ràng, người quay hay dùng tay đưa máy qua lại để lấp trống. Chuyển động rung lắc của cổ tay cộng với góc rộng 1x thu cả ổ điện, dây sạc và đồ đạc lộn xộn làm cảnh quay giống hệt camera giám sát.</div>
+          </div>
+          <div class="row">
+            <span class="b warn" style="background:#fef2f2;color:#991b1b;border-color:#fca5a5;">Thủ phạm 03</span>
+            <div><strong>Giữ nguyên 1.5 – 2 giây đứng chờ đầu cảnh:</strong> Thói quen bấm nút quay, nhìn vào màn hình kiểm tra xem máy chạy chưa rồi mới bắt đầu cử động tay làm lộ rõ sự dàn dựng, khiến người xem lướt qua ngay từ giây đầu tiên.</div>
+          </div>
+        </div>
+
+        <blockquote>
+          <p><strong>Luận điểm cốt lõi (Core Claim):</strong> Độ sang của một cảnh quay không đến từ thiết bị đắt tiền; nó đến từ kỷ luật khóa tĩnh chân máy đón nắng xiên, dùng phép trừ ống kính 2x bỏ bớt rác thị giác và cắt thẳng vào lúc bàn tay đang thao tác.</p>
+        </blockquote>
+
+        <p>Để kiểm soát trọn vẹn một cảnh quay ngay tại thành phố mà không cần nhớ hàng chục thuật ngữ nhiếp ảnh phức tạp, bạn chỉ cần nắm vững khẩu quyết 6 chữ: <strong>Đường – Động – Sáng – Giờ – Tĩnh – Vào</strong>.</p>
+
+        <div class="tw">
+          <table class="t">
+            <thead>
+              <tr>
+                <th>Trụ cột (Khẩu quyết)</th>
+                <th>Cách quay thô (Giống camera giám sát / Chào hàng)</th>
+                <th>Cách quay có bố cục (Chuẩn 6 Trụ cột chỉn chu)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>1. ĐƯỜNG</strong><br/><small style="color:var(--mute)">Đường dẫn &amp; Phép trừ 2x</small></td>
+                <td>Để mặc định ống kính <code>1x</code> góc rộng thu hết tường trống, ổ điện; đặt vật thể nằm bẹt giữa màn hình.</td>
+                <td>Bật ống kính <code>2x–3x</code> lùi lại 2 bước loại bỏ 70% đồ đạc thừa; dùng mép bàn làm đường dẫn vào giao điểm 1/3 qua 3 lớp Tiền – Trung – Hậu cảnh.</td>
+              </tr>
+              <tr>
+                <td><strong>2. ĐỘNG</strong><br/><small style="color:var(--mute)">Chuyển động nội tại</small></td>
+                <td>Quay đồ vật đứng im như chụp ảnh tĩnh rồi cầm tay lia máy qua lại cho đỡ buồn chán.</td>
+                <td>Máy khóa tĩnh hoàn toàn nhưng bên trong khung có 1 chuyển động vật lý (làn khói trà, rèm bay, bóng lá rung, dòng nước đang rót, bàn tay viết).</td>
+              </tr>
+              <tr>
+                <td><strong>3. SÁNG</strong><br/><small style="color:var(--mute)">Nắng ven &amp; Ngược sáng</small></td>
+                <td>Quay lưng vào cửa sổ làm ánh sáng đánh thẳng vào mặt phẳng lì, hoặc để nền cửa sổ cháy trắng xóa.</td>
+                <td>Đặt máy xoay <code>90°–135°</code> so với cửa sổ; nhấn lấy nét vào chủ thể và kéo thanh mặt trời xuống <code>-0.7 EV</code> để giữ đường viền sáng quanh chủ thể.</td>
+              </tr>
+              <tr>
+                <td><strong>4. GIỜ</strong><br/><small style="color:var(--mute)">Bóng dài &amp; Đèn điểm</small></td>
+                <td>Quay giữa trưa nắng gắt từ đỉnh đầu hoặc bật đèn tuýp trần nhà trắng lạnh lúc buổi tối.</td>
+                <td>Đón nắng sớm (<code>6h30–8h30</code>) hoặc hoàng hôn (<code>16h00–17h30</code>) lấy bóng đổ dài; buổi tối tắt đèn trần, chỉ bật 2–3 đèn bàn vàng ấm (<em>Little Lights</em>).</td>
+              </tr>
+              <tr>
+                <td><strong>5. TĨNH</strong><br/><small style="color:var(--mute)">Chân máy khóa tĩnh</small></td>
+                <td>Cầm tay đi theo nhân vật làm khung hình nghiêng ngả, chân trời lệch 2–3 độ.</td>
+                <td>Gắn chân máy hoặc tựa điện thoại vào bình nước/chồng sách, bật lưới 9 ô canh đường ngang thẳng tắp, để nhân vật tự bước vào và bước ra.</td>
+              </tr>
+              <tr>
+                <td><strong>6. VÀO</strong><br/><small style="color:var(--mute)">Vào cảnh 70%–30%</small></td>
+                <td>Để nguyên 2 giây đầu nhân vật đứng yên nhìn máy rồi mới bắt đầu đưa tay làm việc.</td>
+                <td>Cắt bỏ hoàn toàn 1.5 giây chuẩn bị đầu cảnh; vào thẳng lúc hành động đã diễn ra <code>30%</code> và cắt nối sang cảnh sau ở mốc <code>70%</code> trước khi tay dừng hẳn.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- ==================== PHẦN 2 ==================== -->
+        <h2 id="sec-2">2. Trụ cột 1 — Các đường giao nhau của thị giác &amp; Phép trừ đóng khung (2x/3x)</h2>
+
+        <div class="callout">
+          <div class="h">Luận điểm trụ cột 01 • ĐƯỜNG</div>
+          <p><strong>Mắt người xem không nhìn chung chung vào cả khung hình; mắt đi theo đường dẫn.</strong> Người cầm máy phải chọn sẵn con đường cho mắt đi và dọn sạch 70% chi tiết thừa trước khi bấm nút quay.</p>
+        </div>
+
+        <p>Khi bạn mở camera điện thoại ở mức mặc định <code>1x</code> (tiêu cự 24mm), góc nhìn quá rộng sẽ gom toàn bộ bàn ghế lộn xộn, góc tường, dây điện vào chung một khung hình. Mắt người xem không biết phải nhìn vào đâu trước nên sẽ lướt đi ngay. Bốn cơ chế vật lý dưới đây giúp bạn khóa chặt đường đi của mắt:</p>
+
+        <div class="spec">
+          <div class="row">
+            <span class="b s">Cơ chế 01</span>
+            <div><strong>Đường dẫn mắt (Leading Lines):</strong> Mắt tự nhiên trượt dọc theo các cạnh có độ tương phản rõ như mép bàn gỗ, gờ tường, thành lan can, khe cửa hoặc vệt bóng nắng chéo. Đường dẫn bắt buộc phải kết thúc ngay tại chủ thể, không được chạy tuột ra góc ngoài khung hình.</div>
+          </div>
+          <div class="row">
+            <span class="b s">Cơ chế 02</span>
+            <div><strong>Giao điểm 1/3 (Tạo quãng đường cho mắt):</strong> Đặt chủ thể ngay chính giữa khung làm mắt người xem tới đích ngay lập tức và nhanh chán. Khi bạn đặt chiếc cốc, cuốn sổ hoặc bàn tay tại một trong 4 giao điểm của lưới 9 ô, mắt người xem có một quãng đường ngắn để di chuyển từ đường dẫn tới điểm dừng.</div>
+          </div>
+          <div class="row">
+            <span class="b s">Cơ chế 03</span>
+            <div><strong>Khung lồng khung 3 lớp (Tiền – Trung – Hậu):</strong> Tấm kính điện thoại vốn phẳng 2D. Để tạo chiều sâu 3 lớp mà không cần máy ảnh lớn, hãy đặt một vật chắn mờ sát ống kính chiếm 1/4 khung hình (nhành lá, mép cốc, bờ vai áo, cánh cửa hé mở) làm <em>Tiền cảnh</em>, đẩy chủ thể nét vào <em>Trung cảnh</em> và giữ <em>Hậu cảnh</em> gọn gàng.</div>
+          </div>
+          <div class="row">
+            <span class="b s">Cơ chế 04</span>
+            <div><strong>Phép trừ đóng khung bằng tiêu cự 2x – 3x:</strong> Bố cục mạnh là bố cục bỏ bớt chứ không phải bày thêm đồ. Hãy bấm nút <code>2x</code> hoặc <code>3x</code> trên màn hình điện thoại rồi lùi chân lại 2 bước. Góc nhìn hẹp của tiêu cự 50mm–77mm sẽ cắt bỏ 70% rác thị giác xung quanh và nén hậu cảnh lại gần chủ thể.</div>
+          </div>
+        </div>
+
+        <p><strong>Quy tắc đo lường tại bàn:</strong> Mỗi cảnh quay chỉ giữ đúng <strong>1 chủ thể + 1 đường dẫn + 1 điểm dừng</strong>. Nếu bạn nheo mắt nhìn vào màn hình điện thoại mà chưa thấy đường dẫn đi về đâu, hãy đổi góc đặt máy trước khi bấm quay.</p>
+
+        <div class="v3-group">
+          <!-- CARD 1.1: DepzH7jxO0z -->
+          <div class="v3-card" id="v3-DepzH7jxO0z">
+            <div class="v3-head">
+              <div class="v3-title-group">
+                <span class="v3-badge v3-badge-win">MẪU TRỤ CỘT 1 • PHÉP TRỪ TIÊU CỰ 2X/3X</span>
+                <strong>@jade.got.curious — Phép trừ khi đóng khung: Biến 3 cảnh đời thường lộn xộn thành thước phim chỉn chu</strong>
+                <span class="v3-meta">(Mã: DepzH7jxO0z • 14 shots)</span>
+              </div>
+              <div class="v3-actions">
+                <button type="button" class="v3-btn-play" onclick="window.toggleV3Player(this, 'p3-DepzH7jxO0z', 'https://media.fedu.vn/videos/DepzH7jxO0z.mp4')">▶️ Xem video</button>
+                <a href="https://ytuong.fedu.vn/v/DepzH7jxO0z" target="_blank" rel="noopener" class="v3-btn-link">Kho Ý Tưởng ↗</a>
+              </div>
+            </div>
+
+            <div class="v3-shot-grid">
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Shot 01</span>
+                <span class="v3-shot-dur">0.40s</span>
+                <img src="https://media.fedu.vn/images/IG_@jade.got.curious_DepzH7jxO0z_Nothing_in_these_shots_was_special._A_shadow/shot_01_mid.webp" alt="Góc rộng quán cà phê đời thường" loading="lazy"/>
+                <div class="v3-shot-cap">Góc rộng 1x quán cà phê</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Shot 03</span>
+                <span class="v3-shot-dur">0.43s</span>
+                <img src="https://media.fedu.vn/images/IG_@jade.got.curious_DepzH7jxO0z_Nothing_in_these_shots_was_special._A_shadow/shot_03_mid.webp" alt="Mở khung cửa kính" loading="lazy"/>
+                <div class="v3-shot-cap">Khung cửa kính dẫn mắt</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Shot 04</span>
+                <span class="v3-shot-dur">0.33s</span>
+                <img src="https://media.fedu.vn/images/IG_@jade.got.curious_DepzH7jxO0z_Nothing_in_these_shots_was_special._A_shadow/shot_04_mid.webp" alt="Góc rộng sân hiên" loading="lazy"/>
+                <div class="v3-shot-cap">Toàn cảnh sân hiên rối</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Shot 05</span>
+                <span class="v3-shot-dur">0.67s</span>
+                <img src="https://media.fedu.vn/images/IG_@jade.got.curious_DepzH7jxO0z_Nothing_in_these_shots_was_special._A_shadow/shot_05_mid.webp" alt="Trước khi đóng khung" loading="lazy"/>
+                <div class="v3-shot-cap">Trước khi bật 2x–3x</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Shot 06</span>
+                <span class="v3-shot-dur">1.13s</span>
+                <img src="https://media.fedu.vn/images/IG_@jade.got.curious_DepzH7jxO0z_Nothing_in_these_shots_was_special._A_shadow/shot_06_mid.webp" alt="Đóng khung tiêu cự dài" loading="lazy"/>
+                <div class="v3-shot-cap">Đóng khung 3x bóng lá</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Shot 07</span>
+                <span class="v3-shot-dur">1.70s</span>
+                <img src="https://media.fedu.vn/images/IG_@jade.got.curious_DepzH7jxO0z_Nothing_in_these_shots_was_special._A_shadow/shot_07_mid.webp" alt="Giữ tĩnh máy bóng lá rung" loading="lazy"/>
+                <div class="v3-shot-cap">Khóa tĩnh thành tranh vẽ</div>
+              </div>
+            </div>
+
+            <div class="v3-player" id="p3-DepzH7jxO0z" style="display:none;">
+              <video controls playsinline preload="none" poster="https://media.fedu.vn/images/IG_@jade.got.curious_DepzH7jxO0z_Nothing_in_these_shots_was_special._A_shadow/shot_06_mid.webp"></video>
+            </div>
+
+            <div class="v3-verdict">
+              <p><strong>Giải phẫu cơ chế thực tế:</strong> Video đối chiếu trực diện giữa góc quay <code>1x</code> (Shot 04–05: thấy cả bàn ghế nhựa, mái hiên và tường lộn xộn) với cú bấm sang tiêu cự <code>3x</code> (Shot 06–07: chỉ cắt lấy đúng mảng tường có bóng nắng và tán lá). Không hề đổi địa điểm, chỉ nhờ <strong>phép trừ đóng khung</strong> mà một góc sân bình thường biến thành khung hình nghệ thuật.</p>
+              <div class="v3-layer-grid">
+                <div class="v3-layer-box fg">
+                  <b>1. Tiền cảnh (Foreground)</b>
+                  Khung cửa gỗ và vách kính quán cà phê ở Shot 03 tạo đường viền tối bao quanh dẫn mắt ra ngoài sân.
+                </div>
+                <div class="v3-layer-box mg">
+                  <b>2. Trung cảnh nét (Midground)</b>
+                  Nhành cây thật đung đưa nhẹ ở góc phần ba bên phải, đón ánh nắng trực tiếp.
+                </div>
+                <div class="v3-layer-box bg">
+                  <b>3. Hậu cảnh (Background)</b>
+                  Mảng tường phẳng in bóng lá cây sắc nét nhờ tiêu cự 3x đã loại bỏ toàn bộ bàn ghế thừa xung quanh.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- CARD 1.2: DbtuUwvzi5c -->
+          <div class="v3-card" id="v3-DbtuUwvzi5c">
+            <div class="v3-head">
+              <div class="v3-title-group">
+                <span class="v3-badge v3-badge-win">MẪU TRỤ CỘT 1 • LƯỚI 9 Ô &amp; IPHONE 2X</span>
+                <strong>@jigummmmm — Công thức 1 cảnh quay 3 góc: Tự quay đọc sách bằng iPhone 2x trong phòng nhỏ</strong>
+                <span class="v3-meta">(Mã: DbtuUwvzi5c • 22 shots)</span>
+              </div>
+              <div class="v3-actions">
+                <button type="button" class="v3-btn-play" onclick="window.toggleV3Player(this, 'p3-DbtuUwvzi5c', 'https://media.fedu.vn/videos/DbtuUwvzi5c.mp4')">▶️ Xem video</button>
+                <a href="https://ytuong.fedu.vn/v/DbtuUwvzi5c" target="_blank" rel="noopener" class="v3-btn-link">Kho Ý Tưởng ↗</a>
+              </div>
+            </div>
+
+            <div class="v3-shot-grid">
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Shot 01</span>
+                <span class="v3-shot-dur">1.53s</span>
+                <img src="https://media.fedu.vn/images/IG_@jigummmmm_DbtuUwvzi5c_“그래서_감성릴스_어떻게_찍는_건데⁉️”/shot_01_mid.webp" alt="Góc qua vai điện thoại" loading="lazy"/>
+                <div class="v3-shot-cap">Qua vai màn hình máy</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Shot 02</span>
+                <span class="v3-shot-dur">1.02s</span>
+                <img src="https://media.fedu.vn/images/IG_@jigummmmm_DbtuUwvzi5c_“그래서_감성릴스_어떻게_찍는_건데⁉️”/shot_02_mid.webp" alt="Bật 2x và khóa nét AE/AF" loading="lazy"/>
+                <div class="v3-shot-cap">Bật 2x &amp; Khóa AE/AF</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Shot 03</span>
+                <span class="v3-shot-dur">1.23s</span>
+                <img src="https://media.fedu.vn/images/IG_@jigummmmm_DbtuUwvzi5c_“그래서_감성릴스_어떻게_찍는_건데⁉️”/shot_03_mid.webp" alt="Bước vào vùng đã khóa nét" loading="lazy"/>
+                <div class="v3-shot-cap">Bước vào vùng khóa nét</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Shot 04</span>
+                <span class="v3-shot-dur">1.18s</span>
+                <img src="https://media.fedu.vn/images/IG_@jigummmmm_DbtuUwvzi5c_“그래서_감성릴스_어떻게_찍는_건데⁉️”/shot_04_mid.webp" alt="Canh bàn tay ở đường 1/3 dưới" loading="lazy"/>
+                <div class="v3-shot-cap">Tay lật sách ở trục 1/3</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Shot 05</span>
+                <span class="v3-shot-dur">1.57s</span>
+                <img src="https://media.fedu.vn/images/IG_@jigummmmm_DbtuUwvzi5c_“그래서_감성릴스_어떻게_찍는_건데⁉️”/shot_05_mid.webp" alt="Thành phẩm góc 1" loading="lazy"/>
+                <div class="v3-shot-cap">Thành phẩm góc 2x</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Shot 06</span>
+                <span class="v3-shot-dur">1.02s</span>
+                <img src="https://media.fedu.vn/images/IG_@jigummmmm_DbtuUwvzi5c_“그래서_감성릴스_어떻게_찍는_건데⁉️”/shot_06_mid.webp" alt="Dời chân máy sang góc thứ 2" loading="lazy"/>
+                <div class="v3-shot-cap">Dời chân máy đổi góc</div>
+              </div>
+            </div>
+
+            <div class="v3-player" id="p3-DbtuUwvzi5c" style="display:none;">
+              <video controls playsinline preload="none" poster="https://media.fedu.vn/images/IG_@jigummmmm_DbtuUwvzi5c_“그래서_감성릴스_어떻게_찍는_건데⁉️”/shot_04_mid.webp"></video>
+            </div>
+
+            <div class="v3-verdict">
+              <p><strong>Giải phẫu cơ chế thực tế:</strong> Chỉ trong một góc phòng hẹp, tác giả bật ống kính <code>2x</code> (Shot 02), bật lưới 9 ô và ấn giữ màn hình 2 giây để bật khóa nét/phơi sáng (<code>AE/AF Lock</code>), sau đó canh đôi bàn tay lật trang sách nằm đúng đường ngang <code>1/3 dưới</code> (Shot 04). Khi ghép 3 góc đặt máy quanh cùng một hành động đọc sách, cảnh quay liền mạch như có người quay phim riêng.</p>
+              <div class="v3-layer-grid">
+                <div class="v3-layer-box fg">
+                  <b>1. Tiền cảnh mờ</b>
+                  Mép bàn và gáy sách mở nghiêng tạo đường chéo dẫn thẳng vào ngón tay đang lật giấy.
+                </div>
+                <div class="v3-layer-box mg">
+                  <b>2. Giao điểm 1/3 nét</b>
+                  Bàn tay và trang sách được khóa nét cố định tại đường mạnh 1/3 dưới của lưới 9 ô.
+                </div>
+                <div class="v3-layer-box bg">
+                  <b>3. Hậu cảnh thu gọn</b>
+                  Tiêu cự 2x xóa mờ nhẹ bức tường phía sau, giữ tông màu gỗ ấm áp không một chi tiết thừa.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- CARD 1.3: DcdthwaTM3J -->
+          <div class="v3-card" id="v3-DcdthwaTM3J">
+            <div class="v3-head">
+              <div class="v3-title-group">
+                <span class="v3-badge v3-badge-win">MẪU TRỤ CỘT 1 • 7 GÓC ĐẶT MÁY BÀN LÀM VIỆC</span>
+                <strong>@kortafilms — 7 góc máy cho bàn làm việc: Tạo đường dẫn chéo &amp; chiều sâu 3 lớp</strong>
+                <span class="v3-meta">(Mã: DcdthwaTM3J • 8 shots)</span>
+              </div>
+              <div class="v3-actions">
+                <button type="button" class="v3-btn-play" onclick="window.toggleV3Player(this, 'p3-DcdthwaTM3J', 'https://media.fedu.vn/videos/DcdthwaTM3J.mp4')">▶️ Xem video</button>
+                <a href="https://ytuong.fedu.vn/v/DcdthwaTM3J" target="_blank" rel="noopener" class="v3-btn-link">Kho Ý Tưởng ↗</a>
+              </div>
+            </div>
+
+            <div class="v3-shot-grid">
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Shot 01</span>
+                <span class="v3-shot-dur">2.17s</span>
+                <img src="https://media.fedu.vn/images/IG_@kortafilms_DcdthwaTM3J_Camera_Angles_Mastery/shot_01_mid.webp" alt="Góc thấp hất lên mở laptop" loading="lazy"/>
+                <div class="v3-shot-cap">Góc thấp mở nắp máy</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Shot 02</span>
+                <span class="v3-shot-dur">2.50s</span>
+                <img src="https://media.fedu.vn/images/IG_@kortafilms_DcdthwaTM3J_Camera_Angles_Mastery/shot_02_mid.webp" alt="Góc POV nhìn xuống sổ" loading="lazy"/>
+                <div class="v3-shot-cap">Góc POV phác thảo sổ</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Shot 03</span>
+                <span class="v3-shot-dur">2.91s</span>
+                <img src="https://media.fedu.vn/images/IG_@kortafilms_DcdthwaTM3J_Camera_Angles_Mastery/shot_03_mid.webp" alt="Cận cảnh gõ phím chéo" loading="lazy"/>
+                <div class="v3-shot-cap">Đường dẫn hàng phím</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Shot 04</span>
+                <span class="v3-shot-dur">2.96s</span>
+                <img src="https://media.fedu.vn/images/IG_@kortafilms_DcdthwaTM3J_Camera_Angles_Mastery/shot_04_mid.webp" alt="Góc qua vai OTS" loading="lazy"/>
+                <div class="v3-shot-cap">Qua vai 3 lớp chiều sâu</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Shot 05</span>
+                <span class="v3-shot-dur">2.88s</span>
+                <img src="https://media.fedu.vn/images/IG_@kortafilms_DcdthwaTM3J_Camera_Angles_Mastery/shot_05_mid.webp" alt="Góc thẳng đứng 90 độ" loading="lazy"/>
+                <div class="v3-shot-cap">Top-down 90° cân xứng</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Shot 06</span>
+                <span class="v3-shot-dur">2.91s</span>
+                <img src="https://media.fedu.vn/images/IG_@kortafilms_DcdthwaTM3J_Camera_Angles_Mastery/shot_06_mid.webp" alt="Góc sát mặt bàn gỗ" loading="lazy"/>
+                <div class="v3-shot-cap">Sát mặt bàn chạy bút</div>
+              </div>
+            </div>
+
+            <div class="v3-player" id="p3-DcdthwaTM3J" style="display:none;">
+              <video controls playsinline preload="none" poster="https://media.fedu.vn/images/IG_@kortafilms_DcdthwaTM3J_Camera_Angles_Mastery/shot_04_mid.webp"></video>
+            </div>
+
+            <div class="v3-verdict">
+              <p><strong>Giải phẫu cơ chế thực tế:</strong> Thay vì đặt máy ngang tầm mắt nhìn thẳng vào bàn làm việc, tác giả hạ máy sát mặt bàn (Shot 03, Shot 06) để <strong>biến hàng phím laptop và mép sổ thành đường dẫn chéo</strong> hút mắt vào đầu ngòi bút, hoặc lùi máy ra sau bờ vai (Shot 04) tạo khung 3 lớp. Nếu chưa có chân máy nhỏ trên bàn, bạn có thể áp dụng ngay mẹo tựa lưng điện thoại vào bình nước như mẫu <a href="https://ytuong.fedu.vn/v/DbQtoVPRMWk" target="_blank" rel="noopener"><strong>@mercantegi (DbQtoVPRMWk) ↗</strong></a>.</p>
+              <div class="v3-layer-grid">
+                <div class="v3-layer-box fg">
+                  <b>1. Tiền cảnh (Foreground)</b>
+                  Bờ vai áo mờ bên trái (Shot 04) hoặc các hàng phím gần ống kính mờ nhòe (Shot 03).
+                </div>
+                <div class="v3-layer-box mg">
+                  <b>2. Trung cảnh nét (Midground)</b>
+                  Ngòi bút đang vẽ sơ đồ trong sổ tay và các ngón tay gõ phím tại giao điểm 1/3.
+                </div>
+                <div class="v3-layer-box bg">
+                  <b>3. Hậu cảnh (Background)</b>
+                  Màn hình máy tính và ánh đèn bàn vàng ấm tách chủ thể khỏi bức tường tối phía sau.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ==================== PHẦN 3 ==================== -->
+        <h2 id="sec-3">3. Trụ cột 2 — Phải có chuyển động bên trong khung hình (Internal Movement)</h2>
+
+        <div class="callout">
+          <div class="h">Luận điểm trụ cột 02 • ĐỘNG</div>
+          <p><strong>Một khung hình đứng im hoàn toàn chỉ là một tấm ảnh chụp.</strong> Chỉ cần một chi tiết nhỏ cử động bên trong khung máy tĩnh, cảnh quay lập tức có nhịp thở của video và giữ mắt người xem ở lại.</p>
+        </div>
+
+        <p>Theo phản xạ tự nhiên, mắt con người luôn bị thu hút bởi vật đang chuyển động trước khi đọc các chi tiết tĩnh. Sai lầm của người mới là tự cầm máy lắc qua lắc lại để tạo chuyển động, làm cả khung hình bị nhòe. Nguyên lý đúng là <strong>khóa tĩnh chiếc điện thoại, và đặt ít nhất 1 chuyển động vật lý vào bên trong khung hình</strong>:</p>
+
+        <ul>
+          <li><strong>Chuyển động tự nhiên của chất lỏng &amp; hơi nóng:</strong> Làn khói trà hoặc hơi cà phê bốc lên dưới nắng, dòng cà phê đang rót vào cốc đá, bọt khí sủi tăm trong ly nước, giọt nước chảy trên thành cốc.</li>
+          <li><strong>Chuyển động của gió &amp; bóng nắng:</strong> Tấm rèm voan trắng khẽ đung đưa bên cửa sổ, bóng tán lá cây rung rinh trên mặt bàn gỗ hoặc trên trang sách mở.</li>
+          <li><strong>Chuyển động thao tác của đôi bàn tay:</strong> Bàn tay lật trang tạp chí, ngòi bút đang chạy trên giấy, tay đặt chiếc tách xuống đôn gỗ, tay mở cánh cửa sổ đón gió.</li>
+        </ul>
+
+        <p><strong>Quy tắc kiểm soát nhịp độ:</strong> Mỗi khung hình chỉ nên có <strong>1 chuyển động chính và tối đa 1 chuyển động phụ thật nhẹ</strong>. Chuyển động phải diễn ra thong thả, đi vào điểm dừng hoặc xoay quanh chủ thể. Quá nhiều thứ cùng chuyển động nhanh một lúc sẽ phá vỡ sự điềm tĩnh của cảnh quay.</p>
+
+        <div class="v3-group">
+          <!-- CARD 2.1: Ddv7PoCo2AA -->
+          <div class="v3-card" id="v3-Ddv7PoCo2AA">
+            <div class="v3-head">
+              <div class="v3-title-group">
+                <span class="v3-badge v3-badge-win">MẪU TRỤ CỘT 2 • DÒNG CHẢY, KHÓI NÓNG &amp; TAY LẬT SÁCH</span>
+                <strong>@iman.lizi — 10 cú máy tĩnh thưởng thức cà phê bên cửa sổ: Đánh thức khung hình bằng chuyển động nhỏ</strong>
+                <span class="v3-meta">(Mã: Ddv7PoCo2AA • 10 shots)</span>
+              </div>
+              <div class="v3-actions">
+                <button type="button" class="v3-btn-play" onclick="window.toggleV3Player(this, 'p3-Ddv7PoCo2AA', 'https://media.fedu.vn/videos/Ddv7PoCo2AA.mp4')">▶️ Xem video</button>
+                <a href="https://ytuong.fedu.vn/v/Ddv7PoCo2AA" target="_blank" rel="noopener" class="v3-btn-link">Kho Ý Tưởng ↗</a>
+              </div>
+            </div>
+
+            <div class="v3-shot-grid">
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Shot 01</span>
+                <span class="v3-shot-dur">0.92s</span>
+                <img src="https://media.fedu.vn/images/IG_@iman.lizi_Ddv7PoCo2AA_weekend_plans_coffee_by_the_window,_crisp_aut/shot_01_mid.webp" alt="Mở cửa sổ đón gió" loading="lazy"/>
+                <div class="v3-shot-cap">Tay đẩy mở cửa sổ</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Shot 02</span>
+                <span class="v3-shot-dur">0.79s</span>
+                <img src="https://media.fedu.vn/images/IG_@iman.lizi_Ddv7PoCo2AA_weekend_plans_coffee_by_the_window,_crisp_aut/shot_02_mid.webp" alt="Nhấc cốc gốm trên kệ" loading="lazy"/>
+                <div class="v3-shot-cap">Tay nhấc cốc gốm</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Shot 03</span>
+                <span class="v3-shot-dur">1.58s</span>
+                <img src="https://media.fedu.vn/images/IG_@iman.lizi_Ddv7PoCo2AA_weekend_plans_coffee_by_the_window,_crisp_aut/shot_03_mid.webp" alt="Rót cà phê nóng bốc khói" loading="lazy"/>
+                <div class="v3-shot-cap">Dòng cà phê &amp; làn khói</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Shot 04</span>
+                <span class="v3-shot-dur">1.38s</span>
+                <img src="https://media.fedu.vn/images/IG_@iman.lizi_Ddv7PoCo2AA_weekend_plans_coffee_by_the_window,_crisp_aut/shot_04_mid.webp" alt="Bật đèn bàn và đặt cốc" loading="lazy"/>
+                <div class="v3-shot-cap">Bật đèn &amp; đặt cốc</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Shot 07</span>
+                <span class="v3-shot-dur">1.00s</span>
+                <img src="https://media.fedu.vn/images/IG_@iman.lizi_Ddv7PoCo2AA_weekend_plans_coffee_by_the_window,_crisp_aut/shot_07_mid.webp" alt="Lật trang tạp chí" loading="lazy"/>
+                <div class="v3-shot-cap">Lật trang tạp chí</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Shot 08</span>
+                <span class="v3-shot-dur">1.12s</span>
+                <img src="https://media.fedu.vn/images/IG_@iman.lizi_Ddv7PoCo2AA_weekend_plans_coffee_by_the_window,_crisp_aut/shot_08_mid.webp" alt="Nhấc tách cà phê thưởng thức" loading="lazy"/>
+                <div class="v3-shot-cap">Nhấc tách khỏi đôn gỗ</div>
+              </div>
+            </div>
+
+            <div class="v3-player" id="p3-Ddv7PoCo2AA" style="display:none;">
+              <video controls playsinline preload="none" poster="https://media.fedu.vn/images/IG_@iman.lizi_Ddv7PoCo2AA_weekend_plans_coffee_by_the_window,_crisp_aut/shot_03_mid.webp"></video>
+            </div>
+
+            <div class="v3-verdict">
+              <p><strong>Giải phẫu cơ chế thực tế:</strong> Trong suốt 10 cảnh cắt, máy quay đứng im tuyệt đối trên chân máy. Sự cuốn hút đến từ chuỗi chuyển động nối tiếp nhau bên trong khung: cánh cửa sổ mở ra đón gió thu (Shot 01) &rarr; dòng cà phê nóng rót vào cốc gốm bốc khói mờ trước nắng cửa sổ (Shot 03) &rarr; trang tạp chí lật nhẹ dưới ánh đèn bàn ấm (Shot 07).</p>
+              <div class="v3-layer-grid">
+                <div class="v3-layer-box fg">
+                  <b>1. Tiền cảnh (Foreground)</b>
+                  Tách cà phê bốc khói nhẹ đặt ở góc dưới khung hình (Shot 06–07).
+                </div>
+                <div class="v3-layer-box mg">
+                  <b>2. Chuyển động trung tâm</b>
+                  Dòng chất lỏng đang rót, làn hơi nước bay lên và bàn tay lật từng trang giấy.
+                </div>
+                <div class="v3-layer-box bg">
+                  <b>3. Hậu cảnh (Background)</b>
+                  Khung cửa sổ có tán cây xanh khẽ rung và chiếc đèn bàn đá cẩm thạch tỏa sáng ấm.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- CARD 2.2: DeaMdF4RjPv -->
+          <div class="v3-card" id="v3-DeaMdF4RjPv">
+            <div class="v3-head">
+              <div class="v3-title-group">
+                <span class="v3-badge v3-badge-win">MẪU TRỤ CỘT 2 • CHUYỂN ĐỘNG CỬA MỞ &amp; BỌT GAS</span>
+                <strong>@yula_andrieieva — Biến cảnh lấy nước tủ lạnh thành thước phim cuốn hút nhờ góc đặt máy trong tủ &amp; cận cảnh bọt gas</strong>
+                <span class="v3-meta">(Mã: DeaMdF4RjPv • 13 shots)</span>
+              </div>
+              <div class="v3-actions">
+                <button type="button" class="v3-btn-play" onclick="window.toggleV3Player(this, 'p3-DeaMdF4RjPv', 'https://media.fedu.vn/videos/DeaMdF4RjPv.mp4')">▶️ Xem video</button>
+                <a href="https://ytuong.fedu.vn/v/DeaMdF4RjPv" target="_blank" rel="noopener" class="v3-btn-link">Kho Ý Tưởng ↗</a>
+              </div>
+            </div>
+
+            <div class="v3-shot-grid">
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Shot 02</span>
+                <span class="v3-shot-dur">0.38s</span>
+                <img src="https://media.fedu.vn/images/IG_@yula_andrieieva_DeaMdF4RjPv_day_5_of_learning_cinematography…/shot_02_mid.webp" alt="Cánh cửa tủ lạnh bật mở" loading="lazy"/>
+                <div class="v3-shot-cap">Cửa tủ lạnh bật mở</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Shot 03</span>
+                <span class="v3-shot-dur">2.04s</span>
+                <img src="https://media.fedu.vn/images/IG_@yula_andrieieva_DeaMdF4RjPv_day_5_of_learning_cinematography…/shot_03_mid.webp" alt="Góc nhìn từ trong tủ lạnh ra" loading="lazy"/>
+                <div class="v3-shot-cap">POV từ trong tủ nhìn ra</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Shot 05</span>
+                <span class="v3-shot-dur">0.42s</span>
+                <img src="https://media.fedu.vn/images/IG_@yula_andrieieva_DeaMdF4RjPv_day_5_of_learning_cinematography…/shot_05_mid.webp" alt="Bàn tay đưa vào lấy lon nước" loading="lazy"/>
+                <div class="v3-shot-cap">Tay vươn lấy lon nước</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Shot 06</span>
+                <span class="v3-shot-dur">0.33s</span>
+                <img src="https://media.fedu.vn/images/IG_@yula_andrieieva_DeaMdF4RjPv_day_5_of_learning_cinematography…/shot_06_mid.webp" alt="Lớp bokeh mờ tiền cảnh" loading="lazy"/>
+                <div class="v3-shot-cap">Bokeh mờ tiền cảnh</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Shot 07</span>
+                <span class="v3-shot-dur">1.58s</span>
+                <img src="https://media.fedu.vn/images/IG_@yula_andrieieva_DeaMdF4RjPv_day_5_of_learning_cinematography…/shot_07_mid.webp" alt="Rút lon nước và đóng cửa tủ" loading="lazy"/>
+                <div class="v3-shot-cap">Rút lon &amp; khép cửa tủ</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Shot 08</span>
+                <span class="v3-shot-dur">1.29s</span>
+                <img src="https://media.fedu.vn/images/IG_@yula_andrieieva_DeaMdF4RjPv_day_5_of_learning_cinematography…/shot_08_mid.webp" alt="Góc trung trong bếp" loading="lazy"/>
+                <div class="v3-shot-cap">Rót nước sủi bọt gas</div>
+              </div>
+            </div>
+
+            <div class="v3-player" id="p3-DeaMdF4RjPv" style="display:none;">
+              <video controls playsinline preload="none" poster="https://media.fedu.vn/images/IG_@yula_andrieieva_DeaMdF4RjPv_day_5_of_learning_cinematography…/shot_03_mid.webp"></video>
+            </div>
+
+            <div class="v3-verdict">
+              <p><strong>Giải phẫu cơ chế thực tế:</strong> Một việc bình thường như mở tủ lạnh lấy lon nước được làm mới hoàn toàn bằng cách đặt điện thoại cố định bên trong ngăn tủ nhìn ra ngoài. Khi cánh cửa bật mở (Shot 02), ánh sáng tràn vào cùng chuyển động bàn tay vươn tới (Shot 03–07), nối tiếp bằng cảnh bật nắp khoen và bọt gas sủi tăm mạnh mẽ trong ly thủy tinh.</p>
+              <div class="v3-layer-grid">
+                <div class="v3-layer-box fg">
+                  <b>1. Tiền cảnh đóng khung</b>
+                  Hai bên thành tủ lạnh và các chai lọ mờ ở ngăn trước tạo khung hộp tự nhiên.
+                </div>
+                <div class="v3-layer-box mg">
+                  <b>2. Chuyển động chính</b>
+                  Cánh cửa tủ mở ra/đóng vào + bàn tay rút lon nước + dòng nước ngọt sủi bọt.
+                </div>
+                <div class="v3-layer-box bg">
+                  <b>3. Hậu cảnh</b>
+                  Ánh sáng tự nhiên trong gian bếp chiếu ngược vào khoang tủ.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- CARD 2.3: Dc0iEdiuYZ- -->
+          <div class="v3-card" id="v3-Dc0iEdiuYZ-">
+            <div class="v3-head">
+              <div class="v3-title-group">
+                <span class="v3-badge v3-badge-win">MẪU TRỤ CỘT 2 • CHUYỂN ĐỘNG BỌT NITRO MATCHA</span>
+                <strong>@ecuator_cafe — Chuỗi chuyển động bước chân, đẩy cửa và lớp bọt tuyết Nitro Matcha cuộn trào</strong>
+                <span class="v3-meta">(Mã: Dc0iEdiuYZ- • 12 shots)</span>
+              </div>
+              <div class="v3-actions">
+                <button type="button" class="v3-btn-play" onclick="window.toggleV3Player(this, 'p3-Dc0iEdiuYZ-', 'https://media.fedu.vn/videos/Dc0iEdiuYZ-.mp4')">▶️ Xem video</button>
+                <a href="https://ytuong.fedu.vn/v/Dc0iEdiuYZ-" target="_blank" rel="noopener" class="v3-btn-link">Kho Ý Tưởng ↗</a>
+              </div>
+            </div>
+
+            <div class="v3-shot-grid">
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Shot 01</span>
+                <span class="v3-shot-dur">1.24s</span>
+                <img src="https://media.fedu.vn/images/IG_@ecuator_cafe_Dc0iEdiuYZ-_Există_pauze_de_cafea_și_există_momente_în_ca/shot_01_mid.webp" alt="Góc thấp bước chân" loading="lazy"/>
+                <div class="v3-shot-cap">Góc thấp bước chân</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Shot 02</span>
+                <span class="v3-shot-dur">1.88s</span>
+                <img src="https://media.fedu.vn/images/IG_@ecuator_cafe_Dc0iEdiuYZ-_Există_pauze_de_cafea_și_există_momente_în_ca/shot_02_mid.webp" alt="Đẩy cửa kính vào quán" loading="lazy"/>
+                <div class="v3-shot-cap">Tay đẩy cửa vào quán</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Shot 04</span>
+                <span class="v3-shot-dur">1.32s</span>
+                <img src="https://media.fedu.vn/images/IG_@ecuator_cafe_Dc0iEdiuYZ-_Există_pauze_de_cafea_și_există_momente_în_ca/shot_04_mid.webp" alt="Đặt túi xuống bàn" loading="lazy"/>
+                <div class="v3-shot-cap">Đặt túi xuống mặt bàn</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Shot 05</span>
+                <span class="v3-shot-dur">1.04s</span>
+                <img src="https://media.fedu.vn/images/IG_@ecuator_cafe_Dc0iEdiuYZ-_Există_pauze_de_cafea_și_există_momente_în_ca/shot_05_mid.webp" alt="Kéo cần vòi rót Nitro" loading="lazy"/>
+                <div class="v3-shot-cap">Tay kéo cần vòi rót</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Shot 06</span>
+                <span class="v3-shot-dur">1.08s</span>
+                <img src="https://media.fedu.vn/images/IG_@ecuator_cafe_Dc0iEdiuYZ-_Există_pauze_de_cafea_și_există_momente_în_ca/shot_06_mid.webp" alt="Lớp bọt Nitro Matcha cuộn" loading="lazy"/>
+                <div class="v3-shot-cap">Bọt Matcha cuộn trong ly</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Shot 07</span>
+                <span class="v3-shot-dur">1.32s</span>
+                <img src="https://media.fedu.vn/images/IG_@ecuator_cafe_Dc0iEdiuYZ-_Există_pauze_de_cafea_și_există_momente_în_ca/shot_07_mid.webp" alt="Góc nhìn từ trên xuống bàn cafe" loading="lazy"/>
+                <div class="v3-shot-cap">Tay đưa ly vào bàn</div>
+              </div>
+            </div>
+
+            <div class="v3-player" id="p3-Dc0iEdiuYZ-" style="display:none;">
+              <video controls playsinline preload="none" poster="https://media.fedu.vn/images/IG_@ecuator_cafe_Dc0iEdiuYZ-_Există_pauze_de_cafea_și_există_momente_în_ca/shot_06_mid.webp"></video>
+            </div>
+
+            <div class="v3-verdict">
+              <p><strong>Giải phẫu cơ chế thực tế:</strong> Thay vì chụp ảnh ly đồ uống đặt sẵn trên bàn, quán cà phê ghi lại từng chuyển động vật lý nhỏ nhất: mũi giày bước qua vạch nắng (Shot 01), bàn tay đẩy cửa kính (Shot 02), ngón tay kéo cần vòi rót (Shot 05) và đặc biệt là 1.08 giây cận cảnh lớp bọt kem Nitro Matcha đang cuộn sóng bên trong thành ly thủy tinh trong suốt (Shot 06).</p>
+              <div class="v3-layer-grid">
+                <div class="v3-layer-box fg">
+                  <b>1. Tiền cảnh</b>
+                  Thành ly thủy tinh trong suốt đọng sương lạnh sát ống kính.
+                </div>
+                <div class="v3-layer-box mg">
+                  <b>2. Chuyển động vật lý</b>
+                  Dòng bọt tuyết trắng xanh hòa quyện và lắng dần từ đáy ly lên miệng ly.
+                </div>
+                <div class="v3-layer-box bg">
+                  <b>3. Hậu cảnh</b>
+                  Mặt quầy bar tối giản làm nổi bật sắc xanh tươi mát của đồ uống.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ==================== PHẦN 4 ==================== -->
+        <h2 id="sec-4">4. Trụ cột 3 — Ánh nắng ven (Rim Light) &amp; Ngược sáng (Backlight)</h2>
+
+        <div class="callout">
+          <div class="h">Luận điểm trụ cột 03 • SÁNG</div>
+          <p><strong>Ánh sáng đặt phía sau hoặc xiên chéo vẽ ra một đường viền sáng quanh chủ thể.</strong> Đường viền ấy tách chủ thể nổi hẳn khỏi nền tối mà không cần thuật toán xóa phông nhân tạo.</p>
+        </div>
+
+        <p>Khi quay bằng điện thoại trong nhà, nhiều người có thói quen đứng quay lưng vào cửa sổ để ánh sáng chiếu thẳng vào mặt hoặc sản phẩm. Cách đặt máy thuận sáng 100% này làm mất sạch bóng đổ, khiến gương mặt và đồ vật trông bẹt dí. Ngược lại, khi bạn <strong>xoay góc đặt máy một góc 90° đến 135° so với cửa sổ</strong> (đặt nguồn sáng ở phía sau chéo của chủ thể), ba hiện tượng thị giác đắt giá sẽ xuất hiện:</p>
+
+        <div class="spec">
+          <div class="row">
+            <span class="b s">Đường viền Rim Light</span>
+            <div>Ánh sáng đi từ phía sau chéo làm bừng sáng mép tóc, bờ vai, vành cốc gốm hoặc sớ vải mỏng. Mắt người xem đọc đường viền sáng này như một ranh giới sắc nét tách chủ thể khỏi bức tường phía sau.</div>
+          </div>
+          <div class="row">
+            <span class="b s">Hiện hình chất liệu vô hình</span>
+            <div>Hơi nước bốc lên từ ly trà nóng, hạt bụi nắng, làn khói trầm, bọt nước hay độ trong suốt của viên đá chỉ hiện rõ rực rỡ khi được chiếu ngược sáng trên một nền tối. Nếu chiếu sáng từ phía trước, chúng biến mất hoàn toàn.</div>
+          </div>
+          <div class="row">
+            <span class="b s">Thao tác hạ phơi sáng (-0.7 EV)</span>
+            <div>Điện thoại khi gặp ngược sáng thường tự động đẩy sáng toàn khung làm nền cửa sổ bị cháy trắng xóa. <strong>Thao tác bắt buộc:</strong> Ấn ngón tay lên vùng chủ thể trên màn hình 2 giây để khóa nét (<code>AE/AF Lock</code>), sau đó kéo biểu tượng mặt trời nhỏ đi xuống khoảng <code>-0.7</code> đến <code>-1.0 EV</code> để giữ trọn đường viền sáng và làm sâu vùng bóng tối.</div>
+          </div>
+        </div>
+
+        <div class="v3-group">
+          <!-- CARD 3.1: DebgMp_SYGv -->
+          <div class="v3-card" id="v3-DebgMp_SYGv">
+            <div class="v3-head">
+              <div class="v3-title-group">
+                <span class="v3-badge v3-badge-win">MẪU TRỤ CỘT 3 • NGƯỢC SÁNG RÈM VOAN CỬA SỔ</span>
+                <strong>@junko_livlog — Buổi sáng mùa thu tại nhà: Phối ánh sáng ngược qua rèm cửa sổ tôn chất liệu đá viên &amp; tán cây</strong>
+                <span class="v3-meta">(Mã: DebgMp_SYGv • 13 shots)</span>
+              </div>
+              <div class="v3-actions">
+                <button type="button" class="v3-btn-play" onclick="window.toggleV3Player(this, 'p3-DebgMp_SYGv', 'https://media.fedu.vn/videos/DebgMp_SYGv.mp4')">▶️ Xem video</button>
+                <a href="https://ytuong.fedu.vn/v/DebgMp_SYGv" target="_blank" rel="noopener" class="v3-btn-link">Kho Ý Tưởng ↗</a>
+              </div>
+            </div>
+
+            <div class="v3-shot-grid">
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Shot 01</span>
+                <span class="v3-shot-dur">1.00s</span>
+                <img src="https://media.fedu.vn/images/IG_@junko_livlog_DebgMp_SYGv_⁡/shot_01_mid.webp" alt="Góc qua vai gian bếp ngược sáng" loading="lazy"/>
+                <div class="v3-shot-cap">Gian bếp đón nắng ngược</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Shot 02</span>
+                <span class="v3-shot-dur">1.53s</span>
+                <img src="https://media.fedu.vn/images/IG_@junko_livlog_DebgMp_SYGv_⁡/shot_02_mid.webp" alt="Rót cà phê lên đá viên ngược sáng" loading="lazy"/>
+                <div class="v3-shot-cap">Đá viên phát sáng ngược nắng</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Shot 04</span>
+                <span class="v3-shot-dur">1.03s</span>
+                <img src="https://media.fedu.vn/images/IG_@junko_livlog_DebgMp_SYGv_⁡/shot_04_mid.webp" alt="Xúc đá viên vào ly thủy tinh" loading="lazy"/>
+                <div class="v3-shot-cap">Viền sáng quanh viên đá</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Shot 05</span>
+                <span class="v3-shot-dur">1.43s</span>
+                <img src="https://media.fedu.vn/images/IG_@junko_livlog_DebgMp_SYGv_⁡/shot_05_mid.webp" alt="Chú mèo bên rèm ren ngược nắng" loading="lazy"/>
+                <div class="v3-shot-cap">Rim light bộ lông mèo</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Shot 06</span>
+                <span class="v3-shot-dur">0.97s</span>
+                <img src="https://media.fedu.vn/images/IG_@junko_livlog_DebgMp_SYGv_⁡/shot_06_mid.webp" alt="Tán cây trong nhà ngược nắng rèm voan" loading="lazy"/>
+                <div class="v3-shot-cap">Nắng xuyên thấu lá xanh</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Shot 07</span>
+                <span class="v3-shot-dur">1.27s</span>
+                <img src="https://media.fedu.vn/images/IG_@junko_livlog_DebgMp_SYGv_⁡/shot_07_mid.webp" alt="Lật trang sách bên nắng xiên" loading="lazy"/>
+                <div class="v3-shot-cap">Nắng ven trên trang giấy</div>
+              </div>
+            </div>
+
+            <div class="v3-player" id="p3-DebgMp_SYGv" style="display:none;">
+              <video controls playsinline preload="none" poster="https://media.fedu.vn/images/IG_@junko_livlog_DebgMp_SYGv_⁡/shot_02_mid.webp"></video>
+            </div>
+
+            <div class="v3-verdict">
+              <p><strong>Giải phẫu cơ chế thực tế:</strong> Tác giả tắt hết đèn trần trong nhà, đặt máy đối diện hướng cửa sổ có lớp rèm voan trắng làm mềm nắng. Nhờ ánh sáng chiếu từ phía sau tới (Backlight), từng viên đá lạnh và dòng cà phê nâu hổ phách (Shot 02, Shot 04) phát sáng lấp lánh như pha lê, còn bộ lông chú mèo (Shot 05) và tán lá xanh (Shot 06) có đường viền sáng nổi bật trên nền gỗ trầm.</p>
+              <div class="v3-layer-grid">
+                <div class="v3-layer-box fg">
+                  <b>1. Tiền cảnh vùng tối</b>
+                  Khung tường gỗ tối ở Shot 01 đóng vai trò tiền cảnh âm bản, tôn vùng sáng ở trung tâm.
+                </div>
+                <div class="v3-layer-box mg">
+                  <b>2. Chủ thể đón Rim Light</b>
+                  Ly thủy tinh, viên đá, dòng cà phê và tán cây xanh được ánh sáng xuyên qua từ phía sau.
+                </div>
+                <div class="v3-layer-box bg">
+                  <b>3. Nguồn sáng khuếch tán</b>
+                  Khung cửa sổ có lớp rèm ren/voan trắng giúp ánh sáng dịu mềm, không bị gắt cháy.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- CARD 3.2: DbYrq6gIPtC -->
+          <div class="v3-card" id="v3-DbYrq6gIPtC">
+            <div class="v3-head">
+              <div class="v3-title-group">
+                <span class="v3-badge v3-badge-win">MẪU TRỤ CỘT 3 • TƯƠNG PHẢN SÁNG TỐI &amp; CHẤT LIỆU</span>
+                <strong>@iman.lizi — Bắt nắng ven &amp; ngược sáng để làm nổi bật chất liệu nước, hoa, gốm và vải linen</strong>
+                <span class="v3-meta">(Mã: DbYrq6gIPtC • 11 shots)</span>
+              </div>
+              <div class="v3-actions">
+                <button type="button" class="v3-btn-play" onclick="window.toggleV3Player(this, 'p3-DbYrq6gIPtC', 'https://media.fedu.vn/videos/DbYrq6gIPtC.mp4')">▶️ Xem video</button>
+                <a href="https://ytuong.fedu.vn/v/DbYrq6gIPtC" target="_blank" rel="noopener" class="v3-btn-link">Kho Ý Tưởng ↗</a>
+              </div>
+            </div>
+
+            <div class="v3-shot-grid">
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Shot 01</span>
+                <span class="v3-shot-dur">0.83s</span>
+                <img src="https://media.fedu.vn/images/IG_@iman.lizi_DbYrq6gIPtC_Summer_at_home_🌞/shot_01_mid.webp" alt="Ngược sáng bên rèm voan và đèn cam" loading="lazy"/>
+                <div class="v3-shot-cap">Ngược sáng rèm voan</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Shot 02</span>
+                <span class="v3-shot-dur">0.87s</span>
+                <img src="https://media.fedu.vn/images/IG_@iman.lizi_DbYrq6gIPtC_Summer_at_home_🌞/shot_02_mid.webp" alt="Dòng nước xả trên rau củ tươi" loading="lazy"/>
+                <div class="v3-shot-cap">Tia nước bắt nắng ven</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Shot 04</span>
+                <span class="v3-shot-dur">0.90s</span>
+                <img src="https://media.fedu.vn/images/IG_@iman.lizi_DbYrq6gIPtC_Summer_at_home_🌞/shot_04_mid.webp" alt="Bóng nắng khung cửa trên thảm dệt" loading="lazy"/>
+                <div class="v3-shot-cap">Nắng xiên nổi sớ thảm</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Shot 05</span>
+                <span class="v3-shot-dur">0.73s</span>
+                <img src="https://media.fedu.vn/images/IG_@iman.lizi_DbYrq6gIPtC_Summer_at_home_🌞/shot_05_mid.webp" alt="Sách nghệ thuật và đế trầm hương" loading="lazy"/>
+                <div class="v3-shot-cap">Khói trầm ngược sáng</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Shot 06</span>
+                <span class="v3-shot-dur">0.70s</span>
+                <img src="https://media.fedu.vn/images/IG_@iman.lizi_DbYrq6gIPtC_Summer_at_home_🌞/shot_06_mid.webp" alt="Bàn tay bên bình gốm hoa ly" loading="lazy"/>
+                <div class="v3-shot-cap">Viền sáng cánh hoa ly</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Shot 07</span>
+                <span class="v3-shot-dur">0.73s</span>
+                <img src="https://media.fedu.vn/images/IG_@iman.lizi_DbYrq6gIPtC_Summer_at_home_🌞/shot_07_mid.webp" alt="Nắng xiên qua rổ đào mận chín" loading="lazy"/>
+                <div class="v3-shot-cap">Nắng ven lên vỏ trái cây</div>
+              </div>
+            </div>
+
+            <div class="v3-player" id="p3-DbYrq6gIPtC" style="display:none;">
+              <video controls playsinline preload="none" poster="https://media.fedu.vn/images/IG_@iman.lizi_DbYrq6gIPtC_Summer_at_home_🌞/shot_01_mid.webp"></video>
+            </div>
+
+            <div class="v3-verdict">
+              <p><strong>Giải phẫu cơ chế thực tế:</strong> Bằng cách kéo giảm thanh phơi sáng xuống khoảng <code>-0.7 EV</code> và luôn đặt chủ thể nằm giữa máy quay với cửa sổ, tác giả làm nổi bật từng giọt nước bắn lên trên rau củ (Shot 02), sớ vải thô của tấm thảm dệt (Shot 04), làn khói mảnh trên đĩa gốm (Shot 05) và lớp lông tơ mịn trên vỏ trái đào chín (Shot 07).</p>
+              <div class="v3-layer-grid">
+                <div class="v3-layer-box fg">
+                  <b>1. Tiền cảnh</b>
+                  Bàn tay người đưa nhẹ vào khung hình để tương tác với cánh hoa và rổ quả.
+                </div>
+                <div class="v3-layer-box mg">
+                  <b>2. Bề mặt chất liệu (Texture)</b>
+                  Ánh nắng xiên 120° lướt qua bề mặt gốm, thảm dệt và giọt nước tạo độ nổi khối 3D.
+                </div>
+                <div class="v3-layer-box bg">
+                  <b>3. Hậu cảnh</b>
+                  Vùng bóng râm trong phòng được giữ trầm xuống để làm nền tôn đường viền sáng.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ==================== PHẦN 5 ==================== -->
+        <h2 id="sec-5">5. Trụ cột 4 — Thời điểm Buổi sáng sớm &amp; Hoàng hôn (Bóng đổ dài &amp; Quy tắc Đèn điểm buổi tối)</h2>
+
+        <div class="callout">
+          <div class="h">Luận điểm trụ cột 04 • GIỜ</div>
+          <p><strong>Bóng đổ dài là chữ viết của mặt trời.</strong> Nó cho người xem cảm nhận được thời gian trong ngày và biến một mặt bàn phẳng lì thành không gian có chiều sâu.</p>
+        </div>
+
+        <p>Cùng một góc ban công hay một chiếc bàn cạnh cửa sổ, nếu bạn quay lúc 12 giờ trưa khi mặt trời đứng bóng trên đỉnh đầu, ánh sáng gắt chiếu thẳng từ trên xuống sẽ tạo bóng ngắn cụt ngủn, hốc mắt bị tối sâu và màu sắc lạnh lẽo. Nhưng chỉ cần bạn chọn đúng <strong>2 khung giờ vàng ban ngày</strong> hoặc áp dụng <strong>Quy tắc Đèn điểm (Little Lights) vào buổi tối</strong>, chất lượng ánh sáng thay đổi hoàn toàn:</p>
+
+        <div class="spec">
+          <div class="row">
+            <span class="b s">Sáng sớm (6h30 – 8h30)</span>
+            <div>Mặt trời nằm thấp ở đường chân trời chiếu xiên qua khung cửa sổ, tạo ra những vệt bóng đổ dài chia cắt mặt bàn và tường nhà thành các mảng sáng – tối đan xen. Không khí buổi sáng trong trẻo, ít người qua lại, rất hợp cho các cảnh pha trà, làm bữa sáng, mở sổ ghi chép.</div>
+          </div>
+          <div class="row">
+            <span class="b s">Hoàng hôn (16h00 – 17h30)</span>
+            <div>Khoảng 60 đến 90 phút trước khi mặt trời lặn, ánh nắng chuyển sang sắc vàng cam ấm áp và độ chênh sáng tối rất mềm. Lưu ý: Hãy <strong>khóa cân bằng trắng (White Balance)</strong> trên điện thoại để máy không tự động kéo màu vàng ấm về màu trắng lạnh.</div>
+          </div>
+          <div class="row">
+            <span class="b s">Buổi tối: Quy tắc Little Lights</span>
+            <div>Nhiều học viên đi làm cả ngày, chỉ rảnh vào lúc 18h00 – 21h00 tối để quay tại nhà. <strong>Kỷ luật bắt buộc khi quay tối:</strong> Tắt ngay bóng đèn huỳnh quang/LED trắng trên trần nhà! Thay vào đó, chỉ bật 2–3 nguồn sáng điểm nhỏ tầm thấp (đèn bàn chao vải, đèn cây góc sofa, đèn hắt kệ sách hoặc một ngọn nến thơm) có nhiệt độ màu vàng ấm (<code>2700K–3200K</code>).</div>
+          </div>
+        </div>
+
+        <div class="v3-group">
+          <!-- CARD 4.1: DdhHCL6OOfK -->
+          <div class="v3-card" id="v3-DdhHCL6OOfK">
+            <div class="v3-head">
+              <div class="v3-title-group">
+                <span class="v3-badge v3-badge-win">MẪU TRỤ CỘT 4 • NẮNG SỚM BAN MAI &amp; BÓNG CỬA SỔ</span>
+                <strong>@framebygeorge — Khai thác nắng sớm 7h00 sáng: Tia nắng xiên qua bếp, cánh hoa hướng dương &amp; bóng khung cửa</strong>
+                <span class="v3-meta">(Mã: DdhHCL6OOfK • 9 shots)</span>
+              </div>
+              <div class="v3-actions">
+                <button type="button" class="v3-btn-play" onclick="window.toggleV3Player(this, 'p3-DdhHCL6OOfK', 'https://media.fedu.vn/videos/DdhHCL6OOfK.mp4')">▶️ Xem video</button>
+                <a href="https://ytuong.fedu.vn/v/DdhHCL6OOfK" target="_blank" rel="noopener" class="v3-btn-link">Kho Ý Tưởng ↗</a>
+              </div>
+            </div>
+
+            <div class="v3-shot-grid">
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Shot 01</span>
+                <span class="v3-shot-dur">2.50s</span>
+                <img src="https://media.fedu.vn/images/IG_@framebygeorge_DdhHCL6OOfK_Day_23_learning_cinematography/shot_01_mid.webp" alt="Bối cảnh ban mai nắng xiên" loading="lazy"/>
+                <div class="v3-shot-cap">Nắng ban mai xiên phòng</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Shot 02</span>
+                <span class="v3-shot-dur">1.00s</span>
+                <img src="https://media.fedu.vn/images/IG_@framebygeorge_DdhHCL6OOfK_Day_23_learning_cinematography/shot_02_mid.webp" alt="Đặc tả tia nắng sớm" loading="lazy"/>
+                <div class="v3-shot-cap">Vệt nắng dài trên bàn</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Shot 03</span>
+                <span class="v3-shot-dur">2.79s</span>
+                <img src="https://media.fedu.vn/images/IG_@framebygeorge_DdhHCL6OOfK_Day_23_learning_cinematography/shot_03_mid.webp" alt="Đập trứng vào cốc thủy tinh" loading="lazy"/>
+                <div class="v3-shot-cap">Đập trứng ngược nắng sớm</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Shot 04</span>
+                <span class="v3-shot-dur">1.21s</span>
+                <img src="https://media.fedu.vn/images/IG_@framebygeorge_DdhHCL6OOfK_Day_23_learning_cinematography/shot_04_mid.webp" alt="Hoa hướng dương bắt nắng" loading="lazy"/>
+                <div class="v3-shot-cap">Cánh hoa rực sáng</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Shot 07</span>
+                <span class="v3-shot-dur">1.46s</span>
+                <img src="https://media.fedu.vn/images/IG_@framebygeorge_DdhHCL6OOfK_Day_23_learning_cinematography/shot_07_mid.webp" alt="Thành phẩm bốc khói dưới nắng" loading="lazy"/>
+                <div class="v3-shot-cap">Khói nóng nổi trên nền tối</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Shot 08</span>
+                <span class="v3-shot-dur">1.00s</span>
+                <img src="https://media.fedu.vn/images/IG_@framebygeorge_DdhHCL6OOfK_Day_23_learning_cinematography/shot_08_mid.webp" alt="Bóng nắng qua ô cửa" loading="lazy"/>
+                <div class="v3-shot-cap">Bóng đổ dài trên tường</div>
+              </div>
+            </div>
+
+            <div class="v3-player" id="p3-DdhHCL6OOfK" style="display:none;">
+              <video controls playsinline preload="none" poster="https://media.fedu.vn/images/IG_@framebygeorge_DdhHCL6OOfK_Day_23_learning_cinematography/shot_01_mid.webp"></video>
+            </div>
+
+            <div class="v3-verdict">
+              <p><strong>Giải phẫu cơ chế thực tế:</strong> Toàn bộ video được bấm máy trong vòng 30 phút lúc mặt trời vừa lên. Ánh nắng góc thấp chiếu xuyên qua cửa sổ tạo thành những dải sáng hẹp cắt ngang gian bếp tối (Shot 01, Shot 08). Khi đặt chiếc cốc thủy tinh (Shot 03) và đĩa bánh mì nóng (Shot 07) đúng vào vệt nắng đó, phần nền tối xung quanh tự động biến mất, làm làn khói và màu vàng của trứng nổi bật lên rõ rệt.</p>
+              <div class="v3-layer-grid">
+                <div class="v3-layer-box fg">
+                  <b>1. Tiền cảnh vùng bóng râm</b>
+                  Mép bàn và không gian phòng chưa có nắng chiếu tới giữ vai trò khung tối tự nhiên.
+                </div>
+                <div class="v3-layer-box mg">
+                  <b>2. Điểm rơi của vệt nắng</b>
+                  Cốc thủy tinh, bông hoa hướng dương và đĩa đồ ăn đặt chính xác tại luồng nắng xiên.
+                </div>
+                <div class="v3-layer-box bg">
+                  <b>3. Hậu cảnh bóng đổ</b>
+                  Mảng tường in hình bóng khung cửa sổ và bóng lá cây kéo dài theo chiều ngang.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- CARD 4.2: DdW1eYoO7Nb -->
+          <div class="v3-card" id="v3-DdW1eYoO7Nb">
+            <div class="v3-head">
+              <div class="v3-title-group">
+                <span class="v3-badge v3-badge-win">MẪU TRỤ CỘT 4 • BÓNG ĐỔ HÌNH HỌC (SHADOW PLAY)</span>
+                <strong>@framebygeorge — Chơi đùa với bóng đổ chiều hoàng hôn: Biến vệt nắng hình học thành bố cục dẫn mắt</strong>
+                <span class="v3-meta">(Mã: DdW1eYoO7Nb • 8 shots)</span>
+              </div>
+              <div class="v3-actions">
+                <button type="button" class="v3-btn-play" onclick="window.toggleV3Player(this, 'p3-DdW1eYoO7Nb', 'https://media.fedu.vn/videos/DdW1eYoO7Nb.mp4')">▶️ Xem video</button>
+                <a href="https://ytuong.fedu.vn/v/DdW1eYoO7Nb" target="_blank" rel="noopener" class="v3-btn-link">Kho Ý Tưởng ↗</a>
+              </div>
+            </div>
+
+            <div class="v3-shot-grid">
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Shot 01</span>
+                <span class="v3-shot-dur">2.67s</span>
+                <img src="https://media.fedu.vn/images/IG_@framebygeorge_DdW1eYoO7Nb_Day_19_learning_cinematography/shot_01_mid.webp" alt="Cốc cafe đón nắng xiên" loading="lazy"/>
+                <div class="v3-shot-cap">Cốc cà phê kéo bóng dài</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Shot 02</span>
+                <span class="v3-shot-dur">2.00s</span>
+                <img src="https://media.fedu.vn/images/IG_@framebygeorge_DdW1eYoO7Nb_Day_19_learning_cinematography/shot_02_mid.webp" alt="Quạt đồng quay trong nắng chiều" loading="lazy"/>
+                <div class="v3-shot-cap">Cánh quạt đồng bắt nắng</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Shot 03</span>
+                <span class="v3-shot-dur">2.21s</span>
+                <img src="https://media.fedu.vn/images/IG_@framebygeorge_DdW1eYoO7Nb_Day_19_learning_cinematography/shot_03_mid.webp" alt="Khoảng không ngoài ban công" loading="lazy"/>
+                <div class="v3-shot-cap">Ban công nắng chiều ấm</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Shot 04</span>
+                <span class="v3-shot-dur">1.42s</span>
+                <img src="https://media.fedu.vn/images/IG_@framebygeorge_DdW1eYoO7Nb_Day_19_learning_cinematography/shot_04_mid.webp" alt="Vệt nắng hình học trên tường" loading="lazy"/>
+                <div class="v3-shot-cap">Vệt nắng hình học chéo</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Shot 06</span>
+                <span class="v3-shot-dur">2.00s</span>
+                <img src="https://media.fedu.vn/images/IG_@framebygeorge_DdW1eYoO7Nb_Day_19_learning_cinematography/shot_06_mid.webp" alt="Cận cảnh chi tiết dưới bóng nắng" loading="lazy"/>
+                <div class="v3-shot-cap">Cận cảnh tách sáng tối</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Shot 08</span>
+                <span class="v3-shot-dur">1.96s</span>
+                <img src="https://media.fedu.vn/images/IG_@framebygeorge_DdW1eYoO7Nb_Day_19_learning_cinematography/shot_08_mid.webp" alt="Cảnh kết chốt nhịp" loading="lazy"/>
+                <div class="v3-shot-cap">Khép cảnh trong nắng ấm</div>
+              </div>
+            </div>
+
+            <div class="v3-player" id="p3-DdW1eYoO7Nb" style="display:none;">
+              <video controls playsinline preload="none" poster="https://media.fedu.vn/images/IG_@framebygeorge_DdW1eYoO7Nb_Day_19_learning_cinematography/shot_04_mid.webp"></video>
+            </div>
+
+            <div class="v3-verdict">
+              <p><strong>Giải phẫu cơ chế thực tế:</strong> Thay vì tìm kiếm bối cảnh cầu kỳ, tác giả dùng chính những <strong>vệt bóng đổ dài của chấn song cửa sổ và rèm sáo lúc 16h30 chiều</strong> (Shot 01, Shot 04) làm đường dẫn chia khung hình thành các mảng sáng tối hình học. Bạn có thể xem thêm bài tập tương tự ở mẫu <a href="https://ytuong.fedu.vn/v/DdZb-x1OuDw" target="_blank" rel="noopener"><strong>@framebygeorge (DdZb-x1OuDw) ↗</strong></a>.</p>
+              <div class="v3-layer-grid">
+                <div class="v3-layer-box fg">
+                  <b>1. Tiền cảnh bóng đổ</b>
+                  Bóng đen của khung cửa cắt chéo qua mặt bàn gỗ tạo khung lồng khung bằng ánh sáng.
+                </div>
+                <div class="v3-layer-box mg">
+                  <b>2. Chủ thể đặt dọc hướng bóng</b>
+                  Ly cà phê và chiếc quạt cổ đặt ngay trên ranh giới giữa vùng nắng vàng và vùng bóng râm.
+                </div>
+                <div class="v3-layer-box bg">
+                  <b>3. Màu nắng hoàng hôn</b>
+                  Khóa cân bằng trắng giữ nguyên sắc vàng mật ong của buổi chiều muộn.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- CARD 4.3: DeZJOgZoRew -->
+          <div class="v3-card" id="v3-DeZJOgZoRew">
+            <div class="v3-head">
+              <div class="v3-title-group">
+                <span class="v3-badge v3-badge-win">MẪU TRỤ CỘT 4 • QUY TẮC ĐÈN ĐIỂM BUỔI TỐI (LITTLE LIGHTS)</span>
+                <strong>@iman.lizi — Quy tắc 6 giờ tối (Little Lights Only): Tắt đèn trần, phối 4 tầng đèn bàn ấm &amp; nến thơm</strong>
+                <span class="v3-meta">(Mã: DeZJOgZoRew • 9 shots)</span>
+              </div>
+              <div class="v3-actions">
+                <button type="button" class="v3-btn-play" onclick="window.toggleV3Player(this, 'p3-DeZJOgZoRew', 'https://media.fedu.vn/videos/DeZJOgZoRew.mp4')">▶️ Xem video</button>
+                <a href="https://ytuong.fedu.vn/v/DeZJOgZoRew" target="_blank" rel="noopener" class="v3-btn-link">Kho Ý Tưởng ↗</a>
+              </div>
+            </div>
+
+            <div class="v3-shot-grid">
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Shot 01</span>
+                <span class="v3-shot-dur">1.00s</span>
+                <img src="https://media.fedu.vn/images/IG_@iman.lizi_DeZJOgZoRew_the_evening_rule_little_lights_only_🕯️/shot_01_mid.webp" alt="Đèn sàn trụ vải và nến thơm" loading="lazy"/>
+                <div class="v3-shot-cap">Tắt đèn trần, bật đèn góc</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Shot 03</span>
+                <span class="v3-shot-dur">0.83s</span>
+                <img src="https://media.fedu.vn/images/IG_@iman.lizi_DeZJOgZoRew_the_evening_rule_little_lights_only_🕯️/shot_03_mid.webp" alt="Bố cục chéo bàn trà gỗ và nến" loading="lazy"/>
+                <div class="v3-shot-cap">Đường chéo nến &amp; sách mở</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Shot 04</span>
+                <span class="v3-shot-dur">1.00s</span>
+                <img src="https://media.fedu.vn/images/IG_@iman.lizi_DeZJOgZoRew_the_evening_rule_little_lights_only_🕯️/shot_04_mid.webp" alt="Bàn tay viết nhật ký dưới đèn ấm" loading="lazy"/>
+                <div class="v3-shot-cap">Viết sổ dưới ánh đèn bàn</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Shot 06</span>
+                <span class="v3-shot-dur">0.93s</span>
+                <img src="https://media.fedu.vn/images/IG_@iman.lizi_DeZJOgZoRew_the_evening_rule_little_lights_only_🕯️/shot_06_mid.webp" alt="Cốt trà loang trong bình thủy tinh ngược sáng đèn" loading="lazy"/>
+                <div class="v3-shot-cap">Trà loang ngược ánh đèn</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Shot 07</span>
+                <span class="v3-shot-dur">1.27s</span>
+                <img src="https://media.fedu.vn/images/IG_@iman.lizi_DeZJOgZoRew_the_evening_rule_little_lights_only_🕯️/shot_07_mid.webp" alt="Rót trà nóng vào cốc gốm đen" loading="lazy"/>
+                <div class="v3-shot-cap">Rót trà bốc hơi ấm</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Shot 08</span>
+                <span class="v3-shot-dur">1.23s</span>
+                <img src="https://media.fedu.vn/images/IG_@iman.lizi_DeZJOgZoRew_the_evening_rule_little_lights_only_🕯️/shot_08_mid.webp" alt="Góc toàn phòng khách 4 tầng ánh sáng nhỏ" loading="lazy"/>
+                <div class="v3-shot-cap">4 điểm sáng nhỏ trong phòng</div>
+              </div>
+            </div>
+
+            <div class="v3-player" id="p3-DeZJOgZoRew" style="display:none;">
+              <video controls playsinline preload="none" poster="https://media.fedu.vn/images/IG_@iman.lizi_DeZJOgZoRew_the_evening_rule_little_lights_only_🕯️/shot_08_mid.webp"></video>
+            </div>
+
+            <div class="v3-verdict">
+              <p><strong>Giải phẫu cơ chế thực tế:</strong> Đây là mẫu chuẩn mực cho các học viên chỉ có thời gian quay bài vào buổi tối tại căn hộ thành phố. Đúng 18h00 tối, tác giả tắt sạch đèn trần và chỉ bật <strong>4 điểm sáng nhỏ tầm thấp</strong> (Shot 08: đèn trụ vải góc phòng, đèn bàn nhỏ trên kệ, ngọn nến trên bàn trà). Khi quay cận cảnh rót trà (Shot 06–07), chiếc bình thủy tinh được đặt chắn ngay trước bóng đèn bàn để tạo hiệu ứng ngược sáng giả lập y hệt nắng hoàng hôn (xem thêm mẫu cùng phong cách: <a href="https://ytuong.fedu.vn/v/Dd9JnIBNJs7" target="_blank" rel="noopener"><strong>@iman.lizi Dd9JnIBNJs7 ↗</strong></a>).</p>
+              <div class="v3-layer-grid">
+                <div class="v3-layer-box fg">
+                  <b>1. Tiền cảnh (Foreground)</b>
+                  Ngọn nến thơm hoặc cạnh tủ gỗ mờ ở phía trước tạo điểm sáng ấm dẫn mắt.
+                </div>
+                <div class="v3-layer-box mg">
+                  <b>2. Trung cảnh nét (Midground)</b>
+                  Bàn tay viết nhật ký và dòng trà nóng rót vào cốc gốm được chiếu sáng xiên từ đèn bàn.
+                </div>
+                <div class="v3-layer-box bg">
+                  <b>3. Hậu cảnh (Background)</b>
+                  Đèn sàn chao vải linen ở góc xa tạo độ sâu nhiều tầng cho phòng khách buổi tối.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ==================== PHẦN 6 ==================== -->
+        <h2 id="sec-6">6. Trụ cột 5 — Cảnh bình tĩnh, Chân máy tĩnh (Static Shot)</h2>
+
+        <div class="callout">
+          <div class="h">Luận điểm trụ cột 05 • TĨNH</div>
+          <p><strong>Máy quay đứng im buộc khung cảnh phải tự có câu chuyện.</strong> Thói quen cầm tay lia máy qua lại thường chỉ là cách che giấu việc người quay chưa chọn được một góc đặt máy đắt giá.</p>
+        </div>
+
+        <p>Sự điềm tĩnh của người làm nghề thể hiện rõ nhất qua việc <strong>không vội vã lia máy đuổi theo nhân vật</strong>. Khi khung hình được khóa cố định trên chân máy (hoặc tựa chắc chắn lên một vật nặng), ba lợi thế thị giác sẽ xuất hiện ngay lập tức:</p>
+
+        <div class="spec">
+          <div class="row">
+            <span class="b s">Cảm giác làm chủ không gian</span>
+            <div>Một khung hình đứng yên, đường chân trời và cạnh bàn thẳng tắp với mép màn hình tạo cho người xem cảm giác người làm video rất bình tĩnh, tự chủ và đàng hoàng. Người xem được tự do đưa mắt khám phá từ tiền cảnh vào hậu cảnh mà không bị chóng mặt.</div>
+          </div>
+          <div class="row">
+            <span class="b s">Làm nổi bật chuyển động nhỏ</span>
+            <div>Khi toàn bộ nền tường, kệ sách, mặt bàn đứng yên tuyệt đối, chỉ một làn khói mỏng bay lên hay một ngón tay gõ xuống bàn cũng trở nên sắc nét gấp ba lần so với lúc máy bị rung tay.</div>
+          </div>
+          <div class="row">
+            <span class="b s">Nhân vật tự bước vào – bước ra</span>
+            <div>Khi tự quay một mình mà không có người cầm máy hộ, bạn chỉ cần đặt chân máy cố định, đóng khung sẵn con đường dẫn mắt, bấm quay rồi tự bước từ ngoài khung vào vùng lấy nét (hoặc bước qua khung hình).</div>
+          </div>
+        </div>
+
+        <p><strong>Thao tác chuẩn tại hiện trường:</strong> Luôn bật <strong>Lưới (Grid 9 ô)</strong> trong phần cài đặt camera để canh các đường dọc của tường, cửa sổ và đường ngang của mặt bàn thẳng tuyệt đối (lệch nghiêng 2 độ là mất đi vẻ chỉn chu ngay). Mỗi góc máy tĩnh hãy giữ yên từ <code>4 đến 6 giây</code>, khi dựng cắt lấy <code>1.5 đến 2.5 giây</code> đắt nhất.</p>
+
+        <div class="v3-group">
+          <!-- CARD 5.1: DemoZWsuTjr -->
+          <div class="v3-card" id="v3-DemoZWsuTjr">
+            <div class="v3-head">
+              <div class="v3-title-group">
+                <span class="v3-badge v3-badge-win">MẪU TRỤ CỘT 5 • TỰ ĐẶT CHÂN MÁY BƯỚC VÀO KHUNG</span>
+                <strong>@framebygeorge — Công thức tự quay một mình ngoài công viên: Đặt máy cố định, đóng khung vòm cây &amp; bước vào vùng nét</strong>
+                <span class="v3-meta">(Mã: DemoZWsuTjr • 10 shots)</span>
+              </div>
+              <div class="v3-actions">
+                <button type="button" class="v3-btn-play" onclick="window.toggleV3Player(this, 'p3-DemoZWsuTjr', 'https://media.fedu.vn/videos/DemoZWsuTjr.mp4')">▶️ Xem video</button>
+                <a href="https://ytuong.fedu.vn/v/DemoZWsuTjr" target="_blank" rel="noopener" class="v3-btn-link">Kho Ý Tưởng ↗</a>
+              </div>
+            </div>
+
+            <div class="v3-shot-grid">
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Shot 01</span>
+                <span class="v3-shot-dur">1.08s</span>
+                <img src="https://media.fedu.vn/images/IG_@framebygeorge_DemoZWsuTjr_October_but_cinematic🍂/shot_01_mid.webp" alt="Khung hình tĩnh vòm cây" loading="lazy"/>
+                <div class="v3-shot-cap">Khung tĩnh vòm cây</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Shot 02</span>
+                <span class="v3-shot-dur">1.62s</span>
+                <img src="https://media.fedu.vn/images/IG_@framebygeorge_DemoZWsuTjr_October_but_cinematic🍂/shot_02_mid.webp" alt="Nhân vật bước vào từ tiền cảnh" loading="lazy"/>
+                <div class="v3-shot-cap">Bước từ tiền cảnh vào</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Shot 04</span>
+                <span class="v3-shot-dur">2.04s</span>
+                <img src="https://media.fedu.vn/images/IG_@framebygeorge_DemoZWsuTjr_October_but_cinematic🍂/shot_04_mid.webp" alt="Góc thấp sát cỏ nhân vật ở trục 1/3" loading="lazy"/>
+                <div class="v3-shot-cap">Đặt máy sát cỏ trục 1/3</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Shot 05</span>
+                <span class="v3-shot-dur">1.08s</span>
+                <img src="https://media.fedu.vn/images/IG_@framebygeorge_DemoZWsuTjr_October_but_cinematic🍂/shot_05_mid.webp" alt="Ngước nhìn nắng xuyên tán lá" loading="lazy"/>
+                <div class="v3-shot-cap">Tĩnh máy bắt nắng lá</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Shot 06</span>
+                <span class="v3-shot-dur">1.54s</span>
+                <img src="https://media.fedu.vn/images/IG_@framebygeorge_DemoZWsuTjr_October_but_cinematic🍂/shot_06_mid.webp" alt="Đặc tả chiếc lá trong vệt nắng" loading="lazy"/>
+                <div class="v3-shot-cap">Chiếc lá rung trong nắng</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Shot 08</span>
+                <span class="v3-shot-dur">1.92s</span>
+                <img src="https://media.fedu.vn/images/IG_@framebygeorge_DemoZWsuTjr_October_but_cinematic🍂/shot_08_mid.webp" alt="Góc cận sát mặt đất" loading="lazy"/>
+                <div class="v3-shot-cap">Đặt máy sát thảm lá khô</div>
+              </div>
+            </div>
+
+            <div class="v3-player" id="p3-DemoZWsuTjr" style="display:none;">
+              <video controls playsinline preload="none" poster="https://media.fedu.vn/images/IG_@framebygeorge_DemoZWsuTjr_October_but_cinematic🍂/shot_02_mid.webp"></video>
+            </div>
+
+            <div class="v3-verdict">
+              <p><strong>Giải phẫu cơ chế thực tế:</strong> Tác giả đi công viên một mình, không hề dùng gậy chống rung hay nhờ người cầm máy chạy theo. Ở Shot 01–03, máy đặt cố định nhìn dọc con đường dưới vòm cây, người quay chỉ việc đi bộ từ phía sau máy bước thẳng vào vùng trung cảnh nét. Ở Shot 04 và Shot 08, điện thoại được đặt sát xuống mặt cỏ để lấy thảm lá làm tiền cảnh mờ.</p>
+              <div class="v3-layer-grid">
+                <div class="v3-layer-box fg">
+                  <b>1. Tiền cảnh cố định</b>
+                  Hai hàng cây rợp bóng và mặt cỏ sát ống kính tạo đường hầm dẫn mắt.
+                </div>
+                <div class="v3-layer-box mg">
+                  <b>2. Chủ thể di chuyển qua khung tĩnh</b>
+                  Nhân vật tự bước vào điểm giao 1/3 trong khi khung cảnh xung quanh đứng yên hoàn toàn.
+                </div>
+                <div class="v3-layer-box bg">
+                  <b>3. Hậu cảnh ánh sáng</b>
+                  Khoảng sáng cuối con đường tạo độ tương phản hút chiều sâu.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- CARD 5.2: DdsodC0hSmZ -->
+          <div class="v3-card" id="v3-DdsodC0hSmZ">
+            <div class="v3-head">
+              <div class="v3-title-group">
+                <span class="v3-badge v3-badge-win">MẪU TRỤ CỘT 5 • GIẢI PHẪU KHUNG HÌNH TĨNH ĐỜI THƯỜNG</span>
+                <strong>@ajit_rathore886 — Sức nặng của khung máy tĩnh (Static Shots) khi quay đôi bàn tay làm nghề &amp; phố phường</strong>
+                <span class="v3-meta">(Mã: DdsodC0hSmZ • 10 shots)</span>
+              </div>
+              <div class="v3-actions">
+                <button type="button" class="v3-btn-play" onclick="window.toggleV3Player(this, 'p3-DdsodC0hSmZ', 'https://media.fedu.vn/videos/DdsodC0hSmZ.mp4')">▶️ Xem video</button>
+                <a href="https://ytuong.fedu.vn/v/DdsodC0hSmZ" target="_blank" rel="noopener" class="v3-btn-link">Kho Ý Tưởng ↗</a>
+              </div>
+            </div>
+
+            <div class="v3-shot-grid">
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Shot 01</span>
+                <span class="v3-shot-dur">2.12s</span>
+                <img src="https://media.fedu.vn/images/IG_@ajit_rathore886_DdsodC0hSmZ_Static_Shots🔥📽️/shot_01_mid.webp" alt="Bối cảnh nhộn nhịp chủ thể tĩnh" loading="lazy"/>
+                <div class="v3-shot-cap">Khung tĩnh giữa phố</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Shot 02</span>
+                <span class="v3-shot-dur">1.84s</span>
+                <img src="https://media.fedu.vn/images/IG_@ajit_rathore886_DdsodC0hSmZ_Static_Shots🔥📽️/shot_02_mid.webp" alt="Đặc tả đôi bàn tay lao động" loading="lazy"/>
+                <div class="v3-shot-cap">Cận tĩnh đôi tay làm nghề</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Shot 03</span>
+                <span class="v3-shot-dur">1.04s</span>
+                <img src="https://media.fedu.vn/images/IG_@ajit_rathore886_DdsodC0hSmZ_Static_Shots🔥📽️/shot_03_mid.webp" alt="Khói bếp ngược sáng" loading="lazy"/>
+                <div class="v3-shot-cap">Khói bếp xuyên nắng</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Shot 05</span>
+                <span class="v3-shot-dur">0.72s</span>
+                <img src="https://media.fedu.vn/images/IG_@ajit_rathore886_DdsodC0hSmZ_Static_Shots🔥📽️/shot_05_mid.webp" alt="Đóng khung tự nhiên" loading="lazy"/>
+                <div class="v3-shot-cap">Đóng khung qua khe cửa</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Shot 07</span>
+                <span class="v3-shot-dur">1.16s</span>
+                <img src="https://media.fedu.vn/images/IG_@ajit_rathore886_DdsodC0hSmZ_Static_Shots🔥📽️/shot_07_mid.webp" alt="Khung trong khung bằng gương" loading="lazy"/>
+                <div class="v3-shot-cap">Khung lồng khung qua gương</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Shot 08</span>
+                <span class="v3-shot-dur">1.80s</span>
+                <img src="https://media.fedu.vn/images/IG_@ajit_rathore886_DdsodC0hSmZ_Static_Shots🔥📽️/shot_08_mid.webp" alt="Nhịp đường phố tĩnh" loading="lazy"/>
+                <div class="v3-shot-cap">Tĩnh máy đón dòng người</div>
+              </div>
+            </div>
+
+            <div class="v3-player" id="p3-DdsodC0hSmZ" style="display:none;">
+              <video controls playsinline preload="none" poster="https://media.fedu.vn/images/IG_@ajit_rathore886_DdsodC0hSmZ_Static_Shots🔥📽️/shot_02_mid.webp"></video>
+            </div>
+
+            <div class="v3-verdict">
+              <p><strong>Giải phẫu cơ chế thực tế:</strong> Giữa khu chợ và xưởng làm việc rất đông đúc, người quay không hề lia máy theo đám đông mà khóa cứng khung hình ở từng góc: cận cảnh đôi bàn tay người thợ đang thao tác (Shot 02), làn khói bếp bốc lên qua tia nắng (Shot 03), hoặc đặt máy nhìn qua một chiếc gương nhỏ (Shot 07). Sự đứng yên của máy làm bật lên sự tập trung của người thợ.</p>
+              <div class="v3-layer-grid">
+                <div class="v3-layer-box fg">
+                  <b>1. Tiền cảnh đóng khung</b>
+                  Khung gương, vách cửa gỗ và đồ nghề mờ ở mép ngoài màn hình.
+                </div>
+                <div class="v3-layer-box mg">
+                  <b>2. Trung cảnh (Chủ thể)</b>
+                  Đôi bàn tay người thợ và làn khói trắng chuyển động trong vùng nắng xiên.
+                </div>
+                <div class="v3-layer-box bg">
+                  <b>3. Hậu cảnh</b>
+                  Không gian xưởng làm việc trầm tối giúp tách bạch hoàn toàn chủ thể.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- CARD 5.3: DaH7X34NTNX -->
+          <div class="v3-card" id="v3-DaH7X34NTNX">
+            <div class="v3-head">
+              <div class="v3-title-group">
+                <span class="v3-badge v3-badge-win">MẪU TRỤ CỘT 5 • KHUNG TĨNH KIẾN TRÚC &amp; DÒNG NGƯỜI</span>
+                <strong>@mako__go — Khung hình tĩnh đón dòng người &amp; xe qua lại: Kết hợp đường dẫn một điểm tụ &amp; chân máy tĩnh</strong>
+                <span class="v3-meta">(Mã: DaH7X34NTNX • 7 shots)</span>
+              </div>
+              <div class="v3-actions">
+                <button type="button" class="v3-btn-play" onclick="window.toggleV3Player(this, 'p3-DaH7X34NTNX', 'https://media.fedu.vn/videos/DaH7X34NTNX.mp4')">▶️ Xem video</button>
+                <a href="https://ytuong.fedu.vn/v/DaH7X34NTNX" target="_blank" rel="noopener" class="v3-btn-link">Kho Ý Tưởng ↗</a>
+              </div>
+            </div>
+
+            <div class="v3-shot-grid">
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Shot 01</span>
+                <span class="v3-shot-dur">2.50s</span>
+                <img src="https://media.fedu.vn/images/IG_%40mako__go_DaH7X34NTNX_Palermo_Sicily/shot_01_start.webp" alt="Khung lồng khung cổng vòm" loading="lazy"/>
+                <div class="v3-shot-cap">Cổng vòm đón xe chạy qua</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Shot 02</span>
+                <span class="v3-shot-dur">2.50s</span>
+                <img src="https://media.fedu.vn/images/IG_%40mako__go_DaH7X34NTNX_Palermo_Sicily/shot_02_start.webp" alt="Rèm che nắng bay trong gió" loading="lazy"/>
+                <div class="v3-shot-cap">Rèm kẻ sọc bay trong gió</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Shot 03</span>
+                <span class="v3-shot-dur">2.50s</span>
+                <img src="https://media.fedu.vn/images/IG_%40mako__go_DaH7X34NTNX_Palermo_Sicily/shot_03_start.webp" alt="Bố cục chữ V hội tụ" loading="lazy"/>
+                <div class="v3-shot-cap">Đường dẫn hội tụ mái vòm</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Shot 04</span>
+                <span class="v3-shot-dur">2.50s</span>
+                <img src="https://media.fedu.vn/images/IG_%40mako__go_DaH7X34NTNX_Palermo_Sicily/shot_04_start.webp" alt="Mặt đứng đối xứng tiệm bánh" loading="lazy"/>
+                <div class="v3-shot-cap">Đối xứng mặt tiền tiệm</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Shot 05</span>
+                <span class="v3-shot-dur">2.50s</span>
+                <img src="https://media.fedu.vn/images/IG_%40mako__go_DaH7X34NTNX_Palermo_Sicily/shot_05_start.webp" alt="Phối cảnh một điểm tụ" loading="lazy"/>
+                <div class="v3-shot-cap">Trục đường một điểm tụ</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Shot 06</span>
+                <span class="v3-shot-dur">2.50s</span>
+                <img src="https://media.fedu.vn/images/IG_%40mako__go_DaH7X34NTNX_Palermo_Sicily/shot_06_start.webp" alt="Cánh chim bay qua mái vòm" loading="lazy"/>
+                <div class="v3-shot-cap">Đợi cánh chim bay ngang</div>
+              </div>
+            </div>
+
+            <div class="v3-player" id="p3-DaH7X34NTNX" style="display:none;">
+              <video controls playsinline preload="none" poster="https://media.fedu.vn/images/IG_%40mako__go_DaH7X34NTNX_Palermo_Sicily/shot_01_start.webp"></video>
+            </div>
+
+            <div class="v3-verdict">
+              <p><strong>Giải phẫu cơ chế thực tế:</strong> Mẫu chuẩn mực khi bạn muốn quay mặt tiền cửa tiệm, văn phòng hoặc đường phố: đặt máy thật thẳng và đối xứng trước cổng vòm (Shot 01) hoặc mặt tiền tiệm bánh (Shot 04), sau đó kiên nhẫn giữ máy 5 giây đợi một chiếc xe hoặc người đạp xe chạy ngang qua điểm giao 1/3.</p>
+              <div class="v3-layer-grid">
+                <div class="v3-layer-box fg">
+                  <b>1. Tiền cảnh kiến trúc</b>
+                  Cổng vòm đá tối màu ở Shot 01 đóng khung toàn bộ con phố phía trong.
+                </div>
+                <div class="v3-layer-box mg">
+                  <b>2. Chuyển động cắt ngang</b>
+                  Chiếc xe ba gác, người đạp xe và tấm rèm bay trong gió đi ngang qua khung máy tĩnh.
+                </div>
+                <div class="v3-layer-box bg">
+                  <b>3. Hậu cảnh đối xứng</b>
+                  Các đường thẳng của tòa nhà và con phố hội tụ về một điểm ở trung tâm.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ==================== PHẦN 7 ==================== -->
+        <h2 id="sec-7">7. Trụ cột 6 — Vào ngay cảnh ở lúc đang chuyển động (Quy tắc 70%–30%)</h2>
+
+        <div class="callout">
+          <div class="h">Luận điểm trụ cột 06 • VÀO</div>
+          <p><strong>Người xem không cần xem lúc bạn chuẩn bị diễn; họ cần thấy công việc đang diễn ra.</strong> Giữ lại 1.5 giây đứng chờ đầu cảnh là lý do trực tiếp nhất khiến người xem vuốt qua video của bạn.</p>
+        </div>
+
+        <p>Khi tự quay một mình, thứ tự thao tác vật lý luôn là: bấm nút quay trên điện thoại &rarr; bước về chỗ hoặc đặt tay vào vị trí &rarr; nghỉ nửa giây &rarr; bắt đầu làm. Nếu khi đưa vào phần mềm dựng bạn để nguyên đoạn đầu đó, video sẽ bị trùng nhịp. Quy tắc <strong>Cắt vào giữa chuyển động (70% – 30%)</strong> xử lý dứt điểm vấn đề này qua hai bước:</p>
+
+        <div class="spec">
+          <div class="row">
+            <span class="b s">Vào ở 30% đầu chuyển động</span>
+            <div>Không bao giờ lấy từ lúc bàn tay còn đang đặt yên trên bàn. Hãy kéo thanh cắt bỏ hẳn 1.5 giây đầu, chỉ lấy từ khoảnh khắc <strong>hành động đã diễn ra được khoảng 30%</strong> (ví dụ: tấm ga giường đang được tung lên giữa không trung, dòng cà phê đã bắt đầu chảy khỏi vòi, ngòi bút đang chạy trên mặt giấy).</div>
+          </div>
+          <div class="row">
+            <span class="b s">Cắt ra ở 70% cuối chuyển động</span>
+            <div>Đừng đợi bàn tay làm xong rồi thu về nghỉ ngơi mới cắt. Hãy cắt ra ngay khi <strong>hành động đi đến khoảng 70%</strong> (trước khi tay dừng hẳn) và nối thẳng sang 30% đầu của hành động kế tiếp ở góc máy mới. Mắt người xem sẽ trượt theo đà chuyển động qua vết cắt mà không hề thấy giật cục.</div>
+          </div>
+          <div class="row">
+            <span class="b s">Băm nhịp ngắn 0.5s – 1.2s</span>
+            <div>Với các thao tác quen thuộc hằng ngày (pha đồ uống, mở sổ, gõ bàn phím, đóng gói hàng), việc cắt nối liên hoàn các lát cắt <code>0.5s – 1.2s</code> vào đúng điểm đang cử động giúp tiết kiệm 60% thời gian của người xem mà vẫn truyền tải trọn vẹn sự tỉ mỉ.</div>
+          </div>
+        </div>
+
+        <div class="v3-group">
+          <!-- CARD 6.1: Dctj7NfNimM -->
+          <div class="v3-card" id="v3-Dctj7NfNimM">
+            <div class="v3-head">
+              <div class="v3-title-group">
+                <span class="v3-badge v3-badge-win">MẪU TRỤ CỘT 6 • CẮT VÀO GIỮA HÀNH ĐỘNG (0.5S – 0.8S)</span>
+                <strong>@joshdiazfilms — 3 thói quen nhỏ buổi sáng: Cắt bỏ 100% thời gian chờ, vào thẳng lúc tay đang tung ga giường &amp; nén cà phê</strong>
+                <span class="v3-meta">(Mã: Dctj7NfNimM • 18 shots)</span>
+              </div>
+              <div class="v3-actions">
+                <button type="button" class="v3-btn-play" onclick="window.toggleV3Player(this, 'p3-Dctj7NfNimM', 'https://media.fedu.vn/videos/Dctj7NfNimM.mp4')">▶️ Xem video</button>
+                <a href="https://ytuong.fedu.vn/v/Dctj7NfNimM" target="_blank" rel="noopener" class="v3-btn-link">Kho Ý Tưởng ↗</a>
+              </div>
+            </div>
+
+            <div class="v3-shot-grid">
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Shot 02</span>
+                <span class="v3-shot-dur">0.87s</span>
+                <img src="https://media.fedu.vn/images/IG_@joshdiazfilms_Dctj7NfNimM_Life_Feel_Put_Together/shot_02_mid.webp" alt="Kéo thẳng ga giường" loading="lazy"/>
+                <div class="v3-shot-cap">Đang kéo căng ga giường</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Shot 03</span>
+                <span class="v3-shot-dur">0.67s</span>
+                <img src="https://media.fedu.vn/images/IG_@joshdiazfilms_Dctj7NfNimM_Life_Feel_Put_Together/shot_03_mid.webp" alt="Vỗ gối định hình" loading="lazy"/>
+                <div class="v3-shot-cap">Tay đang vỗ xuống gối</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Shot 04</span>
+                <span class="v3-shot-dur">0.50s</span>
+                <img src="https://media.fedu.vn/images/IG_@joshdiazfilms_Dctj7NfNimM_Life_Feel_Put_Together/shot_04_mid.webp" alt="Kéo rèm đón nắng" loading="lazy"/>
+                <div class="v3-shot-cap">Rèm đang trượt mở nắng</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Shot 05</span>
+                <span class="v3-shot-dur">0.50s</span>
+                <img src="https://media.fedu.vn/images/IG_@joshdiazfilms_Dctj7NfNimM_Life_Feel_Put_Together/shot_05_mid.webp" alt="Xếp gọn đồ bàn ăn" loading="lazy"/>
+                <div class="v3-shot-cap">Tay đang nhấc dọn đồ</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Shot 07</span>
+                <span class="v3-shot-dur">0.42s</span>
+                <img src="https://media.fedu.vn/images/IG_@joshdiazfilms_Dctj7NfNimM_Life_Feel_Put_Together/shot_07_mid.webp" alt="Nén bột cà phê" loading="lazy"/>
+                <div class="v3-shot-cap">Tay đang ấn nén cà phê</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Shot 08</span>
+                <span class="v3-shot-dur">0.83s</span>
+                <img src="https://media.fedu.vn/images/IG_@joshdiazfilms_Dctj7NfNimM_Life_Feel_Put_Together/shot_08_mid.webp" alt="Dòng chảy Espresso" loading="lazy"/>
+                <div class="v3-shot-cap">Espresso đang chảy xuống</div>
+              </div>
+            </div>
+
+            <div class="v3-player" id="p3-Dctj7NfNimM" style="display:none;">
+              <video controls playsinline preload="none" poster="https://media.fedu.vn/images/IG_@joshdiazfilms_Dctj7NfNimM_Life_Feel_Put_Together/shot_04_mid.webp"></video>
+            </div>
+
+            <div class="v3-verdict">
+              <p><strong>Giải phẫu cơ chế thực tế:</strong> Hãy nhìn thời lượng của từng lát cắt từ Shot 02 đến Shot 08: tất cả chỉ dài từ <code>0.42s đến 0.87s</code>! Không có bất kỳ một khung hình nào thấy nhân vật bước tới giường hay chuẩn bị cầm rèm: vừa cắt vào Shot 02 là mép chăn đã đang hạ xuống mặt nệm; vừa cắt sang Shot 04 là tấm rèm đã đang trượt ngang để lộ tia nắng ban mai.</p>
+              <div class="v3-layer-grid">
+                <div class="v3-layer-box fg">
+                  <b>1. Điểm cắt vào (30%)</b>
+                  Lấy ngay khoảnh khắc vật thể đang bay hoặc bàn tay đang tiếp xúc trực tiếp với đồ vật.
+                </div>
+                <div class="v3-layer-box mg">
+                  <b>2. Điểm cắt ra (70%)</b>
+                  Cắt sang cảnh tiếp theo ngay trước khi bàn tay hoàn tất động tác và thu về.
+                </div>
+                <div class="v3-layer-box bg">
+                  <b>3. Kết hợp âm thanh thật</b>
+                  Tiếng vỗ gối, tiếng kéo rèm xoẹt ngang và tiếng máy pha cà phê nối khít từng nhát cắt.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- CARD 6.2: DeHtnziInQn -->
+          <div class="v3-card" id="v3-DeHtnziInQn">
+            <div class="v3-head">
+              <div class="v3-title-group">
+                <span class="v3-badge v3-badge-win">MẪU TRỤ CỘT 6 • NỐI ĐÀ CỬ ĐỘNG NGÓN TAY TẠI BÀN</span>
+                <strong>@georgepabaker — 13 cú cắt cận cảnh bàn làm việc: Nối đà xoay bút sang nhịp ấn phím &amp; nhấp chuột</strong>
+                <span class="v3-meta">(Mã: DeHtnziInQn • 13 shots)</span>
+              </div>
+              <div class="v3-actions">
+                <button type="button" class="v3-btn-play" onclick="window.toggleV3Player(this, 'p3-DeHtnziInQn', 'https://media.fedu.vn/videos/DeHtnziInQn.mp4')">▶️ Xem video</button>
+                <a href="https://ytuong.fedu.vn/v/DeHtnziInQn" target="_blank" rel="noopener" class="v3-btn-link">Kho Ý Tưởng ↗</a>
+              </div>
+            </div>
+
+            <div class="v3-shot-grid">
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Shot 02</span>
+                <span class="v3-shot-dur">0.83s</span>
+                <img src="https://media.fedu.vn/images/IG_@georgepabaker_DeHtnziInQn_Simple_as_that/shot_02_mid.webp" alt="Góc qua vai bàn dựng phim" loading="lazy"/>
+                <div class="v3-shot-cap">Qua vai trượt vào bàn</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Shot 03</span>
+                <span class="v3-shot-dur">0.70s</span>
+                <img src="https://media.fedu.vn/images/IG_@georgepabaker_DeHtnziInQn_Simple_as_that/shot_03_mid.webp" alt="Cực cận đôi mắt tập trung" loading="lazy"/>
+                <div class="v3-shot-cap">Cực cận mắt phản chiếu</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Shot 04</span>
+                <span class="v3-shot-dur">0.43s</span>
+                <img src="https://media.fedu.vn/images/IG_@georgepabaker_DeHtnziInQn_Simple_as_that/shot_04_mid.webp" alt="Xoay mở ngòi bút" loading="lazy"/>
+                <div class="v3-shot-cap">0.43s bật ngòi bút</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Shot 05</span>
+                <span class="v3-shot-dur">0.37s</span>
+                <img src="https://media.fedu.vn/images/IG_@georgepabaker_DeHtnziInQn_Simple_as_that/shot_05_mid.webp" alt="Gõ phím tắt sát mặt bàn" loading="lazy"/>
+                <div class="v3-shot-cap">0.37s ấn phím tắt</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Shot 07</span>
+                <span class="v3-shot-dur">0.38s</span>
+                <img src="https://media.fedu.vn/images/IG_@georgepabaker_DeHtnziInQn_Simple_as_that/shot_07_mid.webp" alt="Ngón tay nhấp chuột" loading="lazy"/>
+                <div class="v3-shot-cap">0.38s ngón tay nhấp chuột</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Shot 08</span>
+                <span class="v3-shot-dur">1.28s</span>
+                <img src="https://media.fedu.vn/images/IG_@georgepabaker_DeHtnziInQn_Simple_as_that/shot_08_mid.webp" alt="Tiền cảnh tay viết mờ hậu cảnh laptop nét" loading="lazy"/>
+                <div class="v3-shot-cap">Giãn nhịp 3 lớp chiều sâu</div>
+              </div>
+            </div>
+
+            <div class="v3-player" id="p3-DeHtnziInQn" style="display:none;">
+              <video controls playsinline preload="none" poster="https://media.fedu.vn/images/IG_@georgepabaker_DeHtnziInQn_Simple_as_that/shot_08_mid.webp"></video>
+            </div>
+
+            <div class="v3-verdict">
+              <p><strong>Giải phẫu cơ chế thực tế:</strong> Ngồi một chỗ trước máy tính vẫn tạo ra nhịp điệu cuốn hút nhờ cắt nối đúng điểm rơi 70%–30%: ngón cái vừa xoay bật ngòi bút hướng lên ở Shot 04 (<code>0.43s</code>) thì cắt ngay sang ngón trỏ đang lao xuống ấn phím ở Shot 05 (<code>0.37s</code>), tiếp nối bằng ngón tay nhấp chuột ở Shot 07 (<code>0.38s</code>) rồi mở rộng ra góc 3 lớp chiều sâu ở Shot 08 (<code>1.28s</code>).</p>
+              <div class="v3-layer-grid">
+                <div class="v3-layer-box fg">
+                  <b>1. Nhịp Co (0.37s – 0.43s)</b>
+                  Các cảnh đặc tả ngòi bút, phím bấm và con chuột được cắt sát vào khoảnh khắc va đập.
+                </div>
+                <div class="v3-layer-box mg">
+                  <b>2. Nhịp Giãn (1.28s)</b>
+                  Xen kẽ cảnh trung có tiền cảnh tay viết sổ mờ để mắt người xem có nhịp nghỉ.
+                </div>
+                <div class="v3-layer-box bg">
+                  <b>3. Điểm nối chuyển động</b>
+                  Hướng vung của ngón tay ở cuối cảnh trước trùng khớp với hướng ấn xuống ở đầu cảnh sau.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- CARD 6.3: Deb_OOxqZbl -->
+          <div class="v3-card" id="v3-Deb_OOxqZbl">
+            <div class="v3-head">
+              <div class="v3-title-group">
+                <span class="v3-badge v3-badge-win">MẪU TRỤ CỘT 6 • NỐI TRỤC CHUYỂN ĐỘNG LIÊN HOÀN</span>
+                <strong>@arturbr — Kể trọn một ngày làm việc bằng 21 cú cắt 0.4 giây nối tiếp đúng hướng chuyển động</strong>
+                <span class="v3-meta">(Mã: Deb_OOxqZbl • 21 shots)</span>
+              </div>
+              <div class="v3-actions">
+                <button type="button" class="v3-btn-play" onclick="window.toggleV3Player(this, 'p3-Deb_OOxqZbl', 'https://media.fedu.vn/videos/Deb_OOxqZbl.mp4')">▶️ Xem video</button>
+                <a href="https://ytuong.fedu.vn/v/Deb_OOxqZbl" target="_blank" rel="noopener" class="v3-btn-link">Kho Ý Tưởng ↗</a>
+              </div>
+            </div>
+
+            <div class="v3-shot-grid">
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Shot 01</span>
+                <span class="v3-shot-dur">0.56s</span>
+                <img src="https://media.fedu.vn/images/IG_@arturbr_Deb_OOxqZbl_Loop/shot_01_mid.webp" alt="Đồng hồ báo thức 6:00 AM" loading="lazy"/>
+                <div class="v3-shot-cap">Đồng hồ nhảy 6:00 AM</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Shot 04</span>
+                <span class="v3-shot-dur">0.48s</span>
+                <img src="https://media.fedu.vn/images/IG_@arturbr_Deb_OOxqZbl_Loop/shot_04_mid.webp" alt="Tia nước vòi sen ngược sáng" loading="lazy"/>
+                <div class="v3-shot-cap">Tia nước rơi dọc khung</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Shot 05</span>
+                <span class="v3-shot-dur">0.44s</span>
+                <img src="https://media.fedu.vn/images/IG_@arturbr_Deb_OOxqZbl_Loop/shot_05_mid.webp" alt="Đập trứng rơi giữa không trung" loading="lazy"/>
+                <div class="v3-shot-cap">Lòng đỏ trứng đang rơi</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Shot 06</span>
+                <span class="v3-shot-dur">0.32s</span>
+                <img src="https://media.fedu.vn/images/IG_@arturbr_Deb_OOxqZbl_Loop/shot_06_mid.webp" alt="Dòng cà phê rót vào ly" loading="lazy"/>
+                <div class="v3-shot-cap">Nối trục dòng cà phê rót</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Shot 07</span>
+                <span class="v3-shot-dur">0.36s</span>
+                <img src="https://media.fedu.vn/images/IG_@arturbr_Deb_OOxqZbl_Loop/shot_07_mid.webp" alt="Góc máy từ trong tủ áo nhìn ra" loading="lazy"/>
+                <div class="v3-shot-cap">Vạch áo mở khung POV</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Shot 08</span>
+                <span class="v3-shot-dur">0.60s</span>
+                <img src="https://media.fedu.vn/images/IG_@arturbr_Deb_OOxqZbl_Loop/shot_08_mid.webp" alt="Cài cúc áo sơ mi" loading="lazy"/>
+                <div class="v3-shot-cap">Tay đang cài cúc áo</div>
+              </div>
+            </div>
+
+            <div class="v3-player" id="p3-Deb_OOxqZbl" style="display:none;">
+              <video controls playsinline preload="none" poster="https://media.fedu.vn/images/IG_@arturbr_Deb_OOxqZbl_Loop/shot_06_mid.webp"></video>
+            </div>
+
+            <div class="v3-verdict">
+              <p><strong>Giải phẫu cơ chế thực tế:</strong> Quan sát chuỗi nối từ Shot 04 &rarr; Shot 05 &rarr; Shot 06: Tia nước vòi sen đang rơi thẳng đứng từ trên xuống (Shot 04) được cắt nối ngay sang quả trứng vừa tách vỏ đang rơi giữa không trung theo đúng trục dọc đó (Shot 05), và trước khi trứng rơi xuống mặt chảo lại cắt nối sang dòng cà phê đen đang rót thẳng xuống ly thủy tinh (Shot 06). Bạn có thể tham khảo thêm 5 ý tưởng góc máy buổi sáng rất dễ làm theo tại mẫu <a href="https://ytuong.fedu.vn/v/DeXSJttMxAv" target="_blank" rel="noopener"><strong>@worldwithreece (DeXSJttMxAv) ↗</strong></a>.</p>
+              <div class="v3-layer-grid">
+                <div class="v3-layer-box fg">
+                  <b>1. Nối cùng trục hướng rơi</b>
+                  Tia nước (Shot 04) &rarr; Lòng đỏ trứng rơi (Shot 05) &rarr; Dòng cà phê chảy (Shot 06) đều đi từ trên xuống.
+                </div>
+                <div class="v3-layer-box mg">
+                  <b>2. Đóng khung trong tủ đồ</b>
+                  Shot 07 giấu máy trong tủ quần áo, dùng hai chiếc áo treo làm khung tiền cảnh mở ra chủ thể.
+                </div>
+                <div class="v3-layer-box bg">
+                  <b>3. Không một giây thừa</b>
+                  Toàn bộ 21 cảnh đều bắt đầu khi vật thể đã đang chuyển động ở tốc độ cao nhất.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ==================== PHẦN 8 ==================== -->
+        <h2 id="sec-8">8. Nghệ thuật Khoe Khéo Sản Phẩm &amp; Dịch Vụ Hằng Ngày (Và Lộ Trình Bài Tập 3 Cấp Độ)</h2>
+
+        <div class="callout tip">
+          <div class="h">Nguyên tắc cốt lõi khi đưa sản phẩm &amp; dịch vụ vào khung hình</div>
+          <p><strong>Dịch vụ là công việc đang được thực hiện, không phải món đồ bày ra như ảnh chào hàng.</strong> Sản phẩm chỉ nên chiếm tối đa <strong>1/3 diện tích khung hình</strong>, đặt tại giao điểm 1/3 hoặc tiền cảnh mờ, xuất hiện tự nhiên qua thao tác sử dụng thật và không đưa biểu tượng thương hiệu ra trước giây thứ 3.</p>
+        </div>
+
+        <p>Người xem trên mạng xã hội rất nhạy cảm với cảm giác bị chào mời mua hàng. Khi bạn dí sát hộp mỹ phẩm, túi xách hay bảng hiệu vào chính giữa màn hình dưới ánh đèn trần trắng bệch, người xem sẽ lướt đi ngay. Ngược lại, khi sản phẩm đi kèm với một chuyển động làm nghề thật trong khung hình có nắng xiên và chiều sâu 3 lớp, người xem sẽ tự tò mò hỏi <em>"Bạn đang dùng đồ gì vậy?"</em> hoặc <em>"Tiệm mình ở đâu?"</em>.</p>
+
+        <h3>Bảng tra cứu cách khoe khéo dịch vụ hằng ngày cho 8 ngành tại thành phố</h3>
+
+        <div class="tw">
+          <table class="t">
+            <thead>
+              <tr>
+                <th>Ngành nghề tại thành phố</th>
+                <th>Lỗi quay chào hàng lộ liễu (Cần tránh)</th>
+                <th>Cách khoe khéo bằng thao tác thật &amp; bố cục 1/3</th>
+                <th>Trụ cột kết hợp</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>1. F&amp;B / Cà phê / Đồ uống</strong></td>
+                <td>Chụp ảnh ly nước đặt sẵn giữa bàn trống dưới đèn huỳnh quang.</td>
+                <td>Đặt máy tĩnh tiêu cự <code>2x</code> ngược nắng cửa sổ: quay dòng espresso hoặc matcha đang rót vào đá viên, làn khói bốc lên, tay đặt ly ở giao điểm 1/3.</td>
+                <td><code>Động</code> + <code>Sáng</code> + <code>Vào</code></td>
+              </tr>
+              <tr>
+                <td><strong>2. Spa / Trị liệu / Làm đẹp</strong></td>
+                <td>Cầm lọ tinh dầu dí sát vào ống kính đọc công dụng.</td>
+                <td>Tắt đèn trần, bật đèn điểm vàng ấm (<em>Little Lights</em>): quay ngược sáng giọt tinh dầu nhỏ xuống lòng bàn tay, hơi nước ấm bốc lên, khăn bông trắng xếp gọn ở tiền cảnh mờ.</td>
+                <td><code>Sáng</code> + <code>Giờ</code> + <code>Tĩnh</code></td>
+              </tr>
+              <tr>
+                <td><strong>3. Nội thất / Kiến trúc</strong></td>
+                <td>Cầm máy góc rộng 1x đi vòng quanh phòng quay lia qua lại.</td>
+                <td>Khóa chân máy tĩnh đợi nắng chiều 16h30 đổ bóng dài qua ghế sofa; cảnh cận bàn tay vuốt lên vân gỗ hoặc sớ vải linen dưới nắng ven.</td>
+                <td><code>Đường</code> + <code>Giờ</code> + <code>Tĩnh</code></td>
+              </tr>
+              <tr>
+                <td><strong>4. Thời trang / Phụ kiện / Túi xách</strong></td>
+                <td>Đứng yên trước gương giơ túi xách ra chính giữa khung hình.</td>
+                <td>Gài sản phẩm vào hành động đi lại hằng ngày: tay cất chìa khóa vào cúc bấm tự hít của túi, đặt túi lên ghế xe hoặc bàn cà phê, vạt áo bay nhẹ trong nắng chiều.</td>
+                <td><code>Đường</code> + <code>Động</code> + <code>Vào</code></td>
+              </tr>
+              <tr>
+                <td><strong>5. Đào tạo / Tư vấn / Tri thức</strong></td>
+                <td>Quay màn hình máy tính phẳng lì hoặc chụp ảnh bìa tài liệu.</td>
+                <td>Đặt máy qua vai hoặc sát mặt bàn cạnh cửa sổ: ngòi bút đang vạch sơ đồ 3 ô trên sổ, tay lật tài liệu có bóng lá cây in trên bàn, màn hình laptop mờ ở hậu cảnh.</td>
+                <td><code>Đường</code> + <code>Tĩnh</code> + <code>Vào</code></td>
+              </tr>
+              <tr>
+                <td><strong>6. Công nghệ / Đồ nghề / Thiết bị</strong></td>
+                <td>Đặt hộp sản phẩm trên bàn rồi xoay vòng tròn.</td>
+                <td>Băm nhịp ngắn <code>0.5s</code> các thao tác cơ học: ngón cái nhấc mở nắp máy dưới nắng ven, tay cắm cáp, ngón trỏ ấn phím tắt với hàng phím mờ dẫn mắt ở tiền cảnh.</td>
+                <td><code>Đường</code> + <code>Sáng</code> + <code>Vào</code></td>
+              </tr>
+              <tr>
+                <td><strong>7. Nha khoa / Sức khỏe / Phòng khám</strong></td>
+                <td>Quay cảnh phòng khám lạnh lẽo dưới đèn trần trắng gắt.</td>
+                <td>Quay cận cảnh đôi bàn tay bác sĩ đang kiểm tra mẫu hàm hoặc ghi chép hồ sơ bên ánh sáng xiên, dụng cụ xếp thẳng hàng theo đường dẫn chéo 1/3.</td>
+                <td><code>Đường</code> + <code>Tĩnh</code> + <code>Vào</code></td>
+              </tr>
+              <tr>
+                <td><strong>8. Hoa / Gốm / Trà / Thủ công</strong></td>
+                <td>Bày toàn bộ bình gốm lên kệ rồi lia máy ngang qua.</td>
+                <td>Quay ngược sáng nắng sớm: mũi kéo cắt cành hoa làm giọt nước bắn ra, bàn tay xoay nhẹ bình gốm thô trên bàn gỗ có bóng nắng dài, khói trầm bay chậm.</td>
+                <td><code>Động</code> + <code>Sáng</code> + <code>Giờ</code></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="v3-group">
+          <!-- CARD 8.1: DdGx-fkPeeU -->
+          <div class="v3-card" id="v3-DdGx-fkPeeU">
+            <div class="v3-head">
+              <div class="v3-title-group">
+                <span class="v3-badge v3-badge-win">MẪU KHOE KHÉO 01 • GÀI SẢN PHẨM VÀO THAO TÁC THẬT</span>
+                <strong>@pausehereii — Nghệ thuật gài sản phẩm ẩn danh (Stealth Placement): Đưa chiếc túi vào 37 cảnh đi dạo mà không cần một câu chào hàng</strong>
+                <span class="v3-meta">(Mã: DdGx-fkPeeU • 37 shots)</span>
+              </div>
+              <div class="v3-actions">
+                <button type="button" class="v3-btn-play" onclick="window.toggleV3Player(this, 'p3-DdGx-fkPeeU', 'https://media.fedu.vn/videos/DdGx-fkPeeU.mp4')">▶️ Xem video</button>
+                <a href="https://ytuong.fedu.vn/v/DdGx-fkPeeU" target="_blank" rel="noopener" class="v3-btn-link">Kho Ý Tưởng ↗</a>
+              </div>
+            </div>
+
+            <div class="v3-shot-grid">
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Shot 01</span>
+                <span class="v3-shot-dur">1.00s</span>
+                <img src="https://media.fedu.vn/images/IG_@pausehereii_DdGx-fkPeeU_A_DAY_IN_CHIANG_MAI/shot_01_mid.webp" alt="Góc POV từ đáy túi mở khóa" loading="lazy"/>
+                <div class="v3-shot-cap">POV từ trong đáy túi</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Shot 02</span>
+                <span class="v3-shot-dur">1.64s</span>
+                <img src="https://media.fedu.vn/images/IG_@pausehereii_DdGx-fkPeeU_A_DAY_IN_CHIANG_MAI/shot_02_mid.webp" alt="Đặt túi lên ghế phụ xe hơi" loading="lazy"/>
+                <div class="v3-shot-cap">Đặt túi lên ghế phụ</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Shot 04</span>
+                <span class="v3-shot-dur">2.08s</span>
+                <img src="https://media.fedu.vn/images/IG_@pausehereii_DdGx-fkPeeU_A_DAY_IN_CHIANG_MAI/shot_04_mid.webp" alt="Bước xuống xe đeo túi" loading="lazy"/>
+                <div class="v3-shot-cap">Bước xuống xe ở trục 1/3</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Shot 05</span>
+                <span class="v3-shot-dur">2.92s</span>
+                <img src="https://media.fedu.vn/images/IG_@pausehereii_DdGx-fkPeeU_A_DAY_IN_CHIANG_MAI/shot_05_mid.webp" alt="Cận cảnh cất chìa khóa vào túi" loading="lazy"/>
+                <div class="v3-shot-cap">Thả chìa khóa đóng cúc bấm</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Shot 06</span>
+                <span class="v3-shot-dur">1.16s</span>
+                <img src="https://media.fedu.vn/images/IG_@pausehereii_DdGx-fkPeeU_A_DAY_IN_CHIANG_MAI/shot_06_mid.webp" alt="Đi qua cổng đá cổ" loading="lazy"/>
+                <div class="v3-shot-cap">Khung lồng khung cổng đá</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Shot 08</span>
+                <span class="v3-shot-dur">1.52s</span>
+                <img src="https://media.fedu.vn/images/IG_@pausehereii_DdGx-fkPeeU_A_DAY_IN_CHIANG_MAI/shot_08_mid.webp" alt="Bước qua ô cửa kính quán" loading="lazy"/>
+                <div class="v3-shot-cap">Nhìn xuyên ô cửa kính</div>
+              </div>
+            </div>
+
+            <div class="v3-player" id="p3-DdGx-fkPeeU" style="display:none;">
+              <video controls playsinline preload="none" poster="https://media.fedu.vn/images/IG_@pausehereii_DdGx-fkPeeU_A_DAY_IN_CHIANG_MAI/shot_05_mid.webp"></video>
+            </div>
+
+            <div class="v3-verdict">
+              <p><strong>Giải phẫu cơ chế thực tế:</strong> Đây là bài mẫu kinh điển về cách bán sản phẩm mà người xem tưởng đang thưởng thức một thước phim du lịch. Chiếc túi đeo vai không bao giờ nằm yên một chỗ giữa màn hình: nó mở màn bằng góc máy giấu trong đáy túi kéo khóa ra (Shot 01), được đặt nhẹ lên ghế xe (Shot 02), và ở Shot 05, tác giả khoe độ tiện lợi của chiếc cúc bấm tự hít bằng hành động thả chùm chìa khóa xe vào túi rồi bấm tách một nhịp dứt khoát.</p>
+              <div class="v3-layer-grid">
+                <div class="v3-layer-box fg">
+                  <b>1. Quy tắc 1/3 diện tích</b>
+                  Chiếc túi luôn chỉ chiếm dưới 1/3 khung hình, nhường không gian cho kiến trúc và ánh nắng.
+                </div>
+                <div class="v3-layer-box mg">
+                  <b>2. Khoe công năng qua thao tác</b>
+                  Thay vì nói "túi có khóa bấm tự hít tiện lắm", hãy quay cảnh bàn tay thả chìa khóa vào và đóng nắp.
+                </div>
+                <div class="v3-layer-box bg">
+                  <b>3. Bối cảnh đồng điệu</b>
+                  Màu nâu của chiếc túi tiệp hoàn toàn với màu tường gạch cổ và quán cà phê gỗ.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- CARD 8.2: Ddqo7-eTI2A -->
+          <div class="v3-card" id="v3-Ddqo7-eTI2A">
+            <div class="v3-head">
+              <div class="v3-title-group">
+                <span class="v3-badge v3-badge-win">MẪU KHOE KHÉO 02 • KHUNG CỬA VÒM &amp; TRẢI NGHIỆM DỊCH VỤ</span>
+                <strong>@lisha_ho — Khoe khéo không gian cửa tiệm &amp; dịch vụ: Đóng khung qua cửa vòm, sải bước và tương tác chi tiết</strong>
+                <span class="v3-meta">(Mã: Ddqo7-eTI2A • 26 shots)</span>
+              </div>
+              <div class="v3-actions">
+                <button type="button" class="v3-btn-play" onclick="window.toggleV3Player(this, 'p3-Ddqo7-eTI2A', 'https://media.fedu.vn/videos/Ddqo7-eTI2A.mp4')">▶️ Xem video</button>
+                <a href="https://ytuong.fedu.vn/v/Ddqo7-eTI2A" target="_blank" rel="noopener" class="v3-btn-link">Kho Ý Tưởng ↗</a>
+              </div>
+            </div>
+
+            <div class="v3-shot-grid">
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Shot 01</span>
+                <span class="v3-shot-dur">0.80s</span>
+                <img src="https://media.fedu.vn/images/IG_@lisha_ho_Ddqo7-eTI2A_Wait…_@ralphlauren_+_coffee_at_KLCC_👀/shot_01_mid.webp" alt="Khung cửa vòm mở màn" loading="lazy"/>
+                <div class="v3-shot-cap">Khung cửa vòm 3 lớp</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Shot 02</span>
+                <span class="v3-shot-dur">0.97s</span>
+                <img src="https://media.fedu.vn/images/IG_@lisha_ho_Ddqo7-eTI2A_Wait…_@ralphlauren_+_coffee_at_KLCC_👀/shot_02_mid.webp" alt="Cận cảnh dải ảnh và túi da" loading="lazy"/>
+                <div class="v3-shot-cap">Cận cảnh túi da &amp; ảnh</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Shot 03</span>
+                <span class="v3-shot-dur">0.97s</span>
+                <img src="https://media.fedu.vn/images/IG_@lisha_ho_Ddqo7-eTI2A_Wait…_@ralphlauren_+_coffee_at_KLCC_👀/shot_03_mid.webp" alt="Tương tác móc khóa gấu" loading="lazy"/>
+                <div class="v3-shot-cap">Tay xoay móc khóa nhỏ</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Shot 04</span>
+                <span class="v3-shot-dur">0.87s</span>
+                <img src="https://media.fedu.vn/images/IG_@lisha_ho_Ddqo7-eTI2A_Wait…_@ralphlauren_+_coffee_at_KLCC_👀/shot_04_mid.webp" alt="Nhịp chân sải bước" loading="lazy"/>
+                <div class="v3-shot-cap">Góc thấp bước chân</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Shot 06</span>
+                <span class="v3-shot-dur">0.90s</span>
+                <img src="https://media.fedu.vn/images/IG_@lisha_ho_Ddqo7-eTI2A_Wait…_@ralphlauren_+_coffee_at_KLCC_👀/shot_06_mid.webp" alt="Ướm đồ trước giá treo" loading="lazy"/>
+                <div class="v3-shot-cap">Tay lướt giá treo áo</div>
+              </div>
+              <div class="v3-shot-item">
+                <span class="v3-shot-tag">Shot 07</span>
+                <span class="v3-shot-dur">0.90s</span>
+                <img src="https://media.fedu.vn/images/IG_@lisha_ho_Ddqo7-eTI2A_Wait…_@ralphlauren_+_coffee_at_KLCC_👀/shot_07_mid.webp" alt="Cận cảnh thiệp mời trên bàn" loading="lazy"/>
+                <div class="v3-shot-cap">Đặt thiệp mời &amp; ly cafe</div>
+              </div>
+            </div>
+
+            <div class="v3-player" id="p3-Ddqo7-eTI2A" style="display:none;">
+              <video controls playsinline preload="none" poster="https://media.fedu.vn/images/IG_@lisha_ho_Ddqo7-eTI2A_Wait…_@ralphlauren_+_coffee_at_KLCC_👀/shot_01_mid.webp"></video>
+            </div>
+
+            <div class="v3-verdict">
+              <p><strong>Giải phẫu cơ chế thực tế:</strong> Để giới thiệu một không gian dịch vụ tại trung tâm thành phố, tác giả mở đầu bằng cú máy tĩnh nhìn xuyên qua khung cửa vòm (Shot 01), sau đó cắt liên hoàn các lát cắt <code>0.8s – 0.9s</code> vào những chi tiết nhỏ thể hiện sự chu đáo của tiệm: bàn tay cầm dải ảnh kỷ niệm bên chiếc túi da (Shot 02), ngón tay lướt trên giá treo áo (Shot 06) và tấm thiệp viết tay đặt cạnh tách cà phê (Shot 07).</p>
+              <div class="v3-layer-grid">
+                <div class="v3-layer-box fg">
+                  <b>1. Tiền cảnh khung cửa vòm</b>
+                  Hai bên vòm cửa gỗ tối tạo chiều sâu 3 lớp dẫn thẳng người xem vào bên trong tiệm.
+                </div>
+                <div class="v3-layer-box mg">
+                  <b>2. Chi tiết dịch vụ (Human Touch)</b>
+                  Tấm thiệp mời cá nhân hóa, chiếc móc khóa nhỏ và thao tác ướm thử trang phục.
+                </div>
+                <div class="v3-layer-box bg">
+                  <b>3. Nhịp cắt 0.9 giây</b>
+                  Toàn bộ 26 cảnh đều vào thẳng lúc tay hoặc bước chân đang chuyển động dứt khoát.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <h3>Lộ trình thực hành 3 Cấp độ dành cho học viên tại thành phố</h3>
+
+        <p>Để bạn áp dụng được ngay 6 trụ cột (<strong>Đường – Động – Sáng – Giờ – Tĩnh – Vào</strong>) mà không bị ngợp, toàn bộ hệ thống bài tập thực hành được chia thành 3 bối cảnh quen thuộc nhất với người đi làm ở thành phố:</p>
+
+        <div class="door-grid">
+          <div class="door-card">
+            <div>
+              <div class="door-head">
+                <span class="door-icon">☕</span>
+                <span class="door-badge">CẤP ĐỘ 01 • DỄ NHẤT</span>
+              </div>
+              <h4 class="door-title">Bài Tập 1: Trong nhà, Bàn làm việc &amp; Quán cà phê</h4>
+              <div class="door-body">Rèn thói quen khóa tĩnh máy bằng bình nước/chân máy, bật tiêu cự 2x, tìm 1 chuyển động nhỏ (khói trà, tay viết sổ, gõ phím) và cắt bỏ 1.5s đứng chờ đầu cảnh.</div>
+              <div class="door-cure"><strong>Trụ cột trọng tâm:</strong> Tĩnh (5) + Động (2) + Vào (6)</div>
+            </div>
+            <a href="bocucquaybaitap.html#bai-1" class="door-btn" style="margin-top:14px;">Mở Bài Tập Cấp Độ 1 →</a>
+          </div>
+
+          <div class="door-card">
+            <div>
+              <div class="door-head">
+                <span class="door-icon">🌿</span>
+                <span class="door-badge">CẤP ĐỘ 02 • TRUNG BÌNH</span>
+              </div>
+              <h4 class="door-title">Bài Tập 2: Cây cối, Công viên &amp; Ban công nắng lá</h4>
+              <div class="door-body">Làm chủ ánh sáng ngược (Rim Light), hạ thanh phơi sáng -0.7 EV, đón bóng đổ dài lúc sáng sớm hoặc hoàng hôn và đặt máy tĩnh bước vào khung hình.</div>
+              <div class="door-cure"><strong>Trụ cột trọng tâm:</strong> Sáng (3) + Giờ (4) + Tĩnh (5)</div>
+            </div>
+            <a href="bocucquaybaitap.html#bai-2" class="door-btn" style="margin-top:14px;">Mở Bài Tập Cấp Độ 2 →</a>
+          </div>
+
+          <div class="door-card">
+            <div>
+              <div class="door-head">
+                <span class="door-icon">🏙️</span>
+                <span class="door-badge">CẤP ĐỘ 03 • NÂNG CAO</span>
+              </div>
+              <h4 class="door-title">Bài Tập 3: Phố thị, Kiến trúc &amp; Khoe khéo dịch vụ</h4>
+              <div class="door-body">Kết hợp đường dẫn thị giác, khung lồng khung 3 lớp và kỹ thuật cắt nối chuyển động 70%–30% để khoe khéo sản phẩm/dịch vụ hằng ngày dưới 1/3 khung hình.</div>
+              <div class="door-cure"><strong>Trụ cột trọng tâm:</strong> Đường (1) + Vào (6) + Khoe nghề</div>
+            </div>
+            <a href="bocucquaybaitap.html#bai-3" class="door-btn" style="margin-top:14px;">Mở Bài Tập Cấp Độ 3 →</a>
+          </div>
+        </div>
+
+        <div class="actions">
+          <a class="btn" href="bocucquaybaitap.html">✍️ Mở Hệ Thống Bài Tập 3 Cấp Độ &amp; Kho Ý Tưởng</a>
+          <a class="btn" href="bocucquayslide.html">🖥️ Mở Bộ Slide Thuyết Trình 19 Trang (16:9)</a>
+          <a class="btn" target="_blank" href="https://ytuong.fedu.vn">🔍 Tra Cứu Kho Ý Tưởng (ytuong.fedu.vn)</a>
+        </div>
+      </div>
+    </main>
+    <aside class="toc">
+      <h6>Trên trang này (Bản 3.0)</h6>
+      <nav class="otp" id="auto-toc"></nav>
+    </aside>
+  </div>
+</body>
+</html>
