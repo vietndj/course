@@ -1,0 +1,2607 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Slide Thuyết Trình Offline: Chuyển Cảnh Thực Chiến 2.0 (18 Slides 16:9)</title>
+  <style>
+    @font-face{font-family:'FD Aeonik Extended';src:url('fonts/FDAeonikExtended-Bold.woff2') format('woff2');font-weight:700;font-display:swap}
+    @font-face{font-family:'FD Aeonik Extended';src:url('fonts/FDAeonikExtended-SemiBold.woff2') format('woff2');font-weight:600;font-display:swap}
+    @font-face{font-family:'FD Aeonik';src:url('fonts/FDAeonik-Regular.ttf') format('truetype');font-weight:400;font-display:swap}
+    @font-face{font-family:'FD Aeonik';src:url('fonts/FDAeonik-Medium.ttf') format('truetype');font-weight:500 600;font-display:swap}
+    @font-face{font-family:'FD Aeonik';src:url('fonts/FDAeonik-Bold.ttf') format('truetype');font-weight:700;font-display:swap}
+    @font-face{font-family:'Tiempos Text';src:url('fonts/FDTiemposText-Regular.woff2') format('woff2');font-weight:400;font-display:swap}
+    @font-face{font-family:'Tiempos Text';src:url('fonts/FDTiemposText-RegularItalic.woff2') format('woff2');font-weight:400;font-style:italic;font-display:swap}
+    @font-face{font-family:'Tiempos Text';src:url('fonts/FDTiemposText-Semibold.woff2') format('woff2');font-weight:600;font-display:swap}
+
+    :root {
+      --ink: #0f172a;
+      --ink2: #1e293b;
+      --ink3: #334155;
+      --mute: #64748b;
+      --line: #e2e8f0;
+      --line2: #cbd5e1;
+      --bg: #ffffff;
+      --card-bg: #f8fafc;
+      --red-border: #fca5a5;
+      --red-badge: #dc2626;
+      --red-bg: #fef2f2;
+      --green-border: #6ee7b7;
+      --green-badge: #059669;
+      --green-bg: #ecfdf5;
+      --cyan-badge: #0284c7;
+      --cyan-bg: #f0f9ff;
+      --amber-badge: #d97706;
+      --amber-bg: #fffbeb;
+      --amber-border: #fde68a;
+      --sans: 'FD Aeonik', -apple-system, BlinkMacSystemFont, 'Segoe UI', Inter, sans-serif;
+      --display: 'FD Aeonik Extended', 'FD Aeonik', -apple-system, sans-serif;
+      --serif: 'Tiempos Text', Georgia, serif;
+      --mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: #0f172a;
+      color: var(--ink);
+      font-family: var(--sans);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* === DECK CONTROL BAR === */
+    .deck-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(15, 23, 42, 0.96);
+      border-bottom: 1px solid #334155;
+      padding: 10px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      flex-wrap: wrap;
+      color: #f8fafc;
+      backdrop-filter: blur(8px);
+    }
+    .deck-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .deck-logo {
+      background: #fb923c;
+      color: #0f172a;
+      font: 800 12px var(--display);
+      padding: 5px 8px;
+      border-radius: 6px;
+    }
+    .deck-title {
+      font: 700 14px var(--display);
+      letter-spacing: 0.02em;
+    }
+    .deck-sub {
+      font-size: 12px;
+      color: #94a3b8;
+      margin-left: 6px;
+    }
+    .deck-nav-dots {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      flex-wrap: wrap;
+    }
+    .nav-dot {
+      background: #1e293b;
+      color: #cbd5e1;
+      border: 1px solid #334155;
+      border-radius: 6px;
+      padding: 4px 8px;
+      font: 700 11px var(--mono);
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .nav-dot:hover {
+      background: #334155;
+      color: #fff;
+    }
+    .nav-dot.active {
+      background: #fb923c;
+      color: #0f172a;
+      border-color: #fb923c;
+    }
+    .deck-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .ctrl-btn {
+      background: #1e293b;
+      color: #f8fafc;
+      border: 1px solid #475569;
+      border-radius: 7px;
+      padding: 6px 12px;
+      font: 600 12.5px var(--sans);
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      transition: background 0.15s;
+    }
+    .ctrl-btn:hover { background: #334155; }
+    .ctrl-btn.primary {
+      background: #2563eb;
+      border-color: #3b82f6;
+    }
+    .ctrl-btn.primary:hover { background: #1d4ed8; }
+
+    /* === STAGE CONTAINER === */
+    .deck-stage {
+      max-width: 1360px;
+      margin: 22px auto 60px;
+      padding: 0 20px;
+    }
+    .slide-wrapper {
+      display: none;
+      margin-bottom: 36px;
+    }
+    .slide-wrapper.active {
+      display: block;
+    }
+    body.view-all .slide-wrapper {
+      display: block !important;
+      margin-bottom: 48px;
+    }
+
+    /* === 16:9 DESIGN SYSTEM 2.0 SLIDE CANVAS === */
+    .slide-canvas {
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      border-radius: 16px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+      min-height: 690px;
+      padding: 26px 40px 22px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      overflow: hidden;
+    }
+    .slide-topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font: 700 11.5px var(--mono);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--mute);
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--line);
+    }
+    .slide-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 12px;
+      margin-top: 16px;
+      border-top: 1px solid var(--line);
+      font-size: 12.5px;
+      color: var(--mute);
+    }
+    .mentor-sig {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--ink2);
+    }
+    .mentor-dot {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: var(--ink);
+      color: #fff;
+      display: inline-grid;
+      place-items: center;
+      font: 700 10px var(--display);
+    }
+    .footer-right {
+      font: 600 11.5px var(--mono);
+      color: var(--mute);
+    }
+
+    /* === KIỂU L1: COVER SLIDE === */
+    .cover-body {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      align-items: center;
+      gap: 32px;
+      padding: 18px 0;
+      flex: 1;
+    }
+    .cover-kicker {
+      display: inline-block;
+      font: 700 11px var(--mono);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      background: #fff7ed;
+      color: #c2410c;
+      border: 1px solid #fed7aa;
+      padding: 5px 10px;
+      border-radius: 6px;
+      margin-bottom: 14px;
+    }
+    .cover-t1 {
+      font: italic 400 clamp(26px, 2.8vw, 36px)/1.18 var(--serif);
+      color: var(--ink2);
+      margin-bottom: 6px;
+    }
+    .cover-t2 {
+      font: 700 clamp(28px, 3.2vw, 44px)/1.12 var(--display);
+      color: var(--ink);
+      letter-spacing: -0.02em;
+      margin-bottom: 16px;
+    }
+    .cover-sub {
+      font: 400 17px/1.58 var(--sans);
+      color: var(--ink3);
+      margin-bottom: 20px;
+    }
+    .cover-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .cpill {
+      font: 600 12.5px var(--sans);
+      background: #f8fafc;
+      border: 1px solid #cbd5e1;
+      color: #1e293b;
+      padding: 6px 12px;
+      border-radius: 999px;
+    }
+    .cpill.highlight {
+      background: #0f172a;
+      color: #f8fafc;
+      border-color: #0f172a;
+    }
+    .cover-Showcase {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    .cover-img-card {
+      background: #0f172a;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1.5px solid #cbd5e1;
+      box-shadow: 0 10px 25px rgba(15, 23, 42, 0.14);
+    }
+    .cover-img-card img {
+      width: 100%;
+      height: 170px;
+      object-fit: cover;
+      display: block;
+    }
+    .cover-img-cap {
+      padding: 8px 11px;
+      font: 600 11.5px/1.35 var(--sans);
+      color: #f8fafc;
+      background: #0f172a;
+    }
+    .cover-img-cap span {
+      display: block;
+      font: 700 10px var(--mono);
+      color: #fb923c;
+      margin-bottom: 2px;
+      text-transform: uppercase;
+    }
+
+    /* === SLIDE HEAD BLOCK (SLIDES 2+) === */
+    .slide-head-block { margin: 14px 0 14px; }
+    .slide-title-row {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .slide-main-title {
+      font: 700 clamp(21px, 2.2vw, 29px)/1.2 var(--display);
+      color: var(--ink);
+      margin: 0;
+      letter-spacing: -0.01em;
+    }
+    .preset-tag {
+      font: 600 11px var(--mono);
+      background: #f1f5f9;
+      color: #475569;
+      border: 1px solid #e2e8f0;
+      padding: 4px 9px;
+      border-radius: 6px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .slide-subtitle {
+      font: 400 15px/1.45 var(--sans);
+      color: var(--mute);
+      margin: 5px 0 0;
+    }
+
+    /* === CARDS GRID === */
+    .ds-cards {
+      display: grid;
+      gap: 14px;
+      flex: 1;
+      align-items: stretch;
+    }
+    .cards-grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .cards-grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .cards-grid-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+
+    .ds-card {
+      background: var(--card-bg);
+      border: 1.5px solid var(--line);
+      border-radius: 14px;
+      padding: 16px 18px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .ds-card.card-warn {
+      border-color: var(--red-border);
+      background: #fffafa;
+    }
+    .ds-card.card-good {
+      border-color: var(--green-border);
+      background: linear-gradient(180deg, #ffffff 0%, #f0fdf4 100%);
+    }
+    .ds-card.card-amber {
+      border-color: var(--amber-border);
+      background: linear-gradient(180deg, #ffffff 0%, #fffbeb 100%);
+    }
+    .ds-badge {
+      font: 700 11px/1.2 var(--mono);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--cyan-badge);
+      margin-bottom: 6px;
+    }
+    .card-warn .ds-badge { color: var(--red-badge); }
+    .card-good .ds-badge { color: var(--green-badge); }
+    .card-amber .ds-badge { color: var(--amber-badge); }
+
+    .ds-card-title {
+      font: 700 18px/1.28 var(--display);
+      color: var(--ink);
+      margin: 0;
+    }
+    .cards-grid-3 .ds-card-title,
+    .cards-grid-4 .ds-card-title {
+      font-size: 16px;
+    }
+    .ds-hairline {
+      height: 1px;
+      background: var(--line);
+      margin: 10px 0;
+    }
+    .ds-card-body {
+      flex: 1;
+      font: 400 14.5px/1.55 var(--sans);
+      color: var(--ink2);
+    }
+    .cards-grid-4 .ds-card-body {
+      font-size: 13.5px;
+      line-height: 1.48;
+    }
+    .ds-card-body p { margin: 0 0 8px; }
+    .ds-card-body p:last-child { margin-bottom: 0; }
+    .ds-takeaway {
+      margin-top: 10px;
+      padding: 8px 11px;
+      border-radius: 8px;
+      background: var(--cyan-bg);
+      border: 1px solid #bae6fd;
+      font: 600 12.5px/1.38 var(--sans);
+      color: #0369a1;
+    }
+    .card-warn .ds-takeaway {
+      background: var(--red-bg);
+      border-color: #fecaca;
+      color: #991b1b;
+    }
+    .card-good .ds-takeaway {
+      background: var(--green-bg);
+      border-color: #a7f3d0;
+      color: #065f46;
+    }
+    .card-amber .ds-takeaway {
+      background: var(--amber-bg);
+      border-color: #fde68a;
+      color: #92400e;
+    }
+
+    /* === KIỂU L2: BIG STATEMENT / QUOTE === */
+    .quote-center-box {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 22px 32px;
+      background: #f8fafc;
+      border: 1.5px solid var(--line);
+      border-radius: 16px;
+      margin: 6px 0 14px;
+    }
+    .quote-mark {
+      font: 700 50px/0.6 var(--serif);
+      color: #fb923c;
+      margin-bottom: 8px;
+    }
+    .big-quote-text {
+      font: italic 400 clamp(20px, 2.2vw, 27px)/1.45 var(--serif);
+      color: var(--ink);
+      max-width: 980px;
+      margin: 0;
+    }
+    .quote-action-bar {
+      background: #0f172a;
+      color: #f8fafc;
+      padding: 13px 20px;
+      border-radius: 12px;
+      font: 500 14px/1.5 var(--sans);
+    }
+
+    /* === INLINE VIDEO STAGE & STORYBOARD === */
+    .slide-videos-tray {
+      display: grid;
+      gap: 14px;
+      margin-top: 8px;
+      flex: 1;
+    }
+    .slide-videos-tray.cols-1 { grid-template-columns: 1fr; }
+    .slide-videos-tray.cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .slide-videos-tray.cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+
+    .slide-vcard {
+      border: 1.5px solid #cbd5e1;
+      border-radius: 12px;
+      background: #ffffff;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .slide-vhead {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 13px;
+      background: #f1f5f9;
+      border-bottom: 1px solid #e2e8f0;
+      flex-wrap: wrap;
+    }
+    .slide-vtitle {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      flex-wrap: wrap;
+      font-size: 13px;
+    }
+    .v-badge {
+      font: 700 10px var(--mono);
+      padding: 3px 7px;
+      border-radius: 5px;
+      text-transform: uppercase;
+    }
+    .v-badge-win {
+      background: #dcfce7;
+      color: #166534;
+      border: 1px solid #86efac;
+    }
+    .v-badge-mc {
+      background: #fef3c7;
+      color: #92400e;
+      border: 1px solid #fcd34d;
+    }
+    .v-badge-blue {
+      background: #e0f2fe;
+      color: #075985;
+      border: 1px solid #7dd3fc;
+    }
+    .slide-vshots {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 6px;
+      padding: 8px 10px;
+      background: #0f172a;
+    }
+    .slide-vshots img {
+      width: 100%;
+      height: 86px;
+      object-fit: cover;
+      border-radius: 5px;
+      border: 1px solid #334155;
+      display: block;
+    }
+    .slide-vplayer-live {
+      background: #020617;
+      padding: 8px 12px;
+      text-align: center;
+    }
+    .slide-vplayer-live video {
+      width: 100%;
+      max-height: 215px;
+      border-radius: 8px;
+      background: #000;
+    }
+    .slide-vplayer-live iframe {
+      width: 100%;
+      height: 235px;
+      border: 0;
+      border-radius: 8px;
+      background: #000;
+    }
+    .slide-vnote {
+      padding: 10px 13px;
+      font-size: 13px;
+      line-height: 1.48;
+      color: #1e293b;
+      background: #f8fafc;
+      border-top: 1px solid #e2e8f0;
+      flex: 1;
+    }
+    .slide-vfoot {
+      padding: 8px 13px;
+      background: #f1f5f9;
+      border-top: 1px solid #e2e8f0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    /* === PLAY VIDEO BUTTONS === */
+    .play-sample-btn {
+      background: #2563eb;
+      color: #ffffff;
+      border: none;
+      border-radius: 7px;
+      padding: 6px 11px;
+      font: 700 12px var(--sans);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      text-decoration: none;
+      transition: all 0.15s;
+    }
+    .play-sample-btn:hover {
+      background: #1d4ed8;
+      transform: translateY(-1px);
+    }
+    .play-sample-btn.amber {
+      background: #ea580c;
+    }
+    .play-sample-btn.amber:hover {
+      background: #c2410c;
+    }
+    .ext-link-btn {
+      font: 600 11.5px var(--mono);
+      color: #475569;
+      text-decoration: none;
+      padding: 4px 8px;
+      border-radius: 5px;
+      border: 1px solid #cbd5e1;
+      background: #fff;
+    }
+    .ext-link-btn:hover {
+      background: #f8fafc;
+      color: #0f172a;
+    }
+
+    /* === BẢNG / SƠ ĐỒ TRONG SLIDE === */
+    .slide-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13.5px;
+      border: 1px solid #cbd5e1;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .slide-table th {
+      background: #0f172a;
+      color: #f8fafc;
+      text-align: left;
+      padding: 9px 13px;
+      font: 700 11.5px var(--mono);
+      text-transform: uppercase;
+    }
+    .slide-table td {
+      padding: 8px 13px;
+      border-top: 1px solid #e2e8f0;
+      color: #1e293b;
+      vertical-align: top;
+      line-height: 1.42;
+    }
+    .slide-table tr:nth-child(even) td {
+      background: #f8fafc;
+    }
+
+    /* === CUSTOM DIAGRAMS (70/30 BAR, 30 DEG CLOCK, 9-GRID, PRZED/PO) === */
+    .bar-7030-wrap {
+      background: #0f172a;
+      border-radius: 14px;
+      padding: 18px 22px;
+      color: #f8fafc;
+      margin: 6px 0 12px;
+    }
+    .bar-7030-track {
+      display: grid;
+      grid-template-columns: 58% 12% 30%;
+      height: 54px;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 2px solid #475569;
+      margin: 10px 0;
+    }
+    .bar-seg-a {
+      background: linear-gradient(90deg, #0284c7, #2563eb);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font: 700 13.5px var(--display);
+      color: #fff;
+      padding: 0 10px;
+    }
+    .bar-seg-cut {
+      background: repeating-linear-gradient(45deg, #dc2626, #dc2626 8px, #991b1b 8px, #991b1b 16px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font: 700 11px var(--mono);
+      color: #fff;
+      text-align: center;
+      border-left: 2px dashed #fde047;
+      border-right: 2px dashed #fde047;
+    }
+    .bar-seg-b {
+      background: linear-gradient(90deg, #059669, #10b981);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font: 700 13.5px var(--display);
+      color: #fff;
+      padding: 0 10px;
+    }
+
+    .grid-9-demo {
+      width: 100%;
+      max-width: 260px;
+      aspect-ratio: 9/12;
+      background: #0f172a;
+      border: 2px solid #475569;
+      border-radius: 12px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: repeat(3, 1fr);
+      position: relative;
+      margin: 0 auto;
+      overflow: hidden;
+    }
+    .grid-9-cell {
+      border: 1px dashed rgba(255,255,255,0.28);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font: 600 10px var(--mono);
+      color: rgba(255,255,255,0.45);
+    }
+    .grid-9-cell.center-lock {
+      background: rgba(16, 185, 129, 0.25);
+      border: 2px solid #10b981;
+      color: #ecfdf5;
+      font-weight: 700;
+      text-align: center;
+      padding: 4px;
+    }
+
+    /* === SPEAKER NOTES BOX === */
+    .speaker-notes-box {
+      margin-top: 14px;
+      background: #1e293b;
+      border: 1px solid #334155;
+      border-left: 4px solid #fb923c;
+      border-radius: 12px;
+      padding: 13px 20px;
+      color: #f1f5f9;
+    }
+    .sn-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 5px;
+      flex-wrap: wrap;
+    }
+    .sn-badge {
+      font: 700 11.5px var(--mono);
+      color: #fb923c;
+      letter-spacing: 0.05em;
+    }
+    .sn-part {
+      font: 500 12px var(--sans);
+      color: #94a3b8;
+    }
+    .sn-text {
+      margin: 0;
+      font: 400 15px/1.62 var(--serif);
+      color: #e2e8f0;
+    }
+
+    /* === LIVE VIDEO MODAL === */
+    .video-modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(2, 6, 23, 0.86);
+      z-index: 999;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      backdrop-filter: blur(6px);
+    }
+    .video-modal-backdrop.open {
+      display: flex;
+    }
+    .video-modal-box {
+      background: #0f172a;
+      border: 1px solid #334155;
+      border-radius: 16px;
+      max-width: 820px;
+      width: 100%;
+      overflow: hidden;
+      box-shadow: 0 25px 60px rgba(0,0,0,0.65);
+      color: #f8fafc;
+    }
+    .vm-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 18px;
+      background: #1e293b;
+      border-bottom: 1px solid #334155;
+      gap: 12px;
+    }
+    .vm-title {
+      font: 700 14px var(--display);
+      color: #f8fafc;
+    }
+    .vm-close {
+      background: #dc2626;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      padding: 5px 11px;
+      font: 700 12px var(--sans);
+      cursor: pointer;
+    }
+    .vm-body {
+      padding: 14px 18px;
+      background: #020617;
+      text-align: center;
+    }
+    .vm-body video {
+      max-height: 68vh;
+      max-width: 100%;
+      border-radius: 10px;
+      background: #000;
+    }
+    .vm-foot {
+      padding: 10px 18px;
+      background: #0f172a;
+      border-top: 1px solid #1e293b;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 13px;
+      color: #cbd5e1;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    @media (max-width: 1024px) {
+      .cover-body { grid-template-columns: 1fr; }
+      .cards-grid-2, .cards-grid-3, .cards-grid-4 { grid-template-columns: 1fr; }
+      .slide-videos-tray.cols-2, .slide-videos-tray.cols-3 { grid-template-columns: 1fr; }
+      .slide-canvas { padding: 20px; min-height: auto; }
+    }
+  </style>
+</head>
+<body>
+  <header class="deck-header">
+    <div class="deck-brand">
+      <span class="deck-logo">CC 2.0</span>
+      <span class="deck-title">BỘ 18 SLIDES TRÌNH CHIẾU TẠI LỚP: CHUYỂN CẢNH THỰC CHIẾN 2.0</span>
+      <span class="deck-sub">(Dùng phím ⬅️ ➡️ để chuyển slide • Có 🗣️ Lời dẫn giảng viên &amp; ▶️ Phát video trực tiếp)</span>
+    </div>
+    <div class="deck-nav-dots" id="deck-dots">
+      <button class="nav-dot active" onclick="goToSlide(0)">01</button>
+      <button class="nav-dot" onclick="goToSlide(1)">02</button>
+      <button class="nav-dot" onclick="goToSlide(2)">03</button>
+      <button class="nav-dot" onclick="goToSlide(3)">04</button>
+      <button class="nav-dot" onclick="goToSlide(4)">05</button>
+      <button class="nav-dot" onclick="goToSlide(5)">06</button>
+      <button class="nav-dot" onclick="goToSlide(6)">07</button>
+      <button class="nav-dot" onclick="goToSlide(7)">08</button>
+      <button class="nav-dot" onclick="goToSlide(8)">09</button>
+      <button class="nav-dot" onclick="goToSlide(9)">10</button>
+      <button class="nav-dot" onclick="goToSlide(10)">11</button>
+      <button class="nav-dot" onclick="goToSlide(11)">12</button>
+      <button class="nav-dot" onclick="goToSlide(12)">13</button>
+      <button class="nav-dot" onclick="goToSlide(13)">14</button>
+      <button class="nav-dot" onclick="goToSlide(14)">15</button>
+      <button class="nav-dot" onclick="goToSlide(15)">16</button>
+      <button class="nav-dot" onclick="goToSlide(16)">17</button>
+      <button class="nav-dot" onclick="goToSlide(17)">18</button>
+    </div>
+    <div class="deck-actions">
+      <button class="ctrl-btn" onclick="prevSlide()">← Trước</button>
+      <button class="ctrl-btn primary" onclick="nextSlide()">Tiếp →</button>
+      <button class="ctrl-btn" id="btn-toggle-view" onclick="toggleViewAll()">Xem tất cả (Cuộn dọc)</button>
+      <button class="ctrl-btn" onclick="toggleFullscreen()">⛶ Toàn màn hình</button>
+      <a class="ctrl-btn" href="chuyencanh2.0.html">📖 Giáo trình chi tiết chuyencanh2.0.html</a>
+    </div>
+  </header>
+
+  <main class="deck-stage" id="deck-stage">
+
+    <!-- ================= SLIDE 01 — BÌA & DẪN NHẬP ================= -->
+    <section class="slide-wrapper active" data-index="0" id="slide-01">
+      <div class="slide-canvas layout-cover">
+        <div class="slide-topbar">
+          <span>2026  •  HỆ THỐNG KỸ THUẬT QUAY DỰNG THỰC CHIẾN TẠI LỚP</span>
+          <span>SLIDE 01 / 18 · BÌA &amp; DẪN NHẬP</span>
+        </div>
+        <div class="cover-body">
+          <div class="cover-left">
+            <span class="cover-kicker">GIÁO ÁN &amp; SLIDE THỰC HÀNH TẠI LỚP • 18 SLIDES 16:9</span>
+            <div class="cover-t1">Kỹ Thuật Quay Dựng:</div>
+            <div class="cover-t2">CHUYỂN CẢNH THỰC CHIẾN:<br/>TẠO DÒNG CHẢY THỊ GIÁC KHÔNG DÙNG HIỆU ỨNG APP</div>
+            <p class="cover-sub">
+              <strong>“Chuyển cảnh không nằm trong menu của CapCut. Nó nằm ở cách bạn cử động lúc bấm quay.”</strong><br/>
+              Làm chủ 3 trụ cột chuyển cảnh tự nhiên bằng chính cơ thể và chiếc điện thoại để giữ mắt người xem đến giây cuối cùng mà người xem không hề thấy vết cắt.
+            </p>
+            <div class="cover-pills">
+              <span class="cpill highlight">✂️ Trụ cột 1: Cắt trên hành động (Quy tắc 70/30)</span>
+              <span class="cpill highlight">🤳 Trụ cột 2: Level 1 Giống Selfie (Đầu &amp; Điện thoại)</span>
+              <span class="cpill highlight">📐 Trụ cột 3: Level 2 Chân máy (Quy tắc 30° &amp; Căn trọng tâm)</span>
+            </div>
+          </div>
+          <div class="cover-Showcase">
+            <div class="cover-img-card">
+              <img src="assets/chuyencanh/cap1_f05_92s.webp" alt="Anh Việt hướng dẫn Chuyển cảnh Level 1 Giống Selfie"/>
+              <div class="cover-img-cap">
+                <span>LEVEL 1 • GIỐNG SELFIE (CaDZiACYrV8)</span>
+                Dùng chính cơ thể (Gật đầu, Quay đầu, Lia máy) ở nơi đông người
+              </div>
+            </div>
+            <div class="cover-img-card">
+              <img src="assets/chuyencanh/cap2_f02_36s.webp" alt="Anh Việt hướng dẫn Chuyển cảnh Level 2 Chân máy"/>
+              <div class="cover-img-cap">
+                <span>LEVEL 2 • CÓ CHÂN MÁY (eg6T8-SekjQ)</span>
+                Mỗi cử chỉ là một điểm cắt • Đổi cỡ, đổi góc, lệch hướng &gt; 30°
+              </div>
+            </div>
+            <div class="cover-img-card" style="grid-column: span 2;">
+              <div style="display:grid; grid-template-columns: 160px 1fr; align-items:center; gap:14px; padding:10px 14px;">
+                <img src="assets/chuyencanh/cap1_f01_8s.webp" alt="Mở màn bài giảng Chuyển cảnh" style="height:82px; width:160px; object-fit:cover; border-radius:8px;"/>
+                <div style="color:#f8fafc; font-size:13px; line-height:1.48;">
+                  <strong style="color:#fb923c; display:block; margin-bottom:3px;">MỤC TIÊU CUỐI BUỔI HỌC HÔM NAY:</strong>
+                  Tự tay quay và dựng ngay tại lớp 3 video ngắn (15–25 giây) nối mượt bằng chuyển động thật, khóa đúng trọng tâm ở ô giữa mà không dùng bất kỳ hiệu ứng lật trang hay chớp sáng nào.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="slide-footer">
+          <div class="mentor-sig">
+            <span class="mentor-dot">NV</span>
+            <span><strong>Mentor : Nguyễn Đức Việt</strong>  ·  Chuyển Cảnh Thực Chiến 2.0</span>
+          </div>
+          <div class="footer-right">Slide 01 / 18  ·  chuyencanhslide.html</div>
+        </div>
+      </div>
+      <div class="speaker-notes-box">
+        <div class="sn-header">
+          <span class="sn-badge">🗣️ LỜI DẪN GIẢNG VIÊN CỦA ANH VIỆT (SLIDE 01 — BÌA &amp; DẪN NHẬP)</span>
+          <span class="sn-part">Mở đầu buổi học (3 phút)</span>
+        </div>
+        <p class="sn-text">“Hôm nay mình làm một việc: bỏ menu chuyển cảnh của CapCut đi. Rất nhiều bạn mới quay video cứ ghép hai cảnh vào nhau rồi mở kho hiệu ứng lật trang, chớp sáng, xoay vòng gắn vào giữa. Cuối buổi hôm nay, bạn sẽ tự tay làm ra những video chuyển cảnh mượt bằng chính cử động tay, đầu và cơ thể của mình.”</p>
+      </div>
+    </section>
+
+    <!-- ================= SLIDE 02 — PHÁ BĂNG: HAI VIDEO, MỘT NỘI DUNG ================= -->
+    <section class="slide-wrapper" data-index="1" id="slide-02">
+      <div class="slide-canvas layout-content">
+        <div class="slide-topbar">
+          <span>2026  •  PHẦN 01 • ĐẶT VẤN ĐỀ &amp; PHÁ BĂNG ĐẦU GIỜ</span>
+          <span>SLIDE 02 / 18 · ĐỐI CHIẾU TRỰC QUAN</span>
+        </div>
+        <div class="slide-head-block">
+          <div class="slide-title-row">
+            <h2 class="slide-main-title">Phá Băng: Hai Video, Một Nội Dung — Video nào trông như người làm nghề thật?</h2>
+            <span class="preset-tag">Câu hỏi mở lớp: Ai từng bấm nút Chuyển cảnh trên CapCut?</span>
+          </div>
+          <p class="slide-subtitle">Cùng quay 12 giây pha cà phê và bước vào bàn làm việc, nhưng khác nhau ở cách nối giữa hai cảnh.</p>
+        </div>
+        <div class="ds-cards cards-grid-2">
+          <div class="ds-card card-warn">
+            <div>
+              <div class="ds-badge">❌ CỘT A • VIDEO DÁN HIỆU ỨNG TRÊN APP</div>
+              <h3 class="ds-card-title">Cắt thẳng lúc đứng yên + Dán hiệu ứng lật trang / xoay 3D / chớp sáng</h3>
+              <div class="ds-hairline"></div>
+              <div class="ds-card-body">
+                <p>• <strong>Cách làm thường gặp:</strong> Quay từng đoạn đứng im, dừng tay hẳn rồi mới tắt máy. Khi ghép vào nhau thấy bị giật nên đè hiệu ứng 3D, lật trang hoặc lóa sáng của CapCut lên vết cắt.</p>
+                <p>• <strong>Cảm giác của mắt người xem:</strong> Hiệu ứng nhảy bổ vào mắt làm đứt mạch câu chuyện, che mất món đồ và lời đang nói.</p>
+                <p>• <strong>Hệ quả thực tế:</strong> Video lộ ngay mùi nghiệp dư, người xem thấy rẻ tiền và lướt bỏ chỉ sau 2 giây đầu.</p>
+              </div>
+            </div>
+            <div class="ds-takeaway">❌ Khi người xem nhận ra bạn vừa dùng hiệu ứng, tức là chuyển cảnh đó đã hỏng.</div>
+          </div>
+
+          <div class="ds-card card-good">
+            <div>
+              <div class="ds-badge">✅ CỘT B • VIDEO CẮT TRÊN CHUYỂN ĐỘNG THẬT</div>
+              <h3 class="ds-card-title">Cắt ngay lúc tay đang di chuyển / đầu đang quay — Không dùng hiệu ứng nào</h3>
+              <div class="ds-hairline"></div>
+              <div class="ds-card-body">
+                <p>• <strong>Cách làm chuẩn nghề:</strong> Tay đang kéo cửa, đặt ly nước hoặc người quay gật đầu lấy đà thì cắt ngay ở giữa chuyển động và nối thẳng sang cảnh mới.</p>
+                <p>• <strong>Cảm giác của mắt người xem:</strong> Mắt đang bận đuổi theo bàn tay hoặc hướng quay đầu nên vết cắt trôi qua tự nhiên, không ai nhận ra điểm ghép.</p>
+                <p>• <strong>Kết quả:</strong> Giữ mắt người xem đi một mạch từ đầu đến giây cuối cùng.</p>
+                <div style="margin-top:10px; display:flex; gap:8px; flex-wrap:wrap;">
+                  <button class="play-sample-btn" onclick="openVideoModal('https://media.fedu.vn/videos/Dc0tEcOIdwy.mp4', 'Mẫu đối chiếu: Stop Using Boring Transitions (@mridupawasharma - Dc0tEcOIdwy)', 'https://ytuong.fedu.vn/v/Dc0tEcOIdwy')">▶️ Phát mẫu đối chiếu (Dc0tEcOIdwy)</button>
+                  <button class="play-sample-btn amber" onclick="openVideoModal('https://media.fedu.vn/videos/Dctj7NfNimM.mp4', 'Mẫu 18 cảnh cắt trên hành động không hiệu ứng (@joshdiazfilms - Dctj7NfNimM)', 'https://ytuong.fedu.vn/v/Dctj7NfNimM')">▶️ Phát mẫu hành động (Dctj7NfNimM)</button>
+                </div>
+              </div>
+            </div>
+            <div class="ds-takeaway">✅ “Chuyển cảnh không nằm trong menu của CapCut. Nó nằm ở cách bạn cử động lúc bấm quay.”</div>
+          </div>
+        </div>
+        <div class="slide-footer">
+          <div class="mentor-sig">
+            <span class="mentor-dot">NV</span>
+            <span><strong>Mentor : Nguyễn Đức Việt</strong>  ·  Đối chiếu Hiệu ứng App vs Chuyển động thật</span>
+          </div>
+          <div class="footer-right">Slide 02 / 18  ·  chuyencanhslide.html</div>
+        </div>
+      </div>
+      <div class="speaker-notes-box">
+        <div class="sn-header">
+          <span class="sn-badge">🗣️ LỜI DẪN GIẢNG VIÊN CỦA ANH VIỆT (SLIDE 02 — HAI VIDEO, MỘT NỘI DUNG)</span>
+          <span class="sn-part">Chiếu nhanh 2 mẫu đối chiếu và hỏi cả lớp</span>
+        </div>
+        <p class="sn-text">“Mình chiếu 12 giây mỗi video. Bạn đoán video nào làm nghề thật? Gần như ai cũng chọn video thứ hai. Hỏi tiếp: Video thứ hai có hiệu ứng nào trong menu CapCut không? Đáp án là không có hiệu ứng nào cả. Chuyển cảnh nằm ở cử động lúc bấm máy.”</p>
+      </div>
+    </section>
+
+    <!-- ================= SLIDE 03 — BA NGHĨ NHẦM CỦA NGƯỜI MỚI ================= -->
+    <section class="slide-wrapper" data-index="2" id="slide-03">
+      <div class="slide-canvas layout-content">
+        <div class="slide-topbar">
+          <span>2026  •  PHẦN 01 • THÁO GỠ NHầm LẪN TRƯỚC KHI CẦM MÁY</span>
+          <span>SLIDE 03 / 18 · BA NGHĨ NHẦM PHỔ BIẾN</span>
+        </div>
+        <div class="slide-head-block">
+          <div class="slide-title-row">
+            <h2 class="slide-main-title">Ba Nghĩ Nhầm Của Người Mới Về Chuyển Cảnh</h2>
+            <span class="preset-tag">Tháo gỡ trước khi vào kỹ thuật</span>
+          </div>
+          <p class="slide-subtitle">Vì sao nhiều người ngồi cắt ghép hàng giờ trên điện thoại mà video xem vẫn bị khựng?</p>
+        </div>
+        <div class="ds-cards cards-grid-3">
+          <div class="ds-card card-warn">
+            <div>
+              <div class="ds-badge">NGHĨ NHẦM 01 • VỀ CÔNG CỤ</div>
+              <h3 class="ds-card-title">Nghĩ chuyển cảnh là hiệu ứng 3D, lật trang, chớp nháy trong phần mềm</h3>
+              <div class="ds-hairline"></div>
+              <div class="ds-card-body">
+                <p>• <strong>Sự thật:</strong> Chuyển cảnh mượt là chuyển động có thật được tính trước và quay sẵn ngay tại hiện trường.</p>
+                <p>• <strong>Hệ quả khi làm sai:</strong> Lạm dụng hiệu ứng có sẵn của app làm video trông rối mắt, che lấp nội dung chính và làm khách thấy thiếu chỉn chu.</p>
+              </div>
+            </div>
+            <div class="ds-takeaway">✅ Bỏ hiệu ứng phần mềm, thay bằng cử động thật.</div>
+          </div>
+
+          <div class="ds-card card-warn">
+            <div>
+              <div class="ds-badge">NGHĨ NHẦM 02 • VỀ CÁCH GHÉP CẢNH</div>
+              <h3 class="ds-card-title">Nghĩ cứ quay cảnh nào đẹp rồi đem ghép bừa vào nhau là xong</h3>
+              <div class="ds-hairline"></div>
+              <div class="ds-card-body">
+                <p>• <strong>Sự thật:</strong> Hai cảnh nối với nhau phải khác nhau rõ ràng về góc nhìn, nhưng <strong>điểm rơi của hành động và tọa độ trọng tâm</strong> phải khớp nhau.</p>
+                <p>• <strong>Hệ quả khi làm sai:</strong> Từng cảnh lẻ thì đẹp nhưng khi nối lại mắt người xem bị khựng ở mỗi vết cắt, xem 5 giây là mỏi mắt lướt đi.</p>
+              </div>
+            </div>
+            <div class="ds-takeaway">✅ Khác góc nhìn nhưng phải trùng đà hành động.</div>
+          </div>
+
+          <div class="ds-card card-warn">
+            <div>
+              <div class="ds-badge">NGHĨ NHẦM 03 • VỀ THIẾT BỊ &amp; KỸ XẢO</div>
+              <h3 class="ds-card-title">Nghĩ phải có máy xịn, gimbal đắt tiền hoặc dựng phức tạp mới mượt</h3>
+              <div class="ds-hairline"></div>
+              <div class="ds-card-body">
+                <p>• <strong>Sự thật:</strong> 80% độ mượt nằm ở chuyển động cơ thể lúc bấm quay và chọn đúng điểm cắt (quy tắc 70/30 + căn tâm) chỉ bằng 1 chiếc điện thoại.</p>
+                <p>• <strong>Hệ quả khi làm sai:</strong> Tốn hàng giờ ngồi chỉnh sửa những đoạn quay tĩnh không có đà chuyển động mà vẫn không bao giờ mượt được.</p>
+              </div>
+            </div>
+            <div class="ds-takeaway">✅ 80% quyết định ngay lúc bấm nút quay trên điện thoại.</div>
+          </div>
+        </div>
+        <div class="slide-footer">
+          <div class="mentor-sig">
+            <span class="mentor-dot">NV</span>
+            <span><strong>Mentor : Nguyễn Đức Việt</strong>  ·  3 Nghĩ nhầm cần xóa bỏ</span>
+          </div>
+          <div class="footer-right">Slide 03 / 18  ·  chuyencanhslide.html</div>
+        </div>
+      </div>
+      <div class="speaker-notes-box">
+        <div class="sn-header">
+          <span class="sn-badge">🗣️ LỜI DẪN GIẢNG VIÊN CỦA ANH VIỆT (SLIDE 03 — BA NGHĨ NHẦM)</span>
+          <span class="sn-part">Chỉ rõ 3 chỗ người mới hay vấp</span>
+        </div>
+        <p class="sn-text">“Ba chỗ người mới hay vấp nhất nằm ở đây. Một: nghĩ chuyển cảnh là hiệu ứng phần mềm. Hai: cứ cảnh nào đẹp thì nối bừa vào nhau. Ba: nghĩ phải có máy xịn hay dựng phức tạp. Cả ba đều sai. Chỉ cần 1 chiếc điện thoại và làm đúng chuyển động lúc bấm máy là giải quyết được ngay.”</p>
+      </div>
+    </section>
+
+    <!-- ================= SLIDE 04 — ĐỊNH NGHĨA GỐC RỄ CỦA CHUYỂN CẢNH (SLIDE ĐINH) ================= -->
+    <section class="slide-wrapper" data-index="3" id="slide-04">
+      <div class="slide-canvas layout-content">
+        <div class="slide-topbar">
+          <span>2026  •  PHẦN 01 • NỀN TẢNG CỐT LÕI (SLIDE ĐINH CỦA KHÓA HỌC)</span>
+          <span>SLIDE 04 / 18 · ĐỊNH NGHĨA GỐC RỄ</span>
+        </div>
+        <div class="slide-head-block">
+          <div class="slide-title-row">
+            <h2 class="slide-main-title">Định Nghĩa Gốc Rễ Của Chuyển Cảnh — Công Thức Tạo Cú “Tốc Biến” Thị Giác</h2>
+            <span class="preset-tag">Slide Đinh • Nhớ 1 câu dùng cho mọi video</span>
+          </div>
+          <p class="slide-subtitle">Đúc kết nguyên văn từ bài giảng thực chiến của anh Nguyễn Đức Việt.</p>
+        </div>
+
+        <div class="quote-center-box">
+          <div class="quote-mark">“</div>
+          <p class="big-quote-text">
+            Bản chất của chuyển cảnh là <strong>lặp lại cùng một hành động</strong> ở <strong>hai vị trí (hoặc góc nhìn) khác nhau</strong>, rồi <strong>cắt bỏ đoạn thừa ở giữa đi</strong>.
+          </p>
+        </div>
+
+        <div class="ds-cards cards-grid-3">
+          <div class="ds-card card-neutral">
+            <div>
+              <div class="ds-badge">BƯỚC 01 • LẶP LẠI HÀNH ĐỘNG</div>
+              <h3 class="ds-card-title">Cùng 1 động tác ở 2 lần quay</h3>
+              <div class="ds-hairline"></div>
+              <div class="ds-card-body">
+                <p>Thực hiện cùng một động tác (gật đầu, quay đầu, lia máy, vươn tay cầm cốc, bước chân) ở Cảnh 1 và lặp lại đúng động tác đó ở Cảnh 2.</p>
+              </div>
+            </div>
+            <div class="ds-takeaway">🎯 Cùng hướng chuyển động &amp; cùng tốc độ.</div>
+          </div>
+
+          <div class="ds-card card-neutral">
+            <div>
+              <div class="ds-badge">BƯỚC 02 • ĐỔI VỊ TRÍ / GÓC NHÌN</div>
+              <h3 class="ds-card-title">Bối cảnh hoặc góc máy thay đổi rõ</h3>
+              <div class="ds-hairline"></div>
+              <div class="ds-card-body">
+                <p>Cảnh 1 ở quán cà phê &rarr; Cảnh 2 sang phòng tập gym; hoặc Cảnh 1 góc trung ngang mắt &rarr; Cảnh 2 góc cận lệch hơn 30 độ.</p>
+              </div>
+            </div>
+            <div class="ds-takeaway">🎯 Khác biệt càng rõ, cú chuyển càng cuốn hút.</div>
+          </div>
+
+          <div class="ds-card card-good">
+            <div>
+              <div class="ds-badge">BƯỚC 03 • CẮT BỎ ĐOẠN GIỮA</div>
+              <h3 class="ds-card-title">Nối khúc đầu Cảnh 1 + khúc cuối Cảnh 2</h3>
+              <div class="ds-hairline"></div>
+              <div class="ds-card-body">
+                <p>Cắt bỏ đoạn dừng ở cuối Cảnh 1 và đoạn lấy đà ở đầu Cảnh 2. Người xem chỉ thấy 1 chuyển động liền mạch xuyên qua 2 không gian!</p>
+              </div>
+            </div>
+            <div class="ds-takeaway">⚡ Kết quả: Vết cắt biến mất &rarr; Tốc biến!</div>
+          </div>
+        </div>
+
+        <div class="slide-footer">
+          <div class="mentor-sig">
+            <span class="mentor-dot">NV</span>
+            <span><strong>Mentor : Nguyễn Đức Việt</strong>  ·  Định nghĩa gốc rễ của Chuyển Cảnh</span>
+          </div>
+          <div class="footer-right">Slide 04 / 18  ·  chuyencanhslide.html</div>
+        </div>
+      </div>
+      <div class="speaker-notes-box">
+        <div class="sn-header">
+          <span class="sn-badge">🗣️ LỜI DẪN GIẢNG VIÊN CỦA ANH VIỆT (SLIDE 04 — SLIDE ĐINH)</span>
+          <span class="sn-part">Nhấn mạnh câu định nghĩa gốc</span>
+        </div>
+        <p class="sn-text">“Mình đọc nguyên văn câu này: Bản chất của chuyển cảnh là lặp lại cùng một hành động ở hai vị trí khác nhau, rồi cắt bỏ đoạn thừa ở giữa đi. Thế là thành tốc biến! Các bạn chỉ cần nhớ đúng một câu này là áp dụng được cho toàn bộ các cấp độ trong buổi học hôm nay.”</p>
+      </div>
+    </section>
+
+    <!-- ================= SLIDE 05 — CƠ CHẾ MẮT NGƯỜI XEM & TẠI SAO VẾT CẮT TÀNG HÌNH ================= -->
+    <section class="slide-wrapper" data-index="4" id="slide-05">
+      <div class="slide-canvas layout-content">
+        <div class="slide-topbar">
+          <span>2026  •  PHẦN 01 • CƠ HỌC THỊ GIÁC &amp; TÂM LÝ NGƯỜI XEM</span>
+          <span>SLIDE 05 / 18 · VÌ SAO VẾT CẮT TÀNG HÌNH</span>
+        </div>
+        <div class="slide-head-block">
+          <div class="slide-title-row">
+            <h2 class="slide-main-title">Cơ Chế Mắt Người Xem &amp; Tại Sao Vết Cắt Tàng Hình?</h2>
+            <span class="preset-tag">3 Phản xạ tự nhiên của mắt người xem</span>
+          </div>
+          <p class="slide-subtitle">Hiểu cách mắt người xem phản ứng trước một vật đang chuyển động để đặt vết cắt đúng chỗ.</p>
+        </div>
+
+        <div class="ds-cards cards-grid-3">
+          <div class="ds-card card-good">
+            <div>
+              <div class="ds-badge">CƠ CHẾ 01 • MẮT BÁM VẬT ĐANG CHẠY</div>
+              <h3 class="ds-card-title">Mắt người tự đuổi theo vật đang di chuyển nên không thấy vết cắt</h3>
+              <div class="ds-hairline"></div>
+              <div class="ds-card-body">
+                <p>• Khi bàn tay đang vươn ra hoặc đầu đang quay nhanh, mắt người xem tự động bám chặt theo quỹ đạo chuyển động đó.</p>
+                <p>• Đúng khoảnh khắc mắt đang bận đuổi theo vật chuyển động, vết cắt giữa hai cảnh lướt qua mà người xem không kịp nhận ra.</p>
+                <p>• Ngược lại, nếu cắt lúc nhân vật đang đứng yên thì mắt rảnh rỗi sẽ phát hiện ra vết ghép ngay lập tức.</p>
+              </div>
+            </div>
+            <div class="ds-takeaway">👁️ Cắt giữa chuyển động = Mắt bận đuổi theo &rarr; Vết cắt tàng hình.</div>
+          </div>
+
+          <div class="ds-card card-good">
+            <div>
+              <div class="ds-badge">CƠ CHẾ 02 • ĐÀ CHUYỂN ĐỘNG BÁO TRƯỚC</div>
+              <h3 class="ds-card-title">Đà chuyển động báo hiệu cho người xem đón chờ cảnh mới</h3>
+              <div class="ds-hairline"></div>
+              <div class="ds-card-body">
+                <p>• Khi thấy tay đang mở cánh cửa tủ hoặc đầu nhích lấy đà rồi quay sang ngang, người xem tự đặt câu hỏi: <em>“Phía bên kia có gì?”</em></p>
+                <p>• Cảnh thứ hai xuất hiện ngay lúc đó đóng vai trò câu trả lời tự nhiên cho kỳ vọng của mắt người xem.</p>
+                <p>• Đây là lý do mọi động tác chuyển cảnh đều phải rõ ràng và có nhịp lấy đà.</p>
+              </div>
+            </div>
+            <div class="ds-takeaway">🏹 Có đà báo trước &rarr; Cảnh mới mở ra hợp lý, không bị giật.</div>
+          </div>
+
+          <div class="ds-card card-good">
+            <div>
+              <div class="ds-badge">CƠ CHẾ 03 • HIỆU ỨNG “GIẬT MÌNH NHẸ”</div>
+              <h3 class="ds-card-title">Cảnh mới thay đổi rõ rệt làm người xem “giật mình nhẹ” và ở lại xem tiếp</h3>
+              <div class="ds-hairline"></div>
+              <div class="ds-card-body">
+                <p>• Nguyên văn lời giảng của anh Việt: <em>“Cảnh sau thay đổi càng rõ rệt so với cảnh trước thì người xem càng giật mình nhẹ vì bối cảnh mới xuất hiện.”</em></p>
+                <p>• Mỗi lần đổi bối cảnh hoặc đổi cỡ cảnh rõ rệt, sự chú ý của người xem được làm mới lại từ đầu.</p>
+                <p>• Họ ở lại xem thêm một ít, rồi lại một ít, và xem hết cả video.</p>
+              </div>
+            </div>
+            <div class="ds-takeaway">⚡ Cảnh sau khác rõ cảnh trước &rarr; Giữ chân người xem đến cuối.</div>
+          </div>
+        </div>
+
+        <div class="slide-footer">
+          <div class="mentor-sig">
+            <span class="mentor-dot">NV</span>
+            <span><strong>Mentor : Nguyễn Đức Việt</strong>  ·  3 Cơ chế thị giác làm vết cắt biến mất</span>
+          </div>
+          <div class="footer-right">Slide 05 / 18  ·  chuyencanhslide.html</div>
+        </div>
+      </div>
+      <div class="speaker-notes-box">
+        <div class="sn-header">
+          <span class="sn-badge">🗣️ LỜI DẪN GIẢNG VIÊN CỦA ANH VIỆT (SLIDE 05 — CƠ CHẾ MẮT NGƯỜI XEM)</span>
+          <span class="sn-part">Giải thích vì sao cắt khi đang chạy thì mượt</span>
+        </div>
+        <p class="sn-text">“Mắt người xem luôn đuổi theo thứ đang chạy. Lúc mắt đang bận đuổi theo bàn tay hoặc hướng quay đầu, vết cắt trôi qua mà không ai để ý. Đồng thời, cảnh mới thay đổi rõ rệt làm người xem giật mình nhẹ một cái, thế là họ ở lại xem thêm vài giây nữa, cộng dồn lại là xem hết video.”</p>
+      </div>
+    </section>
+
+    <!-- ================= SLIDE 06 — NHỊP 2–3 GIÂY & TRÍ NHỚ CƠ BẮP ================= -->
+    <section class="slide-wrapper" data-index="5" id="slide-06">
+      <div class="slide-canvas layout-content">
+        <div class="slide-topbar">
+          <span>2026  •  PHẦN 01 • NHỊP DỰNG &amp; PHẢN XẠ CƠ THỂ</span>
+          <span>SLIDE 06 / 18 · NHỊP 2–3 GIÂY &amp; TRÍ NHỚ CƠ BẮP</span>
+        </div>
+        <div class="slide-head-block">
+          <div class="slide-title-row">
+            <h2 class="slide-main-title">Nhịp 2–3 Giây &amp; Trí Nhớ Cơ Bắp (Muscle Memory)</h2>
+            <span class="preset-tag">Tại sao phải luyện chuyển cảnh như luyện chụp selfie?</span>
+          </div>
+          <p class="slide-subtitle">Mục tiêu cao nhất của việc luyện chuyển cảnh là để đầu óc rảnh 100% tập trung vào NỘI DUNG lời nói.</p>
+        </div>
+
+        <div class="ds-cards cards-grid-2">
+          <div class="ds-card card-amber">
+            <div>
+              <div class="ds-badge">⏱️ QUY ƯỚC THỰC HÀNH CỦA LỚP • NHỊP 2–3 GIÂY</div>
+              <h3 class="ds-card-title">Đổi khung hình mỗi 2–3 giây để giữ nhịp xem liên tục</h3>
+              <div class="ds-hairline"></div>
+              <div class="ds-card-body">
+                <p>• <strong>Quy ước dựng bài tại lớp:</strong> Sau 2–3 giây nhìn cùng một khung hình tĩnh, mắt người xem trên điện thoại bắt đầu giảm sự chú ý.</p>
+                <p>• <strong>Cách giữ nhịp:</strong> Cứ mỗi 2–3 giây (hoặc mỗi câu nói ngắn), ta thực hiện một cú đổi góc máy, đổi cỡ cảnh hoặc cắt trên hành động.</p>
+                <p>• <strong>Lưu ý quan trọng:</strong> Nhịp đổi cảnh phải đi theo nhịp câu nói và cử chỉ thật, không cắt vụn vô nghĩa làm người xem chóng mặt.</p>
+              </div>
+            </div>
+            <div class="ds-takeaway">⏱️ Một video 20 giây thường gồm 6–8 cảnh nối tiếp nhau mượt mà.</div>
+          </div>
+
+          <div class="ds-card card-good">
+            <div>
+              <div class="ds-badge">💪 TRÍ NHỚ CƠ BẮP (MUSCLE MEMORY) • LỜI DẶN CỦA ANH VIỆT</div>
+              <h3 class="ds-card-title">Tay chân tự phản xạ với bối cảnh &rarr; Đầu óc rảnh 100% để nói NỘI DUNG</h3>
+              <div class="ds-hairline"></div>
+              <div class="ds-card-body">
+                <p>• <strong>Vì sao mỗi lần quay đều khác nhau?</strong> Kể cả đứng cùng một chỗ thì ánh nắng khác, dòng người khác, hoa lá và không khí xung quanh cũng khác.</p>
+                <p>• <strong>Luyện như chụp selfie:</strong> Người hay chụp selfie giơ máy lên là tay tự nghiêng đúng góc mặt đẹp nhất mà không cần suy nghĩ. Chuyển cảnh cũng vậy: khi luyện đủ nhiều, tay chân tự cảm nhận bối cảnh để gật đầu, lia máy hay đổi góc.</p>
+                <p>• <strong>Giá trị thật sự:</strong> Khi cơ bắp tự lo phần chuyển cảnh, <strong>đầu óc bạn rảnh 100% để tập trung vào NỘI DUNG lời nói và cảm xúc</strong>.</p>
+              </div>
+            </div>
+            <div class="ds-takeaway">🎯 “Chuyển cảnh phục vụ nội dung. Chuyển cảnh nổi hơn nội dung là chuyển cảnh hỏng.”</div>
+          </div>
+        </div>
+
+        <div class="quote-action-bar" style="margin-top:12px;">
+          📌 <strong>Công thức giữ chân người xem của anh Việt:</strong> Nội dung hấp dẫn + Chuyển cảnh mượt bằng phản xạ cơ bắp = Người xem ở lại dài và cảm thấy thoải mái tự nhiên.
+        </div>
+
+        <div class="slide-footer">
+          <div class="mentor-sig">
+            <span class="mentor-dot">NV</span>
+            <span><strong>Mentor : Nguyễn Đức Việt</strong>  ·  Nhịp 2–3 giây &amp; Trí nhớ cơ bắp</span>
+          </div>
+          <div class="footer-right">Slide 06 / 18  ·  chuyencanhslide.html</div>
+        </div>
+      </div>
+      <div class="speaker-notes-box">
+        <div class="sn-header">
+          <span class="sn-badge">🗣️ LỜI DẪN GIẢNG VIÊN CỦA ANH VIỆT (SLIDE 06 — NHỊP 2–3 GIÂY &amp; TRÍ NHỚ CƠ BẮP)</span>
+          <span class="sn-part">Giải thích lý do phải rèn phản xạ tay chân</span>
+        </div>
+        <p class="sn-text">“2–3 giây là quy ước thực hành của lớp mình. Còn tại sao phải luyện thành trí nhớ cơ bắp? Vì lúc đi quay thật, nếu đầu bạn còn phải lo nghĩ ‘bây giờ đưa tay thế nào, quay đầu sang đâu’ thì bạn sẽ quên sạch lời định nói. Luyện cho tay chân tự làm, để đầu óc rảnh 100% tập trung nói nội dung!”</p>
+      </div>
+    </section>
+
+    <!-- ================= SLIDE 07 — LOẠI 1 (CƠ BẢN NHẤT): CẮT Ở LÚC HÀNH ĐỘNG ĐANG DIỄN RA ================= -->
+    <section class="slide-wrapper" data-index="6" id="slide-07">
+      <div class="slide-canvas layout-content">
+        <div class="slide-topbar">
+          <span>2026  •  PHẦN 02 • LOẠI 1 (CƠ BẢN NHẤT): CUT ON ACTION</span>
+          <span>SLIDE 07 / 18 · CẮT LÚC HÀNH ĐỘNG ĐANG DIỄN RA</span>
+        </div>
+        <div class="slide-head-block">
+          <div class="slide-title-row">
+            <h2 class="slide-main-title">LOẠI 1 (Cơ Bản Nhất): Cắt Ở Lúc Hành Động Đang Diễn Ra (Cut on Action)</h2>
+            <span class="preset-tag">Nền tảng gốc cho mọi kỹ thuật chuyển cảnh</span>
+          </div>
+          <p class="slide-subtitle">Hai loại chuyển cảnh phía sau (Level 1 Selfie &amp; Level 2 Chân máy) đều được xây dựng trên nguyên lý nền tảng này.</p>
+        </div>
+
+        <div class="ds-cards cards-grid-3">
+          <div class="ds-card card-good">
+            <div>
+              <div class="ds-badge">ĐỘNG TÁC MẪU 01 • MỞ CỬA / TỦ LẠNH</div>
+              <h3 class="ds-card-title">Cắt ngay khi cánh cửa đang bật mở</h3>
+              <div class="ds-hairline"></div>
+              <div class="ds-card-body">
+                <img src="https://media.fedu.vn/images/IG_%40yula_andrieieva_DeaMdF4RjPv_day_5_of_learning_cinematography%E2%80%A6/shot_02_mid.webp" alt="Mở cửa tủ lạnh" style="width:100%; height:130px; object-fit:cover; border-radius:8px; margin-bottom:8px;"/>
+                <p>• <strong>Cảnh 1 (Ngoài tủ):</strong> Tay nắm lấy cánh cửa tủ lạnh và bắt đầu kéo ra.</p>
+                <p>• <strong>Điểm cắt:</strong> Cắt ngay khi cánh cửa đang mở lưng chừng.</p>
+                <p>• <strong>Cảnh 2 (Từ trong tủ nhìn ra):</strong> Cánh cửa tiếp tục mở nốt và tay vươn vào lấy lon nước.</p>
+              </div>
+            </div>
+            <div class="ds-takeaway">🚪 Không bao giờ chờ cửa mở hết rồi mới cắt.</div>
+          </div>
+
+          <div class="ds-card card-good">
+            <div>
+              <div class="ds-badge">ĐỘNG TÁC MẪU 02 • ĐẶT LY CÀ PHÊ</div>
+              <h3 class="ds-card-title">Cắt ngay khi đáy ly đang hạ xuống mặt bàn</h3>
+              <div class="ds-hairline"></div>
+              <div class="ds-card-body">
+                <img src="https://media.fedu.vn/images/IG_%40iman.lizi_Ddv7PoCo2AA_weekend_plans_coffee_by_the_window%2C_crisp_aut/shot_03_mid.webp" alt="Rót và đặt ly cà phê" style="width:100%; height:130px; object-fit:cover; border-radius:8px; margin-bottom:8px;"/>
+                <p>• <strong>Cảnh 1 (Góc Trung):</strong> Tay cầm ly cà phê đang hạ từ trên xuống mặt bàn.</p>
+                <p>• <strong>Điểm cắt:</strong> Cắt khi đáy ly còn cách mặt bàn khoảng 2–3 cm.</p>
+                <p>• <strong>Cảnh 2 (Góc Cận):</strong> Đáy ly vừa đặt xuống mặt bàn kèm tiếng “cạch” giòn tan.</p>
+              </div>
+            </div>
+            <div class="ds-takeaway">☕ Tiếng động “cạch” vang lên đúng vết cắt làm mắt tin tuyệt đối.</div>
+          </div>
+
+          <div class="ds-card card-good">
+            <div>
+              <div class="ds-badge">ĐỘNG TÁC MẪU 03 • MỞ SỔ / BƯỚC CHÂN</div>
+              <h3 class="ds-card-title">Cắt ngay khi bìa sổ đang lật hoặc bàn chân đang hạ xuống</h3>
+              <div class="ds-hairline"></div>
+              <div class="ds-card-body">
+                <img src="https://media.fedu.vn/images/IG_%40joshdiazfilms_Dctj7NfNimM_Life_Feel_Put_Together/shot_01_mid.webp" alt="Chuỗi hành động tay" style="width:100%; height:130px; object-fit:cover; border-radius:8px; margin-bottom:8px;"/>
+                <p>• <strong>Ba nhóm chuyển động dễ khớp nhất cho người mới:</strong> (1) Bàn tay cầm/đặt đồ vật, (2) Vật thể đang bay/lật mở, (3) Bước chân đi qua cửa.</p>
+                <p>• <strong>Nguyên tắc:</strong> Luôn quay trọn vẹn động tác ở cả 2 góc máy để lúc dựng có dư đầu-đuôi mà cắt nối.</p>
+              </div>
+            </div>
+            <div class="ds-takeaway">📓 “Hành động đang chạy thì mắt bận đuổi theo. Vết cắt trôi qua lúc đó.”</div>
+          </div>
+        </div>
+
+        <div class="slide-footer">
+          <div class="mentor-sig">
+            <span class="mentor-dot">NV</span>
+            <span><strong>Mentor : Nguyễn Đức Việt</strong>  ·  Loại 1: Cắt ở lúc hành động đang diễn ra</span>
+          </div>
+          <div class="footer-right">Slide 07 / 18  ·  chuyencanhslide.html</div>
+        </div>
+      </div>
+      <div class="speaker-notes-box">
+        <div class="sn-header">
+          <span class="sn-badge">🗣️ LỜI DẪN GIẢNG VIÊN CỦA ANH VIỆT (SLIDE 07 — LOẠI 1: CẮT KHI ĐANG CHẠY)</span>
+          <span class="sn-part">Giới thiệu nền tảng số 1</span>
+        </div>
+        <p class="sn-text">“Đây là nền móng đầu tiên: Cắt ở lúc hành động đang diễn ra. Hai loại sau đều đứng trên nguyên lý này. Từ chuyện mở tủ lạnh, đặt ly cà phê cho tới mở cuốn sổ trên bàn làm việc: cứ cắt ngay lúc bàn tay đang di chuyển, đừng bao giờ đợi tay dừng hẳn rồi mới cắt.”</p>
+      </div>
+    </section>
+
+    <!-- ================= SLIDE 08 — QUY TẮC VÀNG 70/30 KHI CẮT TRÊN HÀNH ĐỘNG ================= -->
+    <section class="slide-wrapper" data-index="7" id="slide-08">
+      <div class="slide-canvas layout-content">
+        <div class="slide-topbar">
+          <span>2026  •  PHẦN 02 • LOẠI 1: CÔNG THỨC ĐỊNH LƯỢNG ĐIỂM CẮT</span>
+          <span>SLIDE 08 / 18 · QUY TẮC VÀNG 70/30</span>
+        </div>
+        <div class="slide-head-block">
+          <div class="slide-title-row">
+            <h2 class="slide-main-title">Quy Tắc Vàng 70/30 Khi Cắt Trên Hành Động</h2>
+            <span class="preset-tag">Sơ đồ thanh tiến trình 100% động tác</span>
+          </div>
+          <p class="slide-subtitle">Cắt ở đúng mốc 70% lúc tay đang đi nhanh nhất — Tuyệt đối không chờ tay dừng hẳn mới cắt.</p>
+        </div>
+
+        <div class="bar-7030-wrap">
+          <div style="display:flex; justify-content:space-between; font:700 12px var(--mono); color:#cbd5e1;">
+            <span>0% (Bắt đầu cử động)</span>
+            <span style="color:#fde047;">✂️ ĐIỂM CẮT VÀNG (70% — LÚC TỐC ĐỘ NHANH NHẤT)</span>
+            <span>100% (Kết thúc động tác)</span>
+          </div>
+          <div class="bar-7030-track">
+            <div class="bar-seg-a">CẢNH A: Lấy 70% đầu động tác (Đang lao đi nhanh nhất)</div>
+            <div class="bar-seg-cut">✂️ CẮT BỎ<br/>ĐOẠN DỪNG</div>
+            <div class="bar-seg-b">CẢNH B: Nối 30% cuối (Cùng hướng &amp; tốc độ)</div>
+          </div>
+          <div style="display:flex; justify-content:space-between; font-size:12.5px; color:#94a3b8; margin-top:4px;">
+            <span>Ví dụ: Tay vươn ra kéo cánh cửa tủ mở được 2/3 quãng đường</span>
+            <span>Bỏ phần ngập ngừng ở giữa</span>
+            <span>Cảnh B: Cửa mở nốt 1/3 cuối + tay lấy đồ</span>
+          </div>
+        </div>
+
+        <div class="ds-cards cards-grid-4">
+          <div class="ds-card card-neutral">
+            <div>
+              <div class="ds-badge">BƯỚC 01 • CHIA 100%</div>
+              <h3 class="ds-card-title">Quay trọn vẹn cả 2 lần</h3>
+              <div class="ds-hairline"></div>
+              <div class="ds-card-body">
+                <p>Khi quay Cảnh A và Cảnh B, luôn thực hiện <strong>trọn vẹn 100% động tác</strong> ở cả hai góc máy để có dư khung hình lúc cắt.</p>
+              </div>
+            </div>
+            <div class="ds-takeaway">🎥 Quay dư đầu và đuôi.</div>
+          </div>
+
+          <div class="ds-card card-good">
+            <div>
+              <div class="ds-badge">BƯỚC 02 • CẢNH A (70%)</div>
+              <h3 class="ds-card-title">Cắt lúc tay đang chạy nhanh</h3>
+              <div class="ds-hairline"></div>
+              <div class="ds-card-body">
+                <p>Cho người xem thấy <strong>70% đầu của động tác</strong> ở Cảnh A. Bấm tách cắt ngay lúc tay còn đang lướt đi, chưa dừng lại.</p>
+              </div>
+            </div>
+            <div class="ds-takeaway">✂️ Không chờ tay dừng hẳn.</div>
+          </div>
+
+          <div class="ds-card card-good">
+            <div>
+              <div class="ds-badge">BƯỚC 03 • CẢNH B (30%)</div>
+              <h3 class="ds-card-title">Bắt vào 30% cuối động tác</h3>
+              <div class="ds-hairline"></div>
+              <div class="ds-card-body">
+                <p>Cắt bỏ 70% đầu của Cảnh B, chỉ giữ lại <strong>30% đoạn kết động tác</strong> để nối khít vào đuôi của Cảnh A.</p>
+              </div>
+            </div>
+            <div class="ds-takeaway">🔗 Khớp đúng nhịp rơi.</div>
+          </div>
+
+          <div class="ds-card card-amber">
+            <div>
+              <div class="ds-badge">BƯỚC 04 • ĐỒNG BỘ HƯỚNG</div>
+              <h3 class="ds-card-title">Cùng hướng &amp; Cùng tốc độ</h3>
+              <div class="ds-hairline"></div>
+              <div class="ds-card-body">
+                <p>Tay đi từ trái sang phải ở Cảnh A thì ở Cảnh B cũng phải đi từ trái sang phải với <strong>cùng tốc độ vung tay</strong>.</p>
+              </div>
+            </div>
+            <div class="ds-takeaway">➡️ Không bị ngược chiều mắt.</div>
+          </div>
+        </div>
+
+        <div class="slide-footer">
+          <div class="mentor-sig">
+            <span class="mentor-dot">NV</span>
+            <span><strong>Mentor : Nguyễn Đức Việt</strong>  ·  Quy tắc vàng 70/30 khi cắt trên hành động</span>
+          </div>
+          <div class="footer-right">Slide 08 / 18  ·  chuyencanhslide.html</div>
+        </div>
+      </div>
+      <div class="speaker-notes-box">
+        <div class="sn-header">
+          <span class="sn-badge">🗣️ LỜI DẪN GIẢNG VIÊN CỦA ANH VIỆT (SLIDE 08 — QUY TẮC 70/30)</span>
+          <span class="sn-part">Hướng dẫn cách chọn điểm cắt trên CapCut</span>
+        </div>
+        <p class="sn-text">“Các bạn nhìn lên thanh tiến trình 100%: Cảnh A cho người xem thấy 70% đầu của động tác, tức là lúc tay đang đi nhanh nhất. Cảnh B nhận lại khoảng 30% cuối cùng hướng, cùng tốc độ. Tuyệt đối không chờ tay dừng hẳn mới cắt, vì dừng là lộ vết cắt ngay.”</p>
+      </div>
+    </section>
+
+    <!-- ================= SLIDE 09 — GIẢI PHẪU VIDEO MẪU LOẠI 1 TRÊN KHO Ý TƯỞNG ================= -->
+    <section class="slide-wrapper" data-index="8" id="slide-09">
+      <div class="slide-canvas layout-content">
+        <div class="slide-topbar">
+          <span>2026  •  PHẦN 02 • LOẠI 1: MỔ XẺ VIDEO MẪU TRÊN YTUONG.FEDU.VN</span>
+          <span>SLIDE 09 / 18 · VIDEO MẪU LOẠI 1 (CUT ON ACTION)</span>
+        </div>
+        <div class="slide-head-block">
+          <div class="slide-title-row">
+            <h2 class="slide-main-title">Giải Phẫu Video Mẫu Loại 1 Trên Kho Ý Tưởng (`ytuong.fedu.vn`)</h2>
+            <span class="preset-tag">Bấm ▶️ Xem trực tiếp điểm cắt 70/30 ngay trên Slide</span>
+          </div>
+          <p class="slide-subtitle">Quan sát cách 3 nhà sáng tạo nội dung cắt nối trên chuyển động đời thường mà không cần hiệu ứng phần mềm.</p>
+        </div>
+
+        <div class="slide-videos-tray cols-3">
+          <!-- Mẫu 1: DdoYrPsy9g- -->
+          <div class="slide-vcard">
+            <div class="slide-vhead">
+              <div class="slide-vtitle">
+                <span class="v-badge v-badge-win">MẪU 01 • DdoYrPsy9g-</span>
+                <strong>@acupper — Mượn tiền cảnh &amp; Cut on Action Kyoto</strong>
+              </div>
+            </div>
+            <div class="slide-vshots">
+              <img src="https://media.fedu.vn/images/IG_%40acupper_DdoYrPsy9g-_hello_is_konnichiwa/shot_01_mid.webp" alt="DdoYrPsy9g- shot 1"/>
+              <img src="https://media.fedu.vn/images/IG_%40acupper_DdoYrPsy9g-_hello_is_konnichiwa/shot_02_mid.webp" alt="DdoYrPsy9g- shot 2"/>
+              <img src="https://media.fedu.vn/images/IG_%40acupper_DdoYrPsy9g-_hello_is_konnichiwa/shot_03_mid.webp" alt="DdoYrPsy9g- shot 3"/>
+            </div>
+            <div class="slide-vnote">
+              <strong>Điểm cắt thực tế:</strong> Nối nhịp ngoảnh đầu nhìn đèn lồng (Shot 3 &rarr; Shot 4) và tận dụng chiếc ô tô trắng lướt ngang tiền cảnh (Shot 5) cộng nhịp người đi bộ giao cắt trước hiệu sách (Shot 6).
+            </div>
+            <div class="slide-vfoot">
+              <button class="play-sample-btn" onclick="openVideoModal('https://media.fedu.vn/videos/DdoYrPsy9g-.mp4', 'Mẫu Loại 1: @acupper (DdoYrPsy9g-) — Cut On Action & Foreground Wipe', 'https://ytuong.fedu.vn/v/DdoYrPsy9g-')">▶️ Xem video mẫu ngay trên Slide</button>
+              <a class="ext-link-btn" href="https://ytuong.fedu.vn/v/DdoYrPsy9g-" target="_blank">ytuong ↗</a>
+            </div>
+          </div>
+
+          <!-- Mẫu 2: DeaMdF4RjPv -->
+          <div class="slide-vcard">
+            <div class="slide-vhead">
+              <div class="slide-vtitle">
+                <span class="v-badge v-badge-win">MẪU 02 • DeaMdF4RjPv</span>
+                <strong>@yula_andrieieva — Mở tủ lạnh POV &amp; Rót nước</strong>
+              </div>
+            </div>
+            <div class="slide-vshots">
+              <img src="https://media.fedu.vn/images/IG_%40yula_andrieieva_DeaMdF4RjPv_day_5_of_learning_cinematography%E2%80%A6/shot_01_mid.webp" alt="DeaMdF4RjPv shot 1"/>
+              <img src="https://media.fedu.vn/images/IG_%40yula_andrieieva_DeaMdF4RjPv_day_5_of_learning_cinematography%E2%80%A6/shot_02_mid.webp" alt="DeaMdF4RjPv shot 2"/>
+              <img src="https://media.fedu.vn/images/IG_%40yula_andrieieva_DeaMdF4RjPv_day_5_of_learning_cinematography%E2%80%A6/shot_03_mid.webp" alt="DeaMdF4RjPv shot 3"/>
+            </div>
+            <div class="slide-vnote">
+              <strong>Điểm cắt thực tế:</strong> Đặt điện thoại trong tủ lạnh cắt ngay khoảnh khắc cánh cửa bật mở (Shot 2 &rarr; 3), vươn tay che ống kính lấy lon Pepsi (Shot 4 &rarr; 6) và chuỗi cắt cận cảnh rót nước bọt gas.
+            </div>
+            <div class="slide-vfoot">
+              <button class="play-sample-btn" onclick="openVideoModal('https://media.fedu.vn/videos/DeaMdF4RjPv.mp4', 'Mẫu Loại 1: @yula_andrieieva (DeaMdF4RjPv) — Mở Tủ Lạnh POV & Cut On Action', 'https://ytuong.fedu.vn/v/DeaMdF4RjPv')">▶️ Xem video mẫu ngay trên Slide</button>
+              <a class="ext-link-btn" href="https://ytuong.fedu.vn/v/DeaMdF4RjPv" target="_blank">ytuong ↗</a>
+            </div>
+          </div>
+
+          <!-- Mẫu 3: Dctj7NfNimM -->
+          <div class="slide-vcard">
+            <div class="slide-vhead">
+              <div class="slide-vtitle">
+                <span class="v-badge v-badge-win">MẪU 03 • Dctj7NfNimM</span>
+                <strong>@joshdiazfilms — 18 Cảnh hành động tay nhịp 2s</strong>
+              </div>
+            </div>
+            <div class="slide-vshots">
+              <img src="https://media.fedu.vn/images/IG_%40joshdiazfilms_Dctj7NfNimM_Life_Feel_Put_Together/shot_01_mid.webp" alt="Dctj7NfNimM shot 1"/>
+              <img src="https://media.fedu.vn/images/IG_%40joshdiazfilms_Dctj7NfNimM_Life_Feel_Put_Together/shot_02_mid.webp" alt="Dctj7NfNimM shot 2"/>
+              <img src="https://media.fedu.vn/images/IG_%40joshdiazfilms_Dctj7NfNimM_Life_Feel_Put_Together/shot_03_mid.webp" alt="Dctj7NfNimM shot 3"/>
+            </div>
+            <div class="slide-vnote">
+              <strong>Điểm cắt thực tế:</strong> Chuỗi 18 cảnh hành động tay liên hoàn (dọn giường, pha cà phê, sắp bàn làm việc); mỗi cảnh 1.5–2.5 giây cắt đúng 70% động tác khi bàn tay đang di chuyển nhanh.
+            </div>
+            <div class="slide-vfoot">
+              <button class="play-sample-btn" onclick="openVideoModal('https://media.fedu.vn/videos/Dctj7NfNimM.mp4', 'Mẫu Loại 1: @joshdiazfilms (Dctj7NfNimM) — 18 Cảnh Cut On Action Nhịp 2s', 'https://ytuong.fedu.vn/v/Dctj7NfNimM')">▶️ Xem video mẫu ngay trên Slide</button>
+              <a class="ext-link-btn" href="https://ytuong.fedu.vn/v/Dctj7NfNimM" target="_blank">ytuong ↗</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="quote-action-bar" style="margin-top:10px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
+          <span>💡 <strong>Mẫu bổ sung Loại 1:</strong> Xem thêm mẫu bước chân biến hình 5 trang phục (<code>DdGp4XftvIn</code>) và 10 cú máy pha cà phê bên cửa sổ (<code>Ddv7PoCo2AA</code>).</span>
+          <div style="display:flex; gap:8px;">
+            <button class="play-sample-btn amber" onclick="openVideoModal('https://media.fedu.vn/videos/5%20Outfits%20Match%20Cut%20Walk%20-%20@naohasa.mp4', 'Mẫu Bước Chân Match Cut: @naohasa (DdGp4XftvIn)', 'https://ytuong.fedu.vn/v/DdGp4XftvIn')">▶️ Xem DdGp4XftvIn</button>
+            <button class="play-sample-btn amber" onclick="openVideoModal('https://media.fedu.vn/videos/Ddv7PoCo2AA.mp4', 'Mẫu Cà Phê Bên Cửa Sổ: @iman.lizi (Ddv7PoCo2AA)', 'https://ytuong.fedu.vn/v/Ddv7PoCo2AA')">▶️ Xem Ddv7PoCo2AA</button>
+          </div>
+        </div>
+
+        <div class="slide-footer">
+          <div class="mentor-sig">
+            <span class="mentor-dot">NV</span>
+            <span><strong>Mentor : Nguyễn Đức Việt</strong>  ·  Giải phẫu Video Mẫu Loại 1 từ Kho Ý Tưởng</span>
+          </div>
+          <div class="footer-right">Slide 09 / 18  ·  chuyencanhslide.html</div>
+        </div>
+      </div>
+      <div class="speaker-notes-box">
+        <div class="sn-header">
+          <span class="sn-badge">🗣️ LỜI DẪN GIẢNG VIÊN CỦA ANH VIỆT (SLIDE 09 — MẪU THẬT LOẠI 1)</span>
+          <span class="sn-part">Bấm phát từng mẫu và dừng ở điểm cắt</span>
+        </div>
+        <p class="sn-text">“Mình bấm mở từng mẫu ngay trên màn hình, dừng lại đúng ở vết cắt và hỏi cả lớp: Tay của nhân vật lúc này đang đứng yên hay đang chạy? Tất cả đều cắt ngay khi cánh cửa đang mở, dòng cà phê đang chảy hoặc bàn chân đang hạ xuống đất.”</p>
+      </div>
+    </section>
+
+    <!-- ================= SLIDE 10 — LOẠI 2 (LEVEL 1): CHUYỂN CẢNH GIỐNG SELFIE ================= -->
+    <section class="slide-wrapper" data-index="9" id="slide-10">
+      <div class="slide-canvas layout-content">
+        <div class="slide-topbar">
+          <span>2026  •  PHẦN 02 • LOẠI 2 (LEVEL 1): CHUYỂN CẢNH GIỐNG SELFIE</span>
+          <span>SLIDE 10 / 18 · LÀM CHỦ NƠI ĐÔNG NGƯỜI</span>
+        </div>
+        <div class="slide-head-block">
+          <div class="slide-title-row">
+            <h2 class="slide-main-title">LOẠI 2 (Level 1): Chuyển Cảnh Giống Selfie — Làm Chủ Nơi Đông Người</h2>
+            <span class="preset-tag">Dùng chính cơ thể • Không cần chân máy • Không ngại đám đông</span>
+          </div>
+          <p class="slide-subtitle">Nguyên văn anh Việt: “Việc chuyển cảnh kiểu này gần giống như là mình selfie thôi, mình chỉ giơ máy lên thôi.”</p>
+        </div>
+
+        <div class="slide-videos-tray cols-2">
+          <div class="slide-vcard">
+            <div class="slide-vhead">
+              <div class="slide-vtitle">
+                <span class="v-badge v-badge-mc">BÀI GIẢNG GỐC ANH VIỆT • CaDZiACYrV8</span>
+                <strong>Chuyển cảnh thực chiến - Cấp độ 1 (5:55)</strong>
+              </div>
+              <a class="ext-link-btn" href="https://www.youtube.com/watch?v=CaDZiACYrV8" target="_blank">YouTube ↗</a>
+            </div>
+            <div class="slide-vplayer-live">
+              <iframe id="yt-level1" src="https://www.youtube-nocookie.com/embed/CaDZiACYrV8?rel=0" title="Chuyển cảnh thực chiến Cấp độ 1 - Nguyễn Đức Việt" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <div class="slide-vnote">
+              <div style="display:flex; gap:6px; flex-wrap:wrap; margin-bottom:6px;">
+                <button class="play-sample-btn" onclick="seekYouTube('yt-level1', 'CaDZiACYrV8', 8)">⏱️ 0:08 Định nghĩa</button>
+                <button class="play-sample-btn" onclick="seekYouTube('yt-level1', 'CaDZiACYrV8', 28)">⏱️ 0:28 Giống Selfie</button>
+                <button class="play-sample-btn" onclick="seekYouTube('yt-level1', 'CaDZiACYrV8', 60)">⏱️ 1:00 Gật/Quay đầu</button>
+                <button class="play-sample-btn" onclick="seekYouTube('yt-level1', 'CaDZiACYrV8', 152)">⏱️ 2:32 Dùng ĐT</button>
+              </div>
+              <strong>Bấm mốc giây để xem ngay:</strong> Anh Việt làm mẫu trực tiếp tại phòng tập gym và ngoài đường phố chỉ bằng 1 tay cầm điện thoại.
+            </div>
+          </div>
+
+          <div class="ds-card card-good" style="justify-content:flex-start; gap:10px;">
+            <div class="ds-badge">🤳 TẠI SAO LEVEL 1 LÀ LỰA CHỌN SỐ 1 Ở CHỖ ĐÔNG NGƯỜI?</div>
+            <h3 class="ds-card-title">Trông hệt như đang giơ máy chụp ảnh selfie nên hoàn toàn tự nhiên</h3>
+            <div style="display:grid; grid-template-columns: 140px 1fr; gap:12px; align-items:center; margin:4px 0;">
+              <img src="assets/chuyencanh/cap1_f02_28s.webp" alt="Anh Việt quay Level 1 nơi đông người" style="width:140px; height:95px; object-fit:cover; border-radius:8px; border:1px solid #cbd5e1;"/>
+              <div style="font-size:13.8px; line-height:1.5; color:var(--ink2);">
+                Khi ra ngoài đường hoặc vào quán đông khách, nếu bày chân máy cồng kềnh bạn sẽ thấy ngại và mọi người xung quanh nhìn vào. Với Level 1, bạn chỉ cầm điện thoại giơ lên ngang mặt như đang selfie.
+              </div>
+            </div>
+            <table class="slide-table" style="font-size:13px;">
+              <thead>
+                <tr>
+                  <th>Bối cảnh đông người</th>
+                  <th>Lợi thế thực tế của Level 1 (Giống Selfie)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>1. Quán cà phê, Trà sữa</strong></td>
+                  <td>Ngồi tại bàn hoặc đi dọc quầy giơ máy lên nhẹ nhàng, không làm phiền khách bàn bên.</td>
+                </tr>
+                <tr>
+                  <td><strong>2. Phòng Gym, Hội chợ, Rạp phim</strong></td>
+                  <td>Không tốn diện tích đặt chân máy, tranh thủ 5 giây giữa hiệp tập là có ngay 1 cảnh chuyển.</td>
+                </tr>
+                <tr>
+                  <td><strong>3. Đường phố, Cửa hàng</strong></td>
+                  <td>Vừa đi bộ vừa nói vừa chuyển cảnh liên hoàn qua nhiều góc phố mà không cần dừng lại.</td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="ds-takeaway">✅ Đi một mình, không cần ai cầm máy hộ, ở bất cứ đâu cũng quay được ngay.</div>
+          </div>
+        </div>
+
+        <div class="slide-footer">
+          <div class="mentor-sig">
+            <span class="mentor-dot">NV</span>
+            <span><strong>Mentor : Nguyễn Đức Việt</strong>  ·  Loại 2 (Level 1): Chuyển cảnh giống Selfie</span>
+          </div>
+          <div class="footer-right">Slide 10 / 18  ·  chuyencanhslide.html</div>
+        </div>
+      </div>
+      <div class="speaker-notes-box">
+        <div class="sn-header">
+          <span class="sn-badge">🗣️ LỜI DẪN GIẢNG VIÊN CỦA ANH VIỆT (SLIDE 10 — LEVEL 1 GIỐNG SELFIE)</span>
+          <span class="sn-part">Giải tỏa tâm lý ngại quay ở nơi công cộng</span>
+        </div>
+        <p class="sn-text">“Cấp độ 1 là dùng chính cơ thể mình để chuyển cảnh. Ở quán cà phê, phòng gym, hội chợ hay ngoài đường phố, bạn chỉ giơ máy lên trước mặt hệt như đang chụp selfie nên rất tự nhiên, không gây chú ý và không ngại đám đông.”</p>
+      </div>
+    </section>
+
+    <!-- ================= SLIDE 11 — KỸ THUẬT LEVEL 1A: DÙNG ĐẦU + QUY TẮC LẤY ĐÀ ================= -->
+    <section class="slide-wrapper" data-index="10" id="slide-11">
+      <div class="slide-canvas layout-content">
+        <div class="slide-topbar">
+          <span>2026  •  PHẦN 02 • LOẠI 2 (LEVEL 1A): DÙNG ĐẦU &amp; NGUYÊN LÝ CỘNG HƯỞNG</span>
+          <span>SLIDE 11 / 18 · GẬT ĐẦU, QUAY ĐẦU &amp; LẤY ĐÀ</span>
+        </div>
+        <div class="slide-head-block">
+          <div class="slide-title-row">
+            <h2 class="slide-main-title">Kỹ Thuật Level 1A: Dùng ĐẦU (Gật Đầu &amp; Quay Đầu) + Quy Tắc Lấy Đà</h2>
+            <span class="preset-tag">Hơi nhích ngược lại để lấy đà rồi quất dứt khoát</span>
+          </div>
+          <p class="slide-subtitle">Với cái đầu của mình, làm được bao nhiêu hành động thì có bấy nhiêu kiểu chuyển cảnh.</p>
+        </div>
+
+        <div class="ds-cards cards-grid-3">
+          <div class="ds-card card-neutral">
+            <div>
+              <div class="ds-badge">THAO TÁC 1A • GẬT ĐẦU &amp; QUAY ĐẦU</div>
+              <h3 class="ds-card-title">Lặp lại đúng hướng gật hoặc quay đầu ở 2 nơi</h3>
+              <div class="ds-hairline"></div>
+              <div class="ds-card-body">
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:6px; margin-bottom:8px;">
+                  <img src="assets/chuyencanh/cap1_shot_02_31s.webp" alt="Anh Việt làm mẫu dùng đầu 1" style="width:100%; height:96px; object-fit:cover; border-radius:6px;"/>
+                  <img src="assets/chuyencanh/cap1_shot_04_60s.webp" alt="Anh Việt làm mẫu dùng đầu 2" style="width:100%; height:96px; object-fit:cover; border-radius:6px;"/>
+                </div>
+                <p>• <strong>Cách 1 (Gật đầu dọc):</strong> Cuối Cảnh 1 gật đầu xuống &rarr; Đầu Cảnh 2 từ dưới ngẩng lên (hoặc tiếp đà gật xuống).</p>
+                <p>• <strong>Cách 2 (Quay/Hất đầu ngang):</strong> Cuối Cảnh 1 quay đầu sang trái &rarr; Đầu Cảnh 2 ở bối cảnh mới đầu đang từ phải quay sang trái cho khớp đà.</p>
+              </div>
+            </div>
+            <div class="ds-takeaway">🗣️ Cắt ngay lúc đầu đang quất nhanh nhất.</div>
+          </div>
+
+          <div class="ds-card card-amber">
+            <div>
+              <div class="ds-badge">QUY TẮC SỐNG CÒN • LẤY ĐÀ &amp; DỨT KHOÁT</div>
+              <h3 class="ds-card-title">Hơi nhích ngược lại để lấy đà rồi quất dứt khoát!</h3>
+              <div class="ds-hairline"></div>
+              <div class="ds-card-body">
+                <img src="assets/chuyencanh/cap1_f04_65s.webp" alt="Quy tắc lấy đà dứt khoát" style="width:100%; height:96px; object-fit:cover; border-radius:6px; margin-bottom:8px;"/>
+                <p>• <strong>Lời dặn nguyên văn của anh Việt:</strong> <em>“Hành động quay đầu hay gật đầu này là để chuyển cảnh, cho nên làm nó phải DỨT KHOÁT và LẤY ĐÀ một chút.”</em></p>
+                <p>• <strong>Cách lấy đà:</strong> Muốn quay đầu sang trái thì hơi nhích nhẹ đầu sang phải 1 nhịp rồi quất dứt khoát sang trái. Nếu quay lờ đờ, người xem không kịp chuẩn bị đón nhận cảnh mới.</p>
+              </div>
+            </div>
+            <div class="ds-takeaway">⚡ Nhích ngược lấy đà (0.2s) &rarr; Quất dứt khoát!</div>
+          </div>
+
+          <div class="ds-card card-good">
+            <div>
+              <div class="ds-badge">NGUYÊN LÝ CỘNG HƯỞNG • LUÔN CHUYỂN ĐỘNG</div>
+              <h3 class="ds-card-title">Vừa đi bộ + Vừa nói + Vừa chuyển cảnh</h3>
+              <div class="ds-hairline"></div>
+              <div class="ds-card-body">
+                <img src="assets/chuyencanh/cap1_f09_228s.webp" alt="Vừa đi bộ vừa nói vừa chuyển cảnh" style="width:100%; height:96px; object-fit:cover; border-radius:6px; margin-bottom:8px;"/>
+                <p>• <strong>Tại sao không nên đứng im?</strong> Người xem luôn bị cuốn theo những thứ đang di chuyển. Đứng im một chỗ nói thì nền phía sau tĩnh lặng, dễ nhàm chán.</p>
+                <p>• <strong>Cộng hưởng 3 lớp:</strong> Khi bạn <strong>vừa bước đi + vừa nói chuyện + vừa quay đầu/lia máy</strong>, cả người bạn và hậu cảnh phía sau đều chuyển động liên tục.</p>
+              </div>
+            </div>
+            <div class="ds-takeaway">🚶‍♂️ Giữ mắt người xem mạnh gấp đôi đứng yên.</div>
+          </div>
+        </div>
+
+        <div class="slide-footer">
+          <div class="mentor-sig">
+            <span class="mentor-dot">NV</span>
+            <span><strong>Mentor : Nguyễn Đức Việt</strong>  ·  Kỹ thuật Level 1A: Dùng Đầu &amp; Quy tắc Lấy đà</span>
+          </div>
+          <div class="footer-right">Slide 11 / 18  ·  chuyencanhslide.html</div>
+        </div>
+      </div>
+      <div class="speaker-notes-box">
+        <div class="sn-header">
+          <span class="sn-badge">🗣️ LỜI DẪN GIẢNG VIÊN CỦA ANH VIỆT (SLIDE 11 — DÙNG ĐẦU &amp; LẤY ĐÀ)</span>
+          <span class="sn-part">Làm mẫu động tác nhích ngược lấy đà</span>
+        </div>
+        <p class="sn-text">“Cả lớp nhìn kỹ chỗ này: Muốn gật đầu xuống thì hơi ngửa nhẹ lên một chút để lấy đà rồi gật dứt khoát. Muốn quay sang trái thì hơi nhích sang phải một chút rồi quất. Nếu bạn quay đầu lờ đờ thì người xem không được báo trước, ghép vào nhìn rất thiếu tự nhiên. Và nhớ: vừa đi bộ vừa nói vừa chuyển cảnh!”</p>
+      </div>
+    </section>
+
+    <!-- ================= SLIDE 12 — KỸ THUẬT LEVEL 1B: DÙNG ĐIỆN THOẠI & TAY (4 THAO TÁC) ================= -->
+    <section class="slide-wrapper" data-index="11" id="slide-12">
+      <div class="slide-canvas layout-content">
+        <div class="slide-topbar">
+          <span>2026  •  PHẦN 02 • LOẠI 2 (LEVEL 1B): DÙNG ĐIỆN THOẠI &amp; BÀN TAY</span>
+          <span>SLIDE 12 / 18 · 4 THAO TÁC VỚI ĐIỆN THOẠI</span>
+        </div>
+        <div class="slide-head-block">
+          <div class="slide-title-row">
+            <h2 class="slide-main-title">Kỹ Thuật Level 1B: Dùng ĐIỆN THOẠI &amp; TAY (4 Thao Tác Thực Chiến)</h2>
+            <span class="preset-tag">“Bạn nghĩ ra bao nhiêu cách thao tác với điện thoại thì có bấy nhiêu cách chuyển cảnh”</span>
+          </div>
+          <p class="slide-subtitle">4 thao tác cầm tay đơn giản kết hợp 3 video mẫu thực tế từ Kho Ý Tưởng.</p>
+        </div>
+
+        <div class="ds-cards cards-grid-4" style="flex:0;">
+          <div class="ds-card card-neutral" style="padding:12px 14px;">
+            <div>
+              <div class="ds-badge">THAO TÁC 01 • WHIP PAN</div>
+              <h3 class="ds-card-title">Lia máy ngang (Trái / Phải)</h3>
+              <p style="font-size:13px; margin:6px 0 0; color:var(--ink2);">Đang nói thì lia nhanh điện thoại sang phải tạo vệt mờ; đầu Cảnh 2 lia từ trái vào mặt nhân vật.</p>
+            </div>
+          </div>
+          <div class="ds-card card-neutral" style="padding:12px 14px;">
+            <div>
+              <div class="ds-badge">THAO TÁC 02 • WHIP TILT</div>
+              <h3 class="ds-card-title">Lia máy dọc (Lên / Xuống)</h3>
+              <p style="font-size:13px; margin:6px 0 0; color:var(--ink2);">Hất nhanh điện thoại từ dưới lên trời (hoặc chúc xuống đất) ở cuối Cảnh 1 và nối cùng hướng ở Cảnh 2.</p>
+            </div>
+          </div>
+          <div class="ds-card card-neutral" style="padding:12px 14px;">
+            <div>
+              <div class="ds-badge">THAO TÁC 03 • CAMERA ROLL</div>
+              <h3 class="ds-card-title">Lắc xoay cổ tay</h3>
+              <p style="font-size:13px; margin:6px 0 0; color:var(--ink2);">Lắc nghiêng cổ tay cầm điện thoại sang trái một nhịp nhanh rồi lắc trả lại ở khung hình kế tiếp.</p>
+            </div>
+          </div>
+          <div class="ds-card card-good" style="padding:12px 14px;">
+            <div>
+              <div class="ds-badge">THAO TÁC 04 • LENS BLOCK</div>
+              <h3 class="ds-card-title">Che kín ống kính</h3>
+              <p style="font-size:13px; margin:6px 0 0; color:var(--ink2);">Đưa lòng bàn tay, vạt áo hoặc đạo cụ che kín 100% mắt camera ở cuối Cảnh 1 rồi mở ra ở Cảnh 2.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="slide-videos-tray cols-3" style="margin-top:10px;">
+          <!-- DdoooYmq-cd -->
+          <div class="slide-vcard">
+            <div class="slide-vhead">
+              <div class="slide-vtitle">
+                <span class="v-badge v-badge-win">MẪU LENS BLOCK • DdoooYmq-cd</span>
+                <strong>@etaemin — Bàn tay che ống kính đổi diện mạo</strong>
+              </div>
+            </div>
+            <div class="slide-vshots">
+              <img src="https://media.fedu.vn/images/IG_%40etaemin_DdoooYmq-cd_Get_ready_for_the_shoot/shot_01_mid.webp" alt="DdoooYmq-cd shot 1"/>
+              <img src="https://media.fedu.vn/images/IG_%40etaemin_DdoooYmq-cd_Get_ready_for_the_shoot/shot_02_mid.webp" alt="DdoooYmq-cd shot 2"/>
+              <img src="assets/chuyencanh/cap1_shot_07_152s.webp" alt="Anh Việt làm mẫu dùng điện thoại"/>
+            </div>
+            <div class="slide-vnote">
+              Đưa lòng bàn tay che kín ống kính (Wipe In), khi rút tay ra đã sang trang phục và bối cảnh buổi chụp mới.
+            </div>
+            <div class="slide-vfoot">
+              <button class="play-sample-btn" onclick="openVideoModal('https://media.fedu.vn/videos/DdoooYmq-cd.mp4', 'Mẫu Level 1B: @etaemin (DdoooYmq-cd) — Che Ống Kính Bằng Bàn Tay', 'https://ytuong.fedu.vn/v/DdoooYmq-cd')">▶️ Xem mẫu DdoooYmq-cd</button>
+              <a class="ext-link-btn" href="https://ytuong.fedu.vn/v/DdoooYmq-cd" target="_blank">ytuong ↗</a>
+            </div>
+          </div>
+
+          <!-- DakwX2NBYs1 -->
+          <div class="slide-vcard">
+            <div class="slide-vhead">
+              <div class="slide-vtitle">
+                <span class="v-badge v-badge-win">MẪU SÂN BAY • DakwX2NBYs1</span>
+                <strong>@la6vish — Áp sát che camera bay sang Fukuoka</strong>
+              </div>
+            </div>
+            <div class="slide-vshots">
+              <img src="https://media.fedu.vn/images/IG_%40la6vish_DakwX2NBYs1_Fukuoka_%F0%9F%87%AF%F0%9F%87%B5/shot_01_mid.webp" alt="DakwX2NBYs1 shot 1"/>
+              <img src="https://media.fedu.vn/images/IG_@la6vish_DakwX2NBYs1_Fukuoka_🇯🇵/shot_02_mid.webp" alt="DakwX2NBYs1 shot 2"/>
+              <img src="https://media.fedu.vn/images/IG_@la6vish_DakwX2NBYs1_Fukuoka_🇯🇵/shot_03_mid.webp" alt="DakwX2NBYs1 shot 3"/>
+            </div>
+            <div class="slide-vnote">
+              Đứng ở sân bay áp sát mặt/tay che kín camera ở cuối Cảnh 1, Cảnh 2 lùi bước mở ra ngã tư đường phố Nhật Bản.
+            </div>
+            <div class="slide-vfoot">
+              <button class="play-sample-btn" onclick="openVideoModal('https://media.fedu.vn/videos/DakwX2NBYs1.mp4', 'Mẫu Level 1B: @la6vish (DakwX2NBYs1) — Chuyển Cảnh Sân Bay Sang Phố', 'https://ytuong.fedu.vn/v/DakwX2NBYs1')">▶️ Xem mẫu DakwX2NBYs1</button>
+              <a class="ext-link-btn" href="https://ytuong.fedu.vn/v/DakwX2NBYs1" target="_blank">ytuong ↗</a>
+            </div>
+          </div>
+
+          <!-- Ddqo7-eTI2A -->
+          <div class="slide-vcard">
+            <div class="slide-vhead">
+              <div class="slide-vtitle">
+                <span class="v-badge v-badge-win">MẪU CỬA VÒM • Ddqo7-eTI2A</span>
+                <strong>@lisha_ho — Bước qua khung cửa &amp; Cắt theo nhịp</strong>
+              </div>
+            </div>
+            <div class="slide-vshots">
+              <img src="https://media.fedu.vn/images/IG_%40lisha_ho_Ddqo7-eTI2A_Wait%E2%80%A6_%40ralphlauren_%2B_coffee_at_KLCC_%F0%9F%91%80/shot_01_mid.webp" alt="Ddqo7-eTI2A shot 1"/>
+              <img src="https://media.fedu.vn/images/IG_@lisha_ho_Ddqo7-eTI2A_Wait…_@ralphlauren_+_coffee_at_KLCC_👀/shot_02_mid.webp" alt="Ddqo7-eTI2A shot 2"/>
+              <img src="https://media.fedu.vn/images/IG_@lisha_ho_Ddqo7-eTI2A_Wait…_@ralphlauren_+_coffee_at_KLCC_👀/shot_03_mid.webp" alt="Ddqo7-eTI2A shot 3"/>
+            </div>
+            <div class="slide-vnote">
+              Kết hợp chuyển động bước qua khung cửa vòm quán cà phê và cắt nối theo nhịp nhạc dứt khoát.
+            </div>
+            <div class="slide-vfoot">
+              <button class="play-sample-btn" onclick="openVideoModal('https://media.fedu.vn/videos/Ddqo7-eTI2A.mp4', 'Mẫu Level 1B: @lisha_ho (Ddqo7-eTI2A) — Khung Cửa Vòm & Nhịp Cắt', 'https://ytuong.fedu.vn/v/Ddqo7-eTI2A')">▶️ Xem mẫu Ddqo7-eTI2A</button>
+              <a class="ext-link-btn" href="https://ytuong.fedu.vn/v/Ddqo7-eTI2A" target="_blank">ytuong ↗</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="slide-footer">
+          <div class="mentor-sig">
+            <span class="mentor-dot">NV</span>
+            <span><strong>Mentor : Nguyễn Đức Việt</strong>  ·  Kỹ thuật Level 1B: 4 Thao tác Điện thoại &amp; Tay</span>
+          </div>
+          <div class="footer-right">Slide 12 / 18  ·  chuyencanhslide.html</div>
+        </div>
+      </div>
+      <div class="speaker-notes-box">
+        <div class="sn-header">
+          <span class="sn-badge">🗣️ LỜI DẪN GIẢNG VIÊN CỦA ANH VIỆT (SLIDE 12 — DÙNG ĐIỆN THOẠI &amp; TAY)</span>
+          <span class="sn-part">Lưu ý lỗi lia máy chậm và che ống kính không kín</span>
+        </div>
+        <p class="sn-text">“Sau cái đầu chính là chiếc điện thoại trên tay bạn. Lưu ý hai lỗi người mới hay mắc: Một là lia máy quá chậm nên thấy rõ cảnh ở giữa; phải lia nhanh một mạch cho mờ hình. Hai là đưa tay che ống kính nhưng che không kín, còn hở ánh sáng ở viền; hãy áp sát lòng bàn tay hoặc đạo cụ che kín 100% mắt camera rồi mới mở ra ở cảnh sau.”</p>
+      </div>
+    </section>
+
+    <!-- ================= SLIDE 13 — LOẠI 3 (LEVEL 2): CÓ CHÂN MÁY ================= -->
+    <section class="slide-wrapper" data-index="12" id="slide-13">
+      <div class="slide-canvas layout-content">
+        <div class="slide-topbar">
+          <span>2026  •  PHẦN 02 • LOẠI 3 (LEVEL 2): CHUYỂN CẢNH CÓ CHÂN MÁY</span>
+          <span>SLIDE 13 / 18 · MỖI ĐỘNG TÁC LÀ MỘT ĐIỂM CẮT TỰ NHIÊN</span>
+        </div>
+        <div class="slide-head-block">
+          <div class="slide-title-row">
+            <h2 class="slide-main-title">LOẠI 3 (Level 2): Có Chân Máy — Mỗi Động Tác Đều Là Chuyển Cảnh Tự Nhiên</h2>
+            <span class="preset-tag">Đặt máy cố định • Hai tay tự do 100%</span>
+          </div>
+          <p class="slide-subtitle">Khi đặt điện thoại lên chân máy (hoặc kê cố định trên bàn), mọi cử chỉ đời thường của bạn đều trở thành cái cớ để cắt nối.</p>
+        </div>
+
+        <div class="slide-videos-tray cols-2">
+          <div class="slide-vcard">
+            <div class="slide-vhead">
+              <div class="slide-vtitle">
+                <span class="v-badge v-badge-mc">BÀI GIẢNG GỐC ANH VIỆT • eg6T8-SekjQ</span>
+                <strong>Chuyển cảnh cấp độ 2 - Có chân máy &amp; Bộ 3 Quy tắc (3:44)</strong>
+              </div>
+              <a class="ext-link-btn" href="https://youtu.be/eg6T8-SekjQ" target="_blank">YouTube ↗</a>
+            </div>
+            <div class="slide-vplayer-live">
+              <iframe id="yt-level2" src="https://www.youtube-nocookie.com/embed/eg6T8-SekjQ?rel=0" title="Chuyển cảnh cấp độ 2 Có chân máy - Nguyễn Đức Việt" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <div class="slide-vnote">
+              <div style="display:flex; gap:6px; flex-wrap:wrap; margin-bottom:6px;">
+                <button class="play-sample-btn" onclick="seekYouTube('yt-level2', 'eg6T8-SekjQ', 6)">⏱️ 0:06 Khi nào dùng Level 2</button>
+                <button class="play-sample-btn" onclick="seekYouTube('yt-level2', 'eg6T8-SekjQ', 36)">⏱️ 0:36 Bộ 3 Quy tắc 30°</button>
+                <button class="play-sample-btn" onclick="seekYouTube('yt-level2', 'eg6T8-SekjQ', 128)">⏱️ 2:08 Bài tập Tung bóng</button>
+                <button class="play-sample-btn" onclick="seekYouTube('yt-level2', 'eg6T8-SekjQ', 168)">⏱️ 2:48 Bài tập Bàn làm việc</button>
+              </div>
+              <strong>Bấm mốc giây để xem:</strong> Anh Việt giải thích bộ 3 quy tắc đổi cảnh và làm mẫu 2 hệ bài tập (Tung bóng ngoài trời &amp; Thỏi son/Bàn làm việc trong nhà).
+            </div>
+          </div>
+
+          <div class="ds-card card-good" style="justify-content:flex-start; gap:10px;">
+            <div class="ds-badge">📐 TẠI SAO CÓ CHÂN MÁY THÌ CHUYỂN CẢNH LẠI TỰ NHIÊN HƠN?</div>
+            <h3 class="ds-card-title">Hai tay hoàn toàn tự do làm việc thật trước ống kính</h3>
+            <div style="display:grid; grid-template-columns: 140px 1fr; gap:12px; align-items:center; margin:4px 0;">
+              <img src="assets/chuyencanh/cap2_f01_6s.webp" alt="Anh Việt hướng dẫn Level 2 có chân máy" style="width:140px; height:95px; object-fit:cover; border-radius:8px; border:1px solid #cbd5e1;"/>
+              <div style="font-size:13.8px; line-height:1.5; color:var(--ink2);">
+                Khi ở văn phòng, cửa hàng, phòng khách hay góc bàn làm việc, việc đặt điện thoại lên chân máy giúp cả 2 tay được tự do thao tác với đồ vật.
+              </div>
+            </div>
+            <div style="background:#ffffff; border:1px solid #cbd5e1; border-radius:10px; padding:10px 14px; font-size:13.5px; line-height:1.55;">
+              <strong>6 cử chỉ tự nhiên làm điểm cắt ngay tại chỗ:</strong>
+              <div style="display:grid; grid-template-columns:1fr 1fr; gap:6px; margin-top:6px;">
+                <div>1. 🚶 <strong>Bước vào khung hình</strong> &amp; ngồi xuống</div>
+                <div>2. 🪑 <strong>Tay kéo ghế</strong> trượt ra trước bàn</div>
+                <div>3. ☕ <strong>Đặt ly cà phê / Rót nước</strong> xuống bàn</div>
+                <div>4. 📓 <strong>Lật mở cuốn sổ tay</strong> &amp; cầm bút</div>
+                <div>5. 💄 <strong>Mở nắp thỏi son</strong> / Hộp sản phẩm</div>
+                <div>6. 🎾 <strong>Tung &amp; bắt quả bóng</strong> ngoài công viên</div>
+              </div>
+            </div>
+            <div class="ds-takeaway">✅ “Có chân máy thì mọi cử chỉ đều là một cái cớ để cắt. Việc của bạn là đổi cỡ, đổi góc, đổi hướng.”</div>
+          </div>
+        </div>
+
+        <div class="slide-footer">
+          <div class="mentor-sig">
+            <span class="mentor-dot">NV</span>
+            <span><strong>Mentor : Nguyễn Đức Việt</strong>  ·  Loại 3 (Level 2): Chuyển cảnh có chân máy</span>
+          </div>
+          <div class="footer-right">Slide 13 / 18  ·  chuyencanhslide.html</div>
+        </div>
+      </div>
+      <div class="speaker-notes-box">
+        <div class="sn-header">
+          <span class="sn-badge">🗣️ LỜI DẪN GIẢNG VIÊN CỦA ANH VIỆT (SLIDE 13 — LEVEL 2 CÓ CHÂN MÁY)</span>
+          <span class="sn-part">Chuyển từ cầm tay sang đặt máy cố định</span>
+        </div>
+        <p class="sn-text">“Khi bạn ở không gian thoải mái hơn và đặt điện thoại lên chân máy hoặc kê cố định trên bàn, hai tay bạn rảnh hoàn toàn. Lúc này bước vào khung, kéo ghế, đặt ly nước, mở sổ, thoa son hay tung quả bóng đều trở thành điểm cắt tự nhiên. Nhưng nếu chỉ đặt chân máy một chỗ mà cắt thì hình sẽ bị giật. Muốn mượt phải tuân thủ Bộ 3 Quy tắc ở slide tiếp theo.”</p>
+      </div>
+    </section>
+
+    <!-- ================= SLIDE 14 — BỘ 3 QUY TẮC BẮT BUỘC KHI CÓ CHÂN MÁY & QUY TẮC 30 ĐỘ ================= -->
+    <section class="slide-wrapper" data-index="13" id="slide-14">
+      <div class="slide-canvas layout-content">
+        <div class="slide-topbar">
+          <span>2026  •  PHẦN 02 • LOẠI 3 (LEVEL 2): HÌNH HỌC GÓC MÁY</span>
+          <span>SLIDE 14 / 18 · BỘ 3 QUY TẮC &amp; QUY TẮC 30 ĐỘ</span>
+        </div>
+        <div class="slide-head-block">
+          <div class="slide-title-row">
+            <h2 class="slide-main-title">Bộ 3 Quy Tắc Bắt Buộc Khi Có Chân Máy &amp; Quy Tắc 30 Độ</h2>
+            <span class="preset-tag">Đổi Cỡ Cảnh • Đổi Góc Máy • Đổi Hướng Máy &gt; 30°</span>
+          </div>
+          <p class="slide-subtitle">Dưới 30° mắt người xem báo lỗi giật hình (Jump-cut); trên 30° kèm đổi cỡ cảnh thì mắt công nhận góc nhìn mới.</p>
+        </div>
+
+        <div style="display:grid; grid-template-columns: 310px 1fr; gap:16px; align-items:stretch; flex:1;">
+          <!-- Sơ đồ mặt đồng hồ 30 độ SVG -->
+          <div class="ds-card card-neutral" style="align-items:center; text-align:center; padding:14px;">
+            <div class="ds-badge">🧭 SƠ ĐỒ MẶT ĐỒNG HỒ 30°</div>
+            <svg viewBox="0 0 240 210" style="width:100%; max-width:230px; height:auto; margin:4px auto;">
+              <!-- Vòng cung mặt đồng hồ -->
+              <circle cx="120" cy="115" r="82" fill="#f8fafc" stroke="#94a3b8" stroke-width="2" stroke-dasharray="4 3"/>
+              <!-- Vùng đỏ < 30 độ (12h -> 12h45) -->
+              <path d="M 120 115 L 120 33 A 82 82 0 0 1 158 42 Z" fill="rgba(220,38,38,0.22)" stroke="#dc2626" stroke-width="1.5"/>
+              <!-- Vùng xanh > 30 độ (1h30 -> 3h) -->
+              <path d="M 120 115 L 161 44 A 82 82 0 0 1 202 115 Z" fill="rgba(5,150,105,0.22)" stroke="#059669" stroke-width="1.5"/>
+              <!-- Trục Cam 1 (12h - 0 độ) -->
+              <line x1="120" y1="115" x2="120" y2="30" stroke="#0f172a" stroke-width="3"/>
+              <circle cx="120" cy="30" r="7" fill="#0f172a"/>
+              <text x="120" y="18" text-anchor="middle" font-size="10" font-weight="700" fill="#0f172a">CAM 1 (12h • 0°)</text>
+              <!-- Trục Cam 2 (>30 độ - 1h30 = 45 độ) -->
+              <line x1="120" y1="115" x2="178" y2="57" stroke="#059669" stroke-width="3"/>
+              <circle cx="178" cy="57" r="7" fill="#059669"/>
+              <text x="192" y="46" text-anchor="middle" font-size="10" font-weight="700" fill="#059669">CAM 2 (&gt;30°)</text>
+              <!-- Chủ thể ở tâm -->
+              <circle cx="120" cy="115" r="16" fill="#fb923c" stroke="#0f172a" stroke-width="2"/>
+              <text x="120" y="119" text-anchor="middle" font-size="9" font-weight="800" fill="#0f172a">BẠN</text>
+              <!-- Chú thích -->
+              <text x="139" y="68" font-size="8.5" font-weight="700" fill="#dc2626">&lt;30° Giật!</text>
+              <text x="174" y="92" font-size="9" font-weight="700" fill="#059669">1h30–2h (Chuẩn)</text>
+            </svg>
+            <div style="font-size:12.5px; line-height:1.45; color:var(--ink2); text-align:left;">
+              <strong>Mẹo mặt đồng hồ:</strong> Mỗi giờ trên đồng hồ là 30°. Nếu Cảnh 1 đặt máy ở <strong>12 giờ</strong>, Cảnh 2 phải dời chân máy sang <strong>1 giờ rưỡi trở đi (45°)</strong>. Tuyệt đối không đặt ở 12 giờ 30!
+            </div>
+          </div>
+
+          <!-- 3 Quy tắc + 2 Video mẫu -->
+          <div style="display:flex; flex-direction:column; justify-content:space-between; gap:12px;">
+            <div class="ds-cards cards-grid-3" style="flex:0;">
+              <div class="ds-card card-good" style="padding:12px 14px;">
+                <div>
+                  <div class="ds-badge">QUY TẮC 01 • CỠ CẢNH</div>
+                  <h3 class="ds-card-title">Bắt buộc Đổi Cỡ Cảnh</h3>
+                  <p style="font-size:13px; margin:6px 0 0;">Cảnh trước đang là cỡ <strong>Trung</strong> thì cảnh sau phải đổi sang cỡ <strong>Rộng/Toàn</strong> hoặc cỡ <strong>Cận</strong>. Không nối 2 cảnh cùng cỡ.</p>
+                </div>
+              </div>
+              <div class="ds-card card-good" style="padding:12px 14px;">
+                <div>
+                  <div class="ds-badge">QUY TẮC 02 • GÓC MÁY</div>
+                  <h3 class="ds-card-title">Bắt buộc Đổi Góc Máy</h3>
+                  <p style="font-size:13px; margin:6px 0 0;">Kết hợp đổi cỡ cảnh với đổi góc: <strong>Ngang tầm mắt &rarr; Thấp hất lên &rarr; Cao nhìn xuống &rarr; Góc chéo</strong>.</p>
+                </div>
+              </div>
+              <div class="ds-card card-amber" style="padding:12px 14px;">
+                <div>
+                  <div class="ds-badge">QUY TẮC 03 • HƯỚNG &gt; 30°</div>
+                  <h3 class="ds-card-title">Đổi Hướng Lệch &gt; 30°</h3>
+                  <p style="font-size:13px; margin:6px 0 0;">Dời chân máy theo cung tròn quanh chủ thể lệch <strong>ít nhất hơn 30 độ</strong> so với trục máy ban đầu.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="slide-videos-tray cols-2" style="margin-top:0;">
+              <div class="slide-vcard">
+                <div class="slide-vhead">
+                  <div class="slide-vtitle">
+                    <span class="v-badge v-badge-win">MẪU 1 CẢNH 3 GÓC • DbtuUwvzi5c</span>
+                    <strong>@jigummmmm — Tự quay đọc sách từ 3 vị trí chân máy</strong>
+                  </div>
+                </div>
+                <div class="slide-vshots">
+                  <img src="https://media.fedu.vn/images/IG_%40jigummmmm_DbtuUwvzi5c_%E2%80%9C%EA%B7%B8%EB%9E%98%EC%84%9C_%EA%B0%90%EC%84%B1%EB%A6%B4%EC%8A%A4_%EC%96%B4%EB%96%BB%EA%B2%8C_%EC%B0%8D%EB%8A%94_%EA%B1%B4%EB%8D%B0%E2%81%89%EF%B8%8F%E2%80%9D/shot_01_mid.webp" alt="DbtuUwvzi5c shot 1"/>
+                  <img src="https://media.fedu.vn/images/IG_@jigummmmm_DbtuUwvzi5c_“그래서_감성릴스_어떻게_찍는_건데⁉️”/shot_02_mid.webp" alt="DbtuUwvzi5c shot 2"/>
+                  <img src="https://media.fedu.vn/images/IG_@jigummmmm_DbtuUwvzi5c_“그래서_감성릴스_어떻게_찍는_건데⁉️”/shot_03_mid.webp" alt="DbtuUwvzi5c shot 3"/>
+                </div>
+                <div class="slide-vfoot">
+                  <button class="play-sample-btn" onclick="openVideoModal('https://media.fedu.vn/videos/DbtuUwvzi5c.mp4', 'Mẫu Level 2: @jigummmmm (DbtuUwvzi5c) — Công Thức 1 Cảnh Quay 3 Góc', 'https://ytuong.fedu.vn/v/DbtuUwvzi5c')">▶️ Xem mẫu “1 cảnh quay 3 góc” (DbtuUwvzi5c)</button>
+                  <a class="ext-link-btn" href="https://ytuong.fedu.vn/v/DbtuUwvzi5c" target="_blank">ytuong ↗</a>
+                </div>
+              </div>
+
+              <div class="slide-vcard">
+                <div class="slide-vhead">
+                  <div class="slide-vtitle">
+                    <span class="v-badge v-badge-win">MẪU 7 GÓC BÀN LÀM VIỆC • DcdthwaTM3J</span>
+                    <strong>@kortafilms — 7 góc chân máy quanh bàn làm việc</strong>
+                  </div>
+                </div>
+                <div class="slide-vshots">
+                  <img src="https://media.fedu.vn/images/IG_%40kortafilms_DcdthwaTM3J_Camera_Angles_Mastery/shot_01_mid.webp" alt="DcdthwaTM3J shot 1"/>
+                  <img src="https://media.fedu.vn/images/IG_%40kortafilms_DcdthwaTM3J_Camera_Angles_Mastery/shot_02_mid.webp" alt="DcdthwaTM3J shot 2"/>
+                  <img src="https://media.fedu.vn/images/IG_%40kortafilms_DcdthwaTM3J_Camera_Angles_Mastery/shot_03_mid.webp" alt="DcdthwaTM3J shot 3"/>
+                </div>
+                <div class="slide-vfoot">
+                  <button class="play-sample-btn" onclick="openVideoModal('https://media.fedu.vn/videos/DcdthwaTM3J.mp4', 'Mẫu Level 2: @kortafilms (DcdthwaTM3J) — 7 Góc Máy Bàn Làm Việc', 'https://ytuong.fedu.vn/v/DcdthwaTM3J')">▶️ Xem mẫu 7 góc bàn làm việc (DcdthwaTM3J)</button>
+                  <a class="ext-link-btn" href="https://ytuong.fedu.vn/v/DcdthwaTM3J" target="_blank">ytuong ↗</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="slide-footer">
+          <div class="mentor-sig">
+            <span class="mentor-dot">NV</span>
+            <span><strong>Mentor : Nguyễn Đức Việt</strong>  ·  Bộ 3 Quy tắc &amp; Quy tắc 30 độ</span>
+          </div>
+          <div class="footer-right">Slide 14 / 18  ·  chuyencanhslide.html</div>
+        </div>
+      </div>
+      <div class="speaker-notes-box">
+        <div class="sn-header">
+          <span class="sn-badge">🗣️ LỜI DẪN GIẢNG VIÊN CỦA ANH VIỆT (SLIDE 14 — BỘ 3 QUY TẮC &amp; 30 ĐỘ)</span>
+          <span class="sn-part">Giải thích sơ đồ mặt đồng hồ 30 độ</span>
+        </div>
+        <p class="sn-text">“Khi có chân máy, mỗi lần đổi cảnh bạn bắt buộc đổi 3 thứ: Một là đổi cỡ cảnh (Trung sang Toàn hoặc Cận). Hai là đổi góc máy (Ngang sang Thấp hoặc Cao). Ba là đổi hướng máy lệch ít nhất hơn 30 độ. Dưới 30 độ mắt người xem thấy hai cảnh quá giống nhau nên báo lỗi giật hình; trên 30 độ mắt công nhận ngay đây là góc nhìn mới.”</p>
+      </div>
+    </section>
+
+    <!-- ================= SLIDE 15 — LOGIC SỐNG CÒN (BƯỚC 1 - KHI QUAY): GIỮ TRỌNG TÂM HÀNH ĐỘNG ================= -->
+    <section class="slide-wrapper" data-index="14" id="slide-15">
+      <div class="slide-canvas layout-content">
+        <div class="slide-topbar">
+          <span>2026  •  PHẦN 03 • LOGIC SỐNG CÒN (BƯỚC 1 - LÚC QUAY): KHÓA TRỌNG TÂM</span>
+          <span>SLIDE 15 / 18 · GIỮ TRỌNG TÂM Ở CÙNG MỘT VỊ TRÍ</span>
+        </div>
+        <div class="slide-head-block">
+          <div class="slide-title-row">
+            <h2 class="slide-main-title">LOGIC SỐNG CÒN (Bước 1 - Khi Quay): Giữ Trọng Tâm Hành Động Ở Cùng Một Vị Trí</h2>
+            <span class="preset-tag">Bật Lưới 9 Ô (Grid) • Khóa hành động chính vào Ô Giữa</span>
+          </div>
+          <p class="slide-subtitle">Nguyên văn anh Việt: “Cần phải giữ hình ảnh ở trọng tâm, những hành động chính luôn luôn ở cùng một vị trí thì khi chuyển cảnh mới mượt.”</p>
+        </div>
+
+        <div style="display:grid; grid-template-columns: 290px 1fr; gap:16px; align-items:stretch; flex:1;">
+          <!-- Minh họa Lưới 9 ô -->
+          <div class="ds-card card-good" style="text-align:center; padding:14px;">
+            <div class="ds-badge">📱 BẬT LƯỚI 9 Ô (CAMERA GRID)</div>
+            <div class="grid-9-demo">
+              <div class="grid-9-cell">1</div>
+              <div class="grid-9-cell">2</div>
+              <div class="grid-9-cell">3</div>
+              <div class="grid-9-cell">4</div>
+              <div class="grid-9-cell center-lock">🎯 Ô GIỮA<br/>KHÓA TÂM<br/>HÀNH ĐỘNG</div>
+              <div class="grid-9-cell">6</div>
+              <div class="grid-9-cell">7</div>
+              <div class="grid-9-cell">8</div>
+              <div class="grid-9-cell">9</div>
+            </div>
+            <div style="font-size:12.5px; line-height:1.45; color:var(--ink2); text-align:left; margin-top:8px;">
+              <strong>Khẩu lệnh trước khi bấm máy:</strong> Đặt bàn tay, chiếc cốc, quả bóng hoặc gương mặt nằm đúng vào <strong>Ô Trung Tâm (số 5)</strong> ở cả Cảnh A lẫn Cảnh B.
+            </div>
+          </div>
+
+          <div style="display:flex; flex-direction:column; justify-content:space-between; gap:12px;">
+            <table class="slide-table">
+              <thead>
+                <tr>
+                  <th>Vị trí hành động cuối Cảnh A</th>
+                  <th>Vị trí hành động đầu Cảnh B</th>
+                  <th>Mắt người xem phản ứng thế nào?</th>
+                  <th>Kết quả thị giác</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>❌ Bàn tay nằm ở <strong>góc trái</strong></td>
+                  <td>❌ Bàn tay nhảy sang <strong>góc phải</strong></td>
+                  <td>Con ngươi phải phóng ngang màn hình để tìm lại bàn tay.</td>
+                  <td><strong>Khựng thị giác!</strong> (Dù đã cắt 70/30 và lệch &gt;30°)</td>
+                </tr>
+                <tr>
+                  <td>✅ Bàn tay khóa ở <strong>Ô Giữa</strong></td>
+                  <td>✅ Bàn tay khóa ở <strong>Ô Giữa</strong></td>
+                  <td>Mắt đứng nguyên một chỗ, chỉ thấy bối cảnh xung quanh biến đổi.</td>
+                  <td><strong>Vết cắt tàng hình 100%!</strong></td>
+                </tr>
+              </tbody>
+            </table>
+
+            <div class="slide-videos-tray cols-2" style="margin-top:0;">
+              <div class="slide-vcard">
+                <div class="slide-vhead">
+                  <div class="slide-vtitle">
+                    <span class="v-badge v-badge-win">MẪU ĐỒNG TÂM 01 • DeUMZwQtAHM</span>
+                    <strong>@khan.ayan9 — Khóa tâm tròng mắt nối 8 vật thể tròn</strong>
+                  </div>
+                </div>
+                <div class="slide-vshots">
+                  <img src="https://media.fedu.vn/images/IG_%40khan.ayan9_DeUMZwQtAHM_blink/shot_01_mid.webp" alt="DeUMZwQtAHM shot 1"/>
+                  <img src="https://media.fedu.vn/images/IG_%40khan.ayan9_DeUMZwQtAHM_blink/shot_02_mid.webp" alt="DeUMZwQtAHM shot 2"/>
+                  <img src="https://media.fedu.vn/images/IG_%40khan.ayan9_DeUMZwQtAHM_blink/shot_03_mid.webp" alt="DeUMZwQtAHM shot 3"/>
+                </div>
+                <div class="slide-vfoot">
+                  <button class="play-sample-btn" onclick="openVideoModal('https://media.fedu.vn/videos/DeUMZwQtAHM.mp4', 'Mẫu Khóa Tâm: @khan.ayan9 (DeUMZwQtAHM) — Nối 8 Vật Thể Tròn Ở Tâm Khung Hình', 'https://ytuong.fedu.vn/v/DeUMZwQtAHM')">▶️ Xem mẫu khóa tâm DeUMZwQtAHM</button>
+                  <a class="ext-link-btn" href="https://ytuong.fedu.vn/v/DeUMZwQtAHM" target="_blank">ytuong ↗</a>
+                </div>
+              </div>
+
+              <div class="slide-vcard">
+                <div class="slide-vhead">
+                  <div class="slide-vtitle">
+                    <span class="v-badge v-badge-win">MẪU ĐỒNG TÂM 02 • DeQYfOdpUdk</span>
+                    <strong>@bryanadamc — Khóa tâm góc 90° (Trứng &rarr; Ly cafe &rarr; Nến)</strong>
+                  </div>
+                </div>
+                <div class="slide-vshots">
+                  <img src="https://media.fedu.vn/images/IG_%40bryanadamc_DeQYfOdpUdk_dreamin%E2%80%99_bout_ya_%F0%9F%8E%A5/shot_01_mid.webp" alt="DeQYfOdpUdk shot 1"/>
+                  <img src="https://media.fedu.vn/images/IG_@bryanadamc_DeQYfOdpUdk_dreamin’_bout_ya_🎥/shot_02_mid.webp" alt="DeQYfOdpUdk shot 2"/>
+                  <img src="https://media.fedu.vn/images/IG_@bryanadamc_DeQYfOdpUdk_dreamin’_bout_ya_🎥/shot_03_mid.webp" alt="DeQYfOdpUdk shot 3"/>
+                </div>
+                <div class="slide-vfoot">
+                  <button class="play-sample-btn" onclick="openVideoModal('https://media.fedu.vn/videos/DeQYfOdpUdk.mp4', 'Mẫu Khóa Tâm 90°: @bryanadamc (DeQYfOdpUdk) — Vòng Tròn Đồng Tâm', 'https://ytuong.fedu.vn/v/DeQYfOdpUdk')">▶️ Xem mẫu khóa tâm DeQYfOdpUdk</button>
+                  <a class="ext-link-btn" href="https://ytuong.fedu.vn/v/DeQYfOdpUdk" target="_blank">ytuong ↗</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="slide-footer">
+          <div class="mentor-sig">
+            <span class="mentor-dot">NV</span>
+            <span><strong>Mentor : Nguyễn Đức Việt</strong>  ·  Bước 1: Giữ trọng tâm hành động lúc bấm máy</span>
+          </div>
+          <div class="footer-right">Slide 15 / 18  ·  chuyencanhslide.html</div>
+        </div>
+      </div>
+      <div class="speaker-notes-box">
+        <div class="sn-header">
+          <span class="sn-badge">🗣️ LỜI DẪN GIẢNG VIÊN CỦA ANH VIỆT (SLIDE 15 — GIỮ TRỌNG TÂM KHI QUAY)</span>
+          <span class="sn-part">Hướng dẫn mở Grid 9 ô trên điện thoại</span>
+        </div>
+        <p class="sn-text">“Tại sao nhiều bạn cắt đúng lúc tay đang chạy, đổi góc hơn 30 độ rồi mà nhìn vẫn thấy khựng? Vì ở cuối cảnh 1 cái tay nằm bên trái, sang đầu cảnh 2 cái tay nhảy sang bên phải! Con ngươi người xem phải bay đi tìm cái tay nên thấy giật. Cả lớp mở ngay cài đặt Camera bật Lưới 9 ô lên, đặt vật chính vào đúng ô giữa trước mỗi cú máy.”</p>
+      </div>
+    </section>
+
+    <!-- ================= SLIDE 16 — LOGIC SỐNG CÒN (BƯỚC 2 - KHI DỰNG CAPCUT): CHỈNH LẠI TRỌNG TÂM ================= -->
+    <section class="slide-wrapper" data-index="15" id="slide-16">
+      <div class="slide-canvas layout-content">
+        <div class="slide-topbar">
+          <span>2026  •  PHẦN 03 • LOGIC SỐNG CÒN (BƯỚC 2 - LÚC DỰNG): CĂN LẠI TRỌNG TÂM TRÊN CAPCUT</span>
+          <span>SLIDE 16 / 18 · CHỈNH LẠI TRỌNG TÂM KHI QUAY BỊ LỆCH</span>
+        </div>
+        <div class="slide-head-block">
+          <div class="slide-title-row">
+            <h2 class="slide-main-title">LOGIC SỐNG CÒN (Bước 2 - Khi Dựng CapCut): Chỉnh Lại Trọng Tâm Khi Quay Bị Lệch</h2>
+            <span class="preset-tag">Trước &amp; Sau khi căn tâm • 5 Bước Scale (105%–125%) &amp; Position (X/Y)</span>
+          </div>
+          <p class="slide-subtitle">Nguyên văn anh Việt: “Nếu lúc quay bị lệch thì khi dựng mình phải chỉnh lại sao cho nó đúng vị trí khi mà chuyển cảnh.”</p>
+        </div>
+
+        <div class="ds-cards cards-grid-2" style="flex:0;">
+          <div class="ds-card card-warn" style="padding:14px 18px;">
+            <div class="ds-badge">❌ TRƯỚC KHI CĂN TÂM (PRZED / LỆCH TỌA ĐỘ)</div>
+            <h3 class="ds-card-title">Cuối Cảnh 1 tay ở giữa &rarr; Đầu Cảnh 2 tay bị lệch sang góc phải</h3>
+            <p style="font-size:13.5px; margin:6px 0 0; color:var(--ink2);">
+              Khi đi quay thực tế (nhất là cầm tay tự quay hoặc dời chân máy nhanh), khung đầu của Cảnh 2 rất dễ bị lệch khỏi ô trung tâm vài phân. Nếu để nguyên xuất video, mắt người xem sẽ bị giật tại vết cắt.
+            </p>
+          </div>
+
+          <div class="ds-card card-good" style="padding:14px 18px;">
+            <div class="ds-badge">✅ SAU KHI CĂN TÂM (PO / TRÙNG KHÍT TỌA ĐỘ X, Y)</div>
+            <h3 class="ds-card-title">Dùng 2 ngón tay Phóng nhẹ (105%–125%) &amp; Kéo Cảnh 2 về đúng tâm Cảnh 1</h3>
+            <p style="font-size:13.5px; margin:6px 0 0; color:var(--ink2);">
+              Sau khi kéo bàn tay ở đầu Cảnh 2 đè khít lên tọa độ bàn tay ở cuối Cảnh 1, mắt người xem đứng yên tại một điểm duy nhất và đi xuyên qua vết cắt mượt mà.
+            </p>
+          </div>
+        </div>
+
+        <div style="margin-top:12px;">
+          <table class="slide-table">
+            <thead>
+              <tr>
+                <th>Bước</th>
+                <th>Thao tác trên CapCut</th>
+                <th>Chi tiết thực hiện chính xác</th>
+                <th>Lưu ý kỹ thuật</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Bước 01</strong></td>
+                <td><strong>Đưa kim thời gian sát vết cắt</strong></td>
+                <td>Dùng 2 ngón tay phóng rộng thanh dựng phim trên CapCut và đặt vạch trắng sát vết cắt giữa Cảnh 1 và Cảnh 2.</td>
+                <td>Xem rõ từng khung hình sát mép cắt.</td>
+              </tr>
+              <tr>
+                <td><strong>Bước 02</strong></td>
+                <td><strong>Ghi nhớ tọa độ (X, Y) cuối Cảnh 1</strong></td>
+                <td>Nhìn khung hình cuối cùng của Cảnh 1, nhìn rõ chỗ nằm của bàn tay / gương mặt / vật thể đang ở đâu.</td>
+                <td>Lấy ô giữa làm mốc chuẩn.</td>
+              </tr>
+              <tr>
+                <td><strong>Bước 03</strong></td>
+                <td><strong>Chọn Cảnh 2 &rarr; Phóng nhẹ (Scale 105%–125%)</strong></td>
+                <td>Ấn chọn đoạn video Cảnh 2, dùng 2 ngón tay trên màn hình xem trước phóng to nhẹ từ <strong>105% đến 125%</strong>.</td>
+                <td>Không phóng quá 125% để tránh mờ hình.</td>
+              </tr>
+              <tr>
+                <td><strong>Bước 04</strong></td>
+                <td><strong>Kéo khung hình (Position X/Y) đè khít tâm</strong></td>
+                <td>Giữ ngón tay kéo khung hình Cảnh 2 sang trái/phải/lên/xuống sao cho bàn tay ở đầu Cảnh 2 <strong>đè khít lên vị trí cuối Cảnh 1</strong>.</td>
+                <td>Bố cục hai bên mép tự cắt gọn.</td>
+              </tr>
+              <tr>
+                <td><strong>Bước 05</strong></td>
+                <td><strong>Phát kiểm tra 3 lần liên tiếp</strong></td>
+                <td>Kéo vạch thời gian lùi lại 2 giây và bấm Play xem qua vết cắt 3 lần. Nếu mắt còn thấy nhảy thì nhích thêm vài milimet.</td>
+                <td>Mắt đứng yên = Đạt chuẩn xuất file!</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="slide-footer">
+          <div class="mentor-sig">
+            <span class="mentor-dot">NV</span>
+            <span><strong>Mentor : Nguyễn Đức Việt</strong>  ·  Bước 2: 5 bước chỉnh lại trọng tâm trên CapCut</span>
+          </div>
+          <div class="footer-right">Slide 16 / 18  ·  chuyencanhslide.html</div>
+        </div>
+      </div>
+      <div class="speaker-notes-box">
+        <div class="sn-header">
+          <span class="sn-badge">🗣️ LỜI DẪN GIẢNG VIÊN CỦA ANH VIỆT (SLIDE 16 — CĂN LẠI TRÊN CAPCUT)</span>
+          <span class="sn-part">Chỉ thao tác 2 ngón tay phóng và kéo trên CapCut</span>
+        </div>
+        <p class="sn-text">“Lúc quay thật không phải lúc nào tay mình cũng căn chuẩn 100% vào ô giữa được. Nếu Cảnh 2 bị lệch, lúc dựng trên CapCut bạn chỉ cần ấn vào Cảnh 2, dùng 2 ngón tay phóng nhẹ khoảng 110% để lấy dư viền, rồi kéo cho cái tay ở đầu Cảnh 2 nằm đè đúng lên vị trí cái tay ở cuối Cảnh 1. Phát lại 3 lần thấy mắt không còn phải nhảy đi tìm là xong!”</p>
+      </div>
+    </section>
+
+    <!-- ================= SLIDE 17 — THỰC HÀNH TẠI LỚP: BỘ 3 BÀI TẬP BẬC THANG ================= -->
+    <section class="slide-wrapper" data-index="16" id="slide-17">
+      <div class="slide-canvas layout-content">
+        <div class="slide-topbar">
+          <span>2026  •  PHẦN 04 • THỰC HÀNH TẠI LỚP: QUAY – DỰNG – RA VIDEO NGAY</span>
+          <span>SLIDE 17 / 18 · BỘ 3 BÀI TẬP BẬC THANG</span>
+        </div>
+        <div class="slide-head-block">
+          <div class="slide-title-row">
+            <h2 class="slide-main-title">THỰC HÀNH TẠI LỚP: Bộ 3 Bài Tập Bậc Thang (Quay – Dựng – Ra Video Ngay)</h2>
+            <span class="preset-tag">Mỗi bài 15–25 giây dọc 9:16 • Quay 45p + Dựng 20p</span>
+          </div>
+          <p class="slide-subtitle">Đi từng bậc từ dễ đến nâng cao ngay tại bàn học, hành lang và khuôn viên lớp học.</p>
+        </div>
+
+        <div class="ds-cards cards-grid-3">
+          <!-- Bài 1 -->
+          <div class="ds-card card-good">
+            <div>
+              <div class="ds-badge">BÀI TẬP 01 • CUT ON ACTION TẠI BÀN</div>
+              <h3 class="ds-card-title">Chuỗi 6 cú máy Pha cà phê / Mở sổ / Viết bài (Quy tắc 70/30 + Căn tâm)</h3>
+              <div class="ds-hairline"></div>
+              <div class="ds-card-body">
+                <p>• <strong>Cú 1 (Toàn, ngang mắt):</strong> Bước vào, tay vươn cầm ly (cắt ở 70% khi tay đang vươn).</p>
+                <p>• <strong>Cú 2 (Trung, lệch &gt;30°):</strong> Nhấc ly lên khỏi mặt bàn.</p>
+                <p>• <strong>Cú 3 (Cận, góc cao):</strong> Rót cà phê/nước vào ly (cắt lúc dòng nước đang chảy).</p>
+                <p>• <strong>Cú 4 (Đặc tả, góc thấp):</strong> Đặt ly xuống bàn (cắt ngay trước khi đáy ly gặp mặt bàn).</p>
+                <p>• <strong>Cú 5 (Trung, góc chéo):</strong> Tay mở cuốn sổ tay (cắt lúc bìa sổ đang lật).</p>
+                <p>• <strong>Cú 6 (Cận, trên xuống):</strong> Đầu bút viết dòng đầu tiên trên giấy.</p>
+              </div>
+            </div>
+            <div class="ds-takeaway">🎯 Điểm đạt: <strong>Từ 60/100</strong> • Trọng tâm luôn khóa ở Ô Giữa.</div>
+          </div>
+
+          <!-- Bài 2 -->
+          <div class="ds-card card-amber">
+            <div>
+              <div class="ds-badge">BÀI TẬP 02 • LEVEL 1 GIỐNG SELFIE</div>
+              <h3 class="ds-card-title">Vừa đi vừa nói qua 4 điểm cắt bằng Đầu &amp; Điện thoại (`CaDZiACYrV8`)</h3>
+              <div class="ds-hairline"></div>
+              <div class="ds-card-body">
+                <p>• <strong>Cú 1 &rarr; 2 (Gật đầu lấy đà):</strong> Vừa đi ở cửa lớp vừa nói câu mở đầu, nhích nhẹ lên lấy đà rồi gật đầu dứt khoát sang sảnh.</p>
+                <p>• <strong>Cú 2 &rarr; 3 (Quay đầu ngang):</strong> Nhích nhẹ sang phải lấy đà rồi quất đầu sang trái mở ra hành lang.</p>
+                <p>• <strong>Cú 3 &rarr; 4 (Lia máy Whip Pan):</strong> Lia nhanh điện thoại sang phải một mạch mờ hình, dừng lại ở góc ban công/cầu thang.</p>
+                <p>• <strong>Cú 4 &rarr; 5 (Che ống kính Lens Block):</strong> Đưa bàn tay che kín 100% ống kính rồi mở ra tại bàn làm việc và chốt câu kết.</p>
+              </div>
+            </div>
+            <div class="ds-takeaway">🤳 Điểm đạt: <strong>Từ 60/100</strong> • Vừa đi bộ + vừa nói + vừa chuyển cảnh.</div>
+          </div>
+
+          <!-- Bài 3 -->
+          <div class="ds-card card-good">
+            <div>
+              <div class="ds-badge">BÀI TẬP 03 • LEVEL 2 CHÂN MÁY &amp; 30°</div>
+              <h3 class="ds-card-title">Đặt chân máy cố định &amp; Đổi đủ 3 yếu tố (Cỡ, Góc, Hướng &gt; 30°)</h3>
+              <div class="ds-hairline"></div>
+              <div class="ds-card-body">
+                <p><strong>Chọn 1 trong 2 Hệ thực hành (theo video `eg6T8-SekjQ`):</strong></p>
+                <p>• <strong>Hệ Chill (Trong nhà / Bàn làm việc):</strong> Dùng thỏi son, ly cà phê, sổ bút &amp; laptop. Quay 6 cú liên hoàn (Kéo ghế &rarr; Đặt ly &rarr; Mở sổ &rarr; Mở laptop &rarr; Gõ phím &rarr; Bước qua che máy); mỗi cú dời chân máy lệch 35°–45° và đổi cỡ Trung/Toàn/Cận.</p>
+                <p>• <strong>Hệ Năng động (Ngoài trời / Ban công):</strong> Cầm 1 quả bóng nhỏ, tung và bắt qua 5 vị trí chân máy (Trung/Ngang &rarr; Rộng/Thấp &rarr; Cận/Cao, mỗi góc lệch &gt; 30°), cắt ngay lúc bóng đang bay.</p>
+              </div>
+            </div>
+            <div class="ds-takeaway">📐 Điểm đạt: <strong>Từ 70/100</strong> • Đánh dấu vị trí chân máy theo mặt đồng hồ.</div>
+          </div>
+        </div>
+
+        <div class="slide-footer">
+          <div class="mentor-sig">
+            <span class="mentor-dot">NV</span>
+            <span><strong>Mentor : Nguyễn Đức Việt</strong>  ·  Giao đề Bộ 3 Bài tập Bậc thang tại lớp</span>
+          </div>
+          <div class="footer-right">Slide 17 / 18  ·  chuyencanhslide.html</div>
+        </div>
+      </div>
+      <div class="speaker-notes-box">
+        <div class="sn-header">
+          <span class="sn-badge">🗣️ LỜI DẪN GIẢNG VIÊN CỦA ANH VIỆT (SLIDE 17 — GIAO BÀI TẬP 1–2–3)</span>
+          <span class="sn-part">Phân công thực hành tại lớp</span>
+        </div>
+        <p class="sn-text">“Bây giờ cả lớp bắt tay vào quay ngay 3 bài tập bậc thang: Bài 1 ngồi ngay tại bàn cắt khi tay đang chạy theo quy tắc 70/30. Bài 2 cầm điện thoại đứng dậy vừa đi vừa nói dùng đủ 4 chiêu gật đầu, quay đầu, lia máy và che ống kính. Bài 3 đặt chân máy áp dụng đúng quy tắc 30 độ với Hệ Chill tại bàn hoặc Hệ Tung bóng ngoài sân. Mỗi bài dài 15–20 giây!”</p>
+      </div>
+    </section>
+
+    <!-- ================= SLIDE 18 — PHIẾU NGHIỆM THU 10 TIÊU CHÍ & LỖI THƯỜNG GẶP CẦN TRÁNH ================= -->
+    <section class="slide-wrapper" data-index="17" id="slide-18">
+      <div class="slide-canvas layout-content">
+        <div class="slide-topbar">
+          <span>2026  •  PHẦN 05 • NGHIỆM THU TẠI LỚP &amp; TỔNG KẾT KHÓA HỌC</span>
+          <span>SLIDE 18 / 18 · PHIẾU NGHIỆM THU 10 TIÊU CHÍ</span>
+        </div>
+        <div class="slide-head-block">
+          <div class="slide-title-row">
+            <h2 class="slide-main-title">Phiếu Nghiệm Thu 10 Tiêu Chí &amp; Các Lỗi Thường Gặp Cần Tránh</h2>
+            <span class="preset-tag">Cách chấm: Xem 1 lần tốc độ 1.0x và 1 lần tốc độ 0.5x</span>
+          </div>
+          <p class="slide-subtitle">Mỗi tiêu chí 10 điểm (Tổng 100 điểm). Bài 1 &amp; 2 đạt từ 60đ; Bài 3 đạt từ 70đ. Vết cắt nào lộ thì quay hoặc chỉnh lại đúng cú đó.</p>
+        </div>
+
+        <div style="display:grid; grid-template-columns: 1.15fr 0.85fr; gap:14px; flex:1; align-items:start;">
+          <table class="slide-table" style="font-size:12.8px;">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>10 Tiêu chí chấm điểm nghiệm thu (10đ/mục)</th>
+                <th>Cách kiểm tra ở tốc độ 1.0x &amp; 0.5x</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>01</strong></td>
+                <td><strong>Đủ số lượng cú cắt chuyển động</strong></td>
+                <td>Tối thiểu 4–6 cú nối bằng hành động thật trong 15–25 giây.</td>
+              </tr>
+              <tr>
+                <td><strong>02</strong></td>
+                <td><strong>Không cắt lúc tay/cơ thể đã dừng hẳn</strong></td>
+                <td>Soi ở tốc độ 0.5x: không có khung hình chết trước vết cắt.</td>
+              </tr>
+              <tr>
+                <td><strong>03</strong></td>
+                <td><strong>Điểm cắt rơi đúng mốc 70/30</strong></td>
+                <td>Cảnh A cắt ở 70% lúc đang nhanh; Cảnh B nối 30% cuối.</td>
+              </tr>
+              <tr>
+                <td><strong>04</strong></td>
+                <td><strong>Cùng hướng &amp; Cùng tốc độ chuyển động</strong></td>
+                <td>Gật đầu/lia máy/vươn tay ở 2 cảnh đi cùng chiều, có lấy đà.</td>
+              </tr>
+              <tr>
+                <td><strong>05</strong></td>
+                <td><strong>Đổi cỡ cảnh &amp; góc máy rõ rệt</strong></td>
+                <td>Luân phiên Toàn – Trung – Cận và Ngang – Thấp – Cao.</td>
+              </tr>
+              <tr>
+                <td><strong>06</strong></td>
+                <td><strong>Hướng máy lệch &gt; 30° (với bài Chân máy)</strong></td>
+                <td>Không có cặp cảnh nào trông như cùng 1 góc chỉ nhích nhẹ.</td>
+              </tr>
+              <tr>
+                <td><strong>07</strong></td>
+                <td><strong>Trọng tâm khóa ở Ô Giữa lúc quay</strong></td>
+                <td>Bật lưới 9 ô, hành động chính nằm gọn tại vùng trung tâm.</td>
+              </tr>
+              <tr>
+                <td><strong>08</strong></td>
+                <td><strong>Đã căn lại tọa độ (Scale &amp; Position) trên CapCut</strong></td>
+                <td>Phóng nhẹ 105–125% và kéo Cảnh 2 trùng khít tâm Cảnh 1.</td>
+              </tr>
+              <tr>
+                <td><strong>09</strong></td>
+                <td><strong>Nhịp 2–3 giây/cảnh &amp; Âm thanh liền mạch</strong></td>
+                <td>Lời nói và tiếng động hiện trường không bị đứt hoặc cụt chữ.</td>
+              </tr>
+              <tr>
+                <td><strong>10</strong></td>
+                <td><strong>Chuyển cảnh phục vụ tôn NỘI DUNG lời nói</strong></td>
+                <td>Không dán hiệu ứng loè loẹt của app; nghe rõ thông điệp chính.</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="ds-card card-warn" style="justify-content:flex-start; gap:8px;">
+            <div class="ds-badge">⚠️ 6 LỖI HAY GẶP NHẤT &amp; CÁCH SỬA NGAY TẠI LỚP</div>
+            <h3 class="ds-card-title">Bắt bệnh nhanh trong 10 giây</h3>
+            <div class="ds-hairline"></div>
+            <div class="ds-card-body" style="font-size:13.2px; line-height:1.5;">
+              <p>1. <strong>Cắt lúc tay đã dừng:</strong> Vết cắt lộ rõ &rarr; <em>Kéo lùi mép cắt cuối Cảnh 1 về mốc 70% động tác.</em></p>
+              <p>2. <strong>Gật/Quay đầu chậm, thiếu đà:</strong> Cảnh sau vào bị khựng &rarr; <em>Nhích ngược lấy đà rồi quất dứt khoát.</em></p>
+              <p>3. <strong>Lia máy chậm hoặc che không kín:</strong> Lộ cảnh rác ở giữa &rarr; <em>Lia nhanh một mạch; áp sát tay che kín ống kính.</em></p>
+              <p>4. <strong>Chân máy lệch dưới 30°:</strong> Hình bị nhảy giật &rarr; <em>Dời chân máy sang vị trí 1 giờ rưỡi (&gt;30°) và đổi cỡ cảnh.</em></p>
+              <p>5. <strong>Trọng tâm nhảy từ trái sang phải:</strong> Mắt phải chạy đi tìm &rarr; <em>Phóng 110% trên CapCut và kéo trùng tâm.</em></p>
+              <p>6. <strong>Quay đứng im hoặc dán hiệu ứng CapCut:</strong> Trông thiếu tự nhiên &rarr; <em>Vừa đi vừa quay; xóa bỏ hiệu ứng app.</em></p>
+            </div>
+            <div class="ds-takeaway">🏆 Mở <code>chuyencanh2.0.html</code> để xem bảng phân cảnh đa ngành chi tiết!</div>
+          </div>
+        </div>
+
+        <div class="quote-action-bar" style="margin-top:10px; text-align:center; font-size:15.5px;">
+          🏆 <strong>ĐÚC KẾT ĐÓNG ĐINH: “Lặp lại hành động ở hai vị trí khác nhau, cắt ở mốc 70/30, lệch hướng trên 30° và khóa chặt trọng tâm tại Ô Giữa — Vết cắt sẽ tàng hình để NỘI DUNG tỏa sáng.”</strong>
+        </div>
+
+        <div class="slide-footer">
+          <div class="mentor-sig">
+            <span class="mentor-dot">NV</span>
+            <span><strong>Mentor : Nguyễn Đức Việt</strong>  ·  Hoàn thành Bộ 18 Slides Chuyển Cảnh Thực Chiến 2.0</span>
+          </div>
+          <div class="footer-right">Slide 18 / 18  ·  chuyencanhslide.html</div>
+        </div>
+      </div>
+      <div class="speaker-notes-box">
+        <div class="sn-header">
+          <span class="sn-badge">🗣️ LỜI DẪN GIẢNG VIÊN CỦA ANH VIỆT (SLIDE 18 — PHIẾU NGHIỆM THU &amp; ĐÓNG ĐINH)</span>
+          <span class="sn-part">Chấm bài tại lớp ở tốc độ 1.0x và 0.5x</span>
+        </div>
+        <p class="sn-text">“Cách chấm bài rất đơn giản: hai bạn ngồi cạnh nhau đổi điện thoại, xem video của bạn mình một lần ở tốc độ bình thường và một lần ở tốc độ 0.5. Vết cắt nào lộ ra thì nhìn vào bảng 10 tiêu chí này xem đang thiếu đà, cắt muộn hay lệch trọng tâm, rồi chỉnh lại ngay trên CapCut. Chúc mừng cả lớp đã nắm trọn kỹ thuật Chuyển Cảnh Thực Chiến 2.0!”</p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ================= LIVE VIDEO PLAYER MODAL ================= -->
+  <div class="video-modal-backdrop" id="video-modal" onclick="if(event.target===this) closeVideoModal()">
+    <div class="video-modal-box">
+      <div class="vm-head">
+        <span class="vm-title" id="vm-title">Đang phát video mẫu thực chiến</span>
+        <button class="vm-close" onclick="closeVideoModal()">✕ Đóng (Esc)</button>
+      </div>
+      <div class="vm-body">
+        <video id="vm-player" controls playsinline preload="metadata"></video>
+      </div>
+      <div class="vm-foot">
+        <span>💡 Mẹo học tại lớp: Bấm tạm dừng (Space) ngay tại vết cắt để quan sát vị trí bàn tay ở mốc 70/30 và tọa độ Ô Giữa.</span>
+        <a class="ext-link-btn" id="vm-link" href="https://ytuong.fedu.vn" target="_blank" style="background:#1e293b; color:#f8fafc; border-color:#475569;">Mở phân tích trên ytuong.fedu.vn ↗</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    var currentSlide = 0;
+    var totalSlides = 18;
+
+    function goToSlide(idx) {
+      if (idx < 0) idx = 0;
+      if (idx >= totalSlides) idx = totalSlides - 1;
+      currentSlide = idx;
+      var wrappers = document.querySelectorAll('.slide-wrapper');
+      var dots = document.querySelectorAll('.nav-dot');
+      wrappers.forEach(function(w, i) {
+        if (i === currentSlide) w.classList.add('active');
+        else {
+          w.classList.remove('active');
+          var vids = w.querySelectorAll('video');
+          vids.forEach(function(v) { v.pause(); });
+        }
+      });
+      dots.forEach(function(d, i) {
+        if (i === currentSlide) d.classList.add('active');
+        else d.classList.remove('active');
+      });
+      if (document.body.classList.contains('view-all')) {
+        wrappers[currentSlide].scrollIntoView({ behavior: 'smooth', block: 'start' });
+      } else {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    }
+
+    function nextSlide() {
+      if (currentSlide < totalSlides - 1) goToSlide(currentSlide + 1);
+    }
+
+    function prevSlide() {
+      if (currentSlide > 0) goToSlide(currentSlide - 1);
+    }
+
+    function toggleViewAll() {
+      var b = document.body;
+      var btn = document.getElementById('btn-toggle-view');
+      b.classList.toggle('view-all');
+      if (b.classList.contains('view-all')) {
+        btn.textContent = 'Trình chiếu từng Slide';
+      } else {
+        btn.textContent = 'Xem tất cả (Cuộn dọc)';
+        goToSlide(currentSlide);
+      }
+    }
+
+    function toggleFullscreen() {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch(function(){});
+      } else {
+        if (document.exitFullscreen) document.exitFullscreen();
+      }
+    }
+
+    function openVideoModal(videoUrl, titleText, ytuongUrl) {
+      var modal = document.getElementById('video-modal');
+      var player = document.getElementById('vm-player');
+      var title = document.getElementById('vm-title');
+      var link = document.getElementById('vm-link');
+      title.textContent = titleText || 'Video mẫu thực chiến';
+      link.href = ytuongUrl || 'https://ytuong.fedu.vn';
+      player.src = videoUrl;
+      modal.classList.add('open');
+      player.play().catch(function(){});
+    }
+
+    function closeVideoModal() {
+      var modal = document.getElementById('video-modal');
+      var player = document.getElementById('vm-player');
+      player.pause();
+      player.removeAttribute('src');
+      player.load();
+      modal.classList.remove('open');
+    }
+
+    function seekYouTube(iframeId, videoId, seconds) {
+      var iframe = document.getElementById(iframeId);
+      if (iframe) {
+        iframe.src = 'https://www.youtube-nocookie.com/embed/' + videoId + '?start=' + seconds + '&autoplay=1&rel=0';
+      }
+    }
+
+    document.addEventListener('keydown', function(e) {
+      var modal = document.getElementById('video-modal');
+      if (modal && modal.classList.contains('open')) {
+        if (e.key === 'Escape') closeVideoModal();
+        return;
+      }
+      if (document.body.classList.contains('view-all')) return;
+      if (e.key === 'ArrowRight' || e.key === 'PageDown') {
+        nextSlide();
+      } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+        prevSlide();
+      }
+    });
+  </script>
+</body>
+</html>
