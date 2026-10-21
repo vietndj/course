@@ -1,0 +1,2476 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Edit Video V3.2 &amp; Motion 60fps — Trung Tâm Trình Chiếu Công Cụ Cắt Dựng Tự Động Cho Học Viên Thực Chiến FEDU</title>
+
+  <!-- FAVICON SVG INLINE: CHUẨN "V3" (AI EDIT V3.2 MASTER HUB MONOGRAM) -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%2307090E'/%3E%3Ctext x='32' y='41' font-family='Arial, sans-serif' font-weight='900' font-size='26' fill='%23FACC15' text-anchor='middle' letter-spacing='1'%3EV3%3C/text%3E%3C/svg%3E">
+
+  <!-- GOOGLE FONTS: JETBRAINS MONO -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700&display=swap">
+
+  <!-- FONTS: Fedu CDN -->
+  <style>
+    @font-face { font-family: 'FD Aeonik Extended'; src: url('https://fedu.vn/k/fonts/FDAeonikExtended-Bold.woff2') format('woff2'); font-weight: 700; font-display: swap; }
+    @font-face { font-family: 'FD Aeonik Extended'; src: url('https://fedu.vn/k/fonts/FDAeonikExtended-SemiBold.woff2') format('woff2'); font-weight: 600; font-display: swap; }
+    @font-face { font-family: 'FD Aeonik'; src: url('https://fedu.vn/k/fonts/FDAeonikMedium.ttf') format('truetype'); font-weight: 500; font-display: swap; }
+    @font-face { font-family: 'FD Aeonik'; src: url('https://fedu.vn/k/fonts/FDAeonikRegular.ttf') format('truetype'); font-weight: 400; font-display: swap; }
+    @font-face { font-family: 'Tiempos Text'; src: url('https://fedu.vn/k/fonts/FDTiemposText-Bold.woff2') format('woff2'); font-weight: 700; font-display: swap; }
+    @font-face { font-family: 'Tiempos Text'; src: url('https://fedu.vn/k/fonts/FDTiemposText-Medium.woff2') format('woff2'); font-weight: 500; font-display: swap; }
+    @font-face { font-family: 'Tiempos Text'; src: url('https://fedu.vn/k/fonts/FDTiemposText-Regular.woff2') format('woff2'); font-weight: 400; font-display: swap; }
+  </style>
+
+  <style>
+    /* ==========================================================================
+       INKDOC CSS - ZERO ANIMATION, SLATE MONOCHROME + AI EDIT V3.2 HUB (WCAG AAA)
+       ========================================================================== */
+    :root {
+      --ink-bg: #ffffff;
+      --ink-sidebar: #f8fafc;
+      --ink-text: #0f172a;
+      --ink-muted: #334155;
+      --ink-border: #e2e8f0;
+      --ink-hover: #f1f5f9;
+      --ink-accent: #0f172a;
+      --ink-gold: #facc15;
+      --ink-emerald: #064e3b;
+      --ink-orange: #7c2d12;
+      --ink-blue: #1e3a8a;
+
+      --font-display: 'FD Aeonik Extended', -apple-system, sans-serif;
+      --font-heading: 'FD Aeonik', -apple-system, sans-serif;
+      --font-body: 'Tiempos Text', Georgia, serif;
+      --font-mono: 'JetBrains Mono', monospace;
+
+      --sidebar-width: 300px;
+      --content-max-width: 1020px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: auto; font-size: 16px; max-width: 100vw; overflow-x: hidden; }
+    body {
+      background-color: var(--ink-bg);
+      color: var(--ink-text);
+      font-family: var(--font-body);
+      line-height: 1.72;
+      -webkit-font-smoothing: antialiased;
+      display: flex;
+      min-height: 100vh;
+      max-width: 100vw;
+      overflow-x: hidden;
+    }
+
+    .ink-main, .ink-container, .module-card, .item-card, .scenario-card, .scenario-box, .table-wrap, pre, .code-block, .cmd-card, .cmd-pre, .quick-action-strip, .filter-bar, .compare-box {
+      min-width: 0;
+      max-width: 100%;
+      box-sizing: border-box;
+    }
+
+    /* TYPOGRAPHY */
+    h1, h2, h3, h4 {
+      color: var(--ink-text);
+      font-weight: 600;
+      line-height: 1.32;
+      margin-top: 2rem;
+      margin-bottom: 0.85rem;
+      font-family: var(--font-heading);
+      word-break: break-word;
+    }
+    h1.is-short {
+      font-family: var(--font-display);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: -0.01em;
+      font-size: clamp(20px, 2.3vw, 28px);
+      line-height: 1.2;
+      margin-top: 0;
+    }
+    h2 {
+      font-size: clamp(19px, 2.2vw, 25px);
+      border-bottom: 2px solid var(--ink-border);
+      padding-bottom: 0.55rem;
+      margin-top: 3rem;
+    }
+    h3 { font-size: 1.18rem; margin-top: 1.6rem; color: #0f172a; }
+    p, ul, ol, blockquote, table { margin-bottom: 1.15rem; font-size: 1.05rem; }
+    ul, ol { padding-left: 1.35rem; }
+    li { margin-bottom: 0.38rem; }
+    a { color: var(--ink-accent); text-decoration: underline; text-underline-offset: 3px; text-decoration-color: #64748b; }
+    a:hover { text-decoration-color: var(--ink-accent); }
+
+    code {
+      font-family: var(--font-mono);
+      font-size: 0.84em;
+      background-color: var(--ink-hover);
+      color: #0f172a;
+      padding: 0.15em 0.38em;
+      border-radius: 4px;
+      border: 1px solid #cbd5e1;
+      word-break: break-word;
+    }
+
+    /* SIDEBAR */
+    .ink-sidebar {
+      width: var(--sidebar-width);
+      background-color: var(--ink-sidebar);
+      border-right: 1px solid var(--ink-border);
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100vh;
+      overflow-y: auto;
+      scroll-behavior: auto;
+      padding: 1.5rem 1.1rem;
+      z-index: 100;
+      flex-shrink: 0;
+    }
+    .ink-sidebar-header {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--ink-muted);
+      margin-bottom: 0.85rem;
+      padding-bottom: 0.55rem;
+      border-bottom: 1px solid var(--ink-border);
+    }
+    .ink-toc-list { list-style: none; padding: 0; margin: 0; }
+    .ink-toc-item { margin-bottom: 0.18rem; }
+    .ink-toc-link {
+      display: block;
+      padding: 0.4rem 0.65rem;
+      font-family: var(--font-heading);
+      font-size: 0.85rem;
+      line-height: 1.36;
+      color: var(--ink-muted);
+      text-decoration: none;
+      border-radius: 6px;
+      font-weight: 500;
+    }
+    .ink-toc-link:hover, .ink-toc-link.active {
+      background-color: #0f172a;
+      color: #facc15;
+      font-weight: 600;
+    }
+    .ink-toc-sub {
+      padding-left: 1.3rem;
+      font-size: 0.79rem;
+    }
+
+    /* MOBILE QUICK NAV */
+    .mobile-quick-nav {
+      display: none;
+      position: sticky;
+      top: 0;
+      z-index: 90;
+      background: rgba(15, 23, 42, 0.96);
+      padding: 0.5rem;
+      margin: 0 0 1rem 0;
+      border-radius: 8px;
+      border: 1px solid #334155;
+      gap: 0.35rem;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+    .mobile-quick-nav a {
+      flex: 1 1 auto;
+      text-align: center;
+      font-family: var(--font-heading);
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: #f8fafc;
+      background: #1e293b;
+      padding: 0.35rem 0.45rem;
+      border-radius: 6px;
+      text-decoration: none;
+      border: 1px solid #475569;
+      white-space: nowrap;
+    }
+    .mobile-quick-nav a:hover {
+      background: #facc15;
+      color: #0f172a;
+    }
+
+    /* MAIN CONTENT */
+    .ink-main {
+      margin-left: var(--sidebar-width);
+      flex: 1;
+      padding: 1.25rem 1.8rem 4.5rem;
+      display: flex;
+      justify-content: center;
+    }
+    .ink-container {
+      width: 100%;
+      max-width: var(--content-max-width);
+    }
+
+    /* BADGES & META BAR (WCAG AAA >= 7:1) */
+    .doc-meta-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+      margin-bottom: 0.9rem;
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      padding: 0.24rem 0.58rem;
+      border-radius: 999px;
+      background: #f1f5f9;
+      color: #0f172a;
+      border: 1px solid #cbd5e1;
+      text-decoration: none;
+      max-width: 100%;
+      word-break: break-word;
+    }
+    .badge-dark { background: #0f172a; color: #facc15; border-color: #0f172a; }
+    .badge-green { background: #ecfdf5; color: #064e3b; border-color: #a7f3d0; }
+    .badge-orange { background: #fff7ed; color: #7c2d12; border-color: #fed7aa; }
+    .badge-blue { background: #eff6ff; color: #1e3a8a; border-color: #bfdbfe; }
+
+    /* KPI STATS STRIP */
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 0.8rem;
+      margin: 0.85rem 0 1.15rem;
+    }
+    .kpi-card {
+      background: #0f172a;
+      color: #f8fafc;
+      padding: 0.7rem 0.85rem;
+      border-radius: 12px;
+      border: 1px solid #1e293b;
+      min-width: 0;
+    }
+    .kpi-num {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #facc15;
+      line-height: 1.15;
+      margin-bottom: 0.25rem;
+    }
+    .kpi-label {
+      font-family: var(--font-heading);
+      font-size: 0.8rem;
+      color: #e2e8f0;
+      line-height: 1.32;
+    }
+
+    /* QUICK DOWNLOAD BAR */
+    .quick-action-strip {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.55rem;
+      padding: 0.9rem 1rem;
+      background: #f8fafc;
+      border: 1.5px solid #cbd5e1;
+      border-radius: 12px;
+      margin-bottom: 1.6rem;
+      align-items: center;
+    }
+    .btn-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-family: var(--font-heading);
+      font-size: 0.82rem;
+      font-weight: 600;
+      padding: 0.42rem 0.75rem;
+      border-radius: 7px;
+      text-decoration: none;
+      border: 1px solid #cbd5e1;
+      background: #ffffff;
+      color: #0f172a;
+      cursor: pointer;
+      max-width: 100%;
+      word-break: break-word;
+    }
+    .btn-link:hover { background: #e2e8f0; }
+    .btn-primary {
+      background: #0f172a;
+      color: #facc15;
+      border-color: #0f172a;
+    }
+    .btn-primary:hover { background: #1e293b; color: #fde047; }
+    .btn-emerald {
+      background: #064e3b;
+      color: #ffffff;
+      border-color: #064e3b;
+    }
+    .btn-emerald:hover { background: #047857; }
+    .btn-blue {
+      background: #eff6ff;
+      color: #1e3a8a;
+      border-color: #bfdbfe;
+      font-family: var(--font-mono);
+      font-size: 0.76rem;
+    }
+    .btn-blue:hover { background: #dbeafe; }
+
+    /* CALLOUT BOX */
+    .callout {
+      border-left: 4px solid #0f172a;
+      background: #f8fafc;
+      padding: 1rem 1.15rem;
+      border-radius: 0 10px 10px 0;
+      margin: 1.2rem 0;
+    }
+    .callout-gold {
+      border-left-color: #ca8a04;
+      background: #fefce8;
+    }
+    .callout-emerald {
+      border-left-color: #064e3b;
+      background: #ecfdf5;
+    }
+    .callout-title {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 0.96rem;
+      margin-bottom: 0.35rem;
+      color: #0f172a;
+    }
+
+    /* MODULE / RULE CARDS */
+    .module-grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.95rem;
+      margin: 1.1rem 0 1.8rem;
+    }
+    .module-grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.1rem;
+      margin: 1.1rem 0 1.8rem;
+    }
+    .module-card {
+      border: 1px solid var(--ink-border);
+      border-radius: 12px;
+      padding: 1.05rem 1.15rem;
+      background: #ffffff;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: 0 1px 3px rgba(15,23,42,0.04);
+    }
+    .module-card-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 0.55rem;
+      gap: 0.4rem;
+      flex-wrap: wrap;
+    }
+    .module-num {
+      font-family: var(--font-display);
+      font-size: 0.82rem;
+      font-weight: 700;
+      padding: 0.18rem 0.55rem;
+      border-radius: 6px;
+      background: #0f172a;
+      color: #facc15;
+    }
+    .module-title {
+      font-family: var(--font-heading);
+      font-size: 1.04rem;
+      font-weight: 700;
+      color: #0f172a;
+      margin-bottom: 0.4rem;
+      line-height: 1.35;
+    }
+    .module-desc {
+      font-size: 0.92rem;
+      color: #1e293b;
+      margin-bottom: 0.65rem;
+      line-height: 1.55;
+    }
+
+    /* DATA TABLE */
+    .table-wrap {
+      overflow-x: auto;
+      margin: 1.1rem 0 1.8rem;
+      border: 1px solid var(--ink-border);
+      border-radius: 10px;
+      -webkit-overflow-scrolling: touch;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 0;
+      font-size: 0.92rem;
+    }
+    th, td {
+      padding: 0.72rem 0.85rem;
+      text-align: left;
+      border-bottom: 1px solid var(--ink-border);
+      vertical-align: top;
+    }
+    th {
+      background: #0f172a;
+      font-family: var(--font-heading);
+      font-weight: 600;
+      color: #facc15;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+    tr:last-child td { border-bottom: none; }
+    tr:hover td { background: #f8fafc; }
+
+    /* MEDIA & VIDEO GALLERY CARDS */
+    .media-grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.15rem;
+      margin: 1.2rem 0 1.8rem;
+    }
+    .media-grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin: 1.2rem 0 1.8rem;
+    }
+    .media-grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.85rem;
+      margin: 1.1rem 0 1.6rem;
+    }
+    .item-card {
+      border: 1px solid var(--ink-border);
+      border-radius: 12px;
+      overflow: hidden;
+      background: #ffffff;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 1px 3px rgba(15,23,42,0.04);
+    }
+    .item-header {
+      padding: 0.65rem 0.9rem;
+      background: #0f172a;
+      color: #f8fafc;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+    .item-id {
+      font-family: var(--font-mono);
+      font-size: 0.74rem;
+      font-weight: 700;
+      color: #0f172a;
+      background: #facc15;
+      padding: 0.14rem 0.48rem;
+      border-radius: 4px;
+      max-width: 100%;
+      word-break: break-word;
+    }
+    .item-spec {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      color: #e2e8f0;
+      text-align: right;
+    }
+    .video-box {
+      background: #07090e;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+    .video-box video {
+      width: 100%;
+      max-height: 400px;
+      display: block;
+      object-fit: contain;
+      background: #07090e;
+    }
+    .img-box {
+      background: #07090e;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      cursor: zoom-in;
+      position: relative;
+    }
+    .img-box img {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: contain;
+    }
+    .zoom-hint {
+      position: absolute;
+      bottom: 8px;
+      right: 8px;
+      background: rgba(15, 23, 42, 0.85);
+      color: #facc15;
+      font-family: var(--font-mono);
+      font-size: 0.66rem;
+      font-weight: 700;
+      padding: 0.18rem 0.45rem;
+      border-radius: 4px;
+      border: 1px solid rgba(255,255,255,0.2);
+      pointer-events: none;
+    }
+    .btn-unmute-float {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      z-index: 10;
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 0.25rem 0.55rem;
+      border-radius: 6px;
+      border: 1px solid rgba(255,255,255,0.25);
+      background: rgba(15, 23, 42, 0.88);
+      color: #facc15;
+      cursor: pointer;
+    }
+    .btn-unmute-float:hover { background: #facc15; color: #0f172a; }
+    .item-body {
+      padding: 0.75rem 0.9rem;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+    .item-title {
+      font-family: var(--font-heading);
+      font-size: 1rem;
+      font-weight: 700;
+      color: #0f172a;
+      margin-bottom: 0.35rem;
+      line-height: 1.35;
+    }
+    .item-text {
+      font-size: 0.9rem;
+      color: #334155;
+      line-height: 1.52;
+      margin-bottom: 0.75rem;
+    }
+    .item-footer {
+      margin-top: auto;
+      padding-top: 0.65rem;
+      border-top: 1px solid #f1f5f9;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      align-items: center;
+    }
+
+    /* COMPARE BOX */
+    .compare-box {
+      border: 2px solid #0f172a;
+      border-radius: 14px;
+      overflow: hidden;
+      margin: 1.3rem 0 2rem;
+      background: #f8fafc;
+    }
+    .compare-banner {
+      background: #0f172a;
+      color: #f8fafc;
+      padding: 0.8rem 1.15rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      font-family: var(--font-heading);
+      font-weight: 600;
+    }
+    .compare-cols {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      padding: 1rem;
+    }
+
+    /* COMMAND & PROMPT COPY CARDS */
+    .cmd-card {
+      background: #0f172a;
+      color: #f8fafc;
+      border-radius: 10px;
+      padding: 0.95rem 1.05rem;
+      margin-bottom: 0.95rem;
+      border: 1px solid #1e293b;
+    }
+    .cmd-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.55rem;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+    .cmd-label {
+      font-family: var(--font-mono);
+      font-size: 0.76rem;
+      font-weight: 700;
+      color: #facc15;
+      word-break: break-word;
+    }
+    .cmd-pre {
+      font-family: var(--font-mono);
+      font-size: 0.79rem;
+      line-height: 1.55;
+      color: #f8fafc;
+      background: #07090e;
+      padding: 0.75rem 0.85rem;
+      border-radius: 8px;
+      border: 1px solid #1e293b;
+      overflow-x: auto;
+      white-space: pre-wrap;
+      word-break: break-word;
+      overflow-wrap: anywhere;
+    }
+    .btn-copy {
+      font-family: var(--font-mono);
+      font-size: 0.74rem;
+      font-weight: 700;
+      padding: 0.28rem 0.65rem;
+      border-radius: 6px;
+      background: #facc15;
+      color: #0f172a;
+      border: none;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    .btn-copy:hover { background: #fde047; }
+
+    /* DETAILS EXPANDER FOR LONG COMMAND */
+    details.cmd-details {
+      background: #0f172a;
+      color: #f8fafc;
+      border-radius: 10px;
+      padding: 0.8rem 1.05rem;
+      border: 1px solid #1e293b;
+      margin-bottom: 1rem;
+    }
+    details.cmd-details summary {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: #facc15;
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    /* FILTER PILLS FOR SHOWCASE & SCRIPTS */
+    .filter-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+      margin: 0.9rem 0 1.35rem;
+      padding: 0.65rem;
+      background: #f8fafc;
+      border: 1px solid var(--ink-border);
+      border-radius: 10px;
+    }
+    .filter-pill {
+      font-family: var(--font-heading);
+      font-size: 0.8rem;
+      font-weight: 600;
+      padding: 0.36rem 0.72rem;
+      border-radius: 999px;
+      border: 1px solid #cbd5e1;
+      background: #ffffff;
+      color: #0f172a;
+      cursor: pointer;
+      max-width: 100%;
+      text-align: left;
+    }
+    .filter-pill:hover { background: #f1f5f9; }
+    .filter-pill.active {
+      background: #0f172a;
+      color: #facc15;
+      border-color: #0f172a;
+    }
+
+    /* ANCHOR CHECKER WIDGET */
+    .anchor-checker {
+      background: #0f172a;
+      color: #f8fafc;
+      border-radius: 12px;
+      padding: 1.1rem 1.2rem;
+      margin: 1rem 0 1.6rem;
+      border: 2px solid #facc15;
+    }
+    .anchor-textarea {
+      width: 100%;
+      min-height: 84px;
+      background: #07090e;
+      color: #f8fafc;
+      border: 1px solid #334155;
+      border-radius: 8px;
+      padding: 0.7rem 0.85rem;
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      line-height: 1.5;
+      margin: 0.6rem 0;
+      resize: vertical;
+    }
+    .anchor-status {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      padding: 0.55rem 0.8rem;
+      border-radius: 8px;
+      background: #1e293b;
+      color: #facc15;
+      line-height: 1.45;
+    }
+
+    /* SCENARIO CARDS (10 INDUSTRY SCRIPTS) */
+    .scenario-card {
+      border: 1.5px solid #cbd5e1;
+      border-radius: 12px;
+      background: #ffffff;
+      margin-bottom: 1.35rem;
+      overflow: hidden;
+      box-shadow: 0 2px 4px rgba(15,23,42,0.03);
+    }
+    .scenario-top {
+      background: #0f172a;
+      color: #f8fafc;
+      padding: 0.8rem 1.1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .scenario-title {
+      font-family: var(--font-heading);
+      font-size: 1.02rem;
+      font-weight: 700;
+      color: #ffffff;
+    }
+    .scenario-body {
+      padding: 1.05rem 1.15rem;
+    }
+    .scenario-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.95rem;
+      margin-bottom: 0.85rem;
+    }
+    .scenario-box {
+      background: #f8fafc;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      padding: 0.8rem 0.95rem;
+      font-size: 0.92rem;
+      color: #0f172a;
+    }
+    .scenario-prop-bar {
+      background: #ecfdf5;
+      border: 1px solid #6ee7b7;
+      border-left: 4px solid #064e3b;
+      border-radius: 8px;
+      padding: 0.7rem 0.95rem;
+      font-size: 0.9rem;
+      color: #064e3b;
+      margin-bottom: 0.85rem;
+    }
+    .scenario-box-title {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 0.83rem;
+      text-transform: uppercase;
+      color: #0f172a;
+      margin-bottom: 0.35rem;
+    }
+    .script-quote {
+      background: #fefce8;
+      border: 1px solid #fde047;
+      border-left: 4px solid #ca8a04;
+      border-radius: 8px;
+      padding: 0.85rem 1rem;
+      font-size: 0.95rem;
+      color: #0f172a;
+    }
+
+    /* LIGHTBOX MODAL */
+    .lightbox-modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: rgba(7, 9, 14, 0.92);
+      align-items: center;
+      justify-content: center;
+      padding: 1.2rem;
+      flex-direction: column;
+    }
+    .lightbox-modal.open {
+      display: flex;
+    }
+    .lightbox-modal img {
+      max-width: 96vw;
+      max-height: 85vh;
+      object-fit: contain;
+      border-radius: 8px;
+      border: 2px solid #facc15;
+      background: #07090e;
+    }
+    .lightbox-caption {
+      margin-top: 0.65rem;
+      color: #f8fafc;
+      font-family: var(--font-heading);
+      font-size: 0.92rem;
+      text-align: center;
+    }
+    .lightbox-close {
+      position: absolute;
+      top: 16px;
+      right: 20px;
+      background: #facc15;
+      color: #0f172a;
+      border: none;
+      border-radius: 8px;
+      padding: 0.35rem 0.75rem;
+      font-family: var(--font-mono);
+      font-weight: 700;
+      font-size: 0.82rem;
+      cursor: pointer;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 1080px) {
+      .ink-sidebar { display: none; }
+      .mobile-quick-nav { display: flex; }
+      .ink-main { margin-left: 0; padding: 1rem 0.9rem 3.5rem; width: 100%; }
+      .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+      .module-grid-3 { grid-template-columns: 1fr; }
+      .media-grid-3, .media-grid-4 { grid-template-columns: repeat(2, 1fr); }
+      .compare-cols, .scenario-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 640px) {
+      .kpi-grid, .media-grid-2, .media-grid-3, .media-grid-4, .module-grid-2 { grid-template-columns: 1fr; }
+      .ink-main { padding: 0.85rem 0.75rem 3rem; }
+      table { table-layout: fixed; }
+      th, td { padding: 0.5rem 0.5rem; font-size: 0.82rem; word-break: break-word; overflow-wrap: anywhere; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ========================================================================
+       STICKY SIDEBAR TOC
+       ======================================================================== -->
+  <aside class="ink-sidebar">
+    <div class="ink-sidebar-header">AI EDIT VIDEO V3.2 HUB</div>
+    <ul class="ink-toc-list">
+      <li class="ink-toc-item"><a class="ink-toc-link active" href="#hero">0. Tổng Quan &amp; Tải Gói Cài</a></li>
+      <li class="ink-toc-item"><a class="ink-toc-link" href="#phan-1">1. Logic Lõi &amp; 4 Phiên Bản</a></li>
+      <li class="ink-toc-item"><a class="ink-toc-link ink-toc-sub" href="#bac-thang-3-cap">• Bậc thang 3 cấp độ</a></li>
+      <li class="ink-toc-item"><a class="ink-toc-link ink-toc-sub" href="#quy-tac-v32">• 6 Cơ chế MFX V3.2</a></li>
+      <li class="ink-toc-item"><a class="ink-toc-link ink-toc-sub" href="#bang-4-phien-ban">• Bảng so sánh 4 bản</a></li>
+      <li class="ink-toc-item"><a class="ink-toc-link ink-toc-sub" href="#ban-copy-lenh">• Bàn copy câu lệnh chuẩn</a></li>
+      <li class="ink-toc-item"><a class="ink-toc-link" href="#phan-2">2. Showcase Học Viên Thật</a></li>
+      <li class="ink-toc-item"><a class="ink-toc-link ink-toc-sub" href="#case-vy" onclick="unlockAndJump('showcase', 'all')">• Case 1: Vy (Đào tạo &amp; Sách)</a></li>
+      <li class="ink-toc-item"><a class="ink-toc-link ink-toc-sub" href="#case-dropship" onclick="unlockAndJump('showcase', 'all')">• Case 2: Gia dụng &amp; Bento 3D</a></li>
+      <li class="ink-toc-item"><a class="ink-toc-link ink-toc-sub" href="#case-viet" onclick="unlockAndJump('showcase', 'all')">• Case 3: Demo Lớp &amp; iPhone</a></li>
+      <li class="ink-toc-item"><a class="ink-toc-link ink-toc-sub" href="#case-pocket4" onclick="unlockAndJump('showcase', 'all')">• Case 4: DJI Pocket 4 10-Bit</a></li>
+      <li class="ink-toc-item"><a class="ink-toc-link ink-toc-sub" href="#case-motion" onclick="unlockAndJump('showcase', 'all')">• Case 5: 4 Khuôn Motion 60fps</a></li>
+      <li class="ink-toc-item"><a class="ink-toc-link ink-toc-sub" href="#case-stu" onclick="unlockAndJump('showcase', 'all')">• Case 6: Kho Học Viên STU</a></li>
+      <li class="ink-toc-item"><a class="ink-toc-link" href="#phan-3">3. 10 Kịch Bản Theo Ngành</a></li>
+      <li class="ink-toc-item"><a class="ink-toc-link ink-toc-sub" href="#anchor-checker-box">• Máy kiểm tra mỏ neo số liệu</a></li>
+      <li class="ink-toc-item"><a class="ink-toc-link ink-toc-sub" href="#kb-01" onclick="unlockAndJump('scripts', 'all')">• 01–05: Bán lẻ, Nội thất, Spa, Giáo viên, Dược</a></li>
+      <li class="ink-toc-item"><a class="ink-toc-link ink-toc-sub" href="#kb-06" onclick="unlockAndJump('scripts', 'all')">• 06–10: BĐS, Bếp Đức, Cơ khí, Luật, Ô tô</a></li>
+      <li class="ink-toc-item"><a class="ink-toc-link" href="#phan-4">4. Kịch Bản Video Giới Thiệu</a></li>
+      <li class="ink-toc-item"><a class="ink-toc-link ink-toc-sub" href="#kb-goc-vy">• Kịch bản gốc của Vy &amp; 20s Đi bộ</a></li>
+      <li class="ink-toc-item"><a class="ink-toc-link ink-toc-sub" href="#kb-1dong-3nganh">• 3 Kịch bản 1 dòng đa ngành</a></li>
+      <li class="ink-toc-item"><a class="ink-toc-link ink-toc-sub" href="#kb-master-45s">• Kịch bản 60s LED &amp; Audit</a></li>
+    </ul>
+  </aside>
+
+  <!-- ========================================================================
+       MAIN CONTENT CONTAINER
+       ======================================================================== -->
+  <main class="ink-main">
+    <div class="ink-container">
+
+      <!-- MOBILE STICKY QUICK NAV -->
+      <nav class="mobile-quick-nav" aria-label="Điều hướng nhanh">
+        <a href="#phan-1">1. Logic &amp; Lệnh</a>
+        <a href="#phan-2">2. Video Thật</a>
+        <a href="#phan-3">3. 10 Kịch Bản</a>
+        <a href="#phan-4">4. Bản 60s Lớp</a>
+      </nav>
+
+      <!-- ====================================================================
+           HERO & KPI STRIP
+           ==================================================================== -->
+      <header id="hero">
+        <div class="doc-meta-bar">
+          <span class="badge badge-dark">MFX V3.2 &amp; MOTION 60FPS</span>
+          <span class="badge badge-green">DÀNH RIÊNG CHO HỌC VIÊN OFFLINE FEDU</span>
+          <span class="badge badge-blue">309 HỒ SƠ HỌC VIÊN THẬT</span>
+          <span class="badge badge-orange">CHẠY TRÊN MAC • WINDOWS • IPHONE</span>
+        </div>
+
+        <h1 class="is-short">CÔNG CỤ AI TỰ ĐỘNG CẮT DỰNG VIDEO (MFX V3.2 &amp; MOTION 60FPS) — TRẢ PHẦN VIỆC CƠ HỌC CHO MÁY, GIỮ TRỌN CẢM XÚC KHI ĐỨNG TRƯỚC ỐNG KÍNH</h1>
+
+        <p style="margin-top:0.75rem; color:#1e293b;">
+          Trang tài liệu thực hành và trình chiếu các sản phẩm đã dựng thực tế bằng bộ công cụ AI của anh Việt. Toàn bộ ví dụ, video mẫu và kịch bản trên trang này được lấy trực tiếp từ <strong>309 hồ sơ học viên thật thuộc 16 nhóm ngành hàng</strong> trong khóa học — để bạn nhìn thấy ngay bài nói công việc của mình khi đưa vào máy sẽ ra thành phẩm như thế nào.
+        </p>
+
+        <!-- 5 KPI CARDS -->
+        <div class="kpi-grid">
+          <div class="kpi-card">
+            <div class="kpi-num">4 PHIÊN BẢN</div>
+            <div class="kpi-label">Bản Đầy Đủ • Bản V3 Sửa Nhanh • Gemini Web • Motion 60fps</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-num">16 NHÓM NGÀNH</div>
+            <div class="kpi-label">Đối chiếu trực tiếp 309 hồ sơ học viên thật tại FEDU</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-num">100% KHÓA MẶT</div>
+            <div class="kpi-label">Tâm mặt cố định (592.8, 915.0) • Vế câu 1.1s–1.8s</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-num">8 + 13 DEMO</div>
+            <div class="kpi-label">8 dự án dựng thực tế + 13 thành phẩm Motion 60fps</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-num">0 CÀI ĐẶT RỐI</div>
+            <div class="kpi-label">Tự tải tài nguyên từ CDN trên Mac, Windows &amp; iPhone</div>
+          </div>
+        </div>
+
+        <!-- QUICK DOWNLOAD & NAVIGATION STRIP -->
+        <div class="quick-action-strip">
+          <span style="font-family:var(--font-heading); font-weight:700; font-size:0.86rem; color:#0f172a;">📦 Tải gói công cụ cho học viên:</span>
+          <a class="btn-link btn-primary" href="./assets/aiedit/edit-video-v3-skill.zip" download>⬇ Gói Skill gắn Gemini Web (.zip)</a>
+          <a class="btn-link btn-emerald" href="./assets/aiedit/render-v3-antigravity.zip" download>⬇ Gói Render-V3 cho Mac/Windows (.zip)</a>
+          <a class="btn-link" href="https://mfx.fedu.vn" target="_blank" rel="noopener">📱 Mở Web Studio trên iPhone (mfx.fedu.vn)</a>
+          <a class="btn-link btn-blue" href="./motion00.html">🎬 Mở Trung Tâm Motion 60fps (motion00.html)</a>
+        </div>
+      </header>
+
+      <!-- ====================================================================
+           PHẦN 1: LOGIC CỐT LÕI & SO SÁNH 4 PHIÊN BẢN
+           ==================================================================== -->
+      <section id="phan-1">
+        <h2>PHẦN 1: LOGIC CỐT LÕI &amp; ĐỐI CHIẾU 4 PHIÊN BẢN VẬN HÀNH</h2>
+        <p>
+          Khi anh chị chủ tiệm, bác sĩ, dược sĩ hay kiến trúc sư tự quay một bài nói chuyên môn dài 2 đến 3 phút, phần làm mình nản nhất không phải lúc bấm máy nói, mà là <strong>4 tiếng buổi tối ngồi cắt từng nhịp thở, căn lại khung mặt bị lệch sau mỗi vết cắt, gõ từng dòng chữ và đi mò tìm từng tấm ảnh minh họa</strong>. Hệ thống MFX V3.2 được xây dựng để tự động hóa trọn vẹn 6 khâu cơ học đó bằng toán học chính xác.
+        </p>
+
+        <h3 id="bac-thang-3-cap">1.0. Bậc thang 3 cấp độ sử dụng (Cách hiểu nhanh trong 30 giây như chụp ảnh trên iPhone)</h3>
+        <div class="module-grid-3">
+          <div class="module-card" style="border-top: 4px solid #064e3b;">
+            <div>
+              <div class="module-card-top">
+                <span class="module-num" style="background:#064e3b; color:#fff;">BẬC 1 • DÙNG NGAY</span>
+                <span class="badge badge-green">NHƯ CHỤP ẢNH THƯỜNG IPHONE</span>
+              </div>
+              <div class="module-title">Bản Gemini Web + iPhone Studio (<code>mfx.fedu.vn</code>)</div>
+              <div class="module-desc">
+                Dành cho 100% học viên tại lớp: Chỉ cần thả video vào Gemini Web &rarr; bấm Copy khung mã &rarr; dán sang máy tính hoặc trang <code>mfx.fedu.vn</code> trên iPhone là nhận ngay file <code>.mp4</code> hoàn chỉnh sau 2 phút.
+              </div>
+            </div>
+          </div>
+
+          <div class="module-card" style="border-top: 4px solid #ca8a04;">
+            <div>
+              <div class="module-card-top">
+                <span class="module-num">BẬC 2 • SỬA 1 DÒNG</span>
+                <span class="badge badge-orange">NHƯ KÉO THANH SÁNG MÀN HÌNH</span>
+              </div>
+              <div class="module-title">Bản V3 Sửa Nhanh (<code>--patch</code> &amp; Gói CapCut)</div>
+              <div class="module-desc">
+                Đã có video dựng xong nhưng muốn đổi 1 câu chữ, đổi vị trí chữ xuống thấp hoặc xóa 1 màn đen? Chỉ cần gõ đúng 1 dòng <code>--patch</code> là máy cập nhật ngay trong vài giây, hoặc xuất gói nền trong suốt đưa sang CapCut.
+              </div>
+            </div>
+          </div>
+
+          <div class="module-card" style="border-top: 4px solid #1e3a8a;">
+            <div>
+              <div class="module-card-top">
+                <span class="module-num" style="background:#1e3a8a; color:#fff;">BẬC 3 • ĐỘ SÂU STUDIO</span>
+                <span class="badge badge-blue">NHƯ CHẾ ĐỘ PRO / MOTION 60FPS</span>
+              </div>
+              <div class="module-title">Bản Đầy Đủ 2 Bước &amp; 4 Khuôn Motion <code>.TSX</code></div>
+              <div class="module-desc">
+                Dành cho các bài nói dài 3–5 phút nhiều cú máy (xuất bộ ảnh Frame Mockup duyệt trước từng nhịp rồi mới kết xuất) hoặc dựng đồ họa chuyển động 60fps từ 4 khuôn <code>.TSX</code> có sẵn bảng biến <code>Tweaks</code>.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <h3 id="quy-tac-v32">1.1. Sáu cơ chế kỹ thuật tự động của MFX V3.2</h3>
+        <div class="module-grid-3">
+          <div class="module-card">
+            <div>
+              <div class="module-card-top">
+                <span class="module-num">CƠ CHẾ 01</span>
+                <span class="badge">OPTICAL FACE-LOCK</span>
+              </div>
+              <div class="module-title">Khóa cứng tâm mặt &amp; Tự đảo cảnh lật gương</div>
+              <div class="module-desc">
+                Dò khuôn mặt qua toàn bộ các cú máy (như 55 vết cắt trong bài của Vy), tự động lật thuận các cảnh bị ngược gương cam trước, xóa vết bẩn trên tường bằng <code>cv2.inpaint</code> và khóa cứng tâm mặt về đúng tọa độ <code>(cx=592.8, cy=915.0)</code>.
+              </div>
+            </div>
+          </div>
+
+          <div class="module-card">
+            <div>
+              <div class="module-card-top">
+                <span class="module-num">CƠ CHẾ 02</span>
+                <span class="badge">100% VẾ CÂU 1.1S–1.8S</span>
+              </div>
+              <div class="module-title">Chia nhịp từng vế câu &amp; Đảo tiêu cự chống chán</div>
+              <div class="module-desc">
+                Không để người nói đứng im một cỡ cảnh quá 3 giây. Máy tự động tách lời thoại thành từng vế ngắn <code>1.1s–1.8s</code>, luân phiên đổi góc <code>1.00x</code> &rarr; <code>Punch-in Zoom 1.08x</code> &rarr; <code>Hard-cut 1.00x</code> &rarr; <code>#V Cảnh Trám Fullscreen</code>.
+              </div>
+            </div>
+          </div>
+
+          <div class="module-card">
+            <div>
+              <div class="module-card-top">
+                <span class="module-num">CƠ CHẾ 03</span>
+                <span class="badge">FRAMELESS GLOW TEXT</span>
+              </div>
+              <div class="module-title">Chữ trần phát sáng 2 dòng &amp; Icon Vector</div>
+              <div class="module-desc">
+                Tuyệt đối không đóng hộp kính mờ gây bí khung hình. Phủ lớp nền tối dần từ <code>start_y_ratio=0.46</code>, đặt Icon phát sáng tại <code>Y=1320</code>, dòng chính <code>FD Integral</code> tại <code>Y=1388</code> và dòng phụ <code>FD Tiempos Italic</code> tại <code>Y=1472</code>.
+              </div>
+            </div>
+          </div>
+
+          <div class="module-card">
+            <div>
+              <div class="module-card-top">
+                <span class="module-num">CƠ CHẾ 04</span>
+                <span class="badge">SPLIT &amp; RIPPLE #B</span>
+              </div>
+              <div class="module-title">Màn hình đen chuyển ý bảo toàn 100% lời thoại</div>
+              <div class="module-desc">
+                Tại điểm chuyển ý quan trọng, máy tự tách đôi video gốc và đẩy lùi phần sau <code>+2.20s</code> để chèn thẻ màn đen <code>#B</code> mà không cắt mất một chữ nào của người nói. Nếu video ngắn dưới <code>12s</code>, máy tự lược bỏ <code>#B</code> để giữ nhịp nhanh.
+              </div>
+            </div>
+          </div>
+
+          <div class="module-card">
+            <div>
+              <div class="module-card-top">
+                <span class="module-num">CƠ CHẾ 05</span>
+                <span class="badge">#V B-ROLL &amp; 3D BENTO</span>
+              </div>
+              <div class="module-title">Cảnh trám B-Roll khớp từ khóa &amp; Thẻ 3D Bento</div>
+              <div class="module-desc">
+                Tự đọc từ khóa thực tế trong câu nói để sinh ảnh minh họa <code>1080x1920</code> chuyển động <code>kenBurnsPan 1.00x&rarr;1.09x</code> kèm chớp sáng <code>0.09s</code>, hoặc đóng khung <strong>3D Bento Spec Card</strong> hiển thị 3 ô thông số kỹ thuật sắc nét.
+              </div>
+            </div>
+          </div>
+
+          <div class="module-card">
+            <div>
+              <div class="module-card-top">
+                <span class="module-num">CƠ CHẾ 06</span>
+                <span class="badge">STUDIO SFX ~10%</span>
+              </div>
+              <div class="module-title">Cặp âm thanh phòng thu tôn trọng giọng thật</div>
+              <div class="module-desc">
+                Mỗi nhịp chuyển câu được ghép tự động một cặp âm thanh (<code>whoosh + pop</code> hoặc <code>shutter + sub_bass</code>) ở mức âm lượng rất khẽ <code>~10%</code> (<code>volume=0.09</code>). Tắt hoàn toàn hiệu ứng bóp giọng để giữ nguyên tiếng nói mộc mạc.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <h3 id="bang-4-phien-ban">1.2. Bảng đối chiếu chi tiết 4 phiên bản vận hành (Bản Đầy Đủ vs. Bản V3 Sửa Nhanh vs. Gemini Web vs. Motion 60fps)</h3>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th style="width:18%;">Phiên bản</th>
+                <th style="width:22%;">Công cụ &amp; Đầu vào tốt nhất</th>
+                <th style="width:34%;">Cách hoạt động &amp; Điểm mạnh thực tế</th>
+                <th style="width:26%;">Khi nào nên dùng?</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>1. Bản Đầy Đủ (Full 2-Bước Đạo Diễn)</strong><br><code>v3_pro_director.py</code></td>
+                <td>• Đầu vào: File <code>.mp4</code> thô (dài 20s đến 5 phút, nhiều vết cắt).<br>• Chạy trên máy Mac/PC qua Antigravity.</td>
+                <td>• Bước 1 (<code>--video</code>): Quét toàn bộ video, nhận diện giọng nói, sửa lỗi chính tả, lên kịch bản chia nhịp <code>#T</code>, <code>#B</code>, <code>#V</code> và <strong>xuất bộ ảnh Frame Mockup <code>.png</code></strong> để xem trước từng cảnh.<br>• Bước 2 (<code>--render</code>): Khóa tâm mặt quang học, tự vẽ ảnh B-Roll 9:16 và kết xuất file <code>.mp4</code> hoàn chỉnh.</td>
+                <td>Khi dựng video chia sẻ chuyên môn dài (như bài 3 phút 26 giây gồm 55 cú máy của Vy) hoặc video sản phẩm cần xóa chữ thừa và kiểm duyệt kỹ từng khung hình trước khi xuất.</td>
+              </tr>
+              <tr>
+                <td><strong>2. Bản V3 Sửa Nhanh (Delta Patcher &amp; CapCut Pack)</strong><br><code>--patch</code> / <code>--export-alpha</code></td>
+                <td>• Đầu vào: File kế hoạch <code>.v3_plan.json</code> + câu lệnh sửa 1 dòng.<br>• Hoặc xuất gói kéo thả sang CapCut.</td>
+                <td>• <strong>Sửa tức thì không cần chạy lại từ đầu:</strong> Đổi nội dung chữ, đổi màu chữ, thay riêng 1 tấm ảnh B-Roll (<code>hot-swap #V</code>), thêm/xóa màn đen <code>#B</code> chỉ trong vài giây.<br>• <strong>Xuất gói CapCut:</strong> Xuất thư mục ảnh <code>.PNG</code> nền trong suốt <code>1080x1920</code> và file <code>ProRes 4444 .mov</code> kèm sẵn âm thanh để kéo vào CapCut chỉnh thêm bằng tay.</td>
+                <td>Khi đã có bản dựng nháp và muốn sửa nhanh 1–2 chữ, đổi ảnh minh họa khác, hoặc khi đội ngũ nhân sự muốn lấy lớp chữ phát sáng đem sang CapCut ghép thêm cảnh quay tại tiệm.</td>
+              </tr>
+              <tr>
+                <td><strong>3. Bản Gemini Web &amp; iPhone Studio (1 Lần Dán Cho Học Viên)</strong><br><code>mfx_v3_universal_engine.py</code></td>
+                <td>• Đầu vào: Gói <code>edit-video-v3-skill.zip</code> gắn trên Gemini Web + Video <code>.mp4</code>.<br>• Chạy trên cả Windows, Mac và iPhone (<code>mfx.html</code>).</td>
+                <td>• Tải video lên Gemini Web &rarr; AI tự xem video và trả về <strong>1 Khung Copy Hợp Nhất</strong>.<br>• Dán vào máy tính (Windows/Mac): Tự tải Font + SFX + FFmpeg từ Cloudflare R2 CDN, tự tìm file video trong máy (kể cả khi bị đổi tên thành <code>video.mp4</code>) và xuất thẳng thành phẩm.<br>• Trên iPhone: Dán mã vào <code>mfx.fedu.vn</code> để xuất <code>.mp4</code> lưu thẳng vào Cuộn Camera.</td>
+                <td><strong>Dành cho học viên khóa Offline:</strong> Không rành kỹ thuật, dùng máy Windows mới tinh hoặc dùng điện thoại iPhone vẫn tự làm được video hoàn chỉnh ngay tại bàn học.</td>
+              </tr>
+              <tr>
+                <td><strong>4. Bản Motion Graphic 60fps (.TSX Studio)</strong><br><code>Skill motion V2.1</code></td>
+                <td>• Đầu vào: File <code>.mp4</code> / <code>.wav</code> + 4 Khuôn gốc <code>.TSX</code> có bảng biến <code>Tweaks</code>.<br>• Chạy qua Remotion 60fps.</td>
+                <td>• Chưng cất mỗi nhịp nói thành <code>2–5 từ khóa</code> cô đọng kèm hiệu ứng chuyển động vật lý 60 khung hình/giây.<br>• Có sẵn 4 khuôn thiết kế gốc: <strong>Ultra-Clean V3</strong>, <strong>Claude Risograph Hybrid</strong>, <strong>3D Bento Gold 9:16</strong> và <strong>MasterClass Acid-Lime Brutalist</strong>.<br>• Ghép âm thanh 4 lớp từ kho 8.902 file <code>sfx.fedu.vn</code>.</td>
+                <td>Khi làm video mở đầu thu hút sự chú ý cao, giải thích cơ chế phức tạp bằng đồ họa chuyển động 60fps hoặc kết hợp đan xen giữa mặt người nói và bảng biểu 3D.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 id="ban-copy-lenh">1.3. Bàn Copy Câu Lệnh &amp; Đầu Vào Chuẩn Theo Từng Bậc (Bấm 1 Lần Để Copy)</h3>
+        <p>
+          Dưới đây là các câu lệnh chuẩn xác theo đúng tham số của hệ thống. Bạn chỉ cần bấm nút <strong>Copy</strong> ở góc phải từng hộp đen:
+        </p>
+
+        <!-- CMD 1: BẬC 1 GEMINI WEB -->
+        <div class="cmd-card">
+          <div class="cmd-header">
+            <span class="cmd-label">BẬC 1 • DÙNG TRÊN GEMINI WEB (ĐÍNH KÈM VIDEO .MP4 VÀ DÁN ĐÚNG 1 DÒNG NÀY)</span>
+            <button class="btn-copy" onclick="copyText(this, 'cmd-text-1')">📋 Copy câu lệnh</button>
+          </div>
+          <pre class="cmd-pre" id="cmd-text-1">Dựng video này chuẩn V3 cho tôi, tự chia vế câu 1.5s, khóa tâm mặt và chọn các từ khóa đắt nhất để chèn ảnh B-Roll minh họa.</pre>
+        </div>
+
+        <!-- CMD 2: BẬC 2 SỬA NHANH DELTA PATCHER -->
+        <div class="cmd-card">
+          <div class="cmd-header">
+            <span class="cmd-label">BẬC 2 • BẢN V3 SỬA NHANH (DELTA PATCHER — SỬA CHỮ, XÓA MÀN ĐEN #B, XUẤT GÓI ALPHA CAPCUT)</span>
+            <button class="btn-copy" onclick="copyText(this, 'cmd-text-3')">📋 Copy câu lệnh</button>
+          </div>
+          <pre class="cmd-pre" id="cmd-text-3"># 1. Sửa nhanh nội dung chữ, vị trí [lower], kiểu chuyển động [MG-T02] và âm thanh của nhịp #T2:
+python3 ~/.gemini/config/skills/auto-edit-video/scripts/v3_pro_director.py \
+  --plan-file "./edit_plan/video_goc.v3_plan.json" \
+  --patch '#T2: "SOI TẬN ỐC ĐÍT | Cam kết nguyên bản" [lower] [MG-T02] [sfx:laser_strike]'
+
+# 2. Xóa nhanh thẻ màn đen #B1 nếu muốn giữ mạch nói liền:
+python3 ~/.gemini/config/skills/auto-edit-video/scripts/v3_pro_director.py \
+  --plan-file "./edit_plan/video_goc.v3_plan.json" \
+  --patch 'delete #B1'
+
+# 3. Xuất gói lớp phủ nền trong suốt (ProRes 4444 .mov &amp; PNG) để kéo thả vào CapCut:
+python3 ~/.gemini/config/skills/auto-edit-video/scripts/v3_pro_director.py \
+  --plan-file "./edit_plan/video_goc.v3_plan.json" \
+  --export-alpha</pre>
+        </div>
+
+        <!-- CMD 3: BẬC 3 BẢN ĐẦY ĐỦ 2 BƯỚC -->
+        <div class="cmd-card">
+          <div class="cmd-header">
+            <span class="cmd-label">BẬC 3 • BẢN ĐẦY ĐỦ 2 BƯỚC TRÊN ANTIGRAVITY (XUẤT MOCKUP DUYỆT TRƯỚC RỒI RENDER MP4)</span>
+            <button class="btn-copy" onclick="copyText(this, 'cmd-text-2')">📋 Copy câu lệnh</button>
+          </div>
+          <pre class="cmd-pre" id="cmd-text-2"># Bước 1: Phân tích video, chia nhịp vế câu và xuất bộ ảnh Frame Mockup để kiểm duyệt
+python3 ~/.gemini/config/skills/auto-edit-video/scripts/v3_pro_director.py \
+  --video "/duong/dan/video_goc.mp4" \
+  --output-dir "./edit_plan"
+
+# Bước 2: Sau khi ưng ý Mockup, khóa tâm mặt quang học + sinh B-Roll + kết xuất MP4 hoàn chỉnh
+python3 ~/.gemini/config/skills/auto-edit-video/scripts/v3_pro_director.py \
+  --plan-file "./edit_plan/video_goc.v3_plan.json" \
+  --render --engine ffmpeg</pre>
+        </div>
+
+        <!-- CMD 4: EXPANDABLE CLOUD R2 ONE-LINER -->
+        <details class="cmd-details">
+          <summary>
+            <span>⚙️ Mở rộng: Lệnh 1 dòng tự tải bộ cài từ Cloud R2 cho máy Windows / Mac mới tinh</span>
+            <button class="btn-copy" onclick="event.stopPropagation(); copyText(this, 'cmd-text-4')">📋 Copy lệnh Cloud</button>
+          </summary>
+          <pre class="cmd-pre" id="cmd-text-4" style="margin-top:0.65rem;">python -c "import urllib.request,os,subprocess,sys; os.makedirs('.mfx_cache',exist_ok=True); p='.mfx_cache/mfx_v3_universal_engine.py'; req=urllib.request.Request('https://pub-2c3c54c8f9334a1f8673abc9ecdbb9e1.r2.dev/mfx_v3_resources/mfx_v3_universal_engine.py',headers={'User-Agent':'Mozilla/5.0'}); open(p,'wb').write(urllib.request.urlopen(req).read()); subprocess.run([sys.executable,p,'--edl','edl_plan.json','--auto-broll'],check=True)"</pre>
+        </details>
+      </section>
+
+      <!-- ====================================================================
+           PHẦN 2: SHOWCASE OUTPUT THỰC TẾ ĐÃ LÀM THEO ĐÚNG NGÀNH HÀNG HỌC VIÊN
+           ==================================================================== -->
+      <section id="phan-2">
+        <h2>PHẦN 2: SHOWCASE THÀNH PHẨM THỰC TẾ ĐÃ DỰNG THEO NGÀNH HÀNG HỌC VIÊN</h2>
+        <p>
+          Bấm chọn từng nhóm ngành bên dưới để lọc nhanh các dự án đã làm thực tế, xem trực tiếp video thành phẩm, bàn đối chiếu trước/sau khi khóa tâm mặt và bộ khung hình chi tiết (bấm vào bất kỳ tấm ảnh nào để phóng to toàn màn hình):
+        </p>
+
+        <!-- INTERACTIVE FILTER PILLS -->
+        <div class="filter-bar" id="showcase-filter-bar">
+          <button class="filter-pill active" onclick="filterShowcase('all', this)">Tất cả ngành đã dựng (6 cụm dự án)</button>
+          <button class="filter-pill" onclick="filterShowcase('dao-tao', this)">Đào tạo &amp; Sách Tài chính (Vy &amp; Anh Việt)</button>
+          <button class="filter-pill" onclick="filterShowcase('ban-le', this)">Gia dụng &amp; Khung Bento 3D</button>
+          <button class="filter-pill" onclick="filterShowcase('lifestyle', this)">Lifestyle &amp; Giải màu DJI Pocket 4</button>
+          <button class="filter-pill" onclick="filterShowcase('motion-60fps', this)">4 Khuôn Motion Graphic 60fps</button>
+          <button class="filter-pill" onclick="filterShowcase('stu-audit', this)">Kho Học Viên Thực Hành (Dược, Spa, BĐS, Nội thất)</button>
+        </div>
+
+        <!-- ==================================================================
+             CASE 1: VY (ĐÀO TẠO / KINH DOANH / SÁCH TÀI CHÍNH)
+             ================================================================== -->
+        <div class="showcase-group" data-category="dao-tao" id="case-vy">
+          <h3>Case 1 — Ngành Đào tạo, Kinh doanh &amp; Review Sách Tài chính (Học viên Vy — Matching Vietnam / Hoàng Vy Finance)</h3>
+          <p>
+            <strong>Bài toán thực tế của học viên:</strong> Vy quay một bài phân tích chuyên môn dài <strong>3 phút 26 giây (206.5s)</strong> gồm <strong>55 cú máy cắt nối</strong> nói về lý thuyết <em>"Nhiệm vụ cần hoàn thành — Jobs To Be Done"</em> (case study Apple, Steve Jobs, Henry Ford, máy khoan, mì Hảo Hảo vs Omachi, tàu cao tốc Đài Loan). Trong bản quay gốc có <strong>16 cú máy bị lật gương ngang</strong>, 3 mức phóng khung hình lệch nhau khiến mặt người nói nhảy qua lại liên tục, cộng thêm 2 vết bẩn trên tường.
+          </p>
+
+          <!-- 2 VIDEOS OF VY 20S -->
+          <div class="media-grid-2">
+            <div class="item-card">
+              <div class="item-header">
+                <span class="item-id">VY-EDIT-01A • BẢN ĐAN XEN</span>
+                <span class="item-spec">1080×1920 • 30fps • 19.06s</span>
+              </div>
+              <div class="video-box">
+                <button class="btn-unmute-float" onclick="toggleMute(this)">🔇 Bật tiếng</button>
+                <video src="./assets/aiedit/vy-goc20s_edit_v3.mp4" poster="./assets/aiedit/vy_full_01.jpg" muted controls playsinline preload="metadata"></video>
+              </div>
+              <div class="item-body">
+                <div class="item-title">Bản Đạo Diễn Đan Xen (Giữ mặt người nói + Chèn B-Roll điểm nhấn)</div>
+                <div class="item-text">
+                  Khóa cứng tâm mặt Vy tại <code>(592.8, 915.0)</code>, tách 8 nhịp vế câu <code>#T1&rarr;#T8</code>, đổi màu chữ theo ngữ cảnh (Kem vàng, Vàng Gold, Xanh Cyan, Đỏ nhấn) và đan xen ảnh minh họa đúng từ khóa Steve Jobs, Henry Ford, chiếc xe ngựa.
+                </div>
+                <div class="item-footer">
+                  <a class="btn-link btn-primary" href="https://drive.google.com/open?id=1dl6hmvgXtPkZ_LiIWA4YvZKbs0M-T6Y2" target="_blank" rel="noopener">▶ Xem Bản Đầy Đủ 3 Phút 26 Giây (55 Cú Máy) Trên Drive</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="item-card">
+              <div class="item-header">
+                <span class="item-id">VY-EDIT-01B • BẢN FULL B-ROLL</span>
+                <span class="item-spec">1080×1920 • 30fps • 19.06s</span>
+              </div>
+              <div class="video-box">
+                <button class="btn-unmute-float" onclick="toggleMute(this)">🔇 Bật tiếng</button>
+                <video src="./assets/aiedit/vy-goc20s_edit_v3_full_broll.mp4" poster="./assets/aiedit/vy_full_04.jpg" muted controls playsinline preload="metadata"></video>
+              </div>
+              <div class="item-body">
+                <div class="item-title">Bản Phủ Kín 6 Cảnh Trám B-Roll Điện Ảnh (19 Giây Mở Đầu)</div>
+                <div class="item-text">
+                  Minh họa chế độ <code>--auto-broll</code> mật độ cao: Cứ mỗi vế câu 2.2 giây, máy tự động bung một tấm ảnh 9:16 (Apple, Steve Jobs, Henry Ford khảo sát, Xe ngựa chạy nhanh, Ô tô Ford Model T) với chuyển động <code>kenBurnsPan</code> mượt mà.
+                </div>
+                <div class="item-footer">
+                  <span class="badge badge-green">8 Nhịp #T1–#T8</span>
+                  <span class="badge badge-blue">6 Cảnh #V1–#V6</span>
+                  <span class="badge">SFX 9% Voice-Safe</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- BEFORE / AFTER 55 SHOTS COMPARISON -->
+          <div class="compare-box">
+            <div class="compare-banner">
+              <span>🔍 BÀN ĐỐI CHIẾU TRƯỚC &amp; SAU KHI AI XỬ LÝ 55 CÚ MÁY TRONG BÀI DÀI 3 PHÚT 26 GIÂY CỦA VY (BẤM ẢNH ĐỂ PHÓNG TO)</span>
+              <span class="badge badge-dark">OPTICAL FACE-LOCK + AUTO UNFLIP + INPAINT</span>
+            </div>
+            <div class="compare-cols">
+              <div class="item-card">
+                <div class="item-header">
+                  <span class="item-id" style="background:#991b1b; color:#ffffff;">TRƯỚC KHI XỬ LÝ (55 CÚ MÁY GỐC)</span>
+                  <span class="item-spec">16 cảnh lật gương • Lệch tâm mặt</span>
+                </div>
+                <div class="img-box" onclick="openLightbox('./assets/aiedit/shots_before_56.jpg', 'Trước khi xử lý: 55 cú máy gốc của Vy (16 cảnh bị lật gương ngang, tâm mặt lệch nhau)')">
+                  <img src="./assets/aiedit/shots_before_56.jpg" alt="55 cú máy trước khi khóa tâm mặt" loading="lazy">
+                  <span class="zoom-hint">🔍 Bấm phóng to</span>
+                </div>
+                <div class="item-body">
+                  <div class="item-text" style="margin-bottom:0;">
+                    <strong>Khó khăn thật khi tự quay:</strong> Quay ngắt quãng nhiều lần khiến 16 đoạn bị lật ngược chữ trên áo/bối cảnh, khung hình lúc xa lúc gần, vết bẩn trên tường lộ rõ. Nếu ngồi căn chỉnh tay từng đoạn trên máy tính sẽ mất trắng cả buổi tối.
+                  </div>
+                </div>
+              </div>
+
+              <div class="item-card">
+                <div class="item-header">
+                  <span class="item-id" style="background:#064e3b; color:#ffffff;">SAU KHI AI XỬ LÝ TỰ ĐỘNG 100%</span>
+                  <span class="item-spec">Đồng nhất (592.8, 915.0) • Sạch tường</span>
+                </div>
+                <div class="img-box" onclick="openLightbox('./assets/aiedit/shots_after_56.jpg', 'Sau khi xử lý: 55 cú máy đã tự động đảo gương, xóa bụi tường và khóa cứng tâm mặt về (592.8, 915.0)')">
+                  <img src="./assets/aiedit/shots_after_56.jpg" alt="55 cú máy sau khi khóa tâm mặt" loading="lazy">
+                  <span class="zoom-hint">🔍 Bấm phóng to</span>
+                </div>
+                <div class="item-body">
+                  <div class="item-text" style="margin-bottom:0;">
+                    <strong>Kết quả tự động:</strong> Toàn bộ 16 cảnh ngược được lật thuận, 2 đốm bẩn trên tường được xóa sạch, và tâm mắt của Vy trong cả 55 cú máy nằm im tại đúng một tọa độ duy nhất — chuyển cảnh mượt như quay nhiều máy trong phòng thu.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 6 MOCKUPS FROM VY FULL -->
+          <p style="font-family:var(--font-heading); font-weight:700; font-size:0.95rem; margin-bottom:0.5rem;">
+            📸 Lưới 6 khung hình trích từ 50 nhịp trong bản dài 3 phút 26 giây của Vy (Chữ trần 2 dòng + Icon phát sáng + Cảnh trám AI):
+          </p>
+          <div class="media-grid-3">
+            <div class="item-card">
+              <div class="img-box" onclick="openLightbox('./assets/aiedit/vy_full_01.jpg', 'Nhịp #T1 — Khóa tâm mặt + Chữ trần Kem vàng STYLE-32')"><img src="./assets/aiedit/vy_full_01.jpg" alt="Nhịp 01 Vy Full" loading="lazy"><span class="zoom-hint">🔍 Phóng to</span></div>
+              <div class="item-body"><div class="item-text" style="margin:0;"><strong>#T1:</strong> Khóa tâm mặt + Chữ trần Kem vàng <code>STYLE-32</code> mở bài Apple.</div></div>
+            </div>
+            <div class="item-card">
+              <div class="img-box" onclick="openLightbox('./assets/aiedit/vy_full_04.jpg', 'Nhịp #T4 + #V3 — Cảnh trám Henry Ford khảo sát khách hàng')"><img src="./assets/aiedit/vy_full_04.jpg" alt="Nhịp 04 Vy Full" loading="lazy"><span class="zoom-hint">🔍 Phóng to</span></div>
+              <div class="item-body"><div class="item-text" style="margin:0;"><strong>#T4 + #V3:</strong> Cảnh trám Henry Ford khảo sát khách hàng thời xe ngựa.</div></div>
+            </div>
+            <div class="item-card">
+              <div class="img-box" onclick="openLightbox('./assets/aiedit/vy_full_11.jpg', 'Nhịp #T11 + #V8 — Khách mua mũi khoan vì cần cái lỗ trên tường')"><img src="./assets/aiedit/vy_full_11.jpg" alt="Nhịp 11 Vy Full" loading="lazy"><span class="zoom-hint">🔍 Phóng to</span></div>
+              <div class="item-body"><div class="item-text" style="margin:0;"><strong>#T11 + #V8:</strong> Ví dụ kinh điển: Khách mua mũi khoan vì cần cái lỗ trên tường.</div></div>
+            </div>
+            <div class="item-card">
+              <div class="img-box" onclick="openLightbox('./assets/aiedit/vy_full_15.jpg', 'Nhịp #T15 + #V10 — Đối thủ thật sự của mì ăn liền là cơm hộp, bánh mì')"><img src="./assets/aiedit/vy_full_15.jpg" alt="Nhịp 15 Vy Full" loading="lazy"><span class="zoom-hint">🔍 Phóng to</span></div>
+              <div class="item-body"><div class="item-text" style="margin:0;"><strong>#T15 + #V10:</strong> Đối thủ thật sự của mì ăn liền là cơm hộp, bánh mì, cháo.</div></div>
+            </div>
+            <div class="item-card">
+              <div class="img-box" onclick="openLightbox('./assets/aiedit/vy_full_22.jpg', 'Nhịp #T22 — Cận cảnh Zoom 1.08x bài học Đường sắt cao tốc Đài Loan')"><img src="./assets/aiedit/vy_full_22.jpg" alt="Nhịp 22 Vy Full" loading="lazy"><span class="zoom-hint">🔍 Phóng to</span></div>
+              <div class="item-body"><div class="item-text" style="margin:0;"><strong>#T22:</strong> Cận cảnh <code>Zoom 1.08x</code> nhấn mạnh bài học Đường sắt cao tốc Đài Loan.</div></div>
+            </div>
+            <div class="item-card">
+              <div class="img-box" onclick="openLightbox('./assets/aiedit/vy_full_50.jpg', 'Nhịp #T50 + #V23 — Tổng kết lý thuyết Jobs To Be Done ở giây 206.5')"><img src="./assets/aiedit/vy_full_50.jpg" alt="Nhịp 50 Vy Full" loading="lazy"><span class="zoom-hint">🔍 Phóng to</span></div>
+              <div class="item-body"><div class="item-text" style="margin:0;"><strong>#T50 + #V23:</strong> Khung tổng kết lý thuyết Jobs To Be Done ở giây 206.5.</div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ==================================================================
+             CASE 2: BÁN LẺ GIA DỤNG / KHUNG 3D BENTO
+             ================================================================== -->
+        <div class="showcase-group" data-category="ban-le" id="case-dropship">
+          <h3>Case 2 — Ngành Bán lẻ Gia dụng, Điện máy &amp; Affiliate TikTok Shop (Máy cọ rửa xoay 360° chống nước IPX7)</h3>
+          <p>
+            <strong>Bài toán thực tế của học viên nhóm Bán lẻ &amp; Cơ điện (78/309 học viên):</strong> Có video quay cảnh thử máy thực tế nhưng bị dính logo cũ hoặc chữ thừa trên khung hình, thiếu bảng thông số kỹ thuật trực quan và thiếu thẻ so sánh Trước/Sau để khách ra quyết định mua ngay.
+          </p>
+
+          <div class="media-grid-2">
+            <div class="item-card">
+              <div class="item-header">
+                <span class="item-id">EDIT-02 • VIDEO NGUỒN THỬ MÁY</span>
+                <span class="item-spec">464×848 &rarr; 1080×1920 Bento</span>
+              </div>
+              <div class="video-box">
+                <button class="btn-unmute-float" onclick="toggleMute(this)">🔇 Bật tiếng</button>
+                <video src="./assets/aiedit/dropship1.mp4" poster="./assets/aiedit/ds_mockup_01_T1.jpg" muted controls playsinline preload="metadata"></video>
+              </div>
+              <div class="item-body">
+                <div class="item-title">Xóa sạch logo cũ hoặc chữ thừa trên video sản phẩm của chính mình bằng Optical Crop &amp; Telea Inpaint</div>
+                <div class="item-text">
+                  Từ một video quay thô có chữ thừa nhảy ở 2 vị trí và 4 giây màn đen ở cuối, AI tự động cắt gọn đuôi, xóa sạch chữ thừa bằng <code>Optical Crop &amp; Telea Inpaint</code>, chèn màn đen <code>#B1 (+2.2s)</code> và đóng khung 3D Bento kèm bảng thông số.
+                </div>
+              </div>
+            </div>
+
+            <div class="item-card">
+              <div class="item-header">
+                <span class="item-id">CẤU TRÚC 8 NHỊP BÁN HÀNG TRỰC TIẾP</span>
+                <span class="item-spec">22.73s • 3D Bento Spec Card</span>
+              </div>
+              <div class="item-body" style="justify-content:center;">
+                <ul style="font-size:0.9rem; line-height:1.6; margin-bottom:0;">
+                  <li><strong>#T1 (0.0s–3.1s):</strong> <code>ĐÁNH BAY MỠ CHÁY</code> — Chỉ 3 giây không tốn một giọt mồ hôi.</li>
+                  <li><strong>#T2 (3.1s–5.8s):</strong> <code>SẠCH SÂU KHE HÚT MÙI</code> — Nơi giẻ lau thường chịu thua.</li>
+                  <li><strong>#T3 (5.8s–8.6s):</strong> <code>CÂN MỌI GÓC KHUẤT</code> — Chống nước IPX7 toàn thân máy.</li>
+                  <li><strong>#B1 (8.6s–10.8s):</strong> Màn đen Split &amp; Ripple <code>+2.2s</code>: <strong>1 MÁY • 5 ĐẦU CỌ THAY THẾ</strong>.</li>
+                  <li><strong>#T4 + #V1 (10.8s–14.2s):</strong> Thẻ <strong>Bento 3-Grid Spec Card</strong> (Mô-men xoắn lớn • Pin 120 phút • Sạc nhanh Type-C).</li>
+                  <li><strong>#T5 &amp; #T6 (14.2s–19.4s):</strong> Đánh trắng đế giày Sneaker &amp; Thay đầu cọ trong 1 giây.</li>
+                  <li><strong>#T7 + #V2 (19.4s–22.73s):</strong> Thẻ <strong>Before/After Split-Screen</strong> (Trước khi cọ vs. Sau 3 giây cọ) + Kêu gọi bấm giỏ hàng.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <p style="font-family:var(--font-heading); font-weight:700; font-size:0.95rem; margin-bottom:0.5rem;">
+            📸 Trọn bộ 8 Frame Mockup thực tế của dự án <code>dropship1.mp4</code> (Đã làm sạch khung hình + Đóng khung Bento + Thẻ Thông Số #V1 &amp; Trước/Sau #V2):
+          </p>
+          <div class="media-grid-4">
+            <div class="item-card">
+              <div class="img-box" onclick="openLightbox('./assets/aiedit/ds_mockup_01_T1.jpg', '01 • #T1: Đánh bay mỡ cháy kiềng bếp ga')"><img src="./assets/aiedit/ds_mockup_01_T1.jpg" alt="Dropship T1" loading="lazy"><span class="zoom-hint">🔍</span></div>
+              <div class="item-body"><div class="item-text" style="margin:0; font-size:0.82rem;"><strong>01 • #T1:</strong> Đánh bay mỡ cháy kiềng bếp ga.</div></div>
+            </div>
+            <div class="item-card">
+              <div class="img-box" onclick="openLightbox('./assets/aiedit/ds_mockup_02_T2.jpg', '02 • #T2: Cọ sạch khe lưới máy hút mùi')"><img src="./assets/aiedit/ds_mockup_02_T2.jpg" alt="Dropship T2" loading="lazy"><span class="zoom-hint">🔍</span></div>
+              <div class="item-body"><div class="item-text" style="margin:0; font-size:0.82rem;"><strong>02 • #T2:</strong> Cọ sạch khe lưới máy hút mùi.</div></div>
+            </div>
+            <div class="item-card">
+              <div class="img-box" onclick="openLightbox('./assets/aiedit/ds_mockup_03_T3.jpg', '03 • #T3: Chống nước IPX7 trong bồn rửa')"><img src="./assets/aiedit/ds_mockup_03_T3.jpg" alt="Dropship T3" loading="lazy"><span class="zoom-hint">🔍</span></div>
+              <div class="item-body"><div class="item-text" style="margin:0; font-size:0.82rem;"><strong>03 • #T3:</strong> Chống nước IPX7 trong bồn rửa.</div></div>
+            </div>
+            <div class="item-card">
+              <div class="img-box" onclick="openLightbox('./assets/aiedit/ds_mockup_04_B1.jpg', '04 • #B1: Màn đen Split & Ripple +2.2s')"><img src="./assets/aiedit/ds_mockup_04_B1.jpg" alt="Dropship B1" loading="lazy"><span class="zoom-hint">🔍</span></div>
+              <div class="item-body"><div class="item-text" style="margin:0; font-size:0.82rem;"><strong>04 • #B1:</strong> Màn đen Split &amp; Ripple +2.2s.</div></div>
+            </div>
+            <div class="item-card">
+              <div class="img-box" onclick="openLightbox('./assets/aiedit/ds_mockup_05_T4_V1.jpg', '05 • #T4+#V1: Thẻ Bento 3 ô thông số máy')"><img src="./assets/aiedit/ds_mockup_05_T4_V1.jpg" alt="Dropship V1" loading="lazy"><span class="zoom-hint">🔍</span></div>
+              <div class="item-body"><div class="item-text" style="margin:0; font-size:0.82rem;"><strong>05 • #T4+#V1:</strong> Thẻ Bento 3 ô thông số máy.</div></div>
+            </div>
+            <div class="item-card">
+              <div class="img-box" onclick="openLightbox('./assets/aiedit/ds_mockup_06_T5.jpg', '06 • #T5: Cọ trắng giày không xước da')"><img src="./assets/aiedit/ds_mockup_06_T5.jpg" alt="Dropship T5" loading="lazy"><span class="zoom-hint">🔍</span></div>
+              <div class="item-body"><div class="item-text" style="margin:0; font-size:0.82rem;"><strong>06 • #T5:</strong> Cọ trắng giày không xước da.</div></div>
+            </div>
+            <div class="item-card">
+              <div class="img-box" onclick="openLightbox('./assets/aiedit/ds_mockup_07_T6.jpg', '07 • #T6: Thay nhanh 5 đầu cọ trong 1 giây')"><img src="./assets/aiedit/ds_mockup_07_T6.jpg" alt="Dropship T6" loading="lazy"><span class="zoom-hint">🔍</span></div>
+              <div class="item-body"><div class="item-text" style="margin:0; font-size:0.82rem;"><strong>07 • #T6:</strong> Thay nhanh 5 đầu cọ trong 1 giây.</div></div>
+            </div>
+            <div class="item-card">
+              <div class="img-box" onclick="openLightbox('./assets/aiedit/ds_mockup_08_T7_V2.jpg', '08 • #T7+#V2: Thẻ Trước/Sau 3 giây cọ rửa')"><img src="./assets/aiedit/ds_mockup_08_T7_V2.jpg" alt="Dropship V2" loading="lazy"><span class="zoom-hint">🔍</span></div>
+              <div class="item-body"><div class="item-text" style="margin:0; font-size:0.82rem;"><strong>08 • #T7+#V2:</strong> Thẻ Trước/Sau 3 giây cọ rửa.</div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ==================================================================
+             CASE 3: ANH VIỆT DEMO 2-BƯỚC & MOBILE STUDIO IPHONE
+             ================================================================== -->
+        <div class="showcase-group" data-category="dao-tao" id="case-viet">
+          <h3>Case 3 — Ngành Đào tạo Thực chiến &amp; Xây kênh (Demo <code>qcVD1</code> &amp; Luồng Gemini Web + iPhone Studio)</h3>
+          <div class="media-grid-3">
+            <div class="item-card">
+              <div class="item-header">
+                <span class="item-id">EDIT-03 • DEMO QCVD1</span>
+                <span class="item-spec">5.04s gốc &rarr; 7.24s xuất</span>
+              </div>
+              <div class="video-box">
+                <button class="btn-unmute-float" onclick="toggleMute(this)">🔇 Bật tiếng</button>
+                <video src="./assets/aiedit/qcVD1_final.mp4" poster="./assets/aiedit/vy_beat_01.png" muted controls playsinline preload="metadata"></video>
+              </div>
+              <div class="item-body">
+                <div class="item-title">Mẫu Chuẩn Đủ 5 Thành Phần Trong 7.24 Giây</div>
+                <div class="item-text">
+                  Video gốc dài <code>5.04s</code> được máy tự động tách ở giây 2.5 để chèn màn đen <code>#B1 (+2.20s)</code> nâng tổng thời lượng lên <code>7.24s</code> mà không mất một âm tiết nào, cuối video tự đè cảnh B-Roll anh Việt cầm máy quay tại lớp học.
+                </div>
+              </div>
+            </div>
+
+            <div class="item-card">
+              <div class="item-header">
+                <span class="item-id">EDIT-04 • GEMINI WEB 10S</span>
+                <span class="item-spec">1080×1920 • 30fps • 10.0s</span>
+              </div>
+              <div class="video-box">
+                <button class="btn-unmute-float" onclick="toggleMute(this)">🔇 Bật tiếng</button>
+                <video src="./assets/aiedit/sample_10s_mfx_v3_final.mp4" poster="./assets/aiedit/vy_beat_02.png" muted controls playsinline preload="metadata"></video>
+              </div>
+              <div class="item-body">
+                <div class="item-title">Thành Phẩm 10 Giây Xuất Từ Kịch Bản Gemini Web</div>
+                <div class="item-text">
+                  Video thử nghiệm luồng học viên tải video lên Gemini Web nhận mã <code>EDL JSON</code> 6 nhịp liên hoàn (<code>#T1&rarr;#T6+#V1</code>) và bấm kết xuất tự động không cần chỉnh tay.
+                </div>
+              </div>
+            </div>
+
+            <div class="item-card">
+              <div class="item-header">
+                <span class="item-id">MFX MOBILE STUDIO • IPHONE</span>
+                <span class="item-spec">Web App mfx.fedu.vn</span>
+              </div>
+              <div class="img-box" onclick="openLightbox('./assets/aiedit/mfx_mobile_studio_iphone.png', 'Giao diện MFX Mobile Studio trên iPhone (mfx.fedu.vn)')">
+                <img src="./assets/aiedit/mfx_mobile_studio_iphone.png" alt="Giao diện MFX Mobile Studio trên iPhone" loading="lazy" style="max-height:400px;">
+                <span class="zoom-hint">🔍 Phóng to</span>
+              </div>
+              <div class="item-body">
+                <div class="item-title">Dựng Ngay Trên Điện Thoại iPhone (Không Cần Mở Máy Tính)</div>
+                <div class="item-text">
+                  Tích hợp sẵn 28 bộ Font và 16 file âm thanh phòng thu dưới dạng Base64 trong trang <code>mfx.fedu.vn</code>. Học viên chọn video từ Cuộn Camera iPhone + dán mã từ Gemini là xuất thẳng file <code>.MP4</code> về máy.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ==================================================================
+             CASE 4: DJI OSMO POCKET 4 10-BIT D-LOG & CẮT ĐIỂM RƠI CẢM XÚC
+             ================================================================== -->
+        <div class="showcase-group" data-category="lifestyle" id="case-pocket4">
+          <h3>Case 4 — Ngành Thương hiệu cá nhân &amp; Lifestyle Quay Bằng DJI Osmo Pocket 4 (Tự giải màu 10-Bit D-Log &amp; Lọc điểm rơi cảm xúc)</h3>
+          <p>
+            <strong>Bài toán thực tế:</strong> Nhiều học viên đầu tư máy quay <strong>DJI Osmo Pocket 3 / Pocket 4</strong> quay ở chế độ màu phẳng <code>10-bit D-Log</code> nhưng khi đưa vào điện thoại thì màu bị xám xịt, hoặc khi áp sẵn file màu (LUT <code>.cube</code>) của hãng thì vùng đèn trần nhà bị cháy trắng xóa. Hơn nữa, trong một cú máy dài 10 giây thường bị lẫn 3–4 giây đầu/giữa lúc người quay đang cúi nhìn màn hình chỉnh máy.
+          </p>
+
+          <div class="media-grid-2">
+            <div class="item-card">
+              <div class="item-header">
+                <span class="item-id">SO SÁNH 3 CỘT • GIÂY 1.50S</span>
+                <span class="item-spec">Gốc D-Log vs. LUT Hãng vs. AI S-Curve</span>
+              </div>
+              <div class="img-box" onclick="openLightbox('./assets/aiedit/compare_3way_1.5s.jpg', 'So sánh 3 cột giải màu tại giây 1.50s (Gốc D-Log vs. LUT Hãng vs. AI S-Curve 5270K)')">
+                <img src="./assets/aiedit/compare_3way_1.5s.jpg" alt="So sánh 3 cột giải màu tại 1.5s" loading="lazy">
+                <span class="zoom-hint">🔍 Bấm phóng to</span>
+              </div>
+              <div class="item-body">
+                <div class="item-title">Đọc thẳng thông số ẩn trong file (5270K, Tint +18) giữ chi tiết đèn trần</div>
+                <div class="item-text">
+                  Không cần file <code>.cube</code> bên ngoài: Thuật toán tự đọc thông số cân bằng trắng trong file MP4 để tái tạo màu da ấm tự nhiên mà vùng đèn trên trần nhà vẫn giữ nguyên chi tiết, không bị gắt như cột giữa (LUT hãng).
+                </div>
+              </div>
+            </div>
+
+            <div class="item-card">
+              <div class="item-header">
+                <span class="item-id">SO SÁNH 3 CỘT • GIÂY 8.25S</span>
+                <span class="item-spec">Điểm cảm xúc số 2: Trầm tư &amp; Ngẩng nhìn</span>
+              </div>
+              <div class="img-box" onclick="openLightbox('./assets/aiedit/compare_3way_8.25s.jpg', 'So sánh 3 cột giải màu tại giây 8.25s (Điểm cảm xúc số 2: Trầm tư & Ngẩng nhìn)')">
+                <img src="./assets/aiedit/compare_3way_8.25s.jpg" alt="So sánh 3 cột giải màu tại 8.25s" loading="lazy">
+                <span class="zoom-hint">🔍 Bấm phóng to</span>
+              </div>
+              <div class="item-body">
+                <div class="item-title">Tự động cắt bỏ 3.7 giây chỉnh máy ở giữa, giữ lại đúng 2 khoảnh khắc đắt nhất</div>
+                <div class="item-text">
+                  Từ file gốc <code>9.79s</code>, máy tự loại bỏ đoạn <code>2.9s–6.6s</code> (lúc chớp mắt và chỉnh tay cầm), chỉ ghép <strong>Cut 1 (0.5s–2.9s: Xoay máy khóa ánh mắt giữa đám đông)</strong> và <strong>Cut 2 (6.6s–9.1s: Trầm tư ngẩng nhìn)</strong> thành bản <code>4.90s</code> hoàn chỉnh.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="media-grid-3">
+            <div class="item-card">
+              <div class="img-box" onclick="openLightbox('./assets/aiedit/cut1_before_after_1.5s.jpg', 'Cut 1 (0.5s–2.9s): Tĩnh lặng giữa đám đông')"><img src="./assets/aiedit/cut1_before_after_1.5s.jpg" alt="Cut 1 Before After" loading="lazy"><span class="zoom-hint">🔍 Phóng to</span></div>
+              <div class="item-body"><div class="item-text" style="margin:0;"><strong>Cut 1 (0.5s–2.9s):</strong> Tĩnh lặng giữa đám đông (Orbit Eye-Contact).</div></div>
+            </div>
+            <div class="item-card">
+              <div class="img-box" onclick="openLightbox('./assets/aiedit/cut2_before_after_8.25s.jpg', 'Cut 2 (6.6s–9.1s): Khoảnh khắc trầm tư ngẩng nhìn ống kính')"><img src="./assets/aiedit/cut2_before_after_8.25s.jpg" alt="Cut 2 Before After" loading="lazy"><span class="zoom-hint">🔍 Phóng to</span></div>
+              <div class="item-body"><div class="item-text" style="margin:0;"><strong>Cut 2 (6.6s–9.1s):</strong> Khoảnh khắc trầm tư ngẩng nhìn ống kính.</div></div>
+            </div>
+            <div class="item-card">
+              <div class="img-box" onclick="openLightbox('./assets/aiedit/contact_sheet_0082.jpg', 'Bảng dò khung hình tự động: Phát hiện chính xác vùng 2.9s–6.6s cần loại bỏ')"><img src="./assets/aiedit/contact_sheet_0082.jpg" alt="Contact Sheet 0082" loading="lazy"><span class="zoom-hint">🔍 Phóng to</span></div>
+              <div class="item-body"><div class="item-text" style="margin:0;"><strong>Bảng dò khung hình tự động:</strong> Phát hiện chính xác vùng <code>2.9s–6.6s</code> cần loại bỏ.</div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ==================================================================
+             CASE 5: 4 KHUÔN MOTION GRAPHIC 60FPS (.TSX)
+             ================================================================== -->
+        <div class="showcase-group" data-category="motion-60fps" id="case-motion">
+          <h3>Case 5 — Hệ Sinh Thái 4 Khuôn Thiết Kế Gốc Motion Graphic 60fps (<code>Motion 01 &rarr; Motion 05</code>)</h3>
+          <p>
+            Bên cạnh chế độ dựng video người nói <code>MFX V3.2</code>, hệ thống còn có <strong>4 Khuôn Thiết Kế Gốc <code>.TSX</code> chạy ở chuẩn 60 khung hình/giây</strong> (tổng cộng 13 video thành phẩm đã đóng gói tại <a href="./motion00.html"><strong>Trung tâm Motion 00</strong></a>). Bạn chỉ cần thay nội dung chữ và màu sắc thương hiệu trong bảng biến <code>Tweaks</code> ở đầu file là xuất được ngay:
+          </p>
+
+          <div class="media-grid-2">
+            <!-- KHUÔN 1 -->
+            <div class="item-card">
+              <div class="item-header">
+                <span class="item-id">KHUÔN GỐC #1 • CLEAN_V3</span>
+                <span class="item-spec">1080×1920 • 60fps • 10.05s</span>
+              </div>
+              <div class="video-box">
+                <button class="btn-unmute-float" onclick="toggleMute(this)">🔇 Bật tiếng</button>
+                <video src="./assets/motion02/motion02_v3_clean_10s_9x16_60fps.mp4" poster="./assets/motion02/motion02_v3_clean_10s_9x16_poster.jpg" muted controls playsinline preload="metadata"></video>
+              </div>
+              <div class="item-body">
+                <div class="item-title">Ultra-Clean V3 (5 Quy Luật Attention Budgeting — Không Gian Thở &ge;85%)</div>
+                <div class="item-text">
+                  Dành cho các video giải thích tư duy, công nghệ, luật, tài chính: Mỗi màn hình chỉ giữ tối đa 2 nhóm thông tin, xóa bỏ mọi chi tiết trang trí thừa, chuyển cảnh bằng nhòe chuyển động vận tốc thật (True Velocity SVG Blur).
+                </div>
+              </div>
+            </div>
+
+            <!-- KHUÔN 2 -->
+            <div class="item-card">
+              <div class="item-header">
+                <span class="item-id">KHUÔN GỐC #2 • RISOGRAPH HYBRID</span>
+                <span class="item-spec">1080×1920 • 60fps • 10.05s</span>
+              </div>
+              <div class="video-box">
+                <button class="btn-unmute-float" onclick="toggleMute(this)">🔇 Bật tiếng</button>
+                <video src="./assets/motion03/qc_fb9_claude_motion_10s.mp4" poster="./assets/motion03/qc_fb9_claude_motion_10s_poster.jpg" muted controls playsinline preload="metadata"></video>
+              </div>
+              <div class="item-body">
+                <div class="item-title">Claude Editorial Risograph Đan Xen Cận Mặt Người Nói</div>
+                <div class="item-text">
+                  Sự kết hợp giữa chất liệu giấy báo màu kem ấm (<code>#F3ECDD</code>), màu cam đất (<code>#E2683A</code>), xanh cổ vịt (<code>#1E5A64</code>) với các nhịp cắt cận cảnh người nói — cực hợp cho ngành Giáo dục, Sách, Tư vấn Doanh nghiệp.
+                </div>
+              </div>
+            </div>
+
+            <!-- KHUÔN 3 -->
+            <div class="item-card">
+              <div class="item-header">
+                <span class="item-id">KHUÔN GỐC #3 • 3D BENTO GOLD</span>
+                <span class="item-spec">1080×1920 • 60fps • 15.0s / 47.3s</span>
+              </div>
+              <div class="video-box">
+                <button class="btn-unmute-float" onclick="toggleMute(this)">🔇 Bật tiếng</button>
+                <video src="./assets/motion01/viet_gold_9x16_60fps.mp4" poster="./assets/motion01/viet_gold_9x16_orbit.jpg" muted controls playsinline preload="metadata"></video>
+              </div>
+              <div class="item-body">
+                <div class="item-title">3D Bento Gold &amp; Vòng Xoay 12 Icon Lượng Giác (Kèm File Nền Trong Suốt WebM)</div>
+                <div class="item-text">
+                  Phong cách đen vàng sang trọng (<code>#07090E</code> + <code>#FACC15</code>), có sẵn cả bản dài 47 giây (<a href="./assets/motion04/pinterest_viet_9x16_final.mp4" target="_blank">xem bản 47s tại đây</a>) và file <code>.webm</code> nền trong suốt để đè trực tiếp lên video quay thật trong CapCut.
+                </div>
+              </div>
+            </div>
+
+            <!-- KHUÔN 4 -->
+            <div class="item-card">
+              <div class="item-header">
+                <span class="item-id">KHUÔN GỐC #4 • MC_POWER BRUTALIST</span>
+                <span class="item-spec">1080×1920 • 60fps • 10.05s</span>
+              </div>
+              <div class="video-box">
+                <button class="btn-unmute-float" onclick="toggleMute(this)">🔇 Bật tiếng</button>
+                <video src="./assets/motion03/VietMasterClassPower_10s_60fps.mp4" poster="./assets/aiedit/vy_beat_08.png" muted controls playsinline preload="metadata"></video>
+              </div>
+              <div class="item-body">
+                <div class="item-title">MasterClass Acid-Lime Brutalist (Chữ Đập Nhịp Mạnh &amp; Gạch Đỏ Cảnh Báo)</div>
+                <div class="item-text">
+                  Lấy cảm hứng từ trailer khóa học của GS. Jeffrey Pfeffer trên MasterClass: Bảng màu Vàng chanh <code>#E0EE70</code>, Đen sâu <code>#060606</code> và Đỏ cờ <code>#C8232C</code> — tạo điểm dừng mắt cực mạnh trong 3 giây đầu.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ==================================================================
+             CASE 6: CÁC NGÀNH ĐÃ TRIỂN KHAI TRONG KHO HỌC VIÊN STU
+             ================================================================== -->
+        <div class="showcase-group" data-category="stu-audit" id="case-stu">
+          <h3>Case 6 — Các Ngành Hàng Khác Đã Sửa Kịch Bản &amp; Dựng Thực Hành Trong Kho Học Viên (<code>stu.fedu.vn</code>)</h3>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th style="width:20%;">Học viên &amp; Mã hồ sơ</th>
+                  <th style="width:20%;">Ngành hàng &amp; Sản phẩm</th>
+                  <th style="width:30%;">Chỗ vướng ở bản quay cũ</th>
+                  <th style="width:30%;">Cách xử lý bằng AI Edit &amp; Cấu trúc nhịp</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>DS. Đức Viễn — Nhà Thuốc Cát Tường</strong><br><code>cat_tuong_offline2</code></td>
+                  <td>Y Dược &amp; Gia dụng vùng cao</td>
+                  <td>Bản quay ngoài sân dài <code>49s</code> chỉ có 1 góc máy tĩnh, nhiều nhịp nghỉ lấy hơi làm giảm độ cuốn hút của câu chuyện đời thường.</td>
+                  <td>Cắt gọn từ <code>49s</code> xuống <strong>bản hoàn chỉnh 35s</strong>, giữ nguyên tiếng bước chân tự nhiên ngoài sân và đan xen các cảnh trám cận cảnh cử chỉ tay + chữ nhấn từng câu.</td>
+                </tr>
+                <tr>
+                  <td><strong>Chị Đặng Hường — Đặng Hường Y Quán</strong><br><code>ang_huong</code></td>
+                  <td>Spa Đông Y, Bấm huyệt cổ vai gáy, Trị nám</td>
+                  <td>Quay video nhép miệng giải trí thì có 18K lượt xem nhưng khách thật không đặt lịch; khi quay video chuyên môn thì ngồi bàn nói khô khan tụt còn 292 lượt xem.</td>
+                  <td>Chuyển sang cấu trúc <strong>Chấm bút trực tiếp lên đốt sống lưng/mô hình + Khoanh sáng vùng đau <code>MG-T03</code> + Trám lát cắt 3D giải phẫu cơ/huyệt</strong> (đã lập báo cáo mổ xẻ 12 video + 5 kịch bản mẫu).</td>
+                </tr>
+                <tr>
+                  <td><strong>Chị Minh Tâm — Hàn Việt Beauty Spa Quy Nhơn</strong><br><code>minh_tam_spa_quy_nhon</code></td>
+                  <td>Điều trị nám &amp; Đào tạo học viên Spa 8 năm</td>
+                  <td>Quay cảnh làm mặt cho khách tại giường suốt <code>63s</code> đều đều một nhịp, không có điểm nhấn phác đồ hay bảng đối chiếu nền da.</td>
+                  <td>Thiết lập <strong>3 góc máy cố định tại giường</strong> kết hợp chèn chữ trần 2 dòng ghi rõ phác đồ điều trị và thẻ đối chiếu nền da Trước/Sau ở giây thứ 4.</td>
+                </tr>
+                <tr>
+                  <td><strong>Anh Lâm Vũ — Legacy Vietnam</strong><br><code>lam_vu_offline2</code></td>
+                  <td>Chuyển giao máy thẩm mỹ <em>Nitro Fractional</em> B2B cho chủ Spa</td>
+                  <td>Thiết bị công nghệ cao giá trị lớn, nếu chỉ quay cảnh vỏ máy bên ngoài thì chủ Spa không hiểu cơ chế tác động xuống tầng da.</td>
+                  <td>Kết hợp cảnh quay chuyển giao máy tại cơ sở với <strong>Cảnh trám mô phỏng tia năng lượng vi điểm + Thẻ Bento thông số đầu máy</strong>.</td>
+                </tr>
+                <tr>
+                  <td><strong>Chị Hà Bảo Châu — Hồng Hà Land</strong><br><code>ha_bao_chau_offline2</code></td>
+                  <td>Bất động sản (Căn hộ cao cấp <em>Greenera Southmark</em>)</td>
+                  <td>Đứng tại công trường nhiều tiếng ồn, nói một mạch thông số tổng quan dễ giống tờ rơi giới thiệu dự án.</td>
+                  <td>Khóa tâm mặt chống rung khi vừa đi vừa nói tại công trường, đè cảnh thực tế tiến độ đổ sàn và bảng thông số vị trí/kết nối vùng theo từng nhịp 2 giây.</td>
+                </tr>
+                <tr>
+                  <td><strong>Anh Nguyễn Quốc Khoa — Banker Review Nội Thất</strong><br><code>nguyen_quoc_khoa</code></td>
+                  <td>Thiết kế &amp; Thi công Nội thất (Đá bếp Vicostone, Gỗ An Cường)</td>
+                  <td>Video khiêng tấm đá bếp thật đạt <strong>20.6K lượt xem</strong>, nhưng video ngồi ghế xoay nói chay về thông số cửa cao <code>2m20</code> tụt xuống <strong>643 lượt xem</strong>.</td>
+                  <td>Bắt buộc dùng <strong>AI Edit đè cảnh công trình thật + Bút dạ quang vàng (<code>MG-T05</code>) gióng thẳng đường thước lên thông số <code>2m20</code> và cạnh đá vát số 16</strong> ngay khi miệng vừa đọc con số.</td>
+                </tr>
+                <tr>
+                  <td><strong>Chị Yến — Tâng Xinh</strong> (<code>tang_xinh_chi_yen</code>) &amp; <strong>Diễn giả Phạm Bá Nghĩa</strong> (<code>pham_ba_nghia</code>)</td>
+                  <td>Đào tạo Hôn nhân Gia đình (86K follow) &amp; Diễn giả Z1000</td>
+                  <td>Bài nói dài nhiều ý, cần giữ nhịp cảm xúc liền mạch mà không bị quên ý hay nhảy khung hình.</td>
+                  <td>Chia <strong>43 nhịp nhắc chữ theo từng vế câu</strong>, kết hợp cấu trúc 3 tầng <em>Why – What – How</em> (<code>MG-T04</code>) và cắt bỏ toàn bộ khoảng nghỉ lấy hơi thừa.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ====================================================================
+           PHẦN 3: 10 KỊCH BẢN MỚI "ĐO NI ĐÓNG GIÀY" TỪ 309 HỒ SƠ HỌC VIÊN THẬT
+           ==================================================================== -->
+      <section id="phan-3">
+        <h2>PHẦN 3: 10 KỊCH BẢN MỚI ĐO NI ĐÓNG GIÀY TỪ 309 HỒ SƠ HỌC VIÊN THẬT</h2>
+        <p>
+          Để học viên ở bất kỳ ngành nào bước vào lớp Offline cũng thấy ngay: <em>"Ồ, đúng cái nghề khô khan của mình mà đưa vào công cụ này lại ra được video cuốn hút và ra đơn thật!"</em> — dưới đây là <strong>10 kịch bản mẫu đại diện cho hơn 92% học viên trong <code>students_master.json</code></strong>. Mỗi kịch bản đều gắn sẵn <strong>Đạo cụ cầm tay + Hành động tay 2 giây + Con số đo lường cụ thể</strong> để máy tự động bung cảnh trám và thẻ thông số đẹp nhất.
+        </p>
+
+        <!-- INTERACTIVE ANCHOR CHECKER WIDGET -->
+        <div class="anchor-checker" id="anchor-checker-box">
+          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem;">
+            <strong style="font-family:var(--font-display); font-size:0.9rem; color:#facc15; text-transform:uppercase;">🔬 Máy Kiểm Tra Mỏ Neo Lời Thoại Trước Khi Quay (Anchor Checker)</strong>
+            <div style="display:flex; gap:0.4rem; flex-wrap:wrap;">
+              <button class="btn-copy" onclick="loadSampleAnchor('good')">Thử câu có mỏ neo nghề</button>
+              <button class="btn-copy" style="background:#334155; color:#f8fafc;" onclick="loadSampleAnchor('bad')">Thử câu nói chung chung</button>
+            </div>
+          </div>
+          <p style="font-size:0.86rem; color:#cbd5e1; margin:0.35rem 0 0.4rem;">
+            Dán thử 2–3 câu lời thoại của bạn vào ô dưới đây. Máy sẽ tự đếm các con số đo lường (<code>mm, cm, m, V, %, dB, °C, µm, ngày, phút, triệu...</code>) và đạo cụ vật lý để báo xem AI có đủ dữ liệu vẽ cảnh trám sắc nét hay chưa:
+          </p>
+          <textarea id="anchor-input" class="anchor-textarea" oninput="checkAnchors()" placeholder="Dán thử lời thoại của bạn vào đây...">Ở 50 Hai Bà Trưng nhà em, khách cầm máy lên là em dùng tua vít 0.8mm và đèn rọi 45 độ soi thẳng hai con ốc đít, xong cắm 3uTools xanh 100 điểm tại bàn, sai cam kết trừ thẳng 1 triệu.</textarea>
+          <div id="anchor-result" class="anchor-status"></div>
+        </div>
+
+        <!-- FILTER BAR FOR 10 SCRIPTS -->
+        <div class="filter-bar" id="script-filter-bar">
+          <button class="filter-pill active" onclick="filterScripts('all', this)">Tất cả 10 Ngành Trọng Điểm</button>
+          <button class="filter-pill" onclick="filterScripts('sc-banle', this)">01. Bán lẻ iPhone</button>
+          <button class="filter-pill" onclick="filterScripts('sc-noithat', this)">02. Nội thất &amp; Đá bếp</button>
+          <button class="filter-pill" onclick="filterScripts('sc-spa', this)">03. Spa Đông y &amp; Trị nám</button>
+          <button class="filter-pill" onclick="filterScripts('sc-giaoduc', this)">04. Giáo viên &amp; Khóa học</button>
+          <button class="filter-pill" onclick="filterScripts('sc-duoc', this)">05. Dược sĩ &amp; Thảo dược</button>
+          <button class="filter-pill" onclick="filterScripts('sc-bds', this)">06. BĐS &amp; Sổ đỏ</button>
+          <button class="filter-pill" onclick="filterScripts('sc-fnb', this)">07. F&amp;B &amp; Bếp Đức</button>
+          <button class="filter-pill" onclick="filterScripts('sc-cokhi', this)">08. Xưởng Cơ khí &amp; Bơm 24V</button>
+          <button class="filter-pill" onclick="filterScripts('sc-luat', this)">09. Luật &amp; Kế toán Thuế</button>
+          <button class="filter-pill" onclick="filterScripts('sc-oto', this)">10. Showroom Ô tô</button>
+        </div>
+
+        <!-- KỊCH BẢN 01 -->
+        <div class="scenario-card" data-sc="sc-banle" id="kb-01">
+          <div class="scenario-top">
+            <span class="scenario-title">KỊCH BẢN 01 • NGÀNH BÁN LẺ ĐIỆN THOẠI &amp; ĐỒ CÔNG NGHỆ LIKE NEW (~18 GIÂY • 7 NHỊP)</span>
+            <span class="badge badge-dark">78 HỌC VIÊN NHÓM BÁN LẺ (25.2%)</span>
+          </div>
+          <div class="scenario-body">
+            <div class="scenario-grid">
+              <div class="scenario-box">
+                <div class="scenario-box-title">👤 Học viên thật đối chiếu &amp; Chỗ vướng cũ</div>
+                <strong>Chị Nguyệt — Nguyệt Store Hải Phòng</strong> (<code>nguyet_store_hp</code>, 50 Hai Bà Trưng, HP).<br>
+                • <strong>Chỗ vướng:</strong> Ngồi trước bàn nói 1 góc máy tĩnh, mở đầu bằng câu quen thuộc <em>"Fan nhà Táo đâu rồi"</em>; nói miệng cam kết máy nguyên bản nhưng thiếu cảnh rọi đèn vào ốc đít và bảng xanh 3uTools đè lên đúng lúc nói.
+              </div>
+              <div class="scenario-box">
+                <div class="scenario-box-title">⚡ Cấu trúc AI Edit V3.2 giải quyết từng giây</div>
+                • <strong>#T1–#T3 (0.0s–6.5s):</strong> Khóa tâm mặt chính giữa, đảo góc <code>1.00x &harr; 1.08x</code>, chữ <code>STYLE-17</code> + Icon <code>SHIELD_STAR</code>.<br>
+                • <strong>#B1 (6.5s–8.7s):</strong> Màn đen Split &amp; Ripple <code>+2.2s</code>: <strong>"SOI TẬN ỐC ĐÍT • ĐỀN 1 TRIỆU NẾU LỖI"</strong>.<br>
+                • <strong>#T4+#V1 &amp; #T5+#V2 (8.7s–15.0s):</strong> Trám cận cảnh đèn rọi 2 con ốc đít chưa vặn + Khung <code>MG-V04</code> hiện bảng <strong>3uTools Xanh 100 Điểm</strong>.
+              </div>
+            </div>
+            <div class="scenario-prop-bar">
+              <strong>🧰 Đạo cụ cầm tay &amp; Hành động tay 2 giây (Mỏ neo vẽ cảnh trám):</strong> Cầm <strong>tua vít 5 cạnh 0.8mm</strong> + <strong>đèn pin soi nghiêng 45°</strong> + kính lúp. Hành động: Đặt mũi tua vít 0.8mm lên ốc đít nhưng không vặn để khách thấy khía ốc còn sắc cạnh nguyên bản; ngón tay chỉ thẳng vào dòng <code>Normal</code> xanh trên màn hình 3uTools.
+            </div>
+            <div class="script-quote" id="quote-kb-01">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.4rem; flex-wrap:wrap; gap:0.4rem;">
+                <strong style="font-family:var(--font-heading); font-size:0.86rem;">🎙️ LỜI THOẠI MẪU MỘC MẠC (CÓ CÀI SẴN MỎ NEO HÌNH ẢNH CHO AI):</strong>
+                <button class="btn-copy" onclick="copyText(this, 'text-kb-01')">📋 Copy lời thoại</button>
+              </div>
+              <div id="text-kb-01">"Đi mua iPhone cũ ở Hải Phòng mà người bán chỉ cho anh chị vuốt thử màn hình rồi bảo máy nguyên bản lắm — thì 90% là dễ mua nhầm máy đã mở. Ở 50 Hai Bà Trưng nhà em, khách cầm máy lên là em đưa kính lúp, bật đèn rọi nghiêng 45 độ và đặt thử mũi tua vít 0.8mm vào hai con ốc đít cho soi trước. Ốc còn nguyên khía sắc cạnh, chưa một vết vặn. Xong cắm thẳng vào máy tính bật 3uTools tại bàn — báo Normal xanh hết từ pin đến cam chính. Phát hiện một linh kiện thay thế hay báo ảo, em trừ thẳng 1 triệu tiền mặt ngay tại quầy. Máy đẹp giá thật, bảo hành 1 đổi 1 tròn 12 tháng. Anh chị cần mã nào nhắn em quay cận chiếc đó gửi luôn."</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- KỊCH BẢN 02 -->
+        <div class="scenario-card" data-sc="sc-noithat" id="kb-02">
+          <div class="scenario-top">
+            <span class="scenario-title">KỊCH BẢN 02 • NGÀNH THIẾT KẾ THI CÔNG NỘI THẤT &amp; VẬT LIỆU XÂY DỰNG (~20 GIÂY • 8 NHỊP)</span>
+            <span class="badge badge-dark">NGUYỄN QUỐC KHOA • NGỌC KHÁNH • DULUX HẢI NAM</span>
+          </div>
+          <div class="scenario-body">
+            <div class="scenario-grid">
+              <div class="scenario-box">
+                <div class="scenario-box-title">👤 Học viên thật đối chiếu &amp; Chỗ vướng cũ</div>
+                <strong>Anh Nguyễn Quốc Khoa</strong> (<code>nguyen_quoc_khoa</code>) &amp; <strong>Chị Ngọc Khánh</strong> (<code>ngoc_khanh_8366</code> — người ghi trong phiếu đăng ký: <em>"cần dựng video tự động bằng AI"</em>).<br>
+                • <strong>Chỗ vướng:</strong> Khi ngồi ghế đọc thông số kỹ thuật (cửa <code>2m20</code>, vát cạnh đá số 16) mà không có hình minh họa đè lên thì lượt xem tụt từ 20.600 xuống còn 643 lượt xem.
+              </div>
+              <div class="scenario-box">
+                <div class="scenario-box-title">⚡ Cấu trúc AI Edit V3.2 giải quyết từng giây</div>
+                • <strong>#T1–#T2 (0.0s–4.8s):</strong> Chữ <code>STYLE-32</code>: <strong>"SAI LẦM 20 TRIỆU"</strong> / <em>khi lắp chậu rửa bát âm bàn đá</em>.<br>
+                • <strong>#T3+#V1 (4.8s–8.5s):</strong> Thẻ <strong>Before/After Split-Screen</strong>: Nửa trên là viền keo silicon mốc đen sau 6 tháng; nửa dưới là kỹ thuật <strong>hạ bậc âm toàn phần đá Vicostone sâu 3mm</strong>.<br>
+                • <strong>#B1 (8.5s–10.7s):</strong> Thẻ 3 bước <code>MG-B03</code>: <code>1. Hạ bậc đá 3mm</code> • <code>2. Vát cạnh số 16</code> • <code>3. Nhựa Picomat chống nước</code>.
+              </div>
+            </div>
+            <div class="scenario-prop-bar">
+              <strong>🧰 Đạo cụ cầm tay &amp; Hành động tay 2 giây (Mỏ neo vẽ cảnh trám):</strong> Cầm <strong>thước lá thép</strong> + <strong>mẩu keo silicon mốc đen đã cắt rời</strong>. Hành động: Đặt thước lá thép dọc mép hạ bậc để khách thấy gờ đá thấp hơn mặt bàn đúng <strong>3mm</strong>, rồi lấy tay gạt vũng nước trên mặt bàn tràn thẳng xuống lòng chậu không đọng lại một giọt.
+            </div>
+            <div class="script-quote">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.4rem; flex-wrap:wrap; gap:0.4rem;">
+                <strong style="font-family:var(--font-heading); font-size:0.86rem;">🎙️ LỜI THOẠI MẪU MỘC MẠC:</strong>
+                <button class="btn-copy" onclick="copyText(this, 'text-kb-02')">📋 Copy lời thoại</button>
+              </div>
+              <div id="text-kb-02">"Bỏ 80 triệu làm bộ tủ bếp mà chỉ sau một mùa nồm miền Bắc, cả cái viền chậu rửa mốc đen sì như sợi keo em đang cầm trên tay — lỗi không phải tại đá, mà tại thợ cắt thiếu đúng 1 bước hạ bậc này. Đa số đội thợ ngại khó nên đặt chậu dương hoặc bơm một đường keo silicon dày cộp quanh mép, nước đọng 3 tháng là mốc. Cách em làm cho chủ nhà là yêu cầu thợ mài hạ bậc âm toàn phần thấp hơn mặt đá Vicostone đúng 3mm để gạt nước là trôi thẳng xuống chậu, kết hợp vát cạnh số 16 và bọc thùng nhựa Picomat chống nước 100%. Nhà anh chị đang chuẩn bị vào phần thô hay đóng nội thất, gửi mặt bằng em soi trước 3 điểm dễ thấm nước nhất cho."</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- KỊCH BẢN 03 -->
+        <div class="scenario-card" data-sc="sc-spa" id="kb-03">
+          <div class="scenario-top">
+            <span class="scenario-title">KỊCH BẢN 03 • NGÀNH SPA ĐÔNG Y TRỊ LIỆU &amp; ĐIỀU TRỊ NÁM DA LIỄU (~18 GIÂY • 7 NHỊP)</span>
+            <span class="badge badge-dark">26 HỌC VIÊN NHÓM SPA &amp; THẨM MỸ</span>
+          </div>
+          <div class="scenario-body">
+            <div class="scenario-grid">
+              <div class="scenario-box">
+                <div class="scenario-box-title">👤 Học viên thật đối chiếu &amp; Chỗ vướng cũ</div>
+                <strong>Chị Đặng Hường Y Quán</strong> (<code>ang_huong</code>), <strong>Chị Minh Tâm Spa Quy Nhơn</strong> (<code>minh_tam_spa_quy_nhon</code>), <strong>Miu Miu — La Hues Clinic</strong> (<code>miu_miu_spa</code>), <strong>Linh Xu Spa</strong> (<code>linh_xu_spa</code>).<br>
+                • <strong>Chỗ vướng:</strong> Quay cảnh làm dịch vụ tại giường 60 giây tối và đều đều, thiếu hình giải phẫu tầng biểu bì/trung bì và thiếu vòng khoanh vùng nám.
+              </div>
+              <div class="scenario-box">
+                <div class="scenario-box-title">⚡ Cấu trúc AI Edit V3.2 giải quyết từng giây</div>
+                • <strong>#T1 (0.0s–2.8s):</strong> Cầm máy soi da đèn UV + mô hình lát cắt da + Vòng khoanh sáng <code>MG-T03</code>.<br>
+                • <strong>#T2–#T3 (2.8s–7.2s):</strong> Chữ <code>STYLE-05</code> (Đỏ/Trắng): <strong>"NGƯNG KEM LÀ NÁM ĐẬM LÊN?"</strong>.<br>
+                • <strong>#B1 (7.2s–9.4s):</strong> Màn đen Split &amp; Ripple: <strong>"SOI ĐÈN UV • PHỤC HỒI HÀNG RÀO BẢO VỆ DA"</strong>.<br>
+                • <strong>#T4+#V1 (9.4s–15.0s):</strong> Trám ảnh 3D lát cắt lớp sừng biểu bì <code>0.02mm</code> và các đốm sắc tố dưới đèn UV.
+              </div>
+            </div>
+            <div class="scenario-prop-bar">
+              <strong>🧰 Đạo cụ cầm tay &amp; Hành động tay 2 giây (Mỏ neo vẽ cảnh trám):</strong> Cầm <strong>máy soi da đèn UV</strong> + <strong>mô hình lát cắt da 3D</strong> + bút chấm. Hành động: Chấm đầu bút vào lớp mỏng ngoài cùng của mô hình da (<code>0.02mm</code>), rồi xoay màn hình máy soi UV cho thấy các đốm nâu nằm sâu bên dưới lớp kem bôi.
+            </div>
+            <div class="script-quote">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.4rem; flex-wrap:wrap; gap:0.4rem;">
+                <strong style="font-family:var(--font-heading); font-size:0.86rem;">🎙️ LỜI THOẠI MẪU MỘC MẠC (AN TOÀN TUYỆT ĐỐI VỚI CHÍNH SÁCH NỀN TẢNG):</strong>
+                <button class="btn-copy" onclick="copyText(this, 'text-kb-03')">📋 Copy lời thoại</button>
+              </div>
+              <div id="text-kb-03">"Tại sao nhiều chị đang bôi kem làm sáng da thấy mờ rất nhanh, nhưng chỉ cần ngưng bôi đúng 2 tuần là mảng sạm hai bên gò má lại đậm màu hơn trước? Dưới màn hình đèn soi UV em đang cầm trên tay, các đốm nâu này nằm sâu hơn lớp sừng 0.02mm mà kem bôi bên ngoài đi tới. Khi dùng sản phẩm bong tróc mạnh làm mỏng lớp màng bảo vệ tự nhiên, da gặp nắng sẽ tự đẩy sắc tố Melanin lên nhiều hơn để che chắn. Ở tiệm mình, trước khi dùng bất kỳ giọt serum nào, mình luôn phải soi đèn UV kiểm tra độ khỏe của nền da và làm dịu hàng rào ẩm trước. Chị nào đã chăm da 3–4 nơi mà cứ ngưng kem là sạm lại, chụp cam thường dưới ánh sáng tự nhiên gửi em xem kỹ nền da cho."</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- KỊCH BẢN 04 -->
+        <div class="scenario-card" data-sc="sc-giaoduc" id="kb-04">
+          <div class="scenario-top">
+            <span class="scenario-title">KỊCH BẢN 04 • NGÀNH GIÁO VIÊN, GIẢNG VIÊN ĐẠI HỌC &amp; CHỦ TRUNG TÂM ĐÀO TẠO (~20 GIÂY • 8 NHỊP)</span>
+            <span class="badge badge-dark">48 HỌC VIÊN NHÓM GIÁO DỤC (15.5%)</span>
+          </div>
+          <div class="scenario-body">
+            <div class="scenario-grid">
+              <div class="scenario-box">
+                <div class="scenario-box-title">👤 Học viên thật đối chiếu &amp; Chỗ vướng cũ</div>
+                <strong>Chị Vũ Hà Huệ Linh — Linh Suzu</strong> (<code>vu_ha_hue_linh</code>), <strong>Cô Nguyễn Kim Hạnh — Giảng viên ĐH</strong> (<code>nguyen_kim_hanh</code>), <strong>Chị Ngân Gia Huy — Safari Montessori</strong> (<code>ngan_gia_huy</code>).<br>
+                • <strong>Chỗ vướng:</strong> Đã mua Website bán khóa học nhưng thấy video tự quay ở nhà chưa đủ chỉn chu nên chưa dám đăng lên Web; hoặc quay video dài 6 phút mất 50s đứng trước phông bạt giới thiệu.
+              </div>
+              <div class="scenario-box">
+                <div class="scenario-box-title">⚡ Cấu trúc AI Edit V3.2 giải quyết từng giây</div>
+                • <strong>Tự động gọt bỏ đoạn chào hỏi rườm rà đầu video</strong>, khóa tâm mặt chính giữa với lớp nền tối sang trọng.<br>
+                • <strong>#T1–#T3 (0.0s–6.5s):</strong> Chữ <code>STYLE-32</code> + Cấu trúc 3 tầng <code>MG-T04</code>.<br>
+                • <strong>#B1 (6.5s–8.7s):</strong> Sơ đồ lộ trình 3 bước <code>MG-B02</code>.<br>
+                • <strong>#T4+#V1 &amp; #V2 (8.7s–20.0s):</strong> Trám cảnh lật đồng hồ cát 15 phút + thẻ từ vựng A5 và cảnh 30 học sinh giơ tay tại lớp.
+              </div>
+            </div>
+            <div class="scenario-prop-bar">
+              <strong>🧰 Đạo cụ cầm tay &amp; Hành động tay 2 giây (Mỏ neo vẽ cảnh trám):</strong> Cầm <strong>xấp thẻ từ vựng khổ A5 (in chữ JUMP lớn)</strong> + <strong>đồng hồ cát 15 phút</strong> + bảng dán sao. Hành động: Giơ nhanh thẻ <code>JUMP</code> lên trước ống kính, lật ngược chiếc đồng hồ cát 15 phút trên bàn giáo viên.
+            </div>
+            <div class="script-quote">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.4rem; flex-wrap:wrap; gap:0.4rem;">
+                <strong style="font-family:var(--font-heading); font-size:0.86rem;">🎙️ LỜI THOẠI MẪU MỘC MẠC:</strong>
+                <button class="btn-copy" onclick="copyText(this, 'text-kb-04')">📋 Copy lời thoại</button>
+              </div>
+              <div id="text-kb-04">"Đừng bắt học sinh chép phạt từ vựng 10 dòng nữa — cách đó chỉ làm trẻ con sợ học ngay từ tuần đầu tiên thôi. Trong 9 năm đứng lớp và đào tạo giáo viên, mình nhận ra trẻ chỉ nhớ từ mới khi từ đó gắn liền với một vận động cơ thể. Thay vì bắt con ngồi im nhìn bảng, các cô chỉ cần lật chiếc đồng hồ cát 15 phút này và giơ thẻ chữ JUMP khổ A5 lên — cả lớp cùng bật nhảy và hô to theo thẻ, hết 15 phút là cả 30 bé thuộc làu 12 từ mới ngay tại lớp. Mình đã đóng gói sẵn toàn bộ video mẫu từng tiết học và bộ phiếu bài tập trên Web, các cô và ba mẹ nhắn mình gửi bản đọc thử nhé."</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- KỊCH BẢN 05 -->
+        <div class="scenario-card" data-sc="sc-duoc" id="kb-05">
+          <div class="scenario-top">
+            <span class="scenario-title">KỊCH BẢN 05 • NGÀNH DƯỢC SĨ NHÀ THUỐC &amp; THỰC PHẨM LÊN MEN / THẢO DƯỢC (~18 GIÂY • 7 NHỊP)</span>
+            <span class="badge badge-dark">35 HỌC VIÊN Y DƯỢC &amp; NÔNG SẢN LÊN MEN</span>
+          </div>
+          <div class="scenario-body">
+            <div class="scenario-grid">
+              <div class="scenario-box">
+                <div class="scenario-box-title">👤 Học viên thật đối chiếu &amp; Chỗ vướng cũ</div>
+                <strong>DS. Đức Viễn — Nhà thuốc Cát Tường</strong> (<code>cat_tuong_offline2</code>), <strong>Bạn Từ An — Men Mộc An</strong> (<code>tu_an_men_moc_an</code>, 85K follow), <strong>Chị Nguyễn Thị Bích Thủy — Dầu gội thảo dược Thiên Y Linh</strong> (<code>nguyen_thi_bich_thuy_k1</code>).<br>
+                • <strong>Chỗ vướng:</strong> Chỉ quay lặp đi lặp lại 1 kiểu múc/uống sản phẩm làm lượt xem chững lại, hoặc dễ vướng từ ngữ nhạy cảm ngành Y Dược trên nền tảng.
+              </div>
+              <div class="scenario-box">
+                <div class="scenario-box-title">⚡ Cấu trúc AI Edit V3.2 giải quyết từng giây</div>
+                • <strong>#T1 (0.0s–2.5s):</strong> Giữ trọn tiếng rót mật ong sánh đặc thật, tắt hoàn toàn hiệu ứng bóp giọng.<br>
+                • <strong>#T2+#V1 (2.5s–6.5s):</strong> Trám cảnh đổ quả kha tử già ra mẹt tre phơi 4 nắng + Chữ <code>STYLE-04</code> tránh hoàn toàn từ nhạy cảm y tế.<br>
+                • <strong>#B1 (6.5s–8.7s):</strong> Bộ đếm số <code>MG-B04</code> nhảy lên <strong>"180 NGÀY Ủ CHUM SÀNH DƯỚI NẮNG GIÀ"</strong>.<br>
+                • <strong>#T3+#V2 (8.7s–18.0s):</strong> Thẻ <code>MG-V01</code> nổi phản hồi thật của khách hàng + Dòng lưu ý trẻ dưới 1 tuổi.
+              </div>
+            </div>
+            <div class="scenario-prop-bar">
+              <strong>🧰 Đạo cụ cầm tay &amp; Hành động tay 2 giây (Mỏ neo vẽ cảnh trám):</strong> Cầm <strong>mẹt tre phơi quả kha tử</strong> + <strong>chum sành dán tem ngày ủ đủ 180 ngày</strong> + <strong>thìa gỗ</strong>. Hành động: Dùng thìa gỗ múc một quả kha tử nhấc cao để kéo sợi mật ong sánh đặc dài <strong>10cm</strong> trước ống kính.
+            </div>
+            <div class="script-quote">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.4rem; flex-wrap:wrap; gap:0.4rem;">
+                <strong style="font-family:var(--font-heading); font-size:0.86rem;">🎙️ LỜI THOẠI MẪU MỘC MẠC (CHUẨN AN TOÀN THỰC PHẨM TRUYỀN THỐNG):</strong>
+                <button class="btn-copy" onclick="copyText(this, 'text-kb-05')">📋 Copy lời thoại</button>
+              </div>
+              <div id="text-kb-05">"Thời tiết miền Bắc vừa trở gió mà cổ họng cứ khô rát mỗi sáng thức dậy — anh chị thử ngay cách làm ấm cổ họng tự nhiên từ quả kha tử ủ mật ong này nhé. Nhiều nhà tự ngâm vài tuần thấy sủi bọt chua gắt là do quả còn tươi chưa tách nước. Mẻ kha tử nhà em phải chọn quả già phơi đủ 4 nắng trên mẹt tre, rồi ủ trong chum sành cùng mật ong suốt 180 ngày đến khi múc thìa gỗ lên sợi mật sánh đặc dài 10cm và quả tiết hết vị chát. Buổi sáng ngậm một miếng nhỏ với nước ấm là cổ họng dịu và dễ chịu hẳn. Lưu ý nhỏ là trẻ dưới 1 tuổi mình không dùng mật ong nhé, anh chị nhắn em gửi hướng dẫn cách dùng chi tiết cho cả nhà."</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- KỊCH BẢN 06 -->
+        <div class="scenario-card" data-sc="sc-bds" id="kb-06">
+          <div class="scenario-top">
+            <span class="scenario-title">KỊCH BẢN 06 • NGÀNH BẤT ĐỘNG SẢN ĐẤT NỀN THỰC ĐỊA &amp; PHÁP LÝ SỔ ĐỎ SẴN (~20 GIÂY • 8 NHỊP)</span>
+            <span class="badge badge-dark">21 HỌC VIÊN NHÓM BẤT ĐỘNG SẢN</span>
+          </div>
+          <div class="scenario-body">
+            <div class="scenario-grid">
+              <div class="scenario-box">
+                <div class="scenario-box-title">👤 Học viên thật đối chiếu &amp; Chỗ vướng cũ</div>
+                <strong>Chị Hà Bảo Châu</strong> (<code>ha_bao_chau_offline2</code>), <strong>Minh Đức Land</strong> (<code>minh_duc_land</code>), <strong>Anh Minh Vương</strong> (<code>minh_vuong</code> — người ghi rõ: <em>"Cần kỹ thuật quay làm nổi bật điểm mạnh của sổ đỏ"</em>).<br>
+                • <strong>Chỗ vướng:</strong> Ra đến đất thật là lúng túng không biết chuyển cảnh sao cho mượt, giơ cuốn sổ đỏ lên quay thì chữ nhỏ khó đọc.
+              </div>
+              <div class="scenario-box">
+                <div class="scenario-box-title">⚡ Cấu trúc AI Edit V3.2 giải quyết từng giây</div>
+                • <strong>#T1–#T2 (0.0s–4.5s):</strong> Khóa tâm mặt ổn định khi đứng ngay tại lô đất, chữ <code>STYLE-17</code>: <strong>"ĐỪNG MUA TRÊN BẢN VẼ"</strong>.<br>
+                • <strong>#T3+#V1 (4.5s–8.5s):</strong> Hiệu ứng <code>MG-V06</code> phóng cận cảnh cuốn Sổ Đỏ và <strong>quẹt bút dạ quang vàng <code>#FFE600</code> vào dòng "Đất ở tại đô thị - Lâu dài" + mặt tiền 6.00m</strong>.<br>
+                • <strong>#B1 (8.5s–10.7s):</strong> Màn đen Split &amp; Ripple: <strong>"3 ĐIỂM ĐẮT GIÁ NHẤT CỦA LÔ ĐẤT NÀY"</strong>.
+              </div>
+            </div>
+            <div class="scenario-prop-bar">
+              <strong>🧰 Đạo cụ cầm tay &amp; Hành động tay 2 giây (Mỏ neo vẽ cảnh trám):</strong> Cầm <strong>thước dây 6m kéo căng giữa 2 cọc mốc bê tông</strong> + <strong>bản gốc Sổ Đỏ</strong>. Hành động: Kéo thước dây sát đúng cọc mốc hiện rõ con số <code>6.00m</code>, rồi mở trang 2 Sổ Đỏ chỉ ngón tay vào dòng <em>"Đất ở tại đô thị"</em>.
+            </div>
+            <div class="script-quote">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.4rem; flex-wrap:wrap; gap:0.4rem;">
+                <strong style="font-family:var(--font-heading); font-size:0.86rem;">🎙️ LỜI THOẠI MẪU MỘC MẠC:</strong>
+                <button class="btn-copy" onclick="copyText(this, 'text-kb-06')">📋 Copy lời thoại</button>
+              </div>
+              <div id="text-kb-06">"Đi xem đất nền mà người bán chỉ gửi cho anh chị mấy tấm ảnh vẽ phối cảnh trên mạng — thì tuyệt đối đừng xuống cọc. Hôm nay em đứng trực tiếp tại thửa đất lúc 11 giờ trưa và kéo thẳng thước dây giữa 2 cọc mốc bê tông để anh chị nhìn tận mắt: mặt tiền đủ 6 mét, đất vuông vắn, đường nhựa trước đất rộng 8 mét hai ô tô tránh nhau thoải mái chứ không phải ngõ vẽ trên giấy. Đặc biệt, trên tay em là sổ đỏ riêng của đúng lô này, ghi rõ đất ở tại đô thị lâu dài, công chứng ngay trong ngày. Anh chị nhắn Zalo em gửi video quay từ trên cao và ảnh chụp sổ đỏ gốc để kiểm tra quy hoạch trước khi đi xem nhé."</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- KỊCH BẢN 07 -->
+        <div class="scenario-card" data-sc="sc-fnb" id="kb-07">
+          <div class="scenario-top">
+            <span class="scenario-title">KỊCH BẢN 07 • NGÀNH F&amp;B, PHA CHẾ &amp; ĐẠI LÝ THIẾT BỊ BẾP ĐỨC CAO CẤP (~16 GIÂY • 6 NHỊP)</span>
+            <span class="badge badge-dark">19 HỌC VIÊN NHÓM F&amp;B &amp; THIẾT BỊ BẾP</span>
+          </div>
+          <div class="scenario-body">
+            <div class="scenario-grid">
+              <div class="scenario-box">
+                <div class="scenario-box-title">👤 Học viên thật đối chiếu &amp; Chỗ vướng cũ</div>
+                <strong>Chị Lê Quỳnh Anh — Đại lý 10 năm Thiết bị bếp Đức</strong> (<code>le_quynh_anh</code>), <strong>Bạn Phạm Thùy Linh — Linh Dulin Pha Chế</strong> (<code>dulin_pha_che_offline2</code>), <strong>TL Fruit's Kombucha</strong> (<code>tl_fruits_kombucha</code>).<br>
+                • <strong>Chỗ vướng:</strong> Ngại ngồi kể chuyện dài dòng hoặc lên hình hay quên thoại; cần công thức <strong>20% xuất hiện mặt + 80% cận cảnh thao tác bếp kèm thông số sắc nét</strong>.
+              </div>
+              <div class="scenario-box">
+                <div class="scenario-box-title">⚡ Cấu trúc AI Edit V3.2 giải quyết từng giây</div>
+                • <strong>Tự động lược bỏ màn đen <code>#B</code></strong> để giữ mạch âm thanh xèo xèo trong bếp liền mạch.<br>
+                • <strong>#T1 (0.0s–2.5s):</strong> Mở bằng tiếng giọt nước lăn tròn trên mặt chảo inox nóng <code>180°C</code>.<br>
+                • <strong>#T2–#T5 (2.5s–13.5s):</strong> Cắt nhịp 1.8s/cảnh, chữ <code>STYLE-17</code> ghim thẳng thông số: <strong>"INOX 18/10 CHUẨN ĐỨC • ĐÁY 5 LỚP"</strong>.<br>
+                • <strong>#T6+#V1 (13.5s–16.0s):</strong> Thẻ <strong>3D Bento</strong> đối chiếu chảo bong lớp phủ vs. chảo Inox Đức bền 15 năm.
+              </div>
+            </div>
+            <div class="scenario-prop-bar">
+              <strong>🧰 Đạo cụ cầm tay &amp; Hành động tay 2 giây (Mỏ neo vẽ cảnh trám):</strong> Cầm <strong>súng đo nhiệt hồng ngoại</strong> + <strong>cốc nước lọc nhỏ giọt</strong>. Hành động: Bấm súng đo nhiệt vào lòng chảo hiện đúng con số <strong><code>180°C</code></strong>, rồi vẩy 3 giọt nước vào chảo để giọt nước gom tròn chạy như hạt bi.
+            </div>
+            <div class="script-quote">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.4rem; flex-wrap:wrap; gap:0.4rem;">
+                <strong style="font-family:var(--font-heading); font-size:0.86rem;">🎙️ LỜI THOẠI MẪU MỘC MẠC:</strong>
+                <button class="btn-copy" onclick="copyText(this, 'text-kb-07')">📋 Copy lời thoại</button>
+              </div>
+              <div id="text-kb-07">"Tại sao những chiếc chảo phủ chống dính vài trăm nghìn nhà mình cứ dùng 6 tháng là trầy xước, còn chiếc chảo inox 18/10 chuẩn Đức, đáy 5 lớp này dùng 15 năm mặt vẫn sáng như gương? Khi em bấm súng đo nhiệt lên đúng 180 độ C rồi nhỏ nước vào, giọt nước lập tức lăn tròn như hạt ngọc trên bề mặt inox. Không cần bất kỳ lớp sơn phủ hóa học nào, chỉ cần canh đúng nhiệt độ này là anh chị thả cá hay áp chảo bò đều tự tróc giòn rụm, dùng muôi kim loại đảo thoải mái. 10 năm làm đại lý chính hãng bếp Đức, em chỉ chọn những mã nồi chảo mua 1 lần dùng cả đời. Nhắn em kích thước bếp nhà mình để em tư vấn đúng cỡ nhé."</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- KỊCH BẢN 08 -->
+        <div class="scenario-card" data-sc="sc-cokhi" id="kb-08">
+          <div class="scenario-top">
+            <span class="scenario-title">KỊCH BẢN 08 • NGÀNH XƯỞNG CƠ KHÍ CHẾ TẠO MÁY, MÁY BƠM BIẾN TẦN 24V &amp; ĐÈN NĂNG LƯỢNG (~20 GIÂY • 8 NHỊP)</span>
+            <span class="badge badge-dark">LÊ HƯNG TECH • CƠ ĐIỆN AEG • MAX SOLAR</span>
+          </div>
+          <div class="scenario-body">
+            <div class="scenario-grid">
+              <div class="scenario-box">
+                <div class="scenario-box-title">👤 Học viên thật đối chiếu &amp; Chỗ vướng cũ</div>
+                <strong>Anh Lê Thanh Hưng — Giám đốc Cơ khí Lê Hưng Tech</strong> (<code>le_thanh_hung_3774</code>), <strong>Cơ Điện AEG — Máy bơm biến tần 24V</strong> (<code>co_dien_aeg</code>), <strong>Anh Bùi Hồng Kỳ — Max Solar</strong> (<code>bui_hong_ky_offline2</code>).<br>
+                • <strong>Chỗ vướng:</strong> Có sẵn bảng Excel thông số và tài liệu PDF 37MB nhưng khi quay cảnh xưởng thì ồn và rối, đọc thông số khô khan khiến khách thoát ra.
+              </div>
+              <div class="scenario-box">
+                <div class="scenario-box-title">⚡ Cấu trúc AI Edit V3.2 giải quyết từng giây</div>
+                • <strong>#T1 (0.0s–3.0s):</strong> Cảnh đặt máy bơm biến tần 24V chạy cạnh đồng hồ đo áp và máy đo độ ồn. Chữ <code>STYLE-05</code>: <strong>"ĐIỆN ÁP AN TOÀN 24V • ĐỘ ỒN 28DB"</strong>.<br>
+                • <strong>#B1 (6.0s–8.2s):</strong> Màn đen Split &amp; Ripple: <strong>"BƠM BIẾN TẦN 24V • TIẾT KIỆM 50% ĐIỆN"</strong>.<br>
+                • <strong>#T4+#V1 (8.2s–13.5s):</strong> Chuyển bảng Excel khô khan thành <strong>Thẻ Bento 3 Ô Thông Số</strong> (<code>Điện áp an toàn 24.1V DC</code> • <code>Áp lực 2.5 bar cho 4 vòi</code> • <code>Độ ồn 28dB êm ru</code>).
+              </div>
+            </div>
+            <div class="scenario-prop-bar">
+              <strong>🧰 Đạo cụ cầm tay &amp; Hành động tay 2 giây (Mỏ neo vẽ cảnh trám):</strong> Cầm <strong>đồng hồ vạn năng hiện <code>24.1V</code></strong> + <strong>máy đo độ ồn hiện <code>28dB</code></strong> + <strong>đồng hồ áp suất đứng yên ở <code>2.5 bar</code></strong>. Hành động: Đặt que đo đồng hồ vạn năng vào nguồn máy bơm và mở cùng lúc 4 vòi nước để thấy kim áp suất giữ nguyên ở mức <code>2.5 bar</code>.
+            </div>
+            <div class="script-quote">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.4rem; flex-wrap:wrap; gap:0.4rem;">
+                <strong style="font-family:var(--font-heading); font-size:0.86rem;">🎙️ LỜI THOẠI MẪU MỘC MẠC:</strong>
+                <button class="btn-copy" onclick="copyText(this, 'text-kb-08')">📋 Copy lời thoại</button>
+              </div>
+              <div id="text-kb-08">"Nỗi ám ảnh lớn nhất của các bác dùng máy bơm tăng áp cơ truyền thống ở gia đình là tiếng rơ-le kêu tạch tạch lúc nửa đêm và nỗi lo rò điện 220V ra đường ống. Đó là lý do bên xưởng kỹ thuật tụi mình chuyển sang dòng bơm biến tần điện áp an toàn 24V này. Khi mình đặt đồng hồ vạn năng vào đo thực tế chỉ 24.1V một chiều, kết hợp máy đo độ ồn sát thân bơm chỉ báo 28dB êm như tiếng lá rơi. Đặc biệt, mạch biến tần tự điều chỉnh vòng tua giúp tiết kiệm tới 50% tiền điện — mở 1 vòi máy chạy nhẹ, mở cùng lúc 4 vòi kim đồng hồ áp suất vẫn giữ vững ở mức 2.5 bar. Các bác chủ nhà hay anh em thầu điện nước cần bảng thông số và giá sỉ tận xưởng, nhắn mình gửi tài liệu chi tiết ngay nhé."</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- KỊCH BẢN 09 -->
+        <div class="scenario-card" data-sc="sc-luat" id="kb-09">
+          <div class="scenario-top">
+            <span class="scenario-title">KỊCH BẢN 09 • NGÀNH LUẬT SƯ DOANH NGHIỆP, KẾ TOÁN THUẾ &amp; TÀI CHÍNH BẢO HIỂM (~18 GIÂY • 7 NHỊP)</span>
+            <span class="badge badge-dark">LUẬT FIRE PHOENIX • KẾ TOÁN HOÀNG HOÀI • AIA</span>
+          </div>
+          <div class="scenario-body">
+            <div class="scenario-grid">
+              <div class="scenario-box">
+                <div class="scenario-box-title">👤 Học viên thật đối chiếu &amp; Chỗ vướng cũ</div>
+                <strong>Chị Thu Phạm — Công ty Luật Fire Phoenix</strong> (<code>luat_fire_phoenix</code>), <strong>Chị Hoàng Thị Hoài — Kế toán Thuế</strong> (<code>hoang_thi_hoai</code>), <strong>Chị Lê Thị Nhung — Bảo hiểm AIA</strong> (<code>le_thi_nhung</code>).<br>
+                • <strong>Chỗ vướng:</strong> Dịch vụ vô hình, khi quay thường nói dài 55s–90s đọc điều khoản luật đều đều làm chủ doanh nghiệp buồn ngủ.
+              </div>
+              <div class="scenario-box">
+                <div class="scenario-box-title">⚡ Cấu trúc AI Edit V3.2 giải quyết từng giây</div>
+                • <strong>#T1–#T2 (0.0s–4.2s):</strong> Khóa tâm mặt + Hiệu ứng <code>MG-T02</code> thanh Laser đỏ gạch ngang dòng chữ: <strong>"KÝ HỢP ĐỒNG BẰNG MẪU TẢI TRÊN MẠNG"</strong>.<br>
+                • <strong>#B1 (4.2s–6.4s):</strong> Bộ đếm số <code>MG-B04</code> nhảy lên <strong>"300.000.000Đ — Tiền cọc trên hợp đồng 3 tỷ bị kẹt vì 1 chữ"</strong>.<br>
+                • <strong>#T3+#V1 &amp; #V2 (6.4s–14.5s):</strong> Trám cận cảnh 2 bản hợp đồng đặt cạnh nhau khoanh đỏ vào <em>"Tiền đặt cọc vs. Tiền tạm ứng"</em> và <em>"Mức phạt trần 8%"</em>.
+              </div>
+            </div>
+            <div class="scenario-prop-bar">
+              <strong>🧰 Đạo cụ cầm tay &amp; Hành động tay 2 giây (Mỏ neo vẽ cảnh trám):</strong> Đặt <strong>2 bản hợp đồng in giấy A4 cạnh nhau</strong> + <strong>bút dạ đỏ</strong> + con dấu <strong>"ĐÃ RÀ SOÁT"</strong>. Hành động: Dùng bút đỏ khoanh tròn cụm từ <em>"tiền đặt cọc"</em> ở bản A, gạch chéo cụm <em>"tiền tạm ứng"</em> ở bản B rồi đóng dấu đỏ xuống góc trang.
+            </div>
+            <div class="script-quote">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.4rem; flex-wrap:wrap; gap:0.4rem;">
+                <strong style="font-family:var(--font-heading); font-size:0.86rem;">🎙️ LỜI THOẠI MẪU MỘC MẠC (CHUẨN PHÁP LÝ THƯƠNG MẠI):</strong>
+                <button class="btn-copy" onclick="copyText(this, 'text-kb-09')">📋 Copy lời thoại</button>
+              </div>
+              <div id="text-kb-09">"Rất nhiều anh chị chủ doanh nghiệp vừa và nhỏ bị kẹt cứng 300 triệu tiền cọc trong hợp đồng mua bán 3 tỷ — chỉ vì thói quen tải mẫu hợp đồng miễn phí trên mạng về ký. Trên hai bản hợp đồng em đặt cạnh nhau đây, chỉ cần ghi nhầm một chữ giữa tiền đặt cọc và tiền tạm ứng, hoặc ghi mức phạt vi phạm 20% trong khi Luật Thương mại giới hạn trần 8%, là phần phạt vượt quá 8% không được tòa công nhận. Thuê một nhân sự pháp chế cứng tốn 20 triệu một tháng, nhưng với gói Phòng Pháp Chế Thuê Ngoài của Fire Phoenix, toàn bộ hợp đồng và hồ sơ thuế được luật sư rà soát từng dòng trước khi đặt bút ký. Anh chị đang vướng hợp đồng đại lý hay quyết toán thuế, nhắn em gửi bộ danh mục 5 lỗ hổng pháp lý hay gặp nhất."</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- KỊCH BẢN 10 -->
+        <div class="scenario-card" data-sc="sc-oto" id="kb-10">
+          <div class="scenario-top">
+            <span class="scenario-title">KỊCH BẢN 10 • NGÀNH SHOWROOM Ô TÔ LƯỚT &amp; DỊCH VỤ CHĂM SÓC XE (~18 GIÂY • 7 NHỊP)</span>
+            <span class="badge badge-dark">MAI PHAN QUANG LONG • PHẠM THANH BÌNH KHO XE</span>
+          </div>
+          <div class="scenario-body">
+            <div class="scenario-grid">
+              <div class="scenario-box">
+                <div class="scenario-box-title">👤 Học viên thật đối chiếu &amp; Chỗ vướng cũ</div>
+                <strong>Anh Mai Phan Quang Long — Kinh doanh Ô tô Sài Gòn</strong> (<code>mai_phan_quang_long_7215</code> — ghi trong phiếu: <em>"Chưa biết cách cắt ghép cũng như chuyển cảnh như nào cho hợp lý"</em>) &amp; <strong>Anh Phạm Thanh Bình — Kho Xe</strong> (<code>pham_thanh_binh_9777</code>).<br>
+                • <strong>Chỗ vướng:</strong> Quay xe ngoài bãi nắng gắt dễ bị lóa trắng nắp capo, đi vòng quanh xe nói một mạch thiếu bảng tóm tắt số km đã đi và tình trạng ốc máy.
+              </div>
+              <div class="scenario-box">
+                <div class="scenario-box-title">⚡ Cấu trúc AI Edit V3.2 giải quyết từng giây</div>
+                • <strong>Tự cân bằng sáng S-Curve chống cháy nắng nắp capo</strong> + cắt gọn các bước chân thừa khi đi quanh xe.<br>
+                • <strong>#T3+#V1 (4.5s–8.5s):</strong> Thẻ <strong>3D Bento 3 Ô Thông Số Xe</strong> (<code>ODO: 18.000 km chuẩn hãng</code> • <code>Độ dày sơn: 120µm nguyên bản</code> • <code>Tiết kiệm ngay: 180 Triệu</code>).<br>
+                • <strong>#B1 (8.5s–10.7s):</strong> Màn đen Split &amp; Ripple: <strong>"SOI 3 VỊ TRÍ TỐ CÁO XE TUA CÔNG TƠ MÉT"</strong>.<br>
+                • <strong>#T4+#V2 (10.7s–18.0s):</strong> Cận cảnh bút đo sơn <code>120µm</code>, má ghế da và ốc chân máy nguyên vệt sơn nhà máy kèm vòng khoanh sáng <code>MG-T03</code>.
+              </div>
+            </div>
+            <div class="scenario-prop-bar">
+              <strong>🧰 Đạo cụ cầm tay &amp; Hành động tay 2 giây (Mỏ neo vẽ cảnh trám):</strong> Cầm <strong>máy đo độ dày lớp sơn hiện <code>120µm</code></strong> + <strong>đèn pin soi vệt sơn ốc bản lề</strong> + khăn trắng. Hành động: Bấm đầu máy đo sơn lên cánh cửa hiện con số <code>120µm</code> đều tăm tắp, rồi rọi đèn vào vệt sơn đánh dấu của nhà máy trên ốc chân máy.
+            </div>
+            <div class="script-quote">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.4rem; flex-wrap:wrap; gap:0.4rem;">
+                <strong style="font-family:var(--font-heading); font-size:0.86rem;">🎙️ LỜI THOẠI MẪU MỘC MẠC:</strong>
+                <button class="btn-copy" onclick="copyText(this, 'text-kb-10')">📋 Copy lời thoại</button>
+              </div>
+              <div id="text-kb-10">"Đi mua xe lướt mà chỉ nhìn đồng hồ báo 2 vạn cây rồi tin ngay — thì rất dễ mua nhầm xe chạy dịch vụ tua lại công tơ mét. Cái đồng hồ điện tử chỉnh 5 phút là xong, nhưng 3 thứ này trên xe thì không bao giờ nói dối được: Một là khi em bấm máy đo độ dày sơn lên cả 4 cánh cửa đều báo đúng 120 micromet sơn nguyên bản chưa bả matit; hai là phần má ghế da bên tài còn căng phồng chưa gãy nếp; ba là ốc bản lề cửa và ốc chân máy còn nguyên vệt sơn đánh dấu từ nhà máy. Chiếc này vừa cập bến cửa hàng em, mới lăn bánh đúng 1 vạn 8, tiết kiệm ngay cho anh chị 180 triệu so với xe mới. Bao kiểm tra hãng toàn quốc, sai cam kết em hoàn đủ 100% tiền. Anh chị ở Sài Gòn nhắn em gửi video quay kỹ gầm máy nhé."</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ====================================================================
+           PHẦN 4: BỘ KỊCH BẢN VIDEO GIỚI THIỆU TRONG KHÓA OFFLINE & AUDIT VIẾT LẠI
+           ==================================================================== -->
+      <section id="phan-4">
+        <h2>PHẦN 4: BỘ KỊCH BẢN VIDEO GIỚI THIỆU TRONG KHÓA OFFLINE (BẢN GỐC ĐÃ TÌM LẠI + 3 KỊCH BẢN 1 DÒNG + BẢN 60S MÀN HÌNH LED + BẢN AUDIT VIẾT LẠI)</h2>
+        <p>
+          Dưới đây là toàn bộ kịch bản đã truy vết lại từ luồng thảo luận trước của anh Việt (gồm 2 phương án cho Vy quay, kịch bản 20 giây anh Việt vừa đi bộ ngoài đường vừa nói, 3 kịch bản 1 dòng đa ngành), cùng với <strong>Bản Kịch Bản Tổng Hợp 60 Giây Thiết Kế Riêng Cho Màn Hình LED Lớp Offline</strong> và <strong>2 phương án đã qua bước gọt chữ sắc bén</strong>.
+        </p>
+
+        <h3 id="kb-goc-vy">4.1. Kịch bản gốc đã tìm lại: 2 Phương án cho Vy (25s–30s) &amp; Kịch bản Anh Việt đi bộ ngoài đường (20s)</h3>
+        <div class="module-grid-3">
+          <div class="module-card">
+            <div>
+              <div class="module-card-top">
+                <span class="module-num">VY • PHƯƠNG ÁN 1 (28S)</span>
+                <span class="badge">NGỒI TẠI BÀN LÀM VIỆC</span>
+              </div>
+              <div class="module-title">Tâm thế nhẹ nhõm của người làm chuyên môn</div>
+              <div class="module-desc" id="vy-opt-1">
+                "Thật sự là lúc được thầy Việt hướng dẫn cách dùng AI để tự edit chính cái video bạn đang xem này... cảm giác đầu tiên của Vy là nhẹ cả người. Là học viên cũ của thầy, trước đây mỗi lần quay xong một video dài... Vy rất ngại khâu ngồi cắt từng đoạn thở, căn lại khung hình hay đi tìm từng tấm ảnh minh họa. Nhưng với những định dạng chia sẻ công việc không cần kỹ xảo quá cầu kỳ như thế này... công cụ AI trong khóa học của thầy Việt xử lý gọn và sạch đến mức bất ngờ. Nó lấy lại cho Vy thứ quý giá nhất... đó là chỉ cần tập trung trọn vẹn vào nội dung và cách mình diễn đạt trước ống kính, còn phần cắt dựng đã có AI làm thay."
+              </div>
+            </div>
+            <button class="btn-copy" onclick="copyText(this, 'vy-opt-1')">📋 Copy kịch bản Vy PA1</button>
+          </div>
+
+          <div class="module-card">
+            <div>
+              <div class="module-card-top">
+                <span class="module-num">VY • PHƯƠNG ÁN 2 (26S)</span>
+                <span class="badge">VỪA ĐI BỘ VỪA NÓI</span>
+              </div>
+              <div class="module-title">Chứng minh sự thảnh thơi ngay ngoài đường phố</div>
+              <div class="module-desc" id="vy-opt-2">
+                "Bình thường quay xong một video chia sẻ dài hơn ba phút... là giờ này Vy vẫn đang phải ngồi cặm cụi cắt ghép trên máy tính rồi đấy. Nhưng hôm nay vừa được thầy Việt dạy thêm kỹ năng edit bằng AI ở trong khóa học... thật sự là Vy thấy như được cởi trói luôn. Với công việc của Vy, những định dạng video chia sẻ góc nhìn không cần hiệu ứng quá chi tiết... thì chỉ cần đưa file gốc vào là AI tự khóa khung mặt, tự chèn chữ và ảnh minh họa đúng từng nhịp nói. Nhờ vậy mà lúc bấm máy, đầu óc mình nhẹ tênh... chỉ việc chăm chút cho nội dung và cảm xúc khi nói thôi, làm video nhẹ nhàng hơn hẳn!"
+              </div>
+            </div>
+            <button class="btn-copy" onclick="copyText(this, 'vy-opt-2')">📋 Copy kịch bản Vy PA2</button>
+          </div>
+
+          <div class="module-card">
+            <div>
+              <div class="module-card-top">
+                <span class="module-num">ANH VIỆT • 20 GIÂY</span>
+                <span class="badge badge-dark">SOURCE DEMO AI EDIT</span>
+              </div>
+              <div class="module-title">Đi bộ ngoài đường cài sẵn 5 mỏ neo cảnh trám</div>
+              <div class="module-desc" id="viet-walk-20s">
+                "Bạn có biết vì sao một video chỉ có độc một cái mặt đứng im nói chuyện... thì chỉ sau đúng ba giây, mắt người xem đã tự động muốn ngáp ngủ và lướt qua luôn không? Không phải vì nội dung của bạn dở đâu... mà vì mắt con người tự nhiên luôn bắt theo chuyển động, chứ không ai chịu nổi cảnh ngồi cắt ghép thủ công bốn tiếng mỗi tối. Nên ngay lúc mình đang vừa đi bộ vừa nói câu này ngoài đường... thì AI đã tự khóa thẳng khung mặt, tự đọc từng từ khóa để trám hình ảnh và chữ vào đúng nhịp thở. Việc của người làm nghề bây giờ... chỉ là đi dạo, giữ năng lượng thật vui và nói cho trọn vẹn cái tâm của mình thôi!"
+              </div>
+            </div>
+            <button class="btn-copy" onclick="copyText(this, 'viet-walk-20s')">📋 Copy kịch bản 20s Đi bộ</button>
+          </div>
+        </div>
+
+        <h3 id="kb-1dong-3nganh">4.1B. Nguyên văn 3 Kịch Bản 1 Dòng Đa Ngành Hàng (Spa • Kiến Trúc • Dinh Dưỡng — Từ Luồng Cũ `9425fb82`)</h3>
+        <div class="module-grid-3">
+          <div class="module-card">
+            <div>
+              <div class="module-card-top">
+                <span class="module-num">NGÀNH 1 • SPA DA LIỄU</span>
+                <span class="badge badge-green">LỚP BIỂU BÌ 0.02MM</span>
+              </div>
+              <div class="module-title">Cơ chế lớp sừng &amp; sóng vi điểm tầng trung bì</div>
+              <div class="module-desc" id="one-line-spa">
+                • <strong>Phương án 1 (Điềm tĩnh):</strong> "Kem dưỡng đắt tiền thường bị chặn lại ở lớp sừng biểu bì dày chưa tới 0.02mm, nên công nghệ sóng vi điểm trong Spa phải đưa nhiệt lượng đi xuyên qua bề mặt da để đánh thức trực tiếp các sợi collagen đang chùng nhão ở tầng trung bì bên dưới."<br><br>
+                • <strong>Phương án 2 (Đặt thẳng cái giá):</strong> "Nếu chỉ bôi kem trên bề mặt lớp biểu bì đang bít tắc tế bào chết sau tuổi 30, da bạn chỉ ẩm được vài tiếng bên ngoài chứ không thể tự co rút các bó cơ và sợi collagen đã đứt gãy ở tầng trung bì sâu 2mm."
+              </div>
+            </div>
+            <button class="btn-copy" onclick="copyText(this, 'one-line-spa')">📋 Copy câu mẫu Spa</button>
+          </div>
+
+          <div class="module-card">
+            <div>
+              <div class="module-card-top">
+                <span class="module-num">NGÀNH 2 • KIẾN TRÚC BĐS</span>
+                <span class="badge badge-blue">KÍNH PHỦ BẠC CHẶN 85%</span>
+              </div>
+              <div class="module-title">Cơ chế bức xạ nhiệt hướng Tây &amp; kính 2 lớp</div>
+              <div class="module-desc" id="one-line-arch">
+                • <strong>Phương án 1 (Điềm tĩnh):</strong> "Nhà mặt kính hướng Tây bị hầm bí không phải do thiếu điều hòa, mà do kính đơn thông thường cho tia hồng ngoại đi xuyên qua làm nung nóng sàn gỗ, trong khi hai lớp kính phủ bạc cách nhiệt sẽ chặn lại 85% lượng nhiệt đó ngay từ ngoài ban công."<br><br>
+                • <strong>Phương án 2 (Đặt thẳng cái giá):</strong> "Lắp rèm vải dày cho căn hộ hướng Tây chỉ che được ánh sáng chứ vẫn giữ nguyên túi nhiệt 40 độ nằm kẹt giữa lớp kính và tấm rèm, khiến máy lạnh trong phòng phải chạy quá tải suốt cả buổi chiều."
+              </div>
+            </div>
+            <button class="btn-copy" onclick="copyText(this, 'one-line-arch')">📋 Copy câu mẫu Kiến trúc</button>
+          </div>
+
+          <div class="module-card">
+            <div>
+              <div class="module-card-top">
+                <span class="module-num">NGÀNH 3 • DINH DƯỠNG</span>
+                <span class="badge badge-orange">ĐƯỜNG HUYẾT SAU 30 PHÚT</span>
+              </div>
+              <div class="module-title">Cơ chế bữa sáng tinh bột &amp; màng lọc chất xơ</div>
+              <div class="module-desc" id="one-line-nutri">
+                • <strong>Phương án 1 (Điềm tĩnh):</strong> "Cơn buồn ngủ rũ rượi lúc 10 giờ sáng bắt nguồn từ bát bún phở ăn khi bụng rỗng làm đường huyết vọt lên sau 30 phút rồi tụt dốc đột ngột, trong khi chỉ cần ăn lót dạ một đĩa rau xanh trước đó 5 phút là lớp chất xơ đã giữ dòng năng lượng ổn định suốt cả buổi."<br><br>
+                • <strong>Phương án 2 (Đặt thẳng cái giá):</strong> "Uống thêm ly cà phê thứ hai lúc 10 giờ sáng không cứu được cơn tụt đường huyết sau bữa sáng nhiều tinh bột trắng, vì thứ cơ thể đang thiếu lúc đó là một màng lọc chất xơ giữ nhịp đường huyết ổn định từ đầu bữa ăn."
+              </div>
+            </div>
+            <button class="btn-copy" onclick="copyText(this, 'one-line-nutri')">📋 Copy câu mẫu Dinh dưỡng</button>
+          </div>
+        </div>
+
+        <h3 id="kb-master-45s">4.2. Bản Kịch Bản Video Giới Thiệu Tổng Hợp 60 Giây (Chuẩn Màn Hình LED 3 Khung Dọc Trên Lớp Offline)</h3>
+        <div class="callout callout-emerald">
+          <div class="callout-title" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem;">
+            <span>🎬 Bố cục 16:9 chứa 3 Khung Dọc 9:16 Song Song trên màn chiếu lớp học (Không bị hẹp chữ, nhìn rõ Trước &amp; Sau):</span>
+            <button class="btn-copy" onclick="copyText(this, 'master-60s-table')">📋 Copy trọn bộ Kịch bản 60s</button>
+          </div>
+          <p style="margin-bottom:0; font-size:0.93rem;">
+            • <strong>Khung Trái (30%):</strong> Bản quay thô ban đầu (16 cảnh lật gương, mặt nhảy lệch).<br>
+            • <strong>Khung Giữa (40%):</strong> Thành phẩm AI V3.2 đã khóa tâm mặt <code>(592.8, 915.0)</code> + Chữ trần 2 dòng + Cảnh trám.<br>
+            • <strong>Khung Phải (30%):</strong> Đồng hồ đếm nhịp &amp; danh sách từ khóa mỏ neo đang kích hoạt.
+          </p>
+        </div>
+
+        <div class="table-wrap" id="master-60s-table">
+          <table>
+            <thead>
+              <tr>
+                <th style="width:16%;">Nhịp &amp; Giây</th>
+                <th style="width:36%;">Hình ảnh &amp; Âm thanh trên màn hình LED 3 khung</th>
+                <th style="width:48%;">Lời thoại &amp; Chuyển tiếp mượt giữa các nhân vật</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>NHỊP 0: MỞ LẠNH</strong><br><code>00.0s – 02.3s</code><br><em>(Cú nổ thị giác)</em></td>
+                <td>• <strong>00.0s–01.5s:</strong> Lưới 55 ô vuông từ bài của Vy nhảy loạn xạ, 16 ô bị lật gương, tiếng thở lấy hơi chồng lên nhau.<br>• <strong>01.5s–02.0s:</strong> Đứng hình đen trắng + 18 khung hình im lặng tuyệt đối.<br>• <strong>02.0s–02.3s:</strong> Tiếng <em>Tách + Trầm</em>, toàn bộ 55 ô lật thuận đồng loạt và hút về đúng 1 tâm mắt vàng <code>(592.8, 915.0)</code>.</td>
+                <td><em>(Không lời thoại — Để cú khóa mặt đồng loạt 55 cú máy trên màn hình lớn tự tạo tiếng "Ồ" dưới hội trường).</em></td>
+              </tr>
+              <tr>
+                <td><strong>NHỊP 1: ĐI BỘ DEMO</strong><br><code>02.3s – 13.0s</code><br><em>(Anh Việt ngoài đường)</em></td>
+                <td>• <strong>02.3s–05.0s:</strong> Cảnh thô anh Việt cầm máy đi bộ ngoài đường.<br>• <strong>05.0s–13.0s:</strong> Khung hình lập tức khóa tâm mặt chính giữa, bung liên tiếp 3 cảnh trám (Đồng tử mắt phản chiếu màn hình &rarr; Bàn làm việc 1h sáng &rarr; Khung lưới AI khóa mặt) + Chữ 2 dòng.</td>
+                <td><strong>Anh Việt:</strong> <em>"Một video chỉ có một cái mặt đứng im nói chuyện thì sau ba giây, khách đã muốn lướt qua. Ngay lúc mình đang vừa đi bộ vừa nói câu này ngoài đường, máy đã tự khóa khung mặt, tự đọc từ khóa để đè hình ảnh và chữ vào đúng nhịp thở. Và đây là video 3 phút rưỡi của Vy vừa chạy qua bộ công cụ đó..."</em> (Giơ màn hình điện thoại đang phát bài Vy sát vào ống kính).</td>
+              </tr>
+              <tr>
+                <td><strong>NHỊP 2: HỌC VIÊN THẬT</strong><br><code>13.0s – 26.0s</code><br><em>(Vy + Bài 55 cú máy)</em></td>
+                <td>Từ màn hình điện thoại của anh Việt mở rộng ra <strong>Vy (Học viên cũ)</strong> đang ngồi cạnh màn hình hiển thị <code>shots_before_56.jpg</code> &rarr; <code>shots_after_56.jpg</code> và đoạn video <em>Apple / Henry Ford</em> (<code>vy-goc20s_edit_v3.mp4</code>).</td>
+                <td><strong>Vy:</strong> <em>"Trước đây quay xong bài nói 55 cú máy thế này, Vy mất 4 tiếng buổi tối ngồi đảo lại 16 đoạn lật gương và tìm 23 tấm ảnh minh họa. Giờ đưa file gốc vào là máy tự làm sạch. Nó trả lại cho Vy thứ quý giá nhất: chỉ cần tập trung vào nội dung và cảm xúc trước ống kính."</em> (Vy lật nhẹ trang sách xuống bàn &rarr; cắt theo chuyển động tay sang Nhịp 3).</td>
+              </tr>
+              <tr>
+                <td><strong>NHỊP 3: 5 NGÀNH THẬT</strong><br><code>26.0s – 46.0s</code><br><em>(Mỗi ngành 4 giây — Âm thanh nghề thật + Chữ lớn)</em></td>
+                <td><strong>Không đọc lướt câu dài</strong> — mỗi ngành 4 giây dùng <strong>Tiếng động thật của nghề + Chữ trần 2 dòng cỡ lớn + Con số đo lường</strong>:<br>
+                1. <strong>26s–30s (iPhone Hải Phòng):</strong> Tiếng <em>tạch</em> đặt tua vít <code>0.8mm</code> + đèn rọi 2 ốc đít + bảng <code>3uTools Normal</code>.<br>
+                2. <strong>30s–34s (Đá bếp Nội thất):</strong> Tiếng nước gạt qua gờ đá hạ bậc <code>3mm</code> + thẻ Trước/Sau keo mốc.<br>
+                3. <strong>34s–38s (Spa Da liễu):</strong> Tiếng <em>bíp</em> máy soi UV + lát cắt 3D lớp sừng <code>0.02mm</code>.<br>
+                4. <strong>38s–42s (Bơm biến tần 24V):</strong> Tiếng nước chảy êm <code>28dB</code> + đồng hồ hiện <code>24.1V</code> &amp; <code>2.5 bar</code>.<br>
+                5. <strong>42s–46s (Showroom Ô tô):</strong> Tiếng <em>tít</em> bút đo sơn hiện <code>120µm</code> đều 4 cánh cửa.</td>
+                <td><strong>Anh Việt (Thuyết minh nhịp chắc trên nền âm thanh nghề):</strong><br>
+                <em>"Từ chủ tiệm iPhone rọi đèn soi ốc đít 0.8mm... xưởng nội thất đo gờ đá hạ bậc 3mm... chủ Spa soi đèn UV dưới lớp sừng 0.02mm... xưởng cơ điện đo máy bơm 24V ở mức 28dB... cho tới showroom ô tô bấm máy đo sơn 120 micromet... Bạn chỉ cần đưa đúng đạo cụ và con số thật vào câu nói, phần hình ảnh minh họa máy sẽ tự gánh trọn."</em></td>
+              </tr>
+              <tr>
+                <td><strong>NHỊP 4: CHỨNG MINH</strong><br><code>46.0s – 54.0s</code><br><em>(Quay màn hình thật + Đồng hồ bấm giờ)</em></td>
+                <td>Quay màn hình thật không cắt: Thả file <code>.mp4</code> lên Gemini Web &rarr; bấm Copy khung mã &rarr; dán sang <code>mfx.fedu.vn</code> trên iPhone (góc trên có đồng hồ đếm thời gian thật).</td>
+                <td><strong>Anh Việt:</strong> <em>"Không cần cài phần mềm phức tạp. Tải video lên Gemini Web, bấm copy mã rồi dán sang máy tính hoặc ngay trên chiếc iPhone bạn đang cầm."</em></td>
+              </tr>
+              <tr>
+                <td><strong>NHỊP 5: CHỐT TẠI LỚP</strong><br><code>54.0s – 60.0s</code><br><em>(Giao việc trực diện)</em></td>
+                <td>Về lại khung hình anh Việt mỉm cười ấm áp tại lớp, hiện địa chỉ trang <strong><code>fedu.vn/course/aiedit.html</code></strong>.</td>
+                <td><strong>Anh Việt:</strong> <em>"Chuẩn bị sẵn 1 video quay thô trong điện thoại của bạn — ngay trong buổi học hôm nay, mình sẽ cùng bạn bấm xuất ra thành phẩm ngay tại bàn!"</em></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 id="audit-viet-lai">4.3. Hai Phương Án Đã Qua Bước Gọt Chữ Sắc Bén (Đạt 97.09% Mật Độ Thông Tin — Dùng Để Anh Việt Nói Trực Tiếp Trên Lớp)</h3>
+        <div class="callout callout-gold">
+          <div class="callout-title">💡 Luận điểm cốt lõi (25 chữ):</div>
+          <p style="margin-bottom:0;">
+            <strong>"AI gánh trọn 4 tiếng khóa mặt và trám ảnh minh họa, với điều kiện người nói đưa đúng chi tiết nghề vào lời thoại."</strong>
+          </p>
+        </div>
+
+        <div class="module-grid-2">
+          <div class="module-card">
+            <div>
+              <div class="module-card-top">
+                <span class="module-num">PHƯƠNG ÁN 1 • ĐIỀM TĨNH &amp; SẮC BÉN</span>
+                <span class="badge badge-green">MẬT ĐỘ 96.79% • KHUYÊN DÙNG MỞ ĐẦU</span>
+              </div>
+              <div class="module-title">Đi thẳng vào khối lượng việc thật (55 cú máy, 4 tiếng, 23 tấm ảnh)</div>
+              <div class="module-desc" id="audit-opt-1">
+                "Quay xong bài nói dài gồm 55 cú máy như Vy, khâu khiến người làm chuyên môn nản nhất nằm ở 4 tiếng buổi tối ngồi đảo lại cảnh lật gương, căn khung mặt rồi mò tìm 23 tấm ảnh minh họa. Khi bạn tải video thô lên Gemini Web rồi dán mã sang máy tính hoặc điện thoại, bộ công cụ tự khóa cứng tâm mặt chính giữa, tách từng vế câu và đè chữ 2 dòng kèm hình minh họa khớp đúng từ khóa sau 2 phút. Dù chủ Spa giải thích lớp biểu bì 0.02mm hay chủ tiệm điện thoại rọi đèn soi ốc đít rồi cắm 3uTools tại bàn, phần duy nhất máy không làm thay nằm ở trải nghiệm nghề cụ thể. Điều kiện là trước khi bấm máy, bạn gạch sẵn các điểm mốc thực tế rồi mang thẳng video thô tới buổi học Offline sắp tới để mình bàn giao trọn bộ công cụ."
+              </div>
+            </div>
+            <button class="btn-copy" onclick="copyText(this, 'audit-opt-1')">📋 Copy Phương Án 1</button>
+          </div>
+
+          <div class="module-card">
+            <div>
+              <div class="module-card-top">
+                <span class="module-num">PHƯƠNG ÁN 2 • ĐẶT THẲNG CÁI GIÁ ĐÁNH ĐỔI</span>
+                <span class="badge badge-orange">MẬT ĐỘ 97.40% • DÙNG LÚC GIAO BÀI TẬP</span>
+              </div>
+              <div class="module-title">Đánh thẳng vào kỷ luật gọi tên con số thật trong nghề (0.02mm, 24V, ốc đít)</div>
+              <div class="module-desc" id="audit-opt-2">
+                "Mỗi tối bạn tự ngồi cắt từng đoạn thở rồi mò tìm 23 tấm ảnh minh họa suốt 4 tiếng cho bài nói 3 phút, hôm sau bạn ngại bấm máy quay tiếp dù đầu đầy kiến thức nghề. Bộ công cụ trên Gemini Web gánh trọn phần việc cơ học sau 2 phút: tự đảo thuận cảnh lật gương qua 55 cú máy, khóa tâm mặt đứng im chính giữa rồi bung ảnh giải phẫu lớp biểu bì 0.02mm hoặc cảnh thả máy bơm biến tần 24V ngâm nước ngay khi bạn vừa dứt câu. Nhưng nếu câu nói toàn lời khuyên sách vở chung chung, không công cụ nào vẽ nổi hình ảnh đắt giá giữ mắt người xem qua 3 giây đầu. Điều kiện là bạn bỏ lối nói rào đón an toàn để gọi thẳng con số thật, rồi đem bản quay thô đến lớp Offline sắp tới tự tay bấm xuất thành phẩm tại bàn."
+              </div>
+            </div>
+            <button class="btn-copy" onclick="copyText(this, 'audit-opt-2')">📋 Copy Phương Án 2</button>
+          </div>
+        </div>
+      </section>
+
+      <footer style="margin-top:3.5rem; padding-top:1.5rem; border-top:1px solid var(--ink-border); font-size:0.86rem; color:var(--ink-muted); display:flex; justify-content:space-between; flex-wrap:wrap; gap:0.5rem;">
+        <span><strong>FEDU Course Repo</strong> — Trung tâm Trình chiếu AI Edit Video V3.2 &amp; Motion 60fps (<code>aiedit.html</code>)</span>
+        <span>Đồng bộ hệ sinh thái: <a href="./motion00.html">motion00.html</a> • <a href="https://mfx.fedu.vn" target="_blank" rel="noopener">mfx.fedu.vn</a> • <a href="https://stu.fedu.vn" target="_blank" rel="noopener">stu.fedu.vn</a></span>
+      </footer>
+
+    </div>
+  </main>
+
+  <!-- ========================================================================
+       LIGHTBOX MODAL (CLICK TO ZOOM FULLSCREEN)
+       ======================================================================== -->
+  <div id="lightbox" class="lightbox-modal" onclick="closeLightbox()">
+    <button class="lightbox-close" onclick="closeLightbox()">✕ Đóng (Esc)</button>
+    <img id="lightbox-img" src="./assets/aiedit/shots_after_56.jpg" alt="Xem ảnh phóng to" onclick="event.stopPropagation()">
+    <div id="lightbox-cap" class="lightbox-caption"></div>
+  </div>
+
+  <!-- ========================================================================
+       INTERACTIVE SCRIPTS (COPY, FILTER, VIDEO UNMUTE, SCROLLSPY, LIGHTBOX, ANCHOR CHECKER)
+       ======================================================================== -->
+  <script>
+    function copyText(btn, elementId) {
+      var el = document.getElementById(elementId);
+      if (!el) return;
+      var text = el.innerText || el.textContent;
+      navigator.clipboard.writeText(text.trim()).then(function() {
+        var old = btn.innerHTML;
+        btn.innerHTML = "✅ Đã copy!";
+        setTimeout(function() { btn.innerHTML = old; }, 1800);
+      });
+    }
+
+    function toggleMute(btn) {
+      var box = btn.closest('.video-box');
+      if (!box) return;
+      var vid = box.querySelector('video');
+      if (!vid) return;
+      if (vid.paused) {
+        vid.muted = false;
+        vid.play();
+        btn.innerHTML = "🔊 Đang bật tiếng";
+      } else {
+        vid.muted = !vid.muted;
+        btn.innerHTML = vid.muted ? "🔇 Bật tiếng" : "🔊 Đang bật tiếng";
+      }
+    }
+
+    // Pause other videos when one video plays & sync unmute button label
+    document.addEventListener('DOMContentLoaded', function() {
+      var videos = document.querySelectorAll('video');
+      videos.forEach(function(v) {
+        v.addEventListener('play', function() {
+          videos.forEach(function(other) {
+            if (other !== v && !other.paused) {
+              other.pause();
+            }
+          });
+        });
+        v.addEventListener('volumechange', function() {
+          var box = v.closest('.video-box');
+          if (!box) return;
+          var btn = box.querySelector('.btn-unmute-float');
+          if (btn) {
+            btn.innerHTML = v.muted ? "🔇 Bật tiếng" : "🔊 Đang bật tiếng";
+          }
+        });
+      });
+
+      // Initialize Anchor Checker
+      checkAnchors();
+
+      // ScrollSpy for TOC
+      var sections = document.querySelectorAll('header[id], section[id], h3[id], div.scenario-card[id], div.showcase-group[id], div.anchor-checker[id]');
+      var tocLinks = document.querySelectorAll('.ink-toc-link');
+      if ('IntersectionObserver' in window) {
+        var obs = new IntersectionObserver(function(entries) {
+          entries.forEach(function(entry) {
+            if (entry.isIntersecting && entry.target.id) {
+              var id = '#' + entry.target.id;
+              tocLinks.forEach(function(link) {
+                if (link.getAttribute('href') === id) {
+                  tocLinks.forEach(function(l) { l.classList.remove('active'); });
+                  link.classList.add('active');
+                }
+              });
+            }
+          });
+        }, { rootMargin: '-15% 0px -70% 0px', threshold: 0.05 });
+        sections.forEach(function(s) { obs.observe(s); });
+      }
+    });
+
+    function unlockAndJump(type, val) {
+      if (type === 'showcase') {
+        var firstBtn = document.querySelector('#showcase-filter-bar .filter-pill');
+        filterShowcase(val, firstBtn);
+      } else if (type === 'scripts') {
+        var firstBtnSc = document.querySelector('#script-filter-bar .filter-pill');
+        filterScripts(val, firstBtnSc);
+      }
+    }
+
+    function filterShowcase(cat, btn) {
+      var bar = document.getElementById('showcase-filter-bar');
+      if (bar) {
+        var pills = bar.querySelectorAll('.filter-pill');
+        pills.forEach(function(p) { p.classList.remove('active'); });
+      }
+      if (btn) btn.classList.add('active');
+
+      var groups = document.querySelectorAll('.showcase-group');
+      groups.forEach(function(g) {
+        if (cat === 'all' || g.getAttribute('data-category') === cat) {
+          g.style.display = 'block';
+        } else {
+          g.style.display = 'none';
+        }
+      });
+    }
+
+    function filterScripts(sc, btn) {
+      var bar = document.getElementById('script-filter-bar');
+      if (bar) {
+        var pills = bar.querySelectorAll('.filter-pill');
+        pills.forEach(function(p) { p.classList.remove('active'); });
+      }
+      if (btn) btn.classList.add('active');
+
+      var cards = document.querySelectorAll('.scenario-card');
+      cards.forEach(function(c) {
+        if (sc === 'all' || c.getAttribute('data-sc') === sc) {
+          c.style.display = 'block';
+        } else {
+          c.style.display = 'none';
+        }
+      });
+    }
+
+    // Lightbox functions
+    function openLightbox(src, caption) {
+      var modal = document.getElementById('lightbox');
+      var img = document.getElementById('lightbox-img');
+      var cap = document.getElementById('lightbox-cap');
+      if (!modal || !img) return;
+      img.src = src;
+      if (cap) cap.textContent = caption || '';
+      modal.classList.add('open');
+    }
+
+    function closeLightbox() {
+      var modal = document.getElementById('lightbox');
+      if (modal) modal.classList.remove('open');
+    }
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closeLightbox();
+    });
+
+    // Anchor Checker functions
+    function loadSampleAnchor(type) {
+      var input = document.getElementById('anchor-input');
+      if (!input) return;
+      if (type === 'good') {
+        input.value = "Ở 50 Hai Bà Trưng nhà em, khách cầm máy lên là em dùng tua vít 0.8mm và đèn rọi 45 độ soi thẳng hai con ốc đít, xong cắm 3uTools xanh 100 điểm tại bàn, sai cam kết trừ thẳng 1 triệu.";
+      } else {
+        input.value = "Bên mình cung cấp sản phẩm chất lượng cao, uy tín hàng đầu thị trường, giúp khách hàng yên tâm sử dụng lâu dài với mức giá vô cùng hợp lý.";
+      }
+      checkAnchors();
+    }
+
+    function checkAnchors() {
+      var input = document.getElementById('anchor-input');
+      var res = document.getElementById('anchor-result');
+      if (!input || !res) return;
+      var text = input.value || '';
+      var matches = text.match(/\b\d+(?:[.,]\d+)?\s*(?:mm|cm|m|km|v|%|db|độ|°c|µm|micromet|năm|tháng|ngày|phút|giây|triệu|tỷ|vạn|bar|điểm|lớp|nắng|cạnh|ốc|hũ)?\b/gi) || [];
+      var cleanMatches = matches.map(function(m) { return m.trim(); }).filter(Boolean);
+      if (cleanMatches.length >= 3) {
+        res.style.background = '#064e3b';
+        res.style.color = '#ffffff';
+        res.innerHTML = "✅ ĐẠT CHUẨN MỎ NEO (" + cleanMatches.length + " mốc số liệu/vật lý: <strong>" + cleanMatches.slice(0, 8).join(", ") + "</strong>) — Đưa câu này vào AI sẽ tự động vẽ được ngay " + Math.min(cleanMatches.length, 5) + " cảnh trám B-Roll và thẻ thông số sắc nét!";
+      } else {
+        res.style.background = '#7c2d12';
+        res.style.color = '#ffffff';
+        res.innerHTML = "⚠️ CÒN CHUNG CHUNG (Mới có " + cleanMatches.length + " con số) — Hãy thêm ít nhất 3 con số đo lường thật (ví dụ: 0.02mm, 24V, 180 ngày, 3mm, 120µm) hoặc tên đạo cụ cầm tay để máy có điểm bám vẽ hình minh họa!";
+      }
+    }
+  </script>
+</body>
+</html>
