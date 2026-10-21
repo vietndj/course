@@ -1,0 +1,1568 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Video Edit &amp; Motion Skill System — Tài Liệu Tổng Quan &amp; Kiểm Định Thực Chiến</title>
+  <meta name="description" content="Bảng tổng hợp toàn bộ hệ thống kỹ năng Edit Video & Motion AI: 10 cụm skill lõi, 35 mẫu chữ HTML, 16 Archetypes, Bản vẽ Khoa học 2D V2, Animation Map Trục Dọc V2, hội ý UI/UX CLAUDE2 và tích hợp kenh.fedu.vn." />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2307090e' stroke='%2338bdf8' stroke-width='2'/%3E%3Ctext x='29' y='44' text-anchor='middle' font-family='sans-serif' font-weight='900' font-size='32' letter-spacing='-1.5' fill='%23f8fafc'%3EAI%3C/text%3E%3Ccircle cx='52' cy='13' r='4.2' fill='%23ef4444'/%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=JetBrains+Mono:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,600&display=swap" rel="stylesheet" />
+  <style>
+    @font-face { font-family: 'FD Aeonik Extended'; src: local('FDAeonikExtended-Bold'), local('FDAeonikExtended-Black'), url('https://font.fedu.vn/fonts/FDAeonikExtended-Bold.woff2?v=20260911b') format('woff2'); font-weight: 700 900; font-display: swap; }
+    @font-face { font-family: 'FD Aeonik'; src: local('FDAeonik-Regular'), local('FDAeonik-Medium'), local('FDAeonik-Bold'), url('https://font.fedu.vn/fonts/FDAeonik-Medium.woff2?v=20260911b') format('woff2'); font-weight: 400 700; font-display: swap; }
+    @font-face { font-family: 'Tiempos Text'; src: local('FDTiemposText-Regular'), local('FDTiemposHeadline-RegularItalic'), url('https://font.fedu.vn/fonts/TiemposTextWeb-Regular.woff2?v=20260911b') format('woff2'); font-weight: 400 600; font-display: swap; }
+
+    :root {
+      /* Chuẩn đối chiếu brand.html (Swiss Dark & InkDoc System v3.0) */
+      --cl-bg: #07090e;
+      --cl-tint: #0c101a;
+      --cl-card: #111622;
+      --cl-card-hover: #161d2d;
+      --cl-ink: #f8fafc;
+      --cl-ink-2: #cbd5e1;
+      --cl-muted: #94a3b8;
+      --cl-line: rgba(255, 255, 255, 0.08);
+      --cl-line-strong: rgba(56, 189, 248, 0.28);
+      --cl-accent: #38bdf8;
+      --ink-gold: #facc15;
+      --ink-emerald: #10b981;
+      --ink-coral: #f87171;
+      --ink-purple: #a855f7;
+      --paper-ivory: #f5f2eb;
+      --paper-ink: #2c2a29;
+
+      --font-display: 'FD Aeonik Extended', 'Be Vietnam Pro', -apple-system, sans-serif;
+      --font-sans: 'FD Aeonik', 'Be Vietnam Pro', -apple-system, sans-serif;
+      --font-serif: 'Tiempos Text', 'Newsreader', Georgia, serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: auto; background: var(--cl-bg); color: var(--cl-ink); font-family: var(--font-sans); font-size: 16px; line-height: 1.65; -webkit-font-smoothing: antialiased; }
+    body { background: var(--cl-bg); color: var(--cl-ink); overflow-x: hidden; }
+    a { color: var(--cl-accent); text-decoration: none; transition: color 0.15s ease; }
+    a:hover { color: var(--ink-gold); }
+
+    /* Top Navigation Bar (Chuẩn Brand System) */
+    .topbar {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(7, 9, 14, 0.90);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--cl-line);
+      padding: 0.75rem 1.75rem;
+      display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap;
+    }
+    .brand-id { display: flex; align-items: center; gap: 0.75rem; }
+    .brand-monogram {
+      width: 34px; height: 34px; border-radius: 8px;
+      background: var(--cl-card); border: 1px solid var(--cl-line-strong);
+      display: inline-flex; align-items: center; justify-content: center;
+      font-family: var(--font-display); font-weight: 900; font-size: 0.9rem; color: #fff;
+      position: relative;
+    }
+    .brand-monogram::after {
+      content: ''; position: absolute; top: 5px; right: 5px;
+      width: 5px; height: 5px; border-radius: 50%; background: #ef4444;
+    }
+    .brand-title { font-family: var(--font-display); font-weight: 800; font-size: 0.92rem; letter-spacing: 0.02em; text-transform: uppercase; color: var(--cl-ink); }
+    .brand-sub { font-family: var(--font-mono); font-size: 0.72rem; color: var(--cl-muted); }
+    .top-links { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
+    .top-pill {
+      font-family: var(--font-mono); font-size: 0.73rem; font-weight: 600;
+      padding: 0.38rem 0.75rem; border-radius: 6px;
+      background: var(--cl-card); border: 1px solid var(--cl-line); color: var(--cl-ink-2);
+    }
+    .top-pill:hover { border-color: var(--cl-accent); color: #fff; }
+    .top-pill.active { background: rgba(56, 189, 248, 0.12); border-color: var(--cl-accent); color: var(--cl-accent); }
+
+    /* 2-Column InkDoc Layout (Sticky TOC 270px + Main Content) */
+    .doc-shell {
+      max-width: 1440px; margin: 0 auto;
+      display: grid; grid-template-columns: 270px minmax(0, 1fr);
+      gap: 2.5rem; padding: 2rem 1.75rem 5rem; align-items: start;
+    }
+    .toc-sidebar {
+      position: sticky; top: 74px;
+      max-height: calc(100vh - 96px); overflow-y: auto;
+      background: var(--cl-tint); border: 1px solid var(--cl-line);
+      border-radius: 14px; padding: 1.15rem 1rem;
+    }
+    .toc-kicker {
+      font-family: var(--font-mono); font-size: 0.68rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.1em; color: var(--ink-gold);
+      margin-bottom: 0.75rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--cl-line);
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .toc-list { list-style: none; display: flex; flex-direction: column; gap: 0.28rem; }
+    .toc-link {
+      display: flex; align-items: center; gap: 0.55rem;
+      padding: 0.48rem 0.65rem; border-radius: 8px;
+      font-size: 0.81rem; font-weight: 500; color: var(--cl-ink-2);
+      border-left: 2px solid transparent; transition: all 0.15s ease;
+    }
+    .toc-link:hover { background: rgba(255,255,255,0.04); color: #fff; }
+    .toc-link.active {
+      background: rgba(56, 189, 248, 0.1);
+      border-left-color: var(--cl-accent);
+      color: #fff; font-weight: 700;
+    }
+    .toc-num {
+      font-family: var(--font-mono); font-size: 0.68rem; font-weight: 700;
+      color: var(--cl-accent); min-width: 22px;
+    }
+    .toc-status-box {
+      margin-top: 1rem; padding: 0.75rem; border-radius: 10px;
+      background: var(--cl-card); border: 1px solid var(--cl-line);
+      font-family: var(--font-mono); font-size: 0.71rem; color: var(--cl-muted);
+    }
+    .toc-status-box strong { color: var(--ink-emerald); }
+
+    /* Main Content Column */
+    .main-col { min-width: 0; display: flex; flex-direction: column; gap: 3.25rem; }
+
+    /* Hero Banner */
+    .hero-card {
+      background: linear-gradient(145deg, #0d1322 0%, #07090e 100%);
+      border: 1px solid var(--cl-line-strong);
+      border-radius: 18px; padding: 2.25rem 2.25rem 2rem;
+      position: relative; overflow: hidden;
+    }
+    .hero-kicker {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-family: var(--font-mono); font-size: 0.74rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.08em;
+      color: var(--ink-gold); background: rgba(250, 204, 21, 0.1);
+      border: 1px solid rgba(250, 204, 21, 0.3);
+      padding: 0.3rem 0.75rem; border-radius: 99px; margin-bottom: 1rem;
+    }
+    .hero-title {
+      font-family: var(--font-display); font-size: clamp(1.75rem, 3vw, 2.55rem);
+      font-weight: 800; line-height: 1.18; letter-spacing: -0.02em;
+      color: #fff; margin-bottom: 0.9rem; text-transform: uppercase;
+    }
+    .hero-lead {
+      font-family: var(--font-serif); font-size: 1.14rem; line-height: 1.65;
+      color: var(--cl-ink-2); max-width: 880px; margin-bottom: 1.5rem;
+    }
+    .kpi-strip {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(175px, 1fr));
+      gap: 0.85rem; padding-top: 1.25rem; border-top: 1px solid var(--cl-line);
+    }
+    .kpi-box {
+      background: rgba(17, 22, 34, 0.85); border: 1px solid var(--cl-line);
+      border-radius: 12px; padding: 0.9rem 1rem;
+    }
+    .kpi-val { font-family: var(--font-mono); font-size: 1.45rem; font-weight: 800; color: var(--cl-accent); line-height: 1.2; }
+    .kpi-lbl { font-size: 0.79rem; color: var(--cl-muted); margin-top: 0.25rem; }
+
+    /* Section Headers */
+    .sec-block { scroll-margin-top: 84px; }
+    .sec-head {
+      margin-bottom: 1.5rem; padding-bottom: 0.9rem;
+      border-bottom: 1px solid var(--cl-line);
+    }
+    .sec-tag {
+      font-family: var(--font-mono); font-size: 0.73rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.1em; color: var(--cl-accent);
+      margin-bottom: 0.35rem; display: flex; align-items: center; gap: 0.5rem;
+    }
+    .sec-title {
+      font-family: var(--font-display); font-size: clamp(1.35rem, 2.2vw, 1.85rem);
+      font-weight: 800; color: #fff; text-transform: uppercase; letter-spacing: -0.01em;
+    }
+    .sec-desc { font-size: 0.95rem; color: var(--cl-ink-2); margin-top: 0.45rem; max-width: 900px; }
+
+    /* Cards & Grids */
+    .grid-2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.25rem; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.15rem; }
+    .grid-4 { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1rem; }
+    .card {
+      background: var(--cl-card); border: 1px solid var(--cl-line);
+      border-radius: 14px; padding: 1.25rem; transition: border-color 0.18s ease;
+    }
+    .card:hover { border-color: rgba(56, 189, 248, 0.35); }
+
+    /* Readiness Bento Matrix */
+    .skill-bento-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+      gap: 1rem;
+    }
+    .skill-tile {
+      background: var(--cl-card); border: 1px solid var(--cl-line);
+      border-radius: 14px; padding: 1.15rem 1.2rem;
+      display: flex; flex-direction: column; justify-content: space-between; gap: 0.8rem;
+      position: relative; overflow: hidden;
+    }
+    .skill-tile::before {
+      content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 4px;
+      background: var(--tile-color, var(--cl-accent));
+    }
+    .skill-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 0.5rem; }
+    .skill-code { font-family: var(--font-mono); font-size: 0.72rem; font-weight: 700; color: var(--cl-accent); }
+    .skill-badge {
+      font-family: var(--font-mono); font-size: 0.66rem; font-weight: 700;
+      padding: 0.18rem 0.55rem; border-radius: 99px;
+      background: rgba(16, 185, 129, 0.14); color: var(--ink-emerald);
+      border: 1px solid rgba(16, 185, 129, 0.35);
+    }
+    .skill-badge.v2 { background: rgba(250, 204, 21, 0.14); color: var(--ink-gold); border-color: rgba(250, 204, 21, 0.35); }
+    .skill-name { font-family: var(--font-display); font-size: 1.02rem; font-weight: 800; color: #fff; margin-top: 0.2rem; }
+    .skill-desc { font-size: 0.84rem; color: var(--cl-ink-2); line-height: 1.55; }
+    .skill-meta {
+      font-family: var(--font-mono); font-size: 0.71rem; color: var(--cl-muted);
+      background: rgba(7, 9, 14, 0.65); padding: 0.5rem 0.65rem; border-radius: 8px;
+      border: 1px solid var(--cl-line);
+    }
+    .prog-row { display: flex; align-items: center; justify-content: space-between; font-family: var(--font-mono); font-size: 0.72rem; margin-bottom: 0.3rem; }
+    .prog-track { width: 100%; height: 6px; background: #1e293b; border-radius: 99px; overflow: hidden; }
+    .prog-fill { height: 100%; border-radius: 99px; background: var(--tile-color, var(--cl-accent)); }
+
+    /* Video & Media Showcase Cards */
+    .media-card {
+      background: var(--cl-card); border: 1px solid var(--cl-line);
+      border-radius: 14px; overflow: hidden; display: flex; flex-direction: column;
+    }
+    .media-frame {
+      width: 100%; background: #05070b; position: relative;
+      display: flex; align-items: center; justify-content: center;
+      border-bottom: 1px solid var(--cl-line);
+    }
+    .media-frame video {
+      width: 100%; max-height: 430px; object-fit: contain; display: block; background: #05070b;
+    }
+    .media-frame img {
+      width: 100%; height: auto; display: block; object-fit: cover; cursor: zoom-in;
+    }
+    .media-body { padding: 1rem 1.15rem; display: flex; flex-direction: column; gap: 0.45rem; flex: 1; }
+    .media-kicker { font-family: var(--font-mono); font-size: 0.7rem; font-weight: 700; color: var(--ink-gold); text-transform: uppercase; }
+    .media-title { font-family: var(--font-display); font-size: 0.98rem; font-weight: 800; color: #fff; }
+    .media-text { font-size: 0.83rem; color: var(--cl-ink-2); line-height: 1.55; }
+    .spec-pills { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-top: auto; padding-top: 0.55rem; }
+    .spec-pill {
+      font-family: var(--font-mono); font-size: 0.67rem;
+      padding: 0.18rem 0.5rem; border-radius: 5px;
+      background: rgba(255,255,255,0.05); color: var(--cl-ink-2); border: 1px solid var(--cl-line);
+    }
+
+    /* Callout Alert Boxes */
+    .callout-box {
+      background: rgba(56, 189, 248, 0.07);
+      border-left: 4px solid var(--cl-accent);
+      border-top: 1px solid var(--cl-line); border-right: 1px solid var(--cl-line); border-bottom: 1px solid var(--cl-line);
+      border-radius: 0 12px 12px 0; padding: 1rem 1.25rem; margin: 1rem 0;
+    }
+    .callout-box.gold { background: rgba(250, 204, 21, 0.07); border-left-color: var(--ink-gold); }
+    .callout-box.emerald { background: rgba(16, 185, 129, 0.07); border-left-color: var(--ink-emerald); }
+    .callout-title { font-family: var(--font-display); font-size: 0.88rem; font-weight: 800; text-transform: uppercase; color: #fff; margin-bottom: 0.3rem; }
+
+    /* Interactive Vertical Spine Roadmap Component (Section 04) */
+    .vmap-interactive-wrap {
+      display: grid; grid-template-columns: 380px minmax(0, 1fr); gap: 1.5rem;
+      background: var(--cl-tint); border: 1px solid var(--cl-line-strong);
+      border-radius: 16px; padding: 1.5rem; align-items: start;
+    }
+    .vmap-phone {
+      width: 100%; max-width: 380px; margin: 0 auto;
+      aspect-ratio: 9 / 16; background: #0e1420;
+      border: 2px solid #28354a; border-radius: 24px;
+      padding: 1.25rem 1.1rem; position: relative; overflow: hidden;
+      display: flex; flex-direction: column; justify-content: space-between;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+    }
+    .vmap-card-shell {
+      background: rgba(20, 27, 38, 0.96);
+      border: 1.5px solid #38465e; border-radius: 16px;
+      padding: 1rem 0.95rem 1.15rem; position: relative;
+    }
+    .vmap-card-shell::before {
+      content: ''; position: absolute; left: 0; top: 18px; height: 34px; width: 4px;
+      background: var(--ink-gold); border-radius: 0 3px 3px 0;
+    }
+    .vmap-kicker { font-family: var(--font-mono); font-size: 0.62rem; font-weight: 700; letter-spacing: 0.12em; color: var(--ink-gold); text-transform: uppercase; }
+    .vmap-heading { font-family: var(--font-serif); font-style: italic; font-size: 1.18rem; color: #f5f2eb; margin: 0.2rem 0 0.65rem; padding-bottom: 0.55rem; border-bottom: 1px solid #2d3748; }
+    .vmap-spine-area { position: relative; padding-left: 48px; display: flex; flex-direction: column; gap: 0.65rem; }
+    .vmap-spine-track {
+      position: absolute; left: 18px; top: 24px; bottom: 24px; width: 3px;
+      background: #334155; border-radius: 99px;
+    }
+    .vmap-spine-beam {
+      position: absolute; left: 18px; top: 24px; width: 3px; height: 100%;
+      background: linear-gradient(180deg, #facc15 0%, #38bdf8 65%, #10b981 100%);
+      border-radius: 99px; transform-origin: top; transform: scaleY(1);
+      transition: transform 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .vmap-node-row {
+      position: relative; display: flex; align-items: center;
+      opacity: 1; transform: translateY(0);
+      transition: all 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .vmap-node-dot {
+      position: absolute; left: -48px; width: 36px; height: 36px; border-radius: 50%;
+      background: #1c2534; border: 2.5px solid var(--node-col, #facc15);
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-mono); font-size: 0.72rem; font-weight: 700; color: #f5f2eb;
+      z-index: 2;
+    }
+    .vmap-node-connector {
+      position: absolute; left: -12px; width: 12px; height: 2px;
+      background: var(--node-col, #facc15);
+    }
+    .vmap-node-card {
+      width: 100%; background: #1c2534; border: 1px solid #334155;
+      border-left: 4px solid var(--node-col, #facc15);
+      border-radius: 10px; padding: 0.55rem 0.7rem;
+    }
+    .vmap-node-top { display: flex; align-items: center; justify-content: space-between; gap: 0.4rem; }
+    .vmap-node-title { font-family: var(--font-display); font-size: 0.76rem; font-weight: 800; color: #f5f2eb; text-transform: uppercase; }
+    .vmap-node-time {
+      font-family: var(--font-mono); font-size: 0.6rem; font-weight: 700;
+      padding: 0.1rem 0.42rem; border-radius: 99px;
+      background: #121822; color: var(--node-col, #facc15); border: 1px solid var(--node-col, #facc15);
+    }
+    .vmap-node-desc { font-family: var(--font-serif); font-size: 0.74rem; color: #bac6d6; margin-top: 0.18rem; line-height: 1.35; }
+    .vmap-sub-safezone {
+      text-align: center; padding: 0.65rem 0.5rem 0.25rem;
+      border-top: 1px dashed rgba(255,255,255,0.12);
+    }
+    .vmap-sub-l1 { font-family: var(--font-display); font-weight: 900; font-size: 0.95rem; color: var(--ink-gold); text-transform: uppercase; }
+    .vmap-sub-l2 { font-family: var(--font-serif); font-style: italic; font-size: 0.85rem; color: #f8fafc; }
+
+    /* Unified 35 Styles & 16 Archetypes Studio (Section 05) */
+    .mfx-studio-grid {
+      display: grid; grid-template-columns: 340px minmax(0, 1fr); gap: 1.5rem;
+      background: var(--cl-tint); border: 1px solid var(--cl-line);
+      border-radius: 16px; padding: 1.35rem; align-items: start;
+    }
+    .mfx-stage-phone {
+      position: sticky; top: 88px;
+      width: 100%; aspect-ratio: 9 / 16; max-height: 580px;
+      background: radial-gradient(circle at 50% 35%, #1e293b 0%, #07090e 75%);
+      border: 2px solid var(--cl-line-strong); border-radius: 22px;
+      padding: 1.15rem; display: flex; flex-direction: column; justify-content: space-between;
+      overflow: hidden;
+    }
+    .mfx-filter-bar {
+      display: flex; flex-wrap: wrap; gap: 0.45rem; margin-bottom: 1rem;
+      align-items: center; justify-content: space-between;
+    }
+    .chip-group { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+    .filter-chip {
+      font-family: var(--font-mono); font-size: 0.72rem; font-weight: 600;
+      padding: 0.38rem 0.75rem; border-radius: 8px; cursor: pointer;
+      background: var(--cl-card); border: 1px solid var(--cl-line); color: var(--cl-ink-2);
+      transition: all 0.15s ease;
+    }
+    .filter-chip:hover, .filter-chip.active {
+      background: rgba(56, 189, 248, 0.15); border-color: var(--cl-accent); color: #fff;
+    }
+    .search-input {
+      background: var(--cl-card); border: 1px solid var(--cl-line);
+      color: #fff; font-family: var(--font-sans); font-size: 0.82rem;
+      padding: 0.42rem 0.75rem; border-radius: 8px; min-width: 210px;
+    }
+    .style-cards-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(225px, 1fr));
+      gap: 0.75rem; max-height: 640px; overflow-y: auto; padding-right: 0.35rem;
+    }
+    .style-item-card {
+      background: var(--cl-card); border: 1px solid var(--cl-line);
+      border-radius: 10px; padding: 0.8rem 0.9rem; cursor: pointer;
+      transition: all 0.15s ease; display: flex; flex-direction: column; gap: 0.35rem;
+    }
+    .style-item-card:hover, .style-item-card.active {
+      border-color: var(--ink-gold); background: var(--cl-card-hover);
+      transform: translateY(-1px);
+    }
+
+    /* Tables */
+    .table-wrap { overflow-x: auto; border: 1px solid var(--cl-line); border-radius: 12px; background: var(--cl-card); }
+    table.pro-table { width: 100%; border-collapse: collapse; font-size: 0.86rem; }
+    table.pro-table th {
+      background: #0d121d; color: var(--ink-gold);
+      font-family: var(--font-mono); font-size: 0.72rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.06em;
+      text-align: left; padding: 0.85rem 1rem; border-bottom: 1px solid var(--cl-line);
+    }
+    table.pro-table td {
+      padding: 0.85rem 1rem; border-bottom: 1px solid var(--cl-line);
+      color: var(--cl-ink-2); vertical-align: top;
+    }
+    table.pro-table tr:last-child td { border-bottom: none; }
+    table.pro-table tr:hover td { background: rgba(255,255,255,0.02); }
+
+    /* Lightbox Modal */
+    .lightbox {
+      position: fixed; inset: 0; z-index: 999;
+      background: rgba(5, 7, 11, 0.92); backdrop-filter: blur(10px);
+      display: none; align-items: center; justify-content: center; padding: 2rem;
+    }
+    .lightbox.open { display: flex; }
+    .lightbox img { max-width: 94vw; max-height: 90vh; border-radius: 12px; border: 1px solid var(--cl-line-strong); }
+    .lightbox-close {
+      position: absolute; top: 20px; right: 28px;
+      font-family: var(--font-mono); font-size: 0.85rem; font-weight: 700;
+      padding: 0.45rem 0.9rem; border-radius: 8px; cursor: pointer;
+      background: var(--cl-card); color: #fff; border: 1px solid var(--cl-line-strong);
+    }
+
+    @media (max-width: 1080px) {
+      .doc-shell { grid-template-columns: 1fr; padding: 1.25rem; }
+      .toc-sidebar { position: static; max-height: none; }
+      .vmap-interactive-wrap, .mfx-studio-grid { grid-template-columns: 1fr; }
+      .mfx-stage-phone { position: static; max-width: 360px; margin: 0 auto; }
+      .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- TOP NAVIGATION BAR -->
+  <header class="topbar">
+    <div class="brand-id">
+      <div class="brand-monogram">AI</div>
+      <div>
+        <div class="brand-title">AI Video Edit &amp; Motion Skill Hub</div>
+        <div class="brand-sub">TÀI LIỆU TỔNG QUAN &amp; KIỂM ĐỊNH TIẾN ĐỘ HỆ THỐNG • V3.4 MASTER</div>
+      </div>
+    </div>
+    <nav class="top-links">
+      <a class="top-pill active" href="#sec-01">10 Cụm Skill</a>
+      <a class="top-pill" href="#sec-02">Bộ Demo Chọn Lọc</a>
+      <a class="top-pill" href="#sec-03">Ảnh Khoa Học 2D V2</a>
+      <a class="top-pill" href="#sec-04">Animation Map Trục Dọc</a>
+      <a class="top-pill" href="#sec-05">Kho 35 Mẫu Chữ &amp; 16 MFX</a>
+      <a class="top-pill" href="#sec-06">Hội Ý CLAUDE2 &amp; UI/UX</a>
+      <a class="top-pill" href="#sec-07">Logic Xây Kênh</a>
+      <a class="top-pill" href="index.html">← Trung Tâm Logic Xây Kênh</a>
+    </nav>
+  </header>
+
+  <!-- 2-COLUMN INKDOC SHELL -->
+  <div class="doc-shell">
+
+    <!-- LEFT STICKY TOC (270px) -->
+    <aside class="toc-sidebar">
+      <div class="toc-kicker">
+        <span>MỤC LỤC HỆ THỐNG</span>
+        <span>07 PHẦN</span>
+      </div>
+      <ul class="toc-list">
+        <li><a class="toc-link active" href="#sec-01"><span class="toc-num">01</span><span>Bảng Tổng Hợp 10 Cụm Kỹ Năng &amp; Tiến Độ</span></a></li>
+        <li><a class="toc-link" href="#sec-02"><span class="toc-num">02</span><span>Bộ Demo Chọn Lọc (`motion00..05` &amp; 4 Luồng)</span></a></li>
+        <li><a class="toc-link" href="#sec-03"><span class="toc-num">03</span><span>Ảnh Khoa Học 2D (`Scientific Atlas V2`)</span></a></li>
+        <li><a class="toc-link" href="#sec-04"><span class="toc-num">04</span><span>Animation Map Trục Dọc (`MG-B02 V2`)</span></a></li>
+        <li><a class="toc-link" href="#sec-05"><span class="toc-num">05</span><span>Đồng Hợp 35 Mẫu Chữ &amp; 16 Archetypes</span></a></li>
+        <li><a class="toc-link" href="#sec-06"><span class="toc-num">06</span><span>Đánh Giá `brand.html` &amp; Hội Ý `CLAUDE2`</span></a></li>
+        <li><a class="toc-link" href="#sec-07"><span class="toc-num">07</span><span>Tích Hợp Vào Logic Xây Kênh</span></a></li>
+      </ul>
+      <div class="toc-status-box">
+        <div>TRẠNG THÁI HỆ THỐNG: <strong>91.4% PROD</strong></div>
+        <div style="margin-top:4px;">• 10 Cụm Skill Đã Đóng Gói</div>
+        <div>• 35 Mẫu Chữ + 16 MFX + 8 B-Roll</div>
+        <div>• 8.902 File SFX Voice-Safe 10%</div>
+        <div>• Đã Kiểm Định Cùng CLAUDE2</div>
+      </div>
+    </aside>
+
+    <!-- MAIN CONTENT COLUMN -->
+    <main class="main-col">
+
+      <!-- HERO EXECUTIVE OVERVIEW -->
+      <section class="hero-card">
+        <div class="hero-kicker">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+          <span>MASTER ARCHITECTURAL DOCUMENTATION • CẬP NHẬT THÁNG 10/2026</span>
+        </div>
+        <h1 class="hero-title">Hệ Thống Kỹ Năng AI Video Edit &amp; Motion 60fps</h1>
+        <p class="hero-lead">
+          Tài liệu tổng quan toàn bộ kiến trúc kỹ năng dựng video tự động hóa, hậu kỳ Talking-Head V3.2, đồ họa chuyển động Remotion 60fps, kho 35 mẫu chữ &amp; 16 Archetypes, quy chuẩn Bản vẽ Khoa học 2D (chống AI/3D giả tưởng), và thiết kế mới của Bản đồ Chuyển động theo Trục Dọc (Vertical Spine Map).
+        </p>
+        <div class="kpi-strip">
+          <div class="kpi-box">
+            <div class="kpi-val">10 Cụm Skill</div>
+            <div class="kpi-lbl">Từ bóc băng Whisper, khóa trục mắt OpenCV đến xuất MP4 &amp; ProRes 4444</div>
+          </div>
+          <div class="kpi-box">
+            <div class="kpi-val">35 + 16 Mẫu</div>
+            <div class="kpi-lbl">35 mẫu Typography 2 tầng + 16 Motion Archetypes + 8 Khung B-Roll</div>
+          </div>
+          <div class="kpi-box">
+            <div class="kpi-val">2D Atlas V2</div>
+            <div class="kpi-lbl">Nền giấy #F5F2EB phẳng + nét bút kim 2D + chỉ dẫn vector Python PIL</div>
+          </div>
+          <div class="kpi-box">
+            <div class="kpi-val">Trục Dọc X=158</div>
+            <div class="kpi-lbl">Animation Map V2 thẳng đứng, tách khung độc lập, xóa bỏ chữ S rối rắm</div>
+          </div>
+          <div class="kpi-box">
+            <div class="kpi-val">8.902 SFX</div>
+            <div class="kpi-lbl">Âm thanh 4 lớp Voice-Safe (8%–10% âm lượng, không đè tiếng nói)</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ====================================================================
+           PHẦN 01: BẢNG ĐIỀU KHIỂN TIẾN ĐỘ 10 CỤM KỸ NĂNG AI VIDEO EDIT
+           ==================================================================== -->
+      <section id="sec-01" class="sec-block">
+        <div class="sec-head">
+          <div class="sec-tag">PHẦN 01 • MASTER SKILL MATRIX &amp; READINESS DASHBOARD</div>
+          <h2 class="sec-title">Hệ Thống Đang Có Những Kỹ Năng Gì &amp; Hoạt Động Thế Nào?</h2>
+          <p class="sec-desc">
+            Toàn bộ dây chuyền sản xuất video được chia thành <strong>10 cụm kỹ năng chuyên biệt</strong>, phối hợp từ khâu đọc nhịp giọng nói đến khi xuất file thành phẩm <code>.mp4</code> và gói lớp phủ trong suốt <code>.png</code> cho CapCut. Dưới đây là trạng thái hoàn thiện thực tế của từng cụm:
+          </p>
+        </div>
+
+        <div id="skill-matrix-container" class="skill-bento-grid"></div>
+
+        <div class="callout-box emerald" style="margin-top:1.25rem;">
+          <div class="callout-title">Nguyên lý vận hành cốt lõi: Duyệt Ảnh Frame Mockup Trước — Render Video Sau (Tiết kiệm 95% thời gian)</div>
+          <p style="font-size:0.88rem; color:var(--cl-ink-2);">
+            Thay vì chờ 10 phút xuất video rồi mới phát hiện chữ đè lên cằm hoặc B-Roll lệch ý, hệ thống dùng <code>OpenCV</code> trích xuất đúng khung hình tại từng giây <code>t_sec</code>, đóng dấu 100% lớp chữ <code>#T</code>, thẻ <code>#B</code> và cảnh trám <code>#V</code> ra bộ ảnh <code>mockups/beat_01..29.jpg</code> chỉ trong <strong>12 giây</strong>. Khi cần sửa bất kỳ nhịp nào, <strong>Delta Patcher</strong> chỉ render lại đúng <code>1.5 giây</code> của nhịp đó rồi ghép nối không mất chất lượng (lossless concat).
+          </p>
+        </div>
+      </section>
+
+      <!-- ====================================================================
+           PHẦN 02: BỘ DEMO CHỌN LỌC SẮC BÉN NHẤT TỪ MOTION00..05 & 4 LUỒNG THỰC CHIẾN
+           ==================================================================== -->
+      <section id="sec-02" class="sec-block">
+        <div class="sec-head">
+          <div class="sec-tag">PHẦN 02 • CURATED SHOWCASE DEMOS</div>
+          <h2 class="sec-title">Bộ Demo Chọn Lọc Đắt Giá &amp; Sắc Bén Nhất (Video + Hình Ảnh Thực Tế)</h2>
+          <p class="sec-desc">
+            Chắt lọc những bản demo sắc gọn nhất từ chuỗi <code>motion00.html → motion05.html</code> và 4 luồng dựng video thực tế gần đây (Bất động sản Đời thực, Da liễu Spa, Nha khoa Lâm sàng, Affiliate/Dropshipping AIDA).
+          </p>
+        </div>
+
+        <h3 style="font-family:var(--font-display); font-size:1.08rem; color:var(--ink-gold); text-transform:uppercase; margin-bottom:0.85rem;">
+          A. 4 Khuôn Mẫu Motion Graphic 60fps Đắt Giá Nhất (Trích lọc từ motion00 → motion04.html)
+        </h3>
+        <div class="grid-4" style="margin-bottom:2rem;">
+          <!-- Demo M1: PROD-09 V3 Ultra-Clean -->
+          <div class="media-card">
+            <div class="media-frame">
+              <video controls preload="metadata" playsinline poster="./assets/aieditskill/motion02_v3_clean_10s_9x16_poster.jpg">
+                <source src="./assets/aieditskill/motion02_v3_clean_10s_9x16_60fps.mp4" type="video/mp4" />
+              </video>
+            </div>
+            <div class="media-body">
+              <div class="media-kicker">#PROD-09 • MOTION02 V3 ULTRA-CLEAN</div>
+              <div class="media-title">Tiết Chế Tối Đa (65% Khoảng Thở)</div>
+              <p class="media-text">Khắc phục triệt để lỗi nhồi nhét đồ họa: tối đa 2 phần tử trên màn hình, dùng đúng 1 biểu tượng nét mảnh trung tâm, giữ nguyên giọng gốc và kiểm soát SFX bằng <code>cues.json</code>.</p>
+              <div class="spec-pills">
+                <span class="spec-pill">1080×1920 • 60fps</span>
+                <span class="spec-pill">-15.4 LUFS</span>
+                <span class="spec-pill">Max 2 Elements</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Demo M2: PROD-10 Claude Editorial Risograph -->
+          <div class="media-card">
+            <div class="media-frame">
+              <video controls preload="metadata" playsinline poster="./assets/aieditskill/qc_fb9_claude_motion_10s_poster.jpg">
+                <source src="./assets/aieditskill/qc_fb9_claude_motion_10s.mp4" type="video/mp4" />
+              </video>
+            </div>
+            <div class="media-body">
+              <div class="media-kicker">#PROD-10 • MOTION03 EDITORIAL RISO</div>
+              <div class="media-title">Claude Risograph Hybrid (Giấy Kem Ấm)</div>
+              <p class="media-text">Nền giấy kem ấm <code>#F4EFE6</code>, màu cam đất <code>#D96B43</code> và xanh chàm <code>#1D3557</code> kết hợp đường vẽ tay SVG và khuôn thiết kế gốc <code>.TSX</code> có bảng biến <code>Tweaks</code>.</p>
+              <div class="spec-pills">
+                <span class="spec-pill">Paper #F4EFE6</span>
+                <span class="spec-pill">TSX Tweaks</span>
+                <span class="spec-pill">Editorial Serif</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Demo M3: PROD-11 MasterClass Brutalist -->
+          <div class="media-card">
+            <div class="media-frame">
+              <video controls preload="metadata" playsinline>
+                <source src="./assets/aieditskill/VietMasterClassPower_10s_60fps.mp4" type="video/mp4" />
+              </video>
+            </div>
+            <div class="media-body">
+              <div class="media-kicker">#PROD-11 • MASTERCLASS POWER</div>
+              <div class="media-title">Brutalist Acid-Lime (Tương Phản Mạnh)</div>
+              <p class="media-text">Nền đen sâu <code>#090A0F</code> đi cùng vàng chanh <code>#D4FF00</code> và lưới kỹ thuật số. Chuyên trị các đoạn Hook bóc trần sự thật hoặc định vị tư duy ngược.</p>
+              <div class="spec-pills">
+                <span class="spec-pill">Acid-Lime #D4FF00</span>
+                <span class="spec-pill">Kinetic Slam</span>
+                <span class="spec-pill">60fps Native</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Demo M4: PROD-04 3D Bento Gold -->
+          <div class="media-card">
+            <div class="media-frame">
+              <video controls preload="metadata" playsinline poster="./assets/aieditskill/viet_gold_9x16_orbit.jpg">
+                <source src="./assets/aieditskill/viet_gold_9x16_60fps.mp4" type="video/mp4" />
+              </video>
+            </div>
+            <div class="media-body">
+              <div class="media-kicker">#PROD-04 • MOTION01 3D BENTO GOLD</div>
+              <div class="media-title">Mặt Phẳng Nghiêng 3D &amp; Quỹ Đạo Vàng</div>
+              <p class="media-text">Xoay nghiêng mặt phẳng 3D (<code>rotateX/Y</code>) theo câu nói kết hợp quỹ đạo sáng vàng kim <code>#FACC15</code> và hiệu ứng lia máy Whip-Pan.</p>
+              <div class="spec-pills">
+                <span class="spec-pill">3D Perspective</span>
+                <span class="spec-pill">Gold #FACC15</span>
+                <span class="spec-pill">Whip-Pan Blur</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <h3 style="font-family:var(--font-display); font-size:1.08rem; color:var(--cl-accent); text-transform:uppercase; margin-bottom:0.85rem;">
+          B. 4 Luồng Dựng Video Thực Chiến Đa Ngành (Kiểm Định Các Luồng Gần Đây Nhất)
+        </h3>
+        <div class="grid-4" style="margin-bottom:1.25rem;">
+          <!-- Flow 1: Viet 8h Sang Times City -->
+          <div class="media-card">
+            <div class="media-frame">
+              <video controls preload="metadata" playsinline poster="./assets/aieditskill/viet8h_fb_timestamp_proof.jpg">
+                <source src="./assets/aieditskill/viet_8h_sang_highlight_14s.mp4" type="video/mp4" />
+              </video>
+            </div>
+            <div class="media-body">
+              <div class="media-kicker">LUỒNG 01 • BĐS &amp; CHUYÊN GIA ĐỜI THỰC</div>
+              <div class="media-title">Anh Việt 8h15 Sáng Times City (Proof Overlay)</div>
+              <p class="media-text">Gắn bằng chứng bài đăng Facebook lúc <code>8:15 AM</code> ngay nhịp mở đầu và tin nhắn khách chuyển khoản thật ở nhịp kết (Outro Chat Proof + âm thanh ting nhẹ).</p>
+              <div class="spec-pills">
+                <span class="spec-pill">FB Timestamp Proof</span>
+                <span class="spec-pill">Outro Chat Proof</span>
+                <span class="spec-pill">14 Beats V3.2</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Flow 2: Tham Tho Detox -->
+          <div class="media-card">
+            <div class="media-frame">
+              <video controls preload="metadata" playsinline poster="./assets/aieditskill/sci_02_detox_v2.jpg">
+                <source src="./assets/aieditskill/thamtho_tram1.mp4" type="video/mp4" />
+              </video>
+            </div>
+            <div class="media-body">
+              <div class="media-kicker">LUỒNG 02 • DA LIỄU &amp; DƯỠNG SINH SPA</div>
+              <div class="media-title">Thắm Thỏ Detox (Atlas 2D + Lip-Mask Filter)</div>
+              <p class="media-text">Kết hợp 3 bản vẽ giải phẫu da 2D trên nền giấy <code>#F5F2EB</code> và thuật toán làm mịn da Bilateral có mặt nạ bảo vệ môi &amp; mắt không bị bệt màu.</p>
+              <div class="spec-pills">
+                <span class="spec-pill">Dermatology Atlas 2D</span>
+                <span class="spec-pill">Lip-Mask Skin Filter</span>
+                <span class="spec-pill">12 Beats</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Flow 3: Nha Si Tien -->
+          <div class="media-card">
+            <div class="media-frame">
+              <video controls preload="metadata" playsinline poster="./assets/aieditskill/dental_atlas_v3_enamel.jpg">
+                <source src="./assets/aieditskill/nhasy_v5_flow_video.mp4" type="video/mp4" />
+              </video>
+            </div>
+            <div class="media-body">
+              <div class="media-kicker">LUỒNG 03 • NHA KHOA LÂM SÀNG (29 NHỊP)</div>
+              <div class="media-title">Nha Sĩ Tiến (7 Bản Vẽ 2D + Flow Veo 3.1)</div>
+              <p class="media-text">Tách riêng 2 khung Motion mở đầu (<code>#MG1_STAT</code> &amp; <code>#MG2_ROADMAP</code> trục dọc), đan xen 7 bản vẽ giải phẫu răng 2D, 6 ảnh phòng khám thật và 2 video Flow Veo 3.1.</p>
+              <div class="spec-pills">
+                <span class="spec-pill">7 Dental Atlas 2D</span>
+                <span class="spec-pill">Vertical Spine Map</span>
+                <span class="spec-pill">Veo 3.1 B-Roll</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Flow 4: Dropshipping AIDA -->
+          <div class="media-card">
+            <div class="media-frame">
+              <video controls preload="metadata" playsinline poster="./assets/aieditskill/ds_final_beat_01.jpg">
+                <source src="./assets/aieditskill/dropship1.mp4" type="video/mp4" />
+              </video>
+            </div>
+            <div class="media-body">
+              <div class="media-kicker">LUỒNG 04 • AFFILIATE &amp; DROPSHIPPING AIDA</div>
+              <div class="media-title">Đóng Gói Sản Phẩm Theo 4 Pha A-I-D-A</div>
+              <p class="media-text">Dành tới <code>84%</code> diện tích khung hình cho sản phẩm thật, Header 1 dòng gọn ở <code>Y=54px</code>, nhịp cắt <code>1.5s</code> làm rõ cơ chế vận hành để khách tự mua.</p>
+              <div class="spec-pills">
+                <span class="spec-pill">AIDA 4-Phase</span>
+                <span class="spec-pill">84% Clean Frame</span>
+                <span class="spec-pill">Header Y=54px</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Visual Proof Strip: Storyboards & Optical Face-Lock -->
+        <div class="grid-3">
+          <div class="media-card">
+            <div class="media-frame">
+              <img src="./assets/aieditskill/viet8h_storyboard_master.jpg" alt="Storyboard 14 nhịp Anh Việt 8h sáng" onclick="openLightbox(this.src)" loading="lazy" />
+            </div>
+            <div class="media-body">
+              <div class="media-kicker">STORYBOARD 14 NHỊP • BĐS TIMES CITY</div>
+              <div class="media-title">Bảng Kiểm Duyệt Toàn Cảnh 14 Nhịp (`viet8h_storyboard_master.jpg`)</div>
+              <p class="media-text">Bấm vào ảnh để phóng to: kiểm tra trực quan từng khung chữ <code>#T</code>, thẻ chuyển chương <code>#B</code> và bằng chứng giờ đăng trước khi xuất MP4.</p>
+            </div>
+          </div>
+
+          <div class="media-card">
+            <div class="media-frame">
+              <img src="./assets/aieditskill/shots_after_56.jpg" alt="Optical Face-Lock 55 cú cắt" onclick="openLightbox(this.src)" loading="lazy" />
+            </div>
+            <div class="media-body">
+              <div class="media-kicker">OPTICAL FACE-LOCK • 55 CÚ CẮT LIÊN HOÀN</div>
+              <div class="media-title">Khóa Trục Mắt Cố Định Tại `Y = 38%` (`shots_after_56.jpg`)</div>
+              <p class="media-text">Thuật toán OpenCV Haar Cascade tự động bù trừ độ lệch khi người nói nghiêng đầu, giữ đôi mắt đứng yên xuyên suốt 55 cú cắt liên tiếp.</p>
+            </div>
+          </div>
+
+          <div class="media-card">
+            <div class="media-frame">
+              <img src="./assets/aieditskill/compare_3way_1.5s.jpg" alt="Chỉnh màu 3-Way D-Log" onclick="openLightbox(this.src)" loading="lazy" />
+            </div>
+            <div class="media-body">
+              <div class="media-kicker">COLOR ENGINE • 10-BIT S-CURVE &amp; SKIN TONE</div>
+              <div class="media-title">Đối Chiếu 3 Luồng Xử Lý Màu &amp; Tông Da (`compare_3way_1.5s.jpg`)</div>
+              <p class="media-text">Tự động cân bằng trắng <code>5500K</code>, đẩy độ tương phản S-Curve nhẹ và giữ màu da hồng hào tự nhiên không bị bệt trắng hay ám vàng.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ====================================================================
+           PHẦN 03: PHONG CÁCH ẢNH MINH HỌA KHOA HỌC 2D (SCIENTIFIC ATLAS STYLE V2)
+           ==================================================================== -->
+      <section id="sec-03" class="sec-block">
+        <div class="sec-head">
+          <div class="sec-tag">PHẦN 03 • SCIENTIFIC ATLAS STYLE V2 (CHỐNG AI / CHỐNG 3D GIẢ TƯỞNG)</div>
+          <h2 class="sec-title">Báo Cáo &amp; Kết Quả: Quy Chuẩn Ảnh Minh Họa Khoa Học 2D Mới</h2>
+          <p class="sec-desc">
+            Trả lời trực tiếp câu hỏi của anh Việt: <strong>"Phần ảnh minh họa khoa học gần đây đã làm lại chưa và kết quả sau khi kiểm tra các luồng gần đây thế nào?"</strong> — Đã hoàn tất 100% thông qua 2 bộ máy <code>build_scientific_atlas_v2.py</code> (Da liễu) và <code>build_dental_atlas_and_plan.py</code> (Nha khoa).
+          </p>
+        </div>
+
+        <div class="callout-box gold" style="margin-bottom:1.35rem;">
+          <div class="callout-title">5 Quy Định Bắt Buộc Của Phong Cách Scientific Atlas 2D V2 (Loại Bỏ Hoàn Toàn Mùi AI &amp; 3D Rẻ Tiền)</div>
+          <div class="grid-2" style="margin-top:0.55rem; gap:1rem; font-size:0.86rem; color:var(--cl-ink-2);">
+            <div>
+              <strong style="color:#fff;">1. Nghiêm cấm 100% đồ họa 3D bóng nhựa &amp; ánh sáng Sci-Fi:</strong><br/>
+              Không dùng các hình 3D render bóng loáng, không dùng tia laser xanh tím, không vẽ vi khuẩn phát quang hay mặt cắt 3D lơ lửng kiểu quảng cáo kem trộn.<br/><br/>
+              <strong style="color:#fff;">2. Nền giấy y khoa cổ điển phẳng tuyệt đối (`#F5F2EB`):</strong><br/>
+              Thuật toán <code>flatten_bg()</code> ép toàn bộ nền về đúng mã màu giấy <code>#F5F2EB</code> (không đổ bóng mép sách, không làm nhàu giấy giả) và hạ độ bão hòa màu xuống <code>82%</code> để dịu mắt.
+            </div>
+            <div>
+              <strong style="color:#fff;">3. Tách 2 lớp (Hình vẽ Pen-and-Ink không chữ + Vector Python PIL):</strong><br/>
+              Lớp hình vẽ chỉ dùng nét bút kim đan chéo (<em>cross-hatching</em>) và màu nước y khoa dịu trầm, <strong>tuyệt đối không để mô hình AI tự vẽ chữ</strong>. Toàn bộ tiêu đề <code>Tiempos Headline Italic</code>, nhãn <code>[1]..[4]</code> song ngữ Việt – Latinh, đường chỉ dẫn vuông góc (<em>orthogonal dot-leader</em>) và hộp <code>Ghi chú lâm sàng</code> đều do Python vẽ bằng vector sắc nét.<br/><br/>
+              <strong style="color:#fff;">4. Vùng an toàn phụ đề (`Y &lt; 1180px`):</strong><br/>
+              Toàn bộ bản vẽ, thước đo tỷ lệ (<code>1.0 mm / 50 µm</code>) và hộp ghi chú kết thúc trước <code>Y = 1158px</code>, chừa trống đáy khung hình cho lớp phụ đề.
+            </div>
+          </div>
+        </div>
+
+        <!-- Comparison V1 vs V2 -->
+        <div class="media-card" style="margin-bottom:1.35rem;">
+          <div class="media-frame">
+            <img src="./assets/aieditskill/compare_sci_v1_vs_v2.jpg" alt="So sánh trực tiếp Ảnh Khoa Học V1 (Cũ) và V2 (Scientific Atlas 2D Mới)" onclick="openLightbox(this.src)" />
+          </div>
+          <div class="media-body">
+            <div class="media-kicker">ĐỐI CHIẾU TRỰC TIẾP TRƯỚC &amp; SAU KHI LÀM LẠI (`compare_sci_v1_vs_v2.jpg`)</div>
+            <div class="media-title">Hàng Trên (V1 Cũ — Nhiều Màu Loè Loẹt / Hơi Hướng AI) vs Hàng Dưới (V2 Mới — Bản Vẽ Y Khoa 2D Chuẩn Sách Giải Phẫu)</div>
+            <p class="media-text">Bấm vào ảnh để phóng to: Ở bản V2 (hàng dưới), toàn bộ 3 tấm bản vẽ mô học da liễu đều nằm trên nền giấy <code>#F5F2EB</code> phẳng, có ngoặc đo độ sâu biểu bì bên trái, đường chỉ dẫn vuông góc sang cột chú thích bên phải và hộp Ghi chú lâm sàng đóng khung chuẩn mực.</p>
+          </div>
+        </div>
+
+        <!-- Luồng 1: 3 tấm Da liễu (Thắm Thỏ) -->
+        <h3 style="font-family:var(--font-display); font-size:1.02rem; color:var(--ink-emerald); text-transform:uppercase; margin-bottom:0.75rem;">
+          Kết Quả Kiểm Tra Luồng 1: 3 Bản Vẽ Mô Học Da Liễu 2D (Luồng Thắm Thỏ Detox)
+        </h3>
+        <div class="grid-3" style="margin-bottom:1.75rem;">
+          <div class="media-card">
+            <div class="media-frame"><img src="./assets/aieditskill/sci_01_melanin_v2.jpg" alt="Hình 01: Sự hình thành và dịch chuyển hạt sắc tố Melanin" onclick="openLightbox(this.src)" loading="lazy" /></div>
+            <div class="media-body">
+              <div class="media-kicker">BẢN VẼ DA LIỄU 01 • THƯỢNG BÌ DA</div>
+              <div class="media-title">Hình 1.1: Sự Hình Thành &amp; Dịch Chuyển Hạt Melanin</div>
+              <p class="media-text">Nét bút kim 2D minh họa lớp sừng, tế bào sắc tố tại màng đáy và vùng chân bì kèm 4 nhãn chỉ dẫn vuông góc.</p>
+            </div>
+          </div>
+          <div class="media-card">
+            <div class="media-frame"><img src="./assets/aieditskill/sci_02_detox_v2.jpg" alt="Hình 02: Cơ chế giải phóng bít tắc cổ nang lông" onclick="openLightbox(this.src)" loading="lazy" /></div>
+            <div class="media-body">
+              <div class="media-kicker">BẢN VẼ DA LIỄU 02 • SƠ ĐỒ ĐỐI CHIẾU A → B</div>
+              <div class="media-title">Hình 2.1: Giải Phóng Bít Tắc Cổ Nang Lông &amp; Bã Nhờn</div>
+              <p class="media-text">Sơ đồ 2 giai đoạn (Trước &amp; Sau làm sạch sâu) có vạch phân cách dọc trung tâm và mũi tên chuyển tiếp rõ ràng.</p>
+            </div>
+          </div>
+          <div class="media-card">
+            <div class="media-frame"><img src="./assets/aieditskill/sci_03_moisture_v2.jpg" alt="Hình 03: Phục hồi hàng rào lipid gian bào" onclick="openLightbox(this.src)" loading="lazy" /></div>
+            <div class="media-body">
+              <div class="media-kicker">BẢN VẼ DA LIỄU 03 • HÀNG RÀO BẢO VỆ DA</div>
+              <div class="media-title">Hình 3.1: Tái Thiết Lập Mạng Lưới Lipid Gian Bào</div>
+              <p class="media-text">Minh họa màng ẩm bề mặt, cấu trúc tế bào sừng xếp lớp phẳng và mạng lưới sợi Collagen nâng đỡ mô.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Luồng 2: 4 tấm Nha khoa (Nha Sĩ Tiến) -->
+        <h3 style="font-family:var(--font-display); font-size:1.02rem; color:var(--cl-accent); text-transform:uppercase; margin-bottom:0.75rem;">
+          Kết Quả Kiểm Tra Luồng 2: Bộ Bản Vẽ Giải Phẫu Nha Khoa 2D (Luồng Nha Sĩ Tiến — 7 Tấm Atlas)
+        </h3>
+        <div class="grid-4">
+          <div class="media-card">
+            <div class="media-frame"><img src="./assets/aieditskill/dental_atlas_v3_enamel.jpg" alt="Mất khoáng men răng giai đoạn sớm" onclick="openLightbox(this.src)" loading="lazy" /></div>
+            <div class="media-body">
+              <div class="media-kicker">NHA KHOA #V3 • HÌNH 01</div>
+              <div class="media-title">Mất Khoáng Men Răng Giai Đoạn Sớm</div>
+              <p class="media-text">Tổn thương đốm trắng âm thầm dưới lớp men bề mặt khi buồng tủy chưa bị xâm phạm.</p>
+            </div>
+          </div>
+          <div class="media-card">
+            <div class="media-frame"><img src="./assets/aieditskill/dental_atlas_v4_tubules.jpg" alt="Cơ chế dẫn truyền kích thích qua hệ ống ngà" onclick="openLightbox(this.src)" loading="lazy" /></div>
+            <div class="media-body">
+              <div class="media-kicker">NHA KHOA #V4 • HÌNH 02</div>
+              <div class="media-title">Dẫn Truyền Kích Thích Qua Hệ Ống Ngà</div>
+              <p class="media-text">Giải thích vì sao uống nước đá bị nhói nhẹ vài giây rồi tự hết theo thuyết thủy động học.</p>
+            </div>
+          </div>
+          <div class="media-card">
+            <div class="media-frame"><img src="./assets/aieditskill/dental_atlas_v12_fissure.jpg" alt="Sâu răng rãnh nhai ẩn dưới chấm đen nhỏ" onclick="openLightbox(this.src)" loading="lazy" /></div>
+            <div class="media-body">
+              <div class="media-kicker">NHA KHOA #V12 • HÌNH 06</div>
+              <div class="media-title">Sâu Răng Hình Nón Ngược Dưới Chấm Đen</div>
+              <p class="media-text">Miệng lỗ sâu trên mặt nhai nhỏ như đầu tăm nhưng đáy đã khoét rộng trong lớp ngà mềm.</p>
+            </div>
+          </div>
+          <div class="media-card">
+            <div class="media-frame"><img src="./assets/aieditskill/dental_atlas_v13_composite.jpg" alt="Phục hồi bảo tồn mô răng bằng Composite" onclick="openLightbox(this.src)" loading="lazy" /></div>
+            <div class="media-body">
+              <div class="media-kicker">NHA KHOA #V13 • HÌNH 07 (A → B)</div>
+              <div class="media-title">Phục Hồi Bảo Tồn Bằng Composite 2 Giai Đoạn</div>
+              <p class="media-text">Đối chiếu Giai đoạn A (Làm sạch xoang sâu nhỏ) và Giai đoạn B (Trám tái tạo mặt nhai, giữ nguyên tủy sống).</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ====================================================================
+           PHẦN 04: THIẾT KẾ LẠI ANIMATION MAP THEO TRỤC DỌC (MG-B02 V2)
+           ==================================================================== -->
+      <section id="sec-04" class="sec-block">
+        <div class="sec-head">
+          <div class="sec-tag">PHẦN 04 • VERTICAL SPINE ANIMATION MAP REDESIGN (`MG-B02 V2`)</div>
+          <h2 class="sec-title">Thiết Kế Lại Animation Map Theo Trục Dọc (Xóa Bỏ Đường Chữ S Ngoằn Ngoèo)</h2>
+          <p class="sec-desc">
+            Giải quyết triệt để vấn đề anh Việt yêu cầu: <em>"Về phần animation map phải làm theo trục dọc và thiết kế lại giao diện của hiệu ứng này. Hiện tại hiệu ứng này đang rất quê, ngoằn ngoèo và rắc rối."</em>
+          </p>
+        </div>
+
+        <!-- 3-Column Visual Comparison Image -->
+        <div class="media-card" style="margin-bottom:1.5rem;">
+          <div class="media-frame">
+            <img src="./assets/aieditskill/compare_map_old_vs_vertical_v2.jpg" alt="So sánh Animation Map V1 Cũ (Chữ S ngoằn ngoèo) và V2 Mới (Tách khung + Trục dọc thẳng đứng)" onclick="openLightbox(this.src)" />
+          </div>
+          <div class="media-body">
+            <div class="media-kicker">SO SÁNH TRỰC QUAN 3 KHUNG: TRƯỚC (V1 CŨ) VS SAU KHI TÁCH KHUNG &amp; KẺ TRỤC DỌC (V2 MỚI)</div>
+            <div class="media-title">Từ Đường Cong Chữ S + Sóng Radar Rối Mắt → Trục Thẳng Đứng Duy Nhất (`X = 158`) Chuẩn Swiss Dark</div>
+            <p class="media-text">
+              • <strong>Cột 1 (Bản V1 cũ bị loại bỏ):</strong> Đường Bézier uốn chữ S bắt mắt đảo qua lại trái-phải, cộng thêm 3 vòng sóng radar tỏa ra và nhồi chung bảng thống kê 85% khiến màn hình dọc bị ngộp.<br/>
+              • <strong>Cột 2 (`#MG1_STAT` mới):</strong> Tách riêng bảng Thống kê lâm sàng 85% thành 1 khung độc lập ở nhịp 1 (<code>0.00s – 1.72s</code>).<br/>
+              • <strong>Cột 3 (`#MG2_ROADMAP` / `MG-B02 V2` mới):</strong> Kẻ 1 trục thẳng đứng duy nhất bên trái (<code>X = 158</code>), 4 Node tròn tối giản <code>01 → 02 → 03 → 04</code> nối vuông góc sang 4 thẻ ngang căn thẳng hàng từ trên xuống dưới.
+            </p>
+          </div>
+        </div>
+
+        <!-- Interactive Live Demo + Rendered MP4 Demo -->
+        <div class="vmap-interactive-wrap">
+          <!-- Left: Live Rendered MP4 Video from Python Engine -->
+          <div style="display:flex; flex-direction:column; gap:0.75rem;">
+            <div style="font-family:var(--font-mono); font-size:0.72rem; font-weight:700; color:var(--ink-gold); text-transform:uppercase;">
+              1. VIDEO MP4 RENDER TỪ PYTHON ENGINE (`MG-B02 V2`)
+            </div>
+            <div class="media-card">
+              <div class="media-frame">
+                <video id="vmap-mp4-player" controls autoplay loop muted playsinline poster="./assets/aieditskill/nhasy_mg2_vertical_roadmap.jpg">
+                  <source src="./assets/aieditskill/vertical_map_v2_demo.mp4" type="video/mp4" />
+                </video>
+              </div>
+              <div class="media-body">
+                <div class="media-title" style="font-size:0.9rem;">Bản Xuất Thực Tế Từ `v3_motion_library.py`</div>
+                <p class="media-text" style="font-size:0.78rem;">Thanh năng lượng vàng <code>#FACC15</code> chạy dọc từ Node 01 xuống 04 theo hàm <code>ease_in_out_cubic</code>, 4 thẻ ngang trượt vào lệch nhịp <code>0.14s</code>.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: Interactive HTML/CSS/SVG Vertical Spine Map Previewer -->
+          <div style="display:flex; flex-direction:column; gap:1rem;">
+            <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:0.5rem;">
+              <div>
+                <div style="font-family:var(--font-mono); font-size:0.72rem; font-weight:700; color:var(--cl-accent); text-transform:uppercase;">
+                  2. BẢN TƯƠNG TÁC TRỰC TIẾP TRÊN WEB (INTERACTIVE VERTICAL SPINE MAP V2)
+                </div>
+                <div style="font-size:0.86rem; color:var(--cl-ink-2);">Bấm chọn kịch bản hoặc bấm nút <strong>"▶ Chạy Lại Hiệu Ứng Trục Dọc"</strong> để kiểm tra nhịp xuất hiện của 4 chặng:</div>
+              </div>
+              <div class="chip-group">
+                <button class="filter-chip active" onclick="loadVmapPreset('dental', this)">Nha Khoa (4 Chặng)</button>
+                <button class="filter-chip" onclick="loadVmapPreset('derma', this)">Da Liễu Detox</button>
+                <button class="filter-chip" onclick="loadVmapPreset('channel', this)">Xây Kênh 4 Tuần</button>
+                <button class="filter-chip" style="background:rgba(250,204,21,0.16); border-color:var(--ink-gold); color:var(--ink-gold);" onclick="replayVmapAnimation()">▶ Chạy Lại Hiệu Ứng Trục Dọc</button>
+              </div>
+            </div>
+
+            <div style="display:grid; grid-template-columns: 340px minmax(0, 1fr); gap:1.25rem; align-items:center;">
+              <!-- Live 9:16 Phone Canvas -->
+              <div class="vmap-phone">
+                <div class="vmap-card-shell">
+                  <div id="vmap-ui-kicker" class="vmap-kicker">CẤU TRÚC NỘI DUNG • 4 CHẶNG LÂM SÀNG</div>
+                  <div id="vmap-ui-heading" class="vmap-heading">Lộ trình 4 chặng bảo vệ răng thật</div>
+                  <div class="vmap-spine-area">
+                    <div class="vmap-spine-track"></div>
+                    <div id="vmap-ui-beam" class="vmap-spine-beam"></div>
+                    <div id="vmap-ui-nodes" style="display:flex; flex-direction:column; gap:0.65rem;"></div>
+                  </div>
+                </div>
+                <div class="vmap-sub-safezone">
+                  <div class="vmap-sub-l1" id="vmap-ui-sub1">LỘ TRÌNH RÕ RÀNG TỪ ĐẦU</div>
+                  <div class="vmap-sub-l2" id="vmap-ui-sub2">một trục đọc thẳng đứng, không đi lòng vòng</div>
+                </div>
+              </div>
+
+              <!-- Architectural Specs of Vertical Spine Map -->
+              <div style="display:flex; flex-direction:column; gap:0.85rem;">
+                <div class="card">
+                  <div style="font-family:var(--font-mono); font-size:0.72rem; color:var(--ink-emerald); font-weight:700;">QUY CHUẨN TOẠ ĐỘ 9:16 (`1080×1920`)</div>
+                  <div style="font-family:var(--font-display); font-size:0.98rem; font-weight:800; color:#fff; margin:0.25rem 0;">Vì Sao Trục Dọc Giải Quyết Triệt Để Sự Rối Mắt?</div>
+                  <ul style="padding-left:1.1rem; font-size:0.84rem; color:var(--cl-ink-2); display:flex; flex-direction:column; gap:0.45rem; margin-top:0.4rem;">
+                    <li><strong>Một trục mắt duy nhất (`X = 158px`):</strong> Mắt người xem điện thoại dọc luôn lướt từ trên xuống dưới. Khi đặt toàn bộ 4 số thứ tự <code>01, 02, 03, 04</code> trên cùng 1 đường thẳng đứng, mắt chỉ cần trượt dọc 0.8 giây là nắm trọn cấu trúc bài nói.</li>
+                    <li><strong>4 Thẻ ngang đồng nhất (`X = 216..964px`, cao `144px`):</strong> Mép trái của cả 4 thẻ thẳng hàng tuyệt đối, có thanh nhấn màu <code>6px</code> phân biệt từng giai đoạn (Vàng <code>#FACC15</code> → Đỏ cam <code>#F87171</code> → Xanh lam <code>#38BDF8</code> → Xanh ngọc <code>#10B981</code>).</li>
+                    <li><strong>Nhãn thời gian (`00s – 25s`) đặt gọn góc phải:</strong> Giúp người xem biết rõ từng phần kéo dài bao lâu để kiên nhẫn theo dõi đến cuối video.</li>
+                    <li><strong>Đã cập nhật trực tiếp vào lõi `v3_motion_library.py`:</strong> Bất kỳ video nào gọi mã <code>MG-B02</code> hoặc <code>#MG2_ROADMAP</code> đều tự động xuất ra giao diện Trục Dọc V2 này.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ====================================================================
+           PHẦN 05: ĐỒNG HỢP TRANG "35 MẪU HTML" + 16 ARCHETYPES + 8 KHUNG B-ROLL
+           ==================================================================== -->
+      <section id="sec-05" class="sec-block">
+        <div class="sec-head">
+          <div class="sec-tag">PHẦN 05 • UNIFIED 35 TYPOGRAPHY STYLES + 16 MOTION ARCHETYPES + 8 B-ROLL FRAMES</div>
+          <h2 class="sec-title">Đồng Hợp Kho 35 Mẫu Chữ HTML &amp; 16 Kiểu Chuyển Động MFX</h2>
+          <p class="sec-desc">
+            Trang 35 mẫu HTML trước đây (<code>mfx.html</code> / <code>styles_db.json</code> &amp; <code>motion_catalog.json</code>) đã được hợp nhất hoàn toàn vào ngay bên dưới. Anh Việt có thể bấm vào bất kỳ mẫu chữ nào trong <strong>35 Mẫu Typography</strong> hoặc <strong>16 Archetypes (`MG-T01..V06`)</strong> để xem mô phỏng trực tiếp trên màn hình dọc 9:16 và lấy mã cấu hình.
+          </p>
+        </div>
+
+        <div class="mfx-studio-grid">
+          <!-- Left Sticky 9:16 Live Preview Stage -->
+          <div class="mfx-stage-phone">
+            <div style="display:flex; justify-content:space-between; align-items:center; font-family:var(--font-mono); font-size:0.68rem; color:var(--cl-muted);">
+              <span id="stage-badge-id" style="color:var(--ink-gold); font-weight:700;">STYLE-01</span>
+              <span id="stage-badge-group">9:16 LIVE STAGE</span>
+            </div>
+
+            <!-- Dynamic Center/Bottom Preview Area -->
+            <div id="stage-render-box" style="my:auto; padding:1.15rem; border-radius:16px; background:rgba(15,23,42,0.88); border:1.5px solid rgba(56,189,248,0.4); text-align:center; transition:all 0.25s ease;">
+              <div id="stage-pill" style="display:inline-block; font-family:var(--font-mono); font-size:0.65rem; font-weight:700; padding:0.18rem 0.55rem; border-radius:99px; background:rgba(250,204,21,0.15); color:var(--ink-gold); border:1px solid rgba(250,204,21,0.4); margin-bottom:0.55rem;">
+                ⚡ MẪU ĐANG CHỌN
+              </div>
+              <div id="stage-line1" style="font-family:var(--font-display); font-size:1.35rem; font-weight:900; line-height:1.2; color:#00FF66; text-transform:uppercase;">
+                BẬT Ý TƯỞNG
+              </div>
+              <div id="stage-line2" style="font-family:var(--font-serif); font-style:italic; font-size:1rem; color:#ffffff; margin-top:0.35rem;">
+                Xây kênh đa nền tảng
+              </div>
+            </div>
+
+            <!-- Stage Metadata & Copyable JSON -->
+            <div style="background:rgba(7,9,14,0.82); border:1px solid var(--cl-line); border-radius:12px; padding:0.75rem; font-family:var(--font-mono); font-size:0.68rem; color:var(--cl-ink-2);">
+              <div id="stage-meta-lines" style="line-height:1.55;"></div>
+              <button onclick="copyCurrentStyleCode(this)" style="margin-top:0.5rem; width:100%; padding:0.4rem; border-radius:6px; border:1px solid var(--cl-accent); background:rgba(56,189,248,0.12); color:#fff; font-family:var(--font-mono); font-size:0.68rem; font-weight:700; cursor:pointer;">
+                Sao Chép Mã Cấu Hình JSON
+              </button>
+            </div>
+          </div>
+
+          <!-- Right Filterable Grid of 35 Styles + 16 Archetypes + 8 B-Roll Frames -->
+          <div>
+            <div class="mfx-filter-bar">
+              <div class="chip-group">
+                <button class="filter-chip active" onclick="filterMfxCatalog('all35', this)">35 Mẫu Chữ (STYLE 01–35)</button>
+                <button class="filter-chip" onclick="filterMfxCatalog('arch16', this)">16 MFX Archetypes (MG-T/B/V)</button>
+                <button class="filter-chip" onclick="filterMfxCatalog('broll8', this)">8 Khung B-Roll &amp; SFX</button>
+                <button class="filter-chip" onclick="filterMfxCatalog('expert', this)">Chuyên Gia / Uy Tín</button>
+                <button class="filter-chip" onclick="filterMfxCatalog('story', this)">Storytelling / Cảm Xúc</button>
+                <button class="filter-chip" onclick="filterMfxCatalog('sales', this)">Bán Hàng / Affiliate</button>
+              </div>
+              <input type="text" id="mfx-search" class="search-input" placeholder="Tìm tên mẫu, mã MG-T01, màu..." oninput="searchMfxCatalog(this.value)" />
+            </div>
+
+            <div id="mfx-cards-container" class="style-cards-grid"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ====================================================================
+           PHẦN 06: ĐÁNH GIÁ UI/UX ĐỐI CHIẾU BRAND.HTML & HỘI Ý CÙNG CLAUDE2
+           ==================================================================== -->
+      <section id="sec-06" class="sec-block">
+        <div class="sec-head">
+          <div class="sec-tag">PHẦN 06 • BRAND.HTML COMPLIANCE &amp; CLAUDE2 ARCHITECTURAL REVIEW</div>
+          <h2 class="sec-title">Đánh Giá UI/UX So Với `brand.html` &amp; Biên Bản Hội Ý Cùng `CLAUDE2`</h2>
+          <p class="sec-desc">
+            Kết quả đối chiếu trực tiếp toàn bộ các bản demo với hệ quy chiếu <code>/Users/vietmac/Documents/CODE/k/brand.html</code> (Swiss Dark <code>#07090e</code>, Card <code>#111622</code>, hệ font <code>FD Aeonik Extended / FD Aeonik / Tiempos Text / JetBrains Mono</code>, 82 Pro Stroke Icons) và phiên hội ý trực tiếp cùng <strong>CLAUDE2 (Claude Opus 5.5 Native — Mã phiên <code>job_id: 0c99e7df</code>)</strong>.
+          </p>
+        </div>
+
+        <div class="table-wrap" style="margin-bottom:1.35rem;">
+          <table class="pro-table">
+            <thead>
+              <tr>
+                <th style="width:20%;">Nhóm Demo / Thành Phần</th>
+                <th style="width:12%;">Điểm CLAUDE2</th>
+                <th style="width:34%;">Điểm Đã Khớp Chuẩn `brand.html`</th>
+                <th style="width:34%;">Phát Hiện Của `CLAUDE2` &amp; Tinh Chỉnh Đã Áp Dụng</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong style="color:#fff;">1. Bản Vẽ Khoa Học 2D (`Scientific Atlas V2`)</strong><br/><span style="font-family:var(--font-mono); font-size:0.72rem; color:var(--ink-emerald);">Thắm Thỏ &amp; Nha Sĩ Tiến</span></td>
+                <td><span style="font-family:var(--font-mono); font-weight:800; color:var(--ink-emerald); font-size:1.05rem;">8.5 → 9.2/10</span></td>
+                <td>Nền giấy <code>#F5F2EB</code> phẳng tuyệt đối, tiêu đề <code>Tiempos Headline Italic</code>, nhãn <code>[1][2][3][4]</code> kèm đường dẫn vuông góc, hộp <em>Ghi chú lâm sàng</em> đúng chuẩn Editorial. Loại bỏ 100% kiểu 3D bóng nhựa.</td>
+                <td><strong>Phát hiện của CLAUDE2:</strong> Nhãn <em>"400× • Nhuộm H&amp;E"</em> đặt trên hình vẽ 2D dễ bị bắt lỗi quảng cáo y tế.<br/><strong>Đã xử lý ngay:</strong> Đổi toàn bộ sang <em>"Mặt cắt giải phẫu 2D • Thiết đồ mô học 2D"</em> trong cả <code>build_scientific_atlas_v2.py</code> và <code>build_dental_atlas_and_plan.py</code>.</td>
+              </tr>
+              <tr>
+                <td><strong style="color:#fff;">2. Animation Map Trục Dọc (`MG-B02 V2`)</strong><br/><span style="font-family:var(--font-mono); font-size:0.72rem; color:var(--ink-gold);">Vertical Linear Spine</span></td>
+                <td><span style="font-family:var(--font-mono); font-weight:800; color:var(--ink-emerald); font-size:1.05rem;">9.0/10</span></td>
+                <td>Chuyển từ đường cong chữ S ngoằn ngoèo + 3 vòng sóng radar sang <strong>1 trục thẳng đứng duy nhất (`X = 158`)</strong> và tách bảng thống kê <code>85%</code> ra khung <code>#MG1_STAT</code> riêng. Hoàn toàn khớp nguyên lý Swiss Grid: 1 trục đọc, 0 trang trí thừa.</td>
+                <td><strong>Đã cập nhật đồng bộ:</strong> Nâng cấp trực tiếp hàm <code>style_id == "MG-B02"</code> trong <code>v3_motion_library.py</code> và <code>motion_catalog.json</code> để mọi video sau này tự động dùng Trục Dọc V2.</td>
+              </tr>
+              <tr>
+                <td><strong style="color:#fff;">3. Motion 60fps (`#PROD-09` &amp; `#PROD-10`)</strong><br/><span style="font-family:var(--font-mono); font-size:0.72rem; color:var(--cl-accent);">Ultra-Clean &amp; Risograph</span></td>
+                <td><span style="font-family:var(--font-mono); font-weight:800; color:var(--cl-accent); font-size:1.05rem;">8.8/10</span></td>
+                <td>Tuân thủ chặt chẽ quy luật <em>"dứt khoát, không xoay vòng, không vỡ kính"</em> của Chặng 06; giữ <code>65%</code> khoảng thở; khuôn <code>.TSX</code> tách riêng bảng biến <code>Tweaks</code> ở đầu file.</td>
+                <td><strong>Khuyến nghị của CLAUDE2:</strong> Duy trì giới hạn tối đa 2 phần tử đồ họa trong cùng 1 khung hình và dùng icon nét mảnh (Stroke Icons) thay vì emoji.</td>
+              </tr>
+              <tr>
+                <td><strong style="color:#fff;">4. Kho 35 Mẫu Chữ &amp; 16 Archetypes (`mfx.html`)</strong></td>
+                <td><span style="font-family:var(--font-mono); font-weight:800; color:var(--ink-gold); font-size:1.05rem;">6.5 → 8.8/10</span></td>
+                <td>Lưới Archetype rõ ràng, thông số kỹ thuật hiển thị bằng <code>JetBrains Mono</code>, có công thức Easing &amp; Spring cụ thể.</td>
+                <td><strong>Phát hiện của CLAUDE2:</strong> Bản <code>mfx.html</code> cũ nằm rời rạc và khai báo font <code>SVN-*</code> khác hệ với <code>brand.html</code>.<br/><strong>Đã xử lý:</strong> Hợp nhất toàn bộ 35 mẫu + 16 Archetypes vào Phần 05 của <code>aieditskill.html</code> dưới hệ token <code>--cl-*</code> và font <code>FD Aeonik / Tiempos</code>.</td>
+              </tr>
+              <tr>
+                <td><strong style="color:#fff;">5. Affiliate AIDA &amp; Amber Bento</strong><br/><span style="font-family:var(--font-mono); font-size:0.72rem; color:var(--cl-muted);">Dropship &amp; Sản phẩm vật lý</span></td>
+                <td><span style="font-family:var(--font-mono); font-weight:800; color:var(--ink-gold); font-size:1.05rem;">8.4/10</span></td>
+                <td>Bố cục 4 pha A-I-D-A giữ <code>84%</code> khung hình sạch cho sản phẩm thật, Header 1 dòng gọn tại <code>Y = 54px</code>, đối chiếu Trước &amp; Sau rõ ràng.</td>
+                <td><strong>Lưu ý vận hành từ CLAUDE2:</strong> Tuyệt đối không gắn nhãn <em>"Mô phỏng 3D"</em> lên các cảnh quay sản phẩm thật; ưu tiên khung viền mảnh <code>1.5px</code> trên nền tối đặc <code>#07090e</code>.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ====================================================================
+           PHẦN 07: VỊ TRÍ CHIẾN LƯỢC TRONG LOGIC XÂY KÊNH (KENH.FEDU.VN)
+           ==================================================================== -->
+      <section id="sec-07" class="sec-block">
+        <div class="sec-head">
+          <div class="sec-tag">PHẦN 07 • STRATEGIC POSITION IN KENH.FEDU.VN</div>
+          <h2 class="sec-title">Vị Trí Của Hệ Thống Kỹ Năng AI Edit Trong Logic Xây Kênh Học Viện</h2>
+          <p class="sec-desc">
+            Phân tích tổng quan cấu trúc 3 Chặng của <code>kenh.fedu.vn</code> (Tư duy gốc → 4 Định dạng &amp; 4 Kỹ năng → Thực hành &amp; Tài nguyên) để đặt công cụ AI Video Edit vào đúng điểm nghẽn lớn nhất của học viên khi xây kênh.
+          </p>
+        </div>
+
+        <div class="callout-box" style="margin-bottom:1.35rem;">
+          <div class="callout-title">Bài Toán Kinh Tế Cốt Lõi: Gỡ Nút Thắt "4 Tiếng Dựng Thủ Công" Để Đạt Quy Luật 7-11-4 &amp; 1.000 Giờ Bay</div>
+          <p style="font-size:0.88rem; color:var(--cl-ink-2);">
+            Trong <strong>Chặng 03 (`03-logic-kenh.html` — Quy tắc 7-11-4)</strong>, khách hàng cần <strong>7 giờ</strong> theo dõi và <strong>11 điểm chạm</strong> trên <strong>4 địa điểm</strong> trước khi tự nhắn tin mua hàng giá cao. Còn trong <strong>Chặng 06 (`06-ky-nang.html`)</strong>, mỗi video xuất bản là <strong>1 giờ bay</strong> trên hành trình 1.000 giờ bay.<br/>
+            Tuy nhiên, rào cản khiến 90% chủ doanh nghiệp, bác sĩ, dược sĩ bỏ cuộc ở tuần thứ 2 không phải vì họ không biết nói gì, mà vì <strong>mỗi video quay 5 phút nhưng mất tới 4 tiếng ngồi cắt từng tiếng thở dài, căn từng dòng chữ và tìm cảnh chèn trên điện thoại</strong>. Hệ thống AI Video Edit đứng ở vị trí <strong>"Máy dọn giờ chết trên Timeline"</strong>: tự động hóa 90% thao tác cắt nhịp, khóa trục mắt, đóng gói chữ và chèn bản vẽ minh họa để học viên dồn 100% tâm sức vào 3 thứ máy không làm thay được: <strong>Trải nghiệm nghề thật, Kịch bản chạm vấn đề khó nói, và Giọng nói điềm tĩnh.</strong>
+          </p>
+        </div>
+
+        <!-- 4 Integration Points in kenh.fedu.vn -->
+        <div class="grid-2" style="margin-bottom:1.25rem;">
+          <div class="card">
+            <div style="font-family:var(--font-mono); font-size:0.72rem; font-weight:700; color:var(--ink-gold);">ĐIỂM NỐI 01 • CHẶNG 03 (`03-logic-kenh.html`)</div>
+            <div style="font-family:var(--font-display); font-size:1.04rem; font-weight:800; color:#fff; margin:0.25rem 0;">Giải Bài Toán Sản Lượng Cho Quy Luật 7-11-4 &amp; Tỷ Lệ 90-9-1</div>
+            <p style="font-size:0.85rem; color:var(--cl-ink-2);">
+              90% người có tiền chỉ âm thầm xem (Dark Social) mà không bấm like. Để chạm đủ 11 lần vào nhóm 90% này, kênh phải xuất bản đều đặn. AI Edit rút thời gian hậu kỳ từ <code>4 giờ → 10 phút duyệt ảnh Mockup</code>, giúp duy trì nhịp đăng bài bền bỉ mà không cần nuôi đội ngũ dựng phim cồng kềnh.
+            </p>
+          </div>
+
+          <div class="card">
+            <div style="font-family:var(--font-mono); font-size:0.72rem; font-weight:700; color:var(--cl-accent);">ĐIỂM NỐI 02 • CHẶNG 05 (`05-dinh-dang.html` &amp; `5.1 → 5.7`)</div>
+            <div style="font-family:var(--font-display); font-size:1.04rem; font-weight:800; color:#fff; margin:0.25rem 0;">Mỗi Định Dạng Video Có Sẵn 1 Preset Đóng Gói Riêng</div>
+            <p style="font-size:0.85rem; color:var(--cl-ink-2);">
+              • <strong>5.1 Voice-Over &amp; 5.2 Walk &amp; Talk:</strong> Khử rung + B-Roll Hot-Swap + Nhịp phụ đề <code>1.5s</code>.<br/>
+              • <strong>5.3 Talking Head Chuyên Gia:</strong> Bản vẽ Khoa học 2D (<code>Scientific Atlas V2</code>) + Lộ trình Trục Dọc (<code>MG-B02 V2</code>) + Bằng chứng giờ đăng thật.<br/>
+              • <strong>5.4 Storytelling &amp; 5.7 Affiliate AIDA:</strong> Phụ đề <code>Tiempos Italic</code> + 4 Pha AIDA giữ <code>84%</code> khung hình sạch.
+            </p>
+          </div>
+
+          <div class="card">
+            <div style="font-family:var(--font-mono); font-size:0.72rem; font-weight:700; color:var(--ink-emerald);">ĐIỂM NỐI 03 • CHẶNG 06 (`06-ky-nang.html` — TRỤ CỘT 2: KỸ NĂNG DỰNG)</div>
+            <div style="font-family:var(--font-display); font-size:1.04rem; font-weight:800; color:#fff; margin:0.25rem 0;">Tự Động Hóa 4 Nguyên Tắc Dựng Trong Bảng Kỹ Năng</div>
+            <p style="font-size:0.85rem; color:var(--cl-ink-2);">
+              Toàn bộ 4 lỗi dựng phổ biến nêu tại Bài 06 đều được AI Edit khóa cứng bằng thông số: (1) Tự cắt tiếng thở dài &amp; nhịp nghỉ bằng Whisper word-timestamp; (2) Chèn B-Roll khớp đúng từ khóa đang nói; (3) Tự động nén âm lượng SFX/Nhạc xuống <code>-20dB..-25dB</code> (<code>10% Voice-Safe</code>); (4) Đóng khung chữ chuẩn tương phản cao.
+            </p>
+          </div>
+
+          <div class="card">
+            <div style="font-family:var(--font-mono); font-size:0.72rem; font-weight:700; color:var(--ink-purple);">ĐIỂM NỐI 04 • CHẶNG 08 (`08-tai-nguyen.html` &amp; MENU TRUNG TÂM)</div>
+            <div style="font-family:var(--font-display); font-size:1.04rem; font-weight:800; color:#fff; margin:0.25rem 0;">Trạm Lắp Ráp Trung Tâm Nối 3 Kho Tài Nguyên</div>
+            <p style="font-size:0.85rem; color:var(--cl-ink-2);">
+              Trước đây Kho B-Roll (<code>brollbank</code>), Kho Nhạc (<code>nhac</code>) và Kho 8.902 SFX (<code>sfx</code>) nằm tách rời. Nay <code>aieditskill.html</code> được gắn trực tiếp vào <strong>Mục 6.1 (dưới Chặng 06: Bản đồ kỹ năng)</strong>, <strong>Trang chủ `index.html`</strong> và <strong>Bảng Tài Nguyên `08-tai-nguyen.html`</strong> của <code>kenh.fedu.vn</code> như trạm lắp ráp tự động kết nối cả 3 kho.
+            </p>
+          </div>
+        </div>
+
+        <div style="display:flex; flex-wrap:wrap; gap:0.75rem; margin-top:1rem;">
+          <a href="06-ky-nang.html" class="top-pill active" style="padding:0.65rem 1.15rem; font-size:0.82rem;">→ Mở Bài 06: Bản Đồ Kỹ Năng Quay — Dựng — Viết — Nói</a>
+          <a href="aiedit-affilate.html" class="top-pill" style="padding:0.65rem 1.15rem; font-size:0.82rem;">→ Mở Bài 5.7: Affiliate Style V3.3 &amp; Công Thức 4 Pha AIDA</a>
+          <a href="08-tai-nguyen.html" class="top-pill" style="padding:0.65rem 1.15rem; font-size:0.82rem;">→ Mở Bài 08: Bảng Tài Nguyên Hệ Sinh Thái</a>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- LIGHTBOX MODAL -->
+  <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+    <button class="lightbox-close" onclick="closeLightbox()">✕ ĐÓNG (ESC)</button>
+    <img id="lightbox-img" src="" alt="Preview phóng to" onclick="event.stopPropagation()" />
+  </div>
+
+  <script>
+    // =========================================================================
+    // 1. CENTRALIZED SKILL ECOSYSTEM READINESS DB (10 CORE MODULES)
+    // =========================================================================
+    const SKILL_ECOSYSTEM_DB = [
+      {
+        code: "SKILL-01 • AUTO-EDIT-VIDEO V3.2",
+        name: "Hậu Kỳ Talking-Head 10 Điểm Chuẩn & EDL JSON",
+        readiness: 95,
+        status: "PROD 95%",
+        isV2: false,
+        color: "#38bdf8",
+        desc: "Bóc băng Whisper word-timestamp (ngắt cụm 1.3s–1.8s, tối đa 7 từ/dòng), khóa trục mắt OpenCV Haar tại Y=38%, tự động tách thẻ chuyển chương #B và xuất bộ ảnh Frame Mockup 1:1 trong 12 giây.",
+        meta: "Engine: mfx_v3_universal_engine.py • Delta Patcher 1.5s"
+      },
+      {
+        code: "SKILL-02 • SCIENTIFIC ATLAS V2",
+        name: "Bản Vẽ Khoa Học 2D (Chống AI / Chống 3D Giả Tưởng)",
+        readiness: 94,
+        status: "V2 UPGRADED",
+        isV2: true,
+        color: "#facc15",
+        desc: "Quy trình 2 lớp tách biệt: Hình vẽ giải phẫu 2D nét bút kim + màu nước trầm trên nền giấy y khoa #F5F2EB phẳng tuyệt đối (0 chữ AI), kết hợp chỉ dẫn vector vuông góc [1]..[4] và hộp Ghi chú lâm sàng bằng Python PIL.",
+        meta: "Scripts: build_scientific_atlas_v2.py & build_dental_atlas_and_plan.py"
+      },
+      {
+        code: "SKILL-03 • VERTICAL SPINE MAP V2",
+        name: "Animation Map Trục Dọc Thẳng Đứng (MG-B02 V2)",
+        readiness: 92,
+        status: "V2 REDESIGNED",
+        isV2: true,
+        color: "#10b981",
+        desc: "Xóa bỏ đường cong chữ S ngoằn ngoèo và 3 vòng sóng radar cũ. Thiết kế lại theo trục thẳng đứng X=158 chuẩn Swiss Dark, tách riêng khung số liệu (#MG1_STAT) và khung lộ trình 4 chặng (#MG2_ROADMAP).",
+        meta: "Engine: v3_motion_library.py (style_id = MG-B02)"
+      },
+      {
+        code: "SKILL-04 • MOTION STUDIO 60FPS",
+        name: "Đồ Họa Chuyển Động Remotion 60fps & 3 Khuôn .TSX",
+        readiness: 95,
+        status: "PROD 95%",
+        isV2: false,
+        color: "#38bdf8",
+        desc: "Chuyển đổi file thoại + video gốc thành sản phẩm 60fps dựa trên 3 khuôn thiết kế gốc (.TSX có bảng biến Tweaks ở đầu file): Ultra-Clean V3, Claude Editorial Risograph, và 3D Bento Gold 9:16 & 16:9.",
+        meta: "Verifier: verify_motion_deliverable.py (60fps, -15.4 LUFS)"
+      },
+      {
+        code: "SKILL-05 • UNIFIED MFX CATALOG",
+        name: "Kho 35 Mẫu Chữ HTML + 16 Archetypes + 8 Khung B-Roll",
+        readiness: 90,
+        status: "INTEGRATED",
+        isV2: true,
+        color: "#facc15",
+        desc: "Đồng hợp toàn bộ 35 phong cách chữ 2 tầng (STYLE-01..35), 16 công thức chuyển động (MG-T01..V06) và 8 kiểu khung B-Roll vào chung 1 giao diện tra cứu trực tiếp kèm mã JSON.",
+        meta: "DB: styles_db.json (35 styles) + motion_catalog.json (16 archetypes)"
+      },
+      {
+        code: "SKILL-06 • RENDER-V3 & CAPCUT PACK",
+        name: "Kết Xuất Video Tự Động & Gói Lớp Phủ PNG Alpha",
+        readiness: 92,
+        status: "PROD 92%",
+        isV2: false,
+        color: "#10b981",
+        desc: "Tự động xuất song song file .mp4 hoàn chỉnh và thư mục capcut_png_pack/ chứa các lớp chữ RGBA trong suốt đặt tên theo đúng số giây (01_T1_0.00s.png) để kéo thả vào CapCut trong 30 giây.",
+        meta: "Output: Final MP4 + CapCut Transparent PNG Pack + ProRes 4444"
+      },
+      {
+        code: "SKILL-07 • AFFILIATE AIDA & PROOF V3.3",
+        name: "Đóng Gói Affiliate 4 Pha AIDA & Bằng Chứng Thật",
+        readiness: 90,
+        status: "PROD 90%",
+        isV2: false,
+        color: "#a855f7",
+        desc: "Cấu trúc 4 pha A-I-D-A giữ 84% khung hình sạch cho sản phẩm thật, Header 1 dòng tại Y=54px, kết hợp kỹ thuật đóng dấu bằng chứng bài đăng Facebook (8:15 AM) và tin nhắn chốt đơn thật ở cuối video.",
+        meta: "Templates: build_fb_timestamp_proof.py & build_outro_proof_preview.py"
+      },
+      {
+        code: "SKILL-08 • VOICE-SAFE SFX & NHAC BANK",
+        name: "Phối Âm 4 Lớp Voice-Safe 10% (8.902 File SFX)",
+        readiness: 88,
+        status: "PROD 88%",
+        isV2: false,
+        color: "#38bdf8",
+        desc: "Tự động gắn hiệu ứng âm thanh theo đúng mã chuyển động (Whoosh nhẹ khi trượt thẻ, Pop khi nảy huy hiệu, Camera Shutter khi chèn ảnh) ở mức âm lượng 8%–10% (-20dB đến -25dB), tuyệt đối không lấn giọng nói.",
+        meta: "Index: 8.902 SFX files • 16 Presets • sfx.fedu.vn & nhac.fedu.vn"
+      },
+      {
+        code: "SKILL-09 • AI-FACE-CLONE & VEO 3.1 FLOW",
+        name: "Nhân Bản Khuôn Mặt Mỏ Neo & Tạo Video B-Roll Veo 3.1",
+        readiness: 92,
+        status: "PROD 92%",
+        isV2: false,
+        color: "#10b981",
+        desc: "Giữ đồng nhất >99% đường nét khuôn mặt bằng 2 ảnh mỏ neo vàng, sau đó đẩy ảnh Keyframe sang Google Flow (Veo 3.1 / Omni 1.1) để sinh các cảnh trám video chuyển động mượt mà.",
+        meta: "Harness: video_automator.py V3 (CDP Port 9223)"
+      },
+      {
+        code: "SKILL-10 • LIP-MASK SKIN & COLOR ENGINE",
+        name: "Làm Mịn Da Giữ Nét Môi & Chỉnh Màu 10-Bit S-Curve",
+        readiness: 90,
+        status: "PROD 90%",
+        isV2: false,
+        color: "#f87171",
+        desc: "Thuật toán lọc da Bilateral kết hợp mặt nạ bảo vệ vùng môi và mắt (giữ nguyên độ sắc nét của môi và râu/lông mày), đi kèm cân bằng trắng 5500K và đường cong tương phản S-Curve.",
+        meta: "Filter: Lip-Mask Protected Bilateral + 3-Way Color Lut"
+      }
+    ];
+
+    function renderSkillMatrix() {
+      const container = document.getElementById("skill-matrix-container");
+      container.innerHTML = SKILL_ECOSYSTEM_DB.map(item => `
+        <div class="skill-tile" style="--tile-color: ${item.color}">
+          <div>
+            <div class="skill-top">
+              <span class="skill-code">${item.code}</span>
+              <span class="skill-badge ${item.isV2 ? 'v2' : ''}">${item.status}</span>
+            </div>
+            <div class="skill-name">${item.name}</div>
+            <p class="skill-desc" style="margin-top:0.4rem;">${item.desc}</p>
+          </div>
+          <div>
+            <div class="prog-row">
+              <span style="color:var(--cl-muted);">Mức độ hoàn thiện</span>
+              <strong style="color:${item.color};">${item.readiness}%</strong>
+            </div>
+            <div class="prog-track">
+              <div class="prog-fill" style="width:${item.readiness}%; background:${item.color};"></div>
+            </div>
+            <div class="skill-meta" style="margin-top:0.55rem;">${item.meta}</div>
+          </div>
+        </div>
+      `).join("");
+    }
+
+    // =========================================================================
+    // 2. INTERACTIVE VERTICAL SPINE MAP V2 (SECTION 04)
+    // =========================================================================
+    const VMAP_PRESETS = {
+      dental: {
+        kicker: "CẤU TRÚC NỘI DUNG • 4 CHẶNG LÂM SÀNG",
+        heading: "Lộ trình 4 chặng bảo vệ răng thật",
+        sub1: "LỘ TRÌNH RÕ RÀNG TỪ ĐẦU",
+        sub2: "một trục đọc thẳng đứng, không đi lòng vòng",
+        stages: [
+          { num: "01", title: "CÁI BẪY THÓI QUEN", desc: "Chủ quan trước những thay đổi nhỏ ở men răng", time: "00s – 25s", col: "#facc15" },
+          { num: "02", title: "BIẾN CHỨNG VIÊM TỦY", desc: "Vi khuẩn xâm nhập buồng tủy gây tổn thương sâu", time: "25s – 38s", col: "#f87171" },
+          { num: "03", title: "TẦM SOÁT DẤU HIỆU SỚM", desc: "Nhận diện sớm ê buốt nhẹ & chấm đen rãnh nhai", time: "38s – 66s", col: "#38bdf8" },
+          { num: "04", title: "ĐIỀU TRỊ BẢO TỒN", desc: "Phục hồi kịp thời để giữ nguyên răng thật", time: "66s – 84s", col: "#10b981" }
+        ]
+      },
+      derma: {
+        kicker: "PHÁC ĐỒ KHOA HỌC • 4 BƯỚC PHỤC HỒI DA",
+        heading: "Cơ chế làm sạch & phục hồi màng ẩm",
+        sub1: "PHÁC ĐỒ 4 BƯỚC CHUẨN Y KHOA",
+        sub2: "tác động đúng tầng mô học, không bào mòn",
+        stages: [
+          { num: "01", title: "NHẬN DIỆN BÍT TẮC", desc: "Bã nhờn & tế bào sừng tích tụ tại cổ nang lông", time: "00s – 12s", col: "#facc15" },
+          { num: "02", title: "KÍCH HOẠT ĐÀO THẢI", desc: "Giải phóng nút sừng và làm thoáng lỗ chân lông", time: "12s – 26s", col: "#f87171" },
+          { num: "03", title: "KIỂM SOÁT SẮC TỐ", desc: "Ức chế dịch chuyển hạt Melanin lên bề mặt da", time: "26s – 40s", col: "#38bdf8" },
+          { num: "04", title: "TÁI TẠO HÀNG RÀO LIPID", desc: "Khóa ẩm gian bào & nuôi dưỡng sợi Collagen", time: "40s – 55s", col: "#10b981" }
+        ]
+      },
+      channel: {
+        kicker: "LỘ TRÌNH XÂY KÊNH • 4 TUẦN THỰC HÀNH",
+        heading: "4 bước từ cầm máy đến có khách thật",
+        sub1: "ĐỦ 1.000 GIỜ BAY THỰC TẾ",
+        sub2: "khách xem, tin tay nghề và tự nhắn tin",
+        stages: [
+          { num: "01", title: "TUẦN 1: VOICE-OVER", desc: "Quay đôi bàn tay làm việc thật, lồng tiếng sau", time: "Tuần 01", col: "#facc15" },
+          { num: "02", title: "TUẦN 2: WALK & TALK", desc: "Vừa đi vừa nói chuyện tự nhiên tại nơi làm việc", time: "Tuần 02", col: "#38bdf8" },
+          { num: "03", title: "TUẦN 3: TALKING HEAD", desc: "Ngồi nói chuyện đàng hoàng, đưa bằng chứng thật", time: "Tuần 03", col: "#a855f7" },
+          { num: "04", title: "TUẦN 4: CHỐT TRONG IM LẶNG", desc: "Đủ 11 điểm chạm 7-11-4, khách tự tìm đến", time: "Tuần 04", col: "#10b981" }
+        ]
+      }
+    };
+
+    let currentVmapKey = "dental";
+
+    function loadVmapPreset(key, btnEl) {
+      currentVmapKey = key;
+      if (btnEl) {
+        btnEl.parentElement.querySelectorAll(".filter-chip").forEach(b => {
+          if (!b.textContent.includes("▶")) b.classList.remove("active");
+        });
+        btnEl.classList.add("active");
+      }
+      const data = VMAP_PRESETS[key];
+      document.getElementById("vmap-ui-kicker").textContent = data.kicker;
+      document.getElementById("vmap-ui-heading").textContent = data.heading;
+      document.getElementById("vmap-ui-sub1").textContent = data.sub1;
+      document.getElementById("vmap-ui-sub2").textContent = data.sub2;
+
+      const nodesWrap = document.getElementById("vmap-ui-nodes");
+      nodesWrap.innerHTML = data.stages.map((st, idx) => `
+        <div class="vmap-node-row" id="vmap-row-${idx}" style="--node-col: ${st.col}">
+          <div class="vmap-node-dot">${st.num}</div>
+          <div class="vmap-node-connector"></div>
+          <div class="vmap-node-card">
+            <div class="vmap-node-top">
+              <span class="vmap-node-title">${st.title}</span>
+              <span class="vmap-node-time">${st.time}</span>
+            </div>
+            <div class="vmap-node-desc">${st.desc}</div>
+          </div>
+        </div>
+      `).join("");
+      replayVmapAnimation();
+    }
+
+    function replayVmapAnimation() {
+      const beam = document.getElementById("vmap-ui-beam");
+      const rows = [0, 1, 2, 3].map(i => document.getElementById("vmap-row-" + i));
+      beam.style.transition = "none";
+      beam.style.transform = "scaleY(0)";
+      rows.forEach(r => {
+        if (r) {
+          r.style.transition = "none";
+          r.style.opacity = "0.15";
+          r.style.transform = "translateY(10px)";
+        }
+      });
+      setTimeout(() => {
+        beam.style.transition = "transform 1.35s cubic-bezier(0.22, 1, 0.36, 1)";
+        beam.style.transform = "scaleY(1)";
+        rows.forEach((r, idx) => {
+          setTimeout(() => {
+            if (r) {
+              r.style.transition = "all 0.42s cubic-bezier(0.22, 1, 0.36, 1)";
+              r.style.opacity = "1";
+              r.style.transform = "translateY(0)";
+            }
+          }, idx * 240);
+        });
+      }, 60);
+    }
+
+    // =========================================================================
+    // 3. UNIFIED 35 TYPOGRAPHY STYLES + 16 ARCHETYPES + 8 B-ROLL FRAMES (SEC 05)
+    // =========================================================================
+    const STYLES_35_DB = [{"id": 1, "set": "set1", "name": "01. Bật Ý Tưởng", "l1": "Bật Ý Tưởng", "l2": "Xây kênh đa nền tảng", "f1": "'GT-Sectra', serif", "f2": "'SVN-Aeonik', sans-serif", "c1": "#00FF66", "c2": "#FFFFFF", "s1": 54, "s2": 20, "ov": -6, "glow": "0, 255, 102", "f1Weight": "700", "f1Style": "italic", "profile": "lifestyle", "package_name": "Đời Sống & Vlog Hằng Ngày"}, {"id": 2, "set": "set1", "name": "02. TRIỆU VIEW", "l1": "TRIỆU VIEW", "l2": "", "f1": "'SVN-Integral', sans-serif", "f2": "'SVN-Aeonik', sans-serif", "c1": "#FFFFFF", "c2": "", "s1": 58, "s2": 0, "ov": 0, "glow": "255, 236, 168", "f1Weight": "400", "profile": "hoc_vien_youtube", "package_name": "Học Viên & Khóa Học YouTube", "f2Weight": "500"}, {"id": 3, "set": "set1", "name": "03. Bí Quyết Vàng", "l1": "Kinh nghiệm vàng", "l2": "Giữ chân người xem", "f1": "'SVN-Aeonik', sans-serif", "f2": "'SVN-Flatline', serif", "c1": "#FF7A00", "c2": "#FFE600", "s1": 22, "s2": 44, "ov": -2, "glow": "255, 230, 0", "f1Weight": "700", "f2Weight": "700", "f2Style": "italic", "profile": "lifestyle", "package_name": "Đời Sống & Vlog Hằng Ngày"}, {"id": 4, "set": "set1", "name": "04. ĐỊNH VỊ Thương Hiệu", "l1": "ĐỊNH VỊ", "l2": "Thương hiệu cá nhân", "f1": "'SVN-Integral', sans-serif", "f2": "'GT-Sectra', serif", "c1": "#FFFFFF", "c2": "#FF7A00", "s1": 50, "s2": 36, "ov": -18, "glow": "255, 255, 240", "f1Weight": "900", "f2Weight": "700", "f2Style": "italic", "profile": "editorial_pro", "package_name": "Editorial Chuyên Gia"}, {"id": 5, "set": "set1", "name": "05. Khách Hàng Tự Tìm Đến", "l1": "Khách hàng", "l2": "TỰ TÌM ĐẾN", "f1": "'SVN-FreightDisplay', serif", "f2": "'SVN-Integral', sans-serif", "c1": "#FFFFFF", "c2": "#FF2E2E", "s1": 34, "s2": 44, "ov": -10, "glow": "255, 46, 46", "f1Style": "italic", "f2Weight": "900", "profile": "editorial_pro", "package_name": "Editorial Chuyên Gia"}, {"id": 6, "set": "set1", "name": "06. Bứt Phá 3s Đầu", "l1": "Bứt Phá", "l2": "Ngay từ 3s đầu tiên", "f1": "'GT-Sectra', serif", "f2": "'SVN-Acta', serif", "c1": "#00E5FF", "c2": "#FFFFFF", "s1": 56, "s2": 22, "ov": -10, "glow": "0, 229, 255", "f1Weight": "700", "f1Style": "italic", "f2Style": "italic", "profile": "editorial_pro", "package_name": "Editorial Chuyên Gia"}, {"id": 7, "set": "set1", "name": "07. Làm Chủ Ống Kính", "l1": "Làm chủ", "l2": "Ống kính máy quay", "f1": "'SVN-FreightDisplay', serif", "f2": "'SVN-FreightDisplay', serif", "c1": "#FFFFFF", "c2": "#00E5FF", "s1": 44, "s2": 48, "ov": -16, "glow": "0, 229, 255", "f1Style": "italic", "f2Weight": "900", "f2Style": "italic", "profile": "editorial_pro", "package_name": "Editorial Chuyên Gia"}, {"id": 8, "set": "set1", "name": "08. Đừng Làm Mò (Gạch)", "l1": "Đừng làm mò", "l2": "", "f1": "'SVN-Aeonik', sans-serif", "f2": "", "c1": "#FF2E2E", "c2": "", "s1": 42, "s2": 0, "ov": 0, "glow": "255, 46, 46", "isStrike": true, "f1Weight": "700", "profile": "case_study", "package_name": "Case Study & Chuyển Đổi"}, {"id": 9, "set": "set1", "name": "09. TÂM ĐIỂM (Vòng Tròn)", "l1": "TÂM ĐIỂM", "l2": "Thu hút mọi ánh nhìn", "f1": "'SVN-Integral', sans-serif", "f2": "'GT-Sectra', serif", "c1": "#FFFFFF", "c2": "#FFFFFF", "s1": 44, "s2": 24, "ov": 2, "glow": "255, 255, 255", "isCircle": true, "f1Weight": "900", "f2Style": "italic", "profile": "case_study", "package_name": "Case Study & Chuyển Đổi"}, {"id": 10, "set": "set2", "name": "10. KỊCH BẢN ĐỈNH", "l1": "KỊCH BẢN ĐỈNH", "l2": "Không cần thuộc lòng", "f1": "'SVN-FreightDisplay', serif", "f2": "'GT-Sectra', serif", "c1": "#FFFFFF", "c2": "#FFFFFF", "s1": 44, "s2": 28, "ov": -6, "glow": "255, 255, 255", "f1Style": "italic", "f2Style": "italic", "profile": "editorial_pro", "package_name": "Editorial Chuyên Gia"}, {"id": 11, "set": "set2", "name": "11. ĐỘC BẢN", "l1": "ĐỘC BẢN", "l2": "", "f1": "'SVN-Integral', sans-serif", "f2": "", "c1": "#FFF8E7", "c2": "", "s1": 54, "s2": 0, "ov": 0, "glow": "255, 240, 200", "f1Weight": "900", "profile": "editorial_pro", "package_name": "Editorial Chuyên Gia"}, {"id": 12, "set": "set2", "name": "12. Tự Tin Chia Sẻ", "l1": "Tự tin chia sẻ", "l2": "Chạm đến cảm xúc", "f1": "'SVN-Integral', sans-serif", "f2": "'SVN-Aeonik', sans-serif", "c1": "#FFFFFF", "c2": "#FFECA8", "s1": 48, "s2": 40, "ov": -16, "glow": "255, 236, 168", "profile": "hoc_vien_youtube", "package_name": "Học Viên & Khóa Học YouTube", "f1Weight": "400", "f2Weight": "500"}, {"id": 13, "set": "set2", "name": "13. QUY TRÌNH 3 BƯỚC (3 Tầng)", "l1": "QUY TRÌNH", "l2": "TỪ CON SỐ 0", "mid": "CHUYỂN ĐỔI", "f1": "'GT-America', sans-serif", "f2": "'SVN-Aeonik', sans-serif", "fmid": "'SVN-Integral', sans-serif", "c1": "#00E5FF", "c2": "#00E5FF", "s1": 22, "s2": 18, "smid": 46, "ov": 2, "glow": "0, 229, 255", "f1Weight": "700", "fmidWeight": "900", "profile": "case_study", "package_name": "Case Study & Chuyển Đổi"}, {"id": 14, "set": "set2", "name": "14. 100K FOLLOW (Hero Size)", "l1": "100K FOLLOW", "l2": "", "f1": "'SVN-Integral', sans-serif", "f2": "'SVN-Aeonik', sans-serif", "c1": "#FFECA8", "c2": "", "s1": 58, "s2": 0, "ov": 0, "glow": "255, 236, 168", "f1Weight": "400", "profile": "hoc_vien_youtube", "package_name": "Học Viên & Khóa Học YouTube", "f2Weight": "500"}, {"id": 15, "set": "set2", "name": "15. Góc Nhìn CHUYÊN GIA", "l1": "Góc nhìn", "l2": "CHUYÊN GIA", "f1": "'GT-Sectra', serif", "f2": "'SVN-Integral', sans-serif", "c1": "#FFFFFF", "c2": "#FF1E1E", "s1": 44, "s2": 44, "ov": -14, "glow": "255, 30, 30", "f1Style": "italic", "f2Weight": "900", "profile": "editorial_pro", "package_name": "Editorial Chuyên Gia"}, {"id": 16, "set": "set2", "name": "16. NÚT: XEM HƯỚNG DẪN", "l1": "XEM HƯỚNG DẪN NGAY", "l2": "", "f1": "'GT-America', sans-serif", "f2": "", "c1": "#FFFFFF", "c2": "", "s1": 17, "s2": 0, "ov": 0, "glow": "0, 229, 255", "isPill": true, "f1Weight": "800", "profile": "case_study", "package_name": "Case Study & Chuyển Đổi"}, {"id": 17, "set": "set2", "name": "17. THỰC CHIẾN Có Kết Quả", "l1": "THỰC CHIẾN", "l2": "Tạo ra kết quả", "f1": "'SVN-Integral', sans-serif", "f2": "'GT-Sectra', serif", "c1": "#FFC400", "c2": "#FFFFFF", "s1": 50, "s2": 42, "ov": -20, "glow": "255, 196, 0", "f1Weight": "900", "f2Style": "italic", "profile": "editorial_pro", "package_name": "Editorial Chuyên Gia"}, {"id": 18, "set": "set3", "name": "18. LỰC ĐẨY Thu Nhập", "l1": "LỰC ĐẨY", "l2": "Thu nhập thụ động", "f1": "'SVN-Integral', sans-serif", "f2": "'SVN-Flatline', serif", "c1": "#FFE600", "c2": "#FF3366", "s1": 52, "s2": 38, "ov": -18, "glow": "255, 230, 0", "f1Weight": "900", "f2Style": "italic", "profile": "case_study", "package_name": "Case Study & Chuyển Đổi"}, {"id": 19, "set": "set3", "name": "19. 30 NGÀY Lột Xác", "l1": "30 NGÀY", "l2": "Lột xác toàn diện", "f1": "'SVN-FreightDisplay', serif", "f2": "'GT-America', sans-serif", "c1": "#FFECA8", "c2": "#FFFFFF", "s1": 48, "s2": 18, "ov": -2, "glow": "255, 236, 168", "f1Style": "italic", "f2Weight": "700", "profile": "lifestyle", "package_name": "Đời Sống & Vlog Hằng Ngày"}, {"id": 20, "set": "set3", "name": "20. TỐI ƯU HÓA Thời Gian", "l1": "TỐI ƯU HÓA", "l2": "Thời gian & công sức", "f1": "'SVN-Integral', sans-serif", "f2": "'GT-Sectra', serif", "c1": "#FFE600", "c2": "#FFFFFF", "s1": 46, "s2": 36, "ov": -16, "glow": "255, 230, 0", "f1Weight": "900", "f2Style": "italic", "profile": "editorial_pro", "package_name": "Editorial Chuyên Gia"}, {"id": 21, "set": "set3", "name": "21. NĂNG LƯỢNG Tích Cực", "l1": "NĂNG LƯỢNG", "l2": "Chia sẻ giá trị tích cực", "f1": "'SVN-Integral', sans-serif", "f2": "'SVN-FreightDisplay', serif", "c1": "#00B4D8", "c2": "#FFFFFF", "s1": 46, "s2": 24, "ov": -6, "glow": "0, 180, 216", "f1Weight": "900", "f2Style": "italic", "profile": "lifestyle", "package_name": "Đời Sống & Vlog Hằng Ngày"}, {"id": 22, "set": "set3", "name": "22. All in one Video Ngắn", "l1": "All in one", "l2": "Công thức video ngắn", "f1": "'GT-Sectra', serif", "f2": "'GT-America', sans-serif", "c1": "#00E5FF", "c2": "#FFFFFF", "s1": 48, "s2": 28, "ov": -10, "glow": "0, 229, 255", "f1Style": "italic", "f2Weight": "700", "profile": "case_study", "package_name": "Case Study & Chuyển Đổi"}, {"id": 23, "set": "set3", "name": "23. VỊ THẾ Dẫn Đầu", "l1": "Nâng chuẩn", "l2": "VỊ THẾ DẪN ĐẦU NGÀNH", "f1": "'SVN-Flatline', serif", "f2": "'GT-America', sans-serif", "c1": "#FFECA8", "c2": "#FFECA8", "s1": 54, "s2": 16, "ov": -14, "glow": "255, 236, 168", "f1Style": "italic", "f2Weight": "800", "profile": "editorial_pro", "package_name": "Editorial Chuyên Gia"}, {"id": 24, "set": "set3", "name": "24. NỘI DUNG CHẤT", "l1": "NỘI DUNG CHẤT", "l2": "Tạo nên niềm tin", "f1": "'SVN-Integral', sans-serif", "f2": "'SVN-Aeonik', sans-serif", "c1": "#FFFFFF", "c2": "#FFDE59", "s1": 38, "s2": 34, "ov": -12, "glow": "255, 222, 89", "f1Weight": "400", "profile": "hoc_vien_youtube", "package_name": "Học Viên & Khóa Học YouTube", "f2Weight": "500"}, {"id": 25, "set": "set3", "name": "25. 4 Trụ Cột Sự Nghiệp", "l1": "4 Trụ cột", "l2": "Xây dựng sự nghiệp số", "f1": "'SVN-Integral', sans-serif", "f2": "'SVN-FreightDisplay', serif", "c1": "#E2E8F0", "c2": "#FFFFFF", "s1": 52, "s2": 28, "ov": -8, "glow": "226, 232, 240", "f1Weight": "900", "f2Style": "italic", "profile": "editorial_pro", "package_name": "Editorial Chuyên Gia"}, {"id": 26, "set": "set3", "name": "26. Tự Do Tài Chính", "l1": "Tự Do Tài Chính", "l2": "Nhờ sáng tạo nội dung", "f1": "'GT-Sectra', serif", "f2": "'SVN-Aeonik', sans-serif", "c1": "#00E5FF", "c2": "#FFFFFF", "s1": 48, "s2": 18, "ov": -4, "glow": "0, 229, 255", "f1Style": "italic", "f2Weight": "700", "profile": "case_study", "package_name": "Case Study & Chuyển Đổi"}, {"id": 27, "set": "set4", "name": "27. DÁM BẮT ĐẦU", "l1": "DÁM BẮT ĐẦU", "l2": "Đừng chờ đợi hoàn hảo", "f1": "'SVN-Aeonik', sans-serif", "f2": "'GT-America', sans-serif", "c1": "#FFE600", "c2": "#FFFFFF", "s1": 46, "s2": 20, "ov": 0, "glow": "255, 230, 0", "f1Weight": "900", "f2Weight": "500", "profile": "lifestyle", "package_name": "Đời Sống & Vlog Hằng Ngày"}, {"id": 28, "set": "set4", "name": "28. DẤU ẤN Riêng Biệt", "l1": "DẤU ẤN", "l2": "Không thể bị sao chép", "f1": "'SVN-Integral', sans-serif", "f2": "'SVN-FreightDisplay', serif", "c1": "#FFD700", "c2": "#FFFFFF", "s1": 56, "s2": 32, "ov": -18, "glow": "255, 215, 0", "f1Weight": "900", "f2Style": "italic", "profile": "editorial_pro", "package_name": "Editorial Chuyên Gia"}, {"id": 29, "set": "set4", "name": "29. Truyền Cảm Hứng", "l1": "Truyền cảm hứng", "l2": "CHO HÀNG TRIỆU NGƯỜI", "f1": "'SVN-Flatline', serif", "f2": "'SVN-Integral', sans-serif", "c1": "#FF3366", "c2": "#FFE600", "s1": 42, "s2": 40, "ov": -16, "glow": "255, 230, 0", "f1Style": "italic", "f2Weight": "900", "profile": "lifestyle", "package_name": "Đời Sống & Vlog Hằng Ngày"}, {"id": 30, "set": "set4", "name": "30. Tỏa Sáng ✦ (Ngôi Sao)", "l1": "Tỏa sáng +", "l2": "Là phiên bản tốt nhất", "f1": "'GT-Sectra', serif", "f2": "'SVN-FreightDisplay', serif", "c1": "#FFFFFF", "c2": "#FFFFFF", "s1": 48, "s2": 34, "ov": -10, "glow": "255, 255, 255", "isStar": true, "f1Style": "italic", "f2Style": "italic", "profile": "lifestyle", "package_name": "Đời Sống & Vlog Hằng Ngày"}, {"id": 31, "set": "set4", "name": "31. HÀNH ĐỘNG NGAY (3D)", "l1": "HÀNH ĐỘNG NGAY", "l2": "", "f1": "'SVN-Integral', sans-serif", "f2": "'SVN-Aeonik', sans-serif", "c1": "#FFFFFF", "c2": "", "s1": 46, "s2": 0, "ov": 0, "glow": "255, 236, 168", "f1Weight": "400", "profile": "hoc_vien_youtube", "package_name": "Học Viên & Khóa Học YouTube", "f2Weight": "500"}, {"id": 32, "set": "set4", "name": "32. TẬP TRUNG Bứt Phá", "l1": "TẬP TRUNG", "l2": "Tạo bước nhảy vọt", "f1": "'SVN-FreightDisplay', serif", "f2": "'GT-Sectra', serif", "c1": "#FFFFFF", "c2": "#FFECA8", "s1": 50, "s2": 42, "ov": -18, "glow": "255, 236, 168", "f1Weight": "900", "f2Style": "italic", "profile": "case_study", "package_name": "Case Study & Chuyển Đổi"}, {"id": 33, "set": "set4", "name": "33. VƯỢT MỌI GIỚI HẠN", "l1": "TĂNG TỐC", "l2": "Vượt mọi giới hạn", "f1": "'SVN-FreightDisplay', serif", "f2": "'GT-Sectra', serif", "c1": "#00E5FF", "c2": "#00FF66", "s1": 46, "s2": 48, "ov": -14, "glow": "0, 229, 255", "f1Style": "italic", "f2Weight": "700", "profile": "editorial_pro", "package_name": "Editorial Chuyên Gia"}, {"id": 34, "set": "set4", "name": "34. Bản Lĩnh Tương Lai", "l1": "Bản Lĩnh", "l2": "Làm chủ tương lai", "f1": "'SVN-Flatline', serif", "f2": "'GT-America', sans-serif", "c1": "#FFAA00", "c2": "#FFECA8", "s1": 52, "s2": 24, "ov": -4, "glow": "255, 170, 0", "f1Style": "italic", "f2Weight": "700", "profile": "case_study", "package_name": "Case Study & Chuyển Đổi"}, {"id": 35, "set": "set4", "name": "35. BÀI HỌC ĐẮT GIÁ", "l1": "BÀI HỌC", "l2": "ĐẮT GIÁ NHẤT", "f1": "'GT-Sectra', serif", "f2": "'SVN-Integral', sans-serif", "c1": "#FF3333", "c2": "#FFECA8", "s1": 38, "s2": 44, "ov": -10, "glow": "255, 50, 50", "f1Weight": "700", "f1Style": "italic", "f2Weight": "900", "profile": "case_study", "package_name": "Case Study & Chuyển Đổi"}];
+    const ARCHETYPES_16_DB = [{"id": "MG-T01", "group": "#T", "name": "Glass Pill & Neon Badge", "vi_name": "Hộp Kính Mờ & Huy Hiệu Phát Sáng", "text_tiers": {"count": 2, "tier1": {"font": "FDAeonikExtended-Black.otf", "fallback": "SVN-IntegralCF-Bold.ttf", "color": "#FFFFFF", "role": "Đại tự khóa chính"}, "tier2": {"font": "FDActaBoldItalic.ttf", "fallback": "SVN-AEONIK-BOLD.TTF", "color": "#FFECA8", "role": "Phụ đề bổ nghĩa cảm xúc"}}, "icon_badge": {"position": "top-left-or-right-pill", "style": "Neon Glowing Pill + Vector Emblem", "default_badge": "⚡ AI STUDIO", "default_icon": "⚡"}, "motion_formula": {"easing": "cubic-bezier(0.16, 1, 0.3, 1)", "spring": "stiffness=220, damping=18", "stagger_sec": 0.12, "description": "Hộp kính trượt nhẹ từ dưới lên (+28px -> 0px), Badge nảy Spring Pop ở frame thứ 4, dòng 2 fade-in lệch nhịp 0.12s."}, "palette": {"glass_bg": "rgba(15, 23, 42, 0.84)", "border": "#FFECA8", "accent": "#38BDF8", "tier1": "#FFFFFF", "tier2": "#FFECA8"}, "when_to_use": "Dùng cho các câu mở đầu (Hook), định nghĩa khái niệm cốt lõi hoặc nhấn mạnh luận điểm chính khi người nói đang xuất hiện trên hình.", "content_guide": "Dòng 1: 3-5 từ khóa mạnh viết hoa. Dòng 2: 5-8 từ giải thích lợi ích/cảm xúc.", "sample_content": {"badge": "⚡ AI STUDIO V3", "icon": "⚡", "line1": "TỰ ĐỘNG HÓA 100%", "line2": "Giữ trọn cảm xúc thật của người nói"}, "default_sfx": ["whoosh_soft", "ui_pop"], "sfx_cues": [{"sfx": "whoosh_soft", "offset": 0.0, "volume": 0.9}, {"sfx": "ui_pop", "offset": 0.16, "volume": 0.85}], "capcut_alpha_ready": true}, {"id": "MG-T02", "group": "#T", "name": "Kinetic Strike & Alert", "vi_name": "Gạch Bỏ Sai Lầm & Cảnh Báo Đỏ", "text_tiers": {"count": 2, "tier1": {"font": "SVN-IntegralCF-Bold.ttf", "color": "#FCA5A5", "role": "Sai lầm bị thanh Laser đỏ gạch ngang"}, "tier2": {"font": "SVN-AEONIK-BOLD.TTF", "color": "#34D399", "role": "Giải pháp đúng đắn màu xanh ngọc / vàng"}}, "icon_badge": {"position": "left-alert-shield", "style": "Red Warning Triangle / Prohibition Sign", "default_badge": "⚠️ SAI LẦM PHỔ BIẾN", "default_icon": "⚠️"}, "motion_formula": {"easing": "cubic-bezier(0.25, 1, 0.5, 1)", "spring": "shake_x=6px at t=0.25s", "stagger_sec": 0.22, "description": "Dòng 1 hiện ra -> Thanh Laser Đỏ (#FF2E2E) quẹt ngang từ trái sang phải trong 0.18s kèm rung nhẹ -> Dòng 2 giải pháp bật sáng bên dưới."}, "palette": {"glass_bg": "rgba(24, 12, 20, 0.88)", "border": "#FF2E2E", "accent": "#FF2E2E", "tier1": "#FECACA", "tier2": "#4ADE80"}, "when_to_use": "Dùng khi bóc tách lỗi sai, đập tan ngộ nhận của khán giả ('Đừng làm cách cũ nữa, hãy làm cách này').", "content_guide": "Dòng 1: Thói quen sai cần gạch bỏ. Dòng 2: Hướng đi mới hiệu quả gấp bội.", "sample_content": {"badge": "🚫 CẢNH BÁO TƯ DUY", "icon": "⚠️", "line1": "DỰNG THỦ CÔNG 4 TIẾNG", "line2": "✓ Chuyển sang quy trình AI 2-Chạm"}, "default_sfx": ["whoosh_fast", "laser_strike", "impact_punch"], "sfx_cues": [{"sfx": "whoosh_fast", "offset": 0.0, "volume": 0.85}, {"sfx": "laser_strike", "offset": 0.25, "volume": 0.95}, {"sfx": "impact_punch", "offset": 0.42, "volume": 0.9}], "capcut_alpha_ready": true}, {"id": "MG-T03", "group": "#T", "name": "Circle Focus & Star Sparkle", "vi_name": "Vòng Tròn Tâm Điểm & Sao Lấp Lánh", "text_tiers": {"count": 2, "tier1": {"font": "FDAeonikExtended-Black.otf", "color": "#FFFFFF", "role": "Từ khóa tâm điểm được vẽ vòng tròn Neon bao quanh"}, "tier2": {"font": "FDActaMediumItalic.ttf", "color": "#FFECA8", "role": "Dòng giải nghĩa tinh tế"}}, "icon_badge": {"position": "top-right-sparkle", "style": "Rotating 4-Point Star ✦ + Target Badge 🎯", "default_badge": "🎯 TÂM ĐIỂM CỐT LÕI", "default_icon": "🎯"}, "motion_formula": {"easing": "easeOutQuart", "spring": "circle_draw_angle: 0 -> 360deg", "stagger_sec": 0.15, "description": "Chữ xuất hiện -> Nét vẽ vòng elip Neon vàng/cyan tự động khoanh tròn quanh từ khóa đinh (0->360 độ) + Ngôi sao ✦ xoay lấp lánh góc phải."}, "palette": {"glass_bg": "rgba(15, 23, 42, 0.82)", "border": "#38BDF8", "accent": "#FFE600", "tier1": "#FFFFFF", "tier2": "#FFECA8"}, "when_to_use": "Dùng khi muốn ghim đúng 1 từ khóa vàng (Golden Keyword) vào não người xem ngay lúc người nói nhấn giọng.", "content_guide": "Dòng 1: Cụm từ khóa 2-4 chữ cần khoanh tròn. Dòng 2: Ý nghĩa thực chiến của từ khóa đó.", "sample_content": {"badge": "🎯 TỪ KHÓA VÀNG", "icon": "🎯", "line1": "ĐIỂM CHẠM CẢM XÚC", "line2": "Giữ chân khán giả ở 3 giây đầu tiên"}, "default_sfx": ["whoosh_soft", "glassy_ping"], "sfx_cues": [{"sfx": "whoosh_soft", "offset": 0.0, "volume": 0.85}, {"sfx": "glassy_ping", "offset": 0.28, "volume": 0.95}], "capcut_alpha_ready": true}, {"id": "MG-T04", "group": "#T", "name": "3-Tier Formula Stack", "vi_name": "Tháp Công Thức 3 Tầng Chồng Lớp", "text_tiers": {"count": 3, "tier1": {"font": "SVN-AEONIK-BOLD.TTF", "color": "#00E5FF", "role": "Tầng 1: Eyebrow nhỏ Cyan định danh công thức"}, "tier2": {"font": "SVN-IntegralCF-Heavy.ttf", "color": "#FFFFFF", "role": "Tầng 2: Đại tự cực lớn Trắng ở tâm"}, "tier3": {"font": "FDActaBoldItalic.ttf", "color": "#FFECA8", "role": "Tầng 3: Phụ đề nghiêng Vàng đúc kết"}}, "icon_badge": {"position": "left-formula-orb", "style": "Cyan Lightning Orb ⚡", "default_badge": "⚡ CÔNG THỨC ĐỘC QUYỀN", "default_icon": "⚡"}, "motion_formula": {"easing": "cubic-bezier(0.34, 1.56, 0.64, 1)", "spring": "scale 0.85 -> 1.0", "stagger_sec": 0.1, "description": "Ba tầng chữ bung ra theo chuỗi Stagger 0.10s từ trên xuống dưới kèm viền sáng Cyan chạy dọc hai bên."}, "palette": {"glass_bg": "rgba(10, 18, 34, 0.88)", "border": "#00E5FF", "accent": "#00E5FF", "tier1": "#00E5FF", "tier2": "#FFFFFF", "tier3": "#FFECA8"}, "when_to_use": "Dùng khi chia sẻ công thức 3 vế, quy tắc vàng hoặc đúc kết phương pháp luận của chuyên gia.", "content_guide": "Tầng 1: Tên quy tắc. Tầng 2: Công thức cốt lõi. Tầng 3: Kết quả đạt được.", "sample_content": {"badge": "⚡ QUY TẮC 3 GIÂY", "icon": "⚡", "line1": "HOOK • THẤU CẢM • GIẢI PHÁP", "line2": "Biến người xem lạ thành học viên trung thành"}, "default_sfx": ["riser_short", "impact_deep", "ui_click"], "sfx_cues": [{"sfx": "riser_short", "offset": 0.0, "volume": 0.8}, {"sfx": "impact_deep", "offset": 0.22, "volume": 0.9}, {"sfx": "ui_click", "offset": 0.38, "volume": 0.8}], "capcut_alpha_ready": true}, {"id": "MG-T05", "group": "#T", "name": "Neon Highlighter Callout", "vi_name": "Bút Dạ Quang Quẹt Nền Tương Phản Cao", "text_tiers": {"count": 2, "tier1": {"font": "FDAeonikExtended-Black.otf", "color": "#090D16", "role": "Chữ đen đậm nằm trên dải dạ quang Vàng #FFE600 / Cyan #00E5FF"}, "tier2": {"font": "SVN-AEONIK-BOLD.TTF", "color": "#FFFFFF", "role": "Phụ đề trắng sắc nét trên nền kính tối bên dưới"}}, "icon_badge": {"position": "left-spring-badge", "style": "Spring Pop Sticker Badge", "default_badge": "✨ HIGHLIGHT", "default_icon": "✨"}, "motion_formula": {"easing": "cubic-bezier(0.22, 1, 0.36, 1)", "spring": "highlight_wipe_width: 0% -> 100%", "stagger_sec": 0.14, "description": "Dải băng dạ quang Vàng #FFE600 quẹt ngang từ trái sang phải (Wipe 0->100%) làm nổi bật chữ đen tương phản cực mạnh, Icon bên trái nảy Spring Pop."}, "palette": {"glass_bg": "rgba(15, 23, 42, 0.86)", "border": "#FFE600", "accent": "#FFE600", "tier1": "#090D16", "tier2": "#FFFFFF"}, "when_to_use": "Dùng khi cần đánh dấu câu nói đắt giá nhất (Punchline) như đang tô bút dạ quang vào sách.", "content_guide": "Dòng 1: Cụm từ đắt giá (nền vàng chữ đen). Dòng 2: Lời bình mở rộng.", "sample_content": {"badge": "✨ ĐIỂM ĐẮT GIÁ", "icon": "✨", "line1": "NỘI DUNG THẬT LÀ VUA", "line2": "Kỹ xảo chỉ phục vụ cho thông điệp cốt lõi"}, "default_sfx": ["page_flip", "ui_pop"], "sfx_cues": [{"sfx": "page_flip", "offset": 0.0, "volume": 0.95}, {"sfx": "ui_pop", "offset": 0.22, "volume": 0.85}], "capcut_alpha_ready": true}, {"id": "MG-T06", "group": "#T", "name": "Editorial Accent Quote", "vi_name": "Trích Dẫn Báo Chí Kallaway Sang Trọng", "text_tiers": {"count": 2, "tier1": {"font": "GT-Sectra-LCGV-Display-Bold.otf", "fallback": "FDActaBold.ttf", "color": "#FFFFFF", "role": "Chữ Editorial Serif/Sans sang trọng căn trái"}, "tier2": {"font": "FDActaMediumItalic.ttf", "color": "#FFECA8", "role": "Ghi chú Insight nghiêng tinh tế"}}, "icon_badge": {"position": "left-accent-pillar", "style": "4px Neon Vertical Accent Line + Insight Bulb 💡", "default_badge": "💡 INSIGHT CHUYÊN GIA", "default_icon": "💡"}, "motion_formula": {"easing": "cubic-bezier(0.19, 1, 0.22, 1)", "spring": "bar_grow_y: 0 -> 100%", "stagger_sec": 0.16, "description": "Thanh dọc Neon Accent Line (6px) mọc từ tâm ra hai đầu -> Chữ căn trái trượt từ thanh dọc ra như tạp chí Bloomberg / Kallaway."}, "palette": {"glass_bg": "rgba(12, 17, 29, 0.84)", "border": "#38BDF8", "accent": "#FFECA8", "tier1": "#FFFFFF", "tier2": "#FFECA8"}, "when_to_use": "Dùng cho các đoạn chia sẻ góc nhìn sâu sắc, triết lý làm nghề, hoặc trích dẫn bài học thực tế.", "content_guide": "Dòng 1: Nhận định sắc bén. Dòng 2: Bài học đúc kết.", "sample_content": {"badge": "💡 GÓC NHÌN THỰC CHIẾN", "icon": "💡", "line1": "ĐỪNG BÁN KỸ THUẬT KHÔ KHAN", "line2": "Hãy bán kết quả và sự chuyển hóa thực sự"}, "default_sfx": ["whoosh_soft", "camera_shutter"], "sfx_cues": [{"sfx": "whoosh_soft", "offset": 0.0, "volume": 0.85}, {"sfx": "camera_shutter", "offset": 0.2, "volume": 0.85}], "capcut_alpha_ready": true}, {"id": "MG-B01", "group": "#B", "name": "Master Chapter Summary Card", "vi_name": "Màn Hình Ngắt Chương & Tóm Tắt 3 Ý", "text_tiers": {"count": 3, "tier1": {"font": "SVN-AEONIK-BOLD.TTF", "color": "#FFECA8", "role": "Badge Chương: GIAI ĐOẠN 01"}, "tier2": {"font": "FDAeonikExtended-Black.otf", "color": "#FFFFFF", "role": "Tiêu đề Chương cực lớn"}, "tier3": {"font": "FDActaMediumItalic.ttf", "color": "#CBD5E1", "role": "Phụ đề nghiêng + 3 gạch đầu dòng tóm tắt (•)"}}, "icon_badge": {"position": "top-center-emblem", "style": "Chapter Pin Emblem 📌 + Expanding Neon Divider", "default_badge": "📌 GIAI ĐOẠN 01", "default_icon": "📌"}, "motion_formula": {"easing": "cubic-bezier(0.16, 1, 0.3, 1)", "spring": "divider_expand: 0 -> 360px", "stagger_sec": 0.15, "description": "Badge chương bật sáng -> Tiêu đề bung nét -> Thanh Accent Neon giãn ngang từ tâm -> 3 ý tóm tắt (•) hiện lên lần lượt."}, "palette": {"glass_bg": "rgba(11, 17, 30, 0.92)", "border": "#FFECA8", "accent": "#38BDF8", "tier1": "#FFECA8", "tier2": "#FFFFFF", "tier3": "#E2E8F0"}, "when_to_use": "Dùng để ngắt nhịp giữa các phần lớn trong video (Split & Ripple +2.2s), giúp người xem nắm trọn cấu trúc bài giảng.", "content_guide": "Tier 1: Số thứ tự chương. Tier 2: Tên chương. Tier 3: Tóm tắt 2-3 ý cốt lõi.", "sample_content": {"badge": "📌 GIAI ĐOẠN 01 • CỐT LÕI", "icon": "📌", "line1": "CHUẨN HÓA KỊCH BẢN KHUNG", "line2": "• Giữ 100% lời nói  • Né mặt OpenCV  • SFX Kép"}, "default_sfx": ["sub_bass_impact", "whoosh_riser", "glassy_ping"], "sfx_cues": [{"sfx": "sub_bass_impact", "offset": 0.0, "volume": 0.95}, {"sfx": "whoosh_riser", "offset": 0.15, "volume": 0.85}, {"sfx": "glassy_ping", "offset": 0.55, "volume": 0.8}], "capcut_alpha_ready": true}, {"id": "MG-B02", "group": "#B", "name": "Vertical Linear Spine Roadmap V2", "vi_name": "Bản Đồ Lộ Trình 4 Chặng Trục Dọc Thẳng Đứng (Swiss Dark)", "text_tiers": {"count": 2, "tier1": {"font": "FDAeonikExtended-Bold.otf", "color": "#FFFFFF", "role": "Tiêu đề lộ trình trên đỉnh"}, "tier2": {"font": "SVN-AEONIK-BOLD.TTF", "color": "#FFECA8", "role": "4 chặng lộ trình xếp dọc trên trục thẳng đứng X=158"}}, "icon_badge": {"position": "bezier-nodes", "style": "Vertical Linear Spine + 4 Numbered Nodes (01..04)", "default_badge": "🗺️ LỘ TRÌNH 4 BƯỚC", "default_icon": "✓"}, "motion_formula": {"easing": "easeInOutCubic", "spring": "Vertical Beam scaleY(0->1) + 4 Horizontal Cards stagger 0.14s", "stagger_sec": 0.2, "description": "Trục thẳng đứng duy nhất bên trái (X=158), thanh tiến độ vàng #FACC15 chạy dọc từ Node 01 xuống 04, 4 thẻ ngang Swiss Dark trượt vào lệch nhịp 0.14s, 0 sóng radar thừa."}, "palette": {"glass_bg": "rgba(11, 17, 30, 0.90)", "border": "#38BDF8", "accent": "#00E5FF", "tier1": "#FFFFFF", "tier2": "#FFECA8"}, "when_to_use": "Dùng khi dẫn dắt người xem đi từ Bước 1 sang Bước 2, 3, 4 trong một chuỗi hướng dẫn hoặc hành trình chuyển hóa.", "content_guide": "Dòng 1: Tên lộ trình. Dòng 2: 4 trạm ngắn gọn (cách nhau bởi dấu • hoặc >).", "sample_content": {"badge": "🗺️ BẢN ĐỒ HẬU KỲ AI", "icon": "✓", "line1": "Lộ trình 4 chặng bảo vệ răng thật", "line2": "01. Cái bẫy thói quen ➔ 02. Bùng phát biến chứng ➔ 03. Tầm soát dấu hiệu sớm ➔ 04. Điều trị bảo tồn"}, "default_sfx": ["whoosh_riser", "sub_bass_impact", "glassy_ping"], "sfx_cues": [{"sfx": "whoosh_riser", "offset": 0.0, "volume": 0.9}, {"sfx": "sub_bass_impact", "offset": 0.25, "volume": 0.85}, {"sfx": "glassy_ping", "offset": 0.65, "volume": 0.9}], "capcut_alpha_ready": true}, {"id": "MG-B03", "group": "#B", "name": "3-Step Staggered Cards", "vi_name": "Ba Thẻ Quy Trình Trượt Lệch Nhịp", "text_tiers": {"count": 2, "tier1": {"font": "FDAeonikExtended-Black.otf", "color": "#FFFFFF", "role": "Tiêu đề Checklist & Nhãn BƯỚC 01 / 02 / 03"}, "tier2": {"font": "SVN-AEONIK-MEDIUM.TTF", "color": "#FFECA8", "role": "Nội dung hành động cụ thể của từng thẻ"}}, "icon_badge": {"position": "each-card-left", "style": "3 Distinct Step Badges (01 ⚡, 02 🎯, 03 🚀)", "default_badge": "📋 CHECKLIST 3 BƯỚC", "default_icon": "⚡"}, "motion_formula": {"easing": "cubic-bezier(0.22, 1, 0.36, 1)", "spring": "stagger_cards: 0.18s per card", "stagger_sec": 0.18, "description": "3 thẻ bước (BƯỚC 1, BƯỚC 2, BƯỚC 3) kèm Icon riêng từng bước trượt lên lệch nhịp (stagger 0.18s) khớp với 3 tiếng Click/Pop liên tiếp."}, "palette": {"glass_bg": "rgba(15, 23, 42, 0.90)", "border": "#38BDF8", "accent": "#FFECA8", "tier1": "#FFFFFF", "tier2": "#FFECA8"}, "when_to_use": "Dùng để tóm tắt nhanh 3 bước hành động, 3 tiêu chí kiểm tra (Checklist) hoặc 3 trụ cột chính.", "content_guide": "Dòng 1: Tiêu đề chung. Dòng 2: 3 bước ngắn gọn phân tách bởi dấu chấm phẩy hoặc gạch đứng.", "sample_content": {"badge": "📋 QUY TRÌNH 3 CHẠM", "icon": "⚡", "line1": "3 BƯỚC NHÂN BẢN VIDEO CHUYÊN GIA", "line2": "Phân tích Vision • Duyệt Mockup • Xuất Alpha CapCut"}, "default_sfx": ["ui_click", "ui_pop", "sub_bass_impact"], "sfx_cues": [{"sfx": "sub_bass_impact", "offset": 0.0, "volume": 0.8}, {"sfx": "ui_click", "offset": 0.12, "volume": 0.9}, {"sfx": "ui_pop", "offset": 0.3, "volume": 0.9}, {"sfx": "ui_click", "offset": 0.48, "volume": 0.95}], "capcut_alpha_ready": true}, {"id": "MG-B04", "group": "#B", "name": "Big Metric Counter Impact", "vi_name": "Con Số Khổng Lồ Nhảy Số Động", "text_tiers": {"count": 3, "tier1": {"font": "SVN-IntegralCF-Heavy.ttf", "color": "#10B981", "role": "Con số khổng lồ nhảy động (0 -> 100K, 95%, 10X, 15 PHÚT)"}, "tier2": {"font": "FDAeonikExtended-Bold.otf", "color": "#FFFFFF", "role": "Tiêu đề khẳng định kết quả"}, "tier3": {"font": "FDActaMediumItalic.ttf", "color": "#FFECA8", "role": "Dòng chú thích bằng chứng thực tế"}}, "icon_badge": {"position": "top-right-metric", "style": "Glowing Growth Arrow 📈 (#10B981 / #FFD700)", "default_badge": "📈 MỚI MẺ HIỆU SUẤT", "default_icon": "📈"}, "motion_formula": {"easing": "easeOutExpo", "spring": "counter_roll: 0 -> target_value in 0.55s", "stagger_sec": 0.12, "description": "Con số trung tâm nhảy tăng tốc từ 0 lên giá trị đích (VD: 0% -> 95% hoặc 0X -> 10X) kèm vòng hào quang xanh lục #10B981 & mũi tên tăng trưởng."}, "palette": {"glass_bg": "rgba(10, 22, 28, 0.92)", "border": "#10B981", "accent": "#FFD700", "tier1": "#10B981", "tier2": "#FFFFFF", "tier3": "#FFECA8"}, "when_to_use": "Dùng khi tung ra con số thống kê gây choáng ngợp: tiết kiệm 95% thời gian, tăng 3X chuyển đổi, kho 8.902 âm thanh.", "content_guide": "Dòng 1: Chứa con số lớn (VD: '95% THỜI GIAN' hoặc '8.902 SFX'). Dòng 2: Ý nghĩa thực tế của con số.", "sample_content": {"badge": "📈 KẾT QUẢ ĐO LƯỜNG", "icon": "📈", "line1": "95% THỜI GIAN HẬU KỲ", "line2": "Được cắt giảm nhờ Engine Motion ProRes 4444 tự động"}, "default_sfx": ["riser_short", "sub_bass_impact", "glassy_ping"], "sfx_cues": [{"sfx": "riser_short", "offset": 0.0, "volume": 0.85}, {"sfx": "sub_bass_impact", "offset": 0.35, "volume": 0.95}, {"sfx": "glassy_ping", "offset": 0.52, "volume": 0.9}], "capcut_alpha_ready": true}, {"id": "MG-V01", "group": "#V", "name": "3D Floating Glass Card (PiP)", "vi_name": "Thẻ Kính Nổi 3D Góc Màn Hình (Picture-in-Picture)", "text_tiers": {"count": 2, "tier1": {"font": "FDAeonikExtended-Bold.otf", "color": "#FFFFFF", "role": "Tiêu đề minh họa bên dưới khung đồ họa"}, "tier2": {"font": "SVN-AEONIK-MEDIUM.TTF", "color": "#FFECA8", "role": "Chú thích chi tiết 2 dòng"}}, "icon_badge": {"position": "card-header-left", "style": "Glowing Cyan Pill ⚡ AI SYSTEM", "default_badge": "⚡ AI SYSTEM PIP", "default_icon": "⚡"}, "motion_formula": {"easing": "cubic-bezier(0.16, 1, 0.3, 1)", "spring": "float_y: sin(t)*8px + perspective_tilt", "stagger_sec": 0.14, "description": "Thẻ nổi 3D hiện ra ở nửa trên hoặc góc phải màn hình với bóng đổ sâu, khung kính mờ viền phát sáng, nhấp nhô nhẹ (Floating) không che mặt người nói."}, "palette": {"glass_bg": "rgba(15, 23, 42, 0.88)", "border": "#38BDF8", "accent": "#FFECA8", "tier1": "#FFFFFF", "tier2": "#FFECA8"}, "when_to_use": "Dùng khi muốn show bằng chứng hình ảnh, sơ đồ hệ thống hoặc giao diện phần mềm ngay cạnh người nói (PiP).", "content_guide": "Dòng 1: Tên sơ đồ/bằng chứng. Dòng 2: Điểm cần chú ý trong hình.", "sample_content": {"badge": "⚡ AI SYSTEM PIP", "icon": "⚡", "line1": "KIẾN TRÚC PIPELINE V3", "line2": "Xử lý song song Vision + Audio + ProRes Alpha"}, "default_sfx": ["whoosh_soft", "ui_pop"], "sfx_cues": [{"sfx": "whoosh_soft", "offset": 0.0, "volume": 0.85}, {"sfx": "ui_pop", "offset": 0.18, "volume": 0.85}], "capcut_alpha_ready": true}, {"id": "MG-V02", "group": "#V", "name": "Before / After Split Comparison", "vi_name": "Thẻ Đấu Đối Lập: Cách Cũ vs Cách Mới", "text_tiers": {"count": 2, "tier1": {"font": "SVN-IntegralCF-Bold.ttf", "color": "#FCA5A5", "role": "Thẻ Trái/Trên: ❌ CÁCH CŨ (Viền đỏ, gạch chéo)"}, "tier2": {"font": "SVN-IntegralCF-Bold.ttf", "color": "#6EE7B7", "role": "Thẻ Phải/Dưới: ✅ CÁCH MỚI (Viền xanh ngọc phát sáng)"}}, "icon_badge": {"position": "dual-split-headers", "style": "❌ BEFORE (Red #EF4444) vs ✅ AFTER (Emerald #10B981)", "default_badge": "⚖️ SO SÁNH TRỰC DIỆN", "default_icon": "✅"}, "motion_formula": {"easing": "cubic-bezier(0.25, 1, 0.5, 1)", "spring": "left_card_in: 0.0s, right_card_in: 0.22s", "stagger_sec": 0.22, "description": "Thẻ ❌ CÁCH CŨ trượt vào trước kèm tiếng Punch -> 0.22s sau thẻ ✅ CÁCH MỚI bật sáng với viền xanh ngọc lục bảo và tiếng chuông Ping."}, "palette": {"glass_bg": "rgba(15, 23, 42, 0.90)", "border": "#10B981", "accent": "#EF4444", "tier1": "#FCA5A5", "tier2": "#6EE7B7"}, "when_to_use": "Dùng khi so sánh Trước/Sau, Cách làm thủ công vs Tự động hóa, Tư duy nghiệp dư vs Chuyên gia.", "content_guide": "Dòng 1: Cách cũ tốn kém/mất thời gian. Dòng 2: Cách mới nhanh gọn/hiệu quả.", "sample_content": {"badge": "⚖️ ĐỐI CHIẾU HIỆU QUẢ", "icon": "✅", "line1": "❌ CÁCH CŨ: Mất 4 giờ mò mẫm keyframe", "line2": "✅ CÁCH MỚI: 5 phút xuất gói Alpha kéo vào CapCut"}, "default_sfx": ["whoosh_fast", "impact_punch", "glassy_ping"], "sfx_cues": [{"sfx": "whoosh_fast", "offset": 0.0, "volume": 0.85}, {"sfx": "impact_punch", "offset": 0.16, "volume": 0.9}, {"sfx": "glassy_ping", "offset": 0.38, "volume": 0.95}], "capcut_alpha_ready": true}, {"id": "MG-V03", "group": "#V", "name": "Live Growth / Drop Chart Card", "vi_name": "Biểu Đồ Đường & Cột Tăng Trưởng Động", "text_tiers": {"count": 2, "tier1": {"font": "FDAeonikExtended-Black.otf", "color": "#FFFFFF", "role": "Tiêu đề chỉ số & Con số % góc phải"}, "tier2": {"font": "FDActaMediumItalic.ttf", "color": "#FFECA8", "role": "Chú thích xu hướng bên dưới biểu đồ"}}, "icon_badge": {"position": "top-right-metric-pill", "style": "Live Chart + Emerald Trend Badge (+320% 📈)", "default_badge": "📈 +320% TĂNG TRƯỞNG", "default_icon": "📈"}, "motion_formula": {"easing": "easeOutCubic", "spring": "bars_and_line_grow: 0 -> 100% by frame", "stagger_sec": 0.08, "description": "Các cột Bar Chart mọc dần lên theo frame đồng thời đường Line Chart xanh #10B981 (hoặc đỏ #EF4444) tự vẽ từ trái sang phải kèm điểm sáng ở đỉnh."}, "palette": {"glass_bg": "rgba(11, 19, 32, 0.90)", "border": "#10B981", "accent": "#38BDF8", "tier1": "#FFFFFF", "tier2": "#FFECA8"}, "when_to_use": "Dùng khi nói về tốc độ tăng trưởng doanh thu, tỷ lệ giữ chân người xem (Retention), hoặc sự sụt giảm chi phí.", "content_guide": "Dòng 1: Tên biểu đồ tăng trưởng. Dòng 2: Giải thích nguyên nhân tăng tốc.", "sample_content": {"badge": "📈 RETENTION +320%", "icon": "📈", "line1": "TỶ LỆ GIỮ CHÂN KHÁN GIẢ", "line2": "Tăng vọt khi chèn Motion Graphic đúng nhịp mỗi 4 giây"}, "default_sfx": ["riser_short", "glassy_ping"], "sfx_cues": [{"sfx": "riser_short", "offset": 0.0, "volume": 0.85}, {"sfx": "glassy_ping", "offset": 0.45, "volume": 0.95}], "capcut_alpha_ready": true}, {"id": "MG-V04", "group": "#V", "name": "Titanium Phone / Polaroid Frame", "vi_name": "Khung iPhone Titanium & Ảnh Polaroid Nghiêng", "text_tiers": {"count": 2, "tier1": {"font": "FDAeonikExtended-Bold.otf", "color": "#FFFFFF", "role": "Tiêu đề trên nhãn Polaroid / Dynamic Island"}, "tier2": {"font": "FDActaBoldItalic.ttf", "color": "#FFECA8", "role": "Chữ viết tay / Phụ đề nghiêng ở đáy khung"}}, "icon_badge": {"position": "top-pin-sticker", "style": "Titanium Bezel + Dynamic Island + Sticker Pin 📸", "default_badge": "📸 BẰNG CHỨNG THỰC TẾ", "default_icon": "📸"}, "motion_formula": {"easing": "cubic-bezier(0.34, 1.56, 0.64, 1)", "spring": "rotate: -3.5deg -> 0deg, scale: 0.92 -> 1.0", "stagger_sec": 0.15, "description": "Khung iPhone Titanium / Polaroid xoay nhẹ từ góc nghiêng -3.5 độ về cân bằng kèm chớp trắng nhẹ như chụp ảnh (Camera Flash)."}, "palette": {"glass_bg": "rgba(18, 24, 38, 0.92)", "border": "#CBD5E1", "accent": "#FFECA8", "tier1": "#FFFFFF", "tier2": "#FFECA8"}, "when_to_use": "Dùng khi khoe feedback học viên, ảnh chụp màn hình điện thoại, kết quả thực tế hoặc kỷ niệm đời thực.", "content_guide": "Dòng 1: Tên case study / bằng chứng. Dòng 2: Lời trích dẫn hoặc kết quả cụ thể.", "sample_content": {"badge": "📸 CASE STUDY THẬT", "icon": "📸", "line1": "GIAO DIỆN CHẠM 2 TRÊN MOBILE", "line2": "Duyệt kịch bản và sửa chữ ngay trên điện thoại"}, "default_sfx": ["camera_shutter", "page_flip"], "sfx_cues": [{"sfx": "camera_shutter", "offset": 0.0, "volume": 0.95}, {"sfx": "page_flip", "offset": 0.22, "volume": 0.85}], "capcut_alpha_ready": true}, {"id": "MG-V05", "group": "#V", "name": "Fullscreen Cinematic B-Roll + Glass Caption", "vi_name": "Cảnh Trám Toàn Màn Hình & Thanh Phụ Đề Kính Mờ", "text_tiers": {"count": 2, "tier1": {"font": "FDAeonikExtended-Black.otf", "color": "#FFFFFF", "role": "Tiêu đề lớn trong thanh Glass Caption ở góc dưới"}, "tier2": {"font": "SVN-AEONIK-MEDIUM.TTF", "color": "#FFECA8", "role": "Dòng giải trình bối cảnh / phụ đề B-Roll"}}, "icon_badge": {"position": "bottom-left-caption-bar", "style": "Cinematic Letterbox + Lower-Third Glass Bar 🎬", "default_badge": "🎬 CINEMATIC B-ROLL", "default_icon": "🎬"}, "motion_formula": {"easing": "linear_zoom + cubic_caption", "spring": "5 B-Roll presets: ken-burns-3d, slow-zoom-vignette, pan-focus-pull, split-comparison, light-leak-reveal", "stagger_sec": 0.15, "description": "Kết hợp 5 preset chuyển động ảnh toàn màn hình (hoặc khung Cinema khi xuất Alpha) + Thanh Caption kính mờ 2 tầng chữ kèm Icon trượt lên ở góc dưới."}, "palette": {"glass_bg": "rgba(10, 15, 28, 0.86)", "border": "#FFECA8", "accent": "#38BDF8", "tier1": "#FFFFFF", "tier2": "#FFECA8"}, "when_to_use": "Dùng để trám hình ảnh minh họa toàn màn hình xóa sự đơn điệu của khung hình talking-head mà vẫn giữ 100% giọng nói gốc.", "content_guide": "Dòng 1: Chủ đề cảnh trám. Dòng 2: Thông điệp bổ trợ cho lời đang nói.", "sample_content": {"badge": "🎬 KEN-BURNS 3D", "icon": "🎬", "line1": "KHÔNG GIAN LÀM VIỆC TỐI GIẢN", "line2": "Giữ nguyên 100% giọng nói gốc chạy xuyên suốt"}, "default_sfx": ["whoosh_fast", "camera_shutter"], "sfx_cues": [{"sfx": "whoosh_fast", "offset": 0.0, "volume": 0.85}, {"sfx": "camera_shutter", "offset": 0.25, "volume": 0.8}], "capcut_alpha_ready": true}, {"id": "MG-V06", "group": "#V", "name": "Documentary Collage & Highlighter", "vi_name": "Phong Cách Tài Liệu Cắt Lớp & Dải Dạ Quang", "text_tiers": {"count": 3, "tier1": {"font": "SVN-AEONIK-BLACK.TTF", "color": "#38BDF8", "role": "Số thứ tự hồ sơ [01] / ARCHIVE TAG"}, "tier2": {"font": "GT-Sectra-LCGV-Display-Bold.otf", "color": "#090D16", "role": "Từ khóa chính trên dải băng dạ quang vàng #FFE600"}, "tier3": {"font": "FDActaMediumItalic.ttf", "color": "#F8FAFC", "role": "Chú thích tài liệu kèm hạt Film Grain"}}, "icon_badge": {"position": "top-left-index-stamp", "style": "Archive Index [01] + Paper Collage Cutout + Yellow Highlighter Strip", "default_badge": "[01] HỒ SƠ THỰC CHIẾN", "default_icon": "🗂️"}, "motion_formula": {"easing": "steps(12) + cubic-bezier(0.22, 1, 0.36, 1)", "spring": "collage_drop + highlighter_swipe", "stagger_sec": 0.16, "description": "Khung ảnh cắt lớp viền sáng đáp xuống -> Dải băng dạ quang vàng quẹt ngang từ khóa -> Nhãn số thứ tự [01] đóng dấu góc trái kèm hạt film grain."}, "palette": {"glass_bg": "rgba(15, 20, 30, 0.90)", "border": "#F8FAFC", "accent": "#FFE600", "tier1": "#38BDF8", "tier2": "#090D16", "tier3": "#F8FAFC"}, "when_to_use": "Dùng cho các đoạn kể chuyện (Storytelling), phân tích hồ sơ nhân vật, lịch sử vấn đề theo phong cách Vox / Johnny Harris.", "content_guide": "Dòng 1: Từ khóa trên dải băng vàng. Dòng 2: Trích dẫn tài liệu / dữ kiện thực tế.", "sample_content": {"badge": "[01] TÀI LIỆU GỐC", "icon": "🗂️", "line1": "BƯỚC NGOẶT TỰ ĐỘNG HÓA", "line2": "Khi AI thay thế 80% thao tác cắt ghép lặp đi lặp lại"}, "default_sfx": ["page_flip", "camera_shutter", "ui_click"], "sfx_cues": [{"sfx": "page_flip", "offset": 0.0, "volume": 0.95}, {"sfx": "camera_shutter", "offset": 0.2, "volume": 0.85}, {"sfx": "ui_click", "offset": 0.4, "volume": 0.85}], "capcut_alpha_ready": true}];
+    const SFX_PRESETS_DB = {"whoosh_soft": {"file": "whoosh_soft.wav", "source_raw": "WHOOSH AIR Arrow Flyby 04 - vut khi 0.6s SS4658.wav", "drive_code": "SS4658", "category": "01 Whoosh - Vút gió", "duration": 0.49, "description": "Tiếng vút khí nhẹ sắc nét (Arrow Flyby SS4658) khi thẻ kính mờ hoặc tiêu đề trượt vào"}, "whoosh_fast": {"file": "whoosh_fast.wav", "source_raw": "Whoosh Swoosh Movement Liquidy Pass Short Quick - vut ngan 2.1s FK1085.wav", "drive_code": "FK1085", "category": "01 Whoosh - Vút gió", "duration": 1.15, "description": "Tiếng vút Swoosh mượt hiện đại (FK1085) cho chuyển động cắt ngang hoặc lật thẻ"}, "whoosh_deep": {"file": "whoosh_deep.wav", "source_raw": "WHOOSH DARK Whoosh Soft - vut toi nhe 2.2s SS4798.wav", "drive_code": "SS4798", "category": "01 Whoosh - Vút gió", "duration": 1.5, "description": "Tiếng Whoosh trầm điện ảnh (SS4798) cho chuyển cảnh B-Roll toàn màn hình"}, "sub_bass_impact": {"file": "sub_bass_impact.wav", "source_raw": "IMPACT BASS Sub Kick Clean Transient 01 - va dap tram 1.1s SS4374.wav", "drive_code": "SS4374", "category": "02 Impact - Va đập", "duration": 0.95, "description": "Tiếng nổ trầm Sub-Bass Kick sạch uy lực (SS4374) mở màn Chapter hoặc chốt số liệu lớn"}, "impact_deep": {"file": "impact_deep.wav", "source_raw": "IMPACT BASS Drop Short 01 - va dap tram roi 3.3s SS4365.wav", "drive_code": "SS4365", "category": "02 Impact - Va đập", "duration": 1.8, "description": "Tiếng Bass Drop chuyển chương trầm sâu (SS4365) cho công thức 3 tầng cốt lõi"}, "impact_punch": {"file": "impact_punch.wav", "source_raw": "Distorted Impact Whoosh Deep Impacts - va dap vut sau 2.4s OC6833.wav", "drive_code": "OC6833", "category": "02 Impact - Va đập", "duration": 1.35, "description": "Tiếng va đập vút sâu đanh gọn (OC6833) khi gạch bỏ sai lầm hoặc so sánh đối lập"}, "laser_strike": {"file": "laser_strike.wav", "source_raw": "Hard Hit Hard Impact High Whoosh Epic Hits Vol 1 - dap va dap vut 1.9s OC7015.wav", "drive_code": "OC7015", "category": "02 Impact - Va đập", "duration": 1.25, "description": "Tiếng Hard Impact High Whoosh (OC7015) quẹt ngang gạch bỏ tư duy sai lầm"}, "riser_short": {"file": "riser_short.wav", "source_raw": "Riser Deep Airy Ring Out Short - dang sau nhe 2.0s FK1055.wav", "drive_code": "FK1055", "category": "03 Riser & Drop - Dâng và Rơi", "duration": 1.55, "description": "Tiếng Riser dâng nhẹ thoáng đãng (FK1055) lấy đà cho con số nhảy Counter"}, "whoosh_riser": {"file": "whoosh_riser.wav", "source_raw": "Riser Projectile Front Whoosh - dang vut 2.2s FK1060.wav", "drive_code": "FK1060", "category": "03 Riser & Drop - Dâng và Rơi", "duration": 1.65, "description": "Tiếng Riser vút cao trào (FK1060) dẫn người xem vào chương mới hoặc lộ trình Bézier"}, "glassy_ping": {"file": "glassy_ping.wav", "source_raw": "Ping 05 - Thong bao 1.0s SE5484.wav", "drive_code": "SE5484", "category": "08 UI & Click - Giao diện", "duration": 0.95, "description": "Tiếng chuông pha lê trong trẻo (SE5484) khi khoanh tròn từ khóa hoặc hoàn tất bước"}, "ui_pop": {"file": "ui_pop.wav", "source_raw": "Ping 04 - Thong bao 1.0s SE5488.wav", "drive_code": "SE5488", "category": "08 UI & Click - Giao diện", "duration": 0.75, "description": "Tiếng Pop thông báo nảy nhẹ (SE5488) khi Badge Icon hoặc thẻ bước bật lên"}, "ui_click": {"file": "ui_click.wav", "source_raw": "Clicks Kinetic Ramp Up - Click & Snap 2.2s FK1043.wav", "drive_code": "FK1043", "category": "08 UI & Click - Giao diện", "duration": 0.85, "description": "Tiếng Kinetic Click cơ học sắc nét (FK1043) khi liệt kê từng bước hoặc đóng khung"}, "camera_shutter": {"file": "camera_shutter.wav", "source_raw": "01 - May anh 0.5s SE5219.wav", "drive_code": "SE5219", "category": "08 UI & Click - Giao diện", "duration": 0.51, "description": "Tiếng màn trập máy ảnh thật (SE5219) cho khung Polaroid, iPhone hoặc cảnh trám B-Roll"}, "page_flip": {"file": "page_flip.wav", "source_raw": "19.2 Page Flip 2 - Do vat & Bep 4.4s EF0505.wav", "drive_code": "EF0505", "category": "06 Foley - Tiếng động chi tiết", "duration": 1.1, "description": "Tiếng lật trang giấy thật (EF0505) cho bút dạ quang vàng và phong cách Documentary"}, "digital_glitch": {"file": "digital_glitch.wav", "source_raw": "DIGITAL ANALOG 2 - Digital & Analog 0.8s LB4922.wav", "drive_code": "LB4922", "category": "09 Glitch & Sci-Fi - Điện tử", "duration": 0.72, "description": "Tiếng xung điện tử Digital Analog (LB4922) cho hiệu ứng AI, Hologram và dữ liệu số"}, "combo_transition": {"file": "combo_transition.wav", "source_raw": "TRANSITION 6 - Chuyen canh tron goi 1.0s LB4942.wav", "drive_code": "LB4942", "category": "13 Combo dựng sẵn - Moment", "duration": 0.72, "description": "Tiếng chuyển cảnh trọn gói (LB4942) đã mix sẵn Whoosh + Hit + Tail điện ảnh"}};
+    const BROLL_8_DB = [
+      { id: "BROLL-01", name: "01. Scientific Atlas 2D Plate", group: "Khoa Học 2D", color: "#F5F2EB", textCol: "#2C2A29", l1: "BẢN VẼ GIẢI PHẪU 2D", l2: "Nền giấy y khoa #F5F2EB phẳng + Chỉ dẫn vector [1]..[4]", meta: "build_scientific_atlas_v2.py • Chống 3D/AI giả tưởng" },
+      { id: "BROLL-02", name: "02. Documentary Clinical Photo", group: "Tư Liệu Thật", color: "#38BDF8", textCol: "#FFFFFF", l1: "ẢNH CHỤP LÂM SÀNG ĐỜI THỰC", l2: "Ánh sáng tự nhiên 5000K, giảm bão hòa 0.86 dịu mắt", meta: "build_documentary_photo() • Chụp cận cảnh thao tác" },
+      { id: "BROLL-03", name: "03. Vertical Spine Roadmap (#MG2)", group: "Lộ Trình Dọc", color: "#FACC15", textCol: "#FFFFFF", l1: "LỘ TRÌNH 4 CHẶNG TRỤC DỌC", l2: "Trục thẳng đứng X=158, 4 thẻ ngang Swiss Dark", meta: "MG-B02 V2 • Tách riêng 1 nội dung/khung hình" },
+      { id: "BROLL-04", name: "04. Clinical Stat Card (#MG1)", group: "Số Liệu Y Khoa", color: "#10B981", textCol: "#FFFFFF", l1: "85% CA MẤT RĂNG SỚM", l2: "Con số trung tâm Tiempos Italic + 3 thanh tiến trình dọc", meta: "MG1_STAT • Không nhồi chung với bản đồ" },
+      { id: "BROLL-05", name: "05. FB Timestamp Proof Overlay", group: "Bằng Chứng Thật", color: "#38BDF8", textCol: "#FFFFFF", l1: "BẰNG CHỨNG GIỜ ĐĂNG 8:15 AM", l2: "Khung bài viết Facebook thật xác thực câu chuyện", meta: "build_fb_timestamp_proof.py • Tăng độ tin cậy tức thì" },
+      { id: "BROLL-06", name: "06. Messenger Chat Proof Outro", group: "Bằng Chứng Thật", color: "#10B981", textCol: "#FFFFFF", l1: "TIN NHẮN KHÁCH CHỐT ĐƠN THẬT", l2: "Hiển thị 2.5s cuối video kèm âm thanh thông báo nhẹ", meta: "build_outro_proof_preview.py • Chốt trong im lặng" },
+      { id: "BROLL-07", name: "07. Affiliate AIDA 84% Clean Frame", group: "Bán Hàng AIDA", color: "#FACC15", textCol: "#FFFFFF", l1: "KHUNG SẢN PHẨM SẠCH 84%", l2: "Header 1 dòng tại Y=54px, ưu tiên chi tiết vật lý", meta: "Affiliate V3.3 • 4 Pha A - I - D - A" },
+      { id: "BROLL-08", name: "08. Google Flow Veo 3.1 Motion B-Roll", group: "Video AI Mỏ Neo", color: "#A855F7", textCol: "#FFFFFF", l1: "CẢNH TRÁM VIDEO VEO 3.1", l2: "Khóa Keyframe đầu-cuối từ ảnh chuẩn Face DNA >99%", meta: "video_automator.py V3 • Chuyển động điện ảnh" }
+    ];
+
+    let activeCatalogMode = "all35";
+    let selectedItemJson = {};
+
+    function selectCatalogItem(itemObj) {
+      selectedItemJson = itemObj;
+      document.getElementById("stage-badge-id").textContent = itemObj.codeId;
+      document.getElementById("stage-badge-group").textContent = itemObj.badgeGroup;
+      document.getElementById("stage-pill").textContent = itemObj.pillText;
+      const l1El = document.getElementById("stage-line1");
+      const l2El = document.getElementById("stage-line2");
+      l1El.textContent = itemObj.l1;
+      l1El.style.color = itemObj.c1 || "#FACC15";
+      l2El.textContent = itemObj.l2;
+      l2El.style.color = itemObj.c2 || "#FFFFFF";
+      document.getElementById("stage-meta-lines").innerHTML = itemObj.metaHtml;
+    }
+
+    function copyCurrentStyleCode(btnEl) {
+      navigator.clipboard.writeText(JSON.stringify(selectedItemJson.raw || selectedItemJson, null, 2));
+      const btn = btnEl || document.activeElement;
+      const old = btn.textContent;
+      btn.textContent = "✓ ĐÃ SAO CHÉP MÃ CẤU HÌNH JSON!";
+      btn.style.borderColor = "#10b981";
+      setTimeout(() => { btn.textContent = old; btn.style.borderColor = "var(--cl-accent)"; }, 1600);
+    }
+
+    function getUnifiedItems(mode, query = "") {
+      const q = query.trim().toLowerCase();
+      let items = [];
+
+      if (mode === "all35" || mode === "expert" || mode === "story" || mode === "sales") {
+        STYLES_35_DB.forEach(s => {
+          const prof = (s.profile || "").toLowerCase();
+          if (mode === "expert" && !["editorial_pro", "expert", "education", "finance", "tech"].some(k => prof.includes(k))) return;
+          if (mode === "story" && !["story", "healing", "podcast", "lifestyle"].some(k => prof.includes(k))) return;
+          if (mode === "sales" && !["case_study", "hoc_vien_youtube", "sales", "ecommerce", "affiliate"].some(k => prof.includes(k))) return;
+
+          const codeId = `STYLE-${String(s.id).padStart(2, '0')}`;
+          items.push({
+            codeId,
+            title: s.name,
+            badgeGroup: s.package_name || "Typography 2 Tầng",
+            pillText: `🎨 ${codeId} • ${s.package_name || 'Chuẩn V3'}`,
+            l1: s.l1,
+            l2: s.l2,
+            c1: s.c1,
+            c2: s.c2,
+            metaHtml: `<div>• <strong>Font Tầng 1:</strong> FD Aeonik Extended (${s.s1}px)</div><div>• <strong>Font Tầng 2:</strong> Tiempos / FD Aeonik (${s.s2}px)</div><div>• <strong>Màu khóa:</strong> ${s.c1} / ${s.c2}</div><div>• <strong>Nhóm kênh:</strong> ${s.package_name}</div>`,
+            raw: s
+          });
+        });
+      } else if (mode === "arch16") {
+        ARCHETYPES_16_DB.forEach(a => {
+          const sc = a.sample_content || {};
+          const pal = a.palette || {};
+          items.push({
+            codeId: a.id,
+            title: `${a.id}: ${a.vi_name}`,
+            badgeGroup: `Nhóm ${a.group} • Archetype`,
+            pillText: sc.badge || a.id,
+            l1: sc.line1 || a.name,
+            l2: sc.line2 || a.when_to_use,
+            c1: pal.tier1 || pal.accent || "#FACC15",
+            c2: pal.tier2 || "#FFFFFF",
+            metaHtml: `<div>• <strong>Tên kỹ thuật:</strong> ${a.name}</div><div>• <strong>Công thức:</strong> ${a.motion_formula?.description || ''}</div><div>• <strong>Khi nào dùng:</strong> ${a.when_to_use || ''}</div><div>• <strong>SFX đi kèm:</strong> ${(a.default_sfx || []).join(', ')}</div>`,
+            raw: a
+          });
+        });
+      } else if (mode === "broll8") {
+        BROLL_8_DB.forEach(b => {
+          items.push({
+            codeId: b.id,
+            title: b.name,
+            badgeGroup: b.group,
+            pillText: `🎬 ${b.id} • ${b.group}`,
+            l1: b.l1,
+            l2: b.l2,
+            c1: b.color === "#F5F2EB" ? "#FACC15" : b.color,
+            c2: "#FFFFFF",
+            metaHtml: `<div>• <strong>Loại khung B-Roll:</strong> ${b.name}</div><div>• <strong>Cơ chế:</strong> ${b.meta}</div><div>• <strong>Âm thanh đi kèm:</strong> Voice-Safe 10% (-22dB)</div>`,
+            raw: b
+          });
+        });
+      }
+
+      if (q) {
+        items = items.filter(it =>
+          it.codeId.toLowerCase().includes(q) ||
+          it.title.toLowerCase().includes(q) ||
+          it.l1.toLowerCase().includes(q) ||
+          it.l2.toLowerCase().includes(q) ||
+          it.badgeGroup.toLowerCase().includes(q)
+        );
+      }
+      return items;
+    }
+
+    let currentDisplayedItems = [];
+
+    function renderMfxCards(items) {
+      currentDisplayedItems = items;
+      const box = document.getElementById("mfx-cards-container");
+      if (!items.length) {
+        box.innerHTML = `<div style="padding:1.5rem; color:var(--cl-muted);">Không tìm thấy mẫu phù hợp với từ khóa.</div>`;
+        return;
+      }
+      box.innerHTML = items.map((it, idx) => `
+        <div class="style-item-card ${idx === 0 ? 'active' : ''}" onclick="handleCardClick(${idx}, this)">
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <span style="font-family:var(--font-mono); font-size:0.68rem; font-weight:700; color:var(--cl-accent);">${it.codeId}</span>
+            <span style="font-family:var(--font-mono); font-size:0.62rem; color:var(--cl-muted);">${it.badgeGroup}</span>
+          </div>
+          <div style="font-family:var(--font-display); font-size:0.88rem; font-weight:800; color:#fff;">${it.title}</div>
+          <div style="margin-top:0.2rem; padding:0.45rem 0.55rem; border-radius:7px; background:#080b12; border:1px solid rgba(255,255,255,0.06);">
+            <div style="font-family:var(--font-display); font-size:0.78rem; font-weight:800; color:${it.c1}; text-transform:uppercase; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">${it.l1}</div>
+            <div style="font-family:var(--font-serif); font-style:italic; font-size:0.73rem; color:${it.c2}; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">${it.l2}</div>
+          </div>
+        </div>
+      `).join("");
+      selectCatalogItem(items[0]);
+    }
+
+    function handleCardClick(idx, el) {
+      document.querySelectorAll(".style-item-card").forEach(c => c.classList.remove("active"));
+      if (el) el.classList.add("active");
+      selectCatalogItem(currentDisplayedItems[idx]);
+    }
+
+    function filterMfxCatalog(mode, btnEl) {
+      activeCatalogMode = mode;
+      if (btnEl) {
+        btnEl.parentElement.querySelectorAll(".filter-chip").forEach(b => b.classList.remove("active"));
+        btnEl.classList.add("active");
+      }
+      const q = document.getElementById("mfx-search").value;
+      renderMfxCards(getUnifiedItems(activeCatalogMode, q));
+    }
+
+    function searchMfxCatalog(val) {
+      renderMfxCards(getUnifiedItems(activeCatalogMode, val));
+    }
+
+    // Lightbox helpers
+    function openLightbox(src) {
+      document.getElementById("lightbox-img").src = src;
+      document.getElementById("lightbox").classList.add("open");
+    }
+    function closeLightbox() {
+      document.getElementById("lightbox").classList.remove("open");
+    }
+    document.addEventListener("keydown", e => { if (e.key === "Escape") closeLightbox(); });
+
+    // Init on load
+    window.addEventListener("DOMContentLoaded", () => {
+      renderSkillMatrix();
+      loadVmapPreset("dental", null);
+      renderMfxCards(getUnifiedItems("all35"));
+      const sections = document.querySelectorAll(".sec-block");
+      const tocLinks = document.querySelectorAll(".toc-link");
+      const topPills = document.querySelectorAll(".top-pill[href^='#sec-']");
+      window.addEventListener("scroll", () => {
+        let currentId = "sec-01";
+        sections.forEach(sec => {
+          if (window.scrollY >= sec.offsetTop - 130) currentId = sec.id;
+        });
+        tocLinks.forEach(a => a.classList.toggle("active", a.getAttribute("href") === "#" + currentId));
+        topPills.forEach(a => a.classList.toggle("active", a.getAttribute("href") === "#" + currentId));
+      }, { passive: true });
+    });
+  </script>
+</body>
+</html>
