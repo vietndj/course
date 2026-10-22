@@ -1,0 +1,1262 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Hook — Thư Viện 77 Hiệu Ứng Vào Cảnh (Higgsfield Minimax × FEDU)</title>
+<style>
+  * { box-sizing: border-box; }
+  body { background: #0b0d10; color: #f1f5f9; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; margin: 0; padding: 24px; line-height: 1.5; }
+  .container { max-width: 1440px; margin: 0 auto; }
+  .hero { background: linear-gradient(135deg, #131822 0%, #1a2230 100%); border: 1px solid #2d3748; border-radius: 16px; padding: 24px; margin-bottom: 24px; }
+  h1 { margin: 0 0 8px 0; font-size: 26px; color: #fff; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .badge-main { background: #d4fe48; color: #000; font-size: 12px; font-weight: 800; padding: 4px 10px; border-radius: 999px; text-transform: uppercase; }
+  .sub { color: #94a3b8; margin-bottom: 16px; font-size: 14px; }
+  .strategy-box { background: #0f131a; border: 1px solid #262f3f; border-left: 4px solid #d4fe48; border-radius: 10px; padding: 14px 18px; font-size: 13.5px; color: #cbd5e1; }
+  .strategy-box strong { color: #d4fe48; }
+  .toolbar { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 24px; align-items: center; position: sticky; top: 0; z-index: 20; background: rgba(11, 13, 16, 0.92); backdrop-filter: blur(10px); padding: 12px 0; border-bottom: 1px solid #1e293b; }
+  input[type=text] { background: #1e293b; border: 1px solid #334155; color: #fff; padding: 9px 14px; border-radius: 8px; font-size: 14px; min-width: 240px; }
+  button.filter { background: #1e293b; border: 1px solid #334155; color: #cbd5e1; padding: 8px 14px; border-radius: 8px; cursor: pointer; font-size: 13px; transition: all 0.15s; }
+  button.filter:hover { border-color: #64748b; color: #fff; }
+  button.filter.active { background: #d4fe48; color: #000; border-color: #d4fe48; font-weight: 700; }
+  button.filter-top7 { border-color: #f59e0b; color: #fbbf24; font-weight: 600; }
+  button.filter-top7.active { background: #f59e0b; color: #000; border-color: #f59e0b; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px; }
+  .card { background: #151921; border: 1px solid #262c3a; border-radius: 12px; overflow: hidden; display: flex; flex-direction: column; transition: transform 0.15s, border-color 0.15s; }
+  .card:hover { transform: translateY(-2px); border-color: #475569; }
+  .card-top7 { border: 1.5px solid rgba(212, 254, 72, 0.55); box-shadow: 0 0 20px rgba(212, 254, 72, 0.08); }
+  .vid-wrap { position: relative; aspect-ratio: 3/4; background: #000; cursor: pointer; }
+  video { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .order { position: absolute; top: 8px; left: 8px; background: rgba(0,0,0,0.75); color: #d4fe48; font-size: 11px; font-weight: 700; padding: 3px 7px; border-radius: 6px; }
+  .hook-badge { position: absolute; bottom: 8px; left: 8px; background: #d4fe48; color: #000; font-size: 11px; font-weight: 800; padding: 3px 8px; border-radius: 6px; box-shadow: 0 2px 8px rgba(0,0,0,0.5); }
+  .size { position: absolute; top: 8px; right: 8px; background: rgba(0,0,0,0.75); color: #cbd5e1; font-size: 11px; padding: 3px 7px; border-radius: 6px; }
+  .info { padding: 12px; display: flex; flex-direction: column; flex: 1; }
+  .title { font-weight: 700; font-size: 14px; color: #fff; margin-bottom: 6px; }
+  .tags { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 8px; }
+  .tag { background: #1e293b; color: #94a3b8; font-size: 11px; padding: 2px 6px; border-radius: 4px; }
+  .hook-desc { font-size: 12px; color: #e2e8f0; background: rgba(212, 254, 72, 0.08); border-left: 2px solid #d4fe48; padding: 6px 8px; border-radius: 4px; margin-bottom: 8px; }
+  .file-name { margin-top: auto; font-family: monospace; font-size: 11px; }
+  .file-name a { color: #64748b; text-decoration: none; }
+  .file-name a:hover { color: #d4fe48; text-decoration: underline; }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="hero">
+    <h1>
+      AI Hook Studio — 77 Hiệu Ứng Chuyển Cảnh Higgsfield Minimax
+      <span class="badge-main">Hội Ý Gemini × CLAUDE2</span>
+    </h1>
+    <div class="sub">Rê chuột (hoặc chạm trên điện thoại) để phát thử từng hiệu ứng. Bấm <b>"★ Top 7 Vào Cảnh Đứng Nói"</b> để lọc ngay 7 hiệu ứng Hook thực chiến nhất.</div>
+    <div class="strategy-box">
+      <strong>Quy tắc Vàng "Đảo Ngược Pull-Out" (Time-Reverse Match-Cut):</strong> Lấy frame lúc nhân vật chuẩn bị mở lời (<code>Frame_00.png</code> — miệng khép, mắt mở, nét nhất) đưa vào hiệu ứng nhóm <b>OUT</b> (như <code>RAPID ZOOM OUT</code>, <code>AERIAL PULL OUT</code>, <code>THROUGH OBJECT OUT</code>, <code>JIB UP</code>), cắt lấy <b>2.5 giây đầu</b> rồi <b>Đảo Ngược Thời Gian (<code>reverse</code>)</b> + cân màu LAB + nối <code>xfade 5 frames (0.17s)</code> + dập SFX <i>Whoosh → Sub Impact</i> đúng điểm đáp.
+    </div>
+  </div>
+
+  <div class="toolbar">
+    <input type="text" id="q" placeholder="Tìm tên hiệu ứng (VD: ZOOM, AERIAL, JIB...)" oninput="filterCards()">
+    <button class="filter active" onclick="setCat('ALL', this)">Tất cả (77)</button>
+    <button class="filter filter-top7" onclick="setCat('TOP7_HOOK', this)">★ Top 7 Vào Cảnh Đứng Nói (7)</button>
+    <button class="filter" onclick="setCat('Camera Control', this)">Camera Control (19)</button>
+    <button class="filter" onclick="setCat('Effects', this)">Effects (27)</button>
+    <button class="filter" onclick="setCat('UGC', this)">UGC (22)</button>
+    <button class="filter" onclick="setCat('Viral', this)">Viral (15)</button>
+    <button class="filter" onclick="setCat('Commercial', this)">Commercial (7)</button>
+    <button class="filter" onclick="setCat('Action Movement', this)">Action Movement (5)</button>
+    <button class="filter" onclick="setCat('Emotions', this)">Emotions (3)</button>
+    <button class="filter" onclick="setCat('Horror', this)">Horror (13)</button>
+    <button class="filter" onclick="togglePlayAll(this)">▶ Phát tất cả</button>
+  </div>
+
+  <div class="grid" id="grid">
+    
+    <div class="card " data-name="general" data-cats="Camera Control">
+      <div class="vid-wrap">
+        <video src="https://cdn.higgsfield.ai/minimax_hailuo_motion/d0028591-db56-4d8e-9fc0-d77efc18d018.mp4" poster="" muted loop playsinline preload="metadata" onmouseenter="this.play()" onmouseleave="this.pause();this.currentTime=0;" onclick="this.paused ? this.play() : this.pause()"></video>
+        <span class="order">#01</span>
+        
+        <span class="size">532.1 KB</span>
+      </div>
+      <div class="info">
+        <div class="title">GENERAL</div>
+        <div class="tags"><span class="tag">Camera Control</span></div>
+        
+        <div class="file-name"><a href="https://cdn.higgsfield.ai/minimax_hailuo_motion/d0028591-db56-4d8e-9fc0-d77efc18d018.mp4" target="_blank" rel="noopener">⬇ Tải MP4 gốc (GENERAL.mp4)</a></div>
+      </div>
+    </div>
+    
+    <div class="card " data-name="screamer" data-cats="Horror">
+      <div class="vid-wrap">
+        <video src="https://cdn.higgsfield.ai/minimax_hailuo_motion/b5d3a4c4-8378-468c-99f9-6ec67fc4f37a.mp4" poster="" muted loop playsinline preload="metadata" onmouseenter="this.play()" onmouseleave="this.pause();this.currentTime=0;" onclick="this.paused ? this.play() : this.pause()"></video>
+        <span class="order">#02</span>
+        
+        <span class="size">674.5 KB</span>
+      </div>
+      <div class="info">
+        <div class="title">SCREAMER</div>
+        <div class="tags"><span class="tag">Horror</span></div>
+        
+        <div class="file-name"><a href="https://cdn.higgsfield.ai/minimax_hailuo_motion/b5d3a4c4-8378-468c-99f9-6ec67fc4f37a.mp4" target="_blank" rel="noopener">⬇ Tải MP4 gốc (SCREAMER.mp4)</a></div>
+      </div>
+    </div>
+    
+    <div class="card " data-name="maggot swarm" data-cats="Horror">
+      <div class="vid-wrap">
+        <video src="https://cdn.higgsfield.ai/minimax_hailuo_motion/bd04ebd9-5217-4f49-99d3-f14ea6e246b3.mp4" poster="" muted loop playsinline preload="metadata" onmouseenter="this.play()" onmouseleave="this.pause();this.currentTime=0;" onclick="this.paused ? this.play() : this.pause()"></video>
+        <span class="order">#03</span>
+        
+        <span class="size">610.8 KB</span>
+      </div>
+      <div class="info">
+        <div class="title">MAGGOT SWARM</div>
+        <div class="tags"><span class="tag">Horror</span></div>
+        
+        <div class="file-name"><a href="https://cdn.higgsfield.ai/minimax_hailuo_motion/bd04ebd9-5217-4f49-99d3-f14ea6e246b3.mp4" target="_blank" rel="noopener">⬇ Tải MP4 gốc (MAGGOT SWARM.mp4)</a></div>
+      </div>
+    </div>
+    
+    <div class="card " data-name="crying" data-cats="Viral,UGC,Emotions">
+      <div class="vid-wrap">
+        <video src="https://cdn.higgsfield.ai/minimax_hailuo_motion/c7618230-873c-4afe-ba17-54609ee50e9b.mp4" poster="" muted loop playsinline preload="metadata" onmouseenter="this.play()" onmouseleave="this.pause();this.currentTime=0;" onclick="this.paused ? this.play() : this.pause()"></video>
+        <span class="order">#04</span>
+        
+        <span class="size">251.3 KB</span>
+      </div>
+      <div class="info">
+        <div class="title">CRYING</div>
+        <div class="tags"><span class="tag">Viral</span><span class="tag">UGC</span><span class="tag">Emotions</span></div>
+        
+        <div class="file-name"><a href="https://cdn.higgsfield.ai/minimax_hailuo_motion/c7618230-873c-4afe-ba17-54609ee50e9b.mp4" target="_blank" rel="noopener">⬇ Tải MP4 gốc (CRYING.mp4)</a></div>
+      </div>
+    </div>
+    
+    <div class="card " data-name="flame on" data-cats="Viral,Effects">
+      <div class="vid-wrap">
+        <video src="https://cdn.higgsfield.ai/minimax_hailuo_motion/d0577b6b-1cb1-48a2-a79d-6feb85a1b47d.mp4" poster="" muted loop playsinline preload="metadata" onmouseenter="this.play()" onmouseleave="this.pause();this.currentTime=0;" onclick="this.paused ? this.play() : this.pause()"></video>
+        <span class="order">#05</span>
+        
+        <span class="size">1725.9 KB</span>
+      </div>
+      <div class="info">
+        <div class="title">FLAME ON</div>
+        <div class="tags"><span class="tag">Viral</span><span class="tag">Effects</span></div>
+        
+        <div class="file-name"><a href="https://cdn.higgsfield.ai/minimax_hailuo_motion/d0577b6b-1cb1-48a2-a79d-6feb85a1b47d.mp4" target="_blank" rel="noopener">⬇ Tải MP4 gốc (FLAME ON.mp4)</a></div>
+      </div>
+    </div>
+    
+    <div class="card " data-name="handheld run" data-cats="Camera Control,UGC,Action Movement">
+      <div class="vid-wrap">
+        <video src="https://cdn.higgsfield.ai/minimax_hailuo_motion/3d356f07-bb95-4bdc-89b3-2d4a16e18cf8.mp4" poster="" muted loop playsinline preload="metadata" onmouseenter="this.play()" onmouseleave="this.pause();this.currentTime=0;" onclick="this.paused ? this.play() : this.pause()"></video>
+        <span class="order">#06</span>
+        
+        <span class="size">2066.5 KB</span>
+      </div>
+      <div class="info">
+        <div class="title">HANDHELD RUN</div>
+        <div class="tags"><span class="tag">Camera Control</span><span class="tag">UGC</span><span class="tag">Action Movement</span></div>
+        
+        <div class="file-name"><a href="https://cdn.higgsfield.ai/minimax_hailuo_motion/3d356f07-bb95-4bdc-89b3-2d4a16e18cf8.mp4" target="_blank" rel="noopener">⬇ Tải MP4 gốc (HANDHELD RUN.mp4)</a></div>
+      </div>
+    </div>
+    
+    <div class="card " data-name="attack of clones" data-cats="Viral">
+      <div class="vid-wrap">
+        <video src="https://cdn.higgsfield.ai/minimax_hailuo_motion/8ada95ae-0e8c-4171-aa85-ea818e6791f1.mp4" poster="" muted loop playsinline preload="metadata" onmouseenter="this.play()" onmouseleave="this.pause();this.currentTime=0;" onclick="this.paused ? this.play() : this.pause()"></video>
+        <span class="order">#07</span>
+        
+        <span class="size">1180.1 KB</span>
+      </div>
+      <div class="info">
+        <div class="title">ATTACK OF CLONES</div>
+        <div class="tags"><span class="tag">Viral</span></div>
+        
+        <div class="file-name"><a href="https://cdn.higgsfield.ai/minimax_hailuo_motion/8ada95ae-0e8c-4171-aa85-ea818e6791f1.mp4" target="_blank" rel="noopener">⬇ Tải MP4 gốc (ATTACK OF CLONES.mp4)</a></div>
+      </div>
+    </div>
+    
+    <div class="card " data-name="portal" data-cats="Effects">
+      <div class="vid-wrap">
+        <video src="https://cdn.higgsfield.ai/minimax_hailuo_motion/4594acd6-0e50-4d41-830d-3c61c6f5e29b.mp4" poster="" muted loop playsinline preload="metadata" onmouseenter="this.play()" onmouseleave="this.pause();this.currentTime=0;" onclick="this.paused ? this.play() : this.pause()"></video>
+        <span class="order">#08</span>
+        
+        <span class="size">1429.3 KB</span>
+      </div>
+      <div class="info">
+        <div class="title">PORTAL</div>
+        <div class="tags"><span class="tag">Effects</span></div>
+        
+        <div class="file-name"><a href="https://cdn.higgsfield.ai/minimax_hailuo_motion/4594acd6-0e50-4d41-830d-3c61c6f5e29b.mp4" target="_blank" rel="noopener">⬇ Tải MP4 gốc (PORTAL.mp4)</a></div>
+      </div>
+    </div>
+    
+    <div class="card card-top7" data-name="jib up" data-cats="Camera Control,TOP7_HOOK">
+      <div class="vid-wrap">
+        <video src="https://cdn.higgsfield.ai/minimax_hailuo_motion/0006fd48-1ef2-47d0-bd57-9a543a0d53ba.mp4" poster="" muted loop playsinline preload="metadata" onmouseenter="this.play()" onmouseleave="this.pause();this.currentTime=0;" onclick="this.paused ? this.play() : this.pause()"></video>
+        <span class="order">#09</span>
+        <span class="hook-badge">★ TOP 4 HOOK</span>
+        <span class="size">1203.5 KB</span>
+      </div>
+      <div class="info">
+        <div class="title">JIB UP</div>
+        <div class="tags"><span class="tag">Camera Control</span></div>
+        <div class="hook-desc">Đảo ngược 2.5s đầu → Cần cẩu máy quay hạ từ trên cao xuống ngang tầm mắt anh Việt.</div>
+        <div class="file-name"><a href="https://cdn.higgsfield.ai/minimax_hailuo_motion/0006fd48-1ef2-47d0-bd57-9a543a0d53ba.mp4" target="_blank" rel="noopener">⬇ Tải MP4 gốc (JIB UP.mp4)</a></div>
+      </div>
+    </div>
+    
+    <div class="card " data-name="rapid zoom in" data-cats="Camera Control">
+      <div class="vid-wrap">
+        <video src="https://cdn.higgsfield.ai/minimax_hailuo_motion/dfa7b62b-c221-488b-a55a-919bcf23daf8.mp4" poster="" muted loop playsinline preload="metadata" onmouseenter="this.play()" onmouseleave="this.pause();this.currentTime=0;" onclick="this.paused ? this.play() : this.pause()"></video>
+        <span class="order">#10</span>
+        
+        <span class="size">1351.7 KB</span>
+      </div>
+      <div class="info">
+        <div class="title">RAPID ZOOM IN</div>
+        <div class="tags"><span class="tag">Camera Control</span></div>
+        
+        <div class="file-name"><a href="https://cdn.higgsfield.ai/minimax_hailuo_motion/dfa7b62b-c221-488b-a55a-919bcf23daf8.mp4" target="_blank" rel="noopener">⬇ Tải MP4 gốc (RAPID ZOOM IN.mp4)</a></div>
+      </div>
+    </div>
+    
+    <div class="card card-top7" data-name="rapid zoom out" data-cats="Camera Control,TOP7_HOOK">
+      <div class="vid-wrap">
+        <video src="https://cdn.higgsfield.ai/minimax_hailuo_motion/b12c57e6-3670-493e-b814-2675c1aaae7f.mp4" poster="" muted loop playsinline preload="metadata" onmouseenter="this.play()" onmouseleave="this.pause();this.currentTime=0;" onclick="this.paused ? this.play() : this.pause()"></video>
+        <span class="order">#11</span>
+        <span class="hook-badge">★ TOP 1 HOOK</span>
+        <span class="size">407.0 KB</span>
+      </div>
+      <div class="info">
+        <div class="title">RAPID ZOOM OUT</div>
+        <div class="tags"><span class="tag">Camera Control</span></div>
+        <div class="hook-desc">Đảo ngược 2.2s đầu → Máy quay phóng cực nhanh xuyên địa điểm, phanh êm đáp trúng mặt anh Việt bắt đầu nói.</div>
+        <div class="file-name"><a href="https://cdn.higgsfield.ai/minimax_hailuo_motion/b12c57e6-3670-493e-b814-2675c1aaae7f.mp4" target="_blank" rel="noopener">⬇ Tải MP4 gốc (RAPID ZOOM OUT.mp4)</a></div>
+      </div>
+    </div>
+    
+    <div class="card " data-name="eating" data-cats="UGC">
+      <div class="vid-wrap">
+        <video src="https://cdn.higgsfield.ai/minimax_hailuo_motion/9aa36061-be8c-44d3-812c-a73503143b52.mp4" poster="" muted loop playsinline preload="metadata" onmouseenter="this.play()" onmouseleave="this.pause();this.currentTime=0;" onclick="this.paused ? this.play() : this.pause()"></video>
+        <span class="order">#12</span>
+        
+        <span class="size">569.5 KB</span>
+      </div>
+      <div class="info">
+        <div class="title">EATING</div>
+        <div class="tags"><span class="tag">UGC</span></div>
+        
+        <div class="file-name"><a href="https://cdn.higgsfield.ai/minimax_hailuo_motion/9aa36061-be8c-44d3-812c-a73503143b52.mp4" target="_blank" rel="noopener">⬇ Tải MP4 gốc (EATING.mp4)</a></div>
+      </div>
+    </div>
+    
+    <div class="card " data-name="through object in" data-cats="Camera Control">
+      <div class="vid-wrap">
+        <video src="https://cdn.higgsfield.ai/minimax_hailuo_motion/0012373b-47f7-4dc1-9349-1be0badc79f8.mp4" poster="" muted loop playsinline preload="metadata" onmouseenter="this.play()" onmouseleave="this.pause();this.currentTime=0;" onclick="this.paused ? this.play() : this.pause()"></video>
+        <span class="order">#13</span>
+        
+        <span class="size">819.1 KB</span>
+      </div>
+      <div class="info">
+        <div class="title">THROUGH OBJECT IN</div>
+        <div class="tags"><span class="tag">Camera Control</span></div>
+        
+        <div class="file-name"><a href="https://cdn.higgsfield.ai/minimax_hailuo_motion/0012373b-47f7-4dc1-9349-1be0badc79f8.mp4" target="_blank" rel="noopener">⬇ Tải MP4 gốc (THROUGH OBJECT IN.mp4)</a></div>
+      </div>
+    </div>
+    
+    <div class="card " data-name="fast sprint" data-cats="Camera Control,Effects,Action Movement">
+      <div class="vid-wrap">
+        <video src="https://cdn.higgsfield.ai/minimax_hailuo_motion/6239aa71-05a4-4030-8e82-fd9b1b9e0a43.mp4" poster="" muted loop playsinline preload="metadata" onmouseenter="this.play()" onmouseleave="this.pause();this.currentTime=0;" onclick="this.paused ? this.play() : this.pause()"></video>
+        <span class="order">#14</span>
+        
+        <span class="size">1267.0 KB</span>
+      </div>
+      <div class="info">
+        <div class="title">FAST SPRINT</div>
+        <div class="tags"><span class="tag">Camera Control</span><span class="tag">Effects</span><span class="tag">Action Movement</span></div>
+        
+        <div class="file-name"><a href="https://cdn.higgsfield.ai/minimax_hailuo_motion/6239aa71-05a4-4030-8e82-fd9b1b9e0a43.mp4" target="_blank" rel="noopener">⬇ Tải MP4 gốc (FAST SPRINT.mp4)</a></div>
+      </div>
+    </div>
+    
+    <div class="card " data-name="collage" data-cats="Effects">
+      <div class="vid-wrap">
+        <video src="https://cdn.higgsfield.ai/minimax_hailuo_motion/f9d3211a-1f87-446e-8411-64ab955ba7bc.mp4" poster="" muted loop playsinline preload="metadata" onmouseenter="this.play()" onmouseleave="this.pause();this.currentTime=0;" onclick="this.paused ? this.play() : this.pause()"></video>
+        <span class="order">#15</span>
+        
+        <span class="size">2464.7 KB</span>
+      </div>
+      <div class="info">
+        <div class="title">COLLAGE</div>
+        <div class="tags"><span class="tag">Effects</span></div>
+        
+        <div class="file-name"><a href="https://cdn.higgsfield.ai/minimax_hailuo_motion/f9d3211a-1f87-446e-8411-64ab955ba7bc.mp4" target="_blank" rel="noopener">⬇ Tải MP4 gốc (COLLAGE.mp4)</a></div>
+      </div>
+    </div>
+    
+    <div class="card " data-name="polygon" data-cats="Effects">
+      <div class="vid-wrap">
+        <video src="https://cdn.higgsfield.ai/minimax_hailuo_motion/3dadcdb5-4c01-4551-a989-9e2fb919d3d8.mp4" poster="" muted loop playsinline preload="metadata" onmouseenter="this.play()" onmouseleave="this.pause();this.currentTime=0;" onclick="this.paused ? this.play() : this.pause()"></video>
+        <span class="order">#16</span>
+        
+        <span class="size">410.0 KB</span>
+      </div>
+      <div class="info">
+        <div class="title">POLYGON</div>
+        <div class="tags"><span class="tag">Effects</span></div>
+        
+        <div class="file-name"><a href="https://cdn.higgsfield.ai/minimax_hailuo_motion/3dadcdb5-4c01-4551-a989-9e2fb919d3d8.mp4" target="_blank" rel="noopener">⬇ Tải MP4 gốc (POLYGON.mp4)</a></div>
+      </div>
+    </div>
+    
+    <div class="card " data-name="bloody eyes" data-cats="Horror">
+      <div class="vid-wrap">
+        <video src="https://cdn.higgsfield.ai/minimax_hailuo_motion/ea08a545-a657-45c1-81b5-93cb26ea125e.mp4" poster="" muted loop playsinline preload="metadata" onmouseenter="this.play()" onmouseleave="this.pause();this.currentTime=0;" onclick="this.paused ? this.play() : this.pause()"></video>
+        <span class="order">#17</span>
+        
+        <span class="size">780.3 KB</span>
+      </div>
+      <div class="info">
+        <div class="title">BLOODY EYES</div>
+        <div class="tags"><span class="tag">Horror</span></div>
+        
+        <div class="file-name"><a href="https://cdn.higgsfield.ai/minimax_hailuo_motion/ea08a545-a657-45c1-81b5-93cb26ea125e.mp4" target="_blank" rel="noopener">⬇ Tải MP4 gốc (BLOODY EYES.mp4)</a></div>
+      </div>
+    </div>
+    
+    <div class="card " data-name="graveyard logo" data-cats="Horror">
+      <div class="vid-wrap">
+        <video src="https://cdn.higgsfield.ai/minimax_hailuo_motion/4d972dee-d744-4669-bef6-5a45def1f752.mp4" poster="" muted loop playsinline preload="metadata" onmouseenter="this.play()" onmouseleave="this.pause();this.currentTime=0;" onclick="this.paused ? this.play() : this.pause()"></video>
+        <span class="order">#18</span>
+        
+        <span class="size">416.4 KB</span>
+      </div>
+      <div class="info">
+        <div class="title">GRAVEYARD LOGO</div>
+        <div class="tags"><span class="tag">Horror</span></div>
+        
+        <div class="file-name"><a href="https://cdn.higgsfield.ai/minimax_hailuo_motion/4d972dee-d744-4669-bef6-5a45def1f752.mp4" target="_blank" rel="noopener">⬇ Tải MP4 gốc (GRAVEYARD LOGO.mp4)</a></div>
+      </div>
+    </div>
+    
+    <div class="card " data-name="blood mirror logo" data-cats="Horror">
+      <div class="vid-wrap">
+        <video src="https://cdn.higgsfield.ai/minimax_hailuo_motion/49ddbeac-dbd6-4c33-9a89-44f5df488c27.mp4" poster="" muted loop playsinline preload="metadata" onmouseenter="this.play()" onmouseleave="this.pause();this.currentTime=0;" onclick="this.paused ? this.play() : this.pause()"></video>
+        <span class="order">#19</span>
+        
+        <span class="size">278.9 KB</span>
+      </div>
+      <div class="info">
+        <div class="title">BLOOD MIRROR LOGO</div>
+        <div class="tags"><span class="tag">Horror</span></div>
+        
+        <div class="file-name"><a href="https://cdn.higgsfield.ai/minimax_hailuo_motion/49ddbeac-dbd6-4c33-9a89-44f5df488c27.mp4" target="_blank" rel="noopener">⬇ Tải MP4 gốc (BLOOD MIRROR LOGO.mp4)</a></div>
+      </div>
+    </div>
+    
+    <div class="card " data-name="atomic" data-cats="Viral,Effects,UGC">
+      <div class="vid-wrap">
+        <video src="https://cdn.higgsfield.ai/minimax_hailuo_motion/c66e28d7-d237-4dab-abb1-8b014baa4c02.mp4" poster="" muted loop playsinline preload="metadata" onmouseenter="this.play()" onmouseleave="this.pause();this.currentTime=0;" onclick="this.paused ? this.play() : this.pause()"></video>
+        <span class="order">#20</span>
+        
+        <span class="size">875.1 KB</span>
+      </div>
+      <div class="info">
+        <div class="title">ATOMIC</div>
+        <div class="tags"><span class="tag">Viral</span><span class="tag">Effects</span><span class="tag">UGC</span></div>
+        
+        <div class="file-name"><a href="https://cdn.higgsfield.ai/minimax_hailuo_motion/c66e28d7-d237-4dab-abb1-8b014baa4c02.mp4" target="_blank" rel="noopener">⬇ Tải MP4 gốc (ATOMIC.mp4)</a></div>
+      </div>
+    </div>
+    
+    <div class="card " data-name="wireframe" data-cats="Effects,Commercial">
+      <div class="vid-wrap">
+        <video src="https://cdn.higgsfield.ai/minimax_hailuo_motion/57b0984d-dde1-4ee5-a8d7-b02f9dadf527.mp4" poster="" muted loop playsinline preload="metadata" onmouseenter="this.play()" onmouseleave="this.pause();this.currentTime=0;" onclick="this.paused ? this.play() : this.pause()"></video>
+        <span class="order">#21</span>
+        
+        <span class="size">349.5 KB</span>
+      </div>
+      <div class="info">
+        <div class="title">WIREFRAME</div>
+        <div class="tags"><span class="tag">Effects</span><span class="tag">Commercial</span></div>
+        
+        <div class="file-name"><a href="https://cdn.higgsfield.ai/minimax_hailuo_motion/57b0984d-dde1-4ee5-a8d7-b02f9dadf527.mp4" target="_blank" rel="noopener">⬇ Tải MP4 gốc (WIREFRAME.mp4)</a></div>
+      </div>
+    </div>
+    
+    <div class="card " data-name="acid" data-cats="Effects">
+      <div class="vid-wrap">
+        <video src="https://cdn.higgsfield.ai/minimax_hailuo_motion/e05f2a1a-d920-4169-bc6e-980e3be19df2.mp4" poster="" muted loop playsinline preload="metadata" onmouseenter="this.play()" onmouseleave="this.pause();this.currentTime=0;" onclick="this.paused ? this.play() : this.pause()"></video>
+        <span class="order">#22</span>
+        
+        <span class="size">846.2 KB</span>
+      </div>
+      <div class="info">
+        <div class="title">ACID</div>
+        <div class="tags"><span class="tag">Effects</span></div>
+        
+        <div class="file-name"><a href="https://cdn.higgsfield.ai/minimax_hailuo_motion/e05f2a1a-d920-4169-bc6e-980e3be19df2.mp4" target="_blank" rel="noopener">⬇ Tải MP4 gốc (ACID.mp4)</a></div>
+      </div>
+    </div>
+    
+    <div class="card " data-name="flip" data-cats="Camera Control,Action Movement">
+      <div class="vid-wrap">
+        <video src="https://cdn.higgsfield.ai/minimax_hailuo_motion/870fb8ce-303a-47d6-8cba-c775517688a0.mp4" poster="" muted loop playsinline preload="metadata" onmouseenter="this.play()" onmouseleave="this.pause();this.currentTime=0;" onclick="this.paused ? this.play() : this.pause()"></video>
+        <span class="order">#23</span>
+        
+        <span class="size">664.2 KB</span>
+      </div>
+      <div class="info">
+        <div class="title">FLIP</div>
+        <div class="tags"><span class="tag">Camera Control</span><span class="tag">Action Movement</span></div>
+        
+        <div class="file-name"><a href="https://cdn.higgsfield.ai/minimax_hailuo_motion/870fb8ce-303a-47d6-8cba-c775517688a0.mp4" target="_blank" rel="noopener">⬇ Tải MP4 gốc (FLIP.mp4)</a></div>
+      </div>
+    </div>
+    
+    <div class="card " data-name="eating zoom" data-cats="Camera Control,UGC">
+      <div class="vid-wrap">
+        <video src="https://cdn.higgsfield.ai/minimax_hailuo_motion/44a4e23b-f9d4-4801-ad9b-1f7632827c4f.mp4" poster="" muted loop playsinline preload="metadata" onmouseenter="this.play()" onmouseleave="this.pause();this.currentTime=0;" onclick="this.paused ? this.play() : this.pause()"></video>
+        <span class="order">#24</span>
+        
+        <span class="size">741.5 KB</span>
+      </div>
+      <div class="info">
+        <div class="title">EATING ZOOM</div>
+        <div class="tags"><span class="tag">Camera Control</span><span class="tag">UGC</span></div>
+        
+        <div class="file-name"><a href="https://cdn.higgsfield.ai/minimax_hailuo_motion/44a4e23b-f9d4-4801-ad9b-1f7632827c4f.mp4" target="_blank" rel="noopener">⬇ Tải MP4 gốc (EATING ZOOM.mp4)</a></div>
+      </div>
+    </div>
+    
+    <div class="card " data-name="boiling point" data-cats="Viral,Effects">
+      <div class="vid-wrap">
+        <video src="https://cdn.higgsfield.ai/minimax_hailuo_motion/ef7df181-abaa-4af4-9095-4851196f321b.mp4" poster="" muted loop playsinline preload="metadata" onmouseenter="this.play()" onmouseleave="this.pause();this.currentTime=0;" onclick="this.paused ? this.play() : this.pause()"></video>
+        <span class="order">#25</span>
+        
+        <span class="size">565.4 KB</span>
+      </div>
+      <div class="info">
+        <div class="title">BOILING POINT</div>
+        <div class="tags"><span class="tag">Viral</span><span class="tag">Effects</span></div>
+        
+        <div class="file-name"><a href="https://cdn.higgsfield.ai/minimax_hailuo_motion/ef7df181-abaa-4af4-9095-4851196f321b.mp4" target="_blank" rel="noopener">⬇ Tải MP4 gốc (BOILING POINT.mp4)</a></div>
+      </div>
+    </div>
+    
+    <div class="card " data-name="double exposure" data-cats="Effects">
+      <div class="vid-wrap">
+        <video src="https://cdn.higgsfield.ai/minimax_hailuo_motion/58e551dd-0254-4f54-b1c7-77583f18e81f.mp4" poster="" muted loop playsinline preload="metadata" onmouseenter="this.play()" onmouseleave="this.pause();this.currentTime=0;" onclick="this.paused ? this.play() : this.pause()"></video>
+        <span class="order">#26</span>
+        
+        <span class="size">453.8 KB</span>
+      </div>
+      <div class="info">
+        <div class="title">DOUBLE EXPOSURE</div>
+        <div class="tags"><span class="tag">Effects</span></div>
+        
+        <div class="file-name"><a href="https://cdn.higgsfield.ai/minimax_hailuo_motion/58e551dd-0254-4f54-b1c7-77583f18e81f.mp4" target="_blank" rel="noopener">⬇ Tải MP4 gốc (DOUBLE EXPOSURE.mp4)</a></div>
+      </div>
+    </div>
+    
+    <div class="card " data-name="spiders from mouth" data-cats="Effects">
+      <div class="vid-wrap">
+        <video src="https://cdn.higgsfield.ai/minimax_hailuo_motion/4847b12f-c4ac-417a-a397-dfcfcf646b23.mp4" poster="" muted loop playsinline preload="metadata" onmouseenter="this.play()" onmouseleave="this.pause();this.currentTime=0;" onclick="this.paused ? this.play() : this.pause()"></video>
+        <span class="order">#27</span>
+        
+        <span class="size">553.9 KB</span>
+      </div>
+      <div class="info">
+        <div class="title">SPIDERS FROM MOUTH</div>
+        <div class="tags"><span class="tag">Effects</span></div>
+        
+        <div class="file-name"><a href="https://cdn.higgsfield.ai/minimax_hailuo_motion/4847b12f-c4ac-417a-a397-dfcfcf646b23.mp4" target="_blank" rel="noopener">⬇ Tải MP4 gốc (SPIDERS FROM MOUTH.mp4)</a></div>
+      </div>
+    </div>
+    
+    <div class="card " data-name="sunglasses" data-cats="Effects,UGC">
+      <div class="vid-wrap">
+        <video src="https://cdn.higgsfield.ai/minimax_hailuo_motion/93da765c-16c3-411f-bc7a-993f138bb12d.mp4" poster="" muted loop playsinline preload="metadata" onmouseenter="this.play()" onmouseleave="this.pause();this.currentTime=0;" onclick="this.paused ? this.play() : this.pause()"></video>
+        <span class="order">#28</span>
+        
+        <span class="size">624.7 KB</span>
+      </div>
+      <div class="info">
+        <div class="title">SUNGLASSES</div>
+        <div class="tags"><span class="tag">Effects</span><span class="tag">UGC</span></div>
+        
+        <div class="file-name"><a href="https://cdn.higgsfield.ai/minimax_hailuo_motion/93da765c-16c3-411f-bc7a-993f138bb12d.mp4" target="_blank" rel="noopener">⬇ Tải MP4 gốc (SUNGLASSES.mp4)</a></div>
+      </div>
+    </div>
+    
+    <div class="card " data-name="clothes rain" data-cats="Viral,UGC,Commercial">
+      <div class="vid-wrap">
+        <video src="https://cdn.higgsfield.ai/minimax_hailuo_motion/c8a60e70-be82-4d6b-8e4e-0c5dc6616d35.mp4" poster="" muted loop playsinline preload="metadata" onmouseenter="this.play()" onmouseleave="this.pause();this.currentTime=0;" onclick="this.paused ? this.play() : this.pause()"></video>
+        <span class="order">#29</span>
+        
+        <span class="size">1950.3 KB</span>
+      </div>
+      <div class="info">
+        <div class="title">CLOTHES RAIN</div>
+        <div class="tags"><span class="tag">Viral</span><span class="tag">UGC</span><span class="tag">Commercial</span></div>
+        
+        <div class="file-name"><a href="https://cdn.higgsfield.ai/minimax_hailuo_motion/c8a60e70-be82-4d6b-8e4e-0c5dc6616d35.mp4" target="_blank" rel="noopener">⬇ Tải MP4 gốc (CLOTHES RAIN.mp4)</a></div>
+      </div>
+    </div>
+    
+    <div class="card " data-name="illustration scene" data-cats="Effects">
+      <div class="vid-wrap">
+        <video src="https://cdn.higgsfield.ai/minimax_hailuo_motion/2227e0c7-2367-4043-9a76-16553bc079b0.mp4" poster="" muted loop playsinline preload="metadata" onmouseenter="this.play()" onmouseleave="this.pause();this.currentTime=0;" onclick="this.paused ? this.play() : this.pause()"></video>
+        <span class="order">#30</span>
+        
+        <span class="size">1111.1 KB</span>
+      </div>
+      <div class="info">
+        <div class="title">ILLUSTRATION SCENE</div>
+        <div class="tags"><span class="tag">Effects</span></div>
+        
+        <div class="file-name"><a href="https://cdn.higgsfield.ai/minimax_hailuo_motion/2227e0c7-2367-4043-9a76-16553bc079b0.mp4" target="_blank" rel="noopener">⬇ Tải MP4 gốc (ILLUSTRATION SCENE.mp4)</a></div>
+      </div>
+    </div>
+    
+    <div class="card " data-name="glitch" data-cats="Effects">
+      <div class="vid-wrap">
+        <video src="https://cdn.higgsfield.ai/minimax_hailuo_motion/d8320e8a-da48-4fcb-a613-cb200f949589.mp4" poster="" muted loop playsinline preload="metadata" onmouseenter="this.play()" onmouseleave="this.pause();this.currentTime=0;" onclick="this.paused ? this.play() : this.pause()"></video>
+        <span class="order">#31</span>
+        
+        <span class="size">908.9 KB</span>
+      </div>
+      <div class="info">
+        <div class="title">GLITCH</div>
+        <div class="tags"><span class="tag">Effects</span></div>
+        
+        <div class="file-name"><a href="https://cdn.higgsfield.ai/minimax_hailuo_motion/d8320e8a-da48-4fcb-a613-cb200f949589.mp4" target="_blank" rel="noopener">⬇ Tải MP4 gốc (GLITCH.mp4)</a></div>
+      </div>
+    </div>
+    
+    <div class="card card-top7" data-name="point cloud" data-cats="Effects,TOP7_HOOK">
+      <div class="vid-wrap">
+        <video src="https://cdn.higgsfield.ai/minimax_hailuo_motion/d4d8779c-f3e5-4014-995f-1867ad139201.mp4" poster="" muted loop playsinline preload="metadata" onmouseenter="this.play()" onmouseleave="this.pause();this.currentTime=0;" onclick="this.paused ? this.play() : this.pause()"></video>
+        <span class="order">#32</span>
+        <span class="hook-badge">★ TOP 5 HOOK</span>
+        <span class="size">1484.6 KB</span>
+      </div>
+      <div class="info">
+        <div class="title">POINT CLOUD</div>
+        <div class="tags"><span class="tag">Effects</span></div>
+        <div class="hook-desc">Đảo ngược 2.5s đầu → Hạt điểm dữ liệu 3D LiDAR kết tụ thành người thật anh Việt.</div>
+        <div class="file-name"><a href="https://cdn.higgsfield.ai/minimax_hailuo_motion/d4d8779c-f3e5-4014-995f-1867ad139201.mp4" target="_blank" rel="noopener">⬇ Tải MP4 gốc (POINT CLOUD.mp4)</a></div>
+      </div>
+    </div>
+    
+    <div class="card " data-name="vampire transformation" data-cats="Horror">
+      <div class="vid-wrap">
+        <video src="https://cdn.higgsfield.ai/minimax_hailuo_motion/8817581b-b703-4300-adbb-df860f48495f.mp4" poster="" muted loop playsinline preload="metadata" onmouseenter="this.play()" onmouseleave="this.pause();this.currentTime=0;" onclick="this.paused ? this.play() : this.pause()"></video>
+        <span class="order">#33</span>
+        
+        <span class="size">690.8 KB</span>
+      </div>
+      <div class="info">
+        <div class="title">VAMPIRE TRANSFORMATION</div>
+        <div class="tags"><span class="tag">Horror</span></div>
+        
+        <div class="file-name"><a href="https://cdn.higgsfield.ai/minimax_hailuo_motion/8817581b-b703-4300-adbb-df860f48495f.mp4" target="_blank" rel="noopener">⬇ Tải MP4 gốc (VAMPIRE TRANSFORMATION.mp4)</a></div>
+      </div>
+    </div>
+    
+    <div class="card " data-name="zombie decay" data-cats="Horror">
+      <div class="vid-wrap">
+        <video src="https://cdn.higgsfield.ai/minimax_hailuo_motion/b6c6e0db-ec56-4597-8a03-25e9a5f9d027.mp4" poster="" muted loop playsinline preload="metadata" onmouseenter="this.play()" onmouseleave="this.pause();this.currentTime=0;" onclick="this.paused ? this.play() : this.pause()"></video>
+        <span class="order">#34</span>
+        
+        <span class="size">562.3 KB</span>
+      </div>
+      <div class="info">
+        <div class="title">ZOMBIE DECAY</div>
+        <div class="tags"><span class="tag">Horror</span></div>
+        
+        <div class="file-name"><a href="https://cdn.higgsfield.ai/minimax_hailuo_motion/b6c6e0db-ec56-4597-8a03-25e9a5f9d027.mp4" target="_blank" rel="noopener">⬇ Tải MP4 gốc (ZOMBIE DECAY.mp4)</a></div>
+      </div>
+    </div>
+    
+    <div class="card " data-name="mummy" data-cats="Horror">
+      <div class="vid-wrap">
+        <video src="https://cdn.higgsfield.ai/minimax_hailuo_motion/1d3d0c80-2dad-4bdd-8eb6-fad3d19316f3.mp4" poster="" muted loop playsinline preload="metadata" onmouseenter="this.play()" onmouseleave="this.pause();this.currentTime=0;" onclick="this.paused ? this.play() : this.pause()"></video>
+        <span class="order">#35</span>
+        
+        <span class="size">584.9 KB</span>
+      </div>
+      <div class="info">
+        <div class="title">MUMMY</div>
+        <div class="tags"><span class="tag">Horror</span></div>
+        
+        <div class="file-name"><a href="https://cdn.higgsfield.ai/minimax_hailuo_motion/1d3d0c80-2dad-4bdd-8eb6-fad3d19316f3.mp4" target="_blank" rel="noopener">⬇ Tải MP4 gốc (MUMMY.mp4)</a></div>
+      </div>
+    </div>
+    
+    <div class="card " data-name="happy mode" data-cats="UGC,Emotions">
+      <div class="vid-wrap">
+        <video src="https://cdn.higgsfield.ai/minimax_hailuo_motion/b6d58f2b-fbc0-440f-a1ff-f1b91522d200.mp4" poster="" muted loop playsinline preload="metadata" onmouseenter="this.play()" onmouseleave="this.pause();this.currentTime=0;" onclick="this.paused ? this.play() : this.pause()"></video>
+        <span class="order">#36</span>
+        
+        <span class="size">855.9 KB</span>
+      </div>
+      <div class="info">
+        <div class="title">HAPPY MODE</div>
+        <div class="tags"><span class="tag">UGC</span><span class="tag">Emotions</span></div>
+        
+        <div class="file-name"><a href="https://cdn.higgsfield.ai/minimax_hailuo_motion/b6d58f2b-fbc0-440f-a1ff-f1b91522d200.mp4" target="_blank" rel="noopener">⬇ Tải MP4 gốc (HAPPY MODE.mp4)</a></div>
+      </div>
+    </div>
+    
+    <div class="card card-top7" data-name="timelapse human" data-cats="UGC,TOP7_HOOK">
+      <div class="vid-wrap">
+        <video src="https://cdn.higgsfield.ai/minimax_hailuo_motion/74e763e5-c743-4693-a011-aba749b72e06.mp4" poster="" muted loop playsinline preload="metadata" onmouseenter="this.play()" onmouseleave="this.pause();this.currentTime=0;" onclick="this.paused ? this.play() : this.pause()"></video>
+        <span class="order">#37</span>
+        <span class="hook-badge">★ TOP 7 HOOK</span>
+        <span class="size">1196.8 KB</span>
+      </div>
+      <div class="info">
+        <div class="title">TIMELAPSE HUMAN</div>
+        <div class="tags"><span class="tag">UGC</span></div>
+        <div class="hook-desc">Chạy xuôi 2.0s → Anh Việt đứng tĩnh lặng nhìn ống kính giữa dòng người tua nhanh.</div>
+        <div class="file-name"><a href="https://cdn.higgsfield.ai/minimax_hailuo_motion/74e763e5-c743-4693-a011-aba749b72e06.mp4" target="_blank" rel="noopener">⬇ Tải MP4 gốc (TIMELAPSE HUMAN.mp4)</a></div>
+      </div>
+    </div>
+    
+    <div class="card " data-name="group photo" data-cats="Viral,Effects,UGC">
+      <div class="vid-wrap">
+        <video src="https://cdn.higgsfield.ai/minimax_hailuo_motion/6e04a75a-3024-48eb-8ecb-71ca6778c7c2.mp4" poster="" muted loop playsinline preload="metadata" onmouseenter="this.play()" onmouseleave="this.pause();this.currentTime=0;" onclick="this.paused ? this.play() : this.pause()"></video>
+        <span class="order">#38</span>
+        
+        <span class="size">921.0 KB</span>
+      </div>
+      <div class="info">
+        <div class="title">GROUP PHOTO</div>
+        <div class="tags"><span class="tag">Viral</span><span class="tag">Effects</span><span class="tag">UGC</span></div>
+        
+        <div class="file-name"><a href="https://cdn.higgsfield.ai/minimax_hailuo_motion/6e04a75a-3024-48eb-8ecb-71ca6778c7c2.mp4" target="_blank" rel="noopener">⬇ Tải MP4 gốc (GROUP PHOTO.mp4)</a></div>
+      </div>
+    </div>
+    
+    <div class="card " data-name="mirror selfie" data-cats="Camera / General">
+      <div class="vid-wrap">
+        <video src="https://cdn.higgsfield.ai/minimax_hailuo_motion/c0e2e375-3e7d-4676-8e1e-e40e91f1cfe1.mp4" poster="" muted loop playsinline preload="metadata" onmouseenter="this.play()" onmouseleave="this.pause();this.currentTime=0;" onclick="this.paused ? this.play() : this.pause()"></video>
+        <span class="order">#39</span>
+        
+        <span class="size">777.1 KB</span>
+      </div>
+      <div class="info">
+        <div class="title">MIRROR SELFIE</div>
+        <div class="tags"><span class="tag">Camera / General</span></div>
+        
+        <div class="file-name"><a href="https://cdn.higgsfield.ai/minimax_hailuo_motion/c0e2e375-3e7d-4676-8e1e-e40e91f1cfe1.mp4" target="_blank" rel="noopener">⬇ Tải MP4 gốc (MIRROR SELFIE.mp4)</a></div>
+      </div>
+    </div>
+    
+    <div class="card " data-name="live concert" data-cats="Viral,Effects">
+      <div class="vid-wrap">
+        <video src="https://cdn.higgsfield.ai/minimax_hailuo_motion/a347a9aa-318c-4eaf-bf96-9da74776da47.mp4" poster="" muted loop playsinline preload="metadata" onmouseenter="this.play()" onmouseleave="this.pause();this.currentTime=0;" onclick="this.paused ? this.play() : this.pause()"></video>
+        <span class="order">#40</span>
+        
+        <span class="size">1620.9 KB</span>
+      </div>
+      <div class="info">
+        <div class="title">LIVE CONCERT</div>
+        <div class="tags"><span class="tag">Viral</span><span class="tag">Effects</span></div>
+        
+        <div class="file-name"><a href="https://cdn.higgsfield.ai/minimax_hailuo_motion/a347a9aa-318c-4eaf-bf96-9da74776da47.mp4" target="_blank" rel="noopener">⬇ Tải MP4 gốc (LIVE CONCERT.mp4)</a></div>
+      </div>
+    </div>
+    
+    <div class="card " data-name="jib down" data-cats="Camera Control">
+      <div class="vid-wrap">
+        <video src="https://cdn.higgsfield.ai/minimax_hailuo_motion/471905f8-029a-48e3-82f9-f782537e3859.mp4" poster="" muted loop playsinline preload="metadata" onmouseenter="this.play()" onmouseleave="this.pause();this.currentTime=0;" onclick="this.paused ? this.play() : this.pause()"></video>
+        <span class="order">#41</span>
+        
+        <span class="size">1389.6 KB</span>
+      </div>
+      <div class="info">
+        <div class="title">JIB DOWN</div>
+        <div class="tags"><span class="tag">Camera Control</span></div>
+        
+        <div class="file-name"><a href="https://cdn.higgsfield.ai/minimax_hailuo_motion/471905f8-029a-48e3-82f9-f782537e3859.mp4" target="_blank" rel="noopener">⬇ Tải MP4 gốc (JIB DOWN.mp4)</a></div>
+      </div>
+    </div>
+    
+    <div class="card " data-name="selfie posing" data-cats="UGC">
+      <div class="vid-wrap">
+        <video src="https://cdn.higgsfield.ai/minimax_hailuo_motion/ca9b29d6-65ac-4f38-8217-8b65ee097088.mp4" poster="" muted loop playsinline preload="metadata" onmouseenter="this.play()" onmouseleave="this.pause();this.currentTime=0;" onclick="this.paused ? this.play() : this.pause()"></video>
+        <span class="order">#42</span>
+        
+        <span class="size">765.6 KB</span>
+      </div>
+      <div class="info">
+        <div class="title">SELFIE POSING</div>
+        <div class="tags"><span class="tag">UGC</span></div>
+        
+        <div class="file-name"><a href="https://cdn.higgsfield.ai/minimax_hailuo_motion/ca9b29d6-65ac-4f38-8217-8b65ee097088.mp4" target="_blank" rel="noopener">⬇ Tải MP4 gốc (SELFIE POSING.mp4)</a></div>
+      </div>
+    </div>
+    
+    <div class="card " data-name="exploded view" data-cats="Commercial">
+      <div class="vid-wrap">
+        <video src="https://cdn.higgsfield.ai/minimax_hailuo_motion/64852976-3718-44c9-8d2f-77dcdd46b0dc.mp4" poster="" muted loop playsinline preload="metadata" onmouseenter="this.play()" onmouseleave="this.pause();this.currentTime=0;" onclick="this.paused ? this.play() : this.pause()"></video>
+        <span class="order">#43</span>
+        
+        <span class="size">888.8 KB</span>
+      </div>
+      <div class="info">
+        <div class="title">EXPLODED VIEW</div>
+        <div class="tags"><span class="tag">Commercial</span></div>
+        
+        <div class="file-name"><a href="https://cdn.higgsfield.ai/minimax_hailuo_motion/64852976-3718-44c9-8d2f-77dcdd46b0dc.mp4" target="_blank" rel="noopener">⬇ Tải MP4 gốc (EXPLODED VIEW.mp4)</a></div>
+      </div>
+    </div>
+    
+    <div class="card " data-name="static posing" data-cats="Camera Control,UGC">
+      <div class="vid-wrap">
+        <video src="https://cdn.higgsfield.ai/minimax_hailuo_motion/fe10f06a-b2cd-4af7-8913-e93ba6cbe9f4.mp4" poster="" muted loop playsinline preload="metadata" onmouseenter="this.play()" onmouseleave="this.pause();this.currentTime=0;" onclick="this.paused ? this.play() : this.pause()"></video>
+        <span class="order">#44</span>
+        
+        <span class="size">1075.6 KB</span>
+      </div>
+      <div class="info">
+        <div class="title">STATIC POSING</div>
+        <div class="tags"><span class="tag">Camera Control</span><span class="tag">UGC</span></div>
+        
+        <div class="file-name"><a href="https://cdn.higgsfield.ai/minimax_hailuo_motion/fe10f06a-b2cd-4af7-8913-e93ba6cbe9f4.mp4" target="_blank" rel="noopener">⬇ Tải MP4 gốc (STATIC POSING.mp4)</a></div>
+      </div>
+    </div>
+    
+    <div class="card " data-name="balloon" data-cats="Effects,Commercial">
+      <div class="vid-wrap">
+        <video src="https://cdn.higgsfield.ai/minimax_hailuo_motion/d015960c-06ba-43b4-b986-4642da210206.mp4" poster="" muted loop playsinline preload="metadata" onmouseenter="this.play()" onmouseleave="this.pause();this.currentTime=0;" onclick="this.paused ? this.play() : this.pause()"></video>
+        <span class="order">#45</span>
+        
+        <span class="size">1155.1 KB</span>
+      </div>
+      <div class="info">
+        <div class="title">BALLOON</div>
+        <div class="tags"><span class="tag">Effects</span><span class="tag">Commercial</span></div>
+        
+        <div class="file-name"><a href="https://cdn.higgsfield.ai/minimax_hailuo_motion/d015960c-06ba-43b4-b986-4642da210206.mp4" target="_blank" rel="noopener">⬇ Tải MP4 gốc (BALLOON.mp4)</a></div>
+      </div>
+    </div>
+    
+    <div class="card " data-name="outfit check" data-cats="UGC">
+      <div class="vid-wrap">
+        <video src="https://cdn.higgsfield.ai/minimax_hailuo_motion/213d916f-aa31-416a-af6e-2afe2fc57eb2.mp4" poster="" muted loop playsinline preload="metadata" onmouseenter="this.play()" onmouseleave="this.pause();this.currentTime=0;" onclick="this.paused ? this.play() : this.pause()"></video>
+        <span class="order">#46</span>
+        
+        <span class="size">673.2 KB</span>
+      </div>
+      <div class="info">
+        <div class="title">OUTFIT CHECK</div>
+        <div class="tags"><span class="tag">UGC</span></div>
+        
+        <div class="file-name"><a href="https://cdn.higgsfield.ai/minimax_hailuo_motion/213d916f-aa31-416a-af6e-2afe2fc57eb2.mp4" target="_blank" rel="noopener">⬇ Tải MP4 gốc (OUTFIT CHECK.mp4)</a></div>
+      </div>
+    </div>
+    
+    <div class="card " data-name="glow trace" data-cats="Effects">
+      <div class="vid-wrap">
+        <video src="https://cdn.higgsfield.ai/minimax_hailuo_motion/9ea1789d-942e-4aa2-b501-8fe931291711.mp4" poster="" muted loop playsinline preload="metadata" onmouseenter="this.play()" onmouseleave="this.pause();this.currentTime=0;" onclick="this.paused ? this.play() : this.pause()"></video>
+        <span class="order">#47</span>
+        
+        <span class="size">1215.7 KB</span>
+      </div>
+      <div class="info">
+        <div class="title">GLOW TRACE</div>
+        <div class="tags"><span class="tag">Effects</span></div>
+        
+        <div class="file-name"><a href="https://cdn.higgsfield.ai/minimax_hailuo_motion/9ea1789d-942e-4aa2-b501-8fe931291711.mp4" target="_blank" rel="noopener">⬇ Tải MP4 gốc (GLOW TRACE.mp4)</a></div>
+      </div>
+    </div>
+    
+    <div class="card " data-name="devil transformation" data-cats="Horror">
+      <div class="vid-wrap">
+        <video src="https://cdn.higgsfield.ai/minimax_hailuo_motion/c29fab6d-8082-49f8-ac4a-fc2ff2cd3755.mp4" poster="" muted loop playsinline preload="metadata" onmouseenter="this.play()" onmouseleave="this.pause();this.currentTime=0;" onclick="this.paused ? this.play() : this.pause()"></video>
+        <span class="order">#48</span>
+        
+        <span class="size">1463.3 KB</span>
+      </div>
+      <div class="info">
+        <div class="title">DEVIL TRANSFORMATION</div>
+        <div class="tags"><span class="tag">Horror</span></div>
+        
+        <div class="file-name"><a href="https://cdn.higgsfield.ai/minimax_hailuo_motion/c29fab6d-8082-49f8-ac4a-fc2ff2cd3755.mp4" target="_blank" rel="noopener">⬇ Tải MP4 gốc (DEVIL TRANSFORMATION.mp4)</a></div>
+      </div>
+    </div>
+    
+    <div class="card " data-name="ghostly disintegration" data-cats="Horror">
+      <div class="vid-wrap">
+        <video src="https://cdn.higgsfield.ai/minimax_hailuo_motion/95722d44-305b-44c9-bda1-18e1b6c08021.mp4" poster="" muted loop playsinline preload="metadata" onmouseenter="this.play()" onmouseleave="this.pause();this.currentTime=0;" onclick="this.paused ? this.play() : this.pause()"></video>
+        <span class="order">#49</span>
+        
+        <span class="size">503.7 KB</span>
+      </div>
+      <div class="info">
+        <div class="title">GHOSTLY DISINTEGRATION</div>
+        <div class="tags"><span class="tag">Horror</span></div>
+        
+        <div class="file-name"><a href="https://cdn.higgsfield.ai/minimax_hailuo_motion/95722d44-305b-44c9-bda1-18e1b6c08021.mp4" target="_blank" rel="noopener">⬇ Tải MP4 gốc (GHOSTLY DISINTEGRATION.mp4)</a></div>
+      </div>
+    </div>
+    
+    <div class="card " data-name="hand mouths" data-cats="Horror">
+      <div class="vid-wrap">
+        <video src="https://cdn.higgsfield.ai/minimax_hailuo_motion/d6e5eb99-2c9b-4e56-8044-78083af16517.mp4" poster="" muted loop playsinline preload="metadata" onmouseenter="this.play()" onmouseleave="this.pause();this.currentTime=0;" onclick="this.paused ? this.play() : this.pause()"></video>
+        <span class="order">#50</span>
+        
+        <span class="size">803.6 KB</span>
+      </div>
+      <div class="info">
+        <div class="title">HAND MOUTHS</div>
+        <div class="tags"><span class="tag">Horror</span></div>
+        
+        <div class="file-name"><a href="https://cdn.higgsfield.ai/minimax_hailuo_motion/d6e5eb99-2c9b-4e56-8044-78083af16517.mp4" target="_blank" rel="noopener">⬇ Tải MP4 gốc (HAND MOUTHS.mp4)</a></div>
+      </div>
+    </div>
+    
+    <div class="card " data-name="money rain" data-cats="Viral,Effects,UGC">
+      <div class="vid-wrap">
+        <video src="https://cdn.higgsfield.ai/minimax_hailuo_motion/526757e6-c008-489d-b31d-e9189a0e5d9f.mp4" poster="" muted loop playsinline preload="metadata" onmouseenter="this.play()" onmouseleave="this.pause();this.currentTime=0;" onclick="this.paused ? this.play() : this.pause()"></video>
+        <span class="order">#51</span>
+        
+        <span class="size">520.0 KB</span>
+      </div>
+      <div class="info">
+        <div class="title">MONEY RAIN</div>
+        <div class="tags"><span class="tag">Viral</span><span class="tag">Effects</span><span class="tag">UGC</span></div>
+        
+        <div class="file-name"><a href="https://cdn.higgsfield.ai/minimax_hailuo_motion/526757e6-c008-489d-b31d-e9189a0e5d9f.mp4" target="_blank" rel="noopener">⬇ Tải MP4 gốc (MONEY RAIN.mp4)</a></div>
+      </div>
+    </div>
+    
+    <div class="card " data-name="pool jump" data-cats="Viral,UGC">
+      <div class="vid-wrap">
+        <video src="https://cdn.higgsfield.ai/minimax_hailuo_motion/f2610cd7-7813-450f-8545-4d3a0fe4a6ed.mp4" poster="" muted loop playsinline preload="metadata" onmouseenter="this.play()" onmouseleave="this.pause();this.currentTime=0;" onclick="this.paused ? this.play() : this.pause()"></video>
+        <span class="order">#52</span>
+        
+        <span class="size">966.6 KB</span>
+      </div>
+      <div class="info">
+        <div class="title">POOL JUMP</div>
+        <div class="tags"><span class="tag">Viral</span><span class="tag">UGC</span></div>
+        
+        <div class="file-name"><a href="https://cdn.higgsfield.ai/minimax_hailuo_motion/f2610cd7-7813-450f-8545-4d3a0fe4a6ed.mp4" target="_blank" rel="noopener">⬇ Tải MP4 gốc (POOL JUMP.mp4)</a></div>
+      </div>
+    </div>
+    
+    <div class="card " data-name="selfie" data-cats="Camera / General">
+      <div class="vid-wrap">
+        <video src="https://cdn.higgsfield.ai/minimax_hailuo_motion/fa870ed1-c2d1-4be6-a0b7-d954f5361848.mp4" poster="" muted loop playsinline preload="metadata" onmouseenter="this.play()" onmouseleave="this.pause();this.currentTime=0;" onclick="this.paused ? this.play() : this.pause()"></video>
+        <span class="order">#53</span>
+        
+        <span class="size">822.4 KB</span>
+      </div>
+      <div class="info">
+        <div class="title">SELFIE</div>
+        <div class="tags"><span class="tag">Camera / General</span></div>
+        
+        <div class="file-name"><a href="https://cdn.higgsfield.ai/minimax_hailuo_motion/fa870ed1-c2d1-4be6-a0b7-d954f5361848.mp4" target="_blank" rel="noopener">⬇ Tải MP4 gốc (SELFIE.mp4)</a></div>
+      </div>
+    </div>
+    
+    <div class="card " data-name="selfie outfit" data-cats="UGC">
+      <div class="vid-wrap">
+        <video src="https://cdn.higgsfield.ai/minimax_hailuo_motion/b5431a60-b990-48b1-a03b-117cb8afe7f8.mp4" poster="" muted loop playsinline preload="metadata" onmouseenter="this.play()" onmouseleave="this.pause();this.currentTime=0;" onclick="this.paused ? this.play() : this.pause()"></video>
+        <span class="order">#54</span>
+        
+        <span class="size">723.4 KB</span>
+      </div>
+      <div class="info">
+        <div class="title">SELFIE OUTFIT</div>
+        <div class="tags"><span class="tag">UGC</span></div>
+        
+        <div class="file-name"><a href="https://cdn.higgsfield.ai/minimax_hailuo_motion/b5431a60-b990-48b1-a03b-117cb8afe7f8.mp4" target="_blank" rel="noopener">⬇ Tải MP4 gốc (SELFIE OUTFIT.mp4)</a></div>
+      </div>
+    </div>
+    
+    <div class="card " data-name="dream date" data-cats="Viral">
+      <div class="vid-wrap">
+        <video src="https://cdn.higgsfield.ai/minimax_hailuo_motion/1d9ae9b0-c61c-4fd1-8d7f-fadbaa8070a2.mp4" poster="" muted loop playsinline preload="metadata" onmouseenter="this.play()" onmouseleave="this.pause();this.currentTime=0;" onclick="this.paused ? this.play() : this.pause()"></video>
+        <span class="order">#55</span>
+        
+        <span class="size">509.9 KB</span>
+      </div>
+      <div class="info">
+        <div class="title">DREAM DATE</div>
+        <div class="tags"><span class="tag">Viral</span></div>
+        
+        <div class="file-name"><a href="https://cdn.higgsfield.ai/minimax_hailuo_motion/1d9ae9b0-c61c-4fd1-8d7f-fadbaa8070a2.mp4" target="_blank" rel="noopener">⬇ Tải MP4 gốc (DREAM DATE.mp4)</a></div>
+      </div>
+    </div>
+    
+    <div class="card " data-name="explosion" data-cats="Viral,Effects,UGC">
+      <div class="vid-wrap">
+        <video src="https://cdn.higgsfield.ai/minimax_hailuo_motion/66410c35-7a12-4dd4-8ecd-f50402ceb781.mp4" poster="" muted loop playsinline preload="metadata" onmouseenter="this.play()" onmouseleave="this.pause();this.currentTime=0;" onclick="this.paused ? this.play() : this.pause()"></video>
+        <span class="order">#56</span>
+        
+        <span class="size">1192.3 KB</span>
+      </div>
+      <div class="info">
+        <div class="title">EXPLOSION</div>
+        <div class="tags"><span class="tag">Viral</span><span class="tag">Effects</span><span class="tag">UGC</span></div>
+        
+        <div class="file-name"><a href="https://cdn.higgsfield.ai/minimax_hailuo_motion/66410c35-7a12-4dd4-8ecd-f50402ceb781.mp4" target="_blank" rel="noopener">⬇ Tải MP4 gốc (EXPLOSION.mp4)</a></div>
+      </div>
+    </div>
+    
+    <div class="card " data-name="drunk master" data-cats="Viral,Action Movement">
+      <div class="vid-wrap">
+        <video src="https://cdn.higgsfield.ai/minimax_hailuo_motion/1cfbec9e-69bf-417e-924b-58cbea39e684.mp4" poster="" muted loop playsinline preload="metadata" onmouseenter="this.play()" onmouseleave="this.pause();this.currentTime=0;" onclick="this.paused ? this.play() : this.pause()"></video>
+        <span class="order">#57</span>
+        
+        <span class="size">1622.0 KB</span>
+      </div>
+      <div class="info">
+        <div class="title">DRUNK MASTER</div>
+        <div class="tags"><span class="tag">Viral</span><span class="tag">Action Movement</span></div>
+        
+        <div class="file-name"><a href="https://cdn.higgsfield.ai/minimax_hailuo_motion/1cfbec9e-69bf-417e-924b-58cbea39e684.mp4" target="_blank" rel="noopener">⬇ Tải MP4 gốc (DRUNK MASTER.mp4)</a></div>
+      </div>
+    </div>
+    
+    <div class="card " data-name="cctv" data-cats="Camera Control,Effects">
+      <div class="vid-wrap">
+        <video src="https://cdn.higgsfield.ai/minimax_hailuo_motion/d89d25c5-1ae7-48f8-9239-165b6d3b63c4.mp4" poster="" muted loop playsinline preload="metadata" onmouseenter="this.play()" onmouseleave="this.pause();this.currentTime=0;" onclick="this.paused ? this.play() : this.pause()"></video>
+        <span class="order">#58</span>
+        
+        <span class="size">2296.5 KB</span>
+      </div>
+      <div class="info">
+        <div class="title">CCTV</div>
+        <div class="tags"><span class="tag">Camera Control</span><span class="tag">Effects</span></div>
+        
+        <div class="file-name"><a href="https://cdn.higgsfield.ai/minimax_hailuo_motion/d89d25c5-1ae7-48f8-9239-165b6d3b63c4.mp4" target="_blank" rel="noopener">⬇ Tải MP4 gốc (CCTV.mp4)</a></div>
+      </div>
+    </div>
+    
+    <div class="card card-top7" data-name="through object out" data-cats="Camera Control,TOP7_HOOK">
+      <div class="vid-wrap">
+        <video src="https://cdn.higgsfield.ai/minimax_hailuo_motion/bb3bf1bb-0c04-4af6-88ab-ec4b354d7c37.mp4" poster="" muted loop playsinline preload="metadata" onmouseenter="this.play()" onmouseleave="this.pause();this.currentTime=0;" onclick="this.paused ? this.play() : this.pause()"></video>
+        <span class="order">#59</span>
+        <span class="hook-badge">★ TOP 3 HOOK</span>
+        <span class="size">610.7 KB</span>
+      </div>
+      <div class="info">
+        <div class="title">THROUGH OBJECT OUT</div>
+        <div class="tags"><span class="tag">Camera Control</span></div>
+        <div class="hook-desc">Đảo ngược 2.3s đầu → Máy quay xuyên qua khe cửa / khung tiền cảnh mở bung ra cảnh đứng nói.</div>
+        <div class="file-name"><a href="https://cdn.higgsfield.ai/minimax_hailuo_motion/bb3bf1bb-0c04-4af6-88ab-ec4b354d7c37.mp4" target="_blank" rel="noopener">⬇ Tải MP4 gốc (THROUGH OBJECT OUT.mp4)</a></div>
+      </div>
+    </div>
+    
+    <div class="card card-top7" data-name="gas transformation" data-cats="Effects,UGC,TOP7_HOOK">
+      <div class="vid-wrap">
+        <video src="https://cdn.higgsfield.ai/minimax_hailuo_motion/e1d06ade-fa58-41ec-8efb-6820413c2850.mp4" poster="" muted loop playsinline preload="metadata" onmouseenter="this.play()" onmouseleave="this.pause();this.currentTime=0;" onclick="this.paused ? this.play() : this.pause()"></video>
+        <span class="order">#60</span>
+        <span class="hook-badge">★ TOP 6 HOOK</span>
+        <span class="size">328.2 KB</span>
+      </div>
+      <div class="info">
+        <div class="title">GAS TRANSFORMATION</div>
+        <div class="tags"><span class="tag">Effects</span><span class="tag">UGC</span></div>
+        <div class="hook-desc">Đảo ngược 2.5s đầu → Luồng khói xoáy giữa địa điểm tụ lại hóa thành anh Việt.</div>
+        <div class="file-name"><a href="https://cdn.higgsfield.ai/minimax_hailuo_motion/e1d06ade-fa58-41ec-8efb-6820413c2850.mp4" target="_blank" rel="noopener">⬇ Tải MP4 gốc (GAS TRANSFORMATION.mp4)</a></div>
+      </div>
+    </div>
+    
+    <div class="card card-top7" data-name="aerial pull out" data-cats="Camera Control,TOP7_HOOK">
+      <div class="vid-wrap">
+        <video src="https://cdn.higgsfield.ai/minimax_hailuo_motion/4bf6e93d-c590-4f6c-8381-50358f70ae75.mp4" poster="" muted loop playsinline preload="metadata" onmouseenter="this.play()" onmouseleave="this.pause();this.currentTime=0;" onclick="this.paused ? this.play() : this.pause()"></video>
+        <span class="order">#61</span>
+        <span class="hook-badge">★ TOP 2 HOOK</span>
+        <span class="size">1771.8 KB</span>
+      </div>
+      <div class="info">
+        <div class="title">AERIAL PULL OUT</div>
+        <div class="tags"><span class="tag">Camera Control</span></div>
+        <div class="hook-desc">Đảo ngược 2.5s đầu → Flycam từ bầu trời bổ nhào xuống địa điểm, hạ cánh thẳng trước mặt anh Việt.</div>
+        <div class="file-name"><a href="https://cdn.higgsfield.ai/minimax_hailuo_motion/4bf6e93d-c590-4f6c-8381-50358f70ae75.mp4" target="_blank" rel="noopener">⬇ Tải MP4 gốc (AERIAL PULL OUT.mp4)</a></div>
+      </div>
+    </div>
+    
+    <div class="card " data-name="timelapse landscape" data-cats="Camera / General">
+      <div class="vid-wrap">
+        <video src="https://cdn.higgsfield.ai/minimax_hailuo_motion/d8232abc-8da9-4084-ab2f-e5ced13cb136.mp4" poster="" muted loop playsinline preload="metadata" onmouseenter="this.play()" onmouseleave="this.pause();this.currentTime=0;" onclick="this.paused ? this.play() : this.pause()"></video>
+        <span class="order">#62</span>
+        
+        <span class="size">797.0 KB</span>
+      </div>
+      <div class="info">
+        <div class="title">TIMELAPSE LANDSCAPE</div>
+        <div class="tags"><span class="tag">Camera / General</span></div>
+        
+        <div class="file-name"><a href="https://cdn.higgsfield.ai/minimax_hailuo_motion/d8232abc-8da9-4084-ab2f-e5ced13cb136.mp4" target="_blank" rel="noopener">⬇ Tải MP4 gốc (TIMELAPSE LANDSCAPE.mp4)</a></div>
+      </div>
+    </div>
+    
+    <div class="card " data-name="horned witch" data-cats="Horror">
+      <div class="vid-wrap">
+        <video src="https://cdn.higgsfield.ai/minimax_hailuo_motion/113fd7bb-73f3-48dc-bc11-bfddd88a225c.mp4" poster="" muted loop playsinline preload="metadata" onmouseenter="this.play()" onmouseleave="this.pause();this.currentTime=0;" onclick="this.paused ? this.play() : this.pause()"></video>
+        <span class="order">#63</span>
+        
+        <span class="size">979.6 KB</span>
+      </div>
+      <div class="info">
+        <div class="title">HORNED WITCH</div>
+        <div class="tags"><span class="tag">Horror</span></div>
+        
+        <div class="file-name"><a href="https://cdn.higgsfield.ai/minimax_hailuo_motion/113fd7bb-73f3-48dc-bc11-bfddd88a225c.mp4" target="_blank" rel="noopener">⬇ Tải MP4 gốc (HORNED WITCH.mp4)</a></div>
+      </div>
+    </div>
+    
+    <div class="card " data-name="scarecrow scream" data-cats="Horror">
+      <div class="vid-wrap">
+        <video src="https://cdn.higgsfield.ai/minimax_hailuo_motion/5f8d1951-4b7b-44cf-abb8-f532a1feda61.mp4" poster="" muted loop playsinline preload="metadata" onmouseenter="this.play()" onmouseleave="this.pause();this.currentTime=0;" onclick="this.paused ? this.play() : this.pause()"></video>
+        <span class="order">#64</span>
+        
+        <span class="size">1741.0 KB</span>
+      </div>
+      <div class="info">
+        <div class="title">SCARECROW SCREAM</div>
+        <div class="tags"><span class="tag">Horror</span></div>
+        
+        <div class="file-name"><a href="https://cdn.higgsfield.ai/minimax_hailuo_motion/5f8d1951-4b7b-44cf-abb8-f532a1feda61.mp4" target="_blank" rel="noopener">⬇ Tải MP4 gốc (SCARECROW SCREAM.mp4)</a></div>
+      </div>
+    </div>
+    
+    <div class="card " data-name="caught in action" data-cats="Camera / General">
+      <div class="vid-wrap">
+        <video src="https://cdn.higgsfield.ai/minimax_hailuo_motion/ffc8dc40-e2fc-485f-aa2d-7336af6763cf.mp4" poster="" muted loop playsinline preload="metadata" onmouseenter="this.play()" onmouseleave="this.pause();this.currentTime=0;" onclick="this.paused ? this.play() : this.pause()"></video>
+        <span class="order">#65</span>
+        
+        <span class="size">1070.4 KB</span>
+      </div>
+      <div class="info">
+        <div class="title">CAUGHT IN ACTION</div>
+        <div class="tags"><span class="tag">Camera / General</span></div>
+        
+        <div class="file-name"><a href="https://cdn.higgsfield.ai/minimax_hailuo_motion/ffc8dc40-e2fc-485f-aa2d-7336af6763cf.mp4" target="_blank" rel="noopener">⬇ Tải MP4 gốc (CAUGHT IN ACTION.mp4)</a></div>
+      </div>
+    </div>
+    
+    <div class="card " data-name="angry mode" data-cats="UGC,Emotions">
+      <div class="vid-wrap">
+        <video src="https://cdn.higgsfield.ai/minimax_hailuo_motion/53e70b95-7a62-4805-b168-770caf7d57e4.mp4" poster="" muted loop playsinline preload="metadata" onmouseenter="this.play()" onmouseleave="this.pause();this.currentTime=0;" onclick="this.paused ? this.play() : this.pause()"></video>
+        <span class="order">#66</span>
+        
+        <span class="size">401.2 KB</span>
+      </div>
+      <div class="info">
+        <div class="title">ANGRY MODE</div>
+        <div class="tags"><span class="tag">UGC</span><span class="tag">Emotions</span></div>
+        
+        <div class="file-name"><a href="https://cdn.higgsfield.ai/minimax_hailuo_motion/53e70b95-7a62-4805-b168-770caf7d57e4.mp4" target="_blank" rel="noopener">⬇ Tải MP4 gốc (ANGRY MODE.mp4)</a></div>
+      </div>
+    </div>
+    
+    <div class="card " data-name="train rush" data-cats="Viral,Effects,UGC">
+      <div class="vid-wrap">
+        <video src="https://cdn.higgsfield.ai/minimax_hailuo_motion/e3826940-e105-4929-8cbb-5e495bbe825a.mp4" poster="" muted loop playsinline preload="metadata" onmouseenter="this.play()" onmouseleave="this.pause();this.currentTime=0;" onclick="this.paused ? this.play() : this.pause()"></video>
+        <span class="order">#67</span>
+        
+        <span class="size">859.6 KB</span>
+      </div>
+      <div class="info">
+        <div class="title">TRAIN RUSH</div>
+        <div class="tags"><span class="tag">Viral</span><span class="tag">Effects</span><span class="tag">UGC</span></div>
+        
+        <div class="file-name"><a href="https://cdn.higgsfield.ai/minimax_hailuo_motion/e3826940-e105-4929-8cbb-5e495bbe825a.mp4" target="_blank" rel="noopener">⬇ Tải MP4 gốc (TRAIN RUSH.mp4)</a></div>
+      </div>
+    </div>
+    
+    <div class="card " data-name="static" data-cats="Camera Control">
+      <div class="vid-wrap">
+        <video src="https://cdn.higgsfield.ai/minimax_hailuo_motion/b0f4f744-9707-4fb4-84ca-1897f78cfe04.mp4" poster="" muted loop playsinline preload="metadata" onmouseenter="this.play()" onmouseleave="this.pause();this.currentTime=0;" onclick="this.paused ? this.play() : this.pause()"></video>
+        <span class="order">#68</span>
+        
+        <span class="size">382.3 KB</span>
+      </div>
+      <div class="info">
+        <div class="title">STATIC</div>
+        <div class="tags"><span class="tag">Camera Control</span></div>
+        
+        <div class="file-name"><a href="https://cdn.higgsfield.ai/minimax_hailuo_motion/b0f4f744-9707-4fb4-84ca-1897f78cfe04.mp4" target="_blank" rel="noopener">⬇ Tải MP4 gốc (STATIC.mp4)</a></div>
+      </div>
+    </div>
+    
+    <div class="card " data-name="car mount" data-cats="Camera Control">
+      <div class="vid-wrap">
+        <video src="https://cdn.higgsfield.ai/minimax_hailuo_motion/2ec6b9bb-b172-4d56-96d4-65862b8de1c6.mp4" poster="" muted loop playsinline preload="metadata" onmouseenter="this.play()" onmouseleave="this.pause();this.currentTime=0;" onclick="this.paused ? this.play() : this.pause()"></video>
+        <span class="order">#69</span>
+        
+        <span class="size">488.6 KB</span>
+      </div>
+      <div class="info">
+        <div class="title">CAR MOUNT</div>
+        <div class="tags"><span class="tag">Camera Control</span></div>
+        
+        <div class="file-name"><a href="https://cdn.higgsfield.ai/minimax_hailuo_motion/2ec6b9bb-b172-4d56-96d4-65862b8de1c6.mp4" target="_blank" rel="noopener">⬇ Tải MP4 gốc (CAR MOUNT.mp4)</a></div>
+      </div>
+    </div>
+    
+    <div class="card " data-name="shadow" data-cats="Effects">
+      <div class="vid-wrap">
+        <video src="https://cdn.higgsfield.ai/minimax_hailuo_motion/4d6f2cb6-0739-4aeb-9736-f5a85108abde.mp4" poster="" muted loop playsinline preload="metadata" onmouseenter="this.play()" onmouseleave="this.pause();this.currentTime=0;" onclick="this.paused ? this.play() : this.pause()"></video>
+        <span class="order">#70</span>
+        
+        <span class="size">859.1 KB</span>
+      </div>
+      <div class="info">
+        <div class="title">SHADOW</div>
+        <div class="tags"><span class="tag">Effects</span></div>
+        
+        <div class="file-name"><a href="https://cdn.higgsfield.ai/minimax_hailuo_motion/4d6f2cb6-0739-4aeb-9736-f5a85108abde.mp4" target="_blank" rel="noopener">⬇ Tải MP4 gốc (SHADOW.mp4)</a></div>
+      </div>
+    </div>
+    
+    <div class="card " data-name="bts" data-cats="Camera Control,UGC,Commercial">
+      <div class="vid-wrap">
+        <video src="https://cdn.higgsfield.ai/minimax_hailuo_motion/4aa75c29-aa50-4226-bea8-7aee0f87d951.mp4" poster="" muted loop playsinline preload="metadata" onmouseenter="this.play()" onmouseleave="this.pause();this.currentTime=0;" onclick="this.paused ? this.play() : this.pause()"></video>
+        <span class="order">#71</span>
+        
+        <span class="size">881.8 KB</span>
+      </div>
+      <div class="info">
+        <div class="title">BTS</div>
+        <div class="tags"><span class="tag">Camera Control</span><span class="tag">UGC</span><span class="tag">Commercial</span></div>
+        
+        <div class="file-name"><a href="https://cdn.higgsfield.ai/minimax_hailuo_motion/4aa75c29-aa50-4226-bea8-7aee0f87d951.mp4" target="_blank" rel="noopener">⬇ Tải MP4 gốc (BTS.mp4)</a></div>
+      </div>
+    </div>
+    
+    <div class="card " data-name="helicopter escape" data-cats="Viral,Action Movement">
+      <div class="vid-wrap">
+        <video src="https://cdn.higgsfield.ai/minimax_hailuo_motion/3944498e-c313-4b22-b09b-fd695b071cc9.mp4" poster="" muted loop playsinline preload="metadata" onmouseenter="this.play()" onmouseleave="this.pause();this.currentTime=0;" onclick="this.paused ? this.play() : this.pause()"></video>
+        <span class="order">#72</span>
+        
+        <span class="size">594.7 KB</span>
+      </div>
+      <div class="info">
+        <div class="title">HELICOPTER ESCAPE</div>
+        <div class="tags"><span class="tag">Viral</span><span class="tag">Action Movement</span></div>
+        
+        <div class="file-name"><a href="https://cdn.higgsfield.ai/minimax_hailuo_motion/3944498e-c313-4b22-b09b-fd695b071cc9.mp4" target="_blank" rel="noopener">⬇ Tải MP4 gốc (HELICOPTER ESCAPE.mp4)</a></div>
+      </div>
+    </div>
+    
+    <div class="card " data-name="road rush" data-cats="Camera Control,Commercial">
+      <div class="vid-wrap">
+        <video src="https://cdn.higgsfield.ai/minimax_hailuo_motion/d82c8025-2b3a-4eb9-b0b8-42c9daf2a5eb.mp4" poster="" muted loop playsinline preload="metadata" onmouseenter="this.play()" onmouseleave="this.pause();this.currentTime=0;" onclick="this.paused ? this.play() : this.pause()"></video>
+        <span class="order">#73</span>
+        
+        <span class="size">1433.7 KB</span>
+      </div>
+      <div class="info">
+        <div class="title">ROAD RUSH</div>
+        <div class="tags"><span class="tag">Camera Control</span><span class="tag">Commercial</span></div>
+        
+        <div class="file-name"><a href="https://cdn.higgsfield.ai/minimax_hailuo_motion/d82c8025-2b3a-4eb9-b0b8-42c9daf2a5eb.mp4" target="_blank" rel="noopener">⬇ Tải MP4 gốc (ROAD RUSH.mp4)</a></div>
+      </div>
+    </div>
+    
+    <div class="card " data-name="x-ray" data-cats="Effects">
+      <div class="vid-wrap">
+        <video src="https://cdn.higgsfield.ai/minimax_hailuo_motion/a98ff971-f822-4bae-8f3c-30abef61430b.mp4" poster="" muted loop playsinline preload="metadata" onmouseenter="this.play()" onmouseleave="this.pause();this.currentTime=0;" onclick="this.paused ? this.play() : this.pause()"></video>
+        <span class="order">#74</span>
+        
+        <span class="size">582.1 KB</span>
+      </div>
+      <div class="info">
+        <div class="title">X-RAY</div>
+        <div class="tags"><span class="tag">Effects</span></div>
+        
+        <div class="file-name"><a href="https://cdn.higgsfield.ai/minimax_hailuo_motion/a98ff971-f822-4bae-8f3c-30abef61430b.mp4" target="_blank" rel="noopener">⬇ Tải MP4 gốc (X-RAY.mp4)</a></div>
+      </div>
+    </div>
+    
+    <div class="card " data-name="hero cam" data-cats="Camera Control">
+      <div class="vid-wrap">
+        <video src="https://cdn.higgsfield.ai/minimax_hailuo_motion/c8b3771e-cd42-4518-8079-1449646873c0.mp4" poster="" muted loop playsinline preload="metadata" onmouseenter="this.play()" onmouseleave="this.pause();this.currentTime=0;" onclick="this.paused ? this.play() : this.pause()"></video>
+        <span class="order">#75</span>
+        
+        <span class="size">1109.6 KB</span>
+      </div>
+      <div class="info">
+        <div class="title">HERO CAM</div>
+        <div class="tags"><span class="tag">Camera Control</span></div>
+        
+        <div class="file-name"><a href="https://cdn.higgsfield.ai/minimax_hailuo_motion/c8b3771e-cd42-4518-8079-1449646873c0.mp4" target="_blank" rel="noopener">⬇ Tải MP4 gốc (HERO CAM.mp4)</a></div>
+      </div>
+    </div>
+    
+    <div class="card " data-name="censorship" data-cats="Effects">
+      <div class="vid-wrap">
+        <video src="https://cdn.higgsfield.ai/minimax_hailuo_motion/b5ce84b1-abf5-47de-a8e2-e7c94d321e84.mp4" poster="" muted loop playsinline preload="metadata" onmouseenter="this.play()" onmouseleave="this.pause();this.currentTime=0;" onclick="this.paused ? this.play() : this.pause()"></video>
+        <span class="order">#76</span>
+        
+        <span class="size">782.5 KB</span>
+      </div>
+      <div class="info">
+        <div class="title">CENSORSHIP</div>
+        <div class="tags"><span class="tag">Effects</span></div>
+        
+        <div class="file-name"><a href="https://cdn.higgsfield.ai/minimax_hailuo_motion/b5ce84b1-abf5-47de-a8e2-e7c94d321e84.mp4" target="_blank" rel="noopener">⬇ Tải MP4 gốc (CENSORSHIP.mp4)</a></div>
+      </div>
+    </div>
+    
+    <div class="card " data-name="timelapse glam" data-cats="UGC,Commercial">
+      <div class="vid-wrap">
+        <video src="https://cdn.higgsfield.ai/minimax_hailuo_motion/e67c9a2a-ae6b-4325-ab2c-489c8e2f168b.mp4" poster="" muted loop playsinline preload="metadata" onmouseenter="this.play()" onmouseleave="this.pause();this.currentTime=0;" onclick="this.paused ? this.play() : this.pause()"></video>
+        <span class="order">#77</span>
+        
+        <span class="size">1086.1 KB</span>
+      </div>
+      <div class="info">
+        <div class="title">TIMELAPSE GLAM</div>
+        <div class="tags"><span class="tag">UGC</span><span class="tag">Commercial</span></div>
+        
+        <div class="file-name"><a href="https://cdn.higgsfield.ai/minimax_hailuo_motion/e67c9a2a-ae6b-4325-ab2c-489c8e2f168b.mp4" target="_blank" rel="noopener">⬇ Tải MP4 gốc (TIMELAPSE GLAM.mp4)</a></div>
+      </div>
+    </div>
+    
+  </div>
+</div>
+
+<script>
+let currentCat = 'ALL';
+let playingAll = false;
+function setCat(cat, btn) {
+  currentCat = cat;
+  document.querySelectorAll('button.filter').forEach(b => {
+    if(b.innerText !== '▶ Phát tất cả' && b.innerText !== '⏸ Dừng tất cả') b.classList.remove('active');
+  });
+  btn.classList.add('active');
+  filterCards();
+}
+function filterCards() {
+  const q = document.getElementById('q').value.toLowerCase().trim();
+  document.querySelectorAll('.card').forEach(c => {
+    const name = c.dataset.name;
+    const cats = c.dataset.cats.split(',');
+    const matchQ = !q || name.includes(q);
+    const matchC = currentCat === 'ALL' || cats.includes(currentCat);
+    c.style.display = (matchQ && matchC) ? '' : 'none';
+  });
+}
+function togglePlayAll(btn) {
+  playingAll = !playingAll;
+  btn.innerText = playingAll ? '⏸ Dừng tất cả' : '▶ Phát tất cả';
+  document.querySelectorAll('video').forEach(v => {
+    if (playingAll && v.closest('.card').style.display !== 'none') v.play();
+    else v.pause();
+  });
+}
+</script>
+</body>
+</html>
