@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TỔNG HỢP 3 KỊCH BẢN QUẢNG CÁO K4 &amp; GIẢI PHẪU 3 TẦNG TÂM LÝ (TÀI LIỆU MẪU HỌC VIÊN)</title>
+  
+  <!-- FAVICON SVG INLINE: CHUẨN "VIDEO" (REC MONOGRAM) -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230f172a'/%3E%3Ctext x='32' y='28' font-family='Arial, sans-serif' font-weight='900' font-size='16' fill='%23ffffff' text-anchor='middle' letter-spacing='1'%3EVI%3C/text%3E%3Ccircle cx='44' cy='22' r='4' fill='%23EF4444'/%3E%3Ctext x='32' y='46' font-family='Arial, sans-serif' font-weight='900' font-size='16' fill='%23ffffff' text-anchor='middle' letter-spacing='1'%3EDEO%3C/text%3E%3C/svg%3E">
+
+  <!-- FONTS: Fedu CDN -->
+  <style>
+    @font-face { font-family: 'FD Aeonik Extended'; src: url('https://fedu.vn/k/fonts/FDAeonikExtended-Bold.woff2') format('woff2'); font-weight: 700; font-display: swap; }
+    @font-face { font-family: 'FD Aeonik Extended'; src: url('https://fedu.vn/k/fonts/FDAeonikExtended-SemiBold.woff2') format('woff2'); font-weight: 600; font-display: swap; }
+    @font-face { font-family: 'FD Aeonik'; src: url('https://fedu.vn/k/fonts/FDAeonikMedium.ttf') format('truetype'); font-weight: 500; font-display: swap; }
+    @font-face { font-family: 'FD Aeonik'; src: url('https://fedu.vn/k/fonts/FDAeonikRegular.ttf') format('truetype'); font-weight: 400; font-display: swap; }
+    @font-face { font-family: 'Tiempos Text'; src: url('https://fedu.vn/k/fonts/FDTiemposText-Bold.woff2') format('woff2'); font-weight: 700; font-display: swap; }
+    @font-face { font-family: 'Tiempos Text'; src: url('https://fedu.vn/k/fonts/FDTiemposText-Medium.woff2') format('woff2'); font-weight: 500; font-display: swap; }
+    @font-face { font-family: 'Tiempos Text'; src: url('https://fedu.vn/k/fonts/FDTiemposText-Regular.woff2') format('woff2'); font-weight: 400; font-display: swap; }
+    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700&display=swap');
+  </style>
+
+  <style>
+    /* ==========================================================================
+       INKDOC CSS - ZERO ANIMATION, SLATE MONOCHROME
+       ========================================================================== */
+    :root {
+      --ink-bg: #ffffff;
+      --ink-sidebar: #f8fafc;
+      --ink-text: #0f172a;
+      --ink-muted: #64748b;
+      --ink-border: #e2e8f0;
+      --ink-hover: #f1f5f9;
+      --ink-accent: #0f172a;
+      
+      --font-display: 'FD Aeonik Extended', -apple-system, sans-serif;
+      --font-heading: 'FD Aeonik', -apple-system, sans-serif;
+      --font-body: 'Tiempos Text', Georgia, serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      
+      --sidebar-width: 280px;
+      --content-max-width: 820px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: auto; font-size: 16px; }
+    body {
+      background-color: var(--ink-bg);
+      color: var(--ink-text);
+      font-family: var(--font-body);
+      line-height: 1.8;
+      -webkit-font-smoothing: antialiased;
+      display: flex;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, h4 {
+      color: var(--ink-text);
+      font-weight: 600;
+      line-height: 1.32;
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+      font-family: var(--font-heading);
+    }
+    h1.is-short {
+      font-family: var(--font-display);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: -0.01em;
+      font-size: clamp(24px, 3.6vw, 36px);
+      line-height: 1.18;
+      margin-top: 0.5rem;
+    }
+    h2 { font-size: clamp(20px, 2.5vw, 25px); border-bottom: 1px solid var(--ink-border); padding-bottom: 0.5rem; margin-top: 3rem; }
+    h3 { font-size: 1.18rem; margin-top: 1.75rem; }
+    p, ul, ol, blockquote, table { margin-bottom: 1.35rem; font-size: 1.08rem; }
+    ul, ol { padding-left: 1.5rem; }
+    li { margin-bottom: 0.45rem; }
+    a { color: var(--ink-accent); text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--ink-muted); }
+    a:hover { text-decoration-color: var(--ink-accent); }
+
+    blockquote {
+      border-left: 3px solid var(--ink-text);
+      background-color: var(--ink-sidebar);
+      padding: 1.1rem 1.35rem;
+      border-radius: 0 8px 8px 0;
+      color: var(--ink-text);
+    }
+
+    code {
+      font-family: var(--font-mono);
+      font-size: 0.85em;
+      background-color: var(--ink-hover);
+      padding: 0.15em 0.4em;
+      border-radius: 4px;
+    }
+
+    /* SIDEBAR */
+    .ink-sidebar {
+      width: var(--sidebar-width);
+      flex-shrink: 0;
+      background-color: var(--ink-sidebar);
+      border-right: 1px solid var(--ink-border);
+      height: 100vh;
+      position: sticky;
+      top: 0;
+      overflow-y: auto;
+      padding: 1.75rem 1.25rem;
+      font-family: var(--font-heading);
+    }
+    .ink-sidebar-header { margin-bottom: 1.5rem; display: flex; justify-content: space-between; align-items: center; }
+    .ink-brand { font-family: var(--font-display); font-weight: 700; font-size: 0.95rem; letter-spacing: 0.5px; color: var(--ink-text); text-decoration: none; text-transform: uppercase; }
+    .ink-toc-title { font-size: 0.72rem; text-transform: uppercase; font-weight: 700; color: var(--ink-muted); letter-spacing: 0.06em; margin: 1.25rem 0 0.6rem; }
+    .ink-toc-list { list-style: none; padding: 0; margin: 0; }
+    .ink-toc-list li { margin-bottom: 0.22rem; }
+    .ink-toc-link {
+      display: block;
+      padding: 0.42rem 0.65rem;
+      color: var(--ink-muted);
+      text-decoration: none;
+      font-size: 0.85rem;
+      border-radius: 6px;
+      line-height: 1.4;
+    }
+    .ink-toc-link:hover, .ink-toc-link.is-active {
+      background-color: var(--ink-hover);
+      color: var(--ink-text);
+      font-weight: 600;
+    }
+
+    /* MAIN CONTENT */
+    .ink-main-wrapper {
+      flex-grow: 1;
+      padding: 2.75rem 2.25rem 5rem;
+      display: flex;
+      justify-content: center;
+    }
+    .ink-content {
+      width: 100%;
+      max-width: var(--content-max-width);
+    }
+
+    /* TABLES */
+    table { width: 100%; border-collapse: collapse; margin-bottom: 2rem; font-family: var(--font-heading); font-size: 0.93rem; }
+    th, td { padding: 11px 14px; border-bottom: 1px solid var(--ink-border); text-align: left; vertical-align: top; line-height: 1.55; }
+    th { font-weight: 700; color: var(--ink-muted); text-transform: uppercase; font-size: 0.74rem; letter-spacing: 0.05em; border-bottom: 2px solid var(--ink-border); background: var(--ink-sidebar); }
+
+    /* VIDEO + SCRIPT SHOWCASE LAYOUT */
+    .kb-showcase {
+      border: 1px solid var(--ink-border);
+      border-radius: 12px;
+      background: #ffffff;
+      padding: 1.5rem;
+      margin: 1.5rem 0 2.25rem;
+    }
+    .kb-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      padding-bottom: 1rem;
+      margin-bottom: 1.25rem;
+      border-bottom: 1px solid var(--ink-border);
+      font-family: var(--font-heading);
+    }
+    .kb-badge {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      border-radius: 4px;
+      background: var(--ink-text);
+      color: #ffffff;
+      margin-bottom: 0.35rem;
+    }
+    .kb-links {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+    .kb-btn {
+      font-family: var(--font-heading);
+      font-size: 0.82rem;
+      font-weight: 600;
+      padding: 0.42rem 0.8rem;
+      border-radius: 6px;
+      border: 1px solid var(--ink-border);
+      background: var(--ink-sidebar);
+      color: var(--ink-text);
+      text-decoration: none;
+    }
+    .kb-btn:hover { background: var(--ink-hover); border-color: var(--ink-text); }
+
+    .media-split {
+      display: grid;
+      grid-template-columns: 300px 1fr;
+      gap: 1.5rem;
+      align-items: start;
+      margin-bottom: 1.5rem;
+    }
+    .shorts-frame-wrap {
+      width: 100%;
+      aspect-ratio: 9 / 16;
+      background: #0f172a;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid var(--ink-border);
+    }
+    .shorts-frame-wrap iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    .script-box {
+      background: var(--ink-sidebar);
+      border: 1px solid var(--ink-border);
+      border-radius: 10px;
+      padding: 1.15rem 1.25rem;
+      font-family: var(--font-heading);
+    }
+    .script-box-title {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--ink-muted);
+      margin-bottom: 0.75rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--ink-border);
+    }
+    .script-lines {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .script-lines li {
+      display: flex;
+      gap: 0.65rem;
+      align-items: baseline;
+      padding: 0.42rem 0;
+      border-bottom: 1px dashed var(--ink-border);
+      font-size: 0.96rem;
+      line-height: 1.52;
+    }
+    .script-lines li:last-child { border-bottom: 0; }
+    .s-num {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--ink-muted);
+      min-width: 24px;
+      flex-shrink: 0;
+    }
+    .s-phase {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+      margin: 0.85rem 0 0.35rem;
+      display: block;
+    }
+
+    /* 3-LAYER ANATOMY GRID */
+    .layer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 0.85rem;
+      margin: 1rem 0 1.5rem;
+      font-family: var(--font-heading);
+    }
+    .layer-card {
+      border: 1px solid var(--ink-border);
+      border-radius: 8px;
+      padding: 1rem 1.1rem;
+      background: var(--ink-sidebar);
+    }
+    .layer-tag {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--ink-text);
+      background: #ffffff;
+      border: 1px solid var(--ink-border);
+      padding: 2px 7px;
+      border-radius: 4px;
+      display: inline-block;
+      margin-bottom: 0.45rem;
+    }
+    .layer-card h4 {
+      margin: 0 0 0.4rem;
+      font-size: 0.98rem;
+    }
+    .layer-card p {
+      margin: 0;
+      font-size: 0.9rem;
+      line-height: 1.55;
+      color: var(--ink-text);
+    }
+
+    /* MOBILE NAV */
+    .ink-mobile-nav {
+      display: none;
+      position: sticky;
+      top: 0;
+      background: var(--ink-bg);
+      border-bottom: 1px solid var(--ink-border);
+      padding: 0.85rem 1rem;
+      z-index: 100;
+      align-items: center;
+      justify-content: space-between;
+      font-family: var(--font-heading);
+    }
+    .ink-menu-btn {
+      background: none; border: 1px solid var(--ink-border); border-radius: 6px;
+      padding: 0.4rem 0.75rem; cursor: pointer; font-family: var(--font-heading); font-weight: 600; font-size: 0.85rem;
+    }
+    .ink-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.55);
+      z-index: 999;
+    }
+    .ink-overlay.is-open { display: block; }
+    .ink-close-btn {
+      display: none;
+      background: none; border: none; cursor: pointer;
+      font-size: 1.25rem; color: var(--ink-text);
+    }
+
+    @media (max-width: 992px) {
+      body { flex-direction: column; }
+      .ink-mobile-nav { display: flex; }
+      .ink-sidebar {
+        position: fixed;
+        top: 0; bottom: 0; left: -100%;
+        z-index: 1000;
+        width: 85vw; max-width: 320px;
+        transition: left 0.25s ease;
+      }
+      .ink-sidebar.is-open { left: 0; }
+      .ink-close-btn { display: block; }
+      .ink-main-wrapper { padding: 1.5rem 1rem 4rem; }
+      .media-split { grid-template-columns: 1fr; }
+      .shorts-frame-wrap { max-width: 320px; margin: 0 auto; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- MOBILE NAV -->
+  <div class="ink-mobile-nav">
+    <a href="#" class="ink-brand">MẪU KỊCH BẢN K4</a>
+    <button class="ink-menu-btn" onclick="document.querySelector('.ink-sidebar').classList.add('is-open'); document.querySelector('.ink-overlay').classList.add('is-open');">MỤC LỤC</button>
+  </div>
+  <div class="ink-overlay" onclick="document.querySelector('.ink-sidebar').classList.remove('is-open'); this.classList.remove('is-open');"></div>
+
+  <!-- SIDEBAR -->
+  <aside class="ink-sidebar">
+    <div class="ink-sidebar-header">
+      <a href="#" class="ink-brand">KỊCH BẢN MẪU K4</a>
+      <button class="ink-close-btn" onclick="document.querySelector('.ink-sidebar').classList.remove('is-open'); document.querySelector('.ink-overlay').classList.remove('is-open');">✕</button>
+    </div>
+
+    <div class="ink-toc-title">MỤC LỤC BÀI HỌC</div>
+    <ul class="ink-toc-list">
+      <li><a href="#phan-1" class="ink-toc-link is-active">I. Bản đồ tổng quan 3 Kịch bản Quảng cáo K4 &amp; Ma trận 3 Tầng</a></li>
+      <li><a href="#phan-2" class="ink-toc-link">II. Kịch bản 01: "Giỏi Mà Tàng Hình" (Video Demo + Giải phẫu 3 tầng)</a></li>
+      <li><a href="#phan-3" class="ink-toc-link">III. Kịch bản 02: "Mạng Xã Hội Cũ Đã Chết — Kỷ Nguyên Ngữ Nghĩa" (Video Demo + Giải phẫu 3 tầng)</a></li>
+      <li><a href="#phan-4" class="ink-toc-link">IV. Kịch bản 03: "Chân Thật Là Một Loại Hiệu Suất: Sự Cô Đặc &amp; Tâm Thế Người Tặng Quà" (Kịch bản 19 câu + Giải phẫu)</a></li>
+      <li><a href="#phan-5" class="ink-toc-link">V. Khuôn mẫu 5 bước để học viên tự viết kịch bản cho ngành của mình</a></li>
+    </ul>
+
+    <div class="ink-toc-title">TRANG QUAY &amp; SHOT-LIST</div>
+    <ul class="ink-toc-list">
+      <li><a href="https://fedu.vn/course/kb3k4.html" class="ink-toc-link">🎙️ Mở Teleprompter Đọc &amp; Quay Kịch bản 3 (kb3k4.html)</a></li>
+      <li><a href="https://fedu.vn/k/shot-list-v2.html" target="_blank" class="ink-toc-link">🎬 Shot-list chi tiết KB1 &amp; KB2 (shot-list-v2.html) ↗</a></li>
+      <li><a href="https://fedu.vn/k/shot-list-master.html" target="_blank" class="ink-toc-link">⚡ Bảng Tra Cứu Nhanh Dark Mode ↗</a></li>
+      <li><a href="https://fedu.vn/course/storytelling2.0.html" class="ink-toc-link">📖 Giáo trình Storytelling 2.0</a></li>
+    </ul>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main class="ink-main-wrapper">
+    <article class="ink-content">
+
+      <div style="font-family: var(--font-mono); font-size: 0.76rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--ink-muted); margin-bottom: 0.5rem;">
+        TÀI LIỆU MẪU HỌC VIÊN OFFLINE K4 • GIẢI PHẪU KỊCH BẢN THỰC CHIẾN CỦA NGUYỄN ĐỨC VIỆT
+      </div>
+      <h1 class="is-short">TỔNG HỢP 3 KỊCH BẢN QUẢNG CÁO K4 &amp; CÁCH KHAI THÁC 3 TẦNG TÂM LÝ</h1>
+
+      <blockquote>
+        <strong>Mục đích tài liệu này dành cho học viên:</strong> Thay vì học lý thuyết chung chung, bạn sẽ nhìn trực tiếp vào <strong>3 kịch bản thực tế</strong> mà anh Việt dùng để chạy quảng cáo và xây kênh cho lớp Offline K4. Qua 2 video đã phát sóng trên kênh YouTube <strong>Nguyễn Đức Việt</strong> và 1 kịch bản nâng cao về <em>Độ Nén &amp; Tâm Thế Người Tặng Quà</em>, bạn sẽ thấy rõ cách bóc tách từ <strong>Tầng 1 (Bề mặt) &rarr; Tầng 2 (Hiện trường vật lý) &rarr; Tầng 2.5 (Vỏ bọc giữ thể diện &amp; Khuôn Âm Bản) &rarr; Tầng 3 (Nỗi sợ thầm kín &amp; Cơ chế mở khóa)</strong>.
+      </blockquote>
+
+      <!-- =================================================================
+           PHẦN I: BẢN ĐỒ TỔNG QUAN 3 KỊCH BẢN K4
+           ================================================================= -->
+      <h2 id="phan-1">I. Bản đồ tổng quan 3 Kịch bản Quảng cáo K4 &amp; Ma trận 3 Tầng</h2>
+      <p>Một chiến dịch nội dung sắc bén không bao giờ lặp lại cùng một góc nói. Ba kịch bản K4 dưới đây được thiết kế như <strong>3 chiếc chìa khóa mở 3 lớp rào cản tâm lý nối tiếp nhau</strong> của những người làm nghề giỏi nhưng chưa xuất hiện hiệu quả trên mạng:</p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Tiêu chí giải phẫu</th>
+            <th>Kịch bản 01: "Giỏi Mà Tàng Hình" (13 câu)</th>
+            <th>Kịch bản 02: "Mạng Xã Hội Cũ Đã Chết — Ngữ Nghĩa" (14 câu)</th>
+            <th>Kịch bản 03: "Độ Nén, Sự Chân Thật &amp; Món Quà" (19 câu)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Mũi nhọn thông điệp</strong></td>
+            <td>Đánh thức người giỏi nghề đang chịu thiệt vì không để lại dấu vết dữ liệu trên mạng.</td>
+            <td>Gỡ bỏ áp lực phải làm Idol câu view; giải thích cơ chế AI đọc ngữ nghĩa từng khung hình.</td>
+            <td>Nâng cấp từ video bóng bẩy đại trà (Cấp 1) lên Độ nén chân thật (Cấp 2) và Tâm thế người tặng quà (Cấp 3).</td>
+          </tr>
+          <tr>
+            <td><strong>Tầng 1 (Ngộ nhận đám đông)</strong></td>
+            <td><em>"Mình làm nghề giỏi thì khách khắc tự tìm đến (Hữu xạ tự nhiên hương)."</em></td>
+            <td><em>"Làm video hiệu quả là phải đếm lượt like, phải hoạt ngôn như Idol."</em></td>
+            <td><em>"Lên video phải nói lời văn hoa bóng bẩy, cảnh quay kỹ xảo cầu kỳ thì mới chuyên nghiệp."</em></td>
+          </tr>
+          <tr>
+            <td><strong>Tầng 2 (Hiện trường vật lý)</strong></td>
+            <td>Không có dấu vết số trên mạng &rarr; AI coi như vô hình, không trả về khách hàng nào.</td>
+            <td>Đêm mỏi gáy lướt chậm 3 giây, sáng mở máy đã thấy ngay clip massage hiện lên.</td>
+            <td>Càng cố nói cho hay thì lên hình nghe càng giả; trong khi AI vẽ cảnh và cắt ghép chỉ mất vài giây.</td>
+          </tr>
+          <tr>
+            <td><strong>Tầng 2.5 (Vỏ bọc thể diện &amp; Khuôn Âm Bản)</strong></td>
+            <td>Lấy chữ "khiêm tốn làm nghề" để che giấu sự ngại xuất hiện. <strong>Câu bẻ khóa:</strong> <em>"Tay nghề mà giấu trong đầu là tay nghề chết."</em></td>
+            <td>Lấy lý do "tôi là người làm chuyên môn nghiêm túc, không chạy theo xu hướng câu like". <strong>Câu bẻ khóa:</strong> <em>"AI giờ nghe xem bạn tháo gỡ việc gì, nhưng phải qua được vòng gửi xe."</em></td>
+            <td>Đắp thêm chữ nghĩa bóng bẩy thực chất là do thiếu tự tin hoặc muốn tô vẽ bề ngoài. <strong>Câu bẻ khóa:</strong> <em>"Lời nói thật tốn ít từ vựng nhất. Chân thật là một loại hiệu suất: sự cô đặc."</em></td>
+          </tr>
+          <tr>
+            <td><strong>Tầng 3 (Nỗi sợ ngầm &amp; Chuyển hóa tâm thế)</strong></td>
+            <td>Sợ người kém hơn mình (biết 3 nói 10) lấy hết khách, còn mình giỏi 10 phần lại đứng ngoài cuộc.</td>
+            <td>Sợ lên hình bị gượng, không biết nói sao cho tự nhiên khi không có khách ngồi đối diện.</td>
+            <td>Sợ cảm giác khúm núm đi xin lượt xem. Chuyển hóa thành <strong>Tâm thế Người Tặng Quà</strong> (trang nhật ký nghề tạo khối tín hiệu sạch lọc người cùng tần số).</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- =================================================================
+           PHẦN II: KỊCH BẢN 01 - TẮT CHẾ ĐỘ TÀNG HÌNH
+           ================================================================= -->
+      <h2 id="phan-2">II. Kịch bản 01: "Giỏi Mà Tàng Hình — Tắt Chế Độ Tàng Hình" (13 câu)</h2>
+      <p>Kịch bản mở đầu đánh thẳng vào nghịch lý đau nhất của người làm nghề lâu năm: <strong>Có 10 phần tay nghề thật trong đầu nhưng trên môi trường số lại bằng 0</strong>.</p>
+
+      <div class="kb-showcase">
+        <div class="kb-header">
+          <div>
+            <span class="kb-badge">KỊCH BẢN 01 • VIDEO ĐÃ PHÁT SÓNG</span>
+            <h3 style="margin: 0.25rem 0 0;">Qc khóa offline — Kịch bản Tàng Hình (13 câu thoại)</h3>
+          </div>
+          <div class="kb-links">
+            <a href="https://www.youtube.com/shorts/TK7TkQeSg4U" target="_blank" class="kb-btn">▶️ Mở trên YouTube ↗</a>
+            <a href="https://fedu.vn/k/shot-list-v2.html#shot-list-quay-l-i-t-t-ch-t-ng" target="_blank" class="kb-btn">🎬 Xem Shot-list HTML ↗</a>
+          </div>
+        </div>
+
+        <div class="media-split">
+          <div class="shorts-frame-wrap">
+            <iframe src="https://www.youtube.com/embed/TK7TkQeSg4U" title="Qc khóa offline - Kịch bản tàng hình" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+          </div>
+
+          <div class="script-box">
+            <div class="script-box-title">NGUYÊN VĂN 13 CÂU THOẠI CHUẨN NHỊP THỞ</div>
+            <ul class="script-lines">
+              <li><span class="s-num">01</span><span><strong>(Hook bối cảnh):</strong> Cái kỷ nguyên AI bây giờ nó khốc liệt như vậy. Vạn vật kết nối bằng dữ liệu.</span></li>
+              <li><span class="s-num">02</span><span><strong>(Đặt điều kiện):</strong> Nếu mà bạn làm nghề lâu năm, mà bạn không để lại một dấu vết gì trên mạng...</span></li>
+              <li><span class="s-num">03</span><span><strong>(Chẩn đoán trực diện):</strong> Thì AI nó coi như bạn vô hình! Hệ thống sẽ không trả cho bạn một khách hàng nào đâu.</span></li>
+              <li><span class="s-num">04</span><span><strong>(Bóc vỏ T2.5):</strong> Nhiều người đi làm nghề thì cứ nghĩ rằng là mình giỏi thì khách sẽ tự tìm đến ("hữu xạ tự nhiên hương"). Nhưng nghĩ như vậy là tự nhận phần thiệt.</span></li>
+              <li><span class="s-num">05</span><span><strong>(Chốt câu đinh):</strong> Tự dưng làm gì có ai đem tiền đến gõ cửa nhà mình đâu. Giỏi mà tàng hình thì coi như bằng không. Tay nghề mà giấu trong đầu ấy, là tay nghề chết.</span></li>
+              <li><span class="s-num">06</span><span><strong>(Gỡ nỗi lo phải diễn):</strong> Vậy đóng góp dữ liệu bằng cách nào? Không phải là lên hình diễn hay tìm kiếm lượt xem nhanh. Cái thời đó qua rồi.</span></li>
+              <li><span class="s-num">07</span><span><strong>(Bằng chứng sống):</strong> Mình chính là bằng chứng. Mình không hào nhoáng, không diễn.</span></li>
+              <li><span class="s-num">08</span><span><strong>(Con số thực chứng):</strong> Mình mang nguyên những gì mình dạy trên lớp lên video mà vẫn có 40k Page, 15k TikTok trong vài tháng.</span></li>
+              <li><span class="s-num">09</span><span><strong>(Truyền niềm tin ngang hàng):</strong> Nếu một người đi dạy như mình làm được bằng sự chân thành, thì những anh chị lăn lộn kinh doanh chắc chắn cũng sẽ làm được.</span></li>
+              <li><span class="s-num">10</span><span><strong>(Nút thắt kỹ thuật - Vòng gửi xe):</strong> Nhưng có một vấn đề, thả bừa dữ liệu là không được. Video chất đến mấy mà hình xấu, lộn xộn thì AI loại từ vòng gửi xe.</span></li>
+              <li><span class="s-num">11</span><span><strong>(Cách làm tại bàn):</strong> Bạn phải có một cách làm tại bàn bài bản, dứt khoát, không tốn thời gian cho thứ râu ria.</span></li>
+              <li><span class="s-num">12</span><span><strong>(Lời mời cam kết):</strong> Cuối tháng này, mình có lớp offline 2 ngày tại Hà Nội. Làm đúng các bước mà chưa ra việc, mình hỗ trợ 1-1 tới khi ra kết quả thì thôi.</span></li>
+              <li><span class="s-num">13</span><span><strong>(Kết biểu tượng):</strong> Tắt chế độ tàng hình và đăng ký ở link bên dưới nhé!</span></li>
+            </ul>
+          </div>
+        </div>
+
+        <h3>Giải phẫu Logic &amp; Cách khai thác 3 tầng tâm lý (Bài học cho học viên)</h3>
+        <div class="layer-grid">
+          <div class="layer-card">
+            <span class="layer-tag">TẦNG 1 &rarr; TẦNG 2</span>
+            <h4>Đổi khái niệm từ "Không biết làm" sang "Vô hình trước AI"</h4>
+            <p>Thay vì trách người xem <em>"tại sao bạn chưa xây kênh"</em> (gây phản kháng), kịch bản mở bằng quy luật khách quan của thời đại: <strong>AI phân phối khách hàng bằng dữ liệu</strong> (Câu 1–3). Không có dữ liệu trên mạng đồng nghĩa với việc hệ thống coi bạn không tồn tại.</p>
+          </div>
+          <div class="layer-card">
+            <span class="layer-tag">TẦNG 2.5 • KHUÔN ÂM BẢN</span>
+            <h4>Gọi đúng cái cớ "Hữu xạ tự nhiên hương"</h4>
+            <p>Người làm nghề giỏi thường tự an ủi bằng câu <em>"Mình làm tốt khách tự truyền tai nhau"</em>. Câu 4–5 tôn trọng năng lực của họ (gọi đúng họ là <em>"người giỏi nghề"</em>), nhưng chỉ ra sự thật sắc lẹm: <strong>"Giỏi mà tàng hình thì coi như bằng không. Tay nghề giấu trong đầu là tay nghề chết."</strong></p>
+          </div>
+          <div class="layer-card">
+            <span class="layer-tag">TẦNG 3 &amp; LỐI MỞ KHÓA</span>
+            <h4>Miễn tội bằng hình mẫu "Người đi dạy không diễn"</h4>
+            <p>Từ Câu 6–11, kịch bản lập tức tháo gỡ nỗi sợ <em>"phải diễn"</em> bằng chứng cứ thật (mang nguyên bài giảng trên lớp lên video đạt 40k Page), rồi đặt ra tiêu chuẩn kỹ thuật vừa sức: <strong>Cách làm tại bàn bài bản để vượt qua vòng gửi xe của AI</strong>.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- =================================================================
+           PHẦN III: KỊCH BẢN 02 - KỶ NGUYÊN NGỮ NGHĨA
+           ================================================================= -->
+      <h2 id="phan-3">III. Kịch bản 02: "Mạng Xã Hội Cũ Đã Chết — Kỷ Nguyên Ngữ Nghĩa" (14 câu)</h2>
+      <p>Nếu Kịch bản 1 giải quyết câu hỏi <em>"Tại sao phải xuất hiện?"</em>, thì Kịch bản 2 giải quyết triệt để câu hỏi <em>"Tại sao người trầm tính, chỉ đăng mỗi tuần 1 video chuyên môn vẫn thắng lớn nhờ thuật toán mới?"</em>.</p>
+
+      <div class="kb-showcase">
+        <div class="kb-header">
+          <div>
+            <span class="kb-badge">KỊCH BẢN 02 • VIDEO ĐÃ PHÁT SÓNG</span>
+            <h3 style="margin: 0.25rem 0 0;">Qc khóa offline — Kịch bản Kỷ Nguyên Ngữ Nghĩa (14 câu thoại)</h3>
+          </div>
+          <div class="kb-links">
+            <a href="https://www.youtube.com/shorts/oB6jIZ9jpXc" target="_blank" class="kb-btn">▶️ Mở QC K4 trên YouTube ↗</a>
+            <a href="https://www.youtube.com/shorts/MGwsOijLT2g" target="_blank" class="kb-btn">▶️ Bản mở rộng (4 điểm cơ thể) ↗</a>
+            <a href="https://fedu.vn/k/shot-list-v2.html#c-u-1-l-m-video-hi-u-qu-y-l-m-nh" target="_blank" class="kb-btn">🎬 Xem Shot-list HTML ↗</a>
+          </div>
+        </div>
+
+        <div class="media-split">
+          <div class="shorts-frame-wrap">
+            <iframe src="https://www.youtube.com/embed/oB6jIZ9jpXc" title="Qc khóa offline - Kịch bản kỉ nguyên ngữ nghĩa" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+          </div>
+
+          <div class="script-box">
+            <div class="script-box-title">NGUYÊN VĂN 14 CÂU THOẠI QUẢNG CÁO K4</div>
+            <ul class="script-lines">
+              <li><span class="s-num">01</span><span><strong>(Phá ngộ nhận cũ):</strong> Làm video hiệu quả ấy là mình phải đếm lượt like. Cái cách làm đó nó đã qua lâu rồi.</span></li>
+              <li><span class="s-num">02</span><span><strong>(Bằng chứng ngược dòng):</strong> Và mình chính là một bằng chứng: Mỗi tuần mình chỉ đăng đúng một video bởi vì mình còn phải đi làm, nhưng mà page nó vẫn kéo được lên đến 40.000 lượt theo dõi.</span></li>
+              <li><span class="s-num">03</span><span><strong>(Tuyên ngôn kỷ nguyên mới):</strong> Cái mạng xã hội cũ mà mình từng biết nó đã chết rồi. Bây giờ nó là cái kỷ nguyên của ngữ nghĩa.</span></li>
+              <li><span class="s-num">04</span><span><strong>(Cởi bỏ gánh nặng làm Idol):</strong> Bạn không cần thiết phải làm idol trên video, bởi vì AI nó không đếm tương tác đơn thuần nữa.</span></li>
+              <li><span class="s-num">05</span><span><strong>(Cơ chế đọc chất xám):</strong> Giờ nó nghe xem bạn đang tháo gỡ việc gì. Khách than chuyện kho bãi, nó tự đẩy video bạn gỡ rối vào thẳng màn hình.</span></li>
+              <li><span class="s-num">06</span><span><strong>(Hiện trường T2 đời thường):</strong> Đêm mỏi gáy lướt chậm 3 giây... sáng mở máy đã thấy ngay clip massage hiện lên.</span></li>
+              <li><span class="s-num">07</span><span><strong>(Nhịp hài tỉnh rụi):</strong> Nhiều khi nó hiểu bạn hơn vợ bạn.</span></li>
+              <li><span class="s-num">08</span><span><strong>(Định nghĩa lại bản chất):</strong> Nên làm video bây giờ, bản chất là đóng gói tay nghề thật bán ra thị trường. Nhưng có một chỗ vướng.</span></li>
+              <li><span class="s-num">09</span><span><strong>(Nút thắt Vòng gửi xe):</strong> Máy chỉ đọc được chất xám nếu video của bạn lọt qua được vòng gửi xe. Hình ảnh tối tăm, âm thanh lộn xộn thì nó gạt đi ngay từ 3 giây đầu.</span></li>
+              <li><span class="s-num">10</span><span><strong>(Giải pháp quy trình):</strong> Cách để qua được vòng này thực chất nằm ở một quy trình làm tại bàn bài bản. Thiết bị tối giản, set up cố định một chỗ.</span></li>
+              <li><span class="s-num">11</span><span><strong>(Tiêu chuẩn thị giác):</strong> Góc máy sạch sẽ, nhịp điệu cắt dựng dứt khoát. Kịch bản gạch đầu dòng ngắn gọn.</span></li>
+              <li><span class="s-num">12</span><span><strong>(Trạng thái tâm lý đích):</strong> Quan trọng nhất là tạo ra sự thoải mái để bạn ngồi xuống là nói chuyện tự nhiên như đang tiếp khách ở nhà.</span></li>
+              <li><span class="s-num">13</span><span><strong>(Lời mời Offline):</strong> Cuối tháng này tại lớp Offline, mình sẽ mang toàn bộ quy trình đó ra chỉ cho bạn.</span></li>
+              <li><span class="s-num">14</span><span><strong>(Cam kết &amp; CTA):</strong> Đảm bảo học xong là ra việc. Không bao giờ để bạn ra về tay không. Link đăng ký mình để ngay bên dưới nhé.</span></li>
+            </ul>
+          </div>
+        </div>
+
+        <h3>Giải phẫu Logic &amp; Cách khai thác 3 tầng tâm lý (Bài học cho học viên)</h3>
+        <div class="layer-grid">
+          <div class="layer-card">
+            <span class="layer-tag">TẦNG 1 &amp; TẦNG 2.5</span>
+            <h4>Cởi bỏ mặc cảm "Không biết làm Idol"</h4>
+            <p>Khách hàng là chủ doanh nghiệp, giảng viên, người làm nghề lâu năm rất ngại việc phải nhún nhảy câu like. Câu 1–4 tuyên bố thẳng: <strong>"Mạng xã hội cũ đã chết rồi. Bây giờ là kỷ nguyên của ngữ nghĩa. Bạn không cần làm Idol trên video."</strong> Câu nói này bảo vệ trọn vẹn lòng tự trọng nghề nghiệp của người nghe.</p>
+          </div>
+          <div class="layer-card">
+            <span class="layer-tag">TẦNG 2 • BẰNG CHỨNG 5 GIÂY</span>
+            <h4>Chứng minh thuật toán bằng trải nghiệm ai cũng từng gặp</h4>
+            <p>Thay vì giải thích kỹ thuật AI phức tạp, Câu 6–7 dùng đúng 1 lát cắt sinh hoạt lúc nửa đêm: <em>"Đêm mỏi gáy lướt chậm 3 giây... sáng mở máy đã thấy ngay clip massage hiện lên. Nhiều khi nó hiểu bạn hơn vợ bạn."</em> Người xem bật cười và tin ngay lập tức.</p>
+          </div>
+          <div class="layer-card">
+            <span class="layer-tag">TẦNG 3 &amp; CẦU NỐI SẢN PHẨM</span>
+            <h4>Từ "Đóng gói tay nghề thật" sang "Quy trình tại bàn"</h4>
+            <p>Khi người xem đã hiểu họ chỉ cần nói chuyện nghề, Câu 9–12 đặt ra cầu nối tất yếu: Muốn máy đọc được chất xám thì hình ảnh và âm thanh phải qua được <strong>vòng gửi xe 3 giây đầu</strong> bằng một góc quay cố định tại bàn, thoải mái như đang tiếp khách ở nhà.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- =================================================================
+           PHẦN IV: KỊCH BẢN 03 - ĐỘ NÉN, SỰ CHÂN THẬT & MÓN QUÀ (19 CÂU)
+           ================================================================= -->
+      <h2 id="phan-4">IV. Kịch bản 03: "Chân Thật Là Một Loại Hiệu Suất: Sự Cô Đặc &amp; Tâm Thế Người Tặng Quà" (19 câu)</h2>
+      <p>Khi thị trường đã tràn ngập những video dùng AI vẽ cảnh và cắt ghép bóng bẩy trong vài giây, Kịch bản 3 đi sâu vào tầng triết lý thực chiến cao nhất của anh Việt: <strong>Phân định 3 Cấp độ làm video (Cấp độ 1: Bóng bẩy đại trà &rarr; Cấp độ 2: Khả năng nén đến mức thành chân thật &rarr; Cấp độ 3: Tâm thế người tặng quà tạo khối tín hiệu sạch)</strong>.</p>
+
+      <div class="kb-showcase">
+        <div class="kb-header">
+          <div>
+            <span class="kb-badge">KỊCH BẢN 03 • BẢN KỊCH BẢN 19 CÂU (CHỐT QUAY)</span>
+            <h3 style="margin: 0.25rem 0 0;">Độ Nén, Sự Chân Thật &amp; Tâm Thế Người Tặng Quà</h3>
+          </div>
+          <div class="kb-links">
+            <a href="https://fedu.vn/course/kb3k4.html" class="kb-btn">🎙️ Mở Bản Đọc &amp; Quay (Teleprompter kb3k4.html) ↗</a>
+          </div>
+        </div>
+
+        <div class="script-box" style="margin-bottom: 1.5rem;">
+          <div class="script-box-title">NGUYÊN VĂN KỊCH BẢN 03 (19 CÂU • CHIA THEO 4 CHẶNG LOGIC)</div>
+          
+          <span class="s-phase">CHẶNG 1 (CÂU 1–5) • PHÁ NGỘ NHẬN &amp; ĐỊNH NGHĨA CẤP ĐỘ 1 ĐẠI TRÀ</span>
+          <ul class="script-lines">
+            <li><span class="s-num">01</span><span>Tại sao lúc lên video, càng cố nói cho hay thì nghe lại càng giả?</span></li>
+            <li><span class="s-num">02</span><span>Bởi vì lời nói thật bao giờ cũng tốn ít từ vựng nhất.</span></li>
+            <li><span class="s-num">03</span><span>Chân thật là một loại hiệu suất: sự cô đặc.</span></li>
+            <li><span class="s-num">04</span><span>Cảnh quay giờ có AI vẽ hộ, điện thoại giơ lên là nét, phần mềm tự cắt ghép trong vài giây.</span></li>
+            <li><span class="s-num">05</span><span>Nên một chiếc video bóng bẩy bây giờ chỉ là hàng đại trà ở cấp độ một.</span></li>
+          </ul>
+
+          <span class="s-phase">CHẶNG 2 (CÂU 6–9) • CẤP ĐỘ 2: KHẢ NĂNG NÉN ĐẾN MỨC THÀNH CHÂN THẬT</span>
+          <ul class="script-lines">
+            <li><span class="s-num">06</span><span>Để vượt lên đại trà, bạn phải làm chủ cấp độ hai: khả năng nén — nén đến mức thành chân thật.</span></li>
+            <li><span class="s-num">07</span><span>Vì chỉ khi thiếu tự tin hay muốn làm màu, người ta mới cần đắp thêm chữ nghĩa bóng bẩy.</span></li>
+            <li><span class="s-num">08</span><span>Khi bạn ép mọi thứ về độ nén cao nhất, những phần tô vẽ cho cái tôi tự khắc phải rơi rụng hết.</span></li>
+            <li><span class="s-num">09</span><span>Chỉ còn lại sự thật là đường thẳng ngắn nhất: đi thẳng vào trọng tâm, không rào đón mất thời gian, và người xem khỏi đóng thuế nghi ngờ.</span></li>
+          </ul>
+
+          <span class="s-phase">CHẶNG 3 (CÂU 10–16) • CẤP ĐỘ 3: TÂM THẾ NGƯỜI TẶNG QUÀ &amp; KHỐI TÍN HIỆU SẠCH</span>
+          <ul class="script-lines">
+            <li><span class="s-num">10</span><span>Khi bỏ hết nhu cầu khoe mẽ để chỉ nói điều có ích, bạn tự nhiên bước lên cấp độ ba.</span></li>
+            <li><span class="s-num">11</span><span>Bạn không còn làm video để đi xin lượt xem, mà tự nhiên như cái cây đến mùa thì ra hoa kết quả: cứ lặng lẽ làm ra một món quà gửi vào dòng chảy dữ liệu.</span></li>
+            <li><span class="s-num">12</span><span>Món quà đó chính là một trang nhật ký nghề được chăm chút kỹ lưỡng, để sẻ chia rằng: từ góc nhìn và trải nghiệm của tôi, thế giới này trông như thế này.</span></li>
+            <li><span class="s-num">13</span><span>Khi mang thứ mình tâm đắc đi tặng, tâm thế sẽ trở nên rất tĩnh: bạn dồn trọn tâm trí để làm vì yêu quý góc nhìn đó, mong người nhận thấy được tháo gỡ và hào hứng mở lòng.</span></li>
+            <li><span class="s-num">14</span><span>Sự tập trung đó triệt tiêu mọi nhiễu loạn của việc đi xin tương tác, và lọc sạch những tạp âm lo âu trong đầu.</span></li>
+            <li><span class="s-num">15</span><span>Nó giữ cho chiếc video một độ tự nhiên, biến thành một khối tín hiệu sạch để tự động lọc lấy những người cùng tần số.</span></li>
+            <li><span class="s-num">16</span><span>Thuật toán AI thời nay thừa thông minh để nhận ra độ sâu của tín hiệu đó, và tự mang quà đến đúng người đang cần.</span></li>
+          </ul>
+
+          <span class="s-phase">CHẶNG 4 (CÂU 17–19) • LỜI MỜI 2 NGÀY OFFLINE HÀ NỘI</span>
+          <ul class="script-lines">
+            <li><span class="s-num">17</span><span>Hai ngày Offline ở Hà Nội: dùng AI vượt qua cửa đại trà...</span></li>
+            <li><span class="s-num">18</span><span>Rồi ngồi lại cùng mình nâng cấp phần lõi, gói món quà đầu tiên ngay tại lớp.</span></li>
+            <li><span class="s-num">19</span><span>Mỗi tháng một lớp. Lịch ở link bên dưới nhé.</span></li>
+          </ul>
+        </div>
+
+        <h3>Giải phẫu sâu Logic 3 Cấp độ &amp; Cách khai thác 3 tầng tâm lý trong Kịch bản 03</h3>
+        <p>Kịch bản 3 là một mẫu mực về việc <strong>nén tư tưởng lớn vào những câu định nghĩa sắc như dao</strong>. Học viên cần chú ý 4 điểm đắt giá sau:</p>
+
+        <div class="layer-grid">
+          <div class="layer-card">
+            <span class="layer-tag">MŨI KHOAN 01 • CÂU 1–5</span>
+            <h4>Định nghĩa lại "Sự chân thật" bằng ngôn ngữ hiệu suất</h4>
+            <p>Thông thường người ta nghĩ "chân thật" là mộc mạc, kể khổ. Kịch bản này định nghĩa lại hoàn toàn ở Câu 2–3: <strong>"Bởi vì lời nói thật bao giờ cũng tốn ít từ vựng nhất. Chân thật là một loại hiệu suất: sự cô đặc."</strong> Đồng thời xếp toàn bộ kỹ xảo AI, máy nét, cắt nhanh xuống thành <em>"hàng đại trà ở cấp độ một"</em>.</p>
+          </div>
+          <div class="layer-card">
+            <span class="layer-tag">MŨI KHOAN 02 • CÂU 6–9</span>
+            <h4>Phép trừ ở Cấp độ 2 &amp; Hai loại thuế của người xem</h4>
+            <p>Kịch bản bóc tách Tầng 2.5 rất sắc: Chỉ khi thiếu tự tin, người ta mới cần đắp thêm chữ nghĩa bóng bẩy. Khi ép về độ nén cao nhất, những phần tô vẽ cho cái tôi tự khắc rơi rụng hết, giúp người xem được miễn 2 khoản thuế nặng nhất trên mạng: <strong>Thuế thời gian</strong> (không rào đón) và <strong>Thuế nghi ngờ</strong> (không phải đề phòng xem người nói đang diễn gì).</p>
+          </div>
+          <div class="layer-card">
+            <span class="layer-tag">MŨI KHOAN 03 • CÂU 10–15</span>
+            <h4>Chuyển hóa tâm thế: Từ "Đi xin lượt xem" sang "Người tặng quà"</h4>
+            <p>Tại sao người làm nghề giỏi lại ngượng khi đứng trước ống kính? Vì họ vô thức đặt mình vào ghế <em>"thí sinh đi xin điểm / xin view"</em>. Câu 11–14 đổi hẳn vị thế: Làm video tự nhiên như <strong>cái cây đến mùa ra hoa kết quả</strong>, gói một <strong>trang nhật ký nghề</strong> thành món quà. Khi chỉ tập trung vào món quà, mọi tạp âm lo âu trong đầu tự triệt tiêu.</p>
+          </div>
+          <div class="layer-card">
+            <span class="layer-tag">MŨI KHOAN 04 • CÂU 15–19</span>
+            <h4>Khối tín hiệu sạch &amp; Cơ chế lọc người cùng tần số của AI</h4>
+            <p>Khi một video không bị pha tạp bởi sự e ngại hay chèo kéo, nó trở thành một <strong>"khối tín hiệu sạch"</strong>. Thuật toán AI ngữ nghĩa nhận diện độ sâu của tín hiệu đó (thời gian xem trọn, lưu lại, đọc kỹ) và tự động mang món quà đến đúng khách hàng cùng tần số.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- =================================================================
+           PHẦN V: CÔNG THỨC 5 BƯỚC CHO HỌC VIÊN
+           ================================================================= -->
+      <h2 id="phan-5">V. Khuôn mẫu 5 bước để học viên tự viết kịch bản từ 3 bài mẫu trên</h2>
+      <p>Khi bắt tay vào viết kịch bản giới thiệu sản phẩm hoặc dịch vụ chuyên môn của mình, học viên chỉ cần lắp đúng 5 nhịp sau (tương ứng với cấu trúc chung của cả 3 kịch bản K4):</p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Bước</th>
+            <th>Nhiệm vụ tâm lý</th>
+            <th>Câu hỏi kiểm tra độ nén (Cutter Check)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Bước 1: Phá ngộ nhận bề mặt (Câu 1–3)</strong></td>
+            <td>Chỉ ra vì sao cách làm quen thuộc ngoài kia (đếm like, cố nói văn hoa, hoặc im lặng chờ khách tự tìm) đã không còn hiệu quả.</td>
+            <td>Đã vào thẳng vấn đề ngay từ giây thứ 1 chưa? Có bị rào đón chào hỏi thừa thãi không?</td>
+          </tr>
+          <tr>
+            <td><strong>Bước 2: Đưa hiện trường vật lý Tầng 2 (Câu 4–6)</strong></td>
+            <td>Mô tả đúng 1 cảnh thật diễn ra trong 5 giây mà khách hàng nhìn thấy ngay chính mình (0 dấu vết số, mỏi gáy lúc nửa đêm, AI cắt ghép vài giây).</td>
+            <td>Hình ảnh có nhìn thấy được bằng mắt thường không hay vẫn là tính từ trừu tượng?</td>
+          </tr>
+          <tr>
+            <td><strong>Bước 3: Bóc vỏ bọc Tầng 2.5 bằng Khuôn Âm Bản (Câu 7–9)</strong></td>
+            <td>Gọi đúng lý do giữ thể diện của khách nhưng giải thích lại theo hướng bảo vệ lòng tự trọng của họ, rồi chốt bằng 1 định nghĩa sắc bén.</td>
+            <td>Câu đinh đã đủ ngắn để người nghe nhớ nguyên văn sau 1 lần nghe chưa?</td>
+          </tr>
+          <tr>
+            <td><strong>Bước 4: Mở khóa bằng Quy trình / Tâm thế mới (Câu 10–16)</strong></td>
+            <td>Đưa ra con đường thực tế, giảm chi phí khởi động (quy trình tại bàn, 4 điểm cơ thể, tâm thế gói quà từ nhật ký nghề).</td>
+            <td>Người nghe có cảm thấy "À, làm theo cách này thì mình làm được ngay mà không phải diễn" không?</td>
+          </tr>
+          <tr>
+            <td><strong>Bước 5: Lời mời dứt khoát (Câu 17–19)</strong></td>
+            <td>Nêu rõ bước tiếp theo trong 2–3 câu ngắn gọn: học gì, làm ra kết quả gì ngay tại chỗ, và hành động ở đâu.</td>
+            <td>Lời mời có giữ được tâm thế đàng hoàng của người trao quà, không chèo kéo vội vã không?</td>
+          </tr>
+        </tbody>
+      </table>
+
+    </article>
+  </main>
+
+</body>
+</html>
