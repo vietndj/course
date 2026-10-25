@@ -76,7 +76,7 @@ def get_git_file_times(repo_dir: Path) -> Dict[str, str]:
     file_times: Dict[str, str] = {}
     try:
         res = subprocess.run(
-            ["git", "log", "--name-only", "--format=COMMIT_DATE:%cI"],
+            ["git", "-c", "core.quotepath=off", "log", "--name-only", "--format=COMMIT_DATE:%cI"],
             cwd=str(repo_dir),
             capture_output=True,
             text=True,
@@ -96,7 +96,7 @@ def get_git_file_times(repo_dir: Path) -> Dict[str, str]:
 
         # Kiểm tra các file mới sửa hoặc untracked ở local
         st_res = subprocess.run(
-            ["git", "status", "--porcelain"],
+            ["git", "-c", "core.quotepath=off", "status", "--porcelain"],
             cwd=str(repo_dir),
             capture_output=True,
             text=True,
@@ -182,27 +182,42 @@ def extract_metadata(filepath: Path, filename: str) -> Tuple[str, str, int, Opti
     return title, excerpt, read_mins, embedded_cover
 
 
+def _match_kw(haystack: str, kw: str) -> bool:
+    kw_clean = kw.strip().lower()
+    if not kw_clean:
+        return False
+    pattern = re.escape(kw_clean).replace(r"\-", r"[\s\-_]*")
+    return bool(re.search(rf"\b{pattern}\b", haystack, flags=re.I))
+
+
 def classify_post(filename: str, title: str, excerpt: str, config: Dict[str, Any]) -> Tuple[str, str]:
-    """Phân loại category_key và category_label dựa trên config hoặc luật mặc định."""
+    """Phân loại category_key và category_label dựa trên smart_tags/categories trong config."""
     haystack = f"{filename} {title} {excerpt}".lower()
+    smart_tags = config.get("smart_tags", {})
+    if isinstance(smart_tags, dict):
+        for tag_key, tag_info in smart_tags.items():
+            keywords = tag_info.get("keywords", [])
+            if any(_match_kw(haystack, kw) for kw in keywords):
+                return tag_key, tag_info.get("label", tag_key)
+
     categories = config.get("categories", [])
     for cat in categories:
         keywords = cat.get("keywords", [])
-        if any(kw.lower() in haystack for kw in keywords):
+        if any(_match_kw(haystack, kw) for kw in keywords):
             return cat["key"], cat["label"]
 
-    # Fallback mặc định
-    if any(k in haystack for k in ("case", "học viên", "kenhmau", "kênh mẫu", "7 màn", "offline")):
+    # Fallback mặc định có ranh giới từ
+    if any(_match_kw(haystack, k) for k in ("case", "học viên", "kenhmau", "kênh mẫu", "7 màn", "offline")):
         return "casestudy", "🏆 Case Study & Kênh Mẫu"
-    if any(k in haystack for k in ("broll", "b-roll", "cảnh trám", "shot-list", "quay")):
+    if any(_match_kw(haystack, k) for k in ("broll", "b-roll", "cảnh trám", "shot-list", "quay")):
         return "broll", "🎬 B-Roll & Cảnh Trám"
-    if any(k in haystack for k in ("kich-ban", "kịch bản", "script", "kb", "quangcao", "quảng cáo")):
+    if any(_match_kw(haystack, k) for k in ("kich-ban", "kịch bản", "script", "kb3k4", "quangcao", "quảng cáo")):
         return "script", "📝 Kịch Bản Thực Chiến"
-    if any(k in haystack for k in ("logic", "tam-ly", "tâm lý", "nao-bo", "não bộ", "science", "dopamine")):
+    if any(_match_kw(haystack, k) for k in ("logic", "tam-ly", "tâm lý", "nao-bo", "não bộ", "science", "dopamine")):
         return "science", "🧠 Kho Logic & Tâm Lý"
-    if any(k in haystack for k in ("ai", "edit", "motion", "claude", "prompt", "agent", "skill")):
+    if any(_match_kw(haystack, k) for k in ("ai", "aiedit", "aihook", "motion", "claude", "prompt", "agent", "skill")):
         return "ai_tech", "🤖 AI & Tự Động Hóa"
-    if any(k in haystack for k in ("podcast", "story", "xay-kenh", "xây kênh")):
+    if any(_match_kw(haystack, k) for k in ("podcast", "story", "xay-kenh", "xây kênh")):
         return "storytelling", "🚀 Podcast & Xây Kênh"
     return "other", "📌 Tài Liệu Chuyên Đề"
 
@@ -362,7 +377,7 @@ def build_repo_hub(repo_dir: Path, verify_posters: bool = False) -> Dict[str, An
 
     manifest_payload = {
         "site_id": config.get("site_id", repo_dir.name),
-        "generated_at": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+        "generated_at": datetime.now().astimezone().isoformat(),
         "total_posts": len(posts),
         "cover_stats": source_stats,
         "unmapped_count": len(unmapped_files),
