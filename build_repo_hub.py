@@ -230,6 +230,7 @@ def resolve_cover_image(
     posters_map: Dict[str, str],
     fallbacks: List[str],
     allow_embedded: bool = True,
+    cover_base_url: str = "https://media.fedu.vn/k_covers",
 ) -> Tuple[str, str]:
     """
     Trả về (cover_url, cover_source) theo thứ tự ưu tiên:
@@ -238,6 +239,7 @@ def resolve_cover_image(
       3. Ảnh nhúng trong bài HTML nếu allow_embedded=True (embedded)
       4. Deterministic Hash Fallback từ fallbacks (fallback)
     """
+    base_url = (cover_base_url or "https://media.fedu.vn/k_covers").rstrip("/")
     # 1. Tra trong posters-map.json (theo stem hoặc filename)
     if stem in posters_map and posters_map[stem]:
         return posters_map[stem], "mapped"
@@ -249,7 +251,7 @@ def resolve_cover_image(
     if covers_dir.exists():
         for candidate in (f"poster_batch_{stem}.webp", f"{stem}.webp", f"poster_{stem}.webp"):
             if (covers_dir / candidate).exists():
-                return f"https://media.fedu.vn/k_covers/{candidate}", "local_asset"
+                return f"{base_url}/{candidate}", "local_asset"
 
     # 3. Ảnh nhúng trong bài (nếu không phải ảnh unsplash chung chung hoặc nếu repo cho phép)
     if allow_embedded and embedded_cover:
@@ -317,7 +319,9 @@ def build_repo_hub(repo_dir: Path, verify_posters: bool = False) -> Dict[str, An
                     shutil.copy2(src_html, dst_html)
 
     exclude_set = set(config.get("exclude_files", DEFAULT_EXCLUDE))
+    exclude_set.add("hub.html")
     allow_embedded = bool(config.get("allow_embedded_cover", True))
+    cover_base_url = config.get("cover_base_url", "https://media.fedu.vn/k_covers")
 
     git_times = get_git_file_times(repo_dir)
     html_paths = sorted(repo_dir.glob("*.html"))
@@ -345,6 +349,7 @@ def build_repo_hub(repo_dir: Path, verify_posters: bool = False) -> Dict[str, An
             posters_map=posters_map,
             fallbacks=fallbacks,
             allow_embedded=allow_embedded,
+            cover_base_url=cover_base_url,
         )
         source_stats[cover_source] = source_stats.get(cover_source, 0) + 1
         if cover_source == "fallback":
