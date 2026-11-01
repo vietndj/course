@@ -467,6 +467,271 @@
       .ink-main-wrapper { padding: 1.25rem 1rem 4rem; }
       .prompter-bar { top: 53px; }
     }
+
+    /* === SMART TELEPROMPTER COMMAND CENTER (OPTIMIZED FOR 100+ SCRIPTS) === */
+    .kb-smart-toolbar {
+      position: sticky;
+      top: 0;
+      z-index: 45;
+      background: rgba(255, 255, 255, 0.97);
+      backdrop-filter: blur(10px);
+      border: 2px solid #0f172a;
+      border-radius: 12px;
+      padding: 0.85rem 1rem;
+      margin: 1.2rem 0 1.4rem 0;
+      box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.14);
+    }
+    .kb-smart-top {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 0.65rem;
+    }
+    .kb-search-wrap {
+      flex: 1 1 260px;
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+    .kb-search-input {
+      width: 100%;
+      padding: 0.5rem 2.2rem 0.5rem 0.8rem;
+      font-family: var(--font-sans);
+      font-size: 0.88rem;
+      border: 1.5px solid #94a3b8;
+      border-radius: 8px;
+      background: #f8fafc;
+      color: #0f172a;
+      outline: none;
+      transition: all 0.15s;
+    }
+    .kb-search-input:focus {
+      border-color: #0f172a;
+      background: #ffffff;
+      box-shadow: 0 0 0 3px rgba(15, 23, 42, 0.08);
+    }
+    .kb-search-clear {
+      position: absolute;
+      right: 8px;
+      background: none;
+      border: none;
+      font-size: 0.9rem;
+      color: #64748b;
+      cursor: pointer;
+      display: none;
+    }
+    .kb-view-modes {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+    }
+    .kb-mode-btn {
+      font-family: var(--font-heading);
+      font-size: 0.76rem;
+      font-weight: 700;
+      padding: 0.42rem 0.72rem;
+      border-radius: 7px;
+      border: 1.5px solid #cbd5e1;
+      background: #f8fafc;
+      color: #334155;
+      cursor: pointer;
+      transition: all 0.15s;
+      white-space: nowrap;
+    }
+    .kb-mode-btn:hover {
+      border-color: #0f172a;
+      color: #0f172a;
+    }
+    .kb-mode-btn.is-active {
+      background: #0f172a;
+      border-color: #0f172a;
+      color: #ffffff;
+    }
+    .kb-batch-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      padding-bottom: 0.55rem;
+      border-bottom: 1px dashed #cbd5e1;
+      margin-bottom: 0.55rem;
+    }
+    .kb-batch-btn {
+      font-family: var(--font-heading);
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 0.32rem 0.65rem;
+      border-radius: 999px;
+      border: 1px solid #cbd5e1;
+      background: #ffffff;
+      color: #475569;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .kb-batch-btn:hover {
+      border-color: #0f172a;
+      color: #0f172a;
+    }
+    .kb-batch-btn.is-active {
+      background: #b91c1c;
+      border-color: #b91c1c;
+      color: #ffffff;
+      font-weight: 700;
+    }
+    .kb-num-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.28rem;
+      max-height: 88px;
+      overflow-y: auto;
+      padding: 2px 0;
+    }
+    .kb-num-pill {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 0.22rem 0.48rem;
+      border-radius: 5px;
+      border: 1px solid #cbd5e1;
+      background: #f8fafc;
+      color: #1e293b;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.12s;
+    }
+    .kb-num-pill:hover {
+      background: #e2e8f0;
+      border-color: #0f172a;
+    }
+    .kb-num-pill.is-current {
+      background: #0f172a;
+      color: #ffffff;
+      border-color: #0f172a;
+    }
+    .kb-focus-pager {
+      display: none;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem;
+      margin-top: 0.55rem;
+      padding-top: 0.55rem;
+      border-top: 1px solid #e2e8f0;
+    }
+    .kb-focus-pager.is-visible {
+      display: flex;
+    }
+    .kb-pager-btn {
+      font-family: var(--font-heading);
+      font-size: 0.8rem;
+      font-weight: 700;
+      padding: 0.4rem 0.85rem;
+      border-radius: 7px;
+      border: 1.5px solid #0f172a;
+      background: #ffffff;
+      color: #0f172a;
+      cursor: pointer;
+    }
+    .kb-pager-btn:hover {
+      background: #0f172a;
+      color: #ffffff;
+    }
+    .kb-status-bar {
+      font-family: var(--font-mono);
+      font-size: 0.74rem;
+      color: #475569;
+      margin-top: 0.4rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+    /* Accordion state for clean-prompter */
+    section.clean-prompter.is-collapsed .clean-phase-divider,
+    section.clean-prompter.is-collapsed .clean-line,
+    section.clean-prompter.is-collapsed .kb-ref-bridge {
+      display: none !important;
+    }
+    section.clean-prompter.is-collapsed {
+      margin-bottom: 0.75rem !important;
+      box-shadow: 0 2px 6px rgba(15, 23, 42, 0.05) !important;
+    }
+    section.clean-prompter.is-collapsed .clean-prompter-header {
+      border-bottom: none !important;
+      padding-bottom: 0.65rem !important;
+    }
+    section.clean-prompter.is-filtered-out {
+      display: none !important;
+    }
+    .kb-card-toggle-btn {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 0.3rem 0.65rem;
+      border-radius: 6px;
+      border: 1px solid #0f172a;
+      background: #f8fafc;
+      color: #0f172a;
+      cursor: pointer;
+      float: right;
+      margin-left: 0.5rem;
+    }
+    .kb-card-toggle-btn:hover {
+      background: #0f172a;
+      color: #ffffff;
+    }
+    /* Collapsible Matrix Table */
+    details.kb-matrix-collapse {
+      border: 2px solid #cbd5e1;
+      border-radius: 10px;
+      background: #f8fafc;
+      margin: 1rem 0 1.4rem 0;
+      overflow: hidden;
+    }
+    details.kb-matrix-collapse > summary {
+      padding: 0.75rem 1rem;
+      font-family: var(--font-heading);
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: #0f172a;
+      cursor: pointer;
+      background: #f1f5f9;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      list-style: none;
+    }
+    details.kb-matrix-collapse > summary::-webkit-details-marker {
+      display: none;
+    }
+    details.kb-matrix-collapse > .kb-matrix-body {
+      padding: 0.5rem 0.75rem;
+      background: #ffffff;
+      max-height: 520px;
+      overflow-y: auto;
+    }
+    /* Sidebar grouped details */
+    .ink-toc-group {
+      margin: 0.25rem 0;
+      border-left: 2px solid #cbd5e1;
+      padding-left: 0.35rem;
+    }
+    .ink-toc-group > summary {
+      font-family: var(--font-heading);
+      font-size: 0.76rem;
+      font-weight: 700;
+      color: #0f172a;
+      padding: 0.3rem 0.4rem;
+      cursor: pointer;
+      border-radius: 5px;
+      background: #f1f5f9;
+      margin-bottom: 0.2rem;
+    }
+    .ink-toc-group > summary:hover {
+      background: #e2e8f0;
+    }
+
   </style>
 </head>
 <body>
@@ -839,7 +1104,37 @@
         <li><strong>Tầng Cao Cấp Hơn (Lúc bấm máy quay &amp; Phần đặc trưng của sản phẩm — 35% thời lượng):</strong> Bóc tách đúng <strong>điểm đặc trưng độc bản của sản phẩm</strong>, nói <strong>đúng ngôn ngữ người làm nghề</strong>, sửa <strong>câu mở đầu 3 giây đầu</strong> và trả lời trước <strong>băn khoăn của khách mua đơn lớn</strong> &rarr; Lý do thuyết phục nhất để đăng ký lớp Offline 2 ngày tại Hà Nội.</li>
       </ul>
 
-      <table>
+      
+      <!-- SMART TELEPROMPTER COMMAND CENTER -->
+      <div id="kb-smart-explorer" class="kb-smart-toolbar">
+        <div class="kb-smart-top">
+          <div class="kb-search-wrap">
+            <input type="text" id="kb-search-input" class="kb-search-input" placeholder="🔍 Gõ số KB (vd: 85) hoặc từ khóa (bảo hành, giọng quê, báo giá, Omar...)" oninput="window.kbSmartFilter && window.kbSmartFilter()" />
+            <button id="kb-search-clear" class="kb-search-clear" onclick="document.getElementById('kb-search-input').value=''; window.kbSmartFilter && window.kbSmartFilter();" title="Xóa tìm kiếm">✕</button>
+          </div>
+          <div class="kb-view-modes">
+            <button type="button" class="kb-mode-btn" id="kb-mode-focus" onclick="window.kbSetViewMode('focus')">🎯 Đọc từng bài (1 KB)</button>
+            <button type="button" class="kb-mode-btn" id="kb-mode-compact" onclick="window.kbSetViewMode('compact')">📂 Thu gọn tiêu đề</button>
+            <button type="button" class="kb-mode-btn is-active" id="kb-mode-full" onclick="window.kbSetViewMode('full')">📖 Mở theo lô</button>
+          </div>
+        </div>
+        <div id="kb-batch-tabs" class="kb-batch-tabs"></div>
+        <div id="kb-num-grid" class="kb-num-grid"></div>
+        <div id="kb-focus-pager" class="kb-focus-pager">
+          <button type="button" class="kb-pager-btn" onclick="window.kbStepFocus(-1)">⬅️ Kịch bản trước</button>
+          <strong id="kb-focus-label" style="font-family:var(--font-heading); font-size:0.86rem; color:#0f172a;">Đang mở KB</strong>
+          <button type="button" class="kb-pager-btn" onclick="window.kbStepFocus(1)">Kịch bản tiếp ➡️</button>
+        </div>
+        <div class="kb-status-bar">
+          <span id="kb-filter-status">Đang hiển thị kịch bản</span>
+          <span>💡 <em>Mẹo: Bấm số KB bất kỳ để nhảy nhanh • Chọn "🎯 Đọc từng bài" khi đứng quay điện thoại</em></span>
+        </div>
+      </div>
+
+      <details class="kb-matrix-collapse">
+        <summary><span>📊 BẢNG MA TRẬN TỔNG HỢP &amp; TRA CỨU LOGIC TOÀN BỘ KỊCH BẢN (Bấm để Mở / Thu gọn bảng)</span><span style="font-size:0.76rem; color:#475569;">▼ Mở bảng</span></summary>
+        <div class="kb-matrix-body">
+<table>
         <thead>
           <tr>
             <th>Kịch bản</th>
@@ -1367,6 +1662,8 @@
           </tr>
         </tbody>
       </table>
+        </div>
+      </details>
 
       <!-- KỊCH BẢN 4 (PHƯƠNG ÁN 1) -->
       <section id="prompter-kb4" class="clean-prompter" style="border: 3px solid #0f172a; background: #ffffff; box-shadow: 0 12px 28px rgba(15, 23, 42, 0.1);">
@@ -6043,6 +6340,265 @@
     }
 
     renderDoneState();
+
+    // === SMART TELEPROMPTER COMMAND CENTER LOGIC ===
+    (function() {
+      const sections = Array.from(document.querySelectorAll('section[id^="prompter-kb"]'));
+      if (!sections.length) return;
+
+      const kbItems = sections.map(sec => {
+        const m = sec.id.match(/^prompter-kb(\d+)$/);
+        const num = m ? parseInt(m[1], 10) : 0;
+        const header = sec.querySelector('.clean-prompter-header');
+        if (header && !header.querySelector('.kb-card-toggle-btn')) {
+          const btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'kb-card-toggle-btn';
+          btn.textContent = 'Thu gọn ▲';
+          btn.onclick = function(e) {
+            e.stopPropagation();
+            const collapsed = sec.classList.toggle('is-collapsed');
+            btn.textContent = collapsed ? 'Mở đọc 14 câu ▼' : 'Thu gọn ▲';
+          };
+          header.insertBefore(btn, header.firstChild);
+          header.style.cursor = 'pointer';
+          header.addEventListener('click', function(e) {
+            if (e.target.tagName === 'A' || e.target.tagName === 'BUTTON') return;
+            const collapsed = sec.classList.toggle('is-collapsed');
+            btn.textContent = collapsed ? 'Mở đọc 14 câu ▼' : 'Thu gọn ▲';
+          });
+        }
+        return { num, sec, text: (sec.textContent || '').toLowerCase() };
+      }).filter(x => x.num >= 4).sort((a, b) => a.num - b.num);
+
+      const maxNum = kbItems[kbItems.length - 1].num;
+      // Group table rows by KB number
+      const tableRows = new Map();
+      document.querySelectorAll('table tbody tr').forEach(tr => {
+        const a = tr.querySelector('a[href^="#prompter-kb"]');
+        if (a) {
+          const m = a.getAttribute('href').match(/#prompter-kb(\d+)/);
+          if (m) tableRows.set(parseInt(m[1], 10), tr);
+        }
+      });
+
+      // Group Sidebar TOC links into collapsible <details> batches
+      const tocLinks = Array.from(document.querySelectorAll('.ink-sidebar a[href^="#prompter-kb"]'));
+      if (tocLinks.length > 20) {
+        const parentUl = tocLinks[0].closest('ul');
+        const batchDefs = [
+          { label: '🔥 Lô mới nhất: KB 80 – KB ' + maxNum, min: 80, max: 999, open: true },
+          { label: '🎙️ Lô Podcast Vĩ Mô: KB 60 – KB 79', min: 60, max: 79, open: false },
+          { label: '⚡ Lô Thực Chiến 2: KB 40 – KB 59', min: 40, max: 59, open: false },
+          { label: '📦 Lô Thực Chiến 1: KB 20 – KB 39', min: 20, max: 39, open: false },
+          { label: '🌱 Lô Nền Tảng: KB 04 – KB 19', min: 4, max: 19, open: false }
+        ];
+        const firstLi = tocLinks[0].closest('li');
+        const groupContainer = document.createElement('li');
+        groupContainer.style.listStyle = 'none';
+        parentUl.insertBefore(groupContainer, firstLi);
+
+        batchDefs.forEach(b => {
+          const matchedLis = tocLinks.filter(a => {
+            const m = a.getAttribute('href').match(/#prompter-kb(\d+)/);
+            const n = m ? parseInt(m[1], 10) : 0;
+            return n >= b.min && n <= b.max;
+          }).map(a => a.closest('li')).filter(Boolean);
+          if (!matchedLis.length) return;
+          const det = document.createElement('details');
+          det.className = 'ink-toc-group';
+          if (b.open) det.open = true;
+          const sum = document.createElement('summary');
+          sum.textContent = b.label + ' (' + matchedLis.length + ' bài)';
+          det.appendChild(sum);
+          const subUl = document.createElement('ul');
+          subUl.className = 'ink-toc-list';
+          subUl.style.paddingLeft = '0.2rem';
+          matchedLis.forEach(li => subUl.appendChild(li));
+          det.appendChild(subUl);
+          groupContainer.appendChild(det);
+        });
+      }
+
+      // Build dynamic batches
+      const batches = [];
+      if (maxNum >= 90) {
+        batches.push({ id: 'b90', label: '🚀 Mới nhất: KB 90–' + maxNum, min: 90, max: maxNum });
+        batches.push({ id: 'b80', label: '🔥 Lô KB 80–89 (10)', min: 80, max: 89 });
+      } else {
+        batches.push({ id: 'b80', label: '🔥 Mới nhất: KB 80–' + maxNum, min: 80, max: maxNum });
+      }
+      batches.push(
+        { id: 'b60', label: '🎙️ Podcast Vĩ Mô: KB 60–79 (20)', min: 60, max: 79 },
+        { id: 'b40', label: '⚡ Thực chiến: KB 40–59 (20)', min: 40, max: 59 },
+        { id: 'b20', label: '📦 Thực chiến: KB 20–39 (20)', min: 20, max: 39 },
+        { id: 'b04', label: '🌱 Nền tảng: KB 04–19 (16)', min: 4, max: 19 },
+        { id: 'all', label: '📚 Tất cả (' + kbItems.length + ' KB)', min: 4, max: 999 }
+      );
+
+      let currentBatch = batches[0].id;
+      let viewMode = 'full'; // 'full' | 'compact' | 'focus'
+      let focusNum = maxNum;
+
+      // Check URL hash on load
+      const hashMatch = (window.location.hash || '').match(/^#prompter-kb(\d+)$/);
+      if (hashMatch) {
+        const targetN = parseInt(hashMatch[1], 10);
+        focusNum = targetN;
+        const foundBatch = batches.find(b => b.id !== 'all' && targetN >= b.min && targetN <= b.max);
+        if (foundBatch) currentBatch = foundBatch.id;
+      }
+
+      const tabsEl = document.getElementById('kb-batch-tabs');
+      const gridEl = document.getElementById('kb-num-grid');
+      const statusEl = document.getElementById('kb-filter-status');
+      const pagerEl = document.getElementById('kb-focus-pager');
+      const focusLabelEl = document.getElementById('kb-focus-label');
+
+      function renderTabs() {
+        if (!tabsEl) return;
+        tabsEl.innerHTML = batches.map(b =>
+          '<button type="button" class="kb-batch-btn ' + (b.id === currentBatch ? 'is-active' : '') + '" onclick="window.kbSelectBatch(\'' + b.id + '\')">' + b.label + '</button>'
+        ).join('');
+      }
+
+      function applyFilter() {
+        const q = ((document.getElementById('kb-search-input') || {}).value || '').trim().toLowerCase();
+        const clearBtn = document.getElementById('kb-search-clear');
+        if (clearBtn) clearBtn.style.display = q ? 'block' : 'none';
+
+        const batchObj = batches.find(b => b.id === currentBatch) || batches[batches.length - 1];
+        let visibleItems = [];
+
+        kbItems.forEach(item => {
+          let match = true;
+          if (q) {
+            const numStr = String(item.num);
+            const numPad = item.num < 10 ? '0' + item.num : numStr;
+            match = ('kb' + numStr === q.replace(/\s+/g, '')) ||
+                    ('kb' + numPad === q.replace(/\s+/g, '')) ||
+                    (numStr === q) ||
+                    item.text.includes(q);
+          } else {
+            match = item.num >= batchObj.min && item.num <= batchObj.max;
+          }
+
+          if (match) {
+            visibleItems.push(item);
+          }
+        });
+
+        if (viewMode === 'focus' && visibleItems.length > 0) {
+          if (!visibleItems.some(x => x.num === focusNum)) {
+            focusNum = visibleItems[0].num;
+          }
+        }
+
+        kbItems.forEach(item => {
+          const isVis = visibleItems.includes(item);
+          const showCard = isVis && (viewMode !== 'focus' || item.num === focusNum);
+          item.sec.classList.toggle('is-filtered-out', !showCard);
+
+          if (showCard) {
+            const shouldCollapse = (viewMode === 'compact');
+            item.sec.classList.toggle('is-collapsed', shouldCollapse);
+            const btn = item.sec.querySelector('.kb-card-toggle-btn');
+            if (btn) btn.textContent = shouldCollapse ? 'Mở đọc 14 câu ▼' : 'Thu gọn ▲';
+          }
+
+          const tr = tableRows.get(item.num);
+          if (tr) tr.style.display = isVis ? '' : 'none';
+        });
+
+        // Render number pills for visible items
+        if (gridEl) {
+          gridEl.innerHTML = visibleItems.map(item => {
+            const pad = item.num < 10 ? '0' + item.num : item.num;
+            const activeCls = (item.num === focusNum) ? 'is-current' : '';
+            return '<a href="#prompter-kb' + item.num + '" class="kb-num-pill ' + activeCls + '" onclick="return window.kbJumpTo(' + item.num + ');">KB ' + pad + '</a>';
+          }).join('');
+        }
+
+        if (pagerEl) {
+          pagerEl.classList.toggle('is-visible', viewMode === 'focus' && visibleItems.length > 0);
+          if (focusLabelEl) {
+            const idx = visibleItems.findIndex(x => x.num === focusNum);
+            focusLabelEl.textContent = 'Đang mở: KB ' + (focusNum < 10 ? '0' + focusNum : focusNum) + ' (' + (idx + 1) + '/' + visibleItems.length + ' trong lô)';
+          }
+        }
+
+        if (statusEl) {
+          statusEl.textContent = q
+            ? ('🔍 Tìm thấy ' + visibleItems.length + ' / ' + kbItems.length + ' kịch bản khớp từ khóa "' + q + '"')
+            : ('📂 Đang hiển thị ' + visibleItems.length + ' kịch bản thuộc [' + batchObj.label + '] • Tổng kho: ' + kbItems.length + ' kịch bản');
+        }
+      }
+
+      window.kbSelectBatch = function(batchId) {
+        currentBatch = batchId;
+        const inp = document.getElementById('kb-search-input');
+        if (inp) inp.value = '';
+        const b = batches.find(x => x.id === batchId);
+        if (b && b.id !== 'all') {
+          focusNum = b.min;
+        }
+        renderTabs();
+        applyFilter();
+      };
+
+      window.kbSetViewMode = function(mode) {
+        viewMode = mode;
+        ['focus', 'compact', 'full'].forEach(m => {
+          const btn = document.getElementById('kb-mode-' + m);
+          if (btn) btn.classList.toggle('is-active', m === mode);
+        });
+        applyFilter();
+      };
+
+      window.kbJumpTo = function(num) {
+        focusNum = num;
+        const target = kbItems.find(x => x.num === num);
+        if (!target) return true;
+        // Ensure target is visible
+        if (target.sec.classList.contains('is-filtered-out')) {
+          const b = batches.find(x => x.id !== 'all' && num >= x.min && num <= x.max);
+          if (b) currentBatch = b.id;
+          renderTabs();
+        }
+        applyFilter();
+        target.sec.classList.remove('is-collapsed');
+        const btn = target.sec.querySelector('.kb-card-toggle-btn');
+        if (btn) btn.textContent = 'Thu gọn ▲';
+        target.sec.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        history.replaceState(null, '', '#prompter-kb' + num);
+        return false;
+      };
+
+      window.kbStepFocus = function(delta) {
+        const nums = kbItems.map(x => x.num);
+        const idx = nums.indexOf(focusNum);
+        if (idx === -1) return;
+        const nextIdx = (idx + delta + nums.length) % nums.length;
+        window.kbJumpTo(nums[nextIdx]);
+      };
+
+      window.kbSmartFilter = applyFilter;
+
+      // Intercept clicks on any #prompter-kb link in page/TOC so it auto-unfilters that KB
+      document.addEventListener('click', function(e) {
+        const a = e.target.closest('a[href^="#prompter-kb"]');
+        if (!a || a.classList.contains('kb-num-pill')) return;
+        const m = a.getAttribute('href').match(/^#prompter-kb(\d+)$/);
+        if (m) {
+          e.preventDefault();
+          window.kbJumpTo(parseInt(m[1], 10));
+        }
+      });
+
+      renderTabs();
+      applyFilter();
+    })();
+
   </script>
 </body>
 </html>
