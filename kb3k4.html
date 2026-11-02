@@ -1201,7 +1201,7 @@
            2E. BỘ 17 KỊCH BẢN QUẢNG CÁO PHỔ RỘNG CHẠY CÙNG KỊCH BẢN "MÓN QUÀ" (KB4 -> KB20)
            ===================================================================== -->
       <h2 id="bo-3-kb-pho-rong">🚀 Bộ 187 Kịch bản Quảng cáo Phổ rộng chạy song song cùng kịch bản "Món Quà" (KB 04 – KB 190)</h2>
-      <p>Bên cạnh kịch bản <strong>"Món Quà"</strong> (mang chiều sâu triết lý và dấu ấn cá nhân của anh Việt), <strong>187 kịch bản phổ rộng dưới đây (trong đó KB 13 – KB 65 được thiết kế theo Cấu trúc 3 Phần: 2 Kiểu Hook + Body 6 câu gần gũi nhớ lâu + 2 Kiểu CTA bởi Claude Opus 5.5, tích hợp kho Podcast Kiến Thức Vĩ Mô, Daniel Priestley, Raj Shamani, Myron Golden, Matt Gray, Omar Eltakrori, Alex Hormozi, Vinh Giang, Shelby Sapp &amp; Logic 01–41)</strong> đánh trực diện vào 62 bài toán thực tế lớn nhất từ dữ liệu 319+ hồ sơ học viên STU/LED và 28 vấn đề cốt tử trong <code>video-logic.html</code>, bám sát <strong>cấu trúc 2 tầng của khóa học Offline 2 ngày</strong>:</p>
+      <p>Bên cạnh kịch bản <strong>"Món Quà"</strong> (mang chiều sâu triết lý và dấu ấn cá nhân của anh Việt), <strong>187 kịch bản phổ rộng dưới đây (trong đó KB 13 – KB 190 được thiết kế theo Cấu trúc 3 Phần: 2 Kiểu Hook + Body 6 câu gần gũi nhớ lâu + 2 Kiểu CTA bởi Claude Opus 5.5, tích hợp kho Podcast Kiến Thức Vĩ Mô, Giáo Trình 6 Định Dạng Video Cốt Lõi, Hành Trình 10 Bước Logic Kênh, Lurker 90-9-1, Cấu Trúc 70/30 &amp; Logic 01–41)</strong> đánh trực diện vào 62 bài toán thực tế lớn nhất từ dữ liệu 319+ hồ sơ học viên STU/LED và 28 vấn đề cốt tử trong <code>video-logic.html</code>, bám sát <strong>cấu trúc 2 tầng của khóa học Offline 2 ngày</strong>:</p>
       <ul>
         <li><strong>Tầng Nền (Kỹ thuật cơ bản &amp; Thao tác tay chân — 15% thời lượng):</strong> Quay sáng nét, lên sườn ý, cắt khoảng nghỉ, lọc tiếng ồn, chạy chữ, dựng cảnh minh họa &rarr; <strong>Được xử lý gọn bằng AI và công cụ tự động trong vài phút</strong>.</li>
         <li><strong>Tầng Cao Cấp Hơn (Lúc bấm máy quay &amp; Phần đặc trưng của sản phẩm — 35% thời lượng):</strong> Bóc tách đúng <strong>điểm đặc trưng độc bản của sản phẩm</strong>, nói <strong>đúng ngôn ngữ người làm nghề</strong>, sửa <strong>câu mở đầu 3 giây đầu</strong> và trả lời trước <strong>băn khoăn của khách mua đơn lớn</strong> &rarr; Lý do thuyết phục nhất để đăng ký lớp Offline 2 ngày tại Hà Nội.</li>
@@ -11751,6 +11751,26 @@
       if (tocLinks.length > 20) {
         const parentUl = tocLinks[0].closest('ul');
         const batchDefs = [];
+        for (let start = Math.floor((maxNum - 121) / 20) * 20 + 121; start >= 121; start -= 20) {
+          const end = Math.min(start + 19, maxNum);
+          const isLatest = (end === maxNum);
+          const lotIdx = Math.floor((start - 121) / 20) + 1;
+          batchDefs.push({
+            label: (isLatest ? '🚀 Lô Mới Nhất' : '🔥 Lô Thực Chiến Ngành ' + lotIdx) + ': KB ' + start + ' – KB ' + end,
+            min: start,
+            max: isLatest ? 9999 : end,
+            open: isLatest
+          });
+        }
+        batchDefs.push(
+          { label: '🔥 Lô Podcast Vĩ Mô 4: KB 110 – KB 120', min: 110, max: 120, open: false },
+          { label: '🔥 Lô Podcast Vĩ Mô 3: KB 90 – KB 109', min: 90, max: 109, open: false },
+          { label: '⚡ Lô Podcast Vĩ Mô 2: KB 80 – KB 89', min: 80, max: 89, open: false },
+          { label: '🎙️ Lô Podcast Vĩ Mô: KB 60 – KB 79', min: 60, max: 79, open: false },
+          { label: '⚡ Lô Thực Chiến 2: KB 40 – KB 59', min: 40, max: 59, open: false },
+          { label: '📦 Lô Thực Chiến 1: KB 20 – KB 39', min: 20, max: 39, open: false },
+          { label: '🌱 Lô Nền Tảng: KB 04 – KB 19', min: 4, max: 19, open: false }
+        );
         for (let start = Math.floor((maxNum - 121) / 20) * 20 + 121; start >= 121; start -= 20) {
           const end = Math.min(start + 19, maxNum);
           const isLatest = (end === maxNum);
