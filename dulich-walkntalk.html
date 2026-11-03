@@ -1,0 +1,1090 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Giáo Án &amp; Slide Đào Tạo Quay Dựng Du Lịch Thực Chiến (Walk &amp; Talk) — Bảo Tàng Phụ Nữ VN (16–17/11)</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=JetBrains+Mono:wght@500;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --sans: "Be Vietnam Pro", -apple-system, BlinkMacSystemFont, sans-serif;
+      --serif: "Newsreader", Georgia, serif;
+      --mono: "JetBrains Mono", monospace;
+      --bg: #f8fafc;
+      --ink: #0f172a;
+      --muted: #475569;
+      --border: #cbd5e1;
+      --accent: #ea580c;
+      --blue: #0284c7;
+      --emerald: #059669;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--sans);
+      line-height: 1.6;
+    }
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(15, 23, 42, 0.96);
+      backdrop-filter: blur(10px);
+      color: #fff;
+      border-bottom: 1px solid #1e293b;
+      padding: 10px 20px;
+    }
+    .topbar-inner {
+      max-width: 1260px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+    }
+    .nav-links a {
+      text-decoration: none;
+      font: 600 12.5px/1.2 var(--sans);
+      padding: 8px 13px;
+      border-radius: 8px;
+      color: #e2e8f0;
+      background: #1e293b;
+      border: 1px solid #334155;
+      transition: all .15s ease;
+    }
+    .nav-links a:hover {
+      background: #334155;
+      color: #fff;
+    }
+    .nav-links a.active {
+      background: var(--blue);
+      color: #fff;
+      border-color: #38bdf8;
+      font-weight: 700;
+    }
+    .nav-links a.cta-thuchanh {
+      background: #dc2626;
+      color: #fff;
+      border-color: #f87171;
+      font-weight: 700;
+    }
+    .deck-controls {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .ctrl-btn {
+      background: #1e293b;
+      color: #f8fafc;
+      border: 1px solid #475569;
+      padding: 7px 12px;
+      border-radius: 7px;
+      font: 600 12.5px/1 var(--sans);
+      cursor: pointer;
+    }
+    .ctrl-btn:hover { background: #334155; }
+    .ctrl-btn.primary {
+      background: #ea580c;
+      border-color: #fb923c;
+      color: #fff;
+    }
+    .ctrl-counter {
+      font: 700 12px/1 var(--mono);
+      color: #38bdf8;
+      padding: 0 6px;
+    }
+    .wrap {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 28px 20px 64px;
+    }
+    .hero-box {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 26px 30px;
+      margin-bottom: 24px;
+      box-shadow: 0 4px 18px rgba(15, 23, 42, 0.05);
+    }
+    .hero-eyebrow {
+      font: 700 11.5px/1 var(--mono);
+      color: var(--blue);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 8px;
+    }
+    .hero-box h1 {
+      font: 800 clamp(24px, 3vw, 34px)/1.22 var(--sans);
+      margin: 0 0 12px 0;
+      color: #0f172a;
+    }
+    .hero-box p {
+      margin: 0 0 14px 0;
+      color: #334155;
+      font-size: 15.5px;
+    }
+    .event-meta-bar {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 12px;
+      background: #f1f5f9;
+      border: 1px solid #cbd5e1;
+      border-radius: 12px;
+      padding: 14px 16px;
+      margin: 14px 0 16px;
+    }
+    .event-meta-item {
+      font-size: 13.5px;
+      color: #1e293b;
+    }
+    .event-meta-item strong {
+      display: block;
+      font: 700 11px/1.2 var(--mono);
+      color: #0284c7;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+    .hub-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 16px;
+      margin-bottom: 26px;
+    }
+    .hub-panel {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 20px 22px;
+      box-shadow: 0 2px 10px rgba(15, 23, 42, 0.04);
+    }
+    .hub-panel h3 {
+      margin: 0 0 6px 0;
+      font: 800 17px/1.3 var(--sans);
+      color: #0f172a;
+    }
+    .hub-panel p {
+      margin: 0 0 12px 0;
+      font-size: 13.5px;
+      color: #475569;
+    }
+    .link-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .link-pill {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      text-decoration: none;
+      background: #f8fafc;
+      border: 1px solid #cbd5e1;
+      border-radius: 9px;
+      padding: 9px 12px;
+      color: #0f172a;
+      font-size: 13.5px;
+      font-weight: 600;
+      transition: all .15s ease;
+    }
+    .link-pill:hover {
+      background: #e0f2fe;
+      border-color: #0284c7;
+      color: #0369a1;
+    }
+    .link-pill span.tag {
+      font: 700 10.5px/1 var(--mono);
+      padding: 4px 7px;
+      border-radius: 5px;
+      background: #0f172a;
+      color: #fde047;
+      white-space: nowrap;
+    }
+    .quick-jump {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 12px;
+    }
+    .quick-jump button {
+      background: #f1f5f9;
+      color: #0f172a;
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+      padding: 5px 10px;
+      font: 600 11.5px/1 var(--mono);
+      cursor: pointer;
+    }
+    .quick-jump button:hover, .quick-jump button.active-pill {
+      background: #0284c7;
+      color: #fff;
+      border-color: #0284c7;
+    }
+
+    /* Slide Card */
+    .sl-card {
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      border-radius: 16px;
+      overflow: hidden;
+      margin-bottom: 28px;
+      box-shadow: 0 8px 28px rgba(15, 23, 42, 0.07);
+    }
+    .sl-screen {
+      background: linear-gradient(140deg, #090d16 0%, #111827 60%, #1e293b 100%);
+      color: #f8fafc;
+      padding: 32px 36px;
+      border-bottom: 2px solid #334155;
+    }
+    .sl-top-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      margin-bottom: 14px;
+    }
+    .sl-badge-num {
+      font: 700 11.5px/1 var(--mono);
+      color: #fb923c;
+      background: rgba(251, 146, 60, 0.16);
+      border: 1px solid rgba(251, 146, 60, 0.4);
+      padding: 5px 10px;
+      border-radius: 6px;
+    }
+    .sl-badge-grp {
+      font: 700 11px/1 var(--mono);
+      color: #38bdf8;
+      background: rgba(56, 189, 248, 0.12);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      padding: 5px 10px;
+      border-radius: 6px;
+      letter-spacing: 0.05em;
+    }
+    .sl-title {
+      font: 800 clamp(22px, 2.7vw, 31px)/1.25 var(--sans);
+      color: #ffffff;
+      margin: 0 0 10px 0;
+      letter-spacing: -0.015em;
+    }
+    .sl-sub {
+      font: 400 16px/1.55 var(--sans);
+      color: #94a3b8;
+      margin: 0 0 20px 0;
+    }
+    .sl-bullets {
+      margin: 0 0 22px 0;
+      padding-left: 22px;
+    }
+    .sl-bullets li {
+      font-size: 16px;
+      line-height: 1.65;
+      color: #f1f5f9;
+      margin-bottom: 10px;
+    }
+    .sl-bullets li strong {
+      color: #fde047;
+    }
+    .sl-visual-box {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 12px;
+      padding: 16px 18px;
+      font-size: 14.5px;
+      color: #e2e8f0;
+    }
+    .sl-vis-lbl {
+      display: block;
+      font: 700 11px/1 var(--mono);
+      color: #38bdf8;
+      letter-spacing: 0.06em;
+      margin-bottom: 6px;
+    }
+    .sl-case-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 10px;
+      margin-top: 12px;
+    }
+    .sl-case-btn {
+      display: block;
+      text-decoration: none;
+      background: rgba(15, 23, 42, 0.85);
+      border: 1px solid #38bdf8;
+      border-radius: 10px;
+      padding: 11px 13px;
+      color: #f8fafc;
+      transition: all .15s ease;
+    }
+    .sl-case-btn:hover {
+      background: #0284c7;
+      border-color: #fff;
+    }
+    .sl-case-btn strong {
+      display: block;
+      color: #fde047;
+      font-size: 13.5px;
+      margin-bottom: 4px;
+    }
+    .sl-case-btn span {
+      display: block;
+      font-size: 12px;
+      color: #cbd5e1;
+      line-height: 1.4;
+    }
+    .sl-shot-grid {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 14px;
+    }
+    .sl-shot {
+      background: #0f172a;
+      border: 1px solid #334155;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .sl-shot-img {
+      position: relative;
+      aspect-ratio: 9 / 16;
+      background: #020617;
+    }
+    .sl-shot-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .sl-shot-badge {
+      position: absolute;
+      top: 6px;
+      left: 6px;
+      background: rgba(15, 23, 42, 0.88);
+      color: #fde047;
+      border: 1px solid rgba(253, 224, 71, 0.4);
+      font: 700 10px/1 var(--mono);
+      padding: 4px 6px;
+      border-radius: 4px;
+    }
+    .sl-shot-cap {
+      padding: 7px 8px;
+      font: 600 11.5px/1.35 var(--sans);
+      color: #e2e8f0;
+      text-align: center;
+    }
+    .sl-speaker {
+      background: #f8fafc;
+      padding: 18px 36px;
+    }
+    .sl-spk-head {
+      font: 700 11px/1 var(--mono);
+      color: #0284c7;
+      letter-spacing: 0.06em;
+      margin-bottom: 6px;
+    }
+    .sl-speaker p {
+      margin: 0;
+      font: italic 17px/1.65 var(--serif);
+      color: #1e293b;
+    }
+
+    body.single-mode .hub-grid {
+      display: none;
+    }
+    body.single-mode .sl-card {
+      display: none;
+    }
+    body.single-mode .sl-card.active-slide {
+      display: block;
+    }
+
+    @media (max-width: 860px) {
+      .sl-shot-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      .sl-screen, .sl-speaker {
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <nav class="nav-links">
+        <a href="dulich-walkntalk.html" class="active">🧭 Hub Du Lịch &amp; 12 Slide Bảo Tàng Phụ Nữ</a>
+        <a href="walkntalk2.0.html">📘 Giáo Án Walk &amp; Talk 2.0</a>
+        <a href="walkntalkslide.html">🖥️ 15 Slide Gốc K3</a>
+        <a href="walkntalkthuchanh.html" class="cta-thuchanh">🎬 25 Ảnh Phân Cảnh &amp; Thực Hành Cặp Đôi &rarr;</a>
+        <a href="voiceover3.0.html">🎙️ Voice-Over 3.0</a>
+        <a href="bocucquay.html">📐 Bố Cục Quay</a>
+      </nav>
+      <div class="deck-controls">
+        <button type="button" class="ctrl-btn primary" id="btnToggleMode" onclick="window.toggleDeckMode()">🖥️ Chế độ chiếu từng Slide</button>
+        <button type="button" class="ctrl-btn" onclick="window.prevSlide()">&larr; Trước</button>
+        <span class="ctrl-counter" id="slideCounter">12 / 12 SLIDES</span>
+        <button type="button" class="ctrl-btn" onclick="window.nextSlide()">Tiếp &rarr;</button>
+        <button type="button" class="ctrl-btn" onclick="window.toggleFullScreen()">⛶ Fullscreen (F)</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="hero-box" id="heroBox">
+      <div class="hero-eyebrow">CHUYÊN ĐỀ ĐÀO TẠO THỰC CHIẾN • NGÀNH DU LỊCH, LỮ HÀNH &amp; ĐIỂM ĐẾN VĂN HÓA</div>
+      <h1>Quay Dựng Video Du Lịch Hấp Dẫn: Dẫn Tour Vừa Đi Vừa Nói (Walk &amp; Talk) &amp; Kể Chuyện Điểm Đến</h1>
+      <p>Tài liệu điều phối tổng hợp dành riêng cho buổi chia sẻ của <strong>anh Nguyễn Đức Việt</strong> cùng đội ngũ đối tác <strong>My Skill King (Hồ sơ Lữ Hành Saigontourist)</strong>. Tích hợp trọn bộ Định dạng cốt lõi từ Kho Tri Thức, 8 Video mẫu phân tích từ <code>ytuong.fedu.vn</code> và Bài tập thực hành cặp đôi ngay tại khuôn viên <strong>Bảo tàng Phụ nữ Việt Nam</strong>.</p>
+      
+      <div class="event-meta-bar">
+        <div class="event-meta-item">
+          <strong>📅 Thời gian dự kiến</strong>
+          16/11 hoặc 17/11/2026 (Nửa buổi Sáng hoặc Chiều)
+        </div>
+        <div class="event-meta-item">
+          <strong>📍 Địa điểm tổ chức &amp; Thực hành</strong>
+          Bảo tàng Phụ nữ Việt Nam — 36 Lý Thường Kiệt, Cửa Nam, Hoàn Kiếm, Hà Nội
+        </div>
+        <div class="event-meta-item">
+          <strong>🤝 Đối tác &amp; Hồ sơ</strong>
+          My Skill King • <a href="https://drive.google.com/drive/folders/1g7sVX-Bh1Te2aeY1QzJ8OLittfa9ixV0?usp=sharing" target="_blank" rel="noopener" style="color:#0284c7;font-weight:700;">Mở Google Drive Profile &rarr;</a>
+        </div>
+        <div class="event-meta-item">
+          <strong>🎯 Trục đào tạo chính</strong>
+          Walk &amp; Talk 2.0 (60%) + Voice-Over B-Roll (25%) + Chuyển cảnh &amp; Vỏ bọc (15%)
+        </div>
+      </div>
+
+      <div class="quick-jump" id="quickJump">
+        <button type="button" onclick="window.goToSlide(0)" id="pill-0">S01 • Phá băng</button>
+        <button type="button" onclick="window.goToSlide(1)" id="pill-1">S02 • 3 Định dạng</button>
+        <button type="button" onclick="window.goToSlide(2)" id="pill-2">S03 • Parallax 2.4x</button>
+        <button type="button" onclick="window.goToSlide(3)" id="pill-3">S04 • 4 Mẫu Walk&amp;Talk</button>
+        <button type="button" onclick="window.goToSlide(4)" id="pill-4">S05 • Băm 5 Cú Máy</button>
+        <button type="button" onclick="window.goToSlide(5)" id="pill-5">S06 • Lệch Trục 45°</button>
+        <button type="button" onclick="window.goToSlide(6)" id="pill-6">S07 • Voice-Over B-Roll</button>
+        <button type="button" onclick="window.goToSlide(7)" id="pill-7">S08 • 4 Mẫu Du Lịch</button>
+        <button type="button" onclick="window.goToSlide(8)" id="pill-8">S09 • 4 Vỏ Bọc Tour</button>
+        <button type="button" onclick="window.goToSlide(9)" id="pill-9">S10 • Đề 1: Dẫn Tour</button>
+        <button type="button" onclick="window.goToSlide(10)" id="pill-10">S11 • Đề 2: Phỏng Vấn</button>
+        <button type="button" onclick="window.goToSlide(11)" id="pill-11">S12 • Bảng Kiểm 10đ</button>
+      </div>
+    </section>
+
+    <!-- BẢNG ĐIỀU KHIỂN LINK MỞ NHANH 1 CHẠM -->
+    <section class="hub-grid" id="quickHub">
+      <div class="hub-panel">
+        <h3>📚 1. Kho Giáo Án &amp; Định Dạng Cốt Lõi (Kho Tri Thức &amp; Course)</h3>
+        <p>Bấm mở trực tiếp các trang giáo trình gốc của anh Việt khi cần đi sâu vào từng kỹ thuật:</p>
+        <div class="link-list">
+          <a class="link-pill" href="https://kho.fedu.vn/kien-thuc/trung-tam-kenh-dinh-dang/02-walk-and-talk" target="_blank" rel="noopener">
+            <span>🚶 Định Dạng 02 — Walk &amp; Talk (Vừa Đi Vừa Chia Sẻ Tự Nhiên)</span>
+            <span class="tag">TRỤC CHÍNH 60%</span>
+          </a>
+          <a class="link-pill" href="https://fedu.vn/course/walkntalk2.0.html" target="_blank" rel="noopener">
+            <span>📘 Giáo Án Walk &amp; Talk 2.0 (7 Video Mẫu Anh Việt &amp; Học Viên)</span>
+            <span class="tag">COURSE</span>
+          </a>
+          <a class="link-pill" href="https://ytuong.fedu.vn/walkandtalk.html" target="_blank" rel="noopener">
+            <span>🏛️ Chuyên Đề Dẫn Tour Vào Cơ Sở / Điểm Đến (Visual Landing)</span>
+            <span class="tag">YTUONG</span>
+          </a>
+          <a class="link-pill" href="https://kho.fedu.vn/kien-thuc/trung-tam-kenh-dinh-dang/01-voice-over" target="_blank" rel="noopener">
+            <span>🎙️ Định Dạng 01 — Voice-Over &amp; Gom B-Roll ("Tách Hình Khỏi Tiếng")</span>
+            <span class="tag">BỔ TRỢ 25%</span>
+          </a>
+          <a class="link-pill" href="https://kho.fedu.vn/kien-thuc/trung-tam-kenh-dinh-dang/05-chuyen-canh" target="_blank" rel="noopener">
+            <span>⚡ Định Dạng 05 — 5 Kỹ Thuật Chuyển Cảnh Điện Ảnh &amp; Nhịp 2 Giây</span>
+            <span class="tag">CHUYỂN CẢNH</span>
+          </a>
+          <a class="link-pill" href="https://kho.fedu.vn/kien-thuc/trung-tam-kenh-dinh-dang/06-vo-boc-31" target="_blank" rel="noopener">
+            <span>🐴 Định Dạng 06 — 31 Vỏ Bọc Nội Dung (Chiến Lược Ngựa Gỗ Thành Troy)</span>
+            <span class="tag">31 VỎ BỌC</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="hub-panel">
+        <h3>🎬 2. Nhóm A — 4 Mẫu Walk &amp; Talk &amp; Dẫn Tour Thực Địa (ytuong.fedu.vn)</h3>
+        <p>Mở trực tiếp trên màn chiếu để học viên thấy cách vừa đi bộ vừa dẫn chuyện ngoài trời:</p>
+        <div class="link-list">
+          <a class="link-pill" href="https://ytuong.fedu.vn/reports/UTS%20Vietnam%20Open%20Day%20Campus%20Tour%20-%20%40utsint.html" target="_blank" rel="noopener">
+            <span>1. @utsint — Campus/Location Tour (34s): Khóa mắt 2s đầu &amp; vừa đi vừa dẫn tour</span>
+            <span class="tag">DẪN TOUR</span>
+          </a>
+          <a class="link-pill" href="https://ytuong.fedu.vn/reports/IG_@mylenesmind_DdoWrpERdvD_can_you_guess_the_theme_%F0%9F%91%80.html" target="_blank" rel="noopener">
+            <span>2. @mylenesmind — Walk &amp; Talk Ngoài Trời Dưới Nắng Xiên (71.9s)</span>
+            <span class="tag">TỰ NHIÊN</span>
+          </a>
+          <a class="link-pill" href="https://ytuong.fedu.vn/reports/IG_@neolumo.uralsk_DcOUP2PsMsP_Medical_Commercial_Authority.html" target="_blank" rel="noopener">
+            <span>3. @neolumo.uralsk — 6 Phân Cảnh Walk-in Dẫn Vào Không Gian Dịch Vụ</span>
+            <span class="tag">PHỄU 6 CẢNH</span>
+          </a>
+          <a class="link-pill" href="https://ytuong.fedu.vn/reports/IG_@yegor.sky_DdJaKjQCMTm_How_To_Film_Yourself_In_City.html" target="_blank" rel="noopener">
+            <span>4. @yegor.sky — Cách Tự Quay Bản Thân Khi Đi Một Mình Giữa Thành Phố</span>
+            <span class="tag">SOLO TRAVEL</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="hub-panel">
+        <h3>🌏 3. Nhóm B — 4 Mẫu Quay Du Lịch, Bảo Tàng, Di Sản &amp; iPhone (ytuong.fedu.vn)</h3>
+        <p>Mở trực tiếp để phân tích cách lấy B-Roll di sản văn hóa, bảo tàng và chuyển cảnh bằng điện thoại:</p>
+        <div class="link-list">
+          <a class="link-pill" href="https://ytuong.fedu.vn/reports/IG_@omgadrian_DcqzVfno5Al_Travel_Sequence_Formula.html" target="_blank" rel="noopener">
+            <span>5. @omgadrian — Công Thức 5 Bước Chuyển Đổi Không Gian Du Ký (34 cảnh)</span>
+            <span class="tag">CHUYỂN ĐỊA ĐIỂM</span>
+          </a>
+          <a class="link-pill" href="https://ytuong.fedu.vn/reports/IG_@withgeorgy_Db7_3rpgK5c_Cinematic_Travel_iPhone_Mastery.html" target="_blank" rel="noopener">
+            <span>6. @withgeorgy — Kỹ Thuật Quay Video Du Lịch Đỉnh Cao Bằng iPhone (5x Tele &amp; Action)</span>
+            <span class="tag">IPHONE TRAVEL</span>
+          </a>
+          <a class="link-pill" href="https://ytuong.fedu.vn/reports/IG_@jeromememe_DQmKgPDEWgJ_Artisans_of_Venice.html" target="_blank" rel="noopener">
+            <span>7. @jeromememe — Artisans of Venice &amp; Bhutan (Kể Chuyện Di Sản Lấy Con Người Làm Gốc)</span>
+            <span class="tag">DI SẢN &amp; VĂN HÓA</span>
+          </a>
+          <a class="link-pill" href="https://ytuong.fedu.vn/reports/IG_@%E5%B0%BC%E8%8E%ABNemo_%E0%BD%B2%E0%BD%BF_%E1%97%A6%E2%86%9E%E2%97%83_DclWb98PiK_Video_by_nemo_ooo.html" target="_blank" rel="noopener">
+            <span>8. @nemo_ooo — Quay Trải Nghiệm Bảo Tàng Kết Hợp Lồng Tiếng Voice-Over (37.2s)</span>
+            <span class="tag">BẢO TÀNG</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 12 SLIDES TRÌNH CHIẾU TRỰC TIẾP -->
+    <div id="slidesContainer">
+
+      <!-- SLIDE 01 -->
+      <article class="sl-card" id="slide-1" data-index="0">
+        <div class="sl-screen">
+          <div class="sl-top-meta">
+            <span class="sl-badge-num">SLIDE 01 / 12</span>
+            <span class="sl-badge-grp">PHẦN I • PHÁ BĂNG THỂ DIỆN CHO NGƯỜI LÀM DU LỊCH</span>
+          </div>
+          <h2 class="sl-title">Tại sao dẫn khách ngoài đời nói rất cuốn, nhưng bật camera lên là cứng đờ?</h2>
+          <p class="sl-sub">Bản chất tâm lý học thần kinh: Khi ngồi yên trước ống kính, não bộ bị quá tải vì phải làm 3 việc cùng lúc.</p>
+          <ul class="sl-bullets">
+            <li><strong>Phản xạ đông cứng (Freeze Reflex):</strong> Ngồi tĩnh trước đèn và máy quay kích hoạt cơ chế phòng vệ khiến cơ mặt căng cứng, giọng nói đều đều như đọc văn mẫu giới thiệu tour.</li>
+            <li><strong>Chân bước thì não thông:</strong> Khi bạn bước đi tại điểm đến (sảnh bảo tàng, vỉa hè phố cổ, khu nghỉ dưỡng), hành động bước đi giải phóng năng lượng cơ thể (Kinetic Energy), điều hòa nhịp thở và trả lại sự linh hoạt tự nhiên.</li>
+            <li><strong>Không ai quay liền một mạch 60 giây:</strong> Một video dẫn tour 40 giây thực chất là <strong>5 cú máy ngắn (mỗi cú chỉ 5–8 giây, nói đúng 1 câu)</strong> ghép lại.</li>
+          </ul>
+          <div class="sl-visual-box">
+            <span class="sl-vis-lbl">💡 NGUYÊN TẮC SỐ 1 HÔM NAY TẠI BẢO TÀNG PHỤ NỮ VIỆT NAM:</span>
+            <div>Đừng cố đóng vai biên tập viên truyền hình. Hãy rảo bước và trò chuyện với ống kính đúng như cách anh chị đang đi cạnh một người bạn thân và chỉ cho họ xem một chi tiết thú vị tại điểm đến.</div>
+          </div>
+        </div>
+        <div class="sl-speaker">
+          <div class="sl-spk-head">🗣️ LỜI DẪN BỤC GIẢNG (ANH VIỆT)</div>
+          <p>"Anh chị làm du lịch khi đứng trước đoàn khách hay ngồi uống trà với bạn thì kể chuyện điểm đến cực kỳ duyên. Nhưng cứ dựng chân máy lên định quay giới thiệu tour là mặt nghiêm lại, nói như trả bài. Lý do không phải vì anh chị kém ăn nói, mà vì ngồi yên trước camera làm não bị khóa cứng. Hôm nay ở Bảo tàng Phụ nữ, mình giải quyết tận gốc bằng cách: đứng dậy, bước đi và băm nhỏ bài nói thành từng câu 5 giây."</p>
+        </div>
+      </article>
+
+      <!-- SLIDE 02 -->
+      <article class="sl-card" id="slide-2" data-index="1">
+        <div class="sl-screen">
+          <div class="sl-top-meta">
+            <span class="sl-badge-num">SLIDE 02 / 12</span>
+            <span class="sl-badge-grp">PHẦN I • BẢN ĐỒ ĐỊNH DẠNG NGÀNH DU LỊCH</span>
+          </div>
+          <h2 class="sl-title">Tam Giác Định Dạng Thực Chiến Cho Ngành Du Lịch &amp; Điểm Đến</h2>
+          <p class="sl-sub">Chọn đúng vũ khí theo từng bối cảnh thực địa và từng nhóm nhân sự trong công ty lữ hành.</p>
+          <ul class="sl-bullets">
+            <li><strong>1. Định dạng Walk &amp; Talk 2.0 (Chiếm 60% — Chủ lực tạo niềm tin):</strong> Vừa đi bộ hoặc vừa thao tác vừa trò chuyện trực diện. Dành cho Hướng dẫn viên, Chuyên gia tư vấn tour, Người dẫn chuyện tại điểm đến.</li>
+            <li><strong>2. Định dạng Voice-Over 3.0 &amp; B-Roll (Chiếm 25% — Dành cho người ngại lộ mặt):</strong> Quay 10–15 cảnh ngắn (1.5–2.5s/cảnh) bắt trọn vẻ đẹp không gian, ẩm thực, hiện vật rồi về lồng tiếng sau.</li>
+            <li><strong>3. Kỹ thuật Chuyển Cảnh &amp; Vỏ Bọc Ngựa Gỗ (Chiếm 15% — Giữ chân 3 giây đầu):</strong> Nối mượt giữa các địa điểm (Cut on Action, Wipe) và dùng vỏ bọc tình huống để khách tự muốn đặt tour.</li>
+          </ul>
+          <div class="sl-visual-box">
+            <span class="sl-vis-lbl">🔗 MỞ TRỰC TIẾP GIÁO ÁN TRONG KHO:</span>
+            <div class="sl-case-grid">
+              <a class="sl-case-btn" href="https://kho.fedu.vn/kien-thuc/trung-tam-kenh-dinh-dang/02-walk-and-talk" target="_blank" rel="noopener">
+                <strong>Định Dạng 02: Walk &amp; Talk ↗</strong>
+                <span>Vừa đi vừa chia sẻ tự nhiên tại điểm đến</span>
+              </a>
+              <a class="sl-case-btn" href="https://kho.fedu.vn/kien-thuc/trung-tam-kenh-dinh-dang/01-voice-over" target="_blank" rel="noopener">
+                <strong>Định Dạng 01: Voice-Over ↗</strong>
+                <span>Quay B-Roll trước, thu âm lồng tiếng sau</span>
+              </a>
+              <a class="sl-case-btn" href="https://kho.fedu.vn/kien-thuc/trung-tam-kenh-dinh-dang/05-chuyen-canh" target="_blank" rel="noopener">
+                <strong>Định Dạng 05: Chuyển Cảnh ↗</strong>
+                <span>Quy tắc nén nhịp 2 giây &amp; 5 cú cắt điện ảnh</span>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="sl-speaker">
+          <div class="sl-spk-head">🗣️ LỜI DẪN BỤC GIẢNG (ANH VIỆT)</div>
+          <p>"Trong một công ty du lịch, không phải ai cũng thích xuất hiện trước ống kính, và không phải điểm tham quan nào cũng yên tĩnh để thu tiếng trực tiếp. Vì vậy mình chia làm 3 mũi nhọn: Ai tự tin dẫn dắt thì đánh chủ lực bằng Walk &amp; Talk vừa đi vừa nói; ai đứng sau hậu cần hoặc đi điểm quá ồn thì gom B-Roll về lồng tiếng Voice-Over; và tất cả đều dùng chung quy tắc chuyển cảnh 2 giây."</p>
+        </div>
+      </article>
+
+      <!-- SLIDE 03 -->
+      <article class="sl-card" id="slide-3" data-index="2">
+        <div class="sl-screen">
+          <div class="sl-top-meta">
+            <span class="sl-badge-num">SLIDE 03 / 12</span>
+            <span class="sl-badge-grp">PHẦN II • KHOA HỌC THỊ GIÁC CỦA WALK &amp; TALK</span>
+          </div>
+          <h2 class="sl-title">Cơ Chế Thị Sai (Parallax Motion) Giữ Chân 2.4 Lần &amp; 3 Quy Tắc Ngoài Trời</h2>
+          <p class="sl-sub">Vì sao chỉ cần bước đi dưới hàng cây Lý Thường Kiệt hoặc hành lang bảo tàng là mắt người xem không rời được màn hình?</p>
+          <ul class="sl-bullets">
+            <li><strong>Thị sai chuyển động (Parallax Motion):</strong> Khi bạn bước đi, vật thể ở tiền cảnh lướt qua nhanh trong khi kiến trúc và hàng cây ở hậu cảnh lùi chậm rãi. Sự dịch chuyển đa tầng này giữ mắt người xem gấp <strong>2.4 lần</strong> so với đứng yên trước bức tường.</li>
+            <li><strong>Kẻ thù số 1 ngoài trời không phải rung lắc, mà là tiếng gió rít:</strong> Bắt buộc gắn bông lọc gió (Deadcat) vào mic không dây và giữ lại <strong>15–20% âm thanh môi trường</strong> (tiếng bước chân, tiếng lá xào xạc) để tạo cảm giác thật.</li>
+            <li><strong>Bước đi Ninja (Ninja Walk):</strong> Chùng nhẹ đầu gối, đặt gót chân lăn êm sang mũi chân, tay gập 45–60 độ nâng máy cao hơn tầm mắt một chút để lấy chiều sâu không gian phía sau.</li>
+          </ul>
+          <div class="sl-visual-box">
+            <span class="sl-vis-lbl">📐 4 LỖI KINH ĐIỂN PHẢI TRÁNH KHI DẪN TOUR NGOÀI TRỜI:</span>
+            <div>(1) Mắt nhìn vào màn hình ngắm mặt mình thay vì nhìn thẳng lỗ camera • (2) Đi ngược sáng làm mặt tối đen • (3) Học thuộc lòng từng chữ khiến mắt đảo lên trời • (4) Đi quá nhanh làm hơi thở hổn hển.</div>
+          </div>
+        </div>
+        <div class="sl-speaker">
+          <div class="sl-spk-head">🗣️ LỜI DẪN BỤC GIẢNG (ANH VIỆT)</div>
+          <p>"Anh chị nhớ giúp tôi một câu: Khi vừa đi vừa nói ngoài trời, kẻ thù lớn nhất không phải là khung hình hơi rung nhẹ, mà là tiếng gió rít vào mic. Hình ảnh hơi rung một chút theo nhịp bước chân người ta lại thấy thật như đang đi cùng mình, nhưng âm thanh bị ù gió 2 giây là khách vuốt bỏ ngay."</p>
+        </div>
+      </article>
+
+      <!-- SLIDE 04 -->
+      <article class="sl-card" id="slide-4" data-index="3">
+        <div class="sl-screen">
+          <div class="sl-top-meta">
+            <span class="sl-badge-num">SLIDE 04 / 12</span>
+            <span class="sl-badge-grp">PHẦN II • GIẢI PHẪU 4 MẪU WALK &amp; TALK TỪ YTUONG.FEDU.VN</span>
+          </div>
+          <h2 class="sl-title">Xem Trực Tiếp 4 Mẫu "Vừa Đi Vừa Nói &amp; Dẫn Tour Không Gian"</h2>
+          <p class="sl-sub">Bấm vào từng thẻ dưới đây để mở bảng phân tích từng giây từ Kho Ý Tưởng <code>ytuong.fedu.vn</code>:</p>
+          <ul class="sl-bullets">
+            <li><strong>Mẫu 1 (`@utsint` — Campus/Location Tour 34s):</strong> Mở màn khóa mắt 2 giây bằng biểu tượng văn hóa, vừa đi lùi vừa dẫn người xem qua từng khu vực kết hợp phỏng vấn ngắn.</li>
+            <li><strong>Mẫu 2 (`@mylenesmind` — Walk &amp; Talk Nắng Xiên 71s):</strong> Vừa rảo bước ngoài trời dưới nắng xiên vừa tâm sự tự nhiên, dùng nụ cười Open Loop ở 3 giây đầu.</li>
+            <li><strong>Mẫu 3 (`@neolumo.uralsk` — Phễu 6 Cảnh Walk-in):</strong> Bước vào sảnh chào đón ở 3 giây đầu &rarr; Đảo sang B-Roll cận cảnh chứng minh chất lượng dịch vụ.</li>
+            <li><strong>Mẫu 4 (`@yegor.sky` — Tự Quay Một Mình Giữa Phố):</strong> Kỹ thuật đặt máy cố định ở các góc phố, bước xuyên qua khung hình dành cho người đi công tác/dẫn tour một mình.</li>
+          </ul>
+          <div class="sl-visual-box">
+            <span class="sl-vis-lbl">🎬 BẤM MỞ BÁO CÁO PHÂN TÍCH TRÊN MÀN CHIẾU:</span>
+            <div class="sl-case-grid">
+              <a class="sl-case-btn" href="https://ytuong.fedu.vn/reports/UTS%20Vietnam%20Open%20Day%20Campus%20Tour%20-%20%40utsint.html" target="_blank" rel="noopener">
+                <strong>1. Mẫu Dẫn Tour @utsint ↗</strong>
+                <span>34s • Khóa mắt 2s đầu &amp; dẫn tour đa không gian</span>
+              </a>
+              <a class="sl-case-btn" href="https://ytuong.fedu.vn/reports/IG_@mylenesmind_DdoWrpERdvD_can_you_guess_the_theme_%F0%9F%91%80.html" target="_blank" rel="noopener">
+                <strong>2. Mẫu Ngoài Trời @mylenesmind ↗</strong>
+                <span>71.9s • Walk &amp; Talk nắng xiên tự nhiên</span>
+              </a>
+              <a class="sl-case-btn" href="https://ytuong.fedu.vn/reports/IG_@neolumo.uralsk_DcOUP2PsMsP_Medical_Commercial_Authority.html" target="_blank" rel="noopener">
+                <strong>3. Mẫu Walk-in @neolumo ↗</strong>
+                <span>43s • Bước vào không gian + B-Roll cận cảnh</span>
+              </a>
+              <a class="sl-case-btn" href="https://ytuong.fedu.vn/reports/IG_@yegor.sky_DdJaKjQCMTm_How_To_Film_Yourself_In_City.html" target="_blank" rel="noopener">
+                <strong>4. Tự Quay Phố @yegor.sky ↗</strong>
+                <span>Solo Travel • Đặt máy tự quay giữa thành phố</span>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="sl-speaker">
+          <div class="sl-spk-head">🗣️ LỜI DẪN BỤC GIẢNG (ANH VIỆT)</div>
+          <p>"Chúng ta bấm xem thử mẫu số 1 của UTS và mẫu số 3 của Neolumo. Anh chị để ý kỹ 3 giây đầu tiên: người nói không bao giờ đứng im đợi bấm máy rồi mới nói 'Xin chào các bạn'. Họ đang bước tới, tay mở cánh cửa hoặc chỉ thẳng vào không gian thật rồi vào câu đầu tiên luôn."</p>
+        </div>
+      </article>
+
+      <!-- SLIDE 05 -->
+      <article class="sl-card" id="slide-5" data-index="4">
+        <div class="sl-screen">
+          <div class="sl-top-meta">
+            <span class="sl-badge-num">SLIDE 05 / 12</span>
+            <span class="sl-badge-grp">PHẦN II • KỸ THUẬT BĂM NHỎ 5 CÚ MÁY &amp; 3 PHA</span>
+          </div>
+          <h2 class="sl-title">Băm Nhỏ Kịch Bản 45 Giây Thành 5 Cú Máy: 🔰 Mồi Cảnh &rarr; 🔥 Hành Động &rarr; 🔄 Nối Cảnh</h2>
+          <p class="sl-sub">Giải pháp giúp bất kỳ nhân sự nào cũng quay xong video dẫn tour trong 15 phút mà không bao giờ sợ vấp chữ.</p>
+          <ul class="sl-bullets">
+            <li><strong>Pha 1 — 🔰 Mồi cảnh (In-point • 1 đến 1.5 giây đầu):</strong> Người cầm máy bấm Quay &rarr; Đếm thầm 1 giây &rarr; Người nói thực hiện <strong>1 cử chỉ vật lý</strong> (bước qua cổng bảo tàng, chạm tay vào hiện vật, mở cuốn cẩm nang) <em>trước khi mở miệng nói chữ đầu tiên</em>.</li>
+            <li><strong>Pha 2 — 🔥 Hành động &amp; Thoại chính (3 đến 5 giây giữa):</strong> Vừa đi hoặc vừa chỉ vào vật thật vừa nói trọn vẹn <strong>1 câu đơn ngắn gọn (2 vế, mỗi nhịp 5–7 chữ)</strong> theo giọng "Văn nói trà đá đĩnh đạc".</li>
+            <li><strong>Pha 3 — 🔄 Nối cảnh (Out-point • 1 giây cuối):</strong> Nói dứt chữ cuối cùng, <strong>tuyệt đối không buông thõng tay hay tắt máy ngay</strong>. Tiếp tục bước đi về hướng bối cảnh tiếp theo thêm 1 giây rồi mới bấm Dừng.</li>
+          </ul>
+          <div class="sl-visual-box">
+            <span class="sl-vis-lbl">⏱️ CÔNG THỨC 1 CÚ MÁY 6 GIÂY CHUẨN ĐIỆN ẢNH:</span>
+            <div><code>[1s Hành động Mồi]</code> + <code>[4s Nói 1 câu gắn với vật thật]</code> + <code>[1s Bước tiếp Nối hướng]</code> &times; 5 Cú máy = Video 35–45 giây mượt từ đầu đến cuối.</div>
+          </div>
+        </div>
+        <div class="sl-speaker">
+          <div class="sl-spk-head">🗣️ LỜI DẪN BỤC GIẢNG (ANH VIỆT)</div>
+          <p>"Tại sao khi anh chị tự cắt ghép trên CapCut, các đoạn nối cứ bị giật khựng một cái? Vì lúc bắt đầu bấm máy anh chị đang đứng đơ, và vừa nói xong chữ cuối là anh chị thở phào đứng khựng lại. Chỉ cần thêm 1 giây hành động Mồi ở đầu và 1 giây bước tiếp ở cuối, vết cắt sẽ tàng hình hoàn toàn."</p>
+        </div>
+      </article>
+
+      <!-- SLIDE 06 -->
+      <article class="sl-card" id="slide-6" data-index="5">
+        <div class="sl-screen">
+          <div class="sl-top-meta">
+            <span class="sl-badge-num">SLIDE 06 / 12</span>
+            <span class="sl-badge-grp">PHẦN II • NGUYÊN LÝ CHUYỂN CẢNH 3 TRỤC (LỆCH &ge; 45°)</span>
+          </div>
+          <h2 class="sl-title">Quy Tắc Lệch Trục &ge; 45°: Đổi Đồng Thời Cỡ Cảnh — Góc Máy — Hướng Máy</h2>
+          <p class="sl-sub">Vì sao người cầm máy bắt buộc phải di chuyển vị trí giữa Câu 1 và Câu 2?</p>
+          <ul class="sl-bullets">
+            <li><strong>Lỗi kinh điển khi tự quay:</strong> Đứng nguyên một chỗ, giữ nguyên một cỡ cảnh trung và một góc thẳng mặt từ câu 1 đến câu 5. Khi cắt bỏ đoạn nghỉ giữa hai câu, hình ảnh bị giật cục như lỗi kỹ thuật.</li>
+            <li><strong>Quy tắc 30° của điện ảnh (Thực chiến làm tròn &ge; 45°):</strong> Giữa hai câu kế tiếp nhau, người cầm máy bắt buộc bước sang trái/phải một góc tối thiểu <strong>45° đến 90°</strong>.</li>
+            <li><strong>Kết hợp đổi Cỡ cảnh (Shot Size):</strong> Câu 1 lấy Toàn cảnh bước qua cổng &rarr; Câu 2 vào Trung cận góc nghiêng 45° bên hiện vật &rarr; Câu 3 lấy Đặc tả bàn tay chỉ vào chi tiết &rarr; Câu 4 đi dọc hành lang &rarr; Câu 5 Cận trực diện chốt lại.</li>
+          </ul>
+          <div class="sl-visual-box">
+            <span class="sl-vis-lbl">📐 BẢNG BIẾN THIÊN 5 CÚ MÁY MẪU TẠI ĐIỂM ĐẾN:</span>
+            <div><strong>C1:</strong> Toàn cảnh cổng/sảnh (0°) &rarr; <strong>C2:</strong> Trung cận nghiêng 45° bên hiện vật (Δ 45°) &rarr; <strong>C3:</strong> Qua vai OTS 135° chỉ vào chi tiết (Δ 90°) &rarr; <strong>C4:</strong> Góc thấp 25° bước dọc hành lang nắng (Δ 60°) &rarr; <strong>C5:</strong> Cận chính diện 0° dừng bước chốt câu hỏi.</div>
+          </div>
+        </div>
+        <div class="sl-speaker">
+          <div class="sl-spk-head">🗣️ LỜI DẪN BỤC GIẢNG (ANH VIỆT)</div>
+          <p>"Khi đi theo cặp 2 người, người cầm máy không phải là cái giá đỡ di động chỉ biết đi lùi. Cứ mỗi khi bạn mình nói xong 1 câu 5 giây, người cầm máy phải bước sang ngang ít nhất hai bước chân để tạo góc lệch 45 độ, đồng thời bước gần lại hoặc lùi ra xa để đổi cỡ cảnh."</p>
+        </div>
+      </article>
+
+      <!-- SLIDE 07 -->
+      <article class="sl-card" id="slide-7" data-index="6">
+        <div class="sl-screen">
+          <div class="sl-top-meta">
+            <span class="sl-badge-num">SLIDE 07 / 12</span>
+            <span class="sl-badge-grp">PHẦN III • VOICE-OVER 3.0 &amp; QUAY B-ROLL DU LỊCH</span>
+          </div>
+          <h2 class="sl-title">Định Dạng 01 (Voice-Over): Gom Kho B-Roll Điểm Đến "10 Phút Dùng Cả Tuần"</h2>
+          <p class="sl-sub">Vũ khí cứu cánh khi đi điểm tham quan quá đông ồn hoặc dành cho nhân sự điều hành ngại lên hình.</p>
+          <ul class="sl-bullets">
+            <li><strong>Nguyên tắc 4 Cỡ Cảnh tại mọi điểm đến:</strong> Đừng lia máy quét ngang vô định làm người xem chóng mặt. Tại mỗi không gian, hãy giữ máy tĩnh 3 giây quay đủ 4 cỡ: <strong>Toàn cảnh</strong> (kiến trúc/không gian) &rarr; <strong>Trung cảnh</strong> (con người/trải nghiệm) &rarr; <strong>Cận cảnh</strong> (món ăn/vé/bàn tay) &rarr; <strong>Đặc tả Macro</strong> (chất liệu/hoa văn di sản/khói trà).</li>
+            <li><strong>Quy trình dựng ngược (Reverse Workflow) trên CapCut:</strong> Thả 12–15 clip B-Roll lên timeline &rarr; Cắt gọt mỗi cảnh còn đúng <strong>1.5 đến 2.5 giây</strong> theo chuyển động (Movement Cut) &rarr; Bấm nút Record thu âm giọng đọc ấm áp đè lên hình.</li>
+            <li><strong>Công thức âm thanh chuẩn:</strong> Giọng đọc kéo lên <strong>-3dB đến 0dB</strong>, nhạc nền Acoustic/Instrumental hạ xuống <strong>-22dB đến -25dB</strong>, giữ 15% tiếng động thực tế.</li>
+          </ul>
+          <div class="sl-visual-box">
+            <span class="sl-vis-lbl">🔗 MỞ GIÁO ÁN &amp; SLIDE VOICE-OVER 3.0:</span>
+            <div class="sl-case-grid">
+              <a class="sl-case-btn" href="https://fedu.vn/course/voiceover3.0.html" target="_blank" rel="noopener">
+                <strong>Giáo Án Voice-Over 3.0 ↗</strong>
+                <span>Quy trình tách hình khỏi tiếng &amp; cắt nhịp 2s</span>
+              </a>
+              <a class="sl-case-btn" href="https://fedu.vn/course/voiceover3_slides.html" target="_blank" rel="noopener">
+                <strong>Bộ Slide Voice-Over 3.0 ↗</strong>
+                <span>Hướng dẫn 4 cỡ cảnh B-Roll &amp; thu âm điện thoại</span>
+              </a>
+              <a class="sl-case-btn" href="https://fedu.vn/course/bocucquay.html" target="_blank" rel="noopener">
+                <strong>Tài Liệu Bố Cục Quay Điện Ảnh ↗</strong>
+                <span>Phân tầng Tiền - Trung - Hậu cảnh &amp; đường dẫn mắt</span>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="sl-speaker">
+          <div class="sl-spk-head">🗣️ LỜI DẪN BỤC GIẢNG (ANH VIỆT)</div>
+          <p>"Khi anh chị đi khảo sát tuyến điểm mới hoặc dẫn đoàn, chỉ cần bỏ ra đúng 10 phút cầm điện thoại giữ tĩnh 3 giây ở 4 cỡ cảnh: Toàn - Trung - Cận - Đặc tả. Về khách sạn buổi tối, thả 15 cảnh đó vào CapCut cắt mỗi cảnh 2 giây rồi đọc 5 câu chia sẻ kinh nghiệm thực tế đè lên là có ngay một video triệu view mà không cần lộ mặt."</p>
+        </div>
+      </article>
+
+      <!-- SLIDE 08 -->
+      <article class="sl-card" id="slide-8" data-index="7">
+        <div class="sl-screen">
+          <div class="sl-top-meta">
+            <span class="sl-badge-num">SLIDE 08 / 12</span>
+            <span class="sl-badge-grp">PHẦN III • GIẢI PHẪU 4 MẪU DU LỊCH, BẢO TÀNG &amp; DI SẢN</span>
+          </div>
+          <h2 class="sl-title">Xem Trực Tiếp 4 Mẫu Quay Du Lịch, Bảo Tàng &amp; Chuyển Cảnh Bằng iPhone</h2>
+          <p class="sl-sub">Bấm mở trực tiếp 4 báo cáo phân tích chuyên sâu ngành Du lịch trên <code>ytuong.fedu.vn</code>:</p>
+          <ul class="sl-bullets">
+            <li><strong>Mẫu 5 (`@omgadrian` — Travel Sequence Formula):</strong> 34 phân cảnh bóc tách công thức 5 bước chuyển đổi từ địa điểm này sang địa điểm khác mượt như phim.</li>
+            <li><strong>Mẫu 6 (`@withgeorgy` — Quay Du Lịch Đỉnh Cao Bằng iPhone):</strong> Khai thác ống kính 5x Telephoto nén hậu cảnh hùng vĩ và chế độ Action Mode khi bước đi.</li>
+            <li><strong>Mẫu 7 (`@jeromememe` — Artisans of Venice &amp; Bhutan):</strong> Triết lý <em>People-First</em> — tôn vinh đôi bàn tay nghệ nhân di sản và nụ cười bản địa (cực kỳ ăn khớp với Bảo tàng Phụ nữ Việt Nam).</li>
+            <li><strong>Mẫu 8 (`@nemo_ooo` &amp; `@mario.prawira`):</strong> Cách quay không gian triển lãm trong Bảo tàng kết hợp Voice-Over chia sẻ kinh nghiệm vé/lịch trình &amp; cách tự quay chuyển cảnh trong phòng khách sạn.</li>
+          </ul>
+          <div class="sl-visual-box">
+            <span class="sl-vis-lbl">🌏 BẤM MỞ 4 MẪU DU LỊCH &amp; BẢO TÀNG TRÊN MÀN CHIẾU:</span>
+            <div class="sl-case-grid">
+              <a class="sl-case-btn" href="https://ytuong.fedu.vn/reports/IG_@omgadrian_DcqzVfno5Al_Travel_Sequence_Formula.html" target="_blank" rel="noopener">
+                <strong>5. Chuỗi Du Ký @omgadrian ↗</strong>
+                <span>34 cảnh • Công thức chuyển đổi không gian du lịch</span>
+              </a>
+              <a class="sl-case-btn" href="https://ytuong.fedu.vn/reports/IG_@withgeorgy_Db7_3rpgK5c_Cinematic_Travel_iPhone_Mastery.html" target="_blank" rel="noopener">
+                <strong>6. iPhone Travel @withgeorgy ↗</strong>
+                <span>Kỹ thuật 5x Telephoto &amp; bố cục 3 lớp bằng iPhone</span>
+              </a>
+              <a class="sl-case-btn" href="https://ytuong.fedu.vn/reports/IG_@jeromememe_DQmKgPDEWgJ_Artisans_of_Venice.html" target="_blank" rel="noopener">
+                <strong>7. Di Sản Văn Hóa @jeromememe ↗</strong>
+                <span>Artisans of Venice • Kể chuyện con người &amp; di sản</span>
+              </a>
+              <a class="sl-case-btn" href="https://ytuong.fedu.vn/reports/IG_@%E5%B0%BC%E8%8E%ABNemo_%E0%BD%B2%E0%BD%BF_%E1%97%A6%E2%86%9E%E2%97%83_DclWb98PiK_Video_by_nemo_ooo.html" target="_blank" rel="noopener">
+                <strong>8. Quay Bảo Tàng @nemo_ooo ↗</strong>
+                <span>37.2s • B-Roll triển lãm bảo tàng + Voice-Over</span>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="sl-speaker">
+          <div class="sl-spk-head">🗣️ LỜI DẪN BỤC GIẢNG (ANH VIỆT)</div>
+          <p>"Ở đây chúng ta đang đứng trong không gian của Bảo tàng Phụ nữ Việt Nam. Anh chị nhìn mẫu số 7 của Jerome Teo và mẫu số 8 của Nemo: Khi quay văn hóa, di sản hay bảo tàng, đừng chỉ quay cái tủ kính xa tít. Hãy tiến sát lại quay cận cảnh hoa văn thổ cẩm, ánh sáng hắt qua khung cửa, rồi lồng câu chuyện con người phía sau hiện vật đó."</p>
+        </div>
+      </article>
+
+      <!-- SLIDE 09 -->
+      <article class="sl-card" id="slide-9" data-index="8">
+        <div class="sl-screen">
+          <div class="sl-top-meta">
+            <span class="sl-badge-num">SLIDE 09 / 12</span>
+            <span class="sl-badge-grp">PHẦN IV • CHIẾN LƯỢC NGỰA GỖ THÀNH TROY CHO LỮ HÀNH</span>
+          </div>
+          <h2 class="sl-title">4 Vỏ Bọc Nội Dung Giúp Video Du Lịch Ra Khách Đặt Tour Thật</h2>
+          <p class="sl-sub">Vỏ là Trải nghiệm / Tình huống gây tò mò — Lõi là Chuẩn mực dịch vụ &amp; Uy tín lữ hành.</p>
+          <ul class="sl-bullets">
+            <li><strong>Vỏ bọc #1 — Phẫu thuật chi phí ẩn của Tour giá rẻ (Trend #03 &amp; #30):</strong> <em>"Vì sao cùng đi tuyến này có bên chào rẻ hơn 1,5 triệu, nhưng lên xe lại mất đứt 4 tiếng bị nhốt trong điểm mua sắm bắt buộc?"</em> &rarr; Bảo vệ tuyệt đối giá trị của các đơn vị lữ hành chuẩn mực.</li>
+            <li><strong>Vỏ bọc #2 — POV: Khách VIP / Gia đình lớn tuổi đi tour được chăm sóc thế nào (Trend #14):</strong> Quay góc nhìn thứ nhất từ lúc bước lên xe, khăn lạnh, ghế ngồi, suất ăn riêng cho người lớn tuổi, lối đi ưu tiên không phải xếp hàng nắng nôi.</li>
+            <li><strong>Vỏ bọc #3 — Bí mật chọn khung giờ vàng của Hướng dẫn viên kỳ cựu (Trend #07):</strong> <em>"Đi điểm này lúc 9h sáng chỉ thấy đầu người, nhưng lệch đi đúng 45 phút vào ngách này thì cả không gian cổ kính thuộc về đoàn mình."</em></li>
+            <li><strong>Vỏ bọc #4 — Phản ứng thật của khách tại điểm di sản (Trend #17):</strong> Bắt trọn khoảnh khắc khách lặng người hoặc mỉm cười khi nghe câu chuyện lịch sử đằng sau một hiện vật tại bảo tàng.</li>
+          </ul>
+          <div class="sl-visual-box">
+            <span class="sl-vis-lbl">🎯 CẤU TRÚC KỊCH BẢN 3 NHỊP (ZERO WARM-UP):</span>
+            <div><strong>Câu 1 (0–5s):</strong> Đập thẳng vào hiện trường hoặc nghịch lý khách đi tour hay gặp (Cấm chào hỏi dạo đầu) &rarr; <strong>Câu 2–4 (5–35s):</strong> Giải thích cơ chế bằng 3 chi tiết thực tế tại điểm đến &rarr; <strong>Câu 5 (35–45s):</strong> Dừng bước chốt lại tiêu chuẩn làm nghề đàng hoàng.</div>
+          </div>
+        </div>
+        <div class="sl-speaker">
+          <div class="sl-spk-head">🗣️ LỜI DẪN BỤC GIẢNG (ANH VIỆT)</div>
+          <p>"Nếu anh chị chỉ đăng video đọc lịch trình Ngày 1 đi đâu, Ngày 2 ăn gì, khách sẽ lướt qua ngay vì nó giống hệt tờ rơi quảng cáo. Nhưng nếu anh chị mở đầu bằng một tình huống thật: 'Đưa bố mẹ ngoài 60 tuổi đi tour sợ nhất không phải đắt rẻ, mà là lịch trình chạy sô làm các cụ đau khớp gối', khách hàng có tiền sẽ dừng lại nghe anh chị ngay lập tức."</p>
+        </div>
+      </article>
+
+      <!-- SLIDE 10 -->
+      <article class="sl-card" id="slide-10" data-index="9">
+        <div class="sl-screen">
+          <div class="sl-top-meta">
+            <span class="sl-badge-num">SLIDE 10 / 12</span>
+            <span class="sl-badge-grp">PHẦN V • THỰC HÀNH CẶP ĐÔI 25 PHÚT TẠI BẢO TÀNG PHỤ NỮ VN</span>
+          </div>
+          <h2 class="sl-title">Đề Bài Thực Hành 01: Dẫn Tour Khám Phá Không Gian &amp; Hiện Vật (5 Cú Máy)</h2>
+          <p class="sl-sub">Bắt cặp 2 người (Người A dẫn chuyện &harr; Người B cầm máy) thực hành ngay tại sảnh, hành lang và khu trưng bày 36 Lý Thường Kiệt.</p>
+          <ul class="sl-bullets">
+            <li><strong>C1 (Toàn cảnh bước qua cổng/cửa sảnh • 0°):</strong> <em>Mồi:</em> Đẩy cửa hoặc sải bước qua cổng 36 Lý Thường Kiệt &rarr; <em>Thoại C1: "Nhiều người đi qua phố Lý Thường Kiệt hàng trăm lần nhưng chưa từng bước vào không gian yên bình này..."</em> &rarr; <em>Nối:</em> Bước tiếp vào sảnh.</li>
+            <li><strong>C2 (Trung cận góc nghiêng 45° bên không gian trưng bày • Δ 45°):</strong> <em>Mồi:</em> Dừng bước, tay chạm nhẹ hoặc chỉ vào hiện vật/khung trưng bày &rarr; <em>Thoại C2 (Kể 1 chi tiết đắt giá nhất)</em> &rarr; <em>Nối:</em> Xoay người bước dọc hành lang.</li>
+            <li><strong>C3 (Qua vai OTS 135° nhìn vào hiện vật/chi tiết văn hóa • Δ 90°):</strong> <em>Mồi:</em> Nghiêng người quan sát cận cảnh hoa văn/bức ảnh lịch sử &rarr; <em>Thoại C3 (Góc nhìn chuyên sâu của người làm du lịch)</em> &rarr; <em>Nối:</em> Ngẩng lên bước ra phía ánh sáng.</li>
+            <li><strong>C4 (Góc thấp 25° đi dọc hành lang nắng xiên • Δ 65°) &rarr; C5 (Cận trực diện 0° tựa lan can chốt hạ • Δ 45°):</strong> Sải bước ở C4 nói ý kết nối cảm xúc &rarr; Dừng hẳn tại lan can/khung cửa sổ ở C5 để chốt câu cuối.</li>
+          </ul>
+          <div class="sl-visual-box">
+            <span class="sl-vis-lbl">📐 BỘ 5 GÓC MÁY MẪU ĐỂ NGƯỜI CẦM MÁY (NGƯỜI B) SOI THEO:</span>
+            <div class="sl-shot-grid">
+              <div class="sl-shot">
+                <div class="sl-shot-img">
+                  <span class="sl-shot-badge">C1 • Walk-in 0°</span>
+                  <img src="assets/wnt_thuchanh/bt1_v2_shot1.jpg?v=20261020v2" alt="C1 Bước vào không gian" loading="lazy"/>
+                </div>
+                <div class="sl-shot-cap">C1: Bước vào không gian • Nối hướng đi</div>
+              </div>
+              <div class="sl-shot">
+                <div class="sl-shot-img">
+                  <span class="sl-shot-badge">C2 • Nghiêng 45°</span>
+                  <img src="assets/wnt_thuchanh/bt2_v2_shot1.jpg?v=20261020v2" alt="C2 Chỉ vào hiện vật thật" loading="lazy"/>
+                </div>
+                <div class="sl-shot-cap">C2: Dừng bên hiện vật • Chỉ chi tiết thật</div>
+              </div>
+              <div class="sl-shot">
+                <div class="sl-shot-img">
+                  <span class="sl-shot-badge">C3 • OTS 135°</span>
+                  <img src="assets/wnt_thuchanh/bt2_v2_shot2.jpg?v=20261020v2" alt="C3 Góc qua vai cận hiện vật" loading="lazy"/>
+                </div>
+                <div class="sl-shot-cap">C3: Góc qua vai 135° • Đặc tả câu chuyện</div>
+              </div>
+              <div class="sl-shot">
+                <div class="sl-shot-img">
+                  <span class="sl-shot-badge">C4 • Hành lang 25°</span>
+                  <img src="assets/wnt_thuchanh/bt2_v2_shot4.jpg?v=20261020v2" alt="C4 Bước dọc hành lang nắng" loading="lazy"/>
+                </div>
+                <div class="sl-shot-cap">C4: Bước dọc hành lang nắng xiên</div>
+              </div>
+              <div class="sl-shot">
+                <div class="sl-shot-img">
+                  <span class="sl-shot-badge">C5 • Chốt 0°</span>
+                  <img src="assets/wnt_thuchanh/bt1_v2_shot5.jpg?v=20261020v2" alt="C5 Dừng bước tại lan can chốt hạ" loading="lazy"/>
+                </div>
+                <div class="sl-shot-cap">C5: Dừng bước tựa lan can • Chốt trực diện</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="sl-speaker">
+          <div class="sl-spk-head">🗣️ LỜI DẪN BỤC GIẢNG (ANH VIỆT)</div>
+          <p>"Bây giờ anh chị chia cặp 2 người luôn. Người A làm người dẫn chuyện, Người B cầm điện thoại mở sẵn 5 bức ảnh góc máy trên trang web này. Mỗi cú máy chỉ quay đúng 6 giây ở 5 vị trí khác nhau trong Bảo tàng Phụ nữ, xong đổi vai cho nhau!"</p>
+        </div>
+      </article>
+
+      <!-- SLIDE 11 -->
+      <article class="sl-card" id="slide-11" data-index="10">
+        <div class="sl-screen">
+          <div class="sl-top-meta">
+            <span class="sl-badge-num">SLIDE 11 / 12</span>
+            <span class="sl-badge-grp">PHẦN V • THỰC HÀNH CẶP ĐÔI NGOÀI VỈA HÈ &amp; CẦU THANG</span>
+          </div>
+          <h2 class="sl-title">Đề Bài Thực Hành 02: Phỏng Vấn Dạo &amp; Bóc Tách 1 Kinh Nghiệm Đi Tour Đắt Giá</h2>
+          <p class="sl-sub">Dành cho cặp đôi muốn quay dạng Hỏi - Đáp (2 người cùng đi bộ trên vỉa hè cây xanh Lý Thường Kiệt hoặc khu vực cầu thang/sân vườn).</p>
+          <ul class="sl-bullets">
+            <li><strong>C1 (Đặc tả 40° cài mic / cầm vé tham quan):</strong> <em>Mồi:</em> Tay cài mic lên cổ áo bạn đồng hành kèm câu hỏi mồi: <em>"Đi tour văn hóa làm sao để khách không thấy chán?"</em> &rarr; <em>Nối:</em> Hai người bắt đầu nhấc chân bước.</li>
+            <li><strong>C2 (Toàn cảnh góc thấp 20° hai người sải bước song song • Δ 60°):</strong> <em>Mồi:</em> Bắt nhịp chân bước dưới tán cây &rarr; <em>Thoại C2 (Đập vỡ lầm tưởng: Khách chán vì nghe đọc tiểu sử năm sinh năm mất)</em> &rarr; <em>Nối:</em> Xoay nhẹ vai sang bạn.</li>
+            <li><strong>C3 (Trung cận qua vai người hỏi OTS 140° • Δ 120°):</strong> <em>Mồi:</em> Mở hai bàn tay giải thích &rarr; <em>Thoại C3 (Bí quyết: Kể đúng 1 lát cắt đời thường phía sau hiện vật)</em> &rarr; <em>Nối:</em> Bước chậm lại.</li>
+            <li><strong>C4 (Góc nghiêng 85° ngược nắng nhẹ) &rarr; C5 (Cận trực diện 0° tựa lan can):</strong> Nêu ví dụ thực tế ở C4 &rarr; Dừng bước nhìn thẳng camera chốt thông điệp ở C5.</li>
+          </ul>
+          <div class="sl-visual-box">
+            <span class="sl-vis-lbl">📐 BỘ 5 GÓC MÁY PHỎNG VẤN DẠO NGOÀI TRỜI:</span>
+            <div class="sl-shot-grid">
+              <div class="sl-shot">
+                <div class="sl-shot-img">
+                  <span class="sl-shot-badge">C1 • Macro Mic 40°</span>
+                  <img src="assets/wnt_thuchanh/bt3_v2_shot1.jpg?v=20261020v2" alt="Mồi: Cài mic hỏi câu đầu" loading="lazy"/>
+                </div>
+                <div class="sl-shot-cap">C1: Cài mic / Cầm vé • Đặt câu hỏi mồi</div>
+              </div>
+              <div class="sl-shot">
+                <div class="sl-shot-img">
+                  <span class="sl-shot-badge">C2 • Wide Walk 20°</span>
+                  <img src="assets/wnt_thuchanh/bt3_v2_shot2.jpg?v=20261020v2" alt="Sải bước đôi dưới hàng cây" loading="lazy"/>
+                </div>
+                <div class="sl-shot-cap">C2: Bước song song góc thấp 20°</div>
+              </div>
+              <div class="sl-shot">
+                <div class="sl-shot-img">
+                  <span class="sl-shot-badge">C3 • OTS 140°</span>
+                  <img src="assets/wnt_thuchanh/bt3_v2_shot3.jpg?v=20261020v2" alt="Qua vai người hỏi" loading="lazy"/>
+                </div>
+                <div class="sl-shot-cap">C3: Qua vai người hỏi 140°</div>
+              </div>
+              <div class="sl-shot">
+                <div class="sl-shot-img">
+                  <span class="sl-shot-badge">C4 • Profile 85°</span>
+                  <img src="assets/wnt_thuchanh/bt3_v2_shot4.jpg?v=20261020v2" alt="Góc nghiêng 85 độ dưới nắng" loading="lazy"/>
+                </div>
+                <div class="sl-shot-cap">C4: Góc nghiêng 85° ngược nắng nhẹ</div>
+              </div>
+              <div class="sl-shot">
+                <div class="sl-shot-img">
+                  <span class="sl-shot-badge">C5 • Frontal 0°</span>
+                  <img src="assets/wnt_thuchanh/bt3_v2_shot5.jpg?v=20261020v2" alt="Tựa lan can chốt trực diện" loading="lazy"/>
+                </div>
+                <div class="sl-shot-cap">C5: Dừng bước tựa lan can • Chốt trực diện</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="sl-speaker">
+          <div class="sl-spk-head">🗣️ LỜI DẪN BỤC GIẢNG (ANH VIỆT)</div>
+          <p>"Nếu anh chị nào vẫn hơi ngượng khi tự nói một mình với camera, hãy chọn ngay Đề bài số 2 này: Một người hỏi mồi câu đầu tiên, rồi hai anh em vừa đi dạo trên vỉa hè rợp bóng cây vừa trả lời qua lại. Khi mắt mình nói chuyện với đồng nghiệp rồi mới quay sang ống kính, cảm giác sợ camera biến mất 100%."</p>
+        </div>
+      </article>
+
+      <!-- SLIDE 12 -->
+      <article class="sl-card" id="slide-12" data-index="11">
+        <div class="sl-screen">
+          <div class="sl-top-meta">
+            <span class="sl-badge-num">SLIDE 12 / 12</span>
+            <span class="sl-badge-grp">PHẦN V • NGHIỆM THU SẢN PHẨM NGAY TẠI LỚP</span>
+          </div>
+          <h2 class="sl-title">Bảng Kiểm 5 Tiêu Chí Trước Khi Xuất File Trên CapCut (Thang 10 Điểm)</h2>
+          <p class="sl-sub">Rà soát nhanh 5 gạch đầu dòng dưới đây trước khi bấm Xuất video 1080p 30fps:</p>
+          <ul class="sl-bullets">
+            <li><strong>1. Cổng 3 giây đầu (2 điểm):</strong> Vào thẳng hành động bước đi hoặc chỉ tay vào hiện vật kèm câu nhận định sắc bén (Tuyệt đối không có câu chào dạo đầu <em>"Xin chào mọi người, hôm nay mình đang ở..."</em>).</li>
+            <li><strong>2. Đủ 5 góc máy lệch trục &ge; 45° (2 điểm):</strong> Không có 2 câu liên tiếp trùng một góc đứng và trùng một cỡ cảnh.</li>
+            <li><strong>3. Cắt đúng điểm rơi chuyển động Cut on Action (2 điểm):</strong> Đã cắt gọn đoạn nghỉ chờ ở đầu/cuối mỗi cú máy, giữ đúng nhịp hành động Mồi &rarr; Nói &rarr; Nối.</li>
+            <li><strong>4. Âm thanh sạch &amp; có hơi thở thực địa (2 điểm):</strong> Giọng nói rõ nét (-3dB đến 0dB), giữ 15–20% âm thanh không gian thật, nhạc nền hạ nhỏ (-24dB).</li>
+            <li><strong>5. Ngôn ngữ cơ thể &amp; Ánh mắt (2 điểm):</strong> Mắt nhìn thẳng vào lỗ camera (không liếc nhìn màn hình), bước đi đĩnh đạc không hối hả.</li>
+          </ul>
+          <div class="sl-visual-box">
+            <span class="sl-vis-lbl">🚀 BẤM MỞ TRANG 25 KỊCH BẢN &amp; PHÂN CẢNH CHI TIẾT ĐỂ THỰC HÀNH:</span>
+            <div class="sl-case-grid">
+              <a class="sl-case-btn" href="https://fedu.vn/course/walkntalkthuchanh.html" target="_blank" rel="noopener">
+                <strong>Mở 25 Ảnh Phân Cảnh &amp; Kịch Bản Mẫu ↗</strong>
+                <span>Hướng dẫn chi tiết từng cú máy C1..C5 cho nhóm 2 người</span>
+              </a>
+              <a class="sl-case-btn" href="https://ytuong.fedu.vn" target="_blank" rel="noopener">
+                <strong>Mở Kho Ý Tưởng (ytuong.fedu.vn) ↗</strong>
+                <span>Tra cứu hơn 780 mẫu video phân tích theo ngành &amp; kiểu quay</span>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="sl-speaker">
+          <div class="sl-spk-head">🗣️ LỜI DẪN BỤC GIẢNG (ANH VIỆT)</div>
+          <p>"Anh chị quay xong 5 cú máy ngoài sân và hành lang bảo tàng thì quay trở lại phòng, nạp 5 clip đó vào CapCut, cắt đúng điểm tay vừa chạm hoặc chân vừa bước, rồi chúng ta chiếu thẳng sản phẩm của từng nhóm lên màn hình lớn để sửa trực tiếp tại chỗ!"</p>
+        </div>
+      </article>
+
+    </div>
+  </main>
+
+  <script>
+    var currentSlide = 0;
+    var totalSlides = 12;
+    var singleMode = false;
+
+    function updateSlideView() {
+      var cards = document.querySelectorAll('.sl-card');
+      var pills = document.querySelectorAll('.quick-jump button');
+      cards.forEach(function(c, i) {
+        if (i === currentSlide) c.classList.add('active-slide');
+        else c.classList.remove('active-slide');
+      });
+      pills.forEach(function(p, i) {
+        if (i === currentSlide) p.classList.add('active-pill');
+        else p.classList.remove('active-pill');
+      });
+      var counter = document.getElementById('slideCounter');
+      if (singleMode) {
+        counter.textContent = 'SLIDE ' + (currentSlide + 1) + ' / ' + totalSlides;
+      } else {
+        counter.textContent = 'XEM TẤT CẢ ' + totalSlides + ' SLIDES';
+      }
+    }
+
+    window.toggleDeckMode = function() {
+      singleMode = !singleMode;
+      document.body.classList.toggle('single-mode', singleMode);
+      var btn = document.getElementById('btnToggleMode');
+      btn.textContent = singleMode ? '📋 Xem toàn bộ Hub & 12 Slides' : '🖥️ Chế độ chiếu từng Slide';
+      updateSlideView();
+      if (singleMode) {
+        var active = document.getElementById('slide-' + (currentSlide + 1));
+        if (active) active.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    };
+
+    window.goToSlide = function(idx) {
+      currentSlide = Math.max(0, Math.min(totalSlides - 1, idx));
+      updateSlideView();
+      var el = document.getElementById('slide-' + (currentSlide + 1));
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    };
+
+    window.nextSlide = function() {
+      if (!singleMode) window.toggleDeckMode();
+      else window.goToSlide((currentSlide + 1) % totalSlides);
+    };
+
+    window.prevSlide = function() {
+      if (!singleMode) window.toggleDeckMode();
+      else window.goToSlide((currentSlide - 1 + totalSlides) % totalSlides);
+    };
+
+    window.toggleFullScreen = function() {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch(function(){});
+      } else {
+        document.exitFullscreen().catch(function(){});
+      }
+    };
+
+    document.addEventListener('keydown', function(e) {
+      if (e.target && (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA')) return;
+      if (e.key === 'ArrowRight') window.nextSlide();
+      else if (e.key === 'ArrowLeft') window.prevSlide();
+      else if (e.key === 'f' || e.key === 'F') window.toggleFullScreen();
+    });
+
+    updateSlideView();
+  </script>
+</body>
+</html>
