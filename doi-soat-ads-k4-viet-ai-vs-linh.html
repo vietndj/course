@@ -1,0 +1,1406 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Đối Soát Quảng Cáo Offline K4: Anh Việt + AI so với Linh & Quyết Định Khóa K5</title>
+  <meta name="description" content="Báo cáo kiểm toán độc lập cùng Thư ký Claude Opus 5.5: Đối chiếu 100% chi tiêu Meta Ads, giải mã nguồn click Google Sheets và khớp tròn 67,5 triệu tiền mặt thực thu trên Sổ cái ngân hàng lớp Offline K4.">
+
+  <!-- FAVICON SVG MONOGRAM K4 (MARKETING #FB923C TRÊN NỀN #07090E) -->
+  <link id="dynamic-favicon" rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='16'%20fill='%2307090E'/%3E%3Ctext%20x='30'%20y='43'%20font-family='system-ui,-apple-system,sans-serif'%20font-weight='800'%20font-size='28'%20text-anchor='middle'%20fill='%23FB923C'%3EK4%3C/text%3E%3Ccircle%20cx='53'%20cy='15'%20r='4'%20fill='%2310B981'/%3E%3C/svg%3E">
+
+  <style>
+    @font-face { font-family: 'FD Aeonik Extended'; src: url('https://fedu.vn/k/fonts/FDAeonikExtended-Bold.woff2') format('woff2'); font-weight: 700; font-display: swap; }
+    @font-face { font-family: 'FD Aeonik Extended'; src: url('https://fedu.vn/k/fonts/FDAeonikExtended-SemiBold.woff2') format('woff2'); font-weight: 600; font-display: swap; }
+    @font-face { font-family: 'FD Aeonik'; src: url('https://fedu.vn/k/fonts/FDAeonikMedium.ttf') format('truetype'); font-weight: 500; font-display: swap; }
+    @font-face { font-family: 'FD Aeonik'; src: url('https://fedu.vn/k/fonts/FDAeonikRegular.ttf') format('truetype'); font-weight: 400; font-display: swap; }
+    @font-face { font-family: 'Tiempos Text'; src: url('https://fedu.vn/k/fonts/FDTiemposText-Bold.woff2') format('woff2'); font-weight: 700; font-display: swap; }
+    @font-face { font-family: 'Tiempos Text'; src: url('https://fedu.vn/k/fonts/FDTiemposText-Medium.woff2') format('woff2'); font-weight: 500; font-display: swap; }
+    @font-face { font-family: 'Tiempos Text'; src: url('https://fedu.vn/k/fonts/FDTiemposText-Regular.woff2') format('woff2'); font-display: swap; }
+    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700&display=swap');
+  </style>
+
+  <style>
+    :root {
+      --ink-bg: #ffffff;
+      --ink-sidebar: #f8fafc;
+      --ink-text: #0f172a;
+      --ink-muted: #475569;
+      --ink-subtle: #64748b;
+      --ink-border: #e2e8f0;
+      --ink-border-strong: #cbd5e1;
+      --ink-hover: #f1f5f9;
+      --ink-accent: #0f172a;
+      --font-display: 'FD Aeonik Extended', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-heading: 'FD Aeonik', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-body: 'Tiempos Text', Georgia, serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      --sidebar-width: 276px;
+      --content-max-width: 980px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: auto; font-size: 16px; }
+    body {
+      background-color: var(--ink-bg);
+      color: var(--ink-text);
+      font-family: var(--font-body);
+      line-height: 1.72;
+      -webkit-font-smoothing: antialiased;
+      display: flex;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, h4 {
+      color: var(--ink-text);
+      font-weight: 600;
+      line-height: 1.3;
+      font-family: var(--font-heading);
+    }
+    h1.title-main {
+      font-family: var(--font-display);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: -0.015em;
+      font-size: clamp(24px, 3.2vw, 34px);
+      line-height: 1.18;
+      margin-bottom: 1rem;
+    }
+    h2 {
+      font-size: clamp(19px, 2.3vw, 23px);
+      border-bottom: 1px solid var(--ink-border);
+      padding-bottom: 0.5rem;
+      margin-top: 2.5rem;
+      margin-bottom: 1rem;
+    }
+    h3 {
+      font-size: 1.08rem;
+      margin-top: 1.5rem;
+      margin-bottom: 0.65rem;
+    }
+
+    p { margin-bottom: 1rem; font-size: 1.08rem; }
+    ul, ol { padding-left: 1.35rem; margin-bottom: 1.1rem; font-size: 1.06rem; }
+    li { margin-bottom: 0.4rem; }
+
+    a {
+      color: var(--ink-accent);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      text-decoration-color: var(--ink-border-strong);
+    }
+    a:hover { text-decoration-color: var(--ink-accent); }
+
+    code {
+      font-family: var(--font-mono);
+      font-size: 0.82em;
+      background-color: var(--ink-hover);
+      padding: 0.15em 0.4em;
+      border-radius: 4px;
+      border: 1px solid var(--ink-border);
+    }
+
+    /* SIDEBAR */
+    .ink-sidebar {
+      width: var(--sidebar-width);
+      flex-shrink: 0;
+      background-color: var(--ink-sidebar);
+      border-right: 1px solid var(--ink-border);
+      height: 100vh;
+      position: sticky;
+      top: 0;
+      overflow-y: auto;
+      padding: 1.75rem 1.25rem;
+      font-family: var(--font-heading);
+    }
+    .ink-sidebar-header {
+      margin-bottom: 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .ink-brand {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 0.92rem;
+      letter-spacing: 0.06em;
+      color: var(--ink-text);
+      text-decoration: none;
+      text-transform: uppercase;
+    }
+    .ink-toc-title {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: var(--ink-subtle);
+      letter-spacing: 0.06em;
+      margin-bottom: 0.65rem;
+      margin-top: 1rem;
+    }
+    .ink-toc-list { list-style: none; padding: 0; margin: 0; }
+    .ink-toc-list li { margin-bottom: 0.2rem; }
+    .ink-toc-link {
+      display: block;
+      padding: 0.38rem 0.65rem;
+      color: var(--ink-muted);
+      text-decoration: none;
+      font-size: 0.84rem;
+      line-height: 1.35;
+      border-radius: 6px;
+    }
+    .ink-toc-link:hover { background-color: var(--ink-hover); color: var(--ink-text); }
+    .ink-toc-link.is-active {
+      background-color: #e2e8f0;
+      color: var(--ink-text);
+      font-weight: 600;
+    }
+    .ink-toc-nested {
+      padding-left: 0.85rem;
+      margin-top: 0.15rem;
+      border-left: 1px solid var(--ink-border);
+      margin-left: 0.6rem;
+    }
+    .ink-toc-nested .ink-toc-link {
+      font-size: 0.79rem;
+      padding: 0.28rem 0.55rem;
+    }
+
+    /* MAIN CONTENT */
+    .ink-main-wrapper {
+      flex-grow: 1;
+      min-width: 0;
+      padding: 2.75rem 2.5rem 5rem;
+      display: flex;
+      justify-content: center;
+    }
+    .ink-content {
+      width: 100%;
+      max-width: var(--content-max-width);
+      min-width: 0;
+    }
+    .ink-mode-reference { --content-max-width: 980px; }
+
+    .ink-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.65rem;
+      font-family: var(--font-heading);
+      font-size: 0.84rem;
+      color: var(--ink-subtle);
+      margin-bottom: 1.25rem;
+      align-items: center;
+    }
+    .ink-badge {
+      font-family: var(--font-mono);
+      text-transform: uppercase;
+      font-size: 0.72rem;
+      padding: 3px 9px;
+      border: 1px solid var(--ink-border-strong);
+      background: var(--ink-sidebar);
+      border-radius: 99px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      color: var(--ink-text);
+    }
+
+    /* DECISION CALLOUT & KPI STRIP */
+    .verdict-box {
+      background: #f8fafc;
+      border: 1.5px solid #0f172a;
+      border-radius: 12px;
+      padding: 1.25rem 1.4rem;
+      margin-bottom: 1.25rem;
+      font-family: var(--font-heading);
+    }
+    .verdict-kicker {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      background: #0f172a;
+      color: #ffffff;
+      padding: 3px 9px;
+      border-radius: 5px;
+      margin-bottom: 0.65rem;
+    }
+    .verdict-box p {
+      font-family: var(--font-heading);
+      font-size: 0.96rem;
+      line-height: 1.58;
+      margin-bottom: 0.55rem;
+    }
+    .verdict-box p:last-child { margin-bottom: 0; }
+
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 0.75rem;
+      margin-bottom: 1.25rem;
+      font-family: var(--font-heading);
+    }
+    .kpi-card {
+      border: 1px solid var(--ink-border-strong);
+      border-radius: 10px;
+      padding: 0.9rem 1rem;
+      background: #ffffff;
+    }
+    .kpi-card.highlight {
+      background: #f0fdf4;
+      border-color: #86efac;
+    }
+    .kpi-card.warn {
+      background: #fffbeb;
+      border-color: #fcd34d;
+    }
+    .kpi-label {
+      font-size: 0.73rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--ink-subtle);
+      margin-bottom: 0.3rem;
+    }
+    .kpi-value {
+      font-family: var(--font-mono);
+      font-size: 1.28rem;
+      font-weight: 700;
+      color: var(--ink-text);
+      line-height: 1.2;
+    }
+    .kpi-sub {
+      font-size: 0.8rem;
+      color: var(--ink-muted);
+      margin-top: 0.3rem;
+      line-height: 1.35;
+    }
+
+    /* EVIDENCE HUB BAR */
+    .evidence-hub {
+      background: var(--ink-sidebar);
+      border: 1px solid var(--ink-border-strong);
+      border-radius: 10px;
+      padding: 0.95rem 1.1rem;
+      margin-bottom: 1.5rem;
+      font-family: var(--font-heading);
+    }
+    .evidence-hub-title {
+      font-family: var(--font-mono);
+      font-size: 0.73rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--ink-muted);
+      margin-bottom: 0.6rem;
+    }
+    .proof-cluster {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      align-items: center;
+    }
+    .proof-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-family: var(--font-heading);
+      font-size: 0.76rem;
+      font-weight: 600;
+      line-height: 1.2;
+      padding: 4px 8px;
+      border-radius: 6px;
+      text-decoration: none !important;
+      border: 1px solid var(--ink-border-strong);
+      background: #ffffff;
+      color: var(--ink-text);
+      position: relative;
+      top: -1px;
+      vertical-align: baseline;
+      white-space: nowrap;
+    }
+    .proof-pill:hover {
+      background: var(--ink-hover);
+      border-color: var(--ink-text);
+    }
+    .proof-pill.meta {
+      background: #eff6ff;
+      border-color: #bfdbfe;
+      color: #1e40af;
+    }
+    .proof-pill.sheet {
+      background: #ecfdf5;
+      border-color: #a7f3d0;
+      color: #065f46;
+    }
+    .proof-pill.bank {
+      background: #fffbeb;
+      border-color: #fde68a;
+      color: #92400e;
+    }
+    .proof-pill.stu {
+      background: #f1f5f9;
+      border-color: #cbd5e1;
+      color: #334155;
+    }
+
+    /* TABLES */
+    .table-wrap {
+      width: 100%;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      border: 1px solid var(--ink-border-strong);
+      border-radius: 10px;
+      margin-bottom: 1.35rem;
+      background: #ffffff;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 0;
+      font-family: var(--font-heading);
+      font-size: 0.88rem;
+      line-height: 1.45;
+    }
+    th, td {
+      padding: 10px 12px;
+      border-bottom: 1px solid var(--ink-border);
+      text-align: left;
+      vertical-align: top;
+    }
+    tr:last-child td { border-bottom: none; }
+    th {
+      background: var(--ink-sidebar);
+      font-weight: 700;
+      color: var(--ink-muted);
+      text-transform: uppercase;
+      font-size: 0.71rem;
+      letter-spacing: 0.04em;
+      border-bottom: 1.5px solid var(--ink-border-strong);
+      white-space: nowrap;
+    }
+    tr.row-win td { background: #f8fafc; }
+    tr.row-total td {
+      background: #f1f5f9;
+      font-weight: 700;
+      border-top: 1.5px solid var(--ink-border-strong);
+    }
+    .num { font-family: var(--font-mono); font-size: 0.84rem; white-space: nowrap; }
+    .tag {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 0.69rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      padding: 2px 6px;
+      border-radius: 4px;
+      border: 1px solid var(--ink-border-strong);
+      background: var(--ink-sidebar);
+      position: relative;
+      top: -1px;
+      vertical-align: baseline;
+    }
+    .tag.paid { background: #dcfce7; border-color: #86efac; color: #166534; }
+    .tag.dep { background: #fef3c7; border-color: #fcd34d; color: #92400e; }
+    .tag.wait { background: #f1f5f9; border-color: #cbd5e1; color: #475569; }
+    .tag.price-tag { background: #dbeafe; border-color: #93c5fd; color: #1e40af; }
+
+    /* SPEC BLOCKS (APPLE HIG 2-COLUMN) */
+    .spec-list {
+      border: 1px solid var(--ink-border-strong);
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 1.35rem;
+      font-family: var(--font-heading);
+    }
+    .spec-row {
+      display: grid;
+      grid-template-columns: 210px minmax(0, 1fr);
+      gap: 1rem;
+      padding: 0.85rem 1.1rem;
+      border-bottom: 1px solid var(--ink-border);
+      align-items: start;
+      background: #ffffff;
+    }
+    .spec-row:last-child { border-bottom: none; }
+    .spec-key {
+      display: inline-block;
+      background: #f1f5f9;
+      border: 1px solid var(--ink-border-strong);
+      border-radius: 6px;
+      padding: 4px 9px;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      color: var(--ink-text);
+      box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+    }
+    .spec-val {
+      font-size: 0.94rem;
+      line-height: 1.55;
+      color: var(--ink-text);
+    }
+
+    details.audit-collapse {
+      border: 1px solid var(--ink-border-strong);
+      border-radius: 10px;
+      background: #ffffff;
+      margin-bottom: 1.25rem;
+      font-family: var(--font-heading);
+    }
+    details.audit-collapse summary {
+      padding: 0.85rem 1.1rem;
+      font-weight: 600;
+      font-size: 0.92rem;
+      cursor: pointer;
+      background: var(--ink-sidebar);
+      border-radius: 10px;
+    }
+    details.audit-collapse[open] summary {
+      border-bottom: 1px solid var(--ink-border);
+      border-radius: 10px 10px 0 0;
+    }
+    details.audit-collapse .collapse-body {
+      padding: 0.9rem 1.1rem;
+    }
+
+    /* MOBILE NAV */
+    .ink-mobile-nav {
+      display: none;
+      position: sticky;
+      top: 0;
+      background: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--ink-border);
+      padding: 0.75rem 1rem;
+      z-index: 100;
+      align-items: center;
+      justify-content: space-between;
+      font-family: var(--font-heading);
+    }
+    .ink-menu-btn {
+      background: var(--ink-sidebar);
+      border: 1px solid var(--ink-border-strong);
+      border-radius: 6px;
+      padding: 0.42rem 0.75rem;
+      cursor: pointer;
+      font-family: var(--font-heading);
+      font-weight: 600;
+      font-size: 0.82rem;
+      color: var(--ink-text);
+    }
+    .ink-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.55);
+      z-index: 999;
+    }
+    .ink-overlay.is-open { display: block; }
+    .ink-close-btn {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 1.2rem;
+      color: var(--ink-text);
+      padding: 0.2rem;
+    }
+
+    @media (max-width: 992px) {
+      body { flex-direction: column; }
+      .ink-mobile-nav { display: flex; }
+      .ink-sidebar {
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: -105%;
+        z-index: 1000;
+        box-shadow: 4px 0 24px rgba(0, 0, 0, 0.16);
+        max-width: 310px;
+        width: 84vw;
+        height: 100dvh;
+      }
+      .ink-sidebar.is-open { left: 0; }
+      .ink-close-btn { display: block; }
+      .ink-main-wrapper { padding: 1.5rem 1rem 4rem; }
+      .kpi-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .spec-row { grid-template-columns: 1fr; gap: 0.45rem; }
+    }
+
+    @media (max-width: 560px) {
+      .kpi-grid { grid-template-columns: 1fr; }
+      .proof-pill { white-space: normal; }
+      th, td { padding: 8px 9px; font-size: 0.82rem; }
+    }
+
+    @media print {
+      .ink-sidebar, .ink-mobile-nav { display: none !important; }
+      .ink-main-wrapper { padding: 0; }
+      .ink-content { max-width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- MOBILE TOPBAR -->
+  <div class="ink-mobile-nav">
+    <a href="#top" class="ink-brand">VIDEO OFFLINE · K4 AUDIT</a>
+    <button class="ink-menu-btn" onclick="document.querySelector('.ink-sidebar').classList.add('is-open'); document.querySelector('.ink-overlay').classList.add('is-open');">MỤC LỤC</button>
+  </div>
+
+  <div class="ink-overlay" onclick="document.querySelector('.ink-sidebar').classList.remove('is-open'); this.classList.remove('is-open');"></div>
+
+  <!-- STICKY TOC SIDEBAR -->
+  <aside class="ink-sidebar">
+    <div class="ink-sidebar-header">
+      <a href="#top" class="ink-brand">VIDEO OFFLINE · K4</a>
+      <button class="ink-close-btn" onclick="document.querySelector('.ink-sidebar').classList.remove('is-open'); document.querySelector('.ink-overlay').classList.remove('is-open');">✕</button>
+    </div>
+
+    <div class="ink-toc-title">MỤC LỤC ĐỐI SOÁT</div>
+    <ul class="ink-toc-list">
+      <li>
+        <a href="#ket-luan-chot-so" class="ink-toc-link">0. Quyết định chốt sổ &amp; Nguồn gốc</a>
+      </li>
+      <li>
+        <a href="#bang-doi-chung-hai-ben" class="ink-toc-link">1. Đối chứng Anh Việt + AI với Linh</a>
+        <ul class="ink-toc-list ink-toc-nested">
+          <li><a href="#bang-tong-hop-11-chi-so" class="ink-toc-link">1.1. 11 chỉ số cùng luật đếm</a></li>
+          <li><a href="#mo-xe-tung-bai-quang-cao" class="ink-toc-link">1.2. Mổ xẻ từng bài &amp; Link bài gốc</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="#so-doi-chung-67-5-trieu" class="ink-toc-link">2. Bằng chứng từng học viên (67,5tr)</a>
+        <ul class="ink-toc-list ink-toc-nested">
+          <li><a href="#nhom-viet-ai-truc-tiep" class="ink-toc-link">2.1. 9 Form Anh Việt + AI (17tr)</a></li>
+          <li><a href="#nhom-linh-thuan" class="ink-toc-link">2.2. 6 Học viên thuần của Linh (16tr)</a></li>
+          <li><a href="#ca-ranh-gioi-tach-rieng" class="ink-toc-link">2.3. 2 ca ranh giới tách riêng (5tr)</a></li>
+          <li><a href="#nguon-tu-nhien-anh-viet" class="ink-toc-link">2.4. 12 Học viên tự nhiên (29,5tr)</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="#nguyen-nhan-goc-re" class="ink-toc-link">3. Giải mã 3 nguyên nhân gốc rễ</a>
+        <ul class="ink-toc-list ink-toc-nested">
+          <li><a href="#bo-loc-gia-tren-bai" class="ink-toc-link">3.1. Bộ lọc giá 4 triệu trên bài</a></li>
+          <li><a href="#he-so-nguoi-goi-chot" class="ink-toc-link">3.2. Tách bạch người gọi chốt</a></li>
+          <li><a href="#mu-tien-that-agency" class="ink-toc-link">3.3. Điểm mù tiền thật của Agency</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="#phan-bien-thu-ky-opus" class="ink-toc-link">4. Phản biện công bằng của Thư ký</a>
+      </li>
+      <li>
+        <a href="#quyet-dinh-khoa-k5" class="ink-toc-link">5. Quyết định &amp; Kịch bản chạy K5</a>
+      </li>
+    </ul>
+
+    <div class="ink-toc-title">TRUY CẬP SỔ GỐC 1 CHẠM</div>
+    <div class="proof-cluster">
+      <a class="proof-pill meta" href="https://adsmanager.facebook.com/adsmanager/manage/campaigns?act=195572908746610" target="_blank" rel="noopener">📊 Ads Manager TK001 ↗</a>
+      <a class="proof-pill bank" href="https://led.fedu.vn/" target="_blank" rel="noopener">💰 Sổ Cái Ngân Hàng ↗</a>
+      <a class="proof-pill sheet" href="https://docs.google.com/spreadsheets/d/1PaHkFMdY615FasQDcqqeia94L1662YKES7cPuFIpKhg/edit#gid=0" target="_blank" rel="noopener">📑 Google Sheet K4 ↗</a>
+      <a class="proof-pill stu" href="https://ads.fedu.vn/radar/" target="_blank" rel="noopener">📡 Ads Radar ↗</a>
+    </div>
+  </aside>
+
+  <!-- MAIN DOCUMENT -->
+  <main class="ink-main-wrapper">
+    <article class="ink-content ink-mode-reference">
+
+      <div class="ink-meta">
+        <span class="ink-badge">KIỂM TOÁN TIỀN THẬT · K4</span>
+        <span>Anh Việt × Gemini 4 Argon × Thư ký Claude Opus 5.5</span>
+        <span>•</span>
+        <span>Chốt sổ ngày 04/11/2026</span>
+      </div>
+
+      <h1 class="title-main" id="top">ĐỐI SOÁT QUẢNG CÁO OFFLINE K4: ANH VIỆT + AI SO VỚI LINH &amp; QUYẾT ĐỊNH KHÓA K5</h1>
+
+      <!-- SECTION 0: EXECUTIVE VERDICT -->
+      <section id="ket-luan-chot-so">
+        <div class="verdict-box">
+          <span class="verdict-kicker">KẾT LUẬN CHỐT TRƯỚC ĐỂ ANH VIỆT QUYẾT ĐỊNH NGAY</span>
+          <p><strong>1. Nếu tắt quảng cáo ngay hôm nay (04/11/2026):</strong> Kể từ lúc anh Việt bắt đầu chạy cùng AI (<code>27/10 – 04/11</code>), chiến dịch <code>viet_chay_k4</code> chi <strong>4.694.421đ</strong> (cập nhật lúc 19:00 là <code>4.729.956đ</code>), mang về <strong>4 học viên trực tiếp đóng tiền = 14.000.000đ tiền mặt</strong>; cộng thêm 2 người bạn BĐS do học viên từ quảng cáo rủ đi học cùng là <strong>6 học viên = 17.000.000đ tiền mặt</strong>. Trước đó, Linh chạy 5 chiến dịch (<code>03/10 – 23/10</code>) chi <strong>15.540.820đ</strong>, mang về <strong>6 học viên đóng tiền thuần = 16.000.000đ tiền mặt</strong> (+ 1 ca đa chạm chung 2.000.000đ).</p>
+          <p><strong>2. Quyết định cho khóa K5:</strong> <strong>Tự chạy cùng AI &amp; Thư ký — dừng thuê Linh chạy K5</strong> (tuyệt đối không chia đôi ngân sách chạy song song trên cùng tài khoản). Lý do chốt không phải vì "AI bấm nút kỹ thuật giỏi hơn Linh" (giá kéo 1 người vào trang đích hai bên ngang nhau ~<code>7.000đ</code>), mà vì <strong>3 yếu tố quyết định tạo ra tiền mặt thật</strong> (ghim học phí 4 triệu ngay trên bài, người gọi chốt khám kênh, và đối soát trực tiếp với sao kê ngân hàng) đều nằm trong tay anh Việt — Agency bên ngoài bị mù hoàn toàn ở khâu tiền thật.</p>
+        </div>
+
+        <div class="kpi-grid">
+          <div class="kpi-card warn">
+            <div class="kpi-label">Linh chạy (03/10 – 23/10)</div>
+            <div class="kpi-value">15,54 tr → 16,0 tr</div>
+            <div class="kpi-sub">6 HV thuần đóng tiền · CAC 2,59tr/HV · ROAS tiền mặt 1,03 lần</div>
+          </div>
+          <div class="kpi-card highlight">
+            <div class="kpi-label">Anh Việt + AI (27/10 – 04/11)</div>
+            <div class="kpi-value">4,69 tr → 14,0 tr</div>
+            <div class="kpi-sub">4 HV trực tiếp (17tr / 6 HV gồm 2 bạn rủ) · CAC 1,17tr · ROAS 2,98–3,62 lần</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-label">Hiệu suất bài có ghi giá 4tr</div>
+            <div class="kpi-value">1,00 tr → 12,0 tr</div>
+            <div class="kpi-sub">3/4 HV đóng đủ 100% học phí đến từ đúng 2 bài ghim thẳng mức giá 4 triệu</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-label">Tổng thu toàn lớp K4</div>
+            <div class="kpi-value">67.500.000đ</div>
+            <div class="kpi-sub">26 HV đã chuyển khoản / 34 HV ghi danh (tự nhiên của anh Việt gánh 29,5tr)</div>
+          </div>
+        </div>
+
+        <div class="evidence-hub">
+          <div class="evidence-hub-title">🔗 HỆ THỐNG LINK BẰNG CHỨNG GỐC (BẤM MỞ ĐỐI CHỨNG TRỰC TIẾP)</div>
+          <div class="proof-cluster">
+            <a class="proof-pill meta" href="https://adsmanager.facebook.com/adsmanager/manage/adsets?act=195572908746610&selected_campaign_ids=120252478002510437" target="_blank" rel="noopener">🎯 Chiến dịch viet_chay_k4 (Meta) ↗</a>
+            <a class="proof-pill meta" href="https://adsmanager.facebook.com/adsmanager/manage/campaigns?act=195572908746610&selected_campaign_ids=120252264745380437%2C120252273967500437%2C120252386085910437%2C120252415692680437%2C120252564798320437" target="_blank" rel="noopener">📉 5 Chiến dịch của Linh (Meta) ↗</a>
+            <a class="proof-pill bank" href="https://led.fedu.vn/" target="_blank" rel="noopener">💰 Sổ Cái Tài Chính &amp; Sao Kê K4 ↗</a>
+            <a class="proof-pill sheet" href="https://docs.google.com/spreadsheets/d/1PaHkFMdY615FasQDcqqeia94L1662YKES7cPuFIpKhg/edit#gid=0" target="_blank" rel="noopener">📑 Sổ Học Viên K4 (315 dòng) ↗</a>
+            <a class="proof-pill sheet" href="https://docs.google.com/spreadsheets/d/1J9ZrjLxTba9R-wuet1n_J_hKcL0PVtQDD_ag65Ewx04/edit#gid=0" target="_blank" rel="noopener">🗂️ Sổ Mẹ Đối Soát (236 dòng) ↗</a>
+            <a class="proof-pill sheet" href="https://docs.google.com/spreadsheets/d/1ZYfONTXG2yUAzC-laIOyJT6o-mA1yFbwp99ZIgNWwPE/edit#gid=0" target="_blank" rel="noopener">📋 Sổ Marketing Cũ (670 dòng) ↗</a>
+            <a class="proof-pill stu" href="https://ads.fedu.vn/" target="_blank" rel="noopener">📈 Bảng Điều Khiển Ads ↗</a>
+            <a class="proof-pill stu" href="https://ads.fedu.vn/lab/" target="_blank" rel="noopener">🧪 Ads Deep Lab ↗</a>
+            <a class="proof-pill stu" href="https://k4.fedu.vn/hoc-vien.html" target="_blank" rel="noopener">👥 Danh Sách Học Viên K4 ↗</a>
+            <a class="proof-pill stu" href="https://offline.fedu.vn/" target="_blank" rel="noopener">🌐 Trang Đích Offline K4 ↗</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 1: HEAD-TO-HEAD COMPARISON -->
+      <section id="bang-doi-chung-hai-ben">
+        <h2>1. Bảng chốt sổ đối chứng: Anh Việt + AI so với Linh (cùng 1 luật đếm sạch)</h2>
+        <p>Hai giai đoạn chạy quảng cáo trên tài khoản <code>act_195572908746610</code> tách biệt hoàn toàn về thời gian: Linh dừng tiêu tiền từ hết ngày <code>23/10/2026</code> (0đ phát sinh sau mốc này), còn chiến dịch <code>viet_chay_k4</code> bắt đầu cắn tiền từ ngày <code>27/10/2026</code>. Lưu ý kỹ thuật quan trọng: sự kiện Pixel <code>Purchase</code> trên Meta đang gắn vào nút bấm <strong>Hoàn tất điền form đăng ký miễn phí</strong> trên <a href="https://offline.fedu.vn/" target="_blank" rel="noopener">offline.fedu.vn ↗</a>, hoàn toàn không phải giao dịch chuyển khoản học phí.</p>
+
+        <h3 id="bang-tong-hop-11-chi-so">1.1. Bảng đối chiếu 11 chỉ số từ lượt nhấp chuột tới tiền mặt vào ngân hàng</h3>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Chỉ số kiểm toán</th>
+                <th>Linh chạy (03/10 – 23/10)</th>
+                <th>Anh Việt + AI (27/10 – 04/11)</th>
+                <th>Chênh lệch &amp; Ý nghĩa thực tế</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Thời gian chạy thực tế</strong></td>
+                <td>21 ngày (<span class="num">~740.040đ/ngày</span>)</td>
+                <td>8,67 ngày (<span class="num">~541.456đ/ngày</span>)</td>
+                <td>Tách rời 100%, không đè tệp cùng ngày</td>
+              </tr>
+              <tr>
+                <td><strong>Tổng tiền quảng cáo đã chi</strong></td>
+                <td class="num"><strong>15.540.820đ</strong></td>
+                <td class="num"><strong>4.694.421đ</strong><br><span style="font-size:0.76rem;color:#64748b">(19:00 04/11: 4.729.956đ)</span></td>
+                <td>Anh Việt + AI mới tiêu bằng <strong>30,2%</strong> ngân sách của Linh</td>
+              </tr>
+              <tr>
+                <td><strong>Lượt xem trang đích (LPV)</strong></td>
+                <td class="num">2.133 lượt (<strong>7.286đ/LPV</strong>)</td>
+                <td class="num">684 lượt (<strong>6.863đ/LPV</strong>)</td>
+                <td><strong>Ngang nhau</strong> (chênh 5,8%) → Meta phân phối bình đẳng</td>
+              </tr>
+              <tr>
+                <td><strong>Sự kiện Pixel / Form SĐT thực</strong></td>
+                <td class="num">132 Pixel (<strong>116 SĐT thực</strong>)</td>
+                <td class="num">9 Pixel (<strong>9 SĐT gắn mã Ads</strong>)</td>
+                <td>Linh thu lượng form gấp 12,9 lần</td>
+              </tr>
+              <tr>
+                <td><strong>Giá 1 form đăng ký</strong></td>
+                <td class="num"><strong>117.733đ / form</strong></td>
+                <td class="num"><strong>521.602đ / form</strong></td>
+                <td>Form của mình đắt gấp 4,4 lần vì đã lọc giá từ đầu</td>
+              </tr>
+              <tr>
+                <td><strong>Tỷ lệ LPV → Điền form</strong></td>
+                <td class="num"><strong>6,19%</strong> (132 / 2.133)</td>
+                <td class="num"><strong>1,32%</strong> (9 / 684)</td>
+                <td>Bài ghi giá 4tr chủ động cản người xem tò mò</td>
+              </tr>
+              <tr class="row-win">
+                <td><strong>Tỷ lệ LPV → Đóng tiền thật</strong></td>
+                <td class="num"><strong>0,28%</strong> (6 / 2.133)</td>
+                <td class="num"><strong>0,58%</strong> trực tiếp · <strong>0,88%</strong> cả nhóm</td>
+                <td>Chỉ số cốt lõi sạch nhất: <strong>Hiệu quả gấp 2,1 – 3,1 lần</strong></td>
+              </tr>
+              <tr class="row-win">
+                <td><strong>Tỷ lệ Form → Đóng tiền thật</strong></td>
+                <td class="num"><strong>5,17%</strong> (6 / 116 SĐT)</td>
+                <td class="num"><strong>44,44%</strong> (4 / 9 form trực tiếp)</td>
+                <td>9 form chất lượng mang về 4 học viên đóng tiền ngay</td>
+              </tr>
+              <tr class="row-win">
+                <td><strong>Số học viên đóng tiền thật</strong></td>
+                <td><strong>6 HV thuần</strong><br><span style="font-size:0.78rem;color:#64748b">(7 HV nếu cộng ca đa chạm Chi Thuý)</span></td>
+                <td><strong>4 HV trực tiếp</strong><br><span style="font-size:0.78rem;color:#64748b">(6 HV nếu cộng 2 bạn BĐS đi kèm)</span></td>
+                <td>Ngang ngửa số học viên dù tiêu chưa tới 1/3 tiền</td>
+              </tr>
+              <tr class="row-win">
+                <td><strong>Chi phí Ads / 1 HV đóng tiền (CAC)</strong></td>
+                <td class="num"><strong>2.590.137đ / HV</strong><br><span style="font-size:0.76rem;color:#64748b">(2.220.117đ nếu tính 7 HV)</span></td>
+                <td class="num"><strong>1.173.605đ / HV</strong><br><span style="font-size:0.76rem;color:#64748b">(782.404đ nếu tính 6 HV)</span></td>
+                <td><strong>Rẻ hơn từ 1,9 lần đến 3,3 lần</strong> trên mỗi học viên thật</td>
+              </tr>
+              <tr class="row-total">
+                <td><strong>Tiền mặt thực thu &amp; ROAS tiền mặt</strong></td>
+                <td class="num"><strong>16.000.000đ · ROAS 1,03x</strong><br><span style="font-size:0.76rem;font-weight:400">(HĐ 24tr · vừa đủ bù tiền trả Meta)</span></td>
+                <td class="num"><strong>14.000.000đ · ROAS 2,98x</strong><br><span style="font-size:0.76rem;font-weight:400">(17.000.000đ · ROAS 3,62x cả nhóm)</span></td>
+                <td><strong>Sinh lời tiền mặt gấp ~2,9 – 3,5 lần</strong> so với giai đoạn trước</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 id="mo-xe-tung-bai-quang-cao">1.2. Bảng mổ xẻ từng chiến dịch, nhóm bài và link xem trực tiếp bài quảng cáo Facebook</h3>
+        <p>Bấm trực tiếp vào từng nút <strong>Xem bài FB</strong> hoặc <strong>Ads Manager</strong> bên dưới để kiểm chứng nội dung hình ảnh, video và chữ viết trên mặt bài quảng cáo của cả hai giai đoạn:</p>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Bên chạy &amp; Tên bài / Chiến dịch</th>
+                <th>Thiết lập tệp &amp; Đặc điểm</th>
+                <th>Chi tiêu</th>
+                <th>LPV / Form</th>
+                <th>Tiền thật thu về</th>
+                <th>Bằng chứng bài gốc</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="row-win">
+                <td><strong>Anh Việt + AI</strong><br><code>K4_B2_img_v3price_12_bao_gia_da_xem</code><br><span class="tag price-tag">ẢNH GHIM GIÁ 4 TRIỆU</span></td>
+                <td>Tuổi 25–65 Hà Nội · Loại trừ người mua 30/180 ngày · Ghim rõ học phí 4tr</td>
+                <td class="num">403.972đ<br><span style="font-size:0.75rem;color:#64748b">(19h: 430.947đ)</span></td>
+                <td class="num">2 form</td>
+                <td class="num"><strong>8.000.000đ</strong><br>(2 HV đóng đủ 4tr: Trang Vũ, Đoan Trang)</td>
+                <td>
+                  <div class="proof-cluster">
+                    <a class="proof-pill meta" href="https://fb.me/1WQxMmFtGnQNade" target="_blank" rel="noopener">👁️ Xem thử Ads ↗</a>
+                    <a class="proof-pill meta" href="https://www.facebook.com/839755019212216/posts/122150659023028185" target="_blank" rel="noopener">📄 Bài FB gốc ↗</a>
+                  </div>
+                </td>
+              </tr>
+              <tr class="row-win">
+                <td><strong>Anh Việt + AI</strong><br><code>K4_B_07_thue_ngoai_v2</code><br><span class="tag price-tag">VIDEO GHIM GIÁ 4 TRIỆU</span></td>
+                <td>Tuổi 25–65 Hà Nội · Video phân tích tự làm so với thuê ngoài, chốt giá 4tr</td>
+                <td class="num">593.807đ<br><span style="font-size:0.75rem;color:#64748b">(19h: 596.907đ)</span></td>
+                <td class="num">2 form</td>
+                <td class="num"><strong>4.000.000đ</strong><br>(1 HV đóng đủ 4tr: Chị Hằng Nông Nghiệp)</td>
+                <td>
+                  <div class="proof-cluster">
+                    <a class="proof-pill meta" href="https://fb.me/35pDyhnudFwXmcD" target="_blank" rel="noopener">👁️ Xem thử Ads ↗</a>
+                    <a class="proof-pill meta" href="https://www.facebook.com/839755019212216/posts/122150521977028185" target="_blank" rel="noopener">🎬 Video FB gốc ↗</a>
+                  </div>
+                </td>
+              </tr>
+              <tr class="row-win">
+                <td><strong>Anh Việt + AI</strong><br><code>K4_B2_06_cau_tra_loi</code></td>
+                <td>Tuổi 25–65 Hà Nội · Video giải đáp thắc mắc trước khóa học</td>
+                <td class="num">643.604đ</td>
+                <td class="num">1 form</td>
+                <td class="num"><strong>2.000.000đ</strong> trực tiếp<br>(+3.000.000đ từ 2 bạn BĐS chị Hiền rủ)</td>
+                <td>
+                  <div class="proof-cluster">
+                    <a class="proof-pill meta" href="https://fb.me/2W0VxbUanpl1Jl8" target="_blank" rel="noopener">👁️ Xem thử Ads ↗</a>
+                    <a class="proof-pill meta" href="https://www.facebook.com/839755019212216/posts/122149804899028185" target="_blank" rel="noopener">🎬 Video FB gốc ↗</a>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td><strong>Anh Việt + AI</strong><br><code>K4_B_08_cau_chao</code> + các bài test ảnh B2 khác</td>
+                <td>Tuổi 25–65 Hà Nội · Các bài dẫn chuyện chưa ghim giá ở đầu dòng</td>
+                <td class="num">1.897.068đ</td>
+                <td class="num">3 form</td>
+                <td class="num">0đ (3 khách đang chăm: Xuân, Sato Kim, Tâm An)</td>
+                <td>
+                  <div class="proof-cluster">
+                    <a class="proof-pill meta" href="https://fb.me/23XNuH8XPvuuoLu" target="_blank" rel="noopener">👁️ Bài 08 Câu chào ↗</a>
+                    <a class="proof-pill meta" href="https://fb.me/24a53fMxeQbixvj" target="_blank" rel="noopener">👁️ Ảnh v4_06 ↗</a>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td><strong>Anh Việt + AI (Nhóm thử sai đã tắt)</strong><br><code>viet_k4_C_retarget_warm</code> + <code>B3_mon_qua</code></td>
+                <td>Nhóm bám đuổi tệp ấm nhỏ (874k) &amp; nhóm Món quà (282k) — <strong>chiếm 24,6% chi phí đốt</strong></td>
+                <td class="num">1.155.980đ</td>
+                <td class="num">160 LPV / 1 form</td>
+                <td class="num">0đ (1 ghi danh chưa đóng: Huê Phạm)</td>
+                <td>
+                  <div class="proof-cluster">
+                    <a class="proof-pill meta" href="https://fb.me/23feG40q1UvzBxd" target="_blank" rel="noopener">👁️ Retarget 08 ↗</a>
+                    <a class="proof-pill meta" href="https://fb.me/29bPMAvNYvBsJPS" target="_blank" rel="noopener">👁️ Bài Món quà ↗</a>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td><strong>Linh · Chiến dịch #1 &amp; #3 &amp; #5 (Test)</strong><br><code>10.03</code> · <code>10.13_kimedia</code> · <code>10.23</code></td>
+                <td>Tuổi 18–65 / 20–65 · 3 chiến dịch thử nghiệm bật tắt ngắn (3,9% ngân sách)</td>
+                <td class="num">984.878đ</td>
+                <td class="num">117 LPV / 3 form</td>
+                <td class="num">0đ</td>
+                <td>
+                  <div class="proof-cluster">
+                    <a class="proof-pill meta" href="https://adsmanager.facebook.com/adsmanager/manage/campaigns?act=195572908746610&selected_campaign_ids=120252264745380437%2C120252386085910437%2C120252564798320437" target="_blank" rel="noopener">📊 Mở 3 camp test ↗</a>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td><strong>Linh · Chiến dịch #2 (04/10 – 15/10)</strong><br><code>10.04_linhpm_vietnd|..._K4</code></td>
+                <td>Tuổi 22–65 (Hà Nội + 1 nhóm toàn quốc) · Không tệp loại trừ · Không ghi giá</td>
+                <td class="num">5.977.414đ</td>
+                <td class="num">842 LPV / 51 form</td>
+                <td class="num"><strong>3.000.000đ</strong> thuần<br>(Lâm 2tr, Dung 1tr · +Chi Thuý 2tr đa chạm)</td>
+                <td>
+                  <div class="proof-cluster">
+                    <a class="proof-pill meta" href="https://fb.me/23IHUorrpGcMZIf" target="_blank" rel="noopener">👁️ Video 02 (2,98tr) ↗</a>
+                    <a class="proof-pill meta" href="https://fb.me/1Wr7kvTUrIm70rN" target="_blank" rel="noopener">👁️ Video 01 (1,38tr) ↗</a>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td><strong>Linh · Chiến dịch #4 (14/10 – 23/10)</strong><br><code>10.14_linhpm_vietnd|..._K4</code></td>
+                <td>Mở tuổi rộng <strong>18–65</strong> + Advantage+ · Nhân bản 3 nhóm chạy lặp lại 2 video cũ</td>
+                <td class="num">8.578.528đ</td>
+                <td class="num">1.174 LPV / 78 form</td>
+                <td class="num"><strong>13.000.000đ</strong> thuần<br>(Thủy 4tr, Thảo 4tr, Minh 3tr, An 2tr)</td>
+                <td>
+                  <div class="proof-cluster">
+                    <a class="proof-pill meta" href="https://fb.me/292vvFXlfpBBPD0" target="_blank" rel="noopener">👁️ Bản 10.14 (2,82tr) ↗</a>
+                    <a class="proof-pill meta" href="https://www.facebook.com/839755019212216/posts/122147650563028185" target="_blank" rel="noopener">🎬 Post Video 02 ↗</a>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- SECTION 2: FULL STUDENT RECONCILIATION -->
+      <section id="so-doi-chung-67-5-trieu">
+        <h2>2. Sổ đối chứng từng học viên &amp; Chuỗi bằng chứng tiền thật (Khớp tròn 67.500.000đ)</h2>
+        <p>Để loại bỏ triệt để tình trạng đếm trùng hoặc nhận vơ khách tự nhiên cho quảng cáo, toàn bộ <strong>26 học viên đã chuyển tiền (67.500.000đ)</strong> trên <a href="https://led.fedu.vn/" target="_blank" rel="noopener">Sổ Cái Tài Chính ↗</a> được kiểm tra chéo từng số điện thoại với 3 sổ Google Sheets (từ tháng 09/2026 tới 04/11/2026) và giải mã nhị phân tham số <code>fbclid</code> / <code>utm_content</code>. Số điện thoại hiển thị dạng rút gọn bảo mật nhưng giữ nguyên link bấm thẳng tới đúng dòng Sheet gốc và chứng từ chuyển khoản:</p>
+
+        <h3 id="nhom-viet-ai-truc-tiep">2.1. Toàn bộ 9/9 lượt điền form của chiến dịch Anh Việt + AI &amp; 2 học viên đi kèm (17.000.000đ tiền mặt)</h3>
+        <p>Kiểm tra lịch sử trước ngày <code>27/10/2026</code>: <strong>0% học viên nhóm này từng xuất hiện trong bất kỳ Sheet hay tin nhắn nào của giai đoạn Linh chạy</strong> (100% khách mới tinh).</p>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Học viên &amp; Ngành</th>
+                <th>Bài Ads mang về</th>
+                <th>Thực thu / Học phí</th>
+                <th>Mã bút toán sao kê</th>
+                <th>Link bằng chứng trực tiếp</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="row-win">
+                <td class="num">1</td>
+                <td><strong>Trang Vũ</strong><br><span style="font-size:0.8rem;color:#64748b">0888·***·666 · Tử vi / Huyền học</span></td>
+                <td><code>v3price_12</code><br><span class="tag price-tag">ẢNH GHI GIÁ 4TR</span></td>
+                <td class="num"><span class="tag paid">ĐỦ 4,0TR</span><br>4.000.000đ / 4tr</td>
+                <td class="num">TCB FT26306077713024<br><span style="font-size:0.75rem;color:#64748b">(02/11 · trang - tu vi - k4)</span></td>
+                <td>
+                  <div class="proof-cluster">
+                    <a class="proof-pill sheet" href="https://docs.google.com/spreadsheets/d/1PaHkFMdY615FasQDcqqeia94L1662YKES7cPuFIpKhg/edit#gid=0&range=A5:I5" target="_blank" rel="noopener">📑 Sheet Dòng 5 ↗</a>
+                    <a class="proof-pill bank" href="https://drive.google.com/file/d/1RnGTrEYQ8vpWkgnyodafDRf1RoSqjuZV/view" target="_blank" rel="noopener">🧾 Chứng từ Drive ↗</a>
+                    <a class="proof-pill meta" href="https://fb.me/1WQxMmFtGnQNade" target="_blank" rel="noopener">👁️ Bài Ads ↗</a>
+                  </div>
+                </td>
+              </tr>
+              <tr class="row-win">
+                <td class="num">2</td>
+                <td><strong>Phạm Đoan Trang</strong><br><span style="font-size:0.8rem;color:#64748b">0969·***·696 · Hoa Lan Hồ Điệp</span></td>
+                <td><code>v3price_12</code><br><span class="tag price-tag">ẢNH GHI GIÁ 4TR</span></td>
+                <td class="num"><span class="tag paid">ĐỦ 4,0TR</span><br>4.000.000đ / 4tr</td>
+                <td class="num">TCB FT26307867547600<br><span style="font-size:0.75rem;color:#64748b">(03/11 · lan ho diep)</span></td>
+                <td>
+                  <div class="proof-cluster">
+                    <a class="proof-pill sheet" href="https://docs.google.com/spreadsheets/d/1PaHkFMdY615FasQDcqqeia94L1662YKES7cPuFIpKhg/edit#gid=0&range=A4:I4" target="_blank" rel="noopener">📑 Sheet Dòng 4 ↗</a>
+                    <a class="proof-pill bank" href="https://drive.google.com/file/d/1UDdzzGqlh5a6p7ORnKZuXhOlCbA_nqE2/view" target="_blank" rel="noopener">🧾 Chứng từ Drive ↗</a>
+                    <a class="proof-pill meta" href="https://fb.me/1WQxMmFtGnQNade" target="_blank" rel="noopener">👁️ Bài Ads ↗</a>
+                  </div>
+                </td>
+              </tr>
+              <tr class="row-win">
+                <td class="num">3</td>
+                <td><strong>Nguyễn Thị Hằng</strong><br><span style="font-size:0.8rem;color:#64748b">0964·***·993 · Sachi Châu Anh Farm</span></td>
+                <td><code>07_thue_ngoai_v2</code><br><span class="tag price-tag">VIDEO GHI GIÁ 4TR</span></td>
+                <td class="num"><span class="tag paid">ĐỦ 4,0TR</span><br>4.000.000đ / 4tr</td>
+                <td class="num">TPB SEPAY-96104537<br><span style="font-size:0.75rem;color:#64748b">(04/11 14:45 · C hang NN)</span></td>
+                <td>
+                  <div class="proof-cluster">
+                    <a class="proof-pill sheet" href="https://docs.google.com/spreadsheets/d/1PaHkFMdY615FasQDcqqeia94L1662YKES7cPuFIpKhg/edit#gid=0&range=A2:I2" target="_blank" rel="noopener">📑 Sheet Dòng 2 ↗</a>
+                    <a class="proof-pill bank" href="https://drive.google.com/file/d/1g3wwlfbBW59GXU6hlQI_wpamy16fR122/view" target="_blank" rel="noopener">🧾 Chứng từ Drive ↗</a>
+                    <a class="proof-pill meta" href="https://fb.me/35pDyhnudFwXmcD" target="_blank" rel="noopener">👁️ Bài Ads ↗</a>
+                  </div>
+                </td>
+              </tr>
+              <tr class="row-win">
+                <td class="num">4</td>
+                <td><strong>Bùi Thị Hiền</strong><br><span style="font-size:0.8rem;color:#64748b">0975·***·347 · Bất động sản</span></td>
+                <td><code>06_cau_tra_loi</code><br><span style="font-size:0.75rem;color:#64748b">(ĐK duy nhất 28/10)</span></td>
+                <td class="num"><span class="tag dep">CỌC 2,0TR</span><br>2.000.000đ / 3tr</td>
+                <td class="num">TCB FT26304450599041<br><span style="font-size:0.75rem;color:#64748b">(31/10 · c Hien bds book)</span></td>
+                <td>
+                  <div class="proof-cluster">
+                    <a class="proof-pill sheet" href="https://docs.google.com/spreadsheets/d/1PaHkFMdY615FasQDcqqeia94L1662YKES7cPuFIpKhg/edit#gid=0&range=A16:I16" target="_blank" rel="noopener">📑 Sheet Dòng 16 ↗</a>
+                    <a class="proof-pill bank" href="https://drive.google.com/file/d/1QO8TcWhYhRESrtjwe0E7qwuFm7CKNvi6/view" target="_blank" rel="noopener">🧾 Chứng từ Drive ↗</a>
+                    <a class="proof-pill meta" href="https://fb.me/2W0VxbUanpl1Jl8" target="_blank" rel="noopener">👁️ Bài Ads ↗</a>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td class="num">+1</td>
+                <td><strong>Phương Thảo</strong> <em>(Bạn chị Hiền rủ)</em><br><span style="font-size:0.8rem;color:#64748b">0984·***·782 · BĐS Vinhomes</span></td>
+                <td>Đi học cùng trực tiếp từ HV #4 (Bùi Thị Hiền)</td>
+                <td class="num"><span class="tag dep">CỌC 2,0TR</span><br>2.000.000đ / 3tr</td>
+                <td class="num">TCB FT26306010534890<br><span style="font-size:0.75rem;color:#64748b">(02/11 · ban Hien bds off)</span></td>
+                <td>
+                  <div class="proof-cluster">
+                    <a class="proof-pill bank" href="https://drive.google.com/file/d/14bY61kfv5RYQG_FglJEhtPimUlSQTGhD/view" target="_blank" rel="noopener">🧾 Chứng từ Drive ↗</a>
+                    <a class="proof-pill stu" href="https://stu.fedu.vn/hv/phuong_thao_bds_vinhomes_ha_long_xanh" target="_blank" rel="noopener">👤 Hồ sơ STU ↗</a>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td class="num">+2</td>
+                <td><strong>Lê Hường</strong> <em>(Bạn chị Hiền rủ)</em><br><span style="font-size:0.8rem;color:#64748b">0981·***·567 · Bất động sản</span></td>
+                <td>Đi học cùng trực tiếp từ HV #4 (Bùi Thị Hiền)</td>
+                <td class="num"><span class="tag dep">CỌC 1,0TR</span><br>1.000.000đ / 3tr</td>
+                <td class="num">TCB FT26306293233532<br><span style="font-size:0.75rem;color:#64748b">(02/11 · LE THI HUONG)</span></td>
+                <td>
+                  <div class="proof-cluster">
+                    <a class="proof-pill bank" href="https://drive.google.com/file/d/1hxkxfLS_qrSqIdmzuDziTkI9fOAJjfoi/view" target="_blank" rel="noopener">🧾 Chứng từ Drive ↗</a>
+                    <a class="proof-pill stu" href="https://stu.fedu.vn/hv/le_huong_huong_nang_coffee_dragon" target="_blank" rel="noopener">👤 Hồ sơ STU ↗</a>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td class="num">5–9</td>
+                <td><strong>5 Form còn lại đang chăm</strong><br><span style="font-size:0.8rem;color:#64748b">Huê Phạm, Phạm Hưng, Hoàng Xuân, Sato Kim, Tâm An</span></td>
+                <td><code>C_retarget_08</code> (1), <code>07_thue_ngoai</code> (1), <code>v4_06</code> (1), <code>B_08</code> (2)</td>
+                <td class="num"><span class="tag wait">CHỜ THU</span><br>0đ (Huê HĐ 4tr)</td>
+                <td class="num">Mới đăng ký 1–4 ngày, đang theo dõi Zalo</td>
+                <td>
+                  <div class="proof-cluster">
+                    <a class="proof-pill sheet" href="https://docs.google.com/spreadsheets/d/1PaHkFMdY615FasQDcqqeia94L1662YKES7cPuFIpKhg/edit#gid=0&range=A6:I13" target="_blank" rel="noopener">📑 Sheet Dòng 6–13 ↗</a>
+                  </div>
+                </td>
+              </tr>
+              <tr class="row-total">
+                <td colspan="3"><strong>Cộng nhóm Anh Việt + AI (9 form Pixel)</strong></td>
+                <td class="num"><strong>14,0tr trực tiếp<br>17,0tr cả nhóm</strong></td>
+                <td colspan="2">4 HV trực tiếp (HĐ 15tr) · 6 HV tính cả 2 bạn đi kèm (HĐ 21tr)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 id="nhom-linh-thuan">2.2. Danh sách 6 học viên đóng tiền thuần + 1 chưa khớp sao kê từ Quảng cáo của Linh (16.000.000đ tiền mặt)</h3>
+        <p>Đối chiếu toàn bộ 116 số điện thoại điền form giai đoạn <code>03/10 – 23/10</code> với Sổ cái ngân hàng (đã kiểm tra ghi chú CRM xác nhận 6 học viên này <strong>không có ca giới thiệu bạn đi kèm nào</strong>):</p>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Học viên &amp; Người chốt</th>
+                <th>Chiến dịch của Linh</th>
+                <th>Thực thu / Học phí</th>
+                <th>Mã bút toán sao kê</th>
+                <th>Link bằng chứng trực tiếp</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="num">1</td>
+                <td><strong>Trần Trọng Thủy</strong><br><span style="font-size:0.8rem;color:#64748b">0988·***·808 · Thiết bị công trình (Anh Việt chốt)</span></td>
+                <td>ĐK 19/10 · <code>adid</code> bài Linh (Camp <code>10.14</code>)</td>
+                <td class="num"><span class="tag paid">ĐỦ 4,0TR</span><br>4.000.000đ / 4tr</td>
+                <td class="num">Ví Công ty Quý<br><span style="font-size:0.75rem;color:#64748b">(Top Expert giữ hộ 4tr)</span></td>
+                <td>
+                  <div class="proof-cluster">
+                    <a class="proof-pill sheet" href="https://docs.google.com/spreadsheets/d/1PaHkFMdY615FasQDcqqeia94L1662YKES7cPuFIpKhg/edit#gid=0&range=A33:I33" target="_blank" rel="noopener">📑 Sheet Dòng 33 ↗</a>
+                    <a class="proof-pill stu" href="https://stu.fedu.vn/hv/quang_thang_5222" target="_blank" rel="noopener">👤 Hồ sơ STU ↗</a>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td class="num">2</td>
+                <td><strong>Lâm Hương Thảo</strong><br><span style="font-size:0.8rem;color:#64748b">0931·***·687 · Xe điện Trang Duẩn (Sale Nhi chăm)</span></td>
+                <td>ĐK 21/10 · Camp <code>10.14</code> (<code>120252415692680437</code>)</td>
+                <td class="num"><span class="tag paid">ĐỦ 4,0TR</span><br>4.000.000đ / 4tr</td>
+                <td class="num">TPB SEPAY-93479596<br><span style="font-size:0.75rem;color:#64748b">(26/10 23:00)</span></td>
+                <td>
+                  <div class="proof-cluster">
+                    <a class="proof-pill sheet" href="https://docs.google.com/spreadsheets/d/1PaHkFMdY615FasQDcqqeia94L1662YKES7cPuFIpKhg/edit#gid=0&range=A24:I24" target="_blank" rel="noopener">📑 Sheet Dòng 24 ↗</a>
+                    <a class="proof-pill bank" href="https://drive.google.com/file/d/1GB_cHMtL_43_wTOu73x6Y-JY5-OLz1OS/view" target="_blank" rel="noopener">🧾 Chứng từ Drive ↗</a>
+                    <a class="proof-pill stu" href="https://stu.fedu.vn/audits/lam_thao_6687.html" target="_blank" rel="noopener">🔍 Khám kênh ↗</a>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td class="num">3</td>
+                <td><strong>Nguyễn Văn Minh</strong><br><span style="font-size:0.8rem;color:#64748b">0975·***·925 · Bán lẻ &amp; Thương mại (Anh Việt gọi)</span></td>
+                <td>ĐK 18/10 · Camp <code>10.14</code> (<code>120252415692680437</code>)</td>
+                <td class="num"><span class="tag dep">CỌC 3,0TR</span><br>3.000.000đ / 4tr</td>
+                <td class="num">TPB SEPAY-91654944<br><span style="font-size:0.75rem;color:#64748b">(20/10 15:57)</span></td>
+                <td>
+                  <div class="proof-cluster">
+                    <a class="proof-pill sheet" href="https://docs.google.com/spreadsheets/d/1PaHkFMdY615FasQDcqqeia94L1662YKES7cPuFIpKhg/edit#gid=0&range=A44:I44" target="_blank" rel="noopener">📑 Sheet Dòng 44 ↗</a>
+                    <a class="proof-pill stu" href="https://stu.fedu.vn/hv/nguyen_giang_1413" target="_blank" rel="noopener">👤 Hồ sơ STU ↗</a>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td class="num">4</td>
+                <td><strong>Nguyễn Văn Lâm</strong><br><span style="font-size:0.8rem;color:#64748b">0935·***·996 · Đà Nẵng (Sale Nhi chăm)</span></td>
+                <td>ĐK 06/10 · Camp <code>10.04</code> (<code>120252273967500437</code>)</td>
+                <td class="num"><span class="tag dep">CỌC 2,0TR</span><br>2.000.000đ / 4tr</td>
+                <td class="num">TPB SEPAY-87717838<br><span style="font-size:0.75rem;color:#64748b">(07/10 10:08)</span></td>
+                <td>
+                  <div class="proof-cluster">
+                    <a class="proof-pill sheet" href="https://docs.google.com/spreadsheets/d/1PaHkFMdY615FasQDcqqeia94L1662YKES7cPuFIpKhg/edit#gid=0&range=A135:I135" target="_blank" rel="noopener">📑 Sheet Dòng 135 ↗</a>
+                    <a class="proof-pill stu" href="https://stu.fedu.vn/audits/nguyen_van_lam_4996.html" target="_blank" rel="noopener">🔍 Khám kênh ↗</a>
+                    <a class="proof-pill bank" href="https://stu.fedu.vn/assets/hocvien/nguyen_van_lam_zalo_1.png" target="_blank" rel="noopener">🖼️ Ảnh Zalo ↗</a>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td class="num">5</td>
+                <td><strong>Cao Thanh An</strong><br><span style="font-size:0.8rem;color:#64748b">0906·***·299 · Đá Thấu Quang Aloka (Sale Nhi chăm)</span></td>
+                <td>ĐK 21/10 · Camp <code>10.14</code> (<code>120252415692680437</code>)</td>
+                <td class="num"><span class="tag dep">CỌC 2,0TR</span><br>2.000.000đ / 4tr</td>
+                <td class="num">TPB SEPAY-92965866<br><span style="font-size:0.75rem;color:#64748b">(25/10 09:06)</span></td>
+                <td>
+                  <div class="proof-cluster">
+                    <a class="proof-pill sheet" href="https://docs.google.com/spreadsheets/d/1PaHkFMdY615FasQDcqqeia94L1662YKES7cPuFIpKhg/edit#gid=0&range=A25:I25" target="_blank" rel="noopener">📑 Sheet Dòng 25 ↗</a>
+                    <a class="proof-pill stu" href="https://www.facebook.com/profile.php?id=61594623134889" target="_blank" rel="noopener">📘 Kênh FB ↗</a>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td class="num">6</td>
+                <td><strong>Nguyễn Thị Dung</strong><br><span style="font-size:0.8rem;color:#64748b">0949·***·286 · Dinh dưỡng (Từng tương tác Page 11/09, ĐK lại Ads Linh 10/10)</span></td>
+                <td>ĐK 10/10 · Camp <code>10.04</code> (<code>120252273967500437</code>)</td>
+                <td class="num"><span class="tag dep">CỌC 1,0TR</span><br>1.000.000đ / 4tr</td>
+                <td class="num">TPB SEPAY-88671018<br><span style="font-size:0.75rem;color:#64748b">(10/10 15:29)</span></td>
+                <td>
+                  <div class="proof-cluster">
+                    <a class="proof-pill sheet" href="https://docs.google.com/spreadsheets/d/1PaHkFMdY615FasQDcqqeia94L1662YKES7cPuFIpKhg/edit#gid=0&range=A117:I117" target="_blank" rel="noopener">📑 Sheet Dòng 117 ↗</a>
+                    <a class="proof-pill stu" href="https://stu.fedu.vn/hv/nguyen_thi_dung" target="_blank" rel="noopener">👤 Hồ sơ STU ↗</a>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td class="num">7*</td>
+                <td><strong>Đào Thị Thanh</strong><br><span style="font-size:0.8rem;color:#64748b">0967·***·174 · Tư vấn Thuế (Note Sale Nhi báo chốt)</span></td>
+                <td>ĐK 21/10 Camp <code>10.14</code> &amp; vào lại web 30/10</td>
+                <td class="num"><span class="tag wait">CHƯA KHỚP</span><br>0đ / 4tr</td>
+                <td class="num">Chưa có trên sao kê TPB/TCB anh Việt</td>
+                <td>
+                  <div class="proof-cluster">
+                    <a class="proof-pill sheet" href="https://docs.google.com/spreadsheets/d/1PaHkFMdY615FasQDcqqeia94L1662YKES7cPuFIpKhg/edit#gid=0&range=A27:I27" target="_blank" rel="noopener">📑 Sheet Dòng 27 ↗</a>
+                    <a class="proof-pill stu" href="https://stu.fedu.vn/hv/dao_thi_thanh_6174" target="_blank" rel="noopener">👤 Hồ sơ STU ↗</a>
+                  </div>
+                </td>
+              </tr>
+              <tr class="row-total">
+                <td colspan="3"><strong>Cộng nhóm thuần từ Quảng cáo của Linh (116 SĐT)</strong></td>
+                <td class="num"><strong>16.000.000đ</strong></td>
+                <td colspan="2">6 HV thực thu (HĐ 24tr) + 6 khách <code>negotiating</code> + 3 khách hẹn <code>K5</code></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 id="ca-ranh-gioi-tach-rieng">2.3. Hai ca ranh giới tách riêng để không bên nào đếm trùng hoặc nhận vơ (5.000.000đ tiền mặt)</h3>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Học viên</th>
+                <th>Lý do kiểm toán tách riêng</th>
+                <th>Thực thu</th>
+                <th>Mã bút toán</th>
+                <th>Bằng chứng đối chứng 2 chiều</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Chị Chi Thuý (Lê Thị Thuý)</strong><br><span style="font-size:0.8rem;color:#64748b">0916·***·522 · Xe điện</span></td>
+                <td><strong>Ca đa chạm Linh → Anh Việt:</strong> Lần 1 điền form bài <code>10.05</code> của Linh ngày 11/10 nhưng 23 ngày chưa chốt. Ngày 03/11 bấm lại từ Facebook iOS (<code>fdid</code>) trong đợt <code>viet_chay_k4</code>, anh Việt gọi 10p09s + Sale Nhi chốt cọc. <em>(Kể cả cộng 100% ca này cho Linh thành 7 HV / 18tr thì CAC của Linh vẫn là 2,22tr, ROAS 1,16x).</em></td>
+                <td class="num"><span class="tag dep">CỌC 2,0TR</span><br>2.000.000đ / 4tr</td>
+                <td class="num">TPB SEPAY-95812184<br><span style="font-size:0.75rem;color:#64748b">(03/11 16:39)</span></td>
+                <td>
+                  <div class="proof-cluster">
+                    <a class="proof-pill sheet" href="https://docs.google.com/spreadsheets/d/1PaHkFMdY615FasQDcqqeia94L1662YKES7cPuFIpKhg/edit#gid=0&range=A108:I108" target="_blank" rel="noopener">📑 Lần 1: Dòng 108 (11/10) ↗</a>
+                    <a class="proof-pill sheet" href="https://docs.google.com/spreadsheets/d/1PaHkFMdY615FasQDcqqeia94L1662YKES7cPuFIpKhg/edit#gid=0&range=A3:I3" target="_blank" rel="noopener">📑 Lần 2: Dòng 3 (03/11) ↗</a>
+                    <a class="proof-pill stu" href="https://stu.fedu.vn/hv/chi_thuy_offline_4_9522" target="_blank" rel="noopener">👤 Hồ sơ STU ↗</a>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td><strong>Chị Mạc Thị Nga — JOYDY</strong><br><span style="font-size:0.8rem;color:#64748b">0983·***·086 · Ngăn nắp nhà cửa</span></td>
+                <td><strong>Ca ngày 27/10 thiếu mã <code>adid</code>:</strong> Đăng ký lúc 18:14 ngày đầu bật <code>viet_chay_k4</code> từ Facebook Android nhưng chuỗi nhị phân <code>fbclid</code> chưa có mã bài <code>adid</code> (trước đó chỉ được gán tay trong script <code>ads_radar_v2.py:279</code>). Tách riêng không tính công cho AI để giữ chuẩn trung thực 100%. Đã xác minh khác hoàn toàn với <em>Chị Nga đợt đầu</em> (<code>0936·***·055</code>, đóng 4,5tr ngày 06/10).</td>
+                <td class="num"><span class="tag paid">ĐỦ 3,0TR</span><br>3.000.000đ / 3tr</td>
+                <td class="num">TCB FT26306918805247<br><span style="font-size:0.75rem;color:#64748b">(02/11 · Joydy 3tr)</span></td>
+                <td>
+                  <div class="proof-cluster">
+                    <a class="proof-pill sheet" href="https://docs.google.com/spreadsheets/d/1PaHkFMdY615FasQDcqqeia94L1662YKES7cPuFIpKhg/edit#gid=0&range=A18:I18" target="_blank" rel="noopener">📑 Sheet Dòng 18 ↗</a>
+                    <a class="proof-pill bank" href="https://drive.google.com/file/d/1Eu6KwH5359K3ghJwhljw6VKJQ6Dw2pKB/view" target="_blank" rel="noopener">🧾 Chứng từ Drive ↗</a>
+                    <a class="proof-pill stu" href="https://stu.fedu.vn/hv/mac_thi_nga_4086" target="_blank" rel="noopener">👤 Hồ sơ STU ↗</a>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 id="nguon-tu-nhien-anh-viet">2.4. Đối soát phần còn lại: 12 học viên đóng tiền từ Thương hiệu cá nhân tự nhiên của anh Việt (29.500.000đ — 0đ Ads)</h3>
+        <details class="audit-collapse" open>
+          <summary>Mở bảng kiểm khớp 12 học viên kênh Tự nhiên (Zalo, Reels, Messenger) để chốt tròn 67.500.000đ toàn lớp</summary>
+          <div class="collapse-body">
+            <div class="table-wrap" style="margin-bottom:0">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Học viên</th>
+                    <th>Nguồn tự nhiên</th>
+                    <th>Thực thu</th>
+                    <th>Mã bút toán sao kê</th>
+                    <th>Bằng chứng hồ sơ / Bill</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>Chị Nga (Đợt đầu)</strong> · 0936·***·055</td>
+                    <td>Zalo cá nhân anh Việt (06/10)</td>
+                    <td class="num">4.500.000đ</td>
+                    <td class="num">TCB FT26279698419207</td>
+                    <td><a class="proof-pill stu" href="https://stu.fedu.vn/hv/chi_nga_offline_7_8_11_0055" target="_blank" rel="noopener">👤 Hồ sơ STU ↗</a></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Hồng Nguyễn (Làm bánh)</strong> · 0977·***·927</td>
+                    <td>Xem Reels Facebook → Zalo</td>
+                    <td class="num">4.000.000đ</td>
+                    <td class="num">TCB FT26303507092727</td>
+                    <td><a class="proof-pill stu" href="https://stu.fedu.vn/hv/hong_nguyen_7927" target="_blank" rel="noopener">👤 Hồ sơ STU ↗</a></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Lê Huyền Chi</strong> · 0969·***·194</td>
+                    <td>Vào thẳng trang đích 28/10</td>
+                    <td class="num">4.000.000đ</td>
+                    <td class="num">TCB FT26307031510260</td>
+                    <td><a class="proof-pill bank" href="https://drive.google.com/file/d/1AVbL3e64cKTNLxVghTqXrVHdDkWbxaLn/view" target="_blank" rel="noopener">🧾 Chứng từ Drive ↗</a></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Đặng Thị Kim Oanh &amp; Chị Mai Anh</strong> · 0382·***·640</td>
+                    <td>Messenger tự nhiên (<code>app_id</code> 4376...) → Zalo</td>
+                    <td class="num">6.000.000đ<br><span style="font-size:0.75rem;color:#64748b">(2 chị em × 3tr)</span></td>
+                    <td class="num">FT26303930795939<br>FT26303191053908</td>
+                    <td><a class="proof-pill bank" href="https://media.fedu.vn/stu-audits/dang_thi_kim_oanh_4640/zalo_media/09_bill_ck_6tr_oanh_va_chi_ngoc_anh.png" target="_blank" rel="noopener">🖼️ Ảnh Bill 6tr ↗</a></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Dược sĩ Đào Bích Ngọc</strong> · Da liễu</td>
+                    <td>Zalo trực tiếp anh Việt</td>
+                    <td class="num">3.000.000đ</td>
+                    <td class="num">TCB FT26306451439779</td>
+                    <td><a class="proof-pill bank" href="https://led.fedu.vn/" target="_blank" rel="noopener">💰 Sổ Cái LED ↗</a></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Việt Hà (BĐS Hạ Long)</strong> · 0902·***·437</td>
+                    <td>TikTok / Zalo anh Việt</td>
+                    <td class="num">2.000.000đ</td>
+                    <td class="num">TCB FT26304670595500</td>
+                    <td><a class="proof-pill bank" href="https://media.fedu.vn/stu-audits/viet_ha_6437/screenshots/bill_ck_2tr_k4.jpg" target="_blank" rel="noopener">🖼️ Ảnh Bill 2tr ↗</a></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Minh Blue (BĐS &amp; Bảo hiểm)</strong> · 0973·***·332</td>
+                    <td>Zalo trực tiếp anh Việt</td>
+                    <td class="num">2.000.000đ</td>
+                    <td class="num">TCB FT26300173830108</td>
+                    <td><a class="proof-pill stu" href="https://stu.fedu.vn/audits/logickenh_min_3332.html" target="_blank" rel="noopener">🔍 Logic kênh ↗</a></td>
+                  </tr>
+                  <tr>
+                    <td><strong>La Quỳnh · Alice Hằng · Thư Ann · Hồng Châm</strong></td>
+                    <td>4 HV cọc 1tr từ Zalo / mối quan hệ tự nhiên</td>
+                    <td class="num">4.000.000đ<br><span style="font-size:0.75rem;color:#64748b">(4 HV × 1tr)</span></td>
+                    <td class="num">FT...3523 · FT...2800<br>FT...9774 · SEPAY-90825344</td>
+                    <td><a class="proof-pill stu" href="https://stu.fedu.vn/audits/hong_cham_0581.html" target="_blank" rel="noopener">🔍 Khám kênh Châm ↗</a></td>
+                  </tr>
+                  <tr class="row-total">
+                    <td colspan="2"><strong>Tổng kiểm khớp toàn lớp K4 (26 HV có tiền trên sao kê)</strong></td>
+                    <td class="num"><strong>29.500.000đ</strong></td>
+                    <td colspan="2"><strong>16,0tr (Linh) + 17,0tr (Việt+AI) + 2,0tr (Thuý) + 3,0tr (Nga) + 29,5tr (Tự nhiên) = 67.500.000đ</strong></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </details>
+      </section>
+
+      <!-- SECTION 3: ROOT CAUSE ANALYSIS -->
+      <section id="nguyen-nhan-goc-re">
+        <h2>3. Giải mã lý do vì sao giá vào web ngang nhau (~7.000đ) nhưng hiệu quả tiền thật chênh gấp 3?</h2>
+        <p>Giá mỗi lượt xem trang đích của Linh (<code>7.286đ</code>) và của Anh Việt + AI (<code>6.863đ</code>) sát nhau tuyệt đối. Con số này bác bỏ hoàn toàn suy nghĩ rằng AI biết "mẹo bấm nút kỹ thuật" thần kỳ hơn Agency. Toàn bộ khoảng cách thắng thua nằm ở <strong>3 mắt xích sau cú nhấp chuột</strong>:</p>
+
+        <div class="spec-list">
+          <div class="spec-row" id="bo-loc-gia-tren-bai">
+            <div><span class="spec-key">1. BỘ LỌC GIÁ 4 TRIỆU</span></div>
+            <div class="spec-val">
+              <strong>Bài quảng cáo ghim thẳng học phí tự động lọc khách ngay ngoài cửa:</strong><br>
+              • Bên Linh mở độ tuổi rộng <code>18–65</code> (bật Advantage+ tự bung tệp, không gắn danh sách loại trừ người đã mua) và dùng các video chia sẻ chung không nhắc học phí. Người xem thấy hay liền điền form miễn phí ồ ạt (tỷ lệ điền form <strong>6,19%</strong> — tạo ảo giác <code>118k/form</code> rất rẻ), nhưng phần lớn chưa sẵn sàng chi 4 triệu.<br>
+              • Bên Anh Việt + AI khóa cứng tuổi <code>25–65</code> tại Hà Nội, loại trừ tệp đã mua 30–180 ngày, và <strong>ghim thẳng mức học phí 4 triệu lên mặt ảnh/video</strong> (<a href="https://fb.me/1WQxMmFtGnQNade" target="_blank" rel="noopener">v3price_12 ↗</a> và <a href="https://fb.me/35pDyhnudFwXmcD" target="_blank" rel="noopener">07_thue_ngoai_v2 ↗</a>). Tỷ lệ điền form giảm xuống chỉ còn <strong>1,32%</strong>, nhưng ai đã bấm đăng ký là người đã duyệt xong ngân sách 4 triệu trong đầu. Chỉ riêng ~<strong>1,0 triệu</strong> tiền chạy cho 2 bài ghi giá này đã thu về <strong>12,0 triệu tiền mặt</strong> (3 học viên đóng đủ 100%).
+            </div>
+          </div>
+
+          <div class="spec-row" id="he-so-nguoi-goi-chot">
+            <div><span class="spec-key">2. NGƯỜI GỌI CHỐT</span></div>
+            <div class="spec-val">
+              <strong>Bóc tách định lượng giữa Giảng viên gọi trực tiếp và Sale gọi ngay trên cùng tệp 116 SĐT của Linh:</strong><br>
+              • Nhóm khách của Linh do <strong>Sale Nhi chăm sóc</strong> (49 SĐT): chốt được 4 người đóng tiền = tỷ lệ <strong>8,16%</strong>.<br>
+              • Nhóm khách của Linh do <strong>anh Việt trực tiếp nhấc máy gọi</strong> (13 SĐT): chốt được 2 người đóng tiền = tỷ lệ <strong>15,38%</strong> (cao gấp <strong>1,9 lần</strong> Sale gọi trên cùng một chất lượng lead).<br>
+              • Khi ghép cả hai yếu tố này — <strong>bài quảng cáo đã lọc sẵn giá 4 triệu</strong> cộng với <strong>anh Việt gọi 10–20 phút kèm gửi bản AI Khám Kênh cá nhân hóa</strong> — tỷ lệ chốt từ form bật tiếp từ <code>15,38%</code> lên <strong>44,44%</strong> (<code>4/9</code>, gấp <strong>2,9 lần</strong> nữa).
+            </div>
+          </div>
+
+          <div class="spec-row" id="mu-tien-that-agency">
+            <div><span class="spec-key">3. ĐỐI SOÁT SAO KÊ</span></div>
+            <div class="spec-val">
+              <strong>Agency bên ngoài bị mù tiền mặt, còn hệ thống nội bộ cắt lỗ theo từng bút toán ngân hàng:</strong><br>
+              • Linh chỉ nhìn thấy màn hình Ads Manager báo <code>132 lượt Mua hàng, 118.000đ/lượt</code> nên đinh ninh chiến dịch đang thắng lớn và tiếp tục nhân bản nhóm quảng cáo bơm hết <code>15,54 triệu</code> vào 2 video cũ.<br>
+              • Linh hoàn toàn không biết <code>15,54 triệu</code> đó chỉ đổi lại <code>16,0 triệu</code> tiền mặt — nếu trừ tiếp tiền thuê hội trường Green Hub (<code>14 triệu</code>) và tạm ứng Sale (<code>4 triệu</code>) thì kênh quảng cáo đang lỗ nặng. Ngược lại, hệ thống nội bộ nối thẳng Meta API với <a href="https://led.fedu.vn/" target="_blank" rel="noopener">Sổ Cái Ngân Hàng ↗</a> giúp dừng ngay các nhóm đốt tiền vô ích.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 4: CLAUDE OPUS 5.5 FAIR AUDIT -->
+      <section id="phan-bien-thu-ky-opus">
+        <h2>4. Biên bản phản biện sòng phẳng của Thư ký (Claude Opus 5.5): Không tô hồng AI</h2>
+        <p>Để anh Việt ra quyết định đầu tư dựa trên sự thật lạnh lùng thay vì lời tự khen của AI, Thư ký độc lập (<code>Claude Opus 5.5</code> — phiên kiểm toán <code>job 8bb26027</code>) đã rà soát chéo toàn bộ mã nguồn và chỉ thẳng <strong>6 sự thật phải công bằng với Linh</strong>:</p>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Điểm kiểm toán của Thư ký</th>
+                <th>Sự thật số liệu đối chứng</th>
+                <th>Bài học rút ra cho anh Việt</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>1. Tỷ lệ đốt tiền thử–sai của mình còn cao hơn Linh</strong></td>
+                <td>Trong <code>4,69 triệu</code> của mình, nhóm bám đuổi <code>C_retarget</code> (<code>874k</code>) và <code>B3_mon_qua</code> (<code>282k</code>) ngốn <strong>1,16 triệu = 24,6% ngân sách</strong> mà thu <code>0đ</code> tiền mặt. Trong khi 3 chiến dịch test lỗi của Linh chỉ chiếm ~<strong>3,9% ngân sách</strong>.</td>
+                <td>AI không hề bấm nút giỏi hơn Linh. Thứ mang tiền về là <strong>bài quảng cáo ghi giá</strong>, còn nhóm retarget tệp hẹp phải cắt bỏ ngay từ đầu ở K5.</td>
+              </tr>
+              <tr>
+                <td><strong>2. Cả hai bên cùng chọn một sự kiện Pixel</strong></td>
+                <td>Chiến dịch <code>viet_chay_k4</code> cũng đặt mục tiêu phân phối vào đúng sự kiện <code>offsite_conversion.fb_pixel_purchase</code> (điền form miễn phí) giống hệt Linh.</td>
+                <td>Khác biệt không nằm ở cài đặt kỹ thuật Pixel, mà nằm ở chữ viết ghi giá trên ảnh/video và khóa độ tuổi <code>25–65</code>.</td>
+              </tr>
+              <tr>
+                <td><strong>3. Linh chạy ở khung thời gian khó chốt hơn &amp; thiếu bài ghi giá</strong></td>
+                <td>Linh chạy trước ngày khai giảng 2–5 tuần (tâm lý khách dễ trì hoãn, hiện vẫn còn 6 khách <code>negotiating</code> và 3 khách hẹn học <code>K5</code>), và Linh chưa từng được giao bài quảng cáo ghi giá 4 triệu để thử nghiệm.</td>
+                <td>Mình chạy 9 ngày sát giờ khai giảng nên hưởng lợi thế khan hiếm ghế trống. K5 chạy sớm 3–4 tuần chắc chắn CAC sẽ không rẻ như tuần cuối.</td>
+              </tr>
+              <tr>
+                <td><strong>4. Hiệu ứng "gieo hạt" từ 15,54 triệu của Linh</strong></td>
+                <td>2.133 lượt vào web và 132 sự kiện Pixel của Linh đã làm ấm thị trường Hà Nội và tạo ra tệp loại trừ 180 ngày cho đợt chạy sau (ví dụ rõ nhất là ca chị Chi Thuý quay lại cọc 2 triệu ngày 03/11).</td>
+                <td>Không phủ nhận phần dữ liệu nền Linh đã chạy trước đó trên tài khoản <code>TK001</code>.</td>
+              </tr>
+              <tr>
+                <td><strong>5. Cỡ mẫu của mình còn nhỏ (n = 9 form, 4 đơn trực tiếp)</strong></td>
+                <td>Với 9 form (~1 form/ngày), khoảng tin cậy thống kê 95% của tỷ lệ chốt trải rộng từ <strong>19% đến 73%</strong>. Hơn nữa, một nửa lớp K4 (<code>12/26</code> HV đóng tiền = <code>29,5tr</code>) vẫn đang do kênh tự nhiên của anh Việt gánh.</td>
+                <td>Nếu K5 tăng ngân sách gấp 2–3 lần trên tệp Hà Nội 25–65 vốn hẹp, tần suất lặp sẽ tăng và CAC thực tế sẽ nhích lên vùng <code>1,5 – 2,0 triệu/HV</code>.</td>
+              </tr>
+              <tr>
+                <td><strong>6. Phí quản lý của Linh so với thời gian của anh Việt</strong></td>
+                <td>Thuê Linh tốn thêm phí quản lý ngoài tiền quảng cáo; nhưng tự chạy mà anh Việt phải tự gọi 100% form thì <strong>thời gian giảng dạy/làm nội dung của anh Việt mới là điểm nghẽn đắt nhất</strong>.</td>
+                <td>Muốn tự chạy K5 bền vững, bắt buộc phải tách khâu gọi lọc bước 1 sang cho Sale Nhi theo kịch bản chuẩn.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- SECTION 5: K5 VERDICT & PLAYBOOK -->
+      <section id="quyet-dinh-khoa-k5">
+        <h2>5. Kết luận dứt khoát cho lần sau (K5): Chạy cùng AI hay để Linh chạy?</h2>
+
+        <div class="verdict-box">
+          <span class="verdict-kicker">PHƯƠNG ÁN CHỐT CHO KHÓA OFFLINE K5</span>
+          <p><strong>CHẠY CÙNG AI &amp; THƯ KÝ — DỪNG THUÊ LINH CHẠY TIẾP Ở K5.</strong></p>
+          <p>Tuyệt đối <strong>không chia đôi ngân sách chạy song song với Linh</strong> trên cùng tài khoản quảng cáo <code>TK001</code>, vì hai chiến dịch cùng nhắm tệp Hà Nội sẽ tự đấu giá đè giá thầu của nhau và làm rối loạn hoàn toàn việc quy chiếu nguồn khách như ca đa chạm vừa qua.</p>
+        </div>
+
+        <div class="spec-list">
+          <div class="spec-row">
+            <div><span class="spec-key">ĐIỀU KIỆN 1 · BÀI LỌC GIÁ</span></div>
+            <div class="spec-val">
+              <strong>Chuẩn bị sẵn 4–6 bài quảng cáo (cả ảnh tĩnh lẫn video) GHIM THẲNG HỌC PHÍ ngay trước ngày bật K5:</strong> Nhân bản trực tiếp cấu trúc của <a href="https://fb.me/1WQxMmFtGnQNade" target="_blank" rel="noopener">ảnh v3price_12 ↗</a> và <a href="https://fb.me/35pDyhnudFwXmcD" target="_blank" rel="noopener">video 07_thue_ngoai_v2 ↗</a>. Khóa cứng tệp Hà Nội <code>25–65 tuổi</code> kèm loại trừ người đã mua/đã điền form. Bỏ hẳn nhóm <code>C_retarget</code> tệp nhỏ để tiết kiệm ngay 25% ngân sách.
+            </div>
+          </div>
+
+          <div class="spec-row">
+            <div><span class="spec-key">ĐIỀU KIỆN 2 · NHÂN SỰ GỌI</span></div>
+            <div class="spec-val">
+              <strong>Bảo vệ thời gian của anh Việt khi chạy sớm 3–4 tuần trước khai giảng:</strong> Mọi form mới đổ về phải được gọi trong vòng 2 giờ đầu. Giao Sale Nhi gọi sàng lọc bước 1 theo kịch bản ngắn xác nhận nhu cầu &amp; học phí (đo riêng tỷ lệ chốt của Nhi trên <a href="https://led.fedu.vn/" target="_blank" rel="noopener">Sổ Cái LED ↗</a>); anh Việt chỉ trực tiếp gọi sâu hoặc gửi bản AI Khám Kênh cho các khách đã qua vòng lọc ngân sách.
+            </div>
+          </div>
+
+          <div class="spec-row">
+            <div><span class="spec-key">ĐIỀU KIỆN 3 · VAN CẮT LỖ</span></div>
+            <div class="spec-val">
+              <strong>Chốt ngưỡng kiểm định tiền mặt ở mốc 7.000.000đ đầu tiên của K5:</strong> Đối soát theo tiền mặt vào tài khoản mỗi cuối tuần (bỏ qua cột <code>Purchase</code> trên Meta). Nếu khi chạy sớm xa ngày học, sau <strong>7 triệu chi tiêu đầu tiên</strong> mà chi phí quảng cáo thực tế trên mỗi học viên đóng tiền bị đội lên chạm ngưỡng cũ của Linh (<code>2,2 – 2,5 triệu/HV</code>), lúc đó mới kích hoạt phương án dự phòng gọi kỹ thuật viên ngoài vào phụ vận hành nhưng <strong>bắt buộc chạy đúng bộ bài ghi giá + tệp 25–65 đã khóa của anh Việt</strong>.
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </article>
+  </main>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const headings = document.querySelectorAll('section[id], h2[id], h3[id]');
+      const tocLinks = document.querySelectorAll('.ink-toc-link');
+
+      if (headings.length > 0 && 'IntersectionObserver' in window) {
+        let activeId = null;
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              const id = entry.target.getAttribute('id');
+              if (id && id !== activeId) {
+                tocLinks.forEach((link) => link.classList.remove('is-active'));
+                const activeLink = document.querySelector(`.ink-toc-link[href="#${id}"]`);
+                if (activeLink) activeLink.classList.add('is-active');
+                activeId = id;
+              }
+            }
+          });
+        }, { root: null, rootMargin: '0px 0px -75% 0px', threshold: 0 });
+
+        headings.forEach((h) => observer.observe(h));
+      }
+
+      tocLinks.forEach((link) => {
+        link.addEventListener('click', () => {
+          document.querySelector('.ink-sidebar').classList.remove('is-open');
+          const overlay = document.querySelector('.ink-overlay');
+          if (overlay) overlay.classList.remove('is-open');
+        });
+      });
+    });
+  </script>
+</body>
+</html>
