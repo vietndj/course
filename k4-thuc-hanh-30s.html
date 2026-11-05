@@ -1,0 +1,1220 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bài Thực Hành Quay 30 Giây Đầu Tiên: 4 Câu Hỏi Sự Thật & Mega Prompt V2</title>
+  <meta name="description" content="Bộ công cụ thực hành quay 30 giây đầu tiên cho học viên Offline K4: chỉ thuộc Câu 1 và Câu 5, khúc giữa cầm giấy đọc phủ 3 cảnh mở máy, gõ phím, nhấp cà phê.">
+  <meta property="og:title" content="Bài Thực Hành Quay 30 Giây Đầu Tiên: 4 Câu Hỏi Sự Thật & Mega Prompt V2">
+  <meta property="og:description" content="Bộ công cụ thực hành quay 30 giây đầu tiên cho học viên Offline K4: chỉ thuộc Câu 1 và Câu 5, khúc giữa cầm giấy đọc phủ 3 cảnh mở máy, gõ phím, nhấp cà phê.">
+  <link id="dynamic-favicon" rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%2307090E'/%3E%3Ctext x='29' y='42' text-anchor='middle' font-family='system-ui,-apple-system,sans-serif' font-weight='800' font-size='24' fill='%2310B981'%3E03%3C/text%3E%3Ccircle cx='52' cy='14' r='4.2' fill='%2310B981'/%3E%3C/svg%3E">
+
+  <style>
+    @font-face { font-family: 'FD Aeonik Extended'; src: url('./fonts/FDAeonikExtended-Bold.woff2') format('woff2'); font-weight: 700; font-display: swap; }
+    @font-face { font-family: 'FD Aeonik Extended'; src: url('./fonts/FDAeonikExtended-Medium.woff2') format('woff2'); font-weight: 600; font-display: swap; }
+    @font-face { font-family: 'FD Aeonik'; src: url('./fonts/FDAeonik-Bold.woff2') format('woff2'); font-weight: 700; font-display: swap; }
+    @font-face { font-family: 'FD Aeonik'; src: url('./fonts/FDAeonik-Medium.woff2') format('woff2'); font-weight: 600; font-display: swap; }
+    @font-face { font-family: 'FD Aeonik'; src: url('./fonts/FDAeonik-Medium.woff2') format('woff2'); font-weight: 500; font-display: swap; }
+    @font-face { font-family: 'FD Aeonik'; src: url('./fonts/FDAeonik-Regular.woff2') format('woff2'); font-weight: 400; font-display: swap; }
+    @font-face { font-family: 'Tiempos Text'; src: url('./fonts/FDTiemposText-Bold.woff2') format('woff2'); font-weight: 700; font-display: swap; }
+    @font-face { font-family: 'Tiempos Text'; src: url('./fonts/FDTiemposText-Semibold.woff2') format('woff2'); font-weight: 600; font-display: swap; }
+    @font-face { font-family: 'Tiempos Text'; src: url('./fonts/FDTiemposText-Medium.woff2') format('woff2'); font-weight: 500; font-display: swap; }
+    @font-face { font-family: 'Tiempos Text'; src: url('./fonts/FDTiemposText-Regular.woff2') format('woff2'); font-weight: 400; font-display: swap; }
+    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700&display=swap');
+
+    :root {
+      --ink-bg: #ffffff;
+      --ink-sidebar: #f8fafc;
+      --ink-surface: #f8fafc;
+      --ink-warm: #fbf9f4;
+      --ink-warm-border: #e6dec8;
+      --ink-text: #0f172a;
+      --ink-secondary: #334155;
+      --ink-muted: #64748b;
+      --ink-border: #e2e8f0;
+      --ink-hover: #f1f5f9;
+      --ink-accent: #0f172a;
+      --font-display: 'FD Aeonik Extended', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-heading: 'FD Aeonik', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-body: 'Tiempos Text', Georgia, serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      --sidebar-width: 284px;
+      --content-max-width: 860px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: auto; font-size: 16px; }
+    body {
+      background-color: var(--ink-bg);
+      color: var(--ink-text);
+      font-family: var(--font-body);
+      line-height: 1.78;
+      -webkit-font-smoothing: antialiased;
+      display: flex;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, h4 {
+      color: var(--ink-text);
+      font-family: var(--font-heading);
+      font-weight: 600;
+      line-height: 1.32;
+    }
+    h1.is-short {
+      font-family: var(--font-display);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: -0.015em;
+      font-size: clamp(26px, 3.3vw, 36px);
+      line-height: 1.16;
+      margin-bottom: 0.75rem;
+    }
+    .hero-lead {
+      font-family: var(--font-body);
+      font-size: 1.15rem;
+      color: var(--ink-secondary);
+      line-height: 1.72;
+      margin-bottom: 2rem;
+    }
+    h2 {
+      font-size: clamp(20px, 2.3vw, 24px);
+      border-bottom: 1px solid var(--ink-border);
+      padding-bottom: 0.55rem;
+      margin-top: 3rem;
+      margin-bottom: 1.15rem;
+    }
+    h3 {
+      font-size: 1.15rem;
+      margin-top: 1.85rem;
+      margin-bottom: 0.75rem;
+    }
+    p, ul, ol, blockquote {
+      margin-bottom: 1.25rem;
+      font-size: 1.08rem;
+    }
+    ul, ol { padding-left: 1.4rem; }
+    li { margin-bottom: 0.45rem; }
+    a {
+      color: var(--ink-accent);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      text-decoration-color: #94a3b8;
+    }
+    a:hover { text-decoration-color: var(--ink-accent); }
+    code {
+      font-family: var(--font-mono);
+      font-size: 0.84em;
+      background-color: var(--ink-hover);
+      padding: 0.16em 0.42em;
+      border-radius: 4px;
+    }
+    pre {
+      background-color: #0f172a;
+      color: #f8fafc;
+      padding: 1.2rem 1.3rem;
+      border-radius: 10px;
+      border: 1px solid #1e293b;
+      overflow-x: auto;
+      font-family: var(--font-mono);
+      font-size: 0.86rem;
+      line-height: 1.65;
+      margin-bottom: 1.4rem;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+    pre code {
+      background: none;
+      color: inherit;
+      padding: 0;
+      font-size: inherit;
+    }
+
+    /* SIDEBAR STICKY TOC */
+    .ink-sidebar {
+      width: var(--sidebar-width);
+      flex-shrink: 0;
+      background-color: var(--ink-sidebar);
+      border-right: 1px solid var(--ink-border);
+      height: 100vh;
+      position: sticky;
+      top: 0;
+      overflow-y: auto;
+      padding: 1.6rem 1.25rem 2.5rem;
+      font-family: var(--font-heading);
+    }
+    .ink-sidebar-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.35rem;
+    }
+    .ink-brand {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 0.88rem;
+      letter-spacing: 0.06em;
+      color: var(--ink-text);
+      text-decoration: none;
+      text-transform: uppercase;
+    }
+    .ink-toc-title {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: var(--ink-muted);
+      letter-spacing: 0.07em;
+      margin: 1.25rem 0 0.6rem;
+    }
+    .hub-side-list {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 1.2rem;
+    }
+    .hub-side-list li { margin-bottom: 0.35rem; }
+    .hub-side-link {
+      display: block;
+      padding: 0.5rem 0.65rem;
+      border-radius: 8px;
+      text-decoration: none;
+      border: 1px solid transparent;
+      color: var(--ink-secondary);
+    }
+    .hub-side-link:hover {
+      background-color: var(--ink-hover);
+      color: var(--ink-text);
+    }
+    .hub-side-link.is-current {
+      background-color: #ffffff;
+      border-color: #cbd5e1;
+      color: var(--ink-text);
+      box-shadow: 0 1px 2px rgba(15, 23, 42, 0.05);
+    }
+    .hub-side-step {
+      display: block;
+      font-family: var(--font-mono);
+      font-size: 0.66rem;
+      font-weight: 700;
+      color: var(--ink-muted);
+      letter-spacing: 0.05em;
+    }
+    .hub-side-name {
+      display: block;
+      font-size: 0.83rem;
+      font-weight: 600;
+      line-height: 1.35;
+      margin-top: 2px;
+    }
+
+    .ink-toc-list { list-style: none; padding: 0; margin: 0; }
+    .ink-toc-list li { margin-bottom: 0.2rem; }
+    .ink-toc-link {
+      display: block;
+      padding: 0.36rem 0.65rem;
+      color: var(--ink-muted);
+      text-decoration: none;
+      font-size: 0.84rem;
+      line-height: 1.38;
+      border-radius: 6px;
+    }
+    .ink-toc-link:hover { background-color: var(--ink-hover); color: var(--ink-text); }
+    .ink-toc-link.is-active {
+      background-color: #e2e8f0;
+      color: var(--ink-text);
+      font-weight: 600;
+    }
+    .ink-toc-nested {
+      list-style: none;
+      padding-left: 0.85rem;
+      margin-top: 0.15rem;
+      border-left: 1px solid var(--ink-border);
+      margin-left: 0.65rem;
+    }
+
+    /* MAIN WRAPPER */
+    .ink-main-wrapper {
+      flex-grow: 1;
+      min-width: 0;
+      padding: 2.5rem 2.75rem 4.5rem;
+      display: flex;
+      justify-content: center;
+    }
+    .ink-content {
+      width: 100%;
+      max-width: var(--content-max-width);
+      min-width: 0;
+    }
+
+    /* CROSS-PAGE STEP BAR */
+    .step-bar {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.75rem;
+      margin-bottom: 2rem;
+      font-family: var(--font-heading);
+    }
+    .step-pill {
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+      padding: 0.8rem 0.95rem;
+      border-radius: 10px;
+      border: 1px solid var(--ink-border);
+      background: var(--ink-surface);
+      text-decoration: none;
+      color: var(--ink-secondary);
+    }
+    .step-pill:hover {
+      border-color: #94a3b8;
+      background: #ffffff;
+    }
+    .step-pill.is-current {
+      background: #0f172a;
+      border-color: #0f172a;
+      color: #ffffff;
+    }
+    .step-pill-kicker {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      opacity: 0.75;
+    }
+    .step-pill-title {
+      font-size: 0.9rem;
+      font-weight: 600;
+      line-height: 1.3;
+    }
+    .step-pill-desc {
+      font-size: 0.76rem;
+      line-height: 1.35;
+      opacity: 0.82;
+    }
+
+    .ink-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.65rem;
+      font-family: var(--font-heading);
+      font-size: 0.84rem;
+      color: var(--ink-muted);
+      margin-bottom: 1rem;
+      align-items: center;
+    }
+    .ink-badge {
+      font-family: var(--font-mono);
+      text-transform: uppercase;
+      font-size: 0.72rem;
+      padding: 3px 9px;
+      border: 1px solid #cbd5e1;
+      background: var(--ink-surface);
+      border-radius: 99px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      color: var(--ink-text);
+    }
+
+    /* CALLOUT & CARDS */
+    .callout-box {
+      background: var(--ink-warm);
+      border: 1px solid var(--ink-warm-border);
+      border-left: 4px solid #b45309;
+      border-radius: 10px;
+      padding: 1.1rem 1.25rem;
+      margin: 1.4rem 0 1.75rem;
+      font-family: var(--font-heading);
+      font-size: 0.96rem;
+      line-height: 1.62;
+    }
+    .callout-box strong { color: var(--ink-text); }
+    .callout-slate {
+      background: var(--ink-surface);
+      border: 1px solid var(--ink-border);
+      border-left: 4px solid #0f172a;
+      border-radius: 10px;
+      padding: 1.1rem 1.25rem;
+      margin: 1.35rem 0 1.7rem;
+      font-family: var(--font-heading);
+      font-size: 0.95rem;
+      line-height: 1.62;
+    }
+
+    /* APPLE HIG MICRO-BADGES & SPEC BLOCKS */
+    .hig-badge {
+      display: inline-block;
+      position: relative;
+      top: -1px;
+      vertical-align: middle;
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      padding: 2px 7px;
+      border-radius: 5px;
+      background: #f1f5f9;
+      border: 1px solid #cbd5e1;
+      color: #0f172a;
+      line-height: 1.35;
+      white-space: nowrap;
+    }
+    .hig-badge.amber {
+      background: #fef3c7;
+      border-color: #f59e0b;
+      color: #92400e;
+    }
+    .hig-badge.emerald {
+      background: #ecfdf5;
+      border-color: #10b981;
+      color: #065f46;
+    }
+    .hig-badge.sky {
+      background: #f0f9ff;
+      border-color: #38bdf8;
+      color: #075985;
+    }
+
+    .spec-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.85rem;
+      margin: 1.2rem 0 1.75rem;
+      font-family: var(--font-heading);
+    }
+    .spec-item {
+      border: 1px solid var(--ink-border);
+      background: var(--ink-surface);
+      border-radius: 10px;
+      padding: 0.9rem 1rem;
+    }
+    .spec-row {
+      display: flex;
+      align-items: baseline;
+      gap: 0.6rem;
+      margin-bottom: 0.4rem;
+      font-size: 0.92rem;
+      line-height: 1.48;
+    }
+    .spec-row:last-child { margin-bottom: 0; }
+    .spec-label {
+      flex-shrink: 0;
+      min-width: 84px;
+    }
+
+    /* TABLES */
+    .table-scroll {
+      width: 100%;
+      overflow-x: auto;
+      margin: 1rem 0 1.75rem;
+      border: 1px solid var(--ink-border);
+      border-radius: 10px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: var(--font-heading);
+      font-size: 0.92rem;
+      line-height: 1.52;
+      margin: 0;
+    }
+    th, td {
+      padding: 11px 14px;
+      border-bottom: 1px solid var(--ink-border);
+      text-align: left;
+      vertical-align: top;
+    }
+    tr:last-child td { border-bottom: none; }
+    th {
+      background: var(--ink-surface);
+      font-weight: 700;
+      color: var(--ink-secondary);
+      text-transform: uppercase;
+      font-size: 0.72rem;
+      letter-spacing: 0.05em;
+      border-bottom: 1px solid #cbd5e1;
+    }
+
+    /* SCRIPT HEADER + COPY BUTTON */
+    .script-card {
+      border: 1px solid var(--ink-border);
+      border-radius: 12px;
+      background: #ffffff;
+      margin: 1.5rem 0 2.2rem;
+      overflow: hidden;
+      box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04);
+    }
+    .script-card-head {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.95rem 1.15rem;
+      background: var(--ink-surface);
+      border-bottom: 1px solid var(--ink-border);
+      font-family: var(--font-heading);
+    }
+    .script-card-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--ink-text);
+    }
+    .script-card-sub {
+      font-size: 0.82rem;
+      color: var(--ink-muted);
+      margin-top: 2px;
+    }
+    .copy-btn {
+      font-family: var(--font-heading);
+      font-size: 0.8rem;
+      font-weight: 600;
+      padding: 0.45rem 0.85rem;
+      border-radius: 7px;
+      border: 1px solid #0f172a;
+      background: #0f172a;
+      color: #ffffff;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    .copy-btn:hover { background: #1e293b; }
+    .copy-btn.is-copied {
+      background: #065f46;
+      border-color: #065f46;
+    }
+    .script-card .table-scroll {
+      margin: 0;
+      border: none;
+      border-radius: 0;
+    }
+
+    /* GALLERY & STORYBOARD CARDS */
+    .venue-strip {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.85rem;
+      margin: 1.1rem 0 1.8rem;
+    }
+    .media-figure {
+      border: 1px solid var(--ink-border);
+      border-radius: 10px;
+      overflow: hidden;
+      background: var(--ink-surface);
+      font-family: var(--font-heading);
+    }
+    .media-figure img {
+      display: block;
+      width: 100%;
+      height: auto;
+      cursor: zoom-in;
+    }
+    .venue-strip .media-figure img {
+      aspect-ratio: 16 / 10;
+      object-fit: cover;
+    }
+    .media-caption {
+      padding: 0.65rem 0.85rem;
+      font-size: 0.82rem;
+      color: var(--ink-secondary);
+      line-height: 1.45;
+    }
+
+    .shot-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 0.9rem;
+      margin: 1.25rem 0 2rem;
+      font-family: var(--font-heading);
+    }
+    .shot-card {
+      border: 1px solid var(--ink-border);
+      border-radius: 11px;
+      overflow: hidden;
+      background: #ffffff;
+      display: flex;
+      flex-direction: column;
+    }
+    .shot-thumb-wrap {
+      position: relative;
+      background: #0f172a;
+      aspect-ratio: 9 / 16;
+      overflow: hidden;
+    }
+    .shot-thumb-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      cursor: zoom-in;
+    }
+    .shot-code-pill {
+      position: absolute;
+      top: 8px;
+      left: 8px;
+      background: rgba(15, 23, 42, 0.86);
+      color: #ffffff;
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 6px;
+    }
+    .shot-illus-tag {
+      position: absolute;
+      bottom: 8px;
+      right: 8px;
+      background: rgba(255, 255, 255, 0.92);
+      color: #0f172a;
+      font-size: 0.66rem;
+      font-weight: 600;
+      padding: 2px 6px;
+      border-radius: 4px;
+    }
+    .shot-body {
+      padding: 0.75rem 0.85rem 0.9rem;
+      font-size: 0.82rem;
+      line-height: 1.46;
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+      flex-grow: 1;
+    }
+    .shot-title {
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: var(--ink-text);
+    }
+    .shot-meta {
+      color: var(--ink-secondary);
+      font-size: 0.79rem;
+    }
+
+    /* VIDEO SHOWCASE */
+    .video-showcase {
+      display: grid;
+      grid-template-columns: 280px minmax(0, 1fr);
+      gap: 1.25rem;
+      align-items: start;
+      margin: 1.25rem 0 1.8rem;
+      padding: 1.1rem;
+      border: 1px solid var(--ink-border);
+      border-radius: 12px;
+      background: var(--ink-surface);
+      font-family: var(--font-heading);
+    }
+    .video-phone {
+      width: 100%;
+      border-radius: 12px;
+      overflow: hidden;
+      background: #0f172a;
+      border: 1px solid #cbd5e1;
+    }
+    .video-phone video {
+      display: block;
+      width: 100%;
+      height: auto;
+      aspect-ratio: 9 / 16;
+    }
+
+    /* CROSS PAGER */
+    .cross-pager {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.9rem;
+      margin-top: 3rem;
+      padding-top: 1.75rem;
+      border-top: 1px solid var(--ink-border);
+      font-family: var(--font-heading);
+    }
+    .pager-card {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+      padding: 1rem 1.15rem;
+      border: 1px solid var(--ink-border);
+      border-radius: 10px;
+      background: var(--ink-surface);
+      text-decoration: none;
+      color: var(--ink-text);
+    }
+    .pager-card:hover {
+      border-color: #0f172a;
+      background: #ffffff;
+    }
+    .pager-next { text-align: right; }
+    .pager-kicker {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: var(--ink-muted);
+      letter-spacing: 0.05em;
+    }
+    .pager-card strong { font-size: 0.98rem; }
+    .pager-card span:last-child { font-size: 0.8rem; color: var(--ink-muted); }
+
+    /* LIGHTBOX */
+    .lightbox-modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.9);
+      z-index: 2000;
+      padding: 1.5rem;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    .lightbox-modal.is-open { display: flex; }
+    .lightbox-modal img {
+      max-width: 94vw;
+      max-height: 84vh;
+      border-radius: 8px;
+      object-fit: contain;
+      background: #ffffff;
+    }
+    .lightbox-caption {
+      color: #e2e8f0;
+      font-family: var(--font-heading);
+      font-size: 0.9rem;
+      text-align: center;
+      max-width: 760px;
+    }
+    .lightbox-close {
+      position: fixed;
+      top: 16px;
+      right: 20px;
+      background: #ffffff;
+      color: #0f172a;
+      border: none;
+      border-radius: 99px;
+      padding: 6px 14px;
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 0.85rem;
+      cursor: pointer;
+    }
+
+    /* MOBILE NAV */
+    .ink-mobile-nav {
+      display: none;
+      position: sticky;
+      top: 0;
+      background: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(6px);
+      border-bottom: 1px solid var(--ink-border);
+      padding: 0.75rem 1rem;
+      z-index: 100;
+      align-items: center;
+      justify-content: space-between;
+      font-family: var(--font-heading);
+    }
+    .ink-menu-btn {
+      background: #0f172a;
+      color: #ffffff;
+      border: none;
+      border-radius: 6px;
+      padding: 0.42rem 0.8rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: var(--font-heading);
+    }
+    .ink-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.55);
+      z-index: 999;
+    }
+    .ink-overlay.is-open { display: block; }
+    .ink-close-btn {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 1.2rem;
+      color: var(--ink-text);
+      padding: 0.2rem 0.4rem;
+    }
+
+    @media (max-width: 1024px) {
+      body { flex-direction: column; }
+      .ink-mobile-nav { display: flex; }
+      .ink-sidebar {
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: -105%;
+        z-index: 1000;
+        max-width: 310px;
+        width: 86vw;
+        height: 100vh;
+        box-shadow: 4px 0 24px rgba(15, 23, 42, 0.18);
+      }
+      .ink-sidebar.is-open { left: 0; }
+      .ink-close-btn { display: block; }
+      .ink-main-wrapper { padding: 1.6rem 1.15rem 3.5rem; }
+      .shot-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+
+    @media (max-width: 720px) {
+      .step-bar { grid-template-columns: 1fr; gap: 0.55rem; }
+      .spec-grid { grid-template-columns: 1fr; }
+      .venue-strip { grid-template-columns: 1fr; }
+      .video-showcase { grid-template-columns: 1fr; }
+      .video-phone { max-width: 260px; margin: 0 auto; }
+      .cross-pager { grid-template-columns: 1fr; }
+      .pager-next { text-align: left; }
+      p, ul, ol { font-size: 1rem; line-height: 1.66; }
+      th, td { padding: 9px 10px; font-size: 0.85rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="ink-mobile-nav">
+    <a href="./k4-mo-man-live-demo.html" class="ink-brand">OFFLINE K4 · GREEN HUB</a>
+    <button class="ink-menu-btn" type="button" onclick="document.querySelector('.ink-sidebar').classList.add('is-open'); document.querySelector('.ink-overlay').classList.add('is-open');">MỤC LỤC &amp; CHẶNG</button>
+  </div>
+
+  <div class="ink-overlay" onclick="document.querySelector('.ink-sidebar').classList.remove('is-open'); this.classList.remove('is-open');"></div>
+
+  <aside class="ink-sidebar">
+    <div class="ink-sidebar-header">
+      <a href="./k4-mo-man-live-demo.html" class="ink-brand">K4 · GREEN HUB</a>
+      <button class="ink-close-btn" type="button" onclick="document.querySelector('.ink-sidebar').classList.remove('is-open'); document.querySelector('.ink-overlay').classList.remove('is-open');">✕</button>
+    </div>
+
+    <div class="ink-toc-title">BỘ 3 CHẶNG LIÊN KẾT</div>
+    <ul class="hub-side-list">
+      <li><a href="./k4-mo-man-live-demo.html" class="hub-side-link"><span class="hub-side-step">CHẶNG 01</span><span class="hub-side-name">Kịch Bản Mở Màn & Góc Quay</span></a></li>
+<li><a href="./k4-phuong-an-gui-ai-telegram.html" class="hub-side-link"><span class="hub-side-step">CHẶNG 02</span><span class="hub-side-name">Hai Cách Gửi AI & Bot Nhiều Lượt</span></a></li>
+<li><a href="./k4-thuc-hanh-30s.html" class="hub-side-link is-current"><span class="hub-side-step">CHẶNG 03</span><span class="hub-side-name">Thực Hành 30 Giây Của Học Viên</span></a></li>
+<li><a href="./cac-canh-quay-o-ban-cong-nang-tranh-thu-video-course.html" class="hub-side-link"><span class="hub-side-step">BỔ TRỢ</span><span class="hub-side-name">9 Cảnh Ban Công Nắng Tranh Thủ ↗</span></a></li>
+    </ul>
+
+    <div class="ink-toc-title">MỤC LỤC TRANG NÀY</div>
+    <ul class="ink-toc-list">
+      
+<li>
+  <a href="#sec-co-che-lai" class="ink-toc-link">1. Cơ chế Lai: Chỉ thuộc 12 giây, khúc giữa cầm giấy đọc</a>
+</li>
+<li>
+  <a href="#sec-6-cum-nganh" class="ink-toc-link">2. Cách neo cảnh làm việc cho 6 cụm ngành khác nhau</a>
+</li>
+<li>
+  <a href="#sec-4-cau-hoi" class="ink-toc-link">3. Bốn câu hỏi mở &amp; Khung Mega Prompt V2 (Sao chép 1 chạm)</a>
+</li>
+<li>
+  <a href="#sec-3-bai-mau" class="ink-toc-link">4. Ba kịch bản mẫu đã kiểm định (86–88 tiếng)</a>
+  <ul class="ink-toc-nested">
+    <li><a href="#mau-1-lan" class="ink-toc-link">4.1. Ngành Hoa &amp; Nhà vườn (88 tiếng)</a></li>
+    <li><a href="#mau-2-sachi" class="ink-toc-link">4.2. Ngành Nông sản ép lạnh (86 tiếng)</a></li>
+    <li><a href="#mau-3-bds" class="ink-toc-link">4.3. Ngành Bất động sản dòng tiền (87 tiếng)</a></li>
+  </ul>
+</li>
+<li>
+  <a href="#sec-video-demo-29s" class="ink-toc-link">5. Bản dựng thử nhịp cắt 29 giây (6 cú cắt Toàn–Trung–Cận)</a>
+</li>
+
+    </ul>
+  </aside>
+
+  <main class="ink-main-wrapper">
+    <article class="ink-content ink-mode-reference">
+
+      <nav class="step-bar" aria-label="Ba chặng bài học Offline K4">
+        <a href="./k4-mo-man-live-demo.html" class="step-pill"><span class="step-pill-kicker">CHẶNG 01</span><strong class="step-pill-title">Kịch Bản Mở Màn & Góc Quay</strong><span class="step-pill-desc">3 kịch bản 30s · Bản đồ 8 góc máy Green Hub</span></a>
+<a href="./k4-phuong-an-gui-ai-telegram.html" class="step-pill"><span class="step-pill-kicker">CHẶNG 02</span><strong class="step-pill-title">Hai Cách Gửi AI & Bot Nhiều Lượt</strong><span class="step-pill-desc">AirDrop tại bàn (~27s) · Giỏ gom Telegram ngoài ban công</span></a>
+<a href="./k4-thuc-hanh-30s.html" class="step-pill is-current"><span class="step-pill-kicker">CHẶNG 03</span><strong class="step-pill-title">Thực Hành 30 Giây Của Học Viên</strong><span class="step-pill-desc">4 câu hỏi sự thật · Mega Prompt V2 · 3 bài mẫu & Video thử</span></a>
+      </nav>
+
+      <div class="ink-meta">
+        <span class="ink-badge">CHẶNG 03 · THỰC HÀNH HỌC VIÊN</span>
+        <span>Green Hub · Long Biên (07–08/11)</span>
+        <span>•</span>
+        <span>9 phút đọc</span>
+      </div>
+
+      <h1 class="is-short" id="top">Thực Hành Quay 30 Giây Đầu Tiên Tại Lớp</h1>
+      <p class="hero-lead">Tổng hợp đề bài đầu tay nối tiếp ngay sau màn mở đầu: học viên trả lời 4 câu hỏi sự thật, chạy Mega Prompt V2 ra kịch bản 85–92 tiếng, chỉ thuộc 2 câu đầu – cuối nhìn ống kính và dùng chính 3 cảnh làm việc vừa xem để phủ trọn khúc giữa.</p>
+
+      
+<div class="callout-box">
+  <strong>Quy tắc cởi bỏ áp lực cho bài quay đầu tay (tiếp nối từ <a href="./k4-mo-man-live-demo.html#kb-3-bac-cau">Kịch bản #3 ở Chặng 01</a>):</strong> Học viên <strong>chỉ cần học thuộc Câu 1 và Câu 5 (~12 giây nhìn thẳng ống kính)</strong>. Toàn bộ <strong>Câu 2, Câu 3, Câu 4 (~17 giây ở giữa bài) được phép cầm giấy đọc thoải mái như thu âm</strong>, bởi hình ảnh lúc đó đã phủ kín bằng bộ 3 cảnh làm việc tự quay tại Green Hub: <a href="./k4-mo-man-live-demo.html#sec-8-goc-quay"><code>S1</code> Mở laptop (Toàn) → <code>S4</code> Gõ phím (Qua vai) → <code>S5</code> Nhấp cà phê (Trung cận, nghỉ 2 giây)</a>.
+</div>
+
+<h2 id="sec-co-che-lai">1. Vì Sao Chọn “Cơ Chế Lai” (4 Câu Hỏi Sự Thật + Khung 5 Nhịp Ẩn)?</h2>
+
+<p>Trong một lớp học thực tế có nhiều anh chị chủ tiệm, chủ xưởng, dược sĩ, kế toán ở độ tuổi 35–60 lần đầu đứng trước máy quay — lại có nhiều người làm chung một lĩnh vực ngồi cạnh nhau — đề bài đầu tiên phải tránh được cả hai cái bẫy quen thuộc:</p>
+
+<div class="table-scroll">
+  <table>
+    <thead>
+      <tr>
+        <th style="width:22%">Khía cạnh thực tế</th>
+        <th style="width:26%">Nếu hỏi tự do không khung</th>
+        <th style="width:26%">Nếu phát văn mẫu điền từ</th>
+        <th style="width:26%">Cơ chế Lai áp dụng tại lớp</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Tâm lý người mới cầm máy</strong></td>
+        <td>Ngồi ngẩn trước câu hỏi rộng, không biết bắt đầu kể từ đâu.</td>
+        <td>Điền nhanh nhưng lúc mở miệng đọc lại ngượng vì không phải lời ăn tiếng nói hàng ngày của mình.</td>
+        <td>Chỉ hỏi <strong>1 tình huống khách hỏi thật trong tuần</strong>; cho phép đọc bằng giọng nói hoặc ghi ra giấy.</td>
+      </tr>
+      <tr>
+        <td><strong>Khi nhiều người cùng ngành ngồi chung bàn</strong></td>
+        <td>Cấu trúc câu dài ngắn thất thường, không ghép vừa các cảnh chèn.</td>
+        <td>Bốn người cùng ngành sẽ ra 4 video có câu mở đầu giống hệt nhau.</td>
+        <td>Khung 5 nhịp giấu bên trong câu lệnh; bài nói khác biệt hoàn toàn nhờ <strong>con số thật và cách khuyên khách riêng</strong>.</td>
+      </tr>
+      <tr>
+        <td><strong>Độ khớp với cảnh mở máy &amp; nhấp cà phê</strong></td>
+        <td>Lời nói dễ trôi sang chuyện chung chung, ghép cảnh gõ phím vào nhìn rời rạc.</td>
+        <td>Ngành nhà vườn hay cửa hàng dễ bị gượng nếu bắt đọc câu <em>“Sáng nay tôi mở máy tính”</em>.</td>
+        <td>Neo vào <strong>khoảnh khắc tra lại số liệu / phiếu kiểm tra trước khi khuyên thật cho khách</strong>.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<h2 id="sec-6-cum-nganh">2. Bảng Neo Tự Nhiên Giữa Nghề Thật Và Cảnh Bàn Làm Việc (6 Cụm Ngành)</h2>
+
+<p>Không ngành nào phải nói câu sáo mòn <em>“Sáng nay tôi mở máy”</em> (vì hình ảnh cảnh <code>S1</code> đã cho người xem thấy việc đó rồi). Thay vào đó, Câu 2 đi thẳng vào <strong>động từ kiểm tra + một tài liệu thật của nghề</strong>:</p>
+
+<div class="table-scroll">
+  <table>
+    <thead>
+      <tr>
+        <th style="width:28%">Cụm ngành trong lớp</th>
+        <th style="width:72%">Thứ người làm nghề mở ra kiểm tra ở Câu 2 &amp; Câu 3 (Khớp tự nhiên với cảnh Laptop · Gõ phím)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>1. Nhà vườn &amp; Nông sản</strong></td>
+        <td>Xem lại bảng dự báo nhiệt độ đợt gió mùa sắp về trước khi nhận đơn giao hoa đi xa; đối chiếu phiếu kiểm nghiệm mẻ ép tuần này.</td>
+      </tr>
+      <tr>
+        <td><strong>2. Bất động sản</strong></td>
+        <td>Điền lại bảng tính dòng tiền cho thuê thực tế trừ phí vận hành; đặt cạnh nhau lịch thanh toán căn bàn giao sẵn và căn đóng theo đợt.</td>
+      </tr>
+      <tr>
+        <td><strong>3. Xưởng sản xuất &amp; Tổng kho</strong></td>
+        <td>Mở bản vẽ kích thước gỗ, bảng báo giá vật tư hoặc sổ bảo hành lô xe để chỉ ra chi tiết khách mua lần đầu rất hay nhầm.</td>
+      </tr>
+      <tr>
+        <td><strong>4. Dược · Chăm sóc sức khỏe · Thẩm mỹ</strong></td>
+        <td>Xem lại ảnh chụp danh sách lọ thực phẩm bổ sung khách gửi (che tên khách) để khuyên bỏ bớt những món trùng hoạt chất gây tốn kém.</td>
+      </tr>
+      <tr>
+        <td><strong>5. Kế toán · Thuế · Nhân sự</strong></td>
+        <td>Rà lại bảng kê hóa đơn đầu vào hoặc tờ khai quyết toán trước khi nhắc chủ doanh nghiệp một khoản phạt chậm nộp hay bị sót.</td>
+      </tr>
+      <tr>
+        <td><strong>6. Đào tạo nghề · Nghệ thuật · Tư vấn du học</strong></td>
+        <td>Mở lại bài thực hành của học viên hoặc bảng kê tài chính hồ sơ du học rồi chỉ đúng một lỗi cần chỉnh ngay từ đầu.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<h2 id="sec-4-cau-hoi">3. Bốn Câu Hỏi Sự Thật (3 Phút) &amp; Khung Mega Prompt V2</h2>
+
+<h3>3.1. Bốn câu hỏi học viên tự trả lời ngắn gọn trước khi tạo kịch bản</h3>
+<ol>
+  <li><strong>Tuần này vị khách nào hỏi anh/chị câu gì</strong> khiến mình phải mở máy hoặc mở sổ ra xem lại mới trả lời chính xác được? <em>(Ghi gần đúng lời khách hỏi).</em></li>
+  <li><strong>Anh/chị đã mở ra xem cái gì</strong>, và thấy <strong>con số hay chi tiết thực tế nào</strong>?</li>
+  <li><strong>Cuối cùng anh/chị khuyên khách thế nào</strong> để có lợi nhất cho họ — kể cả khi lời khuyên đó làm mình bán chậm lại hoặc khách mua ít đi?</li>
+  <li><strong>Ngoài đời anh/chị xưng là gì, gọi vị khách đó là gì?</strong> <em>(Ví dụ: chị – em, mình – anh, tôi – bác).</em></li>
+</ol>
+
+<h3>3.2. Nguyên văn câu lệnh Mega Prompt V2 (Bấm nút để sao chép toàn bộ)</h3>
+
+<div class="script-card">
+  <div class="script-card-head">
+    <div>
+      <div class="script-card-title">Khung câu lệnh tạo kịch bản 30 giây chuẩn 85–92 tiếng</div>
+      <div class="script-card-sub">Tự động chia sẵn 5 câu khớp với 5 cỡ cảnh, khóa độ dài hơi thở và chặn AI tự bịa số liệu nghề</div>
+    </div>
+    <button type="button" class="copy-btn" onclick="copyTextById('mega-prompt-v2', this)">Sao chép Mega Prompt V2</button>
+  </div>
+  <div style="padding: 1rem 1.15rem 0.2rem; background: #0f172a;">
+    <pre style="border:none; padding:0; margin-bottom: 0.9rem;"><code id="mega-prompt-v2">Đang tải nội dung câu lệnh...</code></pre>
+  </div>
+</div>
+
+<div class="callout-slate">
+  <strong>Hai mẹo kiểm tra nhanh tại bàn cho trợ giảng:</strong><br>
+  1. <strong>Đo đồng hồ 30 giây:</strong> Học viên đọc thông cả 5 câu với tốc độ nói chuyện bình thường + nghỉ 2 giây ở nhịp nhấp cà phê, đồng hồ báo trong khoảng <strong>27–33 giây</strong> là vừa khít.<br>
+  2. <strong>Tránh trùng đề cùng bàn:</strong> Nếu hai anh chị cùng ngành ngồi cạnh nhau vô tình chọn trùng một câu hỏi của khách (ví dụ cùng hỏi chuyện vay vốn), gợi ý một người đổi sang câu khách hay hỏi thứ hai trong sổ nghề để mỗi người ra một bài riêng biệt.
+</div>
+
+<h2 id="sec-3-bai-mau">4. Ba Kịch Bản Mẫu Đã Qua Kiểm Định Độ Dài &amp; Hơi Đọc</h2>
+
+<h3 id="mau-1-lan">4.1. Mẫu 1 · Ngành Hoa &amp; Nhà vườn — Chị Đ.T. (Sỉ Lan Hồ Điệp · 88 tiếng)</h3>
+<div class="table-scroll">
+  <table>
+    <thead>
+      <tr>
+        <th style="width:20%">Nhịp &amp; Cỡ cảnh</th>
+        <th style="width:45%">Lời thoại (Xưng <em>chị – em</em> với chủ tiệm hoa trẻ)</th>
+        <th style="width:19%">Chữ trên màn hình</th>
+        <th style="width:16%">Cách quay tại lớp</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="hig-badge">1 · NGỒI NÓI (MS)</span></td>
+        <td>Sáng nay một em chủ shop ngoài Hà Nội nhắn chị, đặt hai trăm cành hồ điệp giao gấp đầu tuần. <em>(21)</em></td>
+        <td>Đặt gấp 200 cành hồ điệp</td>
+        <td>Thuộc câu 1 · Nhìn thẳng cam</td>
+      </tr>
+      <tr>
+        <td><span class="hig-badge emerald">2 · MỞ MÁY (S1)</span></td>
+        <td>Chị ngồi xem lại dự báo nhiệt độ từng ngày ngoài Bắc. <em>(12)</em></td>
+        <td>Xem lại nhiệt độ ngoài Bắc</td>
+        <td>Cầm giấy đọc · Phủ cảnh <code>S1</code></td>
+      </tr>
+      <tr>
+        <td><span class="hig-badge sky">3 · GÕ PHÍM (S4)</span></td>
+        <td>Đợt gió mùa tới tụt dưới mười lăm độ, lan đi đường xa rất dễ sốc lạnh rồi thui nụ. <em>(20)</em></td>
+        <td>Dưới 15 độ dễ thui nụ</td>
+        <td>Cầm giấy đọc · Phủ cảnh <code>S4</code></td>
+      </tr>
+      <tr>
+        <td><span class="hig-badge amber">4 · CÀ PHÊ (S5)</span></td>
+        <td>Hoa biếu mà rụng nụ, là tiệm mất khách cả năm. <em>(11 + nghỉ 2s nhấp cà phê)</em></td>
+        <td>Rụng nụ là mất khách</td>
+        <td>Đọc xong chừa 2s nâng ly</td>
+      </tr>
+      <tr>
+        <td><span class="hig-badge">5 · KẾT BÀI (MCU)</span></td>
+        <td>Nên chị khuyên em lùi lại bốn hôm chờ nắng ấm. Giao chậm một chút, nhưng cành nào tới tay khách cũng đủ nụ. <em>(24)</em></td>
+        <td>Lùi 4 hôm cho đủ nụ</td>
+        <td>Thuộc câu 5 · Nhìn thẳng cam</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<h3 id="mau-2-sachi">4.2. Mẫu 2 · Ngành Nông sản chế biến — Chị T.H. (Dầu Sachi ép lạnh · 86 tiếng)</h3>
+<div class="table-scroll">
+  <table>
+    <thead>
+      <tr>
+        <th style="width:20%">Nhịp &amp; Cỡ cảnh</th>
+        <th style="width:45%">Lời thoại (Xưng <em>mình – chị</em>, không nói quá công dụng y tế)</th>
+        <th style="width:19%">Chữ trên màn hình</th>
+        <th style="width:16%">Cách quay tại lớp</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="hig-badge">1 · NGỒI NÓI (MS)</span></td>
+        <td>Hôm qua một chị khách lớn tuổi nhắn mình: sao dầu Sachi bên em không thơm mùi rang như ngoài chợ? <em>(22)</em></td>
+        <td>Sao dầu không thơm mùi rang?</td>
+        <td>Thuộc câu 1 · Nhìn thẳng cam</td>
+      </tr>
+      <tr>
+        <td><span class="hig-badge emerald">2 · MỞ MÁY (S1)</span></td>
+        <td>Mình đối chiếu lại phiếu kiểm nghiệm của mẻ ép tuần này. <em>(12)</em></td>
+        <td>Xem lại phiếu kiểm nghiệm</td>
+        <td>Cầm giấy đọc · Phủ cảnh <code>S1</code></td>
+      </tr>
+      <tr>
+        <td><span class="hig-badge sky">3 · GÕ PHÍM (S4)</span></td>
+        <td>Hạt rang lửa già trên trăm độ thì thơm, nhưng Omega ba mất đi nhiều. <em>(17)</em></td>
+        <td>Trên 100 độ mất chất</td>
+        <td>Cầm giấy đọc · Phủ cảnh <code>S4</code></td>
+      </tr>
+      <tr>
+        <td><span class="hig-badge amber">4 · CÀ PHÊ (S5)</span></td>
+        <td>Chị uống sống mỗi sáng, mà gặp dầu rang già thì phí tiền. <em>(13 + nghỉ 2s)</em></td>
+        <td>Dầu rang già thì phí tiền</td>
+        <td>Đọc xong chừa 2s nâng ly</td>
+      </tr>
+      <tr>
+        <td><span class="hig-badge">5 · KẾT BÀI (MCU)</span></td>
+        <td>Mình khuyên chị mua dầu Sachi để uống, đừng chọn theo mùi thơm. Lật chai xem chữ ép lạnh, ép nguội. <em>(22)</em></td>
+        <td>Xem kỹ chữ ép lạnh</td>
+        <td>Thuộc câu 5 · Nhìn thẳng cam</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<h3 id="mau-3-bds">4.3. Mẫu 3 · Ngành Bất động sản — Chị B.H. (Bài toán dòng tiền cho thuê · 87 tiếng)</h3>
+<div class="table-scroll">
+  <table>
+    <thead>
+      <tr>
+        <th style="width:20%">Nhịp &amp; Cỡ cảnh</th>
+        <th style="width:45%">Lời thoại (Bám sát con số thu – chi thực tế)</th>
+        <th style="width:19%">Chữ trên màn hình</th>
+        <th style="width:16%">Cách quay tại lớp</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="hig-badge">1 · NGỒI NÓI (MS)</span></td>
+        <td>Đêm qua một anh khách ở Hà Nội nhắn mình, tính vay bảy mươi phần trăm mua căn Hạ Long cho thuê. <em>(22)</em></td>
+        <td>Vay 70% mua căn cho thuê?</td>
+        <td>Thuộc câu 1 · Nhìn thẳng cam</td>
+      </tr>
+      <tr>
+        <td><span class="hig-badge emerald">2 · MỞ MÁY (S1)</span></td>
+        <td>Mình điền lại bảng dòng tiền, đúng giá thuê đang chạy ở khu đó. <em>(14)</em></td>
+        <td>Điền lại bảng dòng tiền</td>
+        <td>Cầm giấy đọc · Mở bảng tính</td>
+      </tr>
+      <tr>
+        <td><span class="hig-badge sky">3 · GÕ PHÍM (S4)</span></td>
+        <td>Tiền thuê trừ phí quản lý, chưa đủ trả gốc lẫn lãi khi hết hai năm ưu đãi. <em>(18)</em></td>
+        <td>Tiền thuê chưa đủ trả lãi</td>
+        <td>Cầm giấy đọc · Phủ cảnh <code>S4</code></td>
+      </tr>
+      <tr>
+        <td><span class="hig-badge amber">4 · CÀ PHÊ (S5)</span></td>
+        <td>Cố mua lúc này, tháng nào anh cũng phải rút lương bù thêm. <em>(13 + nghỉ 2s)</em></td>
+        <td>Tháng nào cũng rút lương bù</td>
+        <td>Đọc xong chừa 2s nâng ly</td>
+      </tr>
+      <tr>
+        <td><span class="hig-badge">5 · KẾT BÀI (MCU)</span></td>
+        <td>Mình khuyên anh khoan xuống cọc. Đợi vốn tự có quá nửa, hoặc chọn căn đang có khách thuê sẵn. <em>(20)</em></td>
+        <td>Khoan cọc khi vốn dưới nửa</td>
+        <td>Thuộc câu 5 · Nhìn thẳng cam</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<h2 id="sec-video-demo-29s">5. Bản Dựng Thử Nhịp Cắt 29 Giây (Minh Họa 6 Cú Cắt Toàn – Trung – Cận)</h2>
+
+<p>Để hình dung trực quan nhịp chuyển giữa <strong>12 giây nhìn ống kính (đầu – cuối)</strong> và <strong>17 giây cảnh làm việc phủ ở giữa (kèm 2,2 giây lặng nhấp cà phê)</strong>, dưới đây là bản dựng thử nhịp (pre-viz) dài đúng 29,0 giây (89 tiếng):</p>
+
+<div class="video-showcase">
+  <div class="video-phone">
+    <video controls playsinline preload="metadata" poster="./assets/k4-greenhub/demo_preview_12frames.jpg">
+      <source src="./assets/k4-greenhub/demo-thuc-hanh-30s.mp4" type="video/mp4">
+      Trình duyệt không hỗ trợ phát video trực tiếp.
+    </video>
+  </div>
+  <div>
+    <p style="margin-bottom:0.75rem;"><strong>Cấu trúc 6 cú cắt trong 29 giây:</strong></p>
+    <ul style="font-size:0.92rem; line-height:1.58; margin-bottom:1rem;">
+      <li><code>00:00 – 00:06.1</code> · <strong>Trung cảnh ngồi nói:</strong> <em>“Tối qua một anh chủ doanh nghiệp nhắn mình, định bỏ ba mươi triệu thuê người viết kịch bản quay sẵn.”</em></li>
+      <li><code>00:06.1 – 00:09.4</code> · <strong>Toàn cảnh mở laptop:</strong> <em>“Mình xem lại mười hai clip anh đã đăng trên kênh.”</em></li>
+      <li><code>00:09.4 – 00:15.3</code> · <strong>Qua vai → Cận tay gõ phím:</strong> <em>“Gõ lại từng câu thì thấy, clip nào anh học thuộc là mắt nhìn lên trần, giọng đều như đọc.”</em></li>
+      <li><code>00:15.3 – 00:21.5</code> · <strong>Trung cận nhấp cà phê (+2,2s nghỉ lặng):</strong> <em>“Khách mua hàng giá cao cần thấy người chủ thật, đâu cần diễn viên.”</em></li>
+      <li><code>00:21.5 – 00:29.0</code> · <strong>Trung cận kết bài:</strong> <em>“Nên mình khuyên anh giữ lại khoản đó. Chỉ thuộc câu đầu với câu cuối, khúc giữa để hình làm việc nói thay.”</em></li>
+    </ul>
+    <p style="font-size:0.84rem; color:var(--ink-muted); margin-bottom:0;"><em>Ghi chú minh bạch:</em> Hai đoạn ngồi nói đầu – cuối trong bản thử nhịp này được tạo mô phỏng trước giờ lên lớp để đo chính xác từng phần mười giây; khi ra thực địa tại Green Hub, chỉ mất 2 phút quay trực tiếp 2 câu đầu – cuối thật ngoài ban công để thay vào đúng khung cắt này.</p>
+  </div>
+</div>
+
+<figure class="media-figure" style="margin: 1rem 0 1.5rem;">
+  <img src="./assets/k4-greenhub/demo_preview_12frames.jpg" alt="Bảng 12 khung hình trích xuất theo mốc thời gian của bản dựng thử 29 giây" data-zoom>
+  <figcaption class="media-caption"><strong>Bảng 12 nhịp cắt trích xuất thực tế (Bấm để xem lớn):</strong> Cho thấy rõ sự luân chuyển cỡ cảnh từ Trung cảnh → Toàn cảnh mở máy → Qua vai → Cận tay → Trung cận nhấp cà phê → Trung cận kết bài.</figcaption>
+</figure>
+
+
+      <nav class="cross-pager" aria-label="Điều hướng chặng"><a href="./k4-phuong-an-gui-ai-telegram.html" class="pager-card pager-prev"><span class="pager-kicker">← QUAY LẠI CHẶNG 02</span><strong>Hai Cách Gửi AI & Bot Nhiều Lượt</strong><span>AirDrop tại bàn (~27s) · Giỏ gom Telegram ngoài ban công</span></a><a href="./k4-mo-man-live-demo.html" class="pager-card pager-next"><span class="pager-kicker">↺ VỀ ĐẦU BỘ TÀI LIỆU</span><strong>Kịch Bản Mở Màn & Góc Quay</strong><span>3 kịch bản 30s · Bản đồ 8 góc máy Green Hub</span></a></nav>
+    </article>
+  </main>
+
+  <div class="lightbox-modal" id="img-lightbox" onclick="closeLightbox(event)">
+    <button type="button" class="lightbox-close" onclick="closeLightbox(event)">Đóng ✕</button>
+    <img id="lightbox-img" src="" alt="">
+    <div class="lightbox-caption" id="lightbox-cap"></div>
+  </div>
+
+  <script>
+    function copyTextById(sourceId, btnEl) {
+      const el = document.getElementById(sourceId);
+      if (!el) return;
+      const raw = el.value !== undefined ? el.value : el.innerText;
+      navigator.clipboard.writeText(raw.trim()).then(() => {
+        const prev = btnEl.getAttribute('data-label') || btnEl.innerText;
+        btnEl.setAttribute('data-label', prev);
+        btnEl.innerText = '✓ Đã sao chép';
+        btnEl.classList.add('is-copied');
+        setTimeout(() => {
+          btnEl.innerText = prev;
+          btnEl.classList.remove('is-copied');
+        }, 1800);
+      });
+    }
+
+    function openLightbox(src, caption) {
+      const modal = document.getElementById('img-lightbox');
+      const img = document.getElementById('lightbox-img');
+      const cap = document.getElementById('lightbox-cap');
+      img.src = src;
+      img.alt = caption || '';
+      cap.textContent = caption || '';
+      modal.classList.add('is-open');
+    }
+
+    function closeLightbox(ev) {
+      if (ev && ev.target && ev.target.id === 'lightbox-img') return;
+      const modal = document.getElementById('img-lightbox');
+      modal.classList.remove('is-open');
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('[data-zoom]').forEach(img => {
+        img.addEventListener('click', () => {
+          openLightbox(img.getAttribute('src'), img.getAttribute('alt'));
+        });
+      });
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeLightbox();
+      });
+
+      const headings = document.querySelectorAll('h2[id], h3[id]');
+      const tocLinks = document.querySelectorAll('.ink-toc-link');
+      if (headings.length > 0 && 'IntersectionObserver' in window) {
+        let activeId = null;
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              const id = entry.target.getAttribute('id');
+              if (id !== activeId) {
+                tocLinks.forEach(link => link.classList.remove('is-active'));
+                const activeLink = document.querySelector('.ink-toc-link[href="#' + id + '"]');
+                if (activeLink) activeLink.classList.add('is-active');
+                activeId = id;
+              }
+            }
+          });
+        }, { rootMargin: '0px 0px -76% 0px', threshold: 0 });
+        headings.forEach(h => observer.observe(h));
+      }
+
+      tocLinks.forEach(link => {
+        link.addEventListener('click', () => {
+          document.querySelector('.ink-sidebar').classList.remove('is-open');
+          const overlay = document.querySelector('.ink-overlay');
+          if (overlay) overlay.classList.remove('is-open');
+        });
+      });
+    });
+  </script>
+  <script id="mega-prompt-json" type="application/json">{"prompt": "Đọc HO-SO-NGHE-CUA-TOI.md. Viết 1 kịch bản 30 giây \"Ngồi nói + cảnh trám bàn làm việc\"\ntừ 4 câu trả lời dưới. Bài này KHÔNG theo độ dài 45–60 giây trong QUY-TAC.\n\nTRẢ LỜI CỦA TÔI:\n1. Khách hỏi (gần đúng lời khách): ...\n2. Tôi đã xem lại cái gì, thấy con số nào: ...\n3. Tôi khuyên khách thế nào: ...\n4. Ngoài đời tôi xưng ..., gọi khách là ...\n\nLUẬT CỨNG:\n- Đúng 5 câu, tổng 85–92 tiếng (đếm từng tiếng). Chỗ ngắt dùng dấu phẩy, không dùng \"...\".\n- Câu 1 (≤22 tiếng): kể lại câu khách hỏi + 1 chi tiết thật (lúc nào / bao nhiêu / ở đâu). Không chào hỏi.\n- Câu 2 (≤14 tiếng): động từ kiểm tra + 1 vật cụ thể (sổ, bảng tính, phiếu kiểm nghiệm, ảnh khách gửi...).\n  Cấm mở câu bằng \"Sáng nay tôi mở máy\".\n- Câu 3 (≤20 tiếng): điều tôi phát hiện, có ít nhất 1 con số lấy từ câu trả lời của tôi.\n- Câu 4 (≤14 tiếng): hệ quả NHÌN THẤY ĐƯỢC cho khách (mất tiền, mất khách, rút lương bù, mất mặt),\n  nối bằng mà / thì / nên. Không dùng câu cụt.\n- Câu 5 (≤24 tiếng): lời khuyên có lợi cho khách, kể cả khi khách mua ít đi hoặc mua chỗ khác.\n  Không quảng cáo sản phẩm của tôi.\n- Chỉ dùng chi tiết có trong câu trả lời. Thiếu số hoặc kiến thức nghề → ghi [?] và hỏi tôi. KHÔNG bịa.\n- Dùng đúng cách xưng hô ở câu 4. Đọc to không vấp, mỗi câu nói hết trong 1 hơi.\n- Cấm: xin chào, các bạn ơi, hãy cùng, bạn có biết, uy tín, chữ tín, tận tâm, hàng đầu, giải pháp,\n  giá trị, an tâm, ngủ ngon, hành trình, đồng hành, chữa khỏi, cam kết 100%,\n  mọi công dụng chữa bệnh hay dưỡng bệnh.\n\nĐẦU RA: bảng | Cảnh | Lời | Chữ trên màn hình (≤6 chữ, viết hoa đầu câu, có số nếu có) |\nCâu 1 = Ngồi nói (Trung) · Câu 2 = Mở laptop (Toàn) · Câu 3 = Gõ phím (Qua vai + Cận tay)\nCâu 4 = Nhấp cà phê (Trung cận, chừa 2 giây nghỉ sau câu) · Câu 5 = Ngồi nói (Trung → Cận)\nCuối bảng ghi \"Tổng: __ tiếng\" và liệt kê các chỗ [?]. Lưu vào 02-Kich-Ban-Chot."}</script>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    try {
+      const data = JSON.parse(document.getElementById('mega-prompt-json').textContent);
+      const target = document.getElementById('mega-prompt-v2');
+      if (target && data.prompt) target.textContent = data.prompt;
+    } catch (e) {}
+  });
+</script>
+</body>
+</html>
