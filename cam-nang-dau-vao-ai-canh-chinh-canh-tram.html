@@ -1,0 +1,1887 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cẩm Nang Đầu Vào Cho AI: Cảnh Chính & Cảnh Trám — FEDU K4</title>
+  <meta name="description" content="Luận giải cốt lõi và hệ thống bài tập thực hành quay cho anh Việt và học viên K4 FEDU">
+  
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%2307090E'/%3E%3Ctext x='32' y='34' text-anchor='middle' dominant-baseline='central' font-family='system-ui,sans-serif' font-weight='900' font-size='22' fill='%23FB923C'%3EK4%3C/text%3E%3Ccircle cx='52' cy='14' r='4.5' fill='%2310B981'/%3E%3C/svg%3E">
+
+  <style>
+    @font-face { font-family: 'FD Aeonik Extended'; src: url('https://fedu.vn/k/fonts/FDAeonikExtended-Bold.woff2') format('woff2'); font-weight: 700; font-display: swap; }
+    @font-face { font-family: 'FD Aeonik'; src: url('https://fedu.vn/k/fonts/FDAeonikMedium.ttf') format('truetype'); font-weight: 500; font-display: swap; }
+    @font-face { font-family: 'FD Aeonik'; src: url('https://fedu.vn/k/fonts/FDAeonikRegular.ttf') format('truetype'); font-weight: 400; font-display: swap; }
+    @font-face { font-family: 'Tiempos Text'; src: url('https://fedu.vn/k/fonts/FDTiemposText-Regular.woff2') format('woff2'); font-weight: 400; font-display: swap; }
+    @font-face { font-family: 'Tiempos Text'; src: url('https://fedu.vn/k/fonts/FDTiemposText-Medium.woff2') format('woff2'); font-weight: 500; font-display: swap; }
+    @font-face { font-family: 'Tiempos Text'; src: url('https://fedu.vn/k/fonts/FDTiemposText-Bold.woff2') format('woff2'); font-weight: 700; font-display: swap; }
+    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700&display=swap');
+  </style>
+
+  <style>
+    :root {
+      --ink-bg: #ffffff;
+      --ink-sidebar: #f8fafc;
+      --ink-text: #0f172a;
+      --ink-muted: #475569;
+      --ink-border: #e2e8f0;
+      --ink-hover: #f1f5f9;
+      --ink-accent: #0f172a;
+      --sidebar-width: 290px;
+      --content-max-width: 960px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      background-color: var(--ink-bg);
+      color: var(--ink-text);
+      font-family: 'Tiempos Text', Georgia, serif;
+      line-height: 1.75;
+      display: flex;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+    h1, h2, h3, h4 {
+      color: var(--ink-text);
+      font-family: 'FD Aeonik', -apple-system, sans-serif;
+      font-weight: 600;
+      line-height: 1.32;
+      margin-top: 2.2rem;
+      margin-bottom: 1rem;
+    }
+    h1 {
+      font-family: 'FD Aeonik Extended', -apple-system, sans-serif;
+      font-weight: 700;
+      font-size: clamp(24px, 3.2vw, 36px);
+      line-height: 1.2;
+      border-bottom: 2px solid var(--ink-border);
+      padding-bottom: 0.8rem;
+    }
+    h2 {
+      font-size: clamp(19px, 2.2vw, 24px);
+      border-bottom: 1px solid var(--ink-border);
+      padding-bottom: 0.5rem;
+      margin-top: 3rem;
+    }
+    h3 { font-size: 1.25rem; margin-top: 1.8rem; color: #1e293b; }
+    p, ul, ol, blockquote, pre, .table-wrap { margin-bottom: 1.35rem; font-size: 1.06rem; }
+    ul, ol { padding-left: 1.5rem; }
+    li { margin-bottom: 0.45rem; }
+    blockquote {
+      border-left: 3px solid #0f172a;
+      background-color: #f8fafc;
+      padding: 1.1rem 1.4rem;
+      border-radius: 0 8px 8px 0;
+      font-style: normal;
+      color: var(--ink-text);
+    }
+    .ink-sidebar {
+      width: var(--sidebar-width);
+      flex-shrink: 0;
+      background-color: var(--ink-sidebar);
+      border-right: 1px solid var(--ink-border);
+      height: 100vh;
+      position: sticky;
+      top: 0;
+      overflow-y: auto;
+      padding: 2rem 1.25rem;
+      font-family: 'FD Aeonik', sans-serif;
+    }
+    .ink-brand {
+      font-family: 'FD Aeonik Extended', sans-serif;
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: var(--ink-text);
+      text-decoration: none;
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 1.5rem;
+    }
+    .ink-toc-title {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: var(--ink-muted);
+      letter-spacing: 0.06em;
+      margin-bottom: 0.85rem;
+    }
+    .ink-toc-list { list-style: none; padding: 0; margin: 0; }
+    .ink-toc-list li { margin-bottom: 0.2rem; }
+    .ink-toc-nested { padding-left: 0.9rem; }
+    .ink-toc-link {
+      display: block;
+      padding: 0.4rem 0.65rem;
+      color: var(--ink-muted);
+      text-decoration: none;
+      font-size: 0.85rem;
+      border-radius: 6px;
+      line-height: 1.35;
+    }
+    .ink-toc-link:hover { background-color: var(--ink-hover); color: var(--ink-text); }
+    .ink-main-wrapper {
+      flex-grow: 1;
+      padding: 3.2rem 2.5rem 5rem;
+      display: flex;
+      justify-content: center;
+    }
+    .ink-content { width: 100%; max-width: var(--content-max-width); }
+    .table-wrap {
+      width: 100%;
+      overflow-x: auto;
+      border: 1px solid #cbd5e1;
+      border-radius: 10px;
+      margin: 1.25rem 0 2rem;
+      background: #ffffff;
+    }
+    .shot-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: 'FD Aeonik', sans-serif;
+      font-size: 0.92rem;
+    }
+    .shot-table th {
+      background: #f1f5f9;
+      color: #0f172a;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      padding: 10px 12px;
+      border-bottom: 2px solid #cbd5e1;
+      text-align: left;
+    }
+    .shot-table td {
+      padding: 10px 12px;
+      border-bottom: 1px solid var(--ink-border);
+      vertical-align: top;
+      line-height: 1.48;
+    }
+    .hig-badge {
+      display: inline-block;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 2px 7px;
+      border-radius: 5px;
+      border: 1px solid #cbd5e1;
+      line-height: 1.3;
+      white-space: nowrap;
+    }
+    .badge-r { background-color: #e0f2fe; border-color: #0284c7; color: #075985; }
+    .badge-t { background-color: #fef3c7; border-color: #f59e0b; color: #92400e; }
+    .badge-c { background-color: #dcfce7; border-color: #16a34a; color: #166534; }
+    .badge-qv { background-color: #f3e8ff; border-color: #9333ea; color: #6b21a8; }
+    .shot-checkbox {
+      width: 18px;
+      height: 18px;
+      cursor: pointer;
+      accent-color: #059669;
+      vertical-align: middle;
+      margin-right: 8px;
+    }
+    @media (max-width: 992px) {
+      body { flex-direction: column; }
+      .ink-sidebar { width: 100%; height: auto; position: static; }
+      .ink-main-wrapper { padding: 1.5rem 1rem 3rem; }
+    }
+  </style>
+</head>
+<body>
+  <aside class="ink-sidebar">
+    <a href="#top" class="ink-brand">K4 • CẨM NANG ĐẦU VÀO AI</a>
+    <div class="ink-toc-title">MỤC LỤC BÀI VIẾT</div>
+    <ul class="ink-toc-list">
+      <li class=''><a href='#sec-0' class='ink-toc-link'>Claude Preview · CLAUDE2 (Thư ký 2 · Claude Pro OAuth) · job 67a4a2e2</a></li>
+<li class='ink-toc-nested'><a href='#sec-1' class='ink-toc-link'>Kết quả</a></li>
+<li class=''><a href='#sec-2' class='ink-toc-link'>CẨM NANG ĐẦU VÀO CHO AI: CẢNH CHÍNH &amp; CẢNH TRÁM</a></li>
+<li class='ink-toc-nested'><a href='#sec-3' class='ink-toc-link'>QUY ƯỚC CHUNG (đọc một lần, áp dụng cho mọi bài)</a></li>
+<li class=''><a href='#sec-4' class='ink-toc-link'>PHẦN 1: TƯ DUY CỐT LÕI KHI AI ĐÃ LO TOÀN BỘ HẬU KỲ</a></li>
+<li class='ink-toc-nested'><a href='#sec-5' class='ink-toc-link'>1.1. Cuộc chiến đã chuyển sang chỗ khác</a></li>
+<li class='ink-toc-nested'><a href='#sec-6' class='ink-toc-link'>1.2. Phân tích cảnh chính (A-Roll)</a></li>
+<li class='ink-toc-nested'><a href='#sec-7' class='ink-toc-link'>1.3. Phân tích cảnh trám (B-Roll)</a></li>
+<li class=''><a href='#sec-8' class='ink-toc-link'>PHẦN 2: BÀI TẬP QUAY CON ĂN CƠM (phân tích từ tin nhắn Zalo của anh)</a></li>
+<li class='ink-toc-nested'><a href='#sec-9' class='ink-toc-link'>Chuẩn bị (2 phút)</a></li>
+<li class='ink-toc-nested'><a href='#sec-10' class='ink-toc-link'>Bảng phân cảnh 9 cảnh (khoảng 22 giây)</a></li>
+<li class='ink-toc-nested'><a href='#sec-11' class='ink-toc-link'>Câu chuyện bên trong 22 giây</a></li>
+<li class='ink-toc-nested'><a href='#sec-12' class='ink-toc-link'>Dựng theo nhạc</a></li>
+<li class='ink-toc-nested'><a href='#sec-13' class='ink-toc-link'>4 lỗi hay gặp và cách sửa</a></li>
+<li class='ink-toc-nested'><a href='#sec-14' class='ink-toc-link'>Biến thể (vẫn dùng khung 9 cảnh như trên)</a></li>
+<li class='ink-toc-nested'><a href='#sec-15' class='ink-toc-link'>Mô tả ảnh minh họa (để thư ký sinh ảnh ở lượt sau)</a></li>
+<li class=''><a href='#sec-16' class='ink-toc-link'>PHẦN 3: BÀI TẬP ĐỜI THƯỜNG CHO CHÍNH ANH VIỆT</a></li>
+<li class='ink-toc-nested'><a href='#sec-17' class='ink-toc-link'>Vì sao anh nên làm trước học viên</a></li>
+<li class='ink-toc-nested'><a href='#sec-18' class='ink-toc-link'>Kỹ thuật tự quay chính mình</a></li>
+<li class='ink-toc-nested'><a href='#sec-19' class='ink-toc-link'>Bài 3.1: "Buổi sáng của người ghi chép" (khoảng 22 giây)</a></li>
+<li class='ink-toc-nested'><a href='#sec-20' class='ink-toc-link'>Bài 3.2: "Một buổi sáng không vội" (đón con ở Times City và ăn sáng, khoảng 30 giây)</a></li>
+<li class=''><a href='#sec-21' class='ink-toc-link'>PHẦN 4: BÀI TẬP CHO TỪNG NGÀNH HÀNG K4</a></li>
+<li class='ink-toc-nested'><a href='#sec-22' class='ink-toc-link'>4.1. Xưởng gỗ nội thất (Đức Oanh)</a></li>
+<li class='ink-toc-nested'><a href='#sec-23' class='ink-toc-link'>4.2. Bánh kem hoa thủ công (Hồng – Yuki Cake)</a></li>
+<li class='ink-toc-nested'><a href='#sec-24' class='ink-toc-link'>4.3. Spa, thẩm mỹ, chăm sóc da (Alice Hằng và ngành làm đẹp)</a></li>
+<li class='ink-toc-nested'><a href='#sec-25' class='ink-toc-link'>4.4. Bất động sản thực địa (Việt Hà Hạ Long, chị Hiền)</a></li>
+<li class='ink-toc-nested'><a href='#sec-26' class='ink-toc-link'>4.5. Cửa hàng và dịch vụ sửa xe máy điện (Trang Duẩn, Minh Nhật)</a></li>
+<li class='ink-toc-nested'><a href='#sec-27' class='ink-toc-link'>4.6. Đá thấu quang kiến trúc (Cao Thanh An – Aloka)</a></li>
+<li class='ink-toc-nested'><a href='#sec-28' class='ink-toc-link'>4.7. Đồ gia dụng xuất dư (Min Vintage)</a></li>
+<li class='ink-toc-nested'><a href='#sec-29' class='ink-toc-link'>4.8. Đời thường cho người độc thân hoặc chưa có con</a></li>
+<li class='ink-toc-nested'><a href='#sec-30' class='ink-toc-link'>4.9. Thời trang công sở U35–U45 (chị Châm), bản rút gọn</a></li>
+<li class=''><a href='#sec-31' class='ink-toc-link'>PHẦN 5: LỘ TRÌNH TIẾN BỘ VÀ CÁCH TẠO RA BÀI TẬP KHÔNG GIỚI HẠN</a></li>
+<li class='ink-toc-nested'><a href='#sec-32' class='ink-toc-link'>5.1. Lộ trình 3 nấc</a></li>
+<li class='ink-toc-nested'><a href='#sec-33' class='ink-toc-link'>5.2. Công thức tạo bài tập không giới hạn</a></li>
+<li class='ink-toc-nested'><a href='#sec-34' class='ink-toc-link'>5.3. Lịch 30 ngày</a></li>
+<li class='ink-toc-nested'><a href='#sec-35' class='ink-toc-link'>5.4. Bảng chấm bài nộp vào nhóm (7 ô)</a></li>
+<li class='ink-toc-nested'><a href='#sec-36' class='ink-toc-link'>5.5. Tin nhắn gửi nhóm K4 (dán thẳng vào Zalo)</a></li>
+<li class='ink-toc-nested'><a href='#sec-37' class='ink-toc-link'>Lượt tiếp theo thư ký có thể làm</a></li>
+<li class='ink-toc-nested'><a href='#sec-38' class='ink-toc-link'>Các bước gần nhất</a></li>
+<li class='ink-toc-nested'><a href='#sec-39' class='ink-toc-link'>QUY ƯỚC CHUNG (đọc một lần, áp dụng cho mọi bài)</a></li>
+    </ul>
+  </aside>
+  <main class="ink-main-wrapper">
+    <article class="ink-content" id="top">
+      <h1 id='sec-0'>Claude Preview · CLAUDE2 (Thư ký 2 · Claude Pro OAuth) · job 67a4a2e2</h1>
+<div class="table-wrap"><table class="shot-table">
+<thead>
+<tr>
+<th>Trường</th>
+<th>Giá trị</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Trạng thái</td>
+<td>done</td>
+</tr>
+<tr>
+<td>Model đang gọi</td>
+<td><code>claude-opus-5-5</code></td>
+</tr>
+<tr>
+<td>Session</td>
+<td>07b5b48a-0b3f-4e40-8bb7-066ea766d06f</td>
+</tr>
+<tr>
+<td>Chi phí USD</td>
+<td>1.0217364000000002</td>
+</tr>
+<tr>
+<td>Thời điểm</td>
+<td>2026-11-12 18:41:53</td>
+</tr>
+<tr>
+<td>## Nhiệm vụ</td>
+<td></td>
+</tr>
+<tr>
+<td>Soạn bản Luận giải cốt lõi &amp; Cẩm nang thiết kế hệ thống bài tập thực hành quay (A-Roll &amp; B-Roll) chi tiết cho anh Việt và học viên K4 FEDU.</td>
+<td></td>
+</tr>
+<tr>
+<td>Bao gồm:</td>
+<td></td>
+</tr>
+<tr>
+<td>PHẦN 1: TƯ DUY CỐT LÕI KHI AI ĐÃ LO TOÀN BỘ HẬU KỲ</td>
+<td></td>
+</tr>
+<tr>
+<td>- Định nghĩa lại bản chất: Khi công nghệ giải phóng đôi tay thợ dựng, 'cuộc chiến' dịch chuyển về đâu?</td>
+<td></td>
+</tr>
+<tr>
+<td>- Phẫu thuật Cảnh chính (A-Roll): Không chỉ là 'nói tự nhiên', mà là 4 yếu tố then chốt (Sự trung thực sinh học của cơ mặt/nhịp thở, Khẩu khí người làm nghề, Cấu trúc tư duy cô đặc không vòng vo, Trọng lực ánh mắt).</td>
+<td></td>
+</tr>
+<tr>
+<td>- Phẫu thuật Cảnh trám (B-Roll): Bản chất vì sao người mới quay luôn bị 'vô hồn'? Vì sao phải là tổ hợp Rộng - Trung - Cận - Qua vai, tại sao phải lệch góc &gt;30°, vì sao mỗi cú máy chỉ 2-3s và nguyên lý nấp sau vật thể (Foreground Occlusion / Dirty Framing).</td>
+<td></td>
+</tr>
+</tbody>
+</table></div>
+<p>PHẦN 2: THIẾT KẾ BÀI TẬP QUAY CON ĂN CƠM (GIẢI PHẪU TỪ TIN NHẮN ZALO ANH VIỆT)<br />
+- Bảng phân cảnh 6-8 cú máy chuẩn điện ảnh: Góc máy, cỡ cảnh, vị trí đặt máy, vật thể tiền cảnh/hậu cảnh, độ dài từng shot (2-3s), lý do chọn góc.<br />
+- Cách ghép thành 1 đoạn phim 15-20s có câu chuyện đời thường ấm áp, đăng được ngay mạng xã hội.</p>
+<p>PHẦN 3: BÀI TẬP ĐỜI THƯỜNG CHO CHÍNH ANH VIỆT (TẠI NHÀ &amp; TIMES CITY)<br />
+- Bài tập 1: Buổi sáng làm việc &amp; ghi chú tại bàn (ánh sáng cửa sổ, góc qua vai bàn phím/sổ tay, nấp sau màn hình/cốc nước).<br />
+- Bài tập 2: Đi bộ đón con ở Times City &amp; ăn sáng (bước chân, khung vòm kiến trúc, qua vai con, nhịp sống từ tốn).</p>
+<p>PHẦN 4: HỆ THỐNG BÀI TẬP CHO TỪNG NGÀNH HÀNG K4 (KÈM VỊ TRÍ ĐẶT MÁY &amp; QUY TẮC NẤP VẬT THỂ)<br />
+Chi tiết từng shot-list (Rộng - Trung - Cận - Qua vai - Nấp vật thể) cho:<br />
+1. Xưởng gỗ nội thất (Đức Oanh)<br />
+2. Bánh kem hoa thủ công tỉ mỉ (Hồng Yuki Cake)<br />
+3. Spa / Thẩm mỹ / Chăm sóc da (Alice Hằng &amp; ngành làm đẹp)<br />
+4. Bất động sản thực địa (Việt Hà Hạ Long / BĐS)<br />
+5. Cửa hàng &amp; dịch vụ sửa chữa Xe máy điện (Trang Duẩn / Minh Nhật)<br />
+6. Sản phẩm kiến trúc đá thấu quang (Cao Thanh An)<br />
+7. Hàng gia dụng thông minh xuất dư (Min Vintage)<br />
+8. Đời thường chung cho người độc thân/không có con (Pha cà phê s</p>
+<h2 id='sec-1'>Kết quả</h2>
+<h1 id='sec-2'>CẨM NANG ĐẦU VÀO CHO AI: CẢNH CHÍNH &amp; CẢNH TRÁM</h1>
+<h3>Luận giải cốt lõi và hệ thống bài tập thực hành quay cho anh Việt và học viên K4 FEDU</h3>
+<hr />
+<h2 id='sec-3'>QUY ƯỚC CHUNG (đọc một lần, áp dụng cho mọi bài)</h2>
+<div class="table-wrap"><table class="shot-table">
+<thead>
+<tr>
+<th>Ký hiệu</th>
+<th>Nghĩa</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="hig-badge badge-r">RỘNG (R)</span></td>
+<td>Cảnh rộng: thấy cả người và không gian</td>
+</tr>
+<tr>
+<td><span class="hig-badge badge-t">TRUNG (T)</span></td>
+<td>Cảnh trung: từ hông hoặc ngực trở lên, thấy rõ người đang làm gì</td>
+</tr>
+<tr>
+<td><span class="hig-badge badge-c">CẬN (C)</span></td>
+<td>Cảnh cận: chi tiết tay, miệng, mắt, vật</td>
+</tr>
+<tr>
+<td><span class="hig-badge badge-qv">QUA VAI (QV)</span></td>
+<td>Cảnh qua vai: máy đứng sau vai nhân vật, nhìn thứ nhân vật đang nhìn</td>
+</tr>
+<tr>
+<td><strong>Đồng hồ</strong></td>
+<td>Lấy nhân vật làm tâm đồng hồ, <strong>12h là trước mặt nhân vật, 6h là sau lưng</strong>. Mỗi giờ tương ứng 30°.</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Ống kính trên iPhone, quy đổi theo trang Danh mục cảnh quay offline:</strong><br />
+- <strong>1x (khoảng 24–26mm), hoặc 1.5x nếu muốn gần vai ống 35mm:</strong> dùng cho cảnh rộng và cảnh trung.<br />
+- <strong>2x, 3x hoặc 5x (từ 48mm đến 120mm, gần vai ống 85mm):</strong> dùng cho cảnh cận, cảnh nấp vật thể và cảnh cần xóa phông.<br />
+- <strong>Không dùng 0.5x để quay người</strong> vì mặt và tay sẽ bị méo.</p>
+<p><strong>Năm luật cố định:</strong><br />
+1. Khi quay, <strong>giữ máy yên 6–8 giây</strong> cho mỗi cảnh. Khi dựng <strong>chỉ lấy 2–3 giây</strong> đẹp nhất. Hai con số này khớp nhau: tin nhắn anh gửi chị Oanh nói về độ dài lúc dựng, còn trang offline nói về độ dài lúc quay.<br />
+2. Trước khi bấm, <strong>chạm và giữ vào chủ thể</strong> để khóa nét và khóa sáng (AE/AF Lock).<br />
+3. Bài định đăng Reels hay TikTok thì quay dọc 9:16. Nếu quay ngang 4K thì đặt chủ thể ở giữa và chừa 20% mỗi biên.<br />
+4. <strong>Không lia, không zoom trong lúc quay.</strong> Muốn đổi cảnh thì dùng chân để dời chỗ.<br />
+5. <strong>Không tắt tiếng hiện trường.</strong> Tiếng thìa chạm bát, tiếng bào gỗ, tiếng nước rót sẽ được lót dưới nhạc.</p>
+<hr />
+<h1 id='sec-4'>PHẦN 1: TƯ DUY CỐT LÕI KHI AI ĐÃ LO TOÀN BỘ HẬU KỲ</h1>
+<h2 id='sec-5'>1.1. Cuộc chiến đã chuyển sang chỗ khác</h2>
+<p><strong>Kết luận:</strong> Khi AI làm hết hậu kỳ, giá trị của một video chỉ còn nằm ở thứ máy không tự sinh ra được: <strong>người thật đứng trước ống kính và con mắt thật đứng sau ống kính.</strong></p>
+<p><strong>Cái cần giỏi bây giờ không phải là dựng mà là mang nguyên liệu về bếp.</strong> Thử hoán đổi như sau:<br />
+- Đưa cùng một bộ file thô cho hai phần mềm dựng tốt nhất. Hai video ra gần như giống nhau.<br />
+- Đưa cho cùng một phần mềm hai bộ file thô khác nhau. Bộ thứ nhất là một người nói ấp úng, mắt ngước lên trần, kèm 3 cảnh trám quay vội. Bộ thứ hai là một người nói chắc, nhìn thẳng, kèm 30 cảnh trám có lớp lang. Hai video ra khác nhau hoàn toàn.</p>
+<p>Vậy thứ quyết định chất lượng video đã chuyển từ khâu dựng sang khâu quay.</p>
+<p><strong>Cơ chế:</strong><br />
+1. <strong>Bước 1:</strong> Hậu kỳ đã thành dây chuyền. Cắt theo hành động (COA), nhặt tiếng vấp, chèn phụ đề, làm motion, thay cảnh trám tự động đều do code chạy. Chi phí gần bằng 0.<br />
+2. <strong>Bước 2:</strong> Khâu nào có chi phí về 0 thì khâu đó không còn tạo khác biệt, vì ai cũng có cùng một "đầu bếp".<br />
+3. <strong>Bước 3:</strong> Khác biệt dồn hết về hai chỗ nhập nguyên liệu là <strong>cảnh chính (A-roll)</strong> và <strong>cảnh trám (B-roll)</strong>. AI chỉ nhân lên thứ được đưa vào. Đầu vào tốt thì được khuếch đại. Đầu vào nhạt thì nhạt nhanh hơn và đều hơn.</p>
+<p><strong>Ví dụ đời thường:</strong> AI giống một cái bếp từ đời mới nhất, nêm nếm tự động. Nhưng nếu xương ninh chưa đủ, bánh phở đã chua, thịt bò là đồ đông lạnh, thì bếp xịn chỉ giúp nấu ra bát phở dở nhanh hơn mà thôi.</p>
+<p><strong>Hệ quả cho lớp K4:</strong> Thời gian học nên bỏ phần dạy thao tác phần mềm, dồn vào đúng hai kỹ năng: <strong>đứng trước máy</strong> và <strong>cầm máy</strong>.</p>
+<hr />
+<h2 id='sec-6'>1.2. Phân tích cảnh chính (A-Roll)</h2>
+<p><strong>Kết luận:</strong> Cảnh chính tốt không phải là người nói hay, mà là <strong>người xem tin</strong>. AI cắt được chữ vấp nhưng không cắt được ánh mắt trống rỗng.</p>
+<p><strong>Phép thử hoán đổi:</strong> Lấy kịch bản của anh đưa cho một MC chuyên nghiệp đọc.<br />
+- Nếu video vẫn giữ nguyên giá trị, cảnh chính của anh đang yếu, vì nội dung không gắn với con người anh.<br />
+- Nếu video mất hồn, anh đang có thứ không ai thay được.</p>
+<p>Mục tiêu luyện tập là làm khoảng cách giữa hai trường hợp này rộng ra.</p>
+<p>Anh đã liệt kê 5 yếu tố: khả năng nói, quen camera, sự tự nhiên, khả năng diễn đạt, chất lượng nội dung. Thư ký gom lại và bổ sung thành <strong>4 yếu tố lõi và 4 yếu tố nền</strong>.</p>
+<h3>4 yếu tố lõi</h3>
+<p><strong>① Cơ thể không nói dối: nhịp thở và cơ mặt</strong><br />
+Người xem đọc cơ thể trước khi nghe lời. Căng thẳng lộ ra ở 4 chỗ: vai nhô lên, thở nông ở ngực, nói một mạch không ngắt, cười cứng ở khóe miệng.<br />
+- Tự nhiên không có nghĩa là không diễn. Tự nhiên là lúc hệ thần kinh đang ở trạng thái an toàn.<br />
+- <strong>Cơ chế:</strong> Thở ra dài một hơi trước khi bấm máy để vai hạ xuống. Dừng một nhịp sau mỗi dấu chấm. Khoảng dừng đó là <strong>độ lắng</strong>, lúc người xem kịp nghe xong ý vừa rồi. Người mới sợ khoảng lặng nên lấp bằng "à, ờ", còn người làm nghề lâu thì dùng khoảng lặng để đặt trọng lượng cho câu sau.</p>
+<p><strong>② Sức nặng của ánh mắt</strong><br />
+- Nhìn vào lỗ camera, không nhìn vào hình mình trên màn hình.<br />
+- Ánh mắt có sức nặng khi người nói đang <strong>nói với một người cụ thể</strong>, không nói với "các bạn".<br />
+- <strong>Mẹo:</strong> Dán ảnh một khách hàng thật cạnh camera, hoặc tưởng tượng chị Oanh đang ngồi đối diện. Lúc đang nghĩ thì được phép nhìn đi chỗ khác, vì đó là nhìn thật. Nhưng <strong>lúc chốt ý, mắt phải quay về ống kính.</strong></p>
+<p><strong>③ Khẩu khí người làm nghề</strong><br />
+Đây là ngôn ngữ của người đã thật sự chạm tay vào việc: con số, tên dụng cụ, lỗi hay gặp, ca khó đã từng xử lý.<br />
+- Ví dụ yếu: "Gỗ bên em chất lượng cao."<br />
+- Ví dụ có khẩu khí: "Gỗ sấy chưa về được 8–12% độ ẩm mà đóng tủ luôn thì qua mùa nồm cánh cửa sẽ vênh."</p>
+<p>Khẩu khí không học được bằng văn mẫu. Nó tự lộ ra khi người nói kể chuyện thật.<br />
+- <strong>Luật tập:</strong> Mỗi video phải có ít nhất <strong>một chi tiết mà chỉ người trong nghề mới biết.</strong></p>
+<p><strong>④ Tư duy cô đặc</strong><br />
+Một video chỉ nói một ý, và kết luận nằm ở câu đầu.<br />
+- <strong>Phép thử trước khi bấm máy:</strong> Nói lại ý chính trong một câu không quá 20 chữ. Chưa nói được thì chưa được quay.<br />
+- AI làm gọn được câu nói, nhưng không sắp xếp lại được một suy nghĩ đang lộn xộn.<br />
+- <strong>Mẹo cho AI:</strong> Với câu chốt, hãy nói 2–3 lần theo nhịp khác nhau để AI có nhiều bản mà chọn.</p>
+<h3>4 yếu tố nền (trả lời câu "còn gì nữa không")</h3>
+<div class="table-wrap"><table class="shot-table">
+<thead>
+<tr>
+<th>#</th>
+<th>Yếu tố</th>
+<th>Vì sao AI không cứu được</th>
+<th>Cách làm</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>⑤</td>
+<td><strong>Âm thanh sạch ngay từ lúc thu</strong></td>
+<td>AI lọc được tiếng ồn, nhưng giọng sẽ bị nghe như đóng hộp và mất độ ấm. Người xem bỏ qua hình xấu, nhưng không chịu nổi tiếng xấu.</td>
+<td>Kẹp mic cách miệng 15–20cm. Tắt quạt và điều hòa nếu chúng kêu to.</td>
+</tr>
+<tr>
+<td>⑥</td>
+<td><strong>Ánh sáng chiếu vào mặt</strong></td>
+<td>Mặt tối thì phần mềm có kéo sáng lên cũng bị nhiễu hạt.</td>
+<td>Ngồi chéo 45° so với cửa sổ, nguồn sáng cao hơn mắt, để mắt có đốm sáng phản chiếu và trông có sức sống.</td>
+</tr>
+<tr>
+<td>⑦</td>
+<td><strong>Bối cảnh thật, thao tác thật</strong></td>
+<td>AI không bịa ra được bàn tay chai của thợ mộc.</td>
+<td>Nói ngay tại xưởng và <strong>vừa làm vừa nói</strong>. Tay có việc để làm thì cơ thể bớt căng, và chính cảnh nói đó cũng dùng được làm cảnh trám.</td>
+</tr>
+<tr>
+<td>⑧</td>
+<td><strong>Xuất hiện đều đặn</strong></td>
+<td>Không thuật toán nào làm được việc "quen mặt".</td>
+<td>Lên hình đều mỗi tuần. Người xem tin người họ đã gặp 20 lần, chứ ít khi tin người họ mới gặp lần đầu.</td>
+</tr>
+</tbody>
+</table></div>
+<h3>3 bài tập cảnh chính (10 phút mỗi sáng)</h3>
+<ol>
+<li><strong>"60 giây, một ý":</strong> Chọn một câu khách hay hỏi, trả lời trong 60 giây bằng một lần quay, không được dừng. Khi xem lại thì làm hai lượt:</li>
+<li>Lượt 1 <strong>tắt tiếng</strong>, chỉ nhìn vai và mắt.</li>
+<li>Lượt 2 <strong>không nhìn hình</strong>, chỉ nghe nhịp nói.</li>
+<li><strong>"Nói trong lúc làm":</strong> Vừa làm một việc trong nghề vừa giải thích, ví dụ thợ vừa chà nhám vừa nói vì sao phải chà xuôi theo thớ gỗ.</li>
+<li><strong>"Ba nhịp cho một câu":</strong> Nói câu mở đầu 3 lần, lần lượt là nhanh, chậm, rồi chậm và ngừng một nhịp trước từ khóa. So sánh xem lần nào nghe thật nhất.</li>
+</ol>
+<p><strong>Ví dụ đời thường:</strong> Bà bán cá ở chợ quê chưa bao giờ học thuyết trình, nhưng bà nói "Cá sáng nay mới ở ao lên, mang còn đỏ đây này" trong khi tay lật mang cá cho khách xem. Câu đó có đủ 4 yếu tố lõi: thở đều, nhìn thẳng người mua, khẩu khí của người bán cá, và chỉ nói một ý.</p>
+<hr />
+<h2 id='sec-7'>1.3. Phân tích cảnh trám (B-Roll)</h2>
+<p><strong>Kết luận:</strong> Cảnh trám của người mới trông vô hồn vì <strong>máy quay đang đứng ngoài nhìn vào chứ không ở bên trong</strong>. Cách sửa là bắt máy di chuyển quanh hành động, đổi cỡ cảnh và nấp sau đồ vật, giống hệt cách mắt người thật nhìn.</p>
+<p><strong>Cảnh trám không phải hình minh họa cho lời nói, mà là một câu văn viết bằng hình.</strong><br />
+- <strong>Phép thử:</strong> Tắt tiếng một đoạn trám dài 15 giây. Nếu người xem vẫn kể lại được ở đâu, ai làm gì, cảm giác ra sao, thì đoạn đó là một câu. Nếu họ chỉ thấy "một đống clip đẹp" thì đó mới là những từ rời rạc.</p>
+<h3>4 lỗi khiến cảnh trám vô hồn</h3>
+<ol>
+<li>Quay một cú dài 30 giây, đứng một chỗ, cầm máy ngang tầm mắt người lớn. Đó là góc nhìn của người đi đường liếc qua.</li>
+<li>Lia và zoom liên tục. Mắt người chưa bao giờ "zoom".</li>
+<li>Hình không có lớp, trông phẳng như ảnh camera an ninh.</li>
+<li>Có đổi cảnh nhưng chỉ bước sang một bước, nên khi ghép lại thì hình bị giật (jump cut).</li>
+</ol>
+<h3>a) Vì sao phải có đủ Rộng – Trung – Cận – Qua vai</h3>
+<p>Mỗi cỡ cảnh trả lời một câu hỏi, giống ngữ pháp của một câu văn:</p>
+<div class="table-wrap"><table class="shot-table">
+<thead>
+<tr>
+<th>Cỡ cảnh</th>
+<th>Trả lời câu hỏi</th>
+<th>Nếu thiếu</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="hig-badge badge-r">RỘNG (R)</span></td>
+<td>Ở đâu? Lúc nào? Ấm hay lạnh?</td>
+<td>Người xem bị lạc</td>
+</tr>
+<tr>
+<td><span class="hig-badge badge-t">TRUNG (T)</span></td>
+<td>Ai đang làm gì?</td>
+<td>Người xem không biết nhân vật là ai</td>
+</tr>
+<tr>
+<td><span class="hig-badge badge-c">CẬN (C)</span></td>
+<td>Cảm giác thế nào?</td>
+<td>Video không có cảm xúc</td>
+</tr>
+<tr>
+<td><span class="hig-badge badge-qv">QUA VAI (QV)</span></td>
+<td>Đang nhìn bằng mắt ai?</td>
+<td>Người xem chỉ đứng ngoài</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Tỷ lệ chuẩn trong một chuỗi 8 cảnh là 1 R : 2 T : 4 C : 1 QV</strong>, tức cảnh cận chiếm khoảng một nửa. Có 4 lý do:<br />
+1. Màn hình điện thoại chỉ khoảng 6 inch. Cảnh rộng trên đó trông li ti, nên chỉ dùng để mở không gian.<br />
+2. Cảm xúc nằm ở chi tiết, như bàn tay, hơi nước, khóe miệng.<br />
+3. Cảnh cận <strong>che được phần hậu cảnh bừa bộn</strong> ở nhà và ở xưởng, nên người mới quay sẽ an toàn hơn.<br />
+4. Cảnh cận dễ quay nhất. Một hành động cho ra được 4–5 chi tiết.</p>
+<p>→ Anh dặn chị Oanh <em>"làm khoảng 4 cảnh cận"</em> là đúng tỷ lệ này. Trình tự anh dặn <strong>R → T → C×4 → QV → T</strong> có hình <strong>cái phễu</strong>: mở rộng, đi sâu dần, nhập vai nhân vật, rồi lùi ra để khép lại.</p>
+<h3>b) Vì sao phải lệch góc từ 30° trở lên</h3>
+<ul>
+<li><strong>Cơ chế:</strong> Hai cú máy gần giống nhau ghép liền nhau thì não người xem đọc thành "hình bị nhảy", tức cùng một cảnh mà đồ vật tự dịch chỗ. Não không đọc thành "đổi góc nhìn". Lệch từ 30° trở lên, tốt nhất là đổi luôn cả cỡ cảnh, thì hai cảnh đủ khác nhau để não chấp nhận rằng "mình vừa đổi chỗ đứng".</li>
+<li><strong>Cách đo không cần thước:</strong> Dùng mặt đồng hồ quanh nhân vật. Máy đang đứng ở 1h thì dời ít nhất sang 12h hoặc 2h, mỗi giờ là 30°. <strong>Dời 2 giờ (60°) là an toàn nhất.</strong></li>
+<li><strong>Đi kèm là luật đường ray 180°:</strong> Kẻ một đường tưởng tượng theo hướng nhìn chính của nhân vật, ví dụ con nhìn xuống bát cơm theo trục 12h–6h. <strong>Máy chỉ được đứng ở một nửa</strong> của đường đó. Như vậy bàn tay cầm thìa luôn nằm cùng một phía trong khung hình, và người xem không bị lẫn lộn trái phải.</li>
+</ul>
+<h3>c) Vì sao mỗi cảnh chỉ 2–3 giây</h3>
+<ul>
+<li><strong>Cơ chế:</strong> Khi một cảnh mới hiện ra, mắt cần khoảng 1 giây để biết mình đang nhìn gì, rồi 1–2 giây để đọc chi tiết. Sau đó không còn gì mới, và ngón tay sẽ vuốt sang video khác.</li>
+<li><strong>Gắn với nhạc:</strong> Nhạc nhịp 90–100 BPM thì 4 phách dài khoảng 2.4–2.7 giây. Vậy <strong>cắt mỗi cảnh ở 4 phách là khớp đúng 2–3 giây</strong>. Cảnh có chuyển động đẹp như hơi nước hay bụi gỗ bay thì được kéo lên 8 phách.</li>
+<li>Cần quay 6–8 giây vì đoạn đầu và đoạn cuối hay bị rung tay. Phần giữa mới sạch.</li>
+</ul>
+<h3>d) Nấp sau vật thể (đặt tiền cảnh che một phần khung hình)</h3>
+<ul>
+<li><strong>Cơ chế thị giác:</strong> Màn hình chỉ có hai chiều. Muốn có chiều sâu thì cần ít nhất 3 lớp:</li>
+<li><strong>Tiền cảnh:</strong> mờ, tối hơn chủ thể, nằm ở mép khung, chiếm khoảng 15–25% diện tích.</li>
+<li><strong>Chủ thể:</strong> nét.</li>
+<li><strong>Hậu cảnh:</strong> hơi mờ và có ánh sáng.</li>
+<li><strong>Cơ chế cảm xúc:</strong> Khi có vật che ở mép khung, người xem có cảm giác mình đang <strong>đứng ở một chỗ thật và lặng lẽ nhìn</strong>. Nhân vật như không biết mình đang bị quay, nên cảnh trở nên riêng tư và chân thực.</li>
+<li><strong>Cách đặt:</strong></li>
+<li>Máy cách vật tiền cảnh 10–30cm, chủ thể cách máy 1.5–3m.</li>
+<li>Chọn ống 2x hoặc 3x, chạm để khóa nét vào chủ thể.</li>
+<li><strong>Vật tiền cảnh có sẵn ở nhà:</strong> khung cửa, mép tủ, lá cây, chai lọ, cốc nước, rèm, lan can.</li>
+<li><strong>Ví dụ đời thường:</strong> Ngó qua khe cửa phòng khi con đang ngủ. Chính cái khe cửa làm khoảnh khắc ấy trở nên đáng giữ.</li>
+</ul>
+<h3>e) Phản xạ quay hình thành thế nào</h3>
+<ul>
+<li>Hiểu lý thuyết thì không tạo ra phản xạ được, <strong>chỉ có lặp lại mới tạo ra</strong>. Phản xạ là khi một hành động vừa bắt đầu thì chân đã tự đi qua 4 điểm đứng mà không cần nghĩ.</li>
+<li>Giống học lái xe: tuần đầu phải nghĩ từng bước côn, số, ga, còn đến tháng thứ ba thì vừa lái vừa nói chuyện được.</li>
+<li><strong>Liều lượng:</strong> Mỗi ngày một bài, 10–15 phút, liên tục 30 ngày. Tổng cộng khoảng 240 lần đặt máy có chủ đích.</li>
+</ul>
+<h3>Mẹo chọn đề: tìm hành động tự lặp lại</h3>
+<p>Vì sao bài quay con ăn cơm của anh là bài mẫu rất tốt:<br />
+- Con xúc cơm 20–30 lần trong một bữa. Mỗi lần xúc là một cơ hội dời máy sang vị trí mới mà hành động vẫn khớp với lần trước.<br />
+- Khi ghép lại, video trông như có <strong>4 máy quay chạy cùng lúc</strong>. Phim điện ảnh làm đúng như vậy: quay một hành động nhiều lần từ nhiều góc, rồi cắt ngay trên hành động (COA).</p>
+<p>→ <strong>Luật chọn đề cho mọi ngành:</strong> tìm hành động tự lặp lại, như bào gỗ, bắt bông kem, massage, vặn ốc, rót cà phê.</p>
+<hr />
+<h1 id='sec-8'>PHẦN 2: BÀI TẬP QUAY CON ĂN CƠM (phân tích từ tin nhắn Zalo của anh)</h1>
+<p><strong>Kết luận:</strong> Đây không chỉ là bài quay con. Đây là bài tập <strong>giả lập 4 máy quay trên một hành động lặp lại</strong>. Ai làm xong bài này là đã cầm được toàn bộ ngữ pháp cảnh trám.</p>
+<h2 id='sec-9'>Chuẩn bị (2 phút)</h2>
+<ol>
+<li><strong>Ánh sáng:</strong> Ưu tiên bữa sáng hoặc bữa trưa gần cửa sổ. Tắt đèn trần vàng, vì đèn vàng trộn với ánh sáng cửa sổ màu xanh sẽ làm lệch màu da.</li>
+<li><strong>Bàn ăn:</strong> Dọn gọn một vùng bàn. Để lại 1–2 đồ vật đẹp (cốc nước, bình nước, lọ hoa, đĩa rau) để làm tiền cảnh.</li>
+<li><strong>Máy:</strong> Quay 4K 30fps, hoặc 60fps nếu muốn làm chậm nhẹ. Khóa nét trước mỗi cảnh.</li>
+<li><strong>Đường ray:</strong> Con nhìn xuống bát theo trục 12h–6h. <strong>Chọn nửa bên phải</strong> (đi từ 12h qua 3h đến 6h) và đứng trong nửa đó suốt bài.</li>
+<li><strong>Không chỉ đạo con.</strong> Không bảo con "nhìn mẹ cười đi". Chỉ quay những gì tự lặp lại.</li>
+</ol>
+<h2 id='sec-10'>Bảng phân cảnh 9 cảnh (khoảng 22 giây)</h2>
+<div class="table-wrap"><table class="shot-table">
+<thead>
+<tr>
+<th>#</th>
+<th>Cỡ</th>
+<th>Vị trí máy</th>
+<th>Ống</th>
+<th>Tiền cảnh (nấp)</th>
+<th>Hậu cảnh</th>
+<th>Lấy khi dựng</th>
+<th>Vì sao chọn góc này</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><span class="hig-badge badge-r">RỘNG (R)</span></td>
+<td>2h, cách 3–4m, đứng ở cửa bếp, máy ngang ngực</td>
+<td>1x</td>
+<td>Khung cửa hoặc mép tủ lạnh, chiếm 15–20% mép khung</td>
+<td>Cửa sổ có nắng</td>
+<td><strong>3s</strong></td>
+<td>Mở không gian: ở đâu, mấy giờ, không khí ấm hay lạnh</td>
+</tr>
+<tr>
+<td>2</td>
+<td><span class="hig-badge badge-t">TRUNG (T)</span></td>
+<td>12h, lệch 60° so với cảnh 1. <strong>Hạ máy xuống ngang tầm mắt con</strong>, cách 1.5m</td>
+<td>1x–2x</td>
+<td>Mép cốc nước mờ ở góc dưới khung</td>
+<td>Tường hoặc rèm mờ</td>
+<td><strong>2.5s</strong></td>
+<td>Giới thiệu nhân vật ở tầm mắt con. Đây là góc tôn trọng nhân vật, không nhìn từ trên xuống</td>
+</tr>
+<tr>
+<td>3</td>
+<td><span class="hig-badge badge-c">CẬN (C)</span> tay xúc</td>
+<td>3h, máy ngang mặt bàn, cách 50–70cm</td>
+<td>2x–3x</td>
+<td>Lọ nước mắm hoặc đĩa rau mờ</td>
+<td>Bát cơm</td>
+<td><strong>2s</strong></td>
+<td>Hành động bắt đầu. Cắt đúng lúc thìa vừa nhấc lên</td>
+</tr>
+<tr>
+<td>4</td>
+<td><span class="hig-badge badge-c">CẬN (C)</span> miệng</td>
+<td>1h, ngang miệng, cách 60cm</td>
+<td>3x</td>
+<td>Không cần</td>
+<td>Mờ</td>
+<td><strong>2s</strong></td>
+<td><strong>Cắt trên hành động:</strong> cảnh 3 là lúc thìa nhấc lên, cảnh 4 là lúc thìa tới miệng. Hai cảnh quay ở hai lần xúc khác nhau nhưng ghép lại thành một động tác liền</td>
+</tr>
+<tr>
+<td>5</td>
+<td><span class="hig-badge badge-c">CẬN (C)</span> má nhai</td>
+<td>3h, quay nghiêng mặt</td>
+<td>3x</td>
+<td>Mép bát mờ</td>
+<td>Cửa sổ sáng, có viền sáng quanh má</td>
+<td><strong>2s</strong></td>
+<td>Má phồng lúc nhai là cảm xúc thuần, không cần lời</td>
+</tr>
+<tr>
+<td>6</td>
+<td><span class="hig-badge badge-c">CẬN (C)</span> chân đung đưa</td>
+<td>1–2h, <strong>đặt máy sát sàn dưới gầm bàn</strong></td>
+<td>1x</td>
+<td>Chân ghế, chân bàn</td>
+<td>Sàn nhà</td>
+<td><strong>2.5s</strong></td>
+<td><strong>Cảnh có giá trị nhất</strong>, vì không ai nghĩ tới. Trẻ con kể niềm vui bằng chân</td>
+</tr>
+<tr>
+<td>7</td>
+<td><span class="hig-badge badge-qv">QUA VAI (QV)</span></td>
+<td>4–5h, sau vai phải con, máy ngang vai</td>
+<td>2x</td>
+<td>Vai và tóc con mờ, chiếm 20–25% khung</td>
+<td>Bát cơm nét, phía xa là người đối diện hoặc cửa sổ</td>
+<td><strong>3s</strong></td>
+<td>Đặt người xem vào chỗ ngồi của con, nhìn bữa cơm bằng mắt con</td>
+</tr>
+<tr>
+<td>8</td>
+<td><span class="hig-badge badge-c">CẬN (C)</span> từ trên xuống</td>
+<td>Từ trên cao chiếu thẳng xuống bàn</td>
+<td>1x</td>
+<td>Không cần</td>
+<td>Mặt bàn</td>
+<td><strong>2s</strong></td>
+<td>Hạt cơm rơi, thìa nằm nghiêng. Đổi hẳn sang trục dọc để tạo nhịp mới</td>
+</tr>
+<tr>
+<td>9</td>
+<td><span class="hig-badge badge-t">TRUNG (T)</span> kết</td>
+<td>1h, lệch 60° so với cảnh 8</td>
+<td>2x</td>
+<td>Bình nước mờ</td>
+<td>Cửa sổ</td>
+<td><strong>3s+</strong></td>
+<td>Con ngẩng lên cười hoặc nhìn mẹ. Giữ cảnh này lâu nhất, đến hết câu nhạc</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Tỷ lệ của bảng này:</strong> 1 R, 2 T, 5 C, 1 QV. Cảnh cận chiếm hơn một nửa, đúng như anh dặn.</p>
+<h2 id='sec-11'>Câu chuyện bên trong 22 giây</h2>
+<div class="table-wrap"><table class="shot-table">
+<thead>
+<tr>
+<th>Nhịp</th>
+<th>Cảnh</th>
+<th>Người xem cảm thấy gì</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Mở</strong></td>
+<td>1–2</td>
+<td>Một buổi trưa có nắng, một đứa trẻ đang ngồi ăn</td>
+</tr>
+<tr>
+<td><strong>Diễn</strong></td>
+<td>3–5</td>
+<td>Nhịp xúc, đưa, nhai, như nhịp thở của bữa cơm</td>
+</tr>
+<tr>
+<td><strong>Nhấn</strong></td>
+<td>6–8</td>
+<td>Những chi tiết người lớn thường bỏ qua: đôi chân đung đưa, bữa cơm nhìn từ mắt con, hạt cơm rơi</td>
+</tr>
+<tr>
+<td><strong>Kết</strong></td>
+<td>9</td>
+<td>Con ngẩng lên. Đây là khoảnh khắc người xem nhớ lại sau khi video hết</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Caption gợi ý để đăng:</strong> <em>"Một bữa cơm, 22 giây. Mai con lớn rồi sẽ không còn ngồi đung đưa chân thế này nữa."</em><br />
+Câu caption biến bài tập thành câu chuyện: hình kể hiện tại, chữ kể thời gian đang trôi.</p>
+<h2 id='sec-12'>Dựng theo nhạc</h2>
+<ul>
+<li><strong>Nhạc:</strong> Không lời, mộc (piano hoặc guitar), nhịp 85–100 BPM.</li>
+<li><strong>Cắt:</strong> Mỗi cảnh 4 phách. Cảnh 6 và cảnh 9 được giữ 6–8 phách.</li>
+<li><strong>Âm thanh:</strong> Giữ tiếng thìa chạm bát ở mức 20–30% âm lượng dưới nhạc. Tiếng thìa giúp người xem nghe thấy bữa cơm chứ không chỉ nhìn thấy.</li>
+</ul>
+<h2 id='sec-13'>4 lỗi hay gặp và cách sửa</h2>
+<div class="table-wrap"><table class="shot-table">
+<thead>
+<tr>
+<th>Lỗi</th>
+<th>Cách sửa</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Quay từ trên cao chúc xuống (góc của người lớn)</td>
+<td>Ngồi thụp xuống, máy ngang tầm mắt con</td>
+</tr>
+<tr>
+<td>Mọi cảnh đều quay bằng 1x</td>
+<td>Chuyển sang 3x cho cảnh cận, đứng xa hơn</td>
+</tr>
+<tr>
+<td>Đổi cảnh mà chỉ bước sang một bước</td>
+<td>Dời đúng 2 giờ trên mặt đồng hồ</td>
+</tr>
+<tr>
+<td>Màu da vàng một bên, xanh một bên</td>
+<td>Tắt đèn trần</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id='sec-14'>Biến thể (vẫn dùng khung 9 cảnh như trên)</h2>
+<p>Con tự ăn hoặc ông bà đút · con đánh răng · con xếp hình · con tưới cây · con ngủ (quay qua khe cửa) · con đọc truyện · con đi giày ra cửa.</p>
+<h2 id='sec-15'>Mô tả ảnh minh họa (để thư ký sinh ảnh ở lượt sau)</h2>
+<p>Dùng chung cho mọi cảnh: <em>vertical 9:16, natural window light, iPhone photo style, Vietnamese home, child about 4 years old, warm calm mood</em><br />
+1. Wide shot through a kitchen doorframe, doorframe blurred on left edge, child eating at a wooden table, sunlit window behind.<br />
+2. Medium shot at child's eye level, blurred water glass bottom corner, child holding spoon.<br />
+3. Close-up side view of small hand scooping rice from bowl, blurred fish-sauce bottle foreground.<br />
+4. Close-up of spoon reaching child's mouth, shallow depth of field.<br />
+5. Profile close-up of child's cheek puffed while chewing, rim light from window.<br />
+6. Low angle under the table, child's feet swinging, blurred chair legs foreground.<br />
+7. Over-the-shoulder from behind child's right shoulder, blurred hair and shoulder 25% of frame, rice bowl in focus.<br />
+8. Top-down shot of table, a few grains of rice and a resting spoon.<br />
+9. Medium shot, child looking up smiling, blurred water bottle foreground, window light.</p>
+<hr />
+<h1 id='sec-16'>PHẦN 3: BÀI TẬP ĐỜI THƯỜNG CHO CHÍNH ANH VIỆT</h1>
+<h2 id='sec-17'>Vì sao anh nên làm trước học viên</h2>
+<p><strong>Kết luận:</strong> Bài tập này không làm mất thời gian của anh. Nó là nguyên liệu cho chính kênh của anh và là bằng chứng sống cho lớp học.</p>
+<p>Thầy dạy bơi không cần là vận động viên, nhưng phải từng xuống nước. Có 3 thứ anh nhận được ngay:<br />
+1. <strong>Kho cảnh trám cho kênh của anh.</strong> Cảnh chính của anh nói về nhịp sống điềm tĩnh của người làm nghề thì cần cảnh trám có đúng nhịp đó. Hiện tại kho này đang thiếu.<br />
+2. <strong>Ví dụ mẫu do chính thầy tự quay.</strong> Học viên tin điều họ thấy thầy làm hơn điều thầy nói.<br />
+3. <strong>Những chỗ vướng khi tự quay mình</strong> (không có người cầm máy) chính là bài giảng thật, vì phần lớn học viên K4 cũng phải tự quay một mình.</p>
+<h2 id='sec-18'>Kỹ thuật tự quay chính mình</h2>
+<p><strong>Đặt chân máy, làm hành động, dời máy, làm lại đúng hành động đó.</strong><br />
+- Đặt máy ở vị trí 1, bấm quay, rồi làm hành động thật trong 30 giây (viết, gõ, nhấp cà phê).<br />
+- Dời máy sang vị trí 2, cách ít nhất 60°, rồi làm lại đúng hành động đó.<br />
+- Đây chính là nguyên tắc "hành động lặp lại" áp vào bản thân mình. Đầu và cuối mỗi đoạn để AI cắt.</p>
+<h2 id='sec-19'>Bài 3.1: "Buổi sáng của người ghi chép" (khoảng 22 giây)</h2>
+<p><strong>Câu chuyện:</strong> Từ một cốc cà phê và một trang trắng đến lúc ý tưởng được ghi xuống.<br />
+<strong>Đường ray:</strong> Anh nhìn xuống bàn hoặc màn hình. Chọn nửa phía cửa sổ để đứng máy.</p>
+<div class="table-wrap"><table class="shot-table">
+<thead>
+<tr>
+<th>#</th>
+<th>Cỡ</th>
+<th>Vị trí máy</th>
+<th>Ống</th>
+<th>Tiền cảnh (nấp)</th>
+<th>Lấy</th>
+<th>Vì sao</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><span class="hig-badge badge-r">RỘNG (R)</span></td>
+<td>Ngoài cửa phòng làm việc, cách 3m</td>
+<td>1x</td>
+<td><strong>Hai mép khung cửa tạo khung trong khung</strong></td>
+<td>3s</td>
+<td>Người xem đứng ngoài nhìn vào một không gian yên tĩnh</td>
+</tr>
+<tr>
+<td>2</td>
+<td><span class="hig-badge badge-t">TRUNG (T)</span></td>
+<td>Chéo 45° từ phía cửa sổ, hơi ngược sáng</td>
+<td>2x</td>
+<td>Lá chậu cây mờ ở mép</td>
+<td>2.5s</td>
+<td>Có viền sáng quanh người, khí chất điềm tĩnh</td>
+</tr>
+<tr>
+<td>3</td>
+<td><span class="hig-badge badge-c">CẬN (C)</span></td>
+<td>Tay viết sổ, máy ngang mặt bàn</td>
+<td>3x</td>
+<td>Cốc cà phê mờ</td>
+<td>2s</td>
+<td>Chữ đang hiện ra trên giấy, tức là suy nghĩ đang có hình</td>
+</tr>
+<tr>
+<td>4</td>
+<td><span class="hig-badge badge-c">CẬN (C)</span></td>
+<td>Hơi nước bốc lên từ cốc trong vệt nắng, nền tối</td>
+<td>3x</td>
+<td>Không cần</td>
+<td>3s</td>
+<td>Cảnh tạo nhịp chậm, cho người xem thở</td>
+</tr>
+<tr>
+<td>5</td>
+<td><span class="hig-badge badge-qv">QUA VAI (QV)</span></td>
+<td>Sau vai anh, thấy sổ hoặc màn hình ghi chú</td>
+<td>2x</td>
+<td>Vai và tai anh mờ</td>
+<td>2.5s</td>
+<td>Người xem ngồi vào ghế của anh. <strong>Che các thông tin riêng tư</strong></td>
+</tr>
+<tr>
+<td>6</td>
+<td><span class="hig-badge badge-c">CẬN (C)</span></td>
+<td>Mắt nhìn xa ra cửa sổ</td>
+<td>3x</td>
+<td><strong>Mép màn hình máy tính</strong></td>
+<td>2.5s</td>
+<td>Khoảnh khắc đang nghĩ, điều mà người xem tò mò nhất</td>
+</tr>
+<tr>
+<td>7</td>
+<td><span class="hig-badge badge-c">CẬN (C)</span></td>
+<td>Ngón tay gạch chân một dòng chữ</td>
+<td>3x</td>
+<td>Bút hoặc kính mờ</td>
+<td>2s</td>
+<td>Dấu hiệu "đã chốt được ý"</td>
+</tr>
+<tr>
+<td>8</td>
+<td><span class="hig-badge badge-t">TRUNG (T)</span> kết</td>
+<td>Đối diện chéo, lệch ≥60° so với cảnh 7</td>
+<td>1x</td>
+<td>Rèm cửa sổ</td>
+<td>3s+</td>
+<td>Anh tựa lưng nhấp cà phê. Câu chuyện khép lại</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id='sec-20'>Bài 3.2: "Một buổi sáng không vội" (đón con ở Times City và ăn sáng, khoảng 30 giây)</h2>
+<p><strong>Lưu ý thực tế:</strong><br />
+- Cần một người cầm máy, hoặc đặt máy trên ghế đá, bậc thềm rồi đi qua 2–3 lần.<br />
+- Ở nơi công cộng thì <strong>tránh quay rõ mặt người lạ</strong>. Khu thương mại có thể hạn chế chân máy, nên dùng cầm tay hoặc gậy nhỏ.</p>
+<p><strong>Đoạn A: Đi đón con</strong></p>
+<div class="table-wrap"><table class="shot-table">
+<thead>
+<tr>
+<th>#</th>
+<th>Cỡ</th>
+<th>Vị trí máy</th>
+<th>Ống</th>
+<th>Tiền cảnh (nấp)</th>
+<th>Lấy</th>
+<th>Vì sao</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><span class="hig-badge badge-r">RỘNG (R)</span></td>
+<td>Nấp sau thân cây hoặc cột hành lang, anh đi từ xa vào khung</td>
+<td>2x</td>
+<td>Thân cây hoặc cột mờ chiếm 20%</td>
+<td>3s</td>
+<td>Mở bối cảnh. Cảm giác như người qua đường bắt gặp</td>
+</tr>
+<tr>
+<td>2</td>
+<td><span class="hig-badge badge-c">CẬN (C)</span></td>
+<td>Bước chân. Máy đặt <strong>sát mặt đất</strong>, anh đi ngang qua</td>
+<td>1x</td>
+<td>Mặt đường gạch mờ</td>
+<td>2s</td>
+<td>Chân đi vào rồi ra khỏi khung tạo thành một lần chuyển cảnh tự nhiên</td>
+</tr>
+<tr>
+<td>3</td>
+<td><span class="hig-badge badge-t">TRUNG (T)</span></td>
+<td>Từ sau lưng chếch, anh đi dưới mái vòm hoặc hàng cây</td>
+<td>1x</td>
+<td>Không cần</td>
+<td>2.5s</td>
+<td>Khung kiến trúc làm đường dẫn mắt tới nhân vật</td>
+</tr>
+<tr>
+<td>4</td>
+<td><span class="hig-badge badge-c">CẬN (C)</span></td>
+<td>Tay con nắm lấy tay anh</td>
+<td>3x</td>
+<td>Lan can hoặc lá cây</td>
+<td>2.5s</td>
+<td><strong>Khoảnh khắc chính</strong> của đoạn này</td>
+</tr>
+<tr>
+<td>5</td>
+<td><span class="hig-badge badge-qv">QUA VAI (QV)</span></td>
+<td>Qua vai anh nhìn con đang nói gì đó</td>
+<td>2x</td>
+<td>Vai anh mờ</td>
+<td>2.5s</td>
+<td>Người xem đứng ở vị trí của người bố</td>
+</tr>
+<tr>
+<td>6</td>
+<td><span class="hig-badge badge-r">RỘNG (R)</span></td>
+<td>Máy cố định, hai bố con đi xa dần dưới hàng cây</td>
+<td>1x</td>
+<td>Cành lá phía trên</td>
+<td>3s</td>
+<td>Nhân vật đi ra khỏi khung, đoạn A kết thúc</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Đoạn B: Ăn sáng</strong></p>
+<div class="table-wrap"><table class="shot-table">
+<thead>
+<tr>
+<th>#</th>
+<th>Cỡ</th>
+<th>Vị trí máy</th>
+<th>Ống</th>
+<th>Tiền cảnh (nấp)</th>
+<th>Lấy</th>
+<th>Vì sao</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>7</td>
+<td><span class="hig-badge badge-r">RỘNG (R)</span></td>
+<td>Đứng ngoài, quay qua cửa kính quán</td>
+<td>1x</td>
+<td><strong>Hình đường phố phản chiếu trên kính</strong></td>
+<td>3s</td>
+<td>Lớp phản chiếu là một loại tiền cảnh tự nhiên</td>
+</tr>
+<tr>
+<td>8</td>
+<td><span class="hig-badge badge-c">CẬN (C)</span></td>
+<td>Bát phở bốc hơi, ngược sáng</td>
+<td>3x</td>
+<td>Lọ tương mờ</td>
+<td>2.5s</td>
+<td>Hơi nóng là cảm giác buổi sáng</td>
+</tr>
+<tr>
+<td>9</td>
+<td><span class="hig-badge badge-c">CẬN (C)</span></td>
+<td>Tay con cầm thìa</td>
+<td>3x</td>
+<td>Mép bát</td>
+<td>2s</td>
+<td>Lặp lại motif bàn tay từ bài quay con</td>
+</tr>
+<tr>
+<td>10</td>
+<td><span class="hig-badge badge-qv">QUA VAI (QV)</span></td>
+<td>Qua vai con nhìn anh đang nói</td>
+<td>2x</td>
+<td>Tóc con mờ</td>
+<td>2.5s</td>
+<td>Nhìn người bố qua mắt con</td>
+</tr>
+<tr>
+<td>11</td>
+<td><span class="hig-badge badge-t">TRUNG (T)</span> kết</td>
+<td>Chếch 1h, hai bố con cùng ăn</td>
+<td>2x</td>
+<td>Ống đũa mờ</td>
+<td>3s+</td>
+<td>Bữa sáng khép lại câu chuyện</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Nâng cấp thành chuỗi:</strong> Mỗi tuần quay một buổi sáng. Sau 3 tháng sẽ có khoảng 12 tập, ghép thành chuỗi kể nhịp sống của một người làm nội dung.</p>
+<hr />
+<h1 id='sec-21'>PHẦN 4: BÀI TẬP CHO TỪNG NGÀNH HÀNG K4</h1>
+<p>Mỗi ngành có 4 phần: <strong>Câu chuyện</strong>, <strong>Hành động lặp lại</strong> (thứ cho phép dời máy), <strong>Bảng phân cảnh</strong> và <strong>Lưu ý ngành</strong>. Mọi cảnh đều giữ máy 6–8 giây khi quay, khi dựng lấy theo cột "Lấy".</p>
+<h2 id='sec-22'>4.1. Xưởng gỗ nội thất (Đức Oanh)</h2>
+<p><strong>Câu chuyện:</strong> <em>"Một tấm gỗ thô thành mặt bàn."</em><br />
+<strong>Hành động lặp lại:</strong> Chà nhám, quét dầu, vuốt tay kiểm tra bề mặt.</p>
+<div class="table-wrap"><table class="shot-table">
+<thead>
+<tr>
+<th>#</th>
+<th>Cỡ</th>
+<th>Vị trí máy</th>
+<th>Ống</th>
+<th>Tiền cảnh (nấp)</th>
+<th>Lấy</th>
+<th>Vì sao</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><span class="hig-badge badge-r">RỘNG (R)</span></td>
+<td>Đứng ở cửa xưởng nhìn vào</td>
+<td>1x</td>
+<td><strong>Chồng ván gỗ xếp</strong> ở mép khung</td>
+<td>3s</td>
+<td>Quy mô xưởng thật, không phải phòng mẫu</td>
+</tr>
+<tr>
+<td>2</td>
+<td><span class="hig-badge badge-t">TRUNG (T)</span></td>
+<td>Chéo 45°, thợ đang chà nhám</td>
+<td>1x–2x</td>
+<td>Kẹp gỗ hoặc mép bàn máy</td>
+<td>2.5s</td>
+<td>Người thợ và nhịp làm việc</td>
+</tr>
+<tr>
+<td>3</td>
+<td><span class="hig-badge badge-c">CẬN (C)</span></td>
+<td><strong>Bụi gỗ bay trong vệt nắng</strong>, ngược sáng, nền tối</td>
+<td>3x</td>
+<td>Không cần</td>
+<td>3s</td>
+<td>Cảnh có giá trị nhất của ngành gỗ. Ánh sáng làm bụi thành chất thơ</td>
+</tr>
+<tr>
+<td>4</td>
+<td><span class="hig-badge badge-c">CẬN (C)</span></td>
+<td>Vân gỗ hiện ra khi quét dầu</td>
+<td>3x</td>
+<td>Lon dầu mờ</td>
+<td>2.5s</td>
+<td>Biến đổi trước và sau ngay trong một cảnh</td>
+</tr>
+<tr>
+<td>5</td>
+<td><span class="hig-badge badge-c">CẬN (C)</span></td>
+<td>Bàn tay thợ chai sạn vuốt mặt gỗ</td>
+<td>3x</td>
+<td>Thước gỗ mờ</td>
+<td>2s</td>
+<td>Khẩu khí người làm nghề nói bằng hình</td>
+</tr>
+<tr>
+<td>6</td>
+<td><span class="hig-badge badge-qv">QUA VAI (QV)</span></td>
+<td>Sau vai thợ, nhìn tấm gỗ</td>
+<td>2x</td>
+<td>Vai áo bảo hộ</td>
+<td>2.5s</td>
+<td>Người xem nhìn bằng mắt người thợ</td>
+</tr>
+<tr>
+<td>7</td>
+<td><span class="hig-badge badge-c">CẬN (C)</span></td>
+<td>Bút chì gạch dấu theo thước</td>
+<td>3x</td>
+<td>Hộp dụng cụ</td>
+<td>2s</td>
+<td>Sự chính xác</td>
+</tr>
+<tr>
+<td>8</td>
+<td><span class="hig-badge badge-t">TRUNG (T)</span> kết</td>
+<td>Mặt bàn hoàn thiện, thợ lau lần cuối</td>
+<td>2x</td>
+<td>Lá cây hoặc rèm ở góc xưởng</td>
+<td>3s+</td>
+<td>Thành phẩm</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Lưu ý ngành:</strong> Không đứng gần máy cưa khi máy đang chạy. Quay các công đoạn tay để an toàn. Bụi gỗ chỉ đẹp khi có nguồn sáng chiếu nghiêng từ cửa xưởng, nên <strong>quay vào buổi sáng</strong>.<br />
+<strong>Biến thể:</strong> Lắp tủ tại nhà khách · đo đạc tại công trình · chọn gỗ ở bãi.</p>
+<h2 id='sec-23'>4.2. Bánh kem hoa thủ công (Hồng – Yuki Cake)</h2>
+<p><strong>Câu chuyện:</strong> <em>"Một bông hoa ra đời từ túi bắt kem."</em><br />
+<strong>Hành động lặp lại:</strong> Bắt từng cánh hoa. Đây là hành động lặp hoàn hảo.</p>
+<div class="table-wrap"><table class="shot-table">
+<thead>
+<tr>
+<th>#</th>
+<th>Cỡ</th>
+<th>Vị trí máy</th>
+<th>Ống</th>
+<th>Tiền cảnh (nấp)</th>
+<th>Lấy</th>
+<th>Vì sao</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><span class="hig-badge badge-r">RỘNG (R)</span></td>
+<td>Bàn làm bánh nhìn từ cửa bếp</td>
+<td>1x</td>
+<td><strong>Kệ dụng cụ, hàng lọ màu</strong></td>
+<td>3s</td>
+<td>Không gian xưởng nhỏ, gọn gàng</td>
+</tr>
+<tr>
+<td>2</td>
+<td><span class="hig-badge badge-t">TRUNG (T)</span></td>
+<td>Chéo 45°, người thợ cầm túi bắt kem</td>
+<td>2x</td>
+<td>Lọ màu mờ</td>
+<td>2.5s</td>
+<td>Sự tập trung</td>
+</tr>
+<tr>
+<td>3</td>
+<td><span class="hig-badge badge-c">CẬN (C)</span></td>
+<td>Đầu bắt kem đang tạo một cánh hoa</td>
+<td>3x, sát</td>
+<td>Không cần</td>
+<td>3s</td>
+<td>Đây là phép màu của nghề, giữ lâu</td>
+</tr>
+<tr>
+<td>4</td>
+<td><span class="hig-badge badge-c">CẬN (C)</span></td>
+<td>Tay xoay đế bánh</td>
+<td>3x</td>
+<td>Mép bàn xoay</td>
+<td>2s</td>
+<td>Nhịp quay đều</td>
+</tr>
+<tr>
+<td>5</td>
+<td><span class="hig-badge badge-c">CẬN (C)</span></td>
+<td>Pha màu kem trong bát</td>
+<td>Từ trên xuống, 1x</td>
+<td>Không cần</td>
+<td>2s</td>
+<td>Màu sắc</td>
+</tr>
+<tr>
+<td>6</td>
+<td><span class="hig-badge badge-qv">QUA VAI (QV)</span></td>
+<td>Sau vai người thợ</td>
+<td>2x</td>
+<td>Vai và tạp dề</td>
+<td>2.5s</td>
+<td>Người học nhìn bằng mắt thầy, đúng tinh thần một khóa đào tạo</td>
+</tr>
+<tr>
+<td>7</td>
+<td><span class="hig-badge badge-c">CẬN (C)</span></td>
+<td>Mắt người thợ chăm chú</td>
+<td>3x</td>
+<td><strong>Bông hoa đã bắt xong</strong>, mờ ở tiền cảnh</td>
+<td>2s</td>
+<td>Người và tác phẩm cùng nằm trong một khung</td>
+</tr>
+<tr>
+<td>8</td>
+<td><span class="hig-badge badge-t">TRUNG (T)</span> kết</td>
+<td>Đặt bông hoa lên bánh</td>
+<td>2x</td>
+<td>Bình hoa thật mờ</td>
+<td>3s+</td>
+<td>Thành phẩm</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Lưu ý ngành:</strong> Dùng <strong>ánh sáng cửa sổ dịu</strong>, vì đèn vàng làm sai màu kem. Kem chảy nhanh khi nóng nên quay gọn, bật điều hòa. Bài đào tạo nên có cảnh học viên làm sai rồi sửa, vì người xem thấy được tiến bộ.</p>
+<h2 id='sec-24'>4.3. Spa, thẩm mỹ, chăm sóc da (Alice Hằng và ngành làm đẹp)</h2>
+<p><strong>Câu chuyện:</strong> <em>"60 phút được thả lỏng."</em><br />
+<strong>Hành động lặp lại:</strong> Thoa kem, massage, ấn huyệt.</p>
+<div class="table-wrap"><table class="shot-table">
+<thead>
+<tr>
+<th>#</th>
+<th>Cỡ</th>
+<th>Vị trí máy</th>
+<th>Ống</th>
+<th>Tiền cảnh (nấp)</th>
+<th>Lấy</th>
+<th>Vì sao</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><span class="hig-badge badge-r">RỘNG (R)</span></td>
+<td>Nhìn vào phòng qua khe cửa</td>
+<td>1x</td>
+<td><strong>Rèm voan hoặc khe cửa</strong></td>
+<td>3s</td>
+<td>Cảm giác riêng tư, yên tĩnh</td>
+</tr>
+<tr>
+<td>2</td>
+<td><span class="hig-badge badge-c">CẬN (C)</span></td>
+<td>Tay kỹ thuật viên lấy kem ra lòng bàn tay</td>
+<td>3x</td>
+<td>Chai tinh dầu mờ</td>
+<td>2s</td>
+<td>Chuẩn bị, sự chăm chút</td>
+</tr>
+<tr>
+<td>3</td>
+<td><span class="hig-badge badge-t">TRUNG (T)</span></td>
+<td>Kỹ thuật viên massage vai khách, quay chéo từ phía đầu giường</td>
+<td>2x</td>
+<td><strong>Ngọn nến</strong> mờ</td>
+<td>2.5s</td>
+<td>Không khí của buổi trị liệu</td>
+</tr>
+<tr>
+<td>4</td>
+<td><span class="hig-badge badge-c">CẬN (C)</span></td>
+<td>Ngón tay ấn huyệt</td>
+<td>3x</td>
+<td>Khăn gấp</td>
+<td>2s</td>
+<td>Kỹ thuật, khẩu khí nghề</td>
+</tr>
+<tr>
+<td>5</td>
+<td><span class="hig-badge badge-c">CẬN (C)</span></td>
+<td>Hơi nước từ máy xông hoặc khăn nóng, ngược sáng</td>
+<td>3x</td>
+<td>Không cần</td>
+<td>3s</td>
+<td>Cảm giác ấm</td>
+</tr>
+<tr>
+<td>6</td>
+<td><span class="hig-badge badge-qv">QUA VAI (QV)</span></td>
+<td>Sau vai kỹ thuật viên nhìn xuống</td>
+<td>2x</td>
+<td>Vai đồng phục</td>
+<td>2.5s</td>
+<td>Người xem ở vị trí người chăm sóc</td>
+</tr>
+<tr>
+<td>7</td>
+<td><span class="hig-badge badge-c">CẬN (C)</span></td>
+<td><strong>Bàn tay khách buông lỏng</strong> trên khăn</td>
+<td>3x</td>
+<td>Mép giường</td>
+<td>2.5s</td>
+<td>Bằng chứng thư giãn mà không cần quay mặt khách</td>
+</tr>
+<tr>
+<td>8</td>
+<td><span class="hig-badge badge-t">TRUNG (T)</span> kết</td>
+<td>Khách ngồi dậy uống trà</td>
+<td>2x</td>
+<td>Ấm trà mờ</td>
+<td>3s+</td>
+<td>Trạng thái sau liệu trình</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Lưu ý ngành:</strong><br />
+- <strong>Xin phép khách bằng lời và bằng tin nhắn.</strong> Ưu tiên nhờ nhân viên làm mẫu.<br />
+- <strong>Không quay mặt khách, không quay vùng cơ thể nhạy cảm.</strong><br />
+- Phòng spa tối nên phải đặt máy cố định để tránh rung và nhiễu hạt. Không bật đèn trần.</p>
+<p><strong>Biến thể:</strong> Quy trình khử khuẩn dụng cụ · đón khách ở quầy · kỹ thuật viên tập luyện.</p>
+<h2 id='sec-25'>4.4. Bất động sản thực địa (Việt Hà Hạ Long, chị Hiền)</h2>
+<p><strong>Câu chuyện:</strong> <em>"Dẫn một người đi xem căn nhà họ sắp ở."</em><br />
+<strong>Hành động lặp lại:</strong> Bước vào cửa, mở rèm, đứng nhìn ra ngoài.</p>
+<div class="table-wrap"><table class="shot-table">
+<thead>
+<tr>
+<th>#</th>
+<th>Cỡ</th>
+<th>Vị trí máy</th>
+<th>Ống</th>
+<th>Tiền cảnh (nấp)</th>
+<th>Lấy</th>
+<th>Vì sao</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><span class="hig-badge badge-r">RỘNG (R)</span></td>
+<td>Nhìn ra vịnh qua khung cửa sổ căn hộ</td>
+<td>1x</td>
+<td><strong>Khung cửa và rèm</strong></td>
+<td>3s</td>
+<td>Thứ khách mua là view, đặt view ở trong khung</td>
+</tr>
+<tr>
+<td>2</td>
+<td><span class="hig-badge badge-t">TRUNG (T)</span></td>
+<td>Môi giới mở cửa bước vào</td>
+<td>1x</td>
+<td><strong>Cánh cửa</strong> mờ</td>
+<td>2.5s</td>
+<td>Cảm giác đang đi xem thật</td>
+</tr>
+<tr>
+<td>3</td>
+<td><span class="hig-badge badge-c">CẬN (C)</span></td>
+<td>Tay kéo rèm, ánh sáng tràn vào</td>
+<td>3x</td>
+<td>Không cần</td>
+<td>3s</td>
+<td>Biến đổi từ tối sang sáng ngay trong cảnh</td>
+</tr>
+<tr>
+<td>4</td>
+<td><span class="hig-badge badge-c">CẬN (C)</span></td>
+<td>Bước chân trên sàn gỗ hoặc gạch</td>
+<td>1x, sát sàn</td>
+<td>Không cần</td>
+<td>2s</td>
+<td>Chất liệu sàn</td>
+</tr>
+<tr>
+<td>5</td>
+<td><span class="hig-badge badge-qv">QUA VAI (QV)</span></td>
+<td>Sau vai khách nhìn ra ban công</td>
+<td>2x</td>
+<td>Vai khách</td>
+<td>3s</td>
+<td>Khách thấy mình đang đứng trong căn nhà</td>
+</tr>
+<tr>
+<td>6</td>
+<td><span class="hig-badge badge-c">CẬN (C)</span></td>
+<td>Tay chỉ trên bản đồ hoặc mặt bằng</td>
+<td>3x</td>
+<td>Bút mờ</td>
+<td>2s</td>
+<td>Bằng chứng thực địa. <strong>Che số sổ và thông tin cá nhân</strong></td>
+</tr>
+<tr>
+<td>7</td>
+<td><span class="hig-badge badge-r">RỘNG (R)</span></td>
+<td>Từ ngoài nhìn vào, nấp sau thân cây trước nhà hoặc đất</td>
+<td>2x</td>
+<td>Lá cây</td>
+<td>2.5s</td>
+<td>Mặt tiền và đường đi vào</td>
+</tr>
+<tr>
+<td>8</td>
+<td><span class="hig-badge badge-t">TRUNG (T)</span> kết</td>
+<td>Hai người đứng ở ban công nhìn biển</td>
+<td>1x</td>
+<td>Lan can</td>
+<td>3s+</td>
+<td>Hình ảnh của cuộc sống tương lai</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Lưu ý ngành:</strong><br />
+- Quay vào <strong>giờ vàng</strong> (6h–7h30 sáng hoặc 16h30–17h30 chiều).<br />
+- Ở Hạ Long gió mạnh, phải dùng mic có bông chống gió.<br />
+- Chỉ dùng 0.5x cho đúng một cảnh rộng phòng, còn lại không dùng để tránh làm méo kích thước căn.</p>
+<h2 id='sec-26'>4.5. Cửa hàng và dịch vụ sửa xe máy điện (Trang Duẩn, Minh Nhật)</h2>
+<p><strong>Câu chuyện:</strong> <em>"Một chiếc xe được khám bệnh."</em><br />
+<strong>Hành động lặp lại:</strong> Tháo ốc, đo điện áp pin, siết lại.</p>
+<div class="table-wrap"><table class="shot-table">
+<thead>
+<tr>
+<th>#</th>
+<th>Cỡ</th>
+<th>Vị trí máy</th>
+<th>Ống</th>
+<th>Tiền cảnh (nấp)</th>
+<th>Lấy</th>
+<th>Vì sao</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><span class="hig-badge badge-r">RỘNG (R)</span></td>
+<td>Nhìn vào cửa hàng</td>
+<td>1x</td>
+<td><strong>Yên xe mờ</strong> trong hàng xe dựng</td>
+<td>3s</td>
+<td>Cửa hàng có thật, nhiều xe</td>
+</tr>
+<tr>
+<td>2</td>
+<td><span class="hig-badge badge-t">TRUNG (T)</span></td>
+<td>Thợ ngồi xổm bên xe, quay chéo</td>
+<td>1x–2x</td>
+<td>Bánh xe</td>
+<td>2.5s</td>
+<td>Người làm nghề</td>
+</tr>
+<tr>
+<td>3</td>
+<td><span class="hig-badge badge-c">CẬN (C)</span></td>
+<td>Tua vít xoay ốc</td>
+<td>3x</td>
+<td>Hộp ốc</td>
+<td>2s</td>
+<td>Thao tác chính xác</td>
+</tr>
+<tr>
+<td>4</td>
+<td><span class="hig-badge badge-c">CẬN (C)</span></td>
+<td><strong>Màn hình đồng hồ đo điện áp</strong></td>
+<td>3x</td>
+<td>Que đo</td>
+<td>2.5s</td>
+<td>Con số chứng minh tay nghề</td>
+</tr>
+<tr>
+<td>5</td>
+<td><span class="hig-badge badge-qv">QUA VAI (QV)</span></td>
+<td>Sau vai thợ nhìn vào khoang pin</td>
+<td>2x</td>
+<td>Vai áo</td>
+<td>2.5s</td>
+<td>Người xem thấy bên trong chiếc xe</td>
+</tr>
+<tr>
+<td>6</td>
+<td><span class="hig-badge badge-c">CẬN (C)</span></td>
+<td>Bàn tay dính dầu lau vào khăn</td>
+<td>3x</td>
+<td>Không cần</td>
+<td>2s</td>
+<td>Khẩu khí người thợ</td>
+</tr>
+<tr>
+<td>7</td>
+<td><span class="hig-badge badge-c">CẬN (C)</span></td>
+<td>Trao chìa khóa cho khách</td>
+<td>3x</td>
+<td>Quầy</td>
+<td>2s</td>
+<td>Lòng tin được trao lại</td>
+</tr>
+<tr>
+<td>8</td>
+<td><span class="hig-badge badge-t">TRUNG (T)</span> kết</td>
+<td>Xe chạy ra khỏi cửa hàng</td>
+<td>1x</td>
+<td>Khung cửa cuốn</td>
+<td>3s+</td>
+<td>Xe đã khỏe lại</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Lưu ý ngành:</strong> Khi đang mở khoang pin, không để khách đứng sát. Ánh sáng trong tiệm thường yếu, nên quay gần cửa hoặc dùng đèn cầm tay chiếu nghiêng.</p>
+<h2 id='sec-27'>4.6. Đá thấu quang kiến trúc (Cao Thanh An – Aloka)</h2>
+<p><strong>Câu chuyện:</strong> <em>"Ánh sáng đi xuyên qua đá."</em><br />
+<strong>Hành động chính:</strong> Bật đèn. Tấm đá từ một tấm đá bình thường hóa thành trong suốt và hiện vân.</p>
+<div class="table-wrap"><table class="shot-table">
+<thead>
+<tr>
+<th>#</th>
+<th>Cỡ</th>
+<th>Vị trí máy</th>
+<th>Ống</th>
+<th>Tiền cảnh (nấp)</th>
+<th>Lấy</th>
+<th>Vì sao</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><span class="hig-badge badge-r">RỘNG (R)</span></td>
+<td>Sảnh hoặc quầy bar có ốp đá</td>
+<td>1x</td>
+<td><strong>Cột kiến trúc</strong></td>
+<td>3s</td>
+<td>Đá trong không gian thật</td>
+</tr>
+<tr>
+<td>2</td>
+<td><span class="hig-badge badge-c">CẬN (C)</span></td>
+<td>Vân đá lúc chưa bật đèn</td>
+<td>3x, <strong>chân máy cố định</strong></td>
+<td>Không cần</td>
+<td>2s</td>
+<td>Trạng thái "trước"</td>
+</tr>
+<tr>
+<td>3</td>
+<td><span class="hig-badge badge-c">CẬN (C)</span></td>
+<td>Tay bấm công tắc</td>
+<td>3x</td>
+<td>Không cần</td>
+<td>1.5s</td>
+<td>Cắt trên hành động</td>
+</tr>
+<tr>
+<td>4</td>
+<td><span class="hig-badge badge-c">CẬN (C)</span></td>
+<td>Vân đá sáng lên, <strong>giữ nguyên khung với cảnh 2</strong></td>
+<td>3x</td>
+<td>Không cần</td>
+<td>3s</td>
+<td><strong>Ngoại lệ có chủ đích của luật 30°</strong> (xem bên dưới)</td>
+</tr>
+<tr>
+<td>5</td>
+<td><span class="hig-badge badge-c">CẬN (C)</span></td>
+<td>Máy trượt chậm dọc mặt đá</td>
+<td>2x</td>
+<td>Không cần</td>
+<td>3s</td>
+<td>Chiều sâu của vân</td>
+</tr>
+<tr>
+<td>6</td>
+<td><span class="hig-badge badge-qv">QUA VAI (QV)</span></td>
+<td>Sau vai khách đang chạm tay vào đá</td>
+<td>2x</td>
+<td>Vai khách</td>
+<td>2.5s</td>
+<td>Cảm giác chạm vào vật liệu</td>
+</tr>
+<tr>
+<td>7</td>
+<td><span class="hig-badge badge-t">TRUNG (T)</span> kết</td>
+<td>Khách đứng trước tấm đá đang phát sáng</td>
+<td>1x</td>
+<td>Cây trang trí</td>
+<td>3s+</td>
+<td>Cảm giác choáng ngợp</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Vì sao cảnh 2 và cảnh 4 được phép cùng một góc:</strong> Khi muốn kể một sự biến đổi, ta cố tình giữ nguyên khung hình để mắt người xem chỉ thấy <strong>một thứ thay đổi là ánh sáng</strong>. Đây không phải hai cảnh khác nhau, mà là cùng một cảnh ở hai thời điểm trước và sau. Muốn làm được thì máy phải đứng trên chân máy và không chạm vào máy giữa hai lần quay.<br />
+<strong>Lưu ý ngành:</strong> Quay trong phòng tối hoặc vào buổi tối. Đây là quy tắc ngược với mọi ngành khác.</p>
+<h2 id='sec-28'>4.7. Đồ gia dụng xuất dư (Min Vintage)</h2>
+<p><strong>Câu chuyện:</strong> <em>"Từ thùng hàng đến góc bếp nhà mình."</em><br />
+<strong>Hành động lặp lại:</strong> Rạch thùng, lấy hàng ra, dùng thử.</p>
+<div class="table-wrap"><table class="shot-table">
+<thead>
+<tr>
+<th>#</th>
+<th>Cỡ</th>
+<th>Vị trí máy</th>
+<th>Ống</th>
+<th>Tiền cảnh (nấp)</th>
+<th>Lấy</th>
+<th>Vì sao</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><span class="hig-badge badge-r">RỘNG (R)</span></td>
+<td>Góc bếp</td>
+<td>1x</td>
+<td><strong>Kệ gia vị hoặc chậu cây</strong></td>
+<td>3s</td>
+<td>Đồ được đặt trong một ngôi nhà thật</td>
+</tr>
+<tr>
+<td>2</td>
+<td><span class="hig-badge badge-c">CẬN (C)</span></td>
+<td>Dao rạch băng dính thùng</td>
+<td>3x</td>
+<td>Mép thùng</td>
+<td>2s</td>
+<td>Cảm giác mở quà</td>
+</tr>
+<tr>
+<td>3</td>
+<td><span class="hig-badge badge-c">CẬN (C)</span></td>
+<td><strong>Tem và nhãn xuất xứ</strong></td>
+<td>3x</td>
+<td>Không cần</td>
+<td>2.5s</td>
+<td>Bằng chứng nguồn gốc. Với hàng xuất dư đây là cảnh bắt buộc</td>
+</tr>
+<tr>
+<td>4</td>
+<td><span class="hig-badge badge-qv">QUA VAI (QV)</span></td>
+<td>Sau vai người đang lấy hàng ra</td>
+<td>2x</td>
+<td>Vai người mở</td>
+<td>2.5s</td>
+<td>Người xem như đang tự mở hộp</td>
+</tr>
+<tr>
+<td>5</td>
+<td><span class="hig-badge badge-c">CẬN (C)</span></td>
+<td>Sản phẩm đang hoạt động (máy xay quay, nồi bốc hơi)</td>
+<td>3x</td>
+<td>Nguyên liệu mờ</td>
+<td>3s</td>
+<td>Đồ dùng được thật</td>
+</tr>
+<tr>
+<td>6</td>
+<td><span class="hig-badge badge-t">TRUNG (T)</span></td>
+<td>Người dùng đang nấu</td>
+<td>2x</td>
+<td>Thớt hoặc rau</td>
+<td>2.5s</td>
+<td>Sản phẩm trong đời sống</td>
+</tr>
+<tr>
+<td>7</td>
+<td><span class="hig-badge badge-c">CẬN (C)</span></td>
+<td>Đặt sản phẩm cạnh bàn tay để so kích thước</td>
+<td>2x</td>
+<td>Không cần</td>
+<td>2s</td>
+<td>Người mua online luôn hỏi kích thước</td>
+</tr>
+<tr>
+<td>8</td>
+<td><span class="hig-badge badge-t">TRUNG (T)</span> kết</td>
+<td>Món ăn xong trên bàn, sản phẩm nằm ở hậu cảnh</td>
+<td>2x</td>
+<td>Bát đũa</td>
+<td>3s+</td>
+<td>Kết quả</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id='sec-29'>4.8. Đời thường cho người độc thân hoặc chưa có con</h2>
+<p><strong>Câu chuyện:</strong> <em>"Mười phút đầu ngày dành cho mình."</em><br />
+<strong>Hành động lặp lại:</strong> Pha cà phê phin hoặc pour-over, lật trang sách.</p>
+<div class="table-wrap"><table class="shot-table">
+<thead>
+<tr>
+<th>#</th>
+<th>Cỡ</th>
+<th>Vị trí máy</th>
+<th>Ống</th>
+<th>Tiền cảnh (nấp)</th>
+<th>Lấy</th>
+<th>Vì sao</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><span class="hig-badge badge-r">RỘNG (R)</span></td>
+<td>Góc bếp hoặc ban công lúc sáng sớm</td>
+<td>1x</td>
+<td><strong>Khung cửa</strong></td>
+<td>3s</td>
+<td>Mở đầu một ngày</td>
+</tr>
+<tr>
+<td>2</td>
+<td><span class="hig-badge badge-c">CẬN (C)</span></td>
+<td>Đổ hạt vào cối xay</td>
+<td>3x</td>
+<td>Hũ hạt mờ</td>
+<td>2s</td>
+<td>Âm thanh và chất liệu</td>
+</tr>
+<tr>
+<td>3</td>
+<td><span class="hig-badge badge-c">CẬN (C)</span></td>
+<td><strong>Rót nước sôi, hơi nước ngược sáng</strong></td>
+<td>3x</td>
+<td>Không cần</td>
+<td>3s</td>
+<td>Cảnh có giá trị nhất của bài</td>
+</tr>
+<tr>
+<td>4</td>
+<td><span class="hig-badge badge-c">CẬN (C)</span></td>
+<td>Giọt cà phê rơi xuống</td>
+<td>3x, sát</td>
+<td>Không cần</td>
+<td>2.5s</td>
+<td>Nhịp chậm của buổi sáng</td>
+</tr>
+<tr>
+<td>5</td>
+<td><span class="hig-badge badge-qv">QUA VAI (QV)</span></td>
+<td>Sau vai người pha, thấy cốc và cửa sổ</td>
+<td>2x</td>
+<td>Vai</td>
+<td>2.5s</td>
+<td>Nhập vai người pha</td>
+</tr>
+<tr>
+<td>6</td>
+<td><span class="hig-badge badge-t">TRUNG (T)</span></td>
+<td>Ngồi ra ban công</td>
+<td>1x</td>
+<td><strong>Lá cây</strong></td>
+<td>2.5s</td>
+<td>Đổi không gian</td>
+</tr>
+<tr>
+<td>7</td>
+<td><span class="hig-badge badge-c">CẬN (C)</span></td>
+<td>Gió lật trang sách</td>
+<td>3x</td>
+<td>Cốc cà phê mờ</td>
+<td>2s</td>
+<td>Một chi tiết tự nhiên của ngày</td>
+</tr>
+<tr>
+<td>8</td>
+<td><span class="hig-badge badge-t">TRUNG (T)</span> kết</td>
+<td>Nhấp cà phê, nhìn ra xa</td>
+<td>2x</td>
+<td>Lan can</td>
+<td>3s+</td>
+<td>Khoảnh khắc lắng lại</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Biến thể:</strong> Tưới cây · nấu bữa tối một mình · dọn bàn làm việc · chạy bộ sáng · chăm thú cưng (chó mèo cũng là "con", và là nhân vật lặp hành động rất tốt).</p>
+<h2 id='sec-30'>4.9. Thời trang công sở U35–U45 (chị Châm), bản rút gọn</h2>
+<p><strong>Câu chuyện:</strong> <em>"7 giờ sáng của người phụ nữ đi làm."</em></p>
+<div class="table-wrap"><table class="shot-table">
+<thead>
+<tr>
+<th>#</th>
+<th>Cỡ</th>
+<th>Nội dung</th>
+<th>Tiền cảnh (nấp)</th>
+<th>Lấy</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><span class="hig-badge badge-r">RỘNG (R)</span></td>
+<td>Tủ quần áo</td>
+<td><strong>Hàng móc treo</strong></td>
+<td>3s</td>
+</tr>
+<tr>
+<td>2</td>
+<td><span class="hig-badge badge-c">CẬN (C)</span></td>
+<td>Tay chọn áo trên móc</td>
+<td>Vạt áo khác</td>
+<td>2s</td>
+</tr>
+<tr>
+<td>3</td>
+<td><span class="hig-badge badge-c">CẬN (C)</span></td>
+<td>Ngón tay cài khuy</td>
+<td>Không cần</td>
+<td>2s</td>
+</tr>
+<tr>
+<td>4</td>
+<td><span class="hig-badge badge-qv">QUA VAI (QV)</span></td>
+<td>Sau vai nhìn vào gương</td>
+<td>Vai và tóc</td>
+<td>2.5s</td>
+</tr>
+<tr>
+<td>5</td>
+<td><span class="hig-badge badge-c">CẬN (C)</span></td>
+<td>Xỏ giày</td>
+<td>Mép tủ giày</td>
+<td>2s</td>
+</tr>
+<tr>
+<td>6</td>
+<td><span class="hig-badge badge-t">TRUNG (T)</span> kết</td>
+<td>Cầm túi bước ra cửa</td>
+<td>Khung cửa</td>
+<td>3s+</td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h1 id='sec-31'>PHẦN 5: LỘ TRÌNH TIẾN BỘ VÀ CÁCH TẠO RA BÀI TẬP KHÔNG GIỚI HẠN</h1>
+<h2 id='sec-32'>5.1. Lộ trình 3 nấc</h2>
+<div class="table-wrap"><table class="shot-table">
+<thead>
+<tr>
+<th>Nấc</th>
+<th>Thời gian</th>
+<th>Mục tiêu</th>
+<th>Dấu hiệu đã đạt</th>
+<th>Lỗi thường làm kẹt ở nấc này</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>1. Thợ máy</strong></td>
+<td>Tuần 1–4</td>
+<td>Đủ R, T, C, QV. Lệch từ 30° trở lên. Giữ máy 6–8 giây</td>
+<td>Dựng lên không bị giật hình. Đủ 4 cảnh cận</td>
+<td>Biết luật nhưng sợ dời chỗ đứng</td>
+</tr>
+<tr>
+<td><strong>2. Thợ kể chuyện</strong></td>
+<td>Tháng 2–3</td>
+<td>Chọn được chi tiết có cảm xúc. Có đủ mở, diễn, nhấn, kết. Biết đọc ánh sáng</td>
+<td>Người xem bình luận về cảm xúc, không còn bình luận về kỹ thuật</td>
+<td>Quay đẹp nhưng không có cảnh để nhớ</td>
+</tr>
+<tr>
+<td><strong>3. Nghệ nhân đời thường</strong></td>
+<td>Tháng 4 trở đi</td>
+<td>Nhìn đâu cũng thấy khung hình. Tự đặt đề. Có phong cách riêng</td>
+<td>Người khác nhận ra video của mình mà không cần nhìn tên</td>
+<td>Lặp lại một công thức đã quen</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id='sec-33'>5.2. Công thức tạo bài tập không giới hạn</h2>
+<p><strong>Bài tập = Nhân vật × Hành động lặp lại × Không gian × Ánh sáng</strong></p>
+<p>Chỉ cần đổi một biến là có một bài mới. Ví dụ: 4 nhân vật (con, bố mẹ, nhân viên, chính mình) × 5 hành động × 3 không gian × 3 loại ánh sáng (sáng sớm, trưa, đèn tối) = <strong>180 bài</strong>, mà tất cả đều lấy từ cuộc sống của chính học viên.</p>
+<p><strong>Thử thách cho nấc 2 và 3:</strong><br />
+- Cả bài chỉ dùng cảnh cận.<br />
+- Mỗi cảnh dùng một vật tiền cảnh khác nhau.<br />
+- Không có người, chỉ để đồ vật kể chuyện.<br />
+- Kể trọn một câu chuyện chỉ trong 5 cảnh.<br />
+- Quay cùng một góc nhà ở 4 giờ khác nhau trong ngày.</p>
+<h2 id='sec-34'>5.3. Lịch 30 ngày</h2>
+<div class="table-wrap"><table class="shot-table">
+<thead>
+<tr>
+<th>Tuần</th>
+<th>Trọng tâm</th>
+<th>Đề bài</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Chỉ tập R, T, C, QV và lệch 30°</td>
+<td>Quay con ăn cơm hoặc pha cà phê</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Thêm <strong>tiền cảnh</strong> cho từng cảnh</td>
+<td>Lặp lại bài tuần 1 ở một không gian khác</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Chuyển sang bài ngành hàng</td>
+<td>Dùng bảng phân cảnh Phần 4</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Thêm câu chuyện, nhạc và caption, <strong>đăng thật</strong></td>
+<td>Học viên tự chọn đề</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id='sec-35'>5.4. Bảng chấm bài nộp vào nhóm (7 ô)</h2>
+<ul>
+<li><input type="checkbox" class="shot-checkbox"> Có ít nhất 1 cảnh R, 1 cảnh QV và 4 cảnh C</li>
+<li><input type="checkbox" class="shot-checkbox"> Không có hai cảnh liền nhau lệch dưới 30°</li>
+<li><input type="checkbox" class="shot-checkbox"> Ít nhất 3 cảnh có tiền cảnh</li>
+<li><input type="checkbox" class="shot-checkbox"> Mỗi cảnh dài 2–3 giây, cả video dài 15–30 giây</li>
+<li><input type="checkbox" class="shot-checkbox"> Có một cảnh kết rõ ràng, được giữ lâu nhất</li>
+<li><input type="checkbox" class="shot-checkbox"> Cắt cảnh khớp với phách nhạc</li>
+<li><input type="checkbox" class="shot-checkbox"> <strong>Tắt tiếng xem lại mà vẫn kể lại được câu chuyện</strong></li>
+</ul>
+<h2 id='sec-36'>5.5. Tin nhắn gửi nhóm K4 (dán thẳng vào Zalo)</h2>
+<blockquote>
+<p>Cả nhà ơi, giờ cắt ghép, phụ đề, hiệu ứng đã có AI và hệ thống của lớp lo hết rồi. Thứ duy nhất máy không làm thay mình được là <strong>mình đứng trước máy thế nào, và mình cầm máy nhìn cuộc sống ra sao.</strong></p>
+<p>Tháng này cả lớp tập một thói quen: <strong>mỗi ngày quay một bài 20 giây</strong> về chính cuộc sống của mình. Ai có con thì quay con ăn cơm. Ai chưa có con thì quay cốc cà phê buổi sáng, quay thú cưng, quay góc ban công. Ai làm nghề thì quay đúng việc tay mình làm hằng ngày.</p>
+<p>Chỉ cần nhớ 4 điều:<br />
+1. Đủ cảnh Rộng, Trung, Cận, Qua vai, trong đó ít nhất 4 cảnh cận.<br />
+2. Mỗi lần đổi cảnh thì dời chỗ đứng ít nhất 30°.<br />
+3. Nấp sau một vật như khung cửa, lá cây, cái cốc.<br />
+4. Khi quay giữ máy 6–8 giây, khi dựng lấy 2–3 giây.</p>
+<p>Chọn những hành động tự lặp lại thì mình có thời gian đổi góc máy. Quay xong dựng theo nhạc rồi nộp vào nhóm, tôi xem và góp ý từng bài.</p>
+<p>Bài tập thì không giới hạn, chỉ có góc nhìn của mỗi người là giới hạn. Ba tháng nữa nhìn lại, mọi người sẽ thấy mắt mình đã khác.</p>
+</blockquote>
+<hr />
+<h2 id='sec-37'>Lượt tiếp theo thư ký có thể làm</h2>
+<ol>
+<li><strong>Sinh ảnh minh họa</strong> cho từng cảnh, bắt đầu từ bài quay con. Mô tả ảnh đã có sẵn ở Phần 2. Các bảng ở Phần 3 và 4 cũng đủ dữ liệu để viết mô tả tương tự.</li>
+<li><strong>Chuyển tài liệu thành trang HTML</strong> cùng phong cách với <code>canh-quay-offline.html</code>, có ô tick cho từng cảnh để học viên đánh dấu ngay trên điện thoại.</li>
+<li><strong>Viết riêng một bài cho từng ngành</strong> để gửi thẳng cho từng học viên, kèm caption mẫu.</li>
+</ol>
+<blockquote>
+<p><strong>TÓM TẮT SỔ CÁI (STATE CARD):</strong></p>
+</blockquote>
+<ol>
+<li>AI lo xong hậu kỳ thì khác biệt chỉ còn nằm ở đầu vào: cảnh chính (người xem có tin không) và cảnh trám (máy có ở bên trong câu chuyện không).</li>
+<li>Cảnh chính gồm 4 yếu tố lõi (cơ thể không nói dối, sức nặng ánh mắt, khẩu khí nghề, tư duy cô đặc) và 4 yếu tố nền (âm thanh, ánh sáng mặt, bối cảnh thật, xuất hiện đều đặn).</li>
+<li>Cảnh trám là câu văn bằng hình, tỷ lệ 1R : 2T : 4C : 1QV. Lệch từ 30° trở lên để não đọc thành "đổi chỗ đứng". Mỗi cảnh 2–3 giây, khớp 4 phách nhạc 90–100 BPM. Quay giữ 6–8 giây.</li>
+<li>Nấp sau vật thể tạo 3 lớp chiều sâu và cảm giác người xem đang lặng lẽ nhìn. Mẹo chọn đề là tìm hành động tự lặp lại để giả lập nhiều máy quay.</li>
+<li>Công thức sinh bài tập là Nhân vật × Hành động lặp × Không gian × Ánh sáng. Lộ trình đi từ Thợ máy, qua Thợ kể chuyện, đến Nghệ nhân đời thường.</li>
+</ol>
+<h2 id='sec-38'>Các bước gần nhất</h2>
+<ul>
+<li>🔧 [CLAUDE2 · Thư ký 2 · OPUS 5.5] Grep: {"pattern": "30\u00b0|30 \u0111\u1ed9|ti\u1ec1n c\u1ea3nh|h\u1eadu c\u1ea3nh|t\u1ef7 l\u1ec7|t\u1ec9 l\u1ec7|qua vai|l\u1edbp|khung|1/3|%", "path": "/</li>
+<li>💬 [CLAUDE2 · Thư ký 2 · OPUS 5.5] # CẨM NANG ĐẦU VÀO CHO AI: CẢNH CHÍNH &amp; CẢNH TRÁM</li>
+</ul>
+<h3>Luận giải cốt lõi và hệ thống bài tập thực hành quay cho anh Việt và học viên K4 FEDU</h3>
+<hr />
+<h2 id='sec-39'>QUY ƯỚC CHUNG (đọc một lần, áp dụng cho mọi bài)</h2>
+<p>|</p>
+    </article>
+  </main>
+</body>
+</html>
