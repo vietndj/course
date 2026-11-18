@@ -1,0 +1,1879 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Hồ Sơ Toàn Diện Cut-on-Action & B-Roll Sequence (COA V1 → V4.0 • 11 Dự Án Thực Chiến • Video Gốc & Kết Quả)</title>
+  <style>
+    :root {
+      --bg-ivory: #F5F2EB;
+      --bg-paper: #FAF8F5;
+      --bg-card: #FFFFFF;
+      --bg-dark: #12161F;
+      --bg-dark-card: #1A2130;
+      --ink-main: #181716;
+      --ink-sub: #4A4742;
+      --ink-muted: #78736A;
+      --teal-med: #0F5E59;
+      --teal-light: #E6F4F2;
+      --gold-champagne: #D4AF37;
+      --gold-soft: #FBF6E8;
+      --terracotta: #B83B2A;
+      --emerald: #059669;
+      --border-warm: #E2DDD3;
+      --shadow-soft: 0 12px 32px rgba(24, 23, 22, 0.06);
+      --shadow-elevated: 0 20px 48px rgba(15, 94, 89, 0.14);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Be Vietnam Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background-color: var(--bg-ivory);
+      color: var(--ink-main);
+      line-height: 1.56;
+      padding-bottom: 90px;
+    }
+    /* STICKY NAV */
+    .sticky-nav {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(18, 22, 31, 0.95);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(212, 175, 55, 0.38);
+      padding: 10px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+    .brand-cluster {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: #fff;
+    }
+    .brand-badge-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 11px;
+      background: linear-gradient(135deg, #D4AF37, #9A7418);
+      color: #12161F;
+      font-weight: 900;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      letter-spacing: 0.5px;
+    }
+    .brand-title {
+      font-weight: 800;
+      font-size: 15px;
+      letter-spacing: 0.3px;
+      color: #FFD88A;
+    }
+    .brand-sub {
+      font-size: 11.5px;
+      color: #94A3B8;
+      display: block;
+    }
+    .nav-pills {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      flex-wrap: wrap;
+    }
+    .nav-pill {
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 700;
+      color: #E2E8F0;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      padding: 6px 12px;
+      border-radius: 999px;
+      transition: all 0.2s ease;
+    }
+    .nav-pill:hover, .nav-pill.highlight {
+      background: linear-gradient(135deg, #0F5E59, #158078);
+      color: #FFD88A;
+      border-color: #FFD88A;
+    }
+    /* HERO BANNER */
+    .hero-banner {
+      background: radial-gradient(circle at 82% 18%, rgba(212, 175, 55, 0.18), transparent 45%),
+                  linear-gradient(135deg, #10141D 0%, #192334 55%, #0F3835 100%);
+      color: #fff;
+      padding: 42px 24px 36px;
+      border-bottom: 3px solid var(--gold-champagne);
+    }
+    .container {
+      max-width: 1440px;
+      margin: 0 auto;
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.45fr 0.55fr;
+      gap: 28px;
+      align-items: center;
+    }
+    @media (max-width: 980px) {
+      .hero-grid { grid-template-columns: 1fr; }
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(212, 175, 55, 0.16);
+      border: 1px solid rgba(212, 175, 55, 0.5);
+      color: #FFD88A;
+      font-size: 12px;
+      font-weight: 800;
+      padding: 6px 14px;
+      border-radius: 999px;
+      margin-bottom: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.7px;
+    }
+    .hero-banner h1 {
+      font-size: clamp(26px, 3.2vw, 40px);
+      line-height: 1.18;
+      font-weight: 900;
+      margin-bottom: 12px;
+      color: #FFFFFF;
+    }
+    .hero-banner h1 span { color: #FFD88A; }
+    .hero-lead {
+      font-size: 15px;
+      color: #CBD5E1;
+      margin-bottom: 22px;
+      max-width: 920px;
+    }
+    .stat-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(165px, 1fr));
+      gap: 12px;
+    }
+    .stat-box {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 14px;
+      padding: 12px 15px;
+    }
+    .stat-num {
+      font-size: 22px;
+      font-weight: 900;
+      color: #FFD88A;
+      display: block;
+    }
+    .stat-lbl {
+      font-size: 12px;
+      color: #94A3B8;
+    }
+    .hero-summary-card {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(212, 175, 55, 0.45);
+      border-radius: 20px;
+      padding: 20px;
+    }
+    .hero-summary-card h3 {
+      color: #FFD88A;
+      font-size: 15px;
+      font-weight: 800;
+      margin-bottom: 10px;
+    }
+    .hero-summary-list {
+      list-style: none;
+      font-size: 12.8px;
+      color: #E2E8F0;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .hero-summary-list li {
+      padding-left: 14px;
+      position: relative;
+    }
+    .hero-summary-list li::before {
+      content: "▸";
+      position: absolute;
+      left: 0;
+      color: #FFD88A;
+      font-weight: 900;
+    }
+    /* SECTION LAYOUT */
+    .sec-block {
+      padding: 40px 24px 12px;
+    }
+    .sec-header {
+      margin-bottom: 22px;
+      border-bottom: 2px solid var(--border-warm);
+      padding-bottom: 12px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .sec-kicker {
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.9px;
+      color: var(--teal-med);
+      display: block;
+      margin-bottom: 4px;
+    }
+    .sec-title {
+      font-size: clamp(21px, 2.4vw, 29px);
+      font-weight: 900;
+      color: var(--ink-main);
+    }
+    .sec-desc {
+      font-size: 14.5px;
+      color: var(--ink-sub);
+      max-width: 980px;
+      margin-top: 4px;
+    }
+    /* ARCHITECTURE & RULES GRID */
+    .arch-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    @media (max-width: 980px) {
+      .arch-grid { grid-template-columns: 1fr; }
+    }
+    .panel-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-warm);
+      border-radius: 20px;
+      padding: 22px;
+      box-shadow: var(--shadow-soft);
+    }
+    .panel-card h3 {
+      font-size: 17px;
+      font-weight: 800;
+      margin-bottom: 12px;
+      color: var(--ink-main);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .rule-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+    .rule-table th, .rule-table td {
+      border: 1px solid var(--border-warm);
+      padding: 9px 11px;
+      text-align: left;
+      vertical-align: top;
+    }
+    .rule-table th {
+      background: #141820;
+      color: #FFD88A;
+      font-weight: 800;
+      font-size: 12px;
+      text-transform: uppercase;
+    }
+    .rule-table tr:nth-child(even) td { background: var(--bg-paper); }
+    .code-pill {
+      display: inline-block;
+      font-family: 'JetBrains Mono', Menlo, monospace;
+      font-size: 11.5px;
+      font-weight: 700;
+      background: #F1F5F9;
+      color: #0F172A;
+      border: 1px solid #CBD5E1;
+      padding: 2px 7px;
+      border-radius: 6px;
+    }
+    /* FILTER BAR */
+    .filter-bar {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 22px;
+      align-items: center;
+    }
+    .filter-btn {
+      cursor: pointer;
+      border: 1px solid var(--border-warm);
+      background: var(--bg-card);
+      color: var(--ink-main);
+      font-weight: 700;
+      font-size: 13px;
+      padding: 8px 16px;
+      border-radius: 999px;
+      transition: all 0.18s ease;
+    }
+    .filter-btn.active, .filter-btn:hover {
+      background: var(--teal-med);
+      color: #fff;
+      border-color: var(--teal-med);
+    }
+    /* CASE CARD */
+    .case-card {
+      background: var(--bg-card);
+      border: 2px solid var(--border-warm);
+      border-radius: 24px;
+      box-shadow: var(--shadow-soft);
+      margin-bottom: 34px;
+      overflow: hidden;
+    }
+    .case-top {
+      background: linear-gradient(135deg, #12161F 0%, #1E293B 100%);
+      color: #fff;
+      padding: 20px 26px;
+      border-bottom: 3px solid var(--gold-champagne);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .case-badges {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 6px;
+    }
+    .badge-num {
+      background: #FFD88A;
+      color: #12161F;
+      font-weight: 900;
+      font-size: 12px;
+      padding: 4px 11px;
+      border-radius: 999px;
+    }
+    .badge-ver {
+      background: rgba(16, 185, 129, 0.2);
+      border: 1px solid #34D399;
+      color: #6EE7B7;
+      font-weight: 800;
+      font-size: 11.5px;
+      padding: 3px 10px;
+      border-radius: 999px;
+    }
+    .badge-tag {
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      color: #E2E8F0;
+      font-size: 11.5px;
+      font-weight: 600;
+      padding: 3px 10px;
+      border-radius: 999px;
+    }
+    .case-title {
+      font-size: 21px;
+      font-weight: 800;
+      color: #fff;
+    }
+    .case-sub {
+      font-size: 13.5px;
+      color: #CBD5E1;
+      margin-top: 3px;
+    }
+    .sync-btn {
+      cursor: pointer;
+      background: linear-gradient(135deg, #D4AF37, #B5891C);
+      color: #12161F;
+      border: none;
+      font-weight: 800;
+      font-size: 12.5px;
+      padding: 9px 16px;
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 6px 16px rgba(212, 175, 55, 0.25);
+    }
+    .sync-btn:hover { filter: brightness(1.08); }
+    .case-body {
+      padding: 24px 26px;
+    }
+    /* VIDEO COMPARE ROW */
+    .video-compare-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(245px, 1fr));
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+    .v-box {
+      background: #141820;
+      border: 1.5px solid #2D3748;
+      border-radius: 16px;
+      padding: 12px;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+    }
+    .v-box.is-raw { border-color: #64748B; }
+    .v-box.is-ref { border-color: #F59E0B; background: #1A1814; }
+    .v-box.is-old { border-color: #EF4444; background: #1F1618; }
+    .v-box.is-final { border-color: #10B981; background: #111F1C; box-shadow: 0 10px 28px rgba(16, 185, 129, 0.16); }
+    .v-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+    .v-role-pill {
+      font-size: 11px;
+      font-weight: 800;
+      padding: 3px 9px;
+      border-radius: 999px;
+      text-transform: uppercase;
+    }
+    .v-box.is-raw .v-role-pill { background: #334155; color: #E2E8F0; }
+    .v-box.is-ref .v-role-pill { background: #F59E0B; color: #12161F; }
+    .v-box.is-old .v-role-pill { background: #EF4444; color: #FFFFFF; }
+    .v-box.is-final .v-role-pill { background: #10B981; color: #06281E; }
+    .v-meta-dur {
+      font-size: 11.5px;
+      color: #94A3B8;
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .v-name {
+      font-size: 14px;
+      font-weight: 800;
+      color: #F8FAFC;
+      margin-bottom: 8px;
+    }
+    .v-box video {
+      width: 100%;
+      aspect-ratio: 9 / 16;
+      max-height: 430px;
+      background: #000;
+      border-radius: 11px;
+      object-fit: contain;
+      display: block;
+    }
+    .v-note {
+      font-size: 12.2px;
+      color: #CBD5E1;
+      margin-top: 9px;
+      line-height: 1.45;
+      flex: 1;
+    }
+    .v-links {
+      margin-top: 9px;
+      padding-top: 8px;
+      border-top: 1px dashed rgba(255,255,255,0.14);
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .v-link-btn {
+      text-decoration: none;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 4px 9px;
+      border-radius: 7px;
+      background: rgba(255,255,255,0.09);
+      color: #FFD88A;
+      border: 1px solid rgba(255,216,138,0.3);
+    }
+    .v-link-btn:hover {
+      background: #FFD88A;
+      color: #12161F;
+    }
+    /* INSIGHT & SEAM STRIP GRID */
+    .case-detail-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 20px;
+      align-items: start;
+    }
+    @media (max-width: 1020px) {
+      .case-detail-grid { grid-template-columns: 1fr; }
+    }
+    .insight-box {
+      background: var(--bg-paper);
+      border: 1px solid var(--border-warm);
+      border-radius: 16px;
+      padding: 16px 18px;
+    }
+    .insight-box h4 {
+      font-size: 15px;
+      font-weight: 800;
+      color: var(--teal-med);
+      margin-bottom: 10px;
+    }
+    .seam-gallery {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .seam-card {
+      background: #141820;
+      border: 1px solid #2D3748;
+      border-radius: 14px;
+      padding: 10px;
+      color: #E2E8F0;
+    }
+    .seam-card img {
+      width: 100%;
+      height: auto;
+      border-radius: 9px;
+      display: block;
+      cursor: zoom-in;
+    }
+    .seam-caption {
+      font-size: 11.8px;
+      color: #CBD5E1;
+      margin-top: 6px;
+      font-weight: 600;
+    }
+    /* MINI MULTI-CLIP STRIP FOR CASE 08 */
+    .multiclip-strip {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: 8px;
+      margin-top: 8px;
+    }
+    .mc-item {
+      background: #0F172A;
+      border: 1px solid #334155;
+      border-radius: 10px;
+      padding: 6px;
+      text-align: center;
+    }
+    .mc-item video {
+      width: 100%;
+      aspect-ratio: 9 / 16;
+      max-height: 180px;
+      border-radius: 6px;
+      background: #000;
+    }
+    .mc-item span {
+      display: block;
+      font-size: 10.5px;
+      color: #CBD5E1;
+      margin-top: 4px;
+      font-family: 'JetBrains Mono', monospace;
+    }
+    /* LIGHTBOX MODAL FOR SEAM STRIPS */
+    .lightbox-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(10, 14, 22, 0.92);
+      z-index: 2000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      cursor: zoom-out;
+    }
+    .lightbox-overlay.open { display: flex; }
+    .lightbox-overlay img {
+      max-width: 96vw;
+      max-height: 92vh;
+      border-radius: 12px;
+      border: 2px solid var(--gold-champagne);
+      box-shadow: 0 25px 70px rgba(0,0,0,0.6);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- STICKY NAV -->
+  <nav class="sticky-nav">
+    <a class="brand-cluster" href="#top">
+      <div class="brand-badge-icon">COA</div>
+      <div>
+        <span class="brand-title">CUT-ON-ACTION &amp; B-ROLL SEQUENCE — KHO ĐỐI CHỨNG TOÀN DIỆN</span>
+        <span class="brand-sub">Lịch Sử Tiến Hóa V1 → V4.0 • 11 Dự Án Thực Chiến • Đầy Đủ Video Gốc, Bản Mẫu &amp; Video Kết Quả</span>
+      </div>
+    </a>
+    <div class="nav-pills">
+      <a class="nav-pill highlight" href="#quy-tac-coa">1. Hệ Quy Tắc COA V1→V4.0</a>
+      <a class="nav-pill highlight" href="#case-01">2. Case #01–#02 (s1 &amp; s2 V4.0)</a>
+      <a class="nav-pill" href="#case-03">3. Case #03–#04 (9052 &amp; 9053)</a>
+      <a class="nav-pill" href="#case-05">4. Case #05–#07 (Chuỗi Nhi 9061–9063)</a>
+      <a class="nav-pill" href="#case-08">5. Case #08–#11 (GreenHub • Vườn • Thiền • K4)</a>
+    </div>
+  </nav>
+
+  <!-- HERO BANNER -->
+  <header class="hero-banner" id="top">
+    <div class="container">
+      <div class="hero-grid">
+        <div>
+          <div class="hero-badge">🎬 KỸ NĂNG EDIT VIDEO PRO • BỘ SƯU TẬP CUT-ON-ACTION (COA V1.0 → V4.0)</div>
+          <h1>TOÀN BỘ LỊCH SỬ &amp; KẾT QUẢ THỰC CHIẾN <span>CUT-ON-ACTION B-ROLL SEQUENCE</span></h1>
+          <p class="hero-lead">
+            Trang tổng hợp đầy đủ <strong>11 dự án B-Roll Sequence &amp; Cut-on-Action</strong> đã huấn luyện và đóng gói vào kỹ năng <code>edit-video-pro</code>:
+            từ những video khởi nguyên (<code>IMG_9052</code>, <code>IMG_9053</code>, <code>cinematic</code>, <code>thien.MOV</code>),
+            bộ 3 luồng <code>Nhi 9061–9063</code> và <code>GreenHub 9064–9069</code>,
+            cho đến bước đột phá <strong>COA V4.0 (Shared-Action Sub-Stroke Handover)</strong> trên <code>s1.MOV</code> (khớp bản mẫu anh Việt với sai số <strong>MAE = 0.70 frame</strong>) và tập kiểm chứng độc lập <code>s2.MOV</code>.
+          </p>
+          <div class="stat-row">
+            <div class="stat-box">
+              <span class="stat-num">11 Dự Án Gốc</span>
+              <span class="stat-lbl">Đầy đủ Video Gốc + Kết Quả</span>
+            </div>
+            <div class="stat-box">
+              <span class="stat-num">0.70 Frame</span>
+              <span class="stat-lbl">Sai số MAE COA V4 so với mẫu</span>
+            </div>
+            <div class="stat-box">
+              <span class="stat-num">15 Cổng Kiểm Định</span>
+              <span class="stat-lbl">C1..C9 Toán học + R1..R6 Ngữ nghĩa</span>
+            </div>
+            <div class="stat-box">
+              <span class="stat-num">0 Keyframe</span>
+              <span class="stat-lbl">Khóa khung tĩnh • Cắt trên đà động tác</span>
+            </div>
+          </div>
+        </div>
+        <div class="hero-summary-card">
+          <h3>⚡ Nguyên Lý Cốt Lõi Của Cut-on-Action (COA V4.0)</h3>
+          <ul class="hero-summary-list">
+            <li><strong>Suy luận cùng một hành động (Shared Action):</strong> Cuối Cảnh <em>k</em> và đầu Cảnh <em>k+1</em> phải nối trên cùng một nhịp hành động vật lý (kéo ghế → kéo ghế, ngồi xuống → ngồi xuống, mở nắp 85% → đẩy nốt 15%).</li>
+            <li><strong>Tách Sub-Strokes theo cực tiểu vận tốc:</strong> Trong 1 take có nhiều nhịp (kéo ghế + ngồi xuống), tự động tách thành các nhịp con để cắt đúng lúc hành động đang diễn ra.</li>
+            <li><strong>0ms đứng chờ đầu cảnh &amp; Cắt trước khi rời khung:</strong> Bỏ sạch đoạn đứng im lấy đà/xem đồng hồ đầu take và cắt trước khi nhân vật đi khuất để lại khung trống.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- SECTION 1: HỆ QUY TẮC & 15 CỔNG KIỂM ĐỊNH TRONG EDIT-VIDEO-PRO -->
+  <section class="sec-block" id="quy-tac-coa">
+    <div class="container">
+      <div class="sec-header">
+        <div>
+          <span class="sec-kicker">PHẦN 01 • KIẾN TRÚC ĐÓNG GÓI TRONG EDIT-VIDEO-PRO (BROLL_SEQUENCE_ENGINE.PY &amp; VERIFY_COA_SEQUENCE.PY)</span>
+          <h2 class="sec-title">1. Tiến Hóa Quy Tắc Cut-on-Action (V1 → V4.0) &amp; 15 Cổng Kiểm Định Tất Định</h2>
+          <p class="sec-desc">
+            Mỗi thế hệ đều bắt nguồn từ một bài toán thực tế khi đối chiếu giữa bản máy tự cắt và bản mẫu của anh Việt, sau đó được chuẩn hóa thành công thức toán học + luật ngữ nghĩa cùng Thư ký 1 &amp; Thư ký 2 (Claude Opus 5.5).
+          </p>
+        </div>
+      </div>
+
+      <div class="arch-grid">
+        <div class="panel-card">
+          <h3>📐 4 Thế Hệ Tiến Hóa Động Cơ `broll_sequence_engine.py`</h3>
+          <table class="rule-table">
+            <thead>
+              <tr>
+                <th>Thế hệ</th>
+                <th>Bài toán thực tế phát sinh</th>
+                <th>Quy tắc &amp; Thuật toán đã đóng gói vào Skill</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>COA V1 → V2</strong><br/><span class="code-pill">9052 • 9053 • Vườn</span></td>
+                <td>Bản V1 dùng nội suy pan/zoom làm khung hình trôi giả tạo; dính đoạn người quay đang bê chân máy; lộ viền đen 46px khi crop lệch tâm; lá cây rung trong gió bị nhận nhầm là rung máy.</td>
+                <td>• <strong>Khóa Khung – Cắt Khớp (`0 keyframe`):</strong> Mọi shot cố định tuyệt đối `scale, cx, cy`.<br/>• <strong>Điểm neo vật cứng `B_ROI` (`LK-RANSAC`):</strong> Chỉ bám tường bê tông/chậu cứng, tách bạch 100% gió thổi lá cây với chân máy rung.<br/>• <strong>One-Setup-One-Shot:</strong> 1 góc máy chỉ lấy 1 đoạn đắt nhất.</td>
+              </tr>
+              <tr>
+                <td><strong>COA V2.12 → V3.0</strong><br/><span class="code-pill">Nhi 9061 • 9062 • 9063</span></td>
+                <td>Giây thứ 5 của `9061` bị mở nắp laptop 2 lần; xóa nhầm cảnh lá tre tiền cảnh `9063`; lọt người lạ áo đen đi ngang hậu cảnh `T10`; dính 0.8s cửa kính trống sau khi nhân vật đã bước ra ngoài.</td>
+                <td>• <strong>Bộ 6 Luật Curation `R1..R6`:</strong> Giữ cảnh đổi góc/tiền cảnh gió (`R1`), loại bản nháp dính người lạ `STRANGER` (`R2`), nối `Tight-Seam L2-F4` mở máy 85%→15% (`R3`), giữ sự kiện màn hình AirDrop/AI `Focal Impulse` (`R4`), cắt trước `exit_t` (`R5`), chân máy tĩnh (`R6`).</td>
+              </tr>
+              <tr>
+                <td><strong>Camera-to-AI V3.5</strong><br/><span class="code-pill">thien.MOV • K4 Bot</span></td>
+                <td>Góc `#3` dính đoạn giơ cổ tay xem Apple Watch; góc `#8, #9` dính 0.5s cúi đầu lấy đà (`Wind-up`) trước khi ngước mặt lên nhìn tán lá.</td>
+                <td>• <strong>Khử Pha Lấy Đà (`Counter-Movement Wind-up Removal`):</strong> Bỏ sạch giai đoạn chuẩn bị/bấm đồng hồ, cắt `IN` thẳng vào Pha Phát Lực (`Action Onset`).<br/>• Tự động nhận diện Pause–Resume ngay trên Bot Telegram K4.</td>
+              </tr>
+              <tr>
+                <td><strong>COA V4.0 (Mới nhất)</strong><br/><span class="code-pill">s1.MOV • s2.MOV</span></td>
+                <td>Trong 1 take có nhiều hành động nối tiếp (kéo ghế rồi ngồi xuống; ngồi xuống rồi mở sổ). Bản V3 chỉ chọn 1 cửa sổ theo năng lượng trung bình nên lấy đoạn đứng im đầu cảnh và lệch pha hành động với cảnh sau.</td>
+                <td>• <strong>Tầng 1 (`Sub-Stroke Decomposition`):</strong> Tách mỗi take thành các nhịp hành động con $a_{k,1}, a_{k,2}, \dots$ tại cực tiểu năng lượng chuyển động vùng tâm.<br/>• <strong>Tầng 2 (`Shared-Action Handover`):</strong> Bắt buộc `out_action_id(k) == in_action_id(k+1)`, cắt `OUT` tại đỉnh/giữa đà (`peak_f / mid_decay_f`) và cắt `IN` ngay nhịp tiếp đà (`mid_rise_f / occl_exit_f`), đạt <strong>MAE = 0.70 frames</strong>.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="panel-card">
+          <h3>🛡️ Hệ Thống 15 Cổng Kiểm Định (`verify_coa_sequence.py` — C1..C9 + R1..R6)</h3>
+          <table class="rule-table">
+            <thead>
+              <tr>
+                <th>Mã Cổng</th>
+                <th>Tên Cổng Kiểm Tra</th>
+                <th>Ngưỡng Toán Học &amp; Ngữ Nghĩa Bắt Buộc</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="code-pill">C1..C3</span></td>
+                <td><strong>Kỹ thuật &amp; Tĩnh chân máy</strong></td>
+                <td>Đúng độ phân giải `1080×1920` @ `24fps`, có luồng Audio hợp lệ, `0px` viền đen ở cả 4 mép (`min_edge_luma > 15`), chuyển động viền nền `border_med ≤ 1.8 px/frame`.</td>
+              </tr>
+              <tr>
+                <td><span class="code-pill">C4..C6</span></td>
+                <td><strong>Động năng tại điểm cắt (`IN / OUT`)</strong></td>
+                <td>Tại cả 2 phía vết cắt (`OUT-5..OUT-1` và `IN+0..IN+5`), vận tốc chủ thể phải vượt ngưỡng hành động đang diễn ra (`≥ 2.0×` nền tĩnh), cấm lấy khung chết đầu/cuối take.</td>
+              </tr>
+              <tr>
+                <td><span class="code-pill">C7..C9</span></td>
+                <td><strong>Đa dạng cỡ cảnh &amp; Không lặp góc</strong></td>
+                <td>Khoảng cách `dHash ≥ 12` hoặc độ lệch bố cục `bhat > 0.35` giữa 2 cảnh kề nhau; mỗi góc máy xuất hiện tối đa 1 lần (`One-Setup-One-Shot`).</td>
+              </tr>
+              <tr>
+                <td><span class="code-pill">R1_ZERO_DEAD</span></td>
+                <td><strong>Cấm lấy đoạn đứng chờ đầu cảnh</strong></td>
+                <td>Loại bỏ 100% dead pre-roll và các take nháp bàn trống không có chủ thể (như `T02, T07` của `s2.MOV`).</td>
+              </tr>
+              <tr>
+                <td><span class="code-pill">R2_OCCL_GUARD</span></td>
+                <td><strong>Chống lấp ống kính &amp; Bóng người đi qua</strong></td>
+                <td>Nếu chủ thể bước ngang che tối ống kính đầu take (như Shot 2 của `s1.MOV`), phải cắt `IN` ngay tại frame vừa thoát che khuất (`occl_exit_f`).</td>
+              </tr>
+              <tr>
+                <td><span class="code-pill">R3..R5</span></td>
+                <td><strong>Cắt trên đà &amp; Tiếp đà liên tục</strong></td>
+                <td>Điểm `OUT` cắt khi động tác đạt `65%–85%` biên độ (`peak_f / mid_decay_f`); điểm `IN` cảnh sau đón ngay pha đang chuyển động (`mid_rise_f`), cấm cắt sau khi đã dừng hẳn.</td>
+              </tr>
+              <tr>
+                <td><span class="code-pill">R6_SEMANTIC</span></td>
+                <td><strong>Đồng nhất nhãn hành động bàn giao</strong></td>
+                <td>Cổng ngữ nghĩa bắt buộc: Hành động cuối của Cảnh $k$ và hành động đầu của Cảnh $k+1$ phải cùng `action_id` (VD: `PULL_CHAIR → PULL_CHAIR`, `SIT_DOWN → SIT_DOWN`, `OPEN_BOOK → OPEN_BOOK`).</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 2: 11 DỰ ÁN THỰC CHIẾN (VIDEO GỐC + VIDEO MẪU + VIDEO KẾT QUẢ) -->
+  <section class="sec-block" id="kho-11-du-an">
+    <div class="container">
+      <div class="sec-header">
+        <div>
+          <span class="sec-kicker">PHẦN 02 • ĐỐI CHỨNG TRỰC QUAN TOÀN BỘ 11 DỰ ÁN TRONG LỊCH SỬ</span>
+          <h2 class="sec-title">2. Danh Mục 11 Ví Dụ Cut-on-Action B-Roll (Xem Trực Tiếp Video Gốc &amp; Video Kết Quả)</h2>
+          <p class="sec-desc">
+            Mỗi dự án bên dưới đều trình bày đầy đủ <strong>Video Gốc chưa cắt (`Source`)</strong>, <strong>Video Mẫu của anh Việt (`Ground Truth` nếu có)</strong>, <strong>Bản Cũ trước khi nâng cấp</strong> và <strong>Video Kết Quả Chuẩn (`Final Result`)</strong> kèm dải kiểm định điểm cắt `Seam Strip`. Ấn nút <strong>"▶️ Phát Đồng Bộ Cả Nhóm"</strong> ở góc phải mỗi dự án để so sánh trực tiếp.
+          </p>
+        </div>
+      </div>
+
+      <!-- FILTER BUTTONS -->
+      <div class="filter-bar" id="case-filters">
+        <button class="filter-btn active" onclick="filterCases('ALL', this)">Tất cả 11 Dự án (39 Video)</button>
+        <button class="filter-btn" onclick="filterCases('V4', this)">⭐ Thế hệ COA V4.0 Mới Nhất (s1 &amp; s2)</button>
+        <button class="filter-btn" onclick="filterCases('REF', this)">🎯 Có Bản Mẫu Anh Việt Đối Chứng (3)</button>
+        <button class="filter-btn" onclick="filterCases('V3', this)">🧩 Chuỗi Đa Góc Pause–Resume V3.0 (Nhi &amp; GreenHub)</button>
+        <button class="filter-btn" onclick="filterCases('CINE', this)">🌿 Khử Rung B_ROI • Thiền • Bot K4</button>
+      </div>
+
+      <div id="cases-container">
+
+        <!-- ==================== CASE 01: s1.MOV ==================== -->
+        <article class="case-card" id="case-01" data-tags="V4 REF">
+          <div class="case-top">
+            <div>
+              <div class="case-badges">
+                <span class="badge-num">VÍ DỤ #01 • CHUẨN VÀNG COA V4.0</span>
+                <span class="badge-ver">PASS 15/15 CỔNG • MAE = 0.70 FRAME</span>
+                <span class="badge-tag">5 Takes → 5 Góc Cảnh</span>
+                <span class="badge-tag">Có Bản Mẫu Anh Việt (`s1- vietlam.mp4`)</span>
+              </div>
+              <h3 class="case-title">Chuỗi 5 Cỡ Cảnh Bàn Làm Việc Gỗ (`s1.MOV` → `s1_coa_v4.mp4`)</h3>
+              <p class="case-sub">Hành trình nối 4 nhịp liên hoàn: <strong>Kéo ghế bước vào → Ngồi xuống ghế → Mở sổ tay → Viết sổ → Đọc &amp; lật sổ</strong></p>
+            </div>
+            <button class="sync-btn" onclick="syncPlayCard('case-01')">▶️ Phát Đồng Bộ 4 Video</button>
+          </div>
+
+          <div class="case-body">
+            <div class="video-compare-grid">
+              <!-- Video 1: Source -->
+              <div class="v-box is-raw">
+                <div class="v-head">
+                  <span class="v-role-pill">1. VIDEO GỐC (RAW SOURCE)</span>
+                  <span class="v-meta-dur">39.06s • 937f</span>
+                </div>
+                <div class="v-name">s1.MOV (5 Takes Quay Liên Tiếp)</div>
+                <video controls preload="metadata" poster="assets/coa/case01_s1_raw_thumb.jpg">
+                  <source src="assets/coa/case01_s1_raw.mp4" type="video/mp4"/>
+                </video>
+                <p class="v-note">File quay gốc gồm 5 lần bấm máy đổi góc. Mỗi take đều chứa 2 hành động liên tiếp (VD: Take 1 vừa kéo ghế vừa ngồi xuống; Take 2 bóng lưng đi ngang che ống kính rồi mới kéo ghế và ngồi xuống).</p>
+                <div class="v-links">
+                  <a class="v-link-btn" href="http://127.0.0.1:9000/local-video/watch?path=%2FUsers%2Fvietmac%2FDownloads%2Fai%20v%E1%BB%9Bi%20broll%20sequence%2Fs1.MOV" target="_blank">🖥️ Mở File Gốc .MOV (Local 206)</a>
+                </div>
+              </div>
+
+              <!-- Video 2: Anh Viet Reference -->
+              <div class="v-box is-ref">
+                <div class="v-head">
+                  <span class="v-role-pill">2. BẢN MẪU ANH VIỆT LÀM</span>
+                  <span class="v-meta-dur">15.12s • 363f</span>
+                </div>
+                <div class="v-name">s1- vietlam.mp4 (Ground Truth)</div>
+                <video controls preload="metadata" poster="assets/coa/case01_s1_vietlam_ref_thumb.jpg">
+                  <source src="assets/coa/case01_s1_vietlam_ref.mp4" type="video/mp4"/>
+                </video>
+                <p class="v-note">Bản mẫu anh Việt tự cắt tay: tách chính xác từng nhịp hành động để nối Cảnh 1→2 bằng hành động <strong>kéo ghế</strong>, Cảnh 2→3 bằng hành động <strong>ngồi xuống</strong>, Cảnh 3→4 bằng hành động <strong>mở sổ</strong>, Cảnh 4→5 bằng hành động <strong>viết/đọc sổ</strong>.</p>
+                <div class="v-links">
+                  <a class="v-link-btn" href="http://127.0.0.1:9000/local-video/watch?path=%2FUsers%2Fvietmac%2FDownloads%2Fai%20v%E1%BB%9Bi%20broll%20sequence%2Fs1-%20vietlam.mp4" target="_blank">🖥️ Mở Trình Tua 206</a>
+                </div>
+              </div>
+
+              <!-- Video 3: Old V3 Result -->
+              <div class="v-box is-old">
+                <div class="v-head">
+                  <span class="v-role-pill">3. BẢN V3 CŨ (TRƯỚC KHI HỌC)</span>
+                  <span class="v-meta-dur">11.75s • Lệch pha</span>
+                </div>
+                <div class="v-name">s1_edited_pro.mp4 (Bản Thử Lần 1)</div>
+                <video controls preload="metadata" poster="assets/coa/case01_s1_v3_old_thumb.jpg">
+                  <source src="assets/coa/case01_s1_v3_old.mp4" type="video/mp4"/>
+                </video>
+                <p class="v-note">Lỗi khi chưa nâng cấp COA V4.0: thuật toán V3 chỉ chấm điểm năng lượng trên cửa sổ trượt toàn take nên lấy cả đoạn đứng chờ đầu cảnh và không tách được nhịp <em>kéo ghế</em> khỏi nhịp <em>ngồi xuống</em>.</p>
+              </div>
+
+              <!-- Video 4: COA V4.0 Final Result -->
+              <div class="v-box is-final">
+                <div class="v-head">
+                  <span class="v-role-pill">4. KẾT QUẢ COA V4.0 (CHUẨN)</span>
+                  <span class="v-meta-dur">15.04s • 361f</span>
+                </div>
+                <div class="v-name">s1_coa_v4.mp4 (MAE = 0.70 frame)</div>
+                <video controls preload="metadata" poster="assets/coa/case01_s1_coa_v4_thumb.jpg">
+                  <source src="assets/coa/case01_s1_coa_v4.mp4" type="video/mp4"/>
+                </video>
+                <p class="v-note">Áp dụng quy tắc COA V4.0 (Tách Sub-Strokes + Ghép cặp cùng `action_id`): khớp tuyệt đối `0 frame` ở toàn bộ Shot 1..3 và chỉ lệch `1 frame` ở Shot 4 (`MAE = 0.70 frames` trên 10 mốc IN/OUT). Đã vượt qua bài kiểm tra dịch `-7 frames` của Thư ký 1.</p>
+                <div class="v-links">
+                  <a class="v-link-btn" href="http://127.0.0.1:9000/local-video/watch?paths=%2FUsers%2Fvietmac%2FDownloads%2Fai%20v%E1%BB%9Bi%20broll%20sequence%2Fs1_coa_v4.mp4%7C%2FUsers%2Fvietmac%2FDownloads%2Fai%20v%E1%BB%9Bi%20broll%20sequence%2Fs1-%20vietlam.mp4" target="_blank">⚖️ So Sánh Đôi V4 vs Bản Anh Việt</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="case-detail-grid">
+              <div class="insight-box">
+                <h4>📊 Bảng Giải Phẫu Điểm Cắt &amp; Bàn Giao Hành Động (`s1_coa_v4.mp4` vs `s1- vietlam.mp4`)</h4>
+                <table class="rule-table">
+                  <thead>
+                    <tr>
+                      <th>Shot</th>
+                      <th>Cỡ cảnh</th>
+                      <th>Frame Nguồn (COA V4)</th>
+                      <th>Frame Mẫu (Anh Việt)</th>
+                      <th>Sai số</th>
+                      <th>Chuỗi Sub-Stroke &amp; Hành Động Bàn Giao (`OUT → IN`)</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><strong>S01</strong></td>
+                      <td>Trung (MS)</td>
+                      <td><code>f044 → f073</code></td>
+                      <td><code>f044 → f073</code></td>
+                      <td><strong>0f / 0f</strong></td>
+                      <td>Bỏ 44f chờ đầu cảnh; vào ngay lúc tay nắm lưng ghế kéo ra (<code>PULL_CHAIR</code>) → cắt <code>OUT</code> giữa đà kéo ghế tại <code>f073</code> (bỏ hoàn toàn phần ngồi xuống ở cuối Take 1).</td>
+                    </tr>
+                    <tr>
+                      <td><strong>S02</strong></td>
+                      <td>Rộng (WS)</td>
+                      <td><code>f185 → f268</code></td>
+                      <td><code>f185 → f268</code></td>
+                      <td><strong>0f / 0f</strong></td>
+                      <td>Vừa thoát bóng lưng che ống kính tại <code>f185</code> → đón tiếp đà <strong>kéo ghế</strong> (<code>PULL_CHAIR</code>) rồi chuyển sang <strong>hạ người ngồi xuống</strong> (<code>SIT_DOWN</code>) → cắt <code>OUT</code> tại <code>f268</code> khi hông đang hạ xuống ghế.</td>
+                    </tr>
+                    <tr>
+                      <td><strong>S03</strong></td>
+                      <td>Trung cận (MCU)</td>
+                      <td><code>f381 → f484</code></td>
+                      <td><code>f381 → f484</code></td>
+                      <td><strong>0f / 0f</strong></td>
+                      <td>Đón đúng nhịp <strong>ngồi xuống ghế</strong> (<code>SIT_DOWN</code>) tại <code>f381</code> → tay vươn lấy sổ và <strong>bắt đầu lật mở bìa sổ</strong> (<code>OPEN_BOOK</code>) tại <code>f484</code>.</td>
+                    </tr>
+                    <tr>
+                      <td><strong>S04</strong></td>
+                      <td>Cận trên xuống (CU)</td>
+                      <td><code>f598 → f668</code></td>
+                      <td><code>f597 → f668</code></td>
+                      <td><strong>+1f / 0f</strong></td>
+                      <td>Đón tiếp đà <strong>tay đang lật trang sổ mở ra</strong> (<code>OPEN_BOOK</code>) → cầm bút <strong>viết lên trang giấy</strong> (<code>WRITE_BOOK</code>) tại <code>f668</code>.</td>
+                    </tr>
+                    <tr>
+                      <td><strong>S05</strong></td>
+                      <td>Qua vai (OTS)</td>
+                      <td><code>f781 → f889</code></td>
+                      <td><code>f780 → f894</code></td>
+                      <td><strong>+1f / -5f</strong></td>
+                      <td>Đón nhịp đang <strong>viết &amp; đọc sổ</strong> từ góc qua vai → lật trang kiểm tra nội dung và kết thúc ổn định.</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="seam-gallery">
+                <div class="seam-card">
+                  <img src="assets/coa/case01_s1_coa_v4_seam.jpg" alt="Seam Strip COA V4 s1" onclick="openLightbox(this.src)"/>
+                  <div class="seam-caption">🔍 Dải Seam Strip 4 điểm nối của `s1_coa_v4.mp4` (Ấn vào ảnh để phóng to)</div>
+                </div>
+                <div class="seam-card">
+                  <img src="assets/coa/case01_vietlam_seams.jpg" alt="Seam Strip Bản Mẫu Anh Việt" onclick="openLightbox(this.src)"/>
+                  <div class="seam-caption">🎯 Dải Seam Strip trích xuất từ bản mẫu `s1- vietlam.mp4` của anh Việt</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- ==================== CASE 02: s2.MOV ==================== -->
+        <article class="case-card" id="case-02" data-tags="V4">
+          <div class="case-top">
+            <div>
+              <div class="case-badges">
+                <span class="badge-num">VÍ DỤ #02 • TẬP KIỂM CHỨNG ĐỘC LẬP (HOLDOUT COA V4.0)</span>
+                <span class="badge-ver">PASS 15/15 CỔNG • LOẠI 2 TAKE NHÁP BÀN TRỐNG</span>
+                <span class="badge-tag">11 Takes → 9 Góc Cảnh Liên Hoàn</span>
+              </div>
+              <h3 class="case-title">Chuỗi 9 Góc Cảnh Từ Bàn Làm Việc Bước Ra Hiên Vườn (`s2.MOV` → `s2_coa_v4.mp4`)</h3>
+              <p class="case-sub">Kiểm chứng mù quy tắc COA V4.0 trên file mới `631MB`: tự động loại 2 take nháp bàn trống (`T02, T07`) và nối mượt 9 góc cảnh liên tiếp</p>
+            </div>
+            <button class="sync-btn" onclick="syncPlayCard('case-02')">▶️ Phát Đồng Bộ Gốc &amp; Kết Quả</button>
+          </div>
+
+          <div class="case-body">
+            <div class="video-compare-grid">
+              <!-- Source -->
+              <div class="v-box is-raw">
+                <div class="v-head">
+                  <span class="v-role-pill">1. VIDEO GỐC (RAW SOURCE)</span>
+                  <span class="v-meta-dur">88.91s • 2134f</span>
+                </div>
+                <div class="v-name">s2.MOV (11 Takes • Có 2 Take Bàn Trống)</div>
+                <video controls preload="metadata" poster="assets/coa/case02_s2_raw_thumb.jpg">
+                  <source src="assets/coa/case02_s2_raw.mp4" type="video/mp4"/>
+                </video>
+                <p class="v-note">Video gốc dài 88.91s gồm 11 lần bấm máy, trong đó `T02` và `T07` là 2 lần bấm nhầm khi bàn trống chưa có người ngồi, cùng nhiều khoảng đứng chờ đầu/cuối mỗi take.</p>
+                <div class="v-links">
+                  <a class="v-link-btn" href="http://127.0.0.1:9000/local-video/watch?path=%2FUsers%2Fvietmac%2FDownloads%2Fai%20v%E1%BB%9Bi%20broll%20sequence%2Fs2.MOV" target="_blank">🖥️ Mở File Gốc .MOV (Local 206)</a>
+                </div>
+              </div>
+
+              <!-- Final -->
+              <div class="v-box is-final">
+                <div class="v-head">
+                  <span class="v-role-pill">2. VIDEO KẾT QUẢ COA V4.0</span>
+                  <span class="v-meta-dur">24.17s • 580f • 9 Shots</span>
+                </div>
+                <div class="v-name">s2_coa_v4.mp4 (9 Góc Cảnh Hoàn Chỉnh)</div>
+                <video controls preload="metadata" poster="assets/coa/case02_s2_coa_v4_thumb.jpg">
+                  <source src="assets/coa/case02_s2_coa_v4.mp4" type="video/mp4"/>
+                </video>
+                <p class="v-note">Động cơ COA V4.0 tự động loại bỏ `T02` &amp; `T07` (`EMPTY_DESK_RETAKE`), giữ trọn 9 góc cảnh có người và cắt nối chính xác theo mạch hành động từ lúc viết sổ, đan tay suy ngẫm, đứng dậy rời ghế, mở cửa kính bước ra hiên ngắm vườn.</p>
+                <div class="v-links">
+                  <a class="v-link-btn" href="http://127.0.0.1:9000/local-video/watch?path=%2FUsers%2Fvietmac%2FDownloads%2Fai%20v%E1%BB%9Bi%20broll%20sequence%2Fs2_coa_v4.mp4" target="_blank">🖥️ Mở Trình Tua 206</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="case-detail-grid">
+              <div class="insight-box">
+                <h4>📊 Bảng 9 Góc Cảnh &amp; Điểm Nối Hành Động Của `s2_coa_v4.mp4`</h4>
+                <table class="rule-table">
+                  <thead>
+                    <tr>
+                      <th>Shot</th>
+                      <th>Take gốc</th>
+                      <th>Cửa sổ nguồn</th>
+                      <th>Thời lượng</th>
+                      <th>Mạch hành động bàn giao (`Cut-on-Action`)</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr><td><strong>S01</strong></td><td><code>T01</code></td><td><code>2.00s → 4.62s</code></td><td><code>2.62s</code></td><td>Mở sổ tay trên bàn gỗ, tay phải đưa lên cầm bút.</td></tr>
+                    <tr><td><strong>—</strong></td><td><code>T02</code></td><td><em>Đã loại bỏ</em></td><td><code>0.00s</code></td><td><em>Cổng R1 loại tự động: Take nháp chỉ quay bàn trống không có người.</em></td></tr>
+                    <tr><td><strong>S02</strong></td><td><code>T03</code></td><td><code>14.42s → 16.58s</code></td><td><code>2.17s</code></td><td>Nối động tác tay cầm bút → bấm đầu bút bi chuẩn bị viết.</td></tr>
+                    <tr><td><strong>S03</strong></td><td><code>T04</code></td><td><code>21.88s → 24.46s</code></td><td><code>2.58s</code></td><td>Đón nhịp hạ ngòi bút xuống trang giấy → viết dòng đầu tiên.</td></tr>
+                    <tr><td><strong>S04</strong></td><td><code>T05</code></td><td><code>31.25s → 34.12s</code></td><td><code>2.88s</code></td><td>Từ viết sổ chuyển sang đan hai bàn tay suy ngẫm.</td></tr>
+                    <tr><td><strong>S05</strong></td><td><code>T06</code></td><td><code>41.12s → 43.75s</code></td><td><code>2.62s</code></td><td>Góc cận nghiêng đón nhịp đan tay suy tư → hạ tay cầm lại bút.</td></tr>
+                    <tr><td><strong>—</strong></td><td><code>T07</code></td><td><em>Đã loại bỏ</em></td><td><code>0.00s</code></td><td><em>Cổng R1 loại tự động: Take nháp bàn trống.</em></td></tr>
+                    <tr><td><strong>S06</strong></td><td><code>T08</code></td><td><code>54.21s → 56.83s</code></td><td><code>2.62s</code></td><td>Góc cao viết dòng chốt hạ vào sổ → gấp sổ &amp; chuẩn bị đứng lên.</td></tr>
+                    <tr><td><strong>S07</strong></td><td><code>T09</code></td><td><code>63.50s → 66.25s</code></td><td><code>2.75s</code></td><td>Đón nhịp đẩy ghế đứng dậy rời bàn làm việc, bước về phía cửa.</td></tr>
+                    <tr><td><strong>S08</strong></td><td><code>T10</code></td><td><code>72.83s → 75.79s</code></td><td><code>2.96s</code></td><td>Bước tới tay nắm cửa kính → đẩy cánh cửa mở ra hiên.</td></tr>
+                    <tr><td><strong>S09</strong></td><td><code>T11</code></td><td><code>81.54s → 84.50s</code></td><td><code>2.96s</code></td><td>Đón nhịp bước qua ngưỡng cửa kính ra ban công ngắm cây xanh.</td></tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="seam-gallery">
+                <div class="seam-card">
+                  <img src="assets/coa/case02_s2_coa_v4_seam.jpg" alt="Seam Strip s2 COA V4" onclick="openLightbox(this.src)"/>
+                  <div class="seam-caption">🔍 Dải Seam Strip 8 vết cắt liên hoàn của `s2_coa_v4.mp4` (Ấn để phóng to)</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- ==================== CASE 03: IMG_9052 / tram1 ==================== -->
+        <article class="case-card" id="case-03" data-tags="REF">
+          <div class="case-top">
+            <div>
+              <div class="case-badges">
+                <span class="badge-num">VÍ DỤ #03 • KHỞI NGUYÊN LUẬT "KHÓA KHUNG – CẮT KHỚP"</span>
+                <span class="badge-ver">0 KEYFRAME • KHỚP 4/4 ĐIỂM CẮT f010 / f040 / f105 / f212</span>
+                <span class="badge-tag">4K 159.4s → 11.46s (5 Cỡ Cảnh)</span>
+              </div>
+              <h3 class="case-title">Chuỗi 5 Cỡ Cảnh Mở MacBook &amp; Gõ Phím (`IMG_9052.MOV` → `1106-tram1.mp4` &amp; `tram1_v2.mp4`)</h3>
+              <p class="case-sub">Bài học bước ngoặt từ bản mẫu `1106-tram1.mp4` của anh Việt: <strong>100% khung hình đứng yên (`0 keyframe`), độ sắc đến từ hành động thật bên trong khung</strong></p>
+            </div>
+            <button class="sync-btn" onclick="syncPlayCard('case-03')">▶️ Phát Đồng Bộ 4 Video</button>
+          </div>
+
+          <div class="case-body">
+            <div class="video-compare-grid">
+              <!-- Source -->
+              <div class="v-box is-raw">
+                <div class="v-head">
+                  <span class="v-role-pill">1. VIDEO GỐC (RAW SOURCE)</span>
+                  <span class="v-meta-dur">159.37s • 696MB</span>
+                </div>
+                <div class="v-name">IMG_9052.MOV (1 File Dài Quay 5 Góc)</div>
+                <video controls preload="metadata" poster="assets/coa/case03_9052_raw_thumb.jpg">
+                  <source src="assets/coa/case03_9052_raw.mp4" type="video/mp4"/>
+                </video>
+                <p class="v-note">File gốc dài gần 2 phút 40 giây: anh Việt tự đặt máy ở 5 vị trí quanh bàn gỗ, giữa các góc là khoảng thời gian đi lại bê chân máy chỉnh góc.</p>
+                <div class="v-links">
+                  <a class="v-link-btn" href="http://127.0.0.1:9000/local-video/watch?path=%2FVolumes%2F1TB%202230%2FMAC_OFFLOAD_2230%2FDownloads%2F0611%20test%2FIMG_9052.MOV" target="_blank">🖥️ Mở File Gốc 4K (Ổ 2230)</a>
+                </div>
+              </div>
+
+              <!-- Reference -->
+              <div class="v-box is-ref">
+                <div class="v-head">
+                  <span class="v-role-pill">2. BẢN MẪU ANH VIỆT LÀM</span>
+                  <span class="v-meta-dur">11.46s • 275f</span>
+                </div>
+                <div class="v-name">1106-tram1.mp4 (Ground Truth CapCut)</div>
+                <video controls preload="metadata" poster="assets/coa/case03_tram1_vietlam_ref_thumb.jpg">
+                  <source src="assets/coa/case03_tram1_vietlam_ref.mp4" type="video/mp4"/>
+                </video>
+                <p class="v-note">Bản anh Việt dựng mẫu: 4/5 shot giữ nguyên `scale=1.0` hoàn toàn không crop, chỉ Shot 5 zoom tĩnh `1.69x` để tạo góc Trung Cận Nghiêng. Cắt chuẩn xác tại frame `10, 40, 105, 212`.</p>
+              </div>
+
+              <!-- V1 Old -->
+              <div class="v-box is-old">
+                <div class="v-head">
+                  <span class="v-role-pill">3. BẢN V1 CŨ (TRÔI KHUNG)</span>
+                  <span class="v-meta-dur">11.50s • Lơ lửng</span>
+                </div>
+                <div class="v-name">IMG_9052_sequence_pro.mp4 (V1)</div>
+                <video controls preload="metadata" poster="assets/coa/case03_9052_v1_old_thumb.jpg">
+                  <source src="assets/coa/case03_9052_v1_old.mp4" type="video/mp4"/>
+                </video>
+                <p class="v-note">Bản V1 dùng nội suy `smoothstep` làm khung hình tự pan/zoom lơ lửng suốt shot và lấy nhầm đoạn chân máy còn đang di chuyển (`4.25 px/frame`).</p>
+              </div>
+
+              <!-- V2 Final -->
+              <div class="v-box is-final">
+                <div class="v-head">
+                  <span class="v-role-pill">4. KẾT QUẢ V2 (KHÓA KHUNG)</span>
+                  <span class="v-meta-dur">11.46s • 275f</span>
+                </div>
+                <div class="v-name">tram1_v2.mp4 (Khớp 100% Bản Mẫu)</div>
+                <video controls preload="metadata" poster="assets/coa/case03_tram1_v2_result_thumb.jpg">
+                  <source src="assets/coa/case03_tram1_v2_result.mp4" type="video/mp4"/>
+                </video>
+                <p class="v-note">Sau khi hội thảo cùng Thư ký CLAUDE2: khóa tĩnh `0 keyframe`, chọn đúng cửa sổ chân máy đứng yên (`0.00–0.80 px/frame`), cắt khớp tại `[10, 40, 105, 212]` với `median_mad = 3.34`.</p>
+              </div>
+            </div>
+
+            <div class="case-detail-grid">
+              <div class="insight-box">
+                <h4>📊 Bảng Thông Số 5 Cỡ Cảnh Của `tram1_v2.mp4` (`275 frames = 11.46s`)</h4>
+                <table class="rule-table">
+                  <thead>
+                    <tr>
+                      <th>Shot</th>
+                      <th>Cửa sổ nguồn `IMG_9052.MOV`</th>
+                      <th>Độ dài</th>
+                      <th>Scale / Tâm `(cx, cy)`</th>
+                      <th>Kiểu cắt nhịp hành động (`Cut-on-Action`)</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr><td><strong>S01</strong></td><td><code>7.250s → 7.667s</code></td><td><code>10f (0.42s)</code></td><td><code>1.00x (50%, 50%)</code></td><td><strong>Giữa động tác:</strong> Nắp MacBook đang mở lên → cắt nhanh ở <code>f010</code>.</td></tr>
+                    <tr><td><strong>S02</strong></td><td><code>43.208s → 44.458s</code></td><td><code>30f (1.25s)</code></td><td><code>1.00x (50%, 50%)</code></td><td><strong>Chạm đích:</strong> Nắp mở xong, hai bàn tay hạ chạm bàn phím → cắt ở <code>f040</code>.</td></tr>
+                    <tr><td><strong>S03</strong></td><td><code>75.500s → 78.208s</code></td><td><code>65f (2.71s)</code></td><td><code>1.00x (50%, 50%)</code></td><td><strong>Hành động tiếp diễn:</strong> Đang gõ phím đều tay → đổi sang góc qua vai ở <code>f105</code>.</td></tr>
+                    <tr><td><strong>S04</strong></td><td><code>124.750s → 129.208s</code></td><td><code>107f (4.46s)</code></td><td><code>1.00x (50%, 50%)</code></td><td><strong>Chạm đích:</strong> Tay phải rời bàn phím đưa lên chạm cằm → cắt ở <code>f212</code>.</td></tr>
+                    <tr><td><strong>S05</strong></td><td><code>148.958s → 151.583s</code></td><td><code>63f (2.62s)</code></td><td><code>1.69x (31.2%, 42.5%)</code></td><td><strong>Crop tĩnh 1.69x:</strong> Đón tay đang tựa cằm suy nghĩ nhìn màn hình.</td></tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="seam-gallery">
+                <div class="seam-card">
+                  <img src="assets/coa/case03_tram1_v2_seam.jpg" alt="Seam Strip tram1_v2" onclick="openLightbox(this.src)"/>
+                  <div class="seam-caption">🔍 Dải Seam Strip 4 điểm cắt `f010, f040, f105, f212` của `tram1_v2.mp4`</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- ==================== CASE 04: IMG_9053 / tram2 ==================== -->
+        <article class="case-card" id="case-04" data-tags="REF">
+          <div class="case-top">
+            <div>
+              <div class="case-badges">
+                <span class="badge-num">VÍ DỤ #04 • MẮT XÍCH NHÂN QUẢ (R4: CAUSE_EFFECT) &amp; KHỬ VIỀN ĐEN</span>
+                <span class="badge-ver">PASS G0..G4 • KHỬ SẠCH DẢI ĐEN 46PX Ở SHOT 2</span>
+                <span class="badge-tag">4K 96.6s → 3.83s (3 Cỡ Cảnh)</span>
+              </div>
+              <h3 class="case-title">Chuỗi Thao Tác iPhone Bắn AirDrop Sang MacBook (`IMG_9053.MOV` → `1106-tram2.mp4` &amp; `tram2_v2.mp4`)</h3>
+              <p class="case-sub">Nối 3 nhịp cực nhanh: <strong>Xoay ngang iPhone (`7f`) → Chạm gửi AirDrop (`41f`) → Popup AirDrop bật sáng trên màn hình MacBook tại `f054` (`44f`)</strong></p>
+            </div>
+            <button class="sync-btn" onclick="syncPlayCard('case-04')">▶️ Phát Đồng Bộ 3 Video</button>
+          </div>
+
+          <div class="case-body">
+            <div class="video-compare-grid">
+              <!-- Source -->
+              <div class="v-box is-raw">
+                <div class="v-head">
+                  <span class="v-role-pill">1. VIDEO GỐC (RAW SOURCE)</span>
+                  <span class="v-meta-dur">96.60s • 407MB</span>
+                </div>
+                <div class="v-name">IMG_9053.MOV (Quay 3 Góc Điện Thoại &amp; Màn Hình)</div>
+                <video controls preload="metadata" poster="assets/coa/case04_9053_raw_thumb.jpg">
+                  <source src="assets/coa/case04_9053_raw.mp4" type="video/mp4"/>
+                </video>
+                <p class="v-note">File gốc dài 96.6s quay 3 góc: trung cảnh cầm iPhone, cận cảnh ngón tay bấm gửi file trên iPhone, và cận cảnh góc màn hình MacBook nhận thông báo AirDrop.</p>
+                <div class="v-links">
+                  <a class="v-link-btn" href="http://127.0.0.1:9000/local-video/watch?path=%2FVolumes%2F1TB%202230%2FMAC_OFFLOAD_2230%2FDownloads%2F0611%20test%2FIMG_9053.MOV" target="_blank">🖥️ Mở File Gốc 4K (Ổ 2230)</a>
+                </div>
+              </div>
+
+              <!-- Reference -->
+              <div class="v-box is-ref">
+                <div class="v-head">
+                  <span class="v-role-pill">2. BẢN MẪU ANH VIỆT LÀM</span>
+                  <span class="v-meta-dur">3.83s • 92f</span>
+                </div>
+                <div class="v-name">1106-tram2.mp4 (Lộ Viền Đen 46px Ở Shot 2)</div>
+                <video controls preload="metadata" poster="assets/coa/case04_tram2_vietlam_ref_thumb.jpg">
+                  <source src="assets/coa/case04_tram2_vietlam_ref.mp4" type="video/mp4"/>
+                </video>
+                <p class="v-note">Bản anh Việt dựng mẫu định hình quy tắc <em>Nguyên nhân → Kết quả</em> (`f007` xoay máy, `f048` chuyển sang màn hình để `f054` bung popup AirDrop), nhưng ở Shot 2 kéo tâm hơi quá tay nên lộ viền đen 46px mép trên.</p>
+              </div>
+
+              <!-- V2 Final -->
+              <div class="v-box is-final">
+                <div class="v-head">
+                  <span class="v-role-pill">3. KẾT QUẢ V2 (ĐÃ KHỬ VIỀN ĐEN)</span>
+                  <span class="v-meta-dur">3.83s • 92f • 0px Đen</span>
+                </div>
+                <div class="v-name">tram2_v2.mp4 (Chuẩn Hóa Toán Học Clamp Biên)</div>
+                <video controls preload="metadata" poster="assets/coa/case04_tram2_v2_result_thumb.jpg">
+                  <source src="assets/coa/case04_tram2_v2_result.mp4" type="video/mp4"/>
+                </video>
+                <p class="v-note">Giữ nguyên 100% nhịp cắt `f007, f048` và sự kiện popup AirDrop tại `f054`, đồng thời áp dụng công thức kẹp biên `half = 50 / scale` đưa tâm Shot 2 về `(58.9%, 41.1%)`, xóa sạch hoàn toàn dải đen 46px.</p>
+              </div>
+            </div>
+
+            <div class="case-detail-grid">
+              <div class="insight-box">
+                <h4>📊 Bảng Thông Số 3 Cỡ Cảnh Của `tram2_v2.mp4` (`92 frames = 3.83s`)</h4>
+                <table class="rule-table">
+                  <thead>
+                    <tr>
+                      <th>Shot</th>
+                      <th>Cửa sổ nguồn `IMG_9053.MOV`</th>
+                      <th>Độ dài</th>
+                      <th>Scale / Tâm `(cx, cy)`</th>
+                      <th>Mắt xích Nhân – Quả &amp; Xử lý biên</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr><td><strong>S01</strong></td><td><code>11.833s → 12.125s</code></td><td><code>7f (0.29s)</code></td><td><code>1.23x (48.7%, 49.5%)</code></td><td><strong>Khởi phát động tác:</strong> Tay cầm iPhone vừa xoay vào giữa khung → cắt cực nhanh sau <code>7 frames</code>.</td></tr>
+                    <tr><td><strong>S02</strong></td><td><code>55.542s → 57.250s</code></td><td><code>41f (1.71s)</code></td><td><code>1.22x (58.9%, 41.1%)</code></td><td><strong>Nguyên nhân:</strong> Ngón cái chạm gửi AirDrop trên iPhone; đã dịch tâm khử sạch 46px viền đen.</td></tr>
+                    <tr><td><strong>S03</strong></td><td><code>88.750s → 90.583s</code></td><td><code>44f (1.83s)</code></td><td><code>1.37x (42.0%, 38.1%)</code></td><td><strong>Kết quả (`R4 CAUSE_EFFECT`):</strong> Đệm đúng <code>6f</code> để tại <code>f054</code> thông báo AirDrop bật ra sắc nét.</td></tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="seam-gallery">
+                <div class="seam-card">
+                  <img src="assets/coa/case04_tram2_blackbar_fix.jpg" alt="Khử viền đen Shot 2 tram2" onclick="openLightbox(this.src)"/>
+                  <div class="seam-caption">🔍 Đối chứng khử viền đen Shot 2 (Trái: Bản gốc lộ 46px đen • Giữa: Bản V2 phủ kín • Phải: Popup AirDrop tại f054)</div>
+                </div>
+                <div class="seam-card">
+                  <img src="assets/coa/case04_tram2_v2_seam.jpg" alt="Seam Strip tram2_v2" onclick="openLightbox(this.src)"/>
+                  <div class="seam-caption">🎯 Dải Seam Strip 2 điểm cắt `f007` và `f048` của `tram2_v2.mp4`</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- ==================== CASE 05: Nhi - may tinh IMG_9061.MOV ==================== -->
+        <article class="case-card" id="case-05" data-tags="V3">
+          <div class="case-top">
+            <div>
+              <div class="case-badges">
+                <span class="badge-num">VÍ DỤ #05 • LUỒNG 4 (TIGHT-SEAM HANDOVER L2-F4 &amp; KHỚP BEAT 0.0MS)</span>
+                <span class="badge-ver">GIỮ ĐỦ 18/18 GÓC • TRIỆT TIÊU LỖI MỞ LAPTOP 2 LẦN Ở GIÂY THỨ 5</span>
+                <span class="badge-tag">Pause–Resume 105.2s → 39.9s</span>
+              </div>
+              <h3 class="case-title">Chuỗi 18 Góc Cảnh Làm Việc Máy Tính &amp; AI (`Nhi - may tinh IMG_9061.MOV` → `Nhi_may_tinh_pro.mp4`)</h3>
+              <p class="case-sub">Giải quyết 3 bài toán lớn: <strong>Nối mở nắp laptop `85% → 15%` ở giây thứ 5 (`L2-F4`) + Bắt sự kiện màn hình nhỏ 4% (`Focal Impulse`) + Cắt trước khi rời cửa kính (`R5`)</strong></p>
+            </div>
+            <button class="sync-btn" onclick="syncPlayCard('case-05')">▶️ Phát Đồng Bộ 3 Video</button>
+          </div>
+
+          <div class="case-body">
+            <div class="video-compare-grid">
+              <!-- Source -->
+              <div class="v-box is-raw">
+                <div class="v-head">
+                  <span class="v-role-pill">1. VIDEO GỐC (RAW SOURCE)</span>
+                  <span class="v-meta-dur">105.2s • 457MB</span>
+                </div>
+                <div class="v-name">Nhi - may tinh IMG_9061.MOV (18 Takes)</div>
+                <video controls preload="metadata" poster="assets/coa/case05_9061_raw_thumb.jpg">
+                  <source src="assets/coa/case05_9061_raw.mp4" type="video/mp4"/>
+                </video>
+                <p class="v-note">Quay kiểu bấm Pause–Resume 18 góc liên hoàn trong 1 file duy nhất: từ bước vào bàn, mở nắp laptop ở 2 góc máy (`T02, T03`), bấm điện thoại, màn hình nhận AirDrop (`T07`), gõ lệnh AI (`T12`) đến đẩy cửa kính bước ra.</p>
+                <div class="v-links">
+                  <a class="v-link-btn" href="http://127.0.0.1:9000/local-video/watch?path=%2FVolumes%2F1TB%202230%2FMAC_OFFLOAD_2230%2FDownloads%2F0611%20test%2FNhi%20-%20may%20tinh%20IMG_9061.MOV" target="_blank">🖥️ Mở File Gốc .MOV (Ổ 2230)</a>
+                </div>
+              </div>
+
+              <!-- Old V1 -->
+              <div class="v-box is-old">
+                <div class="v-head">
+                  <span class="v-role-pill">2. BẢN V1 CŨ (LẶP MỞ MÁY)</span>
+                  <span class="v-meta-dur">21.6s • Thiếu 8 góc</span>
+                </div>
+                <div class="v-name">Nhi_may_tinh_pro.mp4 (Bản V1 Cũ)</div>
+                <video controls preload="metadata" poster="assets/coa/case05_9061_v1_old_thumb.jpg">
+                  <source src="assets/coa/case05_9061_v1_old.mp4" type="video/mp4"/>
+                </video>
+                <p class="v-note">Bản V1 bị giới hạn trần 10 shots (bỏ mất góc màn hình AirDrop `T07` và gõ lệnh AI `T12`), đồng thời ở giây thứ 5 (`T02 → T03`) bị lặp lại động tác mở nắp laptop từ đầu và dính 0.8s cửa kính trống ở `T15`.</p>
+              </div>
+
+              <!-- Final V3 -->
+              <div class="v-box is-final">
+                <div class="v-head">
+                  <span class="v-role-pill">3. KẾT QUẢ V3.0 (CHUẨN 18/18 GÓC)</span>
+                  <span class="v-meta-dur">39.9s • Khớp Beat 0.0ms</span>
+                </div>
+                <div class="v-name">Nhi_may_tinh_pro.mp4 (Tight-Seam L2-F4)</div>
+                <video controls preload="metadata" poster="assets/coa/case05_9061_v3_result_thumb.jpg">
+                  <source src="assets/coa/case05_9061_v3_result.mp4" type="video/mp4"/>
+                </video>
+                <p class="v-note">Giữ trọn 18/18 góc cảnh: tại `Cut#2 (T02 → T03)`, cảnh `T02` cắt `OUT` khi nắp laptop mở `85%` (`10.333s`) và nối sang góc qua vai `T03` tại `12.792s` đẩy nốt `15%` cuối cùng rồi hạ tay xuống phím; khớp nhạc nền `91.99 BPM` sai số `0.0ms`.</p>
+              </div>
+            </div>
+
+            <div class="case-detail-grid">
+              <div class="insight-box">
+                <h4>🔬 Bằng Chứng Giải Phẫu Vết Cắt Giây Thứ 5 (`Cut#2: T02 → T03` • `seam_to_next: "L2-F4"`)</h4>
+                <table class="rule-table">
+                  <thead>
+                    <tr>
+                      <th>Điểm kiểm tra</th>
+                      <th>Mốc thời gian gốc (`9061.MOV`)</th>
+                      <th>Cơ chế xử lý trong `broll_sequence_engine.py` V3.0</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><strong>Cut#2 (`T02 → T03`) Mở nắp Laptop</strong></td>
+                      <td><code>T02 OUT = 10.333s</code><br/><code>T03 IN = 12.792s</code></td>
+                      <td>Khóa `anchor="OUT"` tại ứng viên `L2 (85%)` của `T02` và khóa `anchor="IN"` tại ứng viên `F4` của `T03` (tay trái đẩy nốt 15% cuối cùng rồi hạ xuống bàn phím).</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Giữ cảnh màn hình `T07` &amp; `T12`</strong></td>
+                      <td><code>T07: 33.29..35.58s</code><br/><code>T12: 67.67..69.96s</code></td>
+                      <td>Đo `Focal Impulse Peak` `F_win = (0.55*max + 0.45*p92)*calm_weight` kết hợp `LongLag`, bắt trúng popup AirDrop rộng 4% màn hình và dòng chữ AI chạy.</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Chốt chặn rời khung `T15` (`R5`)</strong></td>
+                      <td><code>T15 OUT = 89.000s</code></td>
+                      <td>Tự động phát hiện `exit_t = 89.0s` khi Nhi bước qua cửa kính để cắt gọn trước khi khung hình bị trống.</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="seam-gallery">
+                <div class="seam-card">
+                  <img src="assets/coa/case05_9061_cut2_proof.jpg" alt="Proof 12 frames quanh Cut 2 mở laptop" onclick="openLightbox(this.src)"/>
+                  <div class="seam-caption">🔍 Bằng chứng 12 frames liên tiếp quanh vết cắt giây thứ 5 (`T02 → T03`): Nắp mở 85% nối khít sang 15% cuối (Ấn để phóng to)</div>
+                </div>
+                <div class="seam-card">
+                  <img src="assets/coa/case05_9061_seam.jpg" alt="Seam Strip 18 góc 9061" onclick="openLightbox(this.src)"/>
+                  <div class="seam-caption">🎯 Bảng kiểm định toàn bộ điểm nối IN/OUT của 18 góc cảnh `Nhi_may_tinh_pro.mp4`</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- ==================== CASE 06: Nhi - cam hoa IMG_9063.MOV ==================== -->
+        <article class="case-card" id="case-06" data-tags="V3">
+          <div class="case-top">
+            <div>
+              <div class="case-badges">
+                <span class="badge-num">VÍ DỤ #06 • LUỒNG 2 (BẢO VỆ TIỀN CẢNH GIÓ R1 &amp; LOẠI NGƯỜI LẠ HẬU CẢNH R2)</span>
+                <span class="badge-ver">12 GÓC CẢNH • LOẠI T10 DÍNH NGƯỜI LẠ • GIỮ CẢNH LÁ TRE T03</span>
+                <span class="badge-tag">Pause–Resume 127.0s → 22.7s</span>
+              </div>
+              <h3 class="case-title">Chuỗi Đa Cỡ Cảnh Cắm Hoa Quán Cafe (`Nhi - cam hoa IMG_9063.MOV` → `Nhi_cam_hoa_pro.mp4`)</h3>
+              <p class="case-sub">Giải quyết 3 bài toán: <strong>Giữ cảnh xuyên qua tán lá tre đung đưa trong gió (`T03`) + Tự động loại `T10` dính người lạ áo đen đi ngang hậu cảnh (`STRANGER`) + Chọn đúng 2.3s tĩnh cuối `T13` sau 19.4s chạy lên cầu thang</strong></p>
+            </div>
+            <button class="sync-btn" onclick="syncPlayCard('case-06')">▶️ Phát Đồng Bộ 3 Video</button>
+          </div>
+
+          <div class="case-body">
+            <div class="video-compare-grid">
+              <!-- Source -->
+              <div class="v-box is-raw">
+                <div class="v-head">
+                  <span class="v-role-pill">1. VIDEO GỐC (RAW SOURCE)</span>
+                  <span class="v-meta-dur">127.0s • 556MB</span>
+                </div>
+                <div class="v-name">Nhi - cam hoa IMG_9063.MOV (13 Takes)</div>
+                <video controls preload="metadata" poster="assets/coa/case06_9063_raw_thumb.jpg">
+                  <source src="assets/coa/case06_9063_raw.mp4" type="video/mp4"/>
+                </video>
+                <p class="v-note">File gốc dài hơn 2 phút gồm 13 takes: có cảnh quay xuyên qua lá tre rung mạnh trước ống kính (`T03`), cảnh `T10` có người lạ mặc áo đen đi ngang phía sau nên phải quay lại ở `T11`, và cảnh `T13` người quay cầm máy chạy bộ 19.4s lên tầng 2 rồi mới đặt máy xuống.</p>
+                <div class="v-links">
+                  <a class="v-link-btn" href="http://127.0.0.1:9000/local-video/watch?path=%2FVolumes%2F1TB%202230%2FMAC_OFFLOAD_2230%2FDownloads%2F0611%20test%2FNhi%20-%20cam%20hoa%20IMG_9063.MOV" target="_blank">🖥️ Mở File Gốc .MOV (Ổ 2230)</a>
+                </div>
+              </div>
+
+              <!-- Old V1 -->
+              <div class="v-box is-old">
+                <div class="v-head">
+                  <span class="v-role-pill">2. BẢN V1 CŨ (MẤT CẢNH LÁ TRE)</span>
+                  <span class="v-meta-dur">16.9s • 8 Shots</span>
+                </div>
+                <div class="v-name">Nhi_cam_hoa_pro.mp4 (Bản V1 Cũ)</div>
+                <video controls preload="metadata" poster="assets/coa/case06_9063_v1_old_thumb.jpg">
+                  <source src="assets/coa/case06_9063_v1_old.mp4" type="video/mp4"/>
+                </video>
+                <p class="v-note">Ở bản đầu tiên, lá tre đung đưa trước ống kính ở `T03` làm chỉ số chuyển động biên tăng cao nên bị đánh nhầm là rung máy và bị xóa mất.</p>
+              </div>
+
+              <!-- Final V3 -->
+              <div class="v-box is-final">
+                <div class="v-head">
+                  <span class="v-role-pill">3. KẾT QUẢ V3.0 (ĐỦ 12 GÓC ĐẸP)</span>
+                  <span class="v-meta-dur">22.7s • Khớp Beat 71.8 BPM</span>
+                </div>
+                <div class="v-name">Nhi_cam_hoa_pro.mp4 (Có Lá Tre &amp; Sạch Người Lạ)</div>
+                <video controls preload="metadata" poster="assets/coa/case06_9063_v3_result_thumb.jpg">
+                  <source src="assets/coa/case06_9063_v3_result.mp4" type="video/mp4"/>
+                </video>
+                <p class="v-note">Nhờ `SOFT cut Guard` (`top15_ncc ≥ 0.80`) và `textured_bg_p25`, cảnh sau tán lá tre `T03` được bảo toàn trọn vẹn (gương mặt lộ rõ 100%), loại chính xác `T10` dính người lạ (`STRANGER`), giữ bản sạch `T11` và lấy đúng đoạn chân máy đã đứng yên ở `T13` (`116.25..118.54s`).</p>
+              </div>
+            </div>
+
+            <div class="case-detail-grid">
+              <div class="insight-box">
+                <h4>📊 Các Quyết Định Curation Đắt Giá Trong `Nhi_cam_hoa_pro.mp4`</h4>
+                <table class="rule-table">
+                  <thead>
+                    <tr>
+                      <th>Take gốc</th>
+                      <th>Hiện tượng thị giác trong file gốc</th>
+                      <th>Quyết định của Động cơ V3.0 (`R1..R6`)</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><strong>T03 (`19.08..21.38s`)</strong></td>
+                      <td>Quay xuyên qua tán lá tre tiền cảnh đung đưa trong gió.</td>
+                      <td><strong>KEEP (`R1`):</strong> Phân vị 25 của các ô nền cứng (`textured_bg_p25`) chứng minh chân máy đứng yên (`STABLE`), kết hợp `YuNet` chọn đúng cửa sổ mặt không bị lá che.</td>
+                    </tr>
+                    <tr>
+                      <td><strong>T06 (`54.29..56.58s`)</strong></td>
+                      <td>Nhi nhấc bình hoa rời khỏi bàn, từ `56.6s` trở đi chỉ còn mặt bàn trống.</td>
+                      <td><strong>TRIM (`R5 Subject Exit`):</strong> Cắt `OUT` đúng lúc `56.58s` khi tay đang nhấc bình hoa đi, `0ms` bàn trống.</td>
+                    </tr>
+                    <tr>
+                      <td><strong>T10 vs T11 (`63.5..74.1s`)</strong></td>
+                      <td>Cùng góc bước qua cửa gỗ, nhưng `T10` có bóng người mặc áo đen đi ngang hậu cảnh.</td>
+                      <td><strong>DROP `T10` (`R2 defect="STRANGER"`) &amp; KEEP `T11`:</strong> Phát hiện `bg_intruder_hint` ở `T10`, tự động loại `T10` và giữ bản quay lại sạch `T11` (`71.29..72.83s`).</td>
+                    </tr>
+                    <tr>
+                      <td><strong>T13 (`96.8..119.5s`)</strong></td>
+                      <td>`19.4s` đầu cầm máy chạy lên cầu thang rung lắc dữ dội, chỉ `3.2s` cuối đặt máy tĩnh trên lan can tầng 2.</td>
+                      <td><strong>KEEP (`R6 Tripod Settled`):</strong> Tự động bỏ sạch `19.4s` đầu, trích xuất đúng đoạn tĩnh `116.25..118.54s`.</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="seam-gallery">
+                <div class="seam-card">
+                  <img src="assets/coa/case06_9063_sheet.jpg" alt="Bảng duyệt 12 góc cắm hoa 9063" onclick="openLightbox(this.src)"/>
+                  <div class="seam-caption">🔍 Bảng Curation Sheet 13 takes → 12 góc cảnh của `IMG_9063.MOV` (Ấn để phóng to)</div>
+                </div>
+                <div class="seam-card">
+                  <img src="assets/coa/case06_9063_seam.jpg" alt="Seam Strip 9063" onclick="openLightbox(this.src)"/>
+                  <div class="seam-caption">🎯 Dải Seam Strip kiểm định các điểm nối `IN / OUT` của `Nhi_cam_hoa_pro.mp4`</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- ==================== CASE 07: Nhi - cau thang IMG_9062.MOV ==================== -->
+        <article class="case-card" id="case-07" data-tags="V3">
+          <div class="case-top">
+            <div>
+              <div class="case-badges">
+                <span class="badge-num">VÍ DỤ #07 • LUỒNG 3 (CHUỖI 3 GÓC NGỒI GHẾ PHA ĐƠN ĐIỆU R3)</span>
+                <span class="badge-ver">GIỮ ĐỦ 5/5 GÓC • 0% NHẢY LÙI THỜI GIAN</span>
+                <span class="badge-tag">Pause–Resume 32.1s → 10.7s</span>
+              </div>
+              <h3 class="case-title">Chuỗi 5 Cỡ Cảnh Bước Xuống Cầu Thang &amp; Ngồi Ghế (`Nhi - cau thang IMG_9062.MOV` → `Nhi_cau_thang_pro.mp4`)</h3>
+              <p class="case-sub">Một hành động ngồi xuống ghế quay ở 3 góc máy liên tiếp (`T02 → T03 → T04`): <strong>Nối pha tăng đơn điệu Chuẩn bị ngồi → Hạ người ngồi xuống → Tựa lưng mở máy</strong></p>
+            </div>
+            <button class="sync-btn" onclick="syncPlayCard('case-07')">▶️ Phát Đồng Bộ 3 Video</button>
+          </div>
+
+          <div class="case-body">
+            <div class="video-compare-grid">
+              <!-- Source -->
+              <div class="v-box is-raw">
+                <div class="v-head">
+                  <span class="v-role-pill">1. VIDEO GỐC (RAW SOURCE)</span>
+                  <span class="v-meta-dur">32.1s • 142MB</span>
+                </div>
+                <div class="v-name">Nhi - cau thang IMG_9062.MOV (5 Takes)</div>
+                <video controls preload="metadata" poster="assets/coa/case07_9062_raw_thumb.jpg">
+                  <source src="assets/coa/case07_9062_raw.mp4" type="video/mp4"/>
+                </video>
+                <p class="v-note">5 takes bấm Pause–Resume: `T01` bước xuống cầu thang sắt ngoài trời, `T02` bước vào bàn chuẩn bị ngồi, `T03` đổi góc ngang hạ người ngồi xuống ghế, `T04` đổi góc rộng ngồi xuống rồi mở laptop, `T05` cận mặt mỉm cười.</p>
+                <div class="v-links">
+                  <a class="v-link-btn" href="http://127.0.0.1:9000/local-video/watch?path=%2FVolumes%2F1TB%202230%2FMAC_OFFLOAD_2230%2FDownloads%2F0611%20test%2FNhi%20-%20cau%20thang%20IMG_9062.MOV" target="_blank">🖥️ Mở File Gốc .MOV (Ổ 2230)</a>
+                </div>
+              </div>
+
+              <!-- Old V1 -->
+              <div class="v-box is-old">
+                <div class="v-head">
+                  <span class="v-role-pill">2. BẢN CŨ (LẶP PHA ĐỨNG→NGỒI)</span>
+                  <span class="v-meta-dur">10.4s • Lặp pha ở T04</span>
+                </div>
+                <div class="v-name">Nhi_cau_thang_pro.mp4 (Bản Đầu Tiên)</div>
+                <video controls preload="metadata" poster="assets/coa/case07_9062_v1_old_thumb.jpg">
+                  <source src="assets/coa/case07_9062_v1_old.mp4" type="video/mp4"/>
+                </video>
+                <p class="v-note">Ở bản đầu tiên, sau khi Nhi đã ngồi xuống ghế ở `T03`, sang `T04` máy lấy quá sớm nên người xem thấy Nhi... đứng dậy ngồi xuống một lần nữa (nhảy lùi pha hành động).</p>
+              </div>
+
+              <!-- Final V3 -->
+              <div class="v-box is-final">
+                <div class="v-head">
+                  <span class="v-role-pill">3. KẾT QUẢ V3.0 (PHA ĐƠN ĐIỆU)</span>
+                  <span class="v-meta-dur">10.7s • 5/5 Góc Mượt</span>
+                </div>
+                <div class="v-name">Nhi_cau_thang_pro.mp4 (Chuẩn R3 L3-F1 &amp; L3-F4)</div>
+                <video controls preload="metadata" poster="assets/coa/case07_9062_v3_result_thumb.jpg">
+                  <source src="assets/coa/case07_9062_v3_result.mp4" type="video/mp4"/>
+                </video>
+                <p class="v-note">Áp dụng Cổng `G4` (Pha tăng đơn điệu `phase_in ≥ prev.phase_out`): `T02` bước vào kéo ghế → `T03` hạ người ngồi xuống → `T04` bắt đầu từ `17.50s` khi đã ngồi tựa lưng ổn định và mở máy tính (`0%` lặp lại pha đứng→ngồi).</p>
+              </div>
+            </div>
+
+            <div class="case-detail-grid">
+              <div class="insight-box">
+                <h4>📊 Bảng Nối Pha Đơn Điệu (`Monotonic Phase Progression`) Trên 5 Góc Cảnh `9062`</h4>
+                <table class="rule-table">
+                  <thead>
+                    <tr>
+                      <th>Shot</th>
+                      <th>Cửa sổ nguồn</th>
+                      <th>Pha hành động (`1 → 5`)</th>
+                      <th>Cách nối `Match-on-Action`</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr><td><strong>S01 (`T01`)</strong></td><td><code>1.80s → 3.92s</code></td><td>Pha 1: Di chuyển</td><td>Bỏ 1.8s đầu chỉnh máy, lấy đúng nhịp bước xuống cầu thang.</td></tr>
+                    <tr><td><strong>S02 (`T02`)</strong></td><td><code>6.50s → 8.42s</code></td><td>Pha 2: Tiếp cận ghế</td><td>Bước vào bàn, tay chạm ghế chuẩn bị hạ người (`L3`).</td></tr>
+                    <tr><td><strong>S03 (`T03`)</strong></td><td><code>10.83s → 12.96s</code></td><td>Pha 3: Hạ người ngồi</td><td>Đón nhịp `F1` đang hạ người ngồi xuống ghế ở góc máy cận hơn.</td></tr>
+                    <tr><td><strong>S04 (`T04`)</strong></td><td><code>17.50s → 19.62s</code></td><td>Pha 4: Đã ngồi ổn định</td><td>Bỏ đoạn đang đứng đầu `T04`, vào thẳng `F4` (`17.50s`) khi đã ngồi tựa lưng mở máy.</td></tr>
+                    <tr><td><strong>S05 (`T05`)</strong></td><td><code>25.00s → 27.38s</code></td><td>Pha 5: Biểu cảm cận</td><td>Cận cảnh gương mặt ngược nắng mỉm cười tự nhiên.</td></tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="seam-gallery">
+                <div class="seam-card">
+                  <img src="assets/coa/case07_9062_sheet.jpg" alt="Sheet 5 góc 9062" onclick="openLightbox(this.src)"/>
+                  <div class="seam-caption">🔍 Bảng duyệt 5/5 góc cảnh của `IMG_9062.MOV`</div>
+                </div>
+                <div class="seam-card">
+                  <img src="assets/coa/case07_9062_seam.jpg" alt="Seam Strip 9062" onclick="openLightbox(this.src)"/>
+                  <div class="seam-caption">🎯 Dải Seam Strip 4 điểm nối của `Nhi_cau_thang_pro.mp4`</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- ==================== CASE 08: GreenHub 9064..9069 ==================== -->
+        <article class="case-card" id="case-08" data-tags="V3">
+          <div class="case-top">
+            <div>
+              <div class="case-badges">
+                <span class="badge-num">VÍ DỤ #08 • LUỒNG 1 (MULTI-CLIP STEM-PREFIX GROUPING)</span>
+                <span class="badge-ver">6 FILE RỜI → 6 GÓC CẢNH ĐỘC LẬP • TỰ LOẠI FILE 9065 TRÙNG GÓC</span>
+                <span class="badge-tag">Tổng 321MB → 14.5s</span>
+              </div>
+              <h3 class="case-title">Gom Nhóm 6 File Rời Cùng Tiền Tố (`0611-greenhub-cine-IMG_9064..9069.MOV` → `0611_greenhub_cine_pro.mp4`)</h3>
+              <p class="case-sub">Khi người quay bấm Stop thay vì Pause tạo ra 6 file `.MOV` rời: <strong>Tự động gom nhóm theo tiền tố `0611-greenhub-cine-`, loại file `9065` trùng góc với `9066`, và tách đôi `9069` tại điểm Pause `6.42s`</strong></p>
+            </div>
+            <button class="sync-btn" onclick="syncPlayCard('case-08')">▶️ Phát Video Kết Quả</button>
+          </div>
+
+          <div class="case-body">
+            <div class="video-compare-grid">
+              <!-- Multi-clip sources -->
+              <div class="v-box is-raw" style="grid-column: span 2;">
+                <div class="v-head">
+                  <span class="v-role-pill">1. BỘ 6 VIDEO GỐC RỜI (IMG_9064 → IMG_9069.MOV)</span>
+                  <span class="v-meta-dur">6 Files • 321.8MB</span>
+                </div>
+                <div class="v-name">6 File Rời Cùng Tiền Tố `0611-greenhub-cine-` (Bấm Play Từng File Gốc)</div>
+                <div class="multiclip-strip">
+                  <div class="mc-item">
+                    <video controls preload="metadata" poster="assets/coa/case08_9064_raw_thumb.jpg"><source src="assets/coa/case08_9064_raw.mp4" type="video/mp4"/></video>
+                    <span>IMG_9064 (7.9s • Góc 1)</span>
+                  </div>
+                  <div class="mc-item" style="border-color:#EF4444;">
+                    <video controls preload="metadata" poster="assets/coa/case08_9065_raw_thumb.jpg"><source src="assets/coa/case08_9065_raw.mp4" type="video/mp4"/></video>
+                    <span style="color:#FCA5A5;">IMG_9065 (Trùng 9066 → Loại)</span>
+                  </div>
+                  <div class="mc-item">
+                    <video controls preload="metadata" poster="assets/coa/case08_9066_raw_thumb.jpg"><source src="assets/coa/case08_9066_raw.mp4" type="video/mp4"/></video>
+                    <span>IMG_9066 (16.8s • Góc 2)</span>
+                  </div>
+                  <div class="mc-item">
+                    <video controls preload="metadata" poster="assets/coa/case08_9067_raw_thumb.jpg"><source src="assets/coa/case08_9067_raw.mp4" type="video/mp4"/></video>
+                    <span>IMG_9067 (9.1s • Góc 3)</span>
+                  </div>
+                  <div class="mc-item">
+                    <video controls preload="metadata" poster="assets/coa/case08_9068_raw_thumb.jpg"><source src="assets/coa/case08_9068_raw.mp4" type="video/mp4"/></video>
+                    <span>IMG_9068 (5.7s • Góc 4)</span>
+                  </div>
+                  <div class="mc-item">
+                    <video controls preload="metadata" poster="assets/coa/case08_9069_raw_thumb.jpg"><source src="assets/coa/case08_9069_raw.mp4" type="video/mp4"/></video>
+                    <span>IMG_9069 (25.6s • Góc 5 &amp; 6)</span>
+                  </div>
+                </div>
+                <p class="v-note">Trong 6 file rời: `IMG_9065.MOV` và `IMG_9066.MOV` quay cùng một góc bước qua cửa kính (`dHash = 4`), trong khi riêng file `IMG_9069.MOV` lại chứa 2 góc máy cách nhau bởi cú bấm Pause ở giây `6.42s`.</p>
+              </div>
+
+              <!-- Final Result -->
+              <div class="v-box is-final">
+                <div class="v-head">
+                  <span class="v-role-pill">2. VIDEO KẾT QUẢ HỢP NHẤT</span>
+                  <span class="v-meta-dur">14.5s • 6 Góc Độc Lập</span>
+                </div>
+                <div class="v-name">0611_greenhub_cine_pro.mp4</div>
+                <video controls preload="metadata" poster="assets/coa/case08_greenhub_result_thumb.jpg">
+                  <source src="assets/coa/case08_greenhub_result.mp4" type="video/mp4"/>
+                </video>
+                <p class="v-note">Động cơ tự động gom 6 file theo tiền tố, loại bỏ `IMG_9065` (giữ bản `IMG_9066` diễn mượt hơn), đồng thời tách `IMG_9069` tại `6.42s` để tạo thành chuỗi 6 góc cảnh hoàn chỉnh.</p>
+              </div>
+            </div>
+
+            <div class="seam-gallery">
+              <div class="seam-card">
+                <img src="assets/coa/case08_greenhub_sheet.jpg" alt="QA Sheet GreenHub 6 shots" onclick="openLightbox(this.src)"/>
+                <div class="seam-caption">🔍 Bảng QA Sheet 6 góc cảnh độc lập của `0611_greenhub_cine_pro.mp4` (Ấn để phóng to)</div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- ==================== CASE 09: Garden Cinematic (cinematic.MOV + IMG_9058.MOV) ==================== -->
+        <article class="case-card" id="case-09" data-tags="CINE">
+          <div class="case-top">
+            <div>
+              <div class="case-badges">
+                <span class="badge-num">VÍ DỤ #09 • KHỬ RUNG ĐIỂM NEO VẬT CỨNG (B_ROI LK-RANSAC)</span>
+                <span class="badge-ver">KHỬ RUNG 27.2PX → 0.23PX • ONE-SETUP-ONE-SHOT (5 GÓC DUY NHẤT)</span>
+                <span class="badge-tag">185s Gốc → 11.67s Tinh Hoa</span>
+              </div>
+              <h3 class="case-title">Chuỗi Vườn Ban Công Chạm Nhành Lá (`cinematic.MOV` + `IMG_9058.MOV` → `0611_cinematic_v2.mp4`)</h3>
+              <p class="case-sub">Tách bạch hoàn toàn <strong>chân máy rung lắc (`SHAKE`)</strong> với <strong>lá cây đung đưa trong gió (`STABLE`)</strong> bằng quỹ đạo điểm neo vật cứng trên tường bê tông, chậu đen &amp; hàng rào sắt</p>
+            </div>
+            <button class="sync-btn" onclick="syncPlayCard('case-09')">▶️ Phát Đồng Bộ 4 Video</button>
+          </div>
+
+          <div class="case-body">
+            <div class="video-compare-grid">
+              <!-- Source 1 -->
+              <div class="v-box is-raw">
+                <div class="v-head">
+                  <span class="v-role-pill">1A. VIDEO GỐC 1 (RAW)</span>
+                  <span class="v-meta-dur">170.18s • 742MB</span>
+                </div>
+                <div class="v-name">cinematic.MOV (4 Góc Vườn Ban Công)</div>
+                <video controls preload="metadata" poster="assets/coa/case09_cinematic_raw_thumb.jpg">
+                  <source src="assets/coa/case09_cinematic_raw.mp4" type="video/mp4"/>
+                </video>
+                <p class="v-note">File gốc 4K dài 170s quay cảnh tay chạm lá, tàu lá trầu bà lá xẻ, chùm hoa tím và tán lá kim trong nắng; có 2 cú chạm chân máy tại `60..62s` và `161..164s`.</p>
+              </div>
+
+              <!-- Source 2 -->
+              <div class="v-box is-raw">
+                <div class="v-head">
+                  <span class="v-role-pill">1B. VIDEO GỐC 2 (RAW)</span>
+                  <span class="v-meta-dur">15.0s • 32MB</span>
+                </div>
+                <div class="v-name">IMG_9058.MOV (Góc Trầu Bà Vàng)</div>
+                <video controls preload="metadata" poster="assets/coa/case09_9058_raw_thumb.jpg">
+                  <source src="assets/coa/case09_9058_raw.mp4" type="video/mp4"/>
+                </video>
+                <p class="v-note">File gốc thứ 2 quay góc chậu trầu bà vàng &amp; Syngonium, chân máy có dao động lắc chậm biên độ `27.22px` nhưng lá cây đung đưa rất đẹp.</p>
+              </div>
+
+              <!-- Old V1 -->
+              <div class="v-box is-old">
+                <div class="v-head">
+                  <span class="v-role-pill">2. BẢN V1 CŨ (LẶP GÓC &amp; RUNG)</span>
+                  <span class="v-meta-dur">24.0s • Lặp góc ở 13s</span>
+                </div>
+                <div class="v-name">0611_cinematic_eyetrace_pro.mp4 (V1)</div>
+                <video controls preload="metadata" poster="assets/coa/case09_cinematic_v1_old_thumb.jpg">
+                  <source src="assets/coa/case09_cinematic_v1_old.mp4" type="video/mp4"/>
+                </video>
+                <p class="v-note">Bản V1 bị 4 lỗi: đầu video còn dư chấn chân máy, lấy nhầm cảnh miệng chậu trống ở giây thứ 4 (`Old_S03`), và lấy lặp 2 lần cùng một góc lá trầu bà / hoa tím trước và sau cú chạm máy.</p>
+              </div>
+
+              <!-- Final V2 -->
+              <div class="v-box is-final">
+                <div class="v-head">
+                  <span class="v-role-pill">3. KẾT QUẢ V2 (5 GÓC DUY NHẤT)</span>
+                  <span class="v-meta-dur">11.67s • 280f • Rung ≤0.29px</span>
+                </div>
+                <div class="v-name">0611_cinematic_v2.mp4 (B_ROI Stabilized)</div>
+                <video controls preload="metadata" poster="assets/coa/case09_cinematic_v2_result_thumb.jpg">
+                  <source src="assets/coa/case09_cinematic_v2_result.mp4" type="video/mp4"/>
+                </video>
+                <p class="v-note">Khóa quy tắc `One-Setup-One-Shot` (5 góc máy = đúng 5 shots đắt nhất), dùng `B_ROI` khử rung vật cứng từ `27.22px` về `0.20..0.29px` (`0px` viền đen), và vào cảnh ngay tại `IN+0` khi tay/lá đang chuyển động (`14.7× → 72.7×` mức nền).</p>
+              </div>
+            </div>
+
+            <div class="case-detail-grid">
+              <div class="seam-gallery">
+                <div class="seam-card">
+                  <img src="assets/coa/case09_cinematic_summary.jpg" alt="Tổng hợp 5 góc cảnh duy nhất Garden V2" onclick="openLightbox(this.src)"/>
+                  <div class="seam-caption">🔍 Tổng hợp 5 góc cảnh duy nhất (`One-Setup-One-Shot`) của `0611_cinematic_v2.mp4`</div>
+                </div>
+              </div>
+              <div class="seam-gallery">
+                <div class="seam-card">
+                  <img src="assets/coa/case09_cinematic_anchors.jpg" alt="Điểm neo vật cứng B_ROI G1" onclick="openLightbox(this.src)"/>
+                  <div class="seam-caption">🎯 Cổng G1: Điểm neo vật cứng (xanh/vàng) chỉ bám vào chậu cứng, tường bê tông và lan can sắt — tuyệt đối không bám vào lá cây hay bàn tay</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- ==================== CASE 10: thien.MOV ==================== -->
+        <article class="case-card" id="case-10" data-tags="CINE">
+          <div class="case-top">
+            <div>
+              <div class="case-badges">
+                <span class="badge-num">VÍ DỤ #10 • KHỬ PHA LẤY ĐÀ (WIND-UP) &amp; ĐỒNG HỒ APPLE WATCH</span>
+                <span class="badge-ver">9 GÓC CẢNH (24.88S) • VÀO THẲNG PHA PHÁT LỰC (ACTION ONSET)</span>
+                <span class="badge-tag">4K 310.0s (1.35GB) → 24.88s</span>
+              </div>
+              <h3 class="case-title">Chuỗi 9 Góc Cảnh Bước Vào Đệm Thiền &amp; Ngước Mặt Nhìn Tán Lá (`thien.MOV` → `thien_cinematic_v3.mp4`)</h3>
+              <p class="case-sub">Giải quyết triệt để lỗi ở V2: <strong>Cắt bỏ 100% đoạn giơ cổ tay xem đồng hồ Apple Watch ở Góc `#3` và đoạn cúi đầu lấy đà `0.5s` trước khi ngước mặt ở Góc `#8, #9`</strong></p>
+            </div>
+            <button class="sync-btn" onclick="syncPlayCard('case-10')">▶️ Phát Đồng Bộ 3 Video</button>
+          </div>
+
+          <div class="case-body">
+            <div class="video-compare-grid">
+              <!-- Source -->
+              <div class="v-box is-raw">
+                <div class="v-head">
+                  <span class="v-role-pill">1. VIDEO GỐC (RAW SOURCE)</span>
+                  <span class="v-meta-dur">310.0s • 1.35GB</span>
+                </div>
+                <div class="v-name">thien.MOV (10 Góc Quay Tự Điều Khiển)</div>
+                <video controls preload="metadata" poster="assets/coa/case10_thien_raw_thumb.jpg">
+                  <source src="assets/coa/case10_thien_raw.mp4" type="video/mp4"/>
+                </video>
+                <p class="v-note">File gốc dài hơn 5 phút: anh Việt tự đặt máy ở 10 góc trong phòng và ngoài ban công, dùng Apple Watch trên cổ tay trái để canh khung rồi mới thực hiện động tác bước vào đệm, ngước mặt, ngồi xuống và chắp tay.</p>
+                <div class="v-links">
+                  <a class="v-link-btn" href="http://127.0.0.1:9000/local-video/watch?path=%2FVolumes%2F1TB%202230%2FMAC_OFFLOAD_2230%2FDownloads%2F0611%20test%2Fthien.MOV" target="_blank">🖥️ Mở File Gốc 4K 1.35GB (Ổ 2230)</a>
+                </div>
+              </div>
+
+              <!-- Old V2 -->
+              <div class="v-box is-old">
+                <div class="v-head">
+                  <span class="v-role-pill">2. BẢN V2 CŨ (DÍNH XEM ĐỒNG HỒ)</span>
+                  <span class="v-meta-dur">26.5s • Dính Wind-up</span>
+                </div>
+                <div class="v-name">thien_cinematic_v2.mp4 (Bản V2 Cũ)</div>
+                <video controls preload="metadata" poster="assets/coa/case10_thien_v2_old_thumb.jpg">
+                  <source src="assets/coa/case10_thien_v2_old.mp4" type="video/mp4"/>
+                </video>
+                <p class="v-note">Bản V2 cộng thêm khoảng đệm trước hành động nên ở giây `6.6–8.0` (Góc `#3`) dính nguyên cảnh giơ tay xem đồng hồ Apple Watch, và ở giây `23.0–23.6` (Góc `#9`) dính cảnh cúi đầu thấp xuống lấy đà trước khi ngước lên.</p>
+              </div>
+
+              <!-- Final V3 -->
+              <div class="v-box is-final">
+                <div class="v-head">
+                  <span class="v-role-pill">3. KẾT QUẢ V3 (SẠCH LẤY ĐÀ)</span>
+                  <span class="v-meta-dur">24.88s • 597f • 9 Shots</span>
+                </div>
+                <div class="v-name">thien_cinematic_v3.mp4 (Action Onset V3)</div>
+                <video controls preload="metadata" poster="assets/coa/case10_thien_v3_result_thumb.jpg">
+                  <source src="assets/coa/case10_thien_v3_result.mp4" type="video/mp4"/>
+                </video>
+                <p class="v-note">Bản V3 bỏ sạch `100%` pha xem đồng hồ (`f1036..1071`) và pha cúi đầu lấy đà (`f6271..6285`), vào thẳng khoảnh khắc cằm đang nâng lên tại `f1072` (`S02`) và `f6286` (`S08`), nối mượt `Match-on-Action` khuỵu gối ngồi xuống ở `S03 → S04`.</p>
+              </div>
+            </div>
+
+            <div class="case-detail-grid">
+              <div class="seam-gallery">
+                <div class="seam-card">
+                  <img src="assets/coa/case10_thien_v3_seam.jpg" alt="Seam Strip 8 cuts thien V3" onclick="openLightbox(this.src)"/>
+                  <div class="seam-caption">🔍 Bảng Kiểm Định 8 Điểm Cắt V3: `C1 (#1→#3)` vào thẳng lúc ngước mặt (`src=1072`), `C7 (#8→#9)` vào thẳng lúc ngước đầu (`src=6286`)</div>
+                </div>
+              </div>
+              <div class="seam-gallery">
+                <div class="seam-card">
+                  <img src="assets/coa/case10_thien_v3_shots.jpg" alt="9 Shots SME thien V3" onclick="openLightbox(this.src)"/>
+                  <div class="seam-caption">🎯 Bảng Kiểm Định 9 Shots V3 (`START / 25% / MID / 75% / END`) của `thien_cinematic_v3.mp4`</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- ==================== CASE 11: Be An Com 9 Goc (Telegram K4 Bot) ==================== -->
+        <article class="case-card" id="case-11" data-tags="CINE">
+          <div class="case-top">
+            <div>
+              <div class="case-badges">
+                <span class="badge-num">VÍ DỤ #11 • TỰ ĐỘNG HÓA 1-CHẠM TRÊN BOT TELEGRAM K4</span>
+                <span class="badge-ver">9 GÓC CẢNH • KHÓA KHUNG 0 KEYFRAME • PASS G0..G4</span>
+                <span class="badge-tag">Pause–Resume 44.37s → 21.04s</span>
+              </div>
+              <h3 class="case-title">Chuỗi 9 Góc Cảnh Bé Ăn Cơm Xem iPad (`clip_01.mp4` → `k4_broll_sequence_be_an_com_9goc.mp4`)</h3>
+              <p class="case-sub">Khi thả 1 video quay kiểu bấm Pause–Resume ($\ge 3$ điểm đổi góc) vào Bot Telegram, hệ thống tự động nhận diện <strong>9 góc cảnh (8 điểm bấm Pause)</strong> và xuất chuỗi B-Roll Sequence 1 chạm</p>
+            </div>
+            <button class="sync-btn" onclick="syncPlayCard('case-11')">▶️ Phát Đồng Bộ Gốc &amp; Kết Quả</button>
+          </div>
+
+          <div class="case-body">
+            <div class="video-compare-grid">
+              <!-- Source -->
+              <div class="v-box is-raw">
+                <div class="v-head">
+                  <span class="v-role-pill">1. VIDEO GỐC GỬI VÀO BOT (RAW)</span>
+                  <span class="v-meta-dur">44.37s • 16.1MB</span>
+                </div>
+                <div class="v-name">clip_01.mp4 (9 Góc Bấm Pause–Resume)</div>
+                <video controls preload="metadata" poster="assets/coa/case11_beancom_raw_thumb.jpg">
+                  <source src="assets/coa/case11_beancom_raw.mp4" type="video/mp4"/>
+                </video>
+                <p class="v-note">Video gốc dài 44.37s quay 9 góc quanh bàn ăn: toàn cảnh bàn ăn, trung cảnh mặt bé, qua vai OTS màn hình iPad, cận hai bàn tay lướt iPad, góc thấp qua bát canh, đút thìa cơm, cận mặt nhai, góc Top-down POV và toàn cảnh ngang ghế.</p>
+              </div>
+
+              <!-- Final -->
+              <div class="v-box is-final">
+                <div class="v-head">
+                  <span class="v-role-pill">2. KẾT QUẢ B-ROLL SEQUENCE (9 GÓC)</span>
+                  <span class="v-meta-dur">21.04s • 505f • 0 Keyframe</span>
+                </div>
+                <div class="v-name">k4_broll_sequence_be_an_com_9goc.mp4</div>
+                <video controls preload="metadata" poster="assets/coa/case11_beancom_result_thumb.jpg">
+                  <source src="assets/coa/case11_beancom_result.mp4" type="video/mp4"/>
+                </video>
+                <p class="v-note">Tự động tách 8 điểm bấm Pause, lọc bỏ phần rung máy ở hai đầu mỗi cú bấm để trích xuất 9 góc cảnh (mỗi góc `2.25s – 2.42s`), khóa khung `0 keyframe` và cắt ngay trên nhịp hoạt động của tay/mắt.</p>
+              </div>
+            </div>
+
+            <div class="case-detail-grid">
+              <div class="seam-gallery">
+                <div class="seam-card">
+                  <img src="assets/coa/case11_beancom_sheet.jpg" alt="Approval Sheet 9 góc bé ăn cơm" onclick="openLightbox(this.src)"/>
+                  <div class="seam-caption">🔍 Bảng kiểm định 9 góc cảnh (`VÀO – GIỮA – RA`) của `k4_broll_sequence_be_an_com_9goc.mp4`</div>
+                </div>
+              </div>
+              <div class="seam-gallery">
+                <div class="seam-card">
+                  <img src="assets/coa/case11_beancom_seam.jpg" alt="Seam Strip 8 điểm nối bé ăn cơm" onclick="openLightbox(this.src)"/>
+                  <div class="seam-caption">🎯 Dải Seam Strip 8 điểm nối `OUT → IN` (Cắt ngay trên nhịp hành động • `0px` viền đen)</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- LIGHTBOX MODAL -->
+  <div class="lightbox-overlay" id="lightbox" onclick="closeLightbox()">
+    <img id="lightbox-img" src="" alt="Preview"/>
+  </div>
+
+  <script>
+    function filterCases(tag, btn) {
+      document.querySelectorAll('#case-filters .filter-btn').forEach(b => b.classList.remove('active'));
+      if (btn) btn.classList.add('active');
+      document.querySelectorAll('#cases-container .case-card').forEach(card => {
+        const tags = (card.getAttribute('data-tags') || '').split(/\s+/);
+        if (tag === 'ALL' || tags.includes(tag)) {
+          card.style.display = 'block';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+    function syncPlayCard(cardId) {
+      const card = document.getElementById(cardId);
+      if (!card) return;
+      const vids = Array.from(card.querySelectorAll('video'));
+      const anyPlaying = vids.some(v => !v.paused);
+      vids.forEach(v => {
+        if (anyPlaying) {
+          v.pause();
+        } else {
+          v.currentTime = 0;
+          v.play().catch(() => {});
+        }
+      });
+    }
+
+    function openLightbox(src) {
+      const lb = document.getElementById('lightbox');
+      const img = document.getElementById('lightbox-img');
+      img.src = src;
+      lb.classList.add('open');
+    }
+
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.remove('open');
+    }
+  </script>
+</body>
+</html>
